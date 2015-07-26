@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="PlanetaEngine">
+      <UniqueIdentifier>{bdb8f67c-a2cd-4837-8b2a-edec7001dd62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Math">
+      <UniqueIdentifier>{824a5b7f-4f86-4ec0-a674-a1d0df969da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game">
+      <UniqueIdentifier>{bc4efac9-0f98-444c-886a-babca34e88df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\Components">
+      <UniqueIdentifier>{554b09c7-da21-4a12-818f-11c2b1fa563f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\UI">
+      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\FileSystem">
+      <UniqueIdentifier>{bc6818a6-d916-45ec-ba68-0848ecaa7576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Resource">
+      <UniqueIdentifier>{f23a3a1d-6410-44bc-ac6e-60606aa0718e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Utility">
+      <UniqueIdentifier>{c73e18ed-60d0-4130-bc81-598d2fe502f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core">
+      <UniqueIdentifier>{e2ad56ed-15d8-415c-9a47-af5d089d6758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Object">
+      <UniqueIdentifier>{a891554f-069d-48a9-9687-bb86bccc3680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\Processes">
+      <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\SystemResource">
+      <UniqueIdentifier>{087be372-b6b9-4b8a-b1bc-d3b3aaaf176f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Allocators">
+      <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Scene">
+      <UniqueIdentifier>{a7a17209-ac4b-4b38-abe5-54b35e8e3e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\InitEnd">
+      <UniqueIdentifier>{d62977ac-2d9b-4cdc-bc1c-9273c8ab4911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\FileSystem\Utility">
+      <UniqueIdentifier>{ead358e0-116a-4af4-889c-080f732838fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Debug">
+      <UniqueIdentifier>{9923b114-a87d-41d5-8e5e-1a788678fddd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Memory.h">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Object.h">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UnorderedMap.h">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Vector.h">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GroundComponent.h">
+      <Filter>PlanetaEngine\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Component.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObject.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Matrix.h">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\CollisionDetectProcess.h">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectDrawProcess.h">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectUpdateProcess.h">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIDrawProcess.h">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIUpdateProcess.h">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithID.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithoutID.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Process.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ProcessManager.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectAllocator.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ProcessAllocator.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIAllocator.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\EngineAllocator.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Scene.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpper.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpProxy.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\BadNewDeleteOperation.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\TLSFMemoryAllocator.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\BadAllocException.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\IMemoryAllocator.h">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\MemoryManager.h">
+      <Filter>PlanetaEngine\Core\SystemResource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\MemoryPools.h">
+      <Filter>PlanetaEngine\Core\SystemResource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\InitEnd.h">
+      <Filter>PlanetaEngine\InitEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\MakeSharedGameObject.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\PlanetComponent.h">
+      <Filter>PlanetaEngine\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectManager.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIManager.h">
+      <Filter>PlanetaEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ArchiveLoader.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\FileLoadManager.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\LoaderBase.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\NormalFolderLoader.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\CSVLoader.h">
+      <Filter>PlanetaEngine\FileSystem\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\File.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\SystemVariables.h">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\ResourceManager.h">
+      <Filter>PlanetaEngine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneManager.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneDefinition.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneTransitionEffect.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Object.cpp">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundComponent.cpp">
+      <Filter>PlanetaEngine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionDetectProcess.cpp">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectDrawProcess.cpp">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectUpdateProcess.cpp">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="UIDrawProcess.cpp">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="UIUpdateProcess.cpp">
+      <Filter>PlanetaEngine\Game\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessManager.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectSetUpper.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectSetUpProxy.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TLSFMemoryAllocator.cpp">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManager.cpp">
+      <Filter>PlanetaEngine\Core\SystemResource</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryPools.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InitEnd.cpp">
+      <Filter>PlanetaEngine\InitEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetComponent.cpp">
+      <Filter>PlanetaEngine\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>PlanetaEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="AllocatorsImp.cpp">
+      <Filter>PlanetaEngine\Core\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="ArchiveLoader.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLoadManager.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalFolderLoader.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="CSVLoader.cpp">
+      <Filter>PlanetaEngine\FileSystem\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="File.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemVariables.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>PlanetaEngine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

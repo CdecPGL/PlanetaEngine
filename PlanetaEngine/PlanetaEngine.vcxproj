@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="EngineTestR|Win32">
+      <Configuration>EngineTestR</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{51471B0A-7303-475C-9870-B7B14E0291FC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PlanetaEngine</RootNamespace>
+    <ProjectName>PlanetaEngine</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
+    <TargetName>planetaengine_mt</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'">
+    <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
+    <TargetName>planetaengine_mt</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
+    <TargetName>planetaengine_mtd</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_57_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\boost\boost_1_57_0\stage\x86\vc12\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_57_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\boost\boost_1_57_0\stage\x86\vc12\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_57_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\boost\boost_1_57_0\stage\x86\vc12\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\IMemoryAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\MemoryPools.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\ResourceManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\SystemVariables.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ArchiveLoader.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\BadAllocException.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\BadNewDeleteOperation.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\File.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\CollisionDetectProcess.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Component.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\EngineAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\FileLoadManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObject.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectDrawProcess.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpper.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpProxy.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectUpdateProcess.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GroundComponent.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\InitEnd.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\LoaderBase.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\MakeSharedGameObject.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Matrix.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Memory.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\MemoryManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\NormalFolderLoader.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Object.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithID.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithoutID.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\PlanetComponent.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Process.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ProcessAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ProcessManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Scene.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\CSVLoader.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneDefinition.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneTransitionEffect.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\TLSFMemoryAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIDrawProcess.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIManager.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIUpdateProcess.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UnorderedMap.h" />
+    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AllocatorsImp.cpp" />
+    <ClCompile Include="ArchiveLoader.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="CollisionDetectProcess.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="FileLoadManager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectDrawProcess.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="GameObjectSetUpper.cpp" />
+    <ClCompile Include="GameObjectSetUpProxy.cpp" />
+    <ClCompile Include="GameObjectUpdateProcess.cpp" />
+    <ClCompile Include="GroundComponent.cpp" />
+    <ClCompile Include="InitEnd.cpp" />
+    <ClCompile Include="MemoryManager.cpp" />
+    <ClCompile Include="MemoryPools.cpp" />
+    <ClCompile Include="NormalFolderLoader.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PlanetComponent.cpp" />
+    <ClCompile Include="Process.cpp" />
+    <ClCompile Include="ProcessManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="CSVLoader.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SystemVariables.cpp" />
+    <ClCompile Include="TLSFMemoryAllocator.cpp" />
+    <ClCompile Include="UIDrawProcess.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIUpdateProcess.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
