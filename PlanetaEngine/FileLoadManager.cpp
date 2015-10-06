@@ -1,39 +1,49 @@
 #include "FileLoadManager.h"
+#include "SystemLog.h"
 
-namespace PlanetaEngine{
-	namespace FileSystem{
+namespace planeta_engine{
+	namespace file_system{
 
 		FileLoadManager::FileLoadManager()
 		{
-			printf("FileLoadManagerのインスタンスが作成されました。\n");
+			
 		}
 
 
 		FileLoadManager::~FileLoadManager()
 		{
-			for (auto it : _loaders){
-				delete it;
-			}
-			printf("FileLoadManagerのインスタンスが破棄されました。\n");
+			
 		}
 
-		FileLoadManager& FileLoadManager::GetInstance(){
-			static FileLoadManager flm;
-			return flm;
-		}
-
-		int FileLoadManager::Init(){
+		bool FileLoadManager::Initialize(){
+			bool error_flag = false;
+			bool success_flag = false;
 			for (auto it : _loaders){
-				if (it->Init()){
-					printf("FileLoadManagerの初期化に失敗しました。\n");
-					return -1;
+				if (it->Initialize()){
+					success_flag = true;
+				}
+				else {
+					error_flag = true;
 				}
 			}
-			printf("FileLoadManagerが初期化されました。\n");
-			return 0;
+			if (success_flag && error_flag) {
+				debug::SystemLog::instance().LogWarning("一部ローダーの初期化に失敗しましたが、継続します。", "FileLoadManager::_Initialize");
+			}
+			else if(success_flag && !error_flag) {
+				debug::SystemLog::instance().LogMessage("初期化に成功しました。", "FileLoadManager::_Initialize");
+			}
+			else {
+				debug::SystemLog::instance().LogError("初期化に失敗しました。", "FileLoadManager::_Initialize");
+			}
+			return true;
 		}
 
-		void FileLoadManager::PushLoader(LoaderBase* lb){
+		bool FileLoadManager::Finalize() {
+			_loaders.clear();
+			return true;
+		}
+
+		void FileLoadManager::PushLoader(const std::shared_ptr<LoaderBase>& lb){
 			_loaders.push_back(lb);
 		}
 
@@ -45,7 +55,7 @@ namespace PlanetaEngine{
 				if (f){ break; }
 			}
 			if (f == nullptr){
-				printf("FileLoadManager::FindFile ファイルが存在しないか読み込みエラーが発生しました。(%s)\n", fn.c_str());
+				debug::SystemLog::instance().LogError(std::string("ファイルが存在しないか読み込みエラーが発生しました。(") + fn + ")", "FileLoadManager::LoadFile");
 			}
 			return f;
 		}
@@ -63,6 +73,7 @@ namespace PlanetaEngine{
 			for (auto it : _loaders){
 				err = it->LoadAllFileToCache();
 			}
+			debug::SystemLog::instance().LogMessage("すべてのファイルをキャッシュに読み込みました。", "FileLoadManager::LoadAllFileToCache");
 			return err;
 		}
 
@@ -70,6 +81,7 @@ namespace PlanetaEngine{
 			for (auto it : _loaders){
 				it->DeleteCache();
 			}
+			debug::SystemLog::instance().LogMessage("ファイルキャッシュを削除しました。", "FileLoadManager::DeleteCatch");
 			return 0;
 		}
 

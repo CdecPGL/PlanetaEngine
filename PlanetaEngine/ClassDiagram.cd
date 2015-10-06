@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PlanetaEngine::Game::GameObject" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBScUAAASACA4ARAioBABQAQEAECAVACAAkgoAIABAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::Component" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BASgAAIAAAAgIQBAABBAAQAAAAEAgAAAAABggAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::GameObjectManager" Collapsed="true">
+    <Position X="26" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAEAAAgAkBAAAAIAAAEAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::ProcessManager" Collapsed="true">
+    <Position X="29.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAEAAAgAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\ProcessManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::GameObjectSetUpProxy" Collapsed="true">
+    <Position X="29.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAAAAAAAAAAQAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpProxy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::GameObjectSetUpper" Collapsed="true">
+    <Position X="27.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAEAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::Process" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAgAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\Process.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::Scene" Collapsed="true">
+    <Position X="24.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAAAACAAAAAggAAAAAAQAACAAACAAACAAEAAgA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::Object" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACACAAAAQAAAAAkgAAAAQAAAAEAAoEAAAAAgABAACA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::MemoryManager" Collapsed="true">
+    <Position X="24.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIEBAAAAAAAAAAAAiAAAAgABAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\MemoryManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::SceneDefinition" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAABAIAAAAAAAAAgAAAAAAAAAAAIAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\SceneDefinition.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::SceneTransitionEffect" Collapsed="true">
+    <Position X="26" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAEAAAQACIAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\SceneTransitionEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::SceneManager" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAKgAQCAOAUAAQwABGAAABgAIAAEAQAABAAAAgEY=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\SceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::Components::GroundComponent" Collapsed="true">
+    <Position X="17.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQQAAAAAAAAAQBAAAAAAAAAAAAAgBAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GroundComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::Components::PlanetComponent" Collapsed="true">
+    <Position X="17.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\PlanetComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::UniqueProcess::CollisionDetectProcess" Collapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\CollisionDetectProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::UniqueProcess::GameObjectDrawProcess" Collapsed="true">
+    <Position X="12.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectDrawProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::UniqueProcess::GameObjectUpdateProcess" Collapsed="true">
+    <Position X="3.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectUpdateProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::UniqueProcess::UIDrawProcess" Collapsed="true">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\UIDrawProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Game::UniqueProcess::UIUpdateProcess" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\UIUpdateProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::UI::UIManager" Collapsed="true">
+    <Position X="27.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\UIManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::FileSystem::ArchiveLoader" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAgAQAAAgAACAAAAEAAAAAQGAAAACAAAAFAQ=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\ArchiveLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::FileSystem::File" Collapsed="true">
+    <Position X="29.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAAAAAACAAIAAAAAEAEAECAoFAAEAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\File.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::FileSystem::FileLoadManager" Collapsed="true">
+    <Position X="24.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAACAAQAAAAAAEBAAAEAGAAAACgAAABAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\FileLoadManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::FileSystem::LoaderBase" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgACAAAAAAgBAAAEAAAAAAGAACACAAAABAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\LoaderBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::FileSystem::NormalFolderLoader" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAQAAAAAAAAAAAEAAAAAAGQAAACAAgAFAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\NormalFolderLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::FileSystem::Utility::CSVLoader" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAUACAAAAAABAAAAAAAAQABAAAAABAAAAAwAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\CSVLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Resource::ResourceManager" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAEAAAAACICAQBFgBAEEAAAAAAACAAAQAAgAAAIAIY=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\include\ResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Utility::BadNewDeleteOperation" Collapsed="true">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\BadNewDeleteOperation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Utility::ObjectHolderTemplate_WithID&lt;T_id, C_obj&gt;" Collapsed="true">
+    <Position X="26" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEAAAAAAABAAIAgAhIAAAEQAAQAABABAAABAAIAAAAQ=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithID.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Utility::ObjectHolderTemplate_WithoutID&lt;C_obj&gt;" Collapsed="true">
+    <Position X="27.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kEAAAAAAABAAIAgAgIAAAEQAAQAAAABACABAAAAAAAQ=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithoutID.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMemoryAllcator" Collapsed="true">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABAAAICCAAAAhAAgAAAUAAMAAACAIAAAABAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\include\IMemoryAllocator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::Allocators::BadAlloc" Collapsed="true">
+    <Position X="24.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\BadAllocException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanetaEngine::Core::Allocators::TLSFMemoryAllocator" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIRAAAAABAAAIBCAAAAhAACAEAQAAIQCAAAIAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\TLSFMemoryAllocator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="PlanetaEngine::Math::Matrix&lt;V, X, Y&gt;" Collapsed="true">
+    <Position X="24.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAAAAAAAAAAAAAAAIAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\Matrix.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="PlanetaEngine::FileSystem::FileStatus" Collapsed="true">
+    <Position X="24.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\File.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

@@ -4,27 +4,33 @@
 #include "GameObjectSetUpper.h"
 #include "GameObjectSetUpProxy.h"
 #include "PlanetComponent.h"
+#include "GameObjectManager.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PlanetaEngineTest
 {
-	using namespace PlanetaEngine::Game;
+	using namespace planeta_engine::game;
 	class TestGOSetter : public GameObjectSetUpper{
-	public:
-		bool operator()(GameObjectSetUpProxy& gosup){ 
-			gosup.AddComponent<Components::PlanetComponent>();
+	private:
+		virtual bool _SetUpGameObject(GameObjectSetUpProxy& gosup) override
+		{
+			gosup.AddComponent<components::PlanetComponent>();
 			return true;
 		}
+
 	};
 	TEST_CLASS(GameObjectTest)
 	{
 	public:
-		
+		GameObjectTest() {
+			gom = GameObjectManager::MakeShared();
+		}
 		TEST_METHOD(TestTest)
 		{
-			GameObjectPtr go = GameObject::Create(TestGOSetter());
+			auto go = gom->CreateGameObject(TestGOSetter());
 		}
-
+	private:
+		std::shared_ptr<GameObjectManager> gom;
 	};
 }

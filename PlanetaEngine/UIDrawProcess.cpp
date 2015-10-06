@@ -1,17 +1,17 @@
 #include "UIDrawProcess.h"
 
-namespace PlanetaEngine{
-	namespace Game{
-		namespace UniqueProcess{
-
-			UIDrawProcess::UIDrawProcess()
-			{
-			}
+namespace planeta_engine{
+	namespace system_processes {
 
 
-			UIDrawProcess::~UIDrawProcess()
-			{
-			}
+		UIDrawProcess::~UIDrawProcess()
+		{
 		}
+
+		void UIDrawProcess::Update()
+		{
+
+		}
+
 	}
 }

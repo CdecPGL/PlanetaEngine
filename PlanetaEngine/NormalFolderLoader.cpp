@@ -1,11 +1,13 @@
 #include "NormalFolderLoader.h"
 #include"boost/filesystem.hpp"
 #include"boost/foreach.hpp"
+#include "boost/lexical_cast.hpp"
+#include "SystemLog.h"
 #include<fstream>
 #include<iomanip>
 
-namespace PlanetaEngine{
-	namespace FileSystem{
+namespace planeta_engine{
+	namespace file_system{
 		namespace bfs = boost::filesystem;
 
 		NormalFolderLoader::NormalFolderLoader(const std::string& p) :LoaderBase(p)
@@ -17,26 +19,31 @@ namespace PlanetaEngine{
 		{
 		}
 
-		int NormalFolderLoader::Init(){
+		bool NormalFolderLoader::_Initialize()
+{
 			//ファイルリスト取得
 			try{
 				UpdateFileList();
-				printf("NormalFileLoaderが初期化されました。(パス:%s,ファイル数:%d)\n", _path.c_str(), (int)_files.size());
-				return 0;
+				debug::SystemLog::instance().LogMessage(std::string("初期化されました。(パス:") + _path + "ファイル数:" + boost::lexical_cast<std::string>(_files.size()) + ")", "NormalFileLoader::_Initialize");
+				return true;
 			}
 			catch (bfs::filesystem_error& e){
-				printf("NormalFileLoaderの初期化に失敗しました。(%s)\n", e.what());
-				return -1;
+				debug::SystemLog::instance().LogError(std::string("初期化に失敗しました。(") + _path + ")", "NormalFileLoader::_Initialize");
+				return false;
 			}
+		}
+
+		void NormalFolderLoader::_Finalize() {
+
 		}
 
 		int NormalFolderLoader::LoadAllFileToCache(){
 			int err = 0;
 			for (auto& f : _files){
-				if (f.second.second->GetStatus() == FileStatus::Available){ continue; }
+				if (f.second.second->GetStatus() == File::FileStatus::Available){ continue; }
 				err = LoadData(f.second.second, f.second.first);
 				if (err){
-					printf("NormalFolderLoader::LoadAllFile ファイルの読み込みに失敗しました。(path:%s)\n", f.second.first.c_str());
+					debug::SystemLog::instance().LogError(std::string("ファイルの読み込みに失敗しました。(") + f.second.first.c_str() + ")", "NormalFileLoader::LoadAllFileToCache");
 
 				}
 			}
@@ -65,7 +72,7 @@ namespace PlanetaEngine{
 		std::shared_ptr<File> NormalFolderLoader::LoadFile(const std::string& fn){
 			auto it = _files.find(fn);
 			if (it == _files.end()){ return nullptr; } //なかったら塗る
-			if (it->second.second->GetStatus() == FileStatus::Available){ return it->second.second; } //読み込み済みだったら返す
+			if (it->second.second->GetStatus() == File::FileStatus::Available) { return it->second.second; } //読み込み済みだったら返す
 			if (LoadData(it->second.second, it->second.first)){ //読み込み失敗したら塗る
 				it->second.second->ErrorOccured();
 				return nullptr;
@@ -90,7 +97,7 @@ namespace PlanetaEngine{
 			ifs.seekg(0, std::ios::end);
 			int size = (int)ifs.tellg();
 			//	size -= 4;
-			//メモリ確保
+			//メモリ確保(Fileに格納し、管理を委ねるのでここでは削除しない)
 			unsigned char* ptr = new unsigned char[size];
 			if (ptr == nullptr){
 				file->ErrorOccured();

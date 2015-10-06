@@ -2,8 +2,8 @@
 
 #include "MemoryPools.h"
 
-namespace PlanetaEngine{
-	namespace Core{
+namespace planeta_engine{
+	namespace core{
 		namespace Allocators{
 			void* allocate_game_object(size_t size){
 				return MemoryPools::game_object_memory_pool->Alloc(size);

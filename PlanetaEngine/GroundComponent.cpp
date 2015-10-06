@@ -1,42 +1,35 @@
 #include "GroundComponent.h"
 
-namespace PlanetaEngine{
-	namespace Game{
-		namespace Components{
-			GroundComponent::GroundComponent(GameObject& go,int id) :Component(go,id)
-			{
-			}
+namespace planeta_engine{
+	namespace components {
+		GroundComponent::GroundComponent()
+		{
+		}
 
+		bool GroundComponent::Initialize_()
+		{
+			return true;
+		}
 
-			GroundComponent::~GroundComponent()
-			{
-			}
+		bool GroundComponent::Activated_()
+		{
+			return true;
+		}
 
-			bool GroundComponent::Initialize()
-			{
-				return true;
-			}
-
-			bool GroundComponent::Activated()
-			{
-				return true;
-			}
-
-			void GroundComponent::Update()
-			{
-				
-			}
-
-			bool GroundComponent::InActivated()
-			{
-				return true;
-			}
-
-			void GroundComponent::Finalize() throw()
-			{
-				
-			}
+		void GroundComponent::Update_()
+		{
 
 		}
+
+		bool GroundComponent::InActivated_()
+		{
+			return true;
+		}
+
+		void GroundComponent::Finalize_() throw()
+		{
+
+		}
+
 	}
 }

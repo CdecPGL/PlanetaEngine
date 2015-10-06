@@ -95,8 +95,8 @@ namespace {
 	}
 }
 
-namespace PlanetaEngine{
-	namespace Core{
+namespace planeta_engine{
+	namespace core{
 		namespace Allocators{
 			//////////////////////////////////////////////////////////////////////////
 			//TLSFTLSFMemoryAllocator::_Impl
@@ -176,7 +176,7 @@ namespace PlanetaEngine{
 				TLSFMemoryAllocator& _tlsf;
 			};
 
-			inline bool PlanetaEngine::Core::Allocators::TLSFMemoryAllocator::_Impl::reserve_memory(size_t size)
+			inline bool planeta_engine::core::Allocators::TLSFMemoryAllocator::_Impl::reserve_memory(size_t size)
 			{
 				if (_tlsf._memory_pool){ free(_tlsf._memory_pool); } //Šm•Û‚µ‚Ä‚ ‚é—Ìˆæ‚ð‰ð•ú
 				_tlsf._allocated_memory_count = 0;

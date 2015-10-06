@@ -1,141 +1,163 @@
 #include "SceneManager.h"
 #include "Scene.h"
-#include "SceneDefinition.h"
-#include "SceneTransitionEffect.h"
+#include "SceneSetUpper.h"
+#include "ResourceManager.h"
+#include "ErrorSceneDefinition.h"
+#include "SceneSystemSetUpper.h"
+#include "SystemLog.h"
+#include "NullWeakPointerException.h"
 
-namespace PlanetaEngine{
-	namespace Core{
-		
+namespace planeta_engine{
+	namespace core{
+		SceneManager::SceneManager(IGameAccessor& engine) :_game(engine),_scene_progress_flag(true), _request(_Request::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
+
+		}
+
+
 		SceneManager::SceneStatus SceneManager::Process()
 		{
-			if (_scene_progress_flag){ _current_scene->Update(); }
-			_transition_proc();
-			return SceneStatus::Continue;
+			try {
+				switch (_request)
+				{
+				case planeta_engine::core::SceneManager::_Request::Transition:
+					_transition_proc();
+				case planeta_engine::core::SceneManager::_Request::None:
+					if (_scene_progress_flag) { _current_scene->Update(); }
+					return SceneStatus::Continue;
+				case planeta_engine::core::SceneManager::_Request::Quit:
+					return SceneStatus::Quit;
+				case planeta_engine::core::SceneManager::_Request::Error:
+					return SceneStatus::Error;
+				default:
+					break;
+				}
+				return SceneStatus::Error;
+			}
+			catch (utility::NullWeakPointerException& e) {
+				debug::SystemLog::instance().LogError(std::string("Scene::Updateで無効なWeakPointerが参照されました。") + e.what(), "SceneManager::Process");
+				return SceneStatus::Error;
+			}
 		}
 
-		bool SceneManager::PrepairScene(const std::string& scene_name){
-			if (_state != SceneManageState::Playing){ return false; } //遷移可能な状態でない
-			return _prepair_controller->Prepair(scene_name);
+		bool SceneManager::LoadNextScene(const std::string& scene_name){
+			if (IsLoading() || IsTransitioning()){ 
+				debug::SystemLog::instance().LogError(std::string("シーンの読み込みに失敗しました。シーンの読み込み中、または遷移中のため新たにシーン(") + scene_name + ")を読み込むことはできません。", "SceneManager::LoadNextScene");
+				return false; 
+			} //すでに読み込み中か、遷移中のため、あらたに読み込みできない
+			//シーン定義クラス作成
+			_next_scene_setupper = _CreateSceneSetUpper(scene_name);
+			if (_next_scene_setupper == nullptr) { 
+				debug::SystemLog::instance().LogError(std::string("シーンの読み込みに失敗しました。指定されたシーン(") + scene_name + ")のセットアッパーが存在しません。", "SceneManager::LoadNextScene");
+				return false; 
+			} //シーン定義クラスが作成できなかった
+			//現在のシーンから遷移可能なシーンか確認(現在のシーンが空だったら確認しない)
+			if (_current_scene!=nullptr && _current_scene_setupper->CheckTransitionable(scene_name) == false) {
+				debug::SystemLog::instance().LogError(std::string("シーンの読み込みに失敗しました。指定されたシーン(") + scene_name + ")は現在のシーンから遷移可能なシーンではありません。", "SceneManager::LoadNextScene");
+				return false;
+			}
+			//リソース読み込み
+			const std::vector<std::string>& ntags = _next_scene_setupper->GetUseTagGroups();
+			if (core::ResourceManager::instance().PrepareResources(ntags) == false) {
+				debug::SystemLog::instance().LogError(std::string("シーンの読み込みに失敗しました。指定されたシーン(") + scene_name + ")のリソース準備に失敗しました。", "SceneManager::LoadNextScene");
+				return false; 
+			} //リソースの準備ができなかった
+			//準備完了
+			_next_scene_id = scene_name;
+			_is_next_scene_loaded = true;
+			debug::SystemLog::instance().LogMessage(std::string("指定されたシーン(") + scene_name + ")を読み込みました。", "SceneManager::LoadNextScene");
+			return true;
 		}
 
-		bool SceneManager::TransitionScene(const std::string& scene_name, const std::string& effect_name/*= "\0"*/)
+		bool SceneManager::TransitionScene(const utility::ParameterHolder& transition_parameters)
 		{
-			if (_state != SceneManageState::Playing){ return false; } //シーン遷移中のため新たに遷移処理を始めることはできない
-			if (_prepair_controller->Prepair(scene_name) == false){ return false; }; //シーンの準備ができなかった
-			//指定名のシーン定義が存在するか確認
-			auto it = _scene_definition_creaters.find(scene_name);
-			if (it == _scene_definition_creaters.end()){ return false; }
-			else{
-				_next_scene_definition = std::move(it->second());
-			}
-			//指定名のエフェクトが存在するか確認
-			auto eit = _scene_transition_effect_creaters.find(effect_name);
-			if (eit == _scene_transition_effect_creaters.end()){
-				//指定されたシーン変更エフェクトが存在しない
-
-			}
-			else{
-				_transition_effect = std::move(eit->second());
-			}
+			if (IsTransitionable()==false){
+				debug::SystemLog::instance().LogError("シーン遷移予約に失敗しました。遷移中のため、新たに遷移処理をはじめることはできません。", "SceneManager::TransitionScene");
+				return false;
+			} //遷移処理を始めることはできない
+			//シーン遷移要求
+			_request = _Request::Transition;
+			_transition_parameters = transition_parameters;
+			debug::SystemLog::instance().LogMessage("シーン遷移予約を行いました。", "SceneManager::TransitionScene");
 			return true;
 		}
 
 		void SceneManager::_transition_proc()
 		{
-			if (_transition_effect){ //遷移処理中だったら
-				bool transition_continue = true; //遷移処理を続けるか
-				while (transition_continue){
-					switch (_transition_state)
-					{
-					case PlanetaEngine::Core::SceneManager::FadeOutCurrentScene: //フェードアウト
-						//エフェクトが再生状態でなければ次に移る
-						if (_transition_effect->FadeOutEffect() != SceneTransitionEffect::EffectState::Playing){ _transition_state = true ? _TransitionState::WaitLoading : _TransitionState::Transition; }
-						//エフェクトがスキップ状態だったら、次に移り、さらにもう一度遷移処理を行う
-						if (_transition_effect->FadeOutEffect() == SceneTransitionEffect::EffectState::Skip){ transition_continue = true; }
-						else{ transition_continue = false; }
-						//シーン進行は許可
-						_scene_progress_flag = true;
-						break;
-					case PlanetaEngine::Core::SceneManager::WaitLoading: //読み込み待機
-						//準備できたら次へ
-						if (_prepair_controller->GetProgress() == _PrepairController::PrepairProgress::Ready){
-							_transition_state = Transition;
-							transition_continue = true;
-						}
-						else{ //できてなかったら待機エフェクト再生
-							//エフェクト処理を行い、その結果によってシーン進行の可否を決める
-							_scene_progress_flag = _transition_effect->WaitForLoadEffect() == SceneTransitionEffect::SceneProgressPermission::Permitting;
-							transition_continue = false;
-						}
-						break;
-					case PlanetaEngine::Core::SceneManager::Transition:
-						//遷移エフェクトが終了したら次へ
-						if (_transition_effect->TransitionEffect() == SceneTransitionEffect::EffectState::Finished){ _transition_state = _TransitionState::FadeInNewScene; }
-						//遷移エフェクトがスキップだったら次に進みもう一度遷移処理を行う。
-						if (_transition_effect->FadeOutEffect() == SceneTransitionEffect::EffectState::Skip){ transition_continue = true; }
-						else{ transition_continue = false; }
-						//シーン進行は不許可
-						_scene_progress_flag = false;
-						break;
-					case PlanetaEngine::Core::SceneManager::FadeInNewScene:
-						//フェードインエフェクトが終わったら遷移終了
-						if (_transition_effect->FadeInEffect() == SceneTransitionEffect::EffectState::Finished){
-							//遷移処理終了
-							_transition_state = _TransitionState::NotTransitioning;
-							_transition_effect.reset();
-						}
-						transition_continue = false;
-						//シーン進行は許可
-						_scene_progress_flag = true;
-						break;
-					case PlanetaEngine::Core::SceneManager::NotTransitioning:
-						//ここには来ないはず
-						break;
-					default:
-						//ここもこない
-						break;
-					}
-				}
+			//現在のシーンを終了
+			utility::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
+			//新しいシーンを作成
+			std::shared_ptr<Scene> new_scene = Scene::MakeShared(_game);
+			new_scene->SetManagerPointer();
+			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
+			if (!(sssu(*new_scene) && _next_scene_setupper->SetUpScene(*new_scene, next_scene_initialize_parameters))) {
+				debug::SystemLog::instance().LogError(std::string("シーン遷移に失敗しました。新しいシーン(") + _next_scene_id + ")のセットアップに失敗しました。", "SceneManager::_transition_proc");
+				_transition_to_error_scene();
+				return;
 			}
-			else{ //遷移処理が行われていなかったら
-				//シーン変更リクエストがあったら
-				if (_request.is_requested){
-					auto it = _scene_definition_creaters.find(_request.scene_name);
-					if (it == _scene_definition_creaters.end()){ _request.is_requested = false; } //リクエストされたシーン定義が存在しない
-					else{
-						_next_scene_definition = std::move(it->second()); //シーン定義クラスを作成
-						auto eit = _scene_transition_effect_creaters.find(_request.effect);
-						if (eit == _scene_transition_effect_creaters.end()){} //リクエストされた遷移エフェクトが存在しない
-						else{
-							_transition_effect = std::move(eit->second()); //シーン遷移エフェクトを作成
-							_transition_state = _TransitionState::FadeInNewScene; //遷移状態を設定
-						}
-					}
-				}
+			//新しいシーンを初期化
+			if (new_scene->Initialize() == false) {
+				debug::SystemLog::instance().LogError(std::string("シーン遷移に失敗しました。新しいシーン(") + _next_scene_id + ")の初期化に失敗しました。", "SceneManager::_transition_proc");
+				_transition_to_error_scene();
+				return;
+			}
+			_current_scene = std::move(new_scene);
+			_current_scene_setupper = std::move(_next_scene_setupper);
+			//未使用リソースを削除(シーンの更新前のため、ここで削除してよい)
+			core::ResourceManager::instance().UnloadUnusedResouces();
+			//リクエストと準備状況をリセット
+			_request = _Request::None;
+			_is_next_scene_loaded = false;
+			debug::SystemLog::instance().LogMessage(std::string("シーン(") + _next_scene_id + ")に遷移しました。", "SceneManager::_transition_proc");
+			_next_scene_id = "";
+		}
+
+		bool SceneManager::Initialize()
+		{
+			return true;
+		}
+
+		bool SceneManager::Finalize()
+		{
+			//現在のシーンを終了
+			_end_current_scene();
+			return true;
+		}
+
+		std::shared_ptr<SceneSetUpper> SceneManager::_CreateSceneSetUpper(const std::string& scene_name)
+		{
+			auto it = _scene_setupper_creaters.find(scene_name);
+			if (it == _scene_setupper_creaters.end()) { return nullptr; }
+			else {
+				return (it->second)();
 			}
 		}
 
-		/**********_PrepairController**********/
-		bool SceneManager::_PrepairController::Prepair(const std::string& scene_name){
-			if (_progress == PrepairProgress::Ready && _scene == scene_name){ return true; } //指定されたシーンの準備はすでに完了している。]
-			if (_progress == PrepairProgress::Loading){ //シーン読み込み中だったら
-				if (_scene == scene_name){ return true; } //指定されたシーンはすでに準備中
-				else{ //他のシーンの準備がしんこうしている
-					//現在進行しているシーンの準備を停止
-
-				}
-			}
-			//シーンの準備を開始
-			auto it = sm._scene_definition_creaters.find(scene_name);
-			if (it == sm._scene_definition_creaters.end()){ return false; } //指定されたシーン定義が存在しない
-			else{
-				//読み込み処理開始
-				_scene = scene_name;
-				//////////////////
-				_progress = PrepairProgress::Loading;
-				return true;
-			}
+		void SceneManager::_transition_to_error_scene()
+		{
+			debug::SystemLog::instance().LogError("エラーシーンに遷移します。", "SceneManager::_transition_to_error_scene");
+			std::shared_ptr<ErrorSceneDefinition> ecd = std::make_shared<ErrorSceneDefinition>();
+			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
+			es->SetManagerPointer();
+			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
+			sssu(*es);
+			ecd->SetUpScene(*es,utility::ParameterHolder());
+			es->Initialize();
+			_current_scene = std::move(es);
+			_current_scene_setupper = ecd;
+			_request = _Request::None;
+			_is_next_scene_loaded = false;
 		}
-		
+
+		utility::ParameterHolder SceneManager::_end_current_scene()
+		{
+			//現在のシーンを終了(現在のシーンがなかったら空のパラメータを格納)
+			if (_current_scene) {
+				utility::ParameterHolder next_scene_initialize_parameters = _current_scene_setupper->FinalizeScene(*_current_scene, _next_scene_id, _transition_parameters);
+				_current_scene->Finalize();
+				return next_scene_initialize_parameters;
+			}
+			else { return utility::ParameterHolder(); }
+		}
+
 	}
 }

@@ -1,8 +1,8 @@
 #include "Component.h"
 #include "GameObject.h"
 
-namespace PlanetaEngine{
-	namespace Game{
+namespace planeta_engine{
+	namespace game{
 
 		/*bool Component::_update_component_pointer(std::shared_ptr<Component>* ptr)
 		{

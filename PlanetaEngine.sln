@@ -1,31 +1,41 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlanetaEngine", "PlanetaEngine\PlanetaEngine.vcxproj", "{51471B0A-7303-475C-9870-B7B14E0291FC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlanetaEngineTest", "PlanetaEngineTest\PlanetaEngineTest.vcxproj", "{0FBD4101-699F-43BD-978A-2AD12F6029A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{51471B0A-7303-475C-9870-B7B14E0291FC} = {51471B0A-7303-475C-9870-B7B14E0291FC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaDebugger", "PlanetaDebugger\PlanetaDebugger.csproj", "{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|Win32 = Debug|Win32
-		EngineTestR|Win32 = EngineTestR|Win32
+		Release|Any CPU = Release|Any CPU
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51471B0A-7303-475C-9870-B7B14E0291FC}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{51471B0A-7303-475C-9870-B7B14E0291FC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{51471B0A-7303-475C-9870-B7B14E0291FC}.Debug|Win32.Build.0 = Debug|Win32
-		{51471B0A-7303-475C-9870-B7B14E0291FC}.EngineTestR|Win32.ActiveCfg = EngineTestR|Win32
-		{51471B0A-7303-475C-9870-B7B14E0291FC}.EngineTestR|Win32.Build.0 = EngineTestR|Win32
+		{51471B0A-7303-475C-9870-B7B14E0291FC}.Release|Any CPU.ActiveCfg = Release|Win32
 		{51471B0A-7303-475C-9870-B7B14E0291FC}.Release|Win32.ActiveCfg = Release|Win32
 		{51471B0A-7303-475C-9870-B7B14E0291FC}.Release|Win32.Build.0 = Release|Win32
+		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.Debug|Win32.Build.0 = Debug|Win32
-		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.EngineTestR|Win32.ActiveCfg = EngineTestR|Win32
-		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.EngineTestR|Win32.Build.0 = EngineTestR|Win32
+		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.Release|Any CPU.ActiveCfg = Release|Win32
 		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.Release|Win32.ActiveCfg = Release|Win32
-		{0FBD4101-699F-43BD-978A-2AD12F6029A8}.Release|Win32.Build.0 = Release|Win32
+		{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B3FC93F-DECD-4BFF-A6F3-EE43639D700A}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

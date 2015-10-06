@@ -1,14 +1,16 @@
 #include "Scene.h"
 #include "GameObjectManager.h"
-#include "ProcessManager.h"
+#include "GameProcessManager.h"
 #include "UIManager.h"
+#include "SystemLog.h"
+#include "ISceneManagerAccessor.h"
+#include "IGameAccessor.h"
 
-namespace PlanetaEngine{
-	namespace Core{
+namespace planeta_engine{
+	namespace core{
 
-		Scene::Scene() :_game_object_manager(std::make_unique<Game::GameObjectManager>()), _process_manager(std::make_unique<Game::ProcessManager>()), _ui_manager(std::make_unique<UI::UIManager>())
+		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::UIManager>())
 		{
-
 		}
 
 		Scene::~Scene()
@@ -16,22 +18,57 @@ namespace PlanetaEngine{
 
 		}
 
-		bool Scene::Init()
+		void Scene::SetManagerPointer()
 		{
-			return false;
+			game_object_manager_->SetManagerPointer(this_shared());
+			ui_manager_->SetManagerPointer(this_shared());
+			game_process_manager_->SetManagerPointer(this_shared());
 		}
 
-		bool Scene::End()
+		bool Scene::Initialize()
 		{
+			if (game_object_manager_->Initialize()) {
+				return true;
+			}
+			else {
+				debug::SystemLog::instance().LogError("Sceneの初期化に失敗しました。", "Scene::Initialize");
+				return false;
+			}
+		}
+
+		bool Scene::Finalize()
+		{
+			game_object_manager_->Finalize();
+			ui_manager_->Finalize();
+			game_process_manager_->Finalize();
 			return true;
 		}
 
 		void Scene::Update()
 		{
-			process_manager().Update(); //プロセス実行
-			game_object_manager().Process(); //ゲームオブジェクトマネージャ更新
-			ui_manager().Process(); //UIマネージャ更新
-			process_manager().Process(); //プロセスマネージャ更新
+			try {
+				game_process_manager_->Update(); //プロセス実行
+			}
+			catch (utility::NullWeakPointerException& e) {
+				debug::SystemLog::instance().LogError(std::string("GameProcessManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
+				game_.scene_manager().ErrorOccured();
+				return;
+			}try {
+				game_object_manager_->Process(); //ゲームオブジェクトマネージャ更新
+			}
+			catch (utility::NullWeakPointerException& e) {
+				debug::SystemLog::instance().LogError(std::string("GameObjectManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
+				game_.scene_manager().ErrorOccured();
+				return;
+			}try {
+				ui_manager_->Process(); //UIマネージャ更新
+			}
+			catch (utility::NullWeakPointerException& e) {
+				debug::SystemLog::instance().LogError(std::string("UIManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
+				game_.scene_manager().ErrorOccured();
+				return;
+			}
+			game_process_manager_->Process(); //プロセスマネージャ更新
 		}
 
 	}

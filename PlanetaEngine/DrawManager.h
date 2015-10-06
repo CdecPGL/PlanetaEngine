@@ -1,0 +1,56 @@
+#pragma once
+#include <vector>
+#include <array>
+#include <memory>
+#include "PointerSingletonTemplate.h"
+#include "Vector2D.h"
+#include "Color.h"
+#include "RectAngle.h"
+#include "Vertex2D.h"
+
+namespace planeta_engine {
+	namespace resources {
+		class GraphResource;
+	}
+	namespace core {
+		class DrawManager final : public utility::PointerSingletonTemplate<DrawManager>{
+			friend utility::PointerSingletonTemplate<DrawManager>;
+		public:
+			bool Initialize() override;
+			bool Finalize() override;
+
+			//システム関数
+			bool Update();
+			//描画関数
+			/*画像の描画(頂点情報、三角形ポリゴンインデックス、画像リソース)*/
+			void DrawGraph(const std::vector<utility::Vertex2D>& vertexes, const std::vector<std::array<int, 3>>& indexes, const std::shared_ptr<resources::GraphResource>& graph_resource);
+			/*ワイヤーの描画(点座標、幅(現状では無効)、色)*/
+			void DrawWire(const std::vector<Vector2D<double>>& positions, double width, const Color& color);
+			/*多角形の描画(点座標、三角形ポリゴンインデックス、色)*/
+			void DrawPolygon(const std::vector<Vector2D<double>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color);
+			//カメラ関数
+			/*カメラ位置を設定*/
+			void SetCameraPosition(const Vector2D<double>& position);
+			/*カメラ回転度を設定*/
+			void SetCameraRotationRad(double rotation_rad);
+			/*カメラ拡大度を設定*/
+			void SetCameraScale(double scale);
+
+			//UI描画関数
+			/*UI画像を描画(描画範囲、画像上の描画範囲、反転フラグ、画像リソース)*/
+			void DrawUIGraph(const utility::RectAngle<int>& draw_area, const utility::RectAngle<int>& draw_area_on_graph,bool reverse, const std::shared_ptr<resources::GraphResource>& graph_resource);
+			/*UIワイヤーを描画(点座標、幅(現状では無効)、色)*/
+			void DrawUIWire(const std::vector<Vector2D<int>>& positions, int width, const Color& color);
+			/*UI多角形を描画(点座標、三角形ポリゴンインデックス、色)*/
+			void DrawUIPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color);
+		private:
+			DrawManager() = default;
+			~DrawManager() = default;
+			static Vector2D<double> _ConvertPosition(const Vector2D<double>& position);
+
+			Vector2D<double> camera_posision_;
+			double camera_rotation_rad_ = 0.0;
+			double camera_scale_ = 1.0;
+		};
+	}
+}

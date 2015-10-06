@@ -2,8 +2,8 @@
 #include "MemoryPools.h"
 #include "TLSFMemoryAllocator.h"
 
-namespace PlanetaEngine{
-	namespace Core{
+namespace planeta_engine{
+	namespace core{
 
 		MemoryManager* MemoryManager::_instance = nullptr;
 		

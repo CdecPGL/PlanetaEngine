@@ -5,85 +5,112 @@
 #include "GameObjectSetUpProxy.h"
 #include "GameObjectSetUpper.h"
 #include "PlanetComponent.h"
+#include "GameObjectManager.h"
+#include "GameProcessManager.h"
+#include "TransformComponent.h"
+#include "SystemLog.h"
+#include "ISceneAccessForGameObject.h"
+#include "DumyGroundComponent.h"
 
 using namespace std;
 
-namespace PlanetaEngine{
-	namespace Game{
+namespace planeta_engine{
+	namespace game{
 
-		GameObject::GameObject() :_is_active(false), _id(-1), _game_object_set_up_proxy(new GameObjectSetUpProxy(*this)),_component_id_counter(0),_game_object_manager(nullptr),_process_manager(nullptr){};
+		GameObject::GameObject() :_is_active(false), _id(-1), _game_object_set_up_proxy(std::make_unique<GameObjectSetUpProxy>(*this)),_component_id_counter(0)
+			,_transform(components::TransformComponent::MakeShared<components::TransformComponent>()){
+			_transform->parent(GetRootTransformComponent()); //トランスフォームコンポーネントの親にRootを設定
+		};
 
 		GameObject::~GameObject(){
-			_Finalize();
-			delete _game_object_set_up_proxy;
 		}
 
 		std::shared_ptr<GameObject> GameObject::Create(GameObjectSetUpper& gosu){
 			auto h_ptr = MakeShared<create_helper>();
 			auto ptr = std::shared_ptr<GameObject>(std::move(h_ptr), &h_ptr->x);
 			ptr->_me = ptr;
-			if (ptr->_SetUp(gosu) == false){ return nullptr; } //設定
-			if (ptr->_Initialize() == false){ return nullptr; } //初期化
+			ptr->_transform->SetGameObject(ptr, ptr->_component_id_counter++);
+			if (ptr->_SetUp(gosu) == false){  //設定
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。セットアップに失敗しました。", "GameObject::Create");
+				return nullptr;
+			}
 			return ptr;
 		}
 
-		void GameObject::Activate()
+		bool GameObject::Activate()
 		{
-			_id = game_object_manager().Resist(me());
-			_Activated();
-			_is_active = true;
+			if (_scene) {
+				if (!static_cast<GameObjectManager&>(_scene->game_object_manager()).Activate(_id)) { return false; }
+				_is_active = true;
+				return true;
+			}
+			else {
+				//ゲームオブジェクトマネージャがセットされていない
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの有効化に失敗しました。Sceneがセットされていません。", "GameObject::Activate");
+				return false;
+			}
 		}
 
-		void GameObject::Activate(const std::string& name)
+		bool GameObject::InActivate()
 		{
-			_id = game_object_manager().Resist(me(), name);
-			_Activated();
-			_is_active = true;
-		}
-
-		void GameObject::InActivate()
-		{
-			game_object_manager().Unresist(_id);
-			_id = -1;
-			_InActivated();
-			_is_active = false;
+			if (_scene) {
+				if (!static_cast<GameObjectManager&>(_scene->game_object_manager()).InActivate(_id)) { return false; }
+				_is_active = false;
+				return true;
+			}
+			else {
+				//ゲームオブジェクトマネージャがセットされていない
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの無効化に失敗しました。Sceneがセットされていません。","GameObject::InActivate");
+				return false;
+			}
 		}
 
 		bool GameObject::_initialize_component()
 		{
-			for (auto& c : _components){
-				if (c.second->Initialize() == false){ return false; }
+			for (auto& c : _component_list){
+				c.second->SetSceneAccessor(_scene);
+				if (c.second->Initialize_() == false){ 
+					debug::SystemLog::instance().LogError(std::string("コンポーネントの初期化に失敗しました。(") + c.second->GetType().name()+")", "GameObject::_initialize_component");
+					return false; 
+				}
 			}
 			return true;
 		}
 
 		void GameObject::_update_component()
 		{
-			for (auto& c : _components){
-				c.second->Update();
+			//通常コンポーネントのアップデート
+			for (auto& c : _component_update_list){
+				c->Update_();
 			}
 		}
 
 		bool GameObject::_finalize_component()
 		{
-			for (auto& c : _components){
-				c.second->Finalize();
+			for (auto& c : _component_list){
+				c.second->Finalize_();
 			}
 			return true;
 		}
 
 		bool GameObject::_activate_component()
 		{
-			for (auto& c : _components){
-				if (c.second->Activated() == false){ return false; }
+			for (auto& c : _component_list){
+				if (c.second->Activated_() == false){ 
+					debug::SystemLog::instance().LogError(std::string("コンポーネントの有効化に失敗しました。(") + c.second->GetType().name()+")", "GameObject::_activate_component");
+					return false;
+				}
 			}
 			return true;
 		}
 
 		bool GameObject::_inactivate_component()
 		{
-			for (auto& c : _components){
-				if (c.second->InActivated() == false){ return false; }
+			for (auto& c : _component_list){
+				if (c.second->InActivated_() == false){ 
+					debug::SystemLog::instance().LogError(std::string("コンポーネントの無効化に失敗しました。(") + c.second->GetType().name()+")", "GameObject::_inactivate_component");
+					return false; 
+				}
 			}
 			return true;
 		}
@@ -101,6 +128,28 @@ namespace PlanetaEngine{
 		bool GameObject::_SetUp(GameObjectSetUpper& gosu)
 		{
 			return gosu(*_game_object_set_up_proxy);
+		}
+
+		void GameObject::Dispose()
+		{
+			if (_scene) {
+				static_cast<GameObjectManager&>(_scene->game_object_manager()).Remove(_id);
+			}
+		}
+
+		std::shared_ptr<components::GroundComponent> GameObject::GetDumyGroundComponent_()
+		{
+			static std::shared_ptr<components::DumyGroundComponent> dgc = std::make_shared<components::DumyGroundComponent>();
+			return dgc;
+		}
+
+		std::shared_ptr<components::TransformComponent> GameObject::GetRootTransformComponent(bool recreate_flag)
+		{
+			static std::shared_ptr<components::TransformComponent> rtc;
+			if (recreate_flag) {
+				rtc = std::make_shared<components::TransformComponent>();
+			}
+			return rtc;
 		}
 
 	}

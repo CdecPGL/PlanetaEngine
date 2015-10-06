@@ -1,9 +1,10 @@
 #include "ArchiveLoader.h"
 #include"Extracter.h"
 #include"boost/filesystem/path.hpp"
+#include "SystemLog.h"
 
-namespace PlanetaEngine{
-	namespace FileSystem{
+namespace planeta_engine{
+	namespace file_system{
 
 		ArchiveLoader::ArchiveLoader(const std::string& path) :LoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(0)
 		{
@@ -18,13 +19,20 @@ namespace PlanetaEngine{
 			_extracter->CloseArchiveFile();
 		}
 
-		int ArchiveLoader::Init(){
+		bool ArchiveLoader::_Initialize()
+{
 			if (_extracter->SetEXOREncryptionKey((uint16_t)_key)){
-				printf("ArchiveLoaderの初期化に失敗しました。復号化キーの設定に失敗しました。(%s)\n", _path.c_str());
+				char buf[256];
+				sprintf_s(buf, 256, "初期化に失敗しました。復号化キーの設定に失敗しました。(%s)", _path.c_str());
+				debug::SystemLog::instance().LogError(buf, "ArchiveLoader::_Initialize");
+				return false;
 			}
 			int res = _extracter->OpenAchiveFile(_path);
 			if (res < 0){
-				printf("ArchiveLoaderの初期化に失敗しました。(reason:%d,path:%s)\n", res, _path.c_str());
+				char buf[256];
+				sprintf_s(buf, 256, "初期化に失敗しました。(reason:%d,path:%s)", res, _path.c_str());
+				debug::SystemLog::instance().LogError(buf, "ArchiveLoader::_Initialize");
+				return false;
 			}
 			//ファイルリスト取得
 			std::vector<std::string> f_list = std::move(_extracter->GetFileList());
@@ -32,18 +40,26 @@ namespace PlanetaEngine{
 				boost::filesystem::path p(fn);
 				_files.emplace(std::make_pair(fn, std::make_shared<File>(p.extension().string())));
 			}
-			printf("ArchiveLoaderが初期化されました。(パス:%s,ファイル数:%d)\n", _path.c_str(), (int)_files.size());
-			return 0;
+			char buf[256];
+			sprintf_s(buf, 256, "初期化されました。(パス:%s,ファイル数:%d)", _path.c_str(), (int)_files.size());
+			debug::SystemLog::instance().LogMessage(buf, "ArchiveLoader::_Initialize");
+			return true;
 		}
 
-		int ArchiveLoader::LoadAllFileToCache(){
+		void ArchiveLoader::_Finalize()
+		{
+
+		}
+
+		int ArchiveLoader::LoadAllFileToCache() {
 			int err = 0;
 			for (auto& f : _files){
-				if (f.second->GetStatus() == FileStatus::Available){ continue; }
+				if (f.second->GetStatus() == File::FileStatus::Available){ continue; }
 				err = LoadData(f.first, f.second);
 				if (err){
-					printf("ArchiveLoader::LoadAllFile ファイルの読み込みに失敗しました。(name:%s)\n", f.first.c_str());
-
+					char buf[256];
+					sprintf_s(buf, 256, "ファイルの読み込みに失敗しました。(name:%s)", f.first.c_str());
+					debug::SystemLog::instance().LogError(buf, "ArchiveLoader::LoadAllFileToCatch");
 				}
 			}
 			return err;
@@ -62,7 +78,9 @@ namespace PlanetaEngine{
 			_files.clear();
 			int res = _extracter->OpenAchiveFile(_path);
 			if (res < 0){
-				printf("ArchiveLoader::UpdateFileList アーカイブファイルのオープンに失敗しました。(reason:%d,path:%s)\n", res, _path.c_str());
+				char buf[256];
+				sprintf_s(buf, 256, "アーカイブファイルのオープンに失敗しました。(reason:%d,path:%s)", res, _path.c_str());
+				debug::SystemLog::instance().LogError(buf, "ArchiveLoader::LoadAllFileToCatch");
 			}
 			//ファイルリスト取得
 			std::vector<std::string> f_list = std::move(_extracter->GetFileList());
@@ -76,7 +94,7 @@ namespace PlanetaEngine{
 		std::shared_ptr<File> ArchiveLoader::LoadFile(const std::string& fn){
 			auto it = _files.find(fn);
 			if (it == _files.end()){ return nullptr; } //なかったら塗る
-			if ((*it).second->GetStatus() == FileStatus::Available){ return (*it).second; } //読み込み済みだったら返す
+			if ((*it).second->GetStatus() == File::FileStatus::Available){ return (*it).second; } //読み込み済みだったら返す
 			if (LoadData(fn, (*it).second)){ //読み込み失敗したら塗る
 				it->second->ErrorOccured();
 				return nullptr;

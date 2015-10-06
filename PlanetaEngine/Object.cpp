@@ -1,7 +1,7 @@
 #include "Object.h"
 
-namespace PlanetaEngine{
-	namespace Core{
+namespace planeta_engine{
+	namespace core{
 		size_t Object::_reserved_memory_byte = 0;
 		void* Object::_allocate(size_t s){
 			size_t header_size = sizeof(size_t); //ヘッダサイズ確認

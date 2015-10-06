@@ -1,12 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="EngineTestR|Win32">
-      <Configuration>EngineTestR</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
@@ -24,20 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -50,15 +39,8 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
-    <TargetName>planetaengine_mt</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'">
     <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
     <TargetName>planetaengine_mt</TargetName>
   </PropertyGroup>
@@ -75,19 +57,29 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\boost\boost_1_57_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_58_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\boost\boost_1_57_0\stage\x86\vc12\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_58_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PreBuildEvent>
+      <Command>robocopy $(ProjectDir) C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\ *.h /PURGE /NP
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>ヘッダファイルをライブラリディレクトリに同期</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -100,7 +92,8 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\boost\boost_1_57_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_58_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -109,97 +102,196 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\boost\boost_1_57_0\stage\x86\vc12\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_58_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='EngineTestR|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\boost\boost_1_57_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-    </Link>
-    <Lib>
-      <AdditionalLibraryDirectories>C:\boost\boost_1_57_0\stage\x86\vc12\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <PreBuildEvent>
+      <Command>robocopy $(ProjectDir) C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include\ *.h /PURGE /NP
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>ヘッダファイルをライブラリディレクトリに同期</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\IMemoryAllocator.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\MemoryPools.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\ResourceManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\include\SystemVariables.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ArchiveLoader.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\BadAllocException.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\BadNewDeleteOperation.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\File.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\CollisionDetectProcess.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Component.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\EngineAllocator.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\FileLoadManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObject.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectAllocator.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectDrawProcess.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpper.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectSetUpProxy.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GameObjectUpdateProcess.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\GroundComponent.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\InitEnd.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\LoaderBase.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\MakeSharedGameObject.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Matrix.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Memory.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\MemoryManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\NormalFolderLoader.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Object.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithID.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ObjectHolderTemplate_WithoutID.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\PlanetComponent.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Process.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ProcessAllocator.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\ProcessManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Scene.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\CSVLoader.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneDefinition.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\SceneTransitionEffect.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\TLSFMemoryAllocator.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIAllocator.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIDrawProcess.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIManager.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UIUpdateProcess.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\UnorderedMap.h" />
-    <ClInclude Include="..\..\..\..\..\Documents\自作ライブラリ\PlanetaEngine\include\Vector.h" />
+    <ClInclude Include="ArchiveLoader.h" />
+    <ClInclude Include="BadAllocException.h" />
+    <ClInclude Include="BadNewDeleteOperation.h" />
+    <ClInclude Include="BelongingGroundGravityComponent.h" />
+    <ClInclude Include="CameraUtility.h" />
+    <ClInclude Include="CircleColliderComponent.h" />
+    <ClInclude Include="ColliderComponent.h" />
+    <ClInclude Include="CollisionDetectFunctions.h" />
+    <ClInclude Include="CollisionDetectProcess.h" />
+    <ClInclude Include="CollisionEventArgument.h" />
+    <ClInclude Include="CollisionWithGroundEventArgument.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="CSVResource.h" />
+    <ClInclude Include="DebugDataPool.h" />
+    <ClInclude Include="DebuggerCommunicater.h" />
+    <ClInclude Include="DrawComponent.h" />
+    <ClInclude Include="DrawGraphComponent.h" />
+    <ClInclude Include="DrawLineComponent.h" />
+    <ClInclude Include="DrawManager.h" />
+    <ClInclude Include="DrawPlanetComponent.h" />
+    <ClInclude Include="DrawPolygonComponent.h" />
+    <ClInclude Include="DumyGroundComponent.h" />
+    <ClInclude Include="DXUtility.h" />
+    <ClInclude Include="EmptyUIObject.h" />
+    <ClInclude Include="EngineAllocator.h" />
+    <ClInclude Include="ErrorSceneDefinition.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="FileAccessor.h" />
+    <ClInclude Include="FileLoadManager.h" />
+    <ClInclude Include="FontDefinitionResource.h" />
+    <ClInclude Include="FontResource.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectAllocator.h" />
+    <ClInclude Include="GameObjectDrawProcess.h" />
+    <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="GameObjectSetUpper.h" />
+    <ClInclude Include="GameObjectSetUpProxy.h" />
+    <ClInclude Include="GameObjectUpdateProcess.h" />
+    <ClInclude Include="GameProcess.h" />
+    <ClInclude Include="GameProcessManager.h" />
+    <ClInclude Include="GraphAnimatorComponent.h" />
+    <ClInclude Include="GraphPanel.h" />
+    <ClInclude Include="GraphResource.h" />
+    <ClInclude Include="GroundComponent.h" />
+    <ClInclude Include="IGameAccessor.h" />
+    <ClInclude Include="IGameObjectAccessor.h" />
+    <ClInclude Include="IGameObjectManagerAccessor.h" />
+    <ClInclude Include="IGameObjectManagerSetup.h" />
+    <ClInclude Include="IGameProcessManagerAccessor.h" />
+    <ClInclude Include="IGameProcessManagerSetup.h" />
+    <ClInclude Include="IGameSetUp.h" />
+    <ClInclude Include="IMemoryAllocator.h" />
+    <ClInclude Include="INIFileResource.h" />
+    <ClInclude Include="InitEnd.h" />
+    <ClInclude Include="InstanceProcess.h" />
+    <ClInclude Include="IOKeyConfig.h" />
+    <ClInclude Include="ISceneAccessForGameObject.h" />
+    <ClInclude Include="ISceneAccessForGameProcess.h" />
+    <ClInclude Include="ISceneAccessForUI.h" />
+    <ClInclude Include="ISceneManagerAccessor.h" />
+    <ClInclude Include="ISceneSetup.h" />
+    <ClInclude Include="IUIManagerAccessor.h" />
+    <ClInclude Include="IUIManagerSetup.h" />
+    <ClInclude Include="KeyInputDefines.h" />
+    <ClInclude Include="KeyInputManager.h" />
+    <ClInclude Include="KeyInputUtils.h" />
+    <ClInclude Include="LoaderBase.h" />
+    <ClInclude Include="MakeResource.h" />
+    <ClInclude Include="MakeSharedGameObject.h" />
+    <ClInclude Include="MathConstant.h" />
+    <ClInclude Include="MathUtility.h" />
+    <ClInclude Include="MathVector.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="MemoryManager.h" />
+    <ClInclude Include="MemoryPools.h" />
+    <ClInclude Include="MusicResource.h" />
+    <ClInclude Include="NormalFolderLoader.h" />
+    <ClInclude Include="NullWeakPointerException.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectHolderTemplate_WithID.h" />
+    <ClInclude Include="ObjectHolderTemplate_WithoutID.h" />
+    <ClInclude Include="ParameterHolder.h" />
+    <ClInclude Include="PEDateTime.h" />
+    <ClInclude Include="PETime.h" />
+    <ClInclude Include="PlanetaEngine.h" />
+    <ClInclude Include="PlanetComponent.h" />
+    <ClInclude Include="PlanetGroundComponent.h" />
+    <ClInclude Include="PointerSingletonTemplate.h" />
+    <ClInclude Include="PolygonColliderComponent.h" />
+    <ClInclude Include="ProcessAllocator.h" />
+    <ClInclude Include="RectAngle.h" />
+    <ClInclude Include="ResourceBase.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneSetUpper.h" />
+    <ClInclude Include="SceneSystemSetUpper.h" />
+    <ClInclude Include="SceneTransitionEffect.h" />
+    <ClInclude Include="SharedPointerInstance.h" />
+    <ClInclude Include="SimplePolygonPanel.h" />
+    <ClInclude Include="SoundResource.h" />
+    <ClInclude Include="StaticSingletonTemplate.h" />
+    <ClInclude Include="StraightLineColliderComponent.h" />
+    <ClInclude Include="SystemCounter.h" />
+    <ClInclude Include="SystemLog.h" />
+    <ClInclude Include="SystemVariables.h" />
+    <ClInclude Include="TextPanel.h" />
+    <ClInclude Include="TextResource.h" />
+    <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="TLSFMemoryAllocator.h" />
+    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TwoKeyMap.h" />
+    <ClInclude Include="UIAllocator.h" />
+    <ClInclude Include="UIComponent.h" />
+    <ClInclude Include="UIDrawProcess.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIObject.h" />
+    <ClInclude Include="UIUpdateProcess.h" />
+    <ClInclude Include="UnorderedMap.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="Vertex2D.h" />
+    <ClInclude Include="WeakPointer.h" />
+    <ClInclude Include="WeakPointerDelegate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllocatorsImp.cpp" />
     <ClCompile Include="ArchiveLoader.cpp" />
+    <ClCompile Include="BelongingGroundGravityComponent.cpp" />
+    <ClCompile Include="CameraUtility.cpp" />
+    <ClCompile Include="CircleColliderComponent.cpp" />
+    <ClCompile Include="ColliderComponent.cpp" />
+    <ClCompile Include="CollisionDetectFunctions.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="CSVResource.cpp" />
+    <ClCompile Include="DebuggerCommunicater.cpp" />
+    <ClCompile Include="DrawPolygonComponent.cpp" />
+    <ClCompile Include="FontDefinitionResource.cpp" />
+    <ClCompile Include="FontResource.cpp" />
+    <ClCompile Include="GraphPanel.cpp" />
+    <ClCompile Include="InstanceProcess.cpp" />
+    <ClCompile Include="SimplePolygonPanel.cpp" />
+    <ClCompile Include="TextPanel.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="UIObject.cpp" />
+    <ClCompile Include="WeakPointerDelegate.cpp" />
+    <ClCompile Include="DrawComponent.cpp" />
+    <ClCompile Include="DrawLineComponent.cpp" />
+    <ClCompile Include="DrawManager.cpp" />
+    <ClCompile Include="DrawPlanetComponent.cpp" />
+    <ClCompile Include="DXUtility.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GraphAnimatorComponent.cpp" />
+    <ClCompile Include="GraphResource.cpp" />
+    <ClCompile Include="INIFileResource.cpp" />
+    <ClCompile Include="IOKeyConfig.cpp" />
+    <ClCompile Include="KeyInputManager.cpp" />
+    <ClCompile Include="KeyInputUtils.cpp" />
+    <ClCompile Include="MathUtility.cpp" />
+    <ClCompile Include="MusicResource.cpp" />
+    <ClCompile Include="PEDateTime.cpp" />
+    <ClCompile Include="PlanetGroundComponent.cpp" />
+    <ClCompile Include="PolygonColliderComponent.cpp" />
+    <ClCompile Include="SceneSystemSetUpper.cpp" />
+    <ClCompile Include="SoundResource.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="CollisionDetectProcess.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="FileLoadManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDrawProcess.cpp" />
@@ -207,21 +299,30 @@
     <ClCompile Include="GameObjectSetUpper.cpp" />
     <ClCompile Include="GameObjectSetUpProxy.cpp" />
     <ClCompile Include="GameObjectUpdateProcess.cpp" />
+    <ClCompile Include="DrawGraphComponent.cpp" />
     <ClCompile Include="GroundComponent.cpp" />
     <ClCompile Include="InitEnd.cpp" />
+    <ClCompile Include="InitEndDX.cpp" />
+    <ClCompile Include="InitEndResource.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="MemoryPools.cpp" />
     <ClCompile Include="NormalFolderLoader.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PlanetaEngine.cpp" />
     <ClCompile Include="PlanetComponent.cpp" />
-    <ClCompile Include="Process.cpp" />
-    <ClCompile Include="ProcessManager.cpp" />
+    <ClCompile Include="GameProcess.cpp" />
+    <ClCompile Include="GameProcessManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="CSVLoader.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="StraightLineColliderComponent.cpp" />
+    <ClCompile Include="SystemCounter.cpp" />
+    <ClCompile Include="SystemLog.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
+    <ClCompile Include="PETime.cpp" />
+    <ClCompile Include="TextResource.cpp" />
     <ClCompile Include="TLSFMemoryAllocator.cpp" />
+    <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="UIDrawProcess.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIUpdateProcess.cpp" />

@@ -1,7 +1,7 @@
 #include "File.h"
 
-namespace PlanetaEngine{
-	namespace FileSystem{
+namespace planeta_engine{
+	namespace file_system{
 
 		File::File()
 		{
@@ -20,7 +20,7 @@ namespace PlanetaEngine{
 		std::string File::GetExtension()const{ return extension; }
 		unsigned int File::GetSize()const{ return size; }
 		const void* const File::GetTopPointer()const{ return data_top; }
-		FileStatus File::GetStatus()const{ return status; }
+		File::FileStatus File::GetStatus()const{ return status; }
 
 		void File::UnloadData(){
 			if (data_top){

@@ -1,16 +1,15 @@
 #include "UIUpdateProcess.h"
 
-namespace PlanetaEngine{
-	namespace Game{
-		namespace UniqueProcess{
-			UIUpdateProcess::UIUpdateProcess()
-			{
-			}
-
-
-			UIUpdateProcess::~UIUpdateProcess()
-			{
-			}
+namespace planeta_engine{
+	namespace system_processes {
+		UIUpdateProcess::~UIUpdateProcess()
+		{
 		}
+
+		void UIUpdateProcess::Update()
+		{
+
+		}
+
 	}
 }
