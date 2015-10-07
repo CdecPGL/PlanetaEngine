@@ -20,7 +20,7 @@ namespace planeta_engine{
 			for (const auto& tag : load_tags){
 				_load_tag_group(tag);
 			}
-			debug::SystemLog::instance().LogMessage(boost::lexical_cast<std::string>(new_num) + "個のタググループが新規読み込みされ、" + boost::lexical_cast<std::string>(no_num) + "個のタグが未使用となりました。", "ResourceManager::PrepairResource");
+			debug::SystemLog::instance().LogMessage(boost::lexical_cast<std::string>(new_num) + "個のタググループが新規読み込みされ、" + boost::lexical_cast<std::string>(no_num) + "個のタグが未使用となりました。", __FUNCTION__);
 			return true;
 		}
 
@@ -31,7 +31,7 @@ namespace planeta_engine{
 					id.second->Dispose();
 				}
 			}
-			debug::SystemLog::instance().LogMessage(boost::lexical_cast<std::string>(_unused_tag_map.size()) + "個の未使用タググループがアンロードされました。", "ResourceManager::UnloadUnusedResources");
+			debug::SystemLog::instance().LogMessage(boost::lexical_cast<std::string>(_unused_tag_map.size()) + "個の未使用タググループがアンロードされました。", __FUNCTION__);
 			_unused_tag_map.clear();
 			return true;
 		}
@@ -70,7 +70,7 @@ namespace planeta_engine{
 				using namespace file_system;
 				auto tag_map_it = _tag_resouce_map.find(tag);
 				if (tag_map_it == _tag_resouce_map.end()) {
-					debug::SystemLog::instance().LogError(std::string("要求されたタググループは存在しません。(") + tag + ")", "ResourceManager::_load_tag_group");
+					debug::SystemLog::instance().LogError(std::string("要求されたタググループは存在しません。(") + tag + ")", __FUNCTION__);
 					return false;
 				}
 				std::vector<std::string> ids;
@@ -79,7 +79,7 @@ namespace planeta_engine{
 					if (f) {
 						std::shared_ptr<ResourceBase> new_res = _CreateResource(it->type, f);
 						if (new_res == nullptr) {
-							debug::SystemLog::instance().LogError(std::string("リソースの作成に失敗しました。(") + "タググループ\"" + tag + "\"の\"" + it->file_name + "\")", "ResourceManager::_load_tag_group");
+							debug::SystemLog::instance().LogError(std::string("リソースの作成に失敗しました。(") + "タググループ=" + tag + ",ID="+it->id+",ファイル名=" + it->file_name + ")", __FUNCTION__);
 						}
 						else {
 							_using_resources.emplace(it->id, new_res);
@@ -87,7 +87,7 @@ namespace planeta_engine{
 						}
 					}
 					else {
-						debug::SystemLog::instance().LogError(std::string("リソースファイルの読み込みに失敗しました。(") + "タググループ\"" + tag + "\"の\"" + it->file_name + "\")", "ResourceManager::_load_tag_group");
+						debug::SystemLog::instance().LogError(std::string("リソースファイルの読み込みに失敗しました。(") + "タググループ\"" + tag + "\"の\"" + it->file_name + "\")", __FUNCTION__);
 					}
 				}
 				_using_tag_id_map.emplace(tag, std::move(ids));
@@ -99,17 +99,17 @@ namespace planeta_engine{
 		{
 			std::shared_ptr<file_system::File> file = file_system::FileLoadManager::instance().LoadFile(_resource_list_file_name);
 			if (file == nullptr) {
-				debug::SystemLog::instance().LogError(std::string("リソースリスト(") + _resource_list_file_name + ")の読み込みに失敗しました。","ResourceManager::_LoadResourceList");
+				debug::SystemLog::instance().LogError(std::string("リソースリスト(") + _resource_list_file_name + ")の読み込みに失敗しました。", __FUNCTION__);
 				return false; 
 			}
 			if (file->GetStatus() != file_system::File::FileStatus::Available) {
-				debug::SystemLog::instance().LogError(std::string("リソースリストファイルを読み込めませんでした。(" + _resource_list_file_name + ")") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個)", "ResourceManager::_LoadResourceList");
+				debug::SystemLog::instance().LogError(std::string("リソースリストファイルを読み込めませんでした。(" + _resource_list_file_name + ")") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個)", __FUNCTION__);
 				return false;
 			}
 			auto csv = MakeResource<resources::CSVResource>();
 			if (csv->Create(file) == false) {
 				return false; 
-				debug::SystemLog::instance().LogError(std::string("リソースリストファイルをCSV形式として読み込めませんでした。(" + _resource_list_file_name + ")") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個)", "ResourceManager::_LoadResourceList");
+				debug::SystemLog::instance().LogError(std::string("リソースリストファイルをCSV形式として読み込めませんでした。(" + _resource_list_file_name + ")") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個)", __FUNCTION__);
 			}
 			for (const auto& l : *csv) {
 				ResourceData rd;
@@ -120,7 +120,7 @@ namespace planeta_engine{
 						line += *it;
 						if (it != l.end() - 1) { line += ","; }
 					}
-					debug::SystemLog::instance().LogWarning(std::string("リソース定義の項目数が足りません。この行はスキップします。(") + line + ")", "ResourceManager::_LoadResourceList");
+					debug::SystemLog::instance().LogWarning(std::string("リソース定義の項目数が足りません。この行はスキップします。(") + line + ")", __FUNCTION__);
 					continue;
 				}
 				rd.id = l[0];
@@ -140,24 +140,24 @@ namespace planeta_engine{
 			for (const auto& tag_group : _tag_resouce_map) {
 				total_resource_num += tag_group.second.size();
 			}
-			debug::SystemLog::instance().LogMessage(std::string("リソースリストを読み込みました。(") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個のタググループ、合計" + boost::lexical_cast<std::string>(total_resource_num) + "個のリソース定義)", "ResourceManager::_LoadResourceList");
+			debug::SystemLog::instance().LogMessage(std::string("リソースリストを読み込みました。(") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個のタググループ、合計" + boost::lexical_cast<std::string>(total_resource_num) + "個のリソース定義)", __FUNCTION__);
 			return true;
 		}
 
 		bool ResourceManager::Initialize()
 		{
 			if (_LoadResourceList() == false) {
-				debug::SystemLog::instance().LogError("初期化に失敗しました。", "ResourceManagerInitialize");
+				debug::SystemLog::instance().LogError("初期化に失敗しました。", __FUNCTION__);
 				return false; 
 			}
-			debug::SystemLog::instance().LogMessage("初期化しました。", "ResourceManager::Initialize");
+			debug::SystemLog::instance().LogMessage("初期化しました。", __FUNCTION__);
 			return true;
 		}
 
 		bool ResourceManager::Finalize()
 		{
 			_UnloadAllLoadedResources();
-			debug::SystemLog::instance().LogMessage("終了処理を行いました。", "ResourceManager::Finalize");
+			debug::SystemLog::instance().LogMessage("終了処理を行いました。", __FUNCTION__);
 			return true;
 		}
 
@@ -174,7 +174,7 @@ namespace planeta_engine{
 			_using_resources.clear();
 			_using_tag_id_map.clear();
 			_unused_tag_map.clear();
-			debug::SystemLog::instance().LogMessage("すべてのリソースをアンロードしました。", "ResourceManager::_UnloadAllLoadedResources");
+			debug::SystemLog::instance().LogMessage("すべてのリソースをアンロードしました。", __FUNCTION__);
 		}
 
 		void ResourceManager::_AddUnusedtagGroups(const std::string& tag)
@@ -202,7 +202,7 @@ namespace planeta_engine{
 		{
 			auto it = _using_resources.find(id);
 			if (it == _using_resources.end()) {
-				debug::SystemLog::instance().LogWarning(std::string("読み込まれていないリソースが要求されました。(ID:") + id + ")", "ResourceManager::GetResource");
+				debug::SystemLog::instance().LogWarning(std::string("読み込まれていないリソースが要求されました。(ID:") + id + ")", __FUNCTION__);
 				return nullptr;
 			}
 			else {

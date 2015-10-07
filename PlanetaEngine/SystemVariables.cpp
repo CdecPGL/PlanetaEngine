@@ -21,6 +21,8 @@ namespace planeta_engine{
 			const std::string BuiltinMusicResourceTypeName("Music");
 			const std::string BuiltinCSVResourceTypeName("CSV");
 			const std::string BuiltinTextResourceTypeName("Text");
+			const std::string BuiltinXMLResourceTypeName("XML");
+			const std::string BuiltinFontDefinitionResourceTypeName("FontDefinition");
 			namespace process {
 				const int GameObjectUpdatetProcessPriority(0); //ゲームオブジェクト更新プロセス優先度
 				const int TransformApplyVelocityProcessPriority(100); //トランスフォーム速度適用プロセス優先度
@@ -36,8 +38,8 @@ namespace planeta_engine{
 				const std::string UIDrawProcessName("UIDrawProcess"); //UI描画プロセス名
 				const std::string UIUpdateProcessName("UIUpdateProcess"); //UI更新プロセス名
 				const std::string TransformApplyVelocityProcessName("TransformApllyVelocityProcess"); //トランスフォーム速度適用プロセス名
-				const std::string TransformConvertLocalToGlobalProcessName("TransformConvertLocalToGlobalProcess"); //トランスフォームローカルグローバル変換プロセス名
-				const std::string TransformConvertGlobalToLocalProcessName("TransformConvertGlobalToLocalProcess"); //トランスフォームグローバルローカル変換プロセス名
+				//const std::string TransformConvertLocalToGlobalProcessName("TransformConvertLocalToGlobalProcess"); //トランスフォームローカルグローバル変換プロセス名
+				//const std::string TransformConvertGlobalToLocalProcessName("TransformConvertGlobalToLocalProcess"); //トランスフォームグローバルローカル変換プロセス名
 			}
 		}
 	}

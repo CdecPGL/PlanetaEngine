@@ -246,6 +246,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Vertex2D.h" />
     <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="WeakPointerDelegate.h" />
+    <ClInclude Include="XMLResource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllocatorsImp.cpp" />
@@ -326,6 +327,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="UIDrawProcess.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIUpdateProcess.cpp" />
+    <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

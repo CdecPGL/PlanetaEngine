@@ -6,6 +6,8 @@
 #include "MusicResource.h"
 #include "CSVResource.h"
 #include "TextResource.h"
+#include "XMLResource.h"
+#include "FontDefinitionResource.h"
 
 
 namespace planeta_engine {
@@ -21,6 +23,8 @@ namespace planeta_engine {
 				rm.AddResourceType<resources::MusicResource>(system_variables::BuiltinMusicResourceTypeName); //音楽
 				rm.AddResourceType<resources::CSVResource>(system_variables::BuiltinCSVResourceTypeName); //CSVファイル
 				rm.AddResourceType<resources::TextResource>(system_variables::BuiltinTextResourceTypeName); //テキストファイル
+				rm.AddResourceType<resources::XMLResource>(system_variables::BuiltinXMLResourceTypeName); //XMLファイル
+				rm.AddResourceType<resources::FontDefinitionResource>(system_variables::BuiltinFontDefinitionResourceTypeName); //フォント定義ファイル
 				return true;
 			}
 		}

@@ -27,6 +27,8 @@ namespace planeta_engine{
 			extern const std::string BuiltinMusicResourceTypeName; //標準の音楽リソースタイプ名
 			extern const std::string BuiltinCSVResourceTypeName; //標準のCSV形式ファイルリソースタイプ名
 			extern const std::string BuiltinTextResourceTypeName; //標準のテキストファイルリソースタイプ名
+			extern const std::string BuiltinXMLResourceTypeName; //標準のXMLファイルリソースタイプ名
+			extern const std::string BuiltinFontDefinitionResourceTypeName; //標準のフォント定義ファイルリソースタイプ名
 			/*特殊プロセス優先度*/
 			namespace process{
 				extern const int CollisionDetectProcessPriority; //衝突判定プロセス優先度
@@ -35,16 +37,16 @@ namespace planeta_engine{
 				extern const int UIDrawProcessPriority; //UI描画プロセス優先度
 				extern const int UIUpdateProcessPriority; //UI更新プロセス優先度
 				extern const int TransformApplyVelocityProcessPriority; //トランスフォーム速度適用プロセス優先度
-				extern const int TransformConvertLocalToGlobalProcessPriority; //トランスフォームローカルグローバル変換プロセス優先度
-				extern const int TransformConvertGlobalToLocalProcessPriority; //トランスフォームグローバルローカル変換プロセス優先度
+				//extern const int TransformConvertLocalToGlobalProcessPriority; //トランスフォームローカルグローバル変換プロセス優先度
+				//extern const int TransformConvertGlobalToLocalProcessPriority; //トランスフォームグローバルローカル変換プロセス優先度
 				extern const std::string CollisionDetectProcessName; //衝突判定プロセス名
 				extern const std::string GameObjectDrawProcessName; //ゲームオブジェクト描画プロセス名
 				extern const std::string GameObjectUpdatetProcessName; //ゲームオブジェクト更新プロセス名
 				extern const std::string UIDrawProcessName; //UI描画プロセス名
 				extern const std::string UIUpdateProcessName; //UI更新プロセス名
 				extern const std::string TransformApplyVelocityProcessName; //トランスフォーム速度適用プロセス名
-				extern const std::string TransformConvertLocalToGlobalProcessName; //トランスフォームローカルグローバル変換プロセス名
-				extern const std::string TransformConvertGlobalToLocalProcessName; //トランスフォームグローバルローカル変換プロセス名
+				//extern const std::string TransformConvertLocalToGlobalProcessName; //トランスフォームローカルグローバル変換プロセス名
+				//extern const std::string TransformConvertGlobalToLocalProcessName; //トランスフォームグローバルローカル変換プロセス名
 			}
 		}
 	}

@@ -38,7 +38,7 @@ namespace planeta_engine{
 			template<class C>
 			void AddResourceType(const std::string& type_name) {
 				_resource_creator_map.emplace(type_name, [](const std::shared_ptr<file_system::File>& file)->std::shared_ptr<ResourceBase>{
-					std::shared_ptr<C> new_res = MakeResource<C>();
+					std::shared_ptr<ResourceBase> new_res = MakeResource<C>();
 					return new_res->Create(file) ? new_res : nullptr;
 				});
 			}
