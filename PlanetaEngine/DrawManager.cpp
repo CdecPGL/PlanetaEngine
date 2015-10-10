@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "DXUtility.h"
 #include "GraphResource.h"
+#include "FontDefinitionResource.h"
 #include "MathUtility.h"
 
 namespace planeta_engine {
@@ -168,6 +169,13 @@ namespace planeta_engine {
 			catch (std::out_of_range&) {
 				//インデックス番号が範囲外を指していた
 			}
+		}
+
+		void DrawManager::DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const core::Color& color, const core::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource)
+		{
+			if (font_definition_resource == nullptr) { return; }
+			using namespace utility::dx;
+			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));
 		}
 
 	}

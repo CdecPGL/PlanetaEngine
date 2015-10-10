@@ -23,6 +23,8 @@ namespace planeta_engine {
 			/*描画処理。描画は引数として渡される範囲内に行う*/
 			virtual void DrawProc(const utility::RectAngle<int>& my_draw_area) = 0;
 			utility::RectAngle<int> rect_angle_;
+			/*各種関数*/
+			void RectAngleUpdatedProc(const utility::RectAngle<int> parent_rect);
 			/*各種イベント*/
 			virtual void OnRectAngleUpdated() {};
 			virtual void OnPositionUpdated() {};

@@ -11,21 +11,22 @@ namespace planeta_engine {
 		class ResourceBase : public core::Object{
 		public:
 			ResourceBase() = default;
-			virtual ~ResourceBase() { if (_is_usable) { debug::SystemLog::instance().LogError(std::string("リソースの解放が行われていません。(") + GetType().name() + ")", "ResourceBase::~ResourceBase"); } };
+			virtual ~ResourceBase() { if (is_usable_) { debug::SystemLog::instance().LogError(std::string("リソースの解放が行われていません。(") + GetType().name() + ")", "ResourceBase::~ResourceBase"); } };
 			bool Create(const std::shared_ptr<file_system::File>& file) {
-				if (_is_usable) { return false; }
+				if (is_usable_) { return false; }
 				if (_Create(file)) {
-					_is_usable = true;
+					is_usable_ = true;
 					return true;
 				}
 				else { return false; }
 			}
 			void Dispose() {
-				if (_is_usable) { 
+				if (is_usable_) { 
 					_Dispose();
-					_is_usable = false;
+					is_usable_ = false;
 				}
 			}
+			bool is_usable()const { return is_usable_; }
 		protected:
 			virtual bool _Create(const std::shared_ptr<file_system::File>& file) = 0;
 			virtual void _Dispose() = 0;
@@ -34,7 +35,7 @@ namespace planeta_engine {
 			ResourceBase(ResourceBase&&) = delete;
 			ResourceBase& operator=(const ResourceBase&) = delete;
 			ResourceBase& operator=(ResourceBase&&) = delete;
-			bool _is_usable = false; //使用可能か
+			bool is_usable_ = false; //使用可能か
 		};
 	}
 }

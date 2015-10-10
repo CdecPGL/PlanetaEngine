@@ -22,7 +22,7 @@ namespace planeta_engine {
 		{
 			auto res = core::ResourceManager::instance().GetResource(resource_id);
 			if (res == nullptr) {
-				debug::SystemLog::instance().LogError(std::string("リソースの取得に失敗しました。(リソース名は") + resource_id + ")", "GraphPanel::SetGraphResource");
+				debug::SystemLog::instance().LogError(std::string("リソースの取得に失敗しました。(リソース名は") + resource_id + ")", __FUNCTION__);
 				return false;
 			}
 			std::shared_ptr<resources::GraphResource> gr = std::dynamic_pointer_cast<resources::GraphResource>(res);
@@ -33,7 +33,7 @@ namespace planeta_engine {
 				return true;
 			}
 			else {
-				debug::SystemLog::instance().LogError(std::string("画像リソースでないリソースが指定されました。(リソース名は") + resource_id + "、タイプは" + res->GetType().name() + ")", "GraphPanel::SetGraphResource");
+				debug::SystemLog::instance().LogError(std::string("画像リソースでないリソースが指定されました。(リソース名は") + resource_id + "、タイプは" + res->GetType().name() + ")", __FUNCTION__);
 				return false;
 			}
 		}

@@ -11,6 +11,7 @@
 namespace planeta_engine {
 	namespace resources {
 		class GraphResource;
+		class FontDefinitionResource;
 	}
 	namespace core {
 		class DrawManager final : public utility::PointerSingletonTemplate<DrawManager>{
@@ -43,6 +44,8 @@ namespace planeta_engine {
 			void DrawUIWire(const std::vector<Vector2D<int>>& positions, int width, const Color& color);
 			/*UI多角形を描画(点座標、三角形ポリゴンインデックス、色)*/
 			void DrawUIPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color);
+			/*文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
+			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const core::Color& color, const core::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
 		private:
 			DrawManager() = default;
 			~DrawManager() = default;

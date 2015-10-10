@@ -17,6 +17,5 @@ namespace planeta_engine {
 
 			DrawProc(my_draw_area);
 		}
-
 	}
 }

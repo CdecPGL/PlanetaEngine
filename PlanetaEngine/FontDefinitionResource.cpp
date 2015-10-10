@@ -12,7 +12,6 @@
 
 namespace planeta_engine {
 	namespace resources {
-
 		bool FontDefinitionResource::_Create(const std::shared_ptr<file_system::File>& file)
 		{
 			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
@@ -83,6 +82,7 @@ namespace planeta_engine {
 						debug::SystemLog::instance().LogError(err_str_str.str(), __FUNCTION__);
 						return false;
 					}
+					size_ = GetFontSizeToHandle(handle_);
 					//フォントデータを読み込んでいたら削除する
 					if (win_font_handle) { RemoveFontMemResourceEx(win_font_handle); }
 					return true;
