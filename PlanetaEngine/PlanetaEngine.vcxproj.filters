@@ -498,6 +498,9 @@
     <ClInclude Include="XMLResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="IUIComponentContainer.h">
+      <Filter>PlanetaEngine\Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

@@ -5,6 +5,7 @@
 #include <memory>
 #include "Object.h"
 #include "RectAngle.h"
+#include "IUIComponentContainer.h"
 
 namespace planeta_engine {
 	namespace game {
@@ -19,7 +20,7 @@ namespace planeta_engine {
 				CANCEL = 32,
 				Error = 1ul << 31;
 		}
-		class UIObject : public core::Object{
+		class UIObject : public core::Object,protected IUIComponentContainer{
 		public:
 			virtual ~UIObject() = default;
 			void Update();
@@ -46,16 +47,8 @@ namespace planeta_engine {
 				components_.push_back(component);
 				return component;
 			}
-			template<class C>
-			std::shared_ptr<UIObject> CreateChild() {
-				std::shared_ptr<UIObject> child = std::make_shared<C>();
-				children_.emplace(child.get(), child);
-				return child;
-			}
-			void DisposeChild(const std::shared_ptr<UIObject>& child);
 		private:
 			std::vector<std::shared_ptr<UIObject>> components_;
-			std::unordered_map<void*, std::shared_ptr<UIObject>> children_;
 			utility::RectAngle<int> rect_angle_;
 			bool is_focused_ = false; //フォーカスされているかフラグ
 			//更新処理

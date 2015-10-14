@@ -183,6 +183,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ISceneAccessForUI.h" />
     <ClInclude Include="ISceneManagerAccessor.h" />
     <ClInclude Include="ISceneSetup.h" />
+    <ClInclude Include="IUIComponentContainer.h" />
     <ClInclude Include="IUIManagerAccessor.h" />
     <ClInclude Include="IUIManagerSetup.h" />
     <ClInclude Include="KeyInputDefines.h" />

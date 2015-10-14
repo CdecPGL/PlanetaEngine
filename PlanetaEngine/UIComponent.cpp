@@ -16,6 +16,7 @@ namespace planeta_engine {
 			//else if (rect().bottom() >= holder_draw_area.size.y) { my_draw_area.position.y = holder_draw_area.bottom() - size().y; }
 
 			DrawProc(my_draw_area);
+			DrawChildren();
 		}
 	}
 }
