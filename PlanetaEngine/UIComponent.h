@@ -2,7 +2,6 @@
 
 #include <unordered_map>
 #include <memory>
-#include <array>
 #include "Object.h"
 #include "RectAngle.h"
 #include "ObjectHolderTemplate_WithoutID.h"
@@ -22,37 +21,49 @@ namespace planeta_engine {
 		public:
 			UIComponent();
 			virtual ~UIComponent() = default;
+			/*システム関数*/
+			struct DrawData {
+				utility::RectAngle<int> draw_area;
+				bool is_position_updated = false;
+				bool is_size_updated = false;
+			};
 			void Update() { UpdateProc(); UpdateChildren(); };
-			void Draw(const utility::RectAngle<int>& holder_draw_area);
+			void Draw(const DrawData& parent_draw_data);
 
 			const utility::RectAngle<int>& rect()const { return rect_angle_; }
-			void rect(const utility::RectAngle<int>& r) { rect_angle_ = r; OnRectAngleUpdated(); }
+			void rect(const utility::RectAngle<int>& r) { rect_angle_ = r; is_position_updated_since_last_draw = true; is_size_updated_since_last_draw = true; }
 			const Vector2D<int> position()const { return rect_angle_.position; }
-			void position(const Vector2D<int>& p) { rect_angle_.position = p; OnPositionUpdated(); OnRectAngleUpdated(); }
+			void position(const Vector2D<int>& p) { rect_angle_.position = p; is_position_updated_since_last_draw = true; }
 			const Vector2D<int> size()const { return rect_angle_.size; }
-			void size(const Vector2D<int>& s) { rect_angle_.size = s; OnSizeUpdated(); OnRectAngleUpdated(); }
+			void size(const Vector2D<int>& s) { rect_angle_.size = s; is_size_updated_since_last_draw = true; }
 			const anchor_style::type anchor()const { return anchor_; }
 			void anchor(anchor_style::type a) { anchor_ = a; }
 
 			std::shared_ptr<UIComponent> AddChild(){}
 			bool RemoveChild(const std::shared_ptr<UIComponent>& c){}
 		private:
+
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> children_holder_;
-			/*更新処理*/
-			virtual void UpdateProc() = 0;
+			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
+			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
+			 /*位置情報*/
+			utility::RectAngle<int> rect_angle_;
+			/*アンカー*/
+			anchor_style::type anchor_;
+
+			/*子供処理*/
 			void UpdateChildren();
-			void DrawChildren(const utility::RectAngle<int>& my_draw_area);
+			void DrawChildren(const DrawData& my_draw_data);
+
+			/*オーバーライド可能関数群*/
+			/*更新処理*/
+			virtual void UpdateProc() {};
+			/*前回描画時から位置が更新されたときの処理(描画前に呼ばれる)*/
+			virtual void PositionUpdatedProc(const Vector2D<int>& position) {};
+			/*前回描画時からサイズが更新されたときの処理(描画前に呼ばれる)*/
+			virtual void SizeUpdatedProc(const Vector2D<int>& size) {};
 			/*描画処理。描画は引数として渡される範囲内に行う*/
 			virtual void DrawProc(const utility::RectAngle<int>& my_draw_area) = 0;
-			utility::RectAngle<int> rect_angle_;			
-			anchor_style::type anchor_; //アンカー
-			/*各種イベント*/
-			void UpadteRectAngle(const utility::RectAngle<int>& rect);
-			void UpdatePosition(const Vector2D<int>& position);
-			void UpdateSize(const Vector2D<int>& size);
-			virtual void OnRectAngleUpdated(const utility::RectAngle<int>& rect) {};
-			virtual void OnPositionUpdated(const Vector2D<int>& position) {};
-			virtual void OnSizeUpdated(const Vector2D<int>& size) {};
 		};
 	}
 }

@@ -10,6 +10,7 @@ namespace planeta_engine {
 		class FontDefinitionResource;
 	}
 	namespace ui_components {
+		/*複数行のテキストパネル*/
 		class TextPanel : public game::UIComponent {
 		public:
 			bool SetFontDefinitionResource(const std::string& resource_id);

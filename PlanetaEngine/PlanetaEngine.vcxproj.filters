@@ -504,6 +504,9 @@
     <ClInclude Include="TalkWindows.h">
       <Filter>PlanetaEngine\BuildinElements\UIObjects</Filter>
     </ClInclude>
+    <ClInclude Include="StringPanel.h">
+      <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -745,6 +748,9 @@
     </ClCompile>
     <ClCompile Include="TalkWindows.cpp">
       <Filter>PlanetaEngine\BuildinElements\UIObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="StringPanel.cpp">
+      <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
