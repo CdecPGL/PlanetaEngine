@@ -3,6 +3,8 @@
 namespace planeta_engine {
 	namespace game {
 
+		UIComponent::UIComponent():children_holder_(std::make_unique<utility::ObjectHolderTemplate_WithoutID<UIComponent>>()){}
+
 		void UIComponent::Draw(const utility::RectAngle<int>& holder_draw_area)
 		{
 			utility::RectAngle<int> my_draw_area(holder_draw_area.position + position(), size());
@@ -18,5 +20,16 @@ namespace planeta_engine {
 			DrawProc(my_draw_area);
 			DrawChildren();
 		}
+
+		void UIComponent::UpdateChildren()
+		{
+			children_holder_->do_all([](UIComponent& com) {com.Update(); });
+		}
+
+		void UIComponent::DrawChildren(const utility::RectAngle<int>& my_draw_area)
+		{
+			children_holder_->do_all([&my_draw_area](UIComponent& com) {com.Draw(my_draw_area); });
+		}
+
 	}
 }

@@ -4,7 +4,7 @@
 #include "DrawManager.h"
 
 namespace planeta_engine {
-	namespace ui_objects {
+	namespace ui_components {
 
 		void TextPanel::UpdateProc()
 		{

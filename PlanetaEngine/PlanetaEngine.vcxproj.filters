@@ -112,6 +112,9 @@
     <Filter Include="TinyXML2">
       <UniqueIdentifier>{38d797a1-d619-4e63-aaf0-63156fa85703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\UIObjects">
+      <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -498,8 +501,8 @@
     <ClInclude Include="XMLResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="IUIComponentContainer.h">
-      <Filter>PlanetaEngine\Game\UI</Filter>
+    <ClInclude Include="TalkWindows.h">
+      <Filter>PlanetaEngine\BuildinElements\UIObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -739,6 +742,9 @@
     </ClCompile>
     <ClCompile Include="XMLResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="TalkWindows.cpp">
+      <Filter>PlanetaEngine\BuildinElements\UIObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

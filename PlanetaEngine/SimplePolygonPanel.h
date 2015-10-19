@@ -9,7 +9,7 @@
 #include "Color.h"
 
 namespace planeta_engine {
-	namespace ui_objects {
+	namespace ui_components {
 		class SimplePolygonPanel : public game::UIComponent {
 		public:
 			void SetNumberOfVertexes(size_t n);

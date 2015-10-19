@@ -9,7 +9,7 @@ namespace planeta_engine {
 	namespace resources {
 		class FontDefinitionResource;
 	}
-	namespace ui_objects {
+	namespace ui_components {
 		class TextPanel : public game::UIComponent {
 		public:
 			bool SetFontDefinitionResource(const std::string& resource_id);

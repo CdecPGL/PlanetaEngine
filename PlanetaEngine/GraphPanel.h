@@ -7,7 +7,7 @@ namespace planeta_engine {
 	namespace resources {
 		class GraphResource;
 	}
-	namespace ui_objects {
+	namespace ui_components {
 		class GraphPanel : public game::UIComponent {
 		public:
 			bool SetGraphResource(const std::string& resource_id);

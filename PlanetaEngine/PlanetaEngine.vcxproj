@@ -183,7 +183,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ISceneAccessForUI.h" />
     <ClInclude Include="ISceneManagerAccessor.h" />
     <ClInclude Include="ISceneSetup.h" />
-    <ClInclude Include="IUIComponentContainer.h" />
     <ClInclude Include="IUIManagerAccessor.h" />
     <ClInclude Include="IUIManagerSetup.h" />
     <ClInclude Include="KeyInputDefines.h" />
@@ -230,6 +229,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SystemCounter.h" />
     <ClInclude Include="SystemLog.h" />
     <ClInclude Include="SystemVariables.h" />
+    <ClInclude Include="TalkWindows.h" />
     <ClInclude Include="TextPanel.h" />
     <ClInclude Include="TextResource.h" />
     <ClInclude Include="tinyxml2.h" />
@@ -266,6 +266,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
+    <ClCompile Include="TalkWindows.cpp" />
     <ClCompile Include="TextPanel.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="UIComponent.cpp" />

@@ -5,7 +5,7 @@
 #include <memory>
 #include "Object.h"
 #include "RectAngle.h"
-#include "IUIComponentContainer.h"
+#include "ObjectHolderTemplate_WithoutID.h"
 
 namespace planeta_engine {
 	namespace game {
@@ -20,13 +20,19 @@ namespace planeta_engine {
 				CANCEL = 32,
 				Error = 1ul << 31;
 		}
-		class UIObject : public core::Object,protected IUIComponentContainer{
+		class UIObject : public core::Object{
 		public:
+			UIObject();
 			virtual ~UIObject() = default;
+			bool Initialize() { return InitializeProc(); }
+			void Finalize() { return FInalizeProc(); }
 			void Update();
 			void Draw(const utility::RectAngle<int>& parent_area);
 			bool KeyInput(ui_object_input_code::type input_code);
 			bool PointingCursorPosition(const Vector2D<int>& parent_relative_cursor_position);
+
+			void Show();
+			void Close();
 			
 			const Vector2D<int> position()const { return rect_angle_.position; }
 			void position(const Vector2D<int>& p) { rect_angle_.position = p; PositionChangedProc(); }
@@ -41,20 +47,12 @@ namespace planeta_engine {
 				}
 			}
 		protected:
-			template<class C>
-			std::shared_ptr<UIComponent> AddComponent() {
-				std::shared_ptr<UIComponent> component = std::make_shared<C>();
-				components_.push_back(component);
-				return component;
-			}
 		private:
-			std::vector<std::shared_ptr<UIObject>> components_;
 			utility::RectAngle<int> rect_angle_;
 			bool is_focused_ = false; //フォーカスされているかフラグ
-			//更新処理
-			void UpdateComponents();
-			//描画処理
-			void DrawComponents(const utility::RectAngle<int>& draw_area);
+			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> component_holder_;
+			virtual bool InitializeProc() {}
+			virtual void FInalizeProc() {};
 			/**キーの入力処理
 			@param 入力コード
 			@return 子に伝える入力コード
