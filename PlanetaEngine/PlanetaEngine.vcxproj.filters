@@ -222,9 +222,6 @@
     <ClInclude Include="CSVResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="EmptyUIObject.h">
-      <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
-    </ClInclude>
     <ClInclude Include="SimplePolygonPanel.h">
       <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
     </ClInclude>

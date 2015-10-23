@@ -12,6 +12,8 @@ namespace planeta_engine{
 		class ObjectHolderTemplate_WithoutID{
 		public:
 			ObjectHolderTemplate_WithoutID();
+			/*各種処理を行う*/
+			void process() { process_unresist_list(); process_resist_list(); }
 			/*登録処理を行う*/
 			void process_resist_list();
 			/*登録解除処理を行う*/
@@ -27,7 +29,7 @@ namespace planeta_engine{
 			/*オブジェクトが存在するか確認(生ポ版)[ave:O(1),max:O[n]]*/
 			bool is_exist(C_obj*)const;
 			/*登録されているオブジェクトの個数を得る[O(1)]*/
-			int count()const;
+			size_t count()const;
 			/*すべてのオブジェクトに関数を適用する[O(n)]*/
 			void do_all(const std::function<void(C_obj&)>& func);
 			/*すべてのオブジェクトにconst関数を適用する[O(n)]*/
@@ -59,9 +61,9 @@ namespace planeta_engine{
 			}
 
 			std::list<std::shared_ptr<C_obj>> objects_;
-			std::unordered_map<void*, std::list<std::shared_ptr<C_obj>>::iterator> object_map_;
+			std::unordered_map<void*, typename std::list<std::shared_ptr<C_obj>>::iterator> object_map_;
 			std::vector<std::shared_ptr<C_obj>> res_list_;
-			std::vector<std::list<std::shared_ptr<C_obj>>::iterator> unres_list_;
+			std::vector<typename std::list<std::shared_ptr<C_obj>>::iterator> unres_list_;
 		};
 
 		template <class C_obj>
@@ -112,7 +114,7 @@ namespace planeta_engine{
 		}
 
 		template <class C_obj>
-		int ObjectHolderTemplate_WithoutID<C_obj>::size()const{ return (int)objects_.size(); }
+		size_t ObjectHolderTemplate_WithoutID<C_obj>::count()const{ return objects_.size(); }
 
 		template <class C_obj>
 		void ObjectHolderTemplate_WithoutID<C_obj>::clear(){

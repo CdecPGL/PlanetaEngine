@@ -57,7 +57,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_58_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -67,7 +67,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_58_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>
@@ -92,7 +92,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_58_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -102,7 +102,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_58_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>
@@ -144,7 +144,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DrawPolygonComponent.h" />
     <ClInclude Include="DumyGroundComponent.h" />
     <ClInclude Include="DXUtility.h" />
-    <ClInclude Include="EmptyUIObject.h" />
     <ClInclude Include="EngineAllocator.h" />
     <ClInclude Include="ErrorSceneDefinition.h" />
     <ClInclude Include="File.h" />

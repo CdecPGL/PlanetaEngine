@@ -49,8 +49,6 @@ namespace planeta_engine {
 			bool is_draw_outline_ = false;
 			core::Color outline_color_;
 			int outline_width_;
-
-			void OnRectAngleUpdated()override;
 		};
 	}
 }

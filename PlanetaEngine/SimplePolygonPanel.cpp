@@ -63,11 +63,5 @@ namespace planeta_engine {
 			}
 			absolute_points_[absolute_points_.size() - 1] = absolute_points_[0];
 		}
-
-		void SimplePolygonPanel::OnRectAngleUpdated()
-		{
-			points_update_flag_ = true;
-		}
-
 	}
 }

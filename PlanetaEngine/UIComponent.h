@@ -27,9 +27,10 @@ namespace planeta_engine {
 				bool is_position_updated = false;
 				bool is_size_updated = false;
 			};
-			void Update() { UpdateProc(); UpdateChildren(); };
+			void Update();
 			void Draw(const DrawData& parent_draw_data);
 
+			/*アクセサ*/
 			const utility::RectAngle<int>& rect()const { return rect_angle_; }
 			void rect(const utility::RectAngle<int>& r) { rect_angle_ = r; is_position_updated_since_last_draw = true; is_size_updated_since_last_draw = true; }
 			const Vector2D<int> position()const { return rect_angle_.position; }
@@ -39,10 +40,14 @@ namespace planeta_engine {
 			const anchor_style::type anchor()const { return anchor_; }
 			void anchor(anchor_style::type a) { anchor_ = a; }
 
-			std::shared_ptr<UIComponent> AddChild(){}
-			bool RemoveChild(const std::shared_ptr<UIComponent>& c){}
+			template<class C>
+			std::shared_ptr<C> AddChild() {
+				auto child = std::make_shared<C>();
+				children_holder_->resist_object(child);
+				return child;
+			}
+			bool RemoveChild(const std::shared_ptr<UIComponent>& c) { return children_holder_->unresist_object(c); }
 		private:
-
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> children_holder_;
 			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ

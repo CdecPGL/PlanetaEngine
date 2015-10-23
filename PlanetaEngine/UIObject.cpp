@@ -11,10 +11,15 @@ namespace planeta_engine {
 			component_holder_->do_all([](UIComponent& com) {com.Update(); });
 		}
 
-		void UIObject::Draw(const utility::RectAngle<int>& parent_area)
+		void UIObject::Draw()
 		{
-			utility::RectAngle<int> my_area(parent_area.position + position(), size());
-			component_holder_->do_all([&my_area](UIComponent& com) {com.Draw(my_area); });
+			UIComponent::DrawData my_draw_data;
+			my_draw_data.draw_area = rect_angle_;
+			my_draw_data.is_position_updated = is_position_updated_since_last_draw;
+			my_draw_data.is_size_updated = is_size_updated_since_last_draw;
+			is_position_updated_since_last_draw = false;
+			is_size_updated_since_last_draw = false;
+			component_holder_->do_all([&my_draw_data](UIComponent& com) {com.Draw(my_draw_data); });
 		}
 
 		bool UIObject::KeyInput(ui_object_input_code::type input_code)

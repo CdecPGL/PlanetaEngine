@@ -27,7 +27,7 @@ namespace planeta_engine {
 			bool Initialize() { return InitializeProc(); }
 			void Finalize() { return FInalizeProc(); }
 			void Update();
-			void Draw(const utility::RectAngle<int>& parent_area);
+			void Draw();
 			bool KeyInput(ui_object_input_code::type input_code);
 			bool PointingCursorPosition(const Vector2D<int>& parent_relative_cursor_position);
 
@@ -47,11 +47,20 @@ namespace planeta_engine {
 				}
 			}
 		protected:
+			template<class C>
+			std::shared_ptr<C> AddComponent() {
+				auto child = std::make_shared<C>();
+				component_holder_->resist_object(child);
+				return child;
+			}
+			bool RemoveComponent(const std::shared_ptr<UIComponent>& c) { return component_holder_->unresist_object(c); }
 		private:
 			utility::RectAngle<int> rect_angle_;
 			bool is_focused_ = false; //フォーカスされているかフラグ
+			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
+			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> component_holder_;
-			virtual bool InitializeProc() {}
+			virtual bool InitializeProc() { return true; }
 			virtual void FInalizeProc() {};
 			/**キーの入力処理
 			@param 入力コード

@@ -24,12 +24,21 @@ namespace planeta_engine {
 			//更新フラグの判定
 			my_draw_data.is_position_updated = parent_draw_data.is_position_updated | is_position_updated_since_last_draw;
 			my_draw_data.is_size_updated = parent_draw_data.is_size_updated | is_size_updated_since_last_draw;
+			is_position_updated_since_last_draw = false;
+			is_size_updated_since_last_draw = false;
 			//更新フラグに沿って関数呼び出し
 			if (my_draw_data.is_position_updated) { PositionUpdatedProc(my_draw_data.draw_area.position); }
 			if (my_draw_data.is_size_updated) { SizeUpdatedProc(my_draw_data.draw_area.size); }
 			//自分と子の描画処理
 			DrawProc(my_draw_data.draw_area);
 			DrawChildren(my_draw_data);
+		}
+
+		void UIComponent::Update()
+		{
+			UpdateProc();
+			children_holder_->process(); //子オブジェクト更新の前に登録、登録解除処理を行っておく
+			UpdateChildren();
 		}
 
 	}

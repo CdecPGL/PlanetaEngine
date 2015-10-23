@@ -25,8 +25,12 @@ namespace planeta_engine {
 			col_det_proc->SetCollisionMap(scene.game_accessor().GetCollisionMap());
 			scene.game_process_manager().AddSystemProcess<system_processes::GameObjectDrawProcess>(process::GameObjectDrawProcessPriority, process::GameObjectDrawProcessName);
 			scene.game_process_manager().AddSystemProcess<system_processes::GameObjectUpdateProcess>(process::GameObjectUpdatetProcessPriority, process::GameObjectUpdatetProcessName);
-			scene.game_process_manager().AddSystemProcess<system_processes::UIDrawProcess>(process::UIDrawProcessPriority, process::UIDrawProcessName);
-			scene.game_process_manager().AddSystemProcess<system_processes::UIUpdateProcess>(process::UIUpdateProcessPriority, process::UIUpdateProcessName);
+			auto uidp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIDrawProcessPriority, process::UIDrawProcessName);
+			uidp->SetExcuteFunction([&scene] {scene.ui_manager().Draw(); });
+			auto uiup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIUpdateProcessPriority, process::UIUpdateProcessName);
+			uiup->SetExcuteFunction([&scene] {scene.ui_manager().Update(); });
+			/*scene.game_process_manager().AddSystemProcess<system_processes::UIDrawProcess>(process::UIDrawProcessPriority, process::UIDrawProcessName);
+			scene.game_process_manager().AddSystemProcess<system_processes::UIUpdateProcess>(process::UIUpdateProcessPriority, process::UIUpdateProcessName);*/
 			//TransformŠÖ˜A
 			auto root_transform = game::GameObject::GetRootTransformComponent(true);
 			auto tavp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformApplyVelocityProcessPriority, process::TransformApplyVelocityProcessName);
