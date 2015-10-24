@@ -1,9 +1,12 @@
 #pragma once
 
-#include "WeakPointer.h"
 #include <unordered_map>
 #include <memory>
 #include <functional>
+
+#include "boost/call_traits.hpp"
+
+#include "WeakPointer.h"
 
 namespace planeta_engine {
 	namespace utility {
@@ -11,17 +14,25 @@ namespace planeta_engine {
 		template<typename EventArgType>
 		class IEventFunctionHolder {
 		public:
+			using ParamType = typename boost::call_traits<EventArgType>::param_type;
 			virtual ~IEventFunctionHolder() = default;
-			virtual bool Call(const EventArgType&) = 0;
+			virtual bool Call(ParamType) = 0;
+		};
+
+		template<>
+		class IEventFunctionHolder<void> {
+		public:
+			virtual ~IEventFunctionHolder() = default;
+			virtual bool Call() = 0;
 		};
 		//イベントメンバ関数所有クラス
 		template<typename EventArgType,class C>
 		class EventMenberFunctionHolder final: public IEventFunctionHolder<EventArgType>{
 		public:
-			using FunctionType = void(C::*)(const EventArgType&);
+			using FunctionType = void(C::*)(typename IEventFunctionHolder<EventArgType>::ParamType);
 			EventMenberFunctionHolder(const utility::WeakPointer<C>& wp, FunctionType f):w_ptr_(wp),func_(f) {
 			}
-			bool Call(const EventArgType& e)override {
+			bool Call(typename IEventFunctionHolder<EventArgType>::ParamType e)override {
 				if (w_ptr_) {
 					((*w_ptr_).*func_)(e);
 					return true;
@@ -34,14 +45,47 @@ namespace planeta_engine {
 			utility::WeakPointer<C> w_ptr_;
 			FunctionType func_;
 		};
+
+		template<class C>
+		class EventMenberFunctionHolder<void,C> final : public IEventFunctionHolder<void> {
+		public:
+			using FunctionType = void(C::*)();
+			EventMenberFunctionHolder(const utility::WeakPointer<C>& wp, FunctionType f) :w_ptr_(wp), func_(f) {
+			}
+			bool Call()override {
+				if (w_ptr_) {
+					((*w_ptr_).*func_)();
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		private:
+			utility::WeakPointer<C> w_ptr_;
+			FunctionType func_;
+		};
+
 		//イベント通常関数保有クラス
 		template<typename EventArgType>
 		class EventNormalFunctionHolder final : public IEventFunctionHolder<EventArgType> {
 		public:
-			using FunctionType = std::function<void(const EventArgType&)>;
+			using FunctionType = std::function<void(typename IEventFunctionHolder<EventArgType>::ParamType)>;
 			explicit EventNormalFunctionHolder(const FunctionType& f) :func_(f) {}
-			bool Call(const EventArgType& e)override {
+			bool Call(typename IEventFunctionHolder<EventArgType>::ParamType e)override {
 				func_(e);
+				return true;
+			}
+		private:
+			FunctionType func_;
+		};
+		template<>
+		class EventNormalFunctionHolder<void> final : public IEventFunctionHolder<void> {
+		public:
+			using FunctionType = std::function<void()>;
+			explicit EventNormalFunctionHolder(const FunctionType& f) :func_(f) {}
+			bool Call()override {
+				func_();
 				return true;
 			}
 		private:
@@ -51,7 +95,14 @@ namespace planeta_engine {
 		template<typename EventArgType>
 		class EventDumyFunctionHolder final : public IEventFunctionHolder<EventArgType> {
 		public:
-			bool Call(const EventArgType&)override {
+			bool Call(typename IEventFunctionHolder<EventArgType>::ParamType e)override {
+				return false;
+			}
+		};
+		template<>
+		class EventDumyFunctionHolder<void> final : public IEventFunctionHolder<void> {
+		public:
+			bool Call()override {
 				return false;
 			}
 		};
@@ -82,20 +133,27 @@ namespace planeta_engine {
 			std::weak_ptr<HandlerListType> handler_list_;
 			size_t id_;
 		};
-		//WeakPointerDelegateへの接続保持クラス
+		/**
+		* @brief WeakPointerDelegateへの接続保持クラス
+		*/
 		class WeakPointerDelegateConnection final{
 		public:
 			explicit WeakPointerDelegateConnection(const std::shared_ptr<IWeakPointerDelegateConnecter>& cp) :connector_(cp) {}
+			/**
+			* @brief デリゲートから削除する
+			*/
 			void Remove() { connector_->Remove(); }
 		private:
 			std::shared_ptr<IWeakPointerDelegateConnecter> connector_;
 		};
-		//WeakPointerデリゲート
-		template<typename EventArgType>
+		/**
+		* @brief WeakPointerデリゲート
+		*/
+		template<typename EventArgType = void>
 		class WeakPointerDelegate final{
 		public:
 			WeakPointerDelegate():handlers_(std::make_shared<WeakPointerDelegateConnecter<EventArgType>::HandlerListType>()){}
-			void operator()(const EventArgType& e) {
+			void operator()(typename IEventFunctionHolder<EventArgType>::ParamType e) {
 				for (auto it = handlers_->begin(); it != handlers_->end();) {
 					if (it->second->Call(e)) {
 						++it;
@@ -105,15 +163,24 @@ namespace planeta_engine {
 					}
 				}
 			}
-			/*デリケートにメンバ関数を登録(オブジェクトのWeakPointer、メンバ関数ポインタ)*/
+			/**
+			* @brief デリケートにメンバ関数を登録する
+			* @param (c) オブジェクトのWeakPointer
+			* @param (f) メンバ関数ポインタ
+			* @return ハンドラの削除に使うデリゲート接続クラス
+			*/
 			template<class C>
-			WeakPointerDelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)(const EventArgType&)) {
+			WeakPointerDelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)(typename IEventFunctionHolder<EventArgType>::ParamType)) {
 				size_t id = id_counter_++;
 				handlers_->emplace(id, std::make_unique<EventMenberFunctionHolder<EventArgType, C>>(c, f));
 				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<EventArgType>>(handlers_, id));
 			}
-			/*デリゲートに通常関数を登録*/
-			WeakPointerDelegateConnection Add(const std::function<void(const EventArgType&)>& func) {
+			/**
+			* @brief デリケートにメンバ関数を登録する
+			* @param (func) 登録したい関数
+			* @return ハンドラの削除に使うデリゲート接続クラス
+			*/
+			WeakPointerDelegateConnection Add(const std::function<void(typename IEventFunctionHolder<EventArgType>::ParamType)>& func) {
 				size_t id = id_counter_++;
 				handlers_->emplace(id, std::make_unique<EventNormalFunctionHolder<EventArgType>>(func));
 				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<EventArgType>>(handlers_, id));
@@ -121,6 +188,47 @@ namespace planeta_engine {
 		private:
 			size_t id_counter_ = 0;
 			std::shared_ptr<typename WeakPointerDelegateConnecter<EventArgType>::HandlerListType> handlers_;
+		};
+
+		template<>
+		class WeakPointerDelegate<void> final {
+		public:
+			WeakPointerDelegate() :handlers_(std::make_shared<WeakPointerDelegateConnecter<void>::HandlerListType>()) {}
+			void operator()() {
+				for (auto it = handlers_->begin(); it != handlers_->end();) {
+					if (it->second->Call()) {
+						++it;
+					}
+					else {
+						handlers_->erase(it++);
+					}
+				}
+			}
+			/**
+			* @brief デリケートにメンバ関数を登録する
+			* @param (c) オブジェクトのWeakPointer
+			* @param (f) メンバ関数ポインタ
+			* @return ハンドラの削除に使うデリゲート接続クラス
+			*/
+			template<class C>
+			WeakPointerDelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)()) {
+				size_t id = id_counter_++;
+				handlers_->emplace(id, std::make_unique<EventMenberFunctionHolder<void>>(c, f));
+				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<void>>(handlers_, id));
+			}
+			/**
+			* @brief デリケートにメンバ関数を登録する
+			* @param (func) 登録したい関数
+			* @return ハンドラの削除に使うデリゲート接続クラス
+			*/
+			WeakPointerDelegateConnection Add(const std::function<void(void)>& func) {
+				size_t id = id_counter_++;
+				handlers_->emplace(id, std::make_unique<EventNormalFunctionHolder<void>>(func));
+				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<void>>(handlers_, id));
+			}
+		private:
+			size_t id_counter_ = 0;
+			std::shared_ptr<typename WeakPointerDelegateConnecter<void>::HandlerListType> handlers_;
 		};
 	}
 }

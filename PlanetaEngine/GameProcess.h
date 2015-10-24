@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "WeakPointer.h"
+#include "WeakPointerDelegate.h"
 
 namespace planeta_engine{
 	namespace core{
@@ -18,6 +19,9 @@ namespace planeta_engine{
 			virtual void Update() = 0;
 			/*システム関数*/
 			void SetScene(const utility::WeakPointer<core::ISceneAccessForGameProcess>& scene) { _scene = scene; }
+			/*イベント*/
+			/*プロセスが破棄された*/
+			utility::WeakPointerDelegate<> disposed;
 
 			const int id()const { return id_; }
 		protected:

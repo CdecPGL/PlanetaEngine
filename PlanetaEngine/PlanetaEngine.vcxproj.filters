@@ -504,6 +504,15 @@
     <ClInclude Include="StringPanel.h">
       <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
     </ClInclude>
+    <ClInclude Include="CoroutineProcess.h">
+      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Coroutine.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="EventObserver.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -683,9 +692,6 @@
     <ClCompile Include="CameraUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="WeakPointerDelegate.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="InstanceProcess.cpp">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClCompile>
@@ -748,6 +754,12 @@
     </ClCompile>
     <ClCompile Include="StringPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="CoroutineProcess.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Coroutine.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

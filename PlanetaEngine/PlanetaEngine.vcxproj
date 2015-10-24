@@ -133,6 +133,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Coroutine.h" />
+    <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
     <ClInclude Include="DebugDataPool.h" />
     <ClInclude Include="DebuggerCommunicater.h" />
@@ -146,6 +148,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DXUtility.h" />
     <ClInclude Include="EngineAllocator.h" />
     <ClInclude Include="ErrorSceneDefinition.h" />
+    <ClInclude Include="EventObserver.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileAccessor.h" />
     <ClInclude Include="FileLoadManager.h" />
@@ -258,6 +261,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Coroutine.cpp" />
+    <ClCompile Include="CoroutineProcess.cpp" />
     <ClCompile Include="CSVResource.cpp" />
     <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DrawPolygonComponent.cpp" />
@@ -272,7 +277,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="UIComponent.cpp" />
     <ClCompile Include="UIObject.cpp" />
-    <ClCompile Include="WeakPointerDelegate.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="DrawLineComponent.cpp" />
     <ClCompile Include="DrawManager.cpp" />

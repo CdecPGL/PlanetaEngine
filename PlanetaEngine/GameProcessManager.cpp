@@ -45,6 +45,9 @@ namespace planeta_engine {
 			auto it = _id_map.find(id);
 			if (it == _id_map.end()) { return false; }
 			else {
+				//プロセス破棄イベントを呼び出す
+				(*it->second.second)->disposed();
+				//登録解除リストに追加
 				_unresist_id_list.push_back(id);
 				return true;
 			}
