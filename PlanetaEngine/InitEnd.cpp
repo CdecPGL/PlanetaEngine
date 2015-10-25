@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <fstream>
 #include <iostream>
-#include "MemoryManager.h"
 #include "SystemVariables.h"
 #include "SystemLog.h"
 #include "SystemCounter.h"

@@ -1,5 +1,5 @@
 #pragma once
-#include <memory>
+
 
 //ライブラリファイルの指定
 #ifdef _DEBUG
@@ -8,6 +8,7 @@
 #pragma comment(lib,"planetaengine_mt.lib")
 #endif
 
+#include <memory>
 #include <functional>
 #include "Object.h"
 #include "SharedPointerInstance.h"

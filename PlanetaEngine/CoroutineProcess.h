@@ -9,7 +9,7 @@ namespace planeta_engine {
 		class CoroutineProcess :public game::GameProcess {
 		public:
 			using coroutine = boost::coroutines2::coroutine<void>;
-			using func_arg_type = coroutine::push_type;
+			using func_arg_type = coroutine::push_type&;
 			using GameProcess::GameProcess;
 			void Restart() { Start(); }
 			/*コルーチンが終了した時にプロセスを破棄するか*/
@@ -17,7 +17,7 @@ namespace planeta_engine {
 		private:
 			bool dispose_when_coroutine_finished_ = true;
 			void Update()override final;
-			virtual void UpdateProc(func_arg_type& yield) = 0;
+			virtual void UpdateProc(func_arg_type yield) = 0;
 			std::unique_ptr<coroutine::pull_type> coroutine_;
 			void Start();
 		};

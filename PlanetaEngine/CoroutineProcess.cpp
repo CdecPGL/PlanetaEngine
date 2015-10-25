@@ -17,7 +17,7 @@ namespace planeta_engine {
 
 		void CoroutineProcess::Start()
 		{
-			coroutine_ = std::make_unique<coroutine::pull_type>([this](func_arg_type& y) {UpdateProc(y); });
+			coroutine_ = std::make_unique<coroutine::pull_type>([this](func_arg_type y) {UpdateProc(y); });
 		}
 
 	}

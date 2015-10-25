@@ -10,6 +10,8 @@
 #include "KeyInputManager.h"
 #include "Game.h"
 
+//#include "GlobalNewDeleteDefinition.h"
+
 namespace planeta_engine {
 	namespace core {
 		PlanetaEngine::PlanetaEngine() :_is_initialized(false),_game(std::make_unique<Game>())
@@ -25,6 +27,9 @@ namespace planeta_engine {
 		bool PlanetaEngine::Initialize()
 		{
 			using namespace planeta_engine::core::init_end;
+
+//			memory_allocator.ReserveMemory(1024 * 1024 * 10);
+
 			if (!InitializeDebugSystem()) { //デバッグシステムの初期化
 				return false;
 			}

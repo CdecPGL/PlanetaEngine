@@ -2,11 +2,12 @@
 
 #include<memory>
 #include<string>
+#include "Object.h"
 #include"File.h"
 
 namespace planeta_engine{
 	namespace file_system{
-		class LoaderBase{
+		class LoaderBase : public core::Object{
 		public:
 			LoaderBase(const std::string& p) :_path(p),_is_valid(false){}
 			virtual ~LoaderBase() = default;

@@ -164,6 +164,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectUpdateProcess.h" />
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="GameProcessManager.h" />
+    <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
     <ClInclude Include="GraphPanel.h" />
     <ClInclude Include="GraphResource.h" />
@@ -179,6 +180,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="INIFileResource.h" />
     <ClInclude Include="InitEnd.h" />
     <ClInclude Include="InstanceProcess.h" />
+    <ClInclude Include="InstantCoroutineProcess.h" />
     <ClInclude Include="IOKeyConfig.h" />
     <ClInclude Include="ISceneAccessForGameObject.h" />
     <ClInclude Include="ISceneAccessForGameProcess.h" />
@@ -198,8 +200,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="MathVector.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Memory.h" />
-    <ClInclude Include="MemoryManager.h" />
-    <ClInclude Include="MemoryPools.h" />
     <ClInclude Include="MusicResource.h" />
     <ClInclude Include="NormalFolderLoader.h" />
     <ClInclude Include="NullWeakPointerException.h" />
@@ -207,6 +207,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ObjectHolderTemplate_WithID.h" />
     <ClInclude Include="ObjectHolderTemplate_WithoutID.h" />
     <ClInclude Include="ParameterHolder.h" />
+    <ClInclude Include="PEAssert.h" />
     <ClInclude Include="PEDateTime.h" />
     <ClInclude Include="PETime.h" />
     <ClInclude Include="PlanetaEngine.h" />
@@ -253,7 +254,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="XMLResource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AllocatorsImp.cpp" />
     <ClCompile Include="ArchiveLoader.cpp" />
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="CameraUtility.cpp" />
@@ -312,8 +312,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InitEnd.cpp" />
     <ClCompile Include="InitEndDX.cpp" />
     <ClCompile Include="InitEndResource.cpp" />
-    <ClCompile Include="MemoryManager.cpp" />
-    <ClCompile Include="MemoryPools.cpp" />
     <ClCompile Include="NormalFolderLoader.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlanetaEngine.cpp" />

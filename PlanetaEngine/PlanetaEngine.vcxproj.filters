@@ -34,20 +34,11 @@
     <Filter Include="PlanetaEngine\Core\Object">
       <UniqueIdentifier>{a891554f-069d-48a9-9687-bb86bccc3680}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\SystemResource">
-      <UniqueIdentifier>{087be372-b6b9-4b8a-b1bc-d3b3aaaf176f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\Allocators">
-      <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\Scene">
       <UniqueIdentifier>{a7a17209-ac4b-4b38-abe5-54b35e8e3e18}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\InitEnd">
       <UniqueIdentifier>{d62977ac-2d9b-4cdc-bc1c-9273c8ab4911}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\FileSystem\Utility">
-      <UniqueIdentifier>{ead358e0-116a-4af4-889c-080f732838fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\Debug">
       <UniqueIdentifier>{9923b114-a87d-41d5-8e5e-1a788678fddd}</UniqueIdentifier>
@@ -114,6 +105,9 @@
     </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\UIObjects">
       <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Memory">
+      <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -238,25 +232,25 @@
       <Filter>PlanetaEngine\_UnderReview</Filter>
     </ClInclude>
     <ClInclude Include="BadAllocException.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="TLSFMemoryAllocator.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectAllocator.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="EngineAllocator.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="ProcessAllocator.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="UIAllocator.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="IMemoryAllocator.h">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
@@ -326,12 +320,6 @@
     </ClInclude>
     <ClInclude Include="SceneSystemSetUpper.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryManager.h">
-      <Filter>PlanetaEngine\Core\SystemResource</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryPools.h">
-      <Filter>PlanetaEngine\Core\SystemResource</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>PlanetaEngine\Core</Filter>
@@ -513,6 +501,15 @@
     <ClInclude Include="EventObserver.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="InstantCoroutineProcess.h">
+      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="PEAssert.h">
+      <Filter>PlanetaEngine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalNewDeleteDefinition.h">
+      <Filter>PlanetaEngine\Core\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -531,13 +528,7 @@
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClCompile>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryManager.cpp">
-      <Filter>PlanetaEngine\Core\SystemResource</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryPools.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClCompile>
     <ClCompile Include="InitEnd.cpp">
       <Filter>PlanetaEngine\InitEnd</Filter>
@@ -550,9 +541,6 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="AllocatorsImp.cpp">
-      <Filter>PlanetaEngine\Core\Allocators</Filter>
     </ClCompile>
     <ClCompile Include="ArchiveLoader.cpp">
       <Filter>PlanetaEngine\FileSystem</Filter>
