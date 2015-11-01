@@ -498,9 +498,6 @@
     <ClInclude Include="Coroutine.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="EventObserver.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="InstantCoroutineProcess.h">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClInclude>
@@ -509,6 +506,24 @@
     </ClInclude>
     <ClInclude Include="GlobalNewDeleteDefinition.h">
       <Filter>PlanetaEngine\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeChecker.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflection.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessWithRefrection.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="MetaprogrammingUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="CoroutineUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMonitor.h">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -748,6 +763,12 @@
     </ClCompile>
     <ClCompile Include="Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameProcessManagerAccessor.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcessWithRefrection.cpp">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

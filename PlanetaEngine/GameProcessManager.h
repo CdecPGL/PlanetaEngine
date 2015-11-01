@@ -74,9 +74,22 @@ namespace planeta_engine{
 			std::vector<int> _unresist_id_list;
 			/*特殊プロセスマップ。<プロセス名,プロセスリストのイテレータ>*/
 			std::unordered_map<std::string, std::list<std::shared_ptr<GameProcess>>::iterator> _system_process_map;
-			std::unordered_map<std::string, std::list<std::shared_ptr<GameProcess>>::iterator>& _GetSystemProcessList()override { return _system_process_map; }
+			/*チェッカーを通過するシステムプロセスを取得*/
+			utility::WeakPointer<GameProcess> GetSystemProcess(std::function<bool(const std::shared_ptr<GameProcess>&)> type_checker)const {
+				for (const auto& sp : _system_process_map) {
+					if (type_checker(*sp.second)) { return *sp.second; }
+				}
+				return nullptr;
+			}
 			/*プロセス追加(IDを返す。-1でエラー)*/
 			int AddGameProcess(int priority, const std::shared_ptr<GameProcess>& game_process)override;
+			/*ゲームプロセス作製*/
+			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&, int)>& creator, int priority)override {
+				auto np = creator(_game, _id_counter++);
+				return AddGameProcess(priority, np) >= 0 ? np : nullptr;
+			}
+			/*システムプロセス追加*/
+			bool CreateSystemProcess(const std::shared_ptr<GameProcess>& game_process, int priority) { return AddGameProcess(priority, game_process) >= 0; }
 			/*あたしいIDを取得する*/
 			int GetNewID()override { return _id_counter++; }
 			core::IGameAccessor& GetGameAccessorReference()override { return _game; }

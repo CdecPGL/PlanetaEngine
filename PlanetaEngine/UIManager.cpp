@@ -28,6 +28,14 @@ namespace planeta_engine {
 			}
 		}
 
+		bool UIManager::RemoveLayer(int layer)
+		{
+			auto it = layers_.find(layer);
+			if (it == layers_.end()) { return false; }
+			layers_.erase(it);
+			return true;
+		}
+
 		void UIManager::Layer_::AddUIObject(const std::shared_ptr<UIObject>& o)
 		{
 

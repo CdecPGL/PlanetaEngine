@@ -15,7 +15,7 @@ namespace planeta_engine{
 		class UIObject;
 		class IGameProcessManagerAccessor;
 		class UIManager final: public core::Object ,public IUIManagerAccessor,public IUIManagerSetup{
-		public:		
+		public:
 			void SetManagerPointer(const utility::WeakPointer<core::ISceneAccessForUI>& scene) { scene_ = scene; }
 			/*初期化処理*/
 			bool Initialize();
@@ -28,12 +28,7 @@ namespace planeta_engine{
 			/*管理処理*/
 			bool Process();
 			/*レイヤーを削除*/
-			bool RemoveLayer(int layer) {
-				auto it = layers_.find(layer);
-				if (it == layers_.end()) { return false; }
-				layers_.erase(it);
-				return true;
-			}
+			bool RemoveLayer(int layer);
 			/*UIオブジェクトを作成*/
 			template<class C>
 			std::shared_ptr<C> CreateUIObject(int layer) {

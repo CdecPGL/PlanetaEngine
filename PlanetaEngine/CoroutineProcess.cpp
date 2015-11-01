@@ -7,11 +7,10 @@ namespace planeta_engine {
 		void CoroutineProcess::Update()
 		{
 			if (!coroutine_) { Start(); }
-			else {
-				if (*coroutine_) { (*coroutine_)(); }
-				else {
-					if (dispose_when_coroutine_finished_) { scene()->game_process_manager().RemoveGameProcess(id()); }
-				}
+			else { (*coroutine_)(); }
+			if (!(*coroutine_)) {
+				if (dispose_when_coroutine_finished_) { scene()->game_process_manager().RemoveGameProcess(id()); }
+				else { coroutine_.release(); }
 			}
 		}
 

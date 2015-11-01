@@ -148,7 +148,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DXUtility.h" />
     <ClInclude Include="EngineAllocator.h" />
     <ClInclude Include="ErrorSceneDefinition.h" />
-    <ClInclude Include="EventObserver.h" />
+    <ClInclude Include="EventMonitor.h" />
+    <ClInclude Include="CoroutineUtility.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileAccessor.h" />
     <ClInclude Include="FileLoadManager.h" />
@@ -164,6 +165,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectUpdateProcess.h" />
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="GameProcessManager.h" />
+    <ClInclude Include="GameProcessWithRefrection.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
     <ClInclude Include="GraphPanel.h" />
@@ -200,6 +202,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="MathVector.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="MetaprogrammingUtility.h" />
     <ClInclude Include="MusicResource.h" />
     <ClInclude Include="NormalFolderLoader.h" />
     <ClInclude Include="NullWeakPointerException.h" />
@@ -217,6 +220,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="PolygonColliderComponent.h" />
     <ClInclude Include="ProcessAllocator.h" />
     <ClInclude Include="RectAngle.h" />
+    <ClInclude Include="Reflection.h" />
     <ClInclude Include="ResourceBase.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -240,6 +244,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TLSFMemoryAllocator.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="TwoKeyMap.h" />
+    <ClInclude Include="TypeChecker.h" />
     <ClInclude Include="UIAllocator.h" />
     <ClInclude Include="UIComponent.h" />
     <ClInclude Include="UIDrawProcess.h" />
@@ -268,7 +273,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DrawPolygonComponent.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />
+    <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
+    <ClCompile Include="IGameProcessManagerAccessor.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="StringPanel.cpp" />

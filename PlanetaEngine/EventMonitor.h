@@ -7,25 +7,25 @@ namespace planeta_engine {
 		/**
 		* @brief イベント監視クラス本体。
 		*/
-		class EventObserver final{
+		class EventMonitor final{
 		public:
 			/**
 			* @brief デフォルトコンストラクタ
 			*/
-			EventObserver() {}
+			EventMonitor() {}
 			/**
 			* @brief コンストラクタ
 			* @param (dlgt) 監視するイベントのデリゲート
 			*/
 			template<typename EventArgType>
-			EventObserver(WeakPointerDelegate<EventArgType>& dlgt) { SetTarget(dlgt); }
+			EventMonitor(WeakPointerDelegate<EventArgType>& dlgt) { SetTarget(dlgt); }
 			/**
 			* @fn
 			* デストラクタ。イベントデリゲートへの登録を解除する。
 			* @brief デストラクタ
 			* @param (dlgt) 監視するイベントのデリゲート
 			*/
-			~EventObserver() {
+			~EventMonitor() {
 				delegate_connection_.Remove();
 			}
 			/**
