@@ -38,6 +38,7 @@ namespace planeta_engine {
 			*/
 			template<typename EventArgType>
 			void SetTarget(WeakPointerDelegate<EventArgType>& dlgt) {
+				delegate_connection_.Remove(); //Šù‘¶‚ÌÚ‘±‚ÍØ‚é
 				delegate_connection_ = dlgt.Add([this](WeakPointerDelegate<EventArgType>::HandlerParamType) {
 					delegate_connection_.Remove();
 					is_event_called_ = true;
@@ -45,6 +46,7 @@ namespace planeta_engine {
 				is_event_called_ = false;
 			}
 			void SetTarget(WeakPointerDelegate<void>& dlgt) {
+				delegate_connection_.Remove(); //Šù‘¶‚ÌÚ‘±‚ÍØ‚é
 				delegate_connection_ = dlgt.Add([this]() {
 					delegate_connection_.Remove();
 					is_event_called_ = true;
