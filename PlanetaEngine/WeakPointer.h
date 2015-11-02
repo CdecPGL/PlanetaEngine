@@ -24,80 +24,84 @@ namespace planeta_engine {
 			template<typename T0> friend class WeakPointer;
 		public:
 			WeakPointer() = default;
-			/*生ポは受け付けるが、必ず無効なポインタになる。(nullptr用)*/
-			WeakPointer(const void* p){}
+			/*nullptrのみ受け付ける*/
+			WeakPointer(const void* p) { assert(p == nullptr); }
 			template<typename T1>
-			WeakPointer(const WeakPointer<T1>& wp) :_w_ptr(wp._w_ptr) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
+			WeakPointer(const WeakPointer<T1>& wp) :w_ptr_(wp.w_ptr_) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
 			template<typename T1>
-			WeakPointer(const std::weak_ptr<T1>& wp) :_w_ptr(wp) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
+			WeakPointer(const std::weak_ptr<T1>& wp) :w_ptr_(wp) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
 			template<typename T1>
-			WeakPointer(const std::shared_ptr<T1>& sp) :_w_ptr(sp) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
+			WeakPointer(const std::shared_ptr<T1>& sp) :w_ptr_(sp) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
 			/*スマポを取得*/
-			std::shared_ptr<T>get_shared()const { return _w_ptr.lock(); }
-			std::weak_ptr<T>get_weak()const { return _w_ptr; }
+			std::shared_ptr<T>get_shared()const { return w_ptr_.lock(); }
+			std::weak_ptr<T>get_weak()const { return w_ptr_; }
 			/*ポインターを取得*/
-			T* get()const { return _w_ptr._Get(); }
+			T* get()const { return w_ptr_._Get(); }
 			//////////アクセス演算子//////////
 			T* operator->() {
+				std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
-				assert(_w_ptr.expired() == false);
-#else
-				if (_w_ptr.expired()) {
+				assert(s_ptr != nullptr);
+#else //それ以外では例外を投げる
+				if (s_ptr == nullptr) {
 					throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
 				}
-#endif //それ以外では例外を投げる
-				return _w_ptr.lock().get();
+#endif
+				return s_ptr.get();
 			}
 			const T* operator->()const {
+				std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
-				assert(_w_ptr.expired() == false);
+				assert(s_ptr != nullptr);
 #else
-				if (_w_ptr.expired()) {
+				if (s_ptr == nullptr) {
 					throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
 				}
 #endif //それ以外では例外を投げる
-				return _w_ptr.lock().get();
+				return s_ptr.get();
 			}
 			//////////ポインタ参照演算子//////////
 			T& operator*() {
+				std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
-				assert(_w_ptr.expired() == false);
+				assert(s_ptr != nullptr);
 #else
-				if (_w_ptr.expired()) {
+				if (s_ptr == nullptr) {
 					throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
 				}
 #endif //それ以外では例外を投げる
-				return *_w_ptr.lock();
+				return *s_ptr;
 			}
 			const T& operator*()const {
+				std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
-				assert(_w_ptr.expired() == false);
+				assert(s_ptr != nullptr);
 #else
-				if (_w_ptr.expired()) {
+				if (s_ptr == nullptr) {
 					throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
 				}
 #endif //それ以外では例外を投げる
-				return *_w_ptr.lock();
+				return *s_ptr;
 			}
 			operator bool()const {
-				return !_w_ptr.expired();
+				return !w_ptr_.expired();
 			}
 			operator void*()const {
-				return _w_ptr._Get();
+				return w_ptr_._Get();
 			}
 
 			using pointer_type = T;
 		private:
-			std::weak_ptr<T> _w_ptr;
+			std::weak_ptr<T> w_ptr_;
 		};
 
 		template<typename T0,typename T1>
 		WeakPointer<T0> static_weak_pointer_cast(const WeakPointer<T1>& ptr) {
-			return WeakPointer<T0>(std::static_pointer_cast<T0>(ptr._w_ptr.lock()));
+			return WeakPointer<T0>(std::static_pointer_cast<T0>(ptr.w_ptr_.lock()));
 		}
 		template<typename T0, typename T1>
 		WeakPointer<T0> dynamic_weak_pointer_cast(const WeakPointer<T1>& ptr) {
-			return WeakPointer<T0>(std::dynamic_pointer_cast<T0>(ptr._w_ptr.lock()));
+			return WeakPointer<T0>(std::dynamic_pointer_cast<T0>(ptr.w_ptr_.lock()));
 		}
 	}
 }

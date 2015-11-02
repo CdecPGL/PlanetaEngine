@@ -30,7 +30,7 @@ namespace planeta_engine {
 		bool DrawPlanetComponent::Initialize_()
 		{
 			if (DrawComponent::Initialize_() == false) { return false; }
-			_planet_component = game_object()->GetComponent<components::PlanetComponent>();
+			_planet_component = game_object().GetComponent<components::PlanetComponent>();
 			if (_planet_component) {
 				_SetPolygon();
 				return true;
@@ -79,7 +79,7 @@ namespace planeta_engine {
 
 		void DrawPlanetComponent::_UpdatePolygon()
 		{
-			if (game_object() == nullptr || _graph_resource == nullptr || _planet_component == nullptr) { return; }
+			if (_graph_resource == nullptr || _planet_component == nullptr) { return; }
 			//ç°ÇÃÇ∆Ç±ÇÎägëÂìxÇÕçló∂ÇµÇƒÇ¢Ç»Ç¢
 			Vector2D<double> center_pos = GetDrawCenterPosition();
 			double rotation = GetDrawRotationRed();

@@ -7,7 +7,7 @@
 #include "ParameterHolder.h"
 namespace planeta_engine{
 	namespace core{
-		class ISceneSetup;
+		class SceneAccessorForSetUp;
 		/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
 		class SceneSetUpper : public core::Object{
 		public:
@@ -16,12 +16,12 @@ namespace planeta_engine{
 			/*シーンの設定処理を行う(初期オブジェクト、UI、プロセスの追加、[前シーンからオブジェクトの引継ぎ]未実装)
 			@param 設定するシーン、初期化パラメータリスト
 			*/
-			virtual bool SetUpScene(ISceneSetup& scene,const utility::ParameterHolder& initialize_parameters) = 0;
+			virtual bool SetUpScene(SceneAccessorForSetUp& scene,const utility::ParameterHolder& initialize_parameters) = 0;
 			/*シーンの終了処理を行う(次シーンの初期化パラメータ生成など)
 			@param 終了処理するシーン、次のシーンのID、終了処理パラメータリスト
 			@return 次のシーンの初期化パラメータ
 			*/
-			virtual utility::ParameterHolder FinalizeScene(ISceneSetup& scene,const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) = 0;
+			virtual utility::ParameterHolder FinalizeScene(SceneAccessorForSetUp& scene,const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) = 0;
 			/*使用リソースのタググループリストを返す*/
 			virtual const std::vector<std::string> GetUseTagGroups()const = 0;
 			/*遷移可能SceneIDリスト*/

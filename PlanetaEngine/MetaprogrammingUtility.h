@@ -46,7 +46,7 @@ namespace planeta_engine {
 		};
 		/*ŠÖ”‚ÌŒ^‚ğ•\‚·*/
 		template<typename ... Params>
-		struct FunctionType<Params...> {
+		struct FunctionType {
 			template<typename Ret>
 			using func_type = std::function<Ret(Params...)>;
 			template<typename Ret>

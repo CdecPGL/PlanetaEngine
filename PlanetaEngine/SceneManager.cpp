@@ -6,6 +6,7 @@
 #include "SceneSystemSetUpper.h"
 #include "SystemLog.h"
 #include "NullWeakPointerException.h"
+#include "SceneAccessorForSetUp.h"
 
 namespace planeta_engine{
 	namespace core{
@@ -87,9 +88,8 @@ namespace planeta_engine{
 			utility::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
 			//新しいシーンを作成
 			std::shared_ptr<Scene> new_scene = Scene::MakeShared(_game);
-			new_scene->SetManagerPointer();
 			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
-			if (!(sssu(*new_scene) && _next_scene_setupper->SetUpScene(*new_scene, next_scene_initialize_parameters))) {
+			if (!(sssu(*new_scene) && _next_scene_setupper->SetUpScene(SceneAccessorForSetUp(*new_scene), next_scene_initialize_parameters))) {
 				debug::SystemLog::instance().LogError(std::string("シーン遷移に失敗しました。新しいシーン(") + _next_scene_id + ")のセットアップに失敗しました。", "SceneManager::_transition_proc");
 				_transition_to_error_scene();
 				return;
@@ -137,10 +137,9 @@ namespace planeta_engine{
 			debug::SystemLog::instance().LogError("エラーシーンに遷移します。", "SceneManager::_transition_to_error_scene");
 			std::shared_ptr<ErrorSceneDefinition> ecd = std::make_shared<ErrorSceneDefinition>();
 			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
-			es->SetManagerPointer();
 			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
 			sssu(*es);
-			ecd->SetUpScene(*es,utility::ParameterHolder());
+			ecd->SetUpScene(SceneAccessorForSetUp(*es),utility::ParameterHolder());
 			es->Initialize();
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
@@ -152,7 +151,7 @@ namespace planeta_engine{
 		{
 			//現在のシーンを終了(現在のシーンがなかったら空のパラメータを格納)
 			if (_current_scene) {
-				utility::ParameterHolder next_scene_initialize_parameters = _current_scene_setupper->FinalizeScene(*_current_scene, _next_scene_id, _transition_parameters);
+				utility::ParameterHolder next_scene_initialize_parameters = _current_scene_setupper->FinalizeScene(SceneAccessorForSetUp(*_current_scene), _next_scene_id, _transition_parameters);
 				_current_scene->Finalize();
 				return next_scene_initialize_parameters;
 			}

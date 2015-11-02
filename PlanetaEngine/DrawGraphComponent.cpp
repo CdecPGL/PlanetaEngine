@@ -44,8 +44,8 @@ namespace planeta_engine {
 
 		void DrawGraphComponent::_UpdatePolygon()
 		{
-			if (game_object() == nullptr || _graph_resource == nullptr) { return; }
-			TransformComponent& transform = *(game_object()->GetTransformComponent());
+			if (_graph_resource == nullptr) { return; }
+			TransformComponent& transform = *(game_object().GetTransformComponent());
 			//頂点位置の更新
 			//描画拡大度を考慮した縦横の長さ
 			double dwidth((double)_draw_area.width()*GetDrawScale().x), dheight((double)_draw_area.height()*GetDrawScale().y);

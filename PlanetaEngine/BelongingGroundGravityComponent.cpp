@@ -14,9 +14,9 @@ namespace planeta_engine {
 
 		void BelongingGroundGravityComponent::Update_()
 		{
-			auto bgc = game_object()->GetBelongingGroundComponent();
+			auto bgc = game_object().GetBelongingGroundComponent();
 			if (bgc) {
-				auto transform = game_object()->GetTransformComponent();
+				auto transform = game_object().GetTransformComponent();
 				transform->velocity(transform->velocity() + bgc->GetDownwardDirectionVector(transform->global_position())*_gravity_scale);
 			}
 		}

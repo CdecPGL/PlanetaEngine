@@ -1,15 +1,12 @@
 #include "GameObject.h"
 
-#include"GameObjectManager.h"
 #include "Component.h"
 #include "GameObjectSetUpProxy.h"
 #include "GameObjectSetUpper.h"
 #include "PlanetComponent.h"
-#include "GameObjectManager.h"
-#include "GameProcessManager.h"
 #include "TransformComponent.h"
 #include "SystemLog.h"
-#include "ISceneAccessForGameObject.h"
+#include "SceneAccessorForGameObject.h"
 #include "DumyGroundComponent.h"
 
 using namespace std;
@@ -17,21 +14,20 @@ using namespace std;
 namespace planeta_engine{
 	namespace game{
 
-		GameObject::GameObject() :_is_active(false), _id(-1), _game_object_set_up_proxy(std::make_unique<GameObjectSetUpProxy>(*this)),_component_id_counter(0)
-			,_transform(components::TransformComponent::MakeShared<components::TransformComponent>()){
-			_transform->parent(GetRootTransformComponent()); //トランスフォームコンポーネントの親にRootを設定
+		GameObject::GameObject() :is_active_(false), game_object_set_up_proxy_(std::make_unique<GameObjectSetUpProxy>(*this)),component_id_counter_(0)
+			,transform_(components::TransformComponent::MakeShared<components::TransformComponent>()){
+			transform_->parent(GetRootTransformComponent()); //トランスフォームコンポーネントの親にRootを設定
 		};
 
-		GameObject::~GameObject(){
-		}
+		GameObject::~GameObject() = default;
 
 		std::shared_ptr<GameObject> GameObject::Create(GameObjectSetUpper& gosu){
 			auto h_ptr = MakeShared<create_helper>();
 			auto ptr = std::shared_ptr<GameObject>(std::move(h_ptr), &h_ptr->x);
-			ptr->_me = ptr;
-			ptr->_transform->SetGameObject(ptr, ptr->_component_id_counter++);
+			ptr->me_ = ptr;
+			ptr->transform_->SetGameObject(ptr, ptr->component_id_counter_++);
 			if (ptr->_SetUp(gosu) == false){  //設定
-				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。セットアップに失敗しました。", "GameObject::Create");
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。セットアップに失敗しました。",__FUNCTION__);
 				return nullptr;
 			}
 			return ptr;
@@ -39,38 +35,38 @@ namespace planeta_engine{
 
 		bool GameObject::Activate()
 		{
-			if (_scene) {
-				if (!static_cast<GameObjectManager&>(_scene->game_object_manager()).Activate(_id)) { return false; }
-				_is_active = true;
+			if (scene_accessor_) {
+				if (!resister_connection_->Activate()) { return false; }
+				is_active_ = true;
 				return true;
 			}
 			else {
 				//ゲームオブジェクトマネージャがセットされていない
-				debug::SystemLog::instance().LogError("ゲームオブジェクトの有効化に失敗しました。Sceneがセットされていません。", "GameObject::Activate");
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの有効化に失敗しました。Sceneがセットされていません。", __FUNCTION__);
 				return false;
 			}
 		}
 
 		bool GameObject::InActivate()
 		{
-			if (_scene) {
-				if (!static_cast<GameObjectManager&>(_scene->game_object_manager()).InActivate(_id)) { return false; }
-				_is_active = false;
+			if (scene_accessor_) {
+				if (!resister_connection_->InActivate()) { return false; }
+				is_active_ = false;
 				return true;
 			}
 			else {
 				//ゲームオブジェクトマネージャがセットされていない
-				debug::SystemLog::instance().LogError("ゲームオブジェクトの無効化に失敗しました。Sceneがセットされていません。","GameObject::InActivate");
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの無効化に失敗しました。Sceneがセットされていません。",__FUNCTION__);
 				return false;
 			}
 		}
 
 		bool GameObject::_initialize_component()
 		{
-			for (auto& c : _component_list){
-				c.second->SetSceneAccessor(_scene);
+			for (auto& c : component_list_){
+				c.second->SetSceneAccessor(scene_accessor_);
 				if (c.second->Initialize_() == false){ 
-					debug::SystemLog::instance().LogError(std::string("コンポーネントの初期化に失敗しました。(") + c.second->GetType().name()+")", "GameObject::_initialize_component");
+					debug::SystemLog::instance().LogError(std::string("コンポーネントの初期化に失敗しました。(") + c.second->GetType().name()+")",__FUNCTION__);
 					return false; 
 				}
 			}
@@ -80,14 +76,14 @@ namespace planeta_engine{
 		void GameObject::_update_component()
 		{
 			//通常コンポーネントのアップデート
-			for (auto& c : _component_update_list){
+			for (auto& c : component_update_list_){
 				c->Update_();
 			}
 		}
 
 		bool GameObject::_finalize_component()
 		{
-			for (auto& c : _component_list){
+			for (auto& c : component_list_){
 				c.second->Finalize_();
 			}
 			return true;
@@ -95,9 +91,9 @@ namespace planeta_engine{
 
 		bool GameObject::_activate_component()
 		{
-			for (auto& c : _component_list){
+			for (auto& c : component_list_){
 				if (c.second->Activated_() == false){ 
-					debug::SystemLog::instance().LogError(std::string("コンポーネントの有効化に失敗しました。(") + c.second->GetType().name()+")", "GameObject::_activate_component");
+					debug::SystemLog::instance().LogError(std::string("コンポーネントの有効化に失敗しました。(") + c.second->GetType().name()+")", __FUNCTION__);
 					return false;
 				}
 			}
@@ -106,9 +102,9 @@ namespace planeta_engine{
 
 		bool GameObject::_inactivate_component()
 		{
-			for (auto& c : _component_list){
+			for (auto& c : component_list_){
 				if (c.second->InActivated_() == false){ 
-					debug::SystemLog::instance().LogError(std::string("コンポーネントの無効化に失敗しました。(") + c.second->GetType().name()+")", "GameObject::_inactivate_component");
+					debug::SystemLog::instance().LogError(std::string("コンポーネントの無効化に失敗しました。(") + c.second->GetType().name()+")", __FUNCTION__);
 					return false; 
 				}
 			}
@@ -127,13 +123,17 @@ namespace planeta_engine{
 
 		bool GameObject::_SetUp(GameObjectSetUpper& gosu)
 		{
-			return gosu(*_game_object_set_up_proxy);
+			return gosu(*game_object_set_up_proxy_);
 		}
 
 		void GameObject::Dispose()
 		{
-			if (_scene) {
-				static_cast<GameObjectManager&>(_scene->game_object_manager()).Remove(_id);
+			if (scene_accessor_) {
+				resister_connection_->Dispose();
+			}
+			else {
+				//ゲームオブジェクトマネージャがセットされていない
+				debug::SystemLog::instance().LogError("ゲームオブジェクトの破棄に失敗しました。Sceneがセットされていません。", __FUNCTION__);
 			}
 		}
 

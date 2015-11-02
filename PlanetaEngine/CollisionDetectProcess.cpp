@@ -25,7 +25,7 @@ namespace planeta_engine{
 			for (auto ccc_it = circle_collider_list.begin(); ccc_it != circle_collider_list.end(); ++ccc_it) {
 				/*Circleと地形*/
 				if ((*ccc_it)->collide_with_ground_flag()) {
-					if ((*ccc_it)->game_object()->belonging_ground().CollisionDetect(*(*ccc_it))) {
+					if ((*ccc_it)->game_object().belonging_ground().CollisionDetect(*(*ccc_it))) {
 						//衝突していたら地形衝突イベントを発生させる
 						event_arguments::CollisionWithGroundEventArgument cwgea;
 						(*ccc_it)->collided_with_ground(cwgea);
@@ -55,7 +55,7 @@ namespace planeta_engine{
 			/*StraightLineと地形*/
 			for (auto slcc_it = straightline_collider_list.begin(); slcc_it != straightline_collider_list.end(); ++slcc_it) {
 				if ((*slcc_it)->collide_with_ground_flag()) {
-					if ((*slcc_it)->game_object()->belonging_ground().CollisionDetect(*(*slcc_it))) {
+					if ((*slcc_it)->game_object().belonging_ground().CollisionDetect(*(*slcc_it))) {
 						//衝突していたら地形衝突イベントを発生させる
 						event_arguments::CollisionWithGroundEventArgument cwgea;
 						(*slcc_it)->collided_with_ground(cwgea);

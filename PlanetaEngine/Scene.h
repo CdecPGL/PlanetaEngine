@@ -3,10 +3,8 @@
 #include <memory>
 #include <string>
 #include "Object.h"
-#include "ISceneSetup.h"
-#include "ISceneAccessForGameObject.h"
-#include "ISceneAccessForGameProcess.h"
-#include "ISceneAccessForUI.h"
+#include "SceneAccessorForSetUp.h"
+#include "ScenePublicInterface.h"
 #include "WeakPointer.h"
 #include "SharedPointerInstance.h"
 
@@ -18,12 +16,10 @@ namespace planeta_engine{
 	namespace core{
 		class IGameAccessor;
 		class Scene : public Object,public utility::SharedPointerInstance<Scene>
-			,public ISceneSetup,public ISceneAccessForGameObject,public ISceneAccessForGameProcess,public ISceneAccessForUI{
+			,public ScenePublicInterface{
 		public:
 			Scene(IGameAccessor& game);
 			~Scene();
-			/*マネージャのポインターをセット*/
-			void SetManagerPointer();
 			/*シーンの初期化*/
 			bool Initialize();
 			/*シーンの終了処理*/
@@ -48,8 +44,6 @@ namespace planeta_engine{
 			std::unique_ptr<game::GameProcessManager> game_process_manager_;
 			std::unique_ptr<game::GameObjectManager> game_object_manager_;
 			std::unique_ptr<game::UIManager> ui_manager_;
-
-
 		};
 	}
 }

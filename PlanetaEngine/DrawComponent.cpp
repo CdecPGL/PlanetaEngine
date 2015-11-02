@@ -1,11 +1,10 @@
 #include "DrawComponent.h"
 #include "IGameObjectAccessor.h"
-#include "IGameProcessManagerAccessor.h"
 #include "GameObjectDrawProcess.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
 #include "SystemLog.h"
-#include "ISceneAccessForGameObject.h"
+#include "SceneAccessorForGameObject.h"
 
 namespace planeta_engine {
 	namespace components {
@@ -19,14 +18,14 @@ namespace planeta_engine {
 		{
 			_draw_priority = priority;
 			//ゲームオブジェクトがアクティブなら優先度更新
-			if (game_object()->is_active()) {
+			if (game_object().is_active()) {
 				_UpdatePriority();
 			}
 		}
 
 		Vector2D<double> DrawComponent::GetDrawCenterPosition() const
 		{
-			const TransformComponent& transform = game_object()->transform();
+			const TransformComponent& transform = game_object().transform();
 			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), _position); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.global_scale().x; //横方向拡大を反映
 			relation_position.y *= transform.global_scale().y; //縦方向拡大を反映
@@ -35,12 +34,12 @@ namespace planeta_engine {
 
 		double DrawComponent::GetDrawRotationRed() const
 		{
-			return game_object()->transform().global_rotation_rad() + _rotation_rad;
+			return game_object().transform().global_rotation_rad() + _rotation_rad;
 		}
 
 		Vector2D<double> DrawComponent::GetDrawScale() const
 		{
-			return Vector2D<double>(game_object()->transform().global_scale().x * _scale.x, game_object()->transform().global_scale().y * _scale.y);
+			return Vector2D<double>(game_object().transform().global_scale().x * _scale.x, game_object().transform().global_scale().y * _scale.y);
 		}
 
 		void DrawComponent::_ResistToDrawProcess()
@@ -73,18 +72,12 @@ namespace planeta_engine {
 
 		bool DrawComponent::Initialize_()
 		{
-			if (scene()) {
-				_game_object_draw_process = scene()->game_process_manager().GetSystemProcess<system_processes::GameObjectDrawProcess>();
-				if (_game_object_draw_process) {
-					return true;
-				}
-				else {
-					debug::SystemLog::instance().LogError("ゲームオブジェクト描画プロセスを取得できませんでした。", "DrawComponent::Initialize_");
-					return false;
-				}
+			_game_object_draw_process = scene().game_process_manager().GetSystemProcess<system_processes::GameObjectDrawProcess>();
+			if (_game_object_draw_process) {
+				return true;
 			}
 			else {
-				debug::SystemLog::instance().LogError("シーンがセットされていません。", "DrawComponent::Initialize_");
+				debug::SystemLog::instance().LogError("ゲームオブジェクト描画プロセスを取得できませんでした。", "DrawComponent::Initialize_");
 				return false;
 			}
 		}

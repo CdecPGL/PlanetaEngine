@@ -3,20 +3,20 @@
 #include <map>
 #include <memory>
 #include "Object.h"
-#include "IUIManagerAccessor.h"
-#include "IUIManagerSetup.h"
 #include "WeakPointer.h"
+#include "UIManagerPublicInterface.h"
 
 namespace planeta_engine{
 	namespace core {
-		class ISceneAccessForUI;
+		class ScenePublicInterface;
+		class SceneAccessorForUI;
 	}
 	namespace game {
 		class UIObject;
 		class IGameProcessManagerAccessor;
-		class UIManager final: public core::Object ,public IUIManagerAccessor,public IUIManagerSetup{
+		class UIManager final: public core::Object,public UIManagerPublicInterface {
 		public:
-			void SetManagerPointer(const utility::WeakPointer<core::ISceneAccessForUI>& scene) { scene_ = scene; }
+			UIManager(core::ScenePublicInterface& spi);
 			/*初期化処理*/
 			bool Initialize();
 			/*終了処理*/
@@ -28,7 +28,7 @@ namespace planeta_engine{
 			/*管理処理*/
 			bool Process();
 			/*レイヤーを削除*/
-			bool RemoveLayer(int layer);
+			bool RemoveLayer(int layer)override;
 			/*UIオブジェクトを作成*/
 			template<class C>
 			std::shared_ptr<C> CreateUIObject(int layer) {
@@ -38,7 +38,7 @@ namespace planeta_engine{
 			}
 			
 		private:
-			utility::WeakPointer<core::ISceneAccessForUI> scene_;
+			std::shared_ptr<core::SceneAccessorForUI> scene_accessor_;
 			class Layer_ {
 			public:
 				void AddUIObject(const std::shared_ptr<UIObject>& o);
@@ -48,6 +48,12 @@ namespace planeta_engine{
 
 			};
 			std::map<int, std::unique_ptr<Layer_>> layers_;
+
+			std::shared_ptr<UIObject> CreateUIObject(const std::function<std::shared_ptr<UIObject>()>& creator, int layer)override {
+				auto nuo = creator();
+				layers_[layer]->AddUIObject(nuo);
+				return nuo;
+			}
 		};
 	}
 }

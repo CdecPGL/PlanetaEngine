@@ -8,7 +8,7 @@
 
 namespace planeta_engine{
 	namespace core {
-		class ISceneAccessForGameObject;
+		class SceneAccessorForGameObject;
 	}
 	namespace game{
 		class GameObject;
@@ -17,20 +17,18 @@ namespace planeta_engine{
 		{
 			friend class GameObject;
 		public:
-			Component() :_id(-1){};
+			Component() :id_(-1){};
 			virtual ~Component() = default;
-			void SetGameObject(const utility::WeakPointer<IGameObjectAccessor>& game_object, int id) { _game_object = game_object; _id = id; }
-			void SetSceneAccessor(const utility::WeakPointer<core::ISceneAccessForGameObject>& scene) { _scene = scene; }
-
-			//GameObjectの複製時に呼ばれる(システム関数)
-//			virtual std::shared_ptr<Component> Clone(GameObject& go,std::vector<std::shared_ptr<Component>*>& need_update_pointer_list); //別のゲームオブジェクトのコンポーネントとして自身の複製を作成(その際第二引数に、更新が必要なコンポーネントリストが渡されるので、必要なら登録する)
+			void SetGameObject(const utility::WeakPointer<IGameObjectAccessor>& game_object, int id) { game_object_ = game_object; id_ = id; }
+			void SetSceneAccessor(const utility::WeakPointer<core::SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
 			
 
-			bool is_valied()const{ return _is_valied; }
-			utility::WeakPointer<IGameObjectAccessor> game_object()const { return _game_object; }
+			bool is_valied()const{ return is_valied_; }
+			IGameObjectAccessor& game_object() { return *game_object_; }
+			const IGameObjectAccessor& game_object()const { return *game_object_; }
 		protected:
 			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
-			utility::WeakPointer<core::ISceneAccessForGameObject> scene() { return _scene; }
+			core::SceneAccessorForGameObject& scene() { return *scene_accessor_; }
 		private:
 			Component(const Component&) = delete;
 			Component(Component&&) = delete;
@@ -42,13 +40,11 @@ namespace planeta_engine{
 //			static void* operator new[](size_t s){throw utility::BadNewDeleteOperation("Component::operator new[] is called."); return nullptr; }
 //			static void operator delete[](void* p){throw utility::BadNewDeleteOperation("Component::operator delete[] is called."); return; }
 
-//			bool _update_component_pointer(std::shared_ptr<Component>*); //コンポーネントを示すポインタをコンポーネントIDをもとに、現在のゲームオブジェクトから取得する
+			bool is_valied_;
+			int id_;
 
-			bool _is_valied;
-			int _id;
-
-			utility::WeakPointer<IGameObjectAccessor> _game_object;
-			utility::WeakPointer<core::ISceneAccessForGameObject> _scene;
+			utility::WeakPointer<IGameObjectAccessor> game_object_;
+			utility::WeakPointer<core::SceneAccessorForGameObject> scene_accessor_;
 
 			/*システム関数*/
 			virtual bool NoUpdate_()const { return false; } //更新処理を行わないか

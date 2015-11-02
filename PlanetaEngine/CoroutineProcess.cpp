@@ -1,6 +1,5 @@
 #include "CoroutineProcess.h"
-#include "ISceneAccessForGameProcess.h"
-#include "IGameProcessManagerAccessor.h"
+#include "SceneAccessorForGameProcess.h"
 
 namespace planeta_engine {
 	namespace game_processes {
@@ -9,7 +8,7 @@ namespace planeta_engine {
 			if (!coroutine_) { Start(); }
 			else { (*coroutine_)(); }
 			if (!(*coroutine_)) {
-				if (dispose_when_coroutine_finished_) { scene()->game_process_manager().RemoveGameProcess(id()); }
+				if (dispose_when_coroutine_finished_) { scene().game_process_manager().RemoveGameProcess(id()); }
 				else { coroutine_.release(); }
 			}
 		}

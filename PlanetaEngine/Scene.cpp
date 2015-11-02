@@ -9,20 +9,13 @@
 namespace planeta_engine{
 	namespace core{
 
-		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::UIManager>())
+		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>(*this)), game_process_manager_(std::make_unique<game::GameProcessManager>(game_,*this)), ui_manager_(std::make_unique<game::UIManager>(*this))
 		{
 		}
 
 		Scene::~Scene()
 		{
 
-		}
-
-		void Scene::SetManagerPointer()
-		{
-			game_object_manager_->SetManagerPointer(this_shared());
-			ui_manager_->SetManagerPointer(this_shared());
-			game_process_manager_->SetManagerPointer(this_shared());
 		}
 
 		bool Scene::Initialize()

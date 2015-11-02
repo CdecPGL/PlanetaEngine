@@ -1,6 +1,5 @@
 #include "InstanceProcess.h"
-#include "ISceneAccessForGameProcess.h"
-#include "IGameProcessManagerAccessor.h"
+#include "SceneAccessorForGameProcess.h"
 
 namespace planeta_engine {
 	namespace game_processes {
@@ -12,7 +11,7 @@ namespace planeta_engine {
 				++count_of_times_implemented_;
 				if (number_of_times_implemented_ >= count_of_times_implemented_) {
 					//実行回数に達したのでプロセスを削除する
-					scene()->game_process_manager().RemoveGameProcess(id());
+					scene().game_process_manager().RemoveGameProcess(id());
 				}
 			}
 		}

@@ -1,9 +1,8 @@
 #include "ColliderComponent.h"
 #include "IGameObjectAccessor.h"
 #include "CollisionDetectProcess.h"
-#include "IGameProcessManagerAccessor.h"
 #include "SystemLog.h"
-#include "ISceneAccessForGameObject.h"
+#include "SceneAccessorForGameObject.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
 
@@ -11,18 +10,12 @@ namespace planeta_engine {
 	namespace components {
 		bool ColliderComponent::Initialize_()
 		{
-			if (scene()) {
-				_collision_detect_process = scene()->game_process_manager().GetSystemProcess<system_processes::CollisionDetectProcess>();
-				if (_collision_detect_process) {
-					return true;
-				}
-				else {
-					debug::SystemLog::instance().LogError("衝突判定プロセスを取得できませんでした。", "ColliderComponent::Initialize_");
-					return false;
-				}
+			_collision_detect_process = scene().game_process_manager().GetSystemProcess<system_processes::CollisionDetectProcess>();
+			if (_collision_detect_process) {
+				return true;
 			}
 			else {
-				debug::SystemLog::instance().LogError("シーンがセットされていません。", "ColliderComponent::Initialize_");
+				debug::SystemLog::instance().LogError("衝突判定プロセスを取得できませんでした。", "ColliderComponent::Initialize_");
 				return false;
 			}
 		}
@@ -66,7 +59,7 @@ namespace planeta_engine {
 
 		const Vector2D<double> ColliderComponent::GetCollisionCenterPosition() const
 		{
-			const TransformComponent& transform = game_object()->transform();
+			const TransformComponent& transform = game_object().transform();
 			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.global_scale().x; //横方向拡大を反映
 			relation_position.y *= transform.global_scale().y; //縦方向拡大を反映
@@ -75,13 +68,13 @@ namespace planeta_engine {
 
 		const double ColliderComponent::GetCollisionScale() const
 		{
-			const TransformComponent& transform = game_object()->transform();
+			const TransformComponent& transform = game_object().transform();
 			return transform.global_scale().x > transform.global_scale().y ? transform.global_scale().y : transform.global_scale().x;
 		}
 
 		const double ColliderComponent::GetCollisionRotationRad() const
 		{
-			return game_object()->transform().global_rotation_rad() + rotation_rad_;
+			return game_object().transform().global_rotation_rad() + rotation_rad_;
 		}
 
 	}

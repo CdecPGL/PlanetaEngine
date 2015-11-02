@@ -1,6 +1,5 @@
 #include "UIManager.h"
-//#include "ISceneAccessForUI.h"
-//#include "IGameProcessManagerAccessor.h"
+#include "SceneAccessorForUI.h"
 
 namespace planeta_engine {
 	namespace game {
@@ -34,6 +33,11 @@ namespace planeta_engine {
 			if (it == layers_.end()) { return false; }
 			layers_.erase(it);
 			return true;
+		}
+
+		UIManager::UIManager(core::ScenePublicInterface& spi):scene_accessor_(std::make_shared<core::SceneAccessorForUI>(spi))
+		{
+
 		}
 
 		void UIManager::Layer_::AddUIObject(const std::shared_ptr<UIObject>& o)

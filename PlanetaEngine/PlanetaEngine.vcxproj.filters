@@ -49,9 +49,6 @@
     <Filter Include="PlanetaEngine\_UnderReview">
       <UniqueIdentifier>{1ff12165-4812-40b2-89b8-8dfea5388c06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\Scene\SceneSetupper">
-      <UniqueIdentifier>{2e605359-dc0a-4f53-8311-2ad025386c01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\KeyInput">
       <UniqueIdentifier>{f8749ef8-c30b-4b76-86a1-8ed1d7014e59}</UniqueIdentifier>
     </Filter>
@@ -85,9 +82,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\Components\GroundComponent">
       <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\Scene\Interface">
-      <UniqueIdentifier>{5b979002-69a8-4baf-bbe3-266662dca3d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\EventArgs">
       <UniqueIdentifier>{fb1b3493-a736-4e3f-8b76-dae42031af3d}</UniqueIdentifier>
     </Filter>
@@ -108,6 +102,21 @@
     </Filter>
     <Filter Include="PlanetaEngine\Core\Memory">
       <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\UI\Manager">
+      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\GameObject\Manager">
+      <UniqueIdentifier>{01ba8182-1e53-4fcf-8506-2633085a97fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\GameProcess\Manager">
+      <UniqueIdentifier>{ddb72fe9-cd49-447c-8be5-578163334b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Scene\Manager">
+      <UniqueIdentifier>{3ad2a0c2-8a6c-4d54-94dd-be6aa42d1e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Scene\SetUpper">
+      <UniqueIdentifier>{39704db5-1a23-46a0-b1f3-92d9d419dca0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -291,34 +300,7 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>PlanetaEngine\Core\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="ISceneSetup.h">
-      <Filter>PlanetaEngine\Core\Scene\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneManagerAccessor.h">
-      <Filter>PlanetaEngine\Core\Scene\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneAccessForUI.h">
-      <Filter>PlanetaEngine\Core\Scene\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneAccessForGameObject.h">
-      <Filter>PlanetaEngine\Core\Scene\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneAccessForGameProcess.h">
-      <Filter>PlanetaEngine\Core\Scene\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="ErrorSceneDefinition.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneSetupper</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetUpper.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSystemSetUpper.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
@@ -369,9 +351,6 @@
     <ClInclude Include="GameObjectSetUpper.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectSetUpProxy.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
@@ -381,40 +360,16 @@
     <ClInclude Include="IGameObjectAccessor.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="IGameObjectManagerAccessor.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameObjectManagerSetup.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="MakeSharedGameObject.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameProcess.h">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClInclude>
-    <ClInclude Include="GameProcessManager.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameProcessManagerSetup.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameProcessManagerAccessor.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
     <ClInclude Include="UIComponent.h">
       <Filter>PlanetaEngine\Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="UIObject.h">
-      <Filter>PlanetaEngine\Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>PlanetaEngine\Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="IUIManagerAccessor.h">
-      <Filter>PlanetaEngine\Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="IUIManagerSetup.h">
       <Filter>PlanetaEngine\Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="InitEnd.h">
@@ -525,6 +480,84 @@
     <ClInclude Include="EventMonitor.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManagerPublicInterface.h">
+      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManagerAccessorForGameProcess.h">
+      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManagerPublicInterface.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManagerAccessorForGameProcess.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManagerAccessorForSetUp.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManagerAccessorForGameObject.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessManager.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessManagerPublicInterface.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessManagerAccessorForSetUp.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessManagerAccessorForGameObject.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessManagerAccessorForGameProcess.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePublicInterface.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSystemSetUpper.h">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClInclude>
+    <ClInclude Include="ISceneManagerAccessor.h">
+      <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetUpper.h">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAccessorForGameObject.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAccessorForUI.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAccessorForGameProcess.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAccessorForSetUp.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManagerAccessorForUI.h">
+      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManagerAccessorForSetUp.h">
+      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorSceneDefinition.h">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectResisterConnection.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -551,9 +584,6 @@
     <ClCompile Include="PlanetComponent.cpp">
       <Filter>PlanetaEngine\BuildinElements\Components</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>PlanetaEngine\Game\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClCompile>
@@ -574,9 +604,6 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>PlanetaEngine\Core\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="SystemLog.cpp">
       <Filter>PlanetaEngine\Debug</Filter>
@@ -625,9 +652,6 @@
     </ClCompile>
     <ClCompile Include="PlanetaEngine.cpp">
       <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSystemSetUpper.cpp">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="PEDateTime.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -725,12 +749,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GameProcessManager.cpp">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClCompile>
     <ClCompile Include="GameProcess.cpp">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
@@ -764,11 +782,26 @@
     <ClCompile Include="Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="IGameProcessManagerAccessor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="GameProcessWithRefrection.cpp">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcessManager.cpp">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSystemSetUpper.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectResisterConnection.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

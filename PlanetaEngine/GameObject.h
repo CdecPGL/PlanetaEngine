@@ -1,26 +1,21 @@
-#ifndef DEF_OBJECT_H //二重include防止
-
-#define DEF_OBJECT_H
+#pragma once
 
 #include"Object.h"
-//#include "ObjectHolderTemplate_WithoutID.h"
-//#include "GameObjectAllocator.h"
 #include "MakeSharedGameObject.h"
 #include "IGameObjectAccessor.h"
+#include "GameObjectResisterConnection.h"
 #include<vector>
 #include <unordered_map>
 
 namespace planeta_engine{
 	namespace core{
-		class ISceneAccessForGameObject;
+		class SceneAccessorForGameObject;
 	}
 	namespace components {
 		class GroundComponent;
 		class TransformComponent;
 	}
 	namespace game{
-		class GameObjectManager;
-		class GameProcessManager;
 		class Component;
 		class GameObjectSetUpProxy; //初期化用関数使用仲介クラス
 		class GameObjectSetUpper; //初期化クラス
@@ -34,43 +29,34 @@ namespace planeta_engine{
 			bool InActivate()override; //無効化(ゲームシーンから登録解除する)
 			/*破棄*/
 			void Dispose()override;
+			//寂参照を取得
+			utility::WeakPointer<IGameObjectAccessor> GetWeakPointer()override { return me(); };
 			//アクセサ
-			bool is_active()const override { return _is_active; }
-			int ID()const override { return _id; }
-			//コンポーネント関連
-			//特定型のコンポーネント取得
-			/*template<class C>
-			std::shared_ptr<C> GetComponent()const override{
-				for (const auto& com : _components) {
-					auto ptr = dynamic_pointer_cast<C>(com.second);
-					if (ptr != nullptr) { return ptr; }
-				}
-				return nullptr;
-			}*/
+			bool is_active()const override { return is_active_; }
 			//指定IDのコンポーネント取得
 			utility::WeakPointer<Component> GetComponent(int id) override{
-				auto it = _component_list.find(id);
-				if (it == _component_list.end()) { return nullptr; }
+				auto it = component_list_.find(id);
+				if (it == component_list_.end()) { return nullptr; }
 				else { return it->second; }
 			}
 			/*特殊コンポーネント取得*/
 			/*所属地形取得*/
-			utility::WeakPointer<components::GroundComponent> GetBelongingGroundComponent()override { return _belonging_ground ? _belonging_ground : GetDumyGroundComponent_(); }
-			const components::GroundComponent& belonging_ground()const override{ return _belonging_ground ? *_belonging_ground : *GetDumyGroundComponent_(); }
-			components::GroundComponent& belonging_ground()override { return _belonging_ground ? *_belonging_ground : *GetDumyGroundComponent_(); }
+			utility::WeakPointer<components::GroundComponent> GetBelongingGroundComponent()override { return belonging_ground_ ? belonging_ground_ : GetDumyGroundComponent_(); }
+			const components::GroundComponent& belonging_ground()const override{ return belonging_ground_ ? *belonging_ground_ : *GetDumyGroundComponent_(); }
+			components::GroundComponent& belonging_ground()override { return belonging_ground_ ? *belonging_ground_ : *GetDumyGroundComponent_(); }
 			/*ローカルトランスフォーム取得*/
-			utility::WeakPointer<components::TransformComponent> GetTransformComponent()override { return _transform; }
-			const components::TransformComponent& transform()const override{ return *_transform; }
-			components::TransformComponent& transform()override { return *_transform; }
+			utility::WeakPointer<components::TransformComponent> GetTransformComponent()override { return transform_; }
+			const components::TransformComponent& transform()const override{ return *transform_; }
+			components::TransformComponent& transform()override { return *transform_; }
 			/*所属地形をセット*/
-			void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground)override { _belonging_ground = belonging_ground; }
+			void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground)override { belonging_ground_ = belonging_ground; }
 
 			////////////システム関数//////////
 			//作成
 			static std::shared_ptr<GameObject> Create(GameObjectSetUpper& gosu);
 
 			/*シーンのポインタをセット*/
-			void SetSceneAccessor(const utility::WeakPointer<core::ISceneAccessForGameObject>& scene) { _scene = scene; }
+			void SetSceneAccessor(const utility::WeakPointer<core::SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
 			//自身のクローン作成(親子関係はリセットされる)
 //			std::shared_ptr<GameObject> Clone()const;
 
@@ -81,7 +67,7 @@ namespace planeta_engine{
 			class GameObjectManagementProxy; //管理用関数使用仲介クラス
 			//システムに呼ばれる関数群
 			//初期化(作成時に呼ばれる)[呼び出し元:GameObjectManager::Resist]
-			bool _Initialize(int id) { _id = id; return  _initialize_component(); };
+			bool _Initialize(std::unique_ptr<GameObjectResisterConnection>&& rc) { resister_connection_ = std::move(rc); return  _initialize_component(); };
 			//シーン登録時に呼ばれる[呼び出し元:GameObjectManager::Activate]
 			bool _Activated() { return _activate_component(); }
 			//シーン登録解除時に呼ばれる[呼び出し元:GameObjectManager::InActivate]
@@ -92,7 +78,7 @@ namespace planeta_engine{
 			/*Rootとなるトランスフォームコンポーネントを取得*/
 			static std::shared_ptr<components::TransformComponent> GetRootTransformComponent(bool recreate_flag = false);
 		protected:
-			std::shared_ptr<GameObject> me(){ return _me.lock(); } //自分のスマポ取得
+			std::shared_ptr<GameObject> me(){ return me_.lock(); } //自分のスマポ取得
 		private:
 			//直接生成、コピーの禁止
 			//既定のコンストラクタ
@@ -109,19 +95,19 @@ namespace planeta_engine{
 //			static void* operator new[](size_t s){ return Object::operator new[](s); }
 //			static void operator delete[](void* p){ return Object::operator delete[](p); }
 
-			utility::WeakPointer<core::ISceneAccessForGameObject> _scene;
+			utility::WeakPointer<core::SceneAccessorForGameObject> scene_accessor_;
+			std::unique_ptr<GameObjectResisterConnection> resister_connection_;
 
-			std::weak_ptr<GameObject> _me; //自分のスマートポインタ
-			std::unordered_map<int,std::shared_ptr<Component>> _component_list; //コンポーネントリスト
-			const std::unordered_map<int, std::shared_ptr<Component>>& _GetComponentList()const override { return _component_list; }
-			std::vector<std::shared_ptr<Component>> _component_update_list; //コンポーネント更新リスト
+			std::weak_ptr<GameObject> me_; //自分のスマートポインタ
+			std::unordered_map<int,std::shared_ptr<Component>> component_list_; //コンポーネントリスト
+			const std::unordered_map<int, std::shared_ptr<Component>>& _GetComponentList()const override { return component_list_; }
+			std::vector<std::shared_ptr<Component>> component_update_list_; //コンポーネント更新リスト
 
 			//////////特殊コンポーネント//////////
-			std::shared_ptr<components::TransformComponent> _transform; //ローカル形状情報
-			utility::WeakPointer<components::GroundComponent> _belonging_ground; //所属地形(コンストラクタでダミーがセットされる)
+			std::shared_ptr<components::TransformComponent> transform_; //ローカル形状情報
+			utility::WeakPointer<components::GroundComponent> belonging_ground_; //所属地形(コンストラクタでダミーがセットされる)
 
-			bool _is_active;
-			int _id; //ゲームオブジェクトID(-1で未登録)
+			bool is_active_;
 
 			bool _initialize_component();
 			void _update_component();
@@ -132,15 +118,15 @@ namespace planeta_engine{
 			utility::WeakPointer<C> _add_component(){ 
 				static_assert(std::is_base_of<Component, C>::value == true, "C is not derived Component.");
 				auto ptr = C::MakeShared<C>();
-				ptr->SetGameObject(me(), _component_id_counter);
-				_component_list.insert(std::make_pair(_component_id_counter++, ptr));
+				ptr->SetGameObject(me(), component_id_counter_);
+				component_list_.insert(std::make_pair(component_id_counter_++, ptr));
 				//更新処理を行う場合は更新リストに登録
 				std::shared_ptr<Component> com_ptr = ptr;
-				if (!com_ptr->NoUpdate_()) { _component_update_list.push_back(ptr); }
+				if (!com_ptr->NoUpdate_()) { component_update_list_.push_back(ptr); }
 				return ptr;
 			}
-			int _component_id_counter;
-			std::unique_ptr<GameObjectSetUpProxy> _game_object_set_up_proxy;
+			int component_id_counter_;
+			std::unique_ptr<GameObjectSetUpProxy> game_object_set_up_proxy_;
 			struct create_helper;
 			//セットアップ(Initializeまえによばれる)[呼び出し元:GameObject::Create]
 			bool _SetUp(GameObjectSetUpper& gosu);
@@ -159,5 +145,3 @@ namespace planeta_engine{
 		};
 	}
 }
-
-#endif

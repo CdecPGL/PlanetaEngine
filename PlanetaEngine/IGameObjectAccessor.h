@@ -24,8 +24,6 @@ namespace planeta_engine {
 			virtual bool is_active()const = 0;
 			/*ゲームオブジェクトを破棄*/
 			virtual void Dispose() = 0;
-			/*IDを取得*/
-			virtual int ID()const = 0;
 			/*型でコンポーネントを取得(仮想テンプレート関数は定義できないためここで実装する)*/
 			template<class C>
 			utility::WeakPointer<C> GetComponent()const {
@@ -51,6 +49,8 @@ namespace planeta_engine {
 			virtual components::TransformComponent& transform() = 0;
 			/*所属地形をセット*/
 			virtual void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground) = 0;
+			/*寂参照を取得*/
+			virtual utility::WeakPointer<IGameObjectAccessor> GetWeakPointer() = 0;
 		private:
 			virtual const std::unordered_map<int, std::shared_ptr<Component>>& _GetComponentList()const = 0;
 		};

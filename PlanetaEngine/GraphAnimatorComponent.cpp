@@ -8,7 +8,7 @@ namespace planeta_engine {
 	namespace components {
 		bool planeta_engine::components::GraphAnimatorComponent::Initialize_()
 		{
-			draw_graph_component_ = game_object()->GetComponent<DrawGraphComponent>();
+			draw_graph_component_ = game_object().GetComponent<DrawGraphComponent>();
 			if (draw_graph_component_) {
 				return true;
 			}

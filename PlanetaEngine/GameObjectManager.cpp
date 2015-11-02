@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "GameProcessManager.h"
 #include "GameObjectUpdateProcess.h"
-#include "ISceneAccessForGameObject.h"
+#include "SceneAccessorForGameObject.h"
 #include "SystemLog.h"
 
 namespace planeta_engine{
@@ -14,13 +14,13 @@ namespace planeta_engine{
 
 		int GameObjectManager::Resist(const std::shared_ptr<GameObject>& go)
 		{
-			go->SetSceneAccessor(_scene);
+			go->SetSceneAccessor(scene_accessor_);
 			int id = _id_counter++;
-			if (go->_Initialize(id) == false) {
+			if (go->_Initialize(std::make_unique<GameObjectResisterConnection>(*this, id)) == false) {
 				debug::SystemLog::instance().LogError("GameObjectの初期化に失敗しました。", "GameObjectManager::Resist");
 				return -1;
 			}
-			_inactive_game_objects.insert(std::make_pair(id, go));
+			inactive_game_objects_.insert(std::make_pair(id, go));
 			return id;
 		}
 
@@ -28,14 +28,14 @@ namespace planeta_engine{
 		{
 			int id = Resist(go);
 			if (id < -1) { return -1; }
-			_name_id_map.emplace(name, id);
+			name_id_map_.emplace(name, id);
 			return id;
 		}
 
 		void GameObjectManager::TakeOver(const GameObjectManager& gom)
 		{
-			for (auto& go : gom._active_game_objects){
-				_active_game_objects.insert(std::move(go));
+			for (auto& go : gom.active_game_objects_){
+				active_game_objects_.insert(std::move(go));
 			}
 		}
 
@@ -84,39 +84,39 @@ namespace planeta_engine{
 
 		bool GameObjectManager::Activate(int id)
 		{
-			if (!_game_object_update_process) { //ゲームオブジェクト更新プロセスが取得できてなかったらする。それでもできなかったら失敗
-				_game_object_update_process = _scene->game_process_manager().GetSystemProcess<system_processes::GameObjectUpdateProcess>();
-				if (!_game_object_update_process) { return false; }
+			if (!game_object_update_process_) { //ゲームオブジェクト更新プロセスが取得できてなかったらする。それでもできなかったら失敗
+				game_object_update_process_ = scene_accessor_->game_process_manager().GetSystemProcess<system_processes::GameObjectUpdateProcess>();
+				if (!game_object_update_process_) { return false; }
 			}
-			auto it = _inactive_game_objects.find(id);
-			if (it == _inactive_game_objects.end()) { return false; }
+			auto it = inactive_game_objects_.find(id);
+			if (it == inactive_game_objects_.end()) { return false; }
 			it->second->_Activated();
-			_active_game_objects.insert(*it);
-			_game_object_update_process->Resist(id, it->second); //ゲームオブジェクト更新プロセスに登録
-			_inactive_game_objects.erase(it);
+			active_game_objects_.insert(*it);
+			game_object_update_process_->Resist(id, it->second); //ゲームオブジェクト更新プロセスに登録
+			inactive_game_objects_.erase(it);
 			return true;
 		}
 
 		bool GameObjectManager::InActivate(int id)
 		{			
-			auto it = _active_game_objects.find(id);
-			if (it == _active_game_objects.end()) { return false; }
+			auto it = active_game_objects_.find(id);
+			if (it == active_game_objects_.end()) { return false; }
 			RemoveFromUpdateProcess_(id); //アップデートプロセスから削除
 			it->second->_InActivated();
-			_inactive_game_objects.insert(*it);
-			_active_game_objects.erase(it);
+			inactive_game_objects_.insert(*it);
+			active_game_objects_.erase(it);
 			return true;
 		}
 
 		bool GameObjectManager::Remove(int id)
 		{
-			auto it = _active_game_objects.find(id);
-			if (it == _active_game_objects.end()) {
-				it = _inactive_game_objects.find(id);
-				if (it==_inactive_game_objects.end()) { return false; }
+			auto it = active_game_objects_.find(id);
+			if (it == active_game_objects_.end()) {
+				it = inactive_game_objects_.find(id);
+				if (it==inactive_game_objects_.end()) { return false; }
 				else {
 					it->second->_Finalize();
-					_inactive_game_objects.erase(it);
+					inactive_game_objects_.erase(it);
 					return true;
 				}
 			}
@@ -124,22 +124,22 @@ namespace planeta_engine{
 				RemoveFromUpdateProcess_(id); //アップデートプロセスから削除
 				it->second->_InActivated(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
 				it->second->_Finalize();
-				_active_game_objects.erase(it);
+				active_game_objects_.erase(it);
 				return true;
 			}
 		}
 
 		void GameObjectManager::RemoveAllGameObjects()
 		{
-			for (auto& go : _active_game_objects) {
+			for (auto& go : active_game_objects_) {
 				go.second->_InActivated();
 				go.second->_Finalize();
 			}
-			_active_game_objects.clear();
-			for (auto& go : _inactive_game_objects) {
+			active_game_objects_.clear();
+			for (auto& go : inactive_game_objects_) {
 				go.second->_Finalize();
 			}
-			_inactive_game_objects.clear();
+			inactive_game_objects_.clear();
 		}
 
 		bool GameObjectManager::Initialize()
@@ -155,12 +155,13 @@ namespace planeta_engine{
 
 		bool GameObjectManager::RemoveFromUpdateProcess_(int id)
 		{
-			if (!_game_object_update_process) { //ゲームオブジェクト更新プロセスが取得できてなかったらする。それでもできなかったら失敗
-				_game_object_update_process = _scene->game_process_manager().GetSystemProcess<system_processes::GameObjectUpdateProcess>();
-				if (!_game_object_update_process) { return false; }
+			if (!game_object_update_process_) { //ゲームオブジェクト更新プロセスが取得できてなかったらする。それでもできなかったら失敗
+				game_object_update_process_ = scene_accessor_->game_process_manager().GetSystemProcess<system_processes::GameObjectUpdateProcess>();
+				if (!game_object_update_process_) { return false; }
 			}
-			return _game_object_update_process->Remove(id); //ゲームオブジェクト更新プロセスから登録解除
+			return game_object_update_process_->Remove(id); //ゲームオブジェクト更新プロセスから登録解除
 		}
 
+		GameObjectManager::GameObjectManager(core::ScenePublicInterface& spi) :_id_counter(0) ,scene_accessor_(std::make_shared<core::SceneAccessorForGameObject>(spi)){};
 	}
 }

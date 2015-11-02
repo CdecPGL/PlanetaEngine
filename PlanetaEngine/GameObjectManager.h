@@ -3,8 +3,7 @@
 #include <unordered_map>
 #include <memory>
 #include "Object.h"
-#include "IGameObjectManagerAccessor.h"
-#include "IGameObjectManagerSetup.h"
+#include "GameObjectManagerPublicInterface.h"
 #include "WeakPointer.h"
 
 namespace planeta_engine{
@@ -12,14 +11,15 @@ namespace planeta_engine{
 		class GameObjectUpdateProcess;
 	}
 	namespace core {
-		class ISceneAccessForGameObject;
+		class ScenePublicInterface;
+		class SceneAccessorForGameObject;
 	}
 	namespace game{
 		class GameObject;
 		class GameObjectSetUpper;
-		class GameObjectManager final: public core::Object,public IGameObjectManagerAccessor,public IGameObjectManagerSetup{
+		class GameObjectManager final: public core::Object,public GameObjectManagerPublicInterface{
 		public:
-			GameObjectManager() :_id_counter(0){};
+			GameObjectManager(core::ScenePublicInterface& spi);
 			~GameObjectManager()=default;
 			//ユーザアクセス可能関数
 			utility::WeakPointer<IGameObjectAccessor> CreateGameObject(GameObjectSetUpper& game_object_setupper)override;
@@ -28,8 +28,6 @@ namespace planeta_engine{
 			utility::WeakPointer<IGameObjectAccessor> CreateAndActivateGameObject(GameObjectSetUpper& game_object_setupper, const std::string& name)override;
 
 			//システム関数
-			/*各種マネージャポインターをセット*/
-			void SetManagerPointer(const utility::WeakPointer<core::ISceneAccessForGameObject>& scene) { _scene = scene; }
 			/*初期化*/
 			bool Initialize();
 			/*終了処理*/
@@ -50,12 +48,12 @@ namespace planeta_engine{
 			void RemoveAllGameObjects();
 
 		private:
-			std::unordered_map<int, std::shared_ptr<GameObject>> _active_game_objects;
-			std::unordered_map<int, std::shared_ptr<GameObject>> _inactive_game_objects;
-			std::unordered_map<std::string, int> _name_id_map;
+			std::unordered_map<int, std::shared_ptr<GameObject>> active_game_objects_;
+			std::unordered_map<int, std::shared_ptr<GameObject>> inactive_game_objects_;
+			std::unordered_map<std::string, int> name_id_map_;
 			int _id_counter;
-			utility::WeakPointer<core::ISceneAccessForGameObject> _scene;
-			utility::WeakPointer<system_processes::GameObjectUpdateProcess> _game_object_update_process;
+			std::shared_ptr<core::SceneAccessorForGameObject> scene_accessor_;
+			utility::WeakPointer<system_processes::GameObjectUpdateProcess> game_object_update_process_;
 			bool RemoveFromUpdateProcess_(int id);
 		};
 	}
