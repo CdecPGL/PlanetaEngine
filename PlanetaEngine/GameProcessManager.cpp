@@ -5,7 +5,7 @@
 namespace planeta_engine {
 	namespace game {
 		
-		GameProcessManager::GameProcessManager(core::IGameAccessor& engine, core::ScenePublicInterface& spi):game_(engine),scene_accessor_(std::make_shared<core::SceneAccessorForGameProcess>(spi))
+		GameProcessManager::GameProcessManager(core::IGameAccessor& engine):game_(engine)
 		{
 
 		}
@@ -74,6 +74,11 @@ namespace planeta_engine {
 		void GameProcessManager::SetupProcess(const std::shared_ptr<GameProcess>& game_process)
 		{
 			game_process->SetScene(scene_accessor_);
+		}
+
+		void GameProcessManager::SetScene(core::ScenePublicInterface& spi)
+		{
+			scene_accessor_ = std::make_shared<core::SceneAccessorForGameProcess>(spi);
 		}
 
 	}

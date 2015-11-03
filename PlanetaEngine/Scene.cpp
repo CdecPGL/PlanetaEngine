@@ -9,8 +9,11 @@
 namespace planeta_engine{
 	namespace core{
 
-		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>(*this)), game_process_manager_(std::make_unique<game::GameProcessManager>(game_,*this)), ui_manager_(std::make_unique<game::UIManager>(*this))
+		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::UIManager>())
 		{
+			game_object_manager_->SetScene(*this);
+			game_process_manager_->SetScene(*this);
+			ui_manager_->SetScene(*this);
 		}
 
 		Scene::~Scene()

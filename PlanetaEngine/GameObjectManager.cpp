@@ -162,6 +162,10 @@ namespace planeta_engine{
 			return game_object_update_process_->Remove(id); //ゲームオブジェクト更新プロセスから登録解除
 		}
 
-		GameObjectManager::GameObjectManager(core::ScenePublicInterface& spi) :_id_counter(0) ,scene_accessor_(std::make_shared<core::SceneAccessorForGameObject>(spi)){};
+		GameObjectManager::GameObjectManager() :_id_counter(0){};
+
+		void GameObjectManager::SetScene(core::ScenePublicInterface& spi) {
+			scene_accessor_ = std::make_shared<core::SceneAccessorForGameObject>(spi);
+		}
 	}
 }

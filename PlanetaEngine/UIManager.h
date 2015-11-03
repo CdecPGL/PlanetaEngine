@@ -16,7 +16,9 @@ namespace planeta_engine{
 		class IGameProcessManagerAccessor;
 		class UIManager final: public core::Object,public UIManagerPublicInterface {
 		public:
-			UIManager(core::ScenePublicInterface& spi);
+			UIManager();
+			/*シーンをセット*/
+			void SetScene(core::ScenePublicInterface& spi);
 			/*初期化処理*/
 			bool Initialize();
 			/*終了処理*/

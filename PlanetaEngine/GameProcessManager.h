@@ -18,8 +18,11 @@ namespace planeta_engine{
 		class GameProcessManager final: public core::Object
 			,public GameProcessManagerPublicInterface{
 		public:
-			GameProcessManager(core::IGameAccessor& game,core::ScenePublicInterface&);
+			GameProcessManager(core::IGameAccessor& game);
 			~GameProcessManager() = default;
+			/*シーンをセット*/
+
+			void SetScene(core::ScenePublicInterface& spi);
 			/*終了処理*/
 			bool Finalize();
 			/*プロセスのアップデート*/

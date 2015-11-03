@@ -19,7 +19,7 @@ namespace planeta_engine{
 		class GameObjectSetUpper;
 		class GameObjectManager final: public core::Object,public GameObjectManagerPublicInterface{
 		public:
-			GameObjectManager(core::ScenePublicInterface& spi);
+			GameObjectManager();
 			~GameObjectManager()=default;
 			//ユーザアクセス可能関数
 			utility::WeakPointer<IGameObjectAccessor> CreateGameObject(GameObjectSetUpper& game_object_setupper)override;
@@ -28,6 +28,8 @@ namespace planeta_engine{
 			utility::WeakPointer<IGameObjectAccessor> CreateAndActivateGameObject(GameObjectSetUpper& game_object_setupper, const std::string& name)override;
 
 			//システム関数
+			/*シーンセット*/
+			void SetScene(core::ScenePublicInterface& spi);
 			/*初期化*/
 			bool Initialize();
 			/*終了処理*/
