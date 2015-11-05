@@ -28,8 +28,8 @@ namespace planeta_engine {
 			std::shared_ptr<resources::GraphResource> gr = std::dynamic_pointer_cast<resources::GraphResource>(res);
 			if (gr) {
 				graph_resource_ = gr;
-				draw_area_.Set(Vector2D<int>(0, 0), Vector2D<int>(gr->size().x, gr->size().y));
-				size(draw_area_.size);
+				relative_draw_area_buffer_.Set(Vector2D<int>(0, 0), Vector2D<int>(gr->size().x, gr->size().y));
+				size(relative_draw_area_buffer_.size);
 				return true;
 			}
 			else {

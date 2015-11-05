@@ -11,7 +11,7 @@ namespace planeta_engine {
 			virtual ~UIManagerPublicInterface() = default;
 			template<class UIObjectType>
 			std::shared_ptr<UIObjectType> CreateUIObject(int layer) {
-				return CreateUIObject([] {return std::make_shared<UIObjectType>(); }, layer);
+				return std::static_pointer_cast<UIObjectType> (CreateUIObject([] {return std::make_shared<UIObjectType>(); }, layer));
 			}
 			virtual bool RemoveLayer(int layer) = 0;
 		private:

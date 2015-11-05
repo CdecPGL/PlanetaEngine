@@ -29,8 +29,6 @@ namespace planeta_engine{
 			bool InActivate()override; //無効化(ゲームシーンから登録解除する)
 			/*破棄*/
 			void Dispose()override;
-			//寂参照を取得
-			utility::WeakPointer<IGameObjectAccessor> GetWeakPointer()override { return me(); };
 			//アクセサ
 			bool is_active()const override { return is_active_; }
 			//指定IDのコンポーネント取得
@@ -77,6 +75,8 @@ namespace planeta_engine{
 
 			/*Rootとなるトランスフォームコンポーネントを取得*/
 			static std::shared_ptr<components::TransformComponent> GetRootTransformComponent(bool recreate_flag = false);
+			/*弱参照を取得*/
+			utility::WeakPointer<IGameObjectAccessor> GetWeakPointer()override { return me(); };
 		protected:
 			std::shared_ptr<GameObject> me(){ return me_.lock(); } //自分のスマポ取得
 		private:

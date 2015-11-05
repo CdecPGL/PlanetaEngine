@@ -49,7 +49,7 @@ namespace planeta_engine {
 			virtual components::TransformComponent& transform() = 0;
 			/*所属地形をセット*/
 			virtual void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground) = 0;
-			/*寂参照を取得*/
+			/*弱参照を取得*/
 			virtual utility::WeakPointer<IGameObjectAccessor> GetWeakPointer() = 0;
 		private:
 			virtual const std::unordered_map<int, std::shared_ptr<Component>>& _GetComponentList()const = 0;

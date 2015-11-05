@@ -24,8 +24,8 @@ namespace planeta_engine{
 			
 
 			bool is_valied()const{ return is_valied_; }
-			IGameObjectAccessor& game_object() { return *game_object_; }
-			const IGameObjectAccessor& game_object()const { return *game_object_; }
+			IGameObjectAccessor& game_object() { assert(game_object_ != nullptr); return *game_object_; }
+			const IGameObjectAccessor& game_object()const { assert(game_object_ != nullptr); return *game_object_; }
 		protected:
 			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
 			core::SceneAccessorForGameObject& scene() { return *scene_accessor_; }

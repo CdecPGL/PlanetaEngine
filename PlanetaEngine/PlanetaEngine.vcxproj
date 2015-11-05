@@ -234,6 +234,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneTransitionEffect.h" />
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundResource.h" />
     <ClInclude Include="StaticSingletonTemplate.h" />
     <ClInclude Include="StraightLineColliderComponent.h" />
@@ -258,6 +259,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="UIManagerAccessorForUI.h" />
     <ClInclude Include="UIManagerPublicInterface.h" />
     <ClInclude Include="UIObject.h" />
+    <ClInclude Include="UIObjectResisterConnection.h" />
     <ClInclude Include="UIUpdateProcess.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="Vector.h" />
@@ -286,6 +288,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StringPanel.cpp" />
     <ClCompile Include="TalkWindows.cpp" />
     <ClCompile Include="TextPanel.cpp" />
@@ -346,6 +349,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="UIDrawProcess.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIObjectResisterConnection.cpp" />
     <ClCompile Include="UIUpdateProcess.cpp" />
     <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>

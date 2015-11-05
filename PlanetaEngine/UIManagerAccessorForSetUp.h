@@ -7,7 +7,7 @@ namespace planeta_engine {
 		public:
 			explicit UIManagerAccessorForSetUp(UIManagerPublicInterface& umpi) :ui_managar_public_interface_(umpi) {}
 			template<typename UIObjectType>
-			std::shared_ptr<UIObjectType> CreateUIObject(int layer) { return ui_managar_public_interface_.CreateUIObject(layer); }
+			std::shared_ptr<UIObjectType> CreateUIObject(int layer) { return ui_managar_public_interface_.CreateUIObject<UIObjectType>(layer); }
 		private:
 			UIManagerPublicInterface& ui_managar_public_interface_;
 		};

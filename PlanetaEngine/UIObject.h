@@ -6,6 +6,7 @@
 #include "Object.h"
 #include "RectAngle.h"
 #include "ObjectHolderTemplate_WithoutID.h"
+#include "UIObjectResisterConnection.h"
 
 namespace planeta_engine {
 	namespace game {
@@ -24,16 +25,18 @@ namespace planeta_engine {
 		public:
 			UIObject();
 			virtual ~UIObject() = default;
-			bool Initialize() { return InitializeProc(); }
-			void Finalize() { return FInalizeProc(); }
+			/*システム関数*/
+			bool Initialize(std::unique_ptr<UIObjectResisterConnection>&& rc);
 			void Update();
 			void Draw();
+			void DebugDraw();
 			bool KeyInput(ui_object_input_code::type input_code);
 			bool PointingCursorPosition(const Vector2D<int>& parent_relative_cursor_position);
-
-			void Show();
-			void Close();
-			
+			/*ユーザー利用関数*/
+			bool Show();
+			bool Close();
+			void Dispose();
+			/*アクセサ*/
 			const Vector2D<int> position()const { return rect_angle_.position; }
 			void position(const Vector2D<int>& p) { rect_angle_.position = p; PositionChangedProc(); }
 			const Vector2D<int> size()const { return rect_angle_.size; }
@@ -60,8 +63,12 @@ namespace planeta_engine {
 			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> component_holder_;
+			std::unique_ptr<UIObjectResisterConnection> resister_connection_;
+			/*ユーザー定義関数*/
 			virtual bool InitializeProc() { return true; }
-			virtual void FInalizeProc() {};
+			virtual void FinalizeProc() {};
+			virtual void ShowProc() {};
+			virtual void CloseProc() {};
 			/**キーの入力処理
 			@param 入力コード
 			@return 子に伝える入力コード

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <unordered_map>
 #include <memory>
 #include "Object.h"
 #include "WeakPointer.h"
@@ -27,35 +28,40 @@ namespace planeta_engine{
 			void Update();
 			/*描画*/
 			void Draw();
+			/*デバッグ情報描画*/
+			void DebugDraw();
 			/*管理処理*/
 			bool Process();
 			/*レイヤーを削除*/
 			bool RemoveLayer(int layer)override;
-			/*UIオブジェクトを作成*/
-			template<class C>
-			std::shared_ptr<C> CreateUIObject(int layer) {
-				auto uo = std::make_shared<C>();
-				layers_[layer]->AddUIObject(uo);
-				return uo;
-			}
-			
+			/*UIObjectを削除*/
+			bool RemoveUIObject(int layer,UIObject* uo);
+			/*UIObjectを表示*/
+			bool ShowUIObject(int layer, UIObject* uo);
+			/*UIオブジェクトを閉じる*/
+			bool CloseUIObject(int layer, UIObject* uo);
 		private:
+			UIManager(const UIManager&) = delete;
+			UIManager(UIManager&&) = delete;
+			UIManager& operator=(const UIManager&) = delete;
+			UIManager& operator=(UIManager&&) = delete;
 			std::shared_ptr<core::SceneAccessorForUI> scene_accessor_;
 			class Layer_ {
 			public:
 				void AddUIObject(const std::shared_ptr<UIObject>& o);
 				void Update();
 				void Draw();
+				void DebugDraw();
+				bool RemoveUIObject(UIObject* uo);
+				bool ShowUIObject(UIObject* uo);
+				bool CloseUIObject(UIObject* uo);
 			private:
-
+				std::unordered_map<UIObject*, std::shared_ptr<UIObject>> active_ui_objects_;
+				std::unordered_map<UIObject*, std::shared_ptr<UIObject>> inactive_ui_objects_;
 			};
-			std::map<int, std::unique_ptr<Layer_>> layers_;
+			std::map<int, Layer_> layers_;
 
-			std::shared_ptr<UIObject> CreateUIObject(const std::function<std::shared_ptr<UIObject>()>& creator, int layer)override {
-				auto nuo = creator();
-				layers_[layer]->AddUIObject(nuo);
-				return nuo;
-			}
+			std::shared_ptr<UIObject> CreateUIObject(const std::function<std::shared_ptr<UIObject>()>& creator, int layer)override;
 		};
 	}
 }
