@@ -10,6 +10,8 @@ namespace planeta_engine{
 				const int SubVesionNumber(0);
 			}
 			const bool DevelopmentMode(true);
+			const std::string SystemDataDirectory("system");
+			const std::string LogDirectory("log");
 			const std::string LogOutPutFileName("pe_log.txt");
 			const std::string ResourceDataArchiveFilePath("resources\\data.arc");
 			const unsigned int ResourceDataArchiveDecryptionKey(0);
@@ -40,6 +42,9 @@ namespace planeta_engine{
 				const std::string TransformApplyVelocityProcessName("TransformApllyVelocityProcess"); //トランスフォーム速度適用プロセス名
 				//const std::string TransformConvertLocalToGlobalProcessName("TransformConvertLocalToGlobalProcess"); //トランスフォームローカルグローバル変換プロセス名
 				//const std::string TransformConvertGlobalToLocalProcessName("TransformConvertGlobalToLocalProcess"); //トランスフォームグローバルローカル変換プロセス名
+			}
+			namespace dx_library {
+				const std::string DXLogOutPutDirectory("log"); //DXライブラリログ出力先
 			}
 		}
 	}

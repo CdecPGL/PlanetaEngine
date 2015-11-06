@@ -13,8 +13,11 @@ namespace planeta_engine{
 			}
 			/*デバッグ*/
 			extern const bool DevelopmentMode; //開発モードフラグ
+			/*ディレクトリ*/
+			extern const std::string SystemDataDirectory; //システムデータのディレクトリ
+			extern const std::string LogDirectory; //ログのディレクトリ
 			/*システムログ*/
-			extern const std::string LogOutPutFileName; //ログ出力ファイル名
+			extern const std::string LogOutPutFileName; //ログ出力サキファイル名
 			/*ファイルシステム*/
 			extern const std::string ResourceDataArchiveFilePath; //リソースデータアーカイブファイルのパス
 			extern const unsigned int ResourceDataArchiveDecryptionKey; //リソースデータアーカイブの復号化キー

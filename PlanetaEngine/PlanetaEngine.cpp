@@ -30,6 +30,7 @@ namespace planeta_engine {
 
 //			memory_allocator.ReserveMemory(1024 * 1024 * 10);
 
+			CreateSystemDirectory();
 			if (!InitializeDebugSystem()) { //デバッグシステムの初期化
 				return false;
 			}

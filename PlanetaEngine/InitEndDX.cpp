@@ -1,11 +1,14 @@
 #include "InitEnd.h"
 #include "DxLib.h"
 #include "SystemLog.h"
+#include "SystemVariables.h"
 
 namespace planeta_engine {
 	namespace core {
 		namespace init_end {
 			bool InitDxLibrary() {
+				//ƒƒOo—Íæ‚ğ•ÏX
+				SetApplicationLogSaveDirectory(system_variables::LogDirectory.c_str());
 				ChangeWindowMode(true);
 				SetMainWindowText("PlanetaEngine_V0.0.0");
 				if (DxLib_Init() < 0) {

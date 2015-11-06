@@ -25,6 +25,8 @@ namespace planeta_engine{
 
 			bool InitializeDebugSystem(); //デバッグシステムの初期化
 			bool FinalizeDebugStstem(); //デバッグシステムの終了処理
+
+			void CreateSystemDirectory(); //必要ならシステム用のディレクトリを作成する
 		}
 	}
 }

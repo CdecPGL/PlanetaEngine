@@ -2,6 +2,9 @@
 #include <windows.h>
 #include <fstream>
 #include <iostream>
+
+#include "boost/filesystem.hpp"
+
 #include "SystemVariables.h"
 #include "SystemLog.h"
 #include "SystemCounter.h"
@@ -102,7 +105,7 @@ namespace planeta_engine{
 					debug::SystemLog::instance().AddLogOutStream(std::cout);
 				}
 				//ログ出力ファイルを開く
-				LogFileOutPutStream.open(system_variables::LogOutPutFileName);
+				LogFileOutPutStream.open(system_variables::LogDirectory + "\\" + system_variables::LogOutPutFileName, std::ios::out | std::ios::trunc);
 				//システムログ出力先にファイル出力を追加
 				debug::SystemLog::instance().AddLogOutStream(LogFileOutPutStream);
 				return true;
@@ -168,6 +171,14 @@ namespace planeta_engine{
 				//リソースマネージャの設定も行う
 				core::ResourceManager::instance().SetResourceListFileName(core::system_variables::ResourceListFileName);
 				return true;
+			}
+
+			void CreateSystemDirectory()
+			{
+				//ログ用フォルダ作成
+				boost::filesystem::create_directory(boost::filesystem::path(system_variables::LogDirectory));
+				//システムデータ用フォルダ作成
+				boost::filesystem::create_directory(boost::filesystem::path(system_variables::SystemDataDirectory));
 			}
 		}
 	}
