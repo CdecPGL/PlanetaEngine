@@ -12,7 +12,7 @@ namespace planeta_engine {
 			DateTime():DateTime(0, 0, 0, 0, 0, 0) {}
 			/*コンストラクタ(年、月、日、時間、分、秒)*/
 			DateTime(size_t y,size_t mon,size_t d,size_t h, size_t m, size_t s) :_second((signed)s), _minute((signed)m), _hour((signed)h),_day((signed)d),_month((signed)mon),_year((signed)y) {}
-			DateTime(const std::tm& ctime) :_second(ctime.tm_sec), _minute(ctime.tm_min), _hour(ctime.tm_hour),_day(ctime.tm_mday),_month(ctime.tm_mon),_year(ctime.tm_year+1900) {}
+			DateTime(const std::tm& ctime) :_second(ctime.tm_sec), _minute(ctime.tm_min), _hour(ctime.tm_hour),_day(ctime.tm_mday),_month(ctime.tm_mon + 1),_year(ctime.tm_year+1900) {}
 			~DateTime() {};
 			/*時間のセット(時間、分、秒)*/
 			void SetTime(size_t h, size_t m, size_t s) { _second = (signed)s; _minute = (signed)m; _hour = (signed)h; }

@@ -567,6 +567,18 @@
     <ClInclude Include="SoundManager.h">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
     </ClInclude>
+    <ClInclude Include="BGMController.h">
+      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffectController.h">
+      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IBGMController.h">
+      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoundEffectController.h">
+      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -816,6 +828,12 @@
       <Filter>PlanetaEngine\Game\UI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
+      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEffectController.cpp">
+      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="BGMController.cpp">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
     </ClCompile>
   </ItemGroup>

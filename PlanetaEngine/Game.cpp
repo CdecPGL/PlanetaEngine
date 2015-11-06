@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "SoundManager.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -20,6 +21,7 @@ namespace planeta_engine {
 
 		Game::Status Game::Update()
 		{
+			core::SoundManager::instance().Update();
 			_key_input_manager->Update();
 			Status status;
 			switch (_scene_manager->Process())

@@ -24,5 +24,10 @@ namespace planeta_engine {
 			}
 		}
 
+		int SoundResource::GetTotalTimeByMilliSecond()
+		{
+			return GetSoundTotalTime(_handle);
+		}
+
 	}
 }

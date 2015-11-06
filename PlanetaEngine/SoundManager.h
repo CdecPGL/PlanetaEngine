@@ -1,22 +1,27 @@
 #pragma once
 
+#include <memory>
 #include "PointerSingletonTemplate.h"
+#include "IBGMController.h"
+#include "ISoundEffectController.h"
 
 namespace planeta_engine {
-	namespace resources {
-		class MusicResource;
-		class SoundResource;
-	}
 	namespace core {
+		class ResourceBase;
 		class SoundManager final : public utility::PointerSingletonTemplate<SoundManager>{
 		public:
-			bool PlayBGM(const std::shared_ptr<resources::MusicResource>& music_resource);
-			bool PlaySound(const std::shared_ptr<resources::SoundResource>& sound_resource);
-			void StopAllBGM();
-			void StopAllSound();
-			void StopAllBGMAndSound();
-		private:
+			SoundManager();
+			~SoundManager();
+			bool Initialize() override;
+			bool Finalize() override;
+			void Update();
 
+			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<core::ResourceBase>& music_resource);
+			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<core::ResourceBase>& sound_resource);
+			void Reset();
+		private:
+			class Impl_;
+			std::unique_ptr<Impl_> impl_;
 		};
 	}
 }

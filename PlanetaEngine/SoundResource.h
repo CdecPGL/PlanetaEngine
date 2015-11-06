@@ -9,6 +9,7 @@ namespace planeta_engine {
 			SoundResource() :_handle(-1) {};
 			~SoundResource() {};
 			int GetHandle()const { return _handle; }
+			int GetTotalTimeByMilliSecond();
 		private:
 			int _handle;
 			virtual bool _Create(const std::shared_ptr<file_system::File>& file) override;

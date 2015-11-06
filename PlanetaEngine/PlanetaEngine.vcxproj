@@ -124,6 +124,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
+    <ClInclude Include="BGMController.h" />
     <ClInclude Include="CameraUtility.h" />
     <ClInclude Include="CircleColliderComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
@@ -180,6 +181,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GraphPanel.h" />
     <ClInclude Include="GraphResource.h" />
     <ClInclude Include="GroundComponent.h" />
+    <ClInclude Include="IBGMController.h" />
     <ClInclude Include="IGameAccessor.h" />
     <ClInclude Include="IGameObjectAccessor.h" />
     <ClInclude Include="IGameSetUp.h" />
@@ -190,6 +192,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="InstantCoroutineProcess.h" />
     <ClInclude Include="IOKeyConfig.h" />
     <ClInclude Include="ISceneManagerAccessor.h" />
+    <ClInclude Include="ISoundEffectController.h" />
     <ClInclude Include="KeyInputDefines.h" />
     <ClInclude Include="KeyInputManager.h" />
     <ClInclude Include="KeyInputUtils.h" />
@@ -234,6 +237,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneTransitionEffect.h" />
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
+    <ClInclude Include="SoundEffectController.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundResource.h" />
     <ClInclude Include="StaticSingletonTemplate.h" />
@@ -271,6 +275,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   <ItemGroup>
     <ClCompile Include="ArchiveLoader.cpp" />
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
+    <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="CameraUtility.cpp" />
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
@@ -288,6 +293,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
+    <ClCompile Include="SoundEffectController.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StringPanel.cpp" />
     <ClCompile Include="TalkWindows.cpp" />

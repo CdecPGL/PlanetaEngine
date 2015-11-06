@@ -10,6 +10,7 @@
 #include "NormalFolderLoader.h"
 #include "ResourceManager.h"
 #include "DrawManager.h"
+#include "SoundManager.h"
 
 namespace {
 	//variables
@@ -39,6 +40,7 @@ namespace planeta_engine{
 					file_system::FileLoadManager::Instantiate()
 					&& core::ResourceManager::Instantiate()
 					&& core::DrawManager::Instantiate()
+					&& core::SoundManager::Instantiate()
 					) {
 					debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンス化に成功しました。", "InstantiateSingletonManagers");
 					return true;
@@ -50,6 +52,7 @@ namespace planeta_engine{
 			}
 
 			bool DisposeSingletonManagers() {
+				core::SoundManager::Dispose();
 				core::DrawManager::Dispose();
 				core::ResourceManager::Dispose();
 				file_system::FileLoadManager::Dispose();
@@ -62,6 +65,7 @@ namespace planeta_engine{
 					file_system::FileLoadManager::instance().Initialize()
 					&& core::ResourceManager::instance().Initialize()
 					&& core::DrawManager::instance().Initialize()
+					&& core::SoundManager::instance().Initialize()
 					) {
 					debug::SystemLog::instance().LogMessage("シングルトンマネージャの初期化に成功しました。", "InitializeSingletonManagers");
 					return true;
@@ -73,6 +77,8 @@ namespace planeta_engine{
 			}
 
 			bool FinalizeSingletonManagers() {
+				//サウンドマネージャの終了
+				core::SoundManager::instance().Finalize();
 				//描画マネージャの終了
 				core::DrawManager::instance().Finalize();
 				//リソースマネージャの終了
