@@ -12,17 +12,17 @@ namespace planeta_engine {
 				ChangeWindowMode(true);
 				SetMainWindowText("PlanetaEngine_V0.0.0");
 				if (DxLib_Init() < 0) {
-					debug::SystemLog::instance().LogError("DXライブラリの初期化に失敗しました。", "InitDxLibrary");
+					debug::SystemLog::instance().LogError("DXライブラリの初期化に失敗しました。",__FUNCTION__);
 					return false;
 				}
 				else {
-					debug::SystemLog::instance().LogMessage("DXライブラリの初期化に成功しました。", "InitDxLibrary");
+					debug::SystemLog::instance().LogMessage("DXライブラリの初期化に成功しました。", __FUNCTION__);
 					return true;
 				}
 			}
 
 			bool EndDxLibrary() {
-				debug::SystemLog::instance().LogMessage("DXライブラリの終了処理を行いました。", "EndDxLibrary");
+				debug::SystemLog::instance().LogMessage("DXライブラリの終了処理を行いました。", __FUNCTION__);
 				DxLib_End();
 				return true;
 			}

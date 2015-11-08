@@ -121,6 +121,12 @@
     <Filter Include="PlanetaEngine\Core\SoundSystem">
       <UniqueIdentifier>{b9cc7bbc-7fcb-465c-be44-159dda5896f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\GameData">
+      <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\GameData\Exceptions">
+      <UniqueIdentifier>{1caea0f8-d2bf-461d-972b-981f936cde75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -579,6 +585,24 @@
     <ClInclude Include="ISoundEffectController.h">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
     </ClInclude>
+    <ClInclude Include="GameDataManager.h">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDataElement.h">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDataComplexType.h">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDataComplexTypeInstance.h">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDataElementType.h">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDataError.h">
+      <Filter>PlanetaEngine\Core\GameData\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -835,6 +859,21 @@
     </ClCompile>
     <ClCompile Include="BGMController.cpp">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataManager.cpp">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataElement.cpp">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataElementType.cpp">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataComplexTypeInstance.cpp">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataComplexType.cpp">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

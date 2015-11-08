@@ -29,11 +29,11 @@ namespace planeta_engine{
 					//リソースマネージャの設定
 					&& SetUpResourceManager()
 					) {
-					debug::SystemLog::instance().LogMessage("シングルトンマネージャの設定に成功しました。", "SetUpSingletoneManagers");
+					debug::SystemLog::instance().LogMessage("シングルトンマネージャの設定に成功しました。", __FUNCTION__);
 					return true;
 				}
 				else { 
-					debug::SystemLog::instance().LogError("シングルトンマネージャの設定に失敗しました。", "SetUpSingletoneManagers");
+					debug::SystemLog::instance().LogError("シングルトンマネージャの設定に失敗しました。", __FUNCTION__);
 					return false;
 				}
 			}
@@ -45,11 +45,11 @@ namespace planeta_engine{
 					&& core::DrawManager::Instantiate()
 					&& core::SoundManager::Instantiate()
 					) {
-					debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンス化に成功しました。", "InstantiateSingletonManagers");
+					debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンス化に成功しました。", __FUNCTION__);
 					return true;
 				}
 				else {
-					debug::SystemLog::instance().LogError("シングルトンマネージャのインスタンス化に失敗しました。", "InstantiateSingletonManagers");
+					debug::SystemLog::instance().LogError("シングルトンマネージャのインスタンス化に失敗しました。", __FUNCTION__);
 					return false;
 				}
 			}
@@ -59,7 +59,7 @@ namespace planeta_engine{
 				core::DrawManager::Dispose();
 				core::ResourceManager::Dispose();
 				file_system::FileLoadManager::Dispose();
-				debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンスを破棄しました。", "DisposeSingletonManagers");
+				debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンスを破棄しました。", __FUNCTION__);
 				return true;
 			}
 
@@ -70,11 +70,11 @@ namespace planeta_engine{
 					&& core::DrawManager::instance().Initialize()
 					&& core::SoundManager::instance().Initialize()
 					) {
-					debug::SystemLog::instance().LogMessage("シングルトンマネージャの初期化に成功しました。", "InitializeSingletonManagers");
+					debug::SystemLog::instance().LogMessage("シングルトンマネージャの初期化に成功しました。", __FUNCTION__);
 					return true;
 				}
 				else {
-					debug::SystemLog::instance().LogError("シングルトンマネージャの初期化に失敗しました。", "InitializeSingletonManagers");
+					debug::SystemLog::instance().LogError("シングルトンマネージャの初期化に失敗しました。",__FUNCTION__);
 					return false;
 				}
 			}
@@ -88,7 +88,7 @@ namespace planeta_engine{
 				core::ResourceManager::instance().Finalize();
 				//ファイルシステムの終了
 				file_system::FileLoadManager::instance().Finalize();
-				debug::SystemLog::instance().LogMessage("シングルトンマネージャの終了処理を実行しました。", "FinalizeSingletonManagers");
+				debug::SystemLog::instance().LogMessage("シングルトンマネージャの終了処理を実行しました。", __FUNCTION__);
 				return true;
 			}
 
@@ -113,7 +113,7 @@ namespace planeta_engine{
 
 			bool FinalizeSystemLog()
 			{
-				debug::SystemLog::instance().LogMessage("システムログを終了します。", "FinalizeSystemLog");
+				debug::SystemLog::instance().LogMessage("システムログを終了します。", __FUNCTION__);
 				//終了
 				debug::SystemLog::instance().Finalize();
 				//ログファイルを閉じる
@@ -135,7 +135,7 @@ namespace planeta_engine{
 				if (SetUpSystemLog() == false) { return false; }
 				if(debug::SystemCounter::instance().Initialize()
 					&& debug::SystemLog::instance().Initialize()) {
-					debug::SystemLog::instance().LogMessage("システムログを開始しました。", "InitializeDebugSystem");
+					debug::SystemLog::instance().LogMessage("システムログを開始しました。", __FUNCTION__);
 				}
 				else { return false; }
 				return true;
@@ -167,7 +167,7 @@ namespace planeta_engine{
 				}
 				char str[256];
 				sprintf_s(str, 256, "ファイルシステムの設定を行いました。(DevelopmentMode=%s)", dev_mode ? "true" : "false");
-				debug::SystemLog::instance().LogMessage(str, "InitializeDebugSystem");
+				debug::SystemLog::instance().LogMessage(str, __FUNCTION__);
 				//リソースマネージャの設定も行う
 				core::ResourceManager::instance().SetResourceListFileName(core::system_variables::ResourceListFileName);
 				return true;
