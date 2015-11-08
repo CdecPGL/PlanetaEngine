@@ -16,8 +16,13 @@ namespace planeta_engine {
 		GameDataElementType::Type GameDataElementType::ConvertTypeIDToType(const std::string type_id)noexcept
 		{
 			auto it = type_tid_map_.right.find(type_id);
-			if (it != type_tid_map_.right.end()) {
-				return Type::complex_type;
+			if (it != type_tid_map_.right.end()) { //Šî–{Œ^‚Å‚È‚©‚Á‚½‚ç
+				if (IsTypeExist(type_id)) { //Œ^‚Æ‚µ‚Ä‘¶Ý‚µ‚Ä‚¢‚½‚ç•¡‡Œ^
+					return Type::complex_type;
+				}
+				else { //–³‚©‚Á‚½‚çƒGƒ‰[
+					return Type::nil;
+				}
 			}
 			else {
 				return it->second;
@@ -79,6 +84,7 @@ namespace planeta_engine {
 			(GameDataElementType::Type::bool_type, "bool")
 			(GameDataElementType::Type::double_type, "double")
 			(GameDataElementType::Type::string_type, "string")
+			(GameDataElementType::Type::array_type, "array")
 			(GameDataElementType::Type::complex_type, "complex")
 			(GameDataElementType::Type::nil, "nil");
 	}

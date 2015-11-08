@@ -11,7 +11,7 @@ namespace planeta_engine {
 	namespace core {
 		class GameDataElementType {
 		public:
-			enum class Type { int32_type, int64_type, bool_type, double_type, string_type, complex_type,nil };
+			enum class Type { int32_type, int64_type, bool_type, double_type, string_type, array_type, complex_type, nil };
 			static std::string ConvertTypeToTypeID(Type type)noexcept;
 			static Type ConvertTypeIDToType(const std::string type_id)noexcept;
 			static void ResistComplexType(const std::string& type_id,GameDataComplexType&& complex_type)noexcept;

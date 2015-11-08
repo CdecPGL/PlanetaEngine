@@ -162,6 +162,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDataElementType.h" />
     <ClInclude Include="GameDataManager.h" />
+    <ClInclude Include="GameDataSerialize.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectResisterConnection.h" />
     <ClInclude Include="GameProcessManagerAccessorForGameProcess.h" />

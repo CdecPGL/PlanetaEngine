@@ -603,6 +603,9 @@
     <ClInclude Include="GameDataError.h">
       <Filter>PlanetaEngine\Core\GameData\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="GameDataSerialize.h">
+      <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
