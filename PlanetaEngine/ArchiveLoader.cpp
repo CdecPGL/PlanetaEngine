@@ -109,7 +109,7 @@ namespace planeta_engine{
 			if (data.first == nullptr){
 				return -1;
 			}
-			file->SetData(data.first, data.second);
+			file->SetData(reinterpret_cast<unsigned char*>(data.first), data.second);
 			return 0;
 		}
 

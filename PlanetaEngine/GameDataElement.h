@@ -19,10 +19,12 @@ namespace boost {
 }
 namespace planeta_engine{
 	namespace core {
-		class GameDataElement final{
+		class GameDataElement{
 		public:
 			/*型IDからエレメントを作成*/
 			static GameDataElement CreateByTypeID(const std::string& type_id);
+			//既定のコンストラクタ(nil型のElementとなる)
+			GameDataElement();
 			/*コピーコンストラクタ*/
 			GameDataElement(const GameDataElement& element)noexcept;
 			/*ムーブコンストラクタ*/

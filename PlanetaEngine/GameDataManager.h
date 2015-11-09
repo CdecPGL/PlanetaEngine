@@ -6,7 +6,7 @@
 
 namespace planeta_engine {
 	namespace core {
-		class GameDataManager {
+		class GameDataManager final{
 		public:
 			/**
 			* @brief データを取得する
@@ -16,10 +16,10 @@ namespace planeta_engine {
 			std::shared_ptr<GameDataElement> GetElement(const std::string& data_id);
 			/**
 			* @brief データを設定する
-			* @param データの右辺値参照。引数に渡したデータは空になるので注意。戻り値にスマポを返すので引き継図器利用する場合はそれを使う。
+			* @param データのIDとデータの右辺値参照。引数に渡したデータは空になるので注意。戻り値にスマポを返すので引き継図器利用する場合はそれを使う。
 			* @brief 引数に渡したデータのスマポ。
 			*/
-			std::shared_ptr<GameDataElement> SetElement(GameDataElement&& data);
+			std::shared_ptr<GameDataElement> SetElement(const std::string& data_id,GameDataElement&& data);
 			/**
 			* @brief データを保存する
 			* @param データIDと同じファイル名で保存する。システムのセーブデータディレクトリに保存する。

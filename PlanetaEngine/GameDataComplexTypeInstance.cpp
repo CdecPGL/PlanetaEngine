@@ -4,9 +4,9 @@
 
 namespace planeta_engine {
 	namespace core {
-
 		const GameDataElement& GameDataComplexTypeInstance::GetElement(const std::string& element_id) const
 		{
+			if (complex_type_ == nullptr) { throw GameDataError("無効なGameData複合型です。"); }
 			auto it = elements_.find(element_id);
 			if (it == elements_.end()) {
 				std::string element_type_id = complex_type().GetElementType(element_id);
@@ -24,6 +24,7 @@ namespace planeta_engine {
 
 		void GameDataComplexTypeInstance::SetElement(const std::string& element_id, const GameDataElement& element)
 		{
+			if (complex_type_ == nullptr) { throw GameDataError("無効なGameData複合型です。"); }
 			auto it = elements_.find(element_id);
 			if (it == elements_.end()) {
 				if (!complex_type().IsElementExist(element_id)) { throw GameDataError(std::string("GameData複合型") + complex_type().type_id() + "に存在しない要素" + element_id + "にアクセスしようとしました。"); }
@@ -42,6 +43,7 @@ namespace planeta_engine {
 
 		void GameDataComplexTypeInstance::SetElement(const std::string& element_id, GameDataElement&& element)
 		{
+			if (complex_type_ == nullptr) { throw GameDataError("無効なGameData複合型です。"); }
 			auto it = elements_.find(element_id);
 			if (it == elements_.end()) {
 				if (!complex_type().IsElementExist(element_id)) { throw GameDataError(std::string("GameData複合型") + complex_type().type_id() + "に存在しない要素" + element_id + "にアクセスしようとしました。"); }

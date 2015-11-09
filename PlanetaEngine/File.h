@@ -19,18 +19,33 @@ namespace planeta_engine{
 			std::string GetExtension()const;
 			void UnloadData();
 			unsigned int GetSize()const;
-			const void* const GetTopPointer()const;
+			const unsigned char* GetTopPointer()const;
+			unsigned char* GetTopPointer();
 			FileStatus GetStatus()const;
-			/*データセット(先頭アドレス、サイズ、暗号化データか)*/
-			void SetData(void*, unsigned int, bool = false);
+			/*データのセット(コピーするのではなく管理を委譲する)*/
+			void SetData(unsigned char* top_ptr, size_t size);
+			/*データの書き込み*/
+			bool WriteData(size_t pos, unsigned char* data_top, size_t data_size,bool auto_extend = false);
+			template<typename T>
+			bool WriteData(size_t pos,const T& d,bool auto_extend = true) {
+				return WriteData(pos, reinterpret_cast<unsigned char*>(&T), sizeof(T), auto_extend);
+			}
+			/*データの読み込み*/
+			bool ReadData(size_t pos, unsigned char* buffer_top, size_t buffer_size)const;
+			template<typename T>
+			bool ReadData(size_t pos,T& b) {
+				return ReadData(pos, reinterpret_cast<unsigned char*>(&T), sizeof(T));
+			}
+			/*サイズの変更*/
+			bool ChangeSize(size_t size,bool copy = true);
 			/*エラー発生*/
 			void ErrorOccured();
 
 		private:
 			const std::string extension;
 			FileStatus status = FileStatus::Unloaded;
-			void* data_top = nullptr;
-			unsigned int size = 0;
+			unsigned char* data_top = nullptr;
+			unsigned int size_ = 0;
 		};
 	}
 }

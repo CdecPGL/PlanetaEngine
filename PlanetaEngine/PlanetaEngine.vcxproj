@@ -137,6 +137,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
+    <ClInclude Include="FileIStream.h" />
+    <ClInclude Include="FileOStream.h" />
+    <ClInclude Include="FileStreamBuf.h" />
     <ClInclude Include="GameDataComplexType.h" />
     <ClInclude Include="GameDataComplexTypeInstance.h" />
     <ClInclude Include="GameDataElement.h" />
@@ -162,7 +165,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDataElementType.h" />
     <ClInclude Include="GameDataManager.h" />
-    <ClInclude Include="GameDataSerialize.h" />
+    <ClInclude Include="GameDataFunctionsForBoostSerialize.h" />
+    <ClInclude Include="GameDataSerializeUtility.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectResisterConnection.h" />
     <ClInclude Include="GameProcessManagerAccessorForGameProcess.h" />
@@ -293,6 +297,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CSVResource.cpp" />
     <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DrawPolygonComponent.cpp" />
+    <ClCompile Include="FileIStream.cpp" />
+    <ClCompile Include="FileOStream.cpp" />
+    <ClCompile Include="FileStreamBuf.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />
     <ClCompile Include="GameDataComplexType.cpp" />
@@ -300,6 +307,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataElement.cpp" />
     <ClCompile Include="GameDataElementType.cpp" />
     <ClCompile Include="GameDataManager.cpp" />
+    <ClCompile Include="GameDataSerializeUtility.cpp" />
     <ClCompile Include="GameObjectResisterConnection.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphPanel.cpp" />

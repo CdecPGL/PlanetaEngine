@@ -116,6 +116,8 @@ namespace planeta_engine {
 			return std::move(GameDataElement(type_id));
 		}
 
+		GameDataElement::GameDataElement() = default;
+
 		GameDataElement::GameDataElement(const std::string& type_id,int)noexcept:impl_(std::make_unique<Impl_>(type_id,0))
 		{
 		}

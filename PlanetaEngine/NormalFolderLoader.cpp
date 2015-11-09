@@ -134,7 +134,7 @@ namespace planeta_engine{
 				std::cout << std::endl;*/
 
 
-			file->SetData(ptr, size, false);
+			file->SetData(ptr, size);
 			//I—¹
 			ifs.close();
 			return 0;

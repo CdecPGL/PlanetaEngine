@@ -127,6 +127,12 @@
     <Filter Include="PlanetaEngine\Core\GameData\Exceptions">
       <UniqueIdentifier>{1caea0f8-d2bf-461d-972b-981f936cde75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\GameData\Serialize">
+      <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\FileSystem\Stream">
+      <UniqueIdentifier>{dec49675-f1ec-4fb8-bf4d-24eb8d3dbcf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -603,8 +609,20 @@
     <ClInclude Include="GameDataError.h">
       <Filter>PlanetaEngine\Core\GameData\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="GameDataSerialize.h">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
+    <ClInclude Include="GameDataFunctionsForBoostSerialize.h">
+      <Filter>PlanetaEngine\Core\GameData\Serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDataSerializeUtility.h">
+      <Filter>PlanetaEngine\Core\GameData\Serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIStream.h">
+      <Filter>PlanetaEngine\FileSystem\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="FileStreamBuf.h">
+      <Filter>PlanetaEngine\FileSystem\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOStream.h">
+      <Filter>PlanetaEngine\FileSystem\Stream</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -877,6 +895,18 @@
     </ClCompile>
     <ClCompile Include="GameDataComplexType.cpp">
       <Filter>PlanetaEngine\Core\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataSerializeUtility.cpp">
+      <Filter>PlanetaEngine\Core\GameData\Serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOStream.cpp">
+      <Filter>PlanetaEngine\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIStream.cpp">
+      <Filter>PlanetaEngine\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="FileStreamBuf.cpp">
+      <Filter>PlanetaEngine\FileSystem\Stream</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

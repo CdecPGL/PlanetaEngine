@@ -36,7 +36,7 @@ namespace planeta_engine {
 						}
 						//フォントを読み込み
 						DWORD num;
-						win_font_handle = AddFontMemResourceEx(const_cast<void*>(font_file->GetTopPointer()), font_file->GetSize(), nullptr, &num);
+						win_font_handle = AddFontMemResourceEx(font_file->GetTopPointer(), font_file->GetSize(), nullptr, &num);
 						if (win_font_handle == 0) {
 							debug::SystemLog::instance().LogError(std::string("フォントの読み込みに失敗しました。(") + elem->text() + ")", __FUNCTION__);
 							return false;
