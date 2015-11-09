@@ -4,6 +4,7 @@
 #include <list>
 #include <fstream>
 #include "PointerSingletonTemplate.h"
+#include "StringUtility.h"
 
 namespace planeta_engine {
 	namespace debug {
@@ -14,12 +15,21 @@ namespace planeta_engine {
 		public:
 			bool Initialize()override;
 			bool Finalize()override;
+			enum class LogLevel { Message, Warning, Error };
+			/*レベルを指定してログを出力(レベル、発生個所、詳細)*/
+			void Log(LogLevel level, const std::string& place, const std::string& detail) { _Log(level, detail, place); }
+			/*レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/
+			template<typename... Details>
+			void Log(LogLevel level, const std::string& place, Details... details) {
+				Log(level, place, utility::ConvertAndConnectToString(details...));
+			}
 			/*メッセージ(詳細、発生個所)*/
-			void LogMessage(const std::string& detail, const std::string& place) { _Log(_LogLevel::Message, detail, place); }
+			void LogMessage(const std::string& detail, const std::string& place) { _Log(LogLevel::Message, detail, place); }
 			/*警告(詳細、発生個所)*/
-			void LogWarning(const std::string& detail, const std::string& place) { _Log(_LogLevel::Warning, detail, place); }
+			void LogWarning(const std::string& detail, const std::string& place) { _Log(LogLevel::Warning, detail, place); }
 			/*エラー(詳細、発生個所)*/
-			void LogError(const std::string& detail, const std::string& place) { _Log(_LogLevel::Error, detail, place); }
+			void LogError(const std::string& detail, const std::string& place) { _Log(LogLevel::Error, detail, place); }
+
 			/*ログ出力ストリームを追加(インスタンスの生成、破棄は外部で行う)*/
 			void AddLogOutStream(std::ostream& ostrm);
 			/*ログ出力ストリームをすべて消す*/
@@ -35,10 +45,10 @@ namespace planeta_engine {
 			size_t _log_history_max_size; //ログ履歴最大サイズ(0で無限)
 			std::list<std::string> _log_history; //ログ履歴
 
-			enum class _LogLevel { Message, Warning, Error };
-			void _Log(_LogLevel level, const std::string& detail, const std::string& place);
+			void _Log(LogLevel level, const std::string& detail, const std::string& place);
 			void _OutPutToOutStream(const std::string& str);
 			void _AddHistory(const std::string& str);
 		};
+		using LogLevel = SystemLog::LogLevel;
 	}
 }

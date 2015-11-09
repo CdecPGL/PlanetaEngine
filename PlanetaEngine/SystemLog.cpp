@@ -3,7 +3,6 @@
 #include "SystemVariables.h"
 #include <sstream>
 #include <iostream>
-#include "boost/lexical_cast.hpp"
 #include "PEDateTime.h"
 
 /*ログの書式
@@ -25,9 +24,7 @@ namespace planeta_engine {
 			_OutPutToOutStream(std::string("PlanetaEngine V") + core::system_variables::system_information::VersionString);
 			_OutPutToOutStream(std::string("起動日時:") + utility::DateTime::GetCurrentDateTime().ToString());
 			if (core::system_variables::DevelopmentMode)_OutPutToOutStream("開発モードが有効です。");
-			char str[256];
-			sprintf_s(str, 256, "初期化されました。ログ出力ストリームは%d個です。", (signed)_output_streams.size());
-			LogMessage(str, "SystemLog::Initialize()");;
+			Log(LogLevel::Message, __FUNCTION__, "初期化されました。ログ出力ストリームは", _output_streams.size(), "個です。");
 			return true;
 		}
 
@@ -36,7 +33,7 @@ namespace planeta_engine {
 			ResetLogOutStream();
 			_log_history.clear();
 			_log_history_max_size = kDefaultLogHistoryMaxSize;
-			LogMessage("終了処理が実行されました。", "SystemLog::Finalize()");
+			LogMessage("終了処理が実行されました。", __FUNCTION__);
 			return true;
 		}
 
@@ -44,29 +41,29 @@ namespace planeta_engine {
 		{
 			std::ofstream ofs(file_name);
 			if (ofs.bad()) { 
-				LogWarning(std::string("ログ履歴をファイルに出力できませんでした。ファイルが開けません") + "(" + file_name + ")", "SystemLog::DumpLogHistory");
+				Log(LogLevel::Warning, __FUNCTION__, "ログ履歴をファイルに出力できませんでした。ファイル(", file_name, ")が開けません");
 				return false; 
 			}
 			for (const auto& str : _log_history) {
 				ofs << str << std::endl;
 			}
-			LogMessage(std::string("ログ履歴をファイルに出力しました。") + "(" + file_name + ")", "SystemLog::DumpLogHistory");
+			Log(LogLevel::Message, __FUNCTION__, "ログ履歴をファイル(", file_name, ")に出力しました。");
 			return true;
 		}
 
-		void SystemLog::_Log(_LogLevel level, const std::string& detail, const std::string& place)
+		void SystemLog::_Log(LogLevel level, const std::string& detail, const std::string& place)
 		{
 			using namespace std;
 			string header;
 			switch (level)
 			{
-			case _LogLevel::Message:
+			case LogLevel::Message:
 				header = kMessageHeader;
 				break;
-			case _LogLevel::Warning:
+			case LogLevel::Warning:
 				header = kWarningHeader;
 				break;
-			case _LogLevel::Error:
+			case LogLevel::Error:
 				header = kErrorHeader;
 				break;
 			default:
@@ -123,7 +120,7 @@ namespace planeta_engine {
 		void SystemLog::SetLogHistoryMaxSize(size_t size)
 		{
 			_log_history_max_size = size;
-			LogMessage(std::string("ログ履歴の最大サイズを変更しました。(") + boost::lexical_cast<std::string>(size) + ")", "SystemLog::SetLogHistoryMaxSize");
+			Log(LogLevel::Message, __FUNCTION__, "ログ履歴の最大サイズを", size, "に変更しました。");
 		}
 
 	}

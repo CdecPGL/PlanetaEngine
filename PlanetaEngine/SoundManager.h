@@ -9,9 +9,8 @@ namespace planeta_engine {
 	namespace core {
 		class ResourceBase;
 		class SoundManager final : public utility::PointerSingletonTemplate<SoundManager>{
+			friend utility::PointerSingletonTemplate<SoundManager>;
 		public:
-			SoundManager();
-			~SoundManager();
 			bool Initialize() override;
 			bool Finalize() override;
 			void Update();
@@ -20,6 +19,8 @@ namespace planeta_engine {
 			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<core::ResourceBase>& sound_resource);
 			void Reset();
 		private:
+			SoundManager();
+			~SoundManager();
 			class Impl_;
 			std::unique_ptr<Impl_> impl_;
 		};

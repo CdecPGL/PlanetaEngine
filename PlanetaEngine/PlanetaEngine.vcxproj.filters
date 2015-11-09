@@ -624,6 +624,9 @@
     <ClInclude Include="FileOStream.h">
       <Filter>PlanetaEngine\FileSystem\Stream</Filter>
     </ClInclude>
+    <ClInclude Include="StringUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

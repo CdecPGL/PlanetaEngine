@@ -13,9 +13,13 @@ namespace planeta_engine{
 			/*ファイルの状態(利用可能、暗号化されている、ロードされていない、問題発生)*/
 			enum class FileStatus { Available, Encrypted, Unloaded, Error };
 			File();
+			File(const File&);
+			File(File&&);
 			/*拡張子セット版コンストラクタ*/
 			File(const std::string&);
 			~File();
+			File& operator=(const File&);
+			File& operator=(File&&);
 			std::string GetExtension()const;
 			void UnloadData();
 			unsigned int GetSize()const;
@@ -42,9 +46,9 @@ namespace planeta_engine{
 			void ErrorOccured();
 
 		private:
-			const std::string extension;
-			FileStatus status = FileStatus::Unloaded;
-			unsigned char* data_top = nullptr;
+			std::string extension_;
+			FileStatus status_ = FileStatus::Unloaded;
+			unsigned char* data_top_ = nullptr;
 			unsigned int size_ = 0;
 		};
 	}

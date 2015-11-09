@@ -7,45 +7,77 @@ namespace planeta_engine{
 		{
 		}
 
-		File::File(const std::string& ext) :extension(ext){}
+		File::File(const std::string& ext) :extension_(ext){}
 
+		File::File(const File& obj):extension_(obj.extension_),status_(obj.status_),size_(obj.size_) {
+			data_top_ = reinterpret_cast<unsigned char*>(malloc(sizeof(unsigned char)*size_));
+			memcpy_s(data_top_, size_, obj.data_top_, obj.size_);
+		}
+
+		File::File(File&& obj):extension_(std::move(obj.extension_)),status_(obj.status_),size_(obj.size_),data_top_(obj.data_top_) {
+			obj.status_ = FileStatus::Unloaded;
+			obj.size_ = 0;
+			obj.data_top_ = nullptr;
+		}
 
 		File::~File()
 		{
-			if (data_top){
-				delete[] data_top;
+			if (data_top_){
+				delete[] data_top_;
 			}
 		}
 
-		std::string File::GetExtension()const{ return extension; }
+		File& File::operator=(const File& obj) {
+			extension_ = obj.extension_;
+			status_ = obj.status_;
+			size_ = obj.size_;
+			if (data_top_) { free(data_top_); }
+			data_top_ = reinterpret_cast<unsigned char*>(malloc(sizeof(unsigned char)*size_));
+			memcpy_s(data_top_, size_, obj.data_top_, obj.size_);
+			return *this;
+		}
+
+		File& File::operator=(File&& obj) {
+			extension_ = std::move(obj.extension_);
+			status_ = obj.status_;
+			size_ = obj.size_;
+			if (data_top_) { free(data_top_); }
+			data_top_ = obj.data_top_;
+			obj.status_ = FileStatus::Unloaded;
+			obj.size_ = 0;
+			obj.data_top_ = nullptr;
+			return *this;
+		}
+
+		std::string File::GetExtension()const{ return extension_; }
 		unsigned int File::GetSize()const{ return size_; }
-		const unsigned char* File::GetTopPointer()const{ return data_top; }
-		unsigned char* File::GetTopPointer(){ return data_top; }
-		File::FileStatus File::GetStatus()const{ return status; }
+		const unsigned char* File::GetTopPointer()const{ return data_top_; }
+		unsigned char* File::GetTopPointer(){ return data_top_; }
+		File::FileStatus File::GetStatus()const{ return status_; }
 
 		void File::UnloadData(){
-			if (data_top){
+			if (data_top_){
 				size_ = 0;
-				delete[] data_top;
-				data_top = nullptr;
-				status = FileStatus::Unloaded;
+				delete[] data_top_;
+				data_top_ = nullptr;
+				status_ = FileStatus::Unloaded;
 			}
 		}
 
 		void File::ErrorOccured(){
-			status = FileStatus::Error;
+			status_ = FileStatus::Error;
 		}
 
 		bool File::ChangeSize(size_t size,bool copy)
 		{
 			unsigned char* new_area = new unsigned char[size];
 			if (new_area == nullptr) { ErrorOccured(); false; } //ÉÅÉÇÉäÇÃämï€Ç…é∏îsÇµÇΩ
-			if (data_top) { //Ç∑Ç≈Ç…ÉÅÉÇÉäÇ™ämï€Ç≥ÇÍÇƒÇ¢ÇΩÇÁ
-				if (copy) { memcpy_s(new_area, size, data_top, size_); }
-				delete[] data_top;
+			if (data_top_) { //Ç∑Ç≈Ç…ÉÅÉÇÉäÇ™ämï€Ç≥ÇÍÇƒÇ¢ÇΩÇÁ
+				if (copy) { memcpy_s(new_area, size, data_top_, size_); }
+				delete[] data_top_;
 			}
-			data_top = new_area;
-			status = FileStatus::Available;
+			data_top_ = new_area;
+			status_ = FileStatus::Available;
 			return true;
 		}
 
@@ -75,10 +107,10 @@ namespace planeta_engine{
 
 		void File::SetData(unsigned char* top_ptr, size_t size)
 		{
-			if (data_top) { free(data_top); }
-			data_top = top_ptr;
+			if (data_top_) { free(data_top_); }
+			data_top_ = top_ptr;
 			size_ = size;
-			status = FileStatus::Available;
+			status_ = FileStatus::Available;
 		}
 
 	}

@@ -254,6 +254,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="StaticSingletonTemplate.h" />
     <ClInclude Include="StraightLineColliderComponent.h" />
     <ClInclude Include="StringPanel.h" />
+    <ClInclude Include="StringUtility.h" />
     <ClInclude Include="SystemCounter.h" />
     <ClInclude Include="SystemLog.h" />
     <ClInclude Include="SystemVariables.h" />

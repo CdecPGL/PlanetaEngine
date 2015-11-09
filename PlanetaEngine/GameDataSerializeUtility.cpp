@@ -15,7 +15,7 @@ namespace planeta_engine {
 			file_system::FileOStream os(*file);
 			boost::archive::xml_oarchive xoa(os);
 			xoa << boost::serialization::make_nvp("game_data_element",game_data_element);
-			return file;
+			return std::move(file);
 		}
 
 		planeta_engine::core::GameDataElement DeserializeGameDataElement(const std::shared_ptr<file_system::File>& file)
