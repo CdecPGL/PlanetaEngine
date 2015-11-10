@@ -82,7 +82,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool File::WriteData(size_t pos, unsigned char* data_top, size_t data_size, bool auto_extend /*= false*/)
+		bool File::WriteData(size_t pos, const unsigned char* data_top, size_t data_size, bool auto_extend /*= false*/)
 		{
 			//データサイズがファイルサイズより大きかったら
 			if (GetSize() < pos + data_size) { //自動拡張が有効だったらサイズを増やす

@@ -138,6 +138,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
     <ClInclude Include="EncrypterBase.h" />
+    <ClInclude Include="EXOREncrypter.h" />
     <ClInclude Include="FileIStream.h" />
     <ClInclude Include="FileOStream.h" />
     <ClInclude Include="FileSaverBase.h" />
@@ -302,6 +303,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DrawPolygonComponent.cpp" />
     <ClCompile Include="EncrypterBase.cpp" />
+    <ClCompile Include="EXOREncrypter.cpp" />
     <ClCompile Include="FileIStream.cpp" />
     <ClCompile Include="FileOStream.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />

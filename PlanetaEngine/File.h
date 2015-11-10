@@ -29,16 +29,16 @@ namespace planeta_engine{
 			/*データのセット(コピーするのではなく管理を委譲する)*/
 			void SetData(unsigned char* top_ptr, size_t size);
 			/*データの書き込み*/
-			bool WriteData(size_t pos, unsigned char* data_top, size_t data_size,bool auto_extend = false);
+			bool WriteData(size_t pos, const unsigned char* data_top, size_t data_size,bool auto_extend = false);
 			template<typename T>
 			bool WriteData(size_t pos,const T& d,bool auto_extend = true) {
-				return WriteData(pos, reinterpret_cast<unsigned char*>(&T), sizeof(T), auto_extend);
+				return WriteData(pos, reinterpret_cast<const unsigned char*>(&d), sizeof(T), auto_extend);
 			}
 			/*データの読み込み*/
 			bool ReadData(size_t pos, unsigned char* buffer_top, size_t buffer_size)const;
 			template<typename T>
-			bool ReadData(size_t pos,T& b) {
-				return ReadData(pos, reinterpret_cast<unsigned char*>(&T), sizeof(T));
+			bool ReadData(size_t pos,T& b)const {
+				return ReadData(pos, reinterpret_cast<unsigned char*>(&b), sizeof(T));
 			}
 			/*サイズの変更*/
 			bool ChangeSize(size_t size,bool copy = true);

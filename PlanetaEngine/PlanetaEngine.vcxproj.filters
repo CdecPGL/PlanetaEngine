@@ -645,6 +645,9 @@
     <ClInclude Include="EncrypterBase.h">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClInclude>
+    <ClInclude Include="EXOREncrypter.h">
+      <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -933,6 +936,9 @@
       <Filter>PlanetaEngine\FileSystem\Saver</Filter>
     </ClCompile>
     <ClCompile Include="EncrypterBase.cpp">
+      <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="EXOREncrypter.cpp">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClCompile>
   </ItemGroup>
