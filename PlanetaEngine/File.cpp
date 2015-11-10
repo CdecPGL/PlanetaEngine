@@ -78,6 +78,7 @@ namespace planeta_engine{
 			}
 			data_top_ = new_area;
 			status_ = FileStatus::Available;
+			size_ = size;
 			return true;
 		}
 

@@ -6,11 +6,11 @@
 namespace planeta_engine{
 	namespace file_system{
 
-		ArchiveLoader::ArchiveLoader(const std::string& path) :LoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(0)
+		ArchiveLoader::ArchiveLoader(const std::string& path) :FileLoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(0)
 		{
 		}
 
-		ArchiveLoader::ArchiveLoader(const std::string& path, unsigned int k) : LoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(k)
+		ArchiveLoader::ArchiveLoader(const std::string& path, unsigned int k) : FileLoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(k)
 		{
 		}
 
@@ -22,16 +22,12 @@ namespace planeta_engine{
 		bool ArchiveLoader::_Initialize()
 {
 			if (_extracter->SetEXOREncryptionKey((uint16_t)_key)){
-				char buf[256];
-				sprintf_s(buf, 256, "初期化に失敗しました。復号化キーの設定に失敗しました。(%s)", _path.c_str());
-				debug::SystemLog::instance().LogError(buf, "ArchiveLoader::_Initialize");
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
 				return false;
 			}
-			int res = _extracter->OpenAchiveFile(_path);
+			int res = _extracter->OpenAchiveFile(path());
 			if (res < 0){
-				char buf[256];
-				sprintf_s(buf, 256, "初期化に失敗しました。(reason:%d,path:%s)", res, _path.c_str());
-				debug::SystemLog::instance().LogError(buf, "ArchiveLoader::_Initialize");
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。(原因 ", res, ",パス ", path(), ")");
 				return false;
 			}
 			//ファイルリスト取得
@@ -40,9 +36,7 @@ namespace planeta_engine{
 				boost::filesystem::path p(fn);
 				_files.emplace(std::make_pair(fn, std::make_shared<File>(p.extension().string())));
 			}
-			char buf[256];
-			sprintf_s(buf, 256, "初期化されました。(パス:%s,ファイル数:%d)", _path.c_str(), (int)_files.size());
-			debug::SystemLog::instance().LogMessage(buf, "ArchiveLoader::_Initialize");
+			debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "初期化されました。(パス ", path(), ",ファイル数 ", _files.size(), ")");
 			return true;
 		}
 
@@ -51,36 +45,33 @@ namespace planeta_engine{
 
 		}
 
-		int ArchiveLoader::LoadAllFileToCache() {
+		bool ArchiveLoader::LoadAllFileToCache() {
 			int err = 0;
 			for (auto& f : _files){
 				if (f.second->GetStatus() == File::FileStatus::Available){ continue; }
 				err = LoadData(f.first, f.second);
 				if (err){
-					char buf[256];
-					sprintf_s(buf, 256, "ファイルの読み込みに失敗しました。(name:%s)", f.first.c_str());
-					debug::SystemLog::instance().LogError(buf, "ArchiveLoader::LoadAllFileToCatch");
+					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", f.first, "の読み込みに失敗しました。");
 				}
 			}
-			return err;
+			return err ? false : true;
 		}
 
-		int ArchiveLoader::DeleteCache(){
+		bool ArchiveLoader::DeleteCache(){
 			for (auto& f : _files){
 				f.second->UnloadData();
 			}
-			return 0;
+			return true;
 		}
 
-		int ArchiveLoader::UpdateFileList(){
+		bool ArchiveLoader::UpdateFileList(){
 			DeleteCache();
 			_extracter->CloseArchiveFile();
 			_files.clear();
-			int res = _extracter->OpenAchiveFile(_path);
+			int res = _extracter->OpenAchiveFile(path());
 			if (res < 0){
-				char buf[256];
-				sprintf_s(buf, 256, "アーカイブファイルのオープンに失敗しました。(reason:%d,path:%s)", res, _path.c_str());
-				debug::SystemLog::instance().LogError(buf, "ArchiveLoader::LoadAllFileToCatch");
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "アーカイブファイルのオープンに失敗しました。(原因 ", res, ",パス ", path(), ")");
+				return false;
 			}
 			//ファイルリスト取得
 			std::vector<std::string> f_list = std::move(_extracter->GetFileList());
@@ -88,7 +79,7 @@ namespace planeta_engine{
 				boost::filesystem::path p(fn);
 				_files.emplace(std::make_pair(fn, std::make_shared<File>(p.extension().string())));
 			}
-			return 0;
+			return true;
 		}
 
 		std::shared_ptr<File> ArchiveLoader::LoadFile(const std::string& fn){
@@ -113,7 +104,7 @@ namespace planeta_engine{
 			return 0;
 		}
 
-		unsigned int ArchiveLoader::GetCacheSize()const{
+		size_t ArchiveLoader::GetCacheSize()const{
 			unsigned int res = 0;
 			for (auto& it : _files){
 				res += it.second->GetSize();

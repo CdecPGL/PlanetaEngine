@@ -27,13 +27,13 @@ namespace planeta_engine{
 				}
 			}
 			if (success_flag && error_flag) {
-				debug::SystemLog::instance().LogWarning("一部ローダーの初期化に失敗しましたが、継続します。", "FileLoadManager::_Initialize");
+				debug::SystemLog::instance().LogWarning("一部ローダーの初期化に失敗しましたが、継続します。", __FUNCTION__);
 			}
 			else if(success_flag && !error_flag) {
-				debug::SystemLog::instance().LogMessage("初期化に成功しました。", "FileLoadManager::_Initialize");
+				debug::SystemLog::instance().LogMessage("初期化に成功しました。", __FUNCTION__);
 			}
 			else {
-				debug::SystemLog::instance().LogError("初期化に失敗しました。", "FileLoadManager::_Initialize");
+				debug::SystemLog::instance().LogError("初期化に失敗しました。", __FUNCTION__);
 			}
 			return true;
 		}
@@ -43,7 +43,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void FileLoadManager::PushLoader(const std::shared_ptr<LoaderBase>& lb){
+		void FileLoadManager::PushLoader(const std::shared_ptr<FileLoaderBase>& lb){
 			_loaders.push_back(lb);
 		}
 
@@ -55,7 +55,7 @@ namespace planeta_engine{
 				if (f){ break; }
 			}
 			if (f == nullptr){
-				debug::SystemLog::instance().LogError(std::string("ファイルが存在しないか読み込みエラーが発生しました。(") + fn + ")", "FileLoadManager::LoadFile");
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", fn, "が存在しないか読み込みエラーが発生しました。");
 			}
 			return f;
 		}
@@ -73,7 +73,7 @@ namespace planeta_engine{
 			for (auto it : _loaders){
 				err = it->LoadAllFileToCache();
 			}
-			debug::SystemLog::instance().LogMessage("すべてのファイルをキャッシュに読み込みました。", "FileLoadManager::LoadAllFileToCache");
+			debug::SystemLog::instance().LogMessage("すべてのファイルをキャッシュに読み込みました。", __FUNCTION__);
 			return err;
 		}
 
@@ -81,7 +81,7 @@ namespace planeta_engine{
 			for (auto it : _loaders){
 				it->DeleteCache();
 			}
-			debug::SystemLog::instance().LogMessage("ファイルキャッシュを削除しました。", "FileLoadManager::DeleteCatch");
+			debug::SystemLog::instance().LogMessage("ファイルキャッシュを削除しました。", __FUNCTION__);
 			return 0;
 		}
 

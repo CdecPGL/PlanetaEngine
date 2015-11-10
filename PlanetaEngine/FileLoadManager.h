@@ -2,7 +2,7 @@
 
 #include<string>
 #include<vector>
-#include"LoaderBase.h"
+#include"FileLoaderBase.h"
 #include "PointerSingletonTemplate.h"
 
 namespace planeta_engine{
@@ -14,7 +14,7 @@ namespace planeta_engine{
 			bool Initialize()override;
 			bool Finalize()override;
 			/*ローダーをプッシュ。初期化前に呼び出す必要がある。末尾のローダーから読み込みが行われる*/
-			void PushLoader(const std::shared_ptr<LoaderBase>&);
+			void PushLoader(const std::shared_ptr<FileLoaderBase>&);
 			std::shared_ptr<File> LoadFile(const std::string&);
 			int LoadAllFileToCache();
 			int DeleteCache();
@@ -24,7 +24,7 @@ namespace planeta_engine{
 			FileLoadManager();
 			FileLoadManager(const FileLoadManager&) = delete;
 			~FileLoadManager();
-			std::vector<std::shared_ptr<LoaderBase>> _loaders;
+			std::vector<std::shared_ptr<FileLoaderBase>> _loaders;
 		};
 	}
 }

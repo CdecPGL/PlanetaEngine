@@ -6,7 +6,7 @@
 #include "PEDateTime.h"
 
 /*ログの書式
-[hh:mm:ss,frame]level:detail
+[hh:mm:ss,frame]level:detail@place
 */
 
 namespace {
@@ -42,7 +42,7 @@ namespace planeta_engine {
 			std::ofstream ofs(file_name);
 			if (ofs.bad()) { 
 				Log(LogLevel::Warning, __FUNCTION__, "ログ履歴をファイルに出力できませんでした。ファイル(", file_name, ")が開けません");
-				return false; 
+				return false;
 			}
 			for (const auto& str : _log_history) {
 				ofs << str << std::endl;

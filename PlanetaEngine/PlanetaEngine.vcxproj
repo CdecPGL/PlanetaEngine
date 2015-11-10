@@ -137,8 +137,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
+    <ClInclude Include="EncrypterBase.h" />
     <ClInclude Include="FileIStream.h" />
     <ClInclude Include="FileOStream.h" />
+    <ClInclude Include="FileSaverBase.h" />
     <ClInclude Include="FileStreamBuf.h" />
     <ClInclude Include="GameDataComplexType.h" />
     <ClInclude Include="GameDataComplexTypeInstance.h" />
@@ -207,7 +209,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="KeyInputDefines.h" />
     <ClInclude Include="KeyInputManager.h" />
     <ClInclude Include="KeyInputUtils.h" />
-    <ClInclude Include="LoaderBase.h" />
+    <ClInclude Include="FileLoaderBase.h" />
     <ClInclude Include="MakeResource.h" />
     <ClInclude Include="MakeSharedGameObject.h" />
     <ClInclude Include="MathConstant.h" />
@@ -218,6 +220,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="MetaprogrammingUtility.h" />
     <ClInclude Include="MusicResource.h" />
     <ClInclude Include="NormalFolderLoader.h" />
+    <ClInclude Include="NormalFolderSaver.h" />
     <ClInclude Include="NullWeakPointerException.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectHolderTemplate_WithID.h" />
@@ -298,6 +301,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CSVResource.cpp" />
     <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DrawPolygonComponent.cpp" />
+    <ClCompile Include="EncrypterBase.cpp" />
     <ClCompile Include="FileIStream.cpp" />
     <ClCompile Include="FileOStream.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
@@ -313,6 +317,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
+    <ClCompile Include="NormalFolderSaver.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="SoundEffectController.cpp" />
     <ClCompile Include="SoundManager.cpp" />
