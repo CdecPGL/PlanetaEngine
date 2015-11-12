@@ -11,9 +11,9 @@ namespace planeta_engine{
 		class FileAccessor;
 		class FileManipulatorBase;
 		enum class AccessMode;
-		class FileLoadManager final: public utility::PointerSingletonTemplate<FileLoadManager>
+		class FileSystemManager final: public utility::PointerSingletonTemplate<FileSystemManager>
 		{
-			friend utility::PointerSingletonTemplate<FileLoadManager>;
+			friend utility::PointerSingletonTemplate<FileSystemManager>;
 		public:
 			bool Initialize()override;
 			bool Finalize()override;
@@ -22,12 +22,12 @@ namespace planeta_engine{
 			bool DeleteCache();
 			size_t GetCacheSize()const;
 		private:
-			FileLoadManager();
-			FileLoadManager(const FileLoadManager&) = delete;
-			FileLoadManager(FileLoadManager&&) = delete;
-			FileLoadManager& operator=(const FileLoadManager&) = delete;
-			FileLoadManager& operator=(FileLoadManager&&) = delete;
-			~FileLoadManager();
+			FileSystemManager();
+			FileSystemManager(const FileSystemManager&) = delete;
+			FileSystemManager(FileSystemManager&&) = delete;
+			FileSystemManager& operator=(const FileSystemManager&) = delete;
+			FileSystemManager& operator=(FileSystemManager&&) = delete;
+			~FileSystemManager();
 			std::unordered_map<std::string, std::shared_ptr<FileAccessor>> accessors_;
 			std::shared_ptr<FileAccessor> CreateFileAccessorCore(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode);
 			bool is_initialized_ = false;

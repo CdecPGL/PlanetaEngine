@@ -155,6 +155,9 @@ namespace planeta_engine {
 		void FileAccessor::Finalize()
 		{
 			if (!is_initialized_) { return; } //初期化されていなかったら飛ばす
+			if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) == access_mode::Write) { //書き込み属性があったら
+				SaveAllFilesFromCache(); //キャッシュの内容をすべて保存する。
+			}
 			if (manipulator_) { manipulator_->Finalize(); }
 			is_initialized_ = false;
 		}

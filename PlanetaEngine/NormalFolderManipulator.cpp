@@ -14,7 +14,27 @@ namespace planeta_engine{
 		}
 
 		bool NormalFolderManipulator::InitializeCore(){
-			return true;
+			//ディレクトリの存在確認
+			boost::filesystem::path bpath(path());
+			if (boost::filesystem::is_directory(bpath)) {
+				return true;
+			}
+			else {
+				//ディレクトリがなくて自動作成が有効だったら作成する。
+				if (auto_create()) {
+					if (boost::filesystem::create_directories(bpath)) { 
+						debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "ディレクトリ", path(), "を作成しました。");
+						return true; 
+					} else {
+						debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。ディレクトリ", path(), "を作成できませんでした。");
+						return false;
+					}
+				}
+				else {
+					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。ディレクトリ", path(), "が存在しません。");
+					return false;
+				}
+			}
 		}
 
 		void NormalFolderManipulator::FinalizeCore() {

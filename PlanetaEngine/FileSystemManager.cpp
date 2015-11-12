@@ -1,4 +1,4 @@
-#include "FileLoadManager.h"
+#include "FileSystemManager.h"
 #include "SystemLog.h"
 #include "FileAccessor.h"
 #include <cassert>
@@ -6,22 +6,22 @@
 namespace planeta_engine{
 	namespace file_system{
 
-		FileLoadManager::FileLoadManager()
+		FileSystemManager::FileSystemManager()
 		{
 			
 		}
 
 
-		FileLoadManager::~FileLoadManager()
+		FileSystemManager::~FileSystemManager()
 		{
 			
 		}
 
-		bool FileLoadManager::Initialize(){
+		bool FileSystemManager::Initialize(){
 			assert(is_initialized_ == false);
 			bool error = false;
 			for (auto& accessor : accessors_) {
-				error = accessor.second->Initialize();
+				error = !accessor.second->Initialize();
 			}
 			if (error) {
 				debug::SystemLog::instance().LogError("èâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩÅBFileAccessorÇÃèâä˙âªÇ…é∏îsÇµÇ‹ÇµÇΩÅB", __FUNCTION__);
@@ -30,8 +30,7 @@ namespace planeta_engine{
 			return !error;
 		}
 
-		bool FileLoadManager::Finalize() {
-			assert(is_initialized_ == true);
+		bool FileSystemManager::Finalize() {
 			for (auto& accessor : accessors_) {
 				accessor.second->Finalize();
 			}
@@ -39,7 +38,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		size_t FileLoadManager::GetCacheSize()const{
+		size_t FileSystemManager::GetCacheSize()const{
 			size_t res = 0;
 			for (auto& accessor : accessors_) {
 				res += accessor.second->GetCacheSize();
@@ -47,7 +46,7 @@ namespace planeta_engine{
 			return res;
 		}
 
-		bool FileLoadManager::DeleteCache(){
+		bool FileSystemManager::DeleteCache(){
 			for (auto& accessor : accessors_) {
 				accessor.second->DeleteCache();
 			}
@@ -55,13 +54,13 @@ namespace planeta_engine{
 			return true;
 		}
 
-		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessor(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
+		std::shared_ptr<FileAccessor> FileSystemManager::CreateFileAccessor(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
 		{
 			auto accessor = CreateFileAccessorCore(id, manipulator, mode);
 			return accessor;
 		}
 
-		std::shared_ptr<FileAccessor> FileLoadManager::GetFileAccessor(const std::string& id) const
+		std::shared_ptr<FileAccessor> FileSystemManager::GetFileAccessor(const std::string& id) const
 		{
 			auto it = accessors_.find(id);
 			if (it == accessors_.end()) { return nullptr; }
@@ -70,7 +69,7 @@ namespace planeta_engine{
 			}
 		}
 
-		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessorCore(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
+		std::shared_ptr<FileAccessor> FileSystemManager::CreateFileAccessorCore(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
 		{
 			if (is_initialized_) { assert(false); } //Ç±ÇÍÇÕèâä˙âªëOÇ…åƒÇ‘
 			auto accessor = std::make_shared<FileAccessor>(manipulator, mode);

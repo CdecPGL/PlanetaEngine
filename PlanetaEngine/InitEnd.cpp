@@ -8,7 +8,7 @@
 #include "SystemVariables.h"
 #include "SystemLog.h"
 #include "SystemCounter.h"
-#include "FileLoadManager.h"
+#include "FileSystemManager.h"
 #include "ArchiveManipulator.h"
 #include "NormalFolderManipulator.h"
 #include "ResourceManager.h"
@@ -41,7 +41,7 @@ namespace planeta_engine{
 
 			bool InstantiateSingletonManagers() {
 				if (
-					file_system::FileLoadManager::Instantiate()
+					file_system::FileSystemManager::Instantiate()
 					&& core::ResourceManager::Instantiate()
 					&& core::DrawManager::Instantiate()
 					&& core::SoundManager::Instantiate()
@@ -59,14 +59,14 @@ namespace planeta_engine{
 				core::SoundManager::Dispose();
 				core::DrawManager::Dispose();
 				core::ResourceManager::Dispose();
-				file_system::FileLoadManager::Dispose();
+				file_system::FileSystemManager::Dispose();
 				debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンスを破棄しました。", __FUNCTION__);
 				return true;
 			}
 
 			bool InitializeSingletonManagers() {
 				if (
-					file_system::FileLoadManager::instance().Initialize()
+					file_system::FileSystemManager::instance().Initialize()
 					&& core::ResourceManager::instance().Initialize()
 					&& core::DrawManager::instance().Initialize()
 					&& core::SoundManager::instance().Initialize()
@@ -88,7 +88,7 @@ namespace planeta_engine{
 				//リソースマネージャの終了
 				core::ResourceManager::instance().Finalize();
 				//ファイルシステムの終了
-				file_system::FileLoadManager::instance().Finalize();
+				file_system::FileSystemManager::instance().Finalize();
 				debug::SystemLog::instance().LogMessage("シングルトンマネージャの終了処理を実行しました。", __FUNCTION__);
 				return true;
 			}
@@ -157,11 +157,11 @@ namespace planeta_engine{
 			bool SetUpFileSystem()
 			{
 				using namespace file_system;
-				FileLoadManager& flm = FileLoadManager::instance();
+				FileSystemManager& flm = FileSystemManager::instance();
 				//リソース用ファイルアクセサ設定
 				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::DevResourceDataFolderPath,false),file_system::AccessMode::ReadOnly);
 				//GameData用ファイルアクセサ設定
-				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::SaveDataDirectory,true), file_system::AccessMode::ReadWrite);
+				flm.CreateFileAccessor(system_variables::GameDataFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::SaveDataDirectory,true), file_system::AccessMode::ReadWrite);
 
 				debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "ファイルシステムの設定を行いました。");
 				//リソースマネージャの設定も行う

@@ -351,9 +351,6 @@
     <ClInclude Include="File.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="FileLoadManager.h">
-      <Filter>PlanetaEngine\FileSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
@@ -642,6 +639,9 @@
     <ClInclude Include="FileAccessMode.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
+    <ClInclude Include="FileSystemManager.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -670,9 +670,6 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="FileLoadManager.cpp">
-      <Filter>PlanetaEngine\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="File.cpp">
       <Filter>PlanetaEngine\FileSystem</Filter>
@@ -934,6 +931,9 @@
     </ClCompile>
     <ClCompile Include="ArchiveManipulator.cpp">
       <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystemManager.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

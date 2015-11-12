@@ -7,10 +7,10 @@
 #include "MakeResource.h"
 #include "XMLResource.h"
 #include "File.h"
-#include "FileLoadManager.h"
+#include "FileSystemManager.h"
 #include "SystemLog.h"
 #include "SystemVariables.h"
-#include "FileLoadManager.h"
+#include "FileSystemManager.h"
 #include "FileAccessor.h"
 
 namespace planeta_engine {
@@ -18,7 +18,7 @@ namespace planeta_engine {
 		bool FontDefinitionResource::_Create(const std::shared_ptr<const file_system::File>& file)
 		{
 			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
-			auto file_accessor = file_system::FileLoadManager::instance().GetFileAccessor(core::system_variables::ResourceFileAccessorID);
+			auto file_accessor = file_system::FileSystemManager::instance().GetFileAccessor(core::system_variables::ResourceFileAccessorID);
 			auto xml = core::MakeResource<XMLResource>();
 			if (xml->Create(file)) {
 				auto root = xml->GetRootElement();

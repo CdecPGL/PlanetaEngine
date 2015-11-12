@@ -162,7 +162,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CoroutineUtility.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileAccessor.h" />
-    <ClInclude Include="FileLoadManager.h" />
+    <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="FontDefinitionResource.h" />
     <ClInclude Include="FontResource.h" />
     <ClInclude Include="Game.h" />
@@ -351,7 +351,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionDetectProcess.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
-    <ClCompile Include="FileLoadManager.cpp" />
+    <ClCompile Include="FileSystemManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDrawProcess.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
