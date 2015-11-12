@@ -18,7 +18,6 @@ namespace planeta_engine{
 			const std::string ResourceDataArchiveFilePath("resources\\data.arc");
 			const unsigned int ResourceDataArchiveDecryptionKey(0);
 			const std::string DevResourceDataFolderPath("resources\\data");
-			const std::string TestResourceDataFolderPath("resources\\test_data");
 			const std::string ResourceFileAccessorID("resource");
 			const std::string GameDataFileAccessorID("game_data");
 			const std::string ResourceListFileName("resource_list.csv");

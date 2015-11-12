@@ -24,7 +24,6 @@ namespace planeta_engine{
 			extern const std::string ResourceDataArchiveFilePath; //リソースデータアーカイブファイルのパス
 			extern const unsigned int ResourceDataArchiveDecryptionKey; //リソースデータアーカイブの復号化キー
 			extern const std::string DevResourceDataFolderPath; //resource開発用データフォルダのパス(開発モード時に有効)
-			extern const std::string TestResourceDataFolderPath; //resourceテストデータのフォルダパス(開発モード時に有効)
 			extern const std::string ResourceFileAccessorID; //リソース用ファイルAccessorのID
 			extern const std::string GameDataFileAccessorID; //GameData用ファイルアクセサのID
 			/*リソース*/

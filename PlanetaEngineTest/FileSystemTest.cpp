@@ -3,7 +3,7 @@
 #include "SystemCounter.h"
 #include "SystemLog.h"
 #include "FileLoadManager.h"
-#include "ArchiveLoader.h"
+#include "ArchiveManipulator.h"
 #include "NormalFolderLoader.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -28,8 +28,8 @@ namespace PlanetaEngineTest
 			SystemCounter::instance().Initialize();
 			SystemLog::instance().Initialize();
 
-			FileLoadManager::instance().PushLoader(std::make_shared<ArchiveLoader>(kTestArchive, kTestArchivePass));
-			FileLoadManager::instance().PushLoader(std::make_shared<NormalFolderLoader>(kTestFolder));
+			FileLoadManager::instance().PushLoader(std::make_shared<ArchiveManipulator>(kTestArchive, kTestArchivePass));
+			FileLoadManager::instance().PushLoader(std::make_shared<NormalFolderManipulator>(kTestFolder));
 			FileLoadManager::instance().Initialize();
 		}
 

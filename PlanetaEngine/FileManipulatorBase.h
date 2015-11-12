@@ -9,11 +9,11 @@
 namespace planeta_engine{
 	namespace file_system{
 		class EncrypterBase;
-		class FileLoaderBase: public core::Object{
+		class FileManipulatorBase: public core::Object{
 		public:
-			explicit FileLoaderBase(const std::string& p) :path_(p),is_valid_(false){}
-			explicit FileLoaderBase(const std::string& p, const std::shared_ptr<const EncrypterBase>& encrypter) :path_(p), encrypter_(encrypter), is_valid_(false) {}
-			virtual ~FileLoaderBase() = default;
+			explicit FileManipulatorBase(const std::string& p, bool auto_create) :path_(p), is_valid_(false), auto_create_(auto_create) {}
+			explicit FileManipulatorBase(const std::string& p, const std::shared_ptr<const EncrypterBase>& encrypter, bool auto_create) :path_(p), encrypter_(encrypter), is_valid_(false), auto_create_(auto_create) {}
+			virtual ~FileManipulatorBase() = default;
 			bool Initialize();
 			void Finalize() {
 				if (!is_valid_) { return; }
@@ -26,6 +26,10 @@ namespace planeta_engine{
 			std::vector<std::pair<std::string, std::shared_ptr<File>>> LoadAllFiles();
 			/*ファイルリストを更新*/
 			bool UpdateFileList() { file_list_.clear(); return UpdateFileListCore(file_list_); }
+			/*ファイルの保存(保存名、ファイル)*/
+			bool SaveFile(const std::string& name, const File& file);
+			/*複数ファイルの保存*/
+			bool SaveFiles(const std::vector<std::pair<std::string, const File&>>& files);
 			/*ファイルの存在を確認*/
 			bool CheckFileExist(const std::string& file_name)const;
 			bool is_valid()const { return is_valid_; }
@@ -35,9 +39,11 @@ namespace planeta_engine{
 			void path(const std::string& p) { path_ = p; }
 			bool is_encrypter_valid()const { return encrypter_ != nullptr; }
 			std::shared_ptr<const EncrypterBase> encrypter()const { return encrypter_; }
+			bool auto_create()const { return auto_create_; }
 		private:
 			std::string path_;
 			bool is_valid_; //有効か
+			bool auto_create_;
 			std::shared_ptr<const EncrypterBase> encrypter_;
 			std::unordered_set<std::string> file_list_;
 			virtual bool InitializeCore() = 0;
@@ -45,6 +51,8 @@ namespace planeta_engine{
 			virtual bool UpdateFileListCore(std::unordered_set<std::string>& file_list) = 0;
 			virtual bool LoadFileCore(const std::string& name,File& file) = 0;
 			virtual bool LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files);
+			virtual bool SaveFileCore(const std::string& name, const File& file) = 0;
+			virtual bool SaveFilesCore(const std::vector<std::pair<std::string, const File&>>& files);
 		};
 	}
 }

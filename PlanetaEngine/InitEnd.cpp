@@ -9,12 +9,12 @@
 #include "SystemLog.h"
 #include "SystemCounter.h"
 #include "FileLoadManager.h"
-#include "ArchiveLoader.h"
-#include "NormalFolderLoader.h"
-#include "NormalFolderSaver.h"
+#include "ArchiveManipulator.h"
+#include "NormalFolderManipulator.h"
 #include "ResourceManager.h"
 #include "DrawManager.h"
 #include "SoundManager.h"
+#include "FileAccessMode.h"
 
 namespace {
 	//variables
@@ -159,22 +159,11 @@ namespace planeta_engine{
 				using namespace file_system;
 				FileLoadManager& flm = FileLoadManager::instance();
 				//リソース用ファイルアクセサ設定
-				{
-					std::vector<std::shared_ptr<FileLoaderBase>> loaders;
-					loaders.push_back(std::make_shared<ArchiveLoader>(system_variables::ResourceDataArchiveFilePath, system_variables::ResourceDataArchiveDecryptionKey));
-					//開発モード時は、開発用Resourceフォルダと、テスト用Resourceフォルダも追加する。
-					if (system_variables::DevelopmentMode) {
-						loaders.push_back(std::make_shared<NormalFolderLoader>(system_variables::DevResourceDataFolderPath));
-						loaders.push_back(std::make_shared<NormalFolderLoader>(system_variables::TestResourceDataFolderPath));
-					}
-					flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, loaders);
-				}
+				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::DevResourceDataFolderPath,false),file_system::AccessMode::ReadOnly);
 				//GameData用ファイルアクセサ設定
-				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFileSaver>(system_variables::SaveDataDirectory), std::vector < std::shared_ptr<FileLoaderBase>>({ std::make_shared<NormalFolderLoader>(system_variables::SaveDataDirectory) }));
+				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::SaveDataDirectory,true), file_system::AccessMode::ReadWrite);
 
-				char str[256];
-				sprintf_s(str, 256, "ファイルシステムの設定を行いました。(DevelopmentMode=%s)", system_variables::DevelopmentMode ? "true" : "false");
-				debug::SystemLog::instance().LogMessage(str, __FUNCTION__);
+				debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "ファイルシステムの設定を行いました。");
 				//リソースマネージャの設定も行う
 				core::ResourceManager::instance().SetResourceListFileName(core::system_variables::ResourceListFileName);
 				return true;

@@ -55,45 +55,10 @@ namespace planeta_engine{
 			return true;
 		}
 
-		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessor(const std::string& id, const std::shared_ptr<FileSaverBase>& saver)
+		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessor(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
 		{
-			auto accessor = CreateFileAccessorCore(id);
-			if (accessor) {
-				accessor->SetSaver(saver);
-				return std::move(accessor);
-			}
-			else {
-				return nullptr;
-			}
-		}
-
-		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessor(const std::string& id, const std::vector<std::shared_ptr<FileLoaderBase>>& loaders)
-		{
-			auto accessor = CreateFileAccessorCore(id);
-			if (accessor) {
-				for (auto& loader : loaders) {
-					accessor->PushLoader(loader);
-				}
-				return std::move(accessor);
-			}
-			else {
-				return nullptr;
-			}
-		}
-
-		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessor(const std::string& id, const std::shared_ptr<FileSaverBase>& saver, const std::vector<std::shared_ptr<FileLoaderBase>>& loaders)
-		{
-			auto accessor = CreateFileAccessorCore(id);
-			if (accessor) {
-				accessor->SetSaver(saver);
-				for (auto& loader : loaders) {
-					accessor->PushLoader(loader);
-				}
-				return std::move(accessor);
-			}
-			else {
-				return nullptr;
-			}
+			auto accessor = CreateFileAccessorCore(id, manipulator, mode);
+			return accessor;
 		}
 
 		std::shared_ptr<FileAccessor> FileLoadManager::GetFileAccessor(const std::string& id) const
@@ -105,10 +70,10 @@ namespace planeta_engine{
 			}
 		}
 
-		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessorCore(const std::string& id)
+		std::shared_ptr<FileAccessor> FileLoadManager::CreateFileAccessorCore(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
 		{
 			if (is_initialized_) { assert(false); } //Ç±ÇÍÇÕèâä˙âªëOÇ…åƒÇ‘
-			auto accessor = std::make_shared<FileAccessor>();
+			auto accessor = std::make_shared<FileAccessor>(manipulator, mode);
 			accessors_.emplace(id, accessor);
 			return std::move(accessor);
 		}

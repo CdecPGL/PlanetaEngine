@@ -120,7 +120,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArchiveLoader.h" />
+    <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
@@ -139,9 +139,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CSVResource.h" />
     <ClInclude Include="EncrypterBase.h" />
     <ClInclude Include="EXOREncrypter.h" />
+    <ClInclude Include="FileAccessMode.h" />
     <ClInclude Include="FileIStream.h" />
     <ClInclude Include="FileOStream.h" />
-    <ClInclude Include="FileSaverBase.h" />
     <ClInclude Include="FileStreamBuf.h" />
     <ClInclude Include="GameDataComplexType.h" />
     <ClInclude Include="GameDataComplexTypeInstance.h" />
@@ -210,7 +210,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="KeyInputDefines.h" />
     <ClInclude Include="KeyInputManager.h" />
     <ClInclude Include="KeyInputUtils.h" />
-    <ClInclude Include="FileLoaderBase.h" />
+    <ClInclude Include="FileManipulatorBase.h" />
     <ClInclude Include="MakeResource.h" />
     <ClInclude Include="MakeSharedGameObject.h" />
     <ClInclude Include="MathConstant.h" />
@@ -220,8 +220,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MetaprogrammingUtility.h" />
     <ClInclude Include="MusicResource.h" />
-    <ClInclude Include="NormalFolderLoader.h" />
-    <ClInclude Include="NormalFolderSaver.h" />
+    <ClInclude Include="NormalFolderManipulator.h" />
     <ClInclude Include="NullWeakPointerException.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectHolderTemplate_WithID.h" />
@@ -289,7 +288,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="XMLResource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArchiveLoader.cpp" />
+    <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="CameraUtility.cpp" />
@@ -305,9 +304,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="EncrypterBase.cpp" />
     <ClCompile Include="EXOREncrypter.cpp" />
     <ClCompile Include="FileIStream.cpp" />
-    <ClCompile Include="FileLoaderBase.cpp" />
+    <ClCompile Include="FileManipulatorBase.cpp" />
     <ClCompile Include="FileOStream.cpp" />
-    <ClCompile Include="FileSaverBase.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />
@@ -321,7 +319,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
-    <ClCompile Include="NormalFolderSaver.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="SoundEffectController.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -366,7 +363,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InitEnd.cpp" />
     <ClCompile Include="InitEndDX.cpp" />
     <ClCompile Include="InitEndResource.cpp" />
-    <ClCompile Include="NormalFolderLoader.cpp" />
+    <ClCompile Include="NormalFolderManipulator.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlanetaEngine.cpp" />
     <ClCompile Include="PlanetComponent.cpp" />
