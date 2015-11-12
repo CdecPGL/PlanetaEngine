@@ -13,12 +13,14 @@ namespace planeta_engine{
 			const bool DevelopmentMode(true);
 			const std::string SystemDataDirectory("system");
 			const std::string LogDirectory("log");
-			const std::string SaveDataDirectory("save_data");
+			const std::string SaveDataDirectory("save_datas");
 			const std::string LogOutPutFileName("pe_log.txt");
 			const std::string ResourceDataArchiveFilePath("resources\\data.arc");
 			const unsigned int ResourceDataArchiveDecryptionKey(0);
 			const std::string DevResourceDataFolderPath("resources\\data");
 			const std::string TestResourceDataFolderPath("resources\\test_data");
+			const std::string ResourceFileAccessorID("resource");
+			const std::string GameDataFileAccessorID("game_data");
 			const std::string ResourceListFileName("resource_list.csv");
 			const std::string BuiltinGraphResourceTypeName("Graphic");
 			const std::string BuiltinSoundResourceTypeName("SoundEffect");

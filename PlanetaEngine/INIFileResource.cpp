@@ -3,7 +3,7 @@
 namespace planeta_engine {
 	namespace resources {
 
-		bool INIFileResource::_Create(const std::shared_ptr<file_system::File>& file)
+		bool INIFileResource::_Create(const std::shared_ptr<const file_system::File>& file)
 		{
 		//	using namespace std;
 		//	ifstream ifs(filename);

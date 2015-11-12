@@ -305,7 +305,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="EncrypterBase.cpp" />
     <ClCompile Include="EXOREncrypter.cpp" />
     <ClCompile Include="FileIStream.cpp" />
+    <ClCompile Include="FileLoaderBase.cpp" />
     <ClCompile Include="FileOStream.cpp" />
+    <ClCompile Include="FileSaverBase.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />

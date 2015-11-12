@@ -13,7 +13,7 @@ namespace planeta_engine {
 			std::unordered_map<std::string, std::unordered_map<std::string, std::string>>::const_iterator find(const std::string& s)const { return _data.find(s); }
 			const std::unordered_map<std::string, std::string>& GetSection(const std::string& s)const { return _data.at(s); }
 		private:
-			bool _Create(const std::shared_ptr<file_system::File>& file) override;
+			bool _Create(const std::shared_ptr<const file_system::File>& file) override;
 			void _Dispose()override { _data.clear(); }
 			std::unordered_map<std::string, std::unordered_map<std::string, std::string>> _data;
 		};

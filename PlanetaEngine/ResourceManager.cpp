@@ -3,6 +3,8 @@
 #include "FileLoadManager.h"
 #include "CSVResource.h"
 #include "SystemLog.h"
+#include "FileAccessor.h"
+#include "SystemVariables.h"
 
 namespace planeta_engine{
 	namespace core{
@@ -40,7 +42,7 @@ namespace planeta_engine{
 
 		double ResourceManager::GetPrepairProgress() const { return 1.0; }
 
-		std::shared_ptr<ResourceBase> ResourceManager::_CreateResource(const std::string& attribute,const std::shared_ptr<file_system::File>& file)
+		std::shared_ptr<ResourceBase> ResourceManager::_CreateResource(const std::string& attribute,const std::shared_ptr<const file_system::File>& file)
 		{
 			auto it = _resource_creator_map.find(attribute);
 			if (it == _resource_creator_map.end()) { return nullptr; }
@@ -75,7 +77,7 @@ namespace planeta_engine{
 				}
 				std::vector<std::string> ids;
 				for (auto it = tag_map_it->second.begin(); it != tag_map_it->second.end(); ++it) {
-					std::shared_ptr<File> f = FileLoadManager::instance().LoadFile(it->file_name);
+					std::shared_ptr<const File> f = file_accessor_->LoadFile(it->file_name);
 					if (f) {
 						std::shared_ptr<ResourceBase> new_res = _CreateResource(it->type, f);
 						if (new_res == nullptr) {
@@ -97,7 +99,7 @@ namespace planeta_engine{
 
 		bool ResourceManager::_LoadResourceList()
 		{
-			std::shared_ptr<file_system::File> file = file_system::FileLoadManager::instance().LoadFile(_resource_list_file_name);
+			std::shared_ptr<const file_system::File> file = file_accessor_->LoadFile(_resource_list_file_name);
 			if (file == nullptr) {
 				debug::SystemLog::instance().LogError(std::string("リソースリスト(") + _resource_list_file_name + ")の読み込みに失敗しました。", __FUNCTION__);
 				return false; 
@@ -146,8 +148,13 @@ namespace planeta_engine{
 
 		bool ResourceManager::Initialize()
 		{
+			file_accessor_ = file_system::FileLoadManager::instance().GetFileAccessor(system_variables::ResourceFileAccessorID);
+			if (!file_accessor_) {
+				debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルアクセサの取得に失敗しました。", __FUNCTION__);
+				return false;
+			}
 			if (_LoadResourceList() == false) {
-				debug::SystemLog::instance().LogError("初期化に失敗しました。", __FUNCTION__);
+				debug::SystemLog::instance().LogError("初期化に失敗しました。リソースリストの取得に失敗しました。", __FUNCTION__);
 				return false; 
 			}
 			debug::SystemLog::instance().LogMessage("初期化しました。", __FUNCTION__);

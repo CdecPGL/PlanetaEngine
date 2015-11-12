@@ -9,14 +9,17 @@
 #include "File.h"
 #include "FileLoadManager.h"
 #include "SystemLog.h"
+#include "SystemVariables.h"
+#include "FileLoadManager.h"
+#include "FileAccessor.h"
 
 namespace planeta_engine {
 	namespace resources {
-		bool FontDefinitionResource::_Create(const std::shared_ptr<file_system::File>& file)
+		bool FontDefinitionResource::_Create(const std::shared_ptr<const file_system::File>& file)
 		{
 			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
+			auto file_accessor = file_system::FileLoadManager::instance().GetFileAccessor(core::system_variables::ResourceFileAccessorID);
 			auto xml = core::MakeResource<XMLResource>();
-
 			if (xml->Create(file)) {
 				auto root = xml->GetRootElement();
 				auto fd_elem = root->FindFirstChild("font_definition");
@@ -29,14 +32,14 @@ namespace planeta_engine {
 					if (elem) {
 						file_name = elem->text();
 						//フォントファイルを読み込み
-						auto font_file = file_system::FileLoadManager::instance().LoadFile(elem->text());
+						auto font_file = file_accessor->LoadFile(elem->text());
 						if (font_file == nullptr) {
 							debug::SystemLog::instance().LogError(std::string("フォントファイルの読み込みに失敗しました。(" + elem->text() + ")"), __FUNCTION__);
 							return false;
 						}
 						//フォントを読み込み
 						DWORD num;
-						win_font_handle = AddFontMemResourceEx(font_file->GetTopPointer(), font_file->GetSize(), nullptr, &num);
+						win_font_handle = AddFontMemResourceEx(const_cast<unsigned char*>(font_file->GetTopPointer()), font_file->GetSize(), nullptr, &num);
 						if (win_font_handle == 0) {
 							debug::SystemLog::instance().LogError(std::string("フォントの読み込みに失敗しました。(") + elem->text() + ")", __FUNCTION__);
 							return false;

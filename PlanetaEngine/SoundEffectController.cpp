@@ -36,6 +36,7 @@ namespace planeta_engine {
 			double volume = usable_index <= 1 ? 1.0 : 1.0 / pow(2, (usable_index - 1));
 			ChangeNextPlayVolumeSoundMem((int)(255 * volume), duplicated_dx_handles_[usable_index]);
 			PlaySoundMem(duplicated_dx_handles_[usable_index], DX_PLAYTYPE_BACK);			
+			return true;
 		}
 
 		SoundEffectController::~SoundEffectController()

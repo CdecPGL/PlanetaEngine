@@ -258,9 +258,6 @@
     <ClInclude Include="TextPanel.h">
       <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
     </ClInclude>
-    <ClInclude Include="FileAccessor.h">
-      <Filter>PlanetaEngine\_UnderReview</Filter>
-    </ClInclude>
     <ClInclude Include="SceneTransitionEffect.h">
       <Filter>PlanetaEngine\_UnderReview</Filter>
     </ClInclude>
@@ -648,6 +645,9 @@
     <ClInclude Include="EXOREncrypter.h">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClInclude>
+    <ClInclude Include="FileAccessor.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -697,9 +697,6 @@
     </ClCompile>
     <ClCompile Include="PETime.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="FileAccessor.cpp">
-      <Filter>PlanetaEngine\_UnderReview</Filter>
     </ClCompile>
     <ClCompile Include="CSVResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -940,6 +937,15 @@
     </ClCompile>
     <ClCompile Include="EXOREncrypter.cpp">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="FileAccessor.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSaverBase.cpp">
+      <Filter>PlanetaEngine\FileSystem\Saver</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLoaderBase.cpp">
+      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

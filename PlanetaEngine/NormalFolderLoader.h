@@ -11,17 +11,15 @@ namespace planeta_engine{
 		public:
 			FileLoaderBase::FileLoaderBase;
 			~NormalFolderLoader()override;
-			bool LoadAllFileToCache()override;
-			bool DeleteCache()override;
-			bool UpdateFileList()override;
-			std::shared_ptr<File> LoadFile(const std::string&)override;
-			size_t GetCacheSize()const override;
 		private:
-			std::unordered_map<std::string, std::pair<std::string, std::shared_ptr<File>>> files_; //ファイルリスト(<ファイル名<ファイルパス,ファイルポインタ>>)
-			bool LoadFile(const std::shared_ptr<File>&, const std::string&);
-			static int LoadDataCore(const std::shared_ptr<File>&, const std::string&);
-			bool _Initialize()override;
-			void _Finalize()override;
+			bool LoadFileByPath(File&, const std::string&);
+			static int LoadDataCore(File&, const std::string&);
+			bool InitializeCore()override;
+			void FinalizeCore()override;
+			bool UpdateFileListCore(std::unordered_set<std::string>& file_list)override;
+			bool LoadFileCore(const std::string&,File& file)override;
+			bool LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files)override;
+			std::unordered_map<std::string, std::string> file_name_path_map_;
 		};
 	}
 }

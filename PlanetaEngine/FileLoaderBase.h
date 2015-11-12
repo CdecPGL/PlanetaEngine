@@ -2,40 +2,35 @@
 
 #include<memory>
 #include<string>
+#include <unordered_set>
 #include "Object.h"
 #include"File.h"
 
 namespace planeta_engine{
 	namespace file_system{
 		class EncrypterBase;
-		class FileLoaderBase : public core::Object{
+		class FileLoaderBase: public core::Object{
 		public:
 			explicit FileLoaderBase(const std::string& p) :path_(p),is_valid_(false){}
 			explicit FileLoaderBase(const std::string& p, const std::shared_ptr<const EncrypterBase>& encrypter) :path_(p), encrypter_(encrypter), is_valid_(false) {}
 			virtual ~FileLoaderBase() = default;
-			bool Initialize() {
-				if (is_valid_) { return false; }
-				if (_Initialize()) { is_valid_ = true; return true; }
-				else { return false; }
-			}
+			bool Initialize();
 			void Finalize() {
-				_Finalize();
+				if (!is_valid_) { return; }
+				FinalizeCore();
 				is_valid_ = false;
 			}
-			/*ファイルの読み込み。キャッシュがある場合はキャッシュを利用*/
-			virtual std::shared_ptr<File> LoadFile(const std::string& name) = 0;
-			/*キャッシュデータの消去*/
-			virtual bool DeleteCache() { return true; }
-			/*全ファイルデータをキャッシュとして読み込み(読み込み済みのものはスキップ)*/
-			virtual bool LoadAllFileToCache() { return true; }
-			/*ファイルリストを更新(キャッシュは全消去されます)*/
-			virtual bool UpdateFileList() = 0;
-			/*キャッシュされたデータのサイズ*/
-			virtual size_t GetCacheSize()const { return 0; }
+			/*ファイルの読み込み*/
+			std::shared_ptr<File> LoadFile(const std::string& name);
+			/*すべてのファイルを読み込み*/
+			std::vector<std::pair<std::string, std::shared_ptr<File>>> LoadAllFiles();
+			/*ファイルリストを更新*/
+			bool UpdateFileList() { file_list_.clear(); return UpdateFileListCore(file_list_); }
+			/*ファイルの存在を確認*/
+			bool CheckFileExist(const std::string& file_name)const;
 			bool is_valid()const { return is_valid_; }
+			const std::unordered_set<std::string>& file_list()const { return file_list_; }
 		protected:
-			virtual bool _Initialize() = 0;
-			virtual void _Finalize() = 0;
 			const std::string& path()const { return path_; }
 			void path(const std::string& p) { path_ = p; }
 			bool is_encrypter_valid()const { return encrypter_ != nullptr; }
@@ -44,6 +39,12 @@ namespace planeta_engine{
 			std::string path_;
 			bool is_valid_; //有効か
 			std::shared_ptr<const EncrypterBase> encrypter_;
+			std::unordered_set<std::string> file_list_;
+			virtual bool InitializeCore() = 0;
+			virtual void FinalizeCore() = 0;
+			virtual bool UpdateFileListCore(std::unordered_set<std::string>& file_list) = 0;
+			virtual bool LoadFileCore(const std::string& name,File& file) = 0;
+			virtual bool LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files);
 		};
 	}
 }

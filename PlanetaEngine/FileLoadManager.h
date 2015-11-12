@@ -2,29 +2,37 @@
 
 #include<string>
 #include<vector>
+#include <unordered_map>
 #include"FileLoaderBase.h"
 #include "PointerSingletonTemplate.h"
 
 namespace planeta_engine{
 	namespace file_system{
-		class FileLoadManager : public utility::PointerSingletonTemplate<FileLoadManager>
+		class FileAccessor;
+		class FileLoaderBase;
+		class FileSaverBase;
+		class FileLoadManager final: public utility::PointerSingletonTemplate<FileLoadManager>
 		{
 			friend utility::PointerSingletonTemplate<FileLoadManager>;
 		public:
 			bool Initialize()override;
 			bool Finalize()override;
-			/*ローダーをプッシュ。初期化前に呼び出す必要がある。末尾のローダーから読み込みが行われる*/
-			void PushLoader(const std::shared_ptr<FileLoaderBase>&);
-			std::shared_ptr<File> LoadFile(const std::string&);
-			int LoadAllFileToCache();
-			int DeleteCache();
-			int UpdateFileList();
-			unsigned int GetCacheSize()const;
+			std::shared_ptr<FileAccessor> CreateFileAccessor(const std::string& id, const std::shared_ptr<FileSaverBase>& saver);
+			std::shared_ptr<FileAccessor> CreateFileAccessor(const std::string& id, const std::vector<std::shared_ptr<FileLoaderBase>>& loaders);
+			std::shared_ptr<FileAccessor> CreateFileAccessor(const std::string& id, const std::shared_ptr<FileSaverBase>& saver, const std::vector<std::shared_ptr<FileLoaderBase>>& loaders);
+			std::shared_ptr<FileAccessor> GetFileAccessor(const std::string& id)const;
+			bool DeleteCache();
+			size_t GetCacheSize()const;
 		private:
 			FileLoadManager();
 			FileLoadManager(const FileLoadManager&) = delete;
+			FileLoadManager(FileLoadManager&&) = delete;
+			FileLoadManager& operator=(const FileLoadManager&) = delete;
+			FileLoadManager& operator=(FileLoadManager&&) = delete;
 			~FileLoadManager();
-			std::vector<std::shared_ptr<FileLoaderBase>> _loaders;
+			std::unordered_map<std::string, std::shared_ptr<FileAccessor>> accessors_;
+			std::shared_ptr<FileAccessor> CreateFileAccessorCore(const std::string& id);
+			bool is_initialized_ = false;
 		};
 	}
 }

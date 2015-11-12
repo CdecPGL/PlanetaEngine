@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <unordered_map>
 #include <memory>
 #include "Object.h"
 
@@ -6,20 +8,36 @@
 namespace planeta_engine {
 	namespace file_system {
 		class File;
-		class FileAccessor : public core::Object {
+		class FileSaverBase;
+		class FileLoaderBase;
+		class FileAccessor final: public core::Object {
 		public:
 			FileAccessor() = default;
-			virtual ~FileAccessor() = 0 {};
-			virtual size_t GetFileize()const = 0;
-			virtual bool Read(size_t address, char* ptr, size_t size) = 0;
-			template<typename T>
-			bool Read(size_t address,T* ptr) { 
-				return Read(address, reinterpret_cast<char*>(ptr), sizeof(T));
-			}
-			std::shared_ptr<File> GetAllData();
-
+			~FileAccessor() = default;
+			enum Mode { ReadOnly, WriteOnly, ReadWrite, Invalid };
+			Mode mode()const { return mode_; }
+			bool Initialize();
+			void Finalize();
+			/*ã§í ä÷êî*/
+			void DeleteCache();
+			size_t GetCacheSize()const;
+			/*Readä÷êî*/
+			void PushLoader(const std::shared_ptr<FileLoaderBase>& loader);
+			std::shared_ptr<const File> LoadFile(const std::string& file_name)const;
+			bool LoadAllFilesToCache();
+			/*Writeä÷êî*/
+			void SetSaver(const std::shared_ptr<FileSaverBase>& saver);
+			bool SaveFile(const std::string& file_name,const File& file);
+			bool SaveFile(const std::string& file_name, File&& file);
+			bool SaveAllFilesFromCache();
 		private:
-			
+			std::vector<std::shared_ptr<FileLoaderBase>> loaders_;
+			std::shared_ptr<FileSaverBase> saver_;
+			mutable std::unordered_map<std::string, std::shared_ptr<File>> file_caches_;
+			Mode mode_ = Mode::Invalid;
+			std::shared_ptr<File> LoadProc(const std::string& file_name)const;
+			bool SaveProc(const std::string& file_name,const File& file);
+			bool is_initialized_ = false;
 		};
 	}
 }

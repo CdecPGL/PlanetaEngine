@@ -8,9 +8,9 @@ namespace planeta_engine {
 		public:
 			FileSaverBase::FileSaverBase;
 		private:
-			bool SaveFile(const std::string& name, const std::shared_ptr<File>& file) override;
-			bool _Initialize() override;
-			void _Finalize() override;
+			bool SaveFile(const std::string& name, const File& file) override;
+			bool InitializeCore() override;
+			void FinalizeCore() override;
 		};
 	}
 }

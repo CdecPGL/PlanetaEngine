@@ -8,7 +8,7 @@
 
 namespace planeta_engine {
 	namespace resources {
-		bool XMLResource::_Create(const std::shared_ptr<file_system::File>& file)
+		bool XMLResource::_Create(const std::shared_ptr<const file_system::File>& file)
 		{
 			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
 			std::function<void(const std::shared_ptr<XMLElement>&, const tinyxml2::XMLNode&)> element_setter = [&element_setter](const std::shared_ptr<XMLElement>& target,const tinyxml2::XMLNode& source){

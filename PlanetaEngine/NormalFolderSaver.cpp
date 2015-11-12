@@ -7,7 +7,7 @@
 
 namespace planeta_engine {
 	namespace file_system {
-		bool NormalFileSaver::SaveFile(const std::string& name, const std::shared_ptr<File>& file)
+		bool NormalFileSaver::SaveFile(const std::string& name, const File& file)
 		{
 			std::ofstream ofs(path() + "\\" + name, std::ios::binary | std::ios::trunc);
 			if (!ofs) { 
@@ -16,19 +16,19 @@ namespace planeta_engine {
 			}
 			if (is_encrypter_valid()) { //暗号化が有効だったら
 				File encd_file;
-				if (!encrypter()->Encrypt(*file, encd_file)) { //暗号化して
+				if (!encrypter()->Encrypt(file, encd_file)) { //暗号化して
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "暗号化に失敗しました。");
 					return false;
 				}
 				ofs.write(reinterpret_cast<char*>(encd_file.GetTopPointer()), encd_file.GetSize()); //保存
 			}
 			else {
-				ofs.write(reinterpret_cast<char*>(file->GetTopPointer()), file->GetSize());
+				ofs.write(reinterpret_cast<const char*>(file.GetTopPointer()), file.GetSize());
 			}
 			return true;
 		}
 
-		bool NormalFileSaver::_Initialize()
+		bool NormalFileSaver::InitializeCore()
 		{
 			//パスの存在確認
 			boost::filesystem::path rel_path(path());
@@ -50,7 +50,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void NormalFileSaver::_Finalize()
+		void NormalFileSaver::FinalizeCore()
 		{
 
 		}

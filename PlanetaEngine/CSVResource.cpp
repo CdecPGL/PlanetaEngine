@@ -12,7 +12,7 @@
 namespace planeta_engine {
 	namespace resources {
 
-		bool CSVResource::_Create(const std::shared_ptr<file_system::File>& file) {
+		bool CSVResource::_Create(const std::shared_ptr<const file_system::File>& file) {
 			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
 			size_t size = file->GetSize();
 			const char* c_ptr = (const char*)file->GetTopPointer();

@@ -15,25 +15,21 @@ namespace planeta_engine {
 			virtual ~FileSaverBase() = default;
 			bool Initialize() {
 				if (is_valid_) { return false; }
-				if (_Initialize()) { is_valid_ = true; return true; }
+				if (InitializeCore()) { is_valid_ = true; return true; }
 				else { return false; }
 			}
 			void Finalize() {
-				_Finalize();
+				FinalizeCore();
 				is_valid_ = false;
 			}
 			/*ファイルの保存(保存名、ファイル)*/
-			virtual bool SaveFile(const std::string& name,const std::shared_ptr<File>& file) = 0;
-			/*キャッシュデータの消去*/
-			virtual bool DeleteCache() { return true; };
-			/*全キャッシュデータを保存*/
-			virtual bool SaveAllCache() { return true; };
-			/*キャッシュされたデータのサイズ*/
-			virtual size_t GetCacheSize()const { return 0; };
+			virtual bool SaveFile(const std::string& name,const File& file) = 0;
+			/*複数ファイルの保存*/
+			virtual bool SaveFiles(const std::vector<std::pair<std::string, const File&>>& files);
 			bool is_valid()const { return is_valid_; }
 		protected:
-			virtual bool _Initialize() = 0;
-			virtual void _Finalize() = 0;
+			virtual bool InitializeCore() = 0;
+			virtual void FinalizeCore() = 0;
 			const std::string& path()const { return path_; }
 			void path(const std::string& p) { path_ = p; }
 			bool auto_create()const { return auto_create_; }
