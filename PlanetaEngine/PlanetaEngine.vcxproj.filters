@@ -121,15 +121,6 @@
     <Filter Include="PlanetaEngine\Core\SoundSystem">
       <UniqueIdentifier>{b9cc7bbc-7fcb-465c-be44-159dda5896f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\GameData">
-      <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GameData\Exceptions">
-      <UniqueIdentifier>{1caea0f8-d2bf-461d-972b-981f936cde75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GameData\Serialize">
-      <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\FileSystem\Stream">
       <UniqueIdentifier>{dec49675-f1ec-4fb8-bf4d-24eb8d3dbcf1}</UniqueIdentifier>
     </Filter>
@@ -138,6 +129,15 @@
     </Filter>
     <Filter Include="PlanetaEngine\FileSystem\Manipulator">
       <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\GameData">
+      <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\GameData\Exceptions">
+      <UniqueIdentifier>{1caea0f8-d2bf-461d-972b-981f936cde75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\GameData\Serialize">
+      <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

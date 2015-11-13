@@ -3,11 +3,18 @@
 #include <unordered_map>
 #include <memory>
 #include "GameDataElement.h"
+#include "PointerSingletonTemplate.h"
 
 namespace planeta_engine {
+	namespace file_system {
+		class FileAccessor;
+	}
 	namespace core {
-		class GameDataManager final{
+		class GameDataManager final : public utility::PointerSingletonTemplate<GameDataManager>{
+			friend class utility::PointerSingletonTemplate<GameDataManager>;
 		public:
+			bool Initialize()override;
+			bool Finalize()override;
 			/**
 			* @brief データを取得する
 			* @param データID
@@ -32,8 +39,16 @@ namespace planeta_engine {
 			* @return 読み込みに成功したか否か
 			*/
 			bool LoadGameData(const std::string& file_name);
+
+
+
+			static void ResistComplexType(const std::string& type_id,std::unordered_map<std::string,std::string>&& element_types);
 		private:
+			GameDataManager() = default;
+			~GameDataManager() = default;
+			std::shared_ptr<file_system::FileAccessor> file_accessor_;
 			std::unordered_map<std::string, std::shared_ptr<GameDataElement>> datas_;
+			static bool CheckComplexTypeElementTypeError();
 		};
 	}
 }

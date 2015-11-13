@@ -1,7 +1,7 @@
 #include <vector>
 #include "boost/assign.hpp"
 #include "GameDataElementType.h"
-
+#include "SystemLog.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -29,7 +29,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void GameDataElementType::ResistComplexType(const std::string& type_id, GameDataComplexType&& complex_type)noexcept
+		void GameDataElementType::ResistComplexType(const std::string& type_id, std::unique_ptr<GameDataComplexType>&& complex_type)noexcept
 		{
 			complex_type_map_.emplace(type_id, std::move(complex_type));
 		}
@@ -41,7 +41,7 @@ namespace planeta_engine {
 				throw GameDataError(std::string("ë∂ç›ÇµÇ»Ç¢GameDataï°çáå^") + type_id + "Ç™óvãÅÇ≥ÇÍÇ‹ÇµÇΩÅB");
 			}
 			else {
-				return it->second;
+				return *it->second;
 			}
 		}
 
@@ -50,7 +50,19 @@ namespace planeta_engine {
 			return type_tid_map_.right.find(type_id) != type_tid_map_.right.end() || complex_type_map_.find(type_id) != complex_type_map_.end();
 		}
 
+		bool GameDataElementType::ComplexTypeElementTypeCheck() noexcept
+		{
+			for (auto& ct : complex_type_map_) {
+				if (!ct.second->TypeCheck()) {
+					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "GameDataï°çáå^", ct.first, "ÇÃóvëfå^É`ÉFÉbÉNÇ…é∏îsÇµÇ‹ÇµÇΩÅB");
+					return false;
+				}
+			}
+			return true;
+		}
+
 		namespace {
+
 			//éQè∆ http://stackoverflow.com/questions/20288871/how-to-construct-boost-bimap-from-static-list
 			template <typename T, typename U>
 			class create_bimap_unordered_set
@@ -87,5 +99,7 @@ namespace planeta_engine {
 			(GameDataElementType::Type::array_type, "array")
 			(GameDataElementType::Type::complex_type, "complex")
 			(GameDataElementType::Type::nil, "nil");
+		std::unordered_map<std::string, std::unique_ptr<GameDataComplexType>> GameDataElementType::complex_type_map_;
+
 	}
 }

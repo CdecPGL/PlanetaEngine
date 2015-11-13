@@ -9,6 +9,7 @@
 #include "NullWeakPointerException.h"
 #include "KeyInputManager.h"
 #include "Game.h"
+#include "GameDataManager.h"
 
 //#include "GlobalNewDeleteDefinition.h"
 
