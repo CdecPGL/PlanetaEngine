@@ -642,6 +642,18 @@
     <ClInclude Include="FileSystemManager.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
+    <ClInclude Include="ScreenEffecter.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphDrawData.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="DXGraphDrawData.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -934,6 +946,9 @@
     </ClCompile>
     <ClCompile Include="FileSystemManager.cpp">
       <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphDrawData.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

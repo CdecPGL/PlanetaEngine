@@ -137,6 +137,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
+    <ClInclude Include="DXGraphDrawData.h" />
     <ClInclude Include="EncrypterBase.h" />
     <ClInclude Include="EXOREncrypter.h" />
     <ClInclude Include="FileAccessMode.h" />
@@ -191,6 +192,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessWithRefrection.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
+    <ClInclude Include="GraphDrawData.h" />
     <ClInclude Include="GraphPanel.h" />
     <ClInclude Include="GraphResource.h" />
     <ClInclude Include="GroundComponent.h" />
@@ -249,6 +251,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneSetUpper.h" />
     <ClInclude Include="SceneSystemSetUpper.h" />
     <ClInclude Include="SceneTransitionEffect.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="ScreenEffecter.h" />
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
     <ClInclude Include="SoundEffectController.h" />
@@ -317,6 +321,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataSerializeUtility.cpp" />
     <ClCompile Include="GameObjectResisterConnection.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
+    <ClCompile Include="GraphDrawData.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />

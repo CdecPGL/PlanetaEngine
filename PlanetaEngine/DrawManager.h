@@ -14,6 +14,8 @@ namespace planeta_engine {
 		class FontDefinitionResource;
 	}
 	namespace core {
+		class ScreenEffecter;
+		class GraphDrawData;
 		class DrawManager final : public utility::PointerSingletonTemplate<DrawManager>{
 			friend utility::PointerSingletonTemplate<DrawManager>;
 		public:
@@ -23,8 +25,8 @@ namespace planeta_engine {
 			//システム関数
 			bool Update();
 			//描画関数
-			/*画像の描画(頂点情報、三角形ポリゴンインデックス、画像リソース)*/
-			void DrawGraph(const std::vector<utility::Vertex2D>& vertexes, const std::vector<std::array<int, 3>>& indexes, const std::shared_ptr<resources::GraphResource>& graph_resource);
+			/*画像の描画(画像描画データ)*/
+			void DrawGraph(const GraphDrawData& graph_draw_data);
 			/*ワイヤーの描画(点座標、幅(現状では無効)、色)*/
 			void DrawWire(const std::vector<Vector2D<double>>& positions, double width, const Color& color);
 			/*多角形の描画(点座標、三角形ポリゴンインデックス、色)*/
@@ -46,6 +48,9 @@ namespace planeta_engine {
 			void DrawUIPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color);
 			/*文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
 			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const core::Color& color, const core::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
+
+			//現在のスクリーンにエフェクトを掛ける
+			bool ApplyEffectToScreen(ScreenEffecter& screen_effecter);
 		private:
 			DrawManager() = default;
 			~DrawManager() = default;

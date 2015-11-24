@@ -10,12 +10,16 @@ namespace planeta_engine {
 	namespace resources {
 		class GraphResource;
 	}
+	namespace core {
+		class GraphDrawData;
+	}
 	namespace components {
 		/*惑星描画コンポーネント。DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる*/
 		class PlanetComponent;
 		class DrawPlanetComponent : public DrawComponent {
 		public:
 			DrawPlanetComponent();
+			~DrawPlanetComponent();
 			virtual void Draw() override;
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/
@@ -28,15 +32,11 @@ namespace planeta_engine {
 			unsigned int _horizontal_separation;
 			/*垂直分割数*/
 			unsigned int _vertical_separation;
-			/*画像リソース*/
-			std::shared_ptr<resources::GraphResource> _graph_resource;
+			/*画像描画データ*/
+			std::unique_ptr<core::GraphDrawData> graph_draw_data_;
 			virtual bool Initialize_() override;
 			virtual void Finalize_() override;
 			utility::WeakPointer<components::PlanetComponent> _planet_component;
-			/*頂点*/
-			std::vector<utility::Vertex2D> _vertexes;
-			/*ポリゴンインデックス*/
-			std::vector<std::array<int, 3>> _indexes;
 			/*ポリゴンセット*/
 			void _SetPolygon();
 			/*ポリゴン情報更新*/

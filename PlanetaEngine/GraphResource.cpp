@@ -12,16 +12,18 @@ namespace planeta_engine {
 			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
 			_handle = CreateGraphFromMem(file->GetTopPointer(), file->GetSize(), nullptr, 0, 1, 0);
 			if (_handle >= 0) {
-				GetGraphSize(_handle, &_image_size.x, &_image_size.y);
+				GetGraphSize(_handle, &image_size_.x, &image_size_.y);
 				if (_AdjustImageSize() == false) {
 					debug::SystemLog::instance().LogError("画像サイズの調整に失敗しました。", "GraphResource::_Create");
 					return false;
 				}
+				image_area_.Set((double)image_size_.x / internal_size_.x, (double)image_size_.y / internal_size_.y);
 				return true;
 			}
 			else { 
-				_image_size.Set(0, 0);
-				_internal_size.Set(0, 0);
+				image_size_.Set(0, 0);
+				internal_size_.Set(0, 0);
+				image_area_.Set(0, 0);
 				debug::SystemLog::instance().LogError("画像リソースの読み込みに失敗しました。", "GraphResource::_Create");
 				return false;
 			}
@@ -38,36 +40,36 @@ namespace planeta_engine {
 		bool GraphResource::_AdjustImageSize()
 		{
 			bool adjust_flag = false; //サイズ調整を行うか否かのフラグ
-			_internal_size = _image_size;
-			if (_image_size.x < 8) {
-				_internal_size.x = 8;
+			internal_size_ = image_size_;
+			if (image_size_.x < 8) {
+				internal_size_.x = 8;
 				adjust_flag = true;
 			}
-			else if (math::is2Pow(_image_size.x) == false) {
-				_internal_size.x = math::getMin2Pow(_image_size.x);
+			else if (math::is2Pow(image_size_.x) == false) {
+				internal_size_.x = math::getMin2Pow(image_size_.x);
 				adjust_flag = true;
 			}
-			if (_image_size.y < 8) {
-				_internal_size.y = 8;
+			if (image_size_.y < 8) {
+				internal_size_.y = 8;
 				adjust_flag = true;
 			}
-			else if (math::is2Pow(_image_size.y) == false) {
-				_internal_size.y = math::getMin2Pow(_image_size.y);
+			else if (math::is2Pow(image_size_.y) == false) {
+				internal_size_.y = math::getMin2Pow(image_size_.y);
 				adjust_flag = true;
 			}
-			if (_internal_size.x >= 2048 || _internal_size.y >= 2048) {
-				debug::SystemLog::instance().LogWarning(std::string("テクスチャサイズが2048以上です。デバイスによっては表示できない可能性があります。") + _internal_size.ToString(), "GraphResource::_AdjustImageSize");
+			if (internal_size_.x >= 2048 || internal_size_.y >= 2048) {
+				debug::SystemLog::instance().LogWarning(std::string("テクスチャサイズが2048以上です。デバイスによっては表示できない可能性があります。") + internal_size_.ToString(), "GraphResource::_AdjustImageSize");
 			}
 			//サイズが2の累乗でなかったら画像作成
 			if (adjust_flag) {
-				int buf_gh = MakeScreen(_internal_size.x, _internal_size.y, true);
+				int buf_gh = MakeScreen(internal_size_.x, internal_size_.y, true);
 				if (buf_gh < 0) { 
 					debug::SystemLog::instance().LogError("バッファスクリーンの作成に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
 					return false; 
 				}
 				int cur_draw_scr = GetDrawScreen();
 				bool error_flag = false;
-				int texture_ghandle = MakeGraph(_internal_size.x, _internal_size.y);
+				int texture_ghandle = MakeGraph(internal_size_.x, internal_size_.y);
 				if (texture_ghandle < 0) {
 					debug::SystemLog::instance().LogError("新しい画像データの作成に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
 					error_flag = true;
@@ -80,7 +82,7 @@ namespace planeta_engine {
 					debug::SystemLog::instance().LogError("画像データの描画に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
 					error_flag = true;
 				}
-				if (GetDrawScreenGraph(0, 0, _internal_size.x, _internal_size.y, texture_ghandle) != 0) {
+				if (GetDrawScreenGraph(0, 0, internal_size_.x, internal_size_.y, texture_ghandle) != 0) {
 					debug::SystemLog::instance().LogError("描画データの取得に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
 					error_flag = true;
 				}
