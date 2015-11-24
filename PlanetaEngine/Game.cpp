@@ -1,12 +1,15 @@
 #include "Game.h"
 #include "SoundManager.h"
+#include "CollisionGroupMatrix.h"
 
 namespace planeta_engine {
 	namespace core {
-		Game::Game():_scene_manager(std::make_unique<core::SceneManager>(*this)), _key_input_manager(std::make_unique<core::KeyInputManager>())
+		Game::Game():_scene_manager(std::make_unique<core::SceneManager>(*this)), _key_input_manager(std::make_unique<core::KeyInputManager>()),collision_group_matrix_(std::make_shared<core::CollisionGroupMatrix>())
 		{
 
 		}
+
+		Game::~Game() = default;
 
 		bool Game::Initialize()
 		{

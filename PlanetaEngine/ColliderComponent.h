@@ -37,10 +37,10 @@ namespace planeta_engine {
 			const bool collide_with_ground_flag()const { return collide_with_ground_flag_; }
 			/*地形衝突フラグを設定*/
 			void collide_with_ground_flag(bool flag) { collide_with_ground_flag_ = flag; }
-			/*衝突グループを取得*/
-			const std::string& collision_group()const { return collision_group_; }
+			/*衝突グループIDを取得*/
+			const int collision_group_id()const { return collision_group_id_; }
 			/*衝突グループを設定*/
-			void collision_group(const std::string& cg) { collision_group_ = cg; }
+			void collision_group(const std::string& cg);
 
 			/*イベント*/
 			/*物体と衝突した*/
@@ -66,8 +66,10 @@ namespace planeta_engine {
 			double rotation_rad_ = 0.0;
 			/*地形衝突フラグ*/
 			bool collide_with_ground_flag_ = false;
-			/*衝突グループ*/
-			std::string collision_group_;
+			/*衝突グループ名*/
+			std::string collision_group_name_;
+			/*衝突グループID*/
+			int collision_group_id_ = -1;
 		};
 	}
 }

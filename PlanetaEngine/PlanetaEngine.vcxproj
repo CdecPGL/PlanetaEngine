@@ -131,6 +131,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionDetectFunctions.h" />
     <ClInclude Include="CollisionDetectProcess.h" />
     <ClInclude Include="CollisionEventArgument.h" />
+    <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
@@ -299,6 +300,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
+    <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="CoroutineProcess.cpp" />

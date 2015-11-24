@@ -22,7 +22,7 @@ namespace planeta_engine {
 			using namespace system_variables;
 			//システムプロセス追加
 			auto col_det_proc = scene.game_process_manager().AddSystemProcess<system_processes::CollisionDetectProcess>(process::CollisionDetectProcessPriority, process::CollisionDetectProcessName);
-			col_det_proc->SetCollisionMap(scene.game_accessor().GetCollisionMap());
+			col_det_proc->SetCollisionGroupMatrix(scene.game_accessor().GetCollisionGroupMatrix());
 			scene.game_process_manager().AddSystemProcess<system_processes::GameObjectDrawProcess>(process::GameObjectDrawProcessPriority, process::GameObjectDrawProcessName);
 			scene.game_process_manager().AddSystemProcess<system_processes::GameObjectUpdateProcess>(process::GameObjectUpdatetProcessPriority, process::GameObjectUpdatetProcessName);
 			auto uidp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIDrawProcessPriority, process::UIDrawProcessName);

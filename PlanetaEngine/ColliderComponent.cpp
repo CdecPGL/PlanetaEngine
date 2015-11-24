@@ -5,6 +5,7 @@
 #include "SceneAccessorForGameObject.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
+#include "CollisionGroupMatrix.h"
 
 namespace planeta_engine {
 	namespace components {
@@ -12,6 +13,10 @@ namespace planeta_engine {
 		{
 			_collision_detect_process = scene().game_process_manager().GetSystemProcess<system_processes::CollisionDetectProcess>();
 			if (_collision_detect_process) {
+				if (collision_group_name_.length() > 0) { //何らかのグループ名が設定されていたらIDの取得を試みる
+					collision_group_id_ = _collision_detect_process->collision_group_matrix().GetCollisionGroupID(collision_group_name_);
+					if (collision_group_id_ < 0) { debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "衝突グループ", collision_group_name_, "のIDを取得できませんでした。"); }
+				}
 				return true;
 			}
 			else {
@@ -75,6 +80,14 @@ namespace planeta_engine {
 		const double ColliderComponent::GetCollisionRotationRad() const
 		{
 			return game_object().transform().global_rotation_rad() + rotation_rad_;
+		}
+
+		void ColliderComponent::collision_group(const std::string& cg) {
+			collision_group_name_ = cg;
+			if (_collision_detect_process) { //衝突判定プロセスが取得されていたら衝突グループIDの取得を試みる
+				collision_group_id_ = _collision_detect_process->collision_group_matrix().GetCollisionGroupID(collision_group_name_);
+				if (collision_group_id_ < 0) { debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "衝突グループ", collision_group_name_, "のIDを取得できませんでした。衝突グループが設定されていないか、存在しない衝突グループが設定されています。"); }
+			}
 		}
 
 	}

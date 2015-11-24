@@ -139,6 +139,9 @@
     <Filter Include="PlanetaEngine\Core\GameData\Serialize">
       <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\Others">
+      <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -654,6 +657,9 @@
     <ClInclude Include="DXGraphDrawData.h">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionGroupMatrix.h">
+      <Filter>PlanetaEngine\Core\Others</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -949,6 +955,9 @@
     </ClCompile>
     <ClCompile Include="GraphDrawData.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionGroupMatrix.cpp">
+      <Filter>PlanetaEngine\Core\Others</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

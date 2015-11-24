@@ -7,6 +7,7 @@
 #include "GroundComponent.h"
 #include "CollisionEventArgument.h"
 #include "CollisionWithGroundEventArgument.h"
+#include "CollisionGroupMatrix.h"
 
 namespace planeta_engine{
 	namespace system_processes {
@@ -33,7 +34,7 @@ namespace planeta_engine{
 				}
 				/*CircleとCircle*/
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != circle_collider_list.end(); ++ccc_it2) {
-					if (collision_map_.Get((*ccc_it)->collision_group(),(*ccc_it2)->collision_group(),true) && game::collision_detect_functions::CollisionDetectCircleAndCirecle(**ccc_it, **ccc_it2)) {
+					if (collision_group_matrix_->IsCollision((*ccc_it)->collision_group_id(),(*ccc_it2)->collision_group_id()) && game::collision_detect_functions::CollisionDetectCircleAndCirecle(**ccc_it, **ccc_it2)) {
 						//衝突していたら衝突イベントを発生させる
 						event_arguments::CollisionEventArgument cea0((*ccc_it2)->game_object());
 						(*ccc_it)->collided(cea0);
@@ -43,7 +44,7 @@ namespace planeta_engine{
 				}
 				/*CircleとStraightLine*/
 				for (auto slcc_it = straightline_collider_list.begin(); slcc_it != straightline_collider_list.end(); ++slcc_it) {
-					if (collision_map_.Get((*ccc_it)->collision_group(), (*slcc_it)->collision_group(), true) && game::collision_detect_functions::CollisionDetectCircleAndStraightLine(**ccc_it, **slcc_it)) {
+					if (collision_group_matrix_->IsCollision((*ccc_it)->collision_group_id(), (*slcc_it)->collision_group_id()) && game::collision_detect_functions::CollisionDetectCircleAndStraightLine(**ccc_it, **slcc_it)) {
 						//衝突していたら衝突イベントを発生させる
 						event_arguments::CollisionEventArgument cea0((*slcc_it)->game_object());
 						(*ccc_it)->collided(cea0);

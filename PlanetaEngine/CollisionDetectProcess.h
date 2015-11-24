@@ -3,12 +3,14 @@
 #include <memory>
 #include <unordered_map>
 #include <list>
-#include "TwoKeyMap.h"
 
 namespace planeta_engine {
 	namespace components {
 		class CircleColliderComponent;
 		class StraightLineColliderComponent;
+	}
+	namespace core {
+		class CollisionGroupMatrix;
 	}
 	namespace system_processes {
 		class CollisionDetectProcess : public game::GameProcess
@@ -16,11 +18,12 @@ namespace planeta_engine {
 		public:
 			GameProcess::GameProcess;
 			~CollisionDetectProcess();
-			void SetCollisionMap(const utility::TwoKeyHashMap<std::string, bool>& col_map) { collision_map_ = col_map; }
+			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { collision_group_matrix_ = col_matrix; }
 			void Resist(const std::shared_ptr<components::CircleColliderComponent>& col_com) { _circle_collision_component_holder.Resist(col_com); }
 			void Resist(const std::shared_ptr<components::StraightLineColliderComponent>& col_com) { _straightline_collision_component_holder.Resist(col_com); }
 			bool Remove(const std::shared_ptr<components::CircleColliderComponent>& col_com) { return _circle_collision_component_holder.Remove(col_com); }
 			bool Remove(const std::shared_ptr<components::StraightLineColliderComponent>& col_com) { return _straightline_collision_component_holder.Remove(col_com); }
+			const core::CollisionGroupMatrix& collision_group_matrix()const { assert(collision_group_matrix_ != nullptr); return *collision_group_matrix_; }
 		private:
 			void Update()override final;
 			void RemoveAll() {
@@ -62,7 +65,7 @@ namespace planeta_engine {
 			};
 			CollisionComponentHolder_<components::CircleColliderComponent> _circle_collision_component_holder;
 			CollisionComponentHolder_<components::StraightLineColliderComponent> _straightline_collision_component_holder;
-			utility::TwoKeyHashMap<std::string, bool> collision_map_;
+			std::shared_ptr<const core::CollisionGroupMatrix> collision_group_matrix_;
 
 		};
 	}
