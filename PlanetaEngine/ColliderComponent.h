@@ -4,6 +4,7 @@
 #include "Vector2D.h"
 #include <functional>
 #include "WeakPointerDelegate.h"
+#include "IColliderWithCollider.h"
 
 namespace planeta_engine {
 	namespace event_arguments {
@@ -14,9 +15,12 @@ namespace planeta_engine {
 		class CollisionDetectProcess;
 	}
 	namespace components {
-		class ColliderComponent : public game::Component {
+		class ColliderComponent : public game::Component , public core::IColliderWithCollider{
 		public:
 			virtual ~ColliderComponent() = default;
+			/*衝突判定を行う*/
+			virtual bool DetectCollision(core::IColliderWithCollider& collider) = 0;
+
 			/*中心位置取得*/
 			const Vector2D<double> GetCollisionCenterPosition()const;
 			/*拡大度取得(トランスフォームの拡大度xyで小さい方の要素が適用される)*/
@@ -47,6 +51,7 @@ namespace planeta_engine {
 			utility::WeakPointerDelegate<event_arguments::CollisionEventArgument> collided;
 			/*地形と衝突した*/
 			utility::WeakPointerDelegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
+
 		protected:
 			virtual bool Initialize_() override;
 			virtual void Finalize_()noexcept override;
@@ -57,8 +62,6 @@ namespace planeta_engine {
 			utility::WeakPointer<system_processes::CollisionDetectProcess> _collision_detect_process;
 			void _ResistToCollisionDetectProcess();
 			void _RemoveFromCollisionDetectProcess();
-			virtual void _ResistToCollisionDetectProcessByType(system_processes::CollisionDetectProcess& col_det_proc) = 0;
-			virtual void _RemoveFromCollisionDetectProcessByType(system_processes::CollisionDetectProcess& col_det_proc) = 0;
 
 			/*位置*/
 			Vector2D<double> position_;

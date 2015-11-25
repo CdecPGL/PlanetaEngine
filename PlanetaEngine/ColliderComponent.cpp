@@ -20,7 +20,7 @@ namespace planeta_engine {
 				return true;
 			}
 			else {
-				debug::SystemLog::instance().LogError("衝突判定プロセスを取得できませんでした。", "ColliderComponent::Initialize_");
+				debug::SystemLog::instance().LogError("衝突判定プロセスを取得できませんでした。", __FUNCTION__);
 				return false;
 			}
 		}
@@ -40,20 +40,20 @@ namespace planeta_engine {
 		void ColliderComponent::_ResistToCollisionDetectProcess()
 		{
 			if (_collision_detect_process) {
-				_ResistToCollisionDetectProcessByType(*_collision_detect_process);
+				_collision_detect_process->Resist(std::static_pointer_cast<ColliderComponent>(this_shared()));
 			}
 			else {
-				debug::SystemLog::instance().LogWarning("衝突判定プロセスが取得できていません。", "ColliderComponent::_ResistToCollisionDetectProcess");
+				debug::SystemLog::instance().LogWarning("衝突判定プロセスが取得できていません。", __FUNCTION__);
 			}
 		}
 
 		void ColliderComponent::_RemoveFromCollisionDetectProcess()
 		{
 			if (_collision_detect_process) {
-				_RemoveFromCollisionDetectProcessByType(*_collision_detect_process);
+				_collision_detect_process->Remove(std::static_pointer_cast<ColliderComponent>(this_shared()));
 			}
 			else {
-				debug::SystemLog::instance().LogWarning("衝突判定プロセスが取得できていません。", "ColliderComponent::_RemoveFromCollisionDetectProcess");
+				debug::SystemLog::instance().LogWarning("衝突判定プロセスが取得できていません。", __FUNCTION__);
 			}
 		}
 
@@ -86,7 +86,7 @@ namespace planeta_engine {
 			collision_group_name_ = cg;
 			if (_collision_detect_process) { //衝突判定プロセスが取得されていたら衝突グループIDの取得を試みる
 				collision_group_id_ = _collision_detect_process->collision_group_matrix().GetCollisionGroupID(collision_group_name_);
-				if (collision_group_id_ < 0) { debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "衝突グループ", collision_group_name_, "のIDを取得できませんでした。衝突グループが設定されていないか、存在しない衝突グループが設定されています。"); }
+				if (collision_group_id_ < 0) { debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "衝突グループ", collision_group_name_, "のIDを取得できませんでした。"); }
 			}
 		}
 

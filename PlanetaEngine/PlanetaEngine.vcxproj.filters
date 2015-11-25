@@ -660,6 +660,9 @@
     <ClInclude Include="CollisionGroupMatrix.h">
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClInclude>
+    <ClInclude Include="IColliderWithCollider.h">
+      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

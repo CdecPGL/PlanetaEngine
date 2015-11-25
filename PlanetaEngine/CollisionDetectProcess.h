@@ -6,8 +6,7 @@
 
 namespace planeta_engine {
 	namespace components {
-		class CircleColliderComponent;
-		class StraightLineColliderComponent;
+		class ColliderComponent;
 	}
 	namespace core {
 		class CollisionGroupMatrix;
@@ -19,16 +18,13 @@ namespace planeta_engine {
 			GameProcess::GameProcess;
 			~CollisionDetectProcess();
 			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { collision_group_matrix_ = col_matrix; }
-			void Resist(const std::shared_ptr<components::CircleColliderComponent>& col_com) { _circle_collision_component_holder.Resist(col_com); }
-			void Resist(const std::shared_ptr<components::StraightLineColliderComponent>& col_com) { _straightline_collision_component_holder.Resist(col_com); }
-			bool Remove(const std::shared_ptr<components::CircleColliderComponent>& col_com) { return _circle_collision_component_holder.Remove(col_com); }
-			bool Remove(const std::shared_ptr<components::StraightLineColliderComponent>& col_com) { return _straightline_collision_component_holder.Remove(col_com); }
+			void Resist(const std::shared_ptr<components::ColliderComponent>& col_com) { collider_component_holder_.Resist(col_com); }
+			bool Remove(const std::shared_ptr<components::ColliderComponent>& col_com) { return collider_component_holder_.Remove(col_com); }
 			const core::CollisionGroupMatrix& collision_group_matrix()const { assert(collision_group_matrix_ != nullptr); return *collision_group_matrix_; }
 		private:
 			void Update()override final;
 			void RemoveAll() {
-				_circle_collision_component_holder.RemoveAll();
-				_straightline_collision_component_holder.RemoveAll();
+				collider_component_holder_.RemoveAll();
 			}
 			template<class Com>
 			class CollisionComponentHolder_ {
@@ -63,8 +59,7 @@ namespace planeta_engine {
 				std::list<std::shared_ptr<Com>> remove_list_;
 				std::unordered_map<Com*, typename std::list<std::shared_ptr<Com>>::iterator> collision_component_map_;
 			};
-			CollisionComponentHolder_<components::CircleColliderComponent> _circle_collision_component_holder;
-			CollisionComponentHolder_<components::StraightLineColliderComponent> _straightline_collision_component_holder;
+			CollisionComponentHolder_<components::ColliderComponent> collider_component_holder_;
 			std::shared_ptr<const core::CollisionGroupMatrix> collision_group_matrix_;
 
 		};

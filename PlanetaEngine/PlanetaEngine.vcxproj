@@ -198,6 +198,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GraphResource.h" />
     <ClInclude Include="GroundComponent.h" />
     <ClInclude Include="IBGMController.h" />
+    <ClInclude Include="IColliderWithCollider.h" />
     <ClInclude Include="IGameAccessor.h" />
     <ClInclude Include="IGameObjectAccessor.h" />
     <ClInclude Include="IGameSetUp.h" />
