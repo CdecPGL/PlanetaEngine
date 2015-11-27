@@ -1,7 +1,6 @@
 #include "GameObjectManager.h"
 #include "GameObject.h"
 #include "GameProcessManager.h"
-#include "GameObjectUpdateProcess.h"
 #include "SceneAccessorForGameObject.h"
 #include "SystemLog.h"
 
@@ -84,15 +83,10 @@ namespace planeta_engine{
 
 		bool GameObjectManager::Activate(int id)
 		{
-			if (!game_object_update_process_) { //ゲームオブジェクト更新プロセスが取得できてなかったらする。それでもできなかったら失敗
-				game_object_update_process_ = scene_accessor_->game_process_manager().GetSystemProcess<system_processes::GameObjectUpdateProcess>();
-				if (!game_object_update_process_) { return false; }
-			}
 			auto it = inactive_game_objects_.find(id);
 			if (it == inactive_game_objects_.end()) { return false; }
 			it->second->_Activated();
 			active_game_objects_.insert(*it);
-			game_object_update_process_->Resist(id, it->second); //ゲームオブジェクト更新プロセスに登録
 			inactive_game_objects_.erase(it);
 			return true;
 		}
@@ -101,7 +95,6 @@ namespace planeta_engine{
 		{			
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) { return false; }
-			RemoveFromUpdateProcess_(id); //アップデートプロセスから削除
 			it->second->_InActivated();
 			inactive_game_objects_.insert(*it);
 			active_game_objects_.erase(it);
@@ -121,7 +114,6 @@ namespace planeta_engine{
 				}
 			}
 			else {
-				RemoveFromUpdateProcess_(id); //アップデートプロセスから削除
 				it->second->_InActivated(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
 				it->second->_Finalize();
 				active_game_objects_.erase(it);
@@ -151,15 +143,6 @@ namespace planeta_engine{
 		{
 			RemoveAllGameObjects();
 			return true;
-		}
-
-		bool GameObjectManager::RemoveFromUpdateProcess_(int id)
-		{
-			if (!game_object_update_process_) { //ゲームオブジェクト更新プロセスが取得できてなかったらする。それでもできなかったら失敗
-				game_object_update_process_ = scene_accessor_->game_process_manager().GetSystemProcess<system_processes::GameObjectUpdateProcess>();
-				if (!game_object_update_process_) { return false; }
-			}
-			return game_object_update_process_->Remove(id); //ゲームオブジェクト更新プロセスから登録解除
 		}
 
 		GameObjectManager::GameObjectManager() :_id_counter(0){};

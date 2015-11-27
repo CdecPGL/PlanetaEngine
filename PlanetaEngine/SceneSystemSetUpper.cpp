@@ -9,9 +9,6 @@
 
 #include "CollisionDetectProcess.h"
 #include "GameObjectDrawProcess.h"
-#include "GameObjectUpdateProcess.h"
-#include "UIDrawProcess.h"
-#include "UIUpdateProcess.h"
 #include "InstanceProcess.h"
 
 namespace planeta_engine {
@@ -27,17 +24,14 @@ namespace planeta_engine {
 			//ゲームオブジェクト描画プロセス
 			scene.game_process_manager().AddSystemProcess<system_processes::GameObjectDrawProcess>(process::GameObjectDrawProcessPriority, process::GameObjectDrawProcessName);
 			//ゲームオブジェクト更新プロセス
-			scene.game_process_manager().AddSystemProcess<system_processes::GameObjectUpdateProcess>(process::GameObjectUpdatetProcessPriority, process::GameObjectUpdatetProcessName);
-//			auto goup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GameObjectUpdatetProcessPriority, process::GameObjectUpdatetProcessName);
-//			goup->SetExcuteFunction([&game_object_manager = scene.game_object_manager()]{ game_object_manager.Update(); });
+			auto goup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GameObjectUpdatetProcessPriority, process::GameObjectUpdatetProcessName);
+			goup->SetExcuteFunction([&game_object_manager = scene.game_object_manager()]{ game_object_manager.Update(); });
 			//UI描画プロセス
 			auto uidp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIDrawProcessPriority, process::UIDrawProcessName);
 			uidp->SetExcuteFunction([&ui_manager = scene.ui_manager()] {ui_manager.Draw(); });
 			//UI更新プロセス
 			auto uiup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIUpdateProcessPriority, process::UIUpdateProcessName);
 			uiup->SetExcuteFunction([&ui_manager = scene.ui_manager()] {ui_manager.Update(); });
-			/*scene.game_process_manager().AddSystemProcess<system_processes::UIDrawProcess>(process::UIDrawProcessPriority, process::UIDrawProcessName);
-			scene.game_process_manager().AddSystemProcess<system_processes::UIUpdateProcess>(process::UIUpdateProcessPriority, process::UIUpdateProcessName);*/
 			//Transform関連
 			auto root_transform = game::GameObject::GetRootTransformComponent(true);
 			auto tavp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformApplyVelocityProcessPriority, process::TransformApplyVelocityProcessName);

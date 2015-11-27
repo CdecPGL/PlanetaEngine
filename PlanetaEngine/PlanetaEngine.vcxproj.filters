@@ -210,16 +210,7 @@
     <ClInclude Include="CollisionDetectFunctions.h">
       <Filter>PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectUpdateProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectDrawProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClInclude>
-    <ClInclude Include="UIUpdateProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClInclude>
-    <ClInclude Include="UIDrawProcess.h">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClInclude>
     <ClInclude Include="InstanceProcess.h">
@@ -669,15 +660,6 @@
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectDrawProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectUpdateProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClCompile>
-    <ClCompile Include="UIDrawProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClCompile>
-    <ClCompile Include="UIUpdateProcess.cpp">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClCompile>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
