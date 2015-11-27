@@ -65,7 +65,7 @@ namespace planeta_engine{
 		{
 			for (auto& c : component_list_){
 				c.second->SetSceneAccessor(scene_accessor_);
-				if (c.second->Initialize_() == false){ 
+				if (c.second->Initialize() == false){ 
 					debug::SystemLog::instance().LogError(std::string("コンポーネントの初期化に失敗しました。(") + c.second->GetType().name()+")",__FUNCTION__);
 					return false; 
 				}
@@ -77,14 +77,14 @@ namespace planeta_engine{
 		{
 			//通常コンポーネントのアップデート
 			for (auto& c : component_update_list_){
-				c->Update_();
+				c->Update();
 			}
 		}
 
 		bool GameObject::_finalize_component()
 		{
 			for (auto& c : component_list_){
-				c.second->Finalize_();
+				c.second->Finalize();
 			}
 			return true;
 		}
@@ -92,7 +92,7 @@ namespace planeta_engine{
 		bool GameObject::_activate_component()
 		{
 			for (auto& c : component_list_){
-				if (c.second->Activated_() == false){ 
+				if (c.second->Activate() == false){ 
 					debug::SystemLog::instance().LogError(std::string("コンポーネントの有効化に失敗しました。(") + c.second->GetType().name()+")", __FUNCTION__);
 					return false;
 				}
@@ -103,7 +103,7 @@ namespace planeta_engine{
 		bool GameObject::_inactivate_component()
 		{
 			for (auto& c : component_list_){
-				if (c.second->InActivated_() == false){ 
+				if (c.second->InActivate() == false){ 
 					debug::SystemLog::instance().LogError(std::string("コンポーネントの無効化に失敗しました。(") + c.second->GetType().name()+")", __FUNCTION__);
 					return false; 
 				}

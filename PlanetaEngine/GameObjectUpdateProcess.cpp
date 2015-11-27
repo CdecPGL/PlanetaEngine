@@ -44,6 +44,7 @@ namespace planeta_engine{
 				catch (utility::NullWeakPointerException& e) {
 					debug::SystemLog::instance().LogError(std::string("GameObject::Updateで無効なWeakPointerが参照されました。問題の発生したGameObjectはリストから除外されます。") + e.what(), "GameObjectUpdateProcess::Update");
 					_game_objects.erase(it);
+					assert(false);
 					break;
 				}
 			}

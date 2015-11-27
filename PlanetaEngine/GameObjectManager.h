@@ -36,6 +36,8 @@ namespace planeta_engine{
 			bool Finalize();
 			/*管理処理*/
 			bool Process();
+			/*更新*/
+			void Update();
 			/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
 			int Resist(const std::shared_ptr<GameObject>& go);
 			int Resist(const std::shared_ptr<GameObject>& go,const std::string& name);
@@ -50,6 +52,11 @@ namespace planeta_engine{
 			void RemoveAllGameObjects();
 
 		private:
+			GameObjectManager(const GameObjectManager&) = delete;
+			GameObjectManager(GameObjectManager&&) = delete;
+			GameObjectManager& operator=(const GameObjectManager&) = delete;
+			GameObjectManager& operator=(GameObjectManager&&) = delete;
+
 			std::unordered_map<int, std::shared_ptr<GameObject>> active_game_objects_;
 			std::unordered_map<int, std::shared_ptr<GameObject>> inactive_game_objects_;
 			std::unordered_map<std::string, int> name_id_map_;

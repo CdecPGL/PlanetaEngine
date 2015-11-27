@@ -24,6 +24,7 @@ namespace planeta_engine{
 			
 
 			bool is_valied()const{ return is_valied_; }
+			bool is_active()const { return is_active_; }
 			IGameObjectAccessor& game_object() { assert(game_object_ != nullptr); return *game_object_; }
 			const IGameObjectAccessor& game_object()const { assert(game_object_ != nullptr); return *game_object_; }
 		protected:
@@ -40,7 +41,8 @@ namespace planeta_engine{
 //			static void* operator new[](size_t s){throw utility::BadNewDeleteOperation("Component::operator new[] is called."); return nullptr; }
 //			static void operator delete[](void* p){throw utility::BadNewDeleteOperation("Component::operator delete[] is called."); return; }
 
-			bool is_valied_;
+			bool is_valied_ = false;
+			bool is_active_ = false;
 			int id_;
 
 			utility::WeakPointer<IGameObjectAccessor> game_object_;
@@ -48,6 +50,11 @@ namespace planeta_engine{
 
 			/*システム関数*/
 			virtual bool NoUpdate_()const { return false; } //更新処理を行わないか
+			bool Initialize();
+			bool Activate();
+			void Update() { Update_(); }
+			bool InActivate();
+			void Finalize();
 
 			virtual bool Initialize_() { return true; }; //所属するゲームオブジェクトが生成されたときに呼び出される(システム関数)
 			virtual bool Activated_() { return true; }; //所属するゲームオブジェクトがシーンに登録されるときに呼び出される(システム関数)

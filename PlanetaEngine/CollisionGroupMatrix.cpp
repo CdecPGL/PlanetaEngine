@@ -1,51 +1,64 @@
 #include "CollisionGroupMatrix.h"
 
 
-/*衝突マトリックスは、例えばグループ数が5の時は*
-[0]:[0][1][2][3][4]
-[1]:[1][2][3][4]
-[2]:[2][3][4]
-[3]:[3][4]
-[4]:[4]
-のように格納する
-*/
-
-
 namespace planeta_engine {
 	namespace core {
-
-		int CollisionGroupMatrix::GetCollisionGroupID(const std::string& col_group_name) const {
-			auto it = collision_group_id_map_.find(col_group_name);
-			return it == collision_group_id_map_.end() ? -1 : it->second;
-		}
-
 		void CollisionGroupMatrix::AddCollisionGroup(const std::string& col_group_name) {
-			int id = collision_group_id_map_.size();
-			collision_group_id_map_.emplace(col_group_name, id);
-			collision_matrix_.push_back(std::vector<bool>());
-			for (auto& cm : collision_matrix_) { cm.push_back(false); }
+			collision_matrix_.emplace(col_group_name, std::unordered_map<std::string, bool>());
+			for (auto& col_line : collision_matrix_) {
+				if (col_group_name <= col_line.first) {
+					collision_matrix_[col_group_name].emplace(col_line.first, false);
+				} else {
+					collision_matrix_[col_line.first].emplace(col_group_name, false);
+				}
+			}
 		}
 
 		void CollisionGroupMatrix::AddCollisionGroups(const std::vector<std::string>& col_group_names) {
 			for (auto& n : col_group_names) {
-				int id = collision_group_id_map_.size();
-				collision_group_id_map_.emplace(n, id);
-			}
-			collision_matrix_.resize(collision_matrix_.size() + col_group_names.size());
-			for (size_t i = 0; i < collision_matrix_.size();++i) {
-				collision_matrix_[i].resize(collision_matrix_.size() - i, false);
+				AddCollisionGroup(n);
 			}
 		}
 
 		bool CollisionGroupMatrix::SetCollisionFlag(const std::string& col_group_name_1, const std::string& col_group_name_2, bool flag) {
-			int id1 = GetCollisionGroupID(col_group_name_1);
-			int id2 = GetCollisionGroupID(col_group_name_2);
-			if (id1 < 0 || id2 < 0) { return false; }
-			auto idp = std::minmax(id1, id2);
-			assert(idp.first < (int)collision_matrix_.size());
-			assert(idp.second - idp.first < (int)collision_matrix_[idp.first].size());
-			collision_matrix_[idp.first][idp.second - idp.first] = flag;
+			auto namep = std::minmax(col_group_name_1, col_group_name_2);
+			auto it1 = collision_matrix_.find(namep.first);
+			if (it1 == collision_matrix_.end()) { return false; }
+			auto it2 = it1->second.find(namep.second);
+			if (it2 == it1->second.end()) { return false; }
+			it2->second = flag;
 			return true;
 		}
+
+		bool CollisionGroupMatrix::GetCollisionFlag(const std::string& col_group_name_1, const std::string& col_group_name_2) const {
+			auto namep = std::minmax(col_group_name_1, col_group_name_2);
+			auto it1 = collision_matrix_.find(namep.first);
+			if (it1 == collision_matrix_.end()) { return false; }
+			auto it2 = it1->second.find(namep.second);
+			if (it2 == it1->second.end()) { return false; }
+			return it2->second;
+		}
+
+		std::vector<std::pair<std::string, std::string>> CollisionGroupMatrix::GetCollisionableGroupPairList() const {
+			std::vector<std::pair<std::string, std::string>> out;
+			for (const auto& col_line : collision_matrix_) {
+				for (const auto& col_elem : col_line.second) {
+					if (col_elem.second) {
+						out.emplace_back(std::make_pair(col_line.first, col_elem.first));
+					}
+				}
+			}
+			return std::move(out);
+		}
+
+		std::vector<std::string> CollisionGroupMatrix::GetCollisionGroupList() const {
+			std::vector<std::string> out;
+			out.reserve(collision_matrix_.size());
+			for (const auto& col_line : collision_matrix_) {
+				out.push_back(col_line.first);
+			}
+			return std::move(out);
+		}
+
 	}
 }

@@ -167,5 +167,18 @@ namespace planeta_engine{
 		void GameObjectManager::SetScene(core::ScenePublicInterface& spi) {
 			scene_accessor_ = std::make_shared<core::SceneAccessorForGameObject>(spi);
 		}
+
+		void GameObjectManager::Update() {
+			for (auto it = active_game_objects_.begin(); it != active_game_objects_.end();++it) {
+				try {
+					it->second->Update();
+				} catch (utility::NullWeakPointerException& e) {
+					debug::SystemLog::instance().LogError(std::string("GameObject::Updateで無効なWeakPointerが参照されました。問題の発生したGameObjectはリストから除外されます。") + e.what(), __FUNCTION__);
+					active_game_objects_.erase(it);
+					assert(false);
+					break;
+				}
+			}
+		}
 	}
 }
