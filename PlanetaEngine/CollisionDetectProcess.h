@@ -11,8 +11,12 @@ namespace planeta_engine {
 	namespace core {
 		class CollisionGroupMatrix;
 	}
+	namespace event_arguments {
+		class CollisionEventArgument;
+		class CollisionWithGroundEventArgument;
+	}
 	namespace system_processes {
-		class CollisionDetectProcess : public game::GameProcess
+		class CollisionDetectProcess final: public game::GameProcess
 		{
 		public:
 			GameProcess::GameProcess;
@@ -39,32 +43,13 @@ namespace planeta_engine {
 			CollisionGroupListType collision_groupes_; //衝突グループ
 			CollisionWithGroundListType collision_with_ground_list_; //地形と衝突するコライダーのリスト
 
-			struct Request_ {
-				enum class Kind { Add, Remove, ChangeCollisionGroup, ChangeCollisionWithGroundFlag };
-				Request_(Kind kind):detail(kind){}
-				std::unordered_map<components::ColliderComponent*, ColliderComponentResistData_>::iterator resist_data_iterator;
-				union Detail {
-					explicit Detail(Kind k);
-					~Detail();
-					Detail(const Detail& d);
-					struct AddDetail{ Kind kind; std::shared_ptr<components::ColliderComponent> col_com; } add_detail;
-					struct RemoveDetail{ Kind kind; } remove_detail;
-					struct ChangeCollisionGroupDetail{ Kind kind;  CollisionGroupListType::iterator new_collision_group_iterator; } change_collision_group_detail;
-					struct ChangeCollisionWithGroundFlagDetail{ Kind kind;  bool new_collision_with_ground_flag; } change_collision_with_ground_flag_detail;
-					Kind kind;
-				} detail;
-			};
-			std::vector<Request_> request_list_;
-			bool HandleAddRequest_(const Request_& request);
-			bool HandleRemoveRequest_(const Request_& request);
-			bool HandleChangeCollisionGroupRequest_(const Request_& request);
-			bool HandleChangeCollisionWithGroundFlagRequest_(const Request_& request);
-			void ProcessRequest_();
-
 			std::vector<std::pair<CollisionGroupListType::iterator, CollisionGroupListType::iterator>> collide_group_pair_list_; //衝突するグループペアのリスト
 
-			void ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2); //２つのグループ間での衝突判定
-			void ProcessCollisionInAGroup(CollisionGroupType& group); //グループ内での衝突判定
+			using CollisionColliderEventHolderType = std::vector<std::pair<components::ColliderComponent*, event_arguments::CollisionEventArgument>>;
+			using CollisionGroundEventHolderType = std::vector<std::pair<components::ColliderComponent*, event_arguments::CollisionWithGroundEventArgument>>;
+			void ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionColliderEventHolderType& collision_event_holder)const; //２つのグループ間での衝突判定
+			void ProcessCollisionInAGroup(CollisionGroupType& group, CollisionColliderEventHolderType& collision_event_holder)const; //グループ内での衝突判定
+			void ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const;
 		};
 	}
 }
