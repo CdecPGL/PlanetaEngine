@@ -8,6 +8,7 @@ namespace planeta_engine{
 	namespace game{
 		bool GameObjectManager::Process()
 		{
+			RemoveProc_();
 			return true;
 		}
 
@@ -109,6 +110,7 @@ namespace planeta_engine{
 				if (it==inactive_game_objects_.end()) { return false; }
 				else {
 					it->second->_Finalize();
+					garbage_.push_back(it->second);
 					inactive_game_objects_.erase(it);
 					return true;
 				}
@@ -116,6 +118,7 @@ namespace planeta_engine{
 			else {
 				it->second->_InActivated(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
 				it->second->_Finalize();
+				garbage_.push_back(it->second);
 				active_game_objects_.erase(it);
 				return true;
 			}
@@ -152,9 +155,9 @@ namespace planeta_engine{
 		}
 
 		void GameObjectManager::Update() {
-			for (auto it = active_game_objects_.begin(); it != active_game_objects_.end();++it) {
+			for (auto it = active_game_objects_.begin(); it != active_game_objects_.end();) {
 				try {
-					it->second->Update();
+					(it++)->second->Update();
 				} catch (utility::NullWeakPointerException& e) {
 					debug::SystemLog::instance().LogError(std::string("GameObject::Updateで無効なWeakPointerが参照されました。問題の発生したGameObjectはリストから除外されます。") + e.what(), __FUNCTION__);
 					active_game_objects_.erase(it);
@@ -163,5 +166,10 @@ namespace planeta_engine{
 				}
 			}
 		}
+
+		void GameObjectManager::RemoveProc_() {
+			garbage_.clear();
+		}
+
 	}
 }

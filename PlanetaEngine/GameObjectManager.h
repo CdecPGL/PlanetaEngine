@@ -57,6 +57,8 @@ namespace planeta_engine{
 			std::unordered_map<int, std::shared_ptr<GameObject>> active_game_objects_;
 			std::unordered_map<int, std::shared_ptr<GameObject>> inactive_game_objects_;
 			std::unordered_map<std::string, int> name_id_map_;
+			std::vector<std::shared_ptr<GameObject>> garbage_;
+			void RemoveProc_();
 			int _id_counter;
 			std::shared_ptr<core::SceneAccessorForGameObject> scene_accessor_;
 		};
