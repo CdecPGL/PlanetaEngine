@@ -4,6 +4,10 @@
 #include "GraphResource.h"
 #include "FontDefinitionResource.h"
 #include "MathUtility.h"
+#include "ScreenEffecter.h"
+#include "Screen.h"
+#include "GraphDrawData.h"
+#include "DXGraphDrawData.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -54,33 +58,13 @@ namespace planeta_engine {
 			}
 		}
 
-		void DrawManager::DrawGraph(const std::vector<utility::Vertex2D>& vertexes, const std::vector<std::array<int, 3>>& indexes ,const std::shared_ptr<resources::GraphResource>& graph_resource)
+		void DrawManager::DrawGraph(const GraphDrawData& graph_draw_data)
 		{
-			//リソースがセットされていない、頂点がない、インデックスがない場合は描画しない
-			if (graph_resource == nullptr || vertexes.size() == 0 || indexes.size() == 0) { return; }
-			using namespace utility::dx;
-			//画像の有効エリア(画像サイズは2のべき乗にリサイズされているため)
-			double resource_image_area_x = (double)graph_resource->size().x / graph_resource->internal_size().x;
-			double resource_image_area_y = (double)graph_resource->size().y / graph_resource->internal_size().y;
-			//頂点情報のDX形式変換
-			std::unique_ptr<VERTEX3D[]> vdx = std::make_unique<VERTEX3D[]>(vertexes.size());
-			for (size_t i = 0; i < vertexes.size(); ++i) {
-				vdx[i].pos = PEVector2DToDXVECTOR(_ConvertPosition(vertexes[i].position));
-				vdx[i].dif = PEColorToDXCOLORU8(vertexes[i].color);
-				vdx[i].norm = VGet(0.0f, 0.0f, -1.0f); //画面側を向くように
-//				vdx[i].spc = PEColorToDXCOLORU8(vertexes[i].color); //ライティング計算を行わないので使用しない
-				vdx[i].u = (float)(vertexes[i].u * resource_image_area_x);
-				vdx[i].v = (float)(vertexes[i].v * resource_image_area_y);
-			}
-			//インデックス情報のDX形式変換
-			std::unique_ptr<unsigned short[]> idx = std::make_unique<unsigned short[]>(indexes.size() * 3);
-			for (size_t i = 0; i < indexes.size(); ++i) {
-				for (int j = 0; j < 3; ++j) {
-					idx[i * 3 + j] = indexes[i][j];
-				}
-			}
+			//画像描画データが無効な場合は描画しない
+			if (!graph_draw_data.is_valid()) { return; }
+			const DXGraphDrawData& dxgdd = graph_draw_data.GetDXData();
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-			DrawPolygonIndexed3D(vdx.get(), (int)vertexes.size(), idx.get(), (int)indexes.size(), graph_resource->GetHandle(), true);
+			DrawPolygonIndexed3D(dxgdd.vertexes.get(), (int)dxgdd.vertex_count, dxgdd.indexes.get(), (int)dxgdd.polygon_count, dxgdd.graph_handle, true);
 		}
 
 		bool DrawManager::Update()
@@ -176,6 +160,11 @@ namespace planeta_engine {
 			if (font_definition_resource == nullptr) { return; }
 			using namespace utility::dx;
 			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));
+		}
+
+		bool DrawManager::ApplyEffectToScreen(ScreenEffecter& screen_effecter)
+		{
+			return screen_effecter.ApplyEffect(Screen(GetDrawScreen()));
 		}
 
 	}

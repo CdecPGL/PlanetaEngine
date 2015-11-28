@@ -1,13 +1,18 @@
 #include"GameDataComplexType.h"
 #include "GameDataElementType.h"
 #include "GameDataElement.h"
+#include "SystemLog.h"
 
 namespace planeta_engine {
 	namespace core {
 
+		GameDataComplexType::GameDataComplexType(const std::string type_id, std::unordered_map<std::string, std::string>&& element_types):type_name_(type_id), element_types_(std::move(element_types))
+		{
+		}
+
 		bool GameDataComplexType::IsElementExist(const std::string& element_id) const noexcept
 		{
-			return elements_.find(element_id) != elements_.end();
+			return element_types_.find(element_id) != element_types_.end();
 		}
 
 		bool GameDataComplexType::CheckElementType(const std::string& element_id, const GameDataElement& element) const noexcept
@@ -19,8 +24,8 @@ namespace planeta_engine {
 
 		const std::string GameDataComplexType::GetElementType(const std::string& element_id) const noexcept
 		{
-			auto it = elements_.find(element_id);
-			if (it == elements_.end()) {
+			auto it = element_types_.find(element_id);
+			if (it == element_types_.end()) {
 				return GameDataElementType::ConvertTypeToTypeID(GameDataElementType::Type::nil);
 			}
 			else {
@@ -28,15 +33,16 @@ namespace planeta_engine {
 			}
 		}
 
-		void GameDataComplexType::AddElement(const std::string& element_id, const std::string& element_type_id)
+		bool GameDataComplexType::TypeCheck()noexcept
 		{
-			if (!GameDataElementType::IsTypeExist(element_type_id)) {
-				throw GameDataError(std::string("ë∂ç›ÇµÇ»Ç¢GameDataå^" + element_type_id + "ÇGameDataï°çáå^Ç…í«â¡ÇµÇÊÇ§Ç∆ÇµÇ‹ÇµÇΩÅB"));
+			//å^É`ÉFÉbÉN
+			for (auto& type : element_types_) {
+				if (!GameDataElementType::IsTypeExist(type.second)) {
+					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ë∂ç›ÇµÇ»Ç¢GameDataå^", type.second, "Ç™GameDataï°çáå^", type_name_, "Ç…ä‹Ç‹ÇÍÇƒÇ¢Ç‹Ç∑ÅB");
+					return false;
+				}
 			}
-			else {
-				elements_.emplace(element_id, element_type_id);
-			}
+			return true;
 		}
-
 	}
 }

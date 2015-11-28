@@ -22,35 +22,6 @@ namespace planeta_engine {
 			return distance - height;
 		}
 
-		bool PlanetGroundComponent::CollisionDetect(CircleColliderComponent& collider)
-		{
-			TransformComponent& transform = game_object().transform();
-			auto collider_pos = collider.GetCollisionCenterPosition();
-			//惑星中心からのコライダーの方向を求める
-			auto collider_relative_vec = collider_pos - transform.global_position();
-			double collider_direction = std::atan2(collider_relative_vec.y, collider_relative_vec.x);
-			//惑星中心からコライダーまでの距離の2乗
-			double collider_distance_s = Vector2D<double>::Length_Square(collider_relative_vec);
-			//衝突判定
-			if (std::pow(planet_component_->GetHeightByRad(collider_direction)+collider.radius()*collider.GetCollisionScale(),2) > collider_distance_s ) {
-				auto& collider_transform = collider.game_object().transform();
-				//速度の修正
-				Vector2D<double> parallel_unit_vec(std::cos(collider_direction + math::constant::PI / 2.0), std::sin(collider_direction + math::constant::PI / 2.0));
-				collider_transform.velocity(parallel_unit_vec*Vector2D<double>::Dot(collider_transform.velocity(), parallel_unit_vec));
-				//押し出し
-				collider_transform.global_position(transform.global_position() + Vector2D<double>::GetParallelUnitVector(collider_relative_vec)*(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale()));
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-
-		bool PlanetGroundComponent::CollisionDetect(StraightLineColliderComponent& collider)
-		{
-			return false;
-		}
-
 		bool PlanetGroundComponent::Initialize_()
 		{
 			if (GroundComponent::Initialize_() == false) {
@@ -69,5 +40,26 @@ namespace planeta_engine {
 			}
 		}
 
+		bool PlanetGroundComponent::CollideWith(components::CircleColliderComponent& collider) {
+			TransformComponent& transform = game_object().transform();
+			auto collider_pos = collider.GetCollisionCenterPosition();
+			//惑星中心からのコライダーの方向を求める
+			auto collider_relative_vec = collider_pos - transform.global_position();
+			double collider_direction = std::atan2(collider_relative_vec.y, collider_relative_vec.x);
+			//惑星中心からコライダーまでの距離の2乗
+			double collider_distance_s = Vector2D<double>::Length_Square(collider_relative_vec);
+			//衝突判定
+			if (std::pow(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale(), 2) > collider_distance_s) {
+				auto& collider_transform = collider.game_object().transform();
+				//速度の修正
+				Vector2D<double> parallel_unit_vec(std::cos(collider_direction + math::constant::PI / 2.0), std::sin(collider_direction + math::constant::PI / 2.0));
+				collider_transform.velocity(parallel_unit_vec*Vector2D<double>::Dot(collider_transform.velocity(), parallel_unit_vec));
+				//押し出し
+				collider_transform.global_position(transform.global_position() + Vector2D<double>::GetParallelUnitVector(collider_relative_vec)*(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale()));
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }

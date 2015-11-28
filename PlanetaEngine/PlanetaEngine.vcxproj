@@ -120,7 +120,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArchiveLoader.h" />
+    <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
@@ -131,17 +131,19 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionDetectFunctions.h" />
     <ClInclude Include="CollisionDetectProcess.h" />
     <ClInclude Include="CollisionEventArgument.h" />
+    <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
+    <ClInclude Include="DXGraphDrawData.h" />
     <ClInclude Include="EncrypterBase.h" />
     <ClInclude Include="EXOREncrypter.h" />
+    <ClInclude Include="FileAccessMode.h" />
     <ClInclude Include="FileIStream.h" />
     <ClInclude Include="FileOStream.h" />
-    <ClInclude Include="FileSaverBase.h" />
     <ClInclude Include="FileStreamBuf.h" />
     <ClInclude Include="GameDataComplexType.h" />
     <ClInclude Include="GameDataComplexTypeInstance.h" />
@@ -162,7 +164,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CoroutineUtility.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileAccessor.h" />
-    <ClInclude Include="FileLoadManager.h" />
+    <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="FontDefinitionResource.h" />
     <ClInclude Include="FontResource.h" />
     <ClInclude Include="Game.h" />
@@ -182,7 +184,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectManagerPublicInterface.h" />
     <ClInclude Include="GameObjectSetUpper.h" />
     <ClInclude Include="GameObjectSetUpProxy.h" />
-    <ClInclude Include="GameObjectUpdateProcess.h" />
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="GameProcessManager.h" />
     <ClInclude Include="GameProcessManagerAccessorForGameObject.h" />
@@ -191,10 +192,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessWithRefrection.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
+    <ClInclude Include="GraphDrawData.h" />
     <ClInclude Include="GraphPanel.h" />
     <ClInclude Include="GraphResource.h" />
     <ClInclude Include="GroundComponent.h" />
     <ClInclude Include="IBGMController.h" />
+    <ClInclude Include="IColliderWithCollider.h" />
     <ClInclude Include="IGameAccessor.h" />
     <ClInclude Include="IGameObjectAccessor.h" />
     <ClInclude Include="IGameSetUp.h" />
@@ -210,7 +213,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="KeyInputDefines.h" />
     <ClInclude Include="KeyInputManager.h" />
     <ClInclude Include="KeyInputUtils.h" />
-    <ClInclude Include="FileLoaderBase.h" />
+    <ClInclude Include="FileManipulatorBase.h" />
     <ClInclude Include="MakeResource.h" />
     <ClInclude Include="MakeSharedGameObject.h" />
     <ClInclude Include="MathConstant.h" />
@@ -220,8 +223,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MetaprogrammingUtility.h" />
     <ClInclude Include="MusicResource.h" />
-    <ClInclude Include="NormalFolderLoader.h" />
-    <ClInclude Include="NormalFolderSaver.h" />
+    <ClInclude Include="NormalFolderManipulator.h" />
     <ClInclude Include="NullWeakPointerException.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectHolderTemplate_WithID.h" />
@@ -250,6 +252,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneSetUpper.h" />
     <ClInclude Include="SceneSystemSetUpper.h" />
     <ClInclude Include="SceneTransitionEffect.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="ScreenEffecter.h" />
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
     <ClInclude Include="SoundEffectController.h" />
@@ -272,7 +276,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TypeChecker.h" />
     <ClInclude Include="UIAllocator.h" />
     <ClInclude Include="UIComponent.h" />
-    <ClInclude Include="UIDrawProcess.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIManagerAccessorForGameProcess.h" />
     <ClInclude Include="UIManagerAccessorForSetUp.h" />
@@ -280,7 +283,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="UIManagerPublicInterface.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIObjectResisterConnection.h" />
-    <ClInclude Include="UIUpdateProcess.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vertex2D.h" />
@@ -289,13 +291,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="XMLResource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArchiveLoader.cpp" />
+    <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="CameraUtility.cpp" />
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
+    <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="CoroutineProcess.cpp" />
@@ -305,9 +308,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="EncrypterBase.cpp" />
     <ClCompile Include="EXOREncrypter.cpp" />
     <ClCompile Include="FileIStream.cpp" />
-    <ClCompile Include="FileLoaderBase.cpp" />
+    <ClCompile Include="FileManipulatorBase.cpp" />
     <ClCompile Include="FileOStream.cpp" />
-    <ClCompile Include="FileSaverBase.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />
@@ -319,9 +321,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataSerializeUtility.cpp" />
     <ClCompile Include="GameObjectResisterConnection.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
+    <ClCompile Include="GraphDrawData.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
-    <ClCompile Include="NormalFolderSaver.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="SoundEffectController.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -354,19 +356,18 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionDetectProcess.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
-    <ClCompile Include="FileLoadManager.cpp" />
+    <ClCompile Include="FileSystemManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDrawProcess.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameObjectSetUpper.cpp" />
     <ClCompile Include="GameObjectSetUpProxy.cpp" />
-    <ClCompile Include="GameObjectUpdateProcess.cpp" />
     <ClCompile Include="DrawGraphComponent.cpp" />
     <ClCompile Include="GroundComponent.cpp" />
     <ClCompile Include="InitEnd.cpp" />
     <ClCompile Include="InitEndDX.cpp" />
     <ClCompile Include="InitEndResource.cpp" />
-    <ClCompile Include="NormalFolderLoader.cpp" />
+    <ClCompile Include="NormalFolderManipulator.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlanetaEngine.cpp" />
     <ClCompile Include="PlanetComponent.cpp" />
@@ -383,10 +384,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TextResource.cpp" />
     <ClCompile Include="TLSFMemoryAllocator.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
-    <ClCompile Include="UIDrawProcess.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIObjectResisterConnection.cpp" />
-    <ClCompile Include="UIUpdateProcess.cpp" />
     <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

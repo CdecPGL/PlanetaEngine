@@ -1,6 +1,6 @@
 #include"ResourceManager.h"
 #include "boost/lexical_cast.hpp"
-#include "FileLoadManager.h"
+#include "FileSystemManager.h"
 #include "CSVResource.h"
 #include "SystemLog.h"
 #include "FileAccessor.h"
@@ -148,7 +148,7 @@ namespace planeta_engine{
 
 		bool ResourceManager::Initialize()
 		{
-			file_accessor_ = file_system::FileLoadManager::instance().GetFileAccessor(system_variables::ResourceFileAccessorID);
+			file_accessor_ = file_system::FileSystemManager::instance().GetFileAccessor(system_variables::ResourceFileAccessorID);
 			if (!file_accessor_) {
 				debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルアクセサの取得に失敗しました。", __FUNCTION__);
 				return false;

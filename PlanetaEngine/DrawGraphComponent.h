@@ -8,6 +8,9 @@
 #include "Vertex2D.h"
 
 namespace planeta_engine {
+	namespace core {
+		class GraphDrawData;
+	}
 	namespace resources {
 		class GraphResource;
 	}
@@ -15,7 +18,7 @@ namespace planeta_engine {
 		class DrawGraphComponent final : public DrawComponent {
 		public:
 			DrawGraphComponent();
-			~DrawGraphComponent() = default;
+			~DrawGraphComponent();
 			void Draw()override;
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/
@@ -28,12 +31,8 @@ namespace planeta_engine {
 			bool reverse_ = false;
 			/*画像上で表示する範囲*/
 			utility::RectAngle<int> _draw_area;
-			/*画像リソース*/
-			std::shared_ptr<resources::GraphResource> _graph_resource;
-			/*頂点*/
-			std::vector<utility::Vertex2D> _vertexes;
-			/*ポリゴンインデックス*/
-			std::vector<std::array<int, 3>> _indexes;
+			/*画像描画データ*/
+			std::unique_ptr<core::GraphDrawData> graph_draw_data_;
 			/*ポリゴン情報更新*/
 			void _UpdatePolygon();
 			/*UV座標更新*/

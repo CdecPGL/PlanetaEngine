@@ -8,13 +8,14 @@
 #include "SystemVariables.h"
 #include "SystemLog.h"
 #include "SystemCounter.h"
-#include "FileLoadManager.h"
-#include "ArchiveLoader.h"
-#include "NormalFolderLoader.h"
-#include "NormalFolderSaver.h"
+#include "FileSystemManager.h"
+#include "ArchiveManipulator.h"
+#include "NormalFolderManipulator.h"
 #include "ResourceManager.h"
 #include "DrawManager.h"
 #include "SoundManager.h"
+#include "FileAccessMode.h"
+#include "GameDataManager.h"
 
 namespace {
 	//variables
@@ -41,8 +42,9 @@ namespace planeta_engine{
 
 			bool InstantiateSingletonManagers() {
 				if (
-					file_system::FileLoadManager::Instantiate()
+					file_system::FileSystemManager::Instantiate()
 					&& core::ResourceManager::Instantiate()
+					&& core::GameDataManager::Instantiate()
 					&& core::DrawManager::Instantiate()
 					&& core::SoundManager::Instantiate()
 					) {
@@ -59,15 +61,17 @@ namespace planeta_engine{
 				core::SoundManager::Dispose();
 				core::DrawManager::Dispose();
 				core::ResourceManager::Dispose();
-				file_system::FileLoadManager::Dispose();
+				core::GameDataManager::Dispose();
+				file_system::FileSystemManager::Dispose();
 				debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンスを破棄しました。", __FUNCTION__);
 				return true;
 			}
 
 			bool InitializeSingletonManagers() {
 				if (
-					file_system::FileLoadManager::instance().Initialize()
+					file_system::FileSystemManager::instance().Initialize()
 					&& core::ResourceManager::instance().Initialize()
+					&& core::GameDataManager::instance().Initialize()
 					&& core::DrawManager::instance().Initialize()
 					&& core::SoundManager::instance().Initialize()
 					) {
@@ -85,10 +89,12 @@ namespace planeta_engine{
 				core::SoundManager::instance().Finalize();
 				//描画マネージャの終了
 				core::DrawManager::instance().Finalize();
+				//ゲームデータマネージャの終了
+				core::GameDataManager::instance().Finalize();
 				//リソースマネージャの終了
 				core::ResourceManager::instance().Finalize();
 				//ファイルシステムの終了
-				file_system::FileLoadManager::instance().Finalize();
+				file_system::FileSystemManager::instance().Finalize();
 				debug::SystemLog::instance().LogMessage("シングルトンマネージャの終了処理を実行しました。", __FUNCTION__);
 				return true;
 			}
@@ -157,24 +163,13 @@ namespace planeta_engine{
 			bool SetUpFileSystem()
 			{
 				using namespace file_system;
-				FileLoadManager& flm = FileLoadManager::instance();
+				FileSystemManager& flm = FileSystemManager::instance();
 				//リソース用ファイルアクセサ設定
-				{
-					std::vector<std::shared_ptr<FileLoaderBase>> loaders;
-					loaders.push_back(std::make_shared<ArchiveLoader>(system_variables::ResourceDataArchiveFilePath, system_variables::ResourceDataArchiveDecryptionKey));
-					//開発モード時は、開発用Resourceフォルダと、テスト用Resourceフォルダも追加する。
-					if (system_variables::DevelopmentMode) {
-						loaders.push_back(std::make_shared<NormalFolderLoader>(system_variables::DevResourceDataFolderPath));
-						loaders.push_back(std::make_shared<NormalFolderLoader>(system_variables::TestResourceDataFolderPath));
-					}
-					flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, loaders);
-				}
+				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::DevResourceDataFolderPath,false),file_system::AccessMode::ReadOnly);
 				//GameData用ファイルアクセサ設定
-				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFileSaver>(system_variables::SaveDataDirectory), std::vector < std::shared_ptr<FileLoaderBase>>({ std::make_shared<NormalFolderLoader>(system_variables::SaveDataDirectory) }));
+				flm.CreateFileAccessor(system_variables::GameDataFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::SaveDataDirectory,true), file_system::AccessMode::ReadWrite);
 
-				char str[256];
-				sprintf_s(str, 256, "ファイルシステムの設定を行いました。(DevelopmentMode=%s)", system_variables::DevelopmentMode ? "true" : "false");
-				debug::SystemLog::instance().LogMessage(str, __FUNCTION__);
+				debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "ファイルシステムの設定を行いました。");
 				//リソースマネージャの設定も行う
 				core::ResourceManager::instance().SetResourceListFileName(core::system_variables::ResourceListFileName);
 				return true;

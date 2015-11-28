@@ -18,9 +18,9 @@ namespace planeta_engine {
 			return std::move(file);
 		}
 
-		planeta_engine::core::GameDataElement DeserializeGameDataElement(const std::shared_ptr<file_system::File>& file)
+		planeta_engine::core::GameDataElement DeserializeGameDataElement(const std::shared_ptr<const file_system::File>& file)
 		{
-			file_system::FileIStream is(*file);
+			file_system::FileIStream is(const_cast<file_system::File&>(*file));
 			boost::archive::xml_iarchive xia(is);
 			GameDataElement game_data_element = GameDataElement::CreateByTypeID(GameDataElementType::ConvertTypeToTypeID(GameDataElementType::Type::nil));
 			xia >> boost::serialization::make_nvp("game_data_element", game_data_element);

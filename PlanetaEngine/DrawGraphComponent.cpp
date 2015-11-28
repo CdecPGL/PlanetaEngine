@@ -7,14 +7,18 @@
 #include "IGameObjectAccessor.h"
 #include "Matrix.h"
 #include "MathConstant.h"
+#include "GraphDrawData.h"
 
 namespace planeta_engine {
 	namespace components {
 		/*頂点は[0]左下,[1]右下,[2]右上,[3]左上とする*/
-		DrawGraphComponent::DrawGraphComponent() :_vertexes(4), _indexes({ {0,1,3} ,{1,3,2} })
+		DrawGraphComponent::DrawGraphComponent() :graph_draw_data_(std::make_unique<core::GraphDrawData>())
 		{
-
+			graph_draw_data_->SetVertexCount(4);
+			graph_draw_data_->SetPolygonIndexes({ { 0,1,3 } ,{ 1,3,2 } });
 		}
+
+		DrawGraphComponent::~DrawGraphComponent() = default;
 
 		bool DrawGraphComponent::SetGraphResource(const std::string& resource_id)
 		{
@@ -25,7 +29,7 @@ namespace planeta_engine {
 			}
 			std::shared_ptr<resources::GraphResource> gr = std::dynamic_pointer_cast<resources::GraphResource>(res);
 			if (gr) {
-				_graph_resource = gr;
+				graph_draw_data_->SetGraphResource(gr);
 				_draw_area.Set(Vector2D<int>(0, 0), Vector2D<int>(gr->size().x, gr->size().y));
 				_UpdateUVPosition();
 				return true;
@@ -39,12 +43,11 @@ namespace planeta_engine {
 		void DrawGraphComponent::Draw()
 		{
 			_UpdatePolygon();
-			core::DrawManager::instance().DrawGraph(_vertexes, _indexes, _graph_resource);
+			core::DrawManager::instance().DrawGraph(*graph_draw_data_);
 		}
 
 		void DrawGraphComponent::_UpdatePolygon()
 		{
-			if (_graph_resource == nullptr) { return; }
 			TransformComponent& transform = *(game_object().GetTransformComponent());
 			//頂点位置の更新
 			//描画拡大度を考慮した縦横の長さ
@@ -56,28 +59,33 @@ namespace planeta_engine {
 			//右下の頂点ベクトル
 			Vector2D<double> right_down_vertex_vec(dwidth / 2.0, -dheight / 2.0);
 			//画像の回転度とゲームオブジェクトの回転度、表示中心位置から各頂点を求める
-			_vertexes[0].position = center_position + math::RotationalTransformation(GetDrawRotationRed(), left_down_vertex_vec);
-			_vertexes[1].position = center_position + math::RotationalTransformation(GetDrawRotationRed(), right_down_vertex_vec);
-			_vertexes[2].position = center_position + math::RotationalTransformation(GetDrawRotationRed() + math::constant::PI, left_down_vertex_vec);
-			_vertexes[3].position = center_position + math::RotationalTransformation(GetDrawRotationRed() + math::constant::PI, right_down_vertex_vec);
+			graph_draw_data_->SetVertexPosition(0, center_position + math::RotationalTransformation(GetDrawRotationRed(), left_down_vertex_vec));
+			graph_draw_data_->SetVertexPosition(1, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_down_vertex_vec));
+			graph_draw_data_->SetVertexPosition(2, center_position + math::RotationalTransformation(GetDrawRotationRed() + math::constant::PI, left_down_vertex_vec));
+			graph_draw_data_->SetVertexPosition(3, center_position + math::RotationalTransformation(GetDrawRotationRed() + math::constant::PI, right_down_vertex_vec));
 		}
 
 		void DrawGraphComponent::_UpdateUVPosition()
 		{
 			//UV座標の更新
+			Vector2D<float> uvs[4];
+			auto g_size = graph_draw_data_->graph_resource()->size();
 			//左下
-			_vertexes[0].u = (float)(reverse_ ? (_draw_area.right() + 1) : _draw_area.left()) / _graph_resource->size().x;
-			_vertexes[0].v = (float)(_draw_area.bottom() + 1) / _graph_resource->size().y;
+			uvs[0].x = (float)(reverse_ ? (_draw_area.right() + 1) : _draw_area.left()) / g_size.x;
+			uvs[0].y = (float)(_draw_area.bottom() + 1) / g_size.y;
 			//右下
-			_vertexes[1].u = (float)(reverse_ ? _draw_area.left() : (_draw_area.right() + 1)) / _graph_resource->size().x;
-			_vertexes[1].v = (float)(_draw_area.bottom() + 1) / _graph_resource->size().y;
+			uvs[1].x = (float)(reverse_ ? _draw_area.left() : (_draw_area.right() + 1)) / g_size.x;
+			uvs[1].y = (float)(_draw_area.bottom() + 1) / g_size.y;
 			//右上
-			_vertexes[2].u = (float)(reverse_ ? _draw_area.left() : (_draw_area.right() + 1)) / _graph_resource->size().x;
-			_vertexes[2].v = (float)_draw_area.top() / _graph_resource->size().y;
+			uvs[2].x = (float)(reverse_ ? _draw_area.left() : (_draw_area.right() + 1)) / g_size.x;
+			uvs[2].y = (float)_draw_area.top() / g_size.y;
 			//左上
-			_vertexes[3].u = (float)(reverse_ ? (_draw_area.right() + 1) : _draw_area.left()) / _graph_resource->size().x;
-			_vertexes[3].v = (float)_draw_area.top() / _graph_resource->size().y;
-		}
+			uvs[3].x = (float)(reverse_ ? (_draw_area.right() + 1) : _draw_area.left()) / g_size.x;
+			uvs[3].y = (float)_draw_area.top() / g_size.y;
 
+			for (int i = 0; i < 4; ++i) {
+				graph_draw_data_->SetVertexUV(i, uvs[i]);
+			}
+		}
 	}
 }

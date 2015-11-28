@@ -3,13 +3,14 @@
 #include "Matrix.h"
 #include "Vector2D.h"
 #include "MathConstant.h"
+#include "IColliderWithCollider.h"
 
 namespace planeta_engine {
 	namespace components {
 		class CircleColliderComponent;
 		class StraightLineColliderComponent;
 		class GroundComponent :
-			public game::Component
+			public game::Component , public core::IColliderWithCollider
 		{
 		public:
 			GroundComponent();
@@ -19,9 +20,6 @@ namespace planeta_engine {
 			virtual const double GetAltitude(const Vector2D<double>& position)const = 0;
 			Vector2D<double> ConvertGlobalVectorToLocalVector(const Vector2D<double>& position, const Vector2D<double>& vector)const { return math::RotationalTransformation(-(GetDownwardDirectionByRad(position) + math::constant::PI / 2.0), vector); }
 			Vector2D<double> ConvertLocalVectorToGlobalVector(const Vector2D<double>& position, const Vector2D<double>& vector)const { return math::RotationalTransformation((GetDownwardDirectionByRad(position) + math::constant::PI / 2.0), vector); }
-
-			virtual bool CollisionDetect(CircleColliderComponent& collider) { return false; }
-			virtual bool CollisionDetect(StraightLineColliderComponent& collider) { return false; }
 		protected:
 			static Vector2D<double> ConvertRadToVec(double rad){ return Vector2D<double>(std::cos(rad), std::sin(rad)); }
 			static double ConvertVecToRad(const Vector2D<double>& vec) { return std::atan2(vec.y, vec.x); }

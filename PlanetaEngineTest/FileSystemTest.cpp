@@ -3,7 +3,7 @@
 #include "SystemCounter.h"
 #include "SystemLog.h"
 #include "FileLoadManager.h"
-#include "ArchiveLoader.h"
+#include "ArchiveManipulator.h"
 #include "NormalFolderLoader.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -24,28 +24,28 @@ namespace PlanetaEngineTest
 			using namespace planeta_engine::debug;
 			SystemCounter::Instantiate();
 			SystemLog::Instantiate();
-			FileLoadManager::Instantiate();
+			FileSystemManager::Instantiate();
 			SystemCounter::instance().Initialize();
 			SystemLog::instance().Initialize();
 
-			FileLoadManager::instance().PushLoader(std::make_shared<ArchiveLoader>(kTestArchive, kTestArchivePass));
-			FileLoadManager::instance().PushLoader(std::make_shared<NormalFolderLoader>(kTestFolder));
-			FileLoadManager::instance().Initialize();
+			FileSystemManager::instance().PushLoader(std::make_shared<ArchiveManipulator>(kTestArchive, kTestArchivePass));
+			FileSystemManager::instance().PushLoader(std::make_shared<NormalFolderManipulator>(kTestFolder));
+			FileSystemManager::instance().Initialize();
 		}
 
 		~FileSystemTest() {
 			using namespace planeta_engine::debug;
-			FileLoadManager::instance().Finalize();
+			FileSystemManager::instance().Finalize();
 			SystemLog::instance().Finalize();
 			SystemCounter::instance().Finalize();
-			FileLoadManager::Dispose();
+			FileSystemManager::Dispose();
 			SystemLog::Dispose();
 			SystemCounter::Dispose();
 		}
 
 		TEST_METHOD(FileLoadManagerTest)
 		{
-			FileLoadManager& flm = FileLoadManager::instance();
+			FileSystemManager& flm = FileSystemManager::instance();
 			
 		}
 	};

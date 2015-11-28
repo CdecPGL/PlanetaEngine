@@ -121,6 +121,15 @@
     <Filter Include="PlanetaEngine\Core\SoundSystem">
       <UniqueIdentifier>{b9cc7bbc-7fcb-465c-be44-159dda5896f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\FileSystem\Stream">
+      <UniqueIdentifier>{dec49675-f1ec-4fb8-bf4d-24eb8d3dbcf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\FileSystem\Encrypter">
+      <UniqueIdentifier>{f6fa2f17-458a-4de9-b677-47427823fd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\FileSystem\Manipulator">
+      <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
+    </Filter>
     <Filter Include="PlanetaEngine\Core\GameData">
       <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
     </Filter>
@@ -130,17 +139,8 @@
     <Filter Include="PlanetaEngine\Core\GameData\Serialize">
       <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\FileSystem\Stream">
-      <UniqueIdentifier>{dec49675-f1ec-4fb8-bf4d-24eb8d3dbcf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\FileSystem\Loader">
-      <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\FileSystem\Saver">
-      <UniqueIdentifier>{2d21f442-b2a6-4c5d-997b-b9852d38988d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\FileSystem\Encrypter">
-      <UniqueIdentifier>{f6fa2f17-458a-4de9-b677-47427823fd5e}</UniqueIdentifier>
+    <Filter Include="PlanetaEngine\Core\Others">
+      <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -210,16 +210,7 @@
     <ClInclude Include="CollisionDetectFunctions.h">
       <Filter>PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectUpdateProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectDrawProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClInclude>
-    <ClInclude Include="UIUpdateProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClInclude>
-    <ClInclude Include="UIDrawProcess.h">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClInclude>
     <ClInclude Include="InstanceProcess.h">
@@ -352,9 +343,6 @@
       <Filter>PlanetaEngine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="File.h">
-      <Filter>PlanetaEngine\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="FileLoadManager.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
@@ -624,21 +612,6 @@
     <ClInclude Include="StringUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="ArchiveLoader.h">
-      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalFolderLoader.h">
-      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="FileLoaderBase.h">
-      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSaverBase.h">
-      <Filter>PlanetaEngine\FileSystem\Saver</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalFolderSaver.h">
-      <Filter>PlanetaEngine\FileSystem\Saver</Filter>
-    </ClInclude>
     <ClInclude Include="EncrypterBase.h">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClInclude>
@@ -648,21 +621,45 @@
     <ClInclude Include="FileAccessor.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
+    <ClInclude Include="FileManipulatorBase.h">
+      <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalFolderManipulator.h">
+      <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="ArchiveManipulator.h">
+      <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="FileAccessMode.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystemManager.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenEffecter.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphDrawData.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="DXGraphDrawData.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionGroupMatrix.h">
+      <Filter>PlanetaEngine\Core\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="IColliderWithCollider.h">
+      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectDrawProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectUpdateProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClCompile>
-    <ClCompile Include="UIDrawProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
-    </ClCompile>
-    <ClCompile Include="UIUpdateProcess.cpp">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
     </ClCompile>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -676,9 +673,6 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="FileLoadManager.cpp">
-      <Filter>PlanetaEngine\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="File.cpp">
       <Filter>PlanetaEngine\FileSystem</Filter>
@@ -923,15 +917,6 @@
     <ClCompile Include="FileStreamBuf.cpp">
       <Filter>PlanetaEngine\FileSystem\Stream</Filter>
     </ClCompile>
-    <ClCompile Include="ArchiveLoader.cpp">
-      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalFolderLoader.cpp">
-      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalFolderSaver.cpp">
-      <Filter>PlanetaEngine\FileSystem\Saver</Filter>
-    </ClCompile>
     <ClCompile Include="EncrypterBase.cpp">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClCompile>
@@ -941,11 +926,23 @@
     <ClCompile Include="FileAccessor.cpp">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="FileSaverBase.cpp">
-      <Filter>PlanetaEngine\FileSystem\Saver</Filter>
+    <ClCompile Include="FileManipulatorBase.cpp">
+      <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
     </ClCompile>
-    <ClCompile Include="FileLoaderBase.cpp">
-      <Filter>PlanetaEngine\FileSystem\Loader</Filter>
+    <ClCompile Include="NormalFolderManipulator.cpp">
+      <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="ArchiveManipulator.cpp">
+      <Filter>PlanetaEngine\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystemManager.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphDrawData.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionGroupMatrix.cpp">
+      <Filter>PlanetaEngine\Core\Others</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

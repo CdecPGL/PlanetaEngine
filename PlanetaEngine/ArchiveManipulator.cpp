@@ -1,4 +1,4 @@
-#include "ArchiveLoader.h"
+#include "ArchiveManipulator.h"
 #include"Extracter.h"
 #include"boost/filesystem/path.hpp"
 #include "SystemLog.h"
@@ -6,20 +6,20 @@
 namespace planeta_engine{
 	namespace file_system{
 
-		ArchiveLoader::ArchiveLoader(const std::string& path) :FileLoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(0)
+		ArchiveManipulator::ArchiveManipulator(const std::string& path) :FileManipulatorBase(path,false), _extracter(std::make_unique<Extracter>()), _key(0)
 		{
 		}
 
-		ArchiveLoader::ArchiveLoader(const std::string& path, unsigned int k) : FileLoaderBase(path), _extracter(std::make_unique<Extracter>()), _key(k)
+		ArchiveManipulator::ArchiveManipulator(const std::string& path, unsigned int k) : FileManipulatorBase(path,false), _extracter(std::make_unique<Extracter>()), _key(k)
 		{
 		}
 
-		ArchiveLoader::~ArchiveLoader()
+		ArchiveManipulator::~ArchiveManipulator()
 		{
 			_extracter->CloseArchiveFile();
 		}
 
-		bool ArchiveLoader::InitializeCore()
+		bool ArchiveManipulator::InitializeCore()
 {
 			if (_extracter->SetEXOREncryptionKey((uint16_t)_key)){
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
@@ -33,12 +33,12 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void ArchiveLoader::FinalizeCore()
+		void ArchiveManipulator::FinalizeCore()
 		{
 
 		}
 
-		bool ArchiveLoader::LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files) {
+		bool ArchiveManipulator::LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files) {
 			bool err = false;
 			for (const auto& f : file_list()){
 				auto file = std::make_shared<File>();
@@ -53,7 +53,7 @@ namespace planeta_engine{
 			return !err;
 		}
 
-		bool ArchiveLoader::UpdateFileListCore(std::unordered_set<std::string>& file_list){
+		bool ArchiveManipulator::UpdateFileListCore(std::unordered_set<std::string>& file_list){
 			_extracter->CloseArchiveFile();
 			int res = _extracter->OpenAchiveFile(path());
 			if (res < 0){
@@ -69,7 +69,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool ArchiveLoader::LoadFileCore(const std::string& fn,File& file){
+		bool ArchiveManipulator::LoadFileCore(const std::string& fn,File& file){
 			auto data = _extracter->GetFile(fn);
 			if (data.first == nullptr) {
 				return false;
@@ -78,6 +78,6 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void ArchiveLoader::SetKey(unsigned int k){ _key = k; }
+		void ArchiveManipulator::SetKey(unsigned int k) { _key = k; }
 	}
 }

@@ -16,7 +16,7 @@ namespace planeta_engine {
 		,public core::IGameAccessor,public core::IGameSetUp{
 		public:
 			Game();
-			~Game() = default;
+			~Game();
 			/*システム関数*/
 			bool Initialize();
 			void Finalize();
@@ -27,13 +27,12 @@ namespace planeta_engine {
 			SceneManager& scene_manager()override { return *_scene_manager; }
 			ResourceManager& resource_manager()override { return ResourceManager::instance(); }
 			KeyInputManager& key_input_manager()override { return *_key_input_manager; }
-			void SetCollisionMap(const utility::TwoKeyHashMap<std::string, bool>& col_map)override { collision_map_ = col_map; }
-			void SetCollisionMap(utility::TwoKeyHashMap<std::string, bool>&& col_map)override { collision_map_ = std::move(col_map); }
-			const utility::TwoKeyHashMap<std::string, bool>& GetCollisionMap()const override{ return collision_map_; }
+			core::CollisionGroupMatrix& RefCollisionGroupMatrix()override { return *collision_group_matrix_; }
+			std::shared_ptr<const core::CollisionGroupMatrix> GetCollisionGroupMatrix()const override{ return collision_group_matrix_; }
 		private:
 			std::unique_ptr<SceneManager> _scene_manager;
 			std::unique_ptr<KeyInputManager> _key_input_manager;
-			utility::TwoKeyHashMap<std::string, bool> collision_map_; //衝突マップ
+			std::shared_ptr<core::CollisionGroupMatrix> collision_group_matrix_; //衝突マトリックス
 		};
 	}
 }

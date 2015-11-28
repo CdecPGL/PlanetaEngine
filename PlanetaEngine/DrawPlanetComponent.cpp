@@ -7,6 +7,7 @@
 #include "PlanetComponent.h"
 #include "MathConstant.h"
 #include "SystemLog.h"
+#include "GraphDrawData.h"
 
 namespace {
 	constexpr unsigned int kDefaultHorizontalSeparation(90);
@@ -16,15 +17,17 @@ namespace {
 namespace planeta_engine {
 	namespace components {
 
-		DrawPlanetComponent::DrawPlanetComponent() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation)
+		DrawPlanetComponent::DrawPlanetComponent() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation),graph_draw_data_(std::make_unique<core::GraphDrawData>())
 		{
 
 		}
 
+		DrawPlanetComponent::~DrawPlanetComponent() = default;
+
 		void DrawPlanetComponent::Draw()
 		{
 			_UpdatePolygon();
-			core::DrawManager::instance().DrawGraph(_vertexes, _indexes, _graph_resource);
+			core::DrawManager::instance().DrawGraph(*graph_draw_data_);
 		}
 
 		bool DrawPlanetComponent::Initialize_()
@@ -49,37 +52,43 @@ namespace planeta_engine {
 		void DrawPlanetComponent::_SetPolygon()
 		{
 			//頂点とインデックスのサイズ調整
-			_vertexes.resize((_vertical_separation + 1)*(_horizontal_separation + 1));
-			_indexes.resize((_vertical_separation - 1)*_horizontal_separation * 2 + _horizontal_separation);
+			graph_draw_data_->SetVertexCount((_vertical_separation + 1)*(_horizontal_separation + 1));
+			graph_draw_data_->SetPlygonCount((_vertical_separation - 1)*_horizontal_separation * 2 + _horizontal_separation);
 			//画像と頂点の設定
 			for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) { //水平方向は座標系正回りにセットしていく
 				for (unsigned int j = 0; j < _vertical_separation + 1; ++j) { //垂直方向は上から順にセットしていく
 					//テクスチャ座標のセット
-					_vertexes[(_vertical_separation + 1)*i + j].u = (float)i / _horizontal_separation;
-					_vertexes[(_vertical_separation + 1)*i + j].v = (float)j / _vertical_separation;
+					Vector2D<float> uv;
+					uv.x = (float)i / _horizontal_separation;
+					uv.y = (float)j / _vertical_separation;
+					graph_draw_data_->SetVertexUV((_vertical_separation + 1)*i + j, uv);
 				}
 			}
 			//インデックスの設定
 			for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 				//中心以外はポリゴンを2枚ずつ張る
 				for (unsigned int j = 0; j < _vertical_separation - 1; ++j) {
-					_indexes[i*(_vertical_separation * 2 - 1) + j * 2][0] = i*(_vertical_separation + 1) + j;
-					_indexes[i*(_vertical_separation * 2 - 1) + j * 2][1] = i*(_vertical_separation + 1) + j + 1;
-					_indexes[i*(_vertical_separation * 2 - 1) + j * 2][2] = (i + 1)*(_vertical_separation + 1) + j;
-					_indexes[i*(_vertical_separation * 2 - 1) + j * 2 + 1][0] = i*(_vertical_separation + 1) + j + 1;
-					_indexes[i*(_vertical_separation * 2 - 1) + j * 2 + 1][1] = (i + 1)*(_vertical_separation + 1) + j;
-					_indexes[i*(_vertical_separation * 2 - 1) + j * 2 + 1][2] = (i + 1)*(_vertical_separation + 1) + j + 1;
+					core::GraphDrawData::PolygonIndexType poly1,poly2;
+					poly1[0] = i*(_vertical_separation + 1) + j;
+					poly1[1] = i*(_vertical_separation + 1) + j + 1;
+					poly1[2] = (i + 1)*(_vertical_separation + 1) + j;
+					poly2[0] = i*(_vertical_separation + 1) + j + 1;
+					poly2[1] = (i + 1)*(_vertical_separation + 1) + j;
+					poly2[2] = (i + 1)*(_vertical_separation + 1) + j + 1;
+					graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2, poly1);
+					graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
 				}
 				//中心はポリゴンを1枚だけ張る
-				_indexes[i*(_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2][0] = i*(_vertical_separation + 1) + (_vertical_separation - 1);
-				_indexes[i*(_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2][1] = i*(_vertical_separation + 1) + (_vertical_separation - 1) + 1;
-				_indexes[i*(_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2][2] = (i + 1)*(_vertical_separation + 1) + (_vertical_separation - 1);
+				core::GraphDrawData::PolygonIndexType poly;
+				poly[0] = i*(_vertical_separation + 1) + (_vertical_separation - 1);
+				poly[1] = i*(_vertical_separation + 1) + (_vertical_separation - 1) + 1;
+				poly[2] = (i + 1)*(_vertical_separation + 1) + (_vertical_separation - 1);
+				graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2, poly);
 			}
 		}
 
 		void DrawPlanetComponent::_UpdatePolygon()
 		{
-			if (_graph_resource == nullptr || _planet_component == nullptr) { return; }
 			//今のところ拡大度は考慮していない
 			Vector2D<double> center_pos = GetDrawCenterPosition();
 			double rotation = GetDrawRotationRed();
@@ -92,14 +101,14 @@ namespace planeta_engine {
 				//中心以外の頂点座標を求める
 				for (unsigned int j = 0; j < _vertical_separation; ++j) {
 					double dis_ratio = 1.0f - (double)j / _vertical_separation;
-					_vertexes[i*(_vertical_separation + 1) + j].position = center_pos + interface_vec*dis_ratio;
+					graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + j, center_pos + interface_vec*dis_ratio);
 				}
 				//中心の頂点座標を求める
-				_vertexes[i*(_vertical_separation + 1) + _vertical_separation].position = center_pos;
+				graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + _vertical_separation, center_pos);
 			}
 			//頂点色設定
-			for (auto& vtx : _vertexes) {
-				vtx.color = color();
+			for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) {
+				graph_draw_data_->SetVertexColor(i, color());
 			}
 		}
 
@@ -112,7 +121,7 @@ namespace planeta_engine {
 			}
 			std::shared_ptr<resources::GraphResource> gr = std::dynamic_pointer_cast<resources::GraphResource>(res);
 			if (gr) {
-				_graph_resource = gr;
+				graph_draw_data_->SetGraphResource (gr);
 				return true;
 			}
 			else {

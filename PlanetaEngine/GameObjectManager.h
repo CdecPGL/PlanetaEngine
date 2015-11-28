@@ -7,9 +7,6 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine{
-	namespace system_processes {
-		class GameObjectUpdateProcess;
-	}
 	namespace core {
 		class ScenePublicInterface;
 		class SceneAccessorForGameObject;
@@ -36,6 +33,8 @@ namespace planeta_engine{
 			bool Finalize();
 			/*管理処理*/
 			bool Process();
+			/*更新*/
+			void Update();
 			/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
 			int Resist(const std::shared_ptr<GameObject>& go);
 			int Resist(const std::shared_ptr<GameObject>& go,const std::string& name);
@@ -50,13 +49,18 @@ namespace planeta_engine{
 			void RemoveAllGameObjects();
 
 		private:
+			GameObjectManager(const GameObjectManager&) = delete;
+			GameObjectManager(GameObjectManager&&) = delete;
+			GameObjectManager& operator=(const GameObjectManager&) = delete;
+			GameObjectManager& operator=(GameObjectManager&&) = delete;
+
 			std::unordered_map<int, std::shared_ptr<GameObject>> active_game_objects_;
 			std::unordered_map<int, std::shared_ptr<GameObject>> inactive_game_objects_;
 			std::unordered_map<std::string, int> name_id_map_;
+			std::vector<std::shared_ptr<GameObject>> garbage_;
+			void RemoveProc_();
 			int _id_counter;
 			std::shared_ptr<core::SceneAccessorForGameObject> scene_accessor_;
-			utility::WeakPointer<system_processes::GameObjectUpdateProcess> game_object_update_process_;
-			bool RemoveFromUpdateProcess_(int id);
 		};
 	}
 }
