@@ -2,7 +2,7 @@
 #include "GameProcess.h"
 #include <memory>
 #include <unordered_map>
-#include <forward_list>
+#include <list>
 
 namespace planeta_engine {
 	namespace components {
@@ -29,8 +29,8 @@ namespace planeta_engine {
 		private:
 			void Update()override final;
 			void RemoveAll();
-			using CollisionGroupType = std::forward_list<components::ColliderComponent*>;
-			using CollisionWithGroundListType = std::forward_list<components::ColliderComponent*>;
+			using CollisionGroupType = std::list<components::ColliderComponent*>;
+			using CollisionWithGroundListType = std::list<components::ColliderComponent*>;
 			struct ColliderComponentResistData_ {
 				std::shared_ptr<components::ColliderComponent> pointer; //コライダーのポインター
 				std::unordered_map<std::string, CollisionGroupType>::iterator group_iterator_at_collision_groups; //コリジョングループのグループリスト内でのイテレータ

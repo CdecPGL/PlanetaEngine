@@ -86,6 +86,7 @@ namespace planeta_engine{
 			}
 			//衝突グループに登録
 			ccrd.group_iterator_at_collision_groups = it;
+
 			it->second.push_front(col_com.get());
 			ccrd.iterator_at_collision_group = it->second.begin();
 			//地形衝突コライダーリストに登録
@@ -108,10 +109,10 @@ namespace planeta_engine{
 			} 
 			//地形衝突コライダーリストから除去
 			if (it->second.collision_with_ground_flag) {
-				collision_with_ground_list_.erase_after(it->second.iterator_at_collision_with_ground_list);
+				collision_with_ground_list_.erase(it->second.iterator_at_collision_with_ground_list);
 			}
 			//衝突グループから除去
-			it->second.group_iterator_at_collision_groups->second.erase_after(it->second.iterator_at_collision_group);
+			it->second.group_iterator_at_collision_groups->second.erase(it->second.iterator_at_collision_group);
 			return true;
 		}
 
@@ -129,7 +130,7 @@ namespace planeta_engine{
 				return false;
 			}
 			//現在の衝突グループから除去
-			resist_data_it->second.group_iterator_at_collision_groups->second.erase_after(resist_data_it->second.iterator_at_collision_group);
+			resist_data_it->second.group_iterator_at_collision_groups->second.erase(resist_data_it->second.iterator_at_collision_group);
 			//新しい衝突グループに登録
 			resist_data_it->second.group_iterator_at_collision_groups = group_it;
 			group_it->second.push_front(resist_data_it->second.pointer.get());
@@ -151,7 +152,7 @@ namespace planeta_engine{
 				collision_with_ground_list_.push_front(resist_data_it->second.pointer.get());
 				resist_data_it->second.iterator_at_collision_with_ground_list = collision_with_ground_list_.begin();
 			} else { //地形衝突コライダーリストから除去
-				collision_with_ground_list_.erase_after(resist_data_it->second.iterator_at_collision_with_ground_list);
+				collision_with_ground_list_.erase(resist_data_it->second.iterator_at_collision_with_ground_list);
 			}
 			return true;
 		}
