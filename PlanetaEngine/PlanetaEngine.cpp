@@ -1,77 +1,49 @@
+#include <cassert>
+
+#include "DxLib.h"
+
 #include "PlanetaEngine.h"
 #include "InitEnd.h"
-#include "SceneManager.h"
-#include "SystemCounter.h"
-#include "ResourceManager.h"
 #include "SystemLog.h"
-#include "DxLib.h"
-#include "DrawManager.h"
-#include "NullWeakPointerException.h"
-#include "KeyInputManager.h"
+#include "SystemCounter.h"
 #include "Game.h"
-#include "GameDataManager.h"
-
-//#include "GlobalNewDeleteDefinition.h"
-
+#include "DrawManager.h"
 namespace planeta_engine {
 	namespace core {
-		PlanetaEngine::PlanetaEngine() :_is_initialized(false),_game(std::make_unique<Game>())
+		PlanetaEngine::PlanetaEngine() :is_initialized_(false)
 		{
 
 		}
 
 		PlanetaEngine::~PlanetaEngine()
 		{
-			if (_is_initialized) { Finalize(); }
+			assert(!is_initialized_);
 		}
 
 		bool PlanetaEngine::Initialize()
 		{
-			using namespace planeta_engine::core::init_end;
-
-//			memory_allocator.ReserveMemory(1024 * 1024 * 10);
-
-			CreateSystemDirectory();
-			if (!InitializeDebugSystem()) { //デバッグシステムの初期化
-				return false;
-			}
-			if (InstantiateSingletonManagers() //シングルトンマネージャのインスタンス化
-				&&InitDxLibrary() //DXライブラリの初期化
-				&& SetUpSingletonManagers() //シングルトンマネージャのセットアップ
-				&& _InitializeGame() //固有初期化
-				&& InitializeSingletonManagers() //シングルトンマネージャの初期化
-				&& _game->Initialize() //ゲームクラスの初期化
-				) {
-				debug::SystemLog::instance().LogMessage("PlanetaEngineの初期化に成功しました。", "PlanetaEngine::Initialize");
-				_is_initialized = true;
-			}
-			else {
-				debug::SystemLog::instance().LogError("PlanetaEngineの初期化に失敗しました。", "PlanetaEngine::Initialize");
-				_is_initialized = false;
-				return false;
-			}
-			//スタートアップシーンの開始
-			if (_game->scene_manager().LoadAndTransitionScene(_StartUpSceneName())) {
-				debug::SystemLog::instance().LogMessage(std::string("スタートアップシーン(") + _StartUpSceneName() + ")を開始します。", "PlanetaEngine::Initialize");
+			if (is_initialized_) { assert(false); return false; }
+			assert(game_ != nullptr);
+			if (!InitializeDebugSystem()) { return false; }
+			if (InitializeEngine() && game_->Initialize()) {
+				debug::SystemLog::instance().LogMessage("PlanetaEngineを初期化しました。", __FUNCTION__);
+				is_initialized_ = true;
 				return true;
-			}
-			else {
-				debug::SystemLog::instance().LogError(std::string("スタートアップシーン(")+_StartUpSceneName()+")の開始に失敗しました。", "PlanetaEngine::Initialize");
+			} else {
+				debug::SystemLog::instance().LogError("PlanetaEngineの初期化に失敗しました。", __FUNCTION__);
 				return false;
 			}
 		}
 
 		void PlanetaEngine::Finalize()
 		{
-			using namespace planeta_engine::core::init_end;
-
-			_game->Finalize(); //ゲームクラスの終了処理
-			FinalizeSingletonManagers(); //シングルトンマネージャの終了処理
-			DisposeSingletonManagers(); //シングルトンマネージャの破棄
-			EndDxLibrary(); //DXライブラリの終了処理
-			debug::SystemLog::instance().LogMessage("PlanetaEngineの終了化処理を行いました。", "PlanetaEngine::Finalize");
-			FinalizeDebugStstem(); //デバッグシステムの終了処理
-			_is_initialized = false;
+			if (!is_initialized_) { assert(false); return; }
+			assert(game_ != nullptr);
+			game_->Finalize();
+			FinalzieEngine();
+			debug::SystemLog::instance().LogMessage("PlanetaEngineを終了しました。", __FUNCTION__);
+			FinalizeDebugSystem();
+			is_initialized_ = false;
 		}
 
 		PlanetaEngine::Status PlanetaEngine::Update()
@@ -80,7 +52,7 @@ namespace planeta_engine {
 			
 			Status status;
 
-			Game::Status gstatue = _game->Update();
+			Game::Status gstatue = game_->Update();
 
 			switch (gstatue)
 			{
@@ -99,7 +71,39 @@ namespace planeta_engine {
 
 		IGameSetUp& PlanetaEngine::game_setup_access()
 		{
-			return *_game;
+			return *game_;
+		}
+
+		bool PlanetaEngine::InitializeEngine() {
+			using namespace planeta_engine::core::init_end;
+			CreateSystemDirectory();
+			if (InitDxLibrary() //DXライブラリの初期化
+				&& InstantiateSingletonManagers() //シングルトンマネージャのインスタンス化
+				&& SetUpSingletonManagers() //シングルトンマネージャのセットアップ
+				&& InitializeSingletonManagers() //シングルトンマネージャの初期化
+				) {
+				debug::SystemLog::instance().LogMessage("PlanetaEngine本体を初期化しました。", __FUNCTION__);
+				return true;
+			} else {
+				debug::SystemLog::instance().LogError("PlanetaEngine本体の初期化に失敗しました。", __FUNCTION__);
+				return false;
+			}
+		}
+
+		void PlanetaEngine::FinalzieEngine() {
+			using namespace planeta_engine::core::init_end;
+			FinalizeSingletonManagers(); //シングルトンマネージャの終了処理
+			DisposeSingletonManagers(); //シングルトンマネージャの破棄
+			EndDxLibrary(); //DXライブラリの終了処理
+			debug::SystemLog::instance().LogMessage("PlanetaEngine本体を終了しました。", __FUNCTION__);
+		}
+
+		bool PlanetaEngine::InitializeDebugSystem() {
+			return init_end::InitializeDebugSystem();
+		}
+
+		void PlanetaEngine::FinalizeDebugSystem() {
+			init_end::FinalizeDebugStstem();
 		}
 
 	}

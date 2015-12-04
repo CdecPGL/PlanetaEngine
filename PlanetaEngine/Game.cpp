@@ -13,13 +13,13 @@ namespace planeta_engine {
 
 		bool Game::Initialize()
 		{
-			_key_input_manager->Initialize();
-			return _scene_manager->Initialize();
+			return InitializeSystem() && InitializeGame();
 		}
 
 		void Game::Finalize()
 		{
-			_scene_manager->Finalize();
+			FinalizeGame();
+			FinalizeSystem();
 		}
 
 		Game::Status Game::Update()
@@ -35,6 +35,15 @@ namespace planeta_engine {
 			default:return Status::Error;
 			}
 			return status;
+		}
+
+		bool Game::InitializeSystem() {
+			_key_input_manager->Initialize();
+			return _scene_manager->Initialize();
+		}
+
+		void Game::FinalizeSystem() {
+			_scene_manager->Finalize();
 		}
 
 	}

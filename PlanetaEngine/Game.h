@@ -33,6 +33,12 @@ namespace planeta_engine {
 			std::unique_ptr<SceneManager> _scene_manager;
 			std::unique_ptr<KeyInputManager> _key_input_manager;
 			std::shared_ptr<core::CollisionGroupMatrix> collision_group_matrix_; //衝突マトリックス
+			/*システムの初期化と終了処理*/
+			bool InitializeSystem();
+			void FinalizeSystem();
+			/*ゲーム固有の初期化と終了処理*/
+			virtual bool InitializeGame() = 0;
+			virtual void FinalizeGame() = 0;
 		};
 	}
 }

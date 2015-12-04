@@ -7,7 +7,7 @@ namespace planeta_engine {
 		template<class C>
 		class StaticSingletonTemplate : public core::Object {
 		public:
-			static C& GetInstance() {
+			static C& instance() {
 				static C c;
 				return c; 
 			}

@@ -9,23 +9,29 @@
 #endif
 
 #include <memory>
-#include <functional>
 #include "Object.h"
-#include "SharedPointerInstance.h"
+#include "StaticSingletonTemplate.h"
 
 namespace planeta_engine {
 	namespace core {
 		class IGameSetUp;
 		class Game;
 		/*ゲームクラスはこのクラスを継承し、初期化を定義する。*/
-		class PlanetaEngine : public core::Object,public utility::SharedPointerInstance<PlanetaEngine>{
+		class PlanetaEngine : public utility::StaticSingletonTemplate<PlanetaEngine>{
+			friend utility::StaticSingletonTemplate<PlanetaEngine>;
 		public:
 			PlanetaEngine();
 			~PlanetaEngine();
+			/*ゲームの作成(初期化前に行う)*/
+			template<class GameType>
+			bool CreateGameInstance() {
+				game_ = std::make_unique<GameType>();
+				return game_ != nullptr;
+			}
 			/*エンジンの初期化(失敗した場合でも終了処理を呼び出す必要がある)*/
-			bool Initialize();
+			bool Initialize()override;
 			/*エンジンの終了処理*/
-			void Finalize();
+			void Finalize()override;
 			/*エンジンのステータス*/
 			enum class Status { Continue, Quit, Error };
 			/*エンジンの更新*/
@@ -37,12 +43,14 @@ namespace planeta_engine {
 			PlanetaEngine(PlanetaEngine&&) = delete;
 			PlanetaEngine& operator=(const PlanetaEngine&) = delete;
 			PlanetaEngine& operator=(PlanetaEngine&&) = delete;
-			bool _is_initialized;
-			std::unique_ptr<Game> _game;
-			//ゲーム固有の初期化
-			virtual bool _InitializeGame() = 0;
-			//スタートアップシーン
-			virtual std::string _StartUpSceneName()const = 0;
+			bool is_initialized_;
+			std::unique_ptr<Game> game_;
+
+			bool InitializeEngine();
+			void FinalzieEngine();
+
+			bool InitializeDebugSystem();
+			void FinalizeDebugSystem();
 		};
 	}
 }
