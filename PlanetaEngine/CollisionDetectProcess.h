@@ -19,7 +19,7 @@ namespace planeta_engine {
 		class CollisionDetectProcess final: public game::GameProcess
 		{
 		public:
-			GameProcess::GameProcess;
+			using GameProcess::GameProcess;
 			~CollisionDetectProcess();
 			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix);
 			bool Resist(const std::shared_ptr<components::ColliderComponent>& col_com);

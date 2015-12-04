@@ -102,7 +102,7 @@ namespace planeta_engine {
 		public:
 			GarbageEventHandlerHolder(std::unique_ptr<IEventHandlerHolder<EventArgType>>&& garbage)noexcept : garbage_(std::move(garbage)) {}
 			~GarbageEventHandlerHolder()noexcept = default;
-			bool Call(ParamType e)override { return false; }
+			bool Call(ParamType)override { return false; }
 		private:
 			std::unique_ptr<IEventHandlerHolder<EventArgType>> garbage_;
 		};

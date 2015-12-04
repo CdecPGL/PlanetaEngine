@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "PEDateTime.h"
+#include <windows.h>
 
 /*ログの書式
 [hh:mm:ss,frame]level:detail@place
@@ -79,17 +80,21 @@ namespace planeta_engine {
 			sstrm << detail;
 			//場所
 			sstrm << '@' << place;
+			//改行
+			sstrm << std::endl;
 			//出力
 			_OutPutToOutStream(sstrm.str());
 			//ログ履歴に追加
 			_AddHistory(sstrm.str());
+			//デバッグウインドウに出力
+			OutputDebugString(sstrm.str().c_str());
 		}
 
 		void SystemLog::_OutPutToOutStream(const std::string& str)
 		{
 			for (auto& ostrm : _output_streams)
 			{
-				*ostrm << str << std::endl;
+				*ostrm << str;
 			}
 		}
 

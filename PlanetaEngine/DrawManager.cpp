@@ -4,7 +4,7 @@
 #include "GraphResource.h"
 #include "FontDefinitionResource.h"
 #include "MathUtility.h"
-#include "ScreenEffecter.h"
+#include "ScreenChangeEffecter.h"
 #include "Screen.h"
 #include "GraphDrawData.h"
 #include "DXGraphDrawData.h"
@@ -17,6 +17,7 @@ namespace planeta_engine {
 			SetupCamera_Ortho(480); //正射影カメラを設定
 			SetUseLighting(false); //ライティング計算を行わない
 			camera_posision_.Set(320.0, 240.0);
+			primary_screen_ = std::make_shared<Screen>(DX_SCREEN_BACK, true);
 			return true;
 		}
 
@@ -86,7 +87,14 @@ namespace planeta_engine {
 			//DrawWire({ Vector2D<double>(640,0),Vector2D<double>(608,32) }, 1, core::Color::Yellow());
 			//DrawWire({ Vector2D<double>(640,480),Vector2D<double>(608,448) }, 1, core::Color::Magenta());
 			//DrawWire({ Vector2D<double>(0,480),Vector2D<double>(32,448) }, 1, core::Color::Cyan());
-			return ScreenFlip() == 0 && ClearDrawScreen() == 0;
+			for (const auto& screen : additional_screen_) {
+				DxLib::DrawGraph(0, 0, screen->GetHandle(), false);
+				//削除処理入れる？
+			}
+			if (!(ScreenFlip() == 0 && ClearDrawScreen() == 0)) { return false; }
+			if (!SetDrawScreen_(primary_screen_)) { return false; }
+			current_screen_index_ = -1;
+			return true;
 		}
 
 		Vector2D<double> DrawManager::_ConvertPosition(const Vector2D<double>& position)
@@ -162,9 +170,30 @@ namespace planeta_engine {
 			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));
 		}
 
-		bool DrawManager::ApplyEffectToScreen(ScreenEffecter& screen_effecter)
-		{
-			return screen_effecter.ApplyEffect(Screen(GetDrawScreen()));
+		std::shared_ptr<Screen> DrawManager::PushScreen() {
+			int scr_h = MakeScreen(640, 480, false);
+			std::shared_ptr<Screen> new_screen = std::make_shared<Screen>(scr_h, false);
+			additional_screen_.push_back(new_screen);
+			return new_screen;
+		}
+
+		bool DrawManager::PopScreen() {
+			if (additional_screen_.size() == 0) { return false; }
+			additional_screen_.pop_back();
+			return true;
+		}
+
+		bool DrawManager::SwitchToNextScreen() {
+			if (additional_screen_.size() <= ++current_screen_index_) { 
+				return false; 
+			}
+			return SetDrawScreen_(additional_screen_[current_screen_index_ - 1]);
+		}
+
+		bool DrawManager::SetDrawScreen_(const std::shared_ptr<Screen>& screen) {
+			int gh = screen->GetHandle();
+			SetDrawScreen(gh);
+			return true;
 		}
 
 	}

@@ -14,7 +14,7 @@ namespace planeta_engine {
 			public game::GameProcess
 		{
 		public:
-			GameProcess::GameProcess;
+			using GameProcess::GameProcess;
 			~GameObjectDrawProcess();
 			/*描画コンポーネント登録*/
 			void Resist(const std::shared_ptr<components::DrawComponent>& draw_component, int priority) {

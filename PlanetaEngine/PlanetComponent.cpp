@@ -35,7 +35,7 @@ namespace planeta_engine {
 			int segment = static_cast<int>(pos);
 			double pos_in_segment = pos - segment;
 			int sidx = segment;
-			int eidx = segment == _separation - 1 ? 0 : segment;
+			int eidx = segment == (int)_separation - 1 ? 0 : segment;
 
 			return _gap[sidx] * (1.0 - pos_in_segment) + _gap[eidx] * pos_in_segment;
 		}

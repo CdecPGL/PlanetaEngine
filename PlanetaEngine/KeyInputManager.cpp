@@ -1,5 +1,5 @@
 #include "KeyInputManager.h"
-
+#include <cassert>
 #include<algorithm>
 #include"DxLib.h"
 
@@ -460,6 +460,12 @@ namespace planeta_engine {
 
 		const Vector2D<int> KeyInputManager::GetMousePointerPosition() const
 		{
+//			static int* leak = new int[2];
+//			static int* leak2 = new int;
+//			leak[3] = 0x666;
+//			leak[4] = 0x664;
+//			*(leak - 1) = 0x12345;
+////			assert(_CrtCheckMemory());
 			int x, y;
 			GetMousePoint(&x, &y);
 			return Vector2D<int>(x, y);

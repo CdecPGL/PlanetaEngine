@@ -2,6 +2,7 @@
 #include <vector>
 #include <array>
 #include <memory>
+#include <deque>
 #include "PointerSingletonTemplate.h"
 #include "Vector2D.h"
 #include "Color.h"
@@ -14,8 +15,9 @@ namespace planeta_engine {
 		class FontDefinitionResource;
 	}
 	namespace core {
-		class ScreenEffecter;
+		class ScreenChangeEffecter;
 		class GraphDrawData;
+		class Screen;
 		class DrawManager final : public utility::PointerSingletonTemplate<DrawManager>{
 			friend utility::PointerSingletonTemplate<DrawManager>;
 		public:
@@ -49,8 +51,12 @@ namespace planeta_engine {
 			/*文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
 			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const core::Color& color, const core::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
 
-			//現在のスクリーンにエフェクトを掛ける
-			bool ApplyEffectToScreen(ScreenEffecter& screen_effecter);
+			/*新しいスクリーンを追加する*/
+			std::shared_ptr<Screen> PushScreen();
+			/*末尾のスクリーンを破棄する*/
+			bool PopScreen();
+			/*次の描画対象スクリーンに切り替え*/
+			bool SwitchToNextScreen();
 		private:
 			DrawManager() = default;
 			~DrawManager() = default;
@@ -59,6 +65,12 @@ namespace planeta_engine {
 			Vector2D<double> camera_posision_;
 			double camera_rotation_rad_ = 0.0;
 			double camera_scale_ = 1.0;
+
+			std::shared_ptr<Screen> primary_screen_; //メインスクリーン
+			std::deque<std::shared_ptr<Screen>> additional_screen_; //追加スクリーン
+			int current_screen_index_ = -1; //現在の描画対象スクリーンインデックス(-1:メインスクリーン,0-:追加スクリーン)
+
+			bool SetDrawScreen_(const std::shared_ptr<Screen>& screen);
 		};
 	}
 }

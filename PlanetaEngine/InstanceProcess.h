@@ -7,7 +7,7 @@ namespace planeta_engine {
 	namespace game_processes {
 		class InstantProcess final: public game::GameProcess{
 		public:
-			GameProcess::GameProcess;
+			using GameProcess::GameProcess;
 			void SetExcuteFunction(const std::function<void()>& func) { function_ = func; }
 			void number_of_times_implemented(unsigned int n) { number_of_times_implemented_ = n; }
 		private:

@@ -15,7 +15,6 @@ namespace planeta_engine {
 		bool EXOREncrypter::DecryptPartiallyCore(const file_system::File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const
 		{
 			throw std::logic_error("The method or operation is not implemented.");
-			return false;
 		}
 
 		bool EXOREncrypter::EncryptCore(const file_system::File& src, file_system::File& dst) const
@@ -69,7 +68,6 @@ namespace planeta_engine {
 		uint_fast32_t EXOREncrypter::block_key(size_t block) const
 		{
 			throw std::logic_error("The method or operation is not implemented.");
-			return 0;
 		}
 
 		void EXOREncrypter::CalculateKey()

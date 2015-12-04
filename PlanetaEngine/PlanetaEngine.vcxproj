@@ -43,16 +43,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
     <TargetName>planetaengine_mt</TargetName>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\lib</OutDir>
     <TargetName>planetaengine_mtd</TargetName>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
@@ -61,6 +63,12 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointExceptions>
+      </FloatingPointExceptions>
+      <CompileAsManaged>
+      </CompileAsManaged>
+      <DisableSpecificWarnings>4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -83,7 +91,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
@@ -94,6 +102,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FloatingPointExceptions>
+      </FloatingPointExceptions>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -238,6 +249,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="PointerSingletonTemplate.h" />
     <ClInclude Include="PolygonColliderComponent.h" />
     <ClInclude Include="ProcessAllocator.h" />
+    <ClInclude Include="RangeUtility.h" />
     <ClInclude Include="RectAngle.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="ResourceBase.h" />
@@ -253,7 +265,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneSystemSetUpper.h" />
     <ClInclude Include="SceneTransitionEffect.h" />
     <ClInclude Include="Screen.h" />
-    <ClInclude Include="ScreenEffecter.h" />
+    <ClInclude Include="ScreenChangeEffecter.h" />
+    <ClInclude Include="ScreenDrawer2D.h" />
+    <ClInclude Include="ScreenDrawerUI.h" />
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
     <ClInclude Include="SoundEffectController.h" />
@@ -324,6 +338,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphDrawData.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
+    <ClCompile Include="ScreenChangeEffecter.cpp" />
+    <ClCompile Include="ScreenDrawer2D.cpp" />
+    <ClCompile Include="ScreenDrawerUI.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="SoundEffectController.cpp" />
     <ClCompile Include="SoundManager.cpp" />

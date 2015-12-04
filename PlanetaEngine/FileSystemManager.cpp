@@ -71,7 +71,7 @@ namespace planeta_engine{
 
 		std::shared_ptr<FileAccessor> FileSystemManager::CreateFileAccessorCore(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode)
 		{
-			if (is_initialized_) { assert(false); } //‚±‚ê‚Í‰Šú‰»‘O‚ÉŒÄ‚Ô
+			assert(is_initialized_ == false); //‚±‚ê‚Í‰Šú‰»‘O‚ÉŒÄ‚Ô
 			auto accessor = std::make_shared<FileAccessor>(manipulator, mode);
 			accessors_.emplace(id, accessor);
 			return std::move(accessor);

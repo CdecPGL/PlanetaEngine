@@ -89,7 +89,7 @@ namespace planeta_engine{
 				}
 				return true;
 			}
-			catch (bfs::filesystem_error& e) {
+			catch (bfs::filesystem_error&) {
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイルリストの更新に失敗しました。(パス ", path(), ")");
 				return false;
 			}

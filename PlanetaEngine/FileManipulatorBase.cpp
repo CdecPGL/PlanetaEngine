@@ -94,7 +94,7 @@ namespace planeta_engine {
 
 		bool FileManipulatorBase::SaveFilesCore(const std::vector<std::pair<std::string, const File&>>& files)
 		{
-			bool err;
+			bool err = false;
 			for (const auto& f : files) {
 				if (!SaveFile(f.first, f.second)) {
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", f.first, "の保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");

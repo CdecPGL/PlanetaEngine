@@ -48,7 +48,6 @@ namespace planeta_engine {
 
 		void DrawGraphComponent::_UpdatePolygon()
 		{
-			TransformComponent& transform = *(game_object().GetTransformComponent());
 			//頂点位置の更新
 			//描画拡大度を考慮した縦横の長さ
 			double dwidth((double)_draw_area.width()*GetDrawScale().x), dheight((double)_draw_area.height()*GetDrawScale().y);

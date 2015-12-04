@@ -7,15 +7,15 @@ namespace planeta_engine {
 
 		FileStreamBuf::FileStreamBuf(File& file):file_(file),write_buffer_(std::make_unique<char[]>(buffer_size)), read_buffer_(std::make_unique<char[]>(buffer_size))
 		{
-			write_buffer_[0] = std::char_traits<char>::eof();
-			read_buffer_[0] = std::char_traits<char>::eof();
+			write_buffer_[0] = (char)std::char_traits<char>::eof();
+			read_buffer_[0] = (char)std::char_traits<char>::eof();
 		}
 
 		FileStreamBuf::int_type FileStreamBuf::overflow(int_type d/*= char_traits<char>::eof()*/)
 		{
 			SaveDataFromWriteBuffer(writing_block_++, 1);
 			//あふれた1バイト分書き込んむ
-			write_buffer_[0] = d;
+			write_buffer_[0] = (char)d;
 			return d;
 		}
 
@@ -114,7 +114,7 @@ namespace planeta_engine {
 			if (file_.ReadData(pos, reinterpret_cast<unsigned char*>(gptr()), read_size) == false) { return false; }
 			//必要なら終端にeof付加(ファイルの終端に達した場合)
 			if (read_size < buffer_size) {
-				read_buffer_[buffer_size - 1] = std::char_traits<char>::eof();
+				read_buffer_[buffer_size - 1] = (char)std::char_traits<char>::eof();
 			}
 			//バッファセットして指定位置に
 			setg(read_buffer_.get(), read_buffer_.get()+(int)buf_off, read_buffer_.get() + buffer_size - 1);

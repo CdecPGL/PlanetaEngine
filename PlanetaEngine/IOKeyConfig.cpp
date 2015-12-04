@@ -57,10 +57,10 @@ namespace planeta_engine {
 					const auto& ks = inid.GetSection(KEY_SECTION);
 					for (const auto& p : ks) {
 						if (mode == 0) {
-							Button::type b = utils::ConvertStringToButton(p.first);
-							if (b != Button::Error) {
-								Button::type b = utils::ConvertStringToButton(p.first);
-								if (b != Button::Error) {
+							Button::type b0 = utils::ConvertStringToButton(p.first);
+							if (b0 != Button::Error) {
+								Button::type b1 = utils::ConvertStringToButton(p.first);
+								if (b1 != Button::Error) {
 									std::list < std::string > keys;
 									boost::split(keys, p.second, boost::is_any_of(","));
 									Key::type kint = 0;
@@ -68,7 +68,7 @@ namespace planeta_engine {
 										Key::type k = utils::ConvertStringToKey(kstr);
 										if (k != Key::Error) { kint |= k; }
 									}
-									kim.AssignKeyToButton(kint, b);
+									kim.AssignKeyToButton(kint, b1);
 								}
 							}
 						}
@@ -87,18 +87,18 @@ namespace planeta_engine {
 					const auto& ps = inid.GetSection(PAD_SECTION);
 					for (const auto& p : ps) {
 						if (mode == 0) {
-							Button::type b = utils::ConvertStringToButton(p.first);
-							if (b != Button::Error) {
-								Button::type b = utils::ConvertStringToButton(p.first);
-								if (b != Button::Error) {
+							Button::type b0 = utils::ConvertStringToButton(p.first);
+							if (b0 != Button::Error) {
+								Button::type b1 = utils::ConvertStringToButton(p.first);
+								if (b1 != Button::Error) {
 									std::list < std::string > pads;
 									boost::split(pads, p.second, boost::is_any_of(","));
 									Pad::type pint = 0;
 									for (const auto& pstr : pads) {
-										Pad::type p = utils::ConvertStringToPad(pstr);
-										if (p != Pad::Error) { pint |= p; }
+										Pad::type p1 = utils::ConvertStringToPad(pstr);
+										if (p1 != Pad::Error) { pint |= p1; }
 									}
-									kim.AssignPadToButton(pint, b);
+									kim.AssignPadToButton(pint, b1);
 								}
 							}
 						}

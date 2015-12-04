@@ -51,22 +51,21 @@ namespace planeta_engine{
 
 		bool ResourceManager::_load_tag_group(const std::string& tag)
 		{
-			debug::SystemLog& sl = debug::SystemLog::instance();
 			auto using_map_it = _using_tag_id_map.find(tag);
 			//すでに読み込まれている
 			if (using_map_it != _using_tag_id_map.end()) { return true;}
 			else { //読み込まれていない
 				_using_tag_id_map.emplace(tag, std::vector<std::string>());
-				auto using_map_it = _using_tag_id_map.find(tag);
+				using_map_it = _using_tag_id_map.find(tag);
 			}
 			//未使用リストに存在する
-			auto it = _unused_tag_map.find(tag);
-			if (it != _unused_tag_map.end()) {
-				for (const auto& res : it->second) {
+			auto unused_map_it = _unused_tag_map.find(tag);
+			if (unused_map_it != _unused_tag_map.end()) {
+				for (const auto& res : unused_map_it->second) {
 					using_map_it->second.push_back(res.first); //使用中リソースタグマップにIDを追加
 					_using_resources.insert(res); //使用中リソースIDマップに追加
 				}
-				_unused_tag_map.erase(it); //未使用リストから削除
+				_unused_tag_map.erase(unused_map_it); //未使用リストから削除
 			}
 			else { //新規読み込み
 				using namespace file_system;
@@ -110,8 +109,8 @@ namespace planeta_engine{
 			}
 			auto csv = MakeResource<resources::CSVResource>();
 			if (csv->Create(file) == false) {
-				return false; 
 				debug::SystemLog::instance().LogError(std::string("リソースリストファイルをCSV形式として読み込めませんでした。(" + _resource_list_file_name + ")") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個)", __FUNCTION__);
+				return false;
 			}
 			for (const auto& l : *csv) {
 				ResourceData rd;

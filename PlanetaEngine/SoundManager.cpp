@@ -23,7 +23,6 @@ namespace planeta_engine {
 				debug::SystemLog::instance().LogError(std::string("Musicリソースでないリソースが渡されました。(") + music_resource->GetType().name() + ")", __FUNCTION__);
 				return nullptr;
 			}
-			int dx_handle = m_res->GetHandle();
 			if (impl_->bgm_controller_) {
 				if (impl_->bgm_controller_->resource()->GetHandle() == m_res->GetHandle()) {
 					return impl_->bgm_controller_;

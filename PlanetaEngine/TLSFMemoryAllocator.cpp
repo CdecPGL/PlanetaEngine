@@ -242,7 +242,7 @@ namespace planeta_engine {
 			for (size_t i = 0; i < _free_block_list_size; ++i) {
 				bool is_exist_free_block = false;
 				_MemoryBlock* list_top = &_free_block_list[i];
-				while (list_top = list_top->next()) { ++free_list_count; is_exist_free_block = true; }
+				while (list_top == list_top->next()) { ++free_list_count; is_exist_free_block = true; }
 				if ((((_second_level_index_free_bit_array[i / _second_level_index_separation])&(1u << (i % _second_level_index_separation))) ? true : false) != (is_exist_free_block ? true : false)) {
 					res.inconsistency_at_second_free_block_list_bit_array = true;
 				}
@@ -373,7 +373,7 @@ namespace planeta_engine {
 		inline size_t TLSFMemoryAllocator::_Impl::calcMSB(size_t size)
 		{
 			return getMSB(size);
-			size_t ret = 16;
+			/*size_t ret = 16;
 			unsigned int seg = 16;
 			while ((seg >>= 1)) {
 				size_t e2 = _eo2_table[ret - 1];
@@ -382,7 +382,7 @@ namespace planeta_engine {
 				else { break; }
 			}
 			if (_eo2_table[ret - 1] > size) { --ret; }
-			return ret;
+			return ret;*/
 		}
 
 		inline size_t TLSFMemoryAllocator::_Impl::_calc_second_level_index(size_t size, size_t first_category)

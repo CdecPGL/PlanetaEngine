@@ -1,6 +1,7 @@
 #include "CoroutineProcess.h"
 #include "SceneAccessorForGameProcess.h"
 
+
 namespace planeta_engine {
 	namespace game_processes {
 		void CoroutineProcess::Update()

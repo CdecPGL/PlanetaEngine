@@ -78,7 +78,7 @@ namespace planeta_engine {
 			SendData(&write_test_target); //書き換え対象のメモリアドレス送信
 			SendData(write_test_data); //書き換えデータ送信
 			ReceiveData<long>(); //書き換え完了待機
-			if(write_test_target = write_test_data){} //整合性確認
+			if(write_test_target == write_test_data){} //整合性確認
 			//デバッグデータリストを送信
 
 

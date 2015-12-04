@@ -8,7 +8,7 @@ namespace planeta_engine{
 		class NormalFolderManipulator final: public FileManipulatorBase
 		{
 		public:
-			FileManipulatorBase::FileManipulatorBase;
+			using FileManipulatorBase::FileManipulatorBase;
 			~NormalFolderManipulator()override;
 		private:
 			bool LoadFileByPath(File&, const std::string&);

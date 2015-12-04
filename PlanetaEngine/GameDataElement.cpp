@@ -23,7 +23,7 @@ namespace planeta_engine {
 						complex_type_id_ = data_.complex_data->complex_type().type_id();
 					}
 					catch (GameDataError&) { //型の存在チェックは外で済ませる
-						if (data_.complex_data) { data_.complex_data; }
+						if (data_.complex_data) { data_.complex_data; } //?
 						assert(false);
 					}
 					break;

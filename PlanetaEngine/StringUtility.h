@@ -5,7 +5,7 @@
 
 namespace planeta_engine {
 	namespace utility {
-		inline void ConvertAndConnectToString2(std::ostringstream& oss) {}
+		inline void ConvertAndConnectToString2(std::ostringstream&) {}
 		template<typename First, typename ... Rest>
 		void ConvertAndConnectToString2(std::ostringstream& oss, First first, Rest... rest) {
 			oss << first;

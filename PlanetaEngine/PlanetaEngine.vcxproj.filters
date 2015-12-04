@@ -636,9 +636,6 @@
     <ClInclude Include="FileSystemManager.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenEffecter.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClInclude>
@@ -653,6 +650,18 @@
     </ClInclude>
     <ClInclude Include="IColliderWithCollider.h">
       <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenChangeEffecter.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenDrawer2D.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenDrawerUI.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -943,6 +952,15 @@
     </ClCompile>
     <ClCompile Include="CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenChangeEffecter.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenDrawer2D.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenDrawerUI.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
