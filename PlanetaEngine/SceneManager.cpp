@@ -3,6 +3,7 @@
 #include "SceneSetUpper.h"
 #include "ResourceManager.h"
 #include "ErrorSceneDefinition.h"
+#include "EmptySceneDefinition.h"
 #include "SceneSystemSetUpper.h"
 #include "SystemLog.h"
 #include "NullWeakPointerException.h"
@@ -113,6 +114,18 @@ namespace planeta_engine{
 
 		bool SceneManager::Initialize()
 		{
+			//空のシーンをセット
+			std::shared_ptr<EmptySceneDefinition> ecd = std::make_shared<EmptySceneDefinition>();
+			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
+			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
+			sssu(*es);
+			ecd->SetUpScene(SceneAccessorForSetUp(*es), utility::ParameterHolder());
+			es->Initialize();
+			_current_scene = std::move(es);
+			_current_scene_setupper = ecd;
+			_request = _Request::None;
+			_is_next_scene_loaded = false;
+
 			return true;
 		}
 

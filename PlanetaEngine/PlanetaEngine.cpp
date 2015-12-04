@@ -8,6 +8,7 @@
 #include "SystemCounter.h"
 #include "Game.h"
 #include "DrawManager.h"
+
 namespace planeta_engine {
 	namespace core {
 		PlanetaEngine::PlanetaEngine() :is_initialized_(false)

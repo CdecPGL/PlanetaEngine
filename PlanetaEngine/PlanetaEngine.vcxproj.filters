@@ -663,6 +663,9 @@
     <ClInclude Include="ScreenDrawerUI.h">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClInclude>
+    <ClInclude Include="EmptySceneDefinition.h">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -961,6 +964,12 @@
     </ClCompile>
     <ClCompile Include="ScreenDrawerUI.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EmptySceneDefinition.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorSceneDefinition.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

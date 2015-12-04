@@ -150,6 +150,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
     <ClInclude Include="DXGraphDrawData.h" />
+    <ClInclude Include="EmptySceneDefinition.h" />
     <ClInclude Include="EncrypterBase.h" />
     <ClInclude Include="EXOREncrypter.h" />
     <ClInclude Include="FileAccessMode.h" />
@@ -319,7 +320,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CSVResource.cpp" />
     <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DrawPolygonComponent.cpp" />
+    <ClCompile Include="EmptySceneDefinition.cpp" />
     <ClCompile Include="EncrypterBase.cpp" />
+    <ClCompile Include="ErrorSceneDefinition.cpp" />
     <ClCompile Include="EXOREncrypter.cpp" />
     <ClCompile Include="FileIStream.cpp" />
     <ClCompile Include="FileManipulatorBase.cpp" />
