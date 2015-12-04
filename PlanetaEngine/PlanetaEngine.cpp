@@ -69,11 +69,6 @@ namespace planeta_engine {
 			return status;
 		}
 
-		IGameSetUp& PlanetaEngine::game_setup_access()
-		{
-			return *game_;
-		}
-
 		bool PlanetaEngine::InitializeEngine() {
 			using namespace planeta_engine::core::init_end;
 			CreateSystemDirectory();

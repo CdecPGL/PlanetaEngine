@@ -14,14 +14,11 @@
 
 namespace planeta_engine {
 	namespace core {
-		class IGameSetUp;
 		class Game;
 		/*ゲームクラスはこのクラスを継承し、初期化を定義する。*/
-		class PlanetaEngine : public utility::StaticSingletonTemplate<PlanetaEngine>{
+		class PlanetaEngine final: public utility::StaticSingletonTemplate<PlanetaEngine>{
 			friend utility::StaticSingletonTemplate<PlanetaEngine>;
 		public:
-			PlanetaEngine();
-			~PlanetaEngine();
 			/*ゲームの作成(初期化前に行う)*/
 			template<class GameType>
 			bool CreateGameInstance() {
@@ -36,9 +33,9 @@ namespace planeta_engine {
 			enum class Status { Continue, Quit, Error };
 			/*エンジンの更新*/
 			Status Update();
-		protected:
-			IGameSetUp& game_setup_access();
 		private:
+			PlanetaEngine();
+			~PlanetaEngine();
 			PlanetaEngine(const PlanetaEngine&) = delete;
 			PlanetaEngine(PlanetaEngine&&) = delete;
 			PlanetaEngine& operator=(const PlanetaEngine&) = delete;
