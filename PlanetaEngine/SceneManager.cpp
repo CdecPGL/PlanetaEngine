@@ -44,7 +44,7 @@ namespace planeta_engine{
 		bool SceneManager::LoadNextScene(const std::string& scene_name){
 			if (IsLoading() || IsTransitioning()){ 
 				debug::SystemLog::instance().LogError(std::string("シーンの読み込みに失敗しました。シーンの読み込み中、または遷移中のため新たにシーン(") + scene_name + ")を読み込むことはできません。", "SceneManager::LoadNextScene");
-				return false; 
+				return false;
 			} //すでに読み込み中か、遷移中のため、あらたに読み込みできない
 			//シーン定義クラス作成
 			_next_scene_setupper = _CreateSceneSetUpper(scene_name);

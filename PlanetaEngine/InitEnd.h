@@ -8,6 +8,8 @@ namespace planeta_engine{
 			bool InitDxLibrary(); //DXライブラリの初期化
 			bool EndDxLibrary(); //DXライブラリの終了処理
 
+			bool LoadConfigData(); //設定ファイルを読み込む
+
 			bool InstantiateSingletonManagers(); //シングルトンマネージャのインスタンス化
 			bool DisposeSingletonManagers(); //シングルトンマネージャインスタンスの破棄
 

@@ -16,12 +16,15 @@ namespace planeta_engine {
 			bool Initialize()override;
 			bool Finalize()override;
 			enum class LogLevel { Message, Warning, Error };
-			/*レベルを指定してログを出力(レベル、発生個所、詳細)*/
-			void Log(LogLevel level, const std::string& place, const std::string& detail) { _Log(level, detail, place); }
 			/*レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/
 			template<typename... Details>
 			void Log(LogLevel level, const std::string& place, Details... details) {
-				Log(level, place, utility::ConvertAndConnectToString(details...));
+				_Log(level, utility::ConvertAndConnectToString(details...), place);
+			}
+			/*シンプルなログを出力*/
+			template<typename... Details>
+			void SimpleLog(Details... details) {
+				_OutPutToOutStream(utility::ConvertAndConnectToString(details...));
 			}
 			/*メッセージ(詳細、発生個所)*/
 			void LogMessage(const std::string& detail, const std::string& place) { _Log(LogLevel::Message, detail, place); }

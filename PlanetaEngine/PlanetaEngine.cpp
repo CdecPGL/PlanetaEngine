@@ -25,8 +25,12 @@ namespace planeta_engine {
 		{
 			if (is_initialized_) { assert(false); return false; }
 			assert(game_ != nullptr);
-			if (!InitializeDebugSystem()) { return false; }
-			if (InitializeEngine() && game_->Initialize()) {
+			init_end::CreateSystemDirectory(); //システムディレクトリ作成
+			if (InitializeDebugSystem() //デバッグシステム初期化
+				&& init_end::LoadConfigData() //設定データ読み込み
+				&& InitializeEngine() //エンジン初期化
+				&& game_->Initialize()) //ゲーム初期化
+			{
 				debug::SystemLog::instance().LogMessage("PlanetaEngineを初期化しました。", __FUNCTION__);
 				is_initialized_ = true;
 				return true;
@@ -72,7 +76,7 @@ namespace planeta_engine {
 
 		bool PlanetaEngine::InitializeEngine() {
 			using namespace planeta_engine::core::init_end;
-			CreateSystemDirectory();
+			
 			if (InitDxLibrary() //DXライブラリの初期化
 				&& InstantiateSingletonManagers() //シングルトンマネージャのインスタンス化
 				&& SetUpSingletonManagers() //シングルトンマネージャのセットアップ

@@ -5,12 +5,15 @@
 namespace planeta_engine{
 	namespace core{
 		namespace system_variables{
-			namespace system_information {
+			namespace engine_information {
 				extern const std::string VersionString; //バージョン文字列
 				extern const int MajorVersionNumber; //メジャーバージョン番号
 				extern const int MinorVersionNumber; //マイナーバージョン番号
 				extern const int SubVesionNumber; //サブバージョン番号
 				extern const std::string BuildDate; //ビルドした日付
+			}
+			namespace system_file {
+				extern const std::string ConfigFileName; //設定ファイル名
 			}
 			/*デバッグ*/
 			extern const bool DevelopmentMode; //開発モードフラグ
@@ -19,7 +22,7 @@ namespace planeta_engine{
 			extern const std::string LogDirectory; //ログのディレクトリ
 			extern const std::string SaveDataDirectory; //セーブデータのディレクトリ
 			/*システムログ*/
-			extern const std::string LogOutPutFileName; //ログ出力サキファイル名
+			extern const std::string LogOutPutFileName; //ログ出力先ファイル名
 			/*ファイルシステム*/
 			extern const std::string ResourceDataArchiveFilePath; //リソースデータアーカイブファイルのパス
 			extern const unsigned int ResourceDataArchiveDecryptionKey; //リソースデータアーカイブの復号化キー

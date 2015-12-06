@@ -22,9 +22,9 @@ namespace planeta_engine {
 
 		bool SystemLog::Initialize()
 		{
-			_OutPutToOutStream(std::string("PlanetaEngine V") + core::system_variables::system_information::VersionString);
-			_OutPutToOutStream(std::string("起動日時:") + utility::DateTime::GetCurrentDateTime().ToString());
-			if (core::system_variables::DevelopmentMode)_OutPutToOutStream("開発モードが有効です。");
+			SimpleLog(std::string("PlanetaEngine V") + core::system_variables::engine_information::VersionString);
+			SimpleLog(std::string("起動日時:") + utility::DateTime::GetCurrentDateTime().ToString());
+			if (core::system_variables::DevelopmentMode) { SimpleLog("開発モードが有効です。"); }
 			Log(LogLevel::Message, __FUNCTION__, "初期化されました。ログ出力ストリームは", _output_streams.size(), "個です。");
 			return true;
 		}
@@ -80,8 +80,6 @@ namespace planeta_engine {
 			sstrm << detail;
 			//場所
 			sstrm << '@' << place;
-			//改行
-			sstrm << std::endl;
 			//出力
 			_OutPutToOutStream(sstrm.str());
 			//ログ履歴に追加
@@ -92,9 +90,11 @@ namespace planeta_engine {
 
 		void SystemLog::_OutPutToOutStream(const std::string& str)
 		{
+			std::string ostr = str;
+			if (ostr.size() > 0 && ostr[ostr.size() - 1] != '\n') { ostr.push_back('\n'); } //末尾に改行がなかったら付加する
 			for (auto& ostrm : _output_streams)
 			{
-				*ostrm << str;
+				*ostrm << ostr;
 			}
 		}
 

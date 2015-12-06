@@ -146,6 +146,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ConfigData.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
@@ -157,6 +158,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="FileIStream.h" />
     <ClInclude Include="FileOStream.h" />
     <ClInclude Include="FileStreamBuf.h" />
+    <ClInclude Include="FileSystemUtility.h" />
     <ClInclude Include="GameDataComplexType.h" />
     <ClInclude Include="GameDataComplexTypeInstance.h" />
     <ClInclude Include="GameDataElement.h" />
@@ -315,6 +317,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="CoroutineProcess.cpp" />
     <ClCompile Include="CSVResource.cpp" />
@@ -328,6 +331,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="FileManipulatorBase.cpp" />
     <ClCompile Include="FileOStream.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
+    <ClCompile Include="FileSystemUtility.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />
     <ClCompile Include="GameDataComplexType.cpp" />

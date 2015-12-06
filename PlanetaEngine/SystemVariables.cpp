@@ -3,12 +3,15 @@
 namespace planeta_engine{
 	namespace core{
 		namespace system_variables{
-			namespace system_information {
+			namespace engine_information {
 				const std::string VersionString("1.0.0");
 				const int MajorVersionNumber(1);
 				const int MinorVersionNumber(0);
 				const int SubVesionNumber(0);
 				const std::string BuildDate(__DATE__);
+			}
+			namespace system_file {
+				const std::string ConfigFileName("Config");
 			}
 			const bool DevelopmentMode(true);
 			const std::string SystemDataDirectory("system");

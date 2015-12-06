@@ -184,7 +184,7 @@ namespace planeta_engine {
 		}
 
 		bool DrawManager::SwitchToNextScreen() {
-			if (additional_screen_.size() <= ++current_screen_index_) { 
+			if (additional_screen_.size() <= (size_t)++current_screen_index_) { 
 				return false; 
 			}
 			return SetDrawScreen_(additional_screen_[current_screen_index_ - 1]);

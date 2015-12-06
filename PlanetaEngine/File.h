@@ -4,6 +4,7 @@
 #include<string>
 #include<vector>
 #include <memory.h>
+#include <istream>
 
 namespace planeta_engine{
 	namespace file_system{

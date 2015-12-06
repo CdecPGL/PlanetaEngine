@@ -142,6 +142,9 @@
     <Filter Include="PlanetaEngine\Core\Others">
       <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\Config">
+      <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -666,6 +669,12 @@
     <ClInclude Include="EmptySceneDefinition.h">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
     </ClInclude>
+    <ClInclude Include="FileSystemUtility.h">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigData.h">
+      <Filter>PlanetaEngine\Core\Config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -970,6 +979,12 @@
     </ClCompile>
     <ClCompile Include="ErrorSceneDefinition.cpp">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystemUtility.cpp">
+      <Filter>PlanetaEngine\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigData.cpp">
+      <Filter>PlanetaEngine\Core\Config</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

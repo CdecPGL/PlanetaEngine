@@ -6,6 +6,7 @@
 #include "boost/filesystem.hpp"
 
 #include "SystemVariables.h"
+#include "ConfigData.h"
 #include "SystemLog.h"
 #include "SystemCounter.h"
 #include "FileSystemManager.h"
@@ -25,6 +26,11 @@ namespace {
 namespace planeta_engine{
 	namespace core{
 		namespace init_end{
+			bool LoadConfigData() {
+				std::string config_file_path(system_variables::SystemDataDirectory + "\\" + system_variables::system_file::ConfigFileName);
+				return config_data::LoadConfigData(config_file_path);
+			}
+
 			bool SetUpSingletonManagers() {
 				if (
 					SetUpFileSystem()

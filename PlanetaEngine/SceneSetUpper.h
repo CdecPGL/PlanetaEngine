@@ -24,12 +24,12 @@ namespace planeta_engine{
 			virtual utility::ParameterHolder FinalizeScene(SceneAccessorForSetUp& scene,const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) = 0;
 			/*使用リソースのタググループリストを返す*/
 			virtual const std::vector<std::string> GetUseTagGroups()const = 0;
-			/*遷移可能SceneIDリスト*/
+			/*遷移可能SceneIDリスト(からの場合、全てのシーンに遷移可能とみなす)*/
 			virtual const std::vector<std::string> GetTransitionableSceneID()const = 0;
 			/*指定したシーンに遷移可能か*/
 			bool CheckTransitionable(const std::string& scene_id) {
 				auto l = GetTransitionableSceneID();
-				return std::find(l.begin(), l.end(), scene_id) != l.end();
+				return l.size() == 0 ||  std::find(l.begin(), l.end(), scene_id) != l.end();
 			}
 		private:
 
