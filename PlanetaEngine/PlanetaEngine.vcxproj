@@ -136,6 +136,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraUtility.h" />
     <ClInclude Include="CircleColliderComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
@@ -204,6 +205,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessManagerAccessorForSetUp.h" />
     <ClInclude Include="GameProcessManagerPublicInterface.h" />
     <ClInclude Include="GameProcessWithRefrection.h" />
+    <ClInclude Include="GetterSetterUtility.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
     <ClInclude Include="GraphDrawData.h" />
@@ -302,6 +304,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="UIObjectResisterConnection.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="Vector4D.h" />
     <ClInclude Include="Vertex2D.h" />
     <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="WeakPointerDelegate.h" />
@@ -311,6 +315,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="BGMController.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraUtility.cpp" />
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />

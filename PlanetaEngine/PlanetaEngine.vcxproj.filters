@@ -675,6 +675,18 @@
     <ClInclude Include="ConfigData.h">
       <Filter>PlanetaEngine\Core\Config</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GetterSetterUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -985,6 +997,9 @@
     </ClCompile>
     <ClCompile Include="ConfigData.cpp">
       <Filter>PlanetaEngine\Core\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

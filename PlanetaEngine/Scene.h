@@ -15,6 +15,8 @@
 namespace planeta_engine{
 	namespace core{
 		class IGameAccessor;
+		class Screen;
+		class Camera;
 		class Scene : public Object,public utility::SharedPointerInstance<Scene>
 			,public ScenePublicInterface{
 		public:
@@ -44,6 +46,9 @@ namespace planeta_engine{
 			std::unique_ptr<game::GameProcessManager> game_process_manager_;
 			std::unique_ptr<game::GameObjectManager> game_object_manager_;
 			std::unique_ptr<game::UIManager> ui_manager_;
+
+			std::shared_ptr<Screen> screen_; //描画用スクリーン
+			std::shared_ptr<Camera> camera_; //カメラ
 		};
 	}
 }
