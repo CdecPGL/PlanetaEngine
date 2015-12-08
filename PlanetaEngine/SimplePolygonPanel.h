@@ -14,9 +14,9 @@ namespace planeta_engine {
 		public:
 			void SetNumberOfVertexes(size_t n);
 			/*指定インデックスの座標を設定。座標はコンポーネントの左上を(0.0,0.0)、右下を(1.0,1.0)とした座標で示す。*/
-			bool SetVertexPosition(size_t idx, const Vector2D<double>& pos);
+			bool SetVertexPosition(size_t idx, const math::Vector2Dd& pos);
 			/*頂点を設定。座標はコンポーネントの左上を(0.0,0.0)、右下を(1.0,1.0)とした座標で示す。*/
-			void SetVertexes(const std::vector<Vector2D<double>>& vs);
+			void SetVertexes(const std::vector<math::Vector2Dd>& vs);
 			/*アクセサ*/
 			/*塗りつぶし色を取得*/
 			const core::Color& fill_color()const { return fill_color_; }
@@ -40,8 +40,8 @@ namespace planeta_engine {
 			bool points_update_flag_ = true;
 			/*Polygon情報*/
 			core::Color fill_color_;
-			std::vector<Vector2D<double>> relative_points_;
-			std::vector<Vector2D<int>> absolute_points_;
+			std::vector<math::Vector2Dd> relative_points_;
+			std::vector<math::Vector2Di> absolute_points_;
 			std::vector<std::array<int, 3>> indexes_;
 			void UpdateAbsolutePoints_(const utility::RectAngle<int>& draw_area);
 			void UpdatePorygonIndex_();

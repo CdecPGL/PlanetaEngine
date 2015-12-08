@@ -6,9 +6,9 @@ namespace planeta_engine {
 		class PlanetComponent;
 		class PlanetGroundComponent final: public GroundComponent {
 		public:
-			const Vector2D<double> GetDownwardDirectionVector(const Vector2D<double>& pos)const override;
-			const double GetDownwardDirectionByRad(const Vector2D<double>& pos)const override { return ConvertVecToRad(GetDownwardDirectionVector(pos)); }
-			const double GetAltitude(const Vector2D<double>& position)const override;
+			const math::Vector2Dd GetDownwardDirectionVector(const math::Vector2Dd& pos)const override;
+			const double GetDownwardDirectionByRad(const math::Vector2Dd& pos)const override { return ConvertVecToRad(GetDownwardDirectionVector(pos)); }
+			const double GetAltitude(const math::Vector2Dd& position)const override;
 		private:
 			utility::WeakPointer<PlanetComponent> planet_component_;
 			bool Initialize_()override;

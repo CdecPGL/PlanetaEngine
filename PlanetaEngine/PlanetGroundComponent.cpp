@@ -9,12 +9,12 @@
 namespace planeta_engine {
 	namespace components {
 
-		const Vector2D<double> PlanetGroundComponent::GetDownwardDirectionVector(const Vector2D<double>& pos)const
+		const math::Vector2Dd PlanetGroundComponent::GetDownwardDirectionVector(const math::Vector2Dd& pos)const
 		{
-			return Vector2D<double>::GetParallelUnitVector(game_object().transform().global_position() - pos);
+			return math::Vector2Dd::GetParallelUnitVector(game_object().transform().global_position() - pos);
 		}
 
-		const double PlanetGroundComponent::GetAltitude(const Vector2D<double>& position)const
+		const double PlanetGroundComponent::GetAltitude(const math::Vector2Dd& position)const
 		{
 			auto center_to_pos_vec = position - game_object().transform().global_position();
 			double distance = center_to_pos_vec.Length();
@@ -47,15 +47,15 @@ namespace planeta_engine {
 			auto collider_relative_vec = collider_pos - transform.global_position();
 			double collider_direction = std::atan2(collider_relative_vec.y, collider_relative_vec.x);
 			//惑星中心からコライダーまでの距離の2乗
-			double collider_distance_s = Vector2D<double>::Length_Square(collider_relative_vec);
+			double collider_distance_s = math::Vector2Dd::length_square(collider_relative_vec);
 			//衝突判定
 			if (std::pow(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale(), 2) > collider_distance_s) {
 				auto& collider_transform = collider.game_object().transform();
 				//速度の修正
-				Vector2D<double> parallel_unit_vec(std::cos(collider_direction + math::constant::PI / 2.0), std::sin(collider_direction + math::constant::PI / 2.0));
-				collider_transform.velocity(parallel_unit_vec*Vector2D<double>::Dot(collider_transform.velocity(), parallel_unit_vec));
+				math::Vector2Dd parallel_unit_vec(std::cos(collider_direction + math::constant::PI / 2.0), std::sin(collider_direction + math::constant::PI / 2.0));
+				collider_transform.velocity(parallel_unit_vec*math::Vector2Dd::Dot(collider_transform.velocity(), parallel_unit_vec));
 				//押し出し
-				collider_transform.global_position(transform.global_position() + Vector2D<double>::GetParallelUnitVector(collider_relative_vec)*(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale()));
+				collider_transform.global_position(transform.global_position() + math::Vector2Dd::GetParallelUnitVector(collider_relative_vec)*(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale()));
 				return true;
 			} else {
 				return false;

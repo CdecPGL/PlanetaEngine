@@ -61,10 +61,10 @@ namespace planeta_engine {
 
 		}
 
-		const Vector2D<double> ColliderComponent::GetCollisionCenterPosition() const
+		const math::Vector2Dd ColliderComponent::GetCollisionCenterPosition() const
 		{
 			const TransformComponent& transform = game_object().transform();
-			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
+			math::Vector2Dd relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.global_scale().x; //横方向拡大を反映
 			relation_position.y *= transform.global_scale().y; //縦方向拡大を反映
 			return transform.global_position() + relation_position;

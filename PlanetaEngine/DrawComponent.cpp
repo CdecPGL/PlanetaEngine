@@ -23,10 +23,10 @@ namespace planeta_engine {
 			}
 		}
 
-		Vector2D<double> DrawComponent::GetDrawCenterPosition() const
+		math::Vector2Dd DrawComponent::GetDrawCenterPosition() const
 		{
 			const TransformComponent& transform = game_object().transform();
-			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), _position); //ゲームオブジェクトからの相対位置
+			math::Vector2Dd relation_position = math::RotationalTransformation(transform.global_rotation_rad(), _position); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.global_scale().x; //横方向拡大を反映
 			relation_position.y *= transform.global_scale().y; //縦方向拡大を反映
 			return transform.global_position() + relation_position;
@@ -37,9 +37,9 @@ namespace planeta_engine {
 			return game_object().transform().global_rotation_rad() + _rotation_rad;
 		}
 
-		Vector2D<double> DrawComponent::GetDrawScale() const
+		math::Vector2Dd DrawComponent::GetDrawScale() const
 		{
-			return Vector2D<double>(game_object().transform().global_scale().x * _scale.x, game_object().transform().global_scale().y * _scale.y);
+			return math::Vector2Dd(game_object().transform().global_scale().x * _scale.x, game_object().transform().global_scale().y * _scale.y);
 		}
 
 		void DrawComponent::_ResistToDrawProcess()

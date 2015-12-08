@@ -31,16 +31,16 @@ namespace planeta_engine {
 			void Draw();
 			void DebugDraw();
 			bool KeyInput(ui_object_input_code::type input_code);
-			bool PointingCursorPosition(const Vector2D<int>& parent_relative_cursor_position);
+			bool PointingCursorPosition(const math::Vector2Di& parent_relative_cursor_position);
 			/*ユーザー利用関数*/
 			bool Show();
 			bool Close();
 			void Dispose();
 			/*アクセサ*/
-			const Vector2D<int> position()const { return rect_angle_.position; }
-			void position(const Vector2D<int>& p) { rect_angle_.position = p; PositionChangedProc(); }
-			const Vector2D<int> size()const { return rect_angle_.size; }
-			void size(const Vector2D<int>& s) { rect_angle_.size = s; SizeChangedProc(); }
+			const math::Vector2Di position()const { return rect_angle_.position; }
+			void position(const math::Vector2Di& p) { rect_angle_.position = p; PositionChangedProc(); }
+			const math::Vector2Di size()const { return rect_angle_.size; }
+			void size(const math::Vector2Di& s) { rect_angle_.size = s; SizeChangedProc(); }
 			bool is_focused()const { return is_focused_; }
 			void is_focused(bool f) {
 				if (f == is_focused_) { return; }
@@ -75,7 +75,7 @@ namespace planeta_engine {
 			*/
 			virtual ui_object_input_code::type KeyInputProc(ui_object_input_code::type input_code) { return input_code; }
 			//カーソルの衝突判定処理(衝突したかを返す)
-			virtual bool DetectCursorPointedProc(const Vector2D<int>& my_relative_cursor_position) { return false; }
+			virtual bool DetectCursorPointedProc(const math::Vector2Di& my_relative_cursor_position) { return false; }
 			/*位置が変更されたときの処理*/
 			virtual void PositionChangedProc() {}
 			/*サイズが変更されたときの処理*/

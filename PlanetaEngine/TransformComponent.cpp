@@ -24,13 +24,13 @@ namespace planeta_engine {
 				//êeÇÃà íuÇ©ÇÁé©ï™ÇÃà íuÇãÅÇﬂÇÈ
 				auto&  parent_transform = *parent();
 				if (position_parent_dependence_) {
-					global_position_ = parent_transform.global_position() + math::RotationalTransformation(parent_transform.global_rotation_rad(), Vector2D<double>(local_position_.x * parent_transform.global_scale().x, local_position_.y * parent_transform.global_scale().y));
+					global_position_ = parent_transform.global_position() + math::RotationalTransformation(parent_transform.global_rotation_rad(), math::Vector2Dd(local_position_.x * parent_transform.global_scale().x, local_position_.y * parent_transform.global_scale().y));
 				}
 				else {
 					global_position_ = local_position_;
 				}
 				if (scale_parent_dependence_) {
-					global_scale_ = Vector2D<double>(parent_transform.global_scale().x * local_scale_.x, parent_transform.global_scale().y * local_scale_.y);
+					global_scale_ = math::Vector2Dd(parent_transform.global_scale().x * local_scale_.x, parent_transform.global_scale().y * local_scale_.y);
 				}
 				else {
 					global_scale_ = local_scale_;
@@ -63,7 +63,7 @@ namespace planeta_engine {
 					local_position_ = global_position_;
 				}
 				if (scale_parent_dependence_) {
-					local_scale_ = Vector2D<double>(global_scale().x / parent_transform.global_scale().x, global_scale().y / parent_transform.global_scale().y);
+					local_scale_ = math::Vector2Dd(global_scale().x / parent_transform.global_scale().x, global_scale().y / parent_transform.global_scale().y);
 				}
 				else {
 					local_scale_ = global_scale_;
