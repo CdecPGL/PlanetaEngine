@@ -681,10 +681,16 @@
     <ClInclude Include="Vector3D.h">
       <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
-    <ClInclude Include="GetterSetterUtility.h">
+    <ClInclude Include="Vector4D.h">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4D.h">
+    <ClInclude Include="Vector2Dtest.h">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorElementIdentifer.h">
       <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
   </ItemGroup>

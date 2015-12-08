@@ -148,6 +148,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConfigData.h" />
+    <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
     <ClInclude Include="CSVResource.h" />
@@ -205,7 +206,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessManagerAccessorForSetUp.h" />
     <ClInclude Include="GameProcessManagerPublicInterface.h" />
     <ClInclude Include="GameProcessWithRefrection.h" />
-    <ClInclude Include="GetterSetterUtility.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
     <ClInclude Include="GraphDrawData.h" />
@@ -254,6 +254,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="PointerSingletonTemplate.h" />
     <ClInclude Include="PolygonColliderComponent.h" />
     <ClInclude Include="ProcessAllocator.h" />
+    <ClInclude Include="Property.h" />
     <ClInclude Include="RangeUtility.h" />
     <ClInclude Include="RectAngle.h" />
     <ClInclude Include="Reflection.h" />
@@ -303,6 +304,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIObjectResisterConnection.h" />
     <ClInclude Include="UnorderedMap.h" />
+    <ClInclude Include="Vector2Dtest.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="Vector4D.h" />

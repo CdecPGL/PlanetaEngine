@@ -13,7 +13,7 @@ namespace planeta_engine {
 		}
 		/*ˆø”‚ğ•¶š—ñ‚É•ÏŠ·‚µ‚Ä˜AŒ‹*/
 		template<typename ... Elements>
-		std::string ConvertAndConnectToString(Elements... elements) {
+		std::string ConvertAndConnectToString(const Elements&... elements) {
 			std::ostringstream oss;
 			ConvertAndConnectToString2(oss, elements...);
 			return std::move(oss.str());
