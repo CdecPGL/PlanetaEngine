@@ -3,7 +3,7 @@
 
 namespace planeta_engine {
 	namespace utility {
-		math::Vector2Dd CovertPositionUISpaceToGameObjectSpace(const math::Vector2Di& ui_pos);
-		math::Vector2Di CovertPositionGameObjectSpaceToUISpace(const math::Vector2Dd& game_object_pos);
+		Vector2D<double> CovertPositionUISpaceToGameObjectSpace(const Vector2D<int>& ui_pos);
+		Vector2D<int> CovertPositionGameObjectSpaceToUISpace(const Vector2D<double>& game_object_pos);
 	}
 }

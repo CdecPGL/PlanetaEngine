@@ -12,7 +12,7 @@ namespace planeta_engine {
 
 		void StringPanel::DrawProc(const utility::RectAngle<int>& draw_area)
 		{
-			math::Vector2Dd dp = draw_area.position;
+			Vector2D<double> dp = draw_area.position;
 			core::DrawManager::instance().DrawUIString(dp, character_scale_, text_, color_, outline_color_, font_definition_resource_);
 		}
 

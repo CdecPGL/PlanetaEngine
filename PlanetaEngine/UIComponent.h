@@ -54,10 +54,10 @@ namespace planeta_engine {
 			/*アクセサ*/
 			const utility::RectAngle<int>& rect()const { return rect_angle_; }
 			void rect(const utility::RectAngle<int>& r) { rect_angle_ = r; is_position_updated_since_last_draw = true; is_size_updated_since_last_draw = true; }
-			const math::Vector2Di position()const { return rect_angle_.position; }
-			void position(const math::Vector2Di& p) { rect_angle_.position = p; is_position_updated_since_last_draw = true; }
-			const math::Vector2Di size()const { return rect_angle_.size; }
-			void size(const math::Vector2Di& s) { rect_angle_.size = s; is_size_updated_since_last_draw = true; }
+			const Vector2D<int> position()const { return rect_angle_.position; }
+			void position(const Vector2D<int>& p) { rect_angle_.position = p; is_position_updated_since_last_draw = true; }
+			const Vector2D<int> size()const { return rect_angle_.size; }
+			void size(const Vector2D<int>& s) { rect_angle_.size = s; is_size_updated_since_last_draw = true; }
 
 			template<class C>
 			std::shared_ptr<C> AddChild() {
@@ -87,9 +87,9 @@ namespace planeta_engine {
 			/*更新処理*/
 			virtual void UpdateProc() {};
 			/*前回描画時から位置が更新されたときの処理(描画前に呼ばれる)*/
-			virtual void PositionUpdatedProc(const math::Vector2Di& position) {};
+			virtual void PositionUpdatedProc(const Vector2D<int>& position) {};
 			/*前回描画時からサイズが更新されたときの処理(描画前に呼ばれる)*/
-			virtual void SizeUpdatedProc(const math::Vector2Di& size) {};
+			virtual void SizeUpdatedProc(const Vector2D<int>& size) {};
 			/*描画処理。描画は引数として渡される範囲内に行う*/
 			virtual void DrawProc(const utility::RectAngle<int>& my_draw_area) = 0;
 			/*初期化処理*/

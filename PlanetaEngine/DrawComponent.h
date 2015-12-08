@@ -21,28 +21,28 @@ namespace planeta_engine {
 			/*描画優先度を設定*/
 			void draw_priority(int priority);
 			/*表示位置を取得*/
-			const math::Vector2Dd& position()const { return _position; }
+			const Vector2D<double>& position()const { return _position; }
 			/*表示位置を設定*/
-			void position(const math::Vector2Dd& pos) { _position = pos; }
+			void position(const Vector2D<double>& pos) { _position = pos; }
 			/*表示回転度を取得*/
 			double rotation_rad()const { return _rotation_rad; }
 			/*表示回転度を設定*/
 			void rotation_rad(double rota_rad) { _rotation_rad = rota_rad; }
 			/*表示拡大度を取得*/
-			const math::Vector2Dd& scale()const { return _scale; }
+			const Vector2D<double>& scale()const { return _scale; }
 			/*表示拡大度を設定*/
-			void scale(const math::Vector2Dd& s) { _scale = s; }
+			void scale(const Vector2D<double>& s) { _scale = s; }
 			/*表示色を取得*/
 			core::Color color()const { return _color; }
 			/*表示色を設定*/
 			void color(const core::Color& c) { _color = c; }
 		protected:
 			/*描画の中心位置取得(ゲームオブジェクトの形状情報と、表示位置から算出)*/
-			math::Vector2Dd GetDrawCenterPosition()const;
+			Vector2D<double> GetDrawCenterPosition()const;
 			/*描画回転度取得(ゲームオブジェクトの回転度と、表示回転度から算出)*/
 			double GetDrawRotationRed()const;
 			/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
-			math::Vector2Dd GetDrawScale()const;
+			Vector2D<double> GetDrawScale()const;
 		protected:
 			/*システム関数(このクラスを継承するクラスで以下の関数をオーバーライドする場合、DrawComponentの同クラスを呼び出さなければならない。)*/
 			bool Initialize_()override;
@@ -50,11 +50,11 @@ namespace planeta_engine {
 		private:
 			int _draw_priority = 0; //描画優先度
 			/*表示位置*/
-			math::Vector2Dd _position;
+			Vector2D<double> _position;
 			/*表示回転度*/
 			double _rotation_rad = 0.0;
 			/*表示拡大度*/
-			math::Vector2Dd _scale = math::Vector2Dd(1.0, 1.0);
+			Vector2D<double> _scale = Vector2D<double>(1.0, 1.0);
 			core::Color _color;
 			utility::WeakPointer<system_processes::GameObjectDrawProcess> _game_object_draw_process;
 			void _ResistToDrawProcess();

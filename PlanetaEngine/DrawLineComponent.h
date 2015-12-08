@@ -16,7 +16,7 @@ namespace planeta_engine {
 			double length()const { return _length; }
 			void length(double l) { _length = l; }
 		private:
-			std::vector<math::Vector2Dd> _wire_positions;
+			std::vector<Vector2D<double>> _wire_positions;
 			int _width;
 			double _length;
 		};

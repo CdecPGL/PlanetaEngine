@@ -9,7 +9,7 @@
 
 namespace planeta_engine {
 	namespace core {
-		void ScreenDrawer2D::DrawWire(const std::vector<math::Vector2Dd>& positions, double width, const Color& color) {
+		void ScreenDrawer2D::DrawWire(const std::vector<Vector2D<double>>& positions, double width, const Color& color) {
 			using namespace utility::dx;
 			VECTOR v0, v1;
 			unsigned int dxc = PEColorToDXColorHandle(color);
@@ -21,7 +21,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void ScreenDrawer2D::DrawPolygon(const std::vector<math::Vector2Dd>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color) {
+		void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2D<double>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color) {
 			using namespace utility::dx;
 			VECTOR v0, v1, v2;
 			int dxc = PEColorToDXColorHandle(color);

@@ -22,7 +22,7 @@ namespace planeta_engine {
 			virtual bool DetectCollision(core::IColliderWithCollider& collider) = 0;
 
 			/*中心位置取得*/
-			const math::Vector2Dd GetCollisionCenterPosition()const;
+			const Vector2D<double> GetCollisionCenterPosition()const;
 			/*拡大度取得(トランスフォームの拡大度xyで小さい方の要素が適用される)*/
 			const double GetCollisionScale()const;
 			/*回転度取得*/
@@ -30,9 +30,9 @@ namespace planeta_engine {
 
 			/*アクセサ*/
 			/*位置を取得*/
-			const math::Vector2Dd& position()const { return position_; }
+			const Vector2D<double>& position()const { return position_; }
 			/*位置を設定*/
-			void position(const math::Vector2Dd& pos) { position_ = pos; }
+			void position(const Vector2D<double>& pos) { position_ = pos; }
 			/*回転度を取得*/
 			const double rotation_rad()const { return rotation_rad_; }
 			/*回転度を設定*/
@@ -64,7 +64,7 @@ namespace planeta_engine {
 			void _RemoveFromCollisionDetectProcess();
 
 			/*位置*/
-			math::Vector2Dd position_;
+			Vector2D<double> position_;
 			/*回転度*/
 			double rotation_rad_ = 0.0;
 			/*地形衝突フラグ*/

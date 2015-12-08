@@ -33,7 +33,7 @@ namespace planeta_engine {
 			core::Color outline_color_;
 			bool auto_newline_ = false;
 			int character_size_ = 16;
-			math::Vector2Dd character_scale_;
+			Vector2D<double> character_scale_;
 			void UpdateCharacterScale();
 
 			virtual void UpdateProc() override;

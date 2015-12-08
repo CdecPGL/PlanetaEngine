@@ -22,8 +22,8 @@ namespace planeta_engine {
 			void SetVertexCount(size_t c); //頂点数を設定する
 			void SetPlygonCount(size_t c); //ポリゴン数を設定する
 			bool SetVectex(size_t idx,const utility::Vertex2D& vtx); //頂点を設定する
-			bool SetVertexPosition(size_t idx,const math::Vector2Df& pos); //頂点の位置を設定する
-			bool SetVertexUV(size_t idx, const math::Vector2Df& uv); //頂点のUV座標を設定する
+			bool SetVertexPosition(size_t idx,const Vector2D<float>& pos); //頂点の位置を設定する
+			bool SetVertexUV(size_t idx, const Vector2D<float>& uv); //頂点のUV座標を設定する
 			bool SetVertexColor(size_t idx, const core::Color& color); //頂点の色を設定する
 			using PolygonIndexType = std::array<size_t, 3>;
 			bool SetPolyginIndex(size_t idx,const std::array<size_t,3>& p_idx); //ポリゴンの頂点インデックスを設定する
@@ -37,7 +37,7 @@ namespace planeta_engine {
 		private:
 			std::unique_ptr<DXGraphDrawData> dx_data_;
 			std::shared_ptr<resources::GraphResource> graph_resource_;
-			std::vector<math::Vector2Df> vertex_uv_information_buffer_; //頂点UVデータの更新用に、元のUV座標データを保持しておく
+			std::vector<Vector2D<float>> vertex_uv_information_buffer_; //頂点UVデータの更新用に、元のUV座標データを保持しておく
 		};
 	}
 }

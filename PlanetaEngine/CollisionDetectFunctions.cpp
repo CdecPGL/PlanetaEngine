@@ -12,7 +12,7 @@ namespace planeta_engine {
 				auto pos1 = circle_collider1.GetCollisionCenterPosition();
 				double circle_radius0 = circle_collider0.radius()*circle_collider0.GetCollisionScale();
 				double circle_radius1 = circle_collider1.radius()*circle_collider1.GetCollisionScale();
-				if (math::Vector2Dd::length_square(pos1 - pos0) <= std::pow(circle_radius0 + circle_radius1, 2)) {
+				if (Vector2D<double>::Length_Square(pos1 - pos0) <= std::pow(circle_radius0 + circle_radius1, 2)) {
 					return true;
 				}
 				else { return false; }
@@ -23,16 +23,16 @@ namespace planeta_engine {
 				double circle_radius = circle_collider.radius()*circle_collider.GetCollisionScale();
 				auto circle_pos = circle_collider.GetCollisionCenterPosition();
 				auto line_start_pos = straightline_collider.GetCollisionCenterPosition();
-				auto line_vector = math::Vector2Dd(std::cos(straightline_collider.GetCollisionRotationRad()), std::sin(straightline_collider.GetCollisionRotationRad()))*straightline_collider.GetCollisionScale()*straightline_collider.length();
+				auto line_vector = Vector2D<double>(std::cos(straightline_collider.GetCollisionRotationRad()), std::sin(straightline_collider.GetCollisionRotationRad()))*straightline_collider.GetCollisionScale()*straightline_collider.length();
 				auto line_start_to_circle_center = circle_pos - line_start_pos;
 				//‰~‚Æü•ª‚Ì‹——£‚ğ‹‚ß‚é
-				double distance = std::abs(math::Vector2Dd::Cross(line_vector, line_start_to_circle_center) / line_vector.Length());
+				double distance = std::abs(Vector2D<double>::Cross(line_vector, line_start_to_circle_center) / line_vector.Length());
 				if (distance > circle_radius) { return false; }
 				else {
 					//‰~‚ªü•ª‚Ì—¼’[ŠO‘¤‚É‚ ‚é‚©
-					double line_start_to_circle_center_dot_line_vector = math::Vector2Dd::Dot(line_start_to_circle_center, line_vector);
-					math::Vector2Dd line_end_to_circle_center = line_start_to_circle_center - line_vector;
-					if (line_start_to_circle_center_dot_line_vector*math::Vector2Dd::Dot(line_end_to_circle_center, line_vector) <= 0) { //ü•ª“à‚É‚ ‚é
+					double line_start_to_circle_center_dot_line_vector = Vector2D<double>::Dot(line_start_to_circle_center, line_vector);
+					Vector2D<double> line_end_to_circle_center = line_start_to_circle_center - line_vector;
+					if (line_start_to_circle_center_dot_line_vector*Vector2D<double>::Dot(line_end_to_circle_center, line_vector) <= 0) { //ü•ª“à‚É‚ ‚é
 						return true;
 					}
 					else { //ü•ªŠO‚É‚ ‚é

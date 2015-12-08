@@ -14,7 +14,7 @@ namespace planeta_engine {
 		class GraphAnimatorComponent : public game::Component {
 		public:
 			/*フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
-			using FrameDataType = std::tuple<unsigned int, utility::RectAngle<int>,math::Vector2Dd,double>;
+			using FrameDataType = std::tuple<unsigned int, utility::RectAngle<int>,Vector2D<double>,double>;
 			/*単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/
 			using SimpleFrameDataType = std::pair<unsigned int, utility::RectAngle<int>>;
 			/*アニメーションセット(フル)*/

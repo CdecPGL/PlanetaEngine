@@ -26,7 +26,7 @@ namespace planeta_engine {
 			core::Color color_;
 			core::Color outline_color_;
 			int character_size_ = 16;
-			math::Vector2Dd character_scale_;
+			Vector2D<double> character_scale_;
 			void UpdateCharacterScale();
 
 			virtual void UpdateProc() override;
