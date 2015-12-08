@@ -2,24 +2,30 @@
 
 #include <cstdint>
 #include "MathVector.h"
+#include "Property.h"
 
 namespace planeta_engine {
 	namespace math {
 		namespace vei {
 			template<typename T>
 			class XYZIdentifer {
-			public:
-				T x()const { return ptr_[0]; }
-				void x(T v) { ptr_[0] = v; }
-				T y()const { return ptr_[1]; }
-				void y(T v) { ptr_[1] = v; }
-				T z()const { return ptr_[2]; }
-				void z(T v) { ptr_[2] = v; }
+				using MyType = XYZIdentifer<T>;
 			protected:
 				static constexpr int minimum_vector_size = 3;
 				void SetElementArrayPointer(T* ptr) { ptr_ = ptr; }
 			private:
 				T* ptr_;
+				T get_x()const { return ptr_[0]; }
+				void set_x(T v) { ptr_[0] = v; }
+				T get_y()const { return ptr_[1]; }
+				void set_y(T v) { ptr_[1] = v; }
+				T get_z()const { return ptr_[2]; }
+				void set_z(T v) { ptr_[2] = v; }
+			public:
+				XYZIdentifer() :x(*this), y(*this), z(*this) {}
+				utility::Property<MyType, T, &MyType::get_x, &MyType::set_x> x;
+				utility::Property<MyType, T, &MyType::get_y, &MyType::set_y> y;
+				utility::Property<MyType, T, &MyType::get_z, &MyType::set_z> z;
 			};
 		}
 		template<typename T>

@@ -687,10 +687,10 @@
     <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2Dtest.h">
+    <ClInclude Include="VectorElementIdentifer.h">
       <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
-    <ClInclude Include="VectorElementIdentifer.h">
+    <ClInclude Include="NewVector2D.h">
       <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
   </ItemGroup>

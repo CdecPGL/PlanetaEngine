@@ -7,21 +7,39 @@ namespace planeta_engine {
 	namespace math {
 		namespace vei {
 			template<typename T>
-			class XYZWIdentifer {
+			class XYZIdentifer {
+				
+			protected:
+				static constexpr int minimum_vector_size = 3;
+				void SetElementArrayPointer(T* ptr) { ptr_ = ptr; }
+			private:
+				T* ptr_;
+				
 			public:
-				T x()const { return ptr_[0]; }
-				void x(T v) { ptr_[0] = v; }
-				T y()const { return ptr_[1]; }
-				void y(T v) { ptr_[1] = v; }
-				T z()const { return ptr_[2]; }
-				void z(T v) { ptr_[2] = v; }
-				T w()const { return ptr_[3]; }
-				void w(T v) { ptr_[3] = v; }
+				
+			};
+			template<typename T>
+			class XYZWIdentifer {
+				using MyType = XYZWIdentifer<T>;
 			protected:
 				static constexpr int minimum_vector_size = 4;
 				void SetElementArrayPointer(T* ptr) { ptr_ = ptr; }
 			private:
 				T* ptr_;
+				T get_x()const { return ptr_[0]; }
+				void set_x(T v) { ptr_[0] = v; }
+				T get_y()const { return ptr_[1]; }
+				void set_y(T v) { ptr_[1] = v; }
+				T get_z()const { return ptr_[2]; }
+				void set_z(T v) { ptr_[2] = v; }
+				T get_w()const { return ptr_[3]; }
+				void set_w(T v) { ptr_[3] = v; }
+			public:
+				XYZWIdentifer() :x(*this), y(*this), z(*this), w(*this) {}
+				utility::Property<MyType, T, &MyType::get_x, &MyType::set_x> x;
+				utility::Property<MyType, T, &MyType::get_y, &MyType::set_y> y;
+				utility::Property<MyType, T, &MyType::get_z, &MyType::set_z> z;
+				utility::Property<MyType, T, &MyType::get_w, &MyType::set_w> w;
 			};
 		}
 		template<typename T>
