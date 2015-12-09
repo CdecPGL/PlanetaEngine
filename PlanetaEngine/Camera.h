@@ -1,16 +1,16 @@
 #pragma once
 
 #include "Object.h"
-
 #include "Vector3D.h"
+#include "Vector4D.h"
 
 namespace planeta_engine {
-	namespace core {
-		class Camera : public Object{
-		public:
-			void ApplyToDxLib();
-		private:
-			math::Vector3D<double> position_;
-		};
-	}
+	class Camera : public core::Object {
+	public:
+		void ApplyToDxLib();
+	private:
+		Vector3Dd position_;
+		Vector4Dd rotation_;
+		double scale_;
+	};
 }

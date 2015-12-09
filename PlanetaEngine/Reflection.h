@@ -80,7 +80,7 @@ namespace planeta_engine {
 			};
 		private:
 
-			virtual void ResistRefrectionInformation(RefrectionInformationResistInterface&) = 0;
+			virtual void ResistRefrectionInformation(RefrectionInformationResistInterface&&) = 0;
 
 			std::vector<FunctionMap*> function_map_;
 			static std::unordered_map<std::type_index, FunctionMap> type_function_map_;

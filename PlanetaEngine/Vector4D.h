@@ -4,20 +4,8 @@
 #include "MathVector.h"
 
 namespace planeta_engine {
-	namespace math {
+	namespace system {
 		namespace vei {
-			template<typename T>
-			class XYZIdentifer {
-				
-			protected:
-				static constexpr int minimum_vector_size = 3;
-				void SetElementArrayPointer(T* ptr) { ptr_ = ptr; }
-			private:
-				T* ptr_;
-				
-			public:
-				
-			};
 			template<typename T>
 			class XYZWIdentifer {
 				using MyType = XYZWIdentifer<T>;
@@ -42,10 +30,10 @@ namespace planeta_engine {
 				utility::Property<MyType, T, &MyType::get_w, &MyType::set_w> w;
 			};
 		}
-		template<typename T>
-		using Vector4D = Vector<T, 4, vei::XYZWIdentifer>; //四次元ベクトル
-		using Vector4Df = Vector4D<float>; //単精度浮動小数点型四次元ベクトル
-		using Vector4Dd = Vector4D<double>; //倍精度浮動小数点型四次元ベクトル
-		using Vector4Di = Vector4D<int32_t>; //32bit符号付き整数型四次元ベクトル
 	}
+	template<typename T>
+	using Vector4D = math::Vector<T, 4, system::vei::XYZWIdentifer>; //四次元ベクトル
+	using Vector4Df = Vector4D<float>; //単精度浮動小数点型四次元ベクトル
+	using Vector4Dd = Vector4D<double>; //倍精度浮動小数点型四次元ベクトル
+	using Vector4Di = Vector4D<int32_t>; //32bit符号付き整数型四次元ベクトル
 }

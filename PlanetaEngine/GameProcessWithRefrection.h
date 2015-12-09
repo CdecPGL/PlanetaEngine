@@ -13,7 +13,7 @@ namespace planeta_engine {
 		public:
 			GameProcessWithRefrection(core::IGameAccessor& g,int id);
 		private:
-			void ResistRefrectionInformation(RefrectionInformationResistInterface& riri)override;
+			void ResistRefrectionInformation(RefrectionInformationResistInterface&& riri)override;
 			void Update()override;
 		};
 	}

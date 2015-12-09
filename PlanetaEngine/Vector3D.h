@@ -5,7 +5,7 @@
 #include "Property.h"
 
 namespace planeta_engine {
-	namespace math {
+	namespace system {
 		namespace vei {
 			template<typename T>
 			class XYZIdentifer {
@@ -28,10 +28,10 @@ namespace planeta_engine {
 				utility::Property<MyType, T, &MyType::get_z, &MyType::set_z> z;
 			};
 		}
-		template<typename T>
-		using Vector3D = Vector<T,3,vei::XYZIdentifer>; //三次元ベクトル
-		using Vector3Df = Vector3D<float>; //単精度浮動小数点型三次元ベクトル
-		using Vector3Dd = Vector3D<double>; //倍精度浮動小数点型三次元ベクトル
-		using Vector3Di = Vector3D<int32_t>; //32bit符号付き整数型三次元ベクトル
 	}
+	template<typename T>
+	using Vector3D = math::Vector<T, 3, system::vei::XYZIdentifer>; //三次元ベクトル
+	using Vector3Df = Vector3D<float>; //単精度浮動小数点型三次元ベクトル
+	using Vector3Dd = Vector3D<double>; //倍精度浮動小数点型三次元ベクトル
+	using Vector3Di = Vector3D<int32_t>; //32bit符号付き整数型三次元ベクトル
 }

@@ -5,7 +5,7 @@
 #include "Property.h"
 
 namespace planeta_engine {
-	namespace math {
+	namespace system {
 		namespace vei {
 			template<typename T>
 			class XYIdentifer {
@@ -25,10 +25,11 @@ namespace planeta_engine {
 				utility::Property<MyType, T, &MyType::get_y, &MyType::set_y> y;
 			};
 		}
-		template<typename T>
-		using Vector2D = Vector<T, 2,vei::XYIdentifer>; //二次元ベクトル
-		using Vector2Df = Vector2D<float>; //単精度浮動小数点型二次元ベクトル
-		using Vector2Dd = Vector2D<double>; //倍精度浮動小数点型二次元ベクトル
-		using Vector2Di = Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
 	}
+	template<typename T>
+	using Vector2D = math::Vector<T, 2, system::vei::XYIdentifer>; //二次元ベクトル
+	using Vector2Df = Vector2D<float>; //単精度浮動小数点型二次元ベクトル
+	using Vector2Dd = Vector2D<double>; //倍精度浮動小数点型二次元ベクトル
+	using Vector2Di = Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
+
 }

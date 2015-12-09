@@ -17,11 +17,13 @@ namespace planeta_engine{
 			@param 設定するシーン、初期化パラメータリスト
 			*/
 			virtual bool SetUpScene(SceneAccessorForSetUp& scene,const utility::ParameterHolder& initialize_parameters) = 0;
+			bool SetUpScene(SceneAccessorForSetUp&& scene, const utility::ParameterHolder& initialize_parameters) { return SetUpScene(scene, initialize_parameters); }
 			/*シーンの終了処理を行う(次シーンの初期化パラメータ生成など)
 			@param 終了処理するシーン、次のシーンのID、終了処理パラメータリスト
 			@return 次のシーンの初期化パラメータ
 			*/
 			virtual utility::ParameterHolder FinalizeScene(SceneAccessorForSetUp& scene,const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) = 0;
+			utility::ParameterHolder FinalizeScene(SceneAccessorForSetUp&& scene, const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) { return FinalizeScene(scene, next_scene_id, finalize_parameters); }
 			/*使用リソースのタググループリストを返す*/
 			virtual const std::vector<std::string> GetUseTagGroups()const = 0;
 			/*遷移可能SceneIDリスト(からの場合、全てのシーンに遷移可能とみなす)*/

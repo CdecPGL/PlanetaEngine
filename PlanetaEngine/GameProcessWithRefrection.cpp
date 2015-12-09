@@ -8,7 +8,7 @@ namespace planeta_engine {
 			SetUpRefrection(this);
 		}
 
-		void GameProcessWithRefrection::ResistRefrectionInformation(RefrectionInformationResistInterface& riri)
+		void GameProcessWithRefrection::ResistRefrectionInformation(RefrectionInformationResistInterface&& riri)
 		{
 
 		}

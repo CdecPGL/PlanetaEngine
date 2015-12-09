@@ -115,7 +115,7 @@ namespace planeta_engine{
 		bool SceneManager::Initialize()
 		{
 			//空のシーンをセット
-			std::shared_ptr<EmptySceneDefinition> ecd = std::make_shared<EmptySceneDefinition>();
+			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<EmptySceneDefinition>();
 			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
 			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
 			sssu(*es);
@@ -148,7 +148,7 @@ namespace planeta_engine{
 		void SceneManager::_transition_to_error_scene()
 		{
 			debug::SystemLog::instance().LogError("エラーシーンに遷移します。", "SceneManager::_transition_to_error_scene");
-			std::shared_ptr<ErrorSceneDefinition> ecd = std::make_shared<ErrorSceneDefinition>();
+			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<ErrorSceneDefinition>();
 			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
 			SceneSystemSetUpper sssu; //シーンのシステムセットアッパー(特殊プロセスの設定)
 			sssu(*es);
