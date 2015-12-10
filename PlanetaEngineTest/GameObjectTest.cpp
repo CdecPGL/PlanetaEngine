@@ -10,6 +10,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PlanetaEngineTest
 {
+	using namespace planeta_engine;
 	using namespace planeta_engine::game;
 	class TestGOSetter : public GameObjectSetUpper{
 	private:
@@ -24,11 +25,11 @@ namespace PlanetaEngineTest
 	{
 	public:
 		GameObjectTest() {
-			gom = GameObjectManager::MakeShared();
+//			gom = GameObjectManager::MakeShared();
 		}
 		TEST_METHOD(TestTest)
 		{
-			auto go = gom->CreateGameObject(TestGOSetter());
+//			auto go = gom->CreateGameObject(TestGOSetter());
 		}
 	private:
 		std::shared_ptr<GameObjectManager> gom;

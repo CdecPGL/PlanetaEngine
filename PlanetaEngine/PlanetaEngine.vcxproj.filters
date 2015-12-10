@@ -145,6 +145,9 @@
     <Filter Include="PlanetaEngine\Core\Config">
       <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Math\Vector">
+      <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -678,20 +681,20 @@
     <ClInclude Include="Camera.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3D.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4D.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="VectorElementIdentifer.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="NewVector2D.h">
-      <Filter>PlanetaEngine\Math</Filter>
+      <Filter>PlanetaEngine\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>PlanetaEngine\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>PlanetaEngine\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorElementIdentifer.h">
+      <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

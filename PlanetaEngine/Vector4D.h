@@ -24,10 +24,10 @@ namespace planeta_engine {
 				void set_w(T v) { ptr_[3] = v; }
 			public:
 				XYZWIdentifer() :x(*this), y(*this), z(*this), w(*this) {}
-				utility::Property<MyType, T, &MyType::get_x, &MyType::set_x> x;
-				utility::Property<MyType, T, &MyType::get_y, &MyType::set_y> y;
-				utility::Property<MyType, T, &MyType::get_z, &MyType::set_z> z;
-				utility::Property<MyType, T, &MyType::get_w, &MyType::set_w> w;
+				utility::PropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
+				utility::PropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
+				utility::PropertyV<MyType, T, &MyType::get_z, &MyType::set_z> z;
+				utility::PropertyV<MyType, T, &MyType::get_w, &MyType::set_w> w;
 			};
 		}
 	}

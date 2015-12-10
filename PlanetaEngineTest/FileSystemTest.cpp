@@ -2,9 +2,10 @@
 #include "CppUnitTest.h"
 #include "SystemCounter.h"
 #include "SystemLog.h"
-#include "FileLoadManager.h"
+#include "FileSystemManager.h"
 #include "ArchiveManipulator.h"
-#include "NormalFolderLoader.h"
+#include "NormalFolderManipulator.h"
+#include "FileAccessMode.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -22,14 +23,15 @@ namespace PlanetaEngineTest
 	public:
 		FileSystemTest() {
 			using namespace planeta_engine::debug;
+			using namespace planeta_engine::file_system;
 			SystemCounter::Instantiate();
 			SystemLog::Instantiate();
 			FileSystemManager::Instantiate();
 			SystemCounter::instance().Initialize();
 			SystemLog::instance().Initialize();
 
-			FileSystemManager::instance().PushLoader(std::make_shared<ArchiveManipulator>(kTestArchive, kTestArchivePass));
-			FileSystemManager::instance().PushLoader(std::make_shared<NormalFolderManipulator>(kTestFolder));
+			FileSystemManager::instance().CreateFileAccessor("archive_test", std::make_shared<ArchiveManipulator>(kTestArchive, kTestArchivePass), AccessMode::ReadWrite);
+			FileSystemManager::instance().CreateFileAccessor("normal_folder_test", std::make_shared<NormalFolderManipulator>(kTestArchive, kTestArchivePass), AccessMode::ReadWrite);
 			FileSystemManager::instance().Initialize();
 		}
 
