@@ -11,7 +11,7 @@ namespace planeta_engine {
 			const double GetAltitude(const Vector2D<double>& position)const override;
 		private:
 			utility::WeakPointer<PlanetComponent> planet_component_;
-			bool Initialize_()override;
+			bool OnInitialized()override;
 			virtual bool CollideWith(components::CircleColliderComponent& circle_collider) override;
 
 		};

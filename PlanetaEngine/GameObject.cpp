@@ -8,6 +8,7 @@
 #include "SystemLog.h"
 #include "SceneAccessorForGameObject.h"
 #include "DumyGroundComponent.h"
+#include "GameObjectComponentRigistrationData.h"
 
 using namespace std;
 
@@ -25,8 +26,8 @@ namespace planeta_engine{
 			auto h_ptr = MakeShared<create_helper>();
 			auto ptr = std::shared_ptr<GameObject>(std::move(h_ptr), &h_ptr->x);
 			ptr->me_ = ptr;
-			ptr->transform_->SetGameObject(ptr, ptr->component_id_counter_++);
-			if (ptr->_SetUp(gosu) == false){  //設定
+			ptr->SystemSetUpComponent_(*ptr->transform_);
+			if (ptr->SetUp_(gosu) == false){  //設定
 				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。セットアップに失敗しました。",__FUNCTION__);
 				return nullptr;
 			}
@@ -61,10 +62,9 @@ namespace planeta_engine{
 			}
 		}
 
-		bool GameObject::_initialize_component()
+		bool GameObject::InitializeComponent_()
 		{
 			for (auto& c : component_list_){
-				c.second->SetSceneAccessor(scene_accessor_);
 				if (c.second->Initialize() == false){ 
 					debug::SystemLog::instance().LogError(std::string("コンポーネントの初期化に失敗しました。(") + c.second->GetType().name()+")",__FUNCTION__);
 					return false; 
@@ -73,7 +73,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void GameObject::_update_component()
+		void GameObject::UpdateComponent_()
 		{
 			//通常コンポーネントのアップデート
 			for (auto& c : component_update_list_){
@@ -81,7 +81,7 @@ namespace planeta_engine{
 			}
 		}
 
-		bool GameObject::_finalize_component()
+		bool GameObject::FinalizeComponent_()
 		{
 			for (auto& c : component_list_){
 				c.second->Finalize();
@@ -89,7 +89,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool GameObject::_activate_component()
+		bool GameObject::ActivateComponent_()
 		{
 			for (auto& c : component_list_){
 				if (c.second->Activate() == false){ 
@@ -100,7 +100,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool GameObject::_inactivate_component()
+		bool GameObject::InactivateComponent_()
 		{
 			for (auto& c : component_list_){
 				if (c.second->InActivate() == false){ 
@@ -121,7 +121,7 @@ namespace planeta_engine{
 //			else{ return clone; }
 //		}
 
-		bool GameObject::_SetUp(GameObjectSetUpper& gosu)
+		bool GameObject::SetUp_(GameObjectSetUpper& gosu)
 		{
 			return gosu(*game_object_set_up_proxy_);
 		}
@@ -150,6 +150,15 @@ namespace planeta_engine{
 				rtc = std::make_shared<components::TransformComponent>();
 			}
 			return rtc;
+		}
+
+		void GameObject::SystemSetUpComponent_(GameObjectComponent& com) {
+			core::GameObjectComponentRegistrationData registration_data;
+			registration_data.holder_game_object = me();
+			registration_data.scene_accessor = scene_accessor_;
+			registration_data.id = component_id_counter_++;
+			bool ret = com.SystemSetUp(registration_data,);
+			assert(ret == true);
 		}
 
 	}

@@ -1,14 +1,14 @@
 #pragma once
 
 #include <unordered_map>
-#include "GameObjectComponent.h"
+#include "GameObjectNormalComponent.h"
 #include "Vector2D.h"
 //#include "Matrix.h"
 
 namespace planeta_engine {
 	namespace components {
 		/*形状情報コンポーネント*/
-		class TransformComponent : public game::GameObjectComponent {
+		class TransformComponent : public GameObjectNormalComponent {
 		public:
 			TransformComponent();
 			~TransformComponent() = default;
@@ -40,7 +40,7 @@ namespace planeta_engine {
 			void ApplyVelocity();
 			void ApplyVelocityRecursively();
 		private:
-			bool NoUpdate_()const override{ return true; }
+			bool is_no_update()const override{ return true; }
 
 			void ConvertLocalToGlobal();
 			void ConvertGlobalToLocal();

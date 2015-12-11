@@ -6,10 +6,9 @@
 
 namespace planeta_engine {
 	namespace components {
-		class DrawLineComponent : public DrawComponent {
+		class DrawLineComponent final: public DrawComponent {
 		public:
 			DrawLineComponent();
-			void Draw()override;
 			/*アクセサ*/
 			int width()const { return _width; }
 			void width(int w) { _width = w; }
@@ -19,6 +18,8 @@ namespace planeta_engine {
 			std::vector<Vector2D<double>> _wire_positions;
 			int _width;
 			double _length;
+			/*描画処理*/
+			void DrawProc(ScreenDrawer2D& drawer)override;
 		};
 	}
 }

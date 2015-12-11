@@ -8,7 +8,7 @@ namespace planeta_engine {
 		/*2D頂点構造体*/
 		struct Vertex2D {
 			Vector2D<float> position; //座標
-			core::Color color; //ディヒューズカラー
+			Color color; //ディヒューズカラー
 			float u = 0.0f; //テクスチャ座用U
 			float v = 0.0f; //テクスチャ座標V
 		};

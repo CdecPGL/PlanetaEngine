@@ -1,41 +1,42 @@
 #pragma once
-#include "GameObjectComponent.h"
+#include "GameObjectSpecialComponent.h"
 #include "WeakPointer.h"
 #include "Color.h"
 #include "Vector2D.h"
 
 namespace planeta_engine {
-	namespace system_processes {
-		class GameObjectDrawProcess;
+	class ScreenDrawer2D;
+	namespace core {
+		class GameObjectDrawComponentProcessRegistrator;
 	}
 	namespace components {
-		class DrawComponent : public game::GameObjectComponent {
+		class DrawComponent : public core::GameObjectSpecialComponent {
 		public:
 			DrawComponent();
 			virtual ~DrawComponent() = default;
 			/*描画処理*/
-			virtual void Draw() = 0;
+			void Draw() { DrawProc(*screen_drawer_); }
 			/*Accessor*/
 			/*描画優先度を取得*/
-			int draw_priority()const { return _draw_priority; }
+			int draw_priority()const { return draw_priority_; }
 			/*描画優先度を設定*/
 			void draw_priority(int priority);
 			/*表示位置を取得*/
-			const Vector2D<double>& position()const { return _position; }
+			const Vector2D<double>& position()const { return position_; }
 			/*表示位置を設定*/
-			void position(const Vector2D<double>& pos) { _position = pos; }
+			void position(const Vector2D<double>& pos) { position_ = pos; }
 			/*表示回転度を取得*/
-			double rotation_rad()const { return _rotation_rad; }
+			double rotation_rad()const { return rotation_rad_; }
 			/*表示回転度を設定*/
-			void rotation_rad(double rota_rad) { _rotation_rad = rota_rad; }
+			void rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; }
 			/*表示拡大度を取得*/
-			const Vector2D<double>& scale()const { return _scale; }
+			const Vector2D<double>& scale()const { return scale_; }
 			/*表示拡大度を設定*/
-			void scale(const Vector2D<double>& s) { _scale = s; }
+			void scale(const Vector2D<double>& s) { scale_ = s; }
 			/*表示色を取得*/
-			core::Color color()const { return _color; }
+			planeta_engine::Color color()const { return color_; }
 			/*表示色を設定*/
-			void color(const core::Color& c) { _color = c; }
+			void color(const planeta_engine::Color& c) { color_ = c; }
 		protected:
 			/*描画の中心位置取得(ゲームオブジェクトの形状情報と、表示位置から算出)*/
 			Vector2D<double> GetDrawCenterPosition()const;
@@ -43,29 +44,29 @@ namespace planeta_engine {
 			double GetDrawRotationRed()const;
 			/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
 			Vector2D<double> GetDrawScale()const;
-		protected:
-			/*システム関数(このクラスを継承するクラスで以下の関数をオーバーライドする場合、DrawComponentの同クラスを呼び出さなければならない。)*/
-			bool Initialize_()override;
-			void Finalize_()override {};
 		private:
-			int _draw_priority = 0; //描画優先度
+			/*画面描画クラス*/
+			std::shared_ptr<ScreenDrawer2D> screen_drawer_;
+			int draw_priority_ = 0; //描画優先度
 			/*表示位置*/
-			Vector2D<double> _position;
+			Vector2D<double> position_;
 			/*表示回転度*/
-			double _rotation_rad = 0.0;
+			double rotation_rad_ = 0.0;
 			/*表示拡大度*/
-			Vector2D<double> _scale = Vector2D<double>(1.0, 1.0);
-			core::Color _color;
-			utility::WeakPointer<system_processes::GameObjectDrawProcess> _game_object_draw_process;
-			void _ResistToDrawProcess();
-			void _RemoveFromDrawProcess();
-			void _UpdatePriority();
-
-			/*システム関数*/
-			bool Activated_()override final;
+			Vector2D<double> scale_ = Vector2D<double>(1.0, 1.0);
+			planeta_engine::Color color_;
+			std::shared_ptr<core::GameObjectDrawComponentProcessRegistrator> draw_component_registrator_;
+			void RegisterToProcess_();
+			void RemoveFromProcess_();
+			void UpdatePriority_();
+			/*特殊セットアップ*/
+			bool SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data)override final;
 			/*更新処理は行わない*/
-			bool NoUpdate_()const override final { return true; }
-			bool InActivated_()override final;
+			bool is_no_update()const override final { return true; }
+			bool OnActivated()override final;
+			bool OnInactivated()override final;
+			/*描画処理*/
+			virtual void DrawProc(ScreenDrawer2D& drawer) = 0;
 		};
 	}
 }

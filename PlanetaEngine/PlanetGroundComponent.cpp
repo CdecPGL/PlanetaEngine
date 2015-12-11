@@ -22,9 +22,9 @@ namespace planeta_engine {
 			return distance - height;
 		}
 
-		bool PlanetGroundComponent::Initialize_()
+		bool PlanetGroundComponent::OnInitialized()
 		{
-			if (GroundComponent::Initialize_() == false) {
+			if (GroundComponent::OnInitialized() == false) {
 				debug::SystemLog::instance().LogError("GroundComponent‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B", "PlanetGroundComponent::Initialize_");
 				return false;
 			}

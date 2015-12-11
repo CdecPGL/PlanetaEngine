@@ -3,7 +3,7 @@
 #include "StraightLineColliderComponent.h"
 
 namespace planeta_engine {
-	namespace game {
+	namespace core {
 		namespace collision_detect_functions {
 
 			bool CollisionDetectCircleAndCirecle(components::CircleColliderComponent& circle_collider0, components::CircleColliderComponent& circle_collider1)

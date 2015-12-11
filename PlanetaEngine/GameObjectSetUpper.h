@@ -2,7 +2,6 @@
 
 namespace planeta_engine{
 	namespace game{
-		class GameObject;
 		class GameObjectSetUpProxy;
 		class GameObjectSetUpper{
 		public:

@@ -1,16 +1,15 @@
 #include "DrawPolygonComponent.h"
-#include "DrawManager.h"
+#include "ScreenDrawer2D.h"
 #include "IGameObjectAccessor.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
 
 namespace planeta_engine {
 	namespace components {
-
-		void DrawPolygonComponent::Draw()
+		void DrawPolygonComponent::DrawProc(ScreenDrawer2D& drawer)
 		{
 			UpdateVertex_();
-			core::DrawManager::instance().DrawPolygon(vertexes_, indexes_, color());
+			drawer.DrawPolygon(vertexes_, indexes_, color());
 		}
 
 		void DrawPolygonComponent::SetNumberOfVertexes(size_t n)

@@ -1,13 +1,10 @@
 #include "GameObjectComponent.h"
 #include "GameObject.h"
+#include "GameObjectComponentRigistrationData.h"
 
 namespace planeta_engine{
-	namespace game{
-
-		
-
 		bool GameObjectComponent::Initialize() {
-			if (Initialize_()) {
+			if (OnInitialized()) {
 				is_valied_ = true;
 				return true;
 			} else {
@@ -16,13 +13,13 @@ namespace planeta_engine{
 		}
 
 		void GameObjectComponent::Finalize() {
-			Finalize_();
+			OnFinalized();
 			is_valied_ = false;
 		}
 
 		bool GameObjectComponent::Activate() {
 			if (is_active_) { return true; }
-			if (Activated_()) {
+			if (OnActivated()) {
 				is_active_ = true;
 				return true;
 			} else {
@@ -32,7 +29,7 @@ namespace planeta_engine{
 
 		bool GameObjectComponent::InActivate() {
 			if (!is_active_) { return true; }
-			if (InActivated_()) {
+			if (OnInactivated()) {
 				is_active_ = false;
 				return true;
 			} else {
@@ -40,5 +37,10 @@ namespace planeta_engine{
 			}
 		}
 
-	}
+		bool GameObjectComponent::SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const core::GameObjectComponentSpecialSetUpData& special_setup_data) {
+			scene_accessor_ = resistration_data.scene_accessor;
+			game_object_ = resistration_data.holder_game_object;
+			id_ = resistration_data.id;
+			return SpecialSetUp(special_setup_data);
+		}
 }

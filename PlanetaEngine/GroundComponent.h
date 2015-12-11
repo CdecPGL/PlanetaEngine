@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObjectComponent.h"
+#include "GameObjectNormalComponent.h"
 #include "Matrix.h"
 #include "Vector2D.h"
 #include "MathConstant.h"
@@ -10,7 +10,7 @@ namespace planeta_engine {
 		class CircleColliderComponent;
 		class StraightLineColliderComponent;
 		class GroundComponent :
-			public game::GameObjectComponent , public core::IColliderWithCollider
+			public GameObjectNormalComponent , public core::IColliderWithCollider
 		{
 		public:
 			GroundComponent();
@@ -24,11 +24,11 @@ namespace planeta_engine {
 			static Vector2D<double> ConvertRadToVec(double rad){ return Vector2D<double>(std::cos(rad), std::sin(rad)); }
 			static double ConvertVecToRad(const Vector2D<double>& vec) { return std::atan2(vec.y, vec.x); }
 
-			virtual bool Initialize_() override;
-			virtual bool Activated_() override;
-			virtual void Update_() override;
-			virtual bool InActivated_() override;
-			virtual void Finalize_() throw() override;
+			virtual bool OnInitialized() override;
+			virtual bool OnActivated() override;
+			virtual void OnUpdated() override;
+			virtual bool OnInactivated() override;
+			virtual void OnFinalized() throw() override;
 		};
 	}
 }

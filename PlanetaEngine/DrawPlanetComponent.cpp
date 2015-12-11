@@ -1,6 +1,6 @@
 #include "DrawPlanetComponent.h"
 #include <cmath>
-#include "DrawManager.h"
+#include "ScreenDrawer2D.h"
 #include "ResourceManager.h"
 #include "GraphResource.h"
 #include "IGameObjectAccessor.h"
@@ -24,15 +24,14 @@ namespace planeta_engine {
 
 		DrawPlanetComponent::~DrawPlanetComponent() = default;
 
-		void DrawPlanetComponent::Draw()
+		void DrawPlanetComponent::DrawProc(ScreenDrawer2D& drawer)
 		{
 			_UpdatePolygon();
-			core::DrawManager::instance().DrawGraph(*graph_draw_data_);
+			drawer.DrawGraph(*graph_draw_data_);
 		}
 
-		bool DrawPlanetComponent::Initialize_()
+		bool DrawPlanetComponent::OnInitialized()
 		{
-			if (DrawComponent::Initialize_() == false) { return false; }
 			_planet_component = game_object().GetComponent<components::PlanetComponent>();
 			if (_planet_component) {
 				_SetPolygon();
@@ -44,9 +43,9 @@ namespace planeta_engine {
 			}
 		}
 
-		void DrawPlanetComponent::Finalize_()
+		void DrawPlanetComponent::OnFinalized()
 		{
-			DrawComponent::Finalize_();
+			
 		}
 
 		void DrawPlanetComponent::_SetPolygon()

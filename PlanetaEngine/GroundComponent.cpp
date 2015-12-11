@@ -6,27 +6,27 @@ namespace planeta_engine{
 		{
 		}
 
-		bool GroundComponent::Initialize_()
+		bool GroundComponent::OnInitialized()
 		{
 			return true;
 		}
 
-		bool GroundComponent::Activated_()
+		bool GroundComponent::OnActivated()
 		{
 			return true;
 		}
 
-		void GroundComponent::Update_()
+		void GroundComponent::OnUpdated()
 		{
 
 		}
 
-		bool GroundComponent::InActivated_()
+		bool GroundComponent::OnInactivated()
 		{
 			return true;
 		}
 
-		void GroundComponent::Finalize_() throw()
+		void GroundComponent::OnFinalized() throw()
 		{
 
 		}

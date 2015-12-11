@@ -24,7 +24,7 @@ namespace planeta_engine {
 			bool SetVectex(size_t idx,const utility::Vertex2D& vtx); //頂点を設定する
 			bool SetVertexPosition(size_t idx,const Vector2D<float>& pos); //頂点の位置を設定する
 			bool SetVertexUV(size_t idx, const Vector2D<float>& uv); //頂点のUV座標を設定する
-			bool SetVertexColor(size_t idx, const core::Color& color); //頂点の色を設定する
+			bool SetVertexColor(size_t idx, const Color& color); //頂点の色を設定する
 			using PolygonIndexType = std::array<size_t, 3>;
 			bool SetPolyginIndex(size_t idx,const std::array<size_t,3>& p_idx); //ポリゴンの頂点インデックスを設定する
 			void SetVertexes(const std::vector<utility::Vertex2D>& vertexes); //頂点を全て設定

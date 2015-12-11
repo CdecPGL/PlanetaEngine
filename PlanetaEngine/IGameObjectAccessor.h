@@ -5,6 +5,7 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
+	class GameObjectComponent;
 	namespace components {
 		class GroundComponent;
 		class TransformComponent;
@@ -12,7 +13,6 @@ namespace planeta_engine {
 	namespace game {
 		class IGameObjectManagerAccessor;
 		class IGameProcessManagerAccessor;
-		class GameObjectComponent;
 		class IGameObjectAccessor {
 		public:
 			virtual ~IGameObjectAccessor() = 0 {};
@@ -28,7 +28,7 @@ namespace planeta_engine {
 			template<class C>
 			utility::WeakPointer<C> GetComponent()const {
 				static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "C is not derived Component.");
-				const auto& cl = _GetComponentList();
+				const auto& cl = GetComponentList_();
 				for (const auto& com : cl) {
 					auto ptr = std::dynamic_pointer_cast<C>(com.second);
 					if (ptr != nullptr) { return ptr; }
@@ -52,7 +52,7 @@ namespace planeta_engine {
 			/*é„éQè∆ÇéÊìæ*/
 			virtual utility::WeakPointer<IGameObjectAccessor> GetWeakPointer() = 0;
 		private:
-			virtual const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& _GetComponentList()const = 0;
+			virtual const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& GetComponentList_()const = 0;
 		};
 	}
 }

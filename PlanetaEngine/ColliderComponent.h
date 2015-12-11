@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObjectComponent.h"
+#include "GameObjectSpecialComponent.h"
 #include "WeakPointer.h"
 #include "Vector2D.h"
 #include <functional>
@@ -15,7 +15,7 @@ namespace planeta_engine {
 		class CollisionDetectProcess;
 	}
 	namespace components {
-		class ColliderComponent : public game::GameObjectComponent , public core::IColliderWithCollider{
+		class ColliderComponent : public core::GameObjectSpecialComponent , public core::IColliderWithCollider{
 		public:
 			virtual ~ColliderComponent() = default;
 			/*衝突判定を行う*/
@@ -52,16 +52,16 @@ namespace planeta_engine {
 			/*地形と衝突した*/
 			utility::WeakPointerDelegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
 
-		protected:
-			virtual bool Initialize_() override;
-			virtual void Finalize_()noexcept override;
 		private:
-			bool NoUpdate_() const override final { return true; }
-			bool Activated_() override final;
-			bool InActivated_() override final;
-			utility::WeakPointer<system_processes::CollisionDetectProcess> _collision_detect_process;
-			void _ResistToCollisionDetectProcess();
-			void _RemoveFromCollisionDetectProcess();
+			/*特殊セットアップ*/
+			bool SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data)override final;
+
+			bool is_no_update() const override final { return true; }
+			bool OnActivated() override final;
+			bool OnInactivated() override final;
+			utility::WeakPointer<system_processes::CollisionDetectProcess> collision_detect_process_;
+			void ResistToCollisionDetectProcess_();
+			void RemoveFromCollisionDetectProcess_();
 
 			/*位置*/
 			Vector2D<double> position_;

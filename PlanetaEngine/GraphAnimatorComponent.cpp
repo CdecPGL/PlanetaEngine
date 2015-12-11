@@ -6,7 +6,7 @@
 
 namespace planeta_engine {
 	namespace components {
-		bool planeta_engine::components::GraphAnimatorComponent::Initialize_()
+		bool planeta_engine::components::GraphAnimatorComponent::OnInitialized()
 		{
 			draw_graph_component_ = game_object().GetComponent<DrawGraphComponent>();
 			if (draw_graph_component_) {
@@ -19,7 +19,7 @@ namespace planeta_engine {
 			
 		}
 
-		void planeta_engine::components::GraphAnimatorComponent::Update_()
+		void planeta_engine::components::GraphAnimatorComponent::OnUpdated()
 		{
 			if (is_playing_) {
 				if (current_animation_ == nullptr) { is_playing_ = false; }

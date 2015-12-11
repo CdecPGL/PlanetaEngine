@@ -30,7 +30,7 @@ namespace planeta_engine {
 		void UIObject::DebugDraw()
 		{
 			//ògê¸Çï\é¶
-			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2D<int>(rect_angle_.right(),rect_angle_.top()),Vector2D<int>(rect_angle_.right(),rect_angle_.bottom()), Vector2D<int>(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, core::Color::Red());
+			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2D<int>(rect_angle_.right(),rect_angle_.top()),Vector2D<int>(rect_angle_.right(),rect_angle_.bottom()), Vector2D<int>(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, Color::Red());
 			component_holder_->do_all([this](UIComponent& com) {com.DebugDraw(rect_angle_); });
 		}
 

@@ -561,9 +561,6 @@
     <ClInclude Include="ErrorSceneDefinition.h">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectResisterConnection.h">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="UIObjectResisterConnection.h">
       <Filter>PlanetaEngine\Game\UI\Manager</Filter>
     </ClInclude>
@@ -698,6 +695,24 @@
     </ClInclude>
     <ClInclude Include="GameObjectComponent.h">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectNormalComponent.h">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectSpecialComponent.h">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectComponentSpecialSetUpData.h">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectComponentRigistrationData.h">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectRegistrationConnection.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -860,9 +875,6 @@
     <ClCompile Include="GameObjectSetUpper.cpp">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectSetUpProxy.cpp">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClCompile>
@@ -916,9 +928,6 @@
     </ClCompile>
     <ClCompile Include="SceneSystemSetUpper.cpp">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectResisterConnection.cpp">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClCompile>
     <ClCompile Include="UIObjectResisterConnection.cpp">
       <Filter>PlanetaEngine\Game\UI\Manager</Filter>
@@ -1012,6 +1021,9 @@
     </ClCompile>
     <ClCompile Include="GameObjectComponent.cpp">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectRegistrationConnection.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

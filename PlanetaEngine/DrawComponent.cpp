@@ -1,32 +1,33 @@
 #include "DrawComponent.h"
 #include "IGameObjectAccessor.h"
-#include "GameObjectDrawProcess.h"
+#include "GameObjectDrawComponentProcessRegistrator.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
 #include "SystemLog.h"
 #include "SceneAccessorForGameObject.h"
+#include "GameObjectComponentSpecialSetUpData.h"
 
 namespace planeta_engine {
 	namespace components {
 
-		DrawComponent::DrawComponent() :_draw_priority(0), _rotation_rad(0.0), _scale(1.0, 1.0)
+		DrawComponent::DrawComponent() :draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0)
 		{
 
 		}
 
 		void DrawComponent::draw_priority(int priority)
 		{
-			_draw_priority = priority;
+			draw_priority_ = priority;
 			//ゲームオブジェクトがアクティブなら優先度更新
 			if (game_object().is_active()) {
-				_UpdatePriority();
+				UpdatePriority_();
 			}
 		}
 
 		Vector2D<double> DrawComponent::GetDrawCenterPosition() const
 		{
 			const TransformComponent& transform = game_object().transform();
-			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), _position); //ゲームオブジェクトからの相対位置
+			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.global_scale().x; //横方向拡大を反映
 			relation_position.y *= transform.global_scale().y; //縦方向拡大を反映
 			return transform.global_position() + relation_position;
@@ -34,64 +35,58 @@ namespace planeta_engine {
 
 		double DrawComponent::GetDrawRotationRed() const
 		{
-			return game_object().transform().global_rotation_rad() + _rotation_rad;
+			return game_object().transform().global_rotation_rad() + rotation_rad_;
 		}
 
 		Vector2D<double> DrawComponent::GetDrawScale() const
 		{
-			return Vector2D<double>(game_object().transform().global_scale().x * _scale.x, game_object().transform().global_scale().y * _scale.y);
+			return Vector2D<double>(game_object().transform().global_scale().x * scale_.x, game_object().transform().global_scale().y * scale_.y);
 		}
 
-		void DrawComponent::_ResistToDrawProcess()
+		void DrawComponent::RegisterToProcess_()
 		{
-			if (_game_object_draw_process) {
-				_game_object_draw_process->Resist(std::static_pointer_cast<DrawComponent>(this_shared()), _draw_priority);
+			if (draw_component_registrator_) {
+				draw_component_registrator_->Register(std::static_pointer_cast<DrawComponent>(this_shared()), draw_priority_);
 			}
 			else {
 				debug::SystemLog::instance().LogWarning("ゲームオブジェクト描画プロセスが取得できていません。", "DrawComponent::_ResistToDrawProcess");
 			}
 		}
 
-		void DrawComponent::_RemoveFromDrawProcess()
+		void DrawComponent::RemoveFromProcess_()
 		{
-			if (_game_object_draw_process) {
-				_game_object_draw_process->Remove(std::static_pointer_cast<DrawComponent>(this_shared()));
+			if (draw_component_registrator_) {
+				draw_component_registrator_->Remove(std::static_pointer_cast<DrawComponent>(this_shared()));
 			}
 			else {
 				debug::SystemLog::instance().LogWarning("ゲームオブジェクト描画プロセスが取得できていません。", "DrawComponent::_RemoveFromDrawProcess");
 			}
 		}
 
-		void DrawComponent::_UpdatePriority()
+		void DrawComponent::UpdatePriority_()
 		{
-			if (_game_object_draw_process) {
-				_game_object_draw_process->ChangePriority(std::static_pointer_cast<DrawComponent>(this_shared()), _draw_priority);
+			if (draw_component_registrator_) {
+				draw_component_registrator_->ChangePriority(std::static_pointer_cast<DrawComponent>(this_shared()), draw_priority_);
 			}
 		}
 
-
-		bool DrawComponent::Initialize_()
+		bool DrawComponent::OnActivated()
 		{
-			_game_object_draw_process = scene().game_process_manager().GetSystemProcess<system_processes::GameObjectDrawProcess>();
-			if (_game_object_draw_process) {
-				return true;
-			}
-			else {
-				debug::SystemLog::instance().LogError("ゲームオブジェクト描画プロセスを取得できませんでした。", "DrawComponent::Initialize_");
-				return false;
-			}
-		}
-
-		bool DrawComponent::Activated_()
-		{
-			_ResistToDrawProcess();
+			RegisterToProcess_();
 			return true;
 		}
 
-		bool DrawComponent::InActivated_()
+		bool DrawComponent::OnInactivated()
 		{
-			_RemoveFromDrawProcess();
+			RemoveFromProcess_();
 			return true;
 		}
+
+		bool DrawComponent::SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data) {
+			draw_component_registrator_ = setup_data.draw_component_process_registrator;
+			screen_drawer_ = setup_data.screen_drawer_2d;
+			return true;
+		}
+
 	}
 }

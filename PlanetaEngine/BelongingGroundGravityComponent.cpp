@@ -7,12 +7,12 @@
 namespace planeta_engine {
 	namespace components {
 
-		bool BelongingGroundGravityComponent::Initialize_()
+		bool BelongingGroundGravityComponent::OnInitialized()
 		{
 			return true;
 		}
 
-		void BelongingGroundGravityComponent::Update_()
+		void BelongingGroundGravityComponent::OnUpdated()
 		{
 			auto bgc = game_object().GetBelongingGroundComponent();
 			if (bgc) {

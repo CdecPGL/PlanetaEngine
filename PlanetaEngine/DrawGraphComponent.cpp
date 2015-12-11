@@ -1,5 +1,5 @@
 #include "DrawGraphComponent.h"
-#include "DrawManager.h"
+#include "ScreenDrawer2D.h"
 #include "ResourceManager.h"
 #include "GraphResource.h"
 #include "SystemLog.h"
@@ -40,10 +40,10 @@ namespace planeta_engine {
 			}
 		}
 
-		void DrawGraphComponent::Draw()
+		void DrawGraphComponent::DrawProc(ScreenDrawer2D& drawer)
 		{
 			_UpdatePolygon();
-			core::DrawManager::instance().DrawGraph(*graph_draw_data_);
+			drawer.DrawGraph(*graph_draw_data_);
 		}
 
 		void DrawGraphComponent::_UpdatePolygon()

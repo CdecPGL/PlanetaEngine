@@ -10,7 +10,7 @@ namespace planeta_engine{
 			GameObjectSetUpProxy(GameObject& go) :_game_object(go){};
 			~GameObjectSetUpProxy(){};
 			template<class C>
-			utility::WeakPointer<C> AddComponent(){return  _game_object._add_component<C>(); }
+			utility::WeakPointer<C> AddComponent(){return  _game_object.add_component_<C>(); }
 		private:
 			GameObject& _game_object;
 		};

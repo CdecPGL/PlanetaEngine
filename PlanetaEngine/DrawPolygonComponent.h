@@ -8,7 +8,6 @@ namespace planeta_engine {
 	namespace components {
 		class DrawPolygonComponent final: public DrawComponent{
 		public:
-			void Draw()override;
 			void SetNumberOfVertexes(size_t n);
 			/*指定インデックスの座標を設定*/
 			bool SetVertexPosition(size_t idx, const Vector2D<double>& pos);
@@ -20,6 +19,8 @@ namespace planeta_engine {
 			std::vector<std::array<int, 3>> indexes_;
 			void UpdateVertex_();
 			void UpdatePorygonIndex_();
+			/*描画処理*/
+			void DrawProc(ScreenDrawer2D& drawer)override;
 		};
 	}
 }

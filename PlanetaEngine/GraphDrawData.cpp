@@ -103,7 +103,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool GraphDrawData::SetVertexColor(size_t idx, const core::Color& color)
+		bool GraphDrawData::SetVertexColor(size_t idx, const Color& color)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetColorToDXVERTEX3D(dx_data_->vertexes[idx], color);

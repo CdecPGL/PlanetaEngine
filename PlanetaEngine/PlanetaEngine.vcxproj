@@ -149,6 +149,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="ConfigData.h" />
+    <ClInclude Include="GameObjectComponentRigistrationData.h" />
+    <ClInclude Include="GameObjectComponentSpecialSetUpData.h" />
+    <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h" />
+    <ClInclude Include="GameObjectNormalComponent.h" />
+    <ClInclude Include="GameObjectSpecialComponent.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />
@@ -190,7 +195,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameDataFunctionsForBoostSerialize.h" />
     <ClInclude Include="GameDataSerializeUtility.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectResisterConnection.h" />
+    <ClInclude Include="GameObjectRegistrationConnection.h" />
     <ClInclude Include="GameProcessManagerAccessorForGameProcess.h" />
     <ClInclude Include="GameObjectManagerAccessorForGameObject.h" />
     <ClInclude Include="GameObjectAllocator.h" />
@@ -348,7 +353,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataElementType.cpp" />
     <ClCompile Include="GameDataManager.cpp" />
     <ClCompile Include="GameDataSerializeUtility.cpp" />
-    <ClCompile Include="GameObjectResisterConnection.cpp" />
+    <ClCompile Include="GameObjectRegistrationConnection.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphDrawData.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
@@ -393,7 +398,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectDrawProcess.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameObjectSetUpper.cpp" />
-    <ClCompile Include="GameObjectSetUpProxy.cpp" />
     <ClCompile Include="DrawGraphComponent.cpp" />
     <ClCompile Include="GroundComponent.cpp" />
     <ClCompile Include="InitEnd.cpp" />

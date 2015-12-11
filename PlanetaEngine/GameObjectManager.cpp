@@ -16,7 +16,7 @@ namespace planeta_engine{
 		{
 			go->SetSceneAccessor(scene_accessor_);
 			int id = _id_counter++;
-			if (go->_Initialize(std::make_unique<GameObjectResisterConnection>(*this, id)) == false) {
+			if (go->Initialize_(std::make_unique<GameObjectRegistrationConnection>(*this, id)) == false) {
 				debug::SystemLog::instance().LogError("GameObjectの初期化に失敗しました。", "GameObjectManager::Resist");
 				return -1;
 			}
@@ -86,7 +86,7 @@ namespace planeta_engine{
 		{
 			auto it = inactive_game_objects_.find(id);
 			if (it == inactive_game_objects_.end()) { return false; }
-			it->second->_Activated();
+			it->second->Activated_();
 			active_game_objects_.insert(*it);
 			inactive_game_objects_.erase(it);
 			return true;
@@ -96,7 +96,7 @@ namespace planeta_engine{
 		{			
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) { return false; }
-			it->second->_InActivated();
+			it->second->InActivated_();
 			inactive_game_objects_.insert(*it);
 			active_game_objects_.erase(it);
 			return true;
@@ -109,15 +109,15 @@ namespace planeta_engine{
 				it = inactive_game_objects_.find(id);
 				if (it==inactive_game_objects_.end()) { return false; }
 				else {
-					it->second->_Finalize();
+					it->second->Finalize_();
 					garbage_.push_back(it->second);
 					inactive_game_objects_.erase(it);
 					return true;
 				}
 			}
 			else {
-				it->second->_InActivated(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
-				it->second->_Finalize();
+				it->second->InActivated_(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
+				it->second->Finalize_();
 				garbage_.push_back(it->second);
 				active_game_objects_.erase(it);
 				return true;
@@ -127,12 +127,12 @@ namespace planeta_engine{
 		void GameObjectManager::RemoveAllGameObjects()
 		{
 			for (auto& go : active_game_objects_) {
-				go.second->_InActivated();
-				go.second->_Finalize();
+				go.second->InActivated_();
+				go.second->Finalize_();
 			}
 			active_game_objects_.clear();
 			for (auto& go : inactive_game_objects_) {
-				go.second->_Finalize();
+				go.second->Finalize_();
 			}
 			inactive_game_objects_.clear();
 		}

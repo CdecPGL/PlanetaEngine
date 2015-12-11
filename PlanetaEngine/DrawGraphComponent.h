@@ -19,7 +19,6 @@ namespace planeta_engine {
 		public:
 			DrawGraphComponent();
 			~DrawGraphComponent();
-			void Draw()override;
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/
 			const utility::RectAngle<int>& draw_area()const { return _draw_area; }
@@ -37,6 +36,8 @@ namespace planeta_engine {
 			void _UpdatePolygon();
 			/*UV座標更新*/
 			void _UpdateUVPosition();
+			/*描画処理*/
+			void DrawProc(ScreenDrawer2D& drawer)override;
 		};
 	}
 }

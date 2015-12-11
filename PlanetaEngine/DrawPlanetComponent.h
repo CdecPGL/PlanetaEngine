@@ -16,11 +16,10 @@ namespace planeta_engine {
 	namespace components {
 		/*惑星描画コンポーネント。DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる*/
 		class PlanetComponent;
-		class DrawPlanetComponent : public DrawComponent {
+		class DrawPlanetComponent final: public DrawComponent {
 		public:
 			DrawPlanetComponent();
 			~DrawPlanetComponent();
-			virtual void Draw() override;
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/
 			unsigned int horizontal_separation()const { return _horizontal_separation; }
@@ -34,13 +33,15 @@ namespace planeta_engine {
 			unsigned int _vertical_separation;
 			/*画像描画データ*/
 			std::unique_ptr<core::GraphDrawData> graph_draw_data_;
-			virtual bool Initialize_() override;
-			virtual void Finalize_() override;
+			virtual bool OnInitialized() override;
+			virtual void OnFinalized() override;
 			utility::WeakPointer<components::PlanetComponent> _planet_component;
 			/*ポリゴンセット*/
 			void _SetPolygon();
 			/*ポリゴン情報更新*/
 			void _UpdatePolygon();
+			/*描画処理*/
+			void DrawProc(ScreenDrawer2D& drawer)override;
 		};
 	}
 }

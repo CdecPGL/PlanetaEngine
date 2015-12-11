@@ -26,13 +26,6 @@ namespace planeta_engine {
 
 			//システム関数
 			bool Update();
-			//描画関数
-			/*画像の描画(画像描画データ)*/
-			void DrawGraph(const GraphDrawData& graph_draw_data);
-			/*ワイヤーの描画(点座標、幅(現状では無効)、色)*/
-			void DrawWire(const std::vector<Vector2D<double>>& positions, double width, const Color& color);
-			/*多角形の描画(点座標、三角形ポリゴンインデックス、色)*/
-			void DrawPolygon(const std::vector<Vector2D<double>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color);
 			//カメラ関数
 			/*カメラ位置を設定*/
 			void SetCameraPosition(const Vector2D<double>& position);
@@ -49,7 +42,7 @@ namespace planeta_engine {
 			/*UI多角形を描画(点座標、三角形ポリゴンインデックス、色)*/
 			void DrawUIPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const Color& color);
 			/*文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
-			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const core::Color& color, const core::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
+			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const planeta_engine::Color& color, const planeta_engine::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
 
 			/*新しいスクリーンを作成する*/
 			std::shared_ptr<Screen> CreateScreen();
