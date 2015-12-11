@@ -8,6 +8,7 @@
 namespace planeta_engine {
 	class Camera : public core::Object {
 	public:
+		Camera();
 		void ApplyToDxLib();
 		enum class Mode{ Camera2D, Camera3D };
 		void ChangeTo2DMode();
@@ -28,9 +29,9 @@ namespace planeta_engine {
 		double get_scale()const { return scale_; }
 		void set_scale(double s) { scale_ = scale; }
 	public:
-		utility::PropertyR<Camera, Vector3Dd, &Camera::get_position, &Camera::set_position> position;
-		utility::PropertyR<Camera, Vector4Dd, &Camera::get_rotation, &Camera::set_rotatoin> rotation;
-		utility::PropertyR<Camera, Vector3Dd, &Camera::get_euler_angle, &Camera::set_euler_angle> euler_angle;
-		utility::PropertyV<Camera, double, &Camera::get_scale, &Camera::set_scale> scale;
+		utility::ReadWritePropertyR<Camera, Vector3Dd, &Camera::get_position, &Camera::set_position> position;
+		utility::ReadWritePropertyR<Camera, Vector4Dd, &Camera::get_rotation, &Camera::set_rotatoin> rotation;
+		utility::ReadWritePropertyR<Camera, Vector3Dd, &Camera::get_euler_angle, &Camera::set_euler_angle> euler_angle;
+		utility::ReadWritePropertyV<Camera, double, &Camera::get_scale, &Camera::set_scale> scale;
 	};
 }

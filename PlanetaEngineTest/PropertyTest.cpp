@@ -18,7 +18,7 @@ namespace PlanetaEngineTest {
 				void set_v(int n) { v_ = n; }
 			public:
 				Test() :v(*this) {}
-				PropertyV<Test, int, &Test::get_v, &Test::set_v> v;
+				ReadWritePropertyV<Test, int, &Test::get_v, &Test::set_v> v;
 			} t;
 			int pv = 123; t.v = 123;
 			Assert::IsTrue(pv == t.v, L"代入演算子エラー");
@@ -132,7 +132,7 @@ namespace PlanetaEngineTest {
 				void set_v(const Value& n) { v_ = n; }
 			public:
 				Test() :v(*this) {}
-				PropertyR<Test, Value, &Test::get_v, &Test::set_v> v;
+				ReadWritePropertyR<Test, Value, &Test::get_v, &Test::set_v> v;
 			} t;
 			Value pv = Value(45, 67); t.v = Value(45,67);
 			Assert::IsTrue(pv == t.v, L"代入演算子エラー");

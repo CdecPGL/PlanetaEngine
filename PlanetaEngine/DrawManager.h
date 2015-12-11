@@ -51,24 +51,17 @@ namespace planeta_engine {
 			/*文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
 			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const core::Color& color, const core::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
 
-			/*新しいスクリーンを追加する*/
-			std::shared_ptr<Screen> PushScreen();
-			/*末尾のスクリーンを破棄する*/
-			bool PopScreen();
-			/*次の描画対象スクリーンに切り替え*/
-			bool SwitchToNextScreen();
+			/*新しいスクリーンを作成する*/
+			std::shared_ptr<Screen> CreateScreen();
 		private:
 			DrawManager() = default;
 			~DrawManager() = default;
-			static Vector2D<double> _ConvertPosition(const Vector2D<double>& position);
 
 			Vector2D<double> camera_posision_;
 			double camera_rotation_rad_ = 0.0;
 			double camera_scale_ = 1.0;
 
 			std::shared_ptr<Screen> primary_screen_; //メインスクリーン
-			std::deque<std::shared_ptr<Screen>> additional_screen_; //追加スクリーン
-			int current_screen_index_ = -1; //現在の描画対象スクリーンインデックス(-1:メインスクリーン,0-:追加スクリーン)
 
 			bool SetDrawScreen_(const std::shared_ptr<Screen>& screen);
 		};

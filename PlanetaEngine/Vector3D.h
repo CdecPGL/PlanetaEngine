@@ -23,9 +23,9 @@ namespace planeta_engine {
 				void set_z(T v) { ptr_[2] = v; }
 			public:
 				XYZIdentifer() :x(*this), y(*this), z(*this) {}
-				utility::PropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
-				utility::PropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
-				utility::PropertyV<MyType, T, &MyType::get_z, &MyType::set_z> z;
+				utility::ReadWritePropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
+				utility::ReadWritePropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
+				utility::ReadWritePropertyV<MyType, T, &MyType::get_z, &MyType::set_z> z;
 			};
 		}
 	}

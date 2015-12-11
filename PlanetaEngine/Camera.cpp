@@ -6,8 +6,10 @@
 #include "DxLib.h"
 
 namespace planeta_engine {
-	float x,y,z,vrota,hrota,trota;
+	Camera::Camera() :position(*this), rotation(*this), euler_angle(*this), scale(*this) {}
+
 	void Camera::ApplyToDxLib() {
+		float x(0), y(0), z(0), vrota(0), hrota(0), trota(0);
 		switch (mode_) {
 		case Mode::Camera2D:
 			SetupCamera_Ortho(core::config_data::engine::DrawSize().y / (float)scale);
@@ -34,5 +36,4 @@ namespace planeta_engine {
 	void Camera::ChangeTo3DMode() {
 		assert(false);
 	}
-
 }

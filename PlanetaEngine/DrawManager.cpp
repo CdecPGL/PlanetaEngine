@@ -1,3 +1,4 @@
+#include <cassert>
 #include "DrawManager.h"
 #include "DxLib.h"
 #include "DXUtility.h"
@@ -34,8 +35,8 @@ namespace planeta_engine {
 			unsigned int dxc = PEColorToDXColorHandle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
 			for (int i = 0; i < (int)positions.size() - 1; ++i) {
-				v0 = PEVector2DToDXVECTOR(_ConvertPosition(positions[i]));
-				v1 = PEVector2DToDXVECTOR(_ConvertPosition(positions[i+1]));
+				v0 = PEVector2DToDXVECTOR(positions[i]);
+				v1 = PEVector2DToDXVECTOR(positions[i+1]);
 				DrawLine3D(v0, v1, dxc);
 			}
 		}
@@ -48,9 +49,9 @@ namespace planeta_engine {
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
 			try {
 				for (size_t i = 0; i < indexes.size(); ++i) {
-					v0 = PEVector2DToDXVECTOR(_ConvertPosition(positions.at(indexes[i][0])));
-					v1 = PEVector2DToDXVECTOR(_ConvertPosition(positions.at(indexes[i][1])));
-					v2 = PEVector2DToDXVECTOR(_ConvertPosition(positions.at(indexes[i][2])));
+					v0 = PEVector2DToDXVECTOR(positions.at(indexes[i][0]));
+					v1 = PEVector2DToDXVECTOR(positions.at(indexes[i][1]));
+					v2 = PEVector2DToDXVECTOR(positions.at(indexes[i][2]));
 					DrawTriangle3D(v0, v1, v2, dxc, true);
 				}
 			}
@@ -87,19 +88,8 @@ namespace planeta_engine {
 			//DrawWire({ Vector2D<double>(640,0),Vector2D<double>(608,32) }, 1, core::Color::Yellow());
 			//DrawWire({ Vector2D<double>(640,480),Vector2D<double>(608,448) }, 1, core::Color::Magenta());
 			//DrawWire({ Vector2D<double>(0,480),Vector2D<double>(32,448) }, 1, core::Color::Cyan());
-			for (const auto& screen : additional_screen_) {
-				DxLib::DrawGraph(0, 0, screen->GetHandle(), false);
-				//çÌèúèàóùì¸ÇÍÇÈÅH
-			}
 			if (!(ScreenFlip() == 0 && ClearDrawScreen() == 0)) { return false; }
-			if (!SetDrawScreen_(primary_screen_)) { return false; }
-			current_screen_index_ = -1;
 			return true;
-		}
-
-		Vector2D<double> DrawManager::_ConvertPosition(const Vector2D<double>& position)
-		{
-			return position;
 		}
 
 		void DrawManager::SetCameraPosition(const Vector2D<double>& position)
@@ -170,24 +160,13 @@ namespace planeta_engine {
 			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));
 		}
 
-		std::shared_ptr<Screen> DrawManager::PushScreen() {
-			int scr_h = MakeScreen(640, 480, false);
-			std::shared_ptr<Screen> new_screen = std::make_shared<Screen>(scr_h, false);
-			additional_screen_.push_back(new_screen);
-			return new_screen;
-		}
-
-		bool DrawManager::PopScreen() {
-			if (additional_screen_.size() == 0) { return false; }
-			additional_screen_.pop_back();
-			return true;
-		}
-
-		bool DrawManager::SwitchToNextScreen() {
-			if (additional_screen_.size() <= (size_t)++current_screen_index_) { 
-				return false; 
+		std::shared_ptr<Screen> DrawManager::CreateScreen() {
+			if (primary_screen_) { 
+				assert(false); 
+				return nullptr;
 			}
-			return SetDrawScreen_(additional_screen_[current_screen_index_ - 1]);
+			primary_screen_ = std::make_shared<Screen>();
+			return primary_screen_;
 		}
 
 		bool DrawManager::SetDrawScreen_(const std::shared_ptr<Screen>& screen) {

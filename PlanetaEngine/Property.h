@@ -4,143 +4,113 @@
 
 namespace planeta_engine {
 	namespace utility {
-		/*組み込み型(参照私が必要ない型)用読み書きプロパティ(スカラ型のみに対応)*/
-		template<class C,typename PropertyType, PropertyType(C::*getter)()const, void (C::*setter)(PropertyType)>
-		class PropertyV {
-			static_assert(std::is_scalar<PropertyType>::value == true, "PropertyType must be a scala type.");
-			using MyType = PropertyV<C, PropertyType, getter, setter>;
+		/*読み取り専用プロパティ*/
+		template<class C, typename PropertyType, typename GetterRet, GetterRet(C::*getter)()const>
+		class ReadOnlyProperty {
+			using MyType = ReadOnlyProperty<C, PropertyType, GetterRet, getter>;
 		public:
-			PropertyV(C& ins) :instance_(ins) {}
-			//代入
-			MyType& operator=(PropertyType v) {
-				(instance_.*setter)(v);
-				return *this;
-			}
+			ReadOnlyProperty(const C& ins) :instance_(ins) {}
 			//プロパティ型への変換
 			operator PropertyType()const {
 				return (instance_.*getter)();
 			}
 			/*()を用いたアクセス*/
-			PropertyType operator()()const {
+			GetterRet operator()()const& {
 				return get();
 			}
-			void operator()(PropertyType v) {
-				set(v);
+			PropertyType&& operator()()const&& {
+				PropertyType ret = get();
+				return std::move(ret);
 			}
-			//前置インクリメント(加算で再現)
-			MyType& operator++() {
-				set(get() + 1);
-				return *this;
-			}
-			//後置インクリメント(加算で再現)
-			PropertyType operator++(int) {
-				PropertyType buf = get();
-				set(buf + 1);
-				return buf;
-			}
-			//前置デクリメント(減算で再現)
-			MyType& operator--() {
-				set(get() - 1);
-				return *this;
-			}
-			//後置デクリメント(減算で再現)
-			PropertyType operator--(int) {
-				PropertyType buf = get();
-				set(buf - 1);
-				return buf;
-			}
-			//四則演算
+			//四則演算子
 			template<typename ROP>
-			MyType& operator+=(const ROP& rop){
-				set(get() + rop);
-				return *this;
+			MyType operator+(const ROP& right_op)const {
+				return get() + right_op;
 			}
 			template<typename ROP>
-			MyType& operator-=(const ROP& rop) {
-				set(get() - rop);
-				return *this;
+			MyType operator-(const ROP& right_op)const {
+				return get() - right_op;
 			}
 			template<typename ROP>
-			MyType& operator*=(const ROP& rop) {
-				set(get() * rop);
-				return *this;
+			MyType operator*(const ROP& right_op)const {
+				return get() * right_op;
 			}
 			template<typename ROP>
-			MyType& operator/=(const ROP& rop) {
-				set(get() / rop);
-				return *this;
+			MyType operator/(const ROP& right_op)const {
+				return get() / right_op;
 			}
-			//ビット演算
+			//ビット演算子
 			template<typename ROP>
-			MyType& operator|=(const ROP& rop) {
-				set(get() | rop);
-				return *this;
+			MyType operator|(const ROP& right_op)const {
+				return get() | right_op;
 			}
 			template<typename ROP>
-			MyType& operator&=(const ROP& rop) {
-				set(get() & rop);
-				return *this;
+			MyType operator&(const ROP& right_op)const {
+				return get() & right_op;
 			}
 			template<typename ROP>
-			MyType& operator^=(const ROP& rop) {
-				set(get() ^ rop);
-				return *this;
+			MyType operator^(const ROP& right_op)const {
+				return get() ^ right_op;
 			}
 			//シフト演算
 			template<typename ROP>
-			MyType& operator>>=(const ROP& rop) {
-				set(get() >> rop);
-				return *this;
+			MyType operator>>(const ROP& right_op)const {
+				return get() >> right_op;
 			}
 			template<typename ROP>
-			MyType& operator<<=(const ROP& rop) {
-				set(get() << rop);
-				return *this;
+			MyType operator<<(const ROP& right_op)const {
+				return get() << right_op;
 			}
+			//単項演算子
+			MyType operator+()const {
+				return +get();
+			}
+			MyType operator-()const {
+				return -get();
+			}
+			MyType operator!()const {
+				return !get();
+			}
+		protected:
+			GetterRet get()const { return (instance_.*getter)(); }
 		private:
-			void set(PropertyType v){ (instance_.*setter)(v); }
-			PropertyType get()const { return (instance_.*getter)(); }
-			C& instance_;
+			const C& instance_;
 		};
-		/*組み込み型(参照私が必要ない型)用読み取り専用プロパティ*/
-		//template<class C, typename PropertyType, PropertyType(C::*getter)()const>
-		//class PropertyV {
-		//	using MyType = Property<C, PropertyType, getter>;
-		//public:
-		//	Property(C& ins) :instance_(ins) {}
-		//	//プロパティ型への変換
-		//	operator PropertyType()const {
-		//		return (instance_.*getter)();
-		//	}
-		//private:
-		//	PropertyType get()const { return (instance_.*getter)(); }
-		//	C& instance_;
-		//};
-		/*複合型(参照渡しが必要な型)用読み書きプロパティ*/
-		template<class C, typename PropertyType, const PropertyType&(C::*getter)()const, void (C::*setter)(const PropertyType&)>
-		class PropertyR {
-			using MyType = PropertyR<C, PropertyType, getter, setter>;
+		/*書き込み専用プロパティ*/
+		template<class C, typename PropertyType, typename SetterArg, void(C::*setter)(SetterArg)>
+		class WriteOnlyProperty {
+			using MyType = WriteOnlyProperty<C, PropertyType, SetterArg, setter>;
 		public:
-			PropertyR(C& ins) :instance_(ins) {}
+			WriteOnlyProperty(C& ins) :instance_(ins) {}
 			//代入
-			MyType& operator=(const PropertyType& v) {
+			MyType& operator=(SetterArg v) {
 				(instance_.*setter)(v);
 				return *this;
 			}
-			//プロパティ型への変換
-			operator PropertyType()const {
-				return (instance_.*getter)();
-			}
 			/*()を用いたアクセス*/
-			const PropertyType& operator()()const& {
-				return get();
-			}
-			PropertyType&& operator()()&& {
-				T ret = get();
-				return std::move(ret);
-			}
-			void operator()(const PropertyType& v) {
+			void operator()(SetterArg v) {
 				set(v);
+			}
+		protected:
+			void set(SetterArg v) { (instance_.*setter)(v); }
+		private:
+			C& instance_;
+		};
+		
+		/*読み書きプロパティ*/
+		template<class C,typename PropertyType,typename GetterRet,typename SetterArg, GetterRet(C::*getter)()const, void (C::*setter)(SetterArg)>
+		class ReadWriteProperty :
+			public ReadOnlyProperty<C,PropertyType,GetterRet,getter>,
+			public WriteOnlyProperty<C,PropertyType,SetterArg,setter>{
+			using MyType = ReadWriteProperty<C, PropertyType,GetterRet,SetterArg, getter, setter>;
+			using ReadPropertyType = ReadOnlyProperty<C, PropertyType, GetterRet, getter>;
+			using WritePropertyType = WriteOnlyProperty<C, PropertyType, SetterArg, setter>;
+		public:
+			ReadWriteProperty(C& ins) :ReadPropertyType(ins), WritePropertyType(ins) {}
+			//代入
+			MyType& operator=(SetterArg v) {
+				WritePropertyType::operator =(v);
+				return *this;
 			}
 			//前置インクリメント(加算で再現)
 			MyType& operator++() {
@@ -170,7 +140,7 @@ namespace planeta_engine {
 			}
 			//四則演算
 			template<typename ROP>
-			MyType& operator+=(const ROP& rop) {
+			MyType& operator+=(const ROP& rop){
 				PropertyType buf = get();
 				set(buf += rop);
 				return *this;
@@ -225,10 +195,18 @@ namespace planeta_engine {
 				set(buf <<= rop);
 				return *this;
 			}
-		private:
-			void set(const PropertyType& v) { (instance_.*setter)(v); }
-			const PropertyType& get()const { return (instance_.*getter)(); }
-			C& instance_;
 		};
+		//getter、setterで値渡しを用いる読み書きプロパティ
+		template<class C,typename PropertyType,PropertyType(C::*getter)()const,void(C::*setter)(PropertyType)>
+		using ReadWritePropertyV = ReadWriteProperty<C, PropertyType, PropertyType, PropertyType, getter, setter>;
+		//getter、setterで値渡しを用いる読み取り専用プロパティ
+		template<class C, typename PropertyType, PropertyType(C::*getter)()const>
+		using ReadOnlyPropertyV = ReadOnlyProperty<C, PropertyType, PropertyType, getter>;
+		//getter、setterで参照渡しを用いる読み書きプロパティ
+		template<class C, typename PropertyType, const PropertyType&(C::*getter)()const, void(C::*setter)(const PropertyType&)>
+		using ReadWritePropertyR = ReadWriteProperty<C, PropertyType, const PropertyType&, const PropertyType&, getter, setter>;
+		//getter、setterで参照渡しを用いる読み取り専用プロパティ
+		template<class C, typename PropertyType, const PropertyType&(C::*getter)()const>
+		using ReadOnlyPropertyR = ReadOnlyProperty<C, PropertyType, const PropertyType&, getter>;
 	}
 }

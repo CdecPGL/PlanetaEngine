@@ -21,8 +21,8 @@ namespace planeta_engine {
 				void set_y(T v) { ptr_[1] = v; }
 			public:
 				XYIdentifer() :x(*this), y(*this) {}
-				utility::PropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
-				utility::PropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
+				utility::ReadWritePropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
+				utility::ReadWritePropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
 			};
 		}
 	}
