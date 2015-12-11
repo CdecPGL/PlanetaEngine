@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "WeakPointer.h"
 #include "Vector2D.h"
 #include <functional>
@@ -15,7 +15,7 @@ namespace planeta_engine {
 		class CollisionDetectProcess;
 	}
 	namespace components {
-		class ColliderComponent : public game::Component , public core::IColliderWithCollider{
+		class ColliderComponent : public game::GameObjectComponent , public core::IColliderWithCollider{
 		public:
 			virtual ~ColliderComponent() = default;
 			/*Õ“Ë”»’è‚ğs‚¤*/

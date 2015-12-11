@@ -4,14 +4,14 @@
 #include <vector>
 #include <tuple>
 
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "WeakPointer.h"
 #include "RectAngle.h"
 
 namespace planeta_engine {
 	namespace components {
 		class DrawGraphComponent;
-		class GraphAnimatorComponent : public game::Component {
+		class GraphAnimatorComponent : public game::GameObjectComponent {
 		public:
 			/*フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
 			using FrameDataType = std::tuple<unsigned int, utility::RectAngle<int>,Vector2D<double>,double>;

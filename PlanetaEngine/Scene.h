@@ -11,12 +11,12 @@
 #include "GameObjectManager.h"
 #include "GameProcessManager.h"
 #include "UIManager.h"
+#include "Camera.h"
 
 namespace planeta_engine{
 	namespace core{
 		class IGameAccessor;
 		class Screen;
-		class Camera;
 		class Scene : public Object,public utility::SharedPointerInstance<Scene>
 			,public ScenePublicInterface{
 		public:
@@ -34,6 +34,8 @@ namespace planeta_engine{
 			game::GameObjectManager& game_object_manager()override { assert(game_object_manager_ != nullptr); return *game_object_manager_; }
 			/*UIマネージャのインスタンスを取得*/
 			game::UIManager& ui_manager()override { assert(ui_manager_ != nullptr); return *ui_manager_; }
+			/*カメラへのアクセス*/
+			Camera& camera() override { assert(camera_ != nullptr); return *camera_; }
 			/*ゲームクラスへのアクセス*/
 			IGameAccessor& game_accessor() { return game_; }
 		private:
@@ -48,7 +50,7 @@ namespace planeta_engine{
 			std::unique_ptr<game::UIManager> ui_manager_;
 
 			std::shared_ptr<Screen> screen_; //描画用スクリーン
-			std::shared_ptr<Camera> camera_; //カメラ
+			std::unique_ptr<Camera> camera_; //カメラ
 		};
 	}
 }

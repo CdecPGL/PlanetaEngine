@@ -1,14 +1,14 @@
 #pragma once
 
 #include <unordered_map>
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "Vector2D.h"
 //#include "Matrix.h"
 
 namespace planeta_engine {
 	namespace components {
 		/*形状情報コンポーネント*/
-		class TransformComponent : public game::Component {
+		class TransformComponent : public game::GameObjectComponent {
 		public:
 			TransformComponent();
 			~TransformComponent() = default;

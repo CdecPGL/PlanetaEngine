@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "Matrix.h"
 #include "Vector2D.h"
 #include "MathConstant.h"
@@ -10,7 +10,7 @@ namespace planeta_engine {
 		class CircleColliderComponent;
 		class StraightLineColliderComponent;
 		class GroundComponent :
-			public game::Component , public core::IColliderWithCollider
+			public game::GameObjectComponent , public core::IColliderWithCollider
 		{
 		public:
 			GroundComponent();

@@ -14,6 +14,7 @@ namespace planeta_engine {
 			game::GameObjectManagerAccessorForSetUp& game_object_manager() { return game_object_manager_accessor_; }
 			game::UIManagerAccessorForSetUp& ui_manager() { return ui_manager_accessor_; }
 			game::GameProcessManagerAccessorForSetUp& game_process_manager() { return game_process_manager_accessor_; }
+
 		private:
 			game::GameObjectManagerAccessorForSetUp game_object_manager_accessor_;
 			game::UIManagerAccessorForSetUp ui_manager_accessor_;

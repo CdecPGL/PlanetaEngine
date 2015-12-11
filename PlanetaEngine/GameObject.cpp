@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "GameObjectSetUpProxy.h"
 #include "GameObjectSetUpper.h"
 #include "PlanetComponent.h"

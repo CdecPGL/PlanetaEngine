@@ -13,12 +13,12 @@ namespace planeta_engine{
 	namespace game{
 		class GameObject;
 		class IGameObjectAccessor;
-		class Component : public core::Object , public utility::SharedPointerInstance<Component>
+		class GameObjectComponent : public core::Object , public utility::SharedPointerInstance<GameObjectComponent>
 		{
 			friend class GameObject;
 		public:
-			Component() :id_(-1){};
-			virtual ~Component() = default;
+			GameObjectComponent() :id_(-1){};
+			virtual ~GameObjectComponent() = default;
 			void SetGameObject(const utility::WeakPointer<IGameObjectAccessor>& game_object, int id) { game_object_ = game_object; id_ = id; }
 			void SetSceneAccessor(const utility::WeakPointer<core::SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
 			
@@ -31,10 +31,10 @@ namespace planeta_engine{
 			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
 			core::SceneAccessorForGameObject& scene() { return *scene_accessor_; }
 		private:
-			Component(const Component&) = delete;
-			Component(Component&&) = delete;
-			Component& operator=(const Component&) = delete;
-			Component& operator=(Component&&) = delete;
+			GameObjectComponent(const GameObjectComponent&) = delete;
+			GameObjectComponent(GameObjectComponent&&) = delete;
+			GameObjectComponent& operator=(const GameObjectComponent&) = delete;
+			GameObjectComponent& operator=(GameObjectComponent&&) = delete;
 
 //			static void* operator new(size_t s){ throw utility::BadNewDeleteOperation("Component::operator new is called."); return nullptr; }
 //			static void operator delete(void* p){ throw utility::BadNewDeleteOperation("Component::operator delete is called."); return; }

@@ -1,4 +1,4 @@
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "GameObject.h"
 
 namespace planeta_engine{
@@ -6,7 +6,7 @@ namespace planeta_engine{
 
 		
 
-		bool Component::Initialize() {
+		bool GameObjectComponent::Initialize() {
 			if (Initialize_()) {
 				is_valied_ = true;
 				return true;
@@ -15,12 +15,12 @@ namespace planeta_engine{
 			}
 		}
 
-		void Component::Finalize() {
+		void GameObjectComponent::Finalize() {
 			Finalize_();
 			is_valied_ = false;
 		}
 
-		bool Component::Activate() {
+		bool GameObjectComponent::Activate() {
 			if (is_active_) { return true; }
 			if (Activated_()) {
 				is_active_ = true;
@@ -30,7 +30,7 @@ namespace planeta_engine{
 			}
 		}
 
-		bool Component::InActivate() {
+		bool GameObjectComponent::InActivate() {
 			if (!is_active_) { return true; }
 			if (InActivated_()) {
 				is_active_ = false;

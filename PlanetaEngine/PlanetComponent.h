@@ -1,10 +1,10 @@
 #pragma once
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include <vector>
 
 namespace planeta_engine {
 	namespace components {
-		class PlanetComponent : public game::Component {
+		class PlanetComponent : public game::GameObjectComponent {
 		public:
 			PlanetComponent();
 			~PlanetComponent() = default;

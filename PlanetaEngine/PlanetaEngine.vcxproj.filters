@@ -148,6 +148,9 @@
     <Filter Include="PlanetaEngine\Math\Vector">
       <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Game\GameObject\Component">
+      <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -350,9 +353,6 @@
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectSetUpper.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
@@ -696,6 +696,9 @@
     <ClInclude Include="VectorElementIdentifer.h">
       <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectComponent.h">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -863,9 +866,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="GameProcess.cpp">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
@@ -1009,6 +1009,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectComponent.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

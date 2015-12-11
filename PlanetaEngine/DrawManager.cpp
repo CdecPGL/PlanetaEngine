@@ -165,7 +165,7 @@ namespace planeta_engine {
 				assert(false); 
 				return nullptr;
 			}
-			primary_screen_ = std::make_shared<Screen>();
+			primary_screen_ = std::make_shared<Screen>(DX_SCREEN_BACK, true);
 			return primary_screen_;
 		}
 

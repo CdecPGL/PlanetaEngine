@@ -16,7 +16,7 @@ namespace planeta_engine{
 		class TransformComponent;
 	}
 	namespace game{
-		class Component;
+		class GameObjectComponent;
 		class GameObjectSetUpProxy; //初期化用関数使用仲介クラス
 		class GameObjectSetUpper; //初期化クラス
 		//GameObjectクラス(継承禁止ぃ)
@@ -32,7 +32,7 @@ namespace planeta_engine{
 			//アクセサ
 			bool is_active()const override { return is_active_; }
 			//指定IDのコンポーネント取得
-			utility::WeakPointer<Component> GetComponent(int id) override{
+			utility::WeakPointer<GameObjectComponent> GetComponent(int id) override{
 				auto it = component_list_.find(id);
 				if (it == component_list_.end()) { return nullptr; }
 				else { return it->second; }
@@ -99,9 +99,9 @@ namespace planeta_engine{
 			std::unique_ptr<GameObjectResisterConnection> resister_connection_;
 
 			std::weak_ptr<GameObject> me_; //自分のスマートポインタ
-			std::unordered_map<int,std::shared_ptr<Component>> component_list_; //コンポーネントリスト
-			const std::unordered_map<int, std::shared_ptr<Component>>& _GetComponentList()const override { return component_list_; }
-			std::vector<std::shared_ptr<Component>> component_update_list_; //コンポーネント更新リスト
+			std::unordered_map<int,std::shared_ptr<GameObjectComponent>> component_list_; //コンポーネントリスト
+			const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& _GetComponentList()const override { return component_list_; }
+			std::vector<std::shared_ptr<GameObjectComponent>> component_update_list_; //コンポーネント更新リスト
 
 			//////////特殊コンポーネント//////////
 			std::shared_ptr<components::TransformComponent> transform_; //ローカル形状情報
@@ -116,12 +116,12 @@ namespace planeta_engine{
 			bool _inactivate_component();
 			template<class C>
 			utility::WeakPointer<C> _add_component(){ 
-				static_assert(std::is_base_of<Component, C>::value == true, "C is not derived Component.");
+				static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "C is not derived Component.");
 				auto ptr = C::MakeShared<C>();
 				ptr->SetGameObject(me(), component_id_counter_);
 				component_list_.insert(std::make_pair(component_id_counter_++, ptr));
 				//更新処理を行う場合は更新リストに登録
-				std::shared_ptr<Component> com_ptr = ptr;
+				std::shared_ptr<GameObjectComponent> com_ptr = ptr;
 				if (!com_ptr->NoUpdate_()) { component_update_list_.push_back(ptr); }
 				return ptr;
 			}

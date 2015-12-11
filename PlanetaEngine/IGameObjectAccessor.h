@@ -12,7 +12,7 @@ namespace planeta_engine {
 	namespace game {
 		class IGameObjectManagerAccessor;
 		class IGameProcessManagerAccessor;
-		class Component;
+		class GameObjectComponent;
 		class IGameObjectAccessor {
 		public:
 			virtual ~IGameObjectAccessor() = 0 {};
@@ -27,7 +27,7 @@ namespace planeta_engine {
 			/*型でコンポーネントを取得(仮想テンプレート関数は定義できないためここで実装する)*/
 			template<class C>
 			utility::WeakPointer<C> GetComponent()const {
-				static_assert(std::is_base_of<Component, C>::value == true, "C is not derived Component.");
+				static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "C is not derived Component.");
 				const auto& cl = _GetComponentList();
 				for (const auto& com : cl) {
 					auto ptr = std::dynamic_pointer_cast<C>(com.second);
@@ -36,7 +36,7 @@ namespace planeta_engine {
 				return nullptr;
 			}
 			/*IDでコンポーネントを取得*/
-			virtual utility::WeakPointer<Component> GetComponent(int id) = 0;
+			virtual utility::WeakPointer<GameObjectComponent> GetComponent(int id) = 0;
 			/*所属地形コンポーネントを取得*/
 			virtual utility::WeakPointer<components::GroundComponent> GetBelongingGroundComponent() = 0;
 			/*所属地形を取得(セットされていない場合はダミーが返される)*/
@@ -52,7 +52,7 @@ namespace planeta_engine {
 			/*弱参照を取得*/
 			virtual utility::WeakPointer<IGameObjectAccessor> GetWeakPointer() = 0;
 		private:
-			virtual const std::unordered_map<int, std::shared_ptr<Component>>& _GetComponentList()const = 0;
+			virtual const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& _GetComponentList()const = 0;
 		};
 	}
 }

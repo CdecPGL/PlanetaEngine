@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "GameObjectComponent.h"
 #include "WeakPointer.h"
 #include "Color.h"
 #include "Vector2D.h"
@@ -9,7 +9,7 @@ namespace planeta_engine {
 		class GameObjectDrawProcess;
 	}
 	namespace components {
-		class DrawComponent : public game::Component {
+		class DrawComponent : public game::GameObjectComponent {
 		public:
 			DrawComponent();
 			virtual ~DrawComponent() = default;

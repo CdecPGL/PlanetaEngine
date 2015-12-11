@@ -147,7 +147,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="ConfigData.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
@@ -386,7 +386,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SoundResource.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="CollisionDetectProcess.cpp" />
-    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="GameObjectComponent.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="FileSystemManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
