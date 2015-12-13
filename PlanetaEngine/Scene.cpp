@@ -37,7 +37,10 @@ namespace planeta_engine{
 		bool Scene::Finalize()
 		{
 			//モジュールの終了処理を行う
-			return ForEachSceneModule_([](core::SceneModule& sm) {sm.Finalize(); return true; });
+			game_object_manager_->Finalize(); //ゲームオブジェクトでは終了時にゲームプロセスを参照するものがあるのでGameProcessManagerより先に終了処理を行う。
+			ui_manager_->Finalize();
+			game_process_manager_->Finalize();
+			return true;
 		}
 
 		void Scene::Update()
