@@ -62,13 +62,12 @@ namespace planeta_engine {
 			return game_process->id();
 		}
 
-		bool GameProcessManager::Finalize()
-		{
+		void GameProcessManager::Finalize()
+{
 			_unresist_id_list.clear();
 			_system_process_map.clear();
 			_id_map.clear();
 			_game_processes.clear();
-			return true;
 		}
 
 		void GameProcessManager::SetupProcess(const std::shared_ptr<GameProcess>& game_process)
@@ -76,9 +75,13 @@ namespace planeta_engine {
 			game_process->SetScene(scene_accessor_);
 		}
 
-		void GameProcessManager::SetScene(core::ScenePublicInterface& spi)
+		void GameProcessManager::SetSceneInterface(core::ScenePublicInterface& spi)
 		{
 			scene_accessor_ = std::make_shared<core::SceneAccessorForGameProcess>(spi);
+		}
+
+		void GameProcessManager::SetSceneData(const core::SceneData& scene_data) {
+
 		}
 
 	}

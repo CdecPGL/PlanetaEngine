@@ -54,7 +54,7 @@ namespace planeta_engine {
 
 		private:
 			/*特殊セットアップ*/
-			bool SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data)override final;
+			bool SpecialSetUp(const core::SceneDataForGameObject& setup_data)override final;
 
 			bool is_no_update() const override final { return true; }
 			bool OnActivated() override final;

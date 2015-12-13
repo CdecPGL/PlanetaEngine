@@ -9,6 +9,7 @@ namespace planeta_engine {
 		class KeyInputManager;
 		class ResourceManager;
 		class CollisionGroupMatrix;
+		class Screen;
 		class IGameAccessor {
 		public:
 			virtual ~IGameAccessor() = default;
@@ -16,6 +17,7 @@ namespace planeta_engine {
 			virtual core::KeyInputManager& key_input_manager() = 0;
 			virtual core::ResourceManager& resource_manager() = 0;
 			virtual std::shared_ptr<const CollisionGroupMatrix> GetCollisionGroupMatrix()const = 0;
+			virtual Screen& screen() = 0;
 		};
 	}
 }

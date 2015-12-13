@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <list>
 #include <memory>
-#include "Object.h"
+#include "SceneModule.h"
 #include "GameProcessManagerPublicInterface.h"
 #include "WeakPointer.h"
 
@@ -11,20 +11,25 @@ namespace planeta_engine{
 	namespace core {
 		class IGameAccessor;
 		class ScenePublicInterface;
+		struct SceneData;
 		class SceneAccessorForGameProcess;
 	}
 	namespace game {
 		class GameProcess;
-		class GameProcessManager final: public core::Object
+		class GameProcessManager final: public core::SceneModule
 			,public GameProcessManagerPublicInterface{
 		public:
 			GameProcessManager(core::IGameAccessor& game);
 			~GameProcessManager() = default;
-			/*シーンをセット*/
-
-			void SetScene(core::ScenePublicInterface& spi);
+			/*初期化処理*/
+			bool Initialize()override { return true; }
 			/*終了処理*/
-			bool Finalize();
+			void Finalize()override;
+			/*シーンインターフェイスをセット*/
+			void SetSceneInterface(core::ScenePublicInterface& spi)override;
+			/*シーンデータをセット*/
+			void SetSceneData(const core::SceneData& scene_data)override;
+
 			/*プロセスのアップデート*/
 			void Update();
 			/*管理処理*/

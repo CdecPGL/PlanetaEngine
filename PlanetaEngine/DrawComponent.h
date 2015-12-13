@@ -6,8 +6,11 @@
 
 namespace planeta_engine {
 	class ScreenDrawer2D;
+	namespace system_processes {
+		class GameObjectDrawProcess;
+	}
 	namespace core {
-		class GameObjectDrawComponentProcessRegistrator;
+//		class GameObjectDrawComponentProcessRegistrator;
 	}
 	namespace components {
 		class DrawComponent : public core::GameObjectSpecialComponent {
@@ -55,12 +58,13 @@ namespace planeta_engine {
 			/*表示拡大度*/
 			Vector2D<double> scale_ = Vector2D<double>(1.0, 1.0);
 			planeta_engine::Color color_;
-			std::shared_ptr<core::GameObjectDrawComponentProcessRegistrator> draw_component_registrator_;
+//			std::shared_ptr<core::GameObjectDrawComponentProcessRegistrator> draw_component_registrator_;
+			utility::WeakPointer<system_processes::GameObjectDrawProcess> draw_component_registrator_;
 			void RegisterToProcess_();
 			void RemoveFromProcess_();
 			void UpdatePriority_();
 			/*特殊セットアップ*/
-			bool SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data)override final;
+			bool SpecialSetUp(const core::SceneDataForGameObject& setup_data)override final;
 			/*更新処理は行わない*/
 			bool is_no_update()const override final { return true; }
 			bool OnActivated()override final;

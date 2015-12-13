@@ -3,9 +3,13 @@
 #include "GameProcessManager.h"
 #include "SceneAccessorForGameObject.h"
 #include "SystemLog.h"
+#include "SceneDataForGameObject.h"
+#include "SceneData.h"
 
 namespace planeta_engine{
 	namespace game{
+		GameObjectManager::~GameObjectManager() = default;
+
 		bool GameObjectManager::Process()
 		{
 			RemoveProc_();
@@ -142,15 +146,14 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool GameObjectManager::Finalize()
-		{
+		void GameObjectManager::Finalize()
+{
 			RemoveAllGameObjects();
-			return true;
 		}
 
 		GameObjectManager::GameObjectManager() :_id_counter(0){};
 
-		void GameObjectManager::SetScene(core::ScenePublicInterface& spi) {
+		void GameObjectManager::SetSceneInterface(core::ScenePublicInterface& spi) {
 			scene_accessor_ = std::make_shared<core::SceneAccessorForGameObject>(spi);
 		}
 
@@ -169,6 +172,13 @@ namespace planeta_engine{
 
 		void GameObjectManager::RemoveProc_() {
 			garbage_.clear();
+		}
+
+		void GameObjectManager::SetSceneData(const core::SceneData& scene_data) {
+			scene_data_ = std::make_unique<core::SceneDataForGameObject>();
+			scene_data_->collision_detect_process = scene_data.collision_detect_process;
+			scene_data_->draw_component_process_registrator = scene_data.draw_component_process_registrator;
+			scene_data_->screen_drawer_2d = scene_data.screen_drawer_2d;
 		}
 
 	}

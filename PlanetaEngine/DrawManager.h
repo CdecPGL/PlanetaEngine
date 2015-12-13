@@ -44,8 +44,10 @@ namespace planeta_engine {
 			/*文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
 			void DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const planeta_engine::Color& color, const planeta_engine::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource);
 
-			/*新しいスクリーンを作成する*/
+			/*新しいスクリーンを作成する(現状は一つのスクリーンにのみ対応)*/
 			std::shared_ptr<Screen> CreateScreen();
+			/*スクリーンを破棄する*/
+			bool DisposeScreen(const std::shared_ptr<Screen>& screen);
 		private:
 			DrawManager() = default;
 			~DrawManager() = default;

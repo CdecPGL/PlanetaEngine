@@ -133,6 +133,16 @@ namespace planeta_engine {
 			return true;
 		}
 
+		bool DrawManager::DisposeScreen(const std::shared_ptr<Screen>& screen) {
+			if (primary_screen_ && primary_screen_.get() == screen.get()) {
+				primary_screen_.reset();
+				return true;
+			} else {
+				assert(false);
+				return true;
+			}
+		}
+
 	}
 }
 

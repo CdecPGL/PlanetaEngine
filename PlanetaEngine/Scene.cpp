@@ -5,15 +5,15 @@
 #include "SystemLog.h"
 #include "ISceneManagerAccessor.h"
 #include "IGameAccessor.h"
+#include "SceneData.h"
 
 namespace planeta_engine{
 	namespace core{
 
 		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::UIManager>())
 		{
-			game_object_manager_->SetScene(*this);
-			game_process_manager_->SetScene(*this);
-			ui_manager_->SetScene(*this);
+			//シーンを各モジュールに登録
+			ForEachSceneModule_([this](core::SceneModule& sm) {sm.SetSceneInterface(*this); return true; });
 		}
 
 		Scene::~Scene()
@@ -22,8 +22,10 @@ namespace planeta_engine{
 		}
 
 		bool Scene::Initialize()
+
 		{
-			if (game_object_manager_->Initialize()) {
+			//モジュールを初期化
+			if (ForEachSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); })) {
 				return true;
 			}
 			else {
@@ -34,16 +36,14 @@ namespace planeta_engine{
 
 		bool Scene::Finalize()
 		{
-			game_object_manager_->Finalize();
-			ui_manager_->Finalize();
-			game_process_manager_->Finalize();
-			return true;
+			//モジュールの終了処理を行う
+			return ForEachSceneModule_([](core::SceneModule& sm) {sm.Finalize(); return true; });
 		}
 
 		void Scene::Update()
 		{
 			try {
-				game_process_manager_->Update(); //プロセス実行
+				game_process_manager_->Update(); //ゲームプロセス実行
 			}
 			catch (utility::NullWeakPointerException& e) {
 				debug::SystemLog::instance().LogError(std::string("GameProcessManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
@@ -65,6 +65,17 @@ namespace planeta_engine{
 				return;
 			}
 			game_process_manager_->Process(); //プロセスマネージャ更新
+		}
+
+		bool Scene::ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc) {
+			return proc(*game_process_manager_)
+				&& proc(*game_object_manager_)
+				&& proc(*ui_manager_);
+		}
+
+		void Scene::SetSceneData(std::unique_ptr<SceneData>&& scene_data) {
+			scene_data_ = std::move(scene_data);
+			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(*scene_data); return true; });
 		}
 
 	}

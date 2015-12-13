@@ -1,6 +1,9 @@
 #pragma once
 
 namespace planeta_engine {
+	namespace core {
+		struct SceneDataForGameObject;
+	}
 	namespace game {
 		class GameObjectManager;
 		class GameObjectRegistrationConnection final{
@@ -9,6 +12,7 @@ namespace planeta_engine {
 			bool Activate();
 			bool InActivate();
 			void Dispose();
+			core::SceneDataForGameObject& RefSceneData();
 		private:
 			int id_;
 			GameObjectManager& game_object_manager_;

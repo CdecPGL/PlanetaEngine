@@ -702,9 +702,6 @@
     <ClInclude Include="GameObjectSpecialComponent.h">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponentSpecialSetUpData.h">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
     </ClInclude>
@@ -713,6 +710,21 @@
     </ClInclude>
     <ClInclude Include="GameObjectRegistrationConnection.h">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="NonCopyable.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneModule.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneData.h">
+      <Filter>PlanetaEngine\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDataForGameObject.h">
+      <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1025,5 +1037,13 @@
     <ClCompile Include="GameObjectRegistrationConnection.cpp">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="SceneSetUpper.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PlanetaEngine.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -21,5 +21,9 @@ namespace planeta_engine {
 			assert(ret == true);
 		}
 
+		core::SceneDataForGameObject& GameObjectRegistrationConnection::RefSceneData() {
+			return game_object_manager_.RefSceneData();
+		}
+
 	}
 }

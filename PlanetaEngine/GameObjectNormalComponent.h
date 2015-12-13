@@ -8,6 +8,6 @@ namespace planeta_engine {
 		virtual ~GameObjectNormalComponent() = default;
 	private:
 		/*“Áêİ’è‚Ís‚í‚È‚¢*/
-		bool SpecialSetUp(const core::GameObjectComponentSpecialSetUpData&)override final{ return true; }
+		bool SpecialSetUp(const core::SceneDataForGameObject&)override final{ return true; }
 	};
 }

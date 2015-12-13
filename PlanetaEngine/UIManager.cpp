@@ -55,7 +55,7 @@ namespace planeta_engine {
 
 		}
 
-		void UIManager::SetScene(core::ScenePublicInterface& spi)
+		void UIManager::SetSceneInterface(core::ScenePublicInterface& spi)
 		{
 			scene_accessor_ = std::make_shared<core::SceneAccessorForUI>(spi);
 		}
@@ -105,6 +105,10 @@ namespace planeta_engine {
 				return false;
 			}
 			return it->second.CloseUIObject(uo);
+		}
+
+		void UIManager::SetSceneData(const core::SceneData& scene_data) {
+
 		}
 
 		void UIManager::Layer_::AddUIObject(const std::shared_ptr<UIObject>& o)

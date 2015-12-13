@@ -24,8 +24,7 @@ namespace planeta_engine {
 			template<typename T0> friend class WeakPointer;
 		public:
 			WeakPointer() = default;
-			/*nullptr‚Ì‚ÝŽó‚¯•t‚¯‚é*/
-			WeakPointer(const void* p) { assert(p == nullptr); }
+			WeakPointer(std::nullptr_t) {}
 			template<typename T1>
 			WeakPointer(const WeakPointer<T1>& wp) :w_ptr_(wp.w_ptr_) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
 			template<typename T1>
@@ -86,8 +85,17 @@ namespace planeta_engine {
 			operator bool()const {
 				return !w_ptr_.expired();
 			}
-			operator void*()const {
-				return w_ptr_._Get();
+			bool operator==(bool b)const {
+				return operator bool() == b;
+			}
+			bool operator!=(bool b)const {
+				return !((*this) == b);
+			}
+			bool operator==(std::nullptr_t)const {
+				return w_ptr_._Get() == nullptr;
+			}
+			bool operator!=(std::nullptr_t)const {
+				return !((*this) == nullptr);
 			}
 
 			using pointer_type = T;

@@ -1,11 +1,12 @@
 #include "DrawComponent.h"
 #include "IGameObjectAccessor.h"
-#include "GameObjectDrawComponentProcessRegistrator.h"
+//#include "GameObjectDrawComponentProcessRegistrator.h"
+#include "GameObjectDrawProcess.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
 #include "SystemLog.h"
 #include "SceneAccessorForGameObject.h"
-#include "GameObjectComponentSpecialSetUpData.h"
+#include "SceneDataForGameObject.h"
 
 namespace planeta_engine {
 	namespace components {
@@ -82,7 +83,8 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool DrawComponent::SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data) {
+		bool DrawComponent::SpecialSetUp(const core::SceneDataForGameObject& setup_data) {
+//			draw_component_registrator_ = setup_data.draw_component_process_registrator;
 			draw_component_registrator_ = setup_data.draw_component_process_registrator;
 			screen_drawer_ = setup_data.screen_drawer_2d;
 			return true;

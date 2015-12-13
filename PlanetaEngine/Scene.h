@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+#include <functional>
 #include "Object.h"
 #include "SceneAccessorForSetUp.h"
 #include "ScenePublicInterface.h"
@@ -17,6 +18,7 @@ namespace planeta_engine{
 	namespace core{
 		class IGameAccessor;
 		class Screen;
+		struct SceneData;
 		class Scene : public Object,public utility::SharedPointerInstance<Scene>
 			,public ScenePublicInterface{
 		public:
@@ -34,10 +36,11 @@ namespace planeta_engine{
 			game::GameObjectManager& game_object_manager()override { assert(game_object_manager_ != nullptr); return *game_object_manager_; }
 			/*UIマネージャのインスタンスを取得*/
 			game::UIManager& ui_manager()override { assert(ui_manager_ != nullptr); return *ui_manager_; }
-			/*カメラへのアクセス*/
-			Camera& camera() override { assert(camera_ != nullptr); return *camera_; }
 			/*ゲームクラスへのアクセス*/
 			IGameAccessor& game_accessor() { return game_; }
+
+			/*設定関数*/
+			void SetSceneData(std::unique_ptr<SceneData>&& scene_data);
 		private:
 			Scene(const Scene&) = delete;
 			Scene(Scene&&) = delete;
@@ -45,12 +48,13 @@ namespace planeta_engine{
 			Scene& operator=(Scene&&) = delete;
 
 			IGameAccessor& game_;
-			std::unique_ptr<game::GameProcessManager> game_process_manager_;
-			std::unique_ptr<game::GameObjectManager> game_object_manager_;
-			std::unique_ptr<game::UIManager> ui_manager_;
+			/*シーンモジュール*/
+			std::unique_ptr<game::GameProcessManager> game_process_manager_; //ゲームプロセスマネージャ
+			std::unique_ptr<game::GameObjectManager> game_object_manager_; //ゲームオブジェクトマネージャ
+			std::unique_ptr<game::UIManager> ui_manager_; //GUIマネージャ
+			bool ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc); //シーンモジュールに操作を適用する
 
-			std::shared_ptr<Screen> screen_; //描画用スクリーン
-			std::unique_ptr<Camera> camera_; //カメラ
+			std::unique_ptr<SceneData> scene_data_; //シーンデータ
 		};
 	}
 }

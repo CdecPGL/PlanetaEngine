@@ -3,27 +3,32 @@
 #include <map>
 #include <unordered_map>
 #include <memory>
-#include "Object.h"
+#include "SceneModule.h"
 #include "WeakPointer.h"
 #include "UIManagerPublicInterface.h"
 
 namespace planeta_engine{
 	namespace core {
 		class ScenePublicInterface;
+		struct SceneData;
 		class SceneAccessorForUI;
 	}
 	namespace game {
 		class UIObject;
 		class IGameProcessManagerAccessor;
-		class UIManager final: public core::Object,public UIManagerPublicInterface {
+		class UIManager final: public core::SceneModule
+			,public UIManagerPublicInterface {
 		public:
 			UIManager();
-			/*シーンをセット*/
-			void SetScene(core::ScenePublicInterface& spi);
 			/*初期化処理*/
-			bool Initialize();
+			bool Initialize()override;
 			/*終了処理*/
-			bool Finalize() { return true; }
+			void Finalize()override { return; }
+			/*シーンインターフェイスをセット*/
+			void SetSceneInterface(core::ScenePublicInterface& spi)override;
+			/*シーンデータをセット*/
+			void SetSceneData(const core::SceneData& scene_data)override;
+
 			/*更新*/
 			void Update();
 			/*描画*/

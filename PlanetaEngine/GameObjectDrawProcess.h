@@ -17,7 +17,7 @@ namespace planeta_engine {
 			using GameProcess::GameProcess;
 			~GameObjectDrawProcess();
 			/*•`‰æƒRƒ“ƒ|[ƒlƒ“ƒg“o˜^*/
-			void Resist(const std::shared_ptr<components::DrawComponent>& draw_component, int priority) {
+			void Register(const std::shared_ptr<components::DrawComponent>& draw_component, int priority) {
 				_draw_component_update_list[priority].push_back(draw_component);
 				_draw_component_map.emplace(draw_component.get(), std::make_pair(priority, --_draw_component_update_list[priority].end()));
 			}
@@ -26,7 +26,7 @@ namespace planeta_engine {
 			/*•`‰æ—Dæ“x•ÏX*/
 			bool ChangePriority(const std::shared_ptr<components::DrawComponent>& draw_component, int priority) {
 				if (!Remove(draw_component)) { return false; }
-				Resist(draw_component, priority);
+				Register(draw_component, priority);
 				return true;
 			}
 		private:

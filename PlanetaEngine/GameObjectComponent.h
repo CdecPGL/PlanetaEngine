@@ -1,7 +1,9 @@
 #pragma once
 #include <memory>
 #include <functional>
+
 #include"Object.h"
+#include "NonCopyable.h"
 #include "BadNewDeleteOperation.h"
 #include "SharedPointerInstance.h"
 #include "WeakPointer.h"
@@ -12,15 +14,15 @@ namespace planeta_engine {
 		class GameObject;
 	}
 	namespace core{
-		struct GameObjectComponentSpecialSetUpData;
+		struct SceneDataForGameObject;
 		struct GameObjectComponentRegistrationData;
 		class SceneAccessorForGameObject;
 	}
-	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent> {
+	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
 	public:
 		GameObjectComponent() :id_(-1) {};
 		virtual ~GameObjectComponent() = default;
-		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const core::GameObjectComponentSpecialSetUpData& special_setup_data);
+		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const core::SceneDataForGameObject& special_setup_data);
 
 		bool is_valied()const { return is_valied_; }
 		bool is_active()const { return is_active_; }
@@ -38,11 +40,6 @@ namespace planeta_engine {
 		using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
 		core::SceneAccessorForGameObject& scene() { return *scene_accessor_; }
 	private:
-		GameObjectComponent(const GameObjectComponent&) = delete;
-		GameObjectComponent(GameObjectComponent&&) = delete;
-		GameObjectComponent& operator=(const GameObjectComponent&) = delete;
-		GameObjectComponent& operator=(GameObjectComponent&&) = delete;
-
 		//			static void* operator new(size_t s){ throw utility::BadNewDeleteOperation("Component::operator new is called."); return nullptr; }
 		//			static void operator delete(void* p){ throw utility::BadNewDeleteOperation("Component::operator delete is called."); return; }
 		//			static void* operator new[](size_t s){throw utility::BadNewDeleteOperation("Component::operator new[] is called."); return nullptr; }
@@ -56,7 +53,7 @@ namespace planeta_engine {
 		utility::WeakPointer<core::SceneAccessorForGameObject> scene_accessor_;
 
 		/*特別設定関数*/
-		virtual bool SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data) = 0;
+		virtual bool SpecialSetUp(const core::SceneDataForGameObject& setup_data) = 0;
 
 		/*イベント関数*/
 		virtual bool OnInitialized() { return true; }; //所属するゲームオブジェクトが生成されたときに呼び出される(システム関数)

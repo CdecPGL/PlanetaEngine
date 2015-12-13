@@ -11,6 +11,7 @@
 
 namespace planeta_engine {
 	namespace core {
+		class Screen;
 		class Game: public Object
 		,public core::IGameAccessor,public core::IGameSetUp{
 		public:
@@ -30,6 +31,8 @@ namespace planeta_engine {
 			std::unique_ptr<SceneManager> _scene_manager;
 			std::unique_ptr<KeyInputManager> _key_input_manager;
 			std::shared_ptr<core::CollisionGroupMatrix> collision_group_matrix_; //衝突マトリックス
+			std::shared_ptr<Screen> screen_; //描画対象スクリーン
+			Screen& screen()override { return *screen_; }
 			/*システムの初期化と終了処理*/
 			bool InitializeSystem();
 			void FinalizeSystem();

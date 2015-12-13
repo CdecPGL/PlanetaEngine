@@ -157,7 +157,7 @@ namespace planeta_engine{
 			registration_data.holder_game_object = me();
 			registration_data.scene_accessor = scene_accessor_;
 			registration_data.id = component_id_counter_++;
-			bool ret = com.SystemSetUp(registration_data,);
+			bool ret = com.SystemSetUp(registration_data, resister_connection_->RefSceneData());
 			assert(ret == true);
 		}
 

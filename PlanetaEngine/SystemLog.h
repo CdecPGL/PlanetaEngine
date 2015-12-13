@@ -18,13 +18,13 @@ namespace planeta_engine {
 			enum class LogLevel { Message, Warning, Error };
 			/*レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/
 			template<typename... Details>
-			void Log(LogLevel level, const std::string& place, const Details&... details) {
-				_Log(level, utility::ConvertAndConnectToString(details...), place);
+			void Log(LogLevel level, const std::string& place, Details&&... details) {
+				_Log(level, utility::ConvertAndConnectToString(std::forward<Details>(details)...), place);
 			}
 			/*シンプルなログを出力*/
 			template<typename... Details>
-			void SimpleLog(const Details&... details) {
-				_OutPutToOutStream(utility::ConvertAndConnectToString(details...));
+			void SimpleLog(Details&&... details) {
+				_OutPutToOutStream(utility::ConvertAndConnectToString(std::forward<Details>(details)...));
 			}
 			/*メッセージ(詳細、発生個所)*/
 			void LogMessage(const std::string& detail, const std::string& place) { _Log(LogLevel::Message, detail, place); }

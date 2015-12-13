@@ -2,22 +2,25 @@
 
 #include <unordered_map>
 #include <memory>
-#include "Object.h"
+#include "SceneModule.h"
 #include "GameObjectManagerPublicInterface.h"
 #include "WeakPointer.h"
 
 namespace planeta_engine{
 	namespace core {
 		class ScenePublicInterface;
+		struct SceneData;
 		class SceneAccessorForGameObject;
+		struct SceneDataForGameObject;
 	}
 	namespace game{
 		class GameObject;
 		class GameObjectSetUpper;
-		class GameObjectManager final: public core::Object,public GameObjectManagerPublicInterface{
+		class GameObjectManager final: public core::SceneModule
+			,public GameObjectManagerPublicInterface{
 		public:
 			GameObjectManager();
-			~GameObjectManager()=default;
+			~GameObjectManager();
 			//ユーザアクセス可能関数
 			utility::WeakPointer<IGameObjectAccessor> CreateGameObject(GameObjectSetUpper& game_object_setupper)override;
 			utility::WeakPointer<IGameObjectAccessor> CreateGameObject(GameObjectSetUpper& game_object_setupper,const std::string& name)override;
@@ -25,12 +28,15 @@ namespace planeta_engine{
 			utility::WeakPointer<IGameObjectAccessor> CreateAndActivateGameObject(GameObjectSetUpper& game_object_setupper, const std::string& name)override;
 
 			//システム関数
-			/*シーンセット*/
-			void SetScene(core::ScenePublicInterface& spi);
 			/*初期化*/
-			bool Initialize();
+			bool Initialize()override;
 			/*終了処理*/
-			bool Finalize();
+			void Finalize()override;
+			/*シーンインターフェイスセット*/
+			void SetSceneInterface(core::ScenePublicInterface& spi)override;
+			/*シーンデータセット*/
+			void SetSceneData(const core::SceneData& scene_data)override;
+
 			/*管理処理*/
 			bool Process();
 			/*更新*/
@@ -48,6 +54,8 @@ namespace planeta_engine{
 			/*すべてのゲームオブジェクトを破棄*/
 			void RemoveAllGameObjects();
 
+			/*シーンデータ参照*/
+			core::SceneDataForGameObject& RefSceneData() { return *scene_data_; }
 		private:
 			GameObjectManager(const GameObjectManager&) = delete;
 			GameObjectManager(GameObjectManager&&) = delete;
@@ -61,6 +69,7 @@ namespace planeta_engine{
 			void RemoveProc_();
 			int _id_counter;
 			std::shared_ptr<core::SceneAccessorForGameObject> scene_accessor_;
+			std::unique_ptr<core::SceneDataForGameObject> scene_data_;
 		};
 	}
 }

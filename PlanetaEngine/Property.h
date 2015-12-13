@@ -112,26 +112,26 @@ namespace planeta_engine {
 				WritePropertyType::operator =(v);
 				return *this;
 			}
-			//前置インクリメント(加算で再現)
+			//前置インクリメント
 			MyType& operator++() {
 				PropertyType buf = get();
 				set(++buf);
 				return *this;
 			}
-			//後置インクリメント(加算で再現)
+			//後置インクリメント
 			PropertyType operator++(int) {
 				PropertyType buf = get();
 				PropertyType ret = buf++;
 				set(buf);
 				return ret;
 			}
-			//前置デクリメント(減算で再現)
+			//前置デクリメント
 			MyType& operator--() {
 				PropertyType buf = get();
 				set(--buf);
 				return *this;
 			}
-			//後置デクリメント(減算で再現)
+			//後置デクリメント
 			PropertyType operator--(int) {
 				PropertyType buf = get();
 				PropertyType ret = buf--;

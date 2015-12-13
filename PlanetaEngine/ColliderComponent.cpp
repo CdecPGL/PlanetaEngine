@@ -5,7 +5,7 @@
 #include "SceneAccessorForGameObject.h"
 #include "TransformComponent.h"
 #include "Matrix.h"
-#include "GameObjectComponentSpecialSetUpData.h"
+#include "SceneDataForGameObject.h"
 
 namespace planeta_engine {
 	namespace components {
@@ -90,7 +90,7 @@ namespace planeta_engine {
 			}
 		}
 
-		bool ColliderComponent::SpecialSetUp(const core::GameObjectComponentSpecialSetUpData& setup_data) {
+		bool ColliderComponent::SpecialSetUp(const core::SceneDataForGameObject& setup_data) {
 			collision_detect_process_ = setup_data.collision_detect_process;
 			return true;
 		}
