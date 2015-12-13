@@ -201,7 +201,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameDataFunctionsForBoostSerialize.h" />
     <ClInclude Include="GameDataSerializeUtility.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectRegistrationConnection.h" />
+    <ClInclude Include="GameObjectManagerConnection.h" />
     <ClInclude Include="GameProcessManagerAccessorForGameProcess.h" />
     <ClInclude Include="GameObjectManagerAccessorForGameObject.h" />
     <ClInclude Include="GameObjectAllocator.h" />
@@ -211,7 +211,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectManagerAccessorForSetUp.h" />
     <ClInclude Include="GameObjectManagerPublicInterface.h" />
     <ClInclude Include="GameObjectSetUpper.h" />
-    <ClInclude Include="GameObjectSetUpProxy.h" />
+    <ClInclude Include="GameObjectAccessorForSetUp.h" />
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="GameProcessManager.h" />
     <ClInclude Include="GameProcessManagerAccessorForGameObject.h" />
@@ -359,7 +359,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataElementType.cpp" />
     <ClCompile Include="GameDataManager.cpp" />
     <ClCompile Include="GameDataSerializeUtility.cpp" />
-    <ClCompile Include="GameObjectRegistrationConnection.cpp" />
+    <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphDrawData.cpp" />
     <ClCompile Include="GraphPanel.cpp" />

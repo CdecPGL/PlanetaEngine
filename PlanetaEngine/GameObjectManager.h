@@ -5,6 +5,7 @@
 #include "SceneModule.h"
 #include "GameObjectManagerPublicInterface.h"
 #include "WeakPointer.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine{
 	namespace core {
@@ -17,7 +18,7 @@ namespace planeta_engine{
 		class GameObject;
 		class GameObjectSetUpper;
 		class GameObjectManager final: public core::SceneModule
-			,public GameObjectManagerPublicInterface{
+			,public GameObjectManagerPublicInterface,private utility::NonCopyable<GameObjectManager>{
 		public:
 			GameObjectManager();
 			~GameObjectManager();
@@ -42,8 +43,8 @@ namespace planeta_engine{
 			/*更新*/
 			void Update();
 			/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
-			int Resist(const std::shared_ptr<GameObject>& go);
-			int Resist(const std::shared_ptr<GameObject>& go,const std::string& name);
+			int Register(const std::shared_ptr<GameObject>& go);
+			int Register(const std::shared_ptr<GameObject>& go,const std::string& name);
 			/*ゲームオブジェクト登録解除(終了処理を行う)*/
 			bool Remove(int id);
 			/*有効化*/
@@ -57,11 +58,6 @@ namespace planeta_engine{
 			/*シーンデータ参照*/
 			core::SceneDataForGameObject& RefSceneData() { return *scene_data_; }
 		private:
-			GameObjectManager(const GameObjectManager&) = delete;
-			GameObjectManager(GameObjectManager&&) = delete;
-			GameObjectManager& operator=(const GameObjectManager&) = delete;
-			GameObjectManager& operator=(GameObjectManager&&) = delete;
-
 			std::unordered_map<int, std::shared_ptr<GameObject>> active_game_objects_;
 			std::unordered_map<int, std::shared_ptr<GameObject>> inactive_game_objects_;
 			std::unordered_map<std::string, int> name_id_map_;

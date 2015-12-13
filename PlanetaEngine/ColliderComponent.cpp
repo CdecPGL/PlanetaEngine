@@ -67,7 +67,8 @@ namespace planeta_engine {
 		}
 
 		void ColliderComponent::collision_group(const std::string& cg) {
-			if (collision_detect_process_) { //衝突判定プロセスが取得されていたら衝突グループIDを変更する
+			if (is_active()) { //アクティブだったら衝突判定プロセスに変更での変更を行う。
+				assert(collision_detect_process_ != nullptr);
 				if (collision_detect_process_->ChangeCollisionGroup(this, cg)) {
 					collision_group_name_ = cg;
 				} else {
@@ -79,7 +80,8 @@ namespace planeta_engine {
 		}
 
 		void ColliderComponent::collide_with_ground_flag(bool flag) {
-			if (collision_detect_process_) { //衝突判定プロセスが取得されていたらフラグを変更する
+			if (is_active()) { //アクティブだったら衝突判定プロセスでの変更を行う。
+				assert(collision_detect_process_ != nullptr);
 				if (collision_detect_process_->ChangeCollisionWithGroundFlag(this,flag)) {
 					collide_with_ground_flag_ = flag;
 				} else {

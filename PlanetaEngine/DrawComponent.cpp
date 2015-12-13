@@ -20,9 +20,7 @@ namespace planeta_engine {
 		{
 			draw_priority_ = priority;
 			//ゲームオブジェクトがアクティブなら優先度更新
-			if (game_object().is_active()) {
-				UpdatePriority_();
-			}
+			UpdatePriority_();
 		}
 
 		Vector2D<double> DrawComponent::GetDrawCenterPosition() const
@@ -66,7 +64,7 @@ namespace planeta_engine {
 
 		void DrawComponent::UpdatePriority_()
 		{
-			if (draw_component_registrator_) {
+			if (is_active()) {
 				draw_component_registrator_->ChangePriority(std::static_pointer_cast<DrawComponent>(this_shared()), draw_priority_);
 			}
 		}

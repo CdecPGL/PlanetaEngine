@@ -5,6 +5,7 @@
 #include "SystemLog.h"
 #include "SceneDataForGameObject.h"
 #include "SceneData.h"
+#include "GameObjectSetUpper.h"
 
 namespace planeta_engine{
 	namespace game{
@@ -16,21 +17,18 @@ namespace planeta_engine{
 			return true;
 		}
 
-		int GameObjectManager::Resist(const std::shared_ptr<GameObject>& go)
+		int GameObjectManager::Register(const std::shared_ptr<GameObject>& go)
 		{
 			go->SetSceneAccessor(scene_accessor_);
 			int id = _id_counter++;
-			if (go->Initialize_(std::make_unique<GameObjectRegistrationConnection>(*this, id)) == false) {
-				debug::SystemLog::instance().LogError("GameObjectの初期化に失敗しました。", "GameObjectManager::Resist");
-				return -1;
-			}
+			go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
 			inactive_game_objects_.insert(std::make_pair(id, go));
 			return id;
 		}
 
-		int GameObjectManager::Resist(const std::shared_ptr<GameObject>& go, const std::string& name)
+		int GameObjectManager::Register(const std::shared_ptr<GameObject>& go, const std::string& name)
 		{
-			int id = Resist(go);
+			int id = Register(go);
 			if (id < -1) { return -1; }
 			name_id_map_.emplace(name, id);
 			return id;
@@ -45,26 +43,36 @@ namespace planeta_engine{
 
 		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(GameObjectSetUpper& game_object_setupper)
 		{
-			auto go = GameObject::Create(game_object_setupper);
+			auto go = GameObject::Create();
 			if (go == nullptr) {
-				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", "GameObjectManager::CreateGameObject");
+				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", __FUNCTION__);
 				return nullptr;
 			}
-			if (Resist(go) >= 0) {
-				return go;
+			if (Register(go) >= 0) {
+				if (game_object_setupper(*go)) {
+					return go;
+				} else {
+					debug::SystemLog::instance().LogError("ゲームオブジェクトの初期化に失敗しました。", __FUNCTION__);
+					return nullptr;
+				}
 			}
 			else { return nullptr; }
 			
 		}
 		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(GameObjectSetUpper& game_object_setupper,const std::string& name)
 		{
-			auto go = GameObject::Create(game_object_setupper);
+			auto go = GameObject::Create();
 			if (go == nullptr) {
-				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", "GameObjectManager::CreateGameObject");
+				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", __FUNCTION__);
 				return nullptr;
 			}
-			if (Resist(go, name) >= 0) {
-				return go;
+			if (Register(go, name) >= 0) {
+				if (game_object_setupper(*go)) {
+					return go;
+				} else {
+					debug::SystemLog::instance().LogError("ゲームオブジェクトの初期化に失敗しました。", __FUNCTION__);
+					return nullptr;
+				}
 			}
 			else { return nullptr; }
 			
@@ -180,6 +188,5 @@ namespace planeta_engine{
 			scene_data_->draw_component_process_registrator = scene_data.draw_component_process_registrator;
 			scene_data_->screen_drawer_2d = scene_data.screen_drawer_2d;
 		}
-
 	}
 }

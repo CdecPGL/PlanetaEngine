@@ -5,10 +5,10 @@
 namespace planeta_engine{
 	namespace game{
 		class GameObject;
-		class GameObjectSetUpProxy{
+		class GameObjectAccessorForSetUp{
 		public:
-			GameObjectSetUpProxy(GameObject& go) :_game_object(go){};
-			~GameObjectSetUpProxy(){};
+			GameObjectAccessorForSetUp(GameObject& go) :_game_object(go){};
+			~GameObjectAccessorForSetUp(){};
 			template<class C>
 			utility::WeakPointer<C> AddComponent(){return  _game_object.add_component_<C>(); }
 		private:

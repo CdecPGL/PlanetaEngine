@@ -357,9 +357,6 @@
     <ClInclude Include="GameObjectSetUpper.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectSetUpProxy.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
@@ -708,9 +705,6 @@
     <ClInclude Include="GameObjectComponentRigistrationData.h">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectRegistrationConnection.h">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -724,6 +718,12 @@
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneDataForGameObject.h">
+      <Filter>PlanetaEngine\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManagerConnection.h">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectAccessorForSetUp.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1034,11 +1034,11 @@
     <ClCompile Include="GameObjectComponent.cpp">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectRegistrationConnection.cpp">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="SceneSetUpper.cpp">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManagerConnection.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

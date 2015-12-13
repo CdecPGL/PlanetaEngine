@@ -1,11 +1,12 @@
 #pragma once
 
+#include <vector>
+#include <unordered_map>
 #include"Object.h"
 #include "MakeSharedGameObject.h"
 #include "IGameObjectAccessor.h"
-#include "GameObjectRegistrationConnection.h"
-#include <vector>
-#include <unordered_map>
+#include "GameObjectManagerConnection.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine {
 	class GameObjectComponent;
@@ -17,11 +18,11 @@ namespace planeta_engine {
 		class SceneAccessorForGameObject;
 	}
 	namespace game {
-		class GameObjectSetUpper; //初期化クラス
-		class GameObjectSetUpProxy; //初期化用関数使用仲介クラス
+		class GameObjectAccessorForSetUp; //初期化用関数使用仲介クラス
 		//GameObjectクラス(継承禁止ぃ)
-		class GameObject final : public core::Object, public IGameObjectAccessor{
-			friend GameObjectSetUpProxy;
+		class GameObject final : public core::Object, public IGameObjectAccessor
+		,private utility::NonCopyable<GameObject>{
+			friend GameObjectAccessorForSetUp;
 		public:
 			//////////ユーザアクセス可能関数//////////
 			//有効化(ゲームシーンに登録する)
@@ -50,7 +51,7 @@ namespace planeta_engine {
 
 			////////////システム関数//////////
 			//作成
-			static std::shared_ptr<GameObject> Create(GameObjectSetUpper& gosu);
+			static std::shared_ptr<GameObject> Create();
 
 			/*シーンのポインタをセット*/
 			void SetSceneAccessor(const utility::WeakPointer<core::SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
@@ -62,9 +63,11 @@ namespace planeta_engine {
 				UpdateComponent_();
 			};
 			class GameObjectManagementProxy; //管理用関数使用仲介クラス
+			void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mc) { manager_connection_ = std::move(mc); }
+			//初期化関連関数[呼び出し元:GameObjectSetUpper]
+			bool SetUpSystemComponent();
+			bool Initialize_() { return  InitializeComponent_(); };
 			//システムに呼ばれる関数群
-			//初期化(作成時に呼ばれる)[呼び出し元:GameObjectManager::Resist]
-			bool Initialize_(std::unique_ptr<GameObjectRegistrationConnection>&& rc) { resister_connection_ = std::move(rc); return  InitializeComponent_(); };
 			//シーン登録時に呼ばれる[呼び出し元:GameObjectManager::Activate]
 			bool Activated_() { return ActivateComponent_(); }
 			//シーン登録解除時に呼ばれる[呼び出し元:GameObjectManager::InActivate]
@@ -84,18 +87,13 @@ namespace planeta_engine {
 			GameObject();
 			~GameObject();
 
-			GameObject(const GameObject&) = delete;
-			GameObject(GameObject&&) = delete;
-			const GameObject& operator=(const GameObject&) = delete;
-			const GameObject& operator=(GameObject&&) = delete;
-
 			//			static void* operator new(size_t s){ return Object::operator new(s); }
 			//			static void operator delete(void* p){ return Object::operator delete(p); }
 			//			static void* operator new[](size_t s){ return Object::operator new[](s); }
 			//			static void operator delete[](void* p){ return Object::operator delete[](p); }
 
 			utility::WeakPointer<core::SceneAccessorForGameObject> scene_accessor_;
-			std::unique_ptr<GameObjectRegistrationConnection> resister_connection_;
+			std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 
 			std::weak_ptr<GameObject> me_; //自分のスマートポインタ
 			std::unordered_map<int, std::shared_ptr<GameObjectComponent>> component_list_; //コンポーネントリスト
@@ -128,10 +126,7 @@ namespace planeta_engine {
 			/*コンポーネントのシステム設定を行う*/
 			void SystemSetUpComponent_(GameObjectComponent& com);
 			int component_id_counter_;
-			std::unique_ptr<GameObjectSetUpProxy> game_object_set_up_proxy_;
 			struct create_helper;
-			//セットアップ(Initializeまえによばれる)[呼び出し元:GameObject::Create]
-			bool SetUp_(GameObjectSetUpper& gosu);
 
 			/*ダミーの地形コンポーネントを取得*/
 			static std::shared_ptr<components::GroundComponent> GetDumyGroundComponent_();

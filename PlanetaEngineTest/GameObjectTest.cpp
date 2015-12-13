@@ -2,7 +2,7 @@
 #include "CppUnitTest.h"
 #include "GameObject.h"
 #include "GameObjectSetUpper.h"
-#include "GameObjectSetUpProxy.h"
+#include "GameObjectAccessorForSetUp.h"
 #include "PlanetComponent.h"
 #include "GameObjectManager.h"
 
@@ -14,7 +14,7 @@ namespace PlanetaEngineTest
 	using namespace planeta_engine::game;
 	class TestGOSetter : public GameObjectSetUpper{
 	private:
-		virtual bool _SetUpGameObject(GameObjectSetUpProxy& gosup) override
+		virtual bool _SetUpGameObject(GameObjectAccessorForSetUp& gosup) override
 		{
 			gosup.AddComponent<components::PlanetComponent>();
 			return true;

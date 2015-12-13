@@ -1,27 +1,27 @@
-#include "GameObjectRegistrationConnection.h"
+#include "GameObjectManagerConnection.h"
 
 #include "GameObjectManager.h"
 
 namespace planeta_engine {
 	namespace game {
 
-		bool GameObjectRegistrationConnection::Activate()
+		bool GameObjectManagerConnection::Activate()
 		{
 			return game_object_manager_.Activate(id_);
 		}
 
-		bool GameObjectRegistrationConnection::InActivate()
+		bool GameObjectManagerConnection::InActivate()
 		{
 			return game_object_manager_.InActivate(id_);
 		}
 
-		void GameObjectRegistrationConnection::Dispose()
+		void GameObjectManagerConnection::Dispose()
 		{
 			auto ret = game_object_manager_.Remove(id_);
 			assert(ret == true);
 		}
 
-		core::SceneDataForGameObject& GameObjectRegistrationConnection::RefSceneData() {
+		core::SceneDataForGameObject& GameObjectManagerConnection::RefSceneData() {
 			return game_object_manager_.RefSceneData();
 		}
 

@@ -1,8 +1,7 @@
 #include "GameObject.h"
 
 #include "GameObjectComponent.h"
-#include "GameObjectSetUpProxy.h"
-#include "GameObjectSetUpper.h"
+#include "GameObjectAccessorForSetUp.h"
 #include "PlanetComponent.h"
 #include "TransformComponent.h"
 #include "SystemLog.h"
@@ -15,29 +14,24 @@ using namespace std;
 namespace planeta_engine{
 	namespace game{
 
-		GameObject::GameObject() :is_active_(false), game_object_set_up_proxy_(std::make_unique<GameObjectSetUpProxy>(*this)),component_id_counter_(0)
+		GameObject::GameObject() :is_active_(false),component_id_counter_(0)
 			,transform_(components::TransformComponent::MakeShared<components::TransformComponent>()){
 			transform_->parent(GetRootTransformComponent()); //トランスフォームコンポーネントの親にRootを設定
 		};
 
 		GameObject::~GameObject() = default;
 
-		std::shared_ptr<GameObject> GameObject::Create(GameObjectSetUpper& gosu){
+		std::shared_ptr<GameObject> GameObject::Create(){
 			auto h_ptr = MakeShared<create_helper>();
 			auto ptr = std::shared_ptr<GameObject>(std::move(h_ptr), &h_ptr->x);
 			ptr->me_ = ptr;
-			ptr->SystemSetUpComponent_(*ptr->transform_);
-			if (ptr->SetUp_(gosu) == false){  //設定
-				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。セットアップに失敗しました。",__FUNCTION__);
-				return nullptr;
-			}
 			return ptr;
 		}
 
 		bool GameObject::Activate()
 		{
 			if (scene_accessor_) {
-				if (!resister_connection_->Activate()) { return false; }
+				if (!manager_connection_->Activate()) { return false; }
 				is_active_ = true;
 				return true;
 			}
@@ -51,7 +45,7 @@ namespace planeta_engine{
 		bool GameObject::InActivate()
 		{
 			if (scene_accessor_) {
-				if (!resister_connection_->InActivate()) { return false; }
+				if (!manager_connection_->InActivate()) { return false; }
 				is_active_ = false;
 				return true;
 			}
@@ -111,25 +105,10 @@ namespace planeta_engine{
 			return true;
 		}
 
-//		std::shared_ptr<GameObject> GameObject::Clone() const
-//		{
-//			std::shared_ptr<GameObject> clone = Create();
-//			for (const auto& c : _components){
-////				
-//			}
-//			if (clone->_Initialize() == false){ return nullptr; }
-//			else{ return clone; }
-//		}
-
-		bool GameObject::SetUp_(GameObjectSetUpper& gosu)
-		{
-			return gosu(*game_object_set_up_proxy_);
-		}
-
 		void GameObject::Dispose()
 		{
 			if (scene_accessor_) {
-				resister_connection_->Dispose();
+				manager_connection_->Dispose();
 			}
 			else {
 				//ゲームオブジェクトマネージャがセットされていない
@@ -157,8 +136,13 @@ namespace planeta_engine{
 			registration_data.holder_game_object = me();
 			registration_data.scene_accessor = scene_accessor_;
 			registration_data.id = component_id_counter_++;
-			bool ret = com.SystemSetUp(registration_data, resister_connection_->RefSceneData());
+			bool ret = com.SystemSetUp(registration_data, manager_connection_->RefSceneData());
 			assert(ret == true);
+		}
+
+		bool GameObject::SetUpSystemComponent() {
+			SystemSetUpComponent_(*transform_);
+			return true;
 		}
 
 	}

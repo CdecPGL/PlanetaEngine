@@ -6,9 +6,9 @@ namespace planeta_engine {
 	}
 	namespace game {
 		class GameObjectManager;
-		class GameObjectRegistrationConnection final{
+		class GameObjectManagerConnection final{
 		public:
-			GameObjectRegistrationConnection(GameObjectManager& gom,int id) :game_object_manager_(gom),id_(id) {}
+			GameObjectManagerConnection(GameObjectManager& gom,int id) :game_object_manager_(gom),id_(id) {}
 			bool Activate();
 			bool InActivate();
 			void Dispose();

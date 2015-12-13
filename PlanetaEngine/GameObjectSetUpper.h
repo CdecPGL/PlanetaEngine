@@ -2,15 +2,15 @@
 
 namespace planeta_engine{
 	namespace game{
-		class GameObjectSetUpProxy;
+		class GameObjectAccessorForSetUp;
+		class GameObject;
 		class GameObjectSetUpper{
 		public:
 			GameObjectSetUpper() = default;
 			virtual ~GameObjectSetUpper() = default;
-			bool operator()(GameObjectSetUpProxy& gosup) { return _SetUpDefaultComponent() && _SetUpGameObject(gosup); }
+			bool operator()(GameObject& game_object);
 		private:
-			bool _SetUpDefaultComponent();
-			virtual bool _SetUpGameObject(GameObjectSetUpProxy& gosup) = 0;
+			virtual bool _SetUpGameObject(GameObjectAccessorForSetUp& gosup) = 0;
 		};
 	}
 }
