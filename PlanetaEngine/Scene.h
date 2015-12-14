@@ -35,7 +35,7 @@ namespace planeta_engine{
 			/*ゲームオブジェクトマネージャのインスタンスを取得*/
 			game::GameObjectManager& game_object_manager()override { assert(game_object_manager_ != nullptr); return *game_object_manager_; }
 			/*UIマネージャのインスタンスを取得*/
-			game::GUIManager& ui_manager()override { assert(ui_manager_ != nullptr); return *ui_manager_; }
+			game::GUIManager& gui_manager()override { assert(ui_manager_ != nullptr); return *ui_manager_; }
 			/*ゲームクラスへのアクセス*/
 			IGameAccessor& game_accessor() { return game_; }
 

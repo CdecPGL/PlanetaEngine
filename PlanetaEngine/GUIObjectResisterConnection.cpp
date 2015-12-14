@@ -7,17 +7,17 @@ namespace planeta_engine {
 
 		bool GUIObjectResisterConnection::Show()
 		{
-			return ui_manager_.ShowUIObject(layer_, pointer_);
+			return ui_manager_.ShowGUIObject(layer_, pointer_);
 		}
 
 		bool GUIObjectResisterConnection::Close()
 		{
-			return ui_manager_.CloseUIObject(layer_, pointer_);
+			return ui_manager_.CloseGUIObject(layer_, pointer_);
 		}
 
 		void GUIObjectResisterConnection::Dispose()
 		{
-			ui_manager_.CloseUIObject(layer_, pointer_);
+			ui_manager_.CloseGUIObject(layer_, pointer_);
 		}
 
 	}

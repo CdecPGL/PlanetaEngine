@@ -60,7 +60,7 @@ namespace planeta_engine {
 			scene_accessor_ = std::make_shared<core::SceneAccessorForGUI>(spi);
 		}
 
-		std::shared_ptr<GUIObject> GUIManager::CreateUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator, int layer)
+		std::shared_ptr<GUIObject> GUIManager::CreateGUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator, int layer)
 		{
 			auto nuo = creator();
 			if (nuo == nullptr) {
@@ -68,7 +68,7 @@ namespace planeta_engine {
 				return nullptr;
 			}
 			if (nuo->Initialize(std::make_unique<GUIObjectResisterConnection>(*this, layer, nuo.get()))) {
-				layers_[layer].AddUIObject(nuo);
+				layers_[layer].AddGUIObject(nuo);
 				return nuo;
 			}
 			else {
@@ -77,27 +77,27 @@ namespace planeta_engine {
 			}
 		}
 
-		bool GUIManager::RemoveUIObject(int layer, GUIObject* uo)
+		bool GUIManager::RemoveGUIObject(int layer, GUIObject* uo)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) { 
 				debug::SystemLog::instance().LogWarning(std::string("指定されたレイヤーは存在しません。(Layer ") + boost::lexical_cast<std::string>(layer) + ")", __FUNCTION__);
 				return false;
 			}
-			return it->second.RemoveUIObject(uo);
+			return it->second.RemoveGUIObject(uo);
 		}
 
-		bool GUIManager::ShowUIObject(int layer, GUIObject* uo)
+		bool GUIManager::ShowGUIObject(int layer, GUIObject* uo)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) {
 				debug::SystemLog::instance().LogWarning(std::string("指定されたレイヤーは存在しません。(Layer ") + boost::lexical_cast<std::string>(layer) + ")", __FUNCTION__);
 				return false;
 			}
-			return it->second.ShowUIObject(uo);
+			return it->second.ShowGUIObject(uo);
 		}
 
-		bool GUIManager::CloseUIObject(int layer, GUIObject* uo)
+		bool GUIManager::CloseGUIObject(int layer, GUIObject* uo)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) {
@@ -111,69 +111,69 @@ namespace planeta_engine {
 
 		}
 
-		void GUIManager::Layer_::AddUIObject(const std::shared_ptr<GUIObject>& o)
+		void GUIManager::Layer_::AddGUIObject(const std::shared_ptr<GUIObject>& o)
 		{
-			inactive_ui_objects_.emplace(o.get(), o);
+			inactive_gui_objects_.emplace(o.get(), o);
 		}
 
 		void GUIManager::Layer_::Update()
 		{
-			for (auto& p : active_ui_objects_) {
+			for (auto& p : active_gui_objects_) {
 				p.second->Update();
 			}
 		}
 
 		void GUIManager::Layer_::Draw()
 		{
-			for (auto& p : active_ui_objects_) {
+			for (auto& p : active_gui_objects_) {
 				p.second->Draw();
 			}
 		}
 
 		void GUIManager::Layer_::DebugDraw()
 		{
-			for (auto& p : active_ui_objects_) {
+			for (auto& p : active_gui_objects_) {
 				p.second->DebugDraw();
 			}
 		}
 
-		bool GUIManager::Layer_::RemoveUIObject(GUIObject* uo)
+		bool GUIManager::Layer_::RemoveGUIObject(GUIObject* uo)
 		{
-			auto it = inactive_ui_objects_.find(uo);
-			if (it != inactive_ui_objects_.end()) {
-				inactive_ui_objects_.erase(it);
+			auto it = inactive_gui_objects_.find(uo);
+			if (it != inactive_gui_objects_.end()) {
+				inactive_gui_objects_.erase(it);
 				return true;
 			}
-			it = active_ui_objects_.find(uo);
-			if (it != active_ui_objects_.end()) {
-				active_ui_objects_.erase(it);
+			it = active_gui_objects_.find(uo);
+			if (it != active_gui_objects_.end()) {
+				active_gui_objects_.erase(it);
 				return true;
 			}
 			debug::SystemLog::instance().LogWarning(std::string("指定されたUIObjectは存在しません。(Type ") + uo->GetType().name() + ", Pointer " + boost::lexical_cast<std::string>(uo) + ")", __FUNCTION__);
 			return false;
 		}
 
-		bool GUIManager::Layer_::ShowUIObject(GUIObject* uo)
+		bool GUIManager::Layer_::ShowGUIObject(GUIObject* uo)
 		{
-			auto it = inactive_ui_objects_.find(uo);
-			if (it == inactive_ui_objects_.end()) {
+			auto it = inactive_gui_objects_.find(uo);
+			if (it == inactive_gui_objects_.end()) {
 				debug::SystemLog::instance().LogWarning(std::string("指定されたアクティブでないUIObjectは存在しません。(Type ") + uo->GetType().name() + ", Pointer " + boost::lexical_cast<std::string>(uo) + ")", __FUNCTION__);
 				return false;
 			}
-			active_ui_objects_.emplace(it->first, it->second);
-			inactive_ui_objects_.erase(it);
+			active_gui_objects_.emplace(it->first, it->second);
+			inactive_gui_objects_.erase(it);
 			return true;
 		}
 
 		bool GUIManager::Layer_::CloseUIObject(GUIObject* uo)
 		{
-			auto it = active_ui_objects_.find(uo);
-			if (it == active_ui_objects_.end()) {
+			auto it = active_gui_objects_.find(uo);
+			if (it == active_gui_objects_.end()) {
 				debug::SystemLog::instance().LogWarning(std::string("指定されたアクティブなUIObjectは存在しません。(Type ") + uo->GetType().name() + ", Pointer " + boost::lexical_cast<std::string>(uo) + ")", __FUNCTION__);
 				return false;
 			}
-			inactive_ui_objects_.emplace(it->first, it->second);
-			active_ui_objects_.erase(it);
+			inactive_gui_objects_.emplace(it->first, it->second);
+			active_gui_objects_.erase(it);
 			return true;
 		}
 

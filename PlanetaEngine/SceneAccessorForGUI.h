@@ -2,16 +2,16 @@
 
 #include "ScenePublicInterface.h"
 
-#include "UIManagerAccessorForUI.h"
+#include "GUIManagerAccessorForGUI.h"
 
 namespace planeta_engine {
 	namespace core {
 		class SceneAccessorForGUI final {
 		public:
-			explicit SceneAccessorForGUI(ScenePublicInterface& spi) : ui_manager_accessor_(spi.ui_manager()) {}
-			game::UIManagerAccessorForUI& ui_manager() { return ui_manager_accessor_; }
+			explicit SceneAccessorForGUI(ScenePublicInterface& spi) : gui_manager_accessor_(spi.gui_manager()) {}
+			game::GUIManagerAccessorForGUI& gui_manager() { return gui_manager_accessor_; }
 		private:
-			game::UIManagerAccessorForUI ui_manager_accessor_;
+			game::GUIManagerAccessorForGUI gui_manager_accessor_;
 		};
 	}
 }

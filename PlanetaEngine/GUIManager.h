@@ -40,11 +40,11 @@ namespace planeta_engine{
 			/*レイヤーを削除*/
 			bool RemoveLayer(int layer)override;
 			/*UIObjectを削除*/
-			bool RemoveUIObject(int layer,GUIObject* uo);
+			bool RemoveGUIObject(int layer,GUIObject* uo);
 			/*UIObjectを表示*/
-			bool ShowUIObject(int layer, GUIObject* uo);
+			bool ShowGUIObject(int layer, GUIObject* uo);
 			/*UIオブジェクトを閉じる*/
-			bool CloseUIObject(int layer, GUIObject* uo);
+			bool CloseGUIObject(int layer, GUIObject* uo);
 		private:
 			GUIManager(const GUIManager&) = delete;
 			GUIManager(GUIManager&&) = delete;
@@ -53,20 +53,20 @@ namespace planeta_engine{
 			std::shared_ptr<core::SceneAccessorForGUI> scene_accessor_;
 			class Layer_ {
 			public:
-				void AddUIObject(const std::shared_ptr<GUIObject>& o);
+				void AddGUIObject(const std::shared_ptr<GUIObject>& o);
 				void Update();
 				void Draw();
 				void DebugDraw();
-				bool RemoveUIObject(GUIObject* uo);
-				bool ShowUIObject(GUIObject* uo);
+				bool RemoveGUIObject(GUIObject* uo);
+				bool ShowGUIObject(GUIObject* uo);
 				bool CloseUIObject(GUIObject* uo);
 			private:
-				std::unordered_map<GUIObject*, std::shared_ptr<GUIObject>> active_ui_objects_;
-				std::unordered_map<GUIObject*, std::shared_ptr<GUIObject>> inactive_ui_objects_;
+				std::unordered_map<GUIObject*, std::shared_ptr<GUIObject>> active_gui_objects_;
+				std::unordered_map<GUIObject*, std::shared_ptr<GUIObject>> inactive_gui_objects_;
 			};
 			std::map<int, Layer_> layers_;
 
-			std::shared_ptr<GUIObject> CreateUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator, int layer)override;
+			std::shared_ptr<GUIObject> CreateGUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator, int layer)override;
 		};
 	}
 }

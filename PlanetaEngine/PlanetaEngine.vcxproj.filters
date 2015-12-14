@@ -474,9 +474,6 @@
     <ClInclude Include="EventMonitor.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="UIManagerAccessorForGameProcess.h">
-      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClInclude>
@@ -530,9 +527,6 @@
     </ClInclude>
     <ClInclude Include="SceneAccessorForSetUp.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManagerAccessorForUI.h">
-      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ErrorSceneDefinition.h">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
@@ -737,6 +731,12 @@
     </ClInclude>
     <ClInclude Include="ScreenDrawerGUI.h">
       <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManagerAccessorForGUI.h">
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManagerAccessorForGameProcess.h">
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

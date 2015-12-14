@@ -313,9 +313,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="UIAllocator.h" />
     <ClInclude Include="GUIComponent.h" />
     <ClInclude Include="GUIManager.h" />
-    <ClInclude Include="UIManagerAccessorForGameProcess.h" />
+    <ClInclude Include="GUIManagerAccessorForGameProcess.h" />
     <ClInclude Include="GUIManagerAccessorForSetUp.h" />
-    <ClInclude Include="UIManagerAccessorForUI.h" />
+    <ClInclude Include="GUIManagerAccessorForGUI.h" />
     <ClInclude Include="GUIManagerPublicInterface.h" />
     <ClInclude Include="GUIObject.h" />
     <ClInclude Include="GUIObjectResisterConnection.h" />

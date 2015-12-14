@@ -14,8 +14,8 @@ namespace planeta_engine {
 			virtual game::GameProcessManagerPublicInterface& game_process_manager() = 0;
 			/*ゲームオブジェクトマネージャのインスタンスを取得*/
 			virtual game::GameObjectManagerPublicInterface& game_object_manager() = 0;
-			/*UIマネージャのインスタンスを取得*/
-			virtual game::GUIManagerPublicInterface& ui_manager() = 0;
+			/*GUIマネージャのインスタンスを取得*/
+			virtual game::GUIManagerPublicInterface& gui_manager() = 0;
 		};
 	}
 }
