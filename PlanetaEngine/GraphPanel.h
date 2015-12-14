@@ -1,14 +1,14 @@
 #pragma once
 
 #include <memory>
-#include "UIComponent.h"
+#include "GUIComponent.h"
 
 namespace planeta_engine {
 	namespace resources {
 		class GraphResource;
 	}
 	namespace ui_components {
-		class GraphPanel : public game::UIComponent {
+		class GraphPanel : public game::GUIComponent {
 		public:
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/

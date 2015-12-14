@@ -1,18 +1,18 @@
 #pragma once
 
 #pragma once
-#include "UIManagerPublicInterface.h"
+#include "GUIManagerPublicInterface.h"
 
 namespace planeta_engine {
 	namespace game {
 		class UIManagerAccessorForUI {
 		public:
-			explicit UIManagerAccessorForUI(UIManagerPublicInterface& umpi) :ui_managar_public_interface_(umpi) {}
+			explicit UIManagerAccessorForUI(GUIManagerPublicInterface& umpi) :ui_managar_public_interface_(umpi) {}
 			template<typename UIObjectType>
 			std::shared_ptr<UIObjectType> CreateUIObject(int layer) { return ui_managar_public_interface_.CreateUIObject<UIObjectType>(layer); }
 			bool RemoveLayer(int layer) { ui_managar_public_interface_.RemoveLayer(layer); };
 		private:
-			UIManagerPublicInterface& ui_managar_public_interface_;
+			GUIManagerPublicInterface& ui_managar_public_interface_;
 		};
 	}
 }

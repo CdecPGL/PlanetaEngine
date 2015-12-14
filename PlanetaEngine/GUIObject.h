@@ -6,11 +6,11 @@
 #include "Object.h"
 #include "RectAngle.h"
 #include "ObjectHolderTemplate_WithoutID.h"
-#include "UIObjectResisterConnection.h"
+#include "GUIObjectResisterConnection.h"
 
 namespace planeta_engine {
 	namespace game {
-		class UIComponent;
+		class GUIComponent;
 		namespace ui_object_input_code {
 			using type = uint32_t;
 			constexpr type UP = 1,
@@ -21,12 +21,12 @@ namespace planeta_engine {
 				CANCEL = 32,
 				Error = 1ul << 31;
 		}
-		class UIObject : public core::Object{
+		class GUIObject : public core::Object{
 		public:
-			UIObject();
-			virtual ~UIObject() = default;
+			GUIObject();
+			virtual ~GUIObject() = default;
 			/*システム関数*/
-			bool Initialize(std::unique_ptr<UIObjectResisterConnection>&& rc);
+			bool Initialize(std::unique_ptr<GUIObjectResisterConnection>&& rc);
 			void Update();
 			void Draw();
 			void DebugDraw();
@@ -56,14 +56,14 @@ namespace planeta_engine {
 				component_holder_->resist_object(child);
 				return child;
 			}
-			bool RemoveComponent(const std::shared_ptr<UIComponent>& c) { return component_holder_->unresist_object(c); }
+			bool RemoveComponent(const std::shared_ptr<GUIComponent>& c) { return component_holder_->unresist_object(c); }
 		private:
 			utility::RectAngle<int> rect_angle_;
 			bool is_focused_ = false; //フォーカスされているかフラグ
 			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
-			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> component_holder_;
-			std::unique_ptr<UIObjectResisterConnection> resister_connection_;
+			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<GUIComponent>> component_holder_;
+			std::unique_ptr<GUIObjectResisterConnection> resister_connection_;
 			/*ユーザー定義関数*/
 			virtual bool InitializeProc() { return true; }
 			virtual void FinalizeProc() {};

@@ -14,7 +14,7 @@
 
 #include "Camera.h"
 #include "ScreenDrawer2D.h"
-#include "ScreenDrawerUI.h"
+#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine {
 	namespace core {

@@ -1,5 +1,5 @@
 #pragma once
-#include "UIComponent.h"
+#include "GUIComponent.h"
 #include "Color.h"
 
 namespace planeta_engine {
@@ -8,7 +8,7 @@ namespace planeta_engine {
 	}
 	namespace ui_components {
 		/*単行のテキストパネル*/
-		class StringPanel : public game::UIComponent {
+		class StringPanel : public game::GUIComponent {
 		public:
 			bool SetFontDefinitionResource(const std::string& resource_id);
 			/*アクセサ*/

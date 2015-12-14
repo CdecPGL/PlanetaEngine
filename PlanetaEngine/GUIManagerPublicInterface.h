@@ -5,17 +5,17 @@
 
 namespace planeta_engine {
 	namespace game {
-		class UIObject;
-		class UIManagerPublicInterface {
+		class GUIObject;
+		class GUIManagerPublicInterface {
 		public:
-			virtual ~UIManagerPublicInterface() = default;
+			virtual ~GUIManagerPublicInterface() = default;
 			template<class UIObjectType>
 			std::shared_ptr<UIObjectType> CreateUIObject(int layer) {
 				return std::static_pointer_cast<UIObjectType> (CreateUIObject([] {return std::make_shared<UIObjectType>(); }, layer));
 			}
 			virtual bool RemoveLayer(int layer) = 0;
 		private:
-			virtual std::shared_ptr<UIObject> CreateUIObject(const std::function<std::shared_ptr<UIObject>()>& creator,int layer) = 0;
+			virtual std::shared_ptr<GUIObject> CreateUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator,int layer) = 0;
 		};
 	}
 }

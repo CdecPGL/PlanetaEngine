@@ -6,9 +6,9 @@
 
 namespace planeta_engine {
 	namespace core {
-		class SceneAccessorForUI final {
+		class SceneAccessorForGUI final {
 		public:
-			explicit SceneAccessorForUI(ScenePublicInterface& spi) : ui_manager_accessor_(spi.ui_manager()) {}
+			explicit SceneAccessorForGUI(ScenePublicInterface& spi) : ui_manager_accessor_(spi.ui_manager()) {}
 			game::UIManagerAccessorForUI& ui_manager() { return ui_manager_accessor_; }
 		private:
 			game::UIManagerAccessorForUI ui_manager_accessor_;

@@ -1,4 +1,4 @@
-#include "UIComponent.h"
+#include "GUIComponent.h"
 #include "DrawManager.h"
 #include "SystemLog.h"
 #include <cassert>
@@ -6,19 +6,19 @@
 namespace planeta_engine {
 	namespace game {
 
-		UIComponent::UIComponent() :children_holder_(std::make_unique<utility::ObjectHolderTemplate_WithoutID<UIComponent>>()) {}
+		GUIComponent::GUIComponent() :children_holder_(std::make_unique<utility::ObjectHolderTemplate_WithoutID<GUIComponent>>()) {}
 
-		void UIComponent::UpdateChildren()
+		void GUIComponent::UpdateChildren()
 		{
-			children_holder_->do_all([](UIComponent& com) {com.Update(); });
+			children_holder_->do_all([](GUIComponent& com) {com.Update(); });
 		}
 
-		void UIComponent::DrawChildren(const DrawData& my_draw_data)
+		void GUIComponent::DrawChildren(const DrawData& my_draw_data)
 		{
-			children_holder_->do_all([&my_draw_data](UIComponent& com) {com.Draw(my_draw_data); });
+			children_holder_->do_all([&my_draw_data](GUIComponent& com) {com.Draw(my_draw_data); });
 		}
 
-		void UIComponent::Draw(const DrawData& parent_draw_data)
+		void GUIComponent::Draw(const DrawData& parent_draw_data)
 		{
 			UpdateInfo my_update_info;
 			//更新フラグの判定
@@ -40,21 +40,21 @@ namespace planeta_engine {
 			DrawChildren(my_draw_data);
 		}
 
-		void UIComponent::Update()
+		void GUIComponent::Update()
 		{
 			UpdateProc();
 			children_holder_->process(); //子オブジェクト更新の前に登録、登録解除処理を行っておく
 			UpdateChildren();
 		}
 
-		void UIComponent::FixEdge(edge e, int padding)
+		void GUIComponent::FixEdge(edge e, int padding)
 		{
 			edge_fix_bit_set_.set(static_cast<unsigned int>(e), true);
 			edge_fix_padding_[static_cast<unsigned int>(e)] = padding;
 			is_edge_fix_updated_since_last_draw = true;
 		}
 
-		void UIComponent::FixAllEdge(int left_padding, int right_padding, int top_padding, int bottom_padding)
+		void GUIComponent::FixAllEdge(int left_padding, int right_padding, int top_padding, int bottom_padding)
 		{
 			edge_fix_bit_set_.set();
 			edge_fix_padding_[static_cast<unsigned int>(edge::Left)] = left_padding;
@@ -65,13 +65,13 @@ namespace planeta_engine {
 		}
 
 
-		void UIComponent::UnfixEdge(edge e)
+		void GUIComponent::UnfixEdge(edge e)
 		{
 			edge_fix_bit_set_.set(static_cast<unsigned int>(e), false);
 			is_edge_fix_updated_since_last_draw = true;
 		}
 
-		void UIComponent::CalculateDrawRectAndUpdateInfo(const DrawData& parent_draw_data, UpdateInfo* my_update_info)
+		void GUIComponent::CalculateDrawRectAndUpdateInfo(const DrawData& parent_draw_data, UpdateInfo* my_update_info)
 		{
 			//自分の位置が更新されていたら更新する
 			if (my_update_info->is_position_updated) {
@@ -124,30 +124,30 @@ namespace planeta_engine {
 			my_update_info->is_position_updated |= parent_draw_data.update_info.is_position_updated;
 		}
 
-		void UIComponent::DebugDraw(const utility::RectAngle<int>& parent_draw_area)
+		void GUIComponent::DebugDraw(const utility::RectAngle<int>& parent_draw_area)
 		{
 			//枠線を表示
 			utility::RectAngle<int> my_draw_area(parent_draw_area.position + relative_draw_area_buffer_.position,relative_draw_area_buffer_.size);
 			core::DrawManager::instance().DrawUIWire({ my_draw_area.position,Vector2D<int>(my_draw_area.right(),my_draw_area.top()),Vector2D<int>(my_draw_area.right(),my_draw_area.bottom()), Vector2D<int>(my_draw_area.left(),my_draw_area.bottom()),my_draw_area.position }, 1, Color(255, 150, 0));
-			children_holder_->do_all([&my_draw_area](UIComponent& com) {com.DebugDraw(my_draw_area); });
+			children_holder_->do_all([&my_draw_area](GUIComponent& com) {com.DebugDraw(my_draw_area); });
 		}
 
-		bool UIComponent::Initialize()
+		bool GUIComponent::Initialize()
 		{
 			if (InitializeProc() == false) {
 				debug::SystemLog::instance().LogError("初期化処理に失敗しました。", __FUNCTION__);
 				return false;
 			}
-			if (children_holder_->do_while_return_is_true([](UIComponent& com) {return com.Initialize(); }) == false) {
+			if (children_holder_->do_while_return_is_true([](GUIComponent& com) {return com.Initialize(); }) == false) {
 				debug::SystemLog::instance().LogError("子コンポーネントの初期化に失敗しました。", __FUNCTION__);
 				return false;
 			}
 			return true;
 		}
 
-		void UIComponent::Finalize()
+		void GUIComponent::Finalize()
 		{
-			children_holder_->do_all([](UIComponent& com) {com.Finalize(); });
+			children_holder_->do_all([](GUIComponent& com) {com.Finalize(); });
 			FinalizeProc();
 		}
 

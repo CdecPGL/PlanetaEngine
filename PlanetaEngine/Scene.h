@@ -11,7 +11,7 @@
 
 #include "GameObjectManager.h"
 #include "GameProcessManager.h"
-#include "UIManager.h"
+#include "GUIManager.h"
 #include "Camera.h"
 
 namespace planeta_engine{
@@ -35,7 +35,7 @@ namespace planeta_engine{
 			/*ゲームオブジェクトマネージャのインスタンスを取得*/
 			game::GameObjectManager& game_object_manager()override { assert(game_object_manager_ != nullptr); return *game_object_manager_; }
 			/*UIマネージャのインスタンスを取得*/
-			game::UIManager& ui_manager()override { assert(ui_manager_ != nullptr); return *ui_manager_; }
+			game::GUIManager& ui_manager()override { assert(ui_manager_ != nullptr); return *ui_manager_; }
 			/*ゲームクラスへのアクセス*/
 			IGameAccessor& game_accessor() { return game_; }
 
@@ -51,7 +51,7 @@ namespace planeta_engine{
 			/*シーンモジュール*/
 			std::unique_ptr<game::GameProcessManager> game_process_manager_; //ゲームプロセスマネージャ
 			std::unique_ptr<game::GameObjectManager> game_object_manager_; //ゲームオブジェクトマネージャ
-			std::unique_ptr<game::UIManager> ui_manager_; //GUIマネージャ
+			std::unique_ptr<game::GUIManager> ui_manager_; //GUIマネージャ
 			bool ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc); //シーンモジュールに操作を適用する
 
 			std::unique_ptr<SceneData> scene_data_; //シーンデータ

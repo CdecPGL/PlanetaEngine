@@ -5,12 +5,12 @@
 #include <memory>
 #include <vector>
 #include <array>
-#include "UIComponent.h"
+#include "GUIComponent.h"
 #include "Color.h"
 
 namespace planeta_engine {
 	namespace ui_components {
-		class SimplePolygonPanel : public game::UIComponent {
+		class SimplePolygonPanel : public game::GUIComponent {
 		public:
 			void SetNumberOfVertexes(size_t n);
 			/*指定インデックスの座標を設定。座標はコンポーネントの左上を(0.0,0.0)、右下を(1.0,1.0)とした座標で示す。*/

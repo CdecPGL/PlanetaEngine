@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <vector>
-#include "UIComponent.h"
+#include "GUIComponent.h"
 #include "Color.h"
 
 namespace planeta_engine {
@@ -11,7 +11,7 @@ namespace planeta_engine {
 	}
 	namespace ui_components {
 		/*複数行のテキストパネル*/
-		class TextPanel : public game::UIComponent {
+		class TextPanel : public game::GUIComponent {
 		public:
 			bool SetFontDefinitionResource(const std::string& resource_id);
 			/*アクセサ*/

@@ -2,13 +2,13 @@
 
 #include "DxLib.h"
 
-#include "ScreenDrawerUI.h"
+#include "ScreenDrawerGUI.h"
 #include "GraphResource.h"
 #include "DXUtility.h"
 #include "FontDefinitionResource.h"
 
 namespace planeta_engine {
-	void ScreenDrawerUI::DrawUIGraph(const utility::RectAngle<int>& draw_area, const utility::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<resources::GraphResource>& graph_resource) {
+	void ScreenDrawerGUI::DrawGraph(const utility::RectAngle<int>& draw_area, const utility::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<resources::GraphResource>& graph_resource) {
 		if (graph_resource == nullptr) { return; }
 		double scale_x = (double)draw_area.size.x / draw_area_on_graph.size.x;
 		double scale_y = (double)draw_area.size.y / draw_area_on_graph.size.y;
@@ -16,7 +16,7 @@ namespace planeta_engine {
 		DrawRectRotaGraph3(draw_area.position.x, draw_area.position.y, draw_area_on_graph.position.x, draw_area_on_graph.position.y, draw_area.size.x, draw_area.size.y, draw_area_on_graph.size.x / 2, draw_area_on_graph.size.y / 2, scale_x, scale_y, 0.0, graph_resource->GetHandle(), true, reverse);
 	}
 
-	void ScreenDrawerUI::DrawUIWire(const std::vector<Vector2D<int>>& positions, int width, const planeta_engine::Color& color) {
+	void ScreenDrawerGUI::DrawWire(const std::vector<Vector2D<int>>& positions, int width, const planeta_engine::Color& color) {
 		using namespace utility::dx;
 		int dxc = PEColorToDXColorHandle(color);
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
@@ -25,7 +25,7 @@ namespace planeta_engine {
 		}
 	}
 
-	void ScreenDrawerUI::DrawUIPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta_engine::Color& color) {
+	void ScreenDrawerGUI::DrawPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta_engine::Color& color) {
 		using namespace utility::dx;
 		int dxc = PEColorToDXColorHandle(color);
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
@@ -42,7 +42,7 @@ namespace planeta_engine {
 		}
 	}
 
-	void ScreenDrawerUI::DrawUIString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const planeta_engine::Color& color, const planeta_engine::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource) {
+	void ScreenDrawerGUI::DrawString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const planeta_engine::Color& color, const planeta_engine::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource) {
 		if (font_definition_resource == nullptr) { return; }
 		using namespace utility::dx;
 		DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));

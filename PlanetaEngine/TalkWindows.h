@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIObject.h"
+#include "GUIObject.h"
 
 namespace planeta_engine {
 	namespace ui_components {
@@ -8,7 +8,7 @@ namespace planeta_engine {
 		class TextPanel;
 	}
 	namespace ui_objects {
-		class TalkWindow : public game::UIObject {
+		class TalkWindow : public game::GUIObject {
 		public:
 
 		private:

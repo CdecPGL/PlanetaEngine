@@ -1,21 +1,21 @@
-#include "UIObjectResisterConnection.h"
+#include "GUIObjectResisterConnection.h"
 
-#include "UIManager.h"
+#include "GUIManager.h"
 
 namespace planeta_engine {
 	namespace game {
 
-		bool UIObjectResisterConnection::Show()
+		bool GUIObjectResisterConnection::Show()
 		{
 			return ui_manager_.ShowUIObject(layer_, pointer_);
 		}
 
-		bool UIObjectResisterConnection::Close()
+		bool GUIObjectResisterConnection::Close()
 		{
 			return ui_manager_.CloseUIObject(layer_, pointer_);
 		}
 
-		void UIObjectResisterConnection::Dispose()
+		void GUIObjectResisterConnection::Dispose()
 		{
 			ui_manager_.CloseUIObject(layer_, pointer_);
 		}

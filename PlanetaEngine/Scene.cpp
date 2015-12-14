@@ -1,25 +1,25 @@
 #include "Scene.h"
 #include "GameObjectManager.h"
 #include "GameProcessManager.h"
-#include "UIManager.h"
+#include "GUIManager.h"
 #include "SystemLog.h"
 #include "ISceneManagerAccessor.h"
 #include "IGameAccessor.h"
 #include "SceneData.h"
 #include "Camera.h"
 #include "ScreenDrawer2D.h"
-#include "ScreenDrawerUI.h"
+#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine{
 	namespace core{
 
-		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::UIManager>()),scene_data_(std::make_unique<SceneData>())
+		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::GUIManager>()),scene_data_(std::make_unique<SceneData>())
 		{
 			//シーンを各モジュールに登録
 			ForEachSceneModule_([this](core::SceneModule& sm) {sm.SetSceneInterface(*this); return true; });
 			scene_data_->camera = std::make_shared<Camera>();
 			scene_data_->screen_drawer_2d = std::make_shared<ScreenDrawer2D>(engine.screen());
-			scene_data_->screen_drawer_ui = std::make_shared<ScreenDrawerUI>(engine.screen());
+			scene_data_->screen_drawer_ui = std::make_shared<ScreenDrawerGUI>(engine.screen());
 			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(*scene_data); return true; });
 		}
 

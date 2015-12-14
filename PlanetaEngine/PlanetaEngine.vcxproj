@@ -280,7 +280,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneAccessorForGameObject.h" />
     <ClInclude Include="SceneAccessorForGameProcess.h" />
     <ClInclude Include="SceneAccessorForSetUp.h" />
-    <ClInclude Include="SceneAccessorForUI.h" />
+    <ClInclude Include="SceneAccessorForGUI.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScenePublicInterface.h" />
     <ClInclude Include="SceneSetUpper.h" />
@@ -289,7 +289,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenChangeEffecter.h" />
     <ClInclude Include="ScreenDrawer2D.h" />
-    <ClInclude Include="ScreenDrawerUI.h" />
+    <ClInclude Include="ScreenDrawerGUI.h" />
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
     <ClInclude Include="SoundEffectController.h" />
@@ -311,14 +311,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TwoKeyMap.h" />
     <ClInclude Include="TypeChecker.h" />
     <ClInclude Include="UIAllocator.h" />
-    <ClInclude Include="UIComponent.h" />
-    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="GUIComponent.h" />
+    <ClInclude Include="GUIManager.h" />
     <ClInclude Include="UIManagerAccessorForGameProcess.h" />
-    <ClInclude Include="UIManagerAccessorForSetUp.h" />
+    <ClInclude Include="GUIManagerAccessorForSetUp.h" />
     <ClInclude Include="UIManagerAccessorForUI.h" />
-    <ClInclude Include="UIManagerPublicInterface.h" />
-    <ClInclude Include="UIObject.h" />
-    <ClInclude Include="UIObjectResisterConnection.h" />
+    <ClInclude Include="GUIManagerPublicInterface.h" />
+    <ClInclude Include="GUIObject.h" />
+    <ClInclude Include="GUIObjectResisterConnection.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="NewVector2D.h" />
     <ClInclude Include="Vector.h" />
@@ -371,7 +371,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="ScreenChangeEffecter.cpp" />
     <ClCompile Include="ScreenDrawer2D.cpp" />
-    <ClCompile Include="ScreenDrawerUI.cpp" />
+    <ClCompile Include="ScreenDrawerGUI.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="SoundEffectController.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -379,8 +379,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TalkWindows.cpp" />
     <ClCompile Include="TextPanel.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
-    <ClCompile Include="UIComponent.cpp" />
-    <ClCompile Include="UIObject.cpp" />
+    <ClCompile Include="GUIComponent.cpp" />
+    <ClCompile Include="GUIObject.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="DrawLineComponent.cpp" />
     <ClCompile Include="DrawManager.cpp" />
@@ -431,8 +431,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TextResource.cpp" />
     <ClCompile Include="TLSFMemoryAllocator.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
-    <ClCompile Include="UIManager.cpp" />
-    <ClCompile Include="UIObjectResisterConnection.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
+    <ClCompile Include="GUIObjectResisterConnection.cpp" />
     <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>
   <ItemGroup>

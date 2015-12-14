@@ -10,10 +10,10 @@
 
 namespace planeta_engine {
 	namespace game {
-		class UIComponent : public core::Object{
+		class GUIComponent : public core::Object{
 		public:
-			UIComponent();
-			virtual ~UIComponent() = default;
+			GUIComponent();
+			virtual ~GUIComponent() = default;
 			/*システム関数*/
 			struct UpdateInfo {
 				bool is_position_updated = false;
@@ -65,9 +65,9 @@ namespace planeta_engine {
 				children_holder_->resist_object(child);
 				return child;
 			}
-			bool RemoveChild(const std::shared_ptr<UIComponent>& c) { return children_holder_->unresist_object(c); }
+			bool RemoveChild(const std::shared_ptr<GUIComponent>& c) { return children_holder_->unresist_object(c); }
 		private:
-			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<UIComponent>> children_holder_;
+			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<GUIComponent>> children_holder_;
 			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
 			bool is_edge_fix_updated_since_last_draw = true; //前回描画時から辺固定が変更されたかフラグ

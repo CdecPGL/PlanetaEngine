@@ -1,30 +1,30 @@
-#include "UIManager.h"
-#include "UIObject.h"
-#include "SceneAccessorForUI.h"
-#include "UIObjectResisterConnection.h"
+#include "GUIManager.h"
+#include "GUIObject.h"
+#include "SceneAccessorForGUI.h"
+#include "GUIObjectResisterConnection.h"
 #include "SystemLog.h"
 #include "boost/lexical_cast.hpp"
 
 namespace planeta_engine {
 	namespace game {
-		bool UIManager::Process()
+		bool GUIManager::Process()
 		{
 			return true;
 		}
 
-		bool UIManager::Initialize()
+		bool GUIManager::Initialize()
 		{
 			return true;
 		}
 
-		void UIManager::Update()
+		void GUIManager::Update()
 		{
 			for (auto& l : layers_) {
 				l.second.Update();
 			}
 		}
 
-		void UIManager::Draw()
+		void GUIManager::Draw()
 		{
 			for (auto& l : layers_) {
 				l.second.Draw();
@@ -32,14 +32,14 @@ namespace planeta_engine {
 			DebugDraw();
 		}
 
-		void UIManager::DebugDraw()
+		void GUIManager::DebugDraw()
 		{
 			for (auto& l : layers_) {
 				l.second.DebugDraw();
 			}
 		}
 
-		bool UIManager::RemoveLayer(int layer)
+		bool GUIManager::RemoveLayer(int layer)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) { 
@@ -50,24 +50,24 @@ namespace planeta_engine {
 			return true;
 		}
 
-		UIManager::UIManager()
+		GUIManager::GUIManager()
 		{
 
 		}
 
-		void UIManager::SetSceneInterface(core::ScenePublicInterface& spi)
+		void GUIManager::SetSceneInterface(core::ScenePublicInterface& spi)
 		{
-			scene_accessor_ = std::make_shared<core::SceneAccessorForUI>(spi);
+			scene_accessor_ = std::make_shared<core::SceneAccessorForGUI>(spi);
 		}
 
-		std::shared_ptr<UIObject> UIManager::CreateUIObject(const std::function<std::shared_ptr<UIObject>()>& creator, int layer)
+		std::shared_ptr<GUIObject> GUIManager::CreateUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator, int layer)
 		{
 			auto nuo = creator();
 			if (nuo == nullptr) {
 				debug::SystemLog::instance().LogError("UIObjectインスタンスの作成に失敗しました。", __FUNCTION__);
 				return nullptr;
 			}
-			if (nuo->Initialize(std::make_unique<UIObjectResisterConnection>(*this, layer, nuo.get()))) {
+			if (nuo->Initialize(std::make_unique<GUIObjectResisterConnection>(*this, layer, nuo.get()))) {
 				layers_[layer].AddUIObject(nuo);
 				return nuo;
 			}
@@ -77,7 +77,7 @@ namespace planeta_engine {
 			}
 		}
 
-		bool UIManager::RemoveUIObject(int layer, UIObject* uo)
+		bool GUIManager::RemoveUIObject(int layer, GUIObject* uo)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) { 
@@ -87,7 +87,7 @@ namespace planeta_engine {
 			return it->second.RemoveUIObject(uo);
 		}
 
-		bool UIManager::ShowUIObject(int layer, UIObject* uo)
+		bool GUIManager::ShowUIObject(int layer, GUIObject* uo)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) {
@@ -97,7 +97,7 @@ namespace planeta_engine {
 			return it->second.ShowUIObject(uo);
 		}
 
-		bool UIManager::CloseUIObject(int layer, UIObject* uo)
+		bool GUIManager::CloseUIObject(int layer, GUIObject* uo)
 		{
 			auto it = layers_.find(layer);
 			if (it == layers_.end()) {
@@ -107,37 +107,37 @@ namespace planeta_engine {
 			return it->second.CloseUIObject(uo);
 		}
 
-		void UIManager::SetSceneData(const core::SceneData& scene_data) {
+		void GUIManager::SetSceneData(const core::SceneData& scene_data) {
 
 		}
 
-		void UIManager::Layer_::AddUIObject(const std::shared_ptr<UIObject>& o)
+		void GUIManager::Layer_::AddUIObject(const std::shared_ptr<GUIObject>& o)
 		{
 			inactive_ui_objects_.emplace(o.get(), o);
 		}
 
-		void UIManager::Layer_::Update()
+		void GUIManager::Layer_::Update()
 		{
 			for (auto& p : active_ui_objects_) {
 				p.second->Update();
 			}
 		}
 
-		void UIManager::Layer_::Draw()
+		void GUIManager::Layer_::Draw()
 		{
 			for (auto& p : active_ui_objects_) {
 				p.second->Draw();
 			}
 		}
 
-		void UIManager::Layer_::DebugDraw()
+		void GUIManager::Layer_::DebugDraw()
 		{
 			for (auto& p : active_ui_objects_) {
 				p.second->DebugDraw();
 			}
 		}
 
-		bool UIManager::Layer_::RemoveUIObject(UIObject* uo)
+		bool GUIManager::Layer_::RemoveUIObject(GUIObject* uo)
 		{
 			auto it = inactive_ui_objects_.find(uo);
 			if (it != inactive_ui_objects_.end()) {
@@ -153,7 +153,7 @@ namespace planeta_engine {
 			return false;
 		}
 
-		bool UIManager::Layer_::ShowUIObject(UIObject* uo)
+		bool GUIManager::Layer_::ShowUIObject(GUIObject* uo)
 		{
 			auto it = inactive_ui_objects_.find(uo);
 			if (it == inactive_ui_objects_.end()) {
@@ -165,7 +165,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool UIManager::Layer_::CloseUIObject(UIObject* uo)
+		bool GUIManager::Layer_::CloseUIObject(GUIObject* uo)
 		{
 			auto it = active_ui_objects_.find(uo);
 			if (it == active_ui_objects_.end()) {
