@@ -40,7 +40,7 @@ namespace planeta_engine{
 			IGameAccessor& game_accessor() { return game_; }
 
 			/*İ’èŠÖ”*/
-			void SetSceneData(std::unique_ptr<SceneData>&& scene_data);
+			SceneData& RefSceneData() { return *scene_data_; }
 		private:
 			Scene(const Scene&) = delete;
 			Scene(Scene&&) = delete;

@@ -9,7 +9,7 @@ namespace planeta_engine {
 			if (!coroutine_) { Start(); }
 			else { (*coroutine_)(); }
 			if (!(*coroutine_)) {
-				if (dispose_when_coroutine_finished_) { scene().game_process_manager().RemoveGameProcess(id()); }
+				if (dispose_when_coroutine_finished_) { Dispose(); }
 				else { coroutine_.release(); }
 			}
 		}

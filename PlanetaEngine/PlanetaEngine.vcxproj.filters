@@ -55,9 +55,6 @@
     <Filter Include="PlanetaEngine\Core\Resource">
       <UniqueIdentifier>{f23a3a1d-6410-44bc-ac6e-60606aa0718e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Game\UI">
-      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements">
       <UniqueIdentifier>{9ebe99cf-e97c-407c-a4c3-de0396051b94}</UniqueIdentifier>
     </Filter>
@@ -103,9 +100,6 @@
     <Filter Include="PlanetaEngine\Core\Memory">
       <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Game\UI\Manager">
-      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Game\GameObject\Manager">
       <UniqueIdentifier>{01ba8182-1e53-4fcf-8506-2633085a97fe}</UniqueIdentifier>
     </Filter>
@@ -150,6 +144,12 @@
     </Filter>
     <Filter Include="PlanetaEngine\Game\GameObject\Component">
       <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\GUI">
+      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\GUI\Manager">
+      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -370,16 +370,13 @@
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClInclude>
     <ClInclude Include="UIComponent.h">
-      <Filter>PlanetaEngine\Game\UI</Filter>
+      <Filter>PlanetaEngine\Game\GUI</Filter>
     </ClInclude>
     <ClInclude Include="UIObject.h">
-      <Filter>PlanetaEngine\Game\UI</Filter>
+      <Filter>PlanetaEngine\Game\GUI</Filter>
     </ClInclude>
     <ClInclude Include="InitEnd.h">
       <Filter>PlanetaEngine\InitEnd</Filter>
-    </ClInclude>
-    <ClInclude Include="MathVector.h">
-      <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="MathUtility.h">
       <Filter>PlanetaEngine\Math</Filter>
@@ -484,13 +481,13 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="UIManagerPublicInterface.h">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="UIManagerAccessorForGameProcess.h">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
@@ -550,16 +547,16 @@
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="UIManagerAccessorForUI.h">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="UIManagerAccessorForSetUp.h">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ErrorSceneDefinition.h">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="UIObjectResisterConnection.h">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
@@ -726,6 +723,21 @@
     <ClInclude Include="GameObjectAccessorForSetUp.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="GameProcessSystemSetUpper.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="MathVector.h">
+      <Filter>PlanetaEngine\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenEffectProcess.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDataForGameProcess.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessRegistrationData.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -882,7 +894,7 @@
       <Filter>PlanetaEngine\Debug</Filter>
     </ClCompile>
     <ClCompile Include="UIObject.cpp">
-      <Filter>PlanetaEngine\Game\UI</Filter>
+      <Filter>PlanetaEngine\Game\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectSetUpper.cpp">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
@@ -894,7 +906,7 @@
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
     <ClCompile Include="UIComponent.cpp">
-      <Filter>PlanetaEngine\Game\UI</Filter>
+      <Filter>PlanetaEngine\Game\GUI</Filter>
     </ClCompile>
     <ClCompile Include="SimplePolygonPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\UIComponents</Filter>
@@ -927,7 +939,7 @@
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
@@ -942,7 +954,7 @@
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="UIObjectResisterConnection.cpp">
-      <Filter>PlanetaEngine\Game\UI\Manager</Filter>
+      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>

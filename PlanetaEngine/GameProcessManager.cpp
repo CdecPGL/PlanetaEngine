@@ -1,6 +1,9 @@
 #include "GameProcessManager.h"
 #include "SceneAccessorForGameProcess.h"
 #include "GameProcess.h"
+#include "SceneData.h"
+#include "SceneDataForGameProcess.h"
+#include "GameProcessRegistrationData.h"
 
 namespace planeta_engine {
 	namespace game {
@@ -10,9 +13,11 @@ namespace planeta_engine {
 
 		}
 
+		GameProcessManager::~GameProcessManager() = default;
+
 		void GameProcessManager::Update()
 		{
-			for (const auto& ps : _game_processes) {
+			for (const auto& ps : process_priority_list_) {
 				for (auto& p : ps.second) {
 					p->Update();
 				}
@@ -22,57 +27,55 @@ namespace planeta_engine {
 		bool GameProcessManager::Process()
 		{
 			//登録解除リストのプロセスを削除する
-			for (int id : _unresist_id_list) {
-				auto it = _id_map.find(id);
-				if (it == _id_map.end()) { continue; }
-				else {
-					_game_processes[it->second.first].erase(it->second.second);
-					_id_map.erase(it);
-				}
-			}
-			_unresist_id_list.clear();
+			ProcessDisposeList_();
 			return true;
 		}
 
-		utility::WeakPointer<GameProcess> GameProcessManager::GetGameProcess(int id)
+		bool GameProcessManager::RemoveGameProcess_(GameProcess* id)
 		{
-			auto it = _id_map.find(id);
-			if (it == _id_map.end()) { return nullptr; }
-			else { return *it->second.second; }
-		}
-
-		bool GameProcessManager::RemoveGameProcess(int id)
-		{
-			auto it = _id_map.find(id);
-			if (it == _id_map.end()) { return false; }
+			auto it = process_id_map_.find(id);
+			if (it == process_id_map_.end()) { return false; }
 			else {
-				//プロセス破棄イベントを呼び出す
-				(*it->second.second)->disposed();
 				//登録解除リストに追加
-				_unresist_id_list.push_back(id);
+				dispose_list_.push_back(it->second);
 				return true;
 			}
 		}
 
-		int GameProcessManager::AddGameProcess(int priority, const std::shared_ptr<GameProcess>& game_process)
+		GameProcessManager::PositionTypeAtPriorytyList GameProcessManager::AddGameProcessToList_(int priority, const std::shared_ptr<GameProcess>& game_process)
 		{
-			SetupProcess(game_process);
-			_game_processes[priority].push_back(game_process); //リストに追加
-			_id_map.insert(std::make_pair(game_process->id(), std::make_pair(priority, --_game_processes[priority].end())));
-			return game_process->id();
+			auto pit = process_priority_list_.find(priority);
+			if (pit == process_priority_list_.end()) {
+				pit = process_priority_list_.emplace(priority, ProcessListType()).first;
+			}
+			pit->second.push_back(game_process); //リストに追加
+			PositionTypeAtPriorytyList pos(pit, --pit->second.end());
+			return std::move(pos);
 		}
 
 		void GameProcessManager::Finalize()
-{
-			_unresist_id_list.clear();
-			_system_process_map.clear();
-			_id_map.clear();
-			_game_processes.clear();
+		{
+
+			ProcessDisposeList_(); //破棄リスト処理
+			//まだ存在するプロセスの終了処理を行う
+			for (auto& pl : process_priority_list_) {
+				for (auto& p : pl.second) {
+					p->Dispose();
+				}
+			}
+			//全部クリア
+			dispose_list_.clear();
+			process_name_id_map_.clear();
+			process_id_map_.clear();
+			process_priority_list_.clear();
 		}
 
-		void GameProcessManager::SetupProcess(const std::shared_ptr<GameProcess>& game_process)
+		void GameProcessManager::SetupProcess_(const std::shared_ptr<GameProcess>& game_process, std::function<bool()>&& remover)
 		{
-			game_process->SetScene(scene_accessor_);
+			core::GameProcessRegistrationData registration_data;
+			registration_data.scene_accessor = scene_accessor_;
+			registration_data.disposer = std::move(remover);
+			game_process->SystemSetUp(registration_data, *scene_data_);
 		}
 
 		void GameProcessManager::SetSceneInterface(core::ScenePublicInterface& spi)
@@ -81,7 +84,37 @@ namespace planeta_engine {
 		}
 
 		void GameProcessManager::SetSceneData(const core::SceneData& scene_data) {
+			scene_data_ = std::make_unique<core::SceneDataForGameProcess>();
+			scene_data_->camera = scene_data.camera;
+		}
 
+		bool GameProcessManager::RegisterToIDMap_(GameProcess* id, const PositionTypeAtPriorytyList& pos_at_plist) {
+			process_id_map_.emplace(id, pos_at_plist);
+			return true;
+		}
+
+		void GameProcessManager::ProcessDisposeList_() {
+			for (auto& pos : dispose_list_) {
+				pos.first->second.erase(pos.second);
+			}
+			dispose_list_.clear();
+		}
+
+		bool GameProcessManager::RegisterProcessName_(const std::string& name, GameProcess* id) {
+			process_name_id_map_.emplace(name, id);
+			return true;
+		}
+
+		utility::WeakPointer<GameProcess> GameProcessManager::GetProcess(const std::string& name) {
+			auto nit = process_name_id_map_.find(name);
+			if (nit == process_name_id_map_.end()) { return nullptr; }
+			auto pit = process_id_map_.find(nit->second);
+			if (pit == process_id_map_.end()) {
+				process_name_id_map_.erase(nit);
+				return nullptr;
+			} else {
+				return *pit->second.second; 
+			}
 		}
 
 	}

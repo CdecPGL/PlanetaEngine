@@ -152,6 +152,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="ConfigData.h" />
     <ClInclude Include="GameObjectComponentRigistrationData.h" />
+    <ClInclude Include="GameProcessRegistrationData.h" />
+    <ClInclude Include="GameProcessSystemSetUpper.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
     <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h" />
     <ClInclude Include="GameObjectNormalComponent.h" />
@@ -159,7 +161,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="NonCopyable.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.h" />
+    <ClInclude Include="SceneDataForGameProcess.h" />
     <ClInclude Include="SceneModule.h" />
+    <ClInclude Include="ScreenEffectProcess.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />

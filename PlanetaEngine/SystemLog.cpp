@@ -11,10 +11,10 @@
 */
 
 namespace {
-	const std::string kMessageHeader("メッセージ");
-	const std::string kWarningHeader("警告");
-	const std::string kErrorHeader("エラー");
-	const size_t kDefaultLogHistoryMaxSize(0);
+	constexpr char* kMessageHeader("メッセージ");
+	constexpr char* kWarningHeader("警告");
+	constexpr char* kErrorHeader("エラー");
+	constexpr size_t kDefaultLogHistoryMaxSize(0);
 }
 
 namespace planeta_engine {
@@ -22,7 +22,13 @@ namespace planeta_engine {
 
 		bool SystemLog::Initialize()
 		{
-			SimpleLog(std::string("PlanetaEngine V") + core::system_variables::engine_information::VersionString);
+			bool debug_mode = false;
+#ifdef _DEBUG
+			debug_mode = true;
+#else
+			debug_mode = false;
+#endif
+			SimpleLog(std::string("PlanetaEngine v") + core::system_variables::engine_information::VersionString, debug_mode ? " デバッグビルド" : "");
 			SimpleLog(std::string("起動日時:") + utility::DateTime::GetCurrentDateTime().ToString());
 			if (core::system_variables::DevelopmentMode) { SimpleLog("開発モードが有効です。"); }
 			Log(LogLevel::Message, __FUNCTION__, "初期化されました。ログ出力ストリームは", _output_streams.size(), "個です。");
@@ -84,8 +90,6 @@ namespace planeta_engine {
 			_OutPutToOutStream(sstrm.str());
 			//ログ履歴に追加
 			_AddHistory(sstrm.str());
-			//デバッグウインドウに出力
-			OutputDebugString(sstrm.str().c_str());
 		}
 
 		void SystemLog::_OutPutToOutStream(const std::string& str)
@@ -96,6 +100,8 @@ namespace planeta_engine {
 			{
 				*ostrm << ostr;
 			}
+			//デバッグウインドウに出力
+			OutputDebugString(ostr.c_str());
 		}
 
 		SystemLog::SystemLog():_log_history_max_size(kDefaultLogHistoryMaxSize)

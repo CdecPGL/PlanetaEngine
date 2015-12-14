@@ -11,7 +11,7 @@ namespace planeta_engine {
 	namespace game_processes {
 		class GameProcessWithRefrection : public game::GameProcess,public utility::Reflection{
 		public:
-			GameProcessWithRefrection(core::IGameAccessor& g,int id);
+			GameProcessWithRefrection(core::IGameAccessor& g);
 		private:
 			void ResistRefrectionInformation(RefrectionInformationResistInterface&& riri)override;
 			void Update()override;

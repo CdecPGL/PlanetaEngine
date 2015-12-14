@@ -16,7 +16,7 @@ namespace planeta_engine {
 		bool planeta_engine::core::DrawManager::Initialize()
 		{
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
-			SetupCamera_Ortho(config_data::engine::DrawSize().y); //正射影カメラを設定
+			SetupCamera_Ortho((float)config_data::engine::DrawSize().y); //正射影カメラを設定
 			SetUseLighting(false); //ライティング計算を行わない
 			camera_posision_.Set(config_data::engine::DrawSize().x / 2, config_data::engine::DrawSize().y / 2);
 			return true;
