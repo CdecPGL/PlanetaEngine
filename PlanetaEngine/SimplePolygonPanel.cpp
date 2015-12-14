@@ -4,7 +4,7 @@
 #include "DrawManager.h"
 
 namespace planeta_engine {
-	namespace ui_components {
+	namespace gui_components {
 
 		void SimplePolygonPanel::UpdateProc()
 		{

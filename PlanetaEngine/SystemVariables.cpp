@@ -38,13 +38,13 @@ namespace planeta_engine{
 				const int CollisionDetectProcessPriority(200); //衝突判定プロセス優先度
 				//const int TransformConvertGlobalToLocalProcessPriority(400);
 				const int GameObjectDrawProcessPriority(300); //ゲームオブジェクト描画プロセス優先度
-				const int UIUpdateProcessPriority(400); //UI更新プロセス優先度
-				const int UIDrawProcessPriority(500); //UI描画プロセス優先度
+				const int GUIUpdateProcessPriority(400); //UI更新プロセス優先度
+				const int GUIDrawProcessPriority(500); //UI描画プロセス優先度
 				const std::string CollisionDetectProcessName("CollisionDetectProcess"); //衝突判定プロセス名
 				const std::string GameObjectDrawProcessName("GameObjectDrawProcess"); //ゲームオブジェクト描画プロセス名
 				const std::string GameObjectUpdatetProcessName("GameObjectUpdateProcess"); //ゲームオブジェクト更新プロセス名
-				const std::string UIDrawProcessName("UIDrawProcess"); //UI描画プロセス名
-				const std::string UIUpdateProcessName("UIUpdateProcess"); //UI更新プロセス名
+				const std::string GUIDrawProcessName("UIDrawProcess"); //UI描画プロセス名
+				const std::string GUIUpdateProcessName("UIUpdateProcess"); //UI更新プロセス名
 				const std::string TransformApplyVelocityProcessName("TransformApllyVelocityProcess"); //トランスフォーム速度適用プロセス名
 				//const std::string TransformConvertLocalToGlobalProcessName("TransformConvertLocalToGlobalProcess"); //トランスフォームローカルグローバル変換プロセス名
 				//const std::string TransformConvertGlobalToLocalProcessName("TransformConvertGlobalToLocalProcess"); //トランスフォームグローバルローカル変換プロセス名

@@ -43,16 +43,16 @@ namespace planeta_engine{
 				extern const int CollisionDetectProcessPriority; //衝突判定プロセス優先度
 				extern const int GameObjectDrawProcessPriority; //ゲームオブジェクト描画プロセス優先度
 				extern const int GameObjectUpdatetProcessPriority; //ゲームオブジェクト更新プロセス優先度
-				extern const int UIDrawProcessPriority; //UI描画プロセス優先度
-				extern const int UIUpdateProcessPriority; //UI更新プロセス優先度
+				extern const int GUIDrawProcessPriority; //UI描画プロセス優先度
+				extern const int GUIUpdateProcessPriority; //UI更新プロセス優先度
 				extern const int TransformApplyVelocityProcessPriority; //トランスフォーム速度適用プロセス優先度
 				//extern const int TransformConvertLocalToGlobalProcessPriority; //トランスフォームローカルグローバル変換プロセス優先度
 				//extern const int TransformConvertGlobalToLocalProcessPriority; //トランスフォームグローバルローカル変換プロセス優先度
 				extern const std::string CollisionDetectProcessName; //衝突判定プロセス名
 				extern const std::string GameObjectDrawProcessName; //ゲームオブジェクト描画プロセス名
 				extern const std::string GameObjectUpdatetProcessName; //ゲームオブジェクト更新プロセス名
-				extern const std::string UIDrawProcessName; //UI描画プロセス名
-				extern const std::string UIUpdateProcessName; //UI更新プロセス名
+				extern const std::string GUIDrawProcessName; //UI描画プロセス名
+				extern const std::string GUIUpdateProcessName; //UI更新プロセス名
 				extern const std::string TransformApplyVelocityProcessName; //トランスフォーム速度適用プロセス名
 				//extern const std::string TransformConvertLocalToGlobalProcessName; //トランスフォームローカルグローバル変換プロセス名
 				//extern const std::string TransformConvertGlobalToLocalProcessName; //トランスフォームグローバルローカル変換プロセス名

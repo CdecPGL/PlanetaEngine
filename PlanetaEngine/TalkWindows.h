@@ -3,18 +3,18 @@
 #include "GUIObject.h"
 
 namespace planeta_engine {
-	namespace ui_components {
+	namespace gui_components {
 		class SimplePolygonPanel;
 		class TextPanel;
 	}
-	namespace ui_objects {
+	namespace gui_objects {
 		class TalkWindow : public game::GUIObject {
 		public:
 
 		private:
 			bool InitializeProc()override;
-			std::shared_ptr<ui_components::SimplePolygonPanel> back_ground_panel_;
-			std::shared_ptr<ui_components::TextPanel> text_panel_;
+			std::shared_ptr<gui_components::SimplePolygonPanel> back_ground_panel_;
+			std::shared_ptr<gui_components::TextPanel> text_panel_;
 		};
 	}
 }

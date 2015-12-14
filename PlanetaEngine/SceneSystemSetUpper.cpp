@@ -35,10 +35,10 @@ namespace planeta_engine {
 			auto goup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GameObjectUpdatetProcessPriority);
 			goup->SetExcuteFunction([&game_object_manager = scene.game_object_manager()]{ game_object_manager.Update(); });
 			//UI描画プロセス
-			auto uidp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIDrawProcessPriority);
+			auto uidp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GUIDrawProcessPriority);
 			uidp->SetExcuteFunction([&ui_manager = scene.gui_manager()] {ui_manager.Draw(); });
 			//UI更新プロセス
-			auto uiup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::UIUpdateProcessPriority);
+			auto uiup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GUIUpdateProcessPriority);
 			uiup->SetExcuteFunction([&ui_manager = scene.gui_manager()] {ui_manager.Update(); });
 			//Transform関連
 			auto tavp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformApplyVelocityProcessPriority);

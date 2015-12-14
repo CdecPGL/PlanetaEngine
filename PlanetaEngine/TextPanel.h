@@ -9,7 +9,7 @@ namespace planeta_engine {
 	namespace resources {
 		class FontDefinitionResource;
 	}
-	namespace ui_components {
+	namespace gui_components {
 		/*複数行のテキストパネル*/
 		class TextPanel : public game::GUIComponent {
 		public:

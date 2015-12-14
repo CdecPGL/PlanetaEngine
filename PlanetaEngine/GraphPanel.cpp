@@ -6,7 +6,7 @@
 #include "GraphResource.h"
 
 namespace planeta_engine {
-	namespace ui_components {
+	namespace gui_components {
 
 		void GraphPanel::UpdateProc()
 		{
