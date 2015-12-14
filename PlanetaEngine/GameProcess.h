@@ -5,7 +5,6 @@
 #include "WeakPointerDelegate.h"
 
 namespace planeta_engine{
-	class Camera;
 	namespace core{
 		class IGameAccessor;
 		class SceneAccessorForGameProcess;
@@ -23,7 +22,7 @@ namespace planeta_engine{
 			virtual void Update() = 0;
 			void Dispose();
 			/*システム関数*/
-			bool SystemSetUp(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data);
+			bool SystemSetUpAndInitialize(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data);
 			/*イベント*/
 			/*プロセスが破棄された*/
 			utility::WeakPointerDelegate<> disposed;
@@ -31,7 +30,6 @@ namespace planeta_engine{
 			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
 			core::IGameAccessor& game_accessor() { return game_; }
 			core::SceneAccessorForGameProcess& scene() { return *scene_accessor_; }
-			Camera& camera() { return *camera_; }
 		private:
 			GameProcess(const GameProcess&) = delete;
 			GameProcess(GameProcess&&) = delete;
@@ -42,7 +40,6 @@ namespace planeta_engine{
 			virtual bool OnCreated() { return true; }
 			virtual void OnDisposed() {}
 			std::function<void()> disposer_;
-			utility::WeakPointer<Camera> camera_;
 		};
 	}
 }

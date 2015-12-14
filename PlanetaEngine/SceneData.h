@@ -6,7 +6,6 @@
 namespace planeta_engine {
 	class ScreenDrawer2D;
 	class ScreenDrawerGUI;
-	class Camera;
 	namespace system_processes {
 		class CollisionDetectProcess;
 		class GameObjectDrawProcess;
@@ -17,7 +16,6 @@ namespace planeta_engine {
 			utility::WeakPointer<system_processes::GameObjectDrawProcess> draw_component_process_registrator;
 			std::shared_ptr<ScreenDrawer2D> screen_drawer_2d;
 			std::shared_ptr<ScreenDrawerGUI> screen_drawer_ui;
-			std::shared_ptr<Camera> camera;
 		};
 	}
 }

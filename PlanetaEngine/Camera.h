@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Object.h"
+#include "NewVector2D.h"
 #include "Vector3D.h"
 #include "Vector4D.h"
 #include "Property.h"
@@ -14,6 +15,8 @@ namespace planeta_engine {
 		void ChangeTo2DMode();
 		void ChangeTo3DMode();
 		Mode mode()const { return mode_; }
+		Vector2Dd CovertPositionGUISpaceToGameObjectSpace(const Vector2Di& gui_space_pos)const;
+		Vector2Di CovertPositionGameObjectSpaceToGUISpace(const Vector2Dd& gameobject_space_pos)const;
 	private:
 		Mode mode_;
 		Vector3Dd position_;

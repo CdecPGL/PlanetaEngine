@@ -75,7 +75,7 @@ namespace planeta_engine {
 			core::GameProcessRegistrationData registration_data;
 			registration_data.scene_accessor = scene_accessor_;
 			registration_data.disposer = std::move(remover);
-			game_process->SystemSetUp(registration_data, *scene_data_);
+			game_process->SystemSetUpAndInitialize(registration_data, *scene_data_);
 		}
 
 		void GameProcessManager::SetSceneInterface(core::ScenePublicInterface& spi)
@@ -85,7 +85,6 @@ namespace planeta_engine {
 
 		void GameProcessManager::SetSceneData(const core::SceneData& scene_data) {
 			scene_data_ = std::make_unique<core::SceneDataForGameProcess>();
-			scene_data_->camera = scene_data.camera;
 		}
 
 		bool GameProcessManager::RegisterToIDMap_(GameProcess* id, const PositionTypeAtPriorytyList& pos_at_plist) {

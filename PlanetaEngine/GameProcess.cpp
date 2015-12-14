@@ -11,11 +11,10 @@ namespace planeta_engine{
 			disposer_(); //”jŠü
 		}
 
-		bool GameProcess::SystemSetUp(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data) {
+		bool GameProcess::SystemSetUpAndInitialize(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data) {
 			disposer_ = resistration_data.disposer;
 			scene_accessor_ = resistration_data.scene_accessor;
-			camera_ = special_setup_data.camera;
-			return true;
+			return OnCreated();
 		}
 
 	}

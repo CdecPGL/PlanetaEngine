@@ -9,7 +9,7 @@ namespace planeta_engine {
 		class ReadOnlyProperty {
 			using MyType = ReadOnlyProperty<C, PropertyType, GetterRet, getter>;
 		public:
-			ReadOnlyProperty(const C& ins) :instance_(ins) {}
+			explicit ReadOnlyProperty(const C& ins) :instance_(ins) {}
 			//プロパティ型への変換
 			operator PropertyType()const {
 				return (instance_.*getter)();
@@ -24,51 +24,51 @@ namespace planeta_engine {
 			}
 			//四則演算子
 			template<typename ROP>
-			MyType operator+(const ROP& right_op)const {
+			auto operator+(const ROP& right_op)const {
 				return get() + right_op;
 			}
 			template<typename ROP>
-			MyType operator-(const ROP& right_op)const {
+			auto operator-(const ROP& right_op)const {
 				return get() - right_op;
 			}
 			template<typename ROP>
-			MyType operator*(const ROP& right_op)const {
+			auto operator*(const ROP& right_op)const {
 				return get() * right_op;
 			}
 			template<typename ROP>
-			MyType operator/(const ROP& right_op)const {
+			auto operator/(const ROP& right_op)const {
 				return get() / right_op;
 			}
 			//ビット演算子
 			template<typename ROP>
-			MyType operator|(const ROP& right_op)const {
+			auto operator|(const ROP& right_op)const {
 				return get() | right_op;
 			}
 			template<typename ROP>
-			MyType operator&(const ROP& right_op)const {
+			auto operator&(const ROP& right_op)const {
 				return get() & right_op;
 			}
 			template<typename ROP>
-			MyType operator^(const ROP& right_op)const {
+			auto operator^(const ROP& right_op)const {
 				return get() ^ right_op;
 			}
 			//シフト演算
 			template<typename ROP>
-			MyType operator>>(const ROP& right_op)const {
+			auto operator>>(const ROP& right_op)const {
 				return get() >> right_op;
 			}
 			template<typename ROP>
-			MyType operator<<(const ROP& right_op)const {
+			auto operator<<(const ROP& right_op)const {
 				return get() << right_op;
 			}
 			//単項演算子
-			MyType operator+()const {
+			auto operator+()const {
 				return +get();
 			}
-			MyType operator-()const {
+			auto operator-()const {
 				return -get();
 			}
-			MyType operator!()const {
+			auto operator!()const {
 				return !get();
 			}
 		protected:
@@ -81,7 +81,7 @@ namespace planeta_engine {
 		class WriteOnlyProperty {
 			using MyType = WriteOnlyProperty<C, PropertyType, SetterArg, setter>;
 		public:
-			WriteOnlyProperty(C& ins) :instance_(ins) {}
+			explicit WriteOnlyProperty(C& ins) :instance_(ins) {}
 			//代入
 			MyType& operator=(SetterArg v) {
 				(instance_.*setter)(v);
@@ -106,7 +106,7 @@ namespace planeta_engine {
 			using ReadPropertyType = ReadOnlyProperty<C, PropertyType, GetterRet, getter>;
 			using WritePropertyType = WriteOnlyProperty<C, PropertyType, SetterArg, setter>;
 		public:
-			ReadWriteProperty(C& ins) :ReadPropertyType(ins), WritePropertyType(ins) {}
+			explicit ReadWriteProperty(C& ins) :ReadPropertyType(ins), WritePropertyType(ins) {}
 			//代入
 			MyType& operator=(SetterArg v) {
 				WritePropertyType::operator =(v);

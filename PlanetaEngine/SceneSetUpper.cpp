@@ -7,11 +7,15 @@ namespace planeta_engine {
 	namespace core {
 		bool SceneSetUpper::InitializeScene(Scene& scene,const utility::ParameterHolder& initialize_parameters) {
 			SceneAccessorForSetUp safs(scene);
-			//システム設定(特殊プロセスなど)
+			//シーンインターフェイスをモジュールに登録
+			scene.RegisterSceneInterfaceToModules();
+			//システム設定(特殊プロセスの作成やシーンデータの更新)
 			if (!SceneSystemSetUpper()(scene)) {
 				debug::SystemLog::instance().LogError("シーンのシステム設定に失敗しました。",__FUNCTION__);
 				return false;
 			}
+			//シーンデータをモジュールに登録
+			scene.RegisterSceneDataToModules();
 			//固有設定
 			if (!SetUpScene(safs, initialize_parameters)) {
 				debug::SystemLog::instance().LogError("シーンの固有設定に失敗しました。", __FUNCTION__);
