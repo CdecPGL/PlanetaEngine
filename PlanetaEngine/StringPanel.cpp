@@ -1,7 +1,7 @@
 #include "StringPanel.h"
 #include "ResourceManager.h"
 #include "FontDefinitionResource.h"
-#include "DrawManager.h"
+#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine {
 	namespace gui_components {
@@ -10,10 +10,10 @@ namespace planeta_engine {
 			
 		}
 
-		void StringPanel::DrawProc(const utility::RectAngle<int>& draw_area)
+		void StringPanel::DrawProc(const utility::RectAngle<int>& draw_area, ScreenDrawerGUI& drawer)
 		{
 			Vector2D<double> dp = draw_area.position;
-			core::DrawManager::instance().DrawUIString(dp, character_scale_, text_, color_, outline_color_, font_definition_resource_);
+			drawer.DrawString(dp, character_scale_, text_, color_, outline_color_, font_definition_resource_);
 		}
 
 		bool StringPanel::SetFontDefinitionResource(const std::string& resource_id)

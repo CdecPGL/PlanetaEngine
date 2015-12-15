@@ -2,7 +2,7 @@
 
 #include "ResourceManager.h"
 #include "SystemLog.h"
-#include "DrawManager.h"
+#include "ScreenDrawerGUI.h"
 #include "GraphResource.h"
 
 namespace planeta_engine {
@@ -13,9 +13,9 @@ namespace planeta_engine {
 			
 		}
 
-		void GraphPanel::DrawProc(const utility::RectAngle<int>& draw_area)
+		void GraphPanel::DrawProc(const utility::RectAngle<int>& draw_area,ScreenDrawerGUI& drawer)
 		{
-			core::DrawManager::instance().DrawUIGraph(draw_area, this->draw_area(), reverse(), graph_resource_);
+			drawer.DrawGraph(draw_area, this->draw_area(), reverse(), graph_resource_);
 		}
 
 		bool GraphPanel::SetGraphResource(const std::string& resource_id)

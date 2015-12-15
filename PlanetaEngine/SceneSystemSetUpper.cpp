@@ -9,7 +9,7 @@
 #include "TransformComponent.h"
 
 #include "CollisionDetectProcess.h"
-#include "GameObjectDrawProcess.h"
+#include "GameObjectDrawProcessCore.h"
 #include "InstanceProcess.h"
 
 #include "Camera.h"
@@ -29,14 +29,16 @@ namespace planeta_engine {
 			col_det_proc->SetCollisionGroupMatrix(scene.game_accessor().GetCollisionGroupMatrix());
 			scene_data.collision_detect_process = col_det_proc;
 			//ゲームオブジェクト描画プロセス
-			auto godp = scene.game_process_manager().AddSystemProcess<system_processes::GameObjectDrawProcess>(process::GameObjectDrawProcessPriority);
-			scene_data.draw_component_process_registrator = godp;
+			auto godpc = std::make_shared<system_processes::GameObjectDrawProcessCore>();
+			auto godp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GameObjectDrawProcessPriority);
+			godp->SetExcuteFunction([gameobject_draw_process_core = godpc, &drawer = *scene_data.screen_drawer_2d]{ gameobject_draw_process_core->Update(drawer); });
+			scene_data.draw_component_process_registrator = godpc;
 			//ゲームオブジェクト更新プロセス
 			auto goup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GameObjectUpdatetProcessPriority);
 			goup->SetExcuteFunction([&game_object_manager = scene.game_object_manager()]{ game_object_manager.Update(); });
 			//UI描画プロセス
 			auto uidp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GUIDrawProcessPriority);
-			uidp->SetExcuteFunction([&ui_manager = scene.gui_manager()] {ui_manager.Draw(); });
+			uidp->SetExcuteFunction([&ui_manager = scene.gui_manager(),&drawer = *scene_data.screen_drawer_ui] {ui_manager.Draw(drawer); });
 			//UI更新プロセス
 			auto uiup = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::GUIUpdateProcessPriority);
 			uiup->SetExcuteFunction([&ui_manager = scene.gui_manager()] {ui_manager.Update(); });

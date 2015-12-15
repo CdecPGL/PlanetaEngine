@@ -1,7 +1,9 @@
 #include "GUIManager.h"
 #include "GUIObject.h"
 #include "SceneAccessorForGUI.h"
-#include "GUIObjectResisterConnection.h"
+#include "SceneData.h"
+#include "SceneDataForGUI.h"
+#include "GUIManagerConnection.h"
 #include "SystemLog.h"
 #include "boost/lexical_cast.hpp"
 
@@ -24,10 +26,10 @@ namespace planeta_engine {
 			}
 		}
 
-		void GUIManager::Draw()
+		void GUIManager::Draw(ScreenDrawerGUI& drawer)
 		{
 			for (auto& l : layers_) {
-				l.second.Draw();
+				l.second.Draw(drawer);
 			}
 			DebugDraw();
 		}
@@ -55,6 +57,8 @@ namespace planeta_engine {
 
 		}
 
+		GUIManager::~GUIManager() = default;
+
 		void GUIManager::SetSceneInterface(core::ScenePublicInterface& spi)
 		{
 			scene_accessor_ = std::make_shared<core::SceneAccessorForGUI>(spi);
@@ -67,7 +71,7 @@ namespace planeta_engine {
 				debug::SystemLog::instance().LogError("UIObjectインスタンスの作成に失敗しました。", __FUNCTION__);
 				return nullptr;
 			}
-			if (nuo->Initialize(std::make_unique<GUIObjectResisterConnection>(*this, layer, nuo.get()))) {
+			if (nuo->Initialize(std::make_unique<GUIManagerConnection>(*this, layer, nuo.get()))) {
 				layers_[layer].AddGUIObject(nuo);
 				return nuo;
 			}
@@ -108,7 +112,7 @@ namespace planeta_engine {
 		}
 
 		void GUIManager::SetSceneData(const core::SceneData& scene_data) {
-
+			scene_data_ = std::make_unique<core::SceneDataForGUI>();
 		}
 
 		void GUIManager::Layer_::AddGUIObject(const std::shared_ptr<GUIObject>& o)
@@ -123,10 +127,10 @@ namespace planeta_engine {
 			}
 		}
 
-		void GUIManager::Layer_::Draw()
+		void GUIManager::Layer_::Draw(ScreenDrawerGUI& drawer)
 		{
 			for (auto& p : active_gui_objects_) {
-				p.second->Draw();
+				p.second->Draw(drawer);
 			}
 		}
 

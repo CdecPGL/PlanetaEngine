@@ -83,8 +83,8 @@ namespace planeta_engine{
 		}
 
 		void Scene::RegisterSceneDataToModules() {
-			scene_data_->screen_drawer_2d = std::make_shared<ScreenDrawer2D>(game_.screen());
-			scene_data_->screen_drawer_ui = std::make_shared<ScreenDrawerGUI>(game_.screen());
+			scene_data_->screen_drawer_2d = std::make_unique<ScreenDrawer2D>(game_.screen());
+			scene_data_->screen_drawer_ui = std::make_unique<ScreenDrawerGUI>(game_.screen());
 			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(*scene_data); return true; });
 		}
 

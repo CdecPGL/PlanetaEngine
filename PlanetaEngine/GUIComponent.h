@@ -9,6 +9,7 @@
 #include "ObjectHolderTemplate_WithoutID.h"
 
 namespace planeta_engine {
+	class ScreenDrawerGUI;
 	namespace game {
 		class GUIComponent : public core::Object{
 		public:
@@ -27,7 +28,7 @@ namespace planeta_engine {
 			bool Initialize();
 			void Finalize();
 			void Update();
-			void Draw(const DrawData& parent_draw_data);
+			void Draw(const DrawData& parent_draw_data, ScreenDrawerGUI& drawer);
 			void DebugDraw(const utility::RectAngle<int>& parent_draw_area);
 
 			enum class edge { Right = 0, Left = 1, Top = 2, Bottom = 3 };
@@ -67,6 +68,7 @@ namespace planeta_engine {
 			}
 			bool RemoveChild(const std::shared_ptr<GUIComponent>& c) { return children_holder_->unresist_object(c); }
 		private:
+
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<GUIComponent>> children_holder_;
 			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
@@ -81,7 +83,7 @@ namespace planeta_engine {
 
 			/*子供処理*/
 			void UpdateChildren();
-			void DrawChildren(const DrawData& my_draw_data);
+			void DrawChildren(const DrawData& my_draw_data, ScreenDrawerGUI& drawer);
 
 			/*オーバーライド可能関数群*/
 			/*更新処理*/
@@ -91,7 +93,7 @@ namespace planeta_engine {
 			/*前回描画時からサイズが更新されたときの処理(描画前に呼ばれる)*/
 			virtual void SizeUpdatedProc(const Vector2D<int>& size) {};
 			/*描画処理。描画は引数として渡される範囲内に行う*/
-			virtual void DrawProc(const utility::RectAngle<int>& my_draw_area) = 0;
+			virtual void DrawProc(const utility::RectAngle<int>& my_draw_area,ScreenDrawerGUI& drawer) = 0;
 			/*初期化処理*/
 			virtual bool InitializeProc() { return true; };
 			/*終了処理*/

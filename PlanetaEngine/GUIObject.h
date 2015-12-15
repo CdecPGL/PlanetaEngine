@@ -6,9 +6,10 @@
 #include "Object.h"
 #include "RectAngle.h"
 #include "ObjectHolderTemplate_WithoutID.h"
-#include "GUIObjectResisterConnection.h"
+#include "GUIManagerConnection.h"
 
 namespace planeta_engine {
+	class ScreenDrawerGUI;
 	namespace game {
 		class GUIComponent;
 		namespace ui_object_input_code {
@@ -26,9 +27,9 @@ namespace planeta_engine {
 			GUIObject();
 			virtual ~GUIObject() = default;
 			/*システム関数*/
-			bool Initialize(std::unique_ptr<GUIObjectResisterConnection>&& rc);
+			bool Initialize(std::unique_ptr<GUIManagerConnection>&& rc);
 			void Update();
-			void Draw();
+			void Draw(ScreenDrawerGUI& drawer);
 			void DebugDraw();
 			bool KeyInput(ui_object_input_code::type input_code);
 			bool PointingCursorPosition(const Vector2D<int>& parent_relative_cursor_position);
@@ -63,7 +64,7 @@ namespace planeta_engine {
 			bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 			bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<GUIComponent>> component_holder_;
-			std::unique_ptr<GUIObjectResisterConnection> resister_connection_;
+			std::unique_ptr<GUIManagerConnection> resister_connection_;
 			/*ユーザー定義関数*/
 			virtual bool InitializeProc() { return true; }
 			virtual void FinalizeProc() {};

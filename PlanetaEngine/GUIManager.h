@@ -6,20 +6,24 @@
 #include "SceneModule.h"
 #include "WeakPointer.h"
 #include "GUIManagerPublicInterface.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine{
+	class ScreenDrawerGUI;
 	namespace core {
 		class ScenePublicInterface;
 		struct SceneData;
+		struct SceneDataForGUI;
 		class SceneAccessorForGUI;
 	}
 	namespace game {
 		class GUIObject;
 		class IGameProcessManagerAccessor;
 		class GUIManager final: public core::SceneModule
-			,public GUIManagerPublicInterface {
+			,public GUIManagerPublicInterface ,private utility::NonCopyable<GUIManager>{
 		public:
 			GUIManager();
+			~GUIManager();
 			/*初期化処理*/
 			bool Initialize()override;
 			/*終了処理*/
@@ -32,7 +36,7 @@ namespace planeta_engine{
 			/*更新*/
 			void Update();
 			/*描画*/
-			void Draw();
+			void Draw(ScreenDrawerGUI& drawer);
 			/*デバッグ情報描画*/
 			void DebugDraw();
 			/*管理処理*/
@@ -45,17 +49,17 @@ namespace planeta_engine{
 			bool ShowGUIObject(int layer, GUIObject* uo);
 			/*UIオブジェクトを閉じる*/
 			bool CloseGUIObject(int layer, GUIObject* uo);
+
+			/*シーンデータを参照*/
+			core::SceneDataForGUI& RefSceneData() { return *scene_data_; }
 		private:
-			GUIManager(const GUIManager&) = delete;
-			GUIManager(GUIManager&&) = delete;
-			GUIManager& operator=(const GUIManager&) = delete;
-			GUIManager& operator=(GUIManager&&) = delete;
 			std::shared_ptr<core::SceneAccessorForGUI> scene_accessor_;
+			std::unique_ptr<core::SceneDataForGUI> scene_data_;
 			class Layer_ {
 			public:
 				void AddGUIObject(const std::shared_ptr<GUIObject>& o);
 				void Update();
-				void Draw();
+				void Draw(ScreenDrawerGUI& drawer);
 				void DebugDraw();
 				bool RemoveGUIObject(GUIObject* uo);
 				bool ShowGUIObject(GUIObject* uo);

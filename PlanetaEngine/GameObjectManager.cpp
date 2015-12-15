@@ -186,7 +186,6 @@ namespace planeta_engine{
 			scene_data_ = std::make_unique<core::SceneDataForGameObject>();
 			scene_data_->collision_detect_process = scene_data.collision_detect_process;
 			scene_data_->draw_component_process_registrator = scene_data.draw_component_process_registrator;
-			scene_data_->screen_drawer_2d = scene_data.screen_drawer_2d;
 		}
 	}
 }

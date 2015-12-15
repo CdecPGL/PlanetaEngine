@@ -36,7 +36,7 @@ namespace planeta_engine {
 			void outline_width(int w) { outline_width_ = w; }
 		private:
 			virtual void UpdateProc() override;
-			virtual void DrawProc(const utility::RectAngle<int>& draw_area) override;
+			virtual void DrawProc(const utility::RectAngle<int>& draw_area,ScreenDrawerGUI& drawer) override;
 			bool points_update_flag_ = true;
 			/*PolygonèÓïÒ*/
 			Color fill_color_;

@@ -13,12 +13,12 @@ namespace planeta_engine {
 			children_holder_->do_all([](GUIComponent& com) {com.Update(); });
 		}
 
-		void GUIComponent::DrawChildren(const DrawData& my_draw_data)
+		void GUIComponent::DrawChildren(const DrawData& my_draw_data, ScreenDrawerGUI& drawer)
 		{
-			children_holder_->do_all([&my_draw_data](GUIComponent& com) {com.Draw(my_draw_data); });
+			children_holder_->do_all([&my_draw_data, &drawer](GUIComponent& com) {com.Draw(my_draw_data, drawer); });
 		}
 
-		void GUIComponent::Draw(const DrawData& parent_draw_data)
+		void GUIComponent::Draw(const DrawData& parent_draw_data, ScreenDrawerGUI& drawer)
 		{
 			UpdateInfo my_update_info;
 			//更新フラグの判定
@@ -36,8 +36,8 @@ namespace planeta_engine {
 			//自分の描画情報(位置は相対位置と親の位置の和、サイズは自分のサイズ)
 			DrawData my_draw_data = { utility::RectAngle<int>(parent_draw_data.draw_area.position + relative_draw_area_buffer_.position,relative_draw_area_buffer_.size),my_update_info };
 			//自分と子の描画処理
-			DrawProc(my_draw_data.draw_area);
-			DrawChildren(my_draw_data);
+			DrawProc(my_draw_data.draw_area, drawer);
+			DrawChildren(my_draw_data, drawer);
 		}
 
 		void GUIComponent::Update()
@@ -128,7 +128,7 @@ namespace planeta_engine {
 		{
 			//枠線を表示
 			utility::RectAngle<int> my_draw_area(parent_draw_area.position + relative_draw_area_buffer_.position,relative_draw_area_buffer_.size);
-			core::DrawManager::instance().DrawUIWire({ my_draw_area.position,Vector2D<int>(my_draw_area.right(),my_draw_area.top()),Vector2D<int>(my_draw_area.right(),my_draw_area.bottom()), Vector2D<int>(my_draw_area.left(),my_draw_area.bottom()),my_draw_area.position }, 1, Color(255, 150, 0));
+//			core::DrawManager::instance().DrawUIWire({ my_draw_area.position,Vector2D<int>(my_draw_area.right(),my_draw_area.top()),Vector2D<int>(my_draw_area.right(),my_draw_area.bottom()), Vector2D<int>(my_draw_area.left(),my_draw_area.bottom()),my_draw_area.position }, 1, Color(255, 150, 0));
 			children_holder_->do_all([&my_draw_area](GUIComponent& com) {com.DebugDraw(my_draw_area); });
 		}
 
@@ -150,6 +150,5 @@ namespace planeta_engine {
 			children_holder_->do_all([](GUIComponent& com) {com.Finalize(); });
 			FinalizeProc();
 		}
-
 	}
 }

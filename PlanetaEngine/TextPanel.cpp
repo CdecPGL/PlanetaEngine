@@ -1,7 +1,7 @@
 #include "TextPanel.h"
 #include "ResourceManager.h"
 #include "FontDefinitionResource.h"
-#include "DrawManager.h"
+#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine {
 	namespace gui_components {
@@ -11,11 +11,11 @@ namespace planeta_engine {
 			throw std::logic_error("The method or operation is not implemented.");
 		}
 
-		void TextPanel::DrawProc(const utility::RectAngle<int>& draw_area)
+		void TextPanel::DrawProc(const utility::RectAngle<int>& draw_area, ScreenDrawerGUI& drawer)
 		{
 			Vector2D<double> dp = draw_area.position;
 			for (auto& str : lines_) {
-				core::DrawManager::instance().DrawUIString(dp, character_scale_, str, color_, outline_color_, font_definition_resource_);
+				drawer.DrawString(dp, character_scale_, str, color_, outline_color_, font_definition_resource_);
 				dp.y += character_size_;
 			}
 		}

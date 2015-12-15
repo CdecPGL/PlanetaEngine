@@ -18,7 +18,7 @@ namespace planeta_engine {
 			void reverse(bool rev) { reverse_ = rev; }
 		private:
 			virtual void UpdateProc() override;
-			virtual void DrawProc(const utility::RectAngle<int>& draw_area) override;
+			virtual void DrawProc(const utility::RectAngle<int>& draw_area,ScreenDrawerGUI& drawer) override;
 			std::shared_ptr<resources::GraphResource> graph_resource_;
 			/*‰æ‘œã‚Å•\¦‚·‚é”ÍˆÍ*/
 			utility::RectAngle<int> relative_draw_area_buffer_;

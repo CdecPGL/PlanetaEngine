@@ -1,7 +1,7 @@
 #include "SimplePolygonPanel.h"
 
 #include "SystemLog.h"
-#include "DrawManager.h"
+#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine {
 	namespace gui_components {
@@ -11,12 +11,12 @@ namespace planeta_engine {
 
 		}
 
-		void SimplePolygonPanel::DrawProc(const utility::RectAngle<int>& draw_area)
+		void SimplePolygonPanel::DrawProc(const utility::RectAngle<int>& draw_area, ScreenDrawerGUI& drawer)
 		{
 			if (points_update_flag_) { UpdateAbsolutePoints_(draw_area); points_update_flag_ = false; }
-			core::DrawManager::instance().DrawUIPolygon(absolute_points_, indexes_, fill_color());
+			drawer.DrawPolygon(absolute_points_, indexes_, fill_color());
 			if (is_draw_outline_) {
-				core::DrawManager::instance().DrawUIWire(absolute_points_, outline_width_, outline_color());
+				drawer.DrawWire(absolute_points_, outline_width_, outline_color());
 			}
 		}
 

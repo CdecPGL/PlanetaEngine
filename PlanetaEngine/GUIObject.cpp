@@ -15,7 +15,7 @@ namespace planeta_engine {
 			component_holder_->do_all([](GUIComponent& com) {com.Update(); });
 		}
 
-		void GUIObject::Draw()
+		void GUIObject::Draw(ScreenDrawerGUI& drawer)
 		{
 			GUIComponent::DrawData my_draw_data;
 			my_draw_data.draw_area = rect_angle_;
@@ -24,13 +24,13 @@ namespace planeta_engine {
 			my_draw_data.update_info.is_edge_fix_updated = false;
 			is_position_updated_since_last_draw = false;
 			is_size_updated_since_last_draw = false;
-			component_holder_->do_all([&my_draw_data](GUIComponent& com) {com.Draw(my_draw_data); });
+			component_holder_->do_all([&my_draw_data, &drawer](GUIComponent& com) {com.Draw(my_draw_data, drawer); });
 		}
 
 		void GUIObject::DebugDraw()
 		{
 			//ògê¸Çï\é¶
-			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2D<int>(rect_angle_.right(),rect_angle_.top()),Vector2D<int>(rect_angle_.right(),rect_angle_.bottom()), Vector2D<int>(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, Color::Red());
+//			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2D<int>(rect_angle_.right(),rect_angle_.top()),Vector2D<int>(rect_angle_.right(),rect_angle_.bottom()), Vector2D<int>(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, Color::Red());
 			component_holder_->do_all([this](GUIComponent& com) {com.DebugDraw(rect_angle_); });
 		}
 
@@ -106,7 +106,7 @@ namespace planeta_engine {
 			resister_connection_->Dispose();
 		}
 
-		bool GUIObject::Initialize(std::unique_ptr<GUIObjectResisterConnection>&& rc)
+		bool GUIObject::Initialize(std::unique_ptr<GUIManagerConnection>&& rc)
 		{
 			resister_connection_ = std::move(rc);
 			if (InitializeProc()==false) {

@@ -140,7 +140,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CameraUtility.h" />
     <ClInclude Include="CircleColliderComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
@@ -162,6 +161,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneDataForGameProcess.h" />
+    <ClInclude Include="SceneDataForGUI.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="ScreenEffectProcess.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
@@ -209,7 +209,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessManagerAccessorForGameProcess.h" />
     <ClInclude Include="GameObjectManagerAccessorForGameObject.h" />
     <ClInclude Include="GameObjectAllocator.h" />
-    <ClInclude Include="GameObjectDrawProcess.h" />
+    <ClInclude Include="GameObjectDrawProcessCore.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameObjectManagerAccessorForGameProcess.h" />
     <ClInclude Include="GameObjectManagerAccessorForSetUp.h" />
@@ -318,7 +318,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GUIManagerAccessorForGUI.h" />
     <ClInclude Include="GUIManagerPublicInterface.h" />
     <ClInclude Include="GUIObject.h" />
-    <ClInclude Include="GUIObjectResisterConnection.h" />
+    <ClInclude Include="GUIManagerConnection.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="NewVector2D.h" />
     <ClInclude Include="Vector.h" />
@@ -334,7 +334,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CameraUtility.cpp" />
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
@@ -406,7 +405,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="FileSystemManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjectDrawProcess.cpp" />
+    <ClCompile Include="GameObjectDrawProcessCore.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameObjectSetUpper.cpp" />
     <ClCompile Include="DrawGraphComponent.cpp" />
@@ -432,7 +431,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TLSFMemoryAllocator.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="GUIManager.cpp" />
-    <ClCompile Include="GUIObjectResisterConnection.cpp" />
+    <ClCompile Include="GUIManagerConnection.cpp" />
     <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>
   <ItemGroup>

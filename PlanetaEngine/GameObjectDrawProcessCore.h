@@ -1,21 +1,21 @@
 #pragma once
-#include "GameProcess.h"
+
 #include <unordered_map>
 #include <map>
 #include <list>
 #include <memory>
+#include "NonCopyable.h"
 
 namespace planeta_engine {
+	class ScreenDrawer2D;
 	namespace components {
 		class DrawComponent;
 	}
 	namespace system_processes {
-		class GameObjectDrawProcess :
-			public game::GameProcess
+		class GameObjectDrawProcessCore : private utility::NonCopyable<GameObjectDrawProcessCore>
 		{
 		public:
-			using GameProcess::GameProcess;
-			~GameObjectDrawProcess();
+			void Update(ScreenDrawer2D& drawer);
 			/*描画コンポーネント登録*/
 			void Register(const std::shared_ptr<components::DrawComponent>& draw_component, int priority) {
 				_draw_component_update_list[priority].push_back(draw_component);
@@ -30,7 +30,6 @@ namespace planeta_engine {
 				return true;
 			}
 		private:
-			void Update()override final;
 			/*更新リスト(mapとlistは要素の追加削除を行ってもイテレータが有効)*/
 			std::map<int, std::list<std::shared_ptr<components::DrawComponent>>> _draw_component_update_list;
 			/*描画コンポーネントマップ<ポインタ、更新リストへのイテレータ>*/

@@ -7,7 +7,7 @@
 namespace planeta_engine {
 	class ScreenDrawer2D;
 	namespace system_processes {
-		class GameObjectDrawProcess;
+		class GameObjectDrawProcessCore;
 	}
 	namespace core {
 //		class GameObjectDrawComponentProcessRegistrator;
@@ -18,7 +18,7 @@ namespace planeta_engine {
 			DrawComponent();
 			virtual ~DrawComponent() = default;
 			/*描画処理*/
-			void Draw() { DrawProc(*screen_drawer_); }
+			void Draw(ScreenDrawer2D& drawer) { DrawProc(drawer); }
 			/*Accessor*/
 			/*描画優先度を取得*/
 			int draw_priority()const { return draw_priority_; }
@@ -48,8 +48,6 @@ namespace planeta_engine {
 			/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
 			Vector2D<double> GetDrawScale()const;
 		private:
-			/*画面描画クラス*/
-			std::shared_ptr<ScreenDrawer2D> screen_drawer_;
 			int draw_priority_ = 0; //描画優先度
 			/*表示位置*/
 			Vector2D<double> position_;
@@ -59,7 +57,7 @@ namespace planeta_engine {
 			Vector2D<double> scale_ = Vector2D<double>(1.0, 1.0);
 			planeta_engine::Color color_;
 //			std::shared_ptr<core::GameObjectDrawComponentProcessRegistrator> draw_component_registrator_;
-			utility::WeakPointer<system_processes::GameObjectDrawProcess> draw_component_registrator_;
+			utility::WeakPointer<system_processes::GameObjectDrawProcessCore> draw_component_registrator_;
 			void RegisterToProcess_();
 			void RemoveFromProcess_();
 			void UpdatePriority_();
