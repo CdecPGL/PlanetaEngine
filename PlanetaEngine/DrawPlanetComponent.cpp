@@ -7,7 +7,7 @@
 #include "PlanetComponent.h"
 #include "MathConstant.h"
 #include "SystemLog.h"
-#include "GraphDrawData.h"
+#include "GraphDrawData2D.h"
 
 namespace {
 	constexpr unsigned int kDefaultHorizontalSeparation(90);
@@ -17,7 +17,7 @@ namespace {
 namespace planeta_engine {
 	namespace components {
 
-		DrawPlanetComponent::DrawPlanetComponent() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation),graph_draw_data_(std::make_unique<core::GraphDrawData>())
+		DrawPlanetComponent::DrawPlanetComponent() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation),graph_draw_data_(std::make_shared<core::GraphDrawData2D>())
 		{
 
 		}
@@ -27,7 +27,7 @@ namespace planeta_engine {
 		void DrawPlanetComponent::DrawProc(ScreenDrawer2D& drawer)
 		{
 			_UpdatePolygon();
-			drawer.DrawGraph(*graph_draw_data_);
+			drawer.DrawGraph(graph_draw_data_);
 		}
 
 		bool DrawPlanetComponent::OnInitialized()
@@ -67,7 +67,7 @@ namespace planeta_engine {
 			for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 				//中心以外はポリゴンを2枚ずつ張る
 				for (unsigned int j = 0; j < _vertical_separation - 1; ++j) {
-					core::GraphDrawData::PolygonIndexType poly1,poly2;
+					core::GraphDrawData2D::PolygonIndexType poly1,poly2;
 					poly1[0] = i*(_vertical_separation + 1) + j;
 					poly1[1] = i*(_vertical_separation + 1) + j + 1;
 					poly1[2] = (i + 1)*(_vertical_separation + 1) + j;
@@ -78,7 +78,7 @@ namespace planeta_engine {
 					graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
 				}
 				//中心はポリゴンを1枚だけ張る
-				core::GraphDrawData::PolygonIndexType poly;
+				core::GraphDrawData2D::PolygonIndexType poly;
 				poly[0] = i*(_vertical_separation + 1) + (_vertical_separation - 1);
 				poly[1] = i*(_vertical_separation + 1) + (_vertical_separation - 1) + 1;
 				poly[2] = (i + 1)*(_vertical_separation + 1) + (_vertical_separation - 1);

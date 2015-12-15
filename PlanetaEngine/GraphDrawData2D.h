@@ -12,10 +12,10 @@ namespace planeta_engine {
 	}
 	namespace core {
 		struct DXGraphDrawData;
-		class GraphDrawData {
+		class GraphDrawData2D {
 		public:
-			GraphDrawData();
-			~GraphDrawData();
+			GraphDrawData2D();
+			~GraphDrawData2D();
 			const DXGraphDrawData& GetDXData()const { return *dx_data_; }
 			/*画像リソースをセットする*/
 			void SetGraphResource(const std::shared_ptr<resources::GraphResource>& g_res);

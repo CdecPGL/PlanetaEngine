@@ -5,9 +5,6 @@
 #include <deque>
 #include "PointerSingletonTemplate.h"
 #include "Vector2D.h"
-#include "Color.h"
-#include "RectAngle.h"
-#include "Vertex2D.h"
 
 namespace planeta_engine {
 	namespace core{

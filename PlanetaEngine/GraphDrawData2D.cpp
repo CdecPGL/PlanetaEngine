@@ -1,4 +1,4 @@
-#include "GraphDrawData.h"
+#include "GraphDrawData2D.h"
 #include "DXGraphDrawData.h"
 #include "DXUtility.h"
 #include "GraphResource.h"
@@ -46,11 +46,11 @@ namespace planeta_engine {
 			}
 		}
 
-		GraphDrawData::GraphDrawData() :dx_data_(std::make_unique<DXGraphDrawData>()) {}
+		GraphDrawData2D::GraphDrawData2D() :dx_data_(std::make_unique<DXGraphDrawData>()) {}
 
-		GraphDrawData::~GraphDrawData() = default;
+		GraphDrawData2D::~GraphDrawData2D() = default;
 
-		void GraphDrawData::SetGraphResource(const std::shared_ptr<resources::GraphResource>& g_res)
+		void GraphDrawData2D::SetGraphResource(const std::shared_ptr<resources::GraphResource>& g_res)
 		{
 			graph_resource_ = g_res;
 			dx_data_->graph_handle = g_res->GetHandle();
@@ -63,7 +63,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void GraphDrawData::SetVertexCount(size_t c)
+		void GraphDrawData2D::SetVertexCount(size_t c)
 		{
 			dx_data_->vertexes = std::make_unique<VERTEX3D[]>(c);
 			dx_data_->vertex_count = c;
@@ -73,13 +73,13 @@ namespace planeta_engine {
 			vertex_uv_information_buffer_.resize(c);
 		}
 
-		void GraphDrawData::SetPlygonCount(size_t c)
+		void GraphDrawData2D::SetPlygonCount(size_t c)
 		{
 			dx_data_->indexes = std::make_unique<unsigned short[]>(c * 3);
 			dx_data_->polygon_count = c;
 		}
 
-		bool GraphDrawData::SetVectex(size_t idx, const utility::Vertex2D& vtx)
+		bool GraphDrawData2D::SetVectex(size_t idx, const utility::Vertex2D& vtx)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetPEVertex2DToDXVERTEX3D(dx_data_->vertexes[idx], vtx, graph_resource_->image_area());
@@ -88,14 +88,14 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool GraphDrawData::SetVertexPosition(size_t idx, const Vector2D<float>& pos)
+		bool GraphDrawData2D::SetVertexPosition(size_t idx, const Vector2D<float>& pos)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetPositionToDXVERTEX3D(dx_data_->vertexes[idx], pos);
 			return true;
 		}
 
-		bool GraphDrawData::SetVertexUV(size_t idx, const Vector2D<float>& uv)
+		bool GraphDrawData2D::SetVertexUV(size_t idx, const Vector2D<float>& uv)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetUVToDXVERTEX3D(dx_data_->vertexes[idx], uv.x, uv.y, graph_resource_->image_area());
@@ -103,21 +103,21 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool GraphDrawData::SetVertexColor(size_t idx, const Color& color)
+		bool GraphDrawData2D::SetVertexColor(size_t idx, const Color& color)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetColorToDXVERTEX3D(dx_data_->vertexes[idx], color);
 			return true;
 		}
 
-		bool GraphDrawData::SetPolyginIndex(size_t idx, const std::array<size_t, 3>& p_idx)
+		bool GraphDrawData2D::SetPolyginIndex(size_t idx, const std::array<size_t, 3>& p_idx)
 		{
 			if (dx_data_->polygon_count <= idx) { return false; }
 			ConvertPEPolygonIndexToDXIndexArray(dx_data_->indexes.get(), idx * 3, p_idx);
 			return true;
 		}
 
-		void GraphDrawData::SetVertexes(const std::vector<utility::Vertex2D>& vertexes)
+		void GraphDrawData2D::SetVertexes(const std::vector<utility::Vertex2D>& vertexes)
 		{
 			using namespace utility::dx;
 			//頂点情報のDX形式変換
@@ -133,7 +133,7 @@ namespace planeta_engine {
 			dx_data_->vertex_count = vertexes.size();
 		}
 
-		void GraphDrawData::SetPolygonIndexes(const std::vector<std::array<size_t, 3>>& polygon_indexes)
+		void GraphDrawData2D::SetPolygonIndexes(const std::vector<std::array<size_t, 3>>& polygon_indexes)
 		{
 			//インデックス情報のDX形式変換
 			std::unique_ptr<unsigned short[]> idx = std::make_unique<unsigned short[]>(polygon_indexes.size() * 3);
@@ -144,23 +144,23 @@ namespace planeta_engine {
 			dx_data_->polygon_count = polygon_indexes.size();
 		}
 
-		void GraphDrawData::SetVertexesAndPolygonIndexes(const std::vector<utility::Vertex2D>& vertexes, const std::vector<std::array<size_t, 3>>& indexes)
+		void GraphDrawData2D::SetVertexesAndPolygonIndexes(const std::vector<utility::Vertex2D>& vertexes, const std::vector<std::array<size_t, 3>>& indexes)
 		{
 			SetVertexes(vertexes);
 			SetPolygonIndexes(indexes);
 		}
 
-		bool GraphDrawData::is_valid() const
+		bool GraphDrawData2D::is_valid() const
 		{
 			return graph_resource_ != nullptr && dx_data_->indexes != nullptr && dx_data_->vertexes != nullptr;
 		}
 
-		size_t GraphDrawData::vertex_count() const
+		size_t GraphDrawData2D::vertex_count() const
 		{
 			return dx_data_->vertex_count;
 		}
 
-		size_t GraphDrawData::polygon_count() const
+		size_t GraphDrawData2D::polygon_count() const
 		{
 			return dx_data_->polygon_count;
 		}

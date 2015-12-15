@@ -9,6 +9,8 @@ namespace planeta_engine {
 			SceneAccessorForSetUp safs(scene);
 			//シーンインターフェイスをモジュールに登録
 			scene.RegisterSceneInterfaceToModules();
+			//シーンデータの準備
+			scene.PrepareSceneData();
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
 			if (!SceneSystemSetUpper()(scene)) {
 				debug::SystemLog::instance().LogError("シーンのシステム設定に失敗しました。",__FUNCTION__);

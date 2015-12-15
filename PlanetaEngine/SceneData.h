@@ -14,8 +14,8 @@ namespace planeta_engine {
 		struct SceneData {
 			utility::WeakPointer<system_processes::CollisionDetectProcess> collision_detect_process;
 			utility::WeakPointer<system_processes::GameObjectDrawProcessCore> draw_component_process_registrator;
-			std::unique_ptr<ScreenDrawer2D> screen_drawer_2d;
-			std::unique_ptr<ScreenDrawerGUI> screen_drawer_ui;
+			std::shared_ptr<ScreenDrawer2D> screen_drawer_2d;
+			std::shared_ptr<ScreenDrawerGUI> screen_drawer_ui;
 		};
 	}
 }

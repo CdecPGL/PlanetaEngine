@@ -11,7 +11,7 @@ namespace planeta_engine {
 		class GraphResource;
 	}
 	namespace core {
-		class GraphDrawData;
+		class GraphDrawData2D;
 	}
 	namespace components {
 		/*惑星描画コンポーネント。DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる*/
@@ -32,7 +32,7 @@ namespace planeta_engine {
 			/*垂直分割数*/
 			unsigned int _vertical_separation;
 			/*画像描画データ*/
-			std::unique_ptr<core::GraphDrawData> graph_draw_data_;
+			std::shared_ptr<core::GraphDrawData2D> graph_draw_data_;
 			virtual bool OnInitialized() override;
 			virtual void OnFinalized() override;
 			utility::WeakPointer<components::PlanetComponent> _planet_component;

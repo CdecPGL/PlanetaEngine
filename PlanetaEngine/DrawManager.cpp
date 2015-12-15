@@ -2,13 +2,8 @@
 #include "DrawManager.h"
 #include "DxLib.h"
 #include "DXUtility.h"
-#include "GraphResource.h"
-#include "FontDefinitionResource.h"
 #include "MathUtility.h"
-#include "ScreenChangeEffecter.h"
 #include "Screen.h"
-#include "GraphDrawData.h"
-#include "DXGraphDrawData.h"
 #include "ConfigData.h"
 
 namespace planeta_engine {
@@ -18,6 +13,7 @@ namespace planeta_engine {
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetupCamera_Ortho((float)config_data::engine::DrawSize().y); //正射影カメラを設定
 			SetUseLighting(false); //ライティング計算を行わない
+			SetUseSetDrawScreenSettingReset(false); //スクリーン変更時にカメラ情報のリセットを行わない。
 			camera_posision_.Set(config_data::engine::DrawSize().x / 2, config_data::engine::DrawSize().y / 2);
 			return true;
 		}
@@ -46,6 +42,9 @@ namespace planeta_engine {
 			//DrawWire({ Vector2D<double>(640,0),Vector2D<double>(608,32) }, 1, Color::Yellow());
 			//DrawWire({ Vector2D<double>(640,480),Vector2D<double>(608,448) }, 1, Color::Magenta());
 			//DrawWire({ Vector2D<double>(0,480),Vector2D<double>(32,448) }, 1, Color::Cyan());
+			//スクリーンに描画
+			primary_screen_->HandleDrawReservations();
+			//画面更新
 			if (!(ScreenFlip() == 0 && ClearDrawScreen() == 0)) { return false; }
 			return true;
 		}
@@ -79,7 +78,7 @@ namespace planeta_engine {
 				assert(false); 
 				return nullptr;
 			}
-			primary_screen_ = std::make_shared<Screen>(DX_SCREEN_BACK, true);
+			primary_screen_ = std::make_shared<Screen>(DX_SCREEN_BACK);
 			return primary_screen_;
 		}
 

@@ -224,7 +224,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessWithRefrection.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="GraphAnimatorComponent.h" />
-    <ClInclude Include="GraphDrawData.h" />
+    <ClInclude Include="GraphDrawData2D.h" />
     <ClInclude Include="GraphPanel.h" />
     <ClInclude Include="GraphResource.h" />
     <ClInclude Include="GroundComponent.h" />
@@ -364,10 +364,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataSerializeUtility.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
-    <ClCompile Include="GraphDrawData.cpp" />
+    <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenChangeEffecter.cpp" />
     <ClCompile Include="ScreenDrawer2D.cpp" />
     <ClCompile Include="ScreenDrawerGUI.cpp" />

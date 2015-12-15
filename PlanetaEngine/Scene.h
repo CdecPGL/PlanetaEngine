@@ -47,6 +47,7 @@ namespace planeta_engine{
 
 			/*‰Šú‰»—pŠÖ”*/
 			void RegisterSceneInterfaceToModules();
+			void PrepareSceneData();
 			void RegisterSceneDataToModules();
 		private:
 			IGameAccessor& game_;

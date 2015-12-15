@@ -7,12 +7,12 @@
 #include "IGameObjectAccessor.h"
 #include "Matrix.h"
 #include "MathConstant.h"
-#include "GraphDrawData.h"
+#include "GraphDrawData2D.h"
 
 namespace planeta_engine {
 	namespace components {
 		/*í∏ì_ÇÕ[0]ç∂â∫,[1]âEâ∫,[2]âEè„,[3]ç∂è„Ç∆Ç∑ÇÈ*/
-		DrawGraphComponent::DrawGraphComponent() :graph_draw_data_(std::make_unique<core::GraphDrawData>())
+		DrawGraphComponent::DrawGraphComponent() :graph_draw_data_(std::make_shared<core::GraphDrawData2D>())
 		{
 			graph_draw_data_->SetVertexCount(4);
 			graph_draw_data_->SetPolygonIndexes({ { 0,1,3 } ,{ 1,3,2 } });
@@ -43,7 +43,7 @@ namespace planeta_engine {
 		void DrawGraphComponent::DrawProc(ScreenDrawer2D& drawer)
 		{
 			_UpdatePolygon();
-			drawer.DrawGraph(*graph_draw_data_);
+			drawer.DrawGraph(graph_draw_data_);
 		}
 
 		void DrawGraphComponent::_UpdatePolygon()

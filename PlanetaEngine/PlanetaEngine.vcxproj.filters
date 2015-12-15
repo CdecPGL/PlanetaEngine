@@ -151,6 +151,15 @@
     <Filter Include="PlanetaEngine\BuildinElements\GUIObjects">
       <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\GraphicSystem\Screen">
+      <UniqueIdentifier>{2c044abd-aafc-4948-adaf-9d1de805a50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\GraphicSystem\2D">
+      <UniqueIdentifier>{1bbeb0a9-c694-4467-9cd9-0f6cf7822fa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\GraphicSystem\GUI">
+      <UniqueIdentifier>{2c996d1e-a09c-420c-9dca-b3ae627bc599}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -600,15 +609,6 @@
     <ClInclude Include="FileSystemManager.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphDrawData.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="DXGraphDrawData.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionGroupMatrix.h">
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClInclude>
@@ -617,12 +617,6 @@
     </ClInclude>
     <ClInclude Include="RangeUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenChangeEffecter.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenDrawer2D.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClInclude>
     <ClInclude Include="EmptySceneDefinition.h">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
@@ -720,9 +714,6 @@
     <ClInclude Include="SceneAccessorForGUI.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenDrawerGUI.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
     <ClInclude Include="GUIManagerAccessorForGUI.h">
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
@@ -737,6 +728,24 @@
     </ClInclude>
     <ClInclude Include="GameObjectDrawProcessCore.h">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenChangeEffecter.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenDrawer2D.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenDrawerGUI.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DXGraphDrawData.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphDrawData2D.h">
+      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -995,17 +1004,8 @@
     <ClCompile Include="FileSystemManager.cpp">
       <Filter>PlanetaEngine\FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="GraphDrawData.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenChangeEffecter.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenDrawer2D.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
     </ClCompile>
     <ClCompile Include="EmptySceneDefinition.cpp">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
@@ -1040,14 +1040,26 @@
     <ClCompile Include="GUIManager.cpp">
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="ScreenDrawerGUI.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClCompile>
     <ClCompile Include="GUIManagerConnection.cpp">
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectDrawProcessCore.cpp">
       <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenChangeEffecter.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenDrawer2D.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenDrawerGUI.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphDrawData2D.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
