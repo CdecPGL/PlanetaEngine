@@ -4,6 +4,7 @@
 #include "MathVector.h"
 #include "Property.h"
 
+//旧Vector2Dとの競合回避ため、ファイル名とクラス名をNewVector2Dにしておく。
 namespace planeta_engine {
 	namespace system {
 		namespace vei {
@@ -27,9 +28,9 @@ namespace planeta_engine {
 		}
 	}
 	template<typename T>
-	using Vector2D = math::Vector<T, 2, system::vei::XYIdentifer>; //二次元ベクトル
-	using Vector2Df = Vector2D<float>; //単精度浮動小数点型二次元ベクトル
-	using Vector2Dd = Vector2D<double>; //倍精度浮動小数点型二次元ベクトル
-	using Vector2Di = Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
+	using NewVector2D = math::Vector<T, 2, system::vei::XYIdentifer>; //二次元ベクトル
+	using Vector2Df = NewVector2D<float>; //単精度浮動小数点型二次元ベクトル
+	using Vector2Dd = NewVector2D<double>; //倍精度浮動小数点型二次元ベクトル
+	using Vector2Di = NewVector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
 
 }

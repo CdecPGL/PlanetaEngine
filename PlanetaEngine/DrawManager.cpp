@@ -1,20 +1,15 @@
 #include <cassert>
 #include "DrawManager.h"
 #include "DxLib.h"
-#include "DXUtility.h"
-#include "MathUtility.h"
 #include "Screen.h"
-#include "ConfigData.h"
 
 namespace planeta_engine {
 	namespace core {
 		bool planeta_engine::core::DrawManager::Initialize()
 		{
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
-			SetupCamera_Ortho((float)config_data::engine::DrawSize().y); //正射影カメラを設定
 			SetUseLighting(false); //ライティング計算を行わない
 			SetUseSetDrawScreenSettingReset(false); //スクリーン変更時にカメラ情報のリセットを行わない。
-			camera_posision_.Set(config_data::engine::DrawSize().x / 2, config_data::engine::DrawSize().y / 2);
 			return true;
 		}
 
@@ -47,30 +42,6 @@ namespace planeta_engine {
 			//画面更新
 			if (!(ScreenFlip() == 0 && ClearDrawScreen() == 0)) { return false; }
 			return true;
-		}
-
-		void DrawManager::SetCameraPosition(const Vector2D<double>& position)
-		{
-			if (!math::DoubleIsEqual(camera_posision_.x, position.x) || !math::DoubleIsEqual(camera_posision_.y, position.y)) {
-				camera_posision_ = position;
-				SetCameraPositionAndAngle(VGet((float)position.x, (float)position.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), GetCameraAngleTRotate());
-			}
-		}
-
-		void DrawManager::SetCameraRotationRad(double rotation_rad)
-		{
-			if (!math::DoubleIsEqual(camera_rotation_rad_,rotation_rad)) {
-				camera_rotation_rad_ = rotation_rad;
-				SetCameraPositionAndAngle(GetCameraPosition(), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rotation_rad);
-			}
-		}
-
-		void DrawManager::SetCameraScale(double scale)
-		{
-			if (!math::DoubleIsEqual(camera_scale_, scale)) {
-				camera_scale_ = scale;
-				SetupCamera_Ortho(480.0f / (float)scale);
-			}
 		}
 
 		std::shared_ptr<Screen> DrawManager::CreateScreen() {

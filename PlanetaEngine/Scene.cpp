@@ -26,7 +26,7 @@ namespace planeta_engine{
 
 		{
 			//モジュールを初期化
-			if (ForEachSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); })) {
+			if (ForEachSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); }) && camera_->Initialize()) {
 				return true;
 			}
 			else {
@@ -69,6 +69,8 @@ namespace planeta_engine{
 				return;
 			}
 			game_process_manager_->Process(); //プロセスマネージャ更新
+			//カメラ更新
+			camera_->Update();
 		}
 
 		bool Scene::ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc) {
