@@ -747,6 +747,18 @@
     <ClInclude Include="GraphDrawData2D.h">
       <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
     </ClInclude>
+    <ClInclude Include="GameProcessPositionInList.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="InsertPosIndication.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessListTypes.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessPredefinedPoisition.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

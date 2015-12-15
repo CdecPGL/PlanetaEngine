@@ -6,6 +6,8 @@
 #include "SceneModule.h"
 #include "GameProcessManagerPublicInterface.h"
 #include "WeakPointer.h"
+#include "InsertPosIndication.h"
+#include "GameProcessListTypes.h"
 
 namespace planeta_engine{
 	namespace core {
@@ -37,9 +39,9 @@ namespace planeta_engine{
 			bool Process();
 
 			/*システムプロセス追加(システムプロセスはIDマップや名前マップに登録しない)
-			削除不可。固有名をつける*/
+			削除不可*/
 			template<class C>
-			utility::WeakPointer<C> AddSystemProcess(int priority) {
+			utility::WeakPointer<C> AddSystemProcess(const core::GameProcessPositionInList& pos,InsertPosIndication ins_pos = InsertPosIndication::At) {
 				static_assert(std::is_base_of<GameProcess, C>::value == true, "C is not derived GameProcess.");
 				std::shared_ptr<C> new_proc = std::make_shared<C>(game_);
 				SetupProcess_(new_proc, []() {return true; });
@@ -47,53 +49,34 @@ namespace planeta_engine{
 				return new_proc;
 			}
 		private:
-			/*ゲームプロセス優先度リスト
-			優先度の低い順に並べるためにmapを使用。要素の追加削除でイテレータっが無効にならないことからlistを使用*/
-			using ProcessListType =std::list<std::shared_ptr<GameProcess>>;
-			using ProcessPriorytyListType = std::map<int, ProcessListType>;
-			ProcessPriorytyListType process_priority_list_;
-			using PositionTypeAtPriorytyList = std::pair<ProcessPriorytyListType::iterator, ProcessListType::iterator>;
-			/*IDマップ。<id,<優先度リストイテレータ、プロセスリストイテレータ>>*/
-			using ProcessIDMapType = std::unordered_map<GameProcess*, PositionTypeAtPriorytyList>;
+			/*ゲームプロセスリスト
+			要素の追加削除でイテレータが無効にならないことからlistを使用*/
+			core::GameProcessPriorytyListType process_priority_list_;
+			/*IDマップ。<id,リスト内位置>*/
+			using ProcessIDMapType = std::unordered_map<GameProcess*, core::GameProcessPositionTypeAtList>;
 			ProcessIDMapType process_id_map_;
 			/*名前IDマップ。<プロセス名,ID>*/
 			using ProcessNameMapType = std::unordered_map<std::string, GameProcess*>;
 			ProcessNameMapType process_name_id_map_;
 			/*登録解除リスト*/
-			std::vector<PositionTypeAtPriorytyList> dispose_list_;
-			/*チェッカーを通過する最初のプロセスを取得*/
-			utility::WeakPointer<GameProcess> GetProcess(std::function<bool(const std::shared_ptr<GameProcess>&)> type_checker)const {
-				for (const auto& sp : process_id_map_) {
-					if (type_checker(*sp.second.second)) { return *sp.second.second; }
-				}
-				return nullptr;
-			}
+			std::vector<core::GameProcessPositionTypeAtList> dispose_list_;
+
 			/*名前からゲームプロセスを取得*/
 			utility::WeakPointer<GameProcess> GetProcess(const std::string& name)override;
 			/*ゲームプロセス作製*/
-			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, int priority)override {
-				auto np = creator(game_);
-				SetupProcess_(np, [id = np.get(), this](){return RemoveGameProcess_(id); });
-				auto pos = AddGameProcessToList_(priority, np);
-				return RegisterToIDMap_(np.get(), pos) ? np : nullptr;
-			}
-			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, int priority,const std::string& name)override {
-				auto np = creator(game_);
-				SetupProcess_(np, [id = np.get(), this](){return RemoveGameProcess_(id); });
-				auto pos = AddGameProcessToList_(priority, np);
-				return (RegisterToIDMap_(np.get(), pos) && RegisterProcessName_(name, np.get())) ? np : nullptr;
-			}
+			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPositionInList& pos, InsertPosIndication pos_indication)override;
+			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPositionInList& pos, InsertPosIndication pos_indication, const std::string& name)override;
 
 			/*プロセスの設定*/
-			void SetupProcess_(const std::shared_ptr<GameProcess>& game_process, std::function<bool()>&& remover);
+			void SetupProcess_(const std::shared_ptr<GameProcess>& game_process, std::function<bool()>&& remover,const core::GameProcessPositionInList& pos);
 			/*プロセスをリストに追加*/
-			PositionTypeAtPriorytyList AddGameProcessToList_(int priority, const std::shared_ptr<GameProcess>& game_process);
+			core::GameProcessPositionTypeAtList AddGameProcessToList_(const std::shared_ptr<GameProcess>& game_process, const core::GameProcessPositionInList& pos, InsertPosIndication ins_pos);
 			/*名前を登録*/
 			bool RegisterProcessName_(const std::string& name,GameProcess* id);
 			/*IDマップにプロセス登録*/
-			bool RegisterToIDMap_(GameProcess* id,const PositionTypeAtPriorytyList& pos_at_plist);
-			/*IDでプロセス削除*/
-			bool RemoveGameProcess_(GameProcess* id);
+			bool RegisterToIDMap_(GameProcess* id,const core::GameProcessPositionTypeAtList& pos_at_plist);
+			/*位置でプロセス削除*/
+			bool RemoveGameProcess_(const core::GameProcessPositionInList& pos);
 			/*破棄リストを処理する*/
 			void ProcessDisposeList_();
 

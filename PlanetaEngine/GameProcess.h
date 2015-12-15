@@ -10,6 +10,7 @@ namespace planeta_engine{
 		class SceneAccessorForGameProcess;
 		struct SceneDataForGameProcess;
 		struct GameProcessRegistrationData;
+		struct GameProcessPositionInList;
 	}
 	namespace game{
 		class IGameObjectAccessor;
@@ -18,11 +19,13 @@ namespace planeta_engine{
 		{
 		public:
 			GameProcess(core::IGameAccessor& gameaccess):game_(gameaccess){}
-			virtual ~GameProcess() = default;
+			virtual ~GameProcess();
 			virtual void Update() = 0;
 			void Dispose();
 			/*システム関数*/
 			bool SystemSetUpAndInitialize(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data);
+			/*ゲームプロセスリストでの位置*/
+			const core::GameProcessPositionInList& position_in_gplist()const { return *position_in_list_; }
 			/*イベント*/
 			/*プロセスが破棄された*/
 			utility::WeakPointerDelegate<> disposed;
@@ -40,6 +43,7 @@ namespace planeta_engine{
 			virtual bool OnCreated() { return true; }
 			virtual void OnDisposed() {}
 			std::function<void()> disposer_;
+			std::unique_ptr<core::GameProcessPositionInList> position_in_list_;
 		};
 	}
 }
