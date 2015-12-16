@@ -30,6 +30,8 @@ namespace planeta_engine {
 			}
 			/*ゲームプロセスを名前から取得する*/
 			virtual utility::WeakPointer<GameProcess> GetProcess(const std::string& name) = 0;
+			/*キーポジションを設定する*/
+			virtual bool SetKeyPosition(const core::GameProcessPositionInList& pos,const std::string& id) = 0;
 		private:
 			virtual std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPositionInList& pos, InsertPosIndication pos_indication) = 0;
 			virtual std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPositionInList& pos, InsertPosIndication pos_indication,const std::string& name) = 0;

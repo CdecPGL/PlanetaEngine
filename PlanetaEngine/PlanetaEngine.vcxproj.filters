@@ -756,9 +756,6 @@
     <ClInclude Include="GameProcessListTypes.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GameProcessPredefinedPoisition.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
