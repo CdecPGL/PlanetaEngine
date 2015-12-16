@@ -61,15 +61,19 @@ namespace planeta_engine{
 			/*登録解除リスト*/
 			std::vector<core::GameProcessPositionTypeAtList> dispose_list_;
 			/*キーポジションマップ*/
-			std::unordered_map<std::string, core::GameProcessPriorytyListType> key_position_map_;
+			std::unordered_map<std::string, core::GameProcessPriorytyListType::iterator> key_position_map_;
 
 			/*名前からゲームプロセスを取得*/
 			utility::WeakPointer<GameProcess> GetProcess(const std::string& name)override;
 			/*ゲームプロセス作製*/
 			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPositionInList& pos, InsertPosIndication pos_indication)override;
 			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPositionInList& pos, InsertPosIndication pos_indication, const std::string& name)override;
-			/*キーポジションの設定*/
-			bool SetKeyPosition(const core::GameProcessPositionInList& pos, const std::string& id)override;
+			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const std::string& key_pos_id, InsertPosIndication pos_indication)override;
+			std::shared_ptr<GameProcess> CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const std::string& key_pos_id, InsertPosIndication pos_indication, const std::string& name)override;
+			/*キーポジションの作成(ID,位置,挿入位置)*/
+			bool CreateKeyPosition(const std::string& id, const core::GameProcessPositionInList& pos, InsertPosIndication ins_ind)override;
+			/*キーポジションを削除する(ID)*/
+			bool DeleteKeyPosition(const std::string& id)override;
 
 			/*プロセスの設定*/
 			void SetupProcess_(const std::shared_ptr<GameProcess>& game_process, std::function<bool()>&& remover,const core::GameProcessPositionInList& pos);
@@ -83,6 +87,8 @@ namespace planeta_engine{
 			bool RemoveGameProcess_(const core::GameProcessPositionInList& pos);
 			/*破棄リストを処理する*/
 			void ProcessDisposeList_();
+			/*優先度リストでの追加位置を取得または作成する*/
+			core::GameProcessPriorytyListType::iterator CreateOrGetInsertPositionAtPriorityList_(const core::GameProcessPositionInList& pos, InsertPosIndication ins_pos);
 
 			core::IGameAccessor& game_;
 			std::shared_ptr<core::SceneAccessorForGameProcess> scene_accessor_;
