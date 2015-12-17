@@ -768,6 +768,9 @@
     <ClInclude Include="GameProcessSystemKeyPositions.h">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClInclude>
+    <ClInclude Include="GameProcessKeyPositionDefinition.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1083,6 +1086,9 @@
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
     </ClCompile>
     <ClCompile Include="GameProcessSystemKeyPositions.cpp">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcessKeyPositionDefinition.cpp">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
   </ItemGroup>

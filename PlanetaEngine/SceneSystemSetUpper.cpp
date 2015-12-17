@@ -24,16 +24,9 @@ namespace planeta_engine {
 			namespace gp_syskp = gameprocess_sys_key_pos;
 			auto& scene_data = scene.RefSceneData();
 			//ゲームプロセス
-			//システムキーポジション追加
+			//システムキーポジション設定
 			auto& p_mgr = scene.game_process_manager();
-			p_mgr.CreateSystemKeyPosition({ 
-				gp_syskp::GameObjectUpdatetProcessKeyPositionID,
-				gp_syskp::TransformApplyVelocityProcessKeyPositionID,
-				gp_syskp::CollisionDetectProcessKeyPositionID,
-				gp_syskp::GameObjectDrawProcessKeyPositionID,
-				gp_syskp::GUIUpdateProcessKeyPositionID,
-				gp_syskp::GUIDrawProcessKeyPositionID,
-			});
+			p_mgr.SetKeyPositions(scene.game_accessor().GetGameProcessKeyPositionList());
 			//システムプロセス追加
 			//衝突判定プロセス
 			auto col_det_proc = p_mgr.AddSystemProcess<system_processes::CollisionDetectProcess>(p_mgr.GetKeyPosition(gp_syskp::CollisionDetectProcessKeyPositionID), InsertPosIndication::At);

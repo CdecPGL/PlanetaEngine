@@ -129,22 +129,11 @@ namespace planeta_engine {
 			return (RegisterToIDMap_(np.get(), new_pos) && RegisterProcessName_(name, np.get())) ? np : nullptr;
 		}
 
-		bool GameProcessManager::CreateKeyPosition(const std::string& id, const core::GameProcessPosition& pos, InsertPosIndication ins_ind) {
-			auto key_pos_it = key_position_map_.find(id);
-			if (key_pos_it != key_position_map_.end()) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Warning, "すでに存在するキーポジション\"", id, "\"を再作成しようとしました。");
-				return false;
-			}
-			auto priority_list_it = CreateOrGetInsertPositionAtPriorityList_(pos, ins_ind);
-			key_position_map_.emplace(std::make_pair(id, KeyPositionData(true, priority_list_it)));
-			return true;
-		}
-
-		bool GameProcessManager::CreateSystemKeyPosition(const std::list<std::string>& key_position_ids) {
+		bool GameProcessManager::SetKeyPositions(const std::list<std::string>& key_position_ids) {
 			key_position_map_.clear();
 			for (const auto& key_position_id: key_position_ids) {
 				process_priority_list_.push_back(core::GameProcessListType());
-				key_position_map_.emplace(std::make_pair(key_position_id, KeyPositionData(false, --process_priority_list_.end())));
+				key_position_map_.emplace(std::make_pair(key_position_id, core::GameProcessPosition(--process_priority_list_.end())));
 			}
 			return true;
 			
@@ -173,31 +162,13 @@ namespace planeta_engine {
 			return priority_list_it;
 		}
 
-		bool GameProcessManager::DeleteKeyPosition(const std::string& id) {
-			auto key_pos_it = key_position_map_.find(id);
-			if (key_pos_it == key_position_map_.end()) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, "キーポジション\"", id, "\"が存在しないため削除できませんでした。");
-				return false;
-			}
-			if (key_pos_it->second.deletable == false) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Warning, "削除できないキーポジション\"", id, "\"を削除しようとしました。");
-				return false;
-			}
-			//削除対象のリストが空だったら削除する
-			if (key_pos_it->second.position.priority_list_iterator->size() == 0) {
-				process_priority_list_.erase(key_pos_it->second.position.priority_list_iterator);
-			}
-			key_position_map_.erase(key_pos_it);
-			return true;
-		}
-
 		core::GameProcessPosition GameProcessManager::GetKeyPosition(const std::string& id) const {
 			auto key_pos_it = key_position_map_.find(id);
 			if (key_pos_it == key_position_map_.end()) {
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, "キーポジション\"", id, "\"は存在しません。");
 				throw std::out_of_range("key position doesnt exist.");
 			}
-			return key_pos_it->second.position;
+			return core::GameProcessPosition(key_pos_it->second.priority_list_iterator);
 		}
 	}
 }
