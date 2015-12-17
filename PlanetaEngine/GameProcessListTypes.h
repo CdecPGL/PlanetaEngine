@@ -8,9 +8,7 @@ namespace planeta_engine {
 		class GameProcess;
 	}
 	namespace core {
-		struct GameProcessPositionInList;
 		using GameProcessListType = std::list<std::shared_ptr<game::GameProcess>>;
 		using GameProcessPriorytyListType = std::list<GameProcessListType>;
-		using GameProcessPositionTypeAtList = GameProcessPositionInList;
 	}
 }

@@ -2,7 +2,7 @@
 
 #include <functional>
 #include "WeakPointer.h"
-#include "GameProcessPositionInList.h"
+#include "GameProcessPosition.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -10,7 +10,7 @@ namespace planeta_engine {
 		struct GameProcessRegistrationData {
 			utility::WeakPointer<SceneAccessorForGameProcess> scene_accessor;
 			std::function<void()> disposer;
-			GameProcessPositionInList position_in_list;
+			GameProcessPosition position_in_list;
 		};
 	}
 }

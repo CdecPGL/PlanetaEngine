@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "WeakPointer.h"
 #include "WeakPointerDelegate.h"
+#include "GameProcessPosition.h"
 
 namespace planeta_engine{
 	namespace core{
@@ -10,7 +11,6 @@ namespace planeta_engine{
 		class SceneAccessorForGameProcess;
 		struct SceneDataForGameProcess;
 		struct GameProcessRegistrationData;
-		struct GameProcessPositionInList;
 	}
 	namespace game{
 		class IGameObjectAccessor;
@@ -25,7 +25,7 @@ namespace planeta_engine{
 			/*システム関数*/
 			bool SystemSetUpAndInitialize(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data);
 			/*ゲームプロセスリストでの位置*/
-			const core::GameProcessPositionInList& position_in_gplist()const { return *position_in_list_; }
+			const core::GameProcessPosition& game_process_position()const;
 			/*イベント*/
 			/*プロセスが破棄された*/
 			utility::WeakPointerDelegate<> disposed;
@@ -43,7 +43,7 @@ namespace planeta_engine{
 			virtual bool OnCreated() { return true; }
 			virtual void OnDisposed() {}
 			std::function<void()> disposer_;
-			std::unique_ptr<core::GameProcessPositionInList> position_in_list_;
+			std::unique_ptr<core::GameProcessPosition> gameprocess_position_;
 		};
 	}
 }

@@ -747,14 +747,26 @@
     <ClInclude Include="GraphDrawData2D.h">
       <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
     </ClInclude>
-    <ClInclude Include="GameProcessPositionInList.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="InsertPosIndication.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameProcessListTypes.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GPMACreateFunctiosDefinition.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GPMAGetFunctionsDefinition.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GPMAKeyPositionFunctionsDefinition.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessPosition.h">
+      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessSystemKeyPositions.h">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1069,6 +1081,9 @@
     </ClCompile>
     <ClCompile Include="Screen.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcessSystemKeyPositions.cpp">
+      <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

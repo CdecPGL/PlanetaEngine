@@ -152,8 +152,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ConfigData.h" />
     <ClInclude Include="GameObjectComponentRigistrationData.h" />
     <ClInclude Include="GameProcessListTypes.h" />
+    <ClInclude Include="GameProcessSystemKeyPositions.h" />
+    <ClInclude Include="GPMACreateFunctiosDefinition.h" />
+    <ClInclude Include="GPMAGetFunctionsDefinition.h" />
+    <ClInclude Include="GPMAKeyPositionFunctionsDefinition.h" />
     <ClInclude Include="InsertPosIndication.h" />
-    <ClInclude Include="GameProcessPositionInList.h" />
+    <ClInclude Include="GameProcessPosition.h" />
     <ClInclude Include="GameProcessRegistrationData.h" />
     <ClInclude Include="GameProcessSystemSetUpper.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
@@ -366,6 +370,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataManager.cpp" />
     <ClCompile Include="GameDataSerializeUtility.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
+    <ClCompile Include="GameProcessSystemKeyPositions.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
