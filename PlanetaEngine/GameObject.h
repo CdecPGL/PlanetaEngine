@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <unordered_map>
+#include <typeindex>
 #include"Object.h"
 #include "MakeSharedGameObject.h"
 #include "IGameObjectAccessor.h"
@@ -97,8 +98,13 @@ namespace planeta_engine {
 
 			std::weak_ptr<GameObject> me_; //自分のスマートポインタ
 			std::unordered_map<int, std::shared_ptr<GameObjectComponent>> component_list_; //コンポーネントリスト
-			const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& GetComponentList_()const override { return component_list_; }
 			std::vector<std::shared_ptr<GameObjectComponent>> component_update_list_; //コンポーネント更新リスト
+
+			mutable std::unordered_map<std::type_index, std::pair<bool, std::vector<std::shared_ptr<GameObjectComponent>>>> component_type_map_; //タイプによるコンポーネントマップ<typeindex,<完全探索済みか(false:少なくとも１つは探索済み,true:全て探索済み),コンポーネントリスト>>
+			void AddComponentToTypeInfoMap(const std::type_info& ti,const std::shared_ptr<GameObjectComponent>& com);
+			std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const override;
+			const std::vector<std::shared_ptr<GameObjectComponent>>& GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const override;
+
 
 			//////////特殊コンポーネント//////////
 			std::shared_ptr<components::TransformComponent> transform_; //ローカル形状情報
@@ -121,6 +127,8 @@ namespace planeta_engine {
 				//更新処理を行う場合は更新リストに登録
 				std::shared_ptr<GameObjectComponent> com_ptr = ptr;
 				if (!com_ptr->is_no_update()) { component_update_list_.push_back(ptr); }
+				//タイプリストに追加する
+				AddComponentToTypeInfoMap(typeid(C), com_ptr);
 				return ptr;
 			}
 			/*コンポーネントのシステム設定を行う*/

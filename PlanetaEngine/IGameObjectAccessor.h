@@ -25,16 +25,25 @@ namespace planeta_engine {
 			virtual bool is_active()const = 0;
 			/*ゲームオブジェクトを破棄*/
 			virtual void Dispose() = 0;
-			/*型でコンポーネントを取得(仮想テンプレート関数は定義できないためここで実装する)*/
+			/*型でコンポーネントを取得*/
 			template<class C>
 			utility::WeakPointer<C> GetComponent()const {
-				static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "C is not derived Component.");
-				const auto& cl = GetComponentList_();
-				for (const auto& com : cl) {
-					auto ptr = std::dynamic_pointer_cast<C>(com.second);
-					if (ptr != nullptr) { return ptr; }
+				static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "C is not derived GameComponent.");
+				auto ptr = GetComponentByTypeInfo(typeid(C), [](GameObjectComponent* com) {return dynamic_cast<C*>(com) != nullptr; });
+				assert(ptr == nullptr || std::dynamic_pointer_cast<C>(ptr) != nullptr);
+				return ptr ? std::static_pointer_cast<C>(ptr) : nullptr;
+			}
+			/*型でコンポーネントを全て取得*/
+			template<class C>
+			std::vector<utility::WeakPointer<C>> GetAllComponents()const {
+				static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "C is not derived GameComponent.");
+				const auto& go_list = GetAllComponentsByTypeInfo(typeid(C), [](GameObjectComponent* com) {return dynamic_cast<C*>(com) != nullptr; });
+				std::vector<utility::WeakPointer<C>> ret_list;
+				for (const auto& go : go_list) {
+					assert(dynamic_pointer_cast<C>(go) != nullptr);
+					ret_list.push_back(static_pointer_cast<C>(go));
 				}
-				return nullptr;
+				return std::move(ret_list);
 			}
 			/*IDでコンポーネントを取得*/
 			virtual utility::WeakPointer<GameObjectComponent> GetComponent(int id) = 0;
@@ -59,7 +68,8 @@ namespace planeta_engine {
 			/*インアクティベート時イベント*/
 			utility::WeakPointerDelegate<void> inactivated_event;
 		private:
-			virtual const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& GetComponentList_()const = 0;
+			virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const = 0;
+			virtual const std::vector<std::shared_ptr<GameObjectComponent>>& GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const = 0;
 		};
 	}
 }
