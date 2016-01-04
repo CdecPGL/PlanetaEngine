@@ -69,11 +69,11 @@ namespace planeta_engine {
 			bool Initialize_() { return  InitializeComponent_(); };
 			//システムに呼ばれる関数群
 			//シーン登録時に呼ばれる[呼び出し元:GameObjectManager::Activate]
-			bool Activated_() { return ActivateComponent_(); }
+			bool Activated_() { activated_event(); return ActivateComponent_(); }
 			//シーン登録解除時に呼ばれる[呼び出し元:GameObjectManager::InActivate]
-			bool InActivated_() { return InactivateComponent_(); }
+			bool InActivated_() { inactivated_event(); return InactivateComponent_(); }
 			//終了処理(破棄時に呼ばれる)[呼び出し元:GameObjectManager::Remove]
-			bool Finalize_()throw() { return FinalizeComponent_(); };
+			bool Finalize_()throw() { disposed_event(); return FinalizeComponent_(); };
 
 			/*Rootとなるトランスフォームコンポーネントを取得*/
 			static std::shared_ptr<components::TransformComponent> GetRootTransformComponent(bool recreate_flag = false);

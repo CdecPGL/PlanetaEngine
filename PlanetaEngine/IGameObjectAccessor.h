@@ -3,6 +3,7 @@
 #include <memory>
 #include <unordered_map>
 #include "WeakPointer.h"
+#include "WeakPointerDelegate.h"
 
 namespace planeta_engine {
 	class GameObjectComponent;
@@ -51,6 +52,12 @@ namespace planeta_engine {
 			virtual void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground) = 0;
 			/*弱参照を取得*/
 			virtual utility::WeakPointer<IGameObjectAccessor> GetWeakPointer() = 0;
+			/*破棄時イベント*/
+			utility::WeakPointerDelegate<void> disposed_event;
+			/*アクティベート時イベント*/
+			utility::WeakPointerDelegate<void> activated_event;
+			/*インアクティベート時イベント*/
+			utility::WeakPointerDelegate<void> inactivated_event;
 		private:
 			virtual const std::unordered_map<int, std::shared_ptr<GameObjectComponent>>& GetComponentList_()const = 0;
 		};

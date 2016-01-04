@@ -58,26 +58,8 @@
     <Filter Include="PlanetaEngine\BuildinElements">
       <UniqueIdentifier>{9ebe99cf-e97c-407c-a4c3-de0396051b94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Processes">
-      <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess">
-      <UniqueIdentifier>{4a60c919-c77b-43bf-bb00-208bcc37989d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\Resources">
       <UniqueIdentifier>{0a846ef1-df82-4e61-abd5-be789ed328f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Components">
-      <UniqueIdentifier>{554b09c7-da21-4a12-818f-11c2b1fa563f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Components\ColliderComponent">
-      <UniqueIdentifier>{20c2ee0b-64fc-4ceb-8e46-5c2ffa7748b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Components\DrawComponent">
-      <UniqueIdentifier>{363a6867-3602-4489-bdec-0dbf4a02ed15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Components\GroundComponent">
-      <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\EventArgs">
       <UniqueIdentifier>{fb1b3493-a736-4e3f-8b76-dae42031af3d}</UniqueIdentifier>
@@ -136,9 +118,6 @@
     <Filter Include="PlanetaEngine\Math\Vector">
       <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Game\GameObject\Component">
-      <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Game\GUI">
       <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
     </Filter>
@@ -163,6 +142,30 @@
     <Filter Include="PlanetaEngine\ForUserHeaders">
       <UniqueIdentifier>{98b764e3-2aeb-49ed-afc6-29bf63729928}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Game\GameObject\GameObjectComponent">
+      <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents">
+      <UniqueIdentifier>{554b09c7-da21-4a12-818f-11c2b1fa563f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent">
+      <UniqueIdentifier>{20c2ee0b-64fc-4ceb-8e46-5c2ffa7748b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent">
+      <UniqueIdentifier>{363a6867-3602-4489-bdec-0dbf4a02ed15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent">
+      <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameProcesses">
+      <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess">
+      <UniqueIdentifier>{4a60c919-c77b-43bf-bb00-208bcc37989d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses">
+      <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -172,52 +175,52 @@
       <Filter>TinyXML2</Filter>
     </ClInclude>
     <ClInclude Include="ColliderComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClInclude>
     <ClInclude Include="StraightLineColliderComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClInclude>
     <ClInclude Include="PolygonColliderComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CircleColliderComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClInclude>
     <ClInclude Include="DrawPolygonComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClInclude>
     <ClInclude Include="DrawLineComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClInclude>
     <ClInclude Include="DrawGraphComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClInclude>
     <ClInclude Include="DrawComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClInclude>
     <ClInclude Include="DrawPlanetComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClInclude>
     <ClInclude Include="GroundComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\GroundComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent</Filter>
     </ClInclude>
     <ClInclude Include="PlanetGroundComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\GroundComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent</Filter>
     </ClInclude>
     <ClInclude Include="DumyGroundComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\GroundComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent</Filter>
     </ClInclude>
     <ClInclude Include="BelongingGroundGravityComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
     <ClInclude Include="GraphAnimatorComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
     <ClInclude Include="PlanetComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
     <ClInclude Include="CollisionEventArgument.h">
       <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
@@ -226,13 +229,13 @@
       <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="CollisionDetectProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
     </ClInclude>
     <ClInclude Include="CollisionDetectFunctions.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
     </ClInclude>
     <ClInclude Include="InstanceProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClInclude>
     <ClInclude Include="FontDefinitionResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -448,13 +451,13 @@
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="CoroutineProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClInclude>
     <ClInclude Include="Coroutine.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="InstantCoroutineProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClInclude>
     <ClInclude Include="PEAssert.h">
       <Filter>PlanetaEngine\Debug</Filter>
@@ -616,7 +619,7 @@
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClInclude>
     <ClInclude Include="IColliderWithCollider.h">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClInclude>
     <ClInclude Include="RangeUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -649,19 +652,19 @@
       <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectComponent.h">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectNormalComponent.h">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectSpecialComponent.h">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectComponentRigistrationData.h">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -730,7 +733,7 @@
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectDrawProcessCore.h">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
@@ -786,6 +789,12 @@
     <ClInclude Include="GameObjectSetUpperHeaders.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectComponentUpdateProcess.h">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectOperationProcess.h">
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -798,7 +807,7 @@
       <Filter>PlanetaEngine\InitEnd</Filter>
     </ClCompile>
     <ClCompile Include="PlanetComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>PlanetaEngine\Core\Scene</Filter>
@@ -852,7 +861,7 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="TransformComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
     <ClCompile Include="PlanetaEngine.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -864,40 +873,40 @@
       <Filter>PlanetaEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="BelongingGroundGravityComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
     <ClCompile Include="ColliderComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClCompile>
     <ClCompile Include="DrawComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClCompile>
     <ClCompile Include="DrawGraphComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClCompile>
     <ClCompile Include="DrawLineComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClCompile>
     <ClCompile Include="DrawPlanetComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClCompile>
     <ClCompile Include="GroundComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\GroundComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent</Filter>
     </ClCompile>
     <ClCompile Include="PlanetGroundComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\GroundComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent</Filter>
     </ClCompile>
     <ClCompile Include="CircleColliderComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClCompile>
     <ClCompile Include="StraightLineColliderComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClCompile>
     <ClCompile Include="PolygonColliderComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\ColliderComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetectProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
     </ClCompile>
     <ClCompile Include="IOKeyConfig.cpp">
       <Filter>PlanetaEngine\Core\KeyInput</Filter>
@@ -912,19 +921,19 @@
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetectFunctions.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="GraphAnimatorComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
     <ClCompile Include="InstanceProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClCompile>
     <ClCompile Include="DrawPolygonComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Components\DrawComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
     </ClCompile>
     <ClCompile Include="TextPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
@@ -966,7 +975,7 @@
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="CoroutineProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClCompile>
     <ClCompile Include="Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -1062,7 +1071,7 @@
       <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectComponent.cpp">
-      <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClCompile>
     <ClCompile Include="SceneSetUpper.cpp">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
@@ -1083,7 +1092,7 @@
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectDrawProcessCore.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Processes</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClCompile>
     <ClCompile Include="ScreenChangeEffecter.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
@@ -1105,6 +1114,9 @@
     </ClCompile>
     <ClCompile Include="GameProcessKeyPositionDefinition.cpp">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectOperationProcess.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

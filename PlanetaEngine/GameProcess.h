@@ -18,6 +18,7 @@ namespace planeta_engine{
 			public core::Object
 		{
 		public:
+			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
 			GameProcess(core::IGameAccessor& gameaccess):game_(gameaccess){}
 			virtual ~GameProcess();
 			virtual void Update() = 0;
@@ -30,7 +31,6 @@ namespace planeta_engine{
 			/*ÉvÉçÉZÉXÇ™îjä¸Ç≥ÇÍÇΩ*/
 			utility::WeakPointerDelegate<> disposed;
 		protected:
-			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
 			core::IGameAccessor& game_accessor() { return game_; }
 			core::SceneAccessorForGameProcess& scene() { return *scene_accessor_; }
 		private:

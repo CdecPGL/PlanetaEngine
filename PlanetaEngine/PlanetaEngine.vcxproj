@@ -154,6 +154,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ConfigData.h" />
     <ClInclude Include="GameObjectComponentHeders.h" />
     <ClInclude Include="GameObjectComponentRigistrationData.h" />
+    <ClInclude Include="GameObjectComponentUpdateProcess.h" />
+    <ClInclude Include="GameObjectOperationProcess.h" />
     <ClInclude Include="GameObjectSetUpperHeaders.h" />
     <ClInclude Include="GameProcessKeyPositionDefinition.h" />
     <ClInclude Include="GameProcessListTypes.h" />
@@ -375,6 +377,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameDataManager.cpp" />
     <ClCompile Include="GameDataSerializeUtility.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
+    <ClCompile Include="GameObjectOperationProcess.cpp" />
     <ClCompile Include="GameProcessKeyPositionDefinition.cpp" />
     <ClCompile Include="GameProcessSystemKeyPositions.cpp" />
     <ClCompile Include="GameProcessWithRefrection.cpp" />
