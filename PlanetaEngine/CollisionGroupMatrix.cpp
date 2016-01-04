@@ -1,5 +1,5 @@
 #include "CollisionGroupMatrix.h"
-
+#include "SystemLog.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -23,9 +23,15 @@ namespace planeta_engine {
 		bool CollisionGroupMatrix::SetCollisionFlag(const std::string& col_group_name_1, const std::string& col_group_name_2, bool flag) {
 			auto namep = std::minmax(col_group_name_1, col_group_name_2);
 			auto it1 = collision_matrix_.find(namep.first);
-			if (it1 == collision_matrix_.end()) { return false; }
+			if (it1 == collision_matrix_.end()) { 
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "登録されていない衝突グループ", namep.first, "が指定されました。");
+				return false; 
+			}
 			auto it2 = it1->second.find(namep.second);
-			if (it2 == it1->second.end()) { return false; }
+			if (it2 == it1->second.end()) {
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "登録されていない衝突グループ", namep.second, "が指定されました。");
+				return false; 
+			}
 			it2->second = flag;
 			return true;
 		}
@@ -33,9 +39,15 @@ namespace planeta_engine {
 		bool CollisionGroupMatrix::GetCollisionFlag(const std::string& col_group_name_1, const std::string& col_group_name_2) const {
 			auto namep = std::minmax(col_group_name_1, col_group_name_2);
 			auto it1 = collision_matrix_.find(namep.first);
-			if (it1 == collision_matrix_.end()) { return false; }
+			if (it1 == collision_matrix_.end()) {
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "登録されていない衝突グループ", namep.first, "が指定されました。");
+				return false;
+			}
 			auto it2 = it1->second.find(namep.second);
-			if (it2 == it1->second.end()) { return false; }
+			if (it2 == it1->second.end()) { 
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "登録されていない衝突グループ", namep.second, "が指定されました。");
+				return false; 
+			}
 			return it2->second;
 		}
 

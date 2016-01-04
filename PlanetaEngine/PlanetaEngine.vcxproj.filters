@@ -160,6 +160,9 @@
     <Filter Include="PlanetaEngine\Core\GraphicSystem\GUI">
       <UniqueIdentifier>{2c996d1e-a09c-420c-9dca-b3ae627bc599}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\ForUserHeaders">
+      <UniqueIdentifier>{98b764e3-2aeb-49ed-afc6-29bf63729928}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -770,6 +773,18 @@
     </ClInclude>
     <ClInclude Include="GameProcessKeyPositionDefinition.h">
       <Filter>PlanetaEngine\Game\GameProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugDrawInterface.h">
+      <Filter>PlanetaEngine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugInformationDisplayer.h">
+      <Filter>PlanetaEngine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectComponentHeders.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectSetUpperHeaders.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

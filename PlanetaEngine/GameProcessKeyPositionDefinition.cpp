@@ -38,6 +38,12 @@ namespace planeta_engine {
 				break;
 			case planeta_engine::InsertPosIndication::After:
 				++list_it;
+				if (list_it == key_position_id_list_.end()) { //Ÿ‚ªÅŒã‚¾‚Á‚½‚ç––”ö‚É’Ç‰Á
+					key_position_id_list_.push_back(id);
+					list_it = --key_position_id_list_.end();
+				} else { //ÅŒão‚È‚©‚Á‚½‚çŸ‚Ì—v‘f‚Ì’¼‘O‚É‘}“ü
+					list_it = key_position_id_list_.insert(list_it, id);
+				}
 				id_it_map_.emplace(std::make_pair(id, key_position_id_list_.insert(list_it, id)));
 				break;
 			default:

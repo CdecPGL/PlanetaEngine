@@ -41,6 +41,9 @@ namespace planeta_engine {
 			bool DumpLogHistory(const std::string& file_name);
 			/*ログ履歴最大サイズを設定(0で無限)*/
 			void SetLogHistoryMaxSize(size_t size);
+			enum class DumpLevel { All, Message, Warning, Error };
+			/*出力レベルを設定*/
+			void SetDumpLevel();
 		private:
 			SystemLog();
 			~SystemLog();
