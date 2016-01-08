@@ -166,6 +166,9 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses">
       <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Windows">
+      <UniqueIdentifier>{86890a22-3624-4169-b8e6-b4c08bff5891}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -795,6 +798,12 @@
     <ClInclude Include="GameObjectOperationProcess.h">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
     </ClInclude>
+    <ClInclude Include="SaveDataManager.h">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsUtility.h">
+      <Filter>PlanetaEngine\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1117,6 +1126,12 @@
     </ClCompile>
     <ClCompile Include="GameObjectOperationProcess.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveDataManager.cpp">
+      <Filter>PlanetaEngine\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsUtility.cpp">
+      <Filter>PlanetaEngine\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,8 @@ namespace planeta_engine {
 			bool Initialize()override;
 			bool Finalize()override;
 			enum class LogLevel { Message, Warning, Error };
+			/*コンソールへの出力を有効化*/
+			bool ValidateConsoleOutPut();
 			/*レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/
 			template<typename... Details>
 			void Log(LogLevel level, const std::string& place, Details&&... details) {
@@ -24,7 +26,7 @@ namespace planeta_engine {
 			/*シンプルなログを出力*/
 			template<typename... Details>
 			void SimpleLog(Details&&... details) {
-				_OutPutToOutStream(utility::ConvertAndConnectToString(std::forward<Details>(details)...));
+				_OutPut(LogLevel::Message, utility::ConvertAndConnectToString(std::forward<Details>(details)...));
 			}
 			/*メッセージ(詳細、発生個所)*/
 			void LogMessage(const std::string& detail, const std::string& place) { _Log(LogLevel::Message, detail, place); }
@@ -50,10 +52,21 @@ namespace planeta_engine {
 			std::list<std::ostream*> _output_streams;
 			size_t _log_history_max_size; //ログ履歴最大サイズ(0で無限)
 			std::list<std::string> _log_history; //ログ履歴
+			
+			bool output_console_flag_ = false;
 
-			void _Log(LogLevel level, const std::string& detail, const std::string& place);
+			static std::string _GetStringFormatedByLogLevel(LogLevel level, const std::string& str, const std::string& place);
+
+			void _Log(LogLevel level, const std::string& detail, const std::string& place) {
+				std::string str = std::move(_GetStringFormatedByLogLevel(level, detail, place));
+				_OutPut(level, str);
+			}
+
+			void _OutPut(LogLevel level, const std::string& str);
+
 			void _OutPutToOutStream(const std::string& str);
 			void _AddHistory(const std::string& str);
+			void _OutPutToConsole(const std::string& str,LogLevel level);
 		};
 		using LogLevel = SystemLog::LogLevel;
 	}

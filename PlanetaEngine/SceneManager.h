@@ -6,7 +6,6 @@
 #include "Object.h"
 #include "ParameterHolder.h"
 #include "ISceneManagerAccessor.h"
-#include "SharedPointerInstance.h"
 
 namespace planeta_engine{
 	namespace core {

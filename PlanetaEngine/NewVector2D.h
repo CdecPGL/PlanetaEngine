@@ -6,6 +6,7 @@
 
 //旧Vector2Dとの競合回避ため、ファイル名とクラス名をNewVector2Dにしておく。
 namespace planeta_engine {
+	namespace utility{}
 	namespace system {
 		namespace vei {
 			template<typename T>

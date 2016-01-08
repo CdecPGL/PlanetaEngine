@@ -63,13 +63,15 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
-      <FloatingPointExceptions>
-      </FloatingPointExceptions>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
       <CompileAsManaged>
       </CompileAsManaged>
       <DisableSpecificWarnings>4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -104,9 +106,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <FloatingPointExceptions>
-      </FloatingPointExceptions>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,6 +172,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessPosition.h" />
     <ClInclude Include="GameProcessRegistrationData.h" />
     <ClInclude Include="GameProcessSystemSetUpper.h" />
+    <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
     <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h" />
     <ClInclude Include="GameObjectNormalComponent.h" />
@@ -341,6 +347,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Vertex2D.h" />
     <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="WeakPointerDelegate.h" />
+    <ClInclude Include="WindowsUtility.h" />
     <ClInclude Include="XMLResource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +391,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
+    <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenChangeEffecter.cpp" />
@@ -450,6 +458,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="GUIManagerConnection.cpp" />
+    <ClCompile Include="WindowsUtility.cpp" />
     <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@
 #include "RectAngle.h"
 #include "ObjectHolderTemplate_WithoutID.h"
 #include "GUIManagerConnection.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine {
 	class ScreenDrawerGUI;
@@ -22,7 +23,7 @@ namespace planeta_engine {
 				CANCEL = 32,
 				Error = 1ul << 31;
 		}
-		class GUIObject : public core::Object{
+		class GUIObject : public core::Object, private utility::NonCopyable<GUIObject>{
 		public:
 			GUIObject();
 			virtual ~GUIObject() = default;
@@ -66,9 +67,13 @@ namespace planeta_engine {
 			std::unique_ptr<utility::ObjectHolderTemplate_WithoutID<GUIComponent>> component_holder_;
 			std::unique_ptr<GUIManagerConnection> resister_connection_;
 			/*ユーザー定義関数*/
+			/*初期化時の処理*/
 			virtual bool InitializeProc() { return true; }
+			/*破棄時の処理*/
 			virtual void FinalizeProc() {};
+			/*表示時の処理*/
 			virtual void ShowProc() {};
+			/*閉じられるときの処理*/
 			virtual void CloseProc() {};
 			/**キーの入力処理
 			@param 入力コード

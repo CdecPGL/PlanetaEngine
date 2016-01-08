@@ -86,7 +86,7 @@ namespace planeta_engine{
 			//現在のシーンを終了
 			utility::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
 			//新しいシーンを作成
-			std::shared_ptr<Scene> new_scene = Scene::MakeShared(_game);
+			std::shared_ptr<Scene> new_scene = std::make_shared<Scene>(_game);
 			//新しいシーンを初期化
 			if (!(_next_scene_setupper->InitializeScene(*new_scene, next_scene_initialize_parameters))) {
 				debug::SystemLog::instance().LogError(std::string("シーン遷移に失敗しました。新しいシーン(") + _next_scene_id + ")のセットアップまたは初期化に失敗しました。", __FUNCTION__);
@@ -108,7 +108,7 @@ namespace planeta_engine{
 		{
 			//空のシーンをセット
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<EmptySceneDefinition>();
-			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
+			std::shared_ptr<Scene> es = std::make_shared<Scene>(_game);
 			ecd->InitializeScene(*es, utility::ParameterHolder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
@@ -138,7 +138,7 @@ namespace planeta_engine{
 		{
 			debug::SystemLog::instance().LogError("エラーシーンに遷移します。", __FUNCTION__);
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<ErrorSceneDefinition>();
-			std::shared_ptr<Scene> es = Scene::MakeShared(_game);
+			std::shared_ptr<Scene> es = std::make_shared<Scene>(_game);
 			ecd->InitializeScene(*es, utility::ParameterHolder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;

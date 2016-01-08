@@ -7,11 +7,12 @@
 #include "Object.h"
 #include "RectAngle.h"
 #include "ObjectHolderTemplate_WithoutID.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine {
 	class ScreenDrawerGUI;
 	namespace game {
-		class GUIComponent : public core::Object{
+		class GUIComponent : public core::Object,private utility::NonCopyable<GUIComponent>{
 		public:
 			GUIComponent();
 			virtual ~GUIComponent() = default;

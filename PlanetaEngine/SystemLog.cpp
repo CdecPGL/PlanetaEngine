@@ -3,8 +3,10 @@
 #include "SystemVariables.h"
 #include <sstream>
 #include <iostream>
-#include "PEDateTime.h"
 #include <windows.h>
+#include <cassert>
+#include "PEDateTime.h"
+#include "WindowsUtility.h"
 
 /*ログの書式
 [hh:mm:ss,frame]level:detail@place
@@ -15,6 +17,24 @@ namespace {
 	constexpr char* kWarningHeader("警告");
 	constexpr char* kErrorHeader("エラー");
 	constexpr size_t kDefaultLogHistoryMaxSize(0);
+
+	void OpenConsoleWindow() {
+		AllocConsole();
+		FILE* fp;
+		freopen_s(&fp, "CONOUT$", "w", stdout);
+		freopen_s(&fp, "CONIN$", "r", stdin);
+	}
+	void CloseConsoleWindow() {
+		FreeConsole();
+	}
+
+	std::string AddNewLineIfNeed(const std::string& str) {
+		std::string out = str;
+		if (str.size() > 0 && str[str.size() - 1] != '\n') {
+			out += '\n';
+		}
+		return std::move(out);
+	}
 }
 
 namespace planeta_engine {
@@ -37,10 +57,14 @@ namespace planeta_engine {
 
 		bool SystemLog::Finalize()
 		{
+			LogMessage("終了処理が実行されました。", __FUNCTION__);
 			ResetLogOutStream();
+			if (output_console_flag_) {
+				CloseConsoleWindow();
+				output_console_flag_ = false;
+			}
 			_log_history.clear();
 			_log_history_max_size = kDefaultLogHistoryMaxSize;
-			LogMessage("終了処理が実行されました。", __FUNCTION__);
 			return true;
 		}
 
@@ -58,7 +82,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		void SystemLog::_Log(LogLevel level, const std::string& detail, const std::string& place)
+		std::string SystemLog::_GetStringFormatedByLogLevel(LogLevel level, const std::string& detail, const std::string& place)
 		{
 			using namespace std;
 			string header;
@@ -86,22 +110,26 @@ namespace planeta_engine {
 			sstrm << detail;
 			//場所
 			sstrm << '@' << place;
-			//出力
-			_OutPutToOutStream(sstrm.str());
+			return std::move(sstrm.str());
+		}
+
+		void SystemLog::_OutPut(LogLevel level, const std::string& str) {
+			_OutPutToOutStream(str);
 			//ログ履歴に追加
-			_AddHistory(sstrm.str());
+			_AddHistory(str);
+			//コンソールに出力
+			if (output_console_flag_) { _OutPutToConsole(str, level); }
+			//デバッグウインドウに出力
+			OutputDebugString(AddNewLineIfNeed(str).c_str());
 		}
 
 		void SystemLog::_OutPutToOutStream(const std::string& str)
 		{
-			std::string ostr = str;
-			if (ostr.size() > 0 && ostr[ostr.size() - 1] != '\n') { ostr.push_back('\n'); } //末尾に改行がなかったら付加する
+			std::string ostr = AddNewLineIfNeed(str);
 			for (auto& ostrm : _output_streams)
 			{
 				*ostrm << ostr;
 			}
-			//デバッグウインドウに出力
-			OutputDebugString(ostr.c_str());
 		}
 
 		SystemLog::SystemLog():_log_history_max_size(kDefaultLogHistoryMaxSize)
@@ -132,6 +160,33 @@ namespace planeta_engine {
 		{
 			_log_history_max_size = size;
 			Log(LogLevel::Message, __FUNCTION__, "ログ履歴の最大サイズを", size, "に変更しました。");
+		}
+
+		bool SystemLog::ValidateConsoleOutPut() {
+			OpenConsoleWindow();
+			output_console_flag_ = true;
+			SimpleLog("コンソールへのログ出力を有効化しました。");
+			return true;
+		}
+
+		void SystemLog::_OutPutToConsole(const std::string& str, LogLevel level) {
+			int col;
+			switch (level) {
+			case planeta_engine::debug::SystemLog::LogLevel::Message:
+				col = windows::console::COL_GRAY;
+				break;
+			case planeta_engine::debug::SystemLog::LogLevel::Warning:
+				col = windows::console::COL_YELLOW;
+				break;
+			case planeta_engine::debug::SystemLog::LogLevel::Error:
+				col = windows::console::COL_RED;
+				break;
+			default:
+				assert(false);
+				break;
+			}
+			windows::console::SetCharacterColor(col);
+			std::cout << AddNewLineIfNeed(str);
 		}
 
 	}

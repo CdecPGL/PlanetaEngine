@@ -7,7 +7,6 @@
 #include "SceneAccessorForSetUp.h"
 #include "ScenePublicInterface.h"
 #include "WeakPointer.h"
-#include "SharedPointerInstance.h"
 #include "NonCopyable.h"
 
 #include "GameObjectManager.h"
@@ -20,7 +19,7 @@ namespace planeta_engine{
 		class IGameAccessor;
 		class Screen;
 		struct SceneData;
-		class Scene : public Object,public utility::SharedPointerInstance<Scene>
+		class Scene : public Object,public std::enable_shared_from_this<Scene>
 			,public ScenePublicInterface,private utility::NonCopyable<Scene>{
 		public:
 			Scene(IGameAccessor& game);

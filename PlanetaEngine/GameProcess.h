@@ -4,6 +4,7 @@
 #include "WeakPointer.h"
 #include "WeakPointerDelegate.h"
 #include "GameProcessPosition.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine{
 	namespace core{
@@ -15,7 +16,7 @@ namespace planeta_engine{
 	namespace game{
 		class IGameObjectAccessor;
 		class GameProcess :
-			public core::Object
+			public core::Object , private utility::NonCopyable<GameProcess>
 		{
 		public:
 			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
@@ -29,15 +30,13 @@ namespace planeta_engine{
 			const core::GameProcessPosition& game_process_position()const;
 			/*イベント*/
 			/*プロセスが破棄された*/
-			utility::WeakPointerDelegate<> disposed;
+			utility::WeakPointerDelegate<void> disposed;
+			/*ユーティリティ関数*/
+			
 		protected:
 			core::IGameAccessor& game_accessor() { return game_; }
 			core::SceneAccessorForGameProcess& scene() { return *scene_accessor_; }
 		private:
-			GameProcess(const GameProcess&) = delete;
-			GameProcess(GameProcess&&) = delete;
-			GameProcess& operator=(const GameProcess&) = delete;
-			GameProcess& operator=(GameProcess&&) = delete;
 			core::IGameAccessor& game_;
 			utility::WeakPointer<core::SceneAccessorForGameProcess> scene_accessor_;
 			virtual bool OnCreated() { return true; }

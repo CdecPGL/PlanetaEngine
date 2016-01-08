@@ -109,13 +109,8 @@ namespace planeta_engine{
 			{
 				//開発モードならコンソールウインドウを作成し、そこにログを出力
 				if (system_variables::DevelopmentMode){
-					//コンソールウインドウを標準入出力に割り当て
-					AllocConsole();
-					FILE* fp;
-					freopen_s(&fp, "CONOUT$", "w", stdout);
-					freopen_s(&fp, "CONIN$", "r", stdin);
-					//システムログ出力先に標準入出力を追加
-					debug::SystemLog::instance().AddLogOutStream(std::cout);
+					//コンソール出力を有効化
+					debug::SystemLog::instance().ValidateConsoleOutPut();
 				}
 				//ログ出力ファイルを開く
 				LogFileOutPutStream.open(system_variables::LogDirectory + "\\" + system_variables::LogOutPutFileName, std::ios::out | std::ios::trunc);
@@ -131,10 +126,6 @@ namespace planeta_engine{
 				debug::SystemLog::instance().Finalize();
 				//ログファイルを閉じる
 				LogFileOutPutStream.close();
-				if (system_variables::DevelopmentMode) {
-					//コンソール解放
-					FreeConsole();
-				}
 				return true;
 			}
 
