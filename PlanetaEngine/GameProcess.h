@@ -7,9 +7,9 @@
 #include "NonCopyable.h"
 
 namespace planeta_engine{
+	class SceneAccessorForGameProcess;
 	namespace core{
 		class IGameAccessor;
-		class SceneAccessorForGameProcess;
 		struct SceneDataForGameProcess;
 		struct GameProcessRegistrationData;
 	}
@@ -35,10 +35,10 @@ namespace planeta_engine{
 			
 		protected:
 			core::IGameAccessor& game_accessor() { return game_; }
-			core::SceneAccessorForGameProcess& scene() { return *scene_accessor_; }
+			SceneAccessorForGameProcess& scene() { return *scene_accessor_; }
 		private:
 			core::IGameAccessor& game_;
-			utility::WeakPointer<core::SceneAccessorForGameProcess> scene_accessor_;
+			utility::WeakPointer<SceneAccessorForGameProcess> scene_accessor_;
 			virtual bool OnCreated() { return true; }
 			virtual void OnDisposed() {}
 			std::function<void()> disposer_;

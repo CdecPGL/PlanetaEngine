@@ -15,9 +15,7 @@ namespace planeta_engine {
 		class GroundComponent;
 		class TransformComponent;
 	}
-	namespace core {
-		class SceneAccessorForGameObject;
-	}
+	class SceneAccessorForGameObject;
 	namespace game {
 		class GameObjectAccessorForSetUp; //初期化用関数使用仲介クラス
 		//GameObjectクラス(継承禁止ぃ)
@@ -55,7 +53,7 @@ namespace planeta_engine {
 			static std::shared_ptr<GameObject> Create();
 
 			/*シーンのポインタをセット*/
-			void SetSceneAccessor(const utility::WeakPointer<core::SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
+			void SetSceneAccessor(const utility::WeakPointer<SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
 			//自身のクローン作成(親子関係はリセットされる)
 	//			std::shared_ptr<GameObject> Clone()const;
 
@@ -93,7 +91,7 @@ namespace planeta_engine {
 			//			static void* operator new[](size_t s){ return Object::operator new[](s); }
 			//			static void operator delete[](void* p){ return Object::operator delete[](p); }
 
-			utility::WeakPointer<core::SceneAccessorForGameObject> scene_accessor_;
+			utility::WeakPointer<SceneAccessorForGameObject> scene_accessor_;
 			std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 
 			std::weak_ptr<GameObject> me_; //自分のスマートポインタ

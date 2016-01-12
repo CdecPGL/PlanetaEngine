@@ -6,8 +6,8 @@
 #include <algorithm>
 #include "ParameterHolder.h"
 namespace planeta_engine{
+	class SceneAccessorForSetUp;
 	namespace core{
-		class SceneAccessorForSetUp;
 		class Scene;
 		/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
 		class SceneSetUpper : public core::Object{

@@ -1,22 +1,22 @@
 #pragma once
 
-#include "ScenePublicInterface.h"
-
-#include "GameObjectManagerAccessorForGameObject.h"
-#include "GameProcessManagerAccessorForGameObject.h"
+#include "AccessorTemplate.h"
+#include "SAImplGameObjectCreateFunctions.h"
+#include "SAImplGameProcessCreateFunctions.h"
+#include "SAImplGameProcessGetFunctions.h"
+#include "SAImplCameraFunctions.h"
 
 namespace planeta_engine {
 	namespace core {
-		class SceneAccessorForGameObject final {
-		public:
-			explicit SceneAccessorForGameObject(ScenePublicInterface& spi) :game_object_manager_accessor_(spi.game_object_manager()), game_process_manager_accessor_(spi.game_process_manager()),camera_(spi.camera()){}
-			game::GameObjectManagerAccessorForGameObject& game_object_manager() { return game_object_manager_accessor_; }
-			game::GameProcessManagerAccessorForGameObject& game_process_manager() { return game_process_manager_accessor_; }
-			const Camera& camera()const { return camera_; }
-		private:
-			game::GameObjectManagerAccessorForGameObject game_object_manager_accessor_;
-			game::GameProcessManagerAccessorForGameObject game_process_manager_accessor_;
-			const Camera& camera_;
-		};
+		class ScenePublicInterface;
 	}
+	class SceneAccessorForGameObject final : public utility::AccessorTemplate<
+		core::ScenePublicInterface,
+		scene_accessor_impl::SAImplGameObjectCreateFunctions,
+		scene_accessor_impl::SAImplGameProcessCreateFunctions,
+		scene_accessor_impl::SAImplGameProcessGetFunctions,
+		scene_accessor_impl::SAImplCameraFunctions
+	> {
+	public:using AccessorTemplate::AccessorTemplate;
+	};
 }

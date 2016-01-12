@@ -169,6 +169,9 @@
     <Filter Include="PlanetaEngine\Windows">
       <UniqueIdentifier>{86890a22-3624-4169-b8e6-b4c08bff5891}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\Scene\SceneAccessorImpl">
+      <UniqueIdentifier>{1c903d52-b276-4b01-ab1b-1f1119554347}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -492,28 +495,10 @@
     <ClInclude Include="GameObjectManagerPublicInterface.h">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManagerAccessorForGameProcess.h">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManagerAccessorForSetUp.h">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManagerAccessorForGameObject.h">
-      <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GameProcessManager.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameProcessManagerPublicInterface.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessManagerAccessorForSetUp.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessManagerAccessorForGameObject.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessManagerAccessorForGameProcess.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ScenePublicInterface.h">
@@ -714,20 +699,11 @@
     <ClInclude Include="GUIManager.h">
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GUIManagerAccessorForSetUp.h">
-      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GUIManagerPublicInterface.h">
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneAccessorForGUI.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIManagerAccessorForGUI.h">
-      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIManagerAccessorForGameProcess.h">
-      <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneDataForGUI.h">
       <Filter>PlanetaEngine\Game\GUI</Filter>
@@ -762,15 +738,6 @@
     <ClInclude Include="GameProcessListTypes.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GPMACreateFunctiosDefinition.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GPMAGetFunctionsDefinition.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GPMAKeyPositionFunctionsDefinition.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GameProcessPosition.h">
       <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
@@ -786,9 +753,6 @@
     <ClInclude Include="DebugInformationDisplayer.h">
       <Filter>PlanetaEngine\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponentHeders.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectSetUpperHeaders.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
@@ -803,6 +767,33 @@
     </ClInclude>
     <ClInclude Include="WindowsUtility.h">
       <Filter>PlanetaEngine\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplGameObjectCreateFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplCameraFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="AccessorTemplate.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplGameProcessGetFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplGameProcessCreateFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplGUIOperateFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplGameProcessKeyPositionFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDefinitionHeaders.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectComponentHeaders.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1132,6 +1123,15 @@
     </ClCompile>
     <ClCompile Include="WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="SAImplGameObjectCreateFunctions.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="SAImplCameraFunctions.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="SAImplGameProcessKeyPositionFunctions.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

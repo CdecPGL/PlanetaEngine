@@ -76,7 +76,7 @@ namespace planeta_engine {
 
 		void GameProcessManager::SetSceneInterface(core::ScenePublicInterface& spi)
 		{
-			scene_accessor_ = std::make_shared<core::SceneAccessorForGameProcess>(spi);
+			scene_accessor_ = std::make_shared<SceneAccessorForGameProcess>(spi);
 		}
 
 		void GameProcessManager::SetSceneData(const core::SceneData& scene_data) {

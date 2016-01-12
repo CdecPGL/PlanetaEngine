@@ -11,12 +11,12 @@
 #include "GameProcessPosition.h"
 
 namespace planeta_engine{
+	class SceneAccessorForGameProcess;
 	namespace core {
 		class IGameAccessor;
 		class ScenePublicInterface;
 		struct SceneData;
 		struct SceneDataForGameProcess;
-		class SceneAccessorForGameProcess;
 	}
 	namespace game {
 		class GameProcess;
@@ -95,7 +95,7 @@ namespace planeta_engine{
 			core::GameProcessPriorytyListType::iterator CreateOrGetInsertPositionAtPriorityList_(const core::GameProcessPosition& pos, InsertPosIndication ins_pos);
 
 			core::IGameAccessor& game_;
-			std::shared_ptr<core::SceneAccessorForGameProcess> scene_accessor_;
+			std::shared_ptr<SceneAccessorForGameProcess> scene_accessor_;
 			std::unique_ptr<core::SceneDataForGameProcess> scene_data_;
 		};
 	}

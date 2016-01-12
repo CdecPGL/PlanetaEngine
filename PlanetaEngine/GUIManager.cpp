@@ -61,7 +61,7 @@ namespace planeta_engine {
 
 		void GUIManager::SetSceneInterface(core::ScenePublicInterface& spi)
 		{
-			scene_accessor_ = std::make_shared<core::SceneAccessorForGUI>(spi);
+			scene_accessor_ = std::make_shared<SceneAccessorForGUI>(spi);
 		}
 
 		std::shared_ptr<GUIObject> GUIManager::CreateGUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator, int layer)

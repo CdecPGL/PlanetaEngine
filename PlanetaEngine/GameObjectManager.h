@@ -8,10 +8,10 @@
 #include "NonCopyable.h"
 
 namespace planeta_engine{
+	class SceneAccessorForGameObject;
 	namespace core {
 		class ScenePublicInterface;
 		struct SceneData;
-		class SceneAccessorForGameObject;
 		struct SceneDataForGameObject;
 	}
 	namespace game{
@@ -64,7 +64,7 @@ namespace planeta_engine{
 			std::vector<std::shared_ptr<GameObject>> garbage_;
 			void RemoveProc_();
 			int _id_counter;
-			std::shared_ptr<core::SceneAccessorForGameObject> scene_accessor_;
+			std::shared_ptr<SceneAccessorForGameObject> scene_accessor_;
 			std::unique_ptr<core::SceneDataForGameObject> scene_data_;
 		};
 	}

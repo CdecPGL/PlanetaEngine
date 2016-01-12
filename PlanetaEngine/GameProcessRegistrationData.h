@@ -5,8 +5,8 @@
 #include "GameProcessPosition.h"
 
 namespace planeta_engine {
+	class SceneAccessorForGameProcess;
 	namespace core {
-		class SceneAccessorForGameProcess;
 		struct GameProcessRegistrationData {
 			utility::WeakPointer<SceneAccessorForGameProcess> scene_accessor;
 			std::function<void()> disposer;

@@ -10,11 +10,11 @@
 
 namespace planeta_engine{
 	class ScreenDrawerGUI;
+	class SceneAccessorForGUI;
 	namespace core {
 		class ScenePublicInterface;
 		struct SceneData;
 		struct SceneDataForGUI;
-		class SceneAccessorForGUI;
 	}
 	namespace game {
 		class GUIObject;
@@ -53,7 +53,7 @@ namespace planeta_engine{
 			/*シーンデータを参照*/
 			core::SceneDataForGUI& RefSceneData() { return *scene_data_; }
 		private:
-			std::shared_ptr<core::SceneAccessorForGUI> scene_accessor_;
+			std::shared_ptr<SceneAccessorForGUI> scene_accessor_;
 			std::unique_ptr<core::SceneDataForGUI> scene_data_;
 			class Layer_ {
 			public:

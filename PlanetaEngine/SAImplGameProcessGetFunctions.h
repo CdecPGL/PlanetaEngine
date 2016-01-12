@@ -1,12 +1,13 @@
 #pragma once
 
+#include "ScenePublicInterface.h"
 #include "GameProcessManagerPublicInterface.h"
 
 namespace planeta_engine {
-	namespace core {
-		class GPMAGetFunctionsDefinition {
+	namespace scene_accessor_impl {
+		class SAImplGameProcessGetFunctions {
 		public:
-			explicit GPMAGetFunctionsDefinition(game::GameProcessManagerPublicInterface& pinterface) :game_process_manager_public_interface_(pinterface) {}
+			explicit SAImplGameProcessGetFunctions(core::ScenePublicInterface& spi) :game_process_manager_public_interface_(spi.game_process_manager()) {}
 			/*ゲームプロセスを型から取得する*/
 			template<class C>
 			utility::WeakPointer<C> GetGameProcess()const { return game_process_manager_public_interface_.GetProcess<C>(); }

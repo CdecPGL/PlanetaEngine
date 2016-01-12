@@ -3,11 +3,11 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
+	class SceneAccessorForGameObject;
 	namespace game {
 		class GameObject;
 	}
 	namespace core {
-		class SceneAccessorForGameObject;
 		struct GameObjectComponentRegistrationData {
 			int id;
 			utility::WeakPointer<SceneAccessorForGameObject> scene_accessor;

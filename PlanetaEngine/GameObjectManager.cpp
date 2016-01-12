@@ -162,7 +162,7 @@ namespace planeta_engine{
 		GameObjectManager::GameObjectManager() :_id_counter(0){};
 
 		void GameObjectManager::SetSceneInterface(core::ScenePublicInterface& spi) {
-			scene_accessor_ = std::make_shared<core::SceneAccessorForGameObject>(spi);
+			scene_accessor_ = std::make_shared<SceneAccessorForGameObject>(spi);
 		}
 
 		void GameObjectManager::Update() {

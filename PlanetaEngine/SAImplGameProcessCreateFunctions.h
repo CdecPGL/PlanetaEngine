@@ -1,12 +1,13 @@
 #pragma once
 
+#include "ScenePublicInterface.h"
 #include "GameProcessManagerPublicInterface.h"
 
 namespace planeta_engine {
-	namespace core {
-		class GPMACreateFunctionsDefinition {
+	namespace scene_accessor_impl {
+		class SAImplGameProcessCreateFunctions {
 		public:
-			explicit GPMACreateFunctionsDefinition(game::GameProcessManagerPublicInterface& pinterface) :game_process_manager_public_interface_(pinterface) {}
+			explicit SAImplGameProcessCreateFunctions(core::ScenePublicInterface& spi) :game_process_manager_public_interface_(spi.game_process_manager()) {}
 			/**
 			* @brief ゲームプロセスを作成する
 			* @param 位置、位置指定

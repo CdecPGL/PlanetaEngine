@@ -9,6 +9,7 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
+	class SceneAccessorForGameObject;
 	namespace game {
 		class IGameObjectAccessor;
 		class GameObject;
@@ -16,7 +17,6 @@ namespace planeta_engine {
 	namespace core{
 		struct SceneDataForGameObject;
 		struct GameObjectComponentRegistrationData;
-		class SceneAccessorForGameObject;
 	}
 	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
 	public:
@@ -38,7 +38,7 @@ namespace planeta_engine {
 		void Finalize();
 	protected:
 		using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
-		core::SceneAccessorForGameObject& scene() { return *scene_accessor_; }
+		SceneAccessorForGameObject& scene() { return *scene_accessor_; }
 	private:
 		//			static void* operator new(size_t s){ throw utility::BadNewDeleteOperation("Component::operator new is called."); return nullptr; }
 		//			static void operator delete(void* p){ throw utility::BadNewDeleteOperation("Component::operator delete is called."); return; }
@@ -50,7 +50,7 @@ namespace planeta_engine {
 		int id_;
 
 		utility::WeakPointer<game::IGameObjectAccessor> game_object_;
-		utility::WeakPointer<core::SceneAccessorForGameObject> scene_accessor_;
+		utility::WeakPointer<SceneAccessorForGameObject> scene_accessor_;
 
 		/*ì¡ï ê›íËä÷êî*/
 		virtual bool SpecialSetUp(const core::SceneDataForGameObject& setup_data) = 0;
