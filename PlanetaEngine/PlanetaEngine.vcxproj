@@ -165,6 +165,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessKeyPositionDefinition.h" />
     <ClInclude Include="GameProcessListTypes.h" />
     <ClInclude Include="GameProcessSystemKeyPositions.h" />
+    <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h" />
     <ClInclude Include="SAImplGameProcessCreateFunctions.h" />
     <ClInclude Include="SAImplGameProcessGetFunctions.h" />
     <ClInclude Include="InsertPosIndication.h" />
@@ -389,6 +390,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InstanceProcess.cpp" />
     <ClCompile Include="SAImplCameraFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />
+    <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp" />
     <ClCompile Include="SAImplGameProcessKeyPositionFunctions.cpp" />
     <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />

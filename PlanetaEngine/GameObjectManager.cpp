@@ -17,7 +17,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		int GameObjectManager::Register(const std::shared_ptr<GameObject>& go)
+		int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObject>& go)
 		{
 			go->SetSceneAccessor(scene_accessor_);
 			int id = _id_counter++;
@@ -26,9 +26,9 @@ namespace planeta_engine{
 			return id;
 		}
 
-		int GameObjectManager::Register(const std::shared_ptr<GameObject>& go, const std::string& name)
+		int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObject>& go, const std::string& name)
 		{
-			int id = Register(go);
+			int id = RegisterGameObject(go);
 			if (id < -1) { return -1; }
 			name_id_map_.emplace(name, id);
 			return id;
@@ -41,15 +41,15 @@ namespace planeta_engine{
 			}
 		}
 
-		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(GameObjectSetUpper& game_object_setupper)
+		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(const std::string& game_object_create_id)
 		{
 			auto go = GameObject::Create();
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", __FUNCTION__);
 				return nullptr;
 			}
-			if (Register(go) >= 0) {
-				if (game_object_setupper(*go)) {
+			if (RegisterGameObject(go) >= 0) {
+				if (SetUpGameObject_(*go,game_object_create_id)) {
 					return go;
 				} else {
 					debug::SystemLog::instance().LogError("ゲームオブジェクトの初期化に失敗しました。", __FUNCTION__);
@@ -59,15 +59,15 @@ namespace planeta_engine{
 			else { return nullptr; }
 			
 		}
-		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(GameObjectSetUpper& game_object_setupper,const std::string& name)
+		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(const std::string& game_object_create_id,const std::string& name)
 		{
 			auto go = GameObject::Create();
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", __FUNCTION__);
 				return nullptr;
 			}
-			if (Register(go, name) >= 0) {
-				if (game_object_setupper(*go)) {
+			if (RegisterGameObject(go, name) >= 0) {
+				if (SetUpGameObject_(*go,game_object_create_id)) {
 					return go;
 				} else {
 					debug::SystemLog::instance().LogError("ゲームオブジェクトの初期化に失敗しました。", __FUNCTION__);
@@ -78,23 +78,7 @@ namespace planeta_engine{
 			
 		}
 
-		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateAndActivateGameObject(GameObjectSetUpper& game_object_setupper)
-		{
-			auto go = CreateGameObject(game_object_setupper);
-			if (go == nullptr) { return nullptr; }
-			go->Activate();
-			return go;
-		}
-
-		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateAndActivateGameObject(GameObjectSetUpper& game_object_setupper, const std::string& name)
-		{
-			auto go = CreateGameObject(game_object_setupper, name);
-			if (go == nullptr) { return nullptr; }
-			go->Activate();
-			return go;
-		}
-
-		bool GameObjectManager::Activate(int id)
+		bool GameObjectManager::ActivateGameObject(int id)
 		{
 			auto it = inactive_game_objects_.find(id);
 			if (it == inactive_game_objects_.end()) { return false; }
@@ -104,7 +88,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool GameObjectManager::InActivate(int id)
+		bool GameObjectManager::InActivateGameObject(int id)
 		{			
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) { return false; }
@@ -114,7 +98,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool GameObjectManager::Remove(int id)
+		bool GameObjectManager::RemoveGameObject(int id)
 		{
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) {
@@ -187,5 +171,25 @@ namespace planeta_engine{
 			scene_data_->collision_detect_process = scene_data.collision_detect_process;
 			scene_data_->draw_component_process_registrator = scene_data.draw_component_process_registrator;
 		}
+
+		bool GameObjectManager::SetUpGameObject_(GameObject& game_object, const std::string& setup_id)const {
+			auto it = setupper_map_.find(setup_id);
+			if (it == setupper_map_.end()) {
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ゲームオブジェクトのセットアップに失敗しました。GameObjectSetUpper\"", setup_id, "\"は存在しません。");
+				return false;
+			}
+			if ((it->second)(game_object)) { return true; }
+			else {
+				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ゲームオブジェクトのセットアップに失敗しました。GameObjectSetUpper\"", setup_id, "\"の実行に失敗しました。");
+				return false;
+			}
+		}
+
+		void GameObjectManager::RegisterGameObjectSetUpper(const std::string& game_object_create_id, std::shared_ptr<GameObjectSetUpper>&& game_object_setupper) {
+			if (setupper_map_.emplace(game_object_create_id, [gosur = std::move(game_object_setupper)](GameObject& game_object){return (*gosur)(game_object); }).second == false) {
+				debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "GameObjectSetUpper\"", game_object_create_id, "\"はすでに登録されています。");
+			}
+		}
+
 	}
 }

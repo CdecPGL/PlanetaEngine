@@ -7,17 +7,17 @@ namespace planeta_engine {
 
 		bool GameObjectManagerConnection::Activate()
 		{
-			return game_object_manager_.Activate(id_);
+			return game_object_manager_.ActivateGameObject(id_);
 		}
 
 		bool GameObjectManagerConnection::InActivate()
 		{
-			return game_object_manager_.InActivate(id_);
+			return game_object_manager_.InActivateGameObject(id_);
 		}
 
 		void GameObjectManagerConnection::Dispose()
 		{
-			auto ret = game_object_manager_.Remove(id_);
+			auto ret = game_object_manager_.RemoveGameObject(id_);
 			assert(ret == true);
 		}
 

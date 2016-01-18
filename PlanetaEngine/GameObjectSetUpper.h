@@ -1,10 +1,12 @@
 #pragma once
 
+#include "NonCopyable.h"
+
 namespace planeta_engine{
 	namespace game{
 		class GameObjectAccessorForSetUp;
 		class GameObject;
-		class GameObjectSetUpper{
+		class GameObjectSetUpper : private utility::NonCopyable<GameObjectSetUpper>{
 		public:
 			GameObjectSetUpper() = default;
 			virtual ~GameObjectSetUpper() = default;
