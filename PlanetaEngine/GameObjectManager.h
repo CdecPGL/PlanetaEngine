@@ -44,6 +44,8 @@ namespace planeta_engine{
 			bool Process();
 			/*更新*/
 			void Update();
+			/*速度適用*/
+			void ApplyVelocityToGameObject();
 			/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
 			int RegisterGameObject(const std::shared_ptr<GameObject>& go);
 			int RegisterGameObject(const std::shared_ptr<GameObject>& go,const std::string& name);

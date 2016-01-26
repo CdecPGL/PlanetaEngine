@@ -8,20 +8,6 @@
 
 namespace planeta_engine {
 	namespace components {
-
-		const Vector2D<double> PlanetGroundComponent::GetDownwardDirectionVector(const Vector2D<double>& pos)const
-		{
-			return Vector2D<double>::GetParallelUnitVector(game_object().transform().global_position() - pos);
-		}
-
-		const double PlanetGroundComponent::GetAltitude(const Vector2D<double>& position)const
-		{
-			auto center_to_pos_vec = position - game_object().transform().global_position();
-			double distance = center_to_pos_vec.Length();
-			double height = planet_component_->GetHeightByRad(std::atan2(center_to_pos_vec.y, center_to_pos_vec.x));
-			return distance - height;
-		}
-
 		bool PlanetGroundComponent::OnInitialized()
 		{
 			if (GroundComponent::OnInitialized() == false) {
@@ -53,7 +39,7 @@ namespace planeta_engine {
 				auto& collider_transform = collider.game_object().transform();
 				//ë¨ìxÇÃèCê≥
 				Vector2D<double> parallel_unit_vec(std::cos(collider_direction + math::constant::PI / 2.0), std::sin(collider_direction + math::constant::PI / 2.0));
-				collider_transform.velocity(parallel_unit_vec*Vector2D<double>::Dot(collider_transform.velocity(), parallel_unit_vec));
+				collider_transform.global_velocity(parallel_unit_vec*Vector2D<double>::Dot(collider_transform.global_velocity(), parallel_unit_vec));
 				//âüÇµèoÇµ
 				collider_transform.global_position(transform.global_position() + Vector2D<double>::GetParallelUnitVector(collider_relative_vec)*(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale()));
 				return true;
@@ -61,5 +47,27 @@ namespace planeta_engine {
 				return false;
 			}
 		}
+
+		double PlanetGroundComponent::GetAltitudeWithGroundPosition(const Vector2D<double>& ground_pos) const {
+			return ground_pos.y - planet_component_->GetHeightByRad(ground_pos.x);
+		}
+
+		Vector2D<double> PlanetGroundComponent::ConvertPositionGlobalToGround(const Vector2D<double>& global_pos) const {
+			auto relative_pos = global_pos - game_object().transform().global_position();
+			return Vector2D<double>(std::atan2(relative_pos.y, relative_pos.x), relative_pos.Length());
+		}
+
+		Vector2D<double> PlanetGroundComponent::ConvertPositionGroundToGlobal(const Vector2D<double>& ground_pos) const {
+			return Vector2D<double>(std::cos(ground_pos.x), std::sin(ground_pos.x))*ground_pos.y + game_object().transform().global_position();
+		}
+
+		Vector2D<double> PlanetGroundComponent::NormalizeGroundVectorWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_vector) const {
+			return Vector2D<double>(ground_vector.x * ground_pos.y, ground_vector.y);
+		}
+
+		double PlanetGroundComponent::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const {
+			return -math::constant::PI / 2;
+		}
+
 	}
 }

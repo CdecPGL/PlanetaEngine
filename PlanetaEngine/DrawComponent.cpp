@@ -27,8 +27,8 @@ namespace planeta_engine {
 		{
 			const TransformComponent& transform = game_object().transform();
 			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚©‚ç‚Ì‘Š‘ÎˆÊ’u
-			relation_position.x *= transform.global_scale().x; //‰¡•ûŒüŠg‘å‚ğ”½‰f
-			relation_position.y *= transform.global_scale().y; //c•ûŒüŠg‘å‚ğ”½‰f
+			relation_position.x *= transform.scale().x; //‰¡•ûŒüŠg‘å‚ğ”½‰f
+			relation_position.y *= transform.scale().y; //c•ûŒüŠg‘å‚ğ”½‰f
 			return transform.global_position() + relation_position;
 		}
 
@@ -39,7 +39,7 @@ namespace planeta_engine {
 
 		Vector2D<double> DrawComponent::GetDrawScale() const
 		{
-			return Vector2D<double>(game_object().transform().global_scale().x * scale_.x, game_object().transform().global_scale().y * scale_.y);
+			return Vector2D<double>(game_object().transform().scale().x * scale_.x, game_object().transform().scale().y * scale_.y);
 		}
 
 		void DrawComponent::RegisterToProcess_()

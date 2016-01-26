@@ -59,7 +59,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -78,8 +78,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua_mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
     <ProjectReference>
@@ -104,7 +104,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\PlanetaEngine\include;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\lua\lua-5.1.5_Win32_vc12_lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -120,8 +120,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\lua\lua-5.1.5_Win32_vc12_lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
     <ProjectReference>
@@ -144,6 +144,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
+    <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleColliderComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
@@ -153,6 +154,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="cpplinq.hpp" />
     <ClInclude Include="DebugDrawInterface.h" />
     <ClInclude Include="DebugInformationDisplayer.h" />
     <ClInclude Include="GameObjectComponent.h" />
@@ -176,7 +178,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SAImplGameObjectCreateFunctions.h" />
     <ClInclude Include="SAImplGameProcessKeyPositionFunctions.h" />
     <ClInclude Include="SAImplGUIOperateFunctions.h" />
-    <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
     <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h" />
@@ -388,11 +389,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstanceProcess.cpp" />
+    <ClCompile Include="LuaBindClassFunctions.cpp" />
     <ClCompile Include="SAImplCameraFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp" />
     <ClCompile Include="SAImplGameProcessKeyPositionFunctions.cpp" />
-    <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenChangeEffecter.cpp" />

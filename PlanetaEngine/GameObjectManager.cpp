@@ -6,6 +6,7 @@
 #include "SceneDataForGameObject.h"
 #include "SceneData.h"
 #include "GameObjectSetUpper.h"
+#include "TransformComponent.h"
 
 namespace planeta_engine{
 	namespace game{
@@ -188,6 +189,12 @@ namespace planeta_engine{
 		void GameObjectManager::RegisterGameObjectSetUpper(const std::string& game_object_create_id, std::shared_ptr<GameObjectSetUpper>&& game_object_setupper) {
 			if (setupper_map_.emplace(game_object_create_id, [gosur = std::move(game_object_setupper)](GameObject& game_object){return (*gosur)(game_object); }).second == false) {
 				debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "GameObjectSetUpper\"", game_object_create_id, "\"‚Í‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B");
+			}
+		}
+
+		void GameObjectManager::ApplyVelocityToGameObject() {
+			for (auto& go : active_game_objects_) {
+				go.second->transform().ApplyVelocity();
 			}
 		}
 

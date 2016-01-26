@@ -16,7 +16,6 @@ namespace planeta_engine{
 
 		GameObject::GameObject() :is_active_(false),component_id_counter_(0)
 			,transform_(components::TransformComponent::MakeShared<components::TransformComponent>()){
-			transform_->parent(GetRootTransformComponent()); //トランスフォームコンポーネントの親にRootを設定
 		};
 
 		GameObject::~GameObject() = default;

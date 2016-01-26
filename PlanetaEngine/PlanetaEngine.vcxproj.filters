@@ -175,6 +175,15 @@
     <Filter Include="PlanetaEngine\Core\Scene\SceneAccessor">
       <UniqueIdentifier>{f6cbc683-f6c1-4220-b070-a8ea76982161}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Game\GameObject\GameObjectInterface">
+      <UniqueIdentifier>{56cd2c2b-652f-4629-9e10-12aaba99a599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LinqForCpp">
+      <UniqueIdentifier>{cf38c700-36a3-40d4-a3d7-8ca8f098f1cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{d0528160-be9e-47ac-acff-8c9b7b787093}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -753,9 +762,6 @@
     <ClInclude Include="GameObjectOperationProcess.h">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
     </ClInclude>
-    <ClInclude Include="SaveDataManager.h">
-      <Filter>PlanetaEngine\Game</Filter>
-    </ClInclude>
     <ClInclude Include="WindowsUtility.h">
       <Filter>PlanetaEngine\Windows</Filter>
     </ClInclude>
@@ -800,6 +806,12 @@
     </ClInclude>
     <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="cpplinq.hpp">
+      <Filter>LinqForCpp</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaBindClassFunctions.h">
+      <Filter>Lua</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1124,9 +1136,6 @@
     <ClCompile Include="GameObjectOperationProcess.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
     </ClCompile>
-    <ClCompile Include="SaveDataManager.cpp">
-      <Filter>PlanetaEngine\Game</Filter>
-    </ClCompile>
     <ClCompile Include="WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
     </ClCompile>
@@ -1141,6 +1150,9 @@
     </ClCompile>
     <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaBindClassFunctions.cpp">
+      <Filter>Lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

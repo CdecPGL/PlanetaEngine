@@ -48,7 +48,7 @@ namespace planeta_engine {
 			uiup->SetExcuteFunction([&ui_manager = scene.gui_manager()] {ui_manager.Update(); });
 			//TransformŠÖ˜A
 			auto tavp = p_mgr.AddSystemProcess<game_processes::InstantProcess>(p_mgr.GetKeyPosition(gp_syskp::TransformApplyVelocityProcessKeyPositionID), InsertPosIndication::At);
-			tavp->SetExcuteFunction([root_transform = game::GameObject::GetRootTransformComponent(true)]{root_transform->ApplyVelocityRecursively(); });
+			tavp->SetExcuteFunction([&game_object_manager = scene.game_object_manager()]{ game_object_manager.ApplyVelocityToGameObject(); });
 			/*auto tclgp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformConvertLocalToGlobalProcessPriority, process::TransformConvertLocalToGlobalProcessName);
 			tclgp->SetExcuteFunction([root_transform] {root_transform->ConvertLocalToGlobalRecursively(); });
 			auto tcglp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformConvertGlobalToLocalProcessPriority, process::TransformConvertGlobalToLocalProcessName);

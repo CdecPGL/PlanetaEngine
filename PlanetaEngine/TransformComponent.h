@@ -3,76 +3,71 @@
 #include <unordered_map>
 #include "GameObjectNormalComponent.h"
 #include "Vector2D.h"
-//#include "Matrix.h"
+#include "WeakPointerDelegate.h"
 
 namespace planeta_engine {
 	namespace components {
+		class GroundComponent;
 		/*形状情報コンポーネント*/
 		class TransformComponent : public GameObjectNormalComponent {
 		public:
 			TransformComponent();
 			~TransformComponent() = default;
-			void AddChild(const utility::WeakPointer<TransformComponent>& c);
-			void RemoveChild(const utility::WeakPointer<TransformComponent>& c);
+
+			/*現在位置から移動*/
+			void Move(const Vector2D<double>& mov_pos);
+			/*位置の設定*/
+			void Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset);
 			/*アクセサ*/
-			const Vector2D<double>& local_position()const { return local_position_; }
-			void local_position(const Vector2D<double>& pos) { local_position_ = pos; ConvertLocalToGlobal(); }
-			const Vector2D<double>& local_scale()const { return local_scale_; }
-			void local_scale(const Vector2D<double>& s) { local_scale_ = s; ConvertLocalToGlobal();}
-			const double local_rotation_rad()const { return local_rotation_rad_; }
-			void local_rotation_rad(double rota_rad) { local_rotation_rad_ = rota_rad; ConvertLocalToGlobal(); }
-			const Vector2D<double>& velocity()const { return _velocity; }
-			void velocity(const Vector2D<double>& vel) { _velocity = vel; }
-			const double rotation_velosity_rad()const { return _rotation_velocity_rad; }
-			void rotation_velocity_rad(double rota_vel_rad) { _rotation_velocity_rad = rota_vel_rad; }
-			utility::WeakPointer<TransformComponent> parent()const { return parent_; }
-			void parent(const utility::WeakPointer<TransformComponent>& p);
-			const Vector2D<double>& global_position()const { return global_position_; }
-			void global_position(const Vector2D<double>& pos) { global_position_ = pos; ConvertGlobalToLocal(); }
-			const Vector2D<double>& global_scale()const { return global_scale_; }
-			void global_scale(const Vector2D<double>& s) { global_scale_ = s; ConvertGlobalToLocal(); }
-			const double global_rotation_rad()const { return global_rotation_rad_; }
-			void global_rotation_rad(double rota_rad) { global_rotation_rad_ = rota_rad; ConvertGlobalToLocal(); }
-			void position_parent_dependence(bool f) { position_parent_dependence_ = f; }
-			void rotation_parent_dependence(bool f) { rotation_parent_dependence_ = f; }
-			void scale_parent_dependence(bool f) { scale_parent_dependence_ = f; }
+			const Vector2D<double>& position()const;
+			void position(const Vector2D<double>& pos);
+			const Vector2D<double>& scale()const;
+			void scale(const Vector2D<double>& s);
+			const double rotation_rad()const;
+			void rotation_rad(double rota_rad);
+
+			const Vector2D<double>& global_position()const;
+			void global_position(const Vector2D<double>& pos);
+			const double global_rotation_rad()const;
+			void global_rotation_rad(double rota_rad);
+
+			const Vector2D<double>& velocity()const;
+			void velocity(const Vector2D<double>& vel);
+			const double rotation_velocity_rad()const;
+			void rotation_velocity_rad(double rota_vel_rad);
+
+			const Vector2D<double>& global_velocity()const;
+			void global_velocity(const Vector2D<double>& vel);
+
 			//システム
 			void ApplyVelocity();
-			void ApplyVelocityRecursively();
 		private:
 			bool is_no_update()const override{ return true; }
 
-			void ConvertLocalToGlobal();
-			void ConvertGlobalToLocal();
-			void ConvertLocalToGlobalChildren();
+			void UpdateTransformDataGlobalByGround(); //地形座標からグローバル座標を算出
+			void UpdateTransformDataGroundByGlobal(); //地形座標からローカル座標を算出
+			void UpdatePhysicalDataGlobal(); //地形座標からグローバル座標を算出
+			void UpdatePhysicalDataGround(); //地形座標からローカル座標を算出
 
-			utility::WeakPointer<TransformComponent> root_transform();
+			utility::WeakPointer<GroundComponent> belonging_ground_;
 
 			//形状情報
-			Vector2D<double> local_position_;
-			Vector2D<double> global_position_;
-			Vector2D<double> local_scale_ = Vector2D<double>(1.0, 1.0);
-			Vector2D<double> global_scale_ = Vector2D<double>(1.0, 1.0);
-			double local_rotation_rad_ = 0.0;
-			double global_rotation_rad_ = 0.0;
-			//物理情報
-			Vector2D<double> _velocity;
-			double _rotation_velocity_rad = 0.0;
-			//親子関係
-			utility::WeakPointer<TransformComponent> parent_;
-			std::unordered_map<void*, utility::WeakPointer<TransformComponent>> children_;
-			bool position_parent_dependence_ = true;
-			bool scale_parent_dependence_ = true;
-			bool rotation_parent_dependence_ = true;
-			//グローバル変換行列
-			/*math::Matrix<double, 3, 3> global_matrix_;
-			const math::Matrix<double, 3, 3>& global_matrix()const { return global_matrix_; }
-			const math::Matrix<double, 3, 3> global_matrix_position()const {
-				return std::move(math::Matrix<double, 3, 3>({ {1,0,0}, {0,1,0}, {global_matrix_[0][2],global_matrix_[1][2],1} }));
-			}
-			const math::Matrix<double, 3, 3> global_matrix_scale()const;
-			const math::Matrix<double, 3, 3> global_matrix_rotation()const;*/
+			struct TransformData {
+				Vector2D<double> position;
+				Vector2D<double> scale = Vector2D<double>(1.0, 1.0);
+				double rotation_rad = 0.0;
+				bool position_updated = false;
+				bool rotation_updated = false;
+			};
+			TransformData ground_transform_data_;
+			TransformData global_transform_data_;
 
+			//物理情報
+			Vector2D<double> ground_velocity_; //地形座標系での速度。長さはグローバル座標系に準ずる
+			bool ground_velocity_updated_ = false;
+			Vector2D<double> global_velocity_;
+			bool global_velocity_updated_ = false;
+			double rotation_velocity_rad_;
 		};
 	}
 }

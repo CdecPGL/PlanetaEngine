@@ -6,14 +6,16 @@ namespace planeta_engine {
 		class PlanetComponent;
 		class PlanetGroundComponent final: public GroundComponent {
 		public:
-			const Vector2D<double> GetDownwardDirectionVector(const Vector2D<double>& pos)const override;
-			const double GetDownwardDirectionByRad(const Vector2D<double>& pos)const override { return ConvertVecToRad(GetDownwardDirectionVector(pos)); }
-			const double GetAltitude(const Vector2D<double>& position)const override;
+			
 		private:
 			utility::WeakPointer<PlanetComponent> planet_component_;
 			bool OnInitialized()override;
 			virtual bool CollideWith(components::CircleColliderComponent& circle_collider) override;
-
+			double GetAltitudeWithGroundPosition(const Vector2D<double>& ground_pos) const override;
+			Vector2D<double> ConvertPositionGlobalToGround(const Vector2D<double>& global_pos) const override;
+			Vector2D<double> ConvertPositionGroundToGlobal(const Vector2D<double>& ground_pos) const override;
+			Vector2D<double> NormalizeGroundVectorWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_vector) const override;
+			double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const override;
 		};
 	}
 }

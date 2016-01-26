@@ -50,15 +50,15 @@ namespace planeta_engine {
 		{
 			const TransformComponent& transform = game_object().transform();
 			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚©‚ç‚Ì‘Š‘ÎˆÊ’u
-			relation_position.x *= transform.global_scale().x; //‰¡•ûŒüŠg‘å‚ð”½‰f
-			relation_position.y *= transform.global_scale().y; //c•ûŒüŠg‘å‚ð”½‰f
+			relation_position.x *= transform.scale().x; //‰¡•ûŒüŠg‘å‚ð”½‰f
+			relation_position.y *= transform.scale().y; //c•ûŒüŠg‘å‚ð”½‰f
 			return transform.global_position() + relation_position;
 		}
 
 		const double ColliderComponent::GetCollisionScale() const
 		{
 			const TransformComponent& transform = game_object().transform();
-			return transform.global_scale().x > transform.global_scale().y ? transform.global_scale().y : transform.global_scale().x;
+			return transform.scale().x > transform.scale().y ? transform.scale().y : transform.scale().x;
 		}
 
 		const double ColliderComponent::GetCollisionRotationRad() const

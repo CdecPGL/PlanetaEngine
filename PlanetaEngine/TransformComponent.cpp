@@ -1,158 +1,164 @@
 #include "TransformComponent.h"
-#include "Matrix.h"
+#include "GroundComponent.h"
 #include <cassert>
 
 namespace planeta_engine {
 	namespace components {
 
-		TransformComponent::TransformComponent() :local_rotation_rad_(0.0), local_scale_(1.0, 1.0)
+		TransformComponent::TransformComponent()
 		{
+			
+		}
 
+
+		void TransformComponent::Move(const Vector2D<double>& mov_pos) {
+			Offset(position(), mov_pos);
+		}
+
+
+		void TransformComponent::Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset) {
+			position(base_pos + belonging_ground_->NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 		}
 
 		void TransformComponent::ApplyVelocity()
 		{
-			//速度を適用
-			global_position_ += _velocity;
-			global_rotation_rad_ += _rotation_velocity_rad;
-			ConvertGlobalToLocal();
+			Move(velocity());
 		}
 
-		void TransformComponent::ConvertLocalToGlobal()
+		void TransformComponent::UpdateTransformDataGlobalByGround()
 		{
-			if (parent()) {
-				//親の位置から自分の位置を求める
-				auto&  parent_transform = *parent();
-				if (position_parent_dependence_) {
-					global_position_ = parent_transform.global_position() + math::RotationalTransformation(parent_transform.global_rotation_rad(), Vector2D<double>(local_position_.x * parent_transform.global_scale().x, local_position_.y * parent_transform.global_scale().y));
-				}
-				else {
-					global_position_ = local_position_;
-				}
-				if (scale_parent_dependence_) {
-					global_scale_ = Vector2D<double>(parent_transform.global_scale().x * local_scale_.x, parent_transform.global_scale().y * local_scale_.y);
-				}
-				else {
-					global_scale_ = local_scale_;
-				}
-				if (rotation_parent_dependence_) {
-					global_rotation_rad_ = parent_transform.global_rotation_rad() + local_rotation_rad_;
-				}
-				else {
-					global_rotation_rad_ = local_rotation_rad_;
-				}
+			auto& ground = *belonging_ground_;
+			if (ground_transform_data_.position_updated) {
+				ground_transform_data_.position = ground.ConvertPositionGlobalToGround(global_transform_data_.position);
 			}
-			else {
-				global_position_ = local_position_;
-				global_scale_ = local_scale_;
-				global_rotation_rad_ = local_rotation_rad_;
+			if (ground_transform_data_.rotation_updated || ground_transform_data_.position_updated) {
+				ground_transform_data_.rotation_rad = ground.ConvertRotationGlobalToGroundWithGroundPosition(ground_transform_data_.position, global_transform_data_.rotation_rad);
 			}
-			ConvertLocalToGlobalChildren();
+			global_transform_data_.position_updated = false;
+			global_transform_data_.rotation_updated = false;
+			ground_transform_data_.position_updated = false;
+			ground_transform_data_.rotation_updated = false;
 		}
 
-		void TransformComponent::ConvertGlobalToLocal()
+		void TransformComponent::UpdateTransformDataGroundByGlobal()
 		{
-			//自分と親の現在の絶対座標からローカル座標を求める
-			if (parent()) {
-				auto&  parent_transform = *parent();
-				if (position_parent_dependence_) {
-					auto no_rota_local_pos = math::RotationalTransformation(-parent_transform.global_rotation_rad(), global_position_ - parent_transform.global_position());
-					local_position_.Set(no_rota_local_pos.x / parent_transform.global_scale().x, no_rota_local_pos.y / parent_transform.global_scale().y);
-				}
-				else {
-					local_position_ = global_position_;
-				}
-				if (scale_parent_dependence_) {
-					local_scale_ = Vector2D<double>(global_scale().x / parent_transform.global_scale().x, global_scale().y / parent_transform.global_scale().y);
-				}
-				else {
-					local_scale_ = global_scale_;
-				}
-				if (rotation_parent_dependence_) {
-					local_rotation_rad_ = global_rotation_rad() - parent_transform.global_rotation_rad();
-				}
-				else {
-					local_rotation_rad_ = global_rotation_rad_;
-				}
+			auto& ground = *belonging_ground_;
+			if (global_transform_data_.position_updated) {
+				global_transform_data_.position = ground.ConvertPositionGroundToGlobal(ground_transform_data_.position);
 			}
-			else {
-				local_position_ = global_position_;
-				local_scale_ = global_scale_;
-				local_rotation_rad_ = global_rotation_rad_;
+			if (global_transform_data_.rotation_updated || global_transform_data_.position_updated) {
+				global_transform_data_.rotation_rad = ground.ConvertRotationGroundToGlobalWithGroundPosition(ground_transform_data_.position, ground_transform_data_.rotation_rad);
 			}
-			ConvertLocalToGlobalChildren();
+			global_transform_data_.position_updated = false;
+			global_transform_data_.rotation_updated = false;
+			ground_transform_data_.position_updated = false;
+			ground_transform_data_.rotation_updated = false;
 		}
 
-		void TransformComponent::AddChild(const utility::WeakPointer<TransformComponent>& c)
-		{
-			utility::WeakPointer<TransformComponent> child = c;
-			children_.emplace(child.get(), child); //子リストに追加
-			if (child->parent_) {
-				auto it = child->parent_->children_.find(child.get());
-				assert(it != child->parent_->children_.end()); //前の親に子がない
-				child->parent_->children_.erase(it); //子の親の前のから子を除去
+
+		void TransformComponent::UpdatePhysicalDataGlobal() {
+			auto& ground = *belonging_ground_;
+			if (ground_velocity_updated_) {
+				//地形座標の正規化を行うためにここでは地形速度にプロパティを通してアクセスする。
+				global_velocity_ = ground.ConvertVelocityGroundToGlobalWithGroundPosition(position(), velocity());
 			}
-			child->parent_ = std::static_pointer_cast<TransformComponent>(this_shared()); //自分を現在の親に設定
-			child->ConvertGlobalToLocal();
+			ground_velocity_updated_ = false;
+			global_velocity_updated_ = false;
 		}
 
-		void TransformComponent::RemoveChild(const utility::WeakPointer<TransformComponent>& c)
-		{
-			utility::WeakPointer<TransformComponent> child = c;
-			auto it = children_.find(child.get());
-			if (it == children_.end()) { return; }
-			children_.erase(it); //子リストから除去
-			child->parent_ = root_transform(); //元子の親をRootに設定
-			child->parent_->children_.emplace(child.get(), child); //Rootに元子を追加
-			child->ConvertGlobalToLocal();
-		}
 
-		void TransformComponent::parent(const utility::WeakPointer<TransformComponent>& p)
-		{
-			auto this_transform_shared = std::static_pointer_cast<TransformComponent>(this_shared());
-			if (parent_) {
-				auto it = parent_->children_.find(this);
-				assert(it != parent_->children_.end()); //前の親に子がない
-				parent_->children_.erase(it); //元親から子を除去
+		void TransformComponent::UpdatePhysicalDataGround() {
+			auto& ground = *belonging_ground_;
+			if (global_velocity_updated_) {
+				ground_velocity_ = ground.ConvertVelocityGlobalToGroundWithGroundPosition(position(), global_velocity_);
+			} else if (ground_velocity_updated_) {
+				ground_velocity_ = ground.NormalizeGroundVectorWithGroundPosition(position(), global_velocity_);
 			}
-			parent_ = p; //新しい親を設定
-			parent_->children_.emplace(this, this_transform_shared); //新しい親の子に自分を追加
-			ConvertGlobalToLocal();
+			ground_velocity_updated_ = false;
+			global_velocity_updated_ = false;
 		}
 
-		void TransformComponent::ApplyVelocityRecursively()
-		{
-			ApplyVelocity();
-			for (auto it = children_.begin(); it != children_.end();) {
-				if (it->second) {
-					it->second->ApplyVelocityRecursively();
-					++it;
-				}
-				else {
-					children_.erase(it++);
-				}
-			}
+		const Vector2D<double>& TransformComponent::position() const {
+			const_cast<TransformComponent*>(this)->UpdateTransformDataGroundByGlobal();
+			return ground_transform_data_.position;
 		}
 
-		void TransformComponent::ConvertLocalToGlobalChildren()
-		{
-			for (auto it = children_.begin(); it != children_.end();) {
-				if (it->second) {
-					it->second->ConvertLocalToGlobal();
-					++it;
-				}
-				else {
-					children_.erase(it++);
-				}
-			}
+		void TransformComponent::position(const Vector2D<double>& pos) {
+			ground_transform_data_.position = pos;
+			ground_transform_data_.position_updated = true;
+			global_transform_data_.position_updated = false;
 		}
 
-		utility::WeakPointer<TransformComponent> TransformComponent::root_transform()
-		{
-			utility::WeakPointer<TransformComponent> root = std::static_pointer_cast<TransformComponent>(this_shared());
-			while (root->parent_) { root = root->parent_; }
-			return root;
+		const Vector2D<double>& TransformComponent::scale() const {
+			const_cast<TransformComponent*>(this)->UpdateTransformDataGroundByGlobal();
+			return ground_transform_data_.scale;
 		}
 
+		void TransformComponent::scale(const Vector2D<double>& s) {
+			ground_transform_data_.scale = s;
+		}
+
+		const double TransformComponent::rotation_rad() const {
+			const_cast<TransformComponent*>(this)->UpdateTransformDataGroundByGlobal();
+			return ground_transform_data_.rotation_rad;
+		}
+
+		void TransformComponent::rotation_rad(double rota_rad) {
+			ground_transform_data_.rotation_rad = rota_rad;
+			ground_transform_data_.rotation_updated = true;
+			global_transform_data_.rotation_updated = false;
+		}
+
+		const Vector2D<double>& TransformComponent::global_position() const {
+			const_cast<TransformComponent*>(this)->UpdateTransformDataGlobalByGround();
+			return global_transform_data_.position;
+		}
+
+		void TransformComponent::global_position(const Vector2D<double>& pos) {
+			global_transform_data_.position = pos;
+			global_transform_data_.position_updated = true;
+			ground_transform_data_.position_updated = false;
+		}
+
+		const double TransformComponent::global_rotation_rad() const {
+			const_cast<TransformComponent*>(this)->UpdateTransformDataGlobalByGround();
+			return global_transform_data_.rotation_rad;
+		}
+
+		void TransformComponent::global_rotation_rad(double rota_rad) {
+			global_transform_data_.rotation_rad = rota_rad;
+			global_transform_data_.rotation_updated = true;
+			ground_transform_data_.rotation_updated = false;
+		}
+
+		const Vector2D<double>& TransformComponent::velocity() const {
+			const_cast<TransformComponent*>(this)->UpdatePhysicalDataGround();
+			return ground_velocity_;
+		}
+
+		void TransformComponent::velocity(const Vector2D<double>& vel) {
+			ground_velocity_ = vel;
+			ground_velocity_updated_ = true;
+			global_velocity_updated_ = false;
+		}
+
+		const double TransformComponent::rotation_velocity_rad() const {
+			return rotation_velocity_rad_;
+		}
+
+		void TransformComponent::rotation_velocity_rad(double rota_vel_rad) {
+			rotation_velocity_rad_ = rota_vel_rad;
+		}
+
+		const Vector2D<double>& TransformComponent::global_velocity()const {
+			const_cast<TransformComponent*>(this)->UpdatePhysicalDataGlobal();
+			return global_velocity_;
+		}
+
+		void TransformComponent::global_velocity(const Vector2D<double>& vel) {
+			global_velocity_ = vel;
+			global_velocity_updated_ = true;
+			ground_velocity_updated_ = false;
+		}
 	}
 }

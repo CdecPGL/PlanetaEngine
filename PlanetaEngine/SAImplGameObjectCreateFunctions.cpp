@@ -13,7 +13,7 @@ namespace planeta_engine {
 			return gompi_.CreateGameObject(game_object_create_id); 
 		}
 		/*ゲームオブジェクトを名前を付けて作成*/
-		utility::WeakPointer<game::IGameObjectAccessor> SAImplGameObjectCreateFunctions::CreateGameObject(const std::string& game_object_create_id, const std::string& name) { 
+		utility::WeakPointer<game::IGameObjectAccessor> SAImplGameObjectCreateFunctions::CreateGameObjectWithName(const std::string& game_object_create_id, const std::string& name) { 
 			return gompi_.CreateGameObject(game_object_create_id, name);
 		};
 		/*ゲームオブジェクトを作成して有効化*/
@@ -24,8 +24,8 @@ namespace planeta_engine {
 			return go;
 		}
 		/*ゲームオブジェクトを作成して名前を付けて有効化*/
-		utility::WeakPointer<game::IGameObjectAccessor> SAImplGameObjectCreateFunctions::CreateAndActivateGameObject(const std::string& game_object_create_id, const std::string& name) {
-			auto go = CreateGameObject(game_object_create_id, name);
+		utility::WeakPointer<game::IGameObjectAccessor> SAImplGameObjectCreateFunctions::CreateAndActivateGameObjectWithName(const std::string& game_object_create_id, const std::string& name) {
+			auto go = CreateGameObjectWithName(game_object_create_id, name);
 			if (go == nullptr) { return nullptr; }
 			go->Activate();
 			return go;
