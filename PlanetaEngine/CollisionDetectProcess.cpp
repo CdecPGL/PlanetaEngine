@@ -8,6 +8,7 @@
 #include "CollisionWithGroundEventArgument.h"
 #include "CollisionGroupMatrix.h"
 #include "SystemLog.h"
+#include "TransformComponent.h"
 
 namespace planeta_engine{
 	namespace system_processes {
@@ -66,7 +67,7 @@ namespace planeta_engine{
 
 		void CollisionDetectProcess::ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const {
 			for (const auto& col_com : collision_with_ground_list_) {
-				if (col_com->DetectCollision(col_com->game_object().belonging_ground())) {
+				if (col_com->DetectCollision(col_com->game_object().transform().ground())) {
 					//衝突していたら地形衝突イベントをホルダーに追加
 					event_arguments::CollisionWithGroundEventArgument cwgea;
 					collision_event_holder.push_back(std::make_pair(col_com, cwgea));

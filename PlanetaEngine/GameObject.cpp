@@ -115,21 +115,6 @@ namespace planeta_engine{
 			}
 		}
 
-		std::shared_ptr<components::GroundComponent> GameObject::GetDumyGroundComponent_()
-		{
-			static std::shared_ptr<components::DumyGroundComponent> dgc = std::make_shared<components::DumyGroundComponent>();
-			return dgc;
-		}
-
-		std::shared_ptr<components::TransformComponent> GameObject::GetRootTransformComponent(bool recreate_flag)
-		{
-			static std::shared_ptr<components::TransformComponent> rtc;
-			if (recreate_flag) {
-				rtc = std::make_shared<components::TransformComponent>();
-			}
-			return rtc;
-		}
-
 		void GameObject::SystemSetUpComponent_(GameObjectComponent& com) {
 			core::GameObjectComponentRegistrationData registration_data;
 			registration_data.holder_game_object = me();

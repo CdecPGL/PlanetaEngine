@@ -36,17 +36,10 @@ namespace planeta_engine {
 				auto it = component_list_.find(id);
 				if (it == component_list_.end()) { return nullptr; } else { return it->second; }
 			}
-			/*特殊コンポーネント取得*/
-			/*所属地形取得*/
-			utility::WeakPointer<components::GroundComponent> GetBelongingGroundComponent()override { return belonging_ground_ ? belonging_ground_ : GetDumyGroundComponent_(); }
-			const components::GroundComponent& belonging_ground()const override { return belonging_ground_ ? *belonging_ground_ : *GetDumyGroundComponent_(); }
-			components::GroundComponent& belonging_ground()override { return belonging_ground_ ? *belonging_ground_ : *GetDumyGroundComponent_(); }
 			/*ローカルトランスフォーム取得*/
 			utility::WeakPointer<components::TransformComponent> GetTransformComponent()override { return transform_; }
 			const components::TransformComponent& transform()const override { return *transform_; }
 			components::TransformComponent& transform()override { return *transform_; }
-			/*所属地形をセット*/
-			void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground)override { belonging_ground_ = belonging_ground; }
 
 			////////////システム関数//////////
 			//作成
@@ -74,8 +67,6 @@ namespace planeta_engine {
 			//終了処理(破棄時に呼ばれる)[呼び出し元:GameObjectManager::Remove]
 			bool Finalize_()throw() { disposed_event(); return FinalizeComponent_(); };
 
-			/*Rootとなるトランスフォームコンポーネントを取得*/
-			static std::shared_ptr<components::TransformComponent> GetRootTransformComponent(bool recreate_flag = false);
 			/*弱参照を取得*/
 			utility::WeakPointer<IGameObjectAccessor> GetWeakPointer()override { return me(); };
 		protected:
@@ -106,7 +97,6 @@ namespace planeta_engine {
 
 			//////////特殊コンポーネント//////////
 			std::shared_ptr<components::TransformComponent> transform_; //ローカル形状情報
-			utility::WeakPointer<components::GroundComponent> belonging_ground_; //所属地形(コンストラクタでダミーがセットされる)
 
 			bool is_active_;
 			/*ゲームオブジェクトコンポーネントに対する一括処理*/
@@ -133,9 +123,6 @@ namespace planeta_engine {
 			void SystemSetUpComponent_(GameObjectComponent& com);
 			int component_id_counter_;
 			struct create_helper;
-
-			/*ダミーの地形コンポーネントを取得*/
-			static std::shared_ptr<components::GroundComponent> GetDumyGroundComponent_();
 		};
 		struct GameObject::create_helper {
 			GameObject x;

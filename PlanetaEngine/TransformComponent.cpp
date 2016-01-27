@@ -1,11 +1,12 @@
 #include "TransformComponent.h"
 #include "GroundComponent.h"
+#include "DumyGroundComponent.h"
 #include <cassert>
 
 namespace planeta_engine {
 	namespace components {
 
-		TransformComponent::TransformComponent()
+		TransformComponent::TransformComponent():ground_(GetDumyGroundComponent_())
 		{
 			
 		}
@@ -17,7 +18,17 @@ namespace planeta_engine {
 
 
 		void TransformComponent::Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset) {
-			position(base_pos + belonging_ground_->NormalizeGroundVectorWithGroundPosition(base_pos, offset));
+			position(base_pos + ground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
+		}
+
+
+		void TransformComponent::Accelerate(const Vector2D<double>& acceleration) {
+			velocity(velocity() + acceleration);
+		}
+
+
+		void TransformComponent::GlobalAccelerate(const Vector2D<double>& global_acceleration) {
+			global_velocity(global_velocity() + global_acceleration);
 		}
 
 		void TransformComponent::ApplyVelocity()
@@ -27,7 +38,7 @@ namespace planeta_engine {
 
 		void TransformComponent::UpdateTransformDataGlobalByGround()
 		{
-			auto& ground = *belonging_ground_;
+			auto& ground = this->ground();
 			if (ground_transform_data_.position_updated) {
 				ground_transform_data_.position = ground.ConvertPositionGlobalToGround(global_transform_data_.position);
 			}
@@ -42,7 +53,7 @@ namespace planeta_engine {
 
 		void TransformComponent::UpdateTransformDataGroundByGlobal()
 		{
-			auto& ground = *belonging_ground_;
+			auto& ground = this->ground();
 			if (global_transform_data_.position_updated) {
 				global_transform_data_.position = ground.ConvertPositionGroundToGlobal(ground_transform_data_.position);
 			}
@@ -57,7 +68,7 @@ namespace planeta_engine {
 
 
 		void TransformComponent::UpdatePhysicalDataGlobal() {
-			auto& ground = *belonging_ground_;
+			auto& ground = this->ground();
 			if (ground_velocity_updated_) {
 				//地形座標の正規化を行うためにここでは地形速度にプロパティを通してアクセスする。
 				global_velocity_ = ground.ConvertVelocityGroundToGlobalWithGroundPosition(position(), velocity());
@@ -68,7 +79,7 @@ namespace planeta_engine {
 
 
 		void TransformComponent::UpdatePhysicalDataGround() {
-			auto& ground = *belonging_ground_;
+			auto& ground = this->ground();
 			if (global_velocity_updated_) {
 				ground_velocity_ = ground.ConvertVelocityGlobalToGroundWithGroundPosition(position(), global_velocity_);
 			} else if (ground_velocity_updated_) {
@@ -160,5 +171,27 @@ namespace planeta_engine {
 			global_velocity_updated_ = true;
 			ground_velocity_updated_ = false;
 		}
+
+		const GroundComponent& TransformComponent::ground() const {
+			return *ground_;
+		}
+
+		GroundComponent& TransformComponent::ground() {
+			return *ground_;
+		}
+
+		utility::WeakPointer<GroundComponent> TransformComponent::GetGround() const {
+			return ground_;
+		}
+
+		void TransformComponent::SetGround(const utility::WeakPointer<GroundComponent>& g) {
+			ground_ = g;
+		}
+
+		std::shared_ptr<components::GroundComponent> TransformComponent::GetDumyGroundComponent_() {
+			static std::shared_ptr<components::DumyGroundComponent> dgc = std::make_shared<components::DumyGroundComponent>();
+			return dgc;
+		}
+
 	}
 }

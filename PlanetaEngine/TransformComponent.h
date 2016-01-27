@@ -18,6 +18,10 @@ namespace planeta_engine {
 			void Move(const Vector2D<double>& mov_pos);
 			/*位置の設定*/
 			void Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset);
+			/*加速する*/
+			void Accelerate(const Vector2D<double>& acceleration);
+			/*グローバル方向に加速する*/
+			void GlobalAccelerate(const Vector2D<double>& global_acceleration);
 			/*アクセサ*/
 			const Vector2D<double>& position()const;
 			void position(const Vector2D<double>& pos);
@@ -39,6 +43,12 @@ namespace planeta_engine {
 			const Vector2D<double>& global_velocity()const;
 			void global_velocity(const Vector2D<double>& vel);
 
+			/*地形関係*/
+			const GroundComponent& ground()const;
+			GroundComponent& ground();
+			utility::WeakPointer<GroundComponent> GetGround()const;
+			void SetGround(const utility::WeakPointer<GroundComponent>& g);
+
 			//システム
 			void ApplyVelocity();
 		private:
@@ -49,7 +59,9 @@ namespace planeta_engine {
 			void UpdatePhysicalDataGlobal(); //地形座標からグローバル座標を算出
 			void UpdatePhysicalDataGround(); //地形座標からローカル座標を算出
 
-			utility::WeakPointer<GroundComponent> belonging_ground_;
+			utility::WeakPointer<GroundComponent> ground_; //コンストラクタでダミーをセット
+			/*ダミーの地形コンポーネントを取得*/
+			static std::shared_ptr<components::GroundComponent> GetDumyGroundComponent_();
 
 			//形状情報
 			struct TransformData {

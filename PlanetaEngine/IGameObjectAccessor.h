@@ -47,18 +47,11 @@ namespace planeta_engine {
 			}
 			/*IDでコンポーネントを取得*/
 			virtual utility::WeakPointer<GameObjectComponent> GetComponent(int id) = 0;
-			/*所属地形コンポーネントを取得*/
-			virtual utility::WeakPointer<components::GroundComponent> GetBelongingGroundComponent() = 0;
-			/*所属地形を取得(セットされていない場合はダミーが返される)*/
-			virtual const components::GroundComponent& belonging_ground()const = 0;
-			virtual components::GroundComponent& belonging_ground() = 0;
 			/*トランスフォームコンポーネントを取得*/
 			virtual utility::WeakPointer<components::TransformComponent> GetTransformComponent() = 0;
 			/*トランスフォームを取得*/
 			virtual const components::TransformComponent& transform()const = 0;
 			virtual components::TransformComponent& transform() = 0;
-			/*所属地形をセット*/
-			virtual void SetBelongingGround(const utility::WeakPointer<components::GroundComponent>& belonging_ground) = 0;
 			/*弱参照を取得*/
 			virtual utility::WeakPointer<IGameObjectAccessor> GetWeakPointer() = 0;
 			/*破棄時イベント*/
