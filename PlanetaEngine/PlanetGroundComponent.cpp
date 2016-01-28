@@ -66,7 +66,7 @@ namespace planeta_engine {
 		}
 
 		double PlanetGroundComponent::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const {
-			return -math::constant::PI / 2;
+			return ground_pos.x - math::constant::PI / 2;
 		}
 
 	}

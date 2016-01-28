@@ -363,6 +363,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CoroutineProcess.cpp" />
     <ClCompile Include="CSVResource.cpp" />
     <ClCompile Include="DebuggerCommunicater.cpp" />
+    <ClCompile Include="DebugInformationDisplayer.cpp" />
     <ClCompile Include="DrawPolygonComponent.cpp" />
     <ClCompile Include="EmptySceneDefinition.cpp" />
     <ClCompile Include="EncrypterBase.cpp" />

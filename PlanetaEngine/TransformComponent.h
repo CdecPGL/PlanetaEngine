@@ -46,8 +46,9 @@ namespace planeta_engine {
 			/*地形関係*/
 			const GroundComponent& ground()const;
 			GroundComponent& ground();
+			/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 			utility::WeakPointer<GroundComponent> GetGround()const;
-			void SetGround(const utility::WeakPointer<GroundComponent>& g);
+			void SetGround(const utility::WeakPointer<GroundComponent>& g,bool keep_global_position);
 
 			//システム
 			void ApplyVelocity();
@@ -79,7 +80,7 @@ namespace planeta_engine {
 			bool ground_velocity_updated_ = false;
 			Vector2D<double> global_velocity_;
 			bool global_velocity_updated_ = false;
-			double rotation_velocity_rad_;
+			double rotation_velocity_rad_ = 0.0;
 		};
 	}
 }

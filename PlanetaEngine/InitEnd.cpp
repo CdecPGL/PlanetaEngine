@@ -9,6 +9,7 @@
 #include "ConfigData.h"
 #include "SystemLog.h"
 #include "SystemCounter.h"
+#include "DebugInformationDisplayer.h"
 #include "FileSystemManager.h"
 #include "ArchiveManipulator.h"
 #include "NormalFolderManipulator.h"
@@ -142,11 +143,24 @@ namespace planeta_engine{
 					debug::SystemLog::instance().LogMessage("システムログを開始しました。", __FUNCTION__);
 				}
 				else { return false; }
+				//デバッグ情報ウインドウの設定
+				if(
+					debug::DebugInformationDisplayer::Instantiate()&&
+					debug::DebugInformationDisplayer::instance().Initialize())
+				{
+					debug::SystemLog::instance().LogMessage("デバッグ情報ウインドウを準備しました。", __FUNCTION__);
+				} else {
+					debug::SystemLog::instance().LogError("デバッグ情報ウインドウの準備に失敗しました。", __FUNCTION__);
+					return false;
+				}
 				return true;
 			}
 
 			bool FinalizeDebugStstem()
 			{
+				//デバッグ情報ウインドウの終了処理
+				debug::DebugInformationDisplayer::instance().Finalize();
+				debug::DebugInformationDisplayer::Dispose();
 				//システムログの終了処理
 				FinalizeSystemLog();
 				//システムカウンタの終了処理

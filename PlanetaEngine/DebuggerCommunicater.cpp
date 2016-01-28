@@ -2,34 +2,71 @@
 #include "SystemLog.h"
 
 #include <windows.h>
-#include <thread>
-#include <array>
-#include <cstdio>
+#include <vector>
+
+namespace {
+	constexpr char* MapFileName("PlanetaEngineDebugCommunicater");
+	constexpr int MapFileSize(2560);
+	constexpr int DebugInfoMaxLength(256);
+	constexpr int DebugInfoCount(10);
+}
 
 namespace planeta_engine {
 	namespace debug {
+		//////////////////////////////////////////////////////////////////////////
+		//Impl
+		//////////////////////////////////////////////////////////////////////////
+
 
 		class DebuggerCommunicater::Impl_ {
+		private:
+			HANDLE mem_mapd_file_handle_;
+			LPVOID map_address_;
+			std::vector<std::string> debug_infos_;
 		public:
-			void CommunicationProc();
-			template<typename T>
-			bool SendData(const T& data) {
-				DWORD result;
-				*reinterpret_cast<T*>(buffer.data()) = data;
-				WriteFile(hPipe, buffer.data(), sizeof(T), &result, NULL);
+			
+			//通信用メモリマップドファイルを設定する
+			bool SetUpMemoryMappedFileForCommunicate() {
+				//メモリマップドファイルを作成　サイズ:1024バイト　名前:inaba
+				//ページファイルを利用
+				HANDLE hFile = CreateFileMapping((HANDLE)0xFFFFFFFF, NULL, PAGE_READWRITE, 0, MapFileSize, "PlanetaEngineDebugCommunicater");
+				mem_mapd_file_handle_ = hFile;
+				if (hFile == NULL) {
+					//エラー
+					return false;
+				}
+				//アドレスを取得
+				LPVOID hMap = MapViewOfFile(hFile, FILE_MAP_WRITE | FILE_MAP_READ, 0, 0, 0);
+				map_address_ = hMap;
+				if (hMap == NULL) {
+					return false;
+				}	
 				return true;
 			}
-			template<typename T>
-			T ReceiveData() {
-				DWORD result;
-				ReadFile(hPipe, buffer.data(), sizeof(T), &result, NULL);
-				return *reinterpret_cast<T*>(buffer.data());
+
+			bool FinishMemoryMappedFileForCommunicate() {
+				UnmapViewOfFile(map_address_);
+				CloseHandle(mem_mapd_file_handle_);//メモリマップドファイルをクローズ
 			}
 
-			std::thread com_thd;
-			HANDLE hPipe;
-			std::array<TCHAR,256> buffer;
+			void PushdebugInformation(const std::string& info) {
+				debug_infos_.push_back(info);
+			}
+
+			void DumpDebugInfoToMMF() {
+				for (int i = 0; i < (signed)debug_infos_.size();++i) {
+					strcpy_s((char*)mem_mapd_file_handle_ + i*DebugInfoMaxLength, DebugInfoMaxLength, debug_infos_[i].c_str());
+				}
+				for (int i = debug_infos_.size(); i < DebugInfoCount; ++i) {
+					memset((char*)mem_mapd_file_handle_ + i*DebugInfoMaxLength, 0, DebugInfoMaxLength);
+				}
+				debug_infos_.clear();
+			}
 		};
+
+		//////////////////////////////////////////////////////////////////////////
+		//DebugerCommunicater
+		//////////////////////////////////////////////////////////////////////////
 
 		DebuggerCommunicater::DebuggerCommunicater():impl_(std::make_unique<Impl_>())
 		{
@@ -43,50 +80,13 @@ namespace planeta_engine {
 
 		bool DebuggerCommunicater::Initialize()
 		{
-			impl_->hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\PlanetaEngineDebugPipe"), PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE, 1, sizeof(TCHAR)*impl_->buffer.size(), sizeof(TCHAR)*impl_->buffer.size(), 1000, NULL);
-			if (impl_->hPipe == INVALID_HANDLE_VALUE) {
-				MessageBox(NULL, TEXT("パイプの作成に失敗しました。"), NULL, MB_ICONWARNING);
-				return false;
-			}
-			impl_->com_thd = std::move(std::thread([this]{impl_->CommunicationProc(); }));
+			
 			return true;
 		}
 
 		void DebuggerCommunicater::Finalize()
 		{
-			if (impl_->com_thd.joinable()) { 
-//				impl_->com_thd.join(); //クライアントと接続していないとスレッドを終了できない
-				impl_->com_thd.detach(); 
-			}
-			CloseHandle(impl_->hPipe);
-		}
-
-		void DebuggerCommunicater::Impl_::CommunicationProc() {
-			ConnectNamedPipe(hPipe, nullptr); //デバッガーと接続
-			//初期化
-			//自分のプロセスIDを送信
-			SendData(GetCurrentProcessId());
-			//メモリ参照テスト
-			long write_test_data = (long)std::rand();
-			long write_test_target = 0;
-			long read_test_data = (long)std::rand();
-			//読み取り確認
-			SendData(&read_test_data); //読み込み対象のメモリアドレス送信
-			long res = ReceiveData<long>(); //読み込んだメモリアドレス受信
-			if(res==read_test_data){} //整合性確認
-			//書き込み確認
-			SendData(&write_test_target); //書き換え対象のメモリアドレス送信
-			SendData(write_test_data); //書き換えデータ送信
-			ReceiveData<long>(); //書き換え完了待機
-			if(write_test_target == write_test_data){} //整合性確認
-			//デバッグデータリストを送信
-
-
-
-			//要求を待機
-
-			//要求に応じてデータ送信
-
+			
 		}
 
 	}

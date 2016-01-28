@@ -34,16 +34,17 @@ namespace planeta_engine {
 		void TransformComponent::ApplyVelocity()
 		{
 			Move(velocity());
+			rotation_rad(rotation_rad() + rotation_velocity_rad_);
 		}
 
 		void TransformComponent::UpdateTransformDataGlobalByGround()
 		{
 			auto& ground = this->ground();
 			if (ground_transform_data_.position_updated) {
-				ground_transform_data_.position = ground.ConvertPositionGlobalToGround(global_transform_data_.position);
+				global_transform_data_.position = ground.ConvertPositionGroundToGlobal(ground_transform_data_.position);
 			}
 			if (ground_transform_data_.rotation_updated || ground_transform_data_.position_updated) {
-				ground_transform_data_.rotation_rad = ground.ConvertRotationGlobalToGroundWithGroundPosition(ground_transform_data_.position, global_transform_data_.rotation_rad);
+				global_transform_data_.rotation_rad = ground.ConvertRotationGroundToGlobalWithGroundPosition(ground_transform_data_.position, ground_transform_data_.rotation_rad);
 			}
 			global_transform_data_.position_updated = false;
 			global_transform_data_.rotation_updated = false;
@@ -55,10 +56,10 @@ namespace planeta_engine {
 		{
 			auto& ground = this->ground();
 			if (global_transform_data_.position_updated) {
-				global_transform_data_.position = ground.ConvertPositionGroundToGlobal(ground_transform_data_.position);
+				ground_transform_data_.position = ground.ConvertPositionGlobalToGround(global_transform_data_.position);
 			}
 			if (global_transform_data_.rotation_updated || global_transform_data_.position_updated) {
-				global_transform_data_.rotation_rad = ground.ConvertRotationGroundToGlobalWithGroundPosition(ground_transform_data_.position, ground_transform_data_.rotation_rad);
+				ground_transform_data_.rotation_rad = ground.ConvertRotationGlobalToGroundWithGroundPosition(ground_transform_data_.position, global_transform_data_.rotation_rad);
 			}
 			global_transform_data_.position_updated = false;
 			global_transform_data_.rotation_updated = false;
@@ -70,8 +71,7 @@ namespace planeta_engine {
 		void TransformComponent::UpdatePhysicalDataGlobal() {
 			auto& ground = this->ground();
 			if (ground_velocity_updated_) {
-				//地形座標の正規化を行うためにここでは地形速度にプロパティを通してアクセスする。
-				global_velocity_ = ground.ConvertVelocityGroundToGlobalWithGroundPosition(position(), velocity());
+				global_velocity_ = ground.ConvertVelocityGroundToGlobalWithGroundPosition(position(), ground_velocity_);
 			}
 			ground_velocity_updated_ = false;
 			global_velocity_updated_ = false;
@@ -82,8 +82,6 @@ namespace planeta_engine {
 			auto& ground = this->ground();
 			if (global_velocity_updated_) {
 				ground_velocity_ = ground.ConvertVelocityGlobalToGroundWithGroundPosition(position(), global_velocity_);
-			} else if (ground_velocity_updated_) {
-				ground_velocity_ = ground.NormalizeGroundVectorWithGroundPosition(position(), global_velocity_);
 			}
 			ground_velocity_updated_ = false;
 			global_velocity_updated_ = false;
@@ -101,7 +99,6 @@ namespace planeta_engine {
 		}
 
 		const Vector2D<double>& TransformComponent::scale() const {
-			const_cast<TransformComponent*>(this)->UpdateTransformDataGroundByGlobal();
 			return ground_transform_data_.scale;
 		}
 
@@ -184,8 +181,30 @@ namespace planeta_engine {
 			return ground_;
 		}
 
-		void TransformComponent::SetGround(const utility::WeakPointer<GroundComponent>& g) {
+		void TransformComponent::SetGround(const utility::WeakPointer<GroundComponent>& g, bool keep_global_position) {
+			if (keep_global_position) {
+				UpdateTransformDataGlobalByGround();
+				UpdatePhysicalDataGlobal();
+			} else {
+				UpdateTransformDataGroundByGlobal();
+				UpdatePhysicalDataGround();
+			}
+
 			ground_ = g;
+
+			if (keep_global_position) {
+				global_transform_data_.position_updated = true;
+				global_transform_data_.rotation_updated = true;
+				global_velocity_updated_ = true;
+				UpdateTransformDataGroundByGlobal();
+				UpdatePhysicalDataGround();
+			} else {
+				ground_transform_data_.position_updated = true;
+				ground_transform_data_.rotation_updated = true;
+				ground_velocity_updated_ = true;
+				UpdateTransformDataGlobalByGround();
+				UpdatePhysicalDataGlobal();
+			}
 		}
 
 		std::shared_ptr<components::GroundComponent> TransformComponent::GetDumyGroundComponent_() {

@@ -1154,6 +1154,9 @@
     <ClCompile Include="LuaBindClassFunctions.cpp">
       <Filter>Lua</Filter>
     </ClCompile>
+    <ClCompile Include="DebugInformationDisplayer.cpp">
+      <Filter>PlanetaEngine\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PlanetaEngine.rc">
