@@ -64,23 +64,23 @@ namespace planeta_engine {
 			/*ダミーの地形コンポーネントを取得*/
 			static std::shared_ptr<components::GroundComponent> GetDumyGroundComponent_();
 
+			enum class CoordinateSystem { Global, Ground ,None};
 			//形状情報
 			struct TransformData {
 				Vector2D<double> position;
 				Vector2D<double> scale = Vector2D<double>(1.0, 1.0);
 				double rotation_rad = 0.0;
-				bool position_updated = false;
-				bool rotation_updated = false;
 			};
 			TransformData ground_transform_data_;
 			TransformData global_transform_data_;
+			CoordinateSystem position_last_update = CoordinateSystem::None;
+			CoordinateSystem rotation_last_update = CoordinateSystem::None;
 
 			//物理情報
 			Vector2D<double> ground_velocity_; //地形座標系での速度。長さはグローバル座標系に準ずる
-			bool ground_velocity_updated_ = false;
 			Vector2D<double> global_velocity_;
-			bool global_velocity_updated_ = false;
 			double rotation_velocity_rad_ = 0.0;
+			CoordinateSystem velocity_last_update = CoordinateSystem::None;
 		};
 	}
 }

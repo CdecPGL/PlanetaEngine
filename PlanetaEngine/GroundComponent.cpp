@@ -45,7 +45,7 @@ namespace planeta_engine{
 		}
 
 		Vector2D<double> GroundComponent::ConvertVelocityGroundToGlobalWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_velocity) {
-			return math::RotationalTransformation(-GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos), ground_pos);
+			return math::RotationalTransformation(-GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos), ground_velocity);
 		}
 
 	}

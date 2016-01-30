@@ -13,10 +13,10 @@
 */
 
 namespace {
-	constexpr char* kMessageHeader("メッセージ");
-	constexpr char* kWarningHeader("警告");
-	constexpr char* kErrorHeader("エラー");
-	constexpr size_t kDefaultLogHistoryMaxSize(0);
+	constexpr char* kMessageHeader("M");
+	constexpr char* kWarningHeader("W");
+	constexpr char* kErrorHeader("E");
+	constexpr size_t kDefaultLogHistoryMaxSize(100);
 
 	void OpenConsoleWindow() {
 		AllocConsole();

@@ -34,57 +34,56 @@ namespace planeta_engine {
 		void TransformComponent::ApplyVelocity()
 		{
 			Move(velocity());
-			rotation_rad(rotation_rad() + rotation_velocity_rad_);
+			rotation_rad(rotation_rad() + rotation_velocity_rad());
 		}
 
 		void TransformComponent::UpdateTransformDataGlobalByGround()
 		{
 			auto& ground = this->ground();
-			if (ground_transform_data_.position_updated) {
+			if (position_last_update == CoordinateSystem::Ground) {
 				global_transform_data_.position = ground.ConvertPositionGroundToGlobal(ground_transform_data_.position);
+				//位置に応じて回転度が変わる可能性があるので、回転度の最終更新がGlobalでなかったら回転度も更新する。
+				if (rotation_last_update != CoordinateSystem::Global) {
+					global_transform_data_.rotation_rad = ground.ConvertRotationGroundToGlobalWithGroundPosition(ground_transform_data_.position, ground_transform_data_.rotation_rad);
+					rotation_last_update = CoordinateSystem::None; //ここで更新したら再び回転度を更新する必要はないのでNoneに設定しておく。
+				}
+				position_last_update = CoordinateSystem::None;
 			}
-			if (ground_transform_data_.rotation_updated || ground_transform_data_.position_updated) {
+			if (rotation_last_update == CoordinateSystem::Ground) {
 				global_transform_data_.rotation_rad = ground.ConvertRotationGroundToGlobalWithGroundPosition(ground_transform_data_.position, ground_transform_data_.rotation_rad);
+				rotation_last_update = CoordinateSystem::None;
 			}
-			global_transform_data_.position_updated = false;
-			global_transform_data_.rotation_updated = false;
-			ground_transform_data_.position_updated = false;
-			ground_transform_data_.rotation_updated = false;
 		}
 
 		void TransformComponent::UpdateTransformDataGroundByGlobal()
 		{
 			auto& ground = this->ground();
-			if (global_transform_data_.position_updated) {
+			if (position_last_update == CoordinateSystem::Global) {
 				ground_transform_data_.position = ground.ConvertPositionGlobalToGround(global_transform_data_.position);
+				position_last_update = CoordinateSystem::None;
 			}
-			if (global_transform_data_.rotation_updated || global_transform_data_.position_updated) {
+			if (rotation_last_update == CoordinateSystem::Global) {
 				ground_transform_data_.rotation_rad = ground.ConvertRotationGlobalToGroundWithGroundPosition(ground_transform_data_.position, global_transform_data_.rotation_rad);
+				rotation_last_update = CoordinateSystem::None;
 			}
-			global_transform_data_.position_updated = false;
-			global_transform_data_.rotation_updated = false;
-			ground_transform_data_.position_updated = false;
-			ground_transform_data_.rotation_updated = false;
 		}
 
 
 		void TransformComponent::UpdatePhysicalDataGlobal() {
 			auto& ground = this->ground();
-			if (ground_velocity_updated_) {
+			if (velocity_last_update == CoordinateSystem::Ground) {
 				global_velocity_ = ground.ConvertVelocityGroundToGlobalWithGroundPosition(position(), ground_velocity_);
+				velocity_last_update = CoordinateSystem::None;
 			}
-			ground_velocity_updated_ = false;
-			global_velocity_updated_ = false;
 		}
 
 
 		void TransformComponent::UpdatePhysicalDataGround() {
 			auto& ground = this->ground();
-			if (global_velocity_updated_) {
+			if (velocity_last_update == CoordinateSystem::Global) {
 				ground_velocity_ = ground.ConvertVelocityGlobalToGroundWithGroundPosition(position(), global_velocity_);
+				velocity_last_update = CoordinateSystem::None;
 			}
-			ground_velocity_updated_ = false;
-			global_velocity_updated_ = false;
 		}
 
 		const Vector2D<double>& TransformComponent::position() const {
@@ -94,8 +93,7 @@ namespace planeta_engine {
 
 		void TransformComponent::position(const Vector2D<double>& pos) {
 			ground_transform_data_.position = pos;
-			ground_transform_data_.position_updated = true;
-			global_transform_data_.position_updated = false;
+			position_last_update = CoordinateSystem::Ground;
 		}
 
 		const Vector2D<double>& TransformComponent::scale() const {
@@ -113,8 +111,7 @@ namespace planeta_engine {
 
 		void TransformComponent::rotation_rad(double rota_rad) {
 			ground_transform_data_.rotation_rad = rota_rad;
-			ground_transform_data_.rotation_updated = true;
-			global_transform_data_.rotation_updated = false;
+			rotation_last_update = CoordinateSystem::Ground;
 		}
 
 		const Vector2D<double>& TransformComponent::global_position() const {
@@ -124,8 +121,7 @@ namespace planeta_engine {
 
 		void TransformComponent::global_position(const Vector2D<double>& pos) {
 			global_transform_data_.position = pos;
-			global_transform_data_.position_updated = true;
-			ground_transform_data_.position_updated = false;
+			position_last_update = CoordinateSystem::Global;
 		}
 
 		const double TransformComponent::global_rotation_rad() const {
@@ -135,8 +131,7 @@ namespace planeta_engine {
 
 		void TransformComponent::global_rotation_rad(double rota_rad) {
 			global_transform_data_.rotation_rad = rota_rad;
-			global_transform_data_.rotation_updated = true;
-			ground_transform_data_.rotation_updated = false;
+			rotation_last_update = CoordinateSystem::Global;
 		}
 
 		const Vector2D<double>& TransformComponent::velocity() const {
@@ -146,8 +141,7 @@ namespace planeta_engine {
 
 		void TransformComponent::velocity(const Vector2D<double>& vel) {
 			ground_velocity_ = vel;
-			ground_velocity_updated_ = true;
-			global_velocity_updated_ = false;
+			velocity_last_update = CoordinateSystem::Ground;
 		}
 
 		const double TransformComponent::rotation_velocity_rad() const {
@@ -165,8 +159,7 @@ namespace planeta_engine {
 
 		void TransformComponent::global_velocity(const Vector2D<double>& vel) {
 			global_velocity_ = vel;
-			global_velocity_updated_ = true;
-			ground_velocity_updated_ = false;
+			velocity_last_update = CoordinateSystem::Global;
 		}
 
 		const GroundComponent& TransformComponent::ground() const {
@@ -193,15 +186,15 @@ namespace planeta_engine {
 			ground_ = g;
 
 			if (keep_global_position) {
-				global_transform_data_.position_updated = true;
-				global_transform_data_.rotation_updated = true;
-				global_velocity_updated_ = true;
+				position_last_update = CoordinateSystem::Global;
+				rotation_last_update = CoordinateSystem::Global;
+				velocity_last_update = CoordinateSystem::Global;
 				UpdateTransformDataGroundByGlobal();
 				UpdatePhysicalDataGround();
 			} else {
-				ground_transform_data_.position_updated = true;
-				ground_transform_data_.rotation_updated = true;
-				ground_velocity_updated_ = true;
+				position_last_update = CoordinateSystem::Ground;
+				rotation_last_update = CoordinateSystem::Ground;
+				velocity_last_update = CoordinateSystem::Ground;
 				UpdateTransformDataGlobalByGround();
 				UpdatePhysicalDataGlobal();
 			}

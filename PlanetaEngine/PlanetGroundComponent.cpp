@@ -28,20 +28,16 @@ namespace planeta_engine {
 
 		bool PlanetGroundComponent::CollideWith(components::CircleColliderComponent& collider) {
 			TransformComponent& transform = game_object().transform();
-			auto collider_pos = collider.GetCollisionCenterPosition();
-			//惑星中心からのコライダーの方向を求める
-			auto collider_relative_vec = collider_pos - transform.global_position();
-			double collider_direction = std::atan2(collider_relative_vec.y, collider_relative_vec.x);
-			//惑星中心からコライダーまでの距離の2乗
-			double collider_distance_s = Vector2D<double>::Length_Square(collider_relative_vec);
+			auto collider_pos = collider.GetCollisionGlobalCenterPosition();
+			//コライダーの惑星座標を求める
+			auto collider_ground_pos = ConvertPositionGlobalToGround(collider_pos);
 			//衝突判定
-			if (std::pow(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale(), 2) > collider_distance_s) {
+			if (planet_component_->GetHeightByRad(collider_ground_pos.x) + collider.radius()*collider.GetCollisionScale() > collider_ground_pos.y) {
 				auto& collider_transform = collider.game_object().transform();
 				//速度の修正
-				Vector2D<double> parallel_unit_vec(std::cos(collider_direction + math::constant::PI / 2.0), std::sin(collider_direction + math::constant::PI / 2.0));
-				collider_transform.global_velocity(parallel_unit_vec*Vector2D<double>::Dot(collider_transform.global_velocity(), parallel_unit_vec));
+				collider_transform.velocity(Vector2D<double>(collider_transform.velocity().x, 0));
 				//押し出し
-				collider_transform.global_position(transform.global_position() + Vector2D<double>::GetParallelUnitVector(collider_relative_vec)*(planet_component_->GetHeightByRad(collider_direction) + collider.radius()*collider.GetCollisionScale()));
+				collider_transform.position(Vector2D<double>(collider_transform.position().x, planet_component_->GetHeightByRad(collider_transform.position().x) + collider.radius()*collider.GetCollisionScale()));
 				return true;
 			} else {
 				return false;
@@ -62,11 +58,11 @@ namespace planeta_engine {
 		}
 
 		Vector2D<double> PlanetGroundComponent::NormalizeGroundVectorWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_vector) const {
-			return Vector2D<double>(ground_vector.x * ground_pos.y, ground_vector.y);
+			return Vector2D<double>(ground_vector.x / std::abs(ground_pos.y), ground_vector.y);
 		}
 
 		double PlanetGroundComponent::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const {
-			return ground_pos.x - math::constant::PI / 2;
+			return ground_pos.x + math::constant::PI / 2;
 		}
 
 	}

@@ -14,8 +14,8 @@ namespace planeta_engine {
 
 		void BelongingGroundGravityComponent::OnUpdated()
 		{
-				auto transform = game_object().GetTransformComponent();
-				transform->velocity(transform->velocity() + Vector2D<double>(0.0f, -1.0f) * _gravity_scale);
+			auto& transform = game_object().transform();
+			transform.Accelerate(Vector2D<double>(0.0f, -1.0f) * _gravity_scale);
 		}
 
 	}

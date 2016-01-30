@@ -46,7 +46,7 @@ namespace planeta_engine {
 			}
 		}
 
-		const Vector2D<double> ColliderComponent::GetCollisionCenterPosition() const
+		const Vector2D<double> ColliderComponent::GetCollisionGlobalCenterPosition() const
 		{
 			const TransformComponent& transform = game_object().transform();
 			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
@@ -61,7 +61,7 @@ namespace planeta_engine {
 			return transform.scale().x > transform.scale().y ? transform.scale().y : transform.scale().x;
 		}
 
-		const double ColliderComponent::GetCollisionRotationRad() const
+		const double ColliderComponent::GetCollisionGlobalRotationRad() const
 		{
 			return game_object().transform().global_rotation_rad() + rotation_rad_;
 		}
@@ -96,6 +96,5 @@ namespace planeta_engine {
 			collision_detect_process_ = setup_data.collision_detect_process;
 			return true;
 		}
-
 	}
 }

@@ -21,22 +21,22 @@ namespace planeta_engine {
 			/*衝突判定を行う*/
 			virtual bool DetectCollision(core::IColliderWithCollider& collider) = 0;
 
-			/*中心位置取得*/
-			const Vector2D<double> GetCollisionCenterPosition()const;
+			/*グローバル中心位置取得*/
+			const Vector2D<double> GetCollisionGlobalCenterPosition()const;
 			/*拡大度取得(トランスフォームの拡大度xyで小さい方の要素が適用される)*/
 			const double GetCollisionScale()const;
-			/*回転度取得*/
-			const double GetCollisionRotationRad()const;
+			/*グローバル回転度取得*/
+			const double GetCollisionGlobalRotationRad()const;
 
 			/*アクセサ*/
-			/*位置を取得*/
-			const Vector2D<double>& position()const { return position_; }
-			/*位置を設定*/
-			void position(const Vector2D<double>& pos) { position_ = pos; }
-			/*回転度を取得*/
-			const double rotation_rad()const { return rotation_rad_; }
-			/*回転度を設定*/
-			void rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; }
+			/*相対位置を取得*/
+			const Vector2D<double>& relative_position()const { return position_; }
+			/*相対位置を設定*/
+			void relative_position(const Vector2D<double>& pos) { position_ = pos; }
+			/*相対回転度を取得*/
+			const double relative_rotation_rad()const { return rotation_rad_; }
+			/*相対回転度を設定*/
+			void relative_rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; }
 			/*地形衝突フラグを取得*/
 			const bool collide_with_ground_flag()const { return collide_with_ground_flag_; }
 			/*地形衝突フラグを設定*/

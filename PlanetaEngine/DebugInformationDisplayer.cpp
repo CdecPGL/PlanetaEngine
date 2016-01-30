@@ -74,18 +74,19 @@ namespace planeta_engine {
 			UpdateWindow(nhwnd);
 			impl_->debug_window_handle = nhwnd;
 
-
-			SetWindowText(impl_->debug_window_handle, "test");
 			return true;
 		}
 
 		bool DebugInformationDisplayer::Finalize() {
+			return true;
 			DestroyWindow(impl_->debug_window_handle);
 			return true;
 		}
 
 		void DebugInformationDisplayer::Update() {
+			HDC hdc = GetDC(impl_->debug_window_handle);
 			SetWindowText(impl_->debug_window_handle, "test");
+			ReleaseDC(impl_->debug_window_handle,hdc);
 		}
 
 	}
