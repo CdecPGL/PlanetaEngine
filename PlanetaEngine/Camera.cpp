@@ -7,7 +7,7 @@
 #include "DxLib.h"
 
 namespace planeta_engine {
-	Camera::Camera() :position(*this), rotation(*this), euler_angle_rad(*this), scale(*this),angle_2d_rad(*this) {}
+	Camera::Camera(){}
 
 	void Camera::Update() {
 		
@@ -16,6 +16,8 @@ namespace planeta_engine {
 	void Camera::ChangeTo2DMode() {
 		mode_ = Mode::Camera2D;
 		SetupCamera_Ortho((float)(core::config_data::engine::DrawSize().y / scale_));
+		auto cp = GetCameraPosition();
+		position_.Set(cp.x, cp.y, cp.z);
 	}
 
 	void Camera::ChangeTo3DMode() {
@@ -37,7 +39,7 @@ namespace planeta_engine {
 		return true;
 	}
 
-	void Camera::set_position(const Vector3Dd& pos) {
+	void Camera::position(const Vector3Dd& pos) {
 		position_ = pos;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -52,7 +54,7 @@ namespace planeta_engine {
 		}
 	}
 
-	void Camera::set_angle_2d_rad(double angle_rad) {
+	void Camera::angle_2d_rad(double angle_rad) {
 		euler_angle_.z = angle_rad;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -67,7 +69,7 @@ namespace planeta_engine {
 		}
 	}
 
-	void Camera::set_euler_angle_rad(const Vector3Dd& ang) {
+	void Camera::euler_angle_rad(const Vector3Dd& ang) {
 		euler_angle_ = ang;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -82,7 +84,7 @@ namespace planeta_engine {
 		}
 	}
 
-	void Camera::set_scale(double s) {
+	void Camera::scale(double s) {
 		scale_ = s;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -97,7 +99,7 @@ namespace planeta_engine {
 		}
 	}
 
-	void Camera::set_rotatoin(const Vector4Dd& rota) {
+	void Camera::rotation(const Vector4Dd& rota) {
 		rotation_ = rota;
 		assert(false); //–¢ŽÀ‘•
 	}

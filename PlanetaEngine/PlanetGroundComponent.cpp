@@ -27,7 +27,7 @@ namespace planeta_engine {
 		}
 
 		bool PlanetGroundComponent::CollideWith(components::CircleColliderComponent& collider) {
-			TransformComponent& transform = game_object().transform();
+//			TransformComponent& transform = game_object().transform();
 			auto collider_pos = collider.GetCollisionGlobalCenterPosition();
 			//コライダーの惑星座標を求める
 			auto collider_ground_pos = ConvertPositionGlobalToGround(collider_pos);
@@ -50,15 +50,15 @@ namespace planeta_engine {
 
 		Vector2D<double> PlanetGroundComponent::ConvertPositionGlobalToGround(const Vector2D<double>& global_pos) const {
 			auto relative_pos = global_pos - game_object().transform().global_position();
-			return Vector2D<double>(std::atan2(relative_pos.y, relative_pos.x), relative_pos.Length());
+			return Vector2D<double>(-std::atan2(relative_pos.y, relative_pos.x), relative_pos.Length());
 		}
 
 		Vector2D<double> PlanetGroundComponent::ConvertPositionGroundToGlobal(const Vector2D<double>& ground_pos) const {
-			return Vector2D<double>(std::cos(ground_pos.x), std::sin(ground_pos.x))*ground_pos.y + game_object().transform().global_position();
+			return Vector2D<double>(std::cos(-ground_pos.x), std::sin(-ground_pos.x))*ground_pos.y + game_object().transform().global_position();
 		}
 
 		Vector2D<double> PlanetGroundComponent::NormalizeGroundVectorWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_vector) const {
-			return Vector2D<double>(ground_vector.x / std::abs(ground_pos.y), ground_vector.y);
+			return Vector2D<double>(ground_vector.x / ground_pos.y, ground_vector.y);
 		}
 
 		double PlanetGroundComponent::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const {
