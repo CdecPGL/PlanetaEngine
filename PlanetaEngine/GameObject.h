@@ -65,7 +65,7 @@ namespace planeta_engine {
 			//シーン登録解除時に呼ばれる[呼び出し元:GameObjectManager::InActivate]
 			bool InActivated_() { inactivated_event(); return InactivateComponent_(); }
 			//終了処理(破棄時に呼ばれる)[呼び出し元:GameObjectManager::Remove]
-			bool Finalize_()throw() { disposed_event(); return FinalizeComponent_(); };
+			bool Finalize_()noexcept { disposed_event(); return FinalizeComponent_(); };
 
 			/*弱参照を取得*/
 			utility::WeakPointer<IGameObjectAccessor> GetWeakPointer()override { return me(); };

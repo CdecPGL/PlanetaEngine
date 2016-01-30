@@ -27,7 +27,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void GroundComponent::OnFinalized() throw()
+		void GroundComponent::OnFinalized() noexcept
 		{
 
 		}

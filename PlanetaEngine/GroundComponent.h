@@ -45,7 +45,7 @@ namespace planeta_engine {
 			virtual bool OnActivated() override;
 			virtual void OnUpdated() override;
 			virtual bool OnInactivated() override;
-			virtual void OnFinalized() throw() override;
+			virtual void OnFinalized() noexcept override;
 		private:
 			/*指定地形座標で地形座標系回転度のグローバル座標系回転度との差を取得する*/
 			virtual double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos)const = 0;

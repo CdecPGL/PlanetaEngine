@@ -34,7 +34,7 @@ namespace planeta_engine {
 			/*画像描画データ*/
 			std::shared_ptr<core::GraphDrawData2D> graph_draw_data_;
 			virtual bool OnInitialized() override;
-			virtual void OnFinalized() override;
+			virtual void OnFinalized()noexcept override;
 			utility::WeakPointer<components::PlanetComponent> _planet_component;
 			/*ポリゴンセット*/
 			void _SetPolygon();

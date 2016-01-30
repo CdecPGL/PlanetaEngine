@@ -43,7 +43,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void DrawPlanetComponent::OnFinalized()
+		void DrawPlanetComponent::OnFinalized()noexcept
 		{
 			
 		}
