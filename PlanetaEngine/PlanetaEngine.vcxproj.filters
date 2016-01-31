@@ -100,15 +100,6 @@
     <Filter Include="PlanetaEngine\FileSystem\Manipulator">
       <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\GameData">
-      <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GameData\Exceptions">
-      <UniqueIdentifier>{1caea0f8-d2bf-461d-972b-981f936cde75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GameData\Serialize">
-      <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\Others">
       <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
     </Filter>
@@ -183,6 +174,21 @@
     </Filter>
     <Filter Include="Lua">
       <UniqueIdentifier>{d0528160-be9e-47ac-acff-8c9b7b787093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Utility\DataContainer">
+      <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Utility\DataContainer\Exceptions">
+      <UniqueIdentifier>{1caea0f8-d2bf-461d-972b-981f936cde75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Utility\DataContainer\Serialize">
+      <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Utility\WeakPointer">
+      <UniqueIdentifier>{32c98a0e-63bf-4b63-b39c-6b6deccf06b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Utility\DateTime">
+      <UniqueIdentifier>{0de0a5aa-9426-4eea-9453-906e3d75582a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -429,12 +435,6 @@
     <ClInclude Include="ParameterHolder.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="PEDateTime.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="PETime.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="PointerSingletonTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
@@ -451,12 +451,6 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Vertex2D.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="WeakPointer.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="WeakPointerDelegate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="XMLResource.h">
@@ -545,30 +539,6 @@
     </ClInclude>
     <ClInclude Include="ISoundEffectController.h">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataManager.h">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataElement.h">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataComplexType.h">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataComplexTypeInstance.h">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataElementType.h">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataError.h">
-      <Filter>PlanetaEngine\Core\GameData\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataFunctionsForBoostSerialize.h">
-      <Filter>PlanetaEngine\Core\GameData\Serialize</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDataSerializeUtility.h">
-      <Filter>PlanetaEngine\Core\GameData\Serialize</Filter>
     </ClInclude>
     <ClInclude Include="FileIStream.h">
       <Filter>PlanetaEngine\FileSystem\Stream</Filter>
@@ -813,6 +783,33 @@
     <ClInclude Include="LuaBindClassFunctions.h">
       <Filter>Lua</Filter>
     </ClInclude>
+    <ClInclude Include="DataContainer.h">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="DataContainerImpl.h">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="DataContainerSerializeUtility.h">
+      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="DataContainerFunctionsForBoostSerialize.h">
+      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="DataContainerError.h">
+      <Filter>PlanetaEngine\Utility\DataContainer\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="WeakPointer.h">
+      <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
+    </ClInclude>
+    <ClInclude Include="WeakPointerDelegate.h">
+      <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
+    </ClInclude>
+    <ClInclude Include="PEDateTime.h">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClInclude>
+    <ClInclude Include="PETime.h">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -844,9 +841,6 @@
     </ClCompile>
     <ClCompile Include="SystemCounter.cpp">
       <Filter>PlanetaEngine\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="PETime.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="CSVResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -883,9 +877,6 @@
     </ClCompile>
     <ClCompile Include="PlanetaEngine.cpp">
       <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="PEDateTime.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="MathUtility.cpp">
       <Filter>PlanetaEngine\Math</Filter>
@@ -1022,24 +1013,6 @@
     <ClCompile Include="BGMController.cpp">
       <Filter>PlanetaEngine\Core\SoundSystem</Filter>
     </ClCompile>
-    <ClCompile Include="GameDataManager.cpp">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClCompile>
-    <ClCompile Include="GameDataElement.cpp">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClCompile>
-    <ClCompile Include="GameDataElementType.cpp">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClCompile>
-    <ClCompile Include="GameDataComplexTypeInstance.cpp">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClCompile>
-    <ClCompile Include="GameDataComplexType.cpp">
-      <Filter>PlanetaEngine\Core\GameData</Filter>
-    </ClCompile>
-    <ClCompile Include="GameDataSerializeUtility.cpp">
-      <Filter>PlanetaEngine\Core\GameData\Serialize</Filter>
-    </ClCompile>
     <ClCompile Include="FileOStream.cpp">
       <Filter>PlanetaEngine\FileSystem\Stream</Filter>
     </ClCompile>
@@ -1156,6 +1129,21 @@
     </ClCompile>
     <ClCompile Include="DebugInformationDisplayer.cpp">
       <Filter>PlanetaEngine\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="DataContainer.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="DataContainerImpl.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="DataContainerSerializeUtility.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="PEDateTime.cpp">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="PETime.cpp">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

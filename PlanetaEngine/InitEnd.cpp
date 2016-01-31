@@ -17,7 +17,6 @@
 #include "DrawManager.h"
 #include "SoundManager.h"
 #include "FileAccessMode.h"
-#include "GameDataManager.h"
 
 namespace {
 	//variables
@@ -51,7 +50,6 @@ namespace planeta_engine{
 				if (
 					file_system::FileSystemManager::Instantiate()
 					&& core::ResourceManager::Instantiate()
-					&& core::GameDataManager::Instantiate()
 					&& core::DrawManager::Instantiate()
 					&& core::SoundManager::Instantiate()
 					) {
@@ -68,7 +66,6 @@ namespace planeta_engine{
 				core::SoundManager::Dispose();
 				core::DrawManager::Dispose();
 				core::ResourceManager::Dispose();
-				core::GameDataManager::Dispose();
 				file_system::FileSystemManager::Dispose();
 				debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンスを破棄しました。", __FUNCTION__);
 				return true;
@@ -78,7 +75,6 @@ namespace planeta_engine{
 				if (
 					file_system::FileSystemManager::instance().Initialize()
 					&& core::ResourceManager::instance().Initialize()
-					&& core::GameDataManager::instance().Initialize()
 					&& core::DrawManager::instance().Initialize()
 					&& core::SoundManager::instance().Initialize()
 					) {
@@ -96,8 +92,6 @@ namespace planeta_engine{
 				core::SoundManager::instance().Finalize();
 				//描画マネージャの終了
 				core::DrawManager::instance().Finalize();
-				//ゲームデータマネージャの終了
-				core::GameDataManager::instance().Finalize();
 				//リソースマネージャの終了
 				core::ResourceManager::instance().Finalize();
 				//ファイルシステムの終了

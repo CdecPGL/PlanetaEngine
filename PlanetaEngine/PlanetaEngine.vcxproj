@@ -144,6 +144,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
+    <ClInclude Include="DataContainer.h" />
+    <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleColliderComponent.h" />
@@ -204,9 +206,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="FileOStream.h" />
     <ClInclude Include="FileStreamBuf.h" />
     <ClInclude Include="FileSystemUtility.h" />
-    <ClInclude Include="GameDataComplexType.h" />
-    <ClInclude Include="GameDataComplexTypeInstance.h" />
-    <ClInclude Include="GameDataElement.h" />
     <ClInclude Include="DebugDataPool.h" />
     <ClInclude Include="DebuggerCommunicater.h" />
     <ClInclude Include="DrawComponent.h" />
@@ -227,10 +226,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="FontDefinitionResource.h" />
     <ClInclude Include="FontResource.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameDataElementType.h" />
-    <ClInclude Include="GameDataManager.h" />
-    <ClInclude Include="GameDataFunctionsForBoostSerialize.h" />
-    <ClInclude Include="GameDataSerializeUtility.h" />
+    <ClInclude Include="DataContainerFunctionsForBoostSerialize.h" />
+    <ClInclude Include="DataContainerSerializeUtility.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManagerConnection.h" />
     <ClInclude Include="GameObjectAllocator.h" />
@@ -255,7 +252,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IGameObjectAccessor.h" />
     <ClInclude Include="IGameSetUp.h" />
     <ClInclude Include="IMemoryAllocator.h" />
-    <ClInclude Include="GameDataError.h" />
+    <ClInclude Include="DataContainerError.h" />
     <ClInclude Include="INIFileResource.h" />
     <ClInclude Include="InitEnd.h" />
     <ClInclude Include="InstanceProcess.h" />
@@ -376,12 +373,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="FileSystemUtility.cpp" />
     <ClCompile Include="FontDefinitionResource.cpp" />
     <ClCompile Include="FontResource.cpp" />
-    <ClCompile Include="GameDataComplexType.cpp" />
-    <ClCompile Include="GameDataComplexTypeInstance.cpp" />
-    <ClCompile Include="GameDataElement.cpp" />
-    <ClCompile Include="GameDataElementType.cpp" />
-    <ClCompile Include="GameDataManager.cpp" />
-    <ClCompile Include="GameDataSerializeUtility.cpp" />
+    <ClCompile Include="DataContainer.cpp" />
+    <ClCompile Include="DataContainerImpl.cpp" />
+    <ClCompile Include="DataContainerSerializeUtility.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="GameObjectOperationProcess.cpp" />
     <ClCompile Include="GameProcessKeyPositionDefinition.cpp" />
