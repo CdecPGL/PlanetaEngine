@@ -6,7 +6,7 @@ namespace planeta_engine {
 		class BelongingGroundGravityComponent : public GameObjectNormalComponent {
 		public:
 			const double gravity_scale()const { return _gravity_scale; }
-			void gravity_scale(double gs) { _gravity_scale = gs; }
+			BelongingGroundGravityComponent& gravity_scale(double gs) { _gravity_scale = gs; return *this; }
 		private:
 			double _gravity_scale = 0.5;
 			bool OnInitialized() override;

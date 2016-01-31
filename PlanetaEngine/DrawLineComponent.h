@@ -11,9 +11,9 @@ namespace planeta_engine {
 			DrawLineComponent();
 			/*アクセサ*/
 			int width()const { return _width; }
-			void width(int w) { _width = w; }
+			DrawLineComponent& width(int w) { _width = w; return *this; }
 			double length()const { return _length; }
-			void length(double l) { _length = l; }
+			DrawLineComponent& length(double l) { _length = l; return *this; }
 		private:
 			std::vector<Vector2D<double>> _wire_positions;
 			int _width;

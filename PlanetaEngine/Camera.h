@@ -18,15 +18,15 @@ namespace planeta_engine {
 		Vector2Dd CovertPositionGUISpaceToGameObjectSpace(const Vector2Di& gui_space_pos)const;
 		Vector2Di CovertPositionGameObjectSpaceToGUISpace(const Vector2Dd& gameobject_space_pos)const;
 		const Vector3Dd& position()const { return position_; }
-		void position(const Vector3Dd& pos);
+		Camera& position(const Vector3Dd& pos);
 		const Vector4Dd& rotation()const { return rotation_; }
-		void rotation(const Vector4Dd& rota);
+		Camera& rotation(const Vector4Dd& rota);
 		const Vector3Dd& euler_angle_rad()const { return euler_angle_; }
-		void euler_angle_rad(const Vector3Dd& ang);
+		Camera& euler_angle_rad(const Vector3Dd& ang);
 		double angle_2d_rad()const { return euler_angle_.z; }
-		void angle_2d_rad(double angle_rad);
+		Camera& angle_2d_rad(double angle_rad);
 		double scale()const { return scale_; }
-		void scale(double s);
+		Camera& scale(double s);
 	private:
 		Mode mode_ = Mode::Camera2D;
 		Vector3Dd position_;

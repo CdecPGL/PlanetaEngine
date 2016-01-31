@@ -23,9 +23,9 @@ namespace planeta_engine {
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/
 			unsigned int horizontal_separation()const { return _horizontal_separation; }
-			void horizontal_separation(unsigned int sep);
+			DrawPlanetComponent& horizontal_separation(unsigned int sep);
 			unsigned int vertical_separation()const { return _vertical_separation; }
-			void vertical_separation(unsigned int sep);
+			DrawPlanetComponent& vertical_separation(unsigned int sep);
 		private:
 			/*水平分割数*/
 			unsigned int _horizontal_separation;

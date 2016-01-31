@@ -66,7 +66,7 @@ namespace planeta_engine {
 			return game_object().transform().global_rotation_rad() + rotation_rad_;
 		}
 
-		void ColliderComponent::collision_group(const std::string& cg) {
+		ColliderComponent& ColliderComponent::collision_group(const std::string& cg) {
 			if (is_active()) { //アクティブだったら衝突判定プロセスに変更での変更を行う。
 				assert(collision_detect_process_ != nullptr);
 				if (collision_detect_process_->ChangeCollisionGroup(this, cg)) {
@@ -77,9 +77,10 @@ namespace planeta_engine {
 			} else {
 				collision_group_name_ = cg;
 			}
+			return *this;
 		}
 
-		void ColliderComponent::collide_with_ground_flag(bool flag) {
+		ColliderComponent& ColliderComponent::collide_with_ground_flag(bool flag) {
 			if (is_active()) { //アクティブだったら衝突判定プロセスでの変更を行う。
 				assert(collision_detect_process_ != nullptr);
 				if (collision_detect_process_->ChangeCollisionWithGroundFlag(this,flag)) {
@@ -90,6 +91,7 @@ namespace planeta_engine {
 			} else {
 				collide_with_ground_flag_ = flag;
 			}
+			return *this;
 		}
 
 		bool ColliderComponent::SpecialSetUp(const core::SceneDataForGameObject& setup_data) {

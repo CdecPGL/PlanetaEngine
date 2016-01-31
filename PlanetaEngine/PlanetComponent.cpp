@@ -14,10 +14,11 @@ namespace planeta_engine {
 			separation(kDefaultSeparation);
 		}
 
-		void PlanetComponent::separation(unsigned int s)
+		PlanetComponent& PlanetComponent::separation(unsigned int s)
 		{
 			_gap.resize(s);
 			_separation = s;
+			return *this;
 		}
 
 		void PlanetComponent::SetGapByIndex(unsigned int idx, double gap)

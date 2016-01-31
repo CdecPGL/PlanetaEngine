@@ -129,15 +129,17 @@ namespace planeta_engine {
 			}
 		}
 
-		void DrawPlanetComponent::horizontal_separation(unsigned int sep)
+		DrawPlanetComponent& DrawPlanetComponent::horizontal_separation(unsigned int sep)
 		{
 			_horizontal_separation = sep;
 			_SetPolygon();
+			return *this;
 		}
-		void DrawPlanetComponent::vertical_separation(unsigned int sep)
+		DrawPlanetComponent& DrawPlanetComponent::vertical_separation(unsigned int sep)
 		{
 			_vertical_separation = sep;
 			_SetPolygon();
+			return *this;
 		}
 	}
 }

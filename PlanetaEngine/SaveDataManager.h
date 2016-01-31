@@ -17,16 +17,20 @@ namespace planeta_engine {
 			void SetFileAccessor(const std::shared_ptr<file_system::FileAccessor>& file_accessor);
 			bool Initialize()override;
 			bool Finalize()override;
+			/*保存*/
+			void Save();
+			/*ユーザーデータを読み込み*/
+			void LoadUserData(int idx);
 			const utility::DataContainer& common_data()const;
 			utility::DataContainer& common_data();
 			const utility::DataContainer& current_user_data()const;
 			utility::DataContainer& current_user_data();
 
 		private:
+			SaveDataManager();
 			~SaveDataManager();
-			std::unique_ptr<utility::DataContainer> common_data_;
-			std::unique_ptr<utility::DataContainer> current_user_data_;
-			std::shared_ptr<file_system::FileAccessor> file_accessor_;
+			class Impl_;
+			std::unique_ptr<Impl_> impl_;
 		};
 	}
 }

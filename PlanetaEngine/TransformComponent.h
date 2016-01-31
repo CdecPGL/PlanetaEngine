@@ -24,24 +24,24 @@ namespace planeta_engine {
 			void GlobalAccelerate(const Vector2D<double>& global_acceleration);
 			/*アクセサ*/
 			const Vector2D<double>& position()const;
-			void position(const Vector2D<double>& pos);
+			TransformComponent& position(const Vector2D<double>& pos);
 			const Vector2D<double>& scale()const;
-			void scale(const Vector2D<double>& s);
+			TransformComponent&  scale(const Vector2D<double>& s);
 			const double rotation_rad()const;
-			void rotation_rad(double rota_rad);
+			TransformComponent&  rotation_rad(double rota_rad);
 
 			const Vector2D<double>& global_position()const;
-			void global_position(const Vector2D<double>& pos);
+			TransformComponent&  global_position(const Vector2D<double>& pos);
 			const double global_rotation_rad()const;
-			void global_rotation_rad(double rota_rad);
+			TransformComponent&  global_rotation_rad(double rota_rad);
 
 			const Vector2D<double>& velocity()const;
-			void velocity(const Vector2D<double>& vel);
+			TransformComponent&  velocity(const Vector2D<double>& vel);
 			const double rotation_velocity_rad()const;
-			void rotation_velocity_rad(double rota_vel_rad);
+			TransformComponent&  rotation_velocity_rad(double rota_vel_rad);
 
 			const Vector2D<double>& global_velocity()const;
-			void global_velocity(const Vector2D<double>& vel);
+			TransformComponent&  global_velocity(const Vector2D<double>& vel);
 
 			/*地形関係*/
 			const GroundComponent& ground()const;

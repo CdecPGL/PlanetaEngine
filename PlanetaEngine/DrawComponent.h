@@ -23,23 +23,23 @@ namespace planeta_engine {
 			/*描画優先度を取得*/
 			int draw_priority()const { return draw_priority_; }
 			/*描画優先度を設定*/
-			void draw_priority(int priority);
+			DrawComponent& draw_priority(int priority);
 			/*表示位置を取得*/
 			const Vector2D<double>& position()const { return position_; }
 			/*表示位置を設定*/
-			void position(const Vector2D<double>& pos) { position_ = pos; }
+			DrawComponent& position(const Vector2D<double>& pos) { position_ = pos; return *this; }
 			/*表示回転度を取得*/
 			double rotation_rad()const { return rotation_rad_; }
 			/*表示回転度を設定*/
-			void rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; }
+			DrawComponent& rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; return *this; }
 			/*表示拡大度を取得*/
 			const Vector2D<double>& scale()const { return scale_; }
 			/*表示拡大度を設定*/
-			void scale(const Vector2D<double>& s) { scale_ = s; }
+			DrawComponent& scale(const Vector2D<double>& s) { scale_ = s; return *this; }
 			/*表示色を取得*/
 			planeta_engine::Color color()const { return color_; }
 			/*表示色を設定*/
-			void color(const planeta_engine::Color& c) { color_ = c; }
+			DrawComponent& color(const planeta_engine::Color& c) { color_ = c; return *this; }
 		protected:
 			/*描画の中心位置取得(ゲームオブジェクトの形状情報と、表示位置から算出)*/
 			Vector2D<double> GetDrawCenterPosition()const;

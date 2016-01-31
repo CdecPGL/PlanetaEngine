@@ -16,11 +16,12 @@ namespace planeta_engine {
 
 		}
 
-		void DrawComponent::draw_priority(int priority)
+		DrawComponent& DrawComponent::draw_priority(int priority)
 		{
 			draw_priority_ = priority;
 			//ゲームオブジェクトがアクティブなら優先度更新
 			UpdatePriority_();
+			return *this;
 		}
 
 		Vector2D<double> DrawComponent::GetDrawCenterPosition() const

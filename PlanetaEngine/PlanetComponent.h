@@ -12,9 +12,9 @@ namespace planeta_engine {
 			double GetHeightByRad(double rad)const { return _radius + GetGapByRad(rad); }
 
 			/*アクセサ*/
-			void radius(double r) { _radius = r; }
+			PlanetComponent& radius(double r) { _radius = r; return *this; }
 			double radius()const { return _radius; }
-			void separation(unsigned int s);
+			PlanetComponent& separation(unsigned int s);
 			unsigned int separation()const { return _separation; }
 		private:
 			void SetGapByIndex(unsigned int idx, double gap);

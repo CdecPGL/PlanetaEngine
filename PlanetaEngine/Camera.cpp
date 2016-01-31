@@ -39,7 +39,7 @@ namespace planeta_engine {
 		return true;
 	}
 
-	void Camera::position(const Vector3Dd& pos) {
+	Camera& Camera::position(const Vector3Dd& pos) {
 		position_ = pos;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -52,9 +52,10 @@ namespace planeta_engine {
 			assert(false);
 			break;
 		}
+		return *this;
 	}
 
-	void Camera::angle_2d_rad(double angle_rad) {
+	Camera& Camera::angle_2d_rad(double angle_rad) {
 		euler_angle_.z = angle_rad;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -67,9 +68,10 @@ namespace planeta_engine {
 			assert(false);
 			break;
 		}
+		return *this;
 	}
 
-	void Camera::euler_angle_rad(const Vector3Dd& ang) {
+	Camera& Camera::euler_angle_rad(const Vector3Dd& ang) {
 		euler_angle_ = ang;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -82,9 +84,10 @@ namespace planeta_engine {
 			assert(false);
 			break;
 		}
+		return *this;
 	}
 
-	void Camera::scale(double s) {
+	Camera& Camera::scale(double s) {
 		scale_ = s;
 		switch (mode_) {
 		case planeta_engine::Camera::Mode::Camera2D:
@@ -97,11 +100,13 @@ namespace planeta_engine {
 			assert(false);
 			break;
 		}
+		return *this;
 	}
 
-	void Camera::rotation(const Vector4Dd& rota) {
+	Camera& Camera::rotation(const Vector4Dd& rota) {
 		rotation_ = rota;
 		assert(false); //–¢ŽÀ‘•
+		return *this;
 	}
 
 

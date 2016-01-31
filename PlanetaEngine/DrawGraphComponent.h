@@ -22,9 +22,9 @@ namespace planeta_engine {
 			bool SetGraphResource(const std::string& resource_id);
 			/*アクセサ*/
 			const utility::RectAngle<int>& draw_area()const { return _draw_area; }
-			void draw_area(const utility::RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); }
+			DrawGraphComponent& draw_area(const utility::RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); return *this; }
 			const bool reverse()const { return reverse_; }
-			void reverse(bool rev) { reverse_ = rev; _UpdateUVPosition(); }
+			DrawGraphComponent& reverse(bool rev) { reverse_ = rev; _UpdateUVPosition(); return *this; }
 		private:
 			/*反転描画フラグ*/
 			bool reverse_ = false;

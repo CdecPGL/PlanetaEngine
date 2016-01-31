@@ -32,19 +32,19 @@ namespace planeta_engine {
 			/*相対位置を取得*/
 			const Vector2D<double>& relative_position()const { return position_; }
 			/*相対位置を設定*/
-			void relative_position(const Vector2D<double>& pos) { position_ = pos; }
+			ColliderComponent& relative_position(const Vector2D<double>& pos) { position_ = pos; return *this; }
 			/*相対回転度を取得*/
 			const double relative_rotation_rad()const { return rotation_rad_; }
 			/*相対回転度を設定*/
-			void relative_rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; }
+			ColliderComponent& relative_rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; return *this; }
 			/*地形衝突フラグを取得*/
 			const bool collide_with_ground_flag()const { return collide_with_ground_flag_; }
 			/*地形衝突フラグを設定*/
-			void collide_with_ground_flag(bool flag);
+			ColliderComponent& collide_with_ground_flag(bool flag);
 			/*衝突グループを取得*/
 			const std::string& collision_group()const { return collision_group_name_; }
 			/*衝突グループを設定*/
-			void collision_group(const std::string& cg);
+			ColliderComponent& collision_group(const std::string& cg);
 
 			/*イベント*/
 			/*物体と衝突した*/

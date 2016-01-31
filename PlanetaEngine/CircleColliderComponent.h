@@ -8,7 +8,7 @@ namespace planeta_engine {
 		public:
 			bool DetectCollision(core::IColliderWithCollider& collider)override { return collider.CollideWith(*this); }
 			const double radius()const { return _radius; }
-			void radius(double r) { _radius = r; }
+			CircleColliderComponent& radius(double r) { _radius = r; return *this; }
 		private:
 			virtual bool CollideWith(CircleColliderComponent& circle_collider) override;
 			virtual bool CollideWith(StraightLineColliderComponent& straight_line_collider) override;

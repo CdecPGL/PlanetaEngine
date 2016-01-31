@@ -91,17 +91,19 @@ namespace planeta_engine {
 			return ground_transform_data_.position;
 		}
 
-		void TransformComponent::position(const Vector2D<double>& pos) {
+		TransformComponent&  TransformComponent::position(const Vector2D<double>& pos) {
 			ground_transform_data_.position = pos;
 			position_last_update = CoordinateSystem::Ground;
+			return *this;
 		}
 
 		const Vector2D<double>& TransformComponent::scale() const {
 			return ground_transform_data_.scale;
 		}
 
-		void TransformComponent::scale(const Vector2D<double>& s) {
+		TransformComponent&  TransformComponent::scale(const Vector2D<double>& s) {
 			ground_transform_data_.scale = s;
+			return *this;
 		}
 
 		const double TransformComponent::rotation_rad() const {
@@ -109,9 +111,10 @@ namespace planeta_engine {
 			return ground_transform_data_.rotation_rad;
 		}
 
-		void TransformComponent::rotation_rad(double rota_rad) {
+		TransformComponent&  TransformComponent::rotation_rad(double rota_rad) {
 			ground_transform_data_.rotation_rad = rota_rad;
 			rotation_last_update = CoordinateSystem::Ground;
+			return *this;
 		}
 
 		const Vector2D<double>& TransformComponent::global_position() const {
@@ -119,9 +122,10 @@ namespace planeta_engine {
 			return global_transform_data_.position;
 		}
 
-		void TransformComponent::global_position(const Vector2D<double>& pos) {
+		TransformComponent&  TransformComponent::global_position(const Vector2D<double>& pos) {
 			global_transform_data_.position = pos;
 			position_last_update = CoordinateSystem::Global;
+			return *this;
 		}
 
 		const double TransformComponent::global_rotation_rad() const {
@@ -129,9 +133,10 @@ namespace planeta_engine {
 			return global_transform_data_.rotation_rad;
 		}
 
-		void TransformComponent::global_rotation_rad(double rota_rad) {
+		TransformComponent&  TransformComponent::global_rotation_rad(double rota_rad) {
 			global_transform_data_.rotation_rad = rota_rad;
 			rotation_last_update = CoordinateSystem::Global;
+			return *this;
 		}
 
 		const Vector2D<double>& TransformComponent::velocity() const {
@@ -139,17 +144,19 @@ namespace planeta_engine {
 			return ground_velocity_;
 		}
 
-		void TransformComponent::velocity(const Vector2D<double>& vel) {
+		TransformComponent&  TransformComponent::velocity(const Vector2D<double>& vel) {
 			ground_velocity_ = vel;
 			velocity_last_update = CoordinateSystem::Ground;
+			return *this;
 		}
 
 		const double TransformComponent::rotation_velocity_rad() const {
 			return rotation_velocity_rad_;
 		}
 
-		void TransformComponent::rotation_velocity_rad(double rota_vel_rad) {
+		TransformComponent&  TransformComponent::rotation_velocity_rad(double rota_vel_rad) {
 			rotation_velocity_rad_ = rota_vel_rad;
+			return *this;
 		}
 
 		const Vector2D<double>& TransformComponent::global_velocity()const {
@@ -157,9 +164,10 @@ namespace planeta_engine {
 			return global_velocity_;
 		}
 
-		void TransformComponent::global_velocity(const Vector2D<double>& vel) {
+		TransformComponent&  TransformComponent::global_velocity(const Vector2D<double>& vel) {
 			global_velocity_ = vel;
 			velocity_last_update = CoordinateSystem::Global;
+			return *this;
 		}
 
 		const GroundComponent& TransformComponent::ground() const {
