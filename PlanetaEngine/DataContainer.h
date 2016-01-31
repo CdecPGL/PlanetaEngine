@@ -21,11 +21,11 @@ namespace planeta_engine {
 		class DataContainer {
 		public:
 			DataContainer();
-			DataContainer(const DataContainer& obj);
+			DataContainer(const DataContainer& obj) = delete;
 			DataContainer(DataContainer&& obj);
 			~DataContainer();
 
-			DataContainer& operator=(const DataContainer& obj);
+			DataContainer& operator=(const DataContainer& obj) = delete;
 			DataContainer& operator=(DataContainer&& obj);
 
 			int64_t GetInteger(const std::string& id)const;

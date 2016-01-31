@@ -181,6 +181,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SAImplGameProcessKeyPositionFunctions.h" />
     <ClInclude Include="SAImplGUIOperateFunctions.h" />
     <ClInclude Include="AccessorTemplate.h" />
+    <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
     <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h" />
     <ClInclude Include="GameObjectNormalComponent.h" />
@@ -389,6 +390,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp" />
     <ClCompile Include="SAImplGameProcessKeyPositionFunctions.cpp" />
+    <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenChangeEffecter.cpp" />

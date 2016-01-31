@@ -53,6 +53,7 @@ namespace planeta_engine {
 					element_type_map_.emplace(ep.first, typeid(ep.second));
 				}
 			};
+			element_type_map_.clear();
 			elem_register_func(integer_elements_);
 			elem_register_func(boolean_elements_);
 			elem_register_func(string_elements_);

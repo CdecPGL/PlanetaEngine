@@ -7,7 +7,7 @@ namespace planeta_engine {
 	namespace utility {
 		DataContainer::DataContainer() :impl_(std::make_unique<Impl_>()) {}
 
-		DataContainer::DataContainer(const DataContainer& obj) : impl_(std::make_unique<Impl_>(*obj.impl_)) {}
+		//DataContainer::DataContainer(const DataContainer& obj) : impl_(std::make_unique<Impl_>(*obj.impl_)) {}
 
 		DataContainer::DataContainer(DataContainer&& obj):impl_(std::move(obj.impl_)) {
 			obj.impl_ = std::make_unique<Impl_>();
@@ -15,10 +15,10 @@ namespace planeta_engine {
 
 		DataContainer::~DataContainer() = default;
 
-		DataContainer& DataContainer::operator=(const DataContainer& obj) {
+		/*DataContainer& DataContainer::operator=(const DataContainer& obj) {
 			*impl_ = *obj.impl_;
 			return *this;
-		}
+		}*/
 
 		DataContainer& DataContainer::operator=(DataContainer&& obj) {
 			impl_ = std::move(obj.impl_);

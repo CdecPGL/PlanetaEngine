@@ -190,6 +190,9 @@
     <Filter Include="PlanetaEngine\Utility\DateTime">
       <UniqueIdentifier>{0de0a5aa-9426-4eea-9453-906e3d75582a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\SaveData">
+      <UniqueIdentifier>{ef9d18d8-9c13-4e4c-8587-c8259919dff0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -810,6 +813,9 @@
     <ClInclude Include="PETime.h">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClInclude>
+    <ClInclude Include="SaveDataManager.h">
+      <Filter>PlanetaEngine\Core\SaveData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1144,6 +1150,9 @@
     </ClCompile>
     <ClCompile Include="PETime.cpp">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveDataManager.cpp">
+      <Filter>PlanetaEngine\Core\SaveData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
