@@ -12,7 +12,7 @@ namespace planeta_engine{
 		class FileManipulatorBase: public core::Object{
 		public:
 			explicit FileManipulatorBase(const std::string& p, bool auto_create) :path_(p), is_valid_(false), auto_create_(auto_create) {}
-			explicit FileManipulatorBase(const std::string& p, const std::shared_ptr<const EncrypterBase>& encrypter, bool auto_create) :path_(p), encrypter_(encrypter), is_valid_(false), auto_create_(auto_create) {}
+			explicit FileManipulatorBase(const std::string& p, std::shared_ptr<const EncrypterBase>&& encrypter, bool auto_create) :path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {}
 			virtual ~FileManipulatorBase() = default;
 			bool Initialize();
 			void Finalize() {
@@ -32,6 +32,8 @@ namespace planeta_engine{
 			bool SaveFiles(const std::vector<std::pair<std::string, const File&>>& files);
 			/*ファイルの存在を確認*/
 			bool CheckFileExist(const std::string& file_name)const;
+			/*ファイルの削除*/
+			bool DeleteFile(const std::string& file_name);
 			bool is_valid()const { return is_valid_; }
 			const std::unordered_set<std::string>& file_list()const { return file_list_; }
 		protected:
@@ -53,6 +55,7 @@ namespace planeta_engine{
 			virtual bool LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files);
 			virtual bool SaveFileCore(const std::string& name, const File& file) = 0;
 			virtual bool SaveFilesCore(const std::vector<std::pair<std::string, const File&>>& files);
+			virtual bool DeleteFileCore(const std::string& file_name);
 		};
 	}
 }
