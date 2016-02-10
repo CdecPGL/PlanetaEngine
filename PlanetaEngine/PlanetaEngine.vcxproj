@@ -59,7 +59,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -78,7 +78,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Debug;C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua_mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -104,7 +104,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;C:\libraries\boost\boost_1_59_0;C:\Users\JUNJUN\Documents\自作ライブラリ\include;C:\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -120,7 +120,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\DxLib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Release;C:\libraries\boost\boost_1_59_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -139,6 +139,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AESEncrypter.h" />
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
@@ -347,6 +348,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="XMLResource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AESEncrypter.cpp" />
     <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="BGMController.cpp" />

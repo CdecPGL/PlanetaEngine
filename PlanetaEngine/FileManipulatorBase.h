@@ -7,12 +7,14 @@
 #include"File.h"
 
 namespace planeta_engine{
-	namespace file_system{
+	namespace encrypters {
 		class EncrypterBase;
+	}
+	namespace file_system{
 		class FileManipulatorBase: public core::Object{
 		public:
 			explicit FileManipulatorBase(const std::string& p, bool auto_create) :path_(p), is_valid_(false), auto_create_(auto_create) {}
-			explicit FileManipulatorBase(const std::string& p, std::shared_ptr<const EncrypterBase>&& encrypter, bool auto_create) :path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {}
+			explicit FileManipulatorBase(const std::string& p, std::shared_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) :path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {}
 			virtual ~FileManipulatorBase() = default;
 			bool Initialize();
 			void Finalize() {
@@ -40,13 +42,13 @@ namespace planeta_engine{
 			const std::string& path()const { return path_; }
 			void path(const std::string& p) { path_ = p; }
 			bool is_encrypter_valid()const { return encrypter_ != nullptr; }
-			std::shared_ptr<const EncrypterBase> encrypter()const { return encrypter_; }
+			std::shared_ptr<const encrypters::EncrypterBase> encrypter()const { return encrypter_; }
 			bool auto_create()const { return auto_create_; }
 		private:
 			std::string path_;
 			bool is_valid_; //—LŒø‚©
 			bool auto_create_;
-			std::shared_ptr<const EncrypterBase> encrypter_;
+			std::shared_ptr<const encrypters::EncrypterBase> encrypter_;
 			std::unordered_set<std::string> file_list_;
 			virtual bool InitializeCore() = 0;
 			virtual void FinalizeCore() = 0;

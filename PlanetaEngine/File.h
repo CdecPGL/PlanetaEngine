@@ -29,6 +29,8 @@ namespace planeta_engine{
 			FileStatus GetStatus()const;
 			/*データのセット(コピーするのではなく管理を委譲する)*/
 			void SetData(unsigned char* top_ptr, size_t size);
+			/*文字列からデータをセット*/
+			void SetData(const std::string& data);
 			/*データの書き込み*/
 			bool WriteData(size_t pos, const unsigned char* data_top, size_t data_size,bool auto_extend = false);
 			template<typename T>

@@ -816,6 +816,9 @@
     <ClInclude Include="SaveDataManager.h">
       <Filter>PlanetaEngine\Core\SaveData</Filter>
     </ClInclude>
+    <ClInclude Include="AESEncrypter.h">
+      <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1153,6 +1156,9 @@
     </ClCompile>
     <ClCompile Include="SaveDataManager.cpp">
       <Filter>PlanetaEngine\Core\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="AESEncrypter.cpp">
+      <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

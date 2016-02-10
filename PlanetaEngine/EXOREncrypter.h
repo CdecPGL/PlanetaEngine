@@ -5,7 +5,7 @@
 
 namespace planeta_engine {
 	namespace encrypters {
-		class EXOREncrypter final: public file_system::EncrypterBase {
+		class EXOREncrypter final: public EncrypterBase {
 		public:
 			explicit EXOREncrypter(uint_fast64_t key) :key_(key) { CalculateKey(); }
 		private:

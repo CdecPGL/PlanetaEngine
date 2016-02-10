@@ -1,4 +1,5 @@
 #include "File.h"
+#include <cassert>
 
 namespace planeta_engine{
 	namespace file_system{
@@ -112,6 +113,12 @@ namespace planeta_engine{
 			data_top_ = top_ptr;
 			size_ = size;
 			status_ = FileStatus::Available;
+		}
+
+		void File::SetData(const std::string& data) {
+			ChangeSize(data.size(), false);
+			 bool ret = WriteData(0, reinterpret_cast<const unsigned char*>(data.c_str()), data.size(), false);
+			 assert(ret == true);
 		}
 
 	}
