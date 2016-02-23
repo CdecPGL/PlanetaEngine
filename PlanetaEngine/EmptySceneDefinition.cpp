@@ -1,7 +1,7 @@
 #include "EmptySceneDefinition.h"
 
 #include "SceneDefinitionHeaders.h"
-#include "InstanceProcess.h"
+#include "InstantProcess.h"
 
 namespace planeta_engine {
 	namespace core {

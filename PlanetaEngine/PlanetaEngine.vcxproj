@@ -257,7 +257,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerError.h" />
     <ClInclude Include="INIFileResource.h" />
     <ClInclude Include="InitEnd.h" />
-    <ClInclude Include="InstanceProcess.h" />
+    <ClInclude Include="InstantProcess.h" />
     <ClInclude Include="InstantCoroutineProcess.h" />
     <ClInclude Include="IOKeyConfig.h" />
     <ClInclude Include="ISceneManagerAccessor.h" />
@@ -386,7 +386,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameProcessWithRefrection.cpp" />
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
-    <ClCompile Include="InstanceProcess.cpp" />
+    <ClCompile Include="InstantProcess.cpp" />
     <ClCompile Include="LuaBindClassFunctions.cpp" />
     <ClCompile Include="SAImplCameraFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />

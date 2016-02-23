@@ -261,9 +261,6 @@
     <ClInclude Include="CollisionDetectFunctions.h">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
     </ClInclude>
-    <ClInclude Include="InstanceProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
-    </ClInclude>
     <ClInclude Include="FontDefinitionResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
@@ -819,6 +816,9 @@
     <ClInclude Include="AESEncrypter.h">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClInclude>
+    <ClInclude Include="InstantProcess.h">
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -946,9 +946,6 @@
     </ClCompile>
     <ClCompile Include="GraphAnimatorComponent.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="InstanceProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClCompile>
     <ClCompile Include="DrawPolygonComponent.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent</Filter>
@@ -1159,6 +1156,9 @@
     </ClCompile>
     <ClCompile Include="AESEncrypter.cpp">
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="InstantProcess.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -58,7 +58,7 @@ namespace planeta_engine {
 		}
 
 		Vector2D<double> PlanetGroundComponent::NormalizeGroundVectorWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_vector) const {
-			return Vector2D<double>(ground_vector.x / ground_pos.y, ground_vector.y);
+			return Vector2D<double>(ground_pos.y == 0 ? 0 : ground_vector.x / ground_pos.y, ground_vector.y);
 		}
 
 		double PlanetGroundComponent::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const {

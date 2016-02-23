@@ -1,4 +1,4 @@
-#include "InstanceProcess.h"
+#include "InstantProcess.h"
 #include "SceneAccessorForGameProcess.h"
 
 namespace planeta_engine {
