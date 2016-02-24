@@ -2,6 +2,7 @@
 #include "DXGraphDrawData.h"
 #include "DXUtility.h"
 #include "GraphResource.h"
+#include <cassert>
 
 namespace planeta_engine {
 	namespace core {
@@ -98,6 +99,8 @@ namespace planeta_engine {
 		bool GraphDrawData2D::SetVertexUV(size_t idx, const Vector2D<float>& uv)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
+			assert(graph_resource_ != nullptr);
+			if (graph_resource_ == nullptr) { return false; }
 			SetUVToDXVERTEX3D(dx_data_->vertexes[idx], uv.x, uv.y, graph_resource_->image_area());
 			vertex_uv_information_buffer_[idx] = uv;
 			return true;

@@ -15,6 +15,7 @@ namespace planeta_engine {
 			core::SceneDataForGameObject& RefSceneData();
 		private:
 			int id_;
+			bool connection_valid_ = true;
 			GameObjectManager& game_object_manager_;
 		};
 	}

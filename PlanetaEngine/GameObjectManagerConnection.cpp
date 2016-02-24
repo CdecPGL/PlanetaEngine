@@ -17,8 +17,11 @@ namespace planeta_engine {
 
 		void GameObjectManagerConnection::Dispose()
 		{
-			auto ret = game_object_manager_.RemoveGameObject(id_);
-			assert(ret == true);
+			if (connection_valid_) {
+				auto ret = game_object_manager_.RemoveGameObject(id_);
+				connection_valid_ = false;
+				assert(ret == true);
+			}
 		}
 
 		core::SceneDataForGameObject& GameObjectManagerConnection::RefSceneData() {
