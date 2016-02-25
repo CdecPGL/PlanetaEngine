@@ -195,6 +195,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneDefinitionHeaders.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="ScreenEffectProcess.h" />
+    <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="CoroutineProcess.h" />

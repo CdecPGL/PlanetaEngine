@@ -66,6 +66,10 @@ namespace planeta_engine {
 			graph_draw_data_->SetVertexPosition(1, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_down_vertex_vec));
 			graph_draw_data_->SetVertexPosition(2, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_up_vertex_vec));
 			graph_draw_data_->SetVertexPosition(3, center_position + math::RotationalTransformation(GetDrawRotationRed(), left_up_vertex_vec));
+			//êF
+			for (int i = 0; i < 4; ++i) {
+				graph_draw_data_->SetVertexColor(i, color());
+			}
 		}
 
 		void DrawGraphComponent::_UpdateUVPosition()

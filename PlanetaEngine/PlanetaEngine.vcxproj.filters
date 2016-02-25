@@ -819,6 +819,9 @@
     <ClInclude Include="InstantProcess.h">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
     </ClInclude>
+    <ClInclude Include="TypeDefinitions.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
