@@ -111,5 +111,10 @@ namespace planeta_engine {
 		WeakPointer<T0> dynamic_weak_pointer_cast(const WeakPointer<T1>& ptr) {
 			return WeakPointer<T0>(std::dynamic_pointer_cast<T0>(ptr.w_ptr_.lock()));
 		}
+
+		template<typename T>
+		WeakPointer<T> MakeWeak(const std::shared_ptr<T>& s_ptr) {
+			return WeakPointer<T>(s_ptr);
+		}
 	}
 }

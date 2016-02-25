@@ -240,7 +240,7 @@ namespace planeta_engine {
 			template<class C>
 			WeakPointerDelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)()) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<WeakPointerMenberFunctionEventHandlerHolder<void>>(c, f));
+				handlers_->emplace(id, std::make_unique<WeakPointerMenberFunctionEventHandlerHolder<void, C>>(c, f));
 				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<void>>(handlers_, id));
 			}
 			/**
