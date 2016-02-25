@@ -53,15 +53,19 @@ namespace planeta_engine {
 			double dwidth((double)_draw_area.width()*GetDrawScale().x), dheight((double)_draw_area.height()*GetDrawScale().y);
 			//ゲームオブジェクトの形状情報と画像の表示位置から画像の表示中心位置を求める
 			Vector2D<double> center_position = GetDrawCenterPosition();
+			//左上の頂点ベクトル
+			Vector2D<double> left_up_vertex_vec(dwidth * (-graph_center_.x), dheight * graph_center_.y);
+			//右上の頂点ベクトル
+			Vector2D<double> right_up_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * graph_center_.y);
 			//左下の頂点ベクトル
-			Vector2D<double> left_down_vertex_vec(-dwidth / 2.0, -dheight / 2.0);
+			Vector2D<double> left_down_vertex_vec(dwidth * (-graph_center_.x), dheight * (graph_center_.y - 1.0));
 			//右下の頂点ベクトル
-			Vector2D<double> right_down_vertex_vec(dwidth / 2.0, -dheight / 2.0);
+			Vector2D<double> right_down_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * (graph_center_.y - 1.0));
 			//画像の回転度とゲームオブジェクトの回転度、表示中心位置から各頂点を求める
 			graph_draw_data_->SetVertexPosition(0, center_position + math::RotationalTransformation(GetDrawRotationRed(), left_down_vertex_vec));
 			graph_draw_data_->SetVertexPosition(1, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_down_vertex_vec));
-			graph_draw_data_->SetVertexPosition(2, center_position + math::RotationalTransformation(GetDrawRotationRed() + math::constant::PI, left_down_vertex_vec));
-			graph_draw_data_->SetVertexPosition(3, center_position + math::RotationalTransformation(GetDrawRotationRed() + math::constant::PI, right_down_vertex_vec));
+			graph_draw_data_->SetVertexPosition(2, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_up_vertex_vec));
+			graph_draw_data_->SetVertexPosition(3, center_position + math::RotationalTransformation(GetDrawRotationRed(), left_up_vertex_vec));
 		}
 
 		void DrawGraphComponent::_UpdateUVPosition()
