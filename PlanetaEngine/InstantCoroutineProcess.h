@@ -7,9 +7,10 @@ namespace planeta_engine {
 		class InstantCoroutineProcess : public CoroutineProcess {
 		public:
 			using CoroutineProcess::CoroutineProcess;
-			void SetFunction(const std::function<void(func_arg_type)>& func) { function_ = func; }
+			using func_type = std::function<void(func_arg_type)>;
+			void SetFunction(const func_type& func) { function_ = func; }
 		private:
-			std::function<void(func_arg_type)> function_;
+			func_type function_;
 			void UpdateProc(func_arg_type yield) { function_(yield); }
 		};
 	}
