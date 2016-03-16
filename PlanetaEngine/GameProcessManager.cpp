@@ -39,9 +39,9 @@ namespace planeta_engine {
 			return true;
 		}
 
-		GameProcessManager::InternalPosition GameProcessManager::AddGameProcessToList_(const std::shared_ptr<GameProcess>& game_process, const core::GameProcessPosition& pos, InsertPosIndication ins_pos)
+		GameProcessManager::InternalPosition GameProcessManager::AddGameProcessToList_(const std::shared_ptr<GameProcess>& game_process, const core::GameProcessPosition& pos)
 		{
-			auto priority_list_it = CreateOrGetInsertPositionAtPriorityList_(pos, ins_pos);
+			auto priority_list_it = CreateOrGetInsertPositionAtPriorityList_(pos);
 			priority_list_it->push_back(game_process);
 			auto list_it = --priority_list_it->end();
 
@@ -115,16 +115,16 @@ namespace planeta_engine {
 			}
 		}
 
-		std::shared_ptr<GameProcess> GameProcessManager::CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPosition& pos, InsertPosIndication pos_indication) {
+		std::shared_ptr<GameProcess> GameProcessManager::CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPosition& pos) {
 			auto np = creator(game_);
-			auto new_pos = AddGameProcessToList_(np, pos, pos_indication);
+			auto new_pos = AddGameProcessToList_(np, pos);
 			SetupProcess_(np, [new_pos, this]() {return RemoveGameProcess_(new_pos); }, core::GameProcessPosition(new_pos.iterator_at_priority_list));
 			return RegisterToIDMap_(np.get(), new_pos) ? np : nullptr;
 		}
 
-		std::shared_ptr<GameProcess> GameProcessManager::CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPosition& pos, InsertPosIndication pos_indication, const std::string& name) {
+		std::shared_ptr<GameProcess> GameProcessManager::CreateGameProcess(const std::function<std::shared_ptr<GameProcess>(core::IGameAccessor&)>& creator, const core::GameProcessPosition& pos, const std::string& name) {
 			auto np = creator(game_);
-			auto new_pos = AddGameProcessToList_(np, pos, pos_indication);
+			auto new_pos = AddGameProcessToList_(np, pos);
 			SetupProcess_(np, [new_pos, this]() {return RemoveGameProcess_(new_pos); }, core::GameProcessPosition(new_pos.iterator_at_priority_list));
 			return (RegisterToIDMap_(np.get(), new_pos) && RegisterProcessName_(name, np.get())) ? np : nullptr;
 		}
@@ -139,26 +139,8 @@ namespace planeta_engine {
 			
 		}
 
-		core::GameProcessPriorytyListType::iterator GameProcessManager::CreateOrGetInsertPositionAtPriorityList_(const core::GameProcessPosition& pos, InsertPosIndication ins_pos) {
+		core::GameProcessPriorytyListType::iterator GameProcessManager::CreateOrGetInsertPositionAtPriorityList_(const core::GameProcessPosition& pos) {
 			auto priority_list_it = pos.priority_list_iterator;
-			switch (ins_pos) {
-			case planeta_engine::InsertPosIndication::At:
-				break;
-			case planeta_engine::InsertPosIndication::Before:
-				priority_list_it = process_priority_list_.insert(priority_list_it, core::GameProcessListType()); //直前に挿入
-				break;
-			case planeta_engine::InsertPosIndication::After:
-				++priority_list_it;
-				if (priority_list_it == process_priority_list_.end()) { //次が最後だったら末尾に追加
-					process_priority_list_.push_back(core::GameProcessListType());
-					priority_list_it = --process_priority_list_.end();
-				} else { //最後出なかったら次の要素の直前に挿入
-					priority_list_it = process_priority_list_.insert(priority_list_it, core::GameProcessListType());
-				}
-				break;
-			default:
-				break;
-			}
 			return priority_list_it;
 		}
 
@@ -166,7 +148,7 @@ namespace planeta_engine {
 			auto key_pos_it = key_position_map_.find(id);
 			if (key_pos_it == key_position_map_.end()) {
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, "キーポジション\"", id, "\"は存在しません。");
-				throw std::out_of_range("key position doesnt exist.");
+				throw std::out_of_range("key position doesn't exist.");
 			}
 			return core::GameProcessPosition(key_pos_it->second.priority_list_iterator);
 		}

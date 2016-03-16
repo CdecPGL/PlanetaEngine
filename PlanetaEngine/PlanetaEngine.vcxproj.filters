@@ -801,9 +801,6 @@
     <ClInclude Include="WeakPointer.h">
       <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
     </ClInclude>
-    <ClInclude Include="WeakPointerDelegate.h">
-      <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
-    </ClInclude>
     <ClInclude Include="PEDateTime.h">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClInclude>
@@ -821,6 +818,12 @@
     </ClInclude>
     <ClInclude Include="TypeDefinitions.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
+    </ClInclude>
+    <ClInclude Include="WeakPointerDelegate.h">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

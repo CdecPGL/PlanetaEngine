@@ -176,7 +176,9 @@ namespace planeta_engine {
 		public:
 			using HandlerParamType = typename IEventHandlerHolder<EventArgType>::ParamType;
 			WeakPointerDelegate()noexcept:handlers_(std::make_shared<WeakPointerDelegateConnecter<EventArgType>::HandlerListType>()) {}
+			WeakPointerDelegate(const WeakPointerDelegate&) = delete;
 			~WeakPointerDelegate()noexcept = default;
+			WeakPointerDelegate& operator=(const WeakPointerDelegate&) = delete;
 
 			void operator()(HandlerParamType e) {
 				for (auto it = handlers_->begin(); it != handlers_->end();) {
@@ -219,7 +221,9 @@ namespace planeta_engine {
 		class WeakPointerDelegate<void> final {
 		public:
 			WeakPointerDelegate()noexcept : handlers_(std::make_shared<WeakPointerDelegateConnecter<void>::HandlerListType>()) {}
+			WeakPointerDelegate(const WeakPointerDelegate&) = delete;
 			~WeakPointerDelegate()noexcept = default;
+			WeakPointerDelegate& operator=(const WeakPointerDelegate&) = delete;
 
 			void operator()() {
 				for (auto it = handlers_->begin(); it != handlers_->end();) {
@@ -244,7 +248,7 @@ namespace planeta_engine {
 				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<void>>(handlers_, id));
 			}
 			/**
-			* @brief デリケートにメンバ関数を登録する
+			* @brief デリケートに関数を登録する
 			* @param (func) 登録したい関数
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/

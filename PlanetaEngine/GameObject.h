@@ -17,6 +17,7 @@ namespace planeta_engine {
 	}
 	class SceneAccessorForGameObject;
 	namespace game {
+		class GameProcess;
 		class GameObjectAccessorForSetUp; //初期化用関数使用仲介クラス
 		//GameObjectクラス(継承禁止ぃ)
 		class GameObject final : public core::Object, public IGameObjectAccessor
@@ -50,14 +51,14 @@ namespace planeta_engine {
 			//自身のクローン作成(親子関係はリセットされる)
 	//			std::shared_ptr<GameObject> Clone()const;
 
-				//更新(マイフレーム呼ばれる)[呼び出し元:GameObjectUpdateProcess::Update]
+			//更新(毎フレーム呼ばれる)[呼び出し元:GameObjectUpdateProcess::Update]
 			void Update() {
 				UpdateComponent_();
 			};
 			class GameObjectManagementProxy; //管理用関数使用仲介クラス
 			void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mc) { manager_connection_ = std::move(mc); }
-			//初期化関連関数[呼び出し元:GameObjectSetUpper]
 			bool SetUpSystemComponent();
+			//初期化関連関数[呼び出し元:GameObjectSetUpper]
 			bool Initialize_() { return  InitializeComponent_(); };
 			//システムに呼ばれる関数群
 			//シーン登録時に呼ばれる[呼び出し元:GameObjectManager::Activate]
