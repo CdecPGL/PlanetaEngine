@@ -146,6 +146,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
+    <ClInclude Include="ChildTransformCore.h" />
     <ClInclude Include="DataContainer.h" />
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
@@ -172,6 +173,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessKeyPositionDefinition.h" />
     <ClInclude Include="GameProcessListTypes.h" />
     <ClInclude Include="GameProcessSystemKeyPositions.h" />
+    <ClInclude Include="RootTransformCore.h" />
     <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h" />
     <ClInclude Include="SAImplGameProcessCreateFunctions.h" />
     <ClInclude Include="SAImplGameProcessGetFunctions.h" />
@@ -197,6 +199,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneDefinitionHeaders.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="ScreenEffectProcess.h" />
+    <ClInclude Include="TransformCore.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
@@ -356,6 +359,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="BelongingGroundGravityComponent.cpp" />
     <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ChildTransformCore.cpp" />
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
@@ -391,6 +395,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="InstantProcess.cpp" />
     <ClCompile Include="LuaBindClassFunctions.cpp" />
+    <ClCompile Include="RootTransformCore.cpp" />
     <ClCompile Include="SAImplCameraFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp" />

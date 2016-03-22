@@ -193,6 +193,9 @@
     <Filter Include="PlanetaEngine\Core\SaveData">
       <UniqueIdentifier>{ef9d18d8-9c13-4e4c-8587-c8259919dff0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent">
+      <UniqueIdentifier>{fa903434-b4de-4c4d-8c40-535dcbfb7978}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -244,9 +247,6 @@
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
     <ClInclude Include="PlanetComponent.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformComponent.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
     <ClInclude Include="CollisionEventArgument.h">
@@ -825,6 +825,18 @@
     <ClInclude Include="WeakPointerDelegate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformCore.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="RootTransformCore.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildTransformCore.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -886,9 +898,6 @@
     </ClCompile>
     <ClCompile Include="DXUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformComponent.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
     <ClCompile Include="PlanetaEngine.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -1165,6 +1174,15 @@
     </ClCompile>
     <ClCompile Include="InstantProcess.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="RootTransformCore.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildTransformCore.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

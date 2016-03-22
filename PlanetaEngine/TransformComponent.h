@@ -6,6 +6,7 @@
 #include "WeakPointerDelegate.h"
 
 namespace planeta_engine {
+	class TransformCore;
 	namespace components {
 		class GroundComponent;
 		/*形状情報コンポーネント*/
@@ -54,6 +55,8 @@ namespace planeta_engine {
 			void ApplyVelocity();
 		private:
 			bool is_no_update()const override{ return true; }
+
+			std::unique_ptr<TransformCore> core_;
 
 			void UpdateTransformDataGlobalByGround(); //地形座標からグローバル座標を算出
 			void UpdateTransformDataGroundByGlobal(); //地形座標からローカル座標を算出

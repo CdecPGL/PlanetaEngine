@@ -3,7 +3,7 @@
 #include <vector>
 #include <unordered_map>
 #include <typeindex>
-#include"Object.h"
+#include "Object.h"
 #include "MakeSharedGameObject.h"
 #include "IGameObjectAccessor.h"
 #include "GameObjectManagerConnection.h"
@@ -48,8 +48,6 @@ namespace planeta_engine {
 
 			/*シーンのポインタをセット*/
 			void SetSceneAccessor(const utility::WeakPointer<SceneAccessorForGameObject>& scene) { scene_accessor_ = scene; }
-			//自身のクローン作成(親子関係はリセットされる)
-	//			std::shared_ptr<GameObject> Clone()const;
 
 			//更新(毎フレーム呼ばれる)[呼び出し元:GameObjectUpdateProcess::Update]
 			void Update() {
