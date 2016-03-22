@@ -7,6 +7,8 @@ namespace planeta_engine {
 	public:
 		RootTransformCore();
 
+		void Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset)override;
+
 		/*アクセサ*/
 		const Vector2D<double>& position()const override;
 		void position(const Vector2D<double>& pos)override;

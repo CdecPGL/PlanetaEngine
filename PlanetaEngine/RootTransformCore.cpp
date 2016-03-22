@@ -12,6 +12,10 @@ namespace planeta_engine {
 
 	RootTransformCore::RootTransformCore() :ground_(GetDumyGround()) {}
 
+	void RootTransformCore::Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset) {
+		position(base_pos + ground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
+	}
+
 	void RootTransformCore::UpdateTransformDataGlobalByGround() {
 		auto& ground = this->ground();
 		if (position_last_update == CoordinateSystem::Ground) {

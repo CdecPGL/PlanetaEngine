@@ -12,6 +12,8 @@ namespace planeta_engine {
 		TransformCore() = default;
 		virtual ~TransformCore() = default;
 
+		virtual void Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset) = 0;
+
 		/*アクセサ*/
 		virtual const Vector2D<double>& position()const = 0;
 		virtual void position(const Vector2D<double>& pos) = 0;
@@ -35,8 +37,8 @@ namespace planeta_engine {
 
 		/*地形関係*/
 		virtual components::GroundComponent& ground() = 0;
-		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		virtual utility::WeakPointer<components::GroundComponent> GetGround()const = 0;
+		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		virtual void SetGround(const utility::WeakPointer<components::GroundComponent>& g, bool keep_global_position) = 0;
 	};
 }
