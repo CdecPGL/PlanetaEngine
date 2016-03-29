@@ -837,6 +837,9 @@
     <ClInclude Include="ChildTransformCore.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
     </ClInclude>
+    <ClInclude Include="pe_assert.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

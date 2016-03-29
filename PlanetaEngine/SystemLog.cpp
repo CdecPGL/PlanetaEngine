@@ -5,6 +5,7 @@
 #include <iostream>
 #include <windows.h>
 #include <cassert>
+#include "pe_assert.h"
 #include "PEDateTime.h"
 #include "WindowsUtility.h"
 
@@ -16,6 +17,7 @@ namespace {
 	constexpr char* kMessageHeader("M");
 	constexpr char* kWarningHeader("W");
 	constexpr char* kErrorHeader("E");
+	constexpr char* kFatalErrorHeader("F");
 	constexpr size_t kDefaultLogHistoryMaxSize(100);
 
 	void OpenConsoleWindow() {
@@ -65,6 +67,9 @@ namespace planeta_engine {
 				case LogLevel::Error:
 					header = kErrorHeader;
 					break;
+				case LogLevel::Fatal:
+					header = kFatalErrorHeader;
+					break;
 				default:
 					break;
 				}
@@ -107,12 +112,21 @@ namespace planeta_engine {
 				case planeta_engine::debug::SystemLog::LogLevel::Error:
 					col = windows::console::COL_RED;
 					break;
+				case planeta_engine::debug::SystemLog::LogLevel::Fatal:
+					col = windows::console::COL_VIOLET;
+					break;
 				default:
 					assert(false);
 					break;
 				}
 				windows::console::SetCharacterColor(col);
 				std::cout << AddNewLineIfNeed(str);
+			}
+
+			void _AssertionByLevel(LogLevel level,const std::string err_str) {
+				if (level == LogLevel::Fatal) {
+					pe_assert(false, err_str.c_str());
+				}
 			}
 		private:
 			SystemLog& ins_;
@@ -200,6 +214,7 @@ namespace planeta_engine {
 		void SystemLog::_Log(LogLevel level, const std::string& detail, const std::string& place) {
 			std::string str = std::move(impl_->_GetStringFormatedByLogLevel(level, detail, place));
 			_OutPut(level, str);
+			impl_->_AssertionByLevel(level, str);
 		}
 
 		void SystemLog::ResetLogOutStream() { impl_->_output_streams.clear(); }

@@ -35,6 +35,8 @@ namespace planeta_engine {
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		utility::WeakPointer<components::GroundComponent> GetGround()const override;
 		void SetGround(const utility::WeakPointer<components::GroundComponent>& g, bool keep_global_position)override;
+
+		void SetParent(TransformCore* parent)override;
 	private:
 		void UpdateTransformDataGlobalByGround(); //地形座標からグローバル座標を算出
 		void UpdateTransformDataGroundByGlobal(); //地形座標からローカル座標を算出
@@ -60,6 +62,7 @@ namespace planeta_engine {
 		Vector2D<double> global_velocity_;
 		double rotation_velocity_rad_ = 0.0;
 		CoordinateSystem velocity_last_update = CoordinateSystem::None;
+
 
 	};
 }

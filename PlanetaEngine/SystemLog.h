@@ -16,7 +16,7 @@ namespace planeta_engine {
 		public:
 			bool Initialize()override;
 			bool Finalize()override;
-			enum class LogLevel { Message, Warning, Error };
+			enum class LogLevel { Message, Warning, Error, Fatal };
 			/*コンソールへの出力を有効化*/
 			bool ValidateConsoleOutPut();
 			/*レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/

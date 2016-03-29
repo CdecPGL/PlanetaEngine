@@ -1,6 +1,9 @@
+#include <cassert>
+
 #include "RootTransformCore.h"
 #include "GroundComponent.h"
 #include "DumyGroundComponent.h"
+#include "SystemLog.h"
 
 namespace planeta_engine {
 	namespace {
@@ -171,5 +174,9 @@ namespace planeta_engine {
 			UpdateTransformDataGlobalByGround();
 			UpdatePhysicalDataGlobal();
 		}
+	}
+
+	void RootTransformCore::SetParent(TransformCore* parent) {
+		debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "ルートトランスフォームに親は設定できません。");
 	}
 }

@@ -173,6 +173,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessKeyPositionDefinition.h" />
     <ClInclude Include="GameProcessListTypes.h" />
     <ClInclude Include="GameProcessSystemKeyPositions.h" />
+    <ClInclude Include="pe_assert.h" />
     <ClInclude Include="RootTransformCore.h" />
     <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h" />
     <ClInclude Include="SAImplGameProcessCreateFunctions.h" />

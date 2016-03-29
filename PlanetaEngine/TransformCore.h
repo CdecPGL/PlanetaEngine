@@ -40,5 +40,7 @@ namespace planeta_engine {
 		virtual utility::WeakPointer<components::GroundComponent> GetGround()const = 0;
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		virtual void SetGround(const utility::WeakPointer<components::GroundComponent>& g, bool keep_global_position) = 0;
+
+		virtual void SetParent(TransformCore* parent) = 0;
 	};
 }
