@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include "MathVector.h"
+#include "Property.h"
 
 namespace planeta_engine {
 	namespace system {

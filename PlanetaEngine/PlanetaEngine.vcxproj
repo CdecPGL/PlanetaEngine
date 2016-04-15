@@ -344,7 +344,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GUIObject.h" />
     <ClInclude Include="GUIManagerConnection.h" />
     <ClInclude Include="UnorderedMap.h" />
-    <ClInclude Include="NewVector2D.h" />
+    <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="Vector4D.h" />

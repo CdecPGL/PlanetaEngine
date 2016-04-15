@@ -31,5 +31,16 @@ namespace planeta_engine {
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		utility::WeakPointer<components::GroundComponent> GetGround()const override;
 		void SetGround(const utility::WeakPointer<components::GroundComponent>& g, bool keep_global_position)override;
+
+		void SetParent(TransformCore* parent)override;
+	private:
+		void UpdateGlobalFromLocal();
+		void UpdateLocalFromGlobal();
+
+		TransformCore* parent_ = nullptr;
+
+		TransformData local_transform_data_;
+		TransformData global_transform_data_;
+
 	};
 }

@@ -37,9 +37,9 @@ namespace planeta_engine {
 
 		double PlanetComponent::GetGapByRad(double rad) const
 		{
-			while (rad < 0.0) { rad += 2.0*math::constant::PI; }
-			rad = std::fmod(rad, 2.0*math::constant::PI);
-			double pos = rad / (2.0*math::constant::PI / _separation);
+			while (rad < 0.0) { rad += 2.0*math::PI; }
+			rad = std::fmod(rad, 2.0*math::PI);
+			double pos = rad / (2.0*math::PI / _separation);
 			int segment = static_cast<int>(pos);
 			double pos_in_segment = pos - segment;
 			int sidx = segment;

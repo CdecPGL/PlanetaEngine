@@ -1,37 +1,195 @@
 #pragma once
 
 #include <cstdint>
-#include "MathVector.h"
-#include "Property.h"
+#include "MathConstant.h"
 
 namespace planeta_engine {
-	namespace system {
-		namespace vei {
-			template<typename T>
-			class XYZIdentifer {
-				using MyType = XYZIdentifer<T>;
-			protected:
-				static constexpr int minimum_vector_size = 3;
-				void SetElementArrayPointer(T* ptr) { ptr_ = ptr; }
-			private:
-				T* ptr_;
-				T get_x()const { return ptr_[0]; }
-				void set_x(T v) { ptr_[0] = v; }
-				T get_y()const { return ptr_[1]; }
-				void set_y(T v) { ptr_[1] = v; }
-				T get_z()const { return ptr_[2]; }
-				void set_z(T v) { ptr_[2] = v; }
-			public:
-				XYZIdentifer() :x(*this), y(*this), z(*this) {}
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_z, &MyType::set_z> z;
-			};
+	namespace math {
+		//三次元ベクトルテンプレート
+		template<typename T> struct Vector3D {
+		public:
+			//要素
+			T x, y, z;
+			//コンストラクタ
+			constexpr Vector3D() :x(0), y(0), z(0) {};
+			constexpr Vector3D(T m_x, T m_y, T m_z) : x(m_x), y(m_y),z(m_z) {};
+			constexpr Vector3D(const Vector3D<T>& obj) :x(obj.x), y(obj.y), z(obj.z) {}
+			template<typename T2>
+			constexpr Vector3D(const Vector3D<T2>& obj) : x(obj.x), y(obj.y), z(obj.z) {} //型変換の警告を出すために明示的キャストは用いない
+			//代入演算子
+			Vector3D<T>& operator =(const Vector3D<T>& obj) { x = obj.x; y = obj.y; z = obj.z; return *this; }
+			template<typename T2>
+			Vector3D<T>& operator =(const Vector3D<T2>& obj) { x = obj.x; y = obj.y; z = obj.z; return *this; } //型変換の警告を出すために明示的キャストは用いない
+			//加減算演算子
+			constexpr Vector3D<T> operator+(const Vector3D<T>& in)const {
+				return Vector3D<T>(x + in.x, y + in.y, z + in.z);
+			}
+			constexpr Vector3D<T>operator-(const Vector3D<T>& in)const {
+				return Vector3D<T>(x - in.x, y - in.y, z - in.z);
+			}
+			//スカラーとの乗除算演算子
+			template<typename U>
+			constexpr Vector3D<T> operator*(U num)const {
+				return Vector3D<T>((T)(x*num), (T)(y*num), (T)(z*num));
+			}
+			template<typename U>
+			Vector3D<T> operator/(U num)const {
+				if (num == 0) {
+					throw std::range_error("Divided by zero.");
+				}
+				Vector3D<T> out(static_cast<T>(static_cast<double>(x) / num), static_cast<T>(static_cast<double>(y) / num), static_cast<T>(static_cast<double>(z) / num));
+				return out;
+			}
+			//加減代入演算子
+			Vector3D<T>& operator+=(const Vector3D<T>& in) {
+				x += in.x;
+				y += in.y;
+				z += in.z;
+				return *this;
+			}
+			Vector3D<T>& operator-=(const Vector3D<T>& in) {
+				x -= in.x;
+				y -= in.y;
+				z -= in.z;
+				return *this;
+			}
+			//スカラーとの乗除算代入演算子
+			template<typename U>
+			Vector3D<T> operator*=(U num) {
+				x *= num;
+				y *= num;
+				z *= num;
+				return *this;
+			}
+			template<typename U>
+			Vector3D<T> operator/=(U num) {
+				if (num == 0) {
+					throw std::range_error("Divided by zero.");
+				}
+				x /= num;
+				y /= num;
+				z /= num;
+				return *this;
+			}
+			//符号反転演算子
+			constexpr Vector3D<T> operator-()const {
+				return  Vector3D<T>(-x, -y, -z);
+			}
+			//比較演算子
+			constexpr bool operator==(const Vector3D<T>& in)const {
+				return in.x == x && in.y == y && in.z == z;
+			}
+			constexpr bool operator!=(const Vector3D<T>& in)const {
+				return !(*this == in);
+			}
+			//その他関数
+			void Set(T mx, T my, T mz) {
+				x = mx; y = my; z = mz;
+			}
+			double length()const {
+				return sqrt(length_square());
+			}
+			constexpr double length_square()const {
+				return x*x + y*y + z*z;
+			}
+			const std::string ToString()const {
+				using namespace std;
+				stringstream is;
+				is << "(" << x << "," << y << "," << z << ")";
+				return is.str();
+			}
+
+			//定義済みベクトル
+			static const Vector3D<T> zero_vector;
+			static const Vector3D<T> x_unit_vector;
+			static const Vector3D<T> y_unit_vector;
+			static const Vector3D<T> z_unit_vector;
+		};
+
+		template<typename T>
+		const Vector3D<T> Vector3D<T>::zero_vector(0, 0, 0);
+		template<typename T>
+		const Vector3D<T> Vector3D<T>::x_unit_vector(1, 0, 0);
+		template<typename T>
+		const Vector3D<T> Vector3D<T>::y_unit_vector(0, 1, 0);
+		template<typename T>
+		const Vector3D<T> Vector3D<T>::z_unit_vector(0, 0, 1);
+
+		//二次元ベクトル関数
+		//内積を求める
+		template<typename T>
+		constexpr auto Dot(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
 		}
+		//外積を求める
+		/*template<typename T>
+		constexpr auto Cross(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			return v1.x*v2.y - v1.y*v2.x;
+		}*/
+		//平行な単位ベクトルを求める(同じ向きのもの)
+		template<typename T>
+		Vector3D<T> GetParallelUnitVector(const Vector3D<T>& v) {
+			double v_length(v.length());
+			if (v_length == 0) { throw zero_vector_error("tryed to calc unit vector from zero vector"); }
+			Vector3D<T>out(v / v.length());
+			return out;
+		}
+		//垂直単位ベクトルを求める(時計回りに90度回転したもの)
+		/*template<typename T>
+		Vector3D<T> GetVerticalUnitVector(const Vector3D<T>& v) {
+			Vector3D<T> v_vtcl(-v.y, v.x);
+			double v_length(v_vtcl.length());
+			Vector3D<T> out(GetParallelUnitVector(v_vtcl));
+			return out;
+		}*/
+		//v2がv1となす角のコサイン値を求める(時計周りが正)
+		template<typename T>
+		double GetCosin(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			double v1_length(v1.length()), v2_length(v2.length());
+			double v1v2_dot(Dot(v1, v2));
+			return v1v2_dot / (v1_length*v2_length);
+		}
+		//v2がv1となす角のサイン値を求める(時計周りが正)
+		/*template<typename T>
+		double GetSin(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			double v1_length(v1.length()), v2_length(v2.length());
+			double v1v2_cross(Cross(v1, v2));
+			return v1v2_cross / (v1_length*v2_length);
+		}*/
+		//v2がv1となす角の角度(ラジアン)を求める(時計周りが正)
+		/*template<typename T>
+		double GetRadian(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			double v1v2_cos(GetCosin(v1, v2));
+			double v1v1_sin(GetSin(v1, v2));
+			double v1v2_rad(acos(v1v2_cos));
+			if (v1v1_sin < 0) { v1v2_rad = -v1v2_rad; }
+			return v1v2_rad;
+		}*/
+		//v2がv1となす角の角度(度)を求める(時計周りが正)
+		/*template<typename T>
+		double GetDegree(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			double v1v2_rad = (GetRadian(v1, v2));
+			double v1v2_deg(v1v2_rad / math::PI * 180);
+			return v1v2_deg;
+		}*/
+		//v1の四捨五入値ベクトルを取得
+		template<typename T>
+		Vector3D<T> GetRoundVector(const Vector3D<T>& v) {
+			return Vector3D<T>((T)round((double)v.x), (T)round((double)v.y), (T)round((double)v.z));
+		}
+		//v1のv2に対する正射影ベクトルを求める
+		template<typename T>
+		Vector3D<T> GetOrthogonalProjectionVector(const Vector3D<T>& v1, const Vector3D<T>& v2) {
+			return GetParallelUnitVector(v2) * Vector3D<T>::Dot(v1, v2);
+		}
+		//指定した角度方向の単位ベクトルを取得する
+		/*template<typename T>
+		Vector3D<T> GetUnitVectorByRadian(double rad) {
+			return Vector3D<T>(static_cast<T>(std::cos(rad)), static_cast<T>(std::sin(rad)));
+		}*/
 	}
-	template<typename T>
-	using Vector3D = math::Vector<T, 3, system::vei::XYZIdentifer>; //三次元ベクトル
-	using Vector3Df = Vector3D<float>; //単精度浮動小数点型三次元ベクトル
-	using Vector3Dd = Vector3D<double>; //倍精度浮動小数点型三次元ベクトル
-	using Vector3Di = Vector3D<int32_t>; //32bit符号付き整数型三次元ベクトル
+	
+	using Vector3Df = math::Vector3D<float>; //単精度浮動小数点型三次元ベクトル
+	using Vector3Dd = math::Vector3D<double>; //倍精度浮動小数点型三次元ベクトル
+	using Vector3Di = math::Vector3D<int32_t>; //32bit符号付き整数型三次元ベクトル
 }

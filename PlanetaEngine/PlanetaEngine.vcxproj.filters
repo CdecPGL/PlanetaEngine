@@ -600,9 +600,6 @@
     <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="NewVector2D.h">
-      <Filter>PlanetaEngine\Math\Vector</Filter>
-    </ClInclude>
     <ClInclude Include="Vector3D.h">
       <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
@@ -839,6 +836,9 @@
     </ClInclude>
     <ClInclude Include="pe_assert.h">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

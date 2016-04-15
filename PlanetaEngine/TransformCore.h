@@ -42,5 +42,12 @@ namespace planeta_engine {
 		virtual void SetGround(const utility::WeakPointer<components::GroundComponent>& g, bool keep_global_position) = 0;
 
 		virtual void SetParent(TransformCore* parent) = 0;
+	protected:
+		//Œ`óî•ñ
+		struct TransformData {
+			Vector2D<double> position;
+			Vector2D<double> scale = Vector2D<double>(1.0, 1.0);
+			double rotation_rad = 0.0;
+		};
 	};
 }

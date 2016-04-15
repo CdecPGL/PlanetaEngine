@@ -160,16 +160,6 @@ namespace planeta_engine {
 				elements_ = { args... };
 			}
 
-			/*Vector2D‚Æ‚ÌŒÝŠ·—p*/
-			//Vector2D‚©‚çVector‚Ö‚Ì•ÏŠ·(ˆÃ–Ù“I•ÏŠ·‚ð‹–‰Â)
-			template<typename T2>
-			Vector(const ::Vector2D<T2>& v2d) : Vector(Vector<T2, 2>(v2d.x, v2d.y)) {}
-			//Vector‚©‚çVector2D‚Ö‚Ì•ÏŠ·
-			template<typename T2>
-			operator ::Vector2D<T2>() {
-				return ::Vector2D<T2>((*this)[0], S >= 2 ? (*this)[1] : 0);
-			}
-
 		private:
 			std::array<T,S> elements_;
 		};

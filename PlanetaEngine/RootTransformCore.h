@@ -46,12 +46,7 @@ namespace planeta_engine {
 		utility::WeakPointer<components::GroundComponent> ground_; //コンストラクタでダミーをセット
 
 		enum class CoordinateSystem { Global, Ground, None };
-		//形状情報
-		struct TransformData {
-			Vector2D<double> position;
-			Vector2D<double> scale = Vector2D<double>(1.0, 1.0);
-			double rotation_rad = 0.0;
-		};
+		
 		TransformData ground_transform_data_;
 		TransformData global_transform_data_;
 		CoordinateSystem position_last_update = CoordinateSystem::None;

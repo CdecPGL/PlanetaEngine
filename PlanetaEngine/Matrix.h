@@ -1,7 +1,6 @@
 #pragma once
 
 #include"Vector2D.h"
-#include "MathVector.h"
 #include <array>
 #include<initializer_list>
 

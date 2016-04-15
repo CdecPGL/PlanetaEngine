@@ -191,3 +191,4 @@ ModelManifest.xml
 
 ## Under here,I added.
 *.VC.opendb
+/PlanetaEngine.VC.db
