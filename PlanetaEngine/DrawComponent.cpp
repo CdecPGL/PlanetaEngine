@@ -3,7 +3,7 @@
 //#include "GameObjectDrawComponentProcessRegistrator.h"
 #include "GameObjectDrawProcessCore.h"
 #include "TransformComponent.h"
-#include "Matrix.h"
+#include "Matrix2_2.h"
 #include "SystemLog.h"
 #include "SceneAccessorForGameObject.h"
 #include "SceneDataForGameObject.h"
@@ -24,10 +24,10 @@ namespace planeta_engine {
 			return *this;
 		}
 
-		Vector2D<double> DrawComponent::GetDrawCenterPosition() const
+		Vector2Dd DrawComponent::GetDrawCenterPosition() const
 		{
 			const TransformComponent& transform = game_object().transform();
-			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
+			Vector2Dd relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.scale().x; //横方向拡大を反映
 			relation_position.y *= transform.scale().y; //縦方向拡大を反映
 			return transform.global_position() + relation_position;
@@ -38,9 +38,9 @@ namespace planeta_engine {
 			return game_object().transform().global_rotation_rad() + rotation_rad_;
 		}
 
-		Vector2D<double> DrawComponent::GetDrawScale() const
+		Vector2Dd DrawComponent::GetDrawScale() const
 		{
-			return Vector2D<double>(game_object().transform().scale().x * scale_.x, game_object().transform().scale().y * scale_.y);
+			return Vector2Dd(game_object().transform().scale().x * scale_.x, game_object().transform().scale().y * scale_.y);
 		}
 
 		void DrawComponent::RegisterToProcess_()

@@ -128,7 +128,7 @@ namespace planeta_engine {
 		{
 			//˜gü‚ğ•\¦
 			utility::RectAngle<int> my_draw_area(parent_draw_area.position + relative_draw_area_buffer_.position,relative_draw_area_buffer_.size);
-//			core::DrawManager::instance().DrawUIWire({ my_draw_area.position,Vector2D<int>(my_draw_area.right(),my_draw_area.top()),Vector2D<int>(my_draw_area.right(),my_draw_area.bottom()), Vector2D<int>(my_draw_area.left(),my_draw_area.bottom()),my_draw_area.position }, 1, Color(255, 150, 0));
+//			core::DrawManager::instance().DrawUIWire({ my_draw_area.position,Vector2Di(my_draw_area.right(),my_draw_area.top()),Vector2Di(my_draw_area.right(),my_draw_area.bottom()), Vector2Di(my_draw_area.left(),my_draw_area.bottom()),my_draw_area.position }, 1, Color(255, 150, 0));
 			children_holder_->do_all([&my_draw_area](GUIComponent& com) {com.DebugDraw(my_draw_area); });
 		}
 

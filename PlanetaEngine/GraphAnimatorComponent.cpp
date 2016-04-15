@@ -59,7 +59,7 @@ namespace planeta_engine {
 			std::shared_ptr<std::vector<FrameDataType>> new_frames = std::make_shared<std::vector<FrameDataType>>();
 			new_frames->resize(frames.size());
 			for (unsigned int i = 0; i < frames.size(); ++i) {
-				(*new_frames)[i] = FrameDataType(frames[i].first, frames[i].second, Vector2D<double>(1.0, 1.0), 0.0);
+				(*new_frames)[i] = FrameDataType(frames[i].first, frames[i].second, Vector2Dd(1.0, 1.0), 0.0);
 			}
 			animations_[anim_name] = new_frames;
 		}

@@ -1,10 +1,13 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
 #include "MathConstant.h"
 
 namespace planeta_engine {
 	namespace math {
+		template<typename T>
+		struct Vector3D;
 		//二次元ベクトルテンプレート
 		template<typename T> struct Vector2D {
 		public:
@@ -16,6 +19,7 @@ namespace planeta_engine {
 			constexpr Vector2D(const Vector2D<T>& obj) :x(obj.x), y(obj.y) {}
 			template<typename T2>
 			constexpr Vector2D(const Vector2D<T2>& obj) : x(obj.x), y(obj.y) {} //型変換の警告を出すために明示的キャストは用いない
+			constexpr Vector2D(const Vector3D<T>& v3):x(v3.x), y(v3.y) {}
 			//代入演算子
 			Vector2D<T>& operator =(const Vector2D<T>& obj) { x = obj.x; y = obj.y; return *this; }
 			template<typename T2>
@@ -123,7 +127,7 @@ namespace planeta_engine {
 		template<typename T>
 		Vector2D<T> GetParallelUnitVector(const Vector2D<T>& v) {
 			double v_length(v.length());
-			if (v_length == 0) { throw zero_vector_error("tryed to calc unit vector from zero vector"); }
+			if (v_length == 0) { throw std::range_error("tryed to calc unit vector from zero vector"); }
 			Vector2D<T>out(v / v.length());
 			return out;
 		}

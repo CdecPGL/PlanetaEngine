@@ -10,19 +10,19 @@ namespace planeta_engine {
 
 		TransformComponent::~TransformComponent() = default;
 
-		void TransformComponent::Move(const Vector2D<double>& mov_pos) {
+		void TransformComponent::Move(const Vector2Dd& mov_pos) {
 			Offset(position(), mov_pos);
 		}
 
-		void TransformComponent::Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset) {
+		void TransformComponent::Offset(const Vector2Dd& base_pos, const Vector2Dd& offset) {
 			core_->Offset(base_pos, offset);
 		}
 
-		void TransformComponent::Accelerate(const Vector2D<double>& acceleration) {
+		void TransformComponent::Accelerate(const Vector2Dd& acceleration) {
 			velocity(velocity() + acceleration);
 		}
 
-		void TransformComponent::GlobalAccelerate(const Vector2D<double>& global_acceleration) {
+		void TransformComponent::GlobalAccelerate(const Vector2Dd& global_acceleration) {
 			global_velocity(global_velocity() + global_acceleration);
 		}
 
@@ -32,20 +32,20 @@ namespace planeta_engine {
 			rotation_rad(rotation_rad() + rotation_velocity_rad());
 		}
 
-		const Vector2D<double>& TransformComponent::position() const {
+		const Vector2Dd& TransformComponent::position() const {
 			return core_->position();
 		}
 
-		TransformComponent&  TransformComponent::position(const Vector2D<double>& pos) {
+		TransformComponent&  TransformComponent::position(const Vector2Dd& pos) {
 			core_->position(pos);
 			return *this;
 		}
 
-		const Vector2D<double>& TransformComponent::scale() const {
+		const Vector2Dd& TransformComponent::scale() const {
 			return core_->scale();
 		}
 
-		TransformComponent&  TransformComponent::scale(const Vector2D<double>& s) {
+		TransformComponent&  TransformComponent::scale(const Vector2Dd& s) {
 			core_->scale(s);
 			return *this;
 		}
@@ -59,11 +59,11 @@ namespace planeta_engine {
 			return *this;
 		}
 
-		const Vector2D<double>& TransformComponent::global_position() const {
+		const Vector2Dd& TransformComponent::global_position() const {
 			return core_->global_position();
 		}
 
-		TransformComponent&  TransformComponent::global_position(const Vector2D<double>& pos) {
+		TransformComponent&  TransformComponent::global_position(const Vector2Dd& pos) {
 			core_->global_position(pos);
 			return *this;
 		}
@@ -77,11 +77,11 @@ namespace planeta_engine {
 			return *this;
 		}
 
-		const Vector2D<double>& TransformComponent::velocity() const {
+		const Vector2Dd& TransformComponent::velocity() const {
 			return core_->velocity();
 		}
 
-		TransformComponent&  TransformComponent::velocity(const Vector2D<double>& vel) {
+		TransformComponent&  TransformComponent::velocity(const Vector2Dd& vel) {
 			core_->velocity(vel);
 			return *this;
 		}
@@ -95,11 +95,11 @@ namespace planeta_engine {
 			return *this;
 		}
 
-		const Vector2D<double>& TransformComponent::global_velocity()const {
+		const Vector2Dd& TransformComponent::global_velocity()const {
 			return core_->global_velocity();
 		}
 
-		TransformComponent&  TransformComponent::global_velocity(const Vector2D<double>& vel) {
+		TransformComponent&  TransformComponent::global_velocity(const Vector2Dd& vel) {
 			core_->global_velocity(vel);
 			return *this;
 		}

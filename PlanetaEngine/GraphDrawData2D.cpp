@@ -17,12 +17,12 @@ namespace planeta_engine {
 			}
 
 			/*DX形式頂点情報の位置を設定*/
-			inline void SetPositionToDXVERTEX3D(VERTEX3D& dx_vtx3d, const Vector2D<float>& position) {
+			inline void SetPositionToDXVERTEX3D(VERTEX3D& dx_vtx3d, const Vector2Df& position) {
 				using namespace utility::dx;
 				dx_vtx3d.pos = PEVector2DToDXVECTOR(position);
 			}
 			/*DX形式頂点情報のUV座標を設定*/
-			inline void SetUVToDXVERTEX3D(VERTEX3D& dx_vtx3d, float u,float v, const Vector2D<double>& image_area) {
+			inline void SetUVToDXVERTEX3D(VERTEX3D& dx_vtx3d, float u,float v, const Vector2Dd& image_area) {
 				dx_vtx3d.u = (float)(u * image_area.x);
 				dx_vtx3d.v = (float)(v * image_area.y);
 			}
@@ -33,7 +33,7 @@ namespace planeta_engine {
 //				vdx[i].spc = PEColorToDXCOLORU8(vertexes[i].color); //ライティング計算を行わないので使用しない
 			}
 			/*DX形式頂点情報を設定*/
-			inline void SetPEVertex2DToDXVERTEX3D(VERTEX3D& dx_vtx3d, const utility::Vertex2D& pe_vtx2d,const Vector2D<double>& image_area) {
+			inline void SetPEVertex2DToDXVERTEX3D(VERTEX3D& dx_vtx3d, const utility::Vertex2D& pe_vtx2d,const Vector2Dd& image_area) {
 				using namespace utility::dx;
 				SetPositionToDXVERTEX3D(dx_vtx3d, pe_vtx2d.position);
 				SetColorToDXVERTEX3D(dx_vtx3d, pe_vtx2d.color);
@@ -89,14 +89,14 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool GraphDrawData2D::SetVertexPosition(size_t idx, const Vector2D<float>& pos)
+		bool GraphDrawData2D::SetVertexPosition(size_t idx, const Vector2Df& pos)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetPositionToDXVERTEX3D(dx_data_->vertexes[idx], pos);
 			return true;
 		}
 
-		bool GraphDrawData2D::SetVertexUV(size_t idx, const Vector2D<float>& uv)
+		bool GraphDrawData2D::SetVertexUV(size_t idx, const Vector2Df& uv)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			assert(graph_resource_ != nullptr);

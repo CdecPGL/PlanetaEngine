@@ -19,7 +19,7 @@ namespace planeta_engine {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawWire(const std::vector<Vector2D<int>>& positions, int width, const planeta_engine::Color& color) {
+	void ScreenDrawerGUI::DrawWire(const std::vector<Vector2Di>& positions, int width, const planeta_engine::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
 			using namespace utility::dx;
 			int dxc = PEColorToDXColorHandle(color);
@@ -30,7 +30,7 @@ namespace planeta_engine {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawPolygon(const std::vector<Vector2D<int>>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta_engine::Color& color) {
+	void ScreenDrawerGUI::DrawPolygon(const std::vector<Vector2Di>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta_engine::Color& color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
 			using namespace utility::dx;
 			int dxc = PEColorToDXColorHandle(color);
@@ -49,7 +49,7 @@ namespace planeta_engine {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawString(const Vector2D<int>& position, const Vector2D<double> scale, const std::string& str, const planeta_engine::Color& color, const planeta_engine::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource) {
+	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta_engine::Color& color, const planeta_engine::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource) {
 		screen_.ReserveDraw([position,scale,str,color,outline_color,font_definition_resource]() {
 			if (font_definition_resource == nullptr) { return; }
 			using namespace utility::dx;

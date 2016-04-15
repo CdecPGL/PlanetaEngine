@@ -458,7 +458,7 @@ namespace planeta_engine {
 
 		KeyInputManager::~KeyInputManager(){}
 
-		const Vector2D<int> KeyInputManager::GetMousePointerPosition() const
+		const Vector2Di KeyInputManager::GetMousePointerPosition() const
 		{
 //			static int* leak = new int[2];
 //			static int* leak2 = new int;
@@ -468,7 +468,7 @@ namespace planeta_engine {
 ////			assert(_CrtCheckMemory());
 			int x, y;
 			GetMousePoint(&x, &y);
-			return Vector2D<int>(x, y);
+			return Vector2Di(x, y);
 		}
 
 		int KeyInputManager::GetMouseWheelRotation() const

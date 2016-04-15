@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 #include "SceneAccessorForGameObject.h"
 #include "TransformComponent.h"
-#include "Matrix.h"
+#include "Matrix2_2.h"
 #include "SceneDataForGameObject.h"
 
 namespace planeta_engine {
@@ -46,10 +46,10 @@ namespace planeta_engine {
 			}
 		}
 
-		const Vector2D<double> ColliderComponent::GetCollisionGlobalCenterPosition() const
+		const Vector2Dd ColliderComponent::GetCollisionGlobalCenterPosition() const
 		{
 			const TransformComponent& transform = game_object().transform();
-			Vector2D<double> relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
+			Vector2Dd relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
 			relation_position.x *= transform.scale().x; //横方向拡大を反映
 			relation_position.y *= transform.scale().y; //縦方向拡大を反映
 			return transform.global_position() + relation_position;

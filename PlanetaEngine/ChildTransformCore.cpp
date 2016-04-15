@@ -3,19 +3,19 @@
 
 namespace planeta_engine {
 
-	const Vector2D<double>& ChildTransformCore::position() const {
+	const Vector2Dd& ChildTransformCore::position() const {
 		return local_transform_data_.position;
 	}
 
-	void ChildTransformCore::position(const Vector2D<double>& pos) {
+	void ChildTransformCore::position(const Vector2Dd& pos) {
 		
 	}
 
-	const Vector2D<double>& ChildTransformCore::scale() const {
+	const Vector2Dd& ChildTransformCore::scale() const {
 		return local_transform_data_.scale;
 	}
 
-	void ChildTransformCore::scale(const Vector2D<double>& s) {
+	void ChildTransformCore::scale(const Vector2Dd& s) {
 
 	}
 
@@ -27,11 +27,11 @@ namespace planeta_engine {
 
 	}
 
-	const Vector2D<double>& ChildTransformCore::global_position() const {
+	const Vector2Dd& ChildTransformCore::global_position() const {
 		return global_transform_data_.position;
 	}
 
-	void ChildTransformCore::global_position(const Vector2D<double>& pos) {
+	void ChildTransformCore::global_position(const Vector2Dd& pos) {
 
 	}
 
@@ -43,11 +43,11 @@ namespace planeta_engine {
 
 	}
 
-	const Vector2D<double>& ChildTransformCore::velocity() const {
-		return Vector2D<double>();
+	const Vector2Dd& ChildTransformCore::velocity() const {
+		return Vector2Dd();
 	}
 
-	void ChildTransformCore::velocity(const Vector2D<double>& vel) {
+	void ChildTransformCore::velocity(const Vector2Dd& vel) {
 
 	}
 
@@ -59,11 +59,11 @@ namespace planeta_engine {
 
 	}
 
-	const Vector2D<double>& ChildTransformCore::global_velocity() const {
-		return Vector2D<double>();
+	const Vector2Dd& ChildTransformCore::global_velocity() const {
+		return Vector2Dd();
 	}
 
-	void ChildTransformCore::global_velocity(const Vector2D<double>& vel) {
+	void ChildTransformCore::global_velocity(const Vector2Dd& vel) {
 
 	}
 

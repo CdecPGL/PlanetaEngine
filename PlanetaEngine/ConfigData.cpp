@@ -15,8 +15,8 @@ namespace planeta_engine {
 
 			bool engine::WindowMode_(true); //ウインドウモードか
 			int engine::ColorBitDepth_(32); //カラービット深度
-			::Vector2D<int> engine::DrawSize_(640, 480); //描画ザイズ
-			::Vector2D<int> engine::WindowSize_(640, 480); //ウインドウサイズ
+			Vector2Di engine::DrawSize_(640, 480); //描画ザイズ
+			Vector2Di engine::WindowSize_(640, 480); //ウインドウサイズ
 			unsigned int engine::ResourceDecryptionKey_(0);
 
 			bool user::WindowSizeConfigurable_(false); //ウインドウサイズをユーザーが設定可能か

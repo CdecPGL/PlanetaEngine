@@ -2,7 +2,7 @@
 #include "ScreenDrawer2D.h"
 #include "IGameObjectAccessor.h"
 #include "TransformComponent.h"
-#include "Matrix.h"
+#include "Matrix2_2.h"
 
 namespace planeta_engine {
 	namespace components {
@@ -19,7 +19,7 @@ namespace planeta_engine {
 			UpdatePorygonIndex_();
 		}
 
-		bool DrawPolygonComponent::SetVertexPosition(size_t idx, const Vector2D<double>& pos)
+		bool DrawPolygonComponent::SetVertexPosition(size_t idx, const Vector2Dd& pos)
 		{
 			if (idx >= points_.size()) { return false; }
 			else {
@@ -28,7 +28,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void DrawPolygonComponent::SetVertexes(const std::vector<Vector2D<double>>& vs)
+		void DrawPolygonComponent::SetVertexes(const std::vector<Vector2Dd>& vs)
 		{
 			points_ = vs;
 			vertexes_.resize(points_.size());
@@ -48,9 +48,9 @@ namespace planeta_engine {
 		{
 			components::TransformComponent& transform = game_object().transform();
 			for (size_t i = 0; i < points_.size(); ++i) {
-				Vector2D<double> relative_pos0(points_[i].x*scale().x, points_[i].y*scale().y); //描画コンポーネントの拡大度を適用
+				Vector2Dd relative_pos0(points_[i].x*scale().x, points_[i].y*scale().y); //描画コンポーネントの拡大度を適用
 				relative_pos0 = math::RotationalTransformation(rotation_rad(), relative_pos0); //描画コンポーネントの回転度を適用
-				auto relative_pos1 = Vector2D<double>((position() + relative_pos0).x*transform.scale().x, (position() + relative_pos0).y*transform.scale().y); //トランスフォームの拡大度を適用
+				auto relative_pos1 = Vector2Dd((position() + relative_pos0).x*transform.scale().x, (position() + relative_pos0).y*transform.scale().y); //トランスフォームの拡大度を適用
 				auto pos = transform.global_position() + math::RotationalTransformation(transform.global_rotation_rad(), relative_pos1); //トランスフォームの回転度を適用
 				vertexes_[i] = pos;
 			}

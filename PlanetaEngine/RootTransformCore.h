@@ -7,28 +7,28 @@ namespace planeta_engine {
 	public:
 		RootTransformCore();
 
-		void Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset)override;
+		void Offset(const Vector2Dd& base_pos, const Vector2Dd& offset)override;
 
 		/*アクセサ*/
-		const Vector2D<double>& position()const override;
-		void position(const Vector2D<double>& pos)override;
-		const Vector2D<double>& scale()const override;
-		void  scale(const Vector2D<double>& s)override;
+		const Vector2Dd& position()const override;
+		void position(const Vector2Dd& pos)override;
+		const Vector2Dd& scale()const override;
+		void  scale(const Vector2Dd& s)override;
 		const double rotation_rad()const override;
 		void  rotation_rad(double rota_rad)override;
 
-		const Vector2D<double>& global_position()const override;
-		void global_position(const Vector2D<double>& pos)override;
+		const Vector2Dd& global_position()const override;
+		void global_position(const Vector2Dd& pos)override;
 		const double global_rotation_rad()const override;
 		void  global_rotation_rad(double rota_rad)override;
 
-		const Vector2D<double>& velocity()const override;
-		void  velocity(const Vector2D<double>& vel)override;
+		const Vector2Dd& velocity()const override;
+		void  velocity(const Vector2Dd& vel)override;
 		const double rotation_velocity_rad()const override;
 		void  rotation_velocity_rad(double rota_vel_rad)override;
 
-		const Vector2D<double>& global_velocity()const override;
-		void global_velocity(const Vector2D<double>& vel)override;
+		const Vector2Dd& global_velocity()const override;
+		void global_velocity(const Vector2Dd& vel)override;
 
 		/*地形関係*/
 		components::GroundComponent& ground()override;
@@ -53,8 +53,8 @@ namespace planeta_engine {
 		CoordinateSystem rotation_last_update = CoordinateSystem::None;
 
 		//物理情報
-		Vector2D<double> ground_velocity_; //地形座標系での速度。長さはグローバル座標系に準ずる
-		Vector2D<double> global_velocity_;
+		Vector2Dd ground_velocity_; //地形座標系での速度。長さはグローバル座標系に準ずる
+		Vector2Dd global_velocity_;
 		double rotation_velocity_rad_ = 0.0;
 		CoordinateSystem velocity_last_update = CoordinateSystem::None;
 

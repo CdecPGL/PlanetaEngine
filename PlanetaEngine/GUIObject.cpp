@@ -30,7 +30,7 @@ namespace planeta_engine {
 		void GUIObject::DebugDraw()
 		{
 			//枠線を表示
-//			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2D<int>(rect_angle_.right(),rect_angle_.top()),Vector2D<int>(rect_angle_.right(),rect_angle_.bottom()), Vector2D<int>(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, Color::Red());
+//			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2Di(rect_angle_.right(),rect_angle_.top()),Vector2Di(rect_angle_.right(),rect_angle_.bottom()), Vector2Di(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, Color::Red());
 			component_holder_->do_all([this](GUIComponent& com) {com.DebugDraw(rect_angle_); });
 		}
 
@@ -54,9 +54,9 @@ namespace planeta_engine {
 			else { return false; }
 		}
 
-		bool GUIObject::PointingCursorPosition(const Vector2D<int>& parent_relative_cursor_position)
+		bool GUIObject::PointingCursorPosition(const Vector2Di& parent_relative_cursor_position)
 		{
-			Vector2D<int> my_relative_cursor_position = parent_relative_cursor_position - position();
+			Vector2Di my_relative_cursor_position = parent_relative_cursor_position - position();
 			//子から
 			//for (auto& c : children_) {
 			//	//子でポインティングされているものがあったら判定終了

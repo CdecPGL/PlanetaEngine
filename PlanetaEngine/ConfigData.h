@@ -26,8 +26,8 @@ namespace planeta_engine {
 				friend bool LoadConfigData(const std::string&);
 				CONFIG_PARAMETER(bool, WindowMode);
 				CONFIG_PARAMETER(int, ColorBitDepth);
-				CONFIG_PARAMETER(::Vector2D<int>, DrawSize);
-				CONFIG_PARAMETER(::Vector2D<int>, WindowSize);
+				CONFIG_PARAMETER(Vector2Di, DrawSize);
+				CONFIG_PARAMETER(Vector2Di, WindowSize);
 				CONFIG_PARAMETER(unsigned int, ResourceDecryptionKey);
 			};
 			struct user {

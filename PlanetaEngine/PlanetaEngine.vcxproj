@@ -173,6 +173,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameProcessKeyPositionDefinition.h" />
     <ClInclude Include="GameProcessListTypes.h" />
     <ClInclude Include="GameProcessSystemKeyPositions.h" />
+    <ClInclude Include="Matrix2_2.h" />
+    <ClInclude Include="Matrix3_3.h" />
     <ClInclude Include="pe_assert.h" />
     <ClInclude Include="RootTransformCore.h" />
     <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h" />
@@ -278,7 +280,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="MathConstant.h" />
     <ClInclude Include="MathUtility.h" />
     <ClInclude Include="MathVector.h" />
-    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MathMatrix.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MetaprogrammingUtility.h" />
     <ClInclude Include="MusicResource.h" />

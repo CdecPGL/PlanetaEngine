@@ -61,7 +61,7 @@ namespace planeta_engine {
 			for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) { //水平方向は座標系正回りにセットしていく
 				for (unsigned int j = 0; j < _vertical_separation + 1; ++j) { //垂直方向は上から順にセットしていく
 					//テクスチャ座標のセット
-					Vector2D<float> uv;
+					Vector2Df uv;
 					uv.x = (float)i / _horizontal_separation;
 					uv.y = (float)j / _vertical_separation;
 					graph_draw_data_->SetVertexUV((_vertical_separation + 1)*i + j, uv);
@@ -93,13 +93,13 @@ namespace planeta_engine {
 		void DrawPlanetComponent::UpdatePolygonRoundly_()
 		{
 			//今のところ拡大度は考慮していない
-			Vector2D<double> center_pos = GetDrawCenterPosition();
+			Vector2Dd center_pos = GetDrawCenterPosition();
 			double rotation = GetDrawRotationRed();
 			//頂点座標の算出
 			for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) {
 				double angle_rad = 2.0 * math::PI / _horizontal_separation * i; //現在の惑星頂点の位置角度
 				double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
-				Vector2D<double> interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
+				Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 				interface_vec *= height;
 				//中心以外の頂点座標を求める
 				for (unsigned int j = 0; j < _vertical_separation; ++j) {
@@ -123,12 +123,12 @@ namespace planeta_engine {
 			for (unsigned int i = 0; i < _horizontal_separation; ++i) { //水平方向は座標系正回りにセットしていく
 				double rad = math::PI * 2 / _horizontal_separation * i;
 				//テクスチャ座標のセット
-				Vector2D<float> uv;
+				Vector2Df uv;
 				uv.x = 0.5f + (float)std::cos(rad)*0.5f;
 				uv.y = 0.5f + (float)std::sin(rad)*0.5f;
 				graph_draw_data_->SetVertexUV(i, uv);
 			}
-			graph_draw_data_->SetVertexUV(_horizontal_separation, Vector2D<float>(0.5f, 0.5f)); //最後の頂点は中心を指す
+			graph_draw_data_->SetVertexUV(_horizontal_separation, Vector2Df(0.5f, 0.5f)); //最後の頂点は中心を指す
 			//インデックスの設定
 			for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 				//ポリゴンを1枚ずつ張る
@@ -142,13 +142,13 @@ namespace planeta_engine {
 
 		void DrawPlanetComponent::UpdatePolygonPlainly_() {
 			//今のところ拡大度は考慮していない
-			Vector2D<double> center_pos = GetDrawCenterPosition();
+			Vector2Dd center_pos = GetDrawCenterPosition();
 			double rotation = GetDrawRotationRed();
 			//頂点座標の算出
 			for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 				double angle_rad = 2.0 * math::PI / _horizontal_separation * i; //現在の惑星頂点の位置角度
 				double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
-				Vector2D<double> interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
+				Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 				interface_vec *= height;
 				graph_draw_data_->SetVertexPosition(i, center_pos + interface_vec);
 			}

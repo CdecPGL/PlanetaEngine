@@ -75,7 +75,7 @@ namespace planeta_engine {
 			/*タグの入力無効化をリセットする*/
 			void ResetInvalidTag();
 			/*マウスポインタの位置を取得*/
-			const Vector2D<int> GetMousePointerPosition()const;
+			const Vector2Di GetMousePointerPosition()const;
 			/*マウスホイールの回転量を取得*/
 			int GetMouseWheelRotation()const;
 		private:

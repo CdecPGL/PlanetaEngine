@@ -13,36 +13,36 @@ namespace planeta_engine {
 	namespace math {
 		/*ベクトルクラス<要素の型,要素数,要素識別子付与クラス>*/
 		template<typename T,int S,template<typename>class VectorElementIdentifer = vei::DumyIdentifer>
-		class Vector : public VectorElementIdentifer<T> {
+		class MathVector : public VectorElementIdentifer<T> {
 			/*サイズが0より大きいか確認*/
 			static_assert(S > 0, "Invalid Vector size. The vector size must be bigger than 0");
 			/*型が算術型か確認*/
 			static_assert(std::is_arithmetic<T>::value == true, "The element type must to be an arithmetic type.");
 			/*自分の型*/
-			using MyType = Vector<T, S, VectorElementIdentifer>;
+			using MyType = MathVector<T, S, VectorElementIdentifer>;
 			/*要素識別子付与クラス型*/
 			using VectorElementIdentiferType = VectorElementIdentifer<T>;
 			/*自分の要素識別子付与クラス型を持つVector型*/
 			template<typename ET,int VS>
-			using MyVEIVectorType = Vector<ET, VS, VectorElementIdentifer>;
+			using MyVEIVectorType = MathVector<ET, VS, VectorElementIdentifer>;
 			/*要素識別子付与クラスの最低サイズを満たしているか確認*/
 			static_assert(S >= VectorElementIdentiferType::minimum_vector_size, "The vector size must not to be less than VectorElementIdentifer::minimum_vector_size.");
 		public:
 			/*デフォルトコンストラクタ。要素を全て0にする*/
-			Vector() { SetElementArrayPointer(elements_.data()); elements_.fill(0); }
+			MathVector() { SetElementArrayPointer(elements_.data()); elements_.fill(0); }
 			/*コピーコンストラクタ*/
-			Vector(const MyType& v) :elements_(v.elements_) { SetElementArrayPointer(elements_.data()); }
+			MathVector(const MyType& v) :elements_(v.elements_) { SetElementArrayPointer(elements_.data()); }
 			/*ムーブコンストラクタ(std::arrayで要素を持つので無意味)*/
 //			Vector(MyType&& v) :elements_(std::move(v.elements_)) {SetElementArrayPointer(elements_.data());}
 			/*可変長の値をとるコンストラクタ(暗黙的変換を拒否すると初期化リストで初期化できない)*/
 			template<typename... ArgT>
-			Vector(const T& first_arg, ArgT... args) :  elements_({ first_arg, args... }) {
+			MathVector(const T& first_arg, ArgT... args) :  elements_({ first_arg, args... }) {
 				static_assert(S == (sizeof...(ArgT)+1), "The number of constructor argument must equal to Vector size.");
 				SetElementArrayPointer(elements_.data());
 			}
 			/*サイズや型の異なるベクトルで初期化(暗黙的変換を許す)*/
 			template<typename T2,int S2,template<typename>class VEI>
-			Vector(const Vector<T2, S2, VEI>& v) {
+			MathVector(const MathVector<T2, S2, VEI>& v) {
 				SetElementArrayPointer(elements_.data());
 				for (int i = 0; i < S; ++i) {
 					(*this)[i] = i < S2 ? v[i] : 0;
@@ -54,7 +54,7 @@ namespace planeta_engine {
 //			MyType& operator=(MyType&& v) { elements_ = std::move(v.elements_); return *this; }
 			/*サイズや型の異なるベクトルを代入*/
 			template<typename T2, int S2, template<typename>class VEI>
-			Vector<T,S>& operator=(const Vector<T2, S2, VEI>& v) {
+			MathVector<T,S>& operator=(const MathVector<T2, S2, VEI>& v) {
 				for (int i = 0; i < S; ++i) {
 					(*this)[i] = static_cast<T>(i < S2 ? v[i] : 0);
 				}
@@ -62,13 +62,13 @@ namespace planeta_engine {
 			}
 			//等号演算子(サイズが異なる場合はかぶる部分のみで比較)
 			template<typename T2,int S2, template<typename>class VEI>
-			bool operator==(const Vector<T2, S2, VEI>& v)const {
+			bool operator==(const MathVector<T2, S2, VEI>& v)const {
 				constexpr int MinS = S < S2 ? S : S2;
 				for (int i = 0; i < MinS; ++i) { if ((*this)[i] != v[i]) { return false; } }
 				return true;
 			}
 			template<typename T2, int S2, template<typename>class VEI>
-			bool operator!=(const Vector<T2, S2,VEI>& v)const {
+			bool operator!=(const MathVector<T2, S2,VEI>& v)const {
 				return !(*this == v);
 			}
 			//要素にアクセス
@@ -76,7 +76,7 @@ namespace planeta_engine {
 			const T& operator[](size_t idx)const { return elements_[idx]; }
 			//ベクトルとの加算
 			template<typename T2,int S2, template<typename>class VEI>
-			const Vector<T,S>& operator+=(const Vector<T2, S2, VEI>& v) {
+			const MathVector<T,S>& operator+=(const MathVector<T2, S2, VEI>& v) {
 				constexpr int MinS = S < S2 ? S : S2;
 				for (int i = 0; i < MinS; ++i) {
 					(*this)[i] += v[i];
@@ -84,7 +84,7 @@ namespace planeta_engine {
 				return *this;
 			}
 			template<typename T2, int S2, template<typename>class VEI>
-			auto operator+(const Vector<T2, S2, VEI>& v)const {
+			auto operator+(const MathVector<T2, S2, VEI>& v)const {
 				constexpr int MaxS = S < S2 ? S2 : S;
 				MyVEIVectorType<decltype(std::declval<T>() + std::declval<T2>()), MaxS> ret;
 				constexpr int MinS = S < S2 ? S : S2;
@@ -95,7 +95,7 @@ namespace planeta_engine {
 			}
 			//ベクトルとの減算
 			template<typename T2, int S2, template<typename>class VEI>
-			const MyType& operator-=(const Vector<T2, S2, VEI>& v) {
+			const MyType& operator-=(const MathVector<T2, S2, VEI>& v) {
 				constexpr int MinS = S < S2 ? S : S2;
 				for (int i = 0; i < MinS; ++i) {
 					(*this)[i] -= v[i];
@@ -103,7 +103,7 @@ namespace planeta_engine {
 				return *this;
 			}
 			template<typename T2, int S2, template<typename>class VEI>
-			auto operator-(const Vector<T2, S2, VEI>& v)const {
+			auto operator-(const MathVector<T2, S2, VEI>& v)const {
 				constexpr int MaxS = S < S2 ? S2 : S;
 				MyVEIVectorType<decltype(std::declval<T>() - std::declval<T2>()), MaxS> ret;
 				constexpr int MinS = S < S2 ? S : S2;
@@ -114,7 +114,7 @@ namespace planeta_engine {
 			}
 			//スカラーとの乗算
 			template<typename T2>
-			const Vector<T,S>& operator*=(const T2& v) {
+			const MathVector<T,S>& operator*=(const T2& v) {
 				for (int i = 0; i < S; ++i) { (*this)[i] *= v; }
 				return *this;
 			}
@@ -166,7 +166,7 @@ namespace planeta_engine {
 
 		//組み込み型との演算子
 		template<typename SCALA_T, typename VECTOR_T, int VECTOR_S, template<typename>class VEI>
-		auto operator*(const SCALA_T& s, const Vector<VECTOR_T, VECTOR_S,VEI>& v) {
+		auto operator*(const SCALA_T& s, const MathVector<VECTOR_T, VECTOR_S,VEI>& v) {
 			return v*s;
 		}
 	}

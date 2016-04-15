@@ -15,7 +15,7 @@ namespace planeta_engine {
 
 	RootTransformCore::RootTransformCore() :ground_(GetDumyGround()) {}
 
-	void RootTransformCore::Offset(const Vector2D<double>& base_pos, const Vector2D<double>& offset) {
+	void RootTransformCore::Offset(const Vector2Dd& base_pos, const Vector2Dd& offset) {
 		position(base_pos + ground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 	}
 
@@ -66,21 +66,21 @@ namespace planeta_engine {
 		}
 	}
 
-	const Vector2D<double>& RootTransformCore::position() const {
+	const Vector2Dd& RootTransformCore::position() const {
 		const_cast<RootTransformCore*>(this)->UpdateTransformDataGroundByGlobal();
 		return ground_transform_data_.position;
 	}
 
-	void RootTransformCore::position(const Vector2D<double>& pos) {
+	void RootTransformCore::position(const Vector2Dd& pos) {
 		ground_transform_data_.position = pos;
 		position_last_update = CoordinateSystem::Ground;
 	}
 
-	const Vector2D<double>& RootTransformCore::scale() const {
+	const Vector2Dd& RootTransformCore::scale() const {
 		return ground_transform_data_.scale;
 	}
 
-	void RootTransformCore::scale(const Vector2D<double>& s) {
+	void RootTransformCore::scale(const Vector2Dd& s) {
 		ground_transform_data_.scale = s;
 	}
 
@@ -94,12 +94,12 @@ namespace planeta_engine {
 		rotation_last_update = CoordinateSystem::Ground;
 	}
 
-	const Vector2D<double>& RootTransformCore::global_position() const {
+	const Vector2Dd& RootTransformCore::global_position() const {
 		const_cast<RootTransformCore*>(this)->UpdateTransformDataGlobalByGround();
 		return global_transform_data_.position;
 	}
 
-	void RootTransformCore::global_position(const Vector2D<double>& pos) {
+	void RootTransformCore::global_position(const Vector2Dd& pos) {
 		global_transform_data_.position = pos;
 		position_last_update = CoordinateSystem::Global;
 	}
@@ -114,12 +114,12 @@ namespace planeta_engine {
 		rotation_last_update = CoordinateSystem::Global;
 	}
 
-	const Vector2D<double>& RootTransformCore::velocity() const {
+	const Vector2Dd& RootTransformCore::velocity() const {
 		const_cast<RootTransformCore*>(this)->UpdatePhysicalDataGround();
 		return ground_velocity_;
 	}
 
-	void RootTransformCore::velocity(const Vector2D<double>& vel) {
+	void RootTransformCore::velocity(const Vector2Dd& vel) {
 		ground_velocity_ = vel;
 		velocity_last_update = CoordinateSystem::Ground;
 	}
@@ -132,12 +132,12 @@ namespace planeta_engine {
 		rotation_velocity_rad_ = rota_vel_rad;
 	}
 
-	const Vector2D<double>& RootTransformCore::global_velocity()const {
+	const Vector2Dd& RootTransformCore::global_velocity()const {
 		const_cast<RootTransformCore*>(this)->UpdatePhysicalDataGlobal();
 		return global_velocity_;
 	}
 
-	void RootTransformCore::global_velocity(const Vector2D<double>& vel) {
+	void RootTransformCore::global_velocity(const Vector2Dd& vel) {
 		global_velocity_ = vel;
 		velocity_last_update = CoordinateSystem::Global;
 	}

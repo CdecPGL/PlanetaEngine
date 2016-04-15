@@ -9,11 +9,11 @@ namespace planeta_engine {
 		class DumyGroundComponent final: public GroundComponent {
 		public:
 		private:
-			double GetAltitudeWithGroundPosition(const Vector2D<double>& ground_pos) const override { return -1; }
-			Vector2D<double> ConvertPositionGlobalToGround(const Vector2D<double>& global_pos) const override { return global_pos; }
-			Vector2D<double> ConvertPositionGroundToGlobal(const Vector2D<double>& ground_pos) const override { return ground_pos; }
-			Vector2D<double> NormalizeGroundVectorWithGroundPosition(const Vector2D<double>& ground_pos, const Vector2D<double>& ground_vector) const override { return ground_vector; }
-			double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2D<double>& ground_pos) const override { return 0; }
+			double GetAltitudeWithGroundPosition(const Vector2Dd& ground_pos) const override { return -1; }
+			Vector2Dd ConvertPositionGlobalToGround(const Vector2Dd& global_pos) const override { return global_pos; }
+			Vector2Dd ConvertPositionGroundToGlobal(const Vector2Dd& ground_pos) const override { return ground_pos; }
+			Vector2Dd NormalizeGroundVectorWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_vector) const override { return ground_vector; }
+			double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2Dd& ground_pos) const override { return 0; }
 
 		};
 	}

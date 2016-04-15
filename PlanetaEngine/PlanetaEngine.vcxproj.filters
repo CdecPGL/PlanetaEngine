@@ -196,6 +196,9 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent">
       <UniqueIdentifier>{fa903434-b4de-4c4d-8c40-535dcbfb7978}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Math\Matrix">
+      <UniqueIdentifier>{1826c0f3-9abb-467a-ab0a-0c55c95a2a8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -412,9 +415,6 @@
       <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="MathConstant.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
       <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="BadNewDeleteOperation.h">
@@ -839,6 +839,15 @@
     </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>PlanetaEngine\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix2_2.h">
+      <Filter>PlanetaEngine\Math\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3_3.h">
+      <Filter>PlanetaEngine\Math\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="MathMatrix.h">
+      <Filter>PlanetaEngine\Math\Matrix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
