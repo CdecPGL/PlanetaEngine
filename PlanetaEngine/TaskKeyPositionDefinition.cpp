@@ -8,12 +8,12 @@ namespace planeta_engine {
 		TaskKeyPositionDefinition::TaskKeyPositionDefinition() {
 			namespace sp_kp = task_sys_key_pos;
 			std::list<std::string> default_gpkps = {
-				sp_kp::GameObjectUpdatetProcessKeyPositionID,
-				sp_kp::TransformApplyVelocityProcessKeyPositionID,
-				sp_kp::CollisionDetectProcessKeyPositionID,
-				sp_kp::GameObjectDrawProcessKeyPositionID,
-				sp_kp::GUIUpdateProcessKeyPositionID,
-				sp_kp::GUIDrawProcessKeyPositionID,
+				sp_kp::GameObjectUpdatetTaskKeyPositionID,
+				sp_kp::TransformApplyVelocityTaskKeyPositionID,
+				sp_kp::CollisionDetectTaskKeyPositionID,
+				sp_kp::GameObjectDrawTaskKeyPositionID,
+				sp_kp::GUIUpdateTaskKeyPositionID,
+				sp_kp::GUIDrawTaskKeyPositionID,
 			};
 			for (const auto& id : default_gpkps) {
 				key_position_id_list_.push_back(id);
