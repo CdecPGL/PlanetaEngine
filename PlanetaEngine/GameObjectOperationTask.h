@@ -5,7 +5,7 @@
 
 namespace planeta_engine {
 	namespace game_processes {
-		class GameObjectOperationProcess : public game::Task {
+		class GameObjectOperationTask : public game::Task {
 		public:
 			using Task::Task;
 			/**

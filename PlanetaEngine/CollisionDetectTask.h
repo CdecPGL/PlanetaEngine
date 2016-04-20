@@ -16,11 +16,11 @@ namespace planeta_engine {
 		class CollisionWithGroundEventArgument;
 	}
 	namespace system_processes {
-		class CollisionDetectProcess final: public game::Task
+		class CollisionDetectTask final: public game::Task
 		{
 		public:
 			using Task::Task;
-			~CollisionDetectProcess();
+			~CollisionDetectTask();
 			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix);
 			bool Resist(const std::shared_ptr<components::ColliderComponent>& col_com);
 			bool Remove(const components::ColliderComponent* col_com_ptr);

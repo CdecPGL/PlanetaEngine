@@ -155,7 +155,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CircleColliderComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
-    <ClInclude Include="CollisionDetectProcess.h" />
+    <ClInclude Include="CollisionDetectTask.h" />
     <ClInclude Include="CollisionEventArgument.h" />
     <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="CollisionWithGroundEventArgument.h" />
@@ -168,7 +168,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectComponentHeaders.h" />
     <ClInclude Include="GameObjectComponentRigistrationData.h" />
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
-    <ClInclude Include="GameObjectOperationProcess.h" />
+    <ClInclude Include="GameObjectOperationTask.h" />
     <ClInclude Include="GameObjectSetUpperHeaders.h" />
     <ClInclude Include="TaskKeyPositionDefinition.h" />
     <ClInclude Include="TaskListTypes.h" />
@@ -206,7 +206,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
-    <ClInclude Include="CoroutineProcess.h" />
+    <ClInclude Include="CoroutineTask.h" />
     <ClInclude Include="CSVResource.h" />
     <ClInclude Include="DXGraphDrawData.h" />
     <ClInclude Include="EmptySceneDefinition.h" />
@@ -266,8 +266,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerError.h" />
     <ClInclude Include="INIFileResource.h" />
     <ClInclude Include="InitEnd.h" />
-    <ClInclude Include="InstantProcess.h" />
-    <ClInclude Include="InstantCoroutineProcess.h" />
+    <ClInclude Include="InstantTask.h" />
+    <ClInclude Include="InstantCoroutineTask.h" />
     <ClInclude Include="IOKeyConfig.h" />
     <ClInclude Include="ISceneManagerAccessor.h" />
     <ClInclude Include="ISoundEffectController.h" />
@@ -370,7 +370,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
-    <ClCompile Include="CoroutineProcess.cpp" />
+    <ClCompile Include="CoroutineTask.cpp" />
     <ClCompile Include="CSVResource.cpp" />
     <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DebugInformationDisplayer.cpp" />
@@ -390,13 +390,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DataContainerImpl.cpp" />
     <ClCompile Include="DataContainerSerializeUtility.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
-    <ClCompile Include="GameObjectOperationProcess.cpp" />
+    <ClCompile Include="GameObjectOperationTask.cpp" />
     <ClCompile Include="TaskKeyPositionDefinition.cpp" />
     <ClCompile Include="TaskSystemKeyPositions.cpp" />
     <ClCompile Include="TaskWithRefrection.cpp" />
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
-    <ClCompile Include="InstantProcess.cpp" />
+    <ClCompile Include="InstantTask.cpp" />
     <ClCompile Include="LuaBindClassFunctions.cpp" />
     <ClCompile Include="RootTransformCore.cpp" />
     <ClCompile Include="SAImplCameraFunctions.cpp" />
@@ -438,7 +438,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SceneSystemSetUpper.cpp" />
     <ClCompile Include="SoundResource.cpp" />
     <ClCompile Include="File.cpp" />
-    <ClCompile Include="CollisionDetectProcess.cpp" />
+    <ClCompile Include="CollisionDetectTask.cpp" />
     <ClCompile Include="GameObjectComponent.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="FileSystemManager.cpp" />

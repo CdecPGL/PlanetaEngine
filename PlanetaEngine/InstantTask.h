@@ -5,7 +5,7 @@
 
 namespace planeta_engine {
 	namespace game_processes {
-		class InstantProcess final: public game::Task{
+		class InstantTask final: public game::Task{
 		public:
 			using Task::Task;
 			void SetExcuteFunction(const std::function<void()>& func) { function_ = func; }

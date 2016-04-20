@@ -1,4 +1,4 @@
-#include "CollisionDetectProcess.h"
+#include "CollisionDetectTask.h"
 #include "boost/next_prior.hpp"
 #include "IGameObjectAccessor.h"
 #include "CollisionDetectFunctions.h"
@@ -12,11 +12,11 @@
 
 namespace planeta_engine{
 	namespace system_processes {
-		CollisionDetectProcess::~CollisionDetectProcess()
+		CollisionDetectTask::~CollisionDetectTask()
 		{
 		}
 
-		void CollisionDetectProcess::Update()
+		void CollisionDetectTask::Update()
 		{
 			//コライダー同士
 			CollisionColliderEventHolderType collision_collider_event_holder;
@@ -37,7 +37,7 @@ namespace planeta_engine{
 			}
 		}
 
-		void CollisionDetectProcess::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionColliderEventHolderType& collision_event_holder)const {
+		void CollisionDetectTask::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionColliderEventHolderType& collision_event_holder)const {
 			for (auto ccc_it = group.begin(); ccc_it != group.end(); ++ccc_it) {
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
 					if ((*ccc_it)->DetectCollision(**ccc_it2)) {
@@ -51,7 +51,7 @@ namespace planeta_engine{
 			}
 		}
 
-		void CollisionDetectProcess::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionColliderEventHolderType& collision_event_holder)const {
+		void CollisionDetectTask::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionColliderEventHolderType& collision_event_holder)const {
 			for (auto ccc_it = group1.begin(); ccc_it != group1.end(); ++ccc_it) {
 				for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
 					if ((*ccc_it)->DetectCollision(**ccc_it2)) {
@@ -65,7 +65,7 @@ namespace planeta_engine{
 			}
 		}
 
-		void CollisionDetectProcess::ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const {
+		void CollisionDetectTask::ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const {
 			for (const auto& col_com : collision_with_ground_list_) {
 				if (col_com->DetectCollision(col_com->game_object().transform().ground())) {
 					//衝突していたら地形衝突イベントをホルダーに追加
@@ -75,7 +75,7 @@ namespace planeta_engine{
 			}
 		}
 
-		bool CollisionDetectProcess::Resist(const std::shared_ptr<components::ColliderComponent>& col_com) {
+		bool CollisionDetectTask::Resist(const std::shared_ptr<components::ColliderComponent>& col_com) {
 			ColliderComponentResistData_ ccrd;
 			ccrd.pointer = col_com;
 			std::string group_name = col_com->collision_group();
@@ -101,7 +101,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool CollisionDetectProcess::Remove(const components::ColliderComponent* col_com_ptr) {
+		bool CollisionDetectTask::Remove(const components::ColliderComponent* col_com_ptr) {
 			auto it = collider_resist_data_map_.find(const_cast<components::ColliderComponent*>(col_com_ptr));
 			if (it == collider_resist_data_map_.end()) {//登録されていないコライダー
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
@@ -117,7 +117,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool CollisionDetectProcess::ChangeCollisionGroup(const components::ColliderComponent* col_com_ptr, const std::string& group_name) {
+		bool CollisionDetectTask::ChangeCollisionGroup(const components::ColliderComponent* col_com_ptr, const std::string& group_name) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<components::ColliderComponent*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
@@ -139,7 +139,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool CollisionDetectProcess::ChangeCollisionWithGroundFlag(const components::ColliderComponent* col_com_ptr, bool flag) {
+		bool CollisionDetectTask::ChangeCollisionWithGroundFlag(const components::ColliderComponent* col_com_ptr, bool flag) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<components::ColliderComponent*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
@@ -158,7 +158,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void CollisionDetectProcess::SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { 
+		void CollisionDetectTask::SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { 
 			auto collision_group_list = std::move(col_matrix->GetCollisionGroupList());
 			for (const auto& group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());
@@ -175,7 +175,7 @@ namespace planeta_engine{
 			}
 		}
 
-		void CollisionDetectProcess::RemoveAll() {
+		void CollisionDetectTask::RemoveAll() {
 			for (auto& group : collision_groupes_) {
 				group.second.clear();
 			}

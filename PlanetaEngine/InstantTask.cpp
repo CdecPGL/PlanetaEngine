@@ -1,10 +1,10 @@
-#include "InstantProcess.h"
+#include "InstantTask.h"
 #include "SceneAccessorForTask.h"
 
 namespace planeta_engine {
 	namespace game_processes {
 
-		void InstantProcess::Update()
+		void InstantTask::Update()
 		{
 			function_();
 			if (number_of_times_implemented_ > 0) {

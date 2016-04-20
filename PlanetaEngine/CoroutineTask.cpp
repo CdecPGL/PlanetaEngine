@@ -1,10 +1,10 @@
-#include "CoroutineProcess.h"
+#include "CoroutineTask.h"
 #include "SceneAccessorForTask.h"
 
 
 namespace planeta_engine {
 	namespace game_processes {
-		void CoroutineProcess::Update()
+		void CoroutineTask::Update()
 		{
 			if (!coroutine_) { Start(); }
 			else { (*coroutine_)(); }
@@ -14,7 +14,7 @@ namespace planeta_engine {
 			}
 		}
 
-		void CoroutineProcess::Start()
+		void CoroutineTask::Start()
 		{
 			coroutine_ = std::make_unique<coroutine::pull_type>([this](func_arg_type y) {UpdateProc(y); });
 		}

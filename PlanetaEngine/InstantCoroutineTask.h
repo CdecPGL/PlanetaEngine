@@ -1,10 +1,10 @@
 #pragma once
 
-#include "CoroutineProcess.h"
+#include "CoroutineTask.h"
 
 namespace planeta_engine {
 	namespace game_processes {
-		class InstantCoroutineProcess : public CoroutineProcess {
+		class InstantCoroutineTask : public CoroutineProcess {
 		public:
 			using CoroutineProcess::CoroutineProcess;
 			using func_type = std::function<void(func_arg_type)>;

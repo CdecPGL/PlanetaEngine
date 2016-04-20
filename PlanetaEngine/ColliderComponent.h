@@ -12,7 +12,7 @@ namespace planeta_engine {
 		class CollisionWithGroundEventArgument;
 	}
 	namespace system_processes {
-		class CollisionDetectProcess;
+		class CollisionDetectTask;
 	}
 	namespace components {
 		class ColliderComponent : public core::GameObjectSpecialComponent , public core::IColliderWithCollider{
@@ -59,7 +59,7 @@ namespace planeta_engine {
 			bool is_no_update() const override final { return true; }
 			bool OnActivated() override final;
 			bool OnInactivated() override final;
-			utility::WeakPointer<system_processes::CollisionDetectProcess> collision_detect_process_;
+			utility::WeakPointer<system_processes::CollisionDetectTask> collision_detect_process_;
 			void ResistToCollisionDetectProcess_();
 			void RemoveFromCollisionDetectProcess_();
 

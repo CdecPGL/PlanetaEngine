@@ -1,11 +1,11 @@
-#include "GameObjectOperationProcess.h"
+#include "GameObjectOperationTask.h"
 #include "SystemLog.h"
 #include "IGameObjectAccessor.h"
 
 namespace planeta_engine {
 	namespace game_processes {
 
-		bool GameObjectOperationProcess::Attach(GameObjectAccessorType& goa, bool dispose_on_target_disposed) {
+		bool GameObjectOperationTask::Attach(GameObjectAccessorType& goa, bool dispose_on_target_disposed) {
 			if (is_target_attached_) {
 				debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがすでにアタッチされています。", __FUNCTION__);
 				return false;
@@ -20,7 +20,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool GameObjectOperationProcess::Detach() {
+		bool GameObjectOperationTask::Detach() {
 			if (!is_target_attached_) {
 				debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがアタッチされていません。", __FUNCTION__);
 				return false;
@@ -33,7 +33,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		void GameObjectOperationProcess::RegisterEventHandler(GameObjectAccessorType& goa) {
+		void GameObjectOperationTask::RegisterEventHandler(GameObjectAccessorType& goa) {
 			dispose_event_connection_ = goa->disposed_event.Add([this]() {
 				OnTargetDisposed();
 				if (dispose_on_target_disposed_) {
@@ -48,7 +48,7 @@ namespace planeta_engine {
 			});
 		}
 
-		void GameObjectOperationProcess::UnregisterEventHandler() {
+		void GameObjectOperationTask::UnregisterEventHandler() {
 			dispose_event_connection_.Remove();
 			activate_event_connection_.Remove();
 			inactivate_event_connection_.Remove();
