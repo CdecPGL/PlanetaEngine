@@ -7,9 +7,9 @@
 
 namespace planeta_engine {
 	namespace core {
-		class GameProcessKeyPositionDefinition{
+		class TaskKeyPositionDefinition{
 		public:
-			GameProcessKeyPositionDefinition();
+			TaskKeyPositionDefinition();
 			bool AddKeyPosition(const std::string& id, InsertPosIndication ins_ind, const std::string& pos_id);
 			const std::list<std::string>& GetKeyPositionIDList()const { return key_position_id_list_; }
 		private:

@@ -5,14 +5,14 @@ namespace planeta_engine {
 	namespace game {
 		class GameObjectManagerPublicInterface;
 		class GUIManagerPublicInterface;
-		class GameProcessManagerPublicInterface;
+		class TaskManagerPublicInterface;
 	}
 	namespace core {
 		class ScenePublicInterface {
 		public:
 			virtual ~ScenePublicInterface() = default;
 			/*プロセスマネージャのインスタンスを取得*/
-			virtual game::GameProcessManagerPublicInterface& game_process_manager() = 0;
+			virtual game::TaskManagerPublicInterface& game_process_manager() = 0;
 			/*ゲームオブジェクトマネージャのインスタンスを取得*/
 			virtual game::GameObjectManagerPublicInterface& game_object_manager() = 0;
 			/*GUIマネージャのインスタンスを取得*/

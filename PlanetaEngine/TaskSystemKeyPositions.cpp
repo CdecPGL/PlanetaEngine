@@ -1,7 +1,7 @@
-#include "GameProcessSystemKeyPositions.h"
+#include "TaskSystemKeyPositions.h"
 
 namespace planeta_engine {
-	namespace gameprocess_sys_key_pos {
+	namespace task_sys_key_pos {
 		const char* GameObjectUpdatetProcessKeyPositionID("sys_gou"); //ゲームオブジェクト更新プロセス優先度
 		const char* TransformApplyVelocityProcessKeyPositionID("sys_tav"); //トランスフォーム速度適用プロセス優先度
 		//const int TransformConvertLocalToGlobalProcessPriority(200); //トランスフォームローカルグローバル変換プロセス優先度

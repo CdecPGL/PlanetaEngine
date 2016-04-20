@@ -3,31 +3,31 @@
 #include "Object.h"
 #include "WeakPointer.h"
 #include "WeakPointerDelegate.h"
-#include "GameProcessPosition.h"
+#include "TaskPosition.h"
 #include "NonCopyable.h"
 
 namespace planeta_engine{
-	class SceneAccessorForGameProcess;
+	class SceneAccessorForTask;
 	namespace core{
 		class IGameAccessor;
-		struct SceneDataForGameProcess;
-		struct GameProcessRegistrationData;
+		struct SceneDataForTask;
+		struct TaskRegistrationData;
 	}
 	namespace game{
 		class IGameObjectAccessor;
-		class GameProcess :
-			public core::Object , private utility::NonCopyable<GameProcess>
+		class Task :
+			public core::Object , private utility::NonCopyable<Task>
 		{
 		public:
 			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
-			GameProcess(core::IGameAccessor& gameaccess):game_(gameaccess){}
-			virtual ~GameProcess();
+			Task(core::IGameAccessor& gameaccess):game_(gameaccess){}
+			virtual ~Task();
 			virtual void Update() = 0;
 			void Dispose();
 			/*システム関数*/
-			bool SystemSetUpAndInitialize(const core::GameProcessRegistrationData& resistration_data, const core::SceneDataForGameProcess& special_setup_data);
+			bool SystemSetUpAndInitialize(const core::TaskRegistrationData& resistration_data, const core::SceneDataForTask& special_setup_data);
 			/*ゲームプロセスリストでの位置*/
-			const core::GameProcessPosition& game_process_position()const;
+			const core::TaskPosition& game_process_position()const;
 			/*イベント*/
 			/*プロセスが破棄された*/
 			utility::WeakPointerDelegate<void> disposed;
@@ -35,14 +35,14 @@ namespace planeta_engine{
 			
 		protected:
 			core::IGameAccessor& game_accessor() { return game_; }
-			SceneAccessorForGameProcess& scene() { return *scene_accessor_; }
+			SceneAccessorForTask& scene() { return *scene_accessor_; }
 		private:
 			core::IGameAccessor& game_;
-			utility::WeakPointer<SceneAccessorForGameProcess> scene_accessor_;
+			utility::WeakPointer<SceneAccessorForTask> scene_accessor_;
 			virtual bool OnCreated() { return true; }
 			virtual void OnDisposed() {}
 			std::function<void()> disposer_;
-			std::unique_ptr<core::GameProcessPosition> gameprocess_position_;
+			std::unique_ptr<core::TaskPosition> gameprocess_position_;
 		};
 	}
 }

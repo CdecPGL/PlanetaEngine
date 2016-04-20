@@ -1,12 +1,12 @@
-#include "GameProcessKeyPositionDefinition.h"
-#include "GameProcessSystemKeyPositions.h"
+#include "TaskKeyPositionDefinition.h"
+#include "TaskSystemKeyPositions.h"
 #include "SystemLog.h"
 
 namespace planeta_engine {
 	namespace core {
 
-		GameProcessKeyPositionDefinition::GameProcessKeyPositionDefinition() {
-			namespace sp_kp = gameprocess_sys_key_pos;
+		TaskKeyPositionDefinition::TaskKeyPositionDefinition() {
+			namespace sp_kp = task_sys_key_pos;
 			std::list<std::string> default_gpkps = {
 				sp_kp::GameObjectUpdatetProcessKeyPositionID,
 				sp_kp::TransformApplyVelocityProcessKeyPositionID,
@@ -21,7 +21,7 @@ namespace planeta_engine {
 			}
 		}
 
-		bool GameProcessKeyPositionDefinition::AddKeyPosition(const std::string& id, InsertPosIndication ins_ind, const std::string& pos_id) {
+		bool TaskKeyPositionDefinition::AddKeyPosition(const std::string& id, InsertPosIndication ins_ind, const std::string& pos_id) {
 			auto map_it = id_it_map_.find(pos_id);
 			if (map_it == id_it_map_.end()) {
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__,"存在しないキーポジションID\"", pos_id, "\"が指定されました。");

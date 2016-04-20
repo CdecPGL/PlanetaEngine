@@ -3,20 +3,20 @@
 #include "AccessorTemplate.h"
 #include "SAImplGameObjectCreateFunctions.h"
 #include "SAImplGUIOperateFunctions.h"
-#include "SAImplGameProcessCreateFunctions.h"
-#include "SAImplGameProcessGetFunctions.h"
+#include "SAImplTaskCreateFunctions.h"
+#include "SAImplTaskGetFunctions.h"
 #include "SAImplCameraFunctions.h"
 
 namespace planeta_engine {
 	namespace core {
 		class ScenePublicInterface;
 	}
-	class SceneAccessorForGameProcess final : public utility::AccessorTemplate<
+	class SceneAccessorForTask final : public utility::AccessorTemplate<
 		core::ScenePublicInterface,
 		scene_accessor_impl::SAImplGameObjectCreateFunctions,
 		scene_accessor_impl::SAImplGUIOperateFunctions,
-		scene_accessor_impl::SAImplGameProcessCreateFunctions,
-		scene_accessor_impl::SAImplGameProcessGetFunctions,
+		scene_accessor_impl::SAImplTaskCreateFunctions,
+		scene_accessor_impl::SAImplTaskGetFunctions,
 		scene_accessor_impl::SAImplCameraFunctions
 	> {
 	public:using AccessorTemplate::AccessorTemplate;

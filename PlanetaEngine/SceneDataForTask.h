@@ -1,10 +1,12 @@
 #pragma once
 
-/*–¢ŽÀ‘•*/
+#include <memory>
+
 namespace planeta_engine {
+	class Camera;
 	namespace core {
-		class GameProcessSystemSetUpper {
-		public:
+		struct SceneDataForTask {
+			
 		};
 	}
 }

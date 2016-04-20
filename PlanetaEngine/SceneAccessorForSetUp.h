@@ -4,8 +4,8 @@
 #include "SAImplGameObjectCreateFunctions.h"
 #include "SAImplGameObjectManagerSetUpFunctions.h"
 #include "SAImplGUIOperateFunctions.h"
-#include "SAImplGameProcessCreateFunctions.h"
-#include "SAImplGameProcessKeyPositionFunctions.h"
+#include "SAImplTaskCreateFunctions.h"
+#include "SAImplTaskKeyPositionFunctions.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -16,8 +16,8 @@ namespace planeta_engine {
 		scene_accessor_impl::SAImplGameObjectCreateFunctions,
 		scene_accessor_impl::SAImplGameObjectManagerSetUpFunctions,
 		scene_accessor_impl::SAImplGUIOperateFunctions,
-		scene_accessor_impl::SAImplGameProcessCreateFunctions,
-		scene_accessor_impl::SAImplGameProcessKeyPositionFunctions
+		scene_accessor_impl::SAImplTaskCreateFunctions,
+		scene_accessor_impl::SAImplTaskKeyPositionFunctions
 	> {
 	public:using AccessorTemplate::AccessorTemplate;
 	};

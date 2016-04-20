@@ -1,6 +1,6 @@
 #include "LuaBindClassFunctions.h"
 #include "LuaIntf.h"
-#include "SceneAccessorForGameProcess.h"
+#include "SceneAccessorForTask.h"
 #include <vector>
 #include <unordered_map>
 
@@ -13,13 +13,13 @@ namespace LuaIntf {
 namespace planeta_engine {
 	namespace lua_bind_class_functions {
 
-		void BindSceneAccessorForGameProcess(lua_State* L) {
+		void BindSceneAccessorForTask(lua_State* L) {
 			
-			LuaIntf::LuaBinding(L).beginClass<SceneAccessorForGameProcess>("SceneAccessorForGameProcess")
-				.addFunction("CreateGameObject",&SceneAccessorForGameProcess::CreateGameObject)
-				.addFunction("CreateGameObjectWithName", &SceneAccessorForGameProcess::CreateGameObjectWithName)
-				.addFunction("CreateAndActivateGameObject", &SceneAccessorForGameProcess::CreateAndActivateGameObject)
-				.addFunction("CreateAndActivateGameObjectWithName", &SceneAccessorForGameProcess::CreateAndActivateGameObjectWithName)
+			LuaIntf::LuaBinding(L).beginClass<SceneAccessorForTask>("SceneAccessorForTask")
+				.addFunction("CreateGameObject",&SceneAccessorForTask::CreateGameObject)
+				.addFunction("CreateGameObjectWithName", &SceneAccessorForTask::CreateGameObjectWithName)
+				.addFunction("CreateAndActivateGameObject", &SceneAccessorForTask::CreateAndActivateGameObject)
+				.addFunction("CreateAndActivateGameObjectWithName", &SceneAccessorForTask::CreateAndActivateGameObjectWithName)
 				.endClass();
 		}
 

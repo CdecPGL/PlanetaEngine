@@ -1,6 +1,6 @@
 #include "Scene.h"
 #include "GameObjectManager.h"
-#include "GameProcessManager.h"
+#include "TaskManager.h"
 #include "GUIManager.h"
 #include "SystemLog.h"
 #include "ISceneManagerAccessor.h"
@@ -13,7 +13,7 @@
 namespace planeta_engine{
 	namespace core{
 
-		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::GameProcessManager>(game_)), ui_manager_(std::make_unique<game::GUIManager>()),camera_(std::make_unique<Camera>()),scene_data_(std::make_unique<SceneData>())
+		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<game::GameObjectManager>()), game_process_manager_(std::make_unique<game::TaskManager>(game_)), ui_manager_(std::make_unique<game::GUIManager>()),camera_(std::make_unique<Camera>()),scene_data_(std::make_unique<SceneData>())
 		{
 		}
 
@@ -38,7 +38,7 @@ namespace planeta_engine{
 		bool Scene::Finalize()
 		{
 			//モジュールの終了処理を行う
-			game_object_manager_->Finalize(); //ゲームオブジェクトでは終了時にゲームプロセスを参照するものがあるのでGameProcessManagerより先に終了処理を行う。
+			game_object_manager_->Finalize(); //ゲームオブジェクトでは終了時にゲームプロセスを参照するものがあるのでTaskManagerより先に終了処理を行う。
 			ui_manager_->Finalize();
 			game_process_manager_->Finalize();
 			return true;
@@ -50,7 +50,7 @@ namespace planeta_engine{
 				game_process_manager_->Update(); //ゲームプロセス実行
 			}
 			catch (utility::NullWeakPointerException& e) {
-				debug::SystemLog::instance().LogError(std::string("GameProcessManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
+				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
 				game_.scene_manager().ErrorOccured();
 				return;
 			}try {

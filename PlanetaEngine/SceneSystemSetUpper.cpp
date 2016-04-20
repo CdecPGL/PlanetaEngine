@@ -1,8 +1,8 @@
 #include "SceneSystemSetUpper.h"
 #include "Scene.h"
 #include "SceneData.h"
-#include "GameProcessSystemKeyPositions.h"
-#include "GameProcessManager.h"
+#include "TaskSystemKeyPositions.h"
+#include "TaskManager.h"
 #include "IGameAccessor.h"
 
 #include "GameObject.h"
@@ -21,12 +21,12 @@ namespace planeta_engine {
 
 		bool SceneSystemSetUpper::operator()(Scene& scene)
 		{
-			namespace gp_syskp = gameprocess_sys_key_pos;
+			namespace gp_syskp = task_sys_key_pos;
 			auto& scene_data = scene.RefSceneData();
 			//ゲームプロセス
 			//システムキーポジション設定
 			auto& p_mgr = scene.game_process_manager();
-			p_mgr.SetKeyPositions(scene.game_accessor().GetGameProcessKeyPositionList());
+			p_mgr.SetKeyPositions(scene.game_accessor().GetTaskKeyPositionList());
 			//システムプロセス追加
 			//衝突判定プロセス
 			auto col_det_proc = p_mgr.AddSystemProcess<system_processes::CollisionDetectProcess>(p_mgr.GetKeyPosition(gp_syskp::CollisionDetectProcessKeyPositionID));

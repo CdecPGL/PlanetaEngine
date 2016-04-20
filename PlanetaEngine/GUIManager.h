@@ -18,7 +18,7 @@ namespace planeta_engine{
 	}
 	namespace game {
 		class GUIObject;
-		class IGameProcessManagerAccessor;
+		class ITaskManagerAccessor;
 		class GUIManager final: public core::SceneModule
 			,public GUIManagerPublicInterface ,private utility::NonCopyable<GUIManager>{
 		public:

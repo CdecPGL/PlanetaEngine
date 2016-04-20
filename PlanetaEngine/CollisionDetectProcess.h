@@ -1,5 +1,5 @@
 #pragma once
-#include "GameProcess.h"
+#include "Task.h"
 #include <memory>
 #include <unordered_map>
 #include <list>
@@ -16,10 +16,10 @@ namespace planeta_engine {
 		class CollisionWithGroundEventArgument;
 	}
 	namespace system_processes {
-		class CollisionDetectProcess final: public game::GameProcess
+		class CollisionDetectProcess final: public game::Task
 		{
 		public:
-			using GameProcess::GameProcess;
+			using Task::Task;
 			~CollisionDetectProcess();
 			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix);
 			bool Resist(const std::shared_ptr<components::ColliderComponent>& col_com);

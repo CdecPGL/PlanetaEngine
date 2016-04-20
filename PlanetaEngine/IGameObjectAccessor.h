@@ -13,7 +13,7 @@ namespace planeta_engine {
 	}
 	namespace game {
 		class IGameObjectManagerAccessor;
-		class IGameProcessManagerAccessor;
+		class ITaskManagerAccessor;
 		class IGameObjectAccessor {
 		public:
 			virtual ~IGameObjectAccessor() = 0 {};

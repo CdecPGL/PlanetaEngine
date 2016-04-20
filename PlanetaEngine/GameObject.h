@@ -17,7 +17,7 @@ namespace planeta_engine {
 	}
 	class SceneAccessorForGameObject;
 	namespace game {
-		class GameProcess;
+		class Task;
 		class GameObjectAccessorForSetUp; //初期化用関数使用仲介クラス
 		//GameObjectクラス(継承禁止ぃ)
 		class GameObject final : public core::Object, public IGameObjectAccessor
@@ -122,6 +122,8 @@ namespace planeta_engine {
 			void SystemSetUpComponent_(GameObjectComponent& com);
 			int component_id_counter_;
 			struct create_helper;
+
+			//アタッチされたゲームプロセス
 		};
 		struct GameObject::create_helper {
 			GameObject x;

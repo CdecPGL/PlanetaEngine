@@ -1,12 +1,12 @@
 #pragma once
 
-#include "GameProcess.h"
+#include "Task.h"
 
 /*–¢ŽÀ‘•*/
 namespace planeta_engine {
-	class ScreenEffectProcess : public game::GameProcess{
+	class ScreenEffectProcess : public game::Task{
 	public:
-		using GameProcess::GameProcess;
+		using Task::Task;
 
 	};
 }

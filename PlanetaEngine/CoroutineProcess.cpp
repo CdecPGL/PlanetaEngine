@@ -1,5 +1,5 @@
 #include "CoroutineProcess.h"
-#include "SceneAccessorForGameProcess.h"
+#include "SceneAccessorForTask.h"
 
 
 namespace planeta_engine {

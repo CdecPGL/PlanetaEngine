@@ -7,14 +7,14 @@ namespace planeta_engine {
 	namespace core {
 		class SceneManager;
 		class CollisionGroupMatrix;
-		class GameProcessKeyPositionDefinition;
+		class TaskKeyPositionDefinition;
 		class IGameSetUp {
 		public:
 			virtual ~IGameSetUp() = 0 {};
 			/*èâä˙âªópä÷êîåQ*/
 			virtual SceneManager& scene_manager() = 0;
 			virtual CollisionGroupMatrix& RefCollisionGroupMatrix() = 0;
-			virtual GameProcessKeyPositionDefinition& RefGameProcessKeyPositionDefinition() = 0;
+			virtual TaskKeyPositionDefinition& RefTaskKeyPositionDefinition() = 0;
 		};
 	}
 }

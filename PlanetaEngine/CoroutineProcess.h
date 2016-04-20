@@ -1,16 +1,16 @@
 #pragma once
 #include <functional>
 #include <memory>
-#include "GameProcess.h"
+#include "Task.h"
 #include "boost/coroutine2/all.hpp"
 
 namespace planeta_engine {
 	namespace game_processes {
-		class CoroutineProcess :public game::GameProcess {
+		class CoroutineProcess :public game::Task {
 		public:
 			using coroutine = boost::coroutines2::coroutine<void>;
 			using func_arg_type = coroutine::push_type&;
-			using GameProcess::GameProcess;
+			using Task::Task;
 			void Restart() { Start(); }
 			/*コルーチンが終了した時にプロセスを破棄するか*/
 			void dispose_when_coroutine_finished(bool f) { dispose_when_coroutine_finished_ = f; }

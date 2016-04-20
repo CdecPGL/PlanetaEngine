@@ -1,7 +1,7 @@
 #pragma once
 
 namespace planeta_engine {
-	namespace gameprocess_sys_key_pos {
+	namespace task_sys_key_pos {
 		extern const char* CollisionDetectProcessKeyPositionID; //衝突判定プロセスキーポジションID
 		extern const char* GameObjectDrawProcessKeyPositionID; //ゲームオブジェクト描画プロセスキーポジションID
 		extern const char* GameObjectUpdatetProcessKeyPositionID; //ゲームオブジェクト更新プロセスキーポジションID

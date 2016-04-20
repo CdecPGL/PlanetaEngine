@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameProcess.h"
+#include "Task.h"
 #include "Reflection.h"
 
 /*ñ¢äÆê¨*/
@@ -9,9 +9,9 @@ namespace planeta_engine {
 		class IGameAccessor;
 	}
 	namespace game_processes {
-		class GameProcessWithRefrection : public game::GameProcess,public utility::Reflection{
+		class TaskWithRefrection : public game::Task,public utility::Reflection{
 		public:
-			GameProcessWithRefrection(core::IGameAccessor& g);
+			TaskWithRefrection(core::IGameAccessor& g);
 		private:
 			void ResistRefrectionInformation(RefrectionInformationResistInterface&& riri)override;
 			void Update()override;

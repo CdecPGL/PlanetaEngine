@@ -67,9 +67,6 @@
     <Filter Include="PlanetaEngine\Game\GameObject">
       <UniqueIdentifier>{4eb19d1b-ba95-4352-9db9-c84426b1f093}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Game\GameProcess">
-      <UniqueIdentifier>{2b098711-ed27-46b5-801d-60ee70d2e370}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TinyXML2">
       <UniqueIdentifier>{38d797a1-d619-4e63-aaf0-63156fa85703}</UniqueIdentifier>
     </Filter>
@@ -78,9 +75,6 @@
     </Filter>
     <Filter Include="PlanetaEngine\Game\GameObject\Manager">
       <UniqueIdentifier>{01ba8182-1e53-4fcf-8506-2633085a97fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Game\GameProcess\Manager">
-      <UniqueIdentifier>{ddb72fe9-cd49-447c-8be5-578163334b28}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\Core\Scene\Manager">
       <UniqueIdentifier>{3ad2a0c2-8a6c-4d54-94dd-be6aa42d1e57}</UniqueIdentifier>
@@ -148,15 +142,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent">
       <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameProcesses">
-      <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess">
-      <UniqueIdentifier>{4a60c919-c77b-43bf-bb00-208bcc37989d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses">
-      <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Windows">
       <UniqueIdentifier>{86890a22-3624-4169-b8e6-b4c08bff5891}</UniqueIdentifier>
     </Filter>
@@ -198,6 +183,21 @@
     </Filter>
     <Filter Include="PlanetaEngine\Math\Matrix">
       <UniqueIdentifier>{1826c0f3-9abb-467a-ab0a-0c55c95a2a8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\Tasks">
+      <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\Tasks\CollisionDetectProcess">
+      <UniqueIdentifier>{4a60c919-c77b-43bf-bb00-208bcc37989d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\Tasks\GameObjectOperationProcesses">
+      <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\Task">
+      <UniqueIdentifier>{2b098711-ed27-46b5-801d-60ee70d2e370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Game\Task\Manager">
+      <UniqueIdentifier>{ddb72fe9-cd49-447c-8be5-578163334b28}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -259,10 +259,10 @@
       <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
     </ClInclude>
     <ClInclude Include="CollisionDetectProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectProcess</Filter>
     </ClInclude>
     <ClInclude Include="CollisionDetectFunctions.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectProcess</Filter>
     </ClInclude>
     <ClInclude Include="FontDefinitionResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -405,9 +405,6 @@
     <ClInclude Include="MakeSharedGameObject.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameProcess.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
     <ClInclude Include="InitEnd.h">
       <Filter>PlanetaEngine\InitEnd</Filter>
     </ClInclude>
@@ -463,13 +460,13 @@
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="CoroutineProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="Coroutine.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="InstantCoroutineProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="PEAssert.h">
       <Filter>PlanetaEngine\Debug</Filter>
@@ -482,9 +479,6 @@
     </ClInclude>
     <ClInclude Include="Reflection.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessWithRefrection.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
     </ClInclude>
     <ClInclude Include="MetaprogrammingUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -500,12 +494,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectManagerPublicInterface.h">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessManager.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessManagerPublicInterface.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ScenePublicInterface.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
@@ -645,20 +633,11 @@
     <ClInclude Include="GameObjectAccessorForSetUp.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameProcessSystemSetUpper.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
     <ClInclude Include="MathVector.h">
       <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="ScreenEffectProcess.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDataForGameProcess.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessRegistrationData.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+      <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
     <ClInclude Include="GUIComponent.h">
       <Filter>PlanetaEngine\Game\GUI</Filter>
@@ -679,7 +658,7 @@
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectDrawProcessCore.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
@@ -700,19 +679,7 @@
       <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
     </ClInclude>
     <ClInclude Include="InsertPosIndication.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessListTypes.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessPosition.h">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessSystemKeyPositions.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClInclude>
-    <ClInclude Include="GameProcessKeyPositionDefinition.h">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
+      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
     </ClInclude>
     <ClInclude Include="DebugDrawInterface.h">
       <Filter>PlanetaEngine\Debug</Filter>
@@ -727,7 +694,7 @@
       <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectOperationProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationProcesses</Filter>
     </ClInclude>
     <ClInclude Include="WindowsUtility.h">
       <Filter>PlanetaEngine\Windows</Filter>
@@ -741,16 +708,7 @@
     <ClInclude Include="AccessorTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="SAImplGameProcessGetFunctions.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClInclude>
-    <ClInclude Include="SAImplGameProcessCreateFunctions.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClInclude>
     <ClInclude Include="SAImplGUIOperateFunctions.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClInclude>
-    <ClInclude Include="SAImplGameProcessKeyPositionFunctions.h">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClInclude>
     <ClInclude Include="SceneDefinitionHeaders.h">
@@ -760,9 +718,6 @@
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
     <ClInclude Include="SceneAccessorForGameObject.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessor</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneAccessorForGameProcess.h">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessor</Filter>
     </ClInclude>
     <ClInclude Include="SceneAccessorForGUI.h">
@@ -811,7 +766,7 @@
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClInclude>
     <ClInclude Include="InstantProcess.h">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefinitions.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
@@ -848,6 +803,51 @@
     </ClInclude>
     <ClInclude Include="MathMatrix.h">
       <Filter>PlanetaEngine\Math\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskKeyPositionDefinition.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskSystemKeyPositions.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskRegistrationData.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskSystemSetUpper.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDataForTask.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskWithRefrection.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskListTypes.h">
+      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskPosition.h">
+      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAccessorForTask.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessor</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplTaskCreateFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplTaskGetFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="SAImplTaskKeyPositionFunctions.h">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManagerPublicInterface.h">
+      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -951,7 +951,7 @@
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetectProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectProcess</Filter>
     </ClCompile>
     <ClCompile Include="IOKeyConfig.cpp">
       <Filter>PlanetaEngine\Core\KeyInput</Filter>
@@ -966,7 +966,7 @@
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetectFunctions.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses\CollisionDetectProcess</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectProcess</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -992,9 +992,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="GameProcess.cpp">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClCompile>
     <ClCompile Include="SimplePolygonPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClCompile>
@@ -1017,19 +1014,13 @@
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="CoroutineProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClCompile>
     <ClCompile Include="Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="GameProcessWithRefrection.cpp">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="GameProcessManager.cpp">
-      <Filter>PlanetaEngine\Game\GameProcess\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
@@ -1116,7 +1107,7 @@
       <Filter>PlanetaEngine\Game\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectDrawProcessCore.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClCompile>
     <ClCompile Include="ScreenChangeEffecter.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
@@ -1133,14 +1124,8 @@
     <ClCompile Include="Screen.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
     </ClCompile>
-    <ClCompile Include="GameProcessSystemKeyPositions.cpp">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClCompile>
-    <ClCompile Include="GameProcessKeyPositionDefinition.cpp">
-      <Filter>PlanetaEngine\Game\GameProcess</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectOperationProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses\GameObjectOperationProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationProcesses</Filter>
     </ClCompile>
     <ClCompile Include="WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
@@ -1149,9 +1134,6 @@
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
     <ClCompile Include="SAImplCameraFunctions.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClCompile>
-    <ClCompile Include="SAImplGameProcessKeyPositionFunctions.cpp">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
     <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp">
@@ -1185,7 +1167,7 @@
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="InstantProcess.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameProcesses</Filter>
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClCompile>
     <ClCompile Include="TransformComponent.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
@@ -1195,6 +1177,24 @@
     </ClCompile>
     <ClCompile Include="ChildTransformCore.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskKeyPositionDefinition.cpp">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskSystemKeyPositions.cpp">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskWithRefrection.cpp">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SAImplTaskKeyPositionFunctions.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

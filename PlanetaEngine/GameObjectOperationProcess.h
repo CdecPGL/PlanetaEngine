@@ -1,13 +1,13 @@
 #pragma once
 
-#include "GameProcess.h"
+#include "Task.h"
 #include "WeakPointerDelegate.h"
 
 namespace planeta_engine {
 	namespace game_processes {
-		class GameObjectOperationProcess : public game::GameProcess {
+		class GameObjectOperationProcess : public game::Task {
 		public:
-			using GameProcess::GameProcess;
+			using Task::Task;
 			/**
 			* @brief 操作対象のゲームオブジェクトをセットする
 			* @param ゲームオブジェクト,対象のゲームオブジェクト破棄時にプロセスを破棄するかどうか

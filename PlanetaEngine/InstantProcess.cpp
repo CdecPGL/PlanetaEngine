@@ -1,5 +1,5 @@
 #include "InstantProcess.h"
-#include "SceneAccessorForGameProcess.h"
+#include "SceneAccessorForTask.h"
 
 namespace planeta_engine {
 	namespace game_processes {
