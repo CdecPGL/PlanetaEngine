@@ -4,9 +4,9 @@
 
 namespace planeta_engine {
 	namespace game_processes {
-		class InstantCoroutineTask : public CoroutineProcess {
+		class InstantCoroutineTask : public CoroutineTask {
 		public:
-			using CoroutineProcess::CoroutineProcess;
+			using CoroutineTask::CoroutineTask;
 			using func_type = std::function<void(func_arg_type)>;
 			void SetFunction(const func_type& func) { function_ = func; }
 		private:
