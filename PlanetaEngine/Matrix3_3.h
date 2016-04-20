@@ -20,7 +20,7 @@ namespace planeta_engine {
 		//s—ñŠÖ”
 		//üŒ`•ÏŠ·
 		template<typename T>
-		Vector2D<T> LinearTransformation(const Matrix3_3<T>& m, const Vector3D<T>& v) {
+		Vector3D<T> LinearTransformation(const Matrix3_3<T>& m, const Vector3D<T>& v) {
 			return Vector3D<T>(m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z, m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z, m[0][2] * v.x + m[1][2] * v.y + m[2][2] * v.z);
 		}
 		//‰ñ“]•ÏŠ·
