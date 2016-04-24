@@ -8,14 +8,23 @@ namespace planeta_engine {
 	class GameObjectComponent;
 	class GameObjectBase : public IGameObject,private utility::NonCopyable<GameObjectBase> {
 	public:
-		//有効化処理
+		//インターフェイスのオーバーライド
+		//有効化する
 		bool Activate()override final;
-		//無効化処理
+		//無効化する
 		bool Inactivate()override final;
-		//破棄処理
+		//破棄する
 		void Dispose()override final;
 		//自分のstd::shared_ptrを取得する。
 		std::shared_ptr<IGameObject> GetSharedPointer()const override final;
+
+		//システム用関数(Managerから呼び出される)
+		//有効化時の処理
+		bool ProcessActivation();
+		//無効化時の処理
+		bool ProcessInactivation();
+		//破棄時の処理
+		bool ProcessDisposDisposal();
 
 		//静的関数
 		//GameObjectの作成関数。自分のスマートポインタを保持するためにこの関数を介する必要がある。
@@ -27,7 +36,7 @@ namespace planeta_engine {
 			return std::move(ptr);
 		}
 	protected:
-		//コンポーネントを追加する。
+		//コンポーネントを作成、追加する。
 		template<class ComT>
 		utility::WeakPointer<ComT> CreateAndAddComponent() {
 			return component_holder_.CreateAndAddComponent();
@@ -47,6 +56,9 @@ namespace planeta_engine {
 		std::weak_ptr<GameObjectBase> this_weak_ptr_;
 		//コンポーネントホルダー
 		GameObjectComponentHolder component_holder_;
+
+		//コンポーネント関連の処理
+		
 
 		//イベント関数
 		//初期化イベント

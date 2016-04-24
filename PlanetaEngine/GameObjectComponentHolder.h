@@ -6,16 +6,23 @@
 #include <typeindex>
 #include <functional>
 #include "WeakPointer.h"
+#include "NonCopyable.h"
 
 namespace planeta_engine {
+	class IGameObject;
 	class GameObjectComponent;
-	class GameObjectComponentHolder {
+	class GameObjectComponentHolder : private utility::NonCopyable<GameObjectComponentHolder>{
 	public:
-		//コンポーネントを追加する。
+		GameObjectComponentHolder(IGameObject& p_gameobject);
+		//コンポーネントを作成、追加する。
 		template<class ComT>
 		utility::WeakPointer<ComT> CreateAndAddComponent() {
 			static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "ComT must derive GameComponent.");
-
+			int id = id_counter_++;
+			auto ptr = std::make_shared<ComT>(game_object_, id);
+			component_list_.emplace(id, ptr);
+			AddComponentToTypeInfoMap(typeid(ComT), ptr);
+			return ptr;
 		}
 		//コンポーネントを型で取得する。
 		template<class ComT>
@@ -37,6 +44,10 @@ namespace planeta_engine {
 			return std::move(ret_list);
 		}
 	private:
+		//IDカウンタ
+		int id_counter_ = 0;
+		//所持されているゲームオブジェクトへの参照
+		IGameObject& game_object_;
 		//コンポーネントリスト
 		std::unordered_map<int, std::shared_ptr<GameObjectComponent>> component_list_;
 		//タイプによるコンポーネントマップ<typeindex,<完全探索済みか(false:少なくとも１つは探索済み,true:全て探索済み),コンポーネントリスト>>

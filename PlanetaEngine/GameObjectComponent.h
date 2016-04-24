@@ -10,24 +10,19 @@
 
 namespace planeta_engine {
 	class SceneAccessorForGameObject;
-	namespace game {
-		class IGameObjectAccessor;
-		class GameObject;
-	}
 	namespace core{
 		struct SceneDataForGameObject;
 		struct GameObjectComponentRegistrationData;
 	}
+	class IGameObject;
 	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
 	public:
-		GameObjectComponent() :id_(-1) {};
+		GameObjectComponent(IGameObject& p_gameobject,int p_id):game_object(p_gameobject), id_(p_id) {};
 		virtual ~GameObjectComponent() = default;
 		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const core::SceneDataForGameObject& special_setup_data);
 
 		bool is_valied()const { return is_valied_; }
 		bool is_active()const { return is_active_; }
-		game::IGameObjectAccessor& game_object() { assert(game_object_ != nullptr); return *game_object_; }
-		const game::IGameObjectAccessor& game_object()const { assert(game_object_ != nullptr); return *game_object_; }
 
 		/*システム関数*/
 		virtual bool is_no_update()const { return false; } //更新処理を行わないか
@@ -37,19 +32,14 @@ namespace planeta_engine {
 		bool InActivate();
 		void Finalize();
 	protected:
-		using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
+		//保持されているゲームオブジェクトへの参照
+		IGameObject& game_object;
 		SceneAccessorForGameObject& scene() { return *scene_accessor_; }
 	private:
-		//			static void* operator new(size_t s){ throw utility::BadNewDeleteOperation("Component::operator new is called."); return nullptr; }
-		//			static void operator delete(void* p){ throw utility::BadNewDeleteOperation("Component::operator delete is called."); return; }
-		//			static void* operator new[](size_t s){throw utility::BadNewDeleteOperation("Component::operator new[] is called."); return nullptr; }
-		//			static void operator delete[](void* p){throw utility::BadNewDeleteOperation("Component::operator delete[] is called."); return; }
-
 		bool is_valied_ = false;
 		bool is_active_ = false;
 		int id_;
 
-		utility::WeakPointer<game::IGameObjectAccessor> game_object_;
 		utility::WeakPointer<SceneAccessorForGameObject> scene_accessor_;
 
 		/*特別設定関数*/
