@@ -849,6 +849,21 @@
     <ClInclude Include="InstantTask.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
+    <ClInclude Include="NewGameObject.h">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectBase.h">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectInterface.h">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectComponentHolder.h">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1195,6 +1210,12 @@
     </ClCompile>
     <ClCompile Include="InstantTask.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectBase.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectComponentHolder.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

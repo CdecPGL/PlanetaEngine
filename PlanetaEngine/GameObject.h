@@ -20,7 +20,7 @@ namespace planeta_engine {
 		class Task;
 		class GameObjectAccessorForSetUp; //初期化用関数使用仲介クラス
 		//GameObjectクラス(継承禁止ぃ)
-		class GameObject final : public core::Object, public IGameObjectAccessor
+		class GameObject : public core::Object, public IGameObjectAccessor
 		,private utility::NonCopyable<GameObject>{
 			friend GameObjectAccessorForSetUp;
 		public:

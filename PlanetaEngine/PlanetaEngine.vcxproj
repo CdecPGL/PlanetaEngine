@@ -42,12 +42,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>C:\libraries\PlanetaEngine\lib</OutDir>
+    <OutDir>C:\libraries\PlanetaEngine\lib\</OutDir>
     <TargetName>planetaengine_mt</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\libraries\PlanetaEngine\lib</OutDir>
+    <OutDir>C:\libraries\PlanetaEngine\lib\</OutDir>
     <TargetName>planetaengine_mtd</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -144,12 +144,16 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
+    <ClInclude Include="GameObjectComponentHolder.h" />
+    <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
     <ClInclude Include="ChildTransformCore.h" />
     <ClInclude Include="DataContainer.h" />
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="GameObjectBase.h" />
+    <ClInclude Include="IGameObject.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleColliderComponent.h" />
@@ -170,6 +174,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
     <ClInclude Include="GameObjectOperationTask.h" />
     <ClInclude Include="GameObjectSetUpperHeaders.h" />
+    <ClInclude Include="NewGameObject.h" />
     <ClInclude Include="TaskKeyPositionDefinition.h" />
     <ClInclude Include="TaskListTypes.h" />
     <ClInclude Include="TaskSystemKeyPositions.h" />
@@ -389,6 +394,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DataContainer.cpp" />
     <ClCompile Include="DataContainerImpl.cpp" />
     <ClCompile Include="DataContainerSerializeUtility.cpp" />
+    <ClCompile Include="GameObjectBase.cpp" />
+    <ClCompile Include="GameObjectComponentHolder.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="GameObjectOperationTask.cpp" />
     <ClCompile Include="TaskKeyPositionDefinition.cpp" />
