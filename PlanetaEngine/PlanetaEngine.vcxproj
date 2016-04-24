@@ -184,7 +184,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Matrix3_3.h" />
     <ClInclude Include="pe_assert.h" />
     <ClInclude Include="RootTransformCore.h" />
-    <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h" />
     <ClInclude Include="SAImplTaskCreateFunctions.h" />
     <ClInclude Include="SAImplTaskGetFunctions.h" />
     <ClInclude Include="InsertPosIndication.h" />
@@ -194,7 +193,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SAImplCameraFunctions.h" />
     <ClInclude Include="SAImplGameObjectCreateFunctions.h" />
     <ClInclude Include="SAImplTaskKeyPositionFunctions.h" />
-    <ClInclude Include="SAImplGUIOperateFunctions.h" />
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
@@ -312,7 +310,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneAccessorForGameObject.h" />
     <ClInclude Include="SceneAccessorForTask.h" />
     <ClInclude Include="SceneAccessorForSetUp.h" />
-    <ClInclude Include="SceneAccessorForGUI.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScenePublicInterface.h" />
     <ClInclude Include="SceneSetUpper.h" />
@@ -407,7 +404,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="RootTransformCore.cpp" />
     <ClCompile Include="SAImplCameraFunctions.cpp" />
     <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />
-    <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp" />
     <ClCompile Include="SAImplTaskKeyPositionFunctions.cpp" />
     <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />

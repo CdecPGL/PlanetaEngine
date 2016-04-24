@@ -687,9 +687,6 @@
     <ClInclude Include="AccessorTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="SAImplGUIOperateFunctions.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClInclude>
     <ClInclude Include="SceneDefinitionHeaders.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
@@ -699,14 +696,8 @@
     <ClInclude Include="SceneAccessorForGameObject.h">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessor</Filter>
     </ClInclude>
-    <ClInclude Include="SceneAccessorForGUI.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessor</Filter>
-    </ClInclude>
     <ClInclude Include="SceneAccessorForSetUp.h">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessor</Filter>
-    </ClInclude>
-    <ClInclude Include="SAImplGameObjectManagerSetUpFunctions.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClInclude>
     <ClInclude Include="cpplinq.hpp">
       <Filter>LinqForCpp</Filter>
@@ -1131,9 +1122,6 @@
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
     <ClCompile Include="SAImplCameraFunctions.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClCompile>
-    <ClCompile Include="SAImplGameObjectManagerSetUpFunctions.cpp">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
     <ClCompile Include="LuaBindClassFunctions.cpp">
