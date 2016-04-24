@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <functional>
 #include <type_traits>
+#include "NonCopyable.h"
 
 namespace planeta_engine {
 	template<const char* GameObjectID, class GameObjectType>
@@ -13,10 +14,10 @@ namespace planeta_engine {
 	class GameObjectBase;
 	//ゲームオブジェクトファクトリ(シングルトンクラス)
 	//GameObjectRegistererとGameObjectManagerのみが使用可能。
-	class GameObjectFactory {
+	class GameObjectFactory : private utility::NonCopyable<GameObjectFactory>{
 		template<const char* GameObjectID, class GameObjectType>
 		friend class GameObjectRegisterer<GameObjectID, GameObjectType>;
-		friend class GameOBjectManager;
+		friend class GameObjectManager;
 	private:
 		GameObjectFactory();
 		static GameObjectFactory& GetInstance();

@@ -24,7 +24,7 @@ namespace planeta_engine {
 		//無効化時の処理
 		bool ProcessInactivation();
 		//破棄時の処理
-		bool ProcessDisposDisposal();
+		bool ProcessDisposal();
 
 		//静的関数
 		//GameObjectの作成関数。自分のスマートポインタを保持するためにこの関数を介する必要がある。
