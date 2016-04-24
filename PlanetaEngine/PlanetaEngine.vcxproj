@@ -145,6 +145,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
+    <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="BelongingGroundGravityComponent.h" />
     <ClInclude Include="BGMController.h" />
@@ -153,6 +154,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObjectBase.h" />
+    <ClInclude Include="GameObjectRegisterer.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="Camera.h" />
@@ -174,7 +176,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
     <ClInclude Include="GameObjectOperationTask.h" />
     <ClInclude Include="GameObjectSetUpperHeaders.h" />
-    <ClInclude Include="NewGameObject.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="TaskKeyPositionDefinition.h" />
     <ClInclude Include="TaskListTypes.h" />
     <ClInclude Include="TaskSystemKeyPositions.h" />
@@ -244,14 +246,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Game.h" />
     <ClInclude Include="DataContainerFunctionsForBoostSerialize.h" />
     <ClInclude Include="DataContainerSerializeUtility.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManagerConnection.h" />
     <ClInclude Include="GameObjectAllocator.h" />
     <ClInclude Include="GameObjectDrawProcessCore.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameObjectManagerPublicInterface.h" />
-    <ClInclude Include="GameObjectSetUpper.h" />
-    <ClInclude Include="GameObjectAccessorForSetUp.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="TaskManagerPublicInterface.h" />
@@ -265,7 +264,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IBGMController.h" />
     <ClInclude Include="IColliderWithCollider.h" />
     <ClInclude Include="IGameAccessor.h" />
-    <ClInclude Include="IGameObjectAccessor.h" />
     <ClInclude Include="IGameSetUp.h" />
     <ClInclude Include="IMemoryAllocator.h" />
     <ClInclude Include="DataContainerError.h" />
@@ -396,6 +394,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DataContainerSerializeUtility.cpp" />
     <ClCompile Include="GameObjectBase.cpp" />
     <ClCompile Include="GameObjectComponentHolder.cpp" />
+    <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="GameObjectOperationTask.cpp" />
     <ClCompile Include="TaskKeyPositionDefinition.cpp" />
@@ -449,10 +448,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectComponent.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="FileSystemManager.cpp" />
-    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectDrawProcessCore.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
-    <ClCompile Include="GameObjectSetUpper.cpp" />
     <ClCompile Include="DrawGraphComponent.cpp" />
     <ClCompile Include="GroundComponent.cpp" />
     <ClCompile Include="InitEnd.cpp" />

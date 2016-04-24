@@ -18,7 +18,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObject>& go)
+		int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObjectBase>& go)
 		{
 			go->SetSceneAccessor(scene_accessor_);
 			int id = _id_counter++;
@@ -27,7 +27,7 @@ namespace planeta_engine{
 			return id;
 		}
 
-		int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObject>& go, const std::string& name)
+		int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObjectBase>& go, const std::string& name)
 		{
 			int id = RegisterGameObject(go);
 			if (id < -1) { return -1; }
@@ -42,9 +42,9 @@ namespace planeta_engine{
 			}
 		}
 
-		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(const std::string& game_object_create_id)
+		utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id)
 		{
-			auto go = GameObject::Create();
+			auto go = GameObjectBase::Create();
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", __FUNCTION__);
 				return nullptr;
@@ -60,9 +60,9 @@ namespace planeta_engine{
 			else { return nullptr; }
 			
 		}
-		utility::WeakPointer<IGameObjectAccessor> GameObjectManager::CreateGameObject(const std::string& game_object_create_id,const std::string& name)
+		utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id,const std::string& name)
 		{
-			auto go = GameObject::Create();
+			auto go = GameObjectBase::Create();
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("無効なゲームオブジェクトです。", __FUNCTION__);
 				return nullptr;
@@ -173,7 +173,7 @@ namespace planeta_engine{
 			scene_data_->draw_component_process_registrator = scene_data.draw_component_process_registrator;
 		}
 
-		bool GameObjectManager::SetUpGameObject_(GameObject& game_object, const std::string& setup_id)const {
+		bool GameObjectManager::SetUpGameObject_(GameObjectBase& game_object, const std::string& setup_id)const {
 			auto it = setupper_map_.find(setup_id);
 			if (it == setupper_map_.end()) {
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ゲームオブジェクトのセットアップに失敗しました。GameObjectSetUpper\"", setup_id, "\"は存在しません。");

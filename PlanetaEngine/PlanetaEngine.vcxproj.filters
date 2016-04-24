@@ -199,6 +199,9 @@
     <Filter Include="PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask">
       <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Game\GameObject\Factory">
+      <UniqueIdentifier>{aba12054-18db-4ae8-a61a-49f737699b14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -389,15 +392,6 @@
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectSetUpper.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameObjectAccessor.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="MakeSharedGameObject.h">
       <Filter>PlanetaEngine\Game\GameObject</Filter>
@@ -620,9 +614,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectManagerConnection.h">
       <Filter>PlanetaEngine\Game\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectAccessorForSetUp.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="MathVector.h">
       <Filter>PlanetaEngine\Math\Vector</Filter>
@@ -849,12 +840,6 @@
     <ClInclude Include="InstantTask.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
-    <ClInclude Include="NewGameObject.h">
-      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectBase.h">
-      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectInterface.h">
       <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
     </ClInclude>
@@ -863,6 +848,18 @@
     </ClInclude>
     <ClInclude Include="GameObjectComponentHolder.h">
       <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>PlanetaEngine\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectBase.h">
+      <Filter>PlanetaEngine\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>PlanetaEngine\Game\GameObject\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectRegisterer.h">
+      <Filter>PlanetaEngine\Game\GameObject\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -997,12 +994,6 @@
     </ClCompile>
     <ClCompile Include="DebuggerCommunicater.cpp">
       <Filter>PlanetaEngine\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectSetUpper.cpp">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="SimplePolygonPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
@@ -1211,11 +1202,14 @@
     <ClCompile Include="InstantTask.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectBase.cpp">
-      <Filter>PlanetaEngine\Game\GameObject\GameObjectInterface</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectComponentHolder.cpp">
       <Filter>PlanetaEngine\Game\GameObject\GameObjectComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectBase.cpp">
+      <Filter>PlanetaEngine\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>PlanetaEngine\Game\GameObject\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
