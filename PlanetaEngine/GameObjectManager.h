@@ -39,8 +39,6 @@ namespace planeta_engine {
 
 		/*管理処理*/
 		bool Process();
-		/*更新*/
-		void Update();
 		/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
 		int RegisterGameObject(const std::shared_ptr<GameObjectBase>& go);
 		int RegisterGameObject(const std::shared_ptr<GameObjectBase>& go, const std::string& name);

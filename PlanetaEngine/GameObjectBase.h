@@ -6,8 +6,13 @@
 
 namespace planeta_engine {
 	class GameObjectComponent;
+	class GameObjectManagerConnection;
+	class SceneAccessorForGameObject;
 	class GameObjectBase : public IGameObject,private utility::NonCopyable<GameObjectBase> {
 	public:
+		GameObjectBase();
+		~GameObjectBase();
+
 		//インターフェイスのオーバーライド
 		//有効化する
 		bool Activate()override final;
@@ -25,6 +30,11 @@ namespace planeta_engine {
 		bool ProcessInactivation();
 		//破棄時の処理
 		bool ProcessDisposal();
+		//マネージャコネクションをセット
+		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
+		//シーンアクセサをセット
+		void SetSceneAccessor(const utility::WeakPointer<SceneAccessorForGameObject>& scene_accessor);
+
 
 		//静的関数
 		//GameObjectの作成関数。自分のスマートポインタを保持するためにこの関数を介する必要がある。
@@ -54,6 +64,10 @@ namespace planeta_engine {
 	private:
 		//自身の弱参照
 		std::weak_ptr<GameObjectBase> this_weak_ptr_;
+		//マネージャコネクション
+		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
+		//シーンアクセサ
+		utility::WeakPointer<SceneAccessorForGameObject> scene_accessor_;
 		//コンポーネントホルダー
 		GameObjectComponentHolder component_holder_;
 
