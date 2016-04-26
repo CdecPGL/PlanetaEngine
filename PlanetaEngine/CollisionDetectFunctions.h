@@ -3,14 +3,12 @@
 #include <memory>
 
 namespace planeta_engine {
-	namespace components {
-		class CircleColliderComponent;
-		class StraightLineColliderComponent;
-	}
+		class CCircleCollider2D;
+		class CStraightLineCollider2D;
 	namespace core {
 		namespace collision_detect_functions {
-			bool CollisionDetectCircleAndCirecle(components::CircleColliderComponent& circle_collider0, components::CircleColliderComponent& circle_collider1);
-			bool CollisionDetectCircleAndStraightLine(components::CircleColliderComponent& circle_collider, components::StraightLineColliderComponent& straightline_collider);
+			bool CollisionDetectCircleAndCirecle(CCircleCollider2D& circle_collider0, CCircleCollider2D& circle_collider1);
+			bool CollisionDetectCircleAndStraightLine(CCircleCollider2D& circle_collider, CStraightLineCollider2D& straightline_collider);
 		}
 	}
 }

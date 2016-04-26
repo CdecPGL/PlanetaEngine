@@ -1,12 +1,12 @@
 #include "CollisionDetectFunctions.h"
-#include "CircleColliderComponent.h"
-#include "StraightLineColliderComponent.h"
+#include "CCircleCollider2D.h"
+#include "CStraightLineCollider2D.h"
 
 namespace planeta_engine {
 	namespace core {
 		namespace collision_detect_functions {
 
-			bool CollisionDetectCircleAndCirecle(components::CircleColliderComponent& circle_collider0, components::CircleColliderComponent& circle_collider1)
+			bool CollisionDetectCircleAndCirecle(CCircleCollider2D& circle_collider0, CCircleCollider2D& circle_collider1)
 			{
 				auto pos0 = circle_collider0.GetCollisionGlobalCenterPosition();
 				auto pos1 = circle_collider1.GetCollisionGlobalCenterPosition();
@@ -18,7 +18,7 @@ namespace planeta_engine {
 				else { return false; }
 			}
 
-			bool CollisionDetectCircleAndStraightLine(components::CircleColliderComponent& circle_collider, components::StraightLineColliderComponent& straightline_collider)
+			bool CollisionDetectCircleAndStraightLine(CCircleCollider2D& circle_collider, CStraightLineCollider2D& straightline_collider)
 			{
 				double circle_radius = circle_collider.radius()*circle_collider.GetCollisionScale();
 				auto circle_pos = circle_collider.GetCollisionGlobalCenterPosition();

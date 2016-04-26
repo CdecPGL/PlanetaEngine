@@ -3,4 +3,4 @@
 #include "SceneAccessorForGameObject.h"
 #include "IGameObjectAccessor.h"
 #include "Camera.h"
-#include "TransformComponent.h"
+#include "CTransform2D.h"

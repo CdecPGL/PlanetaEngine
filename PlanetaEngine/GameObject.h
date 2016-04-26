@@ -9,5 +9,7 @@ namespace planeta_engine {
 	template<typename... GOI>
 	class GameObject : public GameObjectBase , public GOI... {
 		static_assert(std::is_base_of<GameObjectInterface, GOI>::value == false, "GOI must derive GameObjectInterface.")...;
+	public:
+		GameObject():GOI(*this)... {}
 	};
 }

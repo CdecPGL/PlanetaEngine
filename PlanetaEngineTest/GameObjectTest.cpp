@@ -3,7 +3,7 @@
 #include "GameObject.h"
 #include "GameObjectSetUpper.h"
 #include "GameObjectAccessorForSetUp.h"
-#include "PlanetComponent.h"
+#include "CPlanet.h"
 #include "GameObjectManager.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

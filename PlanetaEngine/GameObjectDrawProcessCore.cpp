@@ -1,11 +1,11 @@
 #include "GameObjectDrawProcessCore.h"
-#include "DrawComponent.h"
+#include "CDraw2D.h"
 #include "SystemLog.h"
 
 namespace planeta_engine{
 	namespace system_processes {
 
-		bool GameObjectDrawProcessCore::Remove(const std::shared_ptr<components::DrawComponent>& draw_component)
+		bool GameObjectDrawProcessCore::Remove(const std::shared_ptr<CDraw2D>& draw_component)
 		{
 			auto it = _draw_component_map.find(draw_component.get());
 			if (it == _draw_component_map.end()) { return false; }
