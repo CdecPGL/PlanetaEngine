@@ -4,9 +4,7 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
-	namespace components {
-		class CGround2D;
-	}
+	class CGround2D;
 	class Transform2DCore {
 	public:
 		Transform2DCore() = default;
@@ -36,10 +34,10 @@ namespace planeta_engine {
 		virtual void global_velocity(const Vector2Dd& vel) = 0;
 
 		/*地形関係*/
-		virtual components::CGround2D& ground() = 0;
-		virtual utility::WeakPointer<components::CGround2D> GetGround()const = 0;
+		virtual CGround2D& ground() = 0;
+		virtual utility::WeakPointer<CGround2D> GetGround()const = 0;
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
-		virtual void SetGround(const utility::WeakPointer<components::CGround2D>& g, bool keep_global_position) = 0;
+		virtual void SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position) = 0;
 
 		virtual void SetParent(Transform2DCore* parent) = 0;
 	protected:

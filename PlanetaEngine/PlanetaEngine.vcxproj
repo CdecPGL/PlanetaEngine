@@ -145,7 +145,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
-    <ClInclude Include="GameObjectComponentSystemSetUpper.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
@@ -197,7 +196,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
-    <ClInclude Include="GameObjectDrawComponentProcessRegistrator.h" />
     <ClInclude Include="GameObjectNormalComponent.h" />
     <ClInclude Include="GameObjectSpecialComponent.h" />
     <ClInclude Include="NonCopyable.h" />
@@ -392,7 +390,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DataContainerSerializeUtility.cpp" />
     <ClCompile Include="GameObjectBase.cpp" />
     <ClCompile Include="GameObjectComponentHolder.cpp" />
-    <ClCompile Include="GameObjectComponentSystemSetUpper.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="TGameObjectOperation.cpp" />

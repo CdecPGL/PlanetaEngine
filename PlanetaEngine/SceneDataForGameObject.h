@@ -10,11 +10,9 @@ namespace planeta_engine {
 		class GameObjectDrawProcessCore;
 	}
 	namespace core {
-		class GameObjectDrawComponentProcessRegistrator;
 		struct SceneDataForGameObject {
 			utility::WeakPointer<system_processes::TCollisionDetect> collision_detect_process;
 			utility::WeakPointer<system_processes::GameObjectDrawProcessCore> draw_component_process_registrator;
-//			std::shared_ptr<GameObjectDrawComponentProcessRegistrator> draw_component_process_registrator;
 		};
 	}
 }
