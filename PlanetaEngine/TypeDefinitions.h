@@ -3,10 +3,8 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
-	namespace game {
-		class IGameObjectAccessor;
-	}
-	using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
+	class IGameObject;
+	using GameObjectAccessorType = utility::WeakPointer<IGameObject>;
 	template<class CT>
 	using GOComponentAccessorType = utility::WeakPointer<CT>;
 }

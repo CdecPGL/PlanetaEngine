@@ -8,7 +8,7 @@
 #include "boost/lexical_cast.hpp"
 
 namespace planeta_engine {
-	namespace game {
+	/*namespace game {
 		bool GUIManager::Process()
 		{
 			return true;
@@ -181,5 +181,5 @@ namespace planeta_engine {
 			return true;
 		}
 
-	}
+	}*/
 }

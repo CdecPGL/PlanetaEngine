@@ -11,5 +11,12 @@ namespace planeta_engine {
 		static_assert(std::is_base_of<GameObjectInterface, GOI>::value == false, "GOI must derive GameObjectInterface.")...;
 	public:
 		GameObject():GOI(*this)... {}
+	private:
+		//ƒVƒXƒeƒ€ŠÖ”‚Ì‰B•Á
+		bool ProcessActivation();
+		bool ProcessInactivation();
+		bool ProcessDisposal();
+		void SetManagerConnection();
+		void SetSceneAccessor();
 	};
 }

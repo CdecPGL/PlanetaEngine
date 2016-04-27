@@ -4,14 +4,12 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
-	namespace game {
-		class IGameObjectAccessor;
-	}
+	class IGameObjectAccessor;
 	namespace event_arguments {
-		class CollisionEventArgument : public core::Object{
+		class CollisionEventArgument : public core::Object {
 		public:
-			CollisionEventArgument(game::IGameObjectAccessor& go) :game_object(go) {}
-			game::IGameObjectAccessor& game_object;
+			CollisionEventArgument(IGameObjectAccessor& go) :game_object(go) {}
+			IGameObjectAccessor& game_object;
 		};
 	}
 }

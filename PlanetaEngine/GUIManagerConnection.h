@@ -2,7 +2,7 @@
 
 
 namespace planeta_engine {
-	namespace core {
+	/*namespace core {
 		struct SceneDataForGUI;
 	}
 	namespace game {
@@ -20,5 +20,5 @@ namespace planeta_engine {
 			int layer_;
 			GUIObject* pointer_;
 		};
-	}
+	}*/
 }

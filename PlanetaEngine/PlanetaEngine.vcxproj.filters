@@ -202,6 +202,12 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D">
       <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjects">
+      <UniqueIdentifier>{dfe1d2e1-4581-4384-8a5b-f68d5b40f2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectInterface">
+      <UniqueIdentifier>{8f00986c-a368-4763-9128-2370d73c0055}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -347,9 +353,6 @@
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>PlanetaEngine\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="MakeSharedGameObject.h">
-      <Filter>PlanetaEngine\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="InitEnd.h">
       <Filter>PlanetaEngine\InitEnd</Filter>
@@ -609,9 +612,6 @@
     <ClInclude Include="GraphDrawData2D.h">
       <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
     </ClInclude>
-    <ClInclude Include="InsertPosIndication.h">
-      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="DebugDrawInterface.h">
       <Filter>PlanetaEngine\Debug</Filter>
     </ClInclude>
@@ -711,15 +711,6 @@
     <ClInclude Include="Task.h">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
-    <ClInclude Include="TaskKeyPositionDefinition.h">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskSystemKeyPositions.h">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskRegistrationData.h">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClInclude>
     <ClInclude Include="TaskSystemSetUpper.h">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
@@ -729,13 +720,7 @@
     <ClInclude Include="TaskWithRefrection.h">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
-    <ClInclude Include="TaskListTypes.h">
-      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="TaskManager.h">
-      <Filter>PlanetaEngine\Game\Task\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskPosition.h">
       <Filter>PlanetaEngine\Game\Task\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneAccessorForTask.h">
@@ -745,9 +730,6 @@
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClInclude>
     <ClInclude Include="SAImplTaskGetFunctions.h">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
-    </ClInclude>
-    <ClInclude Include="SAImplTaskKeyPositionFunctions.h">
       <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClInclude>
     <ClInclude Include="TaskManagerPublicInterface.h">
@@ -848,6 +830,30 @@
     </ClInclude>
     <ClInclude Include="TCollisionDetect.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask</Filter>
+    </ClInclude>
+    <ClInclude Include="GIGameObject2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GIGUIObject2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GIGroundObject2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="GGameObject2DTemplate.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GGroundObject2DTemplate.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GGUIObjectTemplate.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskSlot.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManagerConnection.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1109,20 +1115,11 @@
     <ClCompile Include="Task.cpp">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClCompile>
-    <ClCompile Include="TaskKeyPositionDefinition.cpp">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskSystemKeyPositions.cpp">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClCompile>
     <ClCompile Include="TaskWithRefrection.cpp">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClCompile>
     <ClCompile Include="TaskManager.cpp">
       <Filter>PlanetaEngine\Game\Task\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SAImplTaskKeyPositionFunctions.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SceneAccessorImpl</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectComponentHolder.cpp">
       <Filter>PlanetaEngine\Game\GameObject\Component</Filter>
@@ -1195,6 +1192,9 @@
     </ClCompile>
     <ClCompile Include="TCollisionDetect.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManagerConnection.cpp">
+      <Filter>PlanetaEngine\Game\Task</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

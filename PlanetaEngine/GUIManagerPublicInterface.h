@@ -4,7 +4,7 @@
 #include <functional>
 
 namespace planeta_engine {
-	namespace game {
+	/*namespace game {
 		class GUIObject;
 		class GUIManagerPublicInterface {
 		public:
@@ -17,5 +17,5 @@ namespace planeta_engine {
 		private:
 			virtual std::shared_ptr<GUIObject> CreateGUIObject(const std::function<std::shared_ptr<GUIObject>()>& creator,int layer) = 0;
 		};
-	}
+	}*/
 }

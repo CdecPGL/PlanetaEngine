@@ -3,46 +3,40 @@
 #include "Object.h"
 #include "WeakPointer.h"
 #include "WeakPointerDelegate.h"
-#include "TaskPosition.h"
 #include "NonCopyable.h"
 
-namespace planeta_engine{
+namespace planeta_engine {
 	class SceneAccessorForTask;
-	namespace core{
+	namespace core {
 		class IGameAccessor;
 		struct SceneDataForTask;
-		struct TaskRegistrationData;
+		struct TaskManagerConnection;
 	}
-	namespace game{
-		class IGameObjectAccessor;
-		class Task :
-			public core::Object , private utility::NonCopyable<Task>
-		{
-		public:
-			using GameObjectAccessorType = utility::WeakPointer<game::IGameObjectAccessor>;
-			Task(core::IGameAccessor& gameaccess):game_(gameaccess){}
-			virtual ~Task();
-			virtual void Update() = 0;
-			void Dispose();
-			/*システム関数*/
-			bool SystemSetUpAndInitialize(const core::TaskRegistrationData& resistration_data, const core::SceneDataForTask& special_setup_data);
-			/*ゲームプロセスリストでの位置*/
-			const core::TaskPosition& game_process_position()const;
-			/*イベント*/
-			/*プロセスが破棄された*/
-			utility::WeakPointerDelegate<void> disposed;
-			/*ユーティリティ関数*/
-			
-		protected:
-			core::IGameAccessor& game_accessor() { return game_; }
-			SceneAccessorForTask& scene() { return *scene_accessor_; }
-		private:
-			core::IGameAccessor& game_;
-			utility::WeakPointer<SceneAccessorForTask> scene_accessor_;
-			virtual bool OnCreated() { return true; }
-			virtual void OnDisposed() {}
-			std::function<void()> disposer_;
-			std::unique_ptr<core::TaskPosition> gameprocess_position_;
-		};
-	}
+	class IGameObject;
+	class Task :
+		public core::Object, private utility::NonCopyable<Task> {
+	public:
+		using GameObjectAccessorType = utility::WeakPointer<IGameObject>;
+		Task(core::IGameAccessor& gameaccess) :game_(gameaccess) {}
+		virtual ~Task();
+		virtual void Update() = 0;
+		bool Pause();
+		bool Resume();
+		void Dispose();
+		/*システム関数*/
+		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const core::SceneDataForTask& special_setup_data);
+		/*イベント*/
+		/*プロセスが破棄された*/
+		utility::WeakPointerDelegate<void> disposed;
+		/*ユーティリティ関数*/
+
+	protected:
+		core::IGameAccessor& game_accessor() { return game_; }
+		SceneAccessorForTask& scene();
+	private:
+		core::IGameAccessor& game_;
+		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
+		virtual bool OnCreated() { return true; }
+		virtual void OnDisposed() {};
+	};
 }

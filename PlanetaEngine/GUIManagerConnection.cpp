@@ -3,7 +3,7 @@
 #include "GUIManager.h"
 
 namespace planeta_engine {
-	namespace game {
+	/*namespace game {
 
 		bool GUIManagerConnection::Show()
 		{
@@ -24,5 +24,5 @@ namespace planeta_engine {
 			return gui_manager_.RefSceneData();
 		}
 
-	}
+	}*/
 }
