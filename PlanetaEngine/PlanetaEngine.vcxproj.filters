@@ -717,9 +717,6 @@
     <ClInclude Include="SceneDataForTask.h">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
-    <ClInclude Include="TaskWithRefrection.h">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClInclude>
     <ClInclude Include="TaskManager.h">
       <Filter>PlanetaEngine\Game\Task\Manager</Filter>
     </ClInclude>
@@ -853,6 +850,9 @@
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
     <ClInclude Include="TaskManagerConnection.h">
+      <Filter>PlanetaEngine\Game\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemTaskSlot.h">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1113,9 +1113,6 @@
       <Filter>PlanetaEngine\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="Task.cpp">
-      <Filter>PlanetaEngine\Game\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskWithRefrection.cpp">
       <Filter>PlanetaEngine\Game\Task</Filter>
     </ClCompile>
     <ClCompile Include="TaskManager.cpp">

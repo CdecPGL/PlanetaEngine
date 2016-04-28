@@ -167,6 +167,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
+    <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
     <ClInclude Include="TCollisionDetect.h" />
@@ -252,7 +253,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="TaskManagerPublicInterface.h" />
-    <ClInclude Include="TaskWithRefrection.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="CGraph2DAnimator.h" />
     <ClInclude Include="GraphDrawData2D.h" />
@@ -394,7 +394,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="TGameObjectOperation.cpp" />
-    <ClCompile Include="TaskWithRefrection.cpp" />
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="TInstant.cpp" />

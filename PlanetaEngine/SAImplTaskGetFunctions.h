@@ -10,9 +10,9 @@ namespace planeta_engine {
 			explicit SAImplTaskGetFunctions(core::ScenePublicInterface& spi) :game_process_manager_public_interface_(spi.game_process_manager()) {}
 			/*ゲームプロセスを型から取得する*/
 			template<class C>
-			utility::WeakPointer<C> GetTask()const { return game_process_manager_public_interface_.GetProcess<C>(); }
+			utility::WeakPointer<C> GetTask()const { return game_process_manager_public_interface_.GetTask<C>(); }
 			/*ゲームプロセスを名前から取得する*/
-			utility::WeakPointer<game::Task> GetTask(const std::string& name) { return game_process_manager_public_interface_.GetProcess(name); }
+			utility::WeakPointer<game::Task> GetTask(const std::string& name) { return game_process_manager_public_interface_.GetTask(name); }
 		private:
 			game::TaskManagerPublicInterface& game_process_manager_public_interface_;
 		};
