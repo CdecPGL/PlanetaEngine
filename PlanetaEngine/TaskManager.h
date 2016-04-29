@@ -34,7 +34,7 @@ namespace planeta_engine {
 		/*管理処理*/
 		bool Process();
 
-		/*システムタスク追加(システムタスクはIDマップや名前マップに登録されないため、削除不可能)*/
+		/*システムタスク追加(システムタスク削除不可能)*/
 		template<class C>
 		utility::WeakPointer<C> AddSystemProcess(SystemTaskSlot sys_task_slot) {
 			static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");

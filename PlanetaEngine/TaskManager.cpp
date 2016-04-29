@@ -76,35 +76,47 @@ namespace planeta_engine {
 	//////////////////////////////////////////////////////////////////////////
 	class TaskManager::Impl_ {
 	public:
+		struct TaskData;
 		core::IGameAccessor& game_;
 		//タスク群タイプ
-		using TaskGroup = std::list<std::shared_ptr<Task>>;
-		/*内部位置*/
-		struct InternalPosition {
-			InternalPosition(int gn, const TaskGroup::iterator& it) :group_number(gn), iterator_at_task_group(it) {}
-			int group_number;
-			TaskGroup::iterator iterator_at_task_group;
+		using TaskGroupType = std::list<Task*>;
+		//タスクリストタイプ
+		using TaskListType = std::list<std::shared_ptr<TaskData>>;
+		//名前マップタイプ
+		using NameMapType = std::unordered_map<std::string, std::shared_ptr<TaskData>>;
+		/*タスクの状態(順に、実行中、停止中、破棄された)*/
+		enum class TaskState { Running, Pausing, Disposed };
+		/*タスクの情報*/
+		struct TaskData {
+			TaskData() = default;
+			TaskData(const TaskData&) = delete;
+			TaskData& operator=(const TaskData&) = delete;
+			std::shared_ptr<Task> task;
+			TaskListType::iterator iterator_at_task_list;
+			NameMapType::iterator iterator_at_name_map;
+			bool is_named = false;
+			int group_number; //所属しているタスクグループ番号
+			TaskGroupType::iterator iterator_at_runnning_task_group; //所属しているタスクグループでのイテレータ
+			TaskState state = TaskState::Pausing;
 		};
 	private:
 		//タスク群リスト
-		std::array<TaskGroup, SLOT_COUNT> task_group_list_;
+		std::array<TaskGroupType, SLOT_COUNT> running_task_group_list_;
 		//有効スロットビットマップ
 		std::bitset<SLOT_COUNT> valid_slot_bitmap_;
 
-		/*IDマップ。<id,リスト内位置>*/
-		using TaskIDMapType = std::unordered_map<Task*, InternalPosition>;
-		TaskIDMapType task_id_map_;
-		/*名前IDマップ。<タスク名,ID>*/
-		using TaskNameMapType = std::unordered_map<std::string, Task*>;
-		TaskNameMapType task_name_id_map_;
-		/*登録解除リスト*/
-		std::vector<InternalPosition> dispose_list_;
+		/*タスクリスト*/
+		TaskListType task_list_;
+		/*名前マップ。<タスク名,タスクID>*/
+		NameMapType task_name_map_;
+		/*管理処理リスト*/
+		std::vector<std::function<void()>> management_process_list_;
 
 		std::shared_ptr<SceneAccessorForTask> scene_accessor_;
 		std::unique_ptr<core::SceneDataForTask> scene_data_;
 	public:
 		Impl_(core::IGameAccessor& engine):game_(engine) {}
-
+		//////////////////////////////////////////////////////////////////////////
 		void SetSceneInterface(core::ScenePublicInterface& spi) {
 			scene_accessor_ = std::make_shared<SceneAccessorForTask>(spi);
 		}
@@ -112,74 +124,117 @@ namespace planeta_engine {
 		void SetSceneData(const core::SceneData& scene_data) {
 			scene_data_ = std::make_unique<core::SceneDataForTask>();
 		}
-
-		/*プロセスの設定*/
-		void SetupTask_(const std::shared_ptr<Task>& game_process, const InternalPosition& pos) {
+		//////////////////////////////////////////////////////////////////////////
+		/*タスク削除要請*/
+		bool DisposeTaskRequest(TaskData& tdata) {
+			if (tdata.state == TaskState::Disposed) { return false; }
+			//削除処理を追加
+			management_process_list_.push_back([&tdata, this] {
+				DisposeTask(tdata);
+			});
+			tdata.state = TaskState::Disposed;
+			return true;
+		}
+		/*タスク停止要請*/
+		bool PauseTaskRequest(TaskData& tdata) {
+			if (tdata.state != TaskState::Running) { return false; }
+			//削除処理を追加
+			management_process_list_.push_back([&tdata, this] {
+				InctivateTask(tdata);
+			});
+			tdata.state = TaskState::Pausing;
+			return true;
+		}
+		/*タスク再開要請*/
+		bool ResumeTaskRequest(TaskData& tdata) {
+			if (tdata.state != TaskState::Pausing) { return false; }
+			//削除処理を追加
+			management_process_list_.push_back([&tdata, this] {
+				ActivateTask(tdata);
+			});
+			tdata.state = TaskState::Running;
+			return true;
+		}
+		//////////////////////////////////////////////////////////////////////////
+		/*タスクの有効化*/
+		void ActivateTask(TaskData& tdata) {
+			assert(tdata.state == TaskState::Running);
+			running_task_group_list_[tdata.group_number].push_back(tdata.task.get());
+			tdata.iterator_at_runnning_task_group = --running_task_group_list_[tdata.group_number].end();
+		}
+		/*タスクの無効化*/
+		bool InctivateTask(TaskData& tdata) {
+			assert(tdata.state == TaskState::Running);
+			running_task_group_list_[tdata.group_number].erase(tdata.iterator_at_runnning_task_group);
+		}
+		/*タスクの破棄*/
+		bool DisposeTask(TaskData& tdata) {
+			assert(tdata.state != TaskState::Disposed);
+			if (tdata.state == TaskState::Running) { //実行中だったら無効化する。
+				InctivateTask(tdata);
+			}
+			task_list_.erase(tdata.iterator_at_task_list); //タスクリストから削除
+			if (tdata.is_named) {
+				task_name_map_.erase(tdata.iterator_at_name_map); //名前マップから削除
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////
+		/*タスクの設定*/
+		void SetupTask(const std::shared_ptr<TaskData> tdata, bool is_system_task) {
+			//ここでラムダ関数がtdataのシェアポをキャプチャしておくことで、tdata使用中の解放を防ぐ。
 			std::unique_ptr<core::TaskManagerConnection> manager_connection = std::make_unique<core::TaskManagerConnection>(
-				[]() ->bool {}, //Pauser
-				[]() ->bool {}, //Resumer
-				[]() {}, //Disposer
+				[this, tdata] {return PauseTaskRequest(*tdata); }, //Pauser
+				[this, tdata] {return ResumeTaskRequest(*tdata); }, //Resumer
+				is_system_task ?
+				std::function<void()>([] { debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "システムタスクを削除しようとしました。"); }) :
+				[this, tdata] { DisposeTaskRequest(*tdata); }, //Disposer(システムタスクの場合は削除できないDisposerをセット)
 				scene_accessor_
 				);
-			game_process->SystemSetUpAndInitialize(std::move(manager_connection), *scene_data_);
+			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), *scene_data_);
 		}
-		/*タスクをリストに登録*/
-		InternalPosition RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number) {
-			task_group_list_[group_number].push_back(task);
-			return InternalPosition(group_number, --task_group_list_[group_number].end());
+		/*タスクをマップに登録*/
+		std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number) {
+			auto ptdata = std::make_shared<TaskData>();
+			ptdata->task = task;
+			ptdata->group_number = group_number;
+			task_list_.push_back(ptdata);
+			return ptdata;
 		}
 		/*名前を登録*/
-		bool RegisterTaskName(const std::string& name, Task* id) {
-			task_name_id_map_.emplace(name, id);
+		bool RegisterTaskName(const std::string& name, const std::shared_ptr<TaskData>& ptdata) {
+			//名前マップに登録し、タスクデータにそのイテレータをセットする。
+			ptdata->iterator_at_name_map = task_name_map_.emplace(name, ptdata).first;
+			ptdata->is_named = true;
 			return true;
 		}
-		/*IDマップにプロセス登録*/
-		bool RegisterToIDMap(Task* id, const InternalPosition& pos_at_plist) {
-			task_id_map_.emplace(id, pos_at_plist);
-			return true;
-		}
-		/*位置でプロセス削除*/
-		bool RemoveTask(const InternalPosition& pos) {
-			//登録解除リストに追加
-			dispose_list_.push_back(pos);
-			return true;
-		}
-		/*破棄リストを処理する*/
-		void ProcessDisposeList() {
-			for (auto& pos : dispose_list_) {
-				auto& task_group = task_group_list_[pos.group_number];
-				task_group.erase(pos.iterator_at_task_group);
+		/*管理処理Queを処理する*/
+		void HandleManagementQue() {
+			for (auto& prc : management_process_list_) {
+				prc();
 			}
-			dispose_list_.clear();
+			management_process_list_.clear();
 		}
 
 		std::shared_ptr<Task> GetTask(const std::string& name) {
-			auto nit = task_name_id_map_.find(name);
-			if (nit == task_name_id_map_.end()) { return nullptr; }
-			auto pit = task_id_map_.find(nit->second);
-			if (pit == task_id_map_.end()) {
-				task_name_id_map_.erase(nit);
-				return nullptr;
-			} else {
-				return *pit->second.iterator_at_task_group;
-			}
+			auto nit = task_name_map_.find(name);
+			return nit == task_name_map_.end() ? nullptr : nit->second->task;
 		}
 		//有効なタスクのメンバ関数を実行
 		void ExcuteValidTasksFunction(void(Task::* func)()) {
 			for (int i = 0; i < TASK_SLOT_SIZE; ++i) {
 				if (valid_slot_bitmap_[i]) { //有効なものだけ実行
-					auto & tg = task_group_list_[i];
+					auto & tg = running_task_group_list_[i];
 					for (auto& t : tg) {
-						(t.get()->*func)();
+						(t->*func)();
 					}
 				}
 			}
 		}
 		//全削除
 		void AllClear() {
-			dispose_list_.clear();
-			task_name_id_map_.clear();
-			task_id_map_.clear();
+			management_process_list_.clear();
+			task_name_map_.clear();
+			task_list_.clear();
 		}
 	};
 
@@ -195,13 +250,13 @@ namespace planeta_engine {
 	}
 
 	bool TaskManager::Process() {
-		//登録解除リストのプロセスを削除する
-		impl_->ProcessDisposeList();
+		//管理処理を行う
+		impl_->HandleManagementQue();
 		return true;
 	}
 
 	void TaskManager::Finalize() {
-		impl_->ProcessDisposeList(); //破棄リスト処理
+		impl_->HandleManagementQue(); //管理処理
 		//まだ存在するプロセスの終了処理を行う
 		impl_->ExcuteValidTasksFunction(&Task::Dispose);
 		//全部クリア
@@ -223,24 +278,24 @@ namespace planeta_engine {
 	std::shared_ptr<Task> TaskManager::CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot) {
 		auto task = creator(impl_->game_);
 		int group_number = GetGroupNumberFromSlot(slot);
-		Impl_::InternalPosition pos = impl_->RegisterTaskToList(task, group_number);
-		impl_->SetupTask_(task, pos);
-		return impl_->RegisterToIDMap(task.get(), pos) ? task : nullptr;
+		auto ptdata = impl_->RegisterTaskToList(task, group_number);
+		impl_->SetupTask(ptdata, false);
+		return task;
 	}
 
 	std::shared_ptr<Task> TaskManager::CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot, const std::string& name) {
 		auto task = creator(impl_->game_);
 		int group_number = GetGroupNumberFromSlot(slot);
-		Impl_::InternalPosition pos = impl_->RegisterTaskToList(task, group_number);
-		impl_->SetupTask_(task, pos);
-		return (impl_->RegisterToIDMap(task.get(), pos) && impl_->RegisterTaskName(name, task.get())) ? task : nullptr;
+		auto ptdata = impl_->RegisterTaskToList(task, group_number);
+		impl_->SetupTask(ptdata, false);
+		return impl_->RegisterTaskName(name, ptdata) ? task : nullptr;
 	}
 
 	std::shared_ptr<Task> TaskManager::CreateSystemTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, core::SystemTaskSlot slot) {
 		auto task = creator(impl_->game_);
 		int group_number = GetGroupNumberFromSystemSlot(slot);
-		Impl_::InternalPosition pos = impl_->RegisterTaskToList(task, group_number);
-		impl_->SetupTask_(task, pos);
+		auto ptdata = impl_->RegisterTaskToList(task, group_number);
+		impl_->SetupTask(ptdata, true);
 		return task;
 	}
 
