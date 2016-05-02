@@ -5,21 +5,21 @@
 #include <functional>
 #include "Object.h"
 #include "SceneAccessorForSetUp.h"
-#include "ScenePublicInterface.h"
 #include "WeakPointer.h"
 #include "NonCopyable.h"
 
-#include "GameObjectManager.h"
-#include "TaskManager.h"
 #include "Camera.h"
 
 namespace planeta_engine{
+	class GameObjectManager;
+	class TaskManager;
 	namespace core{
 		class IGameAccessor;
 		class Screen;
 		struct SceneData;
+		class CollisionWorld;
 		class Scene : public Object,public std::enable_shared_from_this<Scene>
-			,public ScenePublicInterface,private utility::NonCopyable<Scene>{
+			,private utility::NonCopyable<Scene>{
 		public:
 			Scene(IGameAccessor& game);
 			~Scene();
@@ -29,12 +29,7 @@ namespace planeta_engine{
 			bool Finalize();
 			/*シーンの更新*/
 			void Update();
-			/*プロセスマネージャのインスタンスを取得*/
-			TaskManager& game_process_manager()override { assert(game_process_manager_ != nullptr); return *game_process_manager_; }
-			/*ゲームオブジェクトマネージャのインスタンスを取得*/
-			GameObjectManager& game_object_manager()override { assert(game_object_manager_ != nullptr); return *game_object_manager_; }
 
-			Camera& camera()override { return *camera_; }
 			/*ゲームクラスへのアクセス*/
 			IGameAccessor& game_accessor() { return game_; }
 
@@ -42,19 +37,19 @@ namespace planeta_engine{
 			SceneData& RefSceneData() { return *scene_data_; }
 
 			/*初期化用関数*/
-			void RegisterSceneInterfaceToModules();
 			void PrepareSceneData();
 			void RegisterSceneDataToModules();
+
 		private:
 			IGameAccessor& game_;
-			/*シーンモジュール*/
 			std::unique_ptr<TaskManager> game_process_manager_; //ゲームプロセスマネージャ
 			std::unique_ptr<GameObjectManager> game_object_manager_; //ゲームオブジェクトマネージャ
+			std::unique_ptr<CollisionWorld> collision_world_; //コリジョンワールド
 			bool ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc); //シーンモジュールに操作を適用する
 
 			std::unique_ptr<Camera> camera_;
 
-			std::unique_ptr<SceneData> scene_data_; //シーンデータ
+			std::shared_ptr<SceneData> scene_data_; //シーンデータ
 		};
 	}
 }

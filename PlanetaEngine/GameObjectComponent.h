@@ -34,13 +34,10 @@ namespace planeta_engine {
 	protected:
 		//保持されているゲームオブジェクトへの参照
 		IGameObject& game_object;
-		SceneAccessorForGameObject& scene() { return *scene_accessor_; }
 	private:
 		bool is_valied_ = false;
 		bool is_active_ = false;
 		int id_;
-
-		utility::WeakPointer<SceneAccessorForGameObject> scene_accessor_;
 
 		/*特別設定関数*/
 		virtual bool SpecialSetUp(const core::SceneDataForGameObject& setup_data) = 0;

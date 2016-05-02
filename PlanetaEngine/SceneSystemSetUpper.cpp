@@ -8,7 +8,7 @@
 #include "GameObject.h"
 #include "CTransform2D.h"
 
-#include "TCollisionDetect.h"
+#include "CollisionWorld.h"
 #include "GameObjectDrawProcessCore.h"
 #include "TInstant.h"
 
@@ -26,9 +26,9 @@ namespace planeta_engine {
 			auto& p_mgr = scene.game_process_manager();
 			//システムプロセス追加
 			//衝突判定タスク
-			auto col_det_proc = p_mgr.AddSystemTask<system_processes::TCollisionDetect>(SystemTaskSlot::CollitionDetectPhase);
+			auto col_det_proc = p_mgr.AddSystemTask<system_processes::CollisionWorld>(SystemTaskSlot::CollitionDetectPhase);
 			col_det_proc->SetCollisionGroupMatrix(scene.game_accessor().GetCollisionGroupMatrix());
-			scene_data.collision_detect_process = col_det_proc;
+			scene_data.collision_world = col_det_proc;
 			//描画タスク
 			auto godpc = std::make_shared<system_processes::GameObjectDrawProcessCore>();
 			auto godp = p_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);

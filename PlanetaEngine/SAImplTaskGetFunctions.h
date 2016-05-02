@@ -12,9 +12,9 @@ namespace planeta_engine {
 			template<class C>
 			utility::WeakPointer<C> GetTask()const { return game_process_manager_public_interface_.GetTask<C>(); }
 			/*ゲームプロセスを名前から取得する*/
-			utility::WeakPointer<game::Task> GetTask(const std::string& name) { return game_process_manager_public_interface_.GetTask(name); }
+			utility::WeakPointer<Task> GetTask(const std::string& name) { return game_process_manager_public_interface_.GetTask(name); }
 		private:
-			game::TaskManagerPublicInterface& game_process_manager_public_interface_;
+			TaskManagerPublicInterface& game_process_manager_public_interface_;
 		};
 	}
 }

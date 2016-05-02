@@ -4,12 +4,11 @@
 
 namespace planeta_engine {
 	class SceneAccessorForGameObject;
-	class GameObject;
+	class IGameObject;
 	namespace core {
 		struct GameObjectComponentRegistrationData {
 			int id;
-			utility::WeakPointer<SceneAccessorForGameObject> scene_accessor;
-			utility::WeakPointer<GameObject> holder_game_object;
+			utility::WeakPointer<IGameObject> holder_game_object;
 		};
 	}
 }

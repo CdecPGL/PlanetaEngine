@@ -6,16 +6,19 @@
 namespace planeta_engine {
 	class ScreenDrawer2D;
 	class ScreenDrawerGUI;
-	namespace system_processes {
-		class TCollisionDetect;
+	class GameObjectManagerPublicInterface;
+	class TaskManagerPublicInterface;
+	namespace core {
+		class CollisionWorld;
 		class GameObjectDrawProcessCore;
 	}
 	namespace core {
 		struct SceneData {
-			utility::WeakPointer<system_processes::TCollisionDetect> collision_detect_process;
-			utility::WeakPointer<system_processes::GameObjectDrawProcessCore> draw_component_process_registrator;
+			GameObjectManagerPublicInterface& game_object_manager_public_interface;
+			TaskManagerPublicInterface& task_manager_public_interface;
+			utility::WeakPointer<core::CollisionWorld> collision_world;
+			utility::WeakPointer<core::GameObjectDrawProcessCore> draw_component_process_registrator;
 			std::shared_ptr<ScreenDrawer2D> screen_drawer_2d;
-			std::shared_ptr<ScreenDrawerGUI> screen_drawer_ui;
 		};
 	}
 }

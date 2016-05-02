@@ -112,17 +112,12 @@ namespace planeta_engine {
 		/*管理処理リスト*/
 		std::vector<std::function<void()>> management_process_list_;
 
-		std::shared_ptr<SceneAccessorForTask> scene_accessor_;
-		std::unique_ptr<core::SceneDataForTask> scene_data_;
+		utility::WeakPointer<core::SceneData> scene_data_;
 	public:
 		Impl_(core::IGameAccessor& engine):game_(engine) {}
 		//////////////////////////////////////////////////////////////////////////
-		void SetSceneInterface(core::ScenePublicInterface& spi) {
-			scene_accessor_ = std::make_shared<SceneAccessorForTask>(spi);
-		}
-
-		void SetSceneData(const core::SceneData& scene_data) {
-			scene_data_ = std::make_unique<core::SceneDataForTask>();
+		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
+			scene_data_ = scene_data_;
 		}
 		//////////////////////////////////////////////////////////////////////////
 		/*タスク削除要請*/
@@ -245,14 +240,13 @@ namespace planeta_engine {
 
 	TaskManager::~TaskManager() = default;
 
-	void TaskManager::Update() {
+	void TaskManager::ExcuteTask() {
 		impl_->ExcuteValidTasksFunction(&Task::Update);
 	}
 
-	bool TaskManager::Process() {
+	void TaskManager::Update() {
 		//管理処理を行う
 		impl_->HandleManagementQue();
-		return true;
 	}
 
 	void TaskManager::Finalize() {
@@ -263,11 +257,7 @@ namespace planeta_engine {
 		impl_->AllClear();
 	}
 
-	void TaskManager::SetSceneInterface(core::ScenePublicInterface& spi) {
-		impl_->SetSceneInterface(spi);
-	}
-
-	void TaskManager::SetSceneData(const core::SceneData& scene_data) {
+	void TaskManager::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
 		impl_->SetSceneData(scene_data);
 	}
 

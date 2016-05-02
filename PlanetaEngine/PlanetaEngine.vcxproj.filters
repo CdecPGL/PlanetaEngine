@@ -154,9 +154,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\Tasks">
       <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask">
-      <UniqueIdentifier>{4a60c919-c77b-43bf-bb00-208bcc37989d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask">
       <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
     </Filter>
@@ -233,9 +230,6 @@
     </ClInclude>
     <ClInclude Include="CollisionWithGroundEventArgument.h">
       <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionDetectFunctions.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask</Filter>
     </ClInclude>
     <ClInclude Include="FontDefinitionResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -449,9 +443,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectManagerPublicInterface.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ScenePublicInterface.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
@@ -837,9 +828,6 @@
     <ClInclude Include="TGameObjectOperation.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClInclude>
-    <ClInclude Include="TCollisionDetect.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask</Filter>
-    </ClInclude>
     <ClInclude Include="GIGameObject2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
     </ClInclude>
@@ -866,6 +854,12 @@
     </ClInclude>
     <ClInclude Include="SystemTaskSlot.h">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionDetectFunctions.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionWorld.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -943,9 +937,6 @@
     </ClCompile>
     <ClCompile Include="INIFileResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionDetectFunctions.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -1199,11 +1190,14 @@
     <ClCompile Include="TGameObjectOperation.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClCompile>
-    <ClCompile Include="TCollisionDetect.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\CollisionDetectTask</Filter>
-    </ClCompile>
     <ClCompile Include="TaskManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionDetectFunctions.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionWorld.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

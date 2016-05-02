@@ -57,8 +57,8 @@ namespace planeta_engine {
 		manager_connection_ = std::move(mgr_cnctn);
 	}
 
-	void GameObjectBase::SetSceneAccessor(const utility::WeakPointer<SceneAccessorForGameObject>& scene_accessor) {
-		scene_accessor_ = scene_accessor;
+	void GameObjectBase::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_accessor) {
+		scene_data_ = scene_accessor;
 	}
 
 }

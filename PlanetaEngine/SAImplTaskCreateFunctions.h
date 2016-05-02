@@ -22,36 +22,8 @@ namespace planeta_engine {
 			*/
 			template<class C>
 			utility::WeakPointer<C> CreateTask(const std::string& name, const core::TaskPosition& pos) { return game_process_manager_public_interface_.CreateTask<C>(name, pos); }
-			/**
-			* @brief ゲームプロセスを作成する
-			* @param キーポジション、位置指定
-			* @return 作成したプロセスのWeakPointer
-			*/
-			template<class C>
-			utility::WeakPointer<C> CreateTask(const std::string& key_pos_id) {
-				try {
-					auto pos = game_process_manager_public_interface_.GetKeyPosition(key_pos_id);
-					return game_process_manager_public_interface_.CreateTask<C>(pos);
-				} catch (std::out_of_range&) {
-					return nullptr;
-				}
-			}
-			/**
-			* @brief ゲームプロセスを作成して名前をつける
-			* @param 名前、キーポジション、位置指定
-			* @return 作成したプロセスのWeakPointer
-			*/
-			template<class C>
-			utility::WeakPointer<C> CreateTask(const std::string& name, const std::string& key_pos_id) {
-				try {
-					auto pos = game_process_manager_public_interface_.GetKeyPosition(key_pos_id);
-					return game_process_manager_public_interface_.CreateTask<C>(name, pos);
-				} catch (std::out_of_range&) {
-					return nullptr;
-				}
-			}
 		private:
-			game::TaskManagerPublicInterface& game_process_manager_public_interface_;
+			TaskManagerPublicInterface& game_process_manager_public_interface_;
 		};
 	}
 }

@@ -1,7 +1,6 @@
 #include "GameObjectManager.h"
 #include "GameObjectBase.h"
 #include "TaskManager.h"
-#include "SceneAccessorForGameObject.h"
 #include "SystemLog.h"
 #include "SceneDataForGameObject.h"
 #include "SceneData.h"
@@ -11,13 +10,12 @@ namespace planeta_engine {
 	GameObjectManager::GameObjectManager() :_id_counter(0), factory_(GameObjectFactory::GetInstance()) {};
 	GameObjectManager::~GameObjectManager() = default;
 
-	bool GameObjectManager::Process() {
+	void GameObjectManager::Update() {
 		RemoveProc_();
-		return true;
 	}
 
 	int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObjectBase>& go) {
-		go->SetSceneAccessor(scene_accessor_);
+		go->SetSceneData(scene_data_);
 		int id = _id_counter++;
 		go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
 		inactive_game_objects_.insert(std::make_pair(id, go));
@@ -117,17 +115,11 @@ namespace planeta_engine {
 		RemoveAllGameObjects();
 	}
 
-	void GameObjectManager::SetSceneInterface(core::ScenePublicInterface& spi) {
-		scene_accessor_ = std::make_shared<SceneAccessorForGameObject>(spi);
-	}
-
 	void GameObjectManager::RemoveProc_() {
 		garbage_.clear();
 	}
 
-	void GameObjectManager::SetSceneData(const core::SceneData& scene_data) {
-		scene_data_ = std::make_unique<core::SceneDataForGameObject>();
-		scene_data_->collision_detect_process = scene_data.collision_detect_process;
-		scene_data_->draw_component_process_registrator = scene_data.draw_component_process_registrator;
+	void GameObjectManager::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
+		scene_data_ = scene_data;
 	}
 }

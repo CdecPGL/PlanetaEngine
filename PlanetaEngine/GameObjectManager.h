@@ -14,9 +14,7 @@ namespace planeta_engine {
 	class IGameObject;
 	class GameObjectFactory;
 	namespace core {
-		class ScenePublicInterface;
 		struct SceneData;
-		struct SceneDataForGameObject;
 	}
 	class GameObjectManager final : public core::SceneModule
 		, public GameObjectManagerPublicInterface, private utility::NonCopyable<GameObjectManager> {
@@ -32,13 +30,11 @@ namespace planeta_engine {
 		bool Initialize()override;
 		/*終了処理*/
 		void Finalize()override;
-		/*シーンインターフェイスセット*/
-		void SetSceneInterface(core::ScenePublicInterface& spi)override;
 		/*シーンデータセット*/
-		void SetSceneData(const core::SceneData& scene_data)override;
+		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data)override;
 
 		/*管理処理*/
-		bool Process();
+		void Update()override;
 		/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
 		int RegisterGameObject(const std::shared_ptr<GameObjectBase>& go);
 		int RegisterGameObject(const std::shared_ptr<GameObjectBase>& go, const std::string& name);
@@ -51,9 +47,6 @@ namespace planeta_engine {
 		void TakeOver(const GameObjectManager& gom); //ゲームオブジェクトの引継ぎ処理(未実装)
 		/*すべてのゲームオブジェクトを破棄*/
 		void RemoveAllGameObjects();
-
-		/*シーンデータ参照*/
-		core::SceneDataForGameObject& RefSceneData() { return *scene_data_; }
 	private:
 		std::unordered_map<int, std::shared_ptr<GameObjectBase>> active_game_objects_;
 		std::unordered_map<int, std::shared_ptr<GameObjectBase>> inactive_game_objects_;
@@ -61,8 +54,7 @@ namespace planeta_engine {
 		std::vector<std::shared_ptr<GameObjectBase>> garbage_;
 		void RemoveProc_();
 		int _id_counter;
-		std::shared_ptr<SceneAccessorForGameObject> scene_accessor_;
-		std::unique_ptr<core::SceneDataForGameObject> scene_data_;
+		utility::WeakPointer<core::SceneData> scene_data_;
 		GameObjectFactory& factory_;
 	};
 }

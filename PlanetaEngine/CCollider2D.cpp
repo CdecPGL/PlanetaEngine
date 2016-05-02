@@ -1,6 +1,6 @@
 #include "CCollider2D.h"
 #include "IGameObjectAccessor.h"
-#include "TCollisionDetect.h"
+#include "CollisionWorld.h"
 #include "SystemLog.h"
 #include "SceneAccessorForGameObject.h"
 #include "CTransform2D.h"

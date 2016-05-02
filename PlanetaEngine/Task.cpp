@@ -11,13 +11,10 @@ namespace planeta_engine {
 		manager_connection_->Dispose(); //”jŠü
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const core::SceneDataForTask& special_setup_data) {
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data) {
+		scene_data_ = scene_data;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();
-	}
-
-	SceneAccessorForTask& Task::scene() {
-		return *manager_connection_->ReferenceSceneAccessor();
 	}
 
 	bool Task::Pause() {

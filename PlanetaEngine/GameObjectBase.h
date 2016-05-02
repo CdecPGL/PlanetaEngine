@@ -5,6 +5,9 @@
 #include "NonCopyable.h"
 
 namespace planeta_engine {
+	namespace core {
+		class SceneData;
+	}
 	class GameObjectComponent;
 	class GameObjectManagerConnection;
 	class SceneAccessorForGameObject;
@@ -32,8 +35,8 @@ namespace planeta_engine {
 		bool ProcessDisposal();
 		//マネージャコネクションをセット
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
-		//シーンアクセサをセット
-		void SetSceneAccessor(const utility::WeakPointer<SceneAccessorForGameObject>& scene_accessor);
+		//シーンデータをセット
+		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data);
 
 
 		//静的関数
@@ -61,13 +64,20 @@ namespace planeta_engine {
 		std::vector<utility::WeakPointer<ComT>> GetAllComponents() {
 			return std::move(component_holder_.GetAllComponents<ComT>());
 		}
+		//ゲームオブジェクトを作成
+		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
+		//ゲームオブジェクトを作成して有効化
+		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
+		//タスクをアタッチ
+		template<class T>
+		utility::WeakPointer<Task> AttachTask(TaskSlot slot);
 	private:
 		//自身の弱参照
 		std::weak_ptr<GameObjectBase> this_weak_ptr_;
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 		//シーンアクセサ
-		utility::WeakPointer<SceneAccessorForGameObject> scene_accessor_;
+		utility::WeakPointer<core::SceneData> scene_data_;
 		//コンポーネントホルダー
 		GameObjectComponentHolder component_holder_;
 

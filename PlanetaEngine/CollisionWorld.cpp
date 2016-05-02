@@ -1,4 +1,4 @@
-#include "TCollisionDetect.h"
+#include "CollisionWorld.h"
 #include "boost/next_prior.hpp"
 #include "IGameObjectAccessor.h"
 #include "CollisionDetectFunctions.h"
@@ -11,33 +11,15 @@
 #include "CTransform2D.h"
 
 namespace planeta_engine{
-	namespace system_processes {
-		TCollisionDetect::~TCollisionDetect()
+	namespace core {
+		CollisionWorld::~CollisionWorld() = default;
+
+		void CollisionWorld::Update()
 		{
+			
 		}
 
-		void TCollisionDetect::Update()
-		{
-			//コライダー同士
-			CollisionColliderEventHolderType collision_collider_event_holder;
-			for (const auto& gp : collide_group_pair_list_) {
-				if (gp.first->second == gp.second->second) { ProcessCollisionInAGroup(gp.first->second, collision_collider_event_holder); } //同一グループの場合
-				else { ProcessCollisionBetweenTwoGroups(gp.first->second, gp.second->second, collision_collider_event_holder); } //違うグループの場合
-			}
-			//コライダーとその所属地形
-			CollisionGroundEventHolderType collision_ground_event_holder;
-			ProcessCollisionWithGround(collision_ground_event_holder);
-			//コライダー衝突イベントの伝達
-			for (auto& eve : collision_collider_event_holder) {
-				eve.first->collided(eve.second);
-			}
-			//地形衝突イベントの伝達
-			for (auto& eve : collision_ground_event_holder) {
-				eve.first->collided_with_ground(eve.second);
-			}
-		}
-
-		void TCollisionDetect::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionColliderEventHolderType& collision_event_holder)const {
+		void CollisionWorld::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionColliderEventHolderType& collision_event_holder)const {
 			for (auto ccc_it = group.begin(); ccc_it != group.end(); ++ccc_it) {
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
 					if ((*ccc_it)->DetectCollision(**ccc_it2)) {
@@ -51,7 +33,7 @@ namespace planeta_engine{
 			}
 		}
 
-		void TCollisionDetect::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionColliderEventHolderType& collision_event_holder)const {
+		void CollisionWorld::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionColliderEventHolderType& collision_event_holder)const {
 			for (auto ccc_it = group1.begin(); ccc_it != group1.end(); ++ccc_it) {
 				for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
 					if ((*ccc_it)->DetectCollision(**ccc_it2)) {
@@ -65,7 +47,7 @@ namespace planeta_engine{
 			}
 		}
 
-		void TCollisionDetect::ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const {
+		void CollisionWorld::ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const {
 			for (const auto& col_com : collision_with_ground_list_) {
 				if (col_com->DetectCollision(col_com->game_object().transform().ground())) {
 					//衝突していたら地形衝突イベントをホルダーに追加
@@ -75,7 +57,7 @@ namespace planeta_engine{
 			}
 		}
 
-		bool TCollisionDetect::Resist(const std::shared_ptr<CCollider2D>& col_com) {
+		bool CollisionWorld::Resist(const std::shared_ptr<CCollider2D>& col_com) {
 			ColliderComponentResistData_ ccrd;
 			ccrd.pointer = col_com;
 			std::string group_name = col_com->collision_group();
@@ -101,7 +83,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool TCollisionDetect::Remove(const CCollider2D* col_com_ptr) {
+		bool CollisionWorld::Remove(const CCollider2D* col_com_ptr) {
 			auto it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (it == collider_resist_data_map_.end()) {//登録されていないコライダー
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
@@ -117,7 +99,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool TCollisionDetect::ChangeCollisionGroup(const CCollider2D* col_com_ptr, const std::string& group_name) {
+		bool CollisionWorld::ChangeCollisionGroup(const CCollider2D* col_com_ptr, const std::string& group_name) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
@@ -139,7 +121,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool TCollisionDetect::ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag) {
+		bool CollisionWorld::ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
 				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
@@ -158,7 +140,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void TCollisionDetect::SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { 
+		void CollisionWorld::SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { 
 			auto collision_group_list = std::move(col_matrix->GetCollisionGroupList());
 			for (const auto& group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());
@@ -175,13 +157,34 @@ namespace planeta_engine{
 			}
 		}
 
-		void TCollisionDetect::RemoveAll() {
+		void CollisionWorld::RemoveAll() {
 			for (auto& group : collision_groupes_) {
 				group.second.clear();
 			}
 			collide_group_pair_list_.clear();
 			collider_resist_data_map_.clear();
 		}
+
+		void CollisionWorld::ExcuteCollisionDetection() {
+			//コライダー同士
+			CollisionColliderEventHolderType collision_collider_event_holder;
+			for (const auto& gp : collide_group_pair_list_) {
+				if (gp.first->second == gp.second->second) { ProcessCollisionInAGroup(gp.first->second, collision_collider_event_holder); } //同一グループの場合
+				else { ProcessCollisionBetweenTwoGroups(gp.first->second, gp.second->second, collision_collider_event_holder); } //違うグループの場合
+			}
+			//コライダーとその所属地形
+			CollisionGroundEventHolderType collision_ground_event_holder;
+			ProcessCollisionWithGround(collision_ground_event_holder);
+			//コライダー衝突イベントの伝達
+			for (auto& eve : collision_collider_event_holder) {
+				eve.first->collided(eve.second);
+			}
+			//地形衝突イベントの伝達
+			for (auto& eve : collision_ground_event_holder) {
+				eve.first->collided_with_ground(eve.second);
+			}
+		}
+
 	}
 }
 

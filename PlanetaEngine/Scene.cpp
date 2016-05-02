@@ -1,7 +1,9 @@
 #include "Scene.h"
+//Modules
 #include "GameObjectManager.h"
 #include "TaskManager.h"
-#include "GUIManager.h"
+#include "CollisionWorld.h"
+
 #include "SystemLog.h"
 #include "ISceneManagerAccessor.h"
 #include "IGameAccessor.h"
@@ -13,7 +15,9 @@
 namespace planeta_engine{
 	namespace core{
 
-		Scene::Scene(IGameAccessor& engine) :game_(engine),game_object_manager_(std::make_unique<GameObjectManager>()), game_process_manager_(std::make_unique<TaskManager>(game_)),camera_(std::make_unique<Camera>()),scene_data_(std::make_unique<SceneData>())
+		Scene::Scene(IGameAccessor& engine) :game_(engine)
+			,game_object_manager_(std::make_unique<GameObjectManager>()), game_process_manager_(std::make_unique<TaskManager>(game_)),collision_world_(std::make_unique<CollisionWorld>())
+			,camera_(std::make_unique<Camera>())
 		{
 		}
 
@@ -46,21 +50,21 @@ namespace planeta_engine{
 		void Scene::Update()
 		{
 			try {
-				game_process_manager_->Update(); //ゲームプロセス実行
+				game_process_manager_->ExcuteTask(); //ゲームプロセス実行
 			}
 			catch (utility::NullWeakPointerException& e) {
 				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
 				game_.scene_manager().ErrorOccured();
 				return;
 			}try {
-				game_object_manager_->Process(); //ゲームオブジェクトマネージャ更新
+				game_object_manager_->Update(); //ゲームオブジェクトマネージャ更新
 			}
 			catch (utility::NullWeakPointerException& e) {
 				debug::SystemLog::instance().LogError(std::string("GameObjectManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
 				game_.scene_manager().ErrorOccured();
 				return;
 			}
-			game_process_manager_->Process(); //プロセスマネージャ更新
+			game_process_manager_->Update(); //プロセスマネージャ更新
 			//カメラ更新
 			camera_->Update();
 		}
@@ -70,18 +74,12 @@ namespace planeta_engine{
 				&& proc(*game_object_manager_);
 		}
 
-		void Scene::RegisterSceneInterfaceToModules() {
-			//シーンを各モジュールに登録
-			ForEachSceneModule_([this](core::SceneModule& sm) {sm.SetSceneInterface(*this); return true; });
-		}
-
 		void Scene::RegisterSceneDataToModules() {
 			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(*scene_data); return true; });
 		}
 
 		void Scene::PrepareSceneData() {
-			scene_data_->screen_drawer_2d = std::make_shared<ScreenDrawer2D>(game_.screen());
-			scene_data_->screen_drawer_ui = std::make_shared<ScreenDrawerGUI>(game_.screen());
+			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*game_process_manager_,nullptr,std::make_shared<ScreenDrawer2D>(game_.screen()) });
 		}
 
 	}

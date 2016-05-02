@@ -1,8 +1,9 @@
 #pragma once
-#include "Task.h"
+
 #include <memory>
 #include <unordered_map>
 #include <list>
+#include "SceneModule.h"
 
 namespace planeta_engine {
 	class CCollider2D;
@@ -13,17 +14,18 @@ namespace planeta_engine {
 		class CollisionEventArgument;
 		class CollisionWithGroundEventArgument;
 	}
-	namespace system_processes {
-		class TCollisionDetect final: public game::Task
+	namespace core {
+		class CollisionWorld final: public core::SceneModule
 		{
 		public:
-			using Task::Task;
-			~TCollisionDetect();
+			~CollisionWorld();
 			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix);
 			bool Resist(const std::shared_ptr<CCollider2D>& col_com);
 			bool Remove(const CCollider2D* col_com_ptr);
 			bool ChangeCollisionGroup(const CCollider2D* col_com_ptr,const std::string& group_name);
 			bool ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag);
+
+			void ExcuteCollisionDetection();
 		private:
 			void Update()override final;
 			void RemoveAll();

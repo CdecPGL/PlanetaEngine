@@ -9,9 +9,7 @@ namespace planeta_engine {
 	class SceneAccessorForTask;
 	namespace core {
 		class IGameAccessor;
-		class ScenePublicInterface;
 		struct SceneData;
-		struct SceneDataForTask;
 		enum class SystemTaskSlot;
 	}
 	class Task;
@@ -24,15 +22,13 @@ namespace planeta_engine {
 		bool Initialize()override { return true; }
 		/*終了処理*/
 		void Finalize()override;
-		/*シーンインターフェイスをセット*/
-		void SetSceneInterface(core::ScenePublicInterface& spi)override;
 		/*シーンデータをセット*/
-		void SetSceneData(const core::SceneData& scene_data)override;
+		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data)override;
 
-		/*タスクのアップデート*/
-		void Update();
+		/*タスクの実行*/
+		void ExcuteTask();
 		/*管理処理*/
-		bool Process();
+		void Update()override;
 
 		/*システムタスク追加(システムタスク削除不可能)*/
 		template<class C>
