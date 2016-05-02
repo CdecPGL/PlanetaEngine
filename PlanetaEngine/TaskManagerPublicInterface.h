@@ -23,7 +23,7 @@ namespace planeta_engine {
 		}
 		/*ゲームプロセスを作成して名前をつける*/
 		template<class C>
-		utility::WeakPointer<C> CreateTask(TaskSlot slot, const core::TaskPosition& pos) {
+		utility::WeakPointer<C> CreateTask(TaskSlot slot,const std::string& name) {
 			static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");
 			return std::static_pointer_cast<C>(CreateTask([](core::IGameAccessor& ga) {return std::make_shared<C>(ga); }, slot, const std::string& name));
 		}

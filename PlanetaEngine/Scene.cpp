@@ -3,6 +3,9 @@
 #include "GameObjectManager.h"
 #include "TaskManager.h"
 #include "CollisionWorld.h"
+#include "GameObjectDrawSystem.h"
+#include "AnimationSystem.h"
+#include "TransformSystem.h"
 
 #include "SystemLog.h"
 #include "ISceneManagerAccessor.h"
@@ -16,8 +19,7 @@ namespace planeta_engine{
 	namespace core{
 
 		Scene::Scene(IGameAccessor& engine) :game_(engine)
-			,game_object_manager_(std::make_unique<GameObjectManager>()), game_process_manager_(std::make_unique<TaskManager>(game_)),collision_world_(std::make_unique<CollisionWorld>())
-			,camera_(std::make_unique<Camera>())
+			,game_object_manager_(std::make_unique<GameObjectManager>()), task_manager_(std::make_unique<TaskManager>(game_)),collision_world_(std::make_unique<CollisionWorld>()),gameobject_draw_system_(std::make_unique<GameObjectDrawSystem>()),animation_system_(std::make_unique<AnimationSystem>()),transform_system_(std::make_unique<TransformSystem>())
 		{
 		}
 
@@ -30,7 +32,7 @@ namespace planeta_engine{
 
 		{
 			//モジュールを初期化
-			if (ForEachSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); }) && camera_->Initialize()) {
+			if (ForEachSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); })) {
 				return true;
 			}
 			else {
@@ -43,14 +45,14 @@ namespace planeta_engine{
 		{
 			//モジュールの終了処理を行う
 			game_object_manager_->Finalize(); //ゲームオブジェクトでは終了時にゲームプロセスを参照するものがあるのでTaskManagerより先に終了処理を行う。
-			game_process_manager_->Finalize();
+			task_manager_->Finalize();
 			return true;
 		}
 
 		void Scene::Update()
 		{
 			try {
-				game_process_manager_->ExcuteTask(); //ゲームプロセス実行
+				task_manager_->ExcuteTask(); //ゲームプロセス実行
 			}
 			catch (utility::NullWeakPointerException& e) {
 				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
@@ -64,22 +66,20 @@ namespace planeta_engine{
 				game_.scene_manager().ErrorOccured();
 				return;
 			}
-			game_process_manager_->Update(); //プロセスマネージャ更新
-			//カメラ更新
-			camera_->Update();
+			task_manager_->Update(); //プロセスマネージャ更新
 		}
 
 		bool Scene::ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc) {
-			return proc(*game_process_manager_)
+			return proc(*task_manager_)
 				&& proc(*game_object_manager_);
 		}
 
 		void Scene::RegisterSceneDataToModules() {
-			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(*scene_data); return true; });
+			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
 		void Scene::PrepareSceneData() {
-			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*game_process_manager_,nullptr,std::make_shared<ScreenDrawer2D>(game_.screen()) });
+			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*task_manager_,*collision_world_,*gameobject_draw_system_ ,*animation_system_,*transform_system_ });
 		}
 
 	}

@@ -6,11 +6,11 @@
 #include "GraphResource.h"
 
 namespace planeta_engine {
-	namespace gui_components {
+	/*namespace gui_components {
 
 		void GraphPanel::UpdateProc()
 		{
-			
+
 		}
 
 		void GraphPanel::DrawProc(const utility::RectAngle<int>& draw_area,ScreenDrawerGUI& drawer)
@@ -38,5 +38,5 @@ namespace planeta_engine {
 			}
 		}
 
-	}
+	}*/
 }

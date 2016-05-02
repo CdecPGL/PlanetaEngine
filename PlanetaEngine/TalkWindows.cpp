@@ -4,7 +4,7 @@
 #include "TextPanel.h"
 
 namespace planeta_engine {
-	namespace gui_objects {
+	/*namespace gui_objects {
 
 		bool TalkWindow::InitializeProc()
 		{
@@ -16,5 +16,5 @@ namespace planeta_engine {
 			return true;
 		}
 
-	}
+	}*/
 }

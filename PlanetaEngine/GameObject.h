@@ -3,12 +3,15 @@
 #include <type_traits>
 #include "GameObjectBase.h"
 #include "GameObjectInterface.h"
+#include "MetaprogrammingUtility.h"
 
 namespace planeta_engine {
 	//ゲームオブジェクトを定義するときは、このクラスを継承する。テンプレート引数にはGameObjectInterfaceを任意個指定する。
 	template<typename... GOI>
 	class GameObject : public GameObjectBase , public GOI... {
-		static_assert(std::is_base_of<GameObjectInterface, GOI>::value == false, "GOI must derive GameObjectInterface.")...;
+		//GOI...がGameObjectInterfaceの派生クラスか確認。
+		template<typename Arg> struct GOI_is_base_of :public std::is_base_of<GameObjectInterface, Arg> {};
+		static_assert(mp_utiliey::AllOf<GOI_is_base_of, GOI...>::value == false, "GOI must derive GameObjectInterface.");
 	public:
 		GameObject():GOI(*this)... {}
 	private:

@@ -6,7 +6,7 @@
 
 namespace planeta_engine {
 
-	class TCoroutine :public game::Task {
+	class TCoroutine :public Task {
 	public:
 		using coroutine = boost::coroutines2::coroutine<void>;
 		using func_arg_type = coroutine::push_type&;

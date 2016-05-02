@@ -1,6 +1,5 @@
 #include "GUIManager.h"
 #include "GUIObject.h"
-#include "SceneAccessorForGUI.h"
 #include "SceneData.h"
 #include "SceneDataForGUI.h"
 #include "GUIManagerConnection.h"

@@ -13,9 +13,5 @@ namespace planeta_engine {
 		void TaskManagerConnection::Dispose() {
 			disposer_();
 		}
-
-		utility::WeakPointer<SceneAccessorForTask>& TaskManagerConnection::ReferenceSceneAccessor() {
-			return scene_accessor_;
-		}
 	}
 }

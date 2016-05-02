@@ -4,44 +4,49 @@
 #include "SystemTaskSlot.h"
 #include "TaskManager.h"
 #include "IGameAccessor.h"
-
-#include "GameObject.h"
-#include "CTransform2D.h"
+#include "TransformSystem.h"
+#include "AnimationSystem.h"
 
 #include "CollisionWorld.h"
-#include "GameObjectDrawProcessCore.h"
+#include "GameObjectDrawSystem.h"
 #include "TInstant.h"
-
-#include "Camera.h"
-#include "ScreenDrawer2D.h"
-#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine {
 	namespace core {
 
 		bool SceneSystemSetUpper::operator()(Scene& scene)
 		{
-			auto& scene_data = scene.RefSceneData();
-			//ゲームプロセス
-			auto& p_mgr = scene.game_process_manager();
-			//システムプロセス追加
+			scene.collision_world_->SetCollisionGroupMatrix(scene.game_accessor().GetCollisionGroupMatrix());
+			//ゲームタスク
+			auto& t_mgr = *scene.task_manager_;
+			//システムタスク追加
 			//衝突判定タスク
-			auto col_det_proc = p_mgr.AddSystemTask<system_processes::CollisionWorld>(SystemTaskSlot::CollitionDetectPhase);
-			col_det_proc->SetCollisionGroupMatrix(scene.game_accessor().GetCollisionGroupMatrix());
-			scene_data.collision_world = col_det_proc;
+			auto col_det_proc = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::CollitionDetectPhase);
+			col_det_proc->SetExcuteFunction([&col_wor = *scene.collision_world_]{ col_wor.ExcuteCollisionDetection(); });
 			//描画タスク
-			auto godpc = std::make_shared<system_processes::GameObjectDrawProcessCore>();
-			auto godp = p_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);
-			godp->SetExcuteFunction([gameobject_draw_process_core = godpc, drawer = scene_data.screen_drawer_2d]{ gameobject_draw_process_core->Update(*drawer); });
-			scene_data.draw_component_process_registrator = godpc;
+			auto godp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);
+			godp->SetExcuteFunction([&drw_sys = *scene.gameobject_draw_system_]{ drw_sys.ExcuteDraw(); });
+			//アニメーションタスク
+			auto anmp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::UpdateAnimationPhase);
+			anmp->SetExcuteFunction([&anm_sys = *scene.animation_system_]{ anm_sys.UpdateAnimation(); });
 			//Transform速度適用タスク
-			auto tavp = p_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyVelocityPhase);
-			tavp->SetExcuteFunction([] {});
+			auto tavp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyVelocityPhase);
+			tavp->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ApplyVelocity(); });
 			//Transform座標変換タスク
-			/*auto tclgp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformConvertLocalToGlobalProcessPriority, process::TransformConvertLocalToGlobalProcessName);
-			tclgp->SetExcuteFunction([root_transform] {root_transform->ConvertLocalToGlobalRecursively(); });
-			auto tcglp = scene.game_process_manager().AddSystemProcess<game_processes::InstantProcess>(process::TransformConvertGlobalToLocalProcessPriority, process::TransformConvertGlobalToLocalProcessName);
-			tcglp->SetExcuteFunction([root_transform] {root_transform->ConvertGlobalToLocalRecursively(); });*/
+			utility::WeakPointer<TInstant> cvt[9] = {
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreCollisionEarlyConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreCollisionLateConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCollisionEarlyConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCollisionLateConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::EventUpdateConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::CameraUpdateConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCameraUpdateConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::GUIUpdateEarlyConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::GUIUpdateLateConvertCoordinatePhase),
+			}; 
+			for (auto& t : cvt) {
+				t->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ExcuteCoordinateConvertion(); });
+			}
 			return true;
 		}
 

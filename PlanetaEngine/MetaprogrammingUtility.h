@@ -88,8 +88,15 @@ namespace planeta_engine {
 			return std::move(std::string(std::typeid(FirstParam).name()) + "," + ConvertParameterTypesToString<Params...>());
 		};
 		template<typename FirstParam>
-		std::string ConvertParametersToString() {
+		std::string ConvertParameterTypesToString() {
 			return std::move(std::string(std::typeid(FirstParam).name()));
 		};
+
+		//全ての要素First,Rest...が単項述語UnaryPredicateを満たしているか
+		template<template<class> class UnaryPredicate, typename First, typename... Rest>
+		struct AllOf : public std::conditional_t<UnaryPredicate<First>::value, AllOf<UnaryPredicate, Rest...>, std::false_type> {};
+		template<template<class>class UnaryPredicate>
+		struct AllOf<,void> : public std::true_type{};
+
 	}
 }

@@ -1,11 +1,17 @@
-#include "GameObjectDrawProcessCore.h"
+#include "GameObjectDrawSystem.h"
 #include "CDraw2D.h"
 #include "SystemLog.h"
+#include "ScreenDrawer2D.h"
+#include "ScreenDrawerGUI.h"
 
 namespace planeta_engine{
-	namespace system_processes {
+	namespace core {
+		GameObjectDrawSystem::GameObjectDrawSystem():screen_drawer_2d_(std::make_unique<ScreenDrawer2D>()),screen_drawer_gui_(std::make_unique<ScreenDrawerGUI>())
+		{
 
-		bool GameObjectDrawProcessCore::Remove(const std::shared_ptr<CDraw2D>& draw_component)
+		}
+
+		bool GameObjectDrawSystem::Remove(const std::shared_ptr<CDraw2D>& draw_component)
 		{
 			auto it = _draw_component_map.find(draw_component.get());
 			if (it == _draw_component_map.end()) { return false; }
@@ -16,12 +22,13 @@ namespace planeta_engine{
 			}
 		}
 
-		void GameObjectDrawProcessCore::Update(ScreenDrawer2D& drawer)
+		void GameObjectDrawSystem::ExcuteDraw()
 		{
+			//2DDraw
 			for (auto& dcl : _draw_component_update_list) {
 				for (auto it = dcl.second.begin(); it != dcl.second.end(); ++it) {
 					try {
-						(*it)->Draw(drawer);
+						(*it)->Draw(*screen_drawer_2d_);
 					}
 					catch (utility::NullWeakPointerException& e) {
 						debug::SystemLog::instance().LogError(std::string("DrawComponent::Drawで無効なWeakPointerが参照されました。問題の発生したコンポーネントはリストから除外されます。") + e.what(), "GameObjectDrawProcess::Update");
@@ -30,6 +37,18 @@ namespace planeta_engine{
 					}
 				}
 			}
+		}
+
+		void GameObjectDrawSystem::Update() {
+
+		}
+
+		bool GameObjectDrawSystem::Initialize() {
+			return true;
+		}
+
+		void GameObjectDrawSystem::Finalize() {
+			return;
 		}
 
 	}

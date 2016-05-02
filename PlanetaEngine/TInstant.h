@@ -4,7 +4,7 @@
 #include <functional>
 
 namespace planeta_engine {
-	class TInstant final : public game::Task {
+	class TInstant final : public Task {
 	public:
 		using Task::Task;
 		void SetExcuteFunction(const std::function<void()>& func) { function_ = func; }

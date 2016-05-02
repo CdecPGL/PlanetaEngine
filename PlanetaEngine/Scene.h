@@ -4,22 +4,24 @@
 #include <string>
 #include <functional>
 #include "Object.h"
-#include "SceneAccessorForSetUp.h"
 #include "WeakPointer.h"
 #include "NonCopyable.h"
-
-#include "Camera.h"
 
 namespace planeta_engine{
 	class GameObjectManager;
 	class TaskManager;
 	namespace core{
+		class SceneSystemSetUpper;
 		class IGameAccessor;
 		class Screen;
 		struct SceneData;
 		class CollisionWorld;
+		class GameObjectDrawSystem;
+		class AnimationSystem;
+		class TransformSystem;
 		class Scene : public Object,public std::enable_shared_from_this<Scene>
 			,private utility::NonCopyable<Scene>{
+			friend SceneSystemSetUpper;
 		public:
 			Scene(IGameAccessor& game);
 			~Scene();
@@ -42,12 +44,13 @@ namespace planeta_engine{
 
 		private:
 			IGameAccessor& game_;
-			std::unique_ptr<TaskManager> game_process_manager_; //ゲームプロセスマネージャ
+			std::unique_ptr<TaskManager> task_manager_; //ゲームプロセスマネージャ
 			std::unique_ptr<GameObjectManager> game_object_manager_; //ゲームオブジェクトマネージャ
 			std::unique_ptr<CollisionWorld> collision_world_; //コリジョンワールド
+			std::unique_ptr<GameObjectDrawSystem> gameobject_draw_system_; //ゲームオブジェクト描画システム
+			std::unique_ptr<AnimationSystem> animation_system_; //アニメーションシステム
+			std::unique_ptr<TransformSystem> transform_system_; //トランスフォームシステム
 			bool ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc); //シーンモジュールに操作を適用する
-
-			std::unique_ptr<Camera> camera_;
 
 			std::shared_ptr<SceneData> scene_data_; //シーンデータ
 		};

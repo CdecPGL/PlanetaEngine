@@ -4,7 +4,7 @@
 #include "WeakPointerDelegate.h"
 
 namespace planeta_engine {
-	class TGameObjectOperation : public game::Task {
+	class TGameObjectOperation : public Task {
 	public:
 		using Task::Task;
 		/**

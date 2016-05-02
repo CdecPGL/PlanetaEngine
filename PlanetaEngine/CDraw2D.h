@@ -7,7 +7,7 @@
 namespace planeta_engine {
 	class ScreenDrawer2D;
 	namespace system_processes {
-		class GameObjectDrawProcessCore;
+		class GameObjectDrawSystem;
 	}
 	namespace core {
 		//		class GameObjectDrawComponentProcessRegistrator;
@@ -56,7 +56,7 @@ namespace planeta_engine {
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
 		planeta_engine::Color color_;
 		//			std::shared_ptr<core::GameObjectDrawComponentProcessRegistrator> draw_component_registrator_;
-		utility::WeakPointer<system_processes::GameObjectDrawProcessCore> draw_component_registrator_;
+		utility::WeakPointer<system_processes::GameObjectDrawSystem> draw_component_registrator_;
 		void RegisterToProcess_();
 		void RemoveFromProcess_();
 		void UpdatePriority_();

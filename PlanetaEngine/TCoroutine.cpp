@@ -1,5 +1,4 @@
 #include "TCoroutine.h"
-#include "SceneAccessorForTask.h"
 
 
 namespace planeta_engine {

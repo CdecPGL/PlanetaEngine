@@ -4,7 +4,7 @@
 #include "ScreenDrawerGUI.h"
 
 namespace planeta_engine {
-	namespace gui_components {
+	/*namespace gui_components {
 		void StringPanel::UpdateProc()
 		{
 			
@@ -49,5 +49,5 @@ namespace planeta_engine {
 			return true;
 		}
 
-	}
+	}*/
 }

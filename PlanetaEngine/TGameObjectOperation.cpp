@@ -1,6 +1,6 @@
 #include "TGameObjectOperation.h"
 #include "SystemLog.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObject.h"
 
 namespace planeta_engine {
 	bool TGameObjectOperation::Attach(GameObjectAccessorType& goa, bool dispose_on_target_disposed) {

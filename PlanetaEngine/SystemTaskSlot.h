@@ -9,13 +9,14 @@ namespace planeta_engine {
 			CollitionDetectPhase = 3,
 			PostCollisionEarlyConvertCoordinatePhase = 4,
 			PostCollisionLateConvertCoordinatePhase = 5,
-			EventUpdateEarlyConvertCoordinatePhase = 6,
-			EventUpdateLateConvertCoordinatePhase = 7,
-			UpdateAnimationPhase = 8,
-			GUIUpdateEarlyConvertCoordinatePhase = 9,
-			GUIUpdateLateConvertCoordinatePhase = 10,
-			DrawPhase = 11,
+			EventUpdateConvertCoordinatePhase = 6,
+			CameraUpdateConvertCoordinatePhase = 7,
+			PostCameraUpdateConvertCoordinatePhase = 8,
+			UpdateAnimationPhase = 9,
+			GUIUpdateEarlyConvertCoordinatePhase = 10,
+			GUIUpdateLateConvertCoordinatePhase = 11,
+			DrawPhase = 12,
 		};
-		constexpr int SYSTEM_TASK_SLOT_SIZE = 12;
+		constexpr int SYSTEM_TASK_SLOT_SIZE = 13;
 	}
 }

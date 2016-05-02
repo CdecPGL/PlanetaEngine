@@ -141,6 +141,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AESEncrypter.h" />
+    <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
@@ -199,12 +200,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="NonCopyable.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.h" />
-    <ClInclude Include="SceneDataForTask.h" />
-    <ClInclude Include="SceneDataForGUI.h" />
     <ClInclude Include="SceneDefinitionHeaders.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="ScreenEffectProcess.h" />
     <ClInclude Include="Transform2DCore.h" />
+    <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
@@ -243,7 +243,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerSerializeUtility.h" />
     <ClInclude Include="GameObjectManagerConnection.h" />
     <ClInclude Include="GameObjectAllocator.h" />
-    <ClInclude Include="GameObjectDrawProcessCore.h" />
+    <ClInclude Include="GameObjectDrawSystem.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameObjectManagerPublicInterface.h" />
     <ClInclude Include="Task.h" />
@@ -349,6 +349,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AESEncrypter.cpp" />
+    <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="CBelongingGroundGravity.cpp" />
     <ClCompile Include="BGMController.cpp" />
@@ -430,7 +431,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectComponent.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="FileSystemManager.cpp" />
-    <ClCompile Include="GameObjectDrawProcessCore.cpp" />
+    <ClCompile Include="GameObjectDrawSystem.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="CDrawGraph2D.cpp" />
     <ClCompile Include="CGround2D.cpp" />
@@ -456,6 +457,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CTransform2D.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="GUIManagerConnection.cpp" />
+    <ClCompile Include="TransformSystem.cpp" />
     <ClCompile Include="WindowsUtility.cpp" />
     <ClCompile Include="XMLResource.cpp" />
   </ItemGroup>

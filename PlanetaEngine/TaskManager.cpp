@@ -4,10 +4,8 @@
 #include <type_traits>
 #include <bitset>
 #include "TaskManager.h"
-#include "SceneAccessorForTask.h"
 #include "Task.h"
 #include "SceneData.h"
-#include "SceneDataForTask.h"
 #include "TaskManagerConnection.h"
 #include "SystemLog.h"
 #include "SystemTaskSlot.h"
@@ -28,13 +26,15 @@ namespace planeta_engine {
 		constexpr int COVCON_SLOT_4 = 11;
 		constexpr int TASK_SLOT_5 = 12;
 		constexpr int COVCON_SLOT_5 = 13;
-		constexpr int UDTANM_SLOT = 14;
-		constexpr int TASK_SLOT_6 = 15;
-		constexpr int COVCON_SLOT_6 = 16;
+		constexpr int TASK_SLOT_6 = 14;
+		constexpr int COVCON_SLOT_6 = 15;
+		constexpr int UDTANM_SLOT = 16;
 		constexpr int TASK_SLOT_7 = 17;
 		constexpr int COVCON_SLOT_7 = 18;
-		constexpr int DRAW_SLOT = 19;
-		constexpr int SLOT_COUNT = 20;
+		constexpr int TASK_SLOT_8 = 19;
+		constexpr int COVCON_SLOT_8 = 20;
+		constexpr int DRAW_SLOT = 21;
+		constexpr int SLOT_COUNT = 22;
 		//スロットマップ
 		constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
 			TASK_SLOT_0,
@@ -45,6 +45,7 @@ namespace planeta_engine {
 			TASK_SLOT_5,
 			TASK_SLOT_6,
 			TASK_SLOT_7,
+			TASK_SLOT_8,
 		};
 		//システムスロットマップ
 		using namespace core;
@@ -57,9 +58,10 @@ namespace planeta_engine {
 			COVCON_SLOT_3,
 			COVCON_SLOT_4,
 			COVCON_SLOT_5,
-			UDTANM_SLOT,
 			COVCON_SLOT_6,
+			UDTANM_SLOT,
 			COVCON_SLOT_7,
+			COVCON_SLOT_8,
 			DRAW_SLOT,
 		};
 		/*タスクスロットからタスクグループ番号を取得*/
@@ -182,10 +184,9 @@ namespace planeta_engine {
 				[this, tdata] {return ResumeTaskRequest(*tdata); }, //Resumer
 				is_system_task ?
 				std::function<void()>([] { debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "システムタスクを削除しようとしました。"); }) :
-				[this, tdata] { DisposeTaskRequest(*tdata); }, //Disposer(システムタスクの場合は削除できないDisposerをセット)
-				scene_accessor_
+				[this, tdata] { DisposeTaskRequest(*tdata); } //Disposer(システムタスクの場合は削除できないDisposerをセット)
 				);
-			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), *scene_data_);
+			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_);
 		}
 		/*タスクをマップに登録*/
 		std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number) {

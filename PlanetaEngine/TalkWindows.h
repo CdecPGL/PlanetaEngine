@@ -3,7 +3,7 @@
 #include "GUIObject.h"
 
 namespace planeta_engine {
-	namespace gui_components {
+	/*namespace gui_components {
 		class SimplePolygonPanel;
 		class TextPanel;
 	}
@@ -16,5 +16,5 @@ namespace planeta_engine {
 			std::shared_ptr<gui_components::SimplePolygonPanel> back_ground_panel_;
 			std::shared_ptr<gui_components::TextPanel> text_panel_;
 		};
-	}
+	}*/
 }

@@ -11,7 +11,6 @@ namespace planeta_engine {
 		bool RequestActivation();
 		bool RequestInactivation();
 		void RequestDisposal();
-		core::SceneDataForGameObject& RefSceneData();
 	private:
 		int id_;
 		bool connection_valid_ = true;

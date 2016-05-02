@@ -205,11 +205,11 @@
     <Filter Include="PlanetaEngine\SceneModules\CollisionWorld">
       <UniqueIdentifier>{21b701b6-754f-46d2-a50b-f3e0d5ea8322}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\SceneModules\GameSpace">
-      <UniqueIdentifier>{51b722d7-277d-4ff2-b203-1ef2b7cf15f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\SceneModules\DrawSystem">
       <UniqueIdentifier>{d2ccb018-ff2b-4b06-bd76-739041074ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SceneModules\TransfotmSystem">
+      <UniqueIdentifier>{51b722d7-277d-4ff2-b203-1ef2b7cf15f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -582,14 +582,8 @@
     <ClInclude Include="GUIManagerPublicInterface.h">
       <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="SceneDataForGUI.h">
-      <Filter>PlanetaEngine\SceneModules\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="GUIManagerConnection.h">
       <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectDrawProcessCore.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
@@ -697,9 +691,6 @@
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClInclude>
     <ClInclude Include="TaskSystemSetUpper.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDataForTask.h">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClInclude>
     <ClInclude Include="TaskManager.h">
@@ -833,6 +824,15 @@
     </ClInclude>
     <ClInclude Include="CollisionWorld.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectDrawSystem.h">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSystem.h">
+      <Filter>PlanetaEngine\SceneModules\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformSystem.h">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1034,9 +1034,6 @@
     <ClCompile Include="GUIManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectDrawProcessCore.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClCompile>
     <ClCompile Include="ScreenChangeEffecter.cpp">
       <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
     </ClCompile>
@@ -1165,6 +1162,15 @@
     </ClCompile>
     <ClCompile Include="CollisionWorld.cpp">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectDrawSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
