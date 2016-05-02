@@ -4,6 +4,7 @@
 #include "WeakPointer.h"
 #include "WeakPointerDelegate.h"
 #include "NonCopyable.h"
+#include "TaskManagerPublicInterface.h"
 
 namespace planeta_engine {
 	class SceneAccessorForTask;
@@ -38,21 +39,28 @@ namespace planeta_engine {
 		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
 		//タスクを作成
 		template<class T>
-		utility::WeakPointer<T> CreateTask(TaskSlot slot);
+		utility::WeakPointer<T> CreateTask(TaskSlot slot) {
+			return RefTaskManagerInterface_().CreateTask(slot);
+		}
 		//名前付きタスクを作成
 		template<class T>
-		utility::WeakPointer<T> CreateTask(TaskSlot slot,const std::string& name);
+		utility::WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
+			return RefTaskManagerInterface_().CreateTask(slot, name);
+		}
 		//型でタスク取得
 		template<class T>
-		utility::WeakPointer<T> GetTaskByType()const;
+		utility::WeakPointer<T> GetTaskByType()const {
+			return RefTaskManagerInterface_().GetTask<T>();
+		}
 		//名前でタスクを取得
-		template<class T>
-		utility::WeakPointer<T> GetTaskByName(const std::string& name)const;
+		utility::WeakPointer<Task> GetTaskByName(const std::string& name)const;
 
 	private:
 		core::IGameAccessor& game_;
 		utility::WeakPointer<core::SceneData> scene_data_;
 		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
+		TaskManagerPublicInterface& RefTaskManagerInterface_();
+		TaskManagerPublicInterface& RefTaskManagerInterface_()const;
 		virtual bool OnCreated() { return true; }
 		virtual void OnDisposed() {};
 	};

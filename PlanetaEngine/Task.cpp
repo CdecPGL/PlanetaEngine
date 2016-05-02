@@ -1,6 +1,9 @@
 #include "Task.h"
 #include "TaskManagerConnection.h"
-#include "SceneDataForTask.h"
+#include "SceneData.h"
+#include "GameObjectManagerPublicInterface.h"
+#include "IGameObject.h"
+
 
 namespace planeta_engine {
 	Task::~Task() = default;
@@ -23,6 +26,28 @@ namespace planeta_engine {
 
 	bool Task::Resume() {
 		return manager_connection_->Resume();
+	}
+
+	TaskManagerPublicInterface& Task::RefTaskManagerInterface_() {
+		return scene_data_->task_manager_public_interface;
+	}
+
+	TaskManagerPublicInterface& Task::RefTaskManagerInterface_()const {
+		return scene_data_->task_manager_public_interface;
+	}
+
+	utility::WeakPointer<Task> Task::GetTaskByName(const std::string& name) const {
+		return RefTaskManagerInterface_().GetTask(name);
+	}
+
+	utility::WeakPointer<IGameObject> Task::CreateGameObject(const std::string& id) {
+		return scene_data_->game_object_manager_public_interface.CreateGameObject(id);
+	}
+
+	utility::WeakPointer<IGameObject> Task::CreateAndActivateGameObject(const std::string& id) {
+		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id);
+		go->Activate();
+		return go;
 	}
 
 }

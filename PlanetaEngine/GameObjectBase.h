@@ -3,6 +3,7 @@
 #include "GameObjectComponentHolder.h"
 #include "IGameObject.h"
 #include "NonCopyable.h"
+#include "TaskManagerPublicInterface.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -10,7 +11,6 @@ namespace planeta_engine {
 	}
 	class GameObjectComponent;
 	class GameObjectManagerConnection;
-	class SceneAccessorForGameObject;
 	class GameObjectBase : public IGameObject,private utility::NonCopyable<GameObjectBase> {
 	public:
 		GameObjectBase();

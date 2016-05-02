@@ -190,11 +190,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Matrix3_3.h" />
     <ClInclude Include="pe_assert.h" />
     <ClInclude Include="RootTransform2DCore.h" />
-    <ClInclude Include="SAImplTaskCreateFunctions.h" />
-    <ClInclude Include="SAImplTaskGetFunctions.h" />
     <ClInclude Include="TaskSystemSetUpper.h" />
-    <ClInclude Include="SAImplCameraFunctions.h" />
-    <ClInclude Include="SAImplGameObjectCreateFunctions.h" />
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
@@ -306,9 +302,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ResourceBase.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneAccessorForGameObject.h" />
-    <ClInclude Include="SceneAccessorForTask.h" />
-    <ClInclude Include="SceneAccessorForSetUp.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpper.h" />
     <ClInclude Include="SceneSystemSetUpper.h" />
@@ -398,8 +391,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TInstant.cpp" />
     <ClCompile Include="LuaBindClassFunctions.cpp" />
     <ClCompile Include="RootTransform2DCore.cpp" />
-    <ClCompile Include="SAImplCameraFunctions.cpp" />
-    <ClCompile Include="SAImplGameObjectCreateFunctions.cpp" />
     <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="Screen.cpp" />

@@ -27,7 +27,7 @@ namespace planeta_engine {
 		void global_velocity(const Vector2Dd& vel)override;
 
 		/*地形関係*/
-		components::CGround2D& ground()override;
+		CGround2D& ground()override;
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		utility::WeakPointer<components::CGround2D> GetGround()const override;
 		void SetGround(const utility::WeakPointer<components::CGround2D>& g, bool keep_global_position)override;

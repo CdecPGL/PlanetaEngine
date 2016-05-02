@@ -1,6 +1,8 @@
 #include <cassert>
 #include "GameObjectBase.h"
 #include "GameObjectManagerConnection.h"
+#include "GameObjectManagerPublicInterface.h"
+#include "SceneData.h"
 
 namespace planeta_engine {
 
@@ -59,6 +61,16 @@ namespace planeta_engine {
 
 	void GameObjectBase::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_accessor) {
 		scene_data_ = scene_accessor;
+	}
+
+	utility::WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id) {
+		return scene_data_->game_object_manager_public_interface.CreateGameObject(id);
+	}
+
+	utility::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id) {
+		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id);
+		go->Activate();
+		return go;
 	}
 
 }
