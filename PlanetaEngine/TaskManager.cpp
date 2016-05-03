@@ -161,13 +161,13 @@ namespace planeta_engine {
 		}
 		/*タスクの無効化*/
 		bool InctivateTask(TaskData& tdata) {
-			assert(tdata.state == TaskState::Running);
+			PE_VERIFY(tdata.state == TaskState::Running);
 			running_task_group_list_[tdata.group_number].erase(tdata.iterator_at_runnning_task_group);
 			return true;
 		}
 		/*タスクの破棄*/
 		bool DisposeTask(TaskData& tdata) {
-			assert(tdata.state != TaskState::Disposed);
+			PE_VERIFY(tdata.state != TaskState::Disposed);
 			if (tdata.state == TaskState::Running) { //実行中だったら無効化する。
 				InctivateTask(tdata);
 			}
