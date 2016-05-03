@@ -834,6 +834,9 @@
     <ClInclude Include="GameObjectSystemComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
+    <ClInclude Include="SceneSetUpProxy.h">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1171,6 +1174,9 @@
     </ClCompile>
     <ClCompile Include="TransformSystem.cpp">
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSetUpProxy.cpp">
+      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

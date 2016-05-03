@@ -32,7 +32,7 @@ namespace planeta_engine {
 		return scene_data_->task_manager_public_interface;
 	}
 
-	TaskManagerPublicInterface& Task::RefTaskManagerInterface_()const {
+	const TaskManagerPublicInterface& Task::RefTaskManagerInterface_()const {
 		return scene_data_->task_manager_public_interface;
 	}
 

@@ -168,6 +168,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
+    <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
@@ -362,6 +363,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
+    <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
     <ClCompile Include="CSVResource.cpp" />

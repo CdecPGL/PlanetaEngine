@@ -7,10 +7,10 @@
 namespace planeta_engine {
 	namespace core {
 
-		bool ErrorSceneDefinition::SetUpScene(SceneAccessorForSetUp& scene, const utility::ParameterHolder& initialize_parameters) {
-			auto ip = scene.CreateTask<game_processes::TInstant>(0);
+		bool ErrorSceneDefinition::SetUpScene(SceneSetUpProxy& scene, const utility::ParameterHolder& initialize_parameters) {
+			auto ip = scene.CreateTask<TInstant>(TaskSlot::EventUpdatePhase);
 			ip->SetExcuteFunction([]() {
-				debug::SystemLog::instance().LogError("エラーが発生しました。", __FUNCTION__);
+				PE_LOG_FATAL("エラーが発生しました。");
 			});
 			return true;
 		}

@@ -264,7 +264,7 @@ namespace planeta_engine {
 		impl_->SetSceneData(scene_data);
 	}
 
-	utility::WeakPointer<Task> TaskManager::GetTask(const std::string& name) {
+	utility::WeakPointer<Task> TaskManager::GetTask(const std::string& name)const {
 		return impl_->GetTask(name);
 	}
 

@@ -28,7 +28,7 @@ namespace planeta_engine {
 			return std::static_pointer_cast<C>(CreateTask([](core::IGameAccessor& ga) {return std::make_shared<C>(ga); }, slot, const std::string& name));
 		}
 		/*ゲームプロセスを名前から取得する*/
-		virtual utility::WeakPointer<Task> GetTask(const std::string& name) = 0;
+		virtual utility::WeakPointer<Task> GetTask(const std::string& name)const = 0;
 	private:
 		virtual std::shared_ptr<Task> CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot) = 0;
 		virtual std::shared_ptr<Task> CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot, const std::string& name) = 0;

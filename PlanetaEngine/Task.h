@@ -60,7 +60,7 @@ namespace planeta_engine {
 		utility::WeakPointer<core::SceneData> scene_data_;
 		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
 		TaskManagerPublicInterface& RefTaskManagerInterface_();
-		TaskManagerPublicInterface& RefTaskManagerInterface_()const;
+		const TaskManagerPublicInterface& RefTaskManagerInterface_()const;
 		virtual bool OnCreated() { return true; }
 		virtual void OnDisposed() {};
 	};

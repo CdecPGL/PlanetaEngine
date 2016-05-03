@@ -38,7 +38,7 @@ namespace planeta_engine {
 		}
 
 		/*名前からゲームプロセスを取得*/
-		utility::WeakPointer<Task> GetTask(const std::string& name)override;
+		utility::WeakPointer<Task> GetTask(const std::string& name)const override;
 		/*ゲームプロセス作製*/
 		std::shared_ptr<Task> CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot)override;
 		std::shared_ptr<Task> CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot, const std::string& name)override;

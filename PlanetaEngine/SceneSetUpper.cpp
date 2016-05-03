@@ -1,14 +1,12 @@
 #include "SceneSetUpper.h"
-#include "SceneSystemSetUpper.h"
 #include "Scene.h"
 #include "SystemLog.h"
+#include "SceneSystemSetUpper.h"
 
 namespace planeta_engine {
 	namespace core {
 		bool SceneSetUpper::InitializeScene(Scene& scene,const utility::ParameterHolder& initialize_parameters) {
-			SceneAccessorForSetUp safs(scene);
-			//シーンインターフェイスをモジュールに登録
-			scene.RegisterSceneInterfaceToModules();
+			SceneSetUpProxy safs(scene);
 			//シーンデータの準備
 			scene.PrepareSceneData();
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
@@ -32,7 +30,7 @@ namespace planeta_engine {
 		}
 
 		utility::ParameterHolder SceneSetUpper::TerminateScene(Scene& scene, const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) {
-			SceneAccessorForSetUp safs(scene);
+			SceneSetUpProxy safs(scene);
 			auto ret = FinalizeScene(safs, next_scene_id, finalize_parameters); //固有終了処理
 			scene.Finalize(); //終了処理
 			return ret;
