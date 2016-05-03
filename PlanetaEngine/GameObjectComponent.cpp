@@ -37,7 +37,8 @@ namespace planeta_engine{
 			}
 		}
 
-		bool GameObjectComponent::SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const core::SceneDataForGameObject& special_setup_data) {
-			return SpecialSetUp(special_setup_data);
+		bool GameObjectComponent::SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const utility::WeakPointer<core::SceneData>& scene_data) {
+			SetSceneData(scene_data);
+			return true;
 		}
 }

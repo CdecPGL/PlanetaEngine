@@ -21,6 +21,14 @@ namespace planeta_engine{
 		Scene::Scene(IGameAccessor& engine) :game_(engine)
 			,game_object_manager_(std::make_unique<GameObjectManager>()), task_manager_(std::make_unique<TaskManager>(game_)),collision_world_(std::make_unique<CollisionWorld>()),gameobject_draw_system_(std::make_unique<GameObjectDrawSystem>()),animation_system_(std::make_unique<AnimationSystem>()),transform_system_(std::make_unique<TransformSystem>())
 		{
+			scene_module_list_ = {
+				game_object_manager_.get(),
+				collision_world_.get(),
+				gameobject_draw_system_.get(),
+				animation_system_.get(),
+				transform_system_.get(),
+				task_manager_.get(),
+			};
 		}
 
 		Scene::~Scene()
@@ -32,7 +40,7 @@ namespace planeta_engine{
 
 		{
 			//モジュールを初期化
-			if (ForEachSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); })) {
+			if (IterateSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); })) {
 				return true;
 			}
 			else {
@@ -44,38 +52,46 @@ namespace planeta_engine{
 		bool Scene::Finalize()
 		{
 			//モジュールの終了処理を行う
-			game_object_manager_->Finalize(); //ゲームオブジェクトでは終了時にゲームプロセスを参照するものがあるのでTaskManagerより先に終了処理を行う。
-			task_manager_->Finalize();
+			ReverseIterateSceneModule_([](SceneModule& sm) {sm.Finalize(); return true; });
 			return true;
 		}
 
 		void Scene::Update()
 		{
 			try {
-				task_manager_->ExcuteTask(); //ゲームプロセス実行
+				task_manager_->ExcuteTask(); //タスク実行
 			}
 			catch (utility::NullWeakPointerException& e) {
-				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
+				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), __FUNCTION__);
 				game_.scene_manager().ErrorOccured();
 				return;
 			}try {
-				game_object_manager_->Update(); //ゲームオブジェクトマネージャ更新
+				//各シーンモジュールの更新
+				IterateSceneModule_([](SceneModule& sm) {sm.Update(); return true; });
 			}
 			catch (utility::NullWeakPointerException& e) {
-				debug::SystemLog::instance().LogError(std::string("GameObjectManager::Updateで無効なWeakPointerが参照されました。") + e.what(), "Scene::Update");
+				debug::SystemLog::instance().LogError(std::string("シーンモジュールの更新において無効なWeakPointerが参照されました。") + e.what(), __FUNCTION__);
 				game_.scene_manager().ErrorOccured();
 				return;
 			}
-			task_manager_->Update(); //プロセスマネージャ更新
 		}
 
-		bool Scene::ForEachSceneModule_(std::function<bool(SceneModule&)>&& proc) {
-			return proc(*task_manager_)
-				&& proc(*game_object_manager_);
+		bool Scene::IterateSceneModule_(std::function<bool(SceneModule&)>&& proc) {
+			for (auto it = scene_module_list_.begin(); it != scene_module_list_.end(); ++it) {
+				if (proc(**it) == false) { return false; }
+			}
+			return true;
+		}
+
+		bool Scene::ReverseIterateSceneModule_(std::function<bool(SceneModule&)>&& proc) {
+			for (auto it = scene_module_list_.rbegin(); it != scene_module_list_.rend(); ++it) {
+				if (proc(**it) == false) { return false; }
+			}
+			return true;
 		}
 
 		void Scene::RegisterSceneDataToModules() {
-			ForEachSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
+			IterateSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
 		void Scene::PrepareSceneData() {

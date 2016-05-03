@@ -5,7 +5,7 @@
 #include "SystemLog.h"
 
 namespace planeta_engine {
-	bool planeta_engine::components::CGraph2DAnimator::OnInitialized() {
+	bool CGraph2DAnimator::OnInitialized() {
 		draw_graph_component_ = game_object().GetComponent<CDrawGraph2D>();
 		if (draw_graph_component_) {
 			return true;
@@ -16,7 +16,7 @@ namespace planeta_engine {
 
 	}
 
-	void planeta_engine::components::CGraph2DAnimator::OnUpdated() {
+	void CGraph2DAnimator::OnUpdated() {
 		if (is_playing_) {
 			if (current_animation_ == nullptr) { is_playing_ = false; } else {
 				//フレームカウントが0なら、描画コンポーネントを更新する

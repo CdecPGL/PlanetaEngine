@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObjectSpecialComponent.h"
+#include "GameObjectSystemComponent.h"
 #include "WeakPointer.h"
 #include "Vector2D.h"
 #include <functional>
@@ -11,10 +11,7 @@ namespace planeta_engine {
 		class CollisionEventArgument;
 		class CollisionWithGroundEventArgument;
 	}
-	namespace core {
-		class CollisionWorld;
-	}
-	class CCollider2D : public core::GameObjectSpecialComponent, public core::IColliderWithCollider2D {
+	class CCollider2D : public core::GameObjectSystemComponent, public core::IColliderWithCollider2D {
 	public:
 		virtual ~CCollider2D() = default;
 		/*衝突判定を行う*/
@@ -52,13 +49,9 @@ namespace planeta_engine {
 		utility::WeakPointerDelegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
 
 	private:
-		/*特殊セットアップ*/
-		bool SpecialSetUp(const core::SceneDataForGameObject& setup_data)override final;
-
 		bool is_no_update() const override final { return true; }
 		bool OnActivated() override final;
 		bool OnInactivated() override final;
-		utility::WeakPointer<core::CollisionWorld> collision_detect_process_;
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
 

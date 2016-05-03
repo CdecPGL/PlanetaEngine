@@ -163,6 +163,7 @@ namespace planeta_engine {
 		bool InctivateTask(TaskData& tdata) {
 			assert(tdata.state == TaskState::Running);
 			running_task_group_list_[tdata.group_number].erase(tdata.iterator_at_runnning_task_group);
+			return true;
 		}
 		/*タスクの破棄*/
 		bool DisposeTask(TaskData& tdata) {
@@ -174,6 +175,7 @@ namespace planeta_engine {
 			if (tdata.is_named) {
 				task_name_map_.erase(tdata.iterator_at_name_map); //名前マップから削除
 			}
+			return true;
 		}
 		//////////////////////////////////////////////////////////////////////////
 		/*タスクの設定*/

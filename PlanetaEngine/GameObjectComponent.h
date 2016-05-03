@@ -11,7 +11,7 @@
 namespace planeta_engine {
 	class SceneAccessorForGameObject;
 	namespace core{
-		struct SceneDataForGameObject;
+		struct SceneData;
 		struct GameObjectComponentRegistrationData;
 	}
 	class IGameObject;
@@ -19,7 +19,7 @@ namespace planeta_engine {
 	public:
 		GameObjectComponent(IGameObject& p_gameobject,int p_id):game_object(p_gameobject), id_(p_id) {};
 		virtual ~GameObjectComponent() = default;
-		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const core::SceneDataForGameObject& special_setup_data);
+		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const utility::WeakPointer<core::SceneData>& scene_data);
 
 		bool is_valied()const { return is_valied_; }
 		bool is_active()const { return is_active_; }
@@ -40,7 +40,7 @@ namespace planeta_engine {
 		int id_;
 
 		/*特別設定関数*/
-		virtual bool SpecialSetUp(const core::SceneDataForGameObject& setup_data) = 0;
+		virtual void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) = 0;
 
 		/*イベント関数*/
 		virtual bool OnInitialized() { return true; }; //所属するゲームオブジェクトが生成されたときに呼び出される(システム関数)

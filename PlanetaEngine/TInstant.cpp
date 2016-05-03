@@ -1,5 +1,4 @@
 #include "TInstant.h"
-#include "SceneAccessorForTask.h"
 
 namespace planeta_engine {
 	void TInstant::Update() {

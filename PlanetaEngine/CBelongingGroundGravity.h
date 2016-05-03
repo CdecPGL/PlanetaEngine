@@ -1,8 +1,8 @@
 #pragma once
-#include "GameObjectNormalComponent.h"
+#include "GameObjectStandardComponent.h"
 
 namespace planeta_engine {
-	class CBelongingGroundGravity : public GameObjectNormalComponent {
+	class CBelongingGroundGravity : public GameObjectStandardComponent {
 	public:
 		const double gravity_scale()const { return _gravity_scale; }
 		CBelongingGroundGravity& gravity_scale(double gs) { _gravity_scale = gs; return *this; }

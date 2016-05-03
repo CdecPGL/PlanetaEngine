@@ -1,6 +1,6 @@
 #pragma once
 #include "boost/optional/optional.hpp"
-#include "GameObjectNormalComponent.h"
+#include "GameObjectStandardComponent.h"
 #include "MathMatrix.h"
 #include "Vector2D.h"
 #include "MathConstant.h"
@@ -10,7 +10,7 @@ namespace planeta_engine {
 	class CCircleCollider2D;
 	class CStraightLineCollider2D;
 	class CGround2D :
-		public GameObjectNormalComponent, public core::IColliderWithCollider2D {
+		public GameObjectStandardComponent, public core::IColliderWithCollider2D {
 	public:
 		CGround2D();
 		virtual ~CGround2D() = default;

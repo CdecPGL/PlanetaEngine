@@ -537,12 +537,6 @@
     <ClInclude Include="GameObjectComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectNormalComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectSpecialComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectComponentRigistrationData.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
@@ -833,6 +827,12 @@
     </ClInclude>
     <ClInclude Include="TransformSystem.h">
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectStandardComponent.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectSystemComponent.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <unordered_map>
-#include "GameObjectNormalComponent.h"
+#include "GameObjectSystemComponent.h"
 #include "Vector2D.h"
 #include "WeakPointerDelegate.h"
 
@@ -9,7 +9,7 @@ namespace planeta_engine {
 	class Transform2DCore;
 	class CGround2D;
 	/*形状情報コンポーネント*/
-	class CTransform2D : public GameObjectNormalComponent {
+	class CTransform2D : public core::GameObjectSystemComponent {
 	public:
 		CTransform2D();
 		~CTransform2D();

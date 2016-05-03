@@ -32,7 +32,7 @@ namespace planeta_engine {
 
 		/*システムタスク追加(システムタスク削除不可能)*/
 		template<class C>
-		utility::WeakPointer<C> AddSystemTask(SystemTaskSlot sys_task_slot) {
+		utility::WeakPointer<C> AddSystemTask(core::SystemTaskSlot sys_task_slot) {
 			static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");
 			return std::static_pointer_cast<C>(CreateSystemTask([](core::IGameAccessor& ga) {return std::make_shared<C>(ga); }, sys_task_slot));
 		}

@@ -195,8 +195,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SaveDataManager.h" />
     <ClInclude Include="SceneDataForGameObject.h" />
-    <ClInclude Include="GameObjectNormalComponent.h" />
-    <ClInclude Include="GameObjectSpecialComponent.h" />
+    <ClInclude Include="GameObjectStandardComponent.h" />
+    <ClInclude Include="GameObjectSystemComponent.h" />
     <ClInclude Include="NonCopyable.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.h" />

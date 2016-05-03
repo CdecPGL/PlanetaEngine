@@ -1,9 +1,9 @@
 #pragma once
-#include "GameObjectNormalComponent.h"
+#include "GameObjectStandardComponent.h"
 #include <vector>
 
 namespace planeta_engine {
-	class CPlanet : public GameObjectNormalComponent {
+	class CPlanet : public GameObjectStandardComponent {
 	public:
 		CPlanet();
 		~CPlanet() = default;

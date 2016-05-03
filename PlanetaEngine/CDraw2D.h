@@ -1,18 +1,12 @@
 #pragma once
-#include "GameObjectSpecialComponent.h"
+#include "GameObjectSystemComponent.h"
 #include "WeakPointer.h"
 #include "Color.h"
 #include "Vector2D.h"
 
 namespace planeta_engine {
 	class ScreenDrawer2D;
-	namespace system_processes {
-		class GameObjectDrawSystem;
-	}
-	namespace core {
-		//		class GameObjectDrawComponentProcessRegistrator;
-	}
-	class CDraw2D : public core::GameObjectSpecialComponent {
+	class CDraw2D : public core::GameObjectSystemComponent {
 	public:
 		CDraw2D();
 		virtual ~CDraw2D() = default;
@@ -55,13 +49,9 @@ namespace planeta_engine {
 		/*表示拡大度*/
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
 		planeta_engine::Color color_;
-		//			std::shared_ptr<core::GameObjectDrawComponentProcessRegistrator> draw_component_registrator_;
-		utility::WeakPointer<system_processes::GameObjectDrawSystem> draw_component_registrator_;
 		void RegisterToProcess_();
 		void RemoveFromProcess_();
 		void UpdatePriority_();
-		/*特殊セットアップ*/
-		bool SpecialSetUp(const core::SceneDataForGameObject& setup_data)override final;
 		/*更新処理は行わない*/
 		bool is_no_update()const override final { return true; }
 		bool OnActivated()override final;
