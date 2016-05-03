@@ -51,7 +51,6 @@ namespace planeta_engine {
 			core::TaskKeyPositionDefinition& RefTaskKeyPositionDefinition()override { return *game_process_key_position_definition_; }
 
 			std::shared_ptr<const core::CollisionGroupMatrix> GetCollisionGroupMatrix()const override { return collision_group_matrix_; }
-			const std::list<std::string>& GetTaskKeyPositionList()const override;
 		};
 	}
 }

@@ -6,7 +6,7 @@
 
 namespace planeta_engine {
 
-	GameObjectBase::GameObjectBase() = default;
+	GameObjectBase::GameObjectBase() :component_holder_(*this) {}
 
 	GameObjectBase::~GameObjectBase() = default;
 
@@ -16,11 +16,11 @@ namespace planeta_engine {
 	}
 
 	bool GameObjectBase::Activate() {
-		manager_connection_->RequestActivation();
+		return manager_connection_->RequestActivation();
 	}
 
 	bool GameObjectBase::Inactivate() {
-		manager_connection_->RequestInactivation();
+		return manager_connection_->RequestInactivation();
 	}
 
 	void GameObjectBase::Dispose() {
@@ -44,15 +44,15 @@ namespace planeta_engine {
 	}
 
 	bool GameObjectBase::ProcessActivation() {
-		
+		return false;
 	}
 
 	bool GameObjectBase::ProcessInactivation() {
-		
+		return false;
 	}
 
 	bool GameObjectBase::ProcessDisposal() {
-
+		return false;
 	}
 
 	void GameObjectBase::SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn) {

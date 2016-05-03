@@ -16,7 +16,7 @@ namespace planeta_engine {
 	//GameObjectRegistererとGameObjectManagerのみが使用可能。
 	class GameObjectFactory : private utility::NonCopyable<GameObjectFactory>{
 		template<const char* GameObjectID, class GameObjectType>
-		friend class GameObjectRegisterer<GameObjectID, GameObjectType>;
+		friend class GameObjectRegisterer;
 		friend class GameObjectManager;
 	private:
 		GameObjectFactory();

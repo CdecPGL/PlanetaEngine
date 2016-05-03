@@ -14,4 +14,4 @@ namespace planeta_engine {
 
 //GameObject‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(ID,Œ^)
 #define PE_REGISTER_GAMEOBJECT(id, type)\
-namespace {GameObjectRegisterer<id, type> gameobject_registerer;}
+namespace {GameObjectRegisterer<id,type> gameobject_registerer();}

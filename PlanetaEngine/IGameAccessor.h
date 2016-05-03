@@ -18,7 +18,6 @@ namespace planeta_engine {
 			virtual core::KeyInputManager& key_input_manager() = 0;
 			virtual core::ResourceManager& resource_manager() = 0;
 			virtual std::shared_ptr<const CollisionGroupMatrix> GetCollisionGroupMatrix()const = 0;
-			virtual const std::list<std::string>& GetTaskKeyPositionList()const = 0;
 			virtual Screen& screen() = 0;
 		};
 	}

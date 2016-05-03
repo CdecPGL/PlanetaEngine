@@ -2,7 +2,6 @@
 #include "SoundManager.h"
 #include "CollisionGroupMatrix.h"
 #include "DrawManager.h"
-#include "TaskKeyPositionDefinition.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -51,10 +50,5 @@ namespace planeta_engine {
 			_scene_manager->Finalize();
 			DrawManager::instance().DisposeScreen(screen_); //ƒXƒNƒŠ[ƒ“‚ğ”jŠü
 		}
-
-		const std::list<std::string>& Game::GetTaskKeyPositionList() const {
-			return game_process_key_position_definition_->GetKeyPositionIDList();
-		}
-
 	}
 }

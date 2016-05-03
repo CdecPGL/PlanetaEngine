@@ -1,7 +1,6 @@
 #include "GUIManager.h"
 #include "GUIObject.h"
 #include "SceneData.h"
-#include "SceneDataForGUI.h"
 #include "GUIManagerConnection.h"
 #include "SystemLog.h"
 #include "boost/lexical_cast.hpp"
