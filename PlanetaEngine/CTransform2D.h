@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include "GameObjectSystemComponent.h"
 #include "Vector2D.h"
-#include "WeakPointerDelegate.h"
+#include "Delegate.h"
 
 namespace planeta_engine {
 	class Transform2DCore;

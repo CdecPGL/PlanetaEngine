@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Task.h"
-#include "WeakPointerDelegate.h"
+#include "Delegate.h"
 
 namespace planeta_engine {
 	class TGameObjectOperation : public Task {
@@ -33,8 +33,8 @@ namespace planeta_engine {
 		virtual void OnTargetDisposed() {}
 		virtual void OnTargetActivated() {}
 		virtual void OnTargetInactivated() {}
-		utility::WeakPointerDelegateConnection dispose_event_connection_;
-		utility::WeakPointerDelegateConnection activate_event_connection_;
-		utility::WeakPointerDelegateConnection inactivate_event_connection_;
+		utility::DelegateConnection dispose_event_connection_;
+		utility::DelegateConnection activate_event_connection_;
+		utility::DelegateConnection inactivate_event_connection_;
 	};
 }

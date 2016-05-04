@@ -344,7 +344,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Vector4D.h" />
     <ClInclude Include="Vertex2D.h" />
     <ClInclude Include="WeakPointer.h" />
-    <ClInclude Include="WeakPointerDelegate.h" />
+    <ClInclude Include="Delegate.h" />
     <ClInclude Include="WindowsUtility.h" />
     <ClInclude Include="XMLResource.h" />
   </ItemGroup>

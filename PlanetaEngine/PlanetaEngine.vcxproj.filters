@@ -663,9 +663,6 @@
     <ClInclude Include="Event.h">
       <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
     </ClInclude>
-    <ClInclude Include="WeakPointerDelegate.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="pe_assert.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
@@ -836,6 +833,9 @@
     </ClInclude>
     <ClInclude Include="SceneSetUpProxy.h">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClInclude>
+    <ClInclude Include="Delegate.h">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -116,20 +116,20 @@ namespace planeta_engine {
 		private:
 			std::unique_ptr<IEventHandlerHolder<void>> garbage_;
 		};
-		//WeakPointerDelegateへの接続クラスインターフェス
-		class IWeakPointerDelegateConnecter {
+		//Delegateへの接続クラスインターフェス
+		class IDelegateConnecter {
 		public:
-			IWeakPointerDelegateConnecter()noexcept = default;
-			virtual ~IWeakPointerDelegateConnecter()noexcept = default;
+			IDelegateConnecter()noexcept = default;
+			virtual ~IDelegateConnecter()noexcept = default;
 			virtual void Remove() = 0;
 		};
-		//WeakPointerDelegateへの接続クラス
+		//Delegateへの接続クラス
 		template<typename EventArgType>
-		class WeakPointerDelegateConnecter final : public IWeakPointerDelegateConnecter {
+		class DelegateConnecter final : public IDelegateConnecter {
 		public:
 			using HandlerListType = std::unordered_map<size_t, std::unique_ptr<IEventHandlerHolder<EventArgType>>>;
-			WeakPointerDelegateConnecter(const std::weak_ptr<HandlerListType>& handler_list, size_t id)noexcept :handler_list_(handler_list), id_(id) {}
-			~WeakPointerDelegateConnecter()noexcept = default;
+			DelegateConnecter(const std::weak_ptr<HandlerListType>& handler_list, size_t id)noexcept :handler_list_(handler_list), id_(id) {}
+			~DelegateConnecter()noexcept = default;
 			/*登録したデリゲートから削除*/
 			void Remove()override {
 				if (!handler_list_.expired()) {
@@ -150,35 +150,35 @@ namespace planeta_engine {
 			size_t id_;
 		};
 		/**
-		* @brief WeakPointerDelegateへの接続保持クラス
+		* @brief Delegateへの接続保持クラス
 		*/
-		class WeakPointerDelegateConnection final {
+		class DelegateConnection final {
 		public:
-			WeakPointerDelegateConnection()noexcept = default;
-			WeakPointerDelegateConnection(const WeakPointerDelegateConnection& wpdc)noexcept :connector_(wpdc.connector_) {}
-			WeakPointerDelegateConnection(WeakPointerDelegateConnection&& wpdc)noexcept : connector_(std::move(wpdc.connector_)) {}
-			explicit WeakPointerDelegateConnection(const std::shared_ptr<IWeakPointerDelegateConnecter>& cp)noexcept : connector_(cp) {}
-			explicit WeakPointerDelegateConnection(std::shared_ptr<IWeakPointerDelegateConnecter>&& cp)noexcept : connector_(std::move(cp)) {}
-			WeakPointerDelegateConnection& operator =(const WeakPointerDelegateConnection& wpdc)noexcept { connector_ = wpdc.connector_; return *this; }
-			WeakPointerDelegateConnection& operator =(WeakPointerDelegateConnection&& wpdc)noexcept { connector_ = std::move(wpdc.connector_); return *this; }
+			DelegateConnection()noexcept = default;
+			DelegateConnection(const DelegateConnection& wpdc)noexcept :connector_(wpdc.connector_) {}
+			DelegateConnection(DelegateConnection&& wpdc)noexcept : connector_(std::move(wpdc.connector_)) {}
+			explicit DelegateConnection(const std::shared_ptr<IDelegateConnecter>& cp)noexcept : connector_(cp) {}
+			explicit DelegateConnection(std::shared_ptr<IDelegateConnecter>&& cp)noexcept : connector_(std::move(cp)) {}
+			DelegateConnection& operator =(const DelegateConnection& wpdc)noexcept { connector_ = wpdc.connector_; return *this; }
+			DelegateConnection& operator =(DelegateConnection&& wpdc)noexcept { connector_ = std::move(wpdc.connector_); return *this; }
 			/**
 			* @brief デリゲートから削除する
 			*/
 			void Remove() { if (connector_) { connector_->Remove(); connector_.reset(); } }
 		private:
-			std::shared_ptr<IWeakPointerDelegateConnecter> connector_;
+			std::shared_ptr<IDelegateConnecter> connector_;
 		};
 		/**
-		* @brief WeakPointerデリゲート
+		* @brief デリゲート
 		*/
 		template<typename EventArgType = void>
-		class WeakPointerDelegate final {
+		class Delegate final {
 		public:
 			using HandlerParamType = typename IEventHandlerHolder<EventArgType>::ParamType;
-			WeakPointerDelegate()noexcept:handlers_(std::make_shared<WeakPointerDelegateConnecter<EventArgType>::HandlerListType>()) {}
-			WeakPointerDelegate(const WeakPointerDelegate&) = delete;
-			~WeakPointerDelegate()noexcept = default;
-			WeakPointerDelegate& operator=(const WeakPointerDelegate&) = delete;
+			Delegate()noexcept:handlers_(std::make_shared<DelegateConnecter<EventArgType>::HandlerListType>()) {}
+			Delegate(const Delegate&) = delete;
+			~Delegate()noexcept = default;
+			Delegate& operator=(const Delegate&) = delete;
 
 			void operator()(HandlerParamType e) {
 				for (auto it = handlers_->begin(); it != handlers_->end();) {
@@ -197,33 +197,33 @@ namespace planeta_engine {
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/
 			template<class C>
-			WeakPointerDelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)(HandlerParamType)) {
+			DelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)(HandlerParamType)) {
 				size_t id = id_counter_++;
 				handlers_->emplace(id, std::make_unique<WeakPointerMenberFunctionEventHandlerHolder<EventArgType, C>>(c, f));
-				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<EventArgType>>(handlers_, id));
+				return DelegateConnection(std::make_shared<DelegateConnecter<EventArgType>>(handlers_, id));
 			}
 			/**
 			* @brief デリケートにメンバ関数を登録する
 			* @param (func) 登録したい関数
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/
-			WeakPointerDelegateConnection Add(const std::function<void(HandlerParamType)>& func) {
+			DelegateConnection Add(const std::function<void(HandlerParamType)>& func) {
 				size_t id = id_counter_++;
 				handlers_->emplace(id, std::make_unique<NormalFunctionEventHandlerHolder<EventArgType>>(func));
-				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<EventArgType>>(handlers_, id));
+				return DelegateConnection(std::make_shared<DelegateConnecter<EventArgType>>(handlers_, id));
 			}
 		private:
 			size_t id_counter_ = 0;
-			std::shared_ptr<typename WeakPointerDelegateConnecter<EventArgType>::HandlerListType> handlers_;
+			std::shared_ptr<typename DelegateConnecter<EventArgType>::HandlerListType> handlers_;
 		};
 
 		template<>
-		class WeakPointerDelegate<void> final {
+		class Delegate<void> final {
 		public:
-			WeakPointerDelegate()noexcept : handlers_(std::make_shared<WeakPointerDelegateConnecter<void>::HandlerListType>()) {}
-			WeakPointerDelegate(const WeakPointerDelegate&) = delete;
-			~WeakPointerDelegate()noexcept = default;
-			WeakPointerDelegate& operator=(const WeakPointerDelegate&) = delete;
+			Delegate()noexcept : handlers_(std::make_shared<DelegateConnecter<void>::HandlerListType>()) {}
+			Delegate(const Delegate&) = delete;
+			~Delegate()noexcept = default;
+			Delegate& operator=(const Delegate&) = delete;
 
 			void operator()() {
 				for (auto it = handlers_->begin(); it != handlers_->end();) {
@@ -242,24 +242,24 @@ namespace planeta_engine {
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/
 			template<class C>
-			WeakPointerDelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)()) {
+			DelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)()) {
 				size_t id = id_counter_++;
 				handlers_->emplace(id, std::make_unique<WeakPointerMenberFunctionEventHandlerHolder<void, C>>(c, f));
-				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<void>>(handlers_, id));
+				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
 			}
 			/**
 			* @brief デリケートに関数を登録する
 			* @param (func) 登録したい関数
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/
-			WeakPointerDelegateConnection Add(const std::function<void(void)>& func) {
+			DelegateConnection Add(const std::function<void(void)>& func) {
 				size_t id = id_counter_++;
 				handlers_->emplace(id, std::make_unique<NormalFunctionEventHandlerHolder<void>>(func));
-				return WeakPointerDelegateConnection(std::make_shared<WeakPointerDelegateConnecter<void>>(handlers_, id));
+				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
 			}
 		private:
 			size_t id_counter_ = 0;
-			std::shared_ptr<typename WeakPointerDelegateConnecter<void>::HandlerListType> handlers_;
+			std::shared_ptr<typename DelegateConnecter<void>::HandlerListType> handlers_;
 		};
 	}
 }

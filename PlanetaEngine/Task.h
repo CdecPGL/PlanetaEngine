@@ -2,7 +2,7 @@
 
 #include "Object.h"
 #include "WeakPointer.h"
-#include "WeakPointerDelegate.h"
+#include "Delegate.h"
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
 
@@ -28,7 +28,7 @@ namespace planeta_engine {
 		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data);
 		/*イベント*/
 		/*プロセスが破棄された*/
-		utility::WeakPointerDelegate<void> disposed;
+		utility::Delegate<void> disposed;
 		/*ユーティリティ関数*/
 
 	protected:

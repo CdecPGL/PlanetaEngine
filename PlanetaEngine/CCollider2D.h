@@ -3,7 +3,7 @@
 #include "WeakPointer.h"
 #include "Vector2D.h"
 #include <functional>
-#include "WeakPointerDelegate.h"
+#include "Delegate.h"
 #include "IColliderWithCollider2D.h"
 
 namespace planeta_engine {
@@ -44,9 +44,9 @@ namespace planeta_engine {
 
 		/*イベント*/
 		/*物体と衝突した*/
-		utility::WeakPointerDelegate<event_arguments::CollisionEventArgument> collided;
+		utility::Delegate<event_arguments::CollisionEventArgument> collided;
 		/*地形と衝突した*/
-		utility::WeakPointerDelegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
+		utility::Delegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
 
 	private:
 		bool is_no_update() const override final { return true; }
