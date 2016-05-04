@@ -11,7 +11,7 @@
 
 namespace planeta_engine {
 	namespace utility {
-		//イベントハンドラ所有クラスインターフェイス
+		//イベントハンドラ所有クラスインターフェイス(内部クラス)
 		template<typename EventArgType>
 		class IEventHandlerHolder {
 		public:
@@ -28,7 +28,7 @@ namespace planeta_engine {
 			virtual ~IEventHandlerHolder()noexcept = default;
 			virtual bool Call() = 0;
 		};
-		//WeakPointerメンバ関数イベントハンドラ所有クラス
+		//WeakPointerメンバ関数イベントハンドラ所有クラス(内部クラス)
 		template<typename EventArgType, class C>
 		class WeakPointerMenberFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -69,7 +69,7 @@ namespace planeta_engine {
 			FunctionType func_;
 		};
 
-		//通常関数イベントハンドラ保有クラス
+		//通常関数イベントハンドラ保有クラス(内部クラス)
 		template<typename EventArgType>
 		class NormalFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -96,7 +96,7 @@ namespace planeta_engine {
 		private:
 			FunctionType func_;
 		};
-		//破棄イベントハンドラ保有クラス
+		//破棄イベントハンドラ保有クラス(内部クラス)
 		template<typename EventArgType>
 		class GarbageEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -116,14 +116,14 @@ namespace planeta_engine {
 		private:
 			std::unique_ptr<IEventHandlerHolder<void>> garbage_;
 		};
-		//Delegateへの接続クラスインターフェス
+		//Delegateへの接続クラスインターフェス(内部クラス)
 		class IDelegateConnecter {
 		public:
 			IDelegateConnecter()noexcept = default;
 			virtual ~IDelegateConnecter()noexcept = default;
 			virtual void Remove() = 0;
 		};
-		//Delegateへの接続クラス
+		//Delegateへの接続クラス(内部クラス)
 		template<typename EventArgType>
 		class DelegateConnecter final : public IDelegateConnecter {
 		public:
@@ -150,7 +150,7 @@ namespace planeta_engine {
 			size_t id_;
 		};
 		/**
-		* @brief Delegateへの接続保持クラス
+		* @brief Delegateへの接続保持クラス(公開クラス)
 		*/
 		class DelegateConnection final {
 		public:
@@ -169,7 +169,7 @@ namespace planeta_engine {
 			std::shared_ptr<IDelegateConnecter> connector_;
 		};
 		/**
-		* @brief デリゲート
+		* @brief デリゲート(公開クラス)
 		*/
 		template<typename EventArgType = void>
 		class Delegate final {
@@ -220,6 +220,7 @@ namespace planeta_engine {
 		template<>
 		class Delegate<void> final {
 		public:
+			using HandlerParamType = void;
 			Delegate()noexcept : handlers_(std::make_shared<DelegateConnecter<void>::HandlerListType>()) {}
 			Delegate(const Delegate&) = delete;
 			~Delegate()noexcept = default;
@@ -261,5 +262,29 @@ namespace planeta_engine {
 			size_t id_counter_ = 0;
 			std::shared_ptr<typename DelegateConnecter<void>::HandlerListType> handlers_;
 		};
+
+		/*デリゲートハンドラ追加クラス(公開クラス)*/
+		template<typename EventArgType = void>
+		class DelegateHandlerAdder final{
+		public:
+			DelegateHandlerAdder(std::function<DelegateConnection(Delegate<EventArgType>&)>&& adder) :delegate_handle_adder_(std::move(adder)) {}
+			DelegateConnection operator()(Delegate<EventArgType>& dlgt) { return delegate_handle_adder_(dlgt); }
+		private:
+			std::function<DelegateConnection(Delegate<EventArgType>&)> delegate_handle_adder_;
+		};
+
+		/*デリゲート追加クラス作成(公開関数)*/
+		template<typename EventArgType,class C>
+		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(EventArgType)) {
+			return DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); });
+		}
+		/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
+		template<typename EventArgType>
+		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const std::function<void(EventArgType)>& func) {
+			return DelegateHandlerAdder<EventArgType>([func](Delegate<EventArgType>& dlgt) {return dlgt.Add(func); });
+		}
+		DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(const std::function<void()>& func) {
+			return DelegateHandlerAdder<void>([func](Delegate<void>& dlgt) {return dlgt.Add(func); });
+		}
 	}
 }

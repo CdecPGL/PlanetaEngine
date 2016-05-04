@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <memory>
 #include "GameObjectInterface.h"
+#include "Delegate.h"
 
 namespace planeta_engine {
 	class IGameObject {
@@ -28,5 +29,11 @@ namespace planeta_engine {
 			static_assert(std::is_base_of<GameObjectInterface, GOI>::value == true, "GOI must drive GameObjectInterface.");
 			return GetInterface<GOI>() != nullptr;
 		}
+		//有効化イベントハンドラ登録
+		virtual utility::DelegateConnection AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
+		//無効化イベントハンドラ登録
+		virtual utility::DelegateConnection AddInactivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
+		//破棄イベントハンドラ登録
+		virtual utility::DelegateConnection AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
 	};
 }

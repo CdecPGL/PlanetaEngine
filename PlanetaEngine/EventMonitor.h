@@ -5,7 +5,7 @@
 namespace planeta_engine {
 	namespace utility {
 		/**
-		* @brief イベント監視クラス本体。
+		* @brief デリゲートイベント監視クラス本体。
 		*/
 		class EventMonitor final{
 		public:

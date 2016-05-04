@@ -73,4 +73,16 @@ namespace planeta_engine {
 		return go;
 	}
 
+	utility::DelegateConnection GameObjectBase::AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) {
+		return hander_adder(activated_event_delegate_);
+	}
+
+	utility::DelegateConnection GameObjectBase::AddInactivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) {
+		return hander_adder(inactivated_event_delegate_);
+	}
+
+	utility::DelegateConnection GameObjectBase::AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) {
+		return hander_adder(disposed_event_delegate_);
+	}
+
 }
