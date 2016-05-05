@@ -19,12 +19,12 @@ namespace planeta_engine{
 			NonOwingPointer& operator=(const NonOwingPointer&) = delete;
 
 			//ポインタへのアクセス
-			T& operator->() {
-				return *ptr_;
+			T* operator->() {
+				return ptr_;
 			}
 			//ポインタへのアクセス
-			const T& operator->() const {
-				return *ptr_;
+			const T* operator->() const {
+				return ptr_;
 			}
 			//参照へのアクセス
 			T& operator*() {

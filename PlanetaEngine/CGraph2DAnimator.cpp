@@ -1,12 +1,12 @@
 #include "CGraph2DAnimator.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObjectForComponent.h"
 #include "CDrawGraph2D.h"
 #include "SystemLog.h"
 #include "SystemLog.h"
 
 namespace planeta_engine {
 	bool CGraph2DAnimator::OnInitialized() {
-		draw_graph_component_ = game_object().GetComponent<CDrawGraph2D>();
+		draw_graph_component_.reset(game_object().GetComponent<CDrawGraph2D>());
 		if (draw_graph_component_) {
 			return true;
 		} else {

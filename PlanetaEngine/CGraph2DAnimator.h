@@ -27,7 +27,7 @@ namespace planeta_engine {
 		/*再生中のアニメーション名を取得する*/
 		const std::string GetPlayingAnimationName()const { return is_playing_ ? current_animation_name_ : ""; }
 	private:
-		utility::WeakPointer<CDrawGraph2D> draw_graph_component_;
+		utility::NonOwingPointer<CDrawGraph2D> draw_graph_component_;
 		unsigned int frame_counter_ = 0;
 		bool is_playing_ = false;
 		bool roop_flag_ = false;

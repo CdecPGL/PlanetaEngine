@@ -28,8 +28,8 @@ namespace planeta_engine {
 		//コンポーネントを型で取得する。
 		template<class ComT>
 		std::shared_ptr<ComT> GetComponent() {
-			static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "ComT must derive GameComponent.");
-			auto ptr = GetComponentByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT>(goc) != nullptr; });
+			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must derive GameComponent.");
+			auto ptr = GetComponentByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; });
 			return ptr ? std::static_pointer_cast<ComT>(ptr) : nullptr;
 		}
 		//コンポーネントを型で全て取得する。
