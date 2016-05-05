@@ -4,7 +4,7 @@
 #include "GraphResource.h"
 #include "SystemLog.h"
 #include "CTransform2D.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObjectForComponent.h"
 #include "Matrix2_2.h"
 #include "MathConstant.h"
 #include "GraphDrawData2D.h"

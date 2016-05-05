@@ -2,11 +2,13 @@
 #include "GameObjectStandardComponent.h"
 
 namespace planeta_engine {
+	class CTransform2D;
 	class CBelongingGroundGravity : public GameObjectStandardComponent {
 	public:
 		const double gravity_scale()const { return _gravity_scale; }
 		CBelongingGroundGravity& gravity_scale(double gs) { _gravity_scale = gs; return *this; }
 	private:
+		utility::NonOwingPointer<CTransform2D> transform2d_;
 		double _gravity_scale = 0.5;
 		bool OnInitialized() override;
 		void OnUpdated() override;

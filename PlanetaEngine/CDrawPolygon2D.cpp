@@ -1,6 +1,6 @@
 #include "CDrawPolygon2D.h"
 #include "ScreenDrawer2D.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObjectForComponent.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 
@@ -38,12 +38,11 @@ namespace planeta_engine {
 	}
 
 	void CDrawPolygon2D::UpdateVertex_() {
-		components::CTransform2D& transform = game_object().transform();
 		for (size_t i = 0; i < points_.size(); ++i) {
 			Vector2Dd relative_pos0(points_[i].x*scale().x, points_[i].y*scale().y); //描画コンポーネントの拡大度を適用
 			relative_pos0 = math::RotationalTransformation(rotation_rad(), relative_pos0); //描画コンポーネントの回転度を適用
-			auto relative_pos1 = Vector2Dd((position() + relative_pos0).x*transform.scale().x, (position() + relative_pos0).y*transform.scale().y); //トランスフォームの拡大度を適用
-			auto pos = transform.global_position() + math::RotationalTransformation(transform.global_rotation_rad(), relative_pos1); //トランスフォームの回転度を適用
+			auto relative_pos1 = Vector2Dd((position() + relative_pos0).x*transform2d_->scale().x, (position() + relative_pos0).y*transform2d_->scale().y); //トランスフォームの拡大度を適用
+			auto pos = transform2d_->global_position() + math::RotationalTransformation(transform2d_->global_rotation_rad(), relative_pos1); //トランスフォームの回転度を適用
 			vertexes_[i] = pos;
 		}
 	}

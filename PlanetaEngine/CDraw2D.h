@@ -6,6 +6,7 @@
 
 namespace planeta_engine {
 	class ScreenDrawer2D;
+	class CTransform2D;
 	class CDraw2D : public core::GameObjectSystemComponent {
 	public:
 		CDraw2D();
@@ -40,6 +41,10 @@ namespace planeta_engine {
 		double GetDrawRotationRed()const;
 		/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
 		Vector2Dd GetDrawScale()const;
+
+		utility::NonOwingPointer<CTransform2D> transform2d_;
+
+		bool OnInitialized()override;
 	private:
 		int draw_priority_ = 0; //描画優先度
 		/*表示位置*/
@@ -52,8 +57,6 @@ namespace planeta_engine {
 		void RegisterToProcess_();
 		void RemoveFromProcess_();
 		void UpdatePriority_();
-		/*更新処理は行わない*/
-		bool is_no_update()const override final { return true; }
 		bool OnActivated()override final;
 		bool OnInactivated()override final;
 		/*描画処理*/

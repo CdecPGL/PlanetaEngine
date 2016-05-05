@@ -1,6 +1,6 @@
 #include "CDrawLine2D.h"
 #include "ScreenDrawer2D.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObjectForComponent.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 
@@ -10,7 +10,6 @@ namespace planeta_engine {
 	}
 
 	void CDrawLine2D::DrawProc(ScreenDrawer2D& drawer) {
-		auto gt = game_object().GetTransformComponent();
 		//トランスフォームからワイヤーの位置を更新
 		_wire_positions[0] = GetDrawCenterPosition();
 		_wire_positions[1] = _wire_positions[0] + math::RotationalTransformation(GetDrawRotationRed(), Vector2Dd(1.0, 0.0))*length()*GetDrawScale().x;

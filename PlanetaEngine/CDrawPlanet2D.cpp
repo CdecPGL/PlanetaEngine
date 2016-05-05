@@ -3,7 +3,7 @@
 #include "ScreenDrawer2D.h"
 #include "ResourceManager.h"
 #include "GraphResource.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObjectForComponent.h"
 #include "CPlanet.h"
 #include "MathConstant.h"
 #include "SystemLog.h"
@@ -32,7 +32,8 @@ namespace planeta_engine {
 	}
 
 	bool CDrawPlanet2D::OnInitialized() {
-		_planet_component = game_object().GetComponent<components::CPlanet>();
+		if (CDraw2D::OnInitialized() == false) { return false; }
+		_planet_component.reset(game_object().GetComponent<CPlanet>());
 		if (_planet_component) {
 			SetPolygonRoundly_();
 			return true;
@@ -183,11 +184,11 @@ namespace planeta_engine {
 	void CDrawPlanet2D::texture_mapping_mode(TextureMappingMode tmm) {
 		tex_map_mode_ = tmm;
 		switch (tex_map_mode_) {
-		case planeta_engine::components::CDrawPlanet2D::TextureMappingMode::Round:
+		case CDrawPlanet2D::TextureMappingMode::Round:
 			polygon_setter_ = &CDrawPlanet2D::SetPolygonRoundly_;
 			polygon_updater_ = &CDrawPlanet2D::UpdatePolygonRoundly_;
 			break;
-		case planeta_engine::components::CDrawPlanet2D::TextureMappingMode::Plain:
+		case CDrawPlanet2D::TextureMappingMode::Plain:
 			polygon_setter_ = &CDrawPlanet2D::SetPolygonPlainly_;
 			polygon_updater_ = &CDrawPlanet2D::UpdatePolygonPlainly_;
 			break;
