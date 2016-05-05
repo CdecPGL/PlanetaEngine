@@ -1,5 +1,5 @@
 #include "GameObjectComponent.h"
-#include "GameObject.h"
+#include "GameObjectBase.h"
 #include "GameObjectComponentRigistrationData.h"
 
 namespace planeta_engine{

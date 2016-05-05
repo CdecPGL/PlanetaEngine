@@ -4,8 +4,10 @@
 #include <memory>
 #include "GameObjectInterface.h"
 #include "Delegate.h"
+#include "TaskSlot.h"
 
 namespace planeta_engine {
+	class Task;
 	class IGameObject {
 	public:
 		//有効化
@@ -29,6 +31,9 @@ namespace planeta_engine {
 			static_assert(std::is_base_of<GameObjectInterface, GOI>::value == true, "GOI must drive GameObjectInterface.");
 			return GetInterface<GOI>() != nullptr;
 		}
+		//タスクをアタッチ
+		template<class T>
+		utility::WeakPointer<Task> CreateAndAttachTask(TaskSlot slot);
 		//有効化イベントハンドラ登録
 		virtual utility::DelegateConnection AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
 		//無効化イベントハンドラ登録

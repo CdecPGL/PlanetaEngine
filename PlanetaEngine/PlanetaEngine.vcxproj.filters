@@ -837,6 +837,12 @@
     <ClInclude Include="Delegate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="NonOwingPointer.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObjectForComponent.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

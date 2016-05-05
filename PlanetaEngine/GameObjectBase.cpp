@@ -85,4 +85,8 @@ namespace planeta_engine {
 		return hander_adder(disposed_event_delegate_);
 	}
 
+	GameObjectComponentHolder& GameObjectBase::RefComponentHolder() {
+		return component_holder_;
+	}
+
 }

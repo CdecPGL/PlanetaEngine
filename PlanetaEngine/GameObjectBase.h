@@ -1,9 +1,10 @@
 #pragma once
 
 #include "GameObjectComponentHolder.h"
-#include "IGameObject.h"
+#include "IGameObjectForComponent.h"
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
+#include "NonOwingPointer.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -11,7 +12,7 @@ namespace planeta_engine {
 	}
 	class GameObjectComponent;
 	class GameObjectManagerConnection;
-	class GameObjectBase : public IGameObject,private utility::NonCopyable<GameObjectBase> {
+	class GameObjectBase : public IGameObjectForComponent,private utility::NonCopyable<GameObjectBase> {
 	public:
 		GameObjectBase();
 		~GameObjectBase();
@@ -32,7 +33,7 @@ namespace planeta_engine {
 		//破棄イベントハンドラ登録
 		utility::DelegateConnection AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
 
-		//システム用関数(Managerから呼び出される)
+		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
 		//有効化時の処理
 		bool ProcessActivation();
 		//無効化時の処理
@@ -57,27 +58,18 @@ namespace planeta_engine {
 	protected:
 		//コンポーネントを作成、追加する。
 		template<class ComT>
-		utility::WeakPointer<ComT> CreateAndAddComponent() {
+		utility::NonOwingPointer<ComT> CreateAndAddComponent() {
 			return component_holder_.CreateAndAddComponent();
 		}
-		//コンポーネントを型で取得する。
-		template<class ComT>
-		utility::WeakPointer<ComT> GetComponent() {
-			return component_holder_.GetComponent<ComT>();
-		}
-		//コンポーネントを型で全て取得する。
-		template<class ComT>
-		std::vector<utility::WeakPointer<ComT>> GetAllComponents() {
-			return std::move(component_holder_.GetAllComponents<ComT>());
-		}
-		//ゲームオブジェクトを作成
-		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
-		//ゲームオブジェクトを作成して有効化
-		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
-		//タスクをアタッチ
-		template<class T>
-		utility::WeakPointer<Task> AttachTask(TaskSlot slot);
 	private:
+		//インターフェイスのオーバーライド
+		//ゲームオブジェクトを作成
+		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id)override final;
+		//ゲームオブジェクトを作成して有効化
+		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id)override final;
+		//コンポーネントフォルダの取得
+		GameObjectComponentHolder& RefComponentHolder()override final;
+
 		//自身の弱参照
 		std::weak_ptr<GameObjectBase> this_weak_ptr_;
 		//マネージャコネクション

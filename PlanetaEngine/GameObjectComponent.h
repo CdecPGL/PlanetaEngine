@@ -7,6 +7,7 @@
 #include "BadNewDeleteOperation.h"
 #include "SharedPointerInstance.h"
 #include "WeakPointer.h"
+#include "NonOwingPointer.h"
 
 namespace planeta_engine {
 	class SceneAccessorForGameObject;
@@ -14,10 +15,10 @@ namespace planeta_engine {
 		struct SceneData;
 		struct GameObjectComponentRegistrationData;
 	}
-	class IGameObject;
+	class IGameObjectForComponent;
 	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
 	public:
-		GameObjectComponent(IGameObject& p_gameobject,int p_id):game_object(p_gameobject), id_(p_id) {};
+		GameObjectComponent(IGameObjectForComponent& p_gameobject,int p_id):game_object(p_gameobject), id_(p_id) {};
 		virtual ~GameObjectComponent() = default;
 		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const utility::WeakPointer<core::SceneData>& scene_data);
 
@@ -33,7 +34,7 @@ namespace planeta_engine {
 		void Finalize();
 	protected:
 		//保持されているゲームオブジェクトへの参照
-		IGameObject& game_object;
+		IGameObjectForComponent& game_object;
 	private:
 		bool is_valied_ = false;
 		bool is_active_ = false;
