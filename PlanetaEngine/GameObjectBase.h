@@ -59,7 +59,9 @@ namespace planeta_engine {
 		//コンポーネントを作成、追加する。
 		template<class ComT>
 		utility::NonOwingPointer<ComT> CreateAndAddComponent() {
-			return component_holder_.CreateAndAddComponent();
+			auto com = component_holder_.CreateAndAddComponent();
+			SetUpGameComponent(*com);
+			return com;
 		}
 	private:
 		//インターフェイスのオーバーライド
@@ -80,6 +82,8 @@ namespace planeta_engine {
 		GameObjectComponentHolder component_holder_;
 
 		//コンポーネント関連の処理
+
+		void SetUpGameComponent(GameObjectComponent& com);
 		
 		//イベントデリゲート
 		utility::Delegate<void> activated_event_delegate_;

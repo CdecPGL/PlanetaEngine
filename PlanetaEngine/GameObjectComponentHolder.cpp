@@ -1,16 +1,14 @@
 #include "GameObjectComponentHolder.h"
 
 namespace planeta_engine {
-	GameObjectComponentHolder::GameObjectComponentHolder(IGameObject& p_gameobject) :game_object_(p_gameobject) {}
-
 	std::shared_ptr<GameObjectComponent> GameObjectComponentHolder::GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker) const {
 		auto it = component_type_map_.find(ti);
 		if (it == component_type_map_.end()) {
 			for (const auto& c : component_list_) {
 				//存在したらタイプリストに追加して不完全マークして関数を抜ける
-				if (type_checker(c.second.get())) {
-					component_type_map_.emplace(ti, std::make_pair(false, std::vector<std::shared_ptr<GameObjectComponent>>{ c.second }));
-					return c.second;
+				if (type_checker(c.get())) {
+					component_type_map_.emplace(ti, std::make_pair(false, std::vector<std::shared_ptr<GameObjectComponent>>{ c }));
+					return c;
 				}
 			}
 			//存在しなかったらタイプリストを空にして完全マークして関数を抜ける
@@ -27,8 +25,8 @@ namespace planeta_engine {
 		auto all_search = [this, &type_checker, &ti](std::vector<std::shared_ptr<GameObjectComponent>>& t_list) {
 			for (const auto& c : component_list_) {
 				//存在したらタイプリストに追加
-				if (type_checker(c.second.get())) {
-					t_list.push_back(c.second);
+				if (type_checker(c.get())) {
+					t_list.push_back(c);
 				}
 			}
 			return t_list;

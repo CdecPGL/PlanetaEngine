@@ -3,10 +3,12 @@
 #include "GameObjectManagerConnection.h"
 #include "GameObjectManagerPublicInterface.h"
 #include "SceneData.h"
+#include "GameObjectComponent.h"
+#include "GameObjectComponentSetUpData.h"
 
 namespace planeta_engine {
 
-	GameObjectBase::GameObjectBase() :component_holder_(*this) {}
+	GameObjectBase::GameObjectBase() {}
 
 	GameObjectBase::~GameObjectBase() = default;
 
@@ -87,6 +89,11 @@ namespace planeta_engine {
 
 	GameObjectComponentHolder& GameObjectBase::RefComponentHolder() {
 		return component_holder_;
+	}
+
+	void GameObjectBase::SetUpGameComponent(GameObjectComponent& com) {
+		core::GameObjectComponentSetUpData rd{ this, scene_data_ };
+		com.SystemSetUp(rd);
 	}
 
 }

@@ -13,14 +13,14 @@ namespace planeta_engine {
 	class SceneAccessorForGameObject;
 	namespace core{
 		struct SceneData;
-		struct GameObjectComponentRegistrationData;
+		struct GameObjectComponentSetUpData;
 	}
 	class IGameObjectForComponent;
 	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
 	public:
-		GameObjectComponent(IGameObjectForComponent& p_gameobject,int p_id):game_object(p_gameobject), id_(p_id) {};
+		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
-		bool SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const utility::WeakPointer<core::SceneData>& scene_data);
+		bool SystemSetUp(const core::GameObjectComponentSetUpData& resistration_data);
 
 		bool is_valied()const { return is_valied_; }
 		bool is_active()const { return is_active_; }
@@ -34,11 +34,12 @@ namespace planeta_engine {
 		void Finalize();
 	protected:
 		//保持されているゲームオブジェクトへの参照
-		IGameObjectForComponent& game_object;
+		IGameObjectForComponent& game_object();
 	private:
 		bool is_valied_ = false;
 		bool is_active_ = false;
-		int id_;
+
+		utility::NonOwingPointer<IGameObjectForComponent> game_object_;
 
 		/*特別設定関数*/
 		virtual void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) = 0;

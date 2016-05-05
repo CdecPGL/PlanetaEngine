@@ -1,6 +1,6 @@
 #include "GameObjectComponent.h"
 #include "GameObjectBase.h"
-#include "GameObjectComponentRigistrationData.h"
+#include "GameObjectComponentSetUpData.h"
 
 namespace planeta_engine{
 		bool GameObjectComponent::Initialize() {
@@ -37,8 +37,14 @@ namespace planeta_engine{
 			}
 		}
 
-		bool GameObjectComponent::SystemSetUp(const core::GameObjectComponentRegistrationData& resistration_data, const utility::WeakPointer<core::SceneData>& scene_data) {
-			SetSceneData(scene_data);
+		bool GameObjectComponent::SystemSetUp(const core::GameObjectComponentSetUpData& resistration_data) {
+			game_object_.reset(resistration_data.holder_game_object);
+			SetSceneData(resistration_data.scene_data);
 			return true;
 		}
+
+		IGameObjectForComponent& GameObjectComponent::game_object() {
+			return *game_object_;
+		}
+
 }

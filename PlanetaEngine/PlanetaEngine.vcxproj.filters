@@ -537,9 +537,6 @@
     <ClInclude Include="GameObjectComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponentRigistrationData.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -842,6 +839,9 @@
     </ClInclude>
     <ClInclude Include="IGameObjectForComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectComponentSetUpData.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

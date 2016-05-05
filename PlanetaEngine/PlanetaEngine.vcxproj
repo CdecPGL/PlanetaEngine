@@ -185,7 +185,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="ConfigData.h" />
     <ClInclude Include="GameObjectComponentHeaders.h" />
-    <ClInclude Include="GameObjectComponentRigistrationData.h" />
+    <ClInclude Include="GameObjectComponentSetUpData.h" />
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
     <ClInclude Include="TGameObjectOperation.h" />
     <ClInclude Include="GameObjectSetUpperHeaders.h" />
