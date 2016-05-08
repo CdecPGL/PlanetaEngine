@@ -8,10 +8,8 @@
 
 namespace planeta_engine {
 	class CTransform2D;
-	namespace event_arguments {
-		class CollisionEventArgument;
-		class CollisionWithGroundEventArgument;
-	}
+	class EACollisionWithCollider2D;
+	class EACollisionWithGround2D;
 	class CCollider2D : public core::GameObjectSystemComponent, public core::IColliderWithCollider2D {
 	public:
 		virtual ~CCollider2D() = default;
@@ -47,10 +45,10 @@ namespace planeta_engine {
 		const CTransform2D& transform2d()const { return *transform2d_; }
 
 		/*イベント*/
-		/*物体と衝突した*/
-		utility::DelegateConnection AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<event_arguments::CollisionEventArgument>);
-		/*地形と衝突した*/
-		utility::DelegateConnection AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<event_arguments::CollisionWithGroundEventArgument>);
+		/*2Dコライダーとの衝突イベントハンドラ追加*/
+		utility::DelegateConnection AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
+		/*2D地形との衝突イベントハンドラ追加*/
+		utility::DelegateConnection AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
 	protected:
 		bool OnInitialized()override;
 	private:
@@ -61,8 +59,8 @@ namespace planeta_engine {
 
 		utility::NonOwingPointer<CTransform2D> transform2d_;
 
-		utility::Delegate<event_arguments::CollisionEventArgument> collided;
-		utility::Delegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
+		utility::Delegate<EACollisionWithCollider2D> collided_event_;
+		utility::Delegate<EACollisionWithGround2D> collided_with_ground_event_;
 
 		/*位置*/
 		Vector2Dd position_;

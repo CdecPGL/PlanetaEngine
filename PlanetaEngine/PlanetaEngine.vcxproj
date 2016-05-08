@@ -175,9 +175,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
     <ClInclude Include="CollisionWorld.h" />
-    <ClInclude Include="CollisionEventArgument.h" />
+    <ClInclude Include="EACollisionWithCollider2D.h" />
     <ClInclude Include="CollisionGroupMatrix.h" />
-    <ClInclude Include="CollisionWithGroundEventArgument.h" />
+    <ClInclude Include="EACollisionWithGround2D.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="cpplinq.hpp" />
     <ClInclude Include="DebugDrawInterface.h" />

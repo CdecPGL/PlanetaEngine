@@ -219,12 +219,6 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>TinyXML2</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionEventArgument.h">
-      <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionWithGroundEventArgument.h">
-      <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
-    </ClInclude>
     <ClInclude Include="FontDefinitionResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
@@ -842,6 +836,12 @@
     </ClInclude>
     <ClInclude Include="GameObjectComponentSetUpData.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EACollisionWithGround2D.h">
+      <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
+    </ClInclude>
+    <ClInclude Include="EACollisionWithCollider2D.h">
+      <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

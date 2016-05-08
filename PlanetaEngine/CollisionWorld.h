@@ -10,10 +10,8 @@ namespace planeta_engine {
 	namespace core {
 		class CollisionGroupMatrix;
 	}
-	namespace event_arguments {
-		class CollisionEventArgument;
-		class CollisionWithGroundEventArgument;
-	}
+	class EACollisionWithCollider2D;
+	class EACollisionWithGround2D;
 	namespace core {
 		class CollisionWorld final: public core::SceneModule
 		{
@@ -45,8 +43,8 @@ namespace planeta_engine {
 
 			std::vector<std::pair<CollisionGroupListType::iterator, CollisionGroupListType::iterator>> collide_group_pair_list_; //衝突するグループペアのリスト
 
-			using CollisionColliderEventHolderType = std::vector<std::pair<CCollider2D*, event_arguments::CollisionEventArgument>>;
-			using CollisionGroundEventHolderType = std::vector<std::pair<CCollider2D*, event_arguments::CollisionWithGroundEventArgument>>;
+			using CollisionColliderEventHolderType = std::vector<std::pair<CCollider2D*, EACollisionWithCollider2D>>;
+			using CollisionGroundEventHolderType = std::vector<std::pair<CCollider2D*, EACollisionWithGround2D>>;
 			void ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionColliderEventHolderType& collision_event_holder)const; //２つのグループ間での衝突判定
 			void ProcessCollisionInAGroup(CollisionGroupType& group, CollisionColliderEventHolderType& collision_event_holder)const; //グループ内での衝突判定
 			void ProcessCollisionWithGround(CollisionGroundEventHolderType& collision_event_holder)const;

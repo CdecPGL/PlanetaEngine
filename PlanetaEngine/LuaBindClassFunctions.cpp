@@ -4,9 +4,9 @@
 #include <unordered_map>
 
 namespace LuaIntf {
-	LUA_USING_SHARED_PTR_TYPE(planeta_engine::utility::WeakPointer)
+	/*LUA_USING_SHARED_PTR_TYPE(planeta_engine::utility::WeakPointer)
 	LUA_USING_LIST_TYPE(std::vector)
-	LUA_USING_MAP_TYPE(std::unordered_map)
+	LUA_USING_MAP_TYPE(std::unordered_map)*/
 }
 
 namespace planeta_engine {

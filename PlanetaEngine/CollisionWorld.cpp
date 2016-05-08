@@ -4,8 +4,8 @@
 #include "CollisionDetectFunctions.h"
 #include "CCollider2D.h"
 #include "CGround2D.h"
-#include "CollisionEventArgument.h"
-#include "CollisionWithGroundEventArgument.h"
+#include "EACollisionWithCollider2D.h"
+#include "EACollisionWithGround2D.h"
 #include "CollisionGroupMatrix.h"
 #include "SystemLog.h"
 #include "CTransform2D.h"
@@ -24,9 +24,9 @@ namespace planeta_engine{
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
 					if ((*ccc_it)->DetectCollision(**ccc_it2)) {
 						//衝突していたら衝突イベントをホルダーに追加
-						event_arguments::CollisionEventArgument cea0((*ccc_it2)->game_object());
+						event_arguments::EACollisionWithCollider2D cea0((*ccc_it2)->game_object());
 						collision_event_holder.push_back(std::make_pair(*ccc_it, cea0));
-						event_arguments::CollisionEventArgument cea1((*ccc_it)->game_object());
+						event_arguments::EACollisionWithCollider2D cea1((*ccc_it)->game_object());
 						collision_event_holder.push_back(std::make_pair(*ccc_it2, cea1));
 					}
 				}
@@ -38,9 +38,9 @@ namespace planeta_engine{
 				for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
 					if ((*ccc_it)->DetectCollision(**ccc_it2)) {
 						//衝突していたら衝突イベントをホルダーに追加
-						event_arguments::CollisionEventArgument cea0((*ccc_it2)->game_object());
+						event_arguments::EACollisionWithCollider2D cea0((*ccc_it2)->game_object());
 						collision_event_holder.push_back(std::make_pair(*ccc_it, cea0));
-						event_arguments::CollisionEventArgument cea1((*ccc_it)->game_object());
+						event_arguments::EACollisionWithCollider2D cea1((*ccc_it)->game_object());
 						collision_event_holder.push_back(std::make_pair(*ccc_it2, cea1));
 					}
 				}
@@ -51,7 +51,7 @@ namespace planeta_engine{
 			for (const auto& col_com : collision_with_ground_list_) {
 				if (col_com->DetectCollision(col_com->game_object().transform().ground())) {
 					//衝突していたら地形衝突イベントをホルダーに追加
-					event_arguments::CollisionWithGroundEventArgument cwgea;
+					event_arguments::EACollisionWithGround2D cwgea;
 					collision_event_holder.push_back(std::make_pair(col_com, cwgea));
 				}
 			}
@@ -177,11 +177,11 @@ namespace planeta_engine{
 			ProcessCollisionWithGround(collision_ground_event_holder);
 			//コライダー衝突イベントの伝達
 			for (auto& eve : collision_collider_event_holder) {
-				eve.first->collided(eve.second);
+				eve.first->collided_event_(eve.second);
 			}
 			//地形衝突イベントの伝達
 			for (auto& eve : collision_ground_event_holder) {
-				eve.first->collided_with_ground(eve.second);
+				eve.first->collided_with_ground_event_(eve.second);
 			}
 		}
 

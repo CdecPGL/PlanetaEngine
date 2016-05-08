@@ -80,4 +80,12 @@ namespace planeta_engine {
 		return true;
 	}
 
+	utility::DelegateConnection CCollider2D::AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder) {
+		return handler_adder(collided_event_);
+	}
+
+	utility::DelegateConnection CCollider2D::AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder) {
+		return handler_adder(collided_with_ground_event_);
+	}
+
 }
