@@ -7,8 +7,8 @@
 
 namespace planeta_engine {
 	namespace {
-		utility::WeakPointer<components::CDumyGround2D> GetDumyGround() {
-			static std::shared_ptr<components::CDumyGround2D> com = std::make_shared<components::CDumyGround2D>();
+		utility::WeakPointer<CDumyGround2D> GetDumyGround() {
+			static std::shared_ptr<CDumyGround2D> com = std::make_shared<CDumyGround2D>();
 			return com;
 		}
 	}
@@ -142,15 +142,15 @@ namespace planeta_engine {
 		velocity_last_update = CoordinateSystem::Global;
 	}
 
-	components::CGround2D& RootTransform2DCore::ground() {
+	CGround2D& RootTransform2DCore::ground() {
 		return *ground_;
 	}
 
-	utility::WeakPointer<components::CGround2D> RootTransform2DCore::GetGround() const {
+	utility::WeakPointer<CGround2D> RootTransform2DCore::GetGround() const {
 		return ground_;
 	}
 
-	void RootTransform2DCore::SetGround(const utility::WeakPointer<components::CGround2D>& g, bool keep_global_position) {
+	void RootTransform2DCore::SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position) {
 		if (keep_global_position) {
 			UpdateTransformDataGlobalByGround();
 			UpdatePhysicalDataGlobal();

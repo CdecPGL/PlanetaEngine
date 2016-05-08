@@ -29,8 +29,8 @@ namespace planeta_engine {
 		/*地形関係*/
 		CGround2D& ground()override;
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
-		utility::WeakPointer<components::CGround2D> GetGround()const override;
-		void SetGround(const utility::WeakPointer<components::CGround2D>& g, bool keep_global_position)override;
+		utility::WeakPointer<CGround2D> GetGround()const override;
+		void SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position)override;
 
 		void SetParent(Transform2DCore* parent)override;
 	private:

@@ -11,6 +11,6 @@ namespace planeta_engine {
 		utility::NonOwingPointer<CTransform2D> transform2d_;
 		double _gravity_scale = 0.5;
 		bool OnInitialized() override;
-		void OnUpdated() override;
+		void Update();
 	};
 }

@@ -69,6 +69,37 @@ namespace planeta_engine {
 			FunctionType func_;
 		};
 
+		//メンバ関数イベントハンドラ所有クラス(内部クラス)
+		template<typename EventArgType, class C>
+		class MenberFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
+		public:
+			using FunctionType = void(C::*)(ParamType);
+			MenberFunctionEventHandlerHolder(C* p, FunctionType f)noexcept :ptr_(p), func_(f) {}
+			~MenberFunctionEventHandlerHolder()noexcept = default;
+			bool Call(ParamType e)override {
+				(ptr_->*func_)(e);
+				return true;
+			}
+		private:
+			C* ptr_;
+			FunctionType func_;
+		};
+
+		template<class C>
+		class MenberFunctionEventHandlerHolder<void, C> final : public IEventHandlerHolder<void> {
+		public:
+			using FunctionType = void(C::*)();
+			MenberFunctionEventHandlerHolder(C* p, FunctionType f)noexcept :ptr_(p), func_(f) {}
+			~MenberFunctionEventHandlerHolder()noexcept = default;
+			bool Call()override {
+				(ptr_->*func_)();
+				return true;
+			}
+		private:
+			C* ptr_;
+			FunctionType func_;
+		};
+
 		//通常関数イベントハンドラ保有クラス(内部クラス)
 		template<typename EventArgType>
 		class NormalFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
@@ -191,7 +222,7 @@ namespace planeta_engine {
 				}
 			}
 			/**
-			* @brief デリケートにメンバ関数を登録する
+			* @brief デリケートにWeakPointerメンバ関数を登録する
 			* @param (c) オブジェクトのWeakPointer
 			* @param (f) メンバ関数ポインタ
 			* @return ハンドラの削除に使うデリゲート接続クラス
@@ -204,6 +235,18 @@ namespace planeta_engine {
 			}
 			/**
 			* @brief デリケートにメンバ関数を登録する
+			* @param (c) オブジェクトのWeakPointer
+			* @param (f) メンバ関数ポインタ
+			* @return ハンドラの削除に使うデリゲート接続クラス
+			*/
+			template<class C>
+			DelegateConnection Add(C* c, typename void(C::*f)(HandlerParamType)) {
+				size_t id = id_counter_++;
+				handlers_->emplace(id, std::make_unique<MenberFunctionEventHandlerHolder<EventArgType, C>>(c, f));
+				return DelegateConnection(std::make_shared<DelegateConnecter<EventArgType>>(handlers_, id));
+			}
+			/**
+			* @brief デリケートに通常関数を登録する
 			* @param (func) 登録したい関数
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/
@@ -237,7 +280,7 @@ namespace planeta_engine {
 				}
 			}
 			/**
-			* @brief デリケートにメンバ関数を登録する
+			* @brief デリケートにWeakPointerメンバ関数を登録する
 			* @param (c) オブジェクトのWeakPointer
 			* @param (f) メンバ関数ポインタ
 			* @return ハンドラの削除に使うデリゲート接続クラス
@@ -249,7 +292,19 @@ namespace planeta_engine {
 				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
 			}
 			/**
-			* @brief デリケートに関数を登録する
+			* @brief デリケートにメンバ関数を登録する
+			* @param (c) オブジェクトのPointer
+			* @param (f) メンバ関数ポインタ
+			* @return ハンドラの削除に使うデリゲート接続クラス
+			*/
+			template<class C>
+			DelegateConnection Add(C* c, typename void(C::*f)()) {
+				size_t id = id_counter_++;
+				handlers_->emplace(id, std::make_unique<MenberFunctionEventHandlerHolder<void, C>>(c, f));
+				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
+			}
+			/**
+			* @brief デリケートに通常関数を登録する
 			* @param (func) 登録したい関数
 			* @return ハンドラの削除に使うデリゲート接続クラス
 			*/
@@ -276,15 +331,20 @@ namespace planeta_engine {
 		/*デリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType,class C>
 		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(EventArgType)) {
-			return DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); });
+			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
+		}
+		/*デリゲート追加クラス作成(公開関数)*/
+		template<typename EventArgType, class C>
+		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(C* c, typename void(C::*f)(EventArgType)) {
+			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
 		template<typename EventArgType>
 		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const std::function<void(EventArgType)>& func) {
-			return DelegateHandlerAdder<EventArgType>([func](Delegate<EventArgType>& dlgt) {return dlgt.Add(func); });
+			return std::move(DelegateHandlerAdder<EventArgType>([func](Delegate<EventArgType>& dlgt) {return dlgt.Add(func); }));
 		}
 		DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(const std::function<void()>& func) {
-			return DelegateHandlerAdder<void>([func](Delegate<void>& dlgt) {return dlgt.Add(func); });
+			return std::move(DelegateHandlerAdder<void>([func](Delegate<void>& dlgt) {return dlgt.Add(func); }));
 		}
 	}
 }

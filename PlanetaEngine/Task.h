@@ -11,14 +11,14 @@ namespace planeta_engine {
 	namespace core {
 		class IGameAccessor;
 		struct SceneData;
-		struct TaskManagerConnection;
+		class TaskManagerConnection;
 	}
 	class IGameObject;
 	class Task :
 		public core::Object, private utility::NonCopyable<Task> {
 	public:
 		using GameObjectAccessorType = utility::WeakPointer<IGameObject>;
-		Task(core::IGameAccessor& gameaccess) :game_(gameaccess) {}
+		Task(core::IGameAccessor& gameaccess);
 		virtual ~Task();
 		virtual void Update() = 0;
 		bool Pause();

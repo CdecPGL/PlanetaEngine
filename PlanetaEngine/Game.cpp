@@ -7,7 +7,6 @@ namespace planeta_engine {
 	namespace core {
 		Game::Game():_scene_manager(std::make_unique<core::SceneManager>(*this)), _key_input_manager(std::make_unique<core::KeyInputManager>())
 			,collision_group_matrix_(std::make_shared<core::CollisionGroupMatrix>())
-			,game_process_key_position_definition_(std::make_shared<TaskKeyPositionDefinition>())
 		{
 
 		}

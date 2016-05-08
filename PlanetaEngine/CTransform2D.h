@@ -8,6 +8,7 @@
 namespace planeta_engine {
 	class Transform2DCore;
 	class CGround2D;
+	class IGameObject;
 	/*形状情報コンポーネント*/
 	class CTransform2D : public core::GameObjectSystemComponent {
 	public:
@@ -48,12 +49,11 @@ namespace planeta_engine {
 		CGround2D& ground();
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		utility::WeakPointer<CGround2D> GetGround()const;
-		void SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position);
+		bool SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position);
 
 		//システム
 		void ApplyVelocity();
 	private:
-		bool is_no_update()const override { return true; }
 
 		std::unique_ptr<Transform2DCore> core_;
 	};

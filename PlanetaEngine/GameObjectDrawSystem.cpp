@@ -3,6 +3,7 @@
 #include "SystemLog.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
+#include "DrawManager.h"
 
 namespace planeta_engine{
 	namespace core {

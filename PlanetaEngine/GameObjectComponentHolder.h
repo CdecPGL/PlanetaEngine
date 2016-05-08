@@ -32,6 +32,8 @@ namespace planeta_engine {
 			auto ptr = GetComponentByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; });
 			return ptr ? std::static_pointer_cast<ComT>(ptr) : nullptr;
 		}
+		//タイプに一致するコンポーネントをすべて取得する。
+		const std::vector<std::shared_ptr<GameObjectComponent>>& GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
 		//コンポーネントを型で全て取得する。
 		template<class ComT>
 		std::vector<std::shared_ptr<ComT>> GetAllComponents() {
@@ -51,7 +53,5 @@ namespace planeta_engine {
 		mutable std::unordered_map<std::type_index, std::pair<bool, std::vector<std::shared_ptr<GameObjectComponent>>>> component_type_map_;
 		//タイプマップにコンポーネントを追加
 		void AddComponentToTypeInfoMap(const std::type_info& ti, const std::shared_ptr<GameObjectComponent>& com);
-		//タイプに一致するコンポーネントをすべて取得する。
-		const std::vector<std::shared_ptr<GameObjectComponent>>& GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
 	};
 }

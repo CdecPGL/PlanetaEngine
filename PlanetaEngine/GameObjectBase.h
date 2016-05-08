@@ -8,7 +8,7 @@
 
 namespace planeta_engine {
 	namespace core {
-		class SceneData;
+		struct SceneData;
 	}
 	class GameObjectComponent;
 	class GameObjectManagerConnection;
@@ -69,8 +69,10 @@ namespace planeta_engine {
 		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id)override final;
 		//ゲームオブジェクトを作成して有効化
 		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id)override final;
-		//コンポーネントフォルダの取得
-		GameObjectComponentHolder& RefComponentHolder()override final;
+		//コンポーネントを型で取得
+		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
+		//コンポーネントを型ですべて取得
+		std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 
 		//自身の弱参照
 		std::weak_ptr<GameObjectBase> this_weak_ptr_;

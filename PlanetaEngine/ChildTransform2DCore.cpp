@@ -67,15 +67,15 @@ namespace planeta_engine {
 
 	}
 
-	planeta_engine::components::CGround2D& ChildTransform2DCore::ground() {
+	planeta_engine::CGround2D& ChildTransform2DCore::ground() {
 		return *GetGround();
 	}
 
-	planeta_engine::utility::WeakPointer<components::CGround2D> ChildTransform2DCore::GetGround() const {
+	planeta_engine::utility::WeakPointer<CGround2D> ChildTransform2DCore::GetGround() const {
 		return nullptr;
 	}
 
-	void ChildTransform2DCore::SetGround(const utility::WeakPointer<components::CGround2D>& g, bool keep_global_position) {
+	void ChildTransform2DCore::SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position) {
 		debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "ChildTransform‚Å‚Í’nŒ`‚ğİ’è‚Å‚«‚Ü‚¹‚ñB");
 	}
 

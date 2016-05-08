@@ -32,7 +32,6 @@ namespace planeta_engine {
 			std::unique_ptr<KeyInputManager> _key_input_manager;
 
 			std::shared_ptr<core::CollisionGroupMatrix> collision_group_matrix_; //衝突マトリックス
-			std::shared_ptr<core::TaskKeyPositionDefinition> game_process_key_position_definition_;
 
 			std::shared_ptr<Screen> screen_; //描画対象スクリーン
 			Screen& screen()override { return *screen_; }
@@ -48,7 +47,6 @@ namespace planeta_engine {
 			ResourceManager& resource_manager()override { return ResourceManager::instance(); }
 			KeyInputManager& key_input_manager()override { return *_key_input_manager; }
 			core::CollisionGroupMatrix& RefCollisionGroupMatrix()override { return *collision_group_matrix_; }
-			core::TaskKeyPositionDefinition& RefTaskKeyPositionDefinition()override { return *game_process_key_position_definition_; }
 
 			std::shared_ptr<const core::CollisionGroupMatrix> GetCollisionGroupMatrix()const override { return collision_group_matrix_; }
 		};

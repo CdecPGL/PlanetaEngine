@@ -87,13 +87,17 @@ namespace planeta_engine {
 		return hander_adder(disposed_event_delegate_);
 	}
 
-	GameObjectComponentHolder& GameObjectBase::RefComponentHolder() {
-		return component_holder_;
-	}
-
 	void GameObjectBase::SetUpGameComponent(GameObjectComponent& com) {
 		core::GameObjectComponentSetUpData rd{ this, scene_data_ };
 		com.SystemSetUp(rd);
+	}
+
+	std::shared_ptr<GameObjectComponent> GameObjectBase::GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
+		return component_holder_.GetComponentByTypeInfo(ti, type_checker);
+	}
+
+	std::vector<std::shared_ptr<GameObjectComponent>> GameObjectBase::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
+		return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
 	}
 
 }

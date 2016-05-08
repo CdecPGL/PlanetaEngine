@@ -1,6 +1,5 @@
 #include "LuaBindClassFunctions.h"
 #include "LuaIntf.h"
-#include "SceneAccessorForTask.h"
 #include <vector>
 #include <unordered_map>
 
@@ -14,13 +13,13 @@ namespace planeta_engine {
 	namespace lua_bind_class_functions {
 
 		void BindSceneAccessorForTask(lua_State* L) {
-			
+			/*
 			LuaIntf::LuaBinding(L).beginClass<SceneAccessorForTask>("SceneAccessorForTask")
 				.addFunction("CreateGameObject",&SceneAccessorForTask::CreateGameObject)
 				.addFunction("CreateGameObjectWithName", &SceneAccessorForTask::CreateGameObjectWithName)
 				.addFunction("CreateAndActivateGameObject", &SceneAccessorForTask::CreateAndActivateGameObject)
 				.addFunction("CreateAndActivateGameObjectWithName", &SceneAccessorForTask::CreateAndActivateGameObjectWithName)
-				.endClass();
+				.endClass();*/
 		}
 
 	}

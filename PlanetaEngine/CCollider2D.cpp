@@ -1,5 +1,5 @@
 #include "CCollider2D.h"
-#include "IGameObjectAccessor.h"
+#include "IGameObjectForComponent.h"
 #include "CollisionWorld.h"
 #include "SystemLog.h"
 #include "SceneData.h"
@@ -31,20 +31,18 @@ namespace planeta_engine {
 	}
 
 	const Vector2Dd CCollider2D::GetCollisionGlobalCenterPosition() const {
-		const CTransform2D& transform = game_object().transform();
-		Vector2Dd relation_position = math::RotationalTransformation(transform.global_rotation_rad(), position_); //ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚©‚ç‚Ì‘Š‘ÎˆÊ’u
-		relation_position.x *= transform.scale().x; //‰¡•ûŒüŠg‘å‚ğ”½‰f
-		relation_position.y *= transform.scale().y; //c•ûŒüŠg‘å‚ğ”½‰f
-		return transform.global_position() + relation_position;
+		Vector2Dd relation_position = math::RotationalTransformation(transform2d().global_rotation_rad(), position_); //ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚©‚ç‚Ì‘Š‘ÎˆÊ’u
+		relation_position.x *= transform2d().scale().x; //‰¡•ûŒüŠg‘å‚ğ”½‰f
+		relation_position.y *= transform2d().scale().y; //c•ûŒüŠg‘å‚ğ”½‰f
+		return transform2d().global_position() + relation_position;
 	}
 
 	const double CCollider2D::GetCollisionScale() const {
-		const CTransform2D& transform = game_object().transform();
-		return transform.scale().x > transform.scale().y ? transform.scale().y : transform.scale().x;
+		return transform2d().scale().x > transform2d().scale().y ? transform2d().scale().y : transform2d().scale().x;
 	}
 
 	const double CCollider2D::GetCollisionGlobalRotationRad() const {
-		return game_object().transform().global_rotation_rad() + rotation_rad_;
+		return transform2d().global_rotation_rad() + rotation_rad_;
 	}
 
 	CCollider2D& CCollider2D::collision_group(const std::string& cg) {
@@ -72,4 +70,14 @@ namespace planeta_engine {
 		}
 		return *this;
 	}
+
+	bool CCollider2D::OnInitialized() {
+		transform2d_.reset(game_object().GetComponent<CTransform2D>());
+		if (!transform2d_) {
+			PE_LOG_ERROR("Transform2D‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			return false;
+		}
+		return true;
+	}
+
 }

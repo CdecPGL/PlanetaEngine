@@ -9,6 +9,7 @@
 namespace planeta_engine {
 	class CCircleCollider2D;
 	class CStraightLineCollider2D;
+	class CTransform2D;
 	class CGround2D :
 		public GameObjectStandardComponent, public core::IColliderWithCollider2D {
 	public:
@@ -39,9 +40,10 @@ namespace planeta_engine {
 		//void SetXRange(const std::pair<double, double>& range);
 		//void SetYRange(const std::pair<double, double>& range);
 
+		utility::NonOwingPointer<CTransform2D> transform2d_;
+
 		virtual bool OnInitialized() override;
 		virtual bool OnActivated() override;
-		virtual void OnUpdated() override;
 		virtual bool OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	private:

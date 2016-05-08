@@ -1,6 +1,9 @@
 #include "CTransform2D.h"
 #include "Transform2DCore.h"
 #include <cassert>
+#include "IGameObject.h"
+#include "SystemLog.h"
+#include "CGround2D.h"
 
 #include "RootTransform2DCore.h"
 
@@ -114,7 +117,14 @@ namespace planeta_engine {
 		return core_->GetGround();
 	}
 
-	void CTransform2D::SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position) {
-		core_->SetGround(g, keep_global_position);
+	bool CTransform2D::SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position) {
+		auto gcom = g->GetComponent<CGround2D>();
+		if (gcom) {
+			core_->SetGround(gcom, keep_global_position);
+			return true;
+		} else {
+			PE_LOG_ERROR("Groundコンポーネントを持たないGameObjectがTransformのGroundとして渡されました。");
+			return false;
+		}
 	}
 }

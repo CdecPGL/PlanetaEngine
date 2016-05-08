@@ -31,10 +31,10 @@ namespace planeta_engine {
 		void global_velocity(const Vector2Dd& vel)override;
 
 		/*地形関係*/
-		components::CGround2D& ground()override;
+		CGround2D& ground()override;
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
-		utility::WeakPointer<components::CGround2D> GetGround()const override;
-		void SetGround(const utility::WeakPointer<components::CGround2D>& g, bool keep_global_position)override;
+		utility::WeakPointer<CGround2D> GetGround()const override;
+		void SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position)override;
 
 		void SetParent(Transform2DCore* parent)override;
 	private:
@@ -43,7 +43,7 @@ namespace planeta_engine {
 		void UpdatePhysicalDataGlobal(); //地形座標からグローバル座標を算出
 		void UpdatePhysicalDataGround(); //地形座標からローカル座標を算出
 
-		utility::WeakPointer<components::CGround2D> ground_; //コンストラクタでダミーをセット
+		utility::WeakPointer<CGround2D> ground_; //コンストラクタでダミーをセット
 
 		enum class CoordinateSystem { Global, Ground, None };
 		

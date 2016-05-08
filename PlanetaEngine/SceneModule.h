@@ -10,8 +10,8 @@ namespace planeta_engine {
 		class SceneModule : public Object{
 		public:
 			virtual ~SceneModule() = default;
-			virtual bool Initialize() = 0;
-			virtual void Finalize() = 0;
+			virtual bool Initialize() { return true; };
+			virtual void Finalize() { return; };
 			virtual void Update() = 0;
 
 			virtual void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {};

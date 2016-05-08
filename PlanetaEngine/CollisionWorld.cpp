@@ -1,6 +1,6 @@
 #include "CollisionWorld.h"
 #include "boost/next_prior.hpp"
-#include "IGameObjectAccessor.h"
+#include "IGameObject.h"
 #include "CollisionDetectFunctions.h"
 #include "CCollider2D.h"
 #include "CGround2D.h"

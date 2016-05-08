@@ -6,6 +6,7 @@
 
 
 namespace planeta_engine {
+	Task::Task(core::IGameAccessor& gameaccess) :game_(gameaccess) {}
 	Task::~Task() = default;
 
 	void Task::Dispose() {

@@ -7,6 +7,7 @@
 #include "IColliderWithCollider2D.h"
 
 namespace planeta_engine {
+	class CTransform2D;
 	namespace event_arguments {
 		class CollisionEventArgument;
 		class CollisionWithGroundEventArgument;
@@ -42,18 +43,26 @@ namespace planeta_engine {
 		/*衝突グループを設定*/
 		CCollider2D& collision_group(const std::string& cg);
 
+		CTransform2D& transform2d() { return *transform2d_; }
+		const CTransform2D& transform2d()const { return *transform2d_; }
+
 		/*イベント*/
 		/*物体と衝突した*/
-		utility::Delegate<event_arguments::CollisionEventArgument> collided;
+		utility::DelegateConnection AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<event_arguments::CollisionEventArgument>);
 		/*地形と衝突した*/
-		utility::Delegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
-
+		utility::DelegateConnection AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<event_arguments::CollisionWithGroundEventArgument>);
+	protected:
+		bool OnInitialized()override;
 	private:
-		bool is_no_update() const override final { return true; }
 		bool OnActivated() override final;
 		bool OnInactivated() override final;
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
+
+		utility::NonOwingPointer<CTransform2D> transform2d_;
+
+		utility::Delegate<event_arguments::CollisionEventArgument> collided;
+		utility::Delegate<event_arguments::CollisionWithGroundEventArgument> collided_with_ground;
 
 		/*位置*/
 		Vector2Dd position_;
