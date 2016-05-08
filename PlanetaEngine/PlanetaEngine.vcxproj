@@ -141,7 +141,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AESEncrypter.h" />
-    <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
@@ -353,7 +352,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AESEncrypter.cpp" />
-    <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="CBelongingGroundGravity.cpp" />
     <ClCompile Include="BGMController.cpp" />

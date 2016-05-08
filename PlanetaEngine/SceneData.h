@@ -9,7 +9,6 @@ namespace planeta_engine {
 	namespace core {
 		class CollisionWorld;
 		class GameObjectDrawSystem;
-		class AnimationSystem;
 		class TransformSystem;
 	}
 	namespace core {
@@ -18,7 +17,6 @@ namespace planeta_engine {
 			TaskManagerPublicInterface& task_manager_public_interface;
 			core::CollisionWorld& collision_world;
 			core::GameObjectDrawSystem& gameobject_draw_system;
-			core::AnimationSystem& animation_system;
 			core::TransformSystem& transform_system;
 		};
 	}

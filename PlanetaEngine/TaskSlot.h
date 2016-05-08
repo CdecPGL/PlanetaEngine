@@ -11,6 +11,7 @@ namespace planeta_engine {
 		PostCameraUpdatePhase = 6,
 		GUIUpdateEarlyPhase = 7,
 		GUIUpdateLatePhase = 8,
+		PreDrawUpdatePhase = 9,
 	};
-	constexpr int TASK_SLOT_SIZE = 9;
+	constexpr int TASK_SLOT_SIZE = 10;
 }

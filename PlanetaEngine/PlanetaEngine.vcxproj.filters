@@ -199,9 +199,6 @@
     <Filter Include="PlanetaEngine\SceneModules\Task\Manager">
       <UniqueIdentifier>{ddb72fe9-cd49-447c-8be5-578163334b28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\SceneModules\Animation">
-      <UniqueIdentifier>{b42b3cb6-d437-4413-8ffe-1cdfca4586a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\SceneModules\CollisionWorld">
       <UniqueIdentifier>{21b701b6-754f-46d2-a50b-f3e0d5ea8322}</UniqueIdentifier>
     </Filter>
@@ -810,9 +807,6 @@
     <ClInclude Include="GameObjectDrawSystem.h">
       <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationSystem.h">
-      <Filter>PlanetaEngine\SceneModules\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="TransformSystem.h">
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
     </ClInclude>
@@ -1177,9 +1171,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectDrawSystem.cpp">
       <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\Animation</Filter>
     </ClCompile>
     <ClCompile Include="TransformSystem.cpp">
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>

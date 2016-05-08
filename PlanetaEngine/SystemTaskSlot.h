@@ -12,9 +12,9 @@ namespace planeta_engine {
 			EventUpdateConvertCoordinatePhase = 6,
 			CameraUpdateConvertCoordinatePhase = 7,
 			PostCameraUpdateConvertCoordinatePhase = 8,
-			UpdateAnimationPhase = 9,
-			GUIUpdateEarlyConvertCoordinatePhase = 10,
-			GUIUpdateLateConvertCoordinatePhase = 11,
+			GUIUpdateEarlyConvertCoordinatePhase = 9,
+			GUIUpdateLateConvertCoordinatePhase = 10,
+			PreDrawUpdateConvertCoordinatePhase = 11,
 			DrawPhase = 12,
 		};
 		constexpr int SYSTEM_TASK_SLOT_SIZE = 13;

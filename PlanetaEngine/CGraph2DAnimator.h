@@ -37,7 +37,7 @@ namespace planeta_engine {
 		std::string current_animation_name_;
 		void SetCurrentFrameDrawAreaToDrawGraphComponent_();
 		bool OnInitialized() override;
-		void OnUpdated() override;
+		void UpdateAnimation();
 
 	};
 }

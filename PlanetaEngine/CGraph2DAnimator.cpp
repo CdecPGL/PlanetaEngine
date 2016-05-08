@@ -3,9 +3,14 @@
 #include "CDrawGraph2D.h"
 #include "SystemLog.h"
 #include "SystemLog.h"
+#include "TInstant.h"
 
 namespace planeta_engine {
 	bool CGraph2DAnimator::OnInitialized() {
+		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
+		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
+		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
+
 		draw_graph_component_.reset(game_object().GetComponent<CDrawGraph2D>());
 		if (draw_graph_component_) {
 			return true;
@@ -16,7 +21,7 @@ namespace planeta_engine {
 
 	}
 
-	void CGraph2DAnimator::OnUpdated() {
+	void CGraph2DAnimator::UpdateAnimation() {
 		if (is_playing_) {
 			if (current_animation_ == nullptr) { is_playing_ = false; } else {
 				//フレームカウントが0なら、描画コンポーネントを更新する

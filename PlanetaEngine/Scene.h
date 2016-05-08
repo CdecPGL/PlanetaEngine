@@ -18,7 +18,6 @@ namespace planeta_engine{
 		struct SceneData;
 		class CollisionWorld;
 		class GameObjectDrawSystem;
-		class AnimationSystem;
 		class TransformSystem;
 		class SceneModule;
 		class Scene : public Object,public std::enable_shared_from_this<Scene>
@@ -50,7 +49,6 @@ namespace planeta_engine{
 			std::unique_ptr<GameObjectManager> game_object_manager_; //ゲームオブジェクトマネージャ
 			std::unique_ptr<CollisionWorld> collision_world_; //コリジョンワールド
 			std::unique_ptr<GameObjectDrawSystem> gameobject_draw_system_; //ゲームオブジェクト描画システム
-			std::unique_ptr<AnimationSystem> animation_system_; //アニメーションシステム
 			std::unique_ptr<TransformSystem> transform_system_; //トランスフォームシステム
 			bool IterateSceneModule_(std::function<bool(SceneModule&)>&& proc); //シーンモジュールに操作を適用する
 			bool ReverseIterateSceneModule_(std::function<bool(SceneModule&)>&& proc); //シーンモジュールに操作を適用する

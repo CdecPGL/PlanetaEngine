@@ -28,13 +28,14 @@ namespace planeta_engine {
 		constexpr int COVCON_SLOT_5 = 13;
 		constexpr int TASK_SLOT_6 = 14;
 		constexpr int COVCON_SLOT_6 = 15;
-		constexpr int UDTANM_SLOT = 16;
-		constexpr int TASK_SLOT_7 = 17;
-		constexpr int COVCON_SLOT_7 = 18;
-		constexpr int TASK_SLOT_8 = 19;
-		constexpr int COVCON_SLOT_8 = 20;
-		constexpr int DRAW_SLOT = 21;
-		constexpr int SLOT_COUNT = 22;
+		constexpr int TASK_SLOT_7 = 16;
+		constexpr int COVCON_SLOT_7 = 17;
+		constexpr int TASK_SLOT_8 = 18;
+		constexpr int COVCON_SLOT_8 = 19;
+		constexpr int TASK_SLOT_9 = 20;
+		constexpr int COVCON_SLOT_9 = 21;
+		constexpr int DRAW_SLOT = 22;
+		constexpr int SLOT_COUNT = 23;
 		//スロットマップ
 		constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
 			TASK_SLOT_0,
@@ -46,6 +47,7 @@ namespace planeta_engine {
 			TASK_SLOT_6,
 			TASK_SLOT_7,
 			TASK_SLOT_8,
+			TASK_SLOT_9,
 		};
 		//システムスロットマップ
 		using namespace core;
@@ -59,9 +61,9 @@ namespace planeta_engine {
 			COVCON_SLOT_4,
 			COVCON_SLOT_5,
 			COVCON_SLOT_6,
-			UDTANM_SLOT,
 			COVCON_SLOT_7,
 			COVCON_SLOT_8,
+			COVCON_SLOT_9,
 			DRAW_SLOT,
 		};
 		/*タスクスロットからタスクグループ番号を取得*/

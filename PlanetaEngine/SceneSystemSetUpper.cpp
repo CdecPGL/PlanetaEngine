@@ -5,7 +5,6 @@
 #include "TaskManager.h"
 #include "IGameAccessor.h"
 #include "TransformSystem.h"
-#include "AnimationSystem.h"
 
 #include "CollisionWorld.h"
 #include "GameObjectDrawSystem.h"
@@ -26,14 +25,11 @@ namespace planeta_engine {
 			//描画タスク
 			auto godp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);
 			godp->SetExcuteFunction([&drw_sys = *scene.gameobject_draw_system_]{ drw_sys.ExcuteDraw(); });
-			//アニメーションタスク
-			auto anmp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::UpdateAnimationPhase);
-			anmp->SetExcuteFunction([&anm_sys = *scene.animation_system_]{ anm_sys.UpdateAnimation(); });
 			//Transform速度適用タスク
 			auto tavp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyVelocityPhase);
 			tavp->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ApplyVelocity(); });
 			//Transform座標変換タスク
-			utility::WeakPointer<TInstant> cvt[9] = {
+			utility::WeakPointer<TInstant> cvt[10] = {
 				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreCollisionEarlyConvertCoordinatePhase),
 				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreCollisionLateConvertCoordinatePhase),
 				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCollisionEarlyConvertCoordinatePhase),
@@ -43,6 +39,7 @@ namespace planeta_engine {
 				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCameraUpdateConvertCoordinatePhase),
 				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::GUIUpdateEarlyConvertCoordinatePhase),
 				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::GUIUpdateLateConvertCoordinatePhase),
+				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreDrawUpdateConvertCoordinatePhase),
 			}; 
 			for (auto& t : cvt) {
 				t->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ExcuteCoordinateConvertion(); });
