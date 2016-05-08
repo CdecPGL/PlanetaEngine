@@ -145,6 +145,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
+    <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameObjectInterface.h" />

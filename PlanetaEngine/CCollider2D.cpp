@@ -6,6 +6,7 @@
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 #include "SceneDataForGameObject.h"
+#include "Collider2DData.h"
 
 namespace planeta_engine {
 	bool CCollider2D::OnActivated() {
@@ -22,7 +23,11 @@ namespace planeta_engine {
 		if (collision_group_name_.length() == 0) {
 			debug::SystemLog::instance().LogError("衝突グループが設定されていません。", __FUNCTION__);
 		} else {
-			scene_data_ref().collision_world.Resist(std::static_pointer_cast<CCollider2D>(this_shared()));
+			core::Collider2DData col_dat{ *this,game_object(),*transform2d_
+				,[&eve = collided_event_](const EACollisionWithCollider2D& arg) {eve(arg); }
+				,[&eve = collided_with_ground_event_](const EACollisionWithGround2D& arg) {eve(arg); }
+			};
+			scene_data_ref().collision_world.Resist(col_dat);
 		}
 	}
 

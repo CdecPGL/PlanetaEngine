@@ -843,6 +843,9 @@
     <ClInclude Include="EACollisionWithCollider2D.h">
       <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
     </ClInclude>
+    <ClInclude Include="Collider2DData.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

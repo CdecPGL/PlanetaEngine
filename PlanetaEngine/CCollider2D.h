@@ -10,6 +10,9 @@ namespace planeta_engine {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
+	namespace core {
+		struct Collider2DData;
+	}
 	class CCollider2D : public core::GameObjectSystemComponent, public core::IColliderWithCollider2D {
 	public:
 		virtual ~CCollider2D() = default;
@@ -41,9 +44,6 @@ namespace planeta_engine {
 		/*衝突グループを設定*/
 		CCollider2D& collision_group(const std::string& cg);
 
-		CTransform2D& transform2d() { return *transform2d_; }
-		const CTransform2D& transform2d()const { return *transform2d_; }
-
 		/*イベント*/
 		/*2Dコライダーとの衝突イベントハンドラ追加*/
 		utility::DelegateConnection AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
@@ -51,6 +51,9 @@ namespace planeta_engine {
 		utility::DelegateConnection AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
 	protected:
 		bool OnInitialized()override;
+
+		CTransform2D& transform2d() { return *transform2d_; }
+		const CTransform2D& transform2d()const { return *transform2d_; }
 	private:
 		bool OnActivated() override final;
 		bool OnInactivated() override final;
