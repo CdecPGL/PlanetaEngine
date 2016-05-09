@@ -35,7 +35,7 @@ namespace planeta_engine {
 		}*/
 	}
 
-	using Matrix2_2d = math::Matrix2_2<double>;
-	using Matrix2_2f = math::Matrix2_2<float>;
-	using Matrix2_2i = math::Matrix2_2<int32_t>;
+	using Matrix3_3d = math::Matrix3_3<double>;
+	using Matrix3_3f = math::Matrix3_3<float>;
+	using Matrix3_3i = math::Matrix3_3<int32_t>;
 }

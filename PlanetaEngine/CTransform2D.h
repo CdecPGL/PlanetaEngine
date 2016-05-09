@@ -6,7 +6,6 @@
 #include "Delegate.h"
 
 namespace planeta_engine {
-	class Transform2DCore;
 	class CGround2D;
 	class IGameObject;
 	/*形状情報コンポーネント*/
@@ -33,6 +32,8 @@ namespace planeta_engine {
 
 		const Vector2Dd& global_position()const;
 		CTransform2D&  global_position(const Vector2Dd& pos);
+		const Vector2Dd& global_scale()const;
+		CTransform2D&  global_scale(const Vector2Dd& s);
 		const double global_rotation_rad()const;
 		CTransform2D&  global_rotation_rad(double rota_rad);
 
@@ -52,9 +53,10 @@ namespace planeta_engine {
 		bool SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position);
 
 		//システム
-		void ApplyVelocity();
+		void ApplyVelocity(); //速度適用
+		void ConvertCoodination(); //座標変換
 	private:
-
-		std::unique_ptr<Transform2DCore> core_;
+		class Impl_;
+		std::unique_ptr<Impl_> impl_;
 	};
 }

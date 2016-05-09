@@ -8,7 +8,27 @@
 #include "RootTransform2DCore.h"
 
 namespace planeta_engine {
-	CTransform2D::CTransform2D() :core_(std::make_unique<RootTransform2DCore>()) {};
+	//////////////////////////////////////////////////////////////////////////
+	//Impl
+	//////////////////////////////////////////////////////////////////////////
+	class CTransform2D::Impl_ {
+	public:
+		Impl_::Impl_():core(std::make_unique<RootTransform2DCore>()){}
+		//バッファデータ(適用前データ)
+		Transform2DCore::AllData local_buffer;
+		Transform2DCore::AllData global_buffer;
+		Transform2DCore::UpdateState update_state; //更新状況
+		//最終更新時のデータ
+		Transform2DCore::AllData last_local;
+		Transform2DCore::AllData last_global;
+
+		std::unique_ptr<Transform2DCore> core;
+	};
+
+	//////////////////////////////////////////////////////////////////////////
+	//CTransform2D
+	//////////////////////////////////////////////////////////////////////////
+	CTransform2D::CTransform2D() :impl_(std::make_unique<Impl_>()) {};
 
 	CTransform2D::~CTransform2D() = default;
 
@@ -34,74 +54,83 @@ namespace planeta_engine {
 	}
 
 	const Vector2Dd& CTransform2D::position() const {
-		return core_->position();
+		return impl_->last_local.transform.position;
 	}
 
 	CTransform2D&  CTransform2D::position(const Vector2Dd& pos) {
-		core_->position(pos);
+		impl_->local_buffer.transform.position = pos;
 		return *this;
 	}
 
 	const Vector2Dd& CTransform2D::scale() const {
-		return core_->scale();
+		return impl_->last_local.transform.scale;
 	}
 
 	CTransform2D&  CTransform2D::scale(const Vector2Dd& s) {
-		core_->scale(s);
+		impl_->local_buffer.transform.scale = s;
 		return *this;
 	}
 
 	const double CTransform2D::rotation_rad() const {
-		return core_->rotation_rad();
+		return impl_->last_local.transform.rotation_rad;
 	}
 
 	CTransform2D&  CTransform2D::rotation_rad(double rota_rad) {
-		core_->rotation_rad(rota_rad);
+		impl_->local_buffer.transform.rotation_rad = rota_rad;
 		return *this;
 	}
 
 	const Vector2Dd& CTransform2D::global_position() const {
-		return core_->global_position();
+		return impl_->last_global.transform.position;
 	}
 
 	CTransform2D&  CTransform2D::global_position(const Vector2Dd& pos) {
-		core_->global_position(pos);
+		impl_->global_buffer.transform.position = pos;
+		return *this;
+	}
+
+	const Vector2Dd& CTransform2D::global_scale() const {
+		return impl_->last_global.transform.scale;
+	}
+
+	CTransform2D&  CTransform2D::global_scale(const Vector2Dd& s) {
+		impl_->global_buffer.transform.scale = s;
 		return *this;
 	}
 
 	const double CTransform2D::global_rotation_rad() const {
-		return core_->global_rotation_rad();
+		return impl_->last_global.transform.rotation_rad;
 	}
 
 	CTransform2D&  CTransform2D::global_rotation_rad(double rota_rad) {
-		core_->global_rotation_rad(rota_rad);
+		impl_->global_buffer.transform.rotation_rad = rota_rad;
 		return *this;
 	}
 
 	const Vector2Dd& CTransform2D::velocity() const {
-		return core_->velocity();
+		return impl_->last_local.phisical.velocity;
 	}
 
 	CTransform2D&  CTransform2D::velocity(const Vector2Dd& vel) {
-		core_->velocity(vel);
+		impl_->local_buffer.phisical.velocity = vel;
 		return *this;
 	}
 
 	const double CTransform2D::rotation_velocity_rad() const {
-		return core_->rotation_velocity_rad();
+		return impl_->last_local.phisical.rota_vel_rad;
 	}
 
 	CTransform2D&  CTransform2D::rotation_velocity_rad(double rota_vel_rad) {
-		core_->rotation_velocity_rad(rota_vel_rad);
+		impl_->local_buffer.phisical.rota_vel_rad = rota_vel_rad;
 		return *this;
 	}
 
 	const Vector2Dd& CTransform2D::global_velocity()const {
-		return core_->global_velocity();
+		return impl_->last_global.phisical.velocity;
 	}
 
 	CTransform2D&  CTransform2D::global_velocity(const Vector2Dd& vel) {
-		core_->global_velocity(vel);
+		impl_->global_buffer.phisical.velocity = vel;
 		return *this;
 	}
 

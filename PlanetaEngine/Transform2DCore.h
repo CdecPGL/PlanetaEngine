@@ -10,6 +10,29 @@ namespace planeta_engine {
 		Transform2DCore() = default;
 		virtual ~Transform2DCore() = default;
 
+		struct TransformData {
+			Vector2Dd position;
+			Vector2Dd scale = Vector2Dd(1.0, 1.0);
+			double rotation_rad = 0.0;
+		};
+		struct PhisicalData {
+			Vector2Dd velocity;
+			double rota_vel_rad = 0.0;
+		};
+		struct AllData {
+			TransformData transform;
+			PhisicalData phisical;
+		};
+
+		enum class Category { None, Local, Global };
+		struct UpdateState {
+			Category position;
+			Category scale;
+			Category rotation;
+			Category velocity;
+			Category rota_vel;
+		};
+
 		virtual void Offset(const Vector2Dd& base_pos, const Vector2Dd& offset) = 0;
 
 		/*アクセサ*/
@@ -41,11 +64,5 @@ namespace planeta_engine {
 
 		virtual void SetParent(Transform2DCore* parent) = 0;
 	protected:
-		//形状情報
-		struct TransformData {
-			Vector2Dd position;
-			Vector2Dd scale = Vector2Dd(1.0, 1.0);
-			double rotation_rad = 0.0;
-		};
 	};
 }
