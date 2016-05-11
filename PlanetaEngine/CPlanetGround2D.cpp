@@ -45,12 +45,12 @@ namespace planeta_engine {
 	}
 
 	Vector2Dd CPlanetGround2D::ConvertPositionGlobalToGround(const Vector2Dd& global_pos) const {
-		auto relative_pos = global_pos - transform2d_->global_position();
+		auto relative_pos = global_pos - transform2d_->position();
 		return Vector2Dd(-std::atan2(relative_pos.y, relative_pos.x), relative_pos.length());
 	}
 
 	Vector2Dd CPlanetGround2D::ConvertPositionGroundToGlobal(const Vector2Dd& ground_pos) const {
-		return Vector2Dd(std::cos(-ground_pos.x), std::sin(-ground_pos.x))*ground_pos.y + transform2d_->global_position();
+		return Vector2Dd(std::cos(-ground_pos.x), std::sin(-ground_pos.x))*ground_pos.y + transform2d_->position();
 	}
 
 	Vector2Dd CPlanetGround2D::NormalizeGroundVectorWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_vector) const {

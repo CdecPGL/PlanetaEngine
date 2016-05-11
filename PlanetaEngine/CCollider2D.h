@@ -49,11 +49,11 @@ namespace planeta_engine {
 		utility::DelegateConnection AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
 		/*2D地形との衝突イベントハンドラ追加*/
 		utility::DelegateConnection AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
-	protected:
-		bool OnInitialized()override;
 
 		CTransform2D& transform2d() { return *transform2d_; }
 		const CTransform2D& transform2d()const { return *transform2d_; }
+	protected:
+		bool OnInitialized()override;
 	private:
 		bool OnActivated() override final;
 		bool OnInactivated() override final;

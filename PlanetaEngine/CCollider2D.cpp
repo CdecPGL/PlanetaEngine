@@ -36,10 +36,10 @@ namespace planeta_engine {
 	}
 
 	const Vector2Dd CCollider2D::GetCollisionGlobalCenterPosition() const {
-		Vector2Dd relation_position = math::RotationalTransformation(transform2d().global_rotation_rad(), position_); //ゲームオブジェクトからの相対位置
+		Vector2Dd relation_position = math::RotationalTransformation(transform2d().rotation_rad(), position_); //ゲームオブジェクトからの相対位置
 		relation_position.x *= transform2d().scale().x; //横方向拡大を反映
 		relation_position.y *= transform2d().scale().y; //縦方向拡大を反映
-		return transform2d().global_position() + relation_position;
+		return transform2d().position() + relation_position;
 	}
 
 	const double CCollider2D::GetCollisionScale() const {
@@ -47,7 +47,7 @@ namespace planeta_engine {
 	}
 
 	const double CCollider2D::GetCollisionGlobalRotationRad() const {
-		return transform2d().global_rotation_rad() + rotation_rad_;
+		return transform2d().rotation_rad() + rotation_rad_;
 	}
 
 	CCollider2D& CCollider2D::collision_group(const std::string& cg) {
