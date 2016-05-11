@@ -13,29 +13,19 @@
 namespace planeta_engine {
 	namespace {
 		constexpr int TASK_SLOT_0 = 0;
-		constexpr int COVCON_SLOT_0 = 1;
-		constexpr int TASK_SLOT_1 = 2;
-		constexpr int COVCON_SLOT_1 = 3;
-		constexpr int APPVEL_SLOT = 4;
-		constexpr int COLDET_SLOT = 5;
-		constexpr int TASK_SLOT_2 = 6;
-		constexpr int COVCON_SLOT_2 = 7;
-		constexpr int TASK_SLOT_3 = 8;
-		constexpr int COVCON_SLOT_3 = 9;
-		constexpr int TASK_SLOT_4 = 10;
-		constexpr int COVCON_SLOT_4 = 11;
-		constexpr int TASK_SLOT_5 = 12;
-		constexpr int COVCON_SLOT_5 = 13;
-		constexpr int TASK_SLOT_6 = 14;
-		constexpr int COVCON_SLOT_6 = 15;
-		constexpr int TASK_SLOT_7 = 16;
-		constexpr int COVCON_SLOT_7 = 17;
-		constexpr int TASK_SLOT_8 = 18;
-		constexpr int COVCON_SLOT_8 = 19;
-		constexpr int TASK_SLOT_9 = 20;
-		constexpr int COVCON_SLOT_9 = 21;
-		constexpr int DRAW_SLOT = 22;
-		constexpr int SLOT_COUNT = 23;
+		constexpr int TASK_SLOT_1 = 1;
+		constexpr int APPVEL_SLOT = 2;
+		constexpr int COLDET_SLOT = 3;
+		constexpr int TASK_SLOT_2 = 4;
+		constexpr int TASK_SLOT_3 = 5;
+		constexpr int TASK_SLOT_4 = 6;
+		constexpr int TASK_SLOT_5 = 7;
+		constexpr int TASK_SLOT_6 = 8;
+		constexpr int TASK_SLOT_7 = 9;
+		constexpr int TASK_SLOT_8 = 10;
+		constexpr int TASK_SLOT_9 = 11;
+		constexpr int DRAW_SLOT = 12;
+		constexpr int SLOT_COUNT = 13;
 		//スロットマップ
 		constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
 			TASK_SLOT_0,
@@ -52,18 +42,8 @@ namespace planeta_engine {
 		//システムスロットマップ
 		using namespace core;
 		constexpr std::array<int, SYSTEM_TASK_SLOT_SIZE> system_slot_group_number_map_ = {
-			COVCON_SLOT_0,
-			COVCON_SLOT_1,
 			APPVEL_SLOT,
 			COLDET_SLOT,
-			COVCON_SLOT_2,
-			COVCON_SLOT_3,
-			COVCON_SLOT_4,
-			COVCON_SLOT_5,
-			COVCON_SLOT_6,
-			COVCON_SLOT_7,
-			COVCON_SLOT_8,
-			COVCON_SLOT_9,
 			DRAW_SLOT,
 		};
 		/*タスクスロットからタスクグループ番号を取得*/

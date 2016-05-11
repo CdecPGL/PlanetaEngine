@@ -12,7 +12,6 @@ namespace planeta_engine {
 			void Update()override;
 			void Finalize()override;
 
-			void ExcuteCoordinateConvertion();
 			void ApplyVelocity();
 		};
 	}

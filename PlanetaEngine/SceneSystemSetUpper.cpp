@@ -28,22 +28,6 @@ namespace planeta_engine {
 			//Transform速度適用タスク
 			auto tavp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyVelocityPhase);
 			tavp->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ApplyVelocity(); });
-			//Transform座標変換タスク
-			utility::WeakPointer<TInstant> cvt[10] = {
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreCollisionEarlyConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreCollisionLateConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCollisionEarlyConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCollisionLateConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::EventUpdateConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::CameraUpdateConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PostCameraUpdateConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::GUIUpdateEarlyConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::GUIUpdateLateConvertCoordinatePhase),
-				t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::PreDrawUpdateConvertCoordinatePhase),
-			}; 
-			for (auto& t : cvt) {
-				t->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ExcuteCoordinateConvertion(); });
-			}
 			return true;
 		}
 
