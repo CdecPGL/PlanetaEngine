@@ -31,15 +31,7 @@ namespace planeta_engine {
 		Vector2Dd ConvertVelocityGroundToGlobalWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_velocity);
 		/*指定地形座標で地形座標系ベクトルをグローバル座標系での長さと一致するよう変換*/
 		virtual Vector2Dd NormalizeGroundVectorWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_vector)const = 0;
-		/*X座標の範囲取得*/
-		//const std::pair<double,double>& GetXRange()const;
-		/*Y座標の周期取得*/
-		//const std::pair<double, double>& GetYRange()const;
-		/*X座標の*/
 	protected:
-		//void SetXRange(const std::pair<double, double>& range);
-		//void SetYRange(const std::pair<double, double>& range);
-
 		utility::NonOwingPointer<CTransform2D> transform2d_;
 
 		virtual bool OnInitialized() override;

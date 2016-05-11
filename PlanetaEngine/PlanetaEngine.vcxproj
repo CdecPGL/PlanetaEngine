@@ -150,7 +150,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
     <ClInclude Include="BGMController.h" />
-    <ClInclude Include="ChildTransform2DCore.h" />
     <ClInclude Include="DataContainer.h" />
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
@@ -193,7 +192,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Matrix2_2.h" />
     <ClInclude Include="Matrix3_3.h" />
     <ClInclude Include="pe_assert.h" />
-    <ClInclude Include="RootTransform2DCore.h" />
     <ClInclude Include="TaskSystemSetUpper.h" />
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SaveDataManager.h" />
@@ -206,7 +204,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneDefinitionHeaders.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="ScreenEffectProcess.h" />
-    <ClInclude Include="Transform2DCore.h" />
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
@@ -356,7 +353,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CBelongingGroundGravity.cpp" />
     <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="ChildTransform2DCore.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
@@ -394,7 +390,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="TInstant.cpp" />
     <ClCompile Include="LuaBindClassFunctions.cpp" />
-    <ClCompile Include="RootTransform2DCore.cpp" />
     <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="Screen.cpp" />

@@ -14,36 +14,54 @@ namespace planeta_engine {
 		CTransform2D();
 		~CTransform2D();
 
-		/*現在位置から移動*/
-		void Move(const Vector2Dd& mov_pos);
-		/*位置の設定*/
-		void Offset(const Vector2Dd& base_pos, const Vector2Dd& offset);
-		/*加速する*/
+		/*グローバル加速する*/
 		void Accelerate(const Vector2Dd& acceleration);
-		/*グローバル方向に加速する*/
-		void GlobalAccelerate(const Vector2Dd& global_acceleration);
+		/*地形加速する*/
+		void GroundAccelerate(const Vector2Dd& ground_acceleration);
+		/*現在地形位置から移動*/
+		void GroundMove(const Vector2Dd& mov_pos);
+		/*地形位置の設定*/
+		void GroundOffset(const Vector2Dd& base_ground_pos, const Vector2Dd& offset);
 		/*アクセサ*/
+		//グローバル位置を取得
 		const Vector2Dd& position()const;
+		//グローバル位置を設定
 		CTransform2D& position(const Vector2Dd& pos);
+		//グローバルスケールを取得
 		const Vector2Dd& scale()const;
+		//グローバルスケールを設定
 		CTransform2D&  scale(const Vector2Dd& s);
+		//グローバル回転度を取得
 		const double rotation_rad()const;
+		//グローバル回転度を設定
 		CTransform2D&  rotation_rad(double rota_rad);
 
-		const Vector2Dd& global_position()const;
-		CTransform2D&  global_position(const Vector2Dd& pos);
-		const Vector2Dd& global_scale()const;
-		CTransform2D&  global_scale(const Vector2Dd& s);
-		const double global_rotation_rad()const;
-		CTransform2D&  global_rotation_rad(double rota_rad);
+		//地形位置を取得
+		const Vector2Dd& ground_position()const;
+		//地形位置を設定
+		CTransform2D& ground_position(const Vector2Dd& pos);
+		//地形回転度を取得
+		const double ground_rotation_rad()const;
+		//地形回転度を設定
+		CTransform2D&  ground_rotation_rad(double rota_rad);
 
+		//グローバル速度を取得
 		const Vector2Dd& velocity()const;
+		//グローバル速度を設定
 		CTransform2D&  velocity(const Vector2Dd& vel);
+		//グローバル角速度を取得
 		const double rotation_velocity_rad()const;
+		//グローバル角速度を設定
 		CTransform2D&  rotation_velocity_rad(double rota_vel_rad);
 
-		const Vector2Dd& global_velocity()const;
-		CTransform2D&  global_velocity(const Vector2Dd& vel);
+		//地形速度を取得
+		const Vector2Dd& ground_velocity()const;
+		//地形速度を設定
+		CTransform2D&  ground_velocity(const Vector2Dd& vel);
+
+		//速度空間を設定
+		enum class Space { Ground, Global };
+		void velocity_space(Space space);
 
 		/*地形関係*/
 		const CGround2D& ground()const;
@@ -54,7 +72,6 @@ namespace planeta_engine {
 
 		//システム
 		void ApplyVelocity(); //速度適用
-		void ConvertCoodination(); //座標変換
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;

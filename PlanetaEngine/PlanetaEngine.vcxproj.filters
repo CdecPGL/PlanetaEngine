@@ -699,15 +699,6 @@
     <ClInclude Include="GameObjectRegisterer.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Transform2DCore.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="RootTransform2DCore.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="ChildTransform2DCore.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
-    </ClInclude>
     <ClInclude Include="CTransform2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
     </ClInclude>
@@ -1099,12 +1090,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectFactory.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="RootTransform2DCore.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="ChildTransform2DCore.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
     </ClCompile>
     <ClCompile Include="CTransform2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
