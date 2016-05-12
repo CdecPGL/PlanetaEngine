@@ -7,7 +7,7 @@
 
 namespace planeta_engine{
 	namespace core {
-		GameObjectDrawSystem::GameObjectDrawSystem():screen_drawer_2d_(std::make_unique<ScreenDrawer2D>()),screen_drawer_gui_(std::make_unique<ScreenDrawerGUI>())
+		GameObjectDrawSystem::GameObjectDrawSystem()
 		{
 
 		}
@@ -45,10 +45,15 @@ namespace planeta_engine{
 		}
 
 		bool GameObjectDrawSystem::Initialize() {
+			screen_ = DrawManager::instance().CreateScreen();
+			if (!screen_) { return false; }
+			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
+			screen_drawer_gui_ = std::make_unique<ScreenDrawerGUI>(*screen_);
 			return true;
 		}
 
 		void GameObjectDrawSystem::Finalize() {
+			DrawManager::instance().DisposeScreen(screen_);
 			return;
 		}
 

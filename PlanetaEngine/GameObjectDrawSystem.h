@@ -12,6 +12,7 @@ namespace planeta_engine {
 	class ScreenDrawerGUI;
 	class CDraw2D;
 	namespace core {
+		class Screen;
 		class GameObjectDrawSystem :public core::SceneModule, private utility::NonCopyable<GameObjectDrawSystem>
 		{
 		public:
@@ -36,6 +37,8 @@ namespace planeta_engine {
 		private:
 			/*更新リスト(mapとlistは要素の追加削除を行ってもイテレータが有効)*/
 			std::map<int, std::list<std::shared_ptr<CDraw2D>>> _draw_component_update_list;
+			/*描画画面*/
+			std::shared_ptr<Screen> screen_;
 			/*描画コンポーネントマップ<ポインタ、更新リストへのイテレータ>*/
 			std::unordered_map<CDraw2D*, std::pair<int, std::list<std::shared_ptr<CDraw2D>>::iterator>> _draw_component_map;
 			std::unique_ptr<ScreenDrawer2D> screen_drawer_2d_;

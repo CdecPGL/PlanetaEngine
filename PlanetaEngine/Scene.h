@@ -14,7 +14,6 @@ namespace planeta_engine{
 	namespace core{
 		class SceneSystemSetUpper;
 		class IGameAccessor;
-		class Screen;
 		struct SceneData;
 		class CollisionWorld;
 		class GameObjectDrawSystem;
