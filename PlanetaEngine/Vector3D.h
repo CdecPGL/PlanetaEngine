@@ -18,12 +18,13 @@ namespace planeta_engine {
 			constexpr Vector3D(T m_x, T m_y, T m_z) : x(m_x), y(m_y),z(m_z) {};
 			constexpr Vector3D(const Vector3D<T>& obj) :x(obj.x), y(obj.y), z(obj.z) {}
 			template<typename T2>
-			constexpr Vector3D(const Vector3D<T2>& obj) : x(obj.x), y(obj.y), z(obj.z) {} //型変換の警告を出すために明示的キャストは用いない
+			explicit constexpr Vector3D(const Vector3D<T2>& obj) : x(static_cast<T>(obj.x)), y(static_cast<T>(obj.y)), z(static_cast<T>(obj.z)) {}
 			constexpr Vector3D(const Vector2D<T>& v2) : x(v2.x), y(v2.y), z(0) {}
 			//代入演算子
 			Vector3D<T>& operator =(const Vector3D<T>& obj) { x = obj.x; y = obj.y; z = obj.z; return *this; }
+			//キャスト演算子
 			template<typename T2>
-			Vector3D<T>& operator =(const Vector3D<T2>& obj) { x = obj.x; y = obj.y; z = obj.z; return *this; } //型変換の警告を出すために明示的キャストは用いない
+			explicit constexpr operator Vector3D<T2>()const { return Vector3D<T2>(static_cast<T2>(x), static_cast<T2>(y), static_cast<T2>(z)); }
 			//加減算演算子
 			constexpr Vector3D<T> operator+(const Vector3D<T>& in)const {
 				return Vector3D<T>(x + in.x, y + in.y, z + in.z);
@@ -191,7 +192,7 @@ namespace planeta_engine {
 		Vector3D<T> GetUnitVectorByRadian(double rad) {
 			return Vector3D<T>(static_cast<T>(std::cos(rad)), static_cast<T>(std::sin(rad)));
 		}*/
-	}
+	};
 	
 	using Vector3Df = math::Vector3D<float>; //単精度浮動小数点型三次元ベクトル
 	using Vector3Dd = math::Vector3D<double>; //倍精度浮動小数点型三次元ベクトル

@@ -97,10 +97,10 @@ namespace planeta_engine {
 			//中心以外の頂点座標を求める
 			for (unsigned int j = 0; j < _vertical_separation; ++j) {
 				double dis_ratio = 1.0f - (double)j / _vertical_separation;
-				graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + j, center_pos + interface_vec*dis_ratio);
+				graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + j, static_cast<Vector2Df>(center_pos + interface_vec*dis_ratio));
 			}
 			//中心の頂点座標を求める
-			graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + _vertical_separation, center_pos);
+			graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + _vertical_separation, static_cast<Vector2Df>(center_pos));
 		}
 		//頂点色設定
 		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) {
@@ -143,10 +143,10 @@ namespace planeta_engine {
 			double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
 			Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 			interface_vec *= height;
-			graph_draw_data_->SetVertexPosition(i, center_pos + interface_vec);
+			graph_draw_data_->SetVertexPosition(i, static_cast<Vector2Df>(center_pos + interface_vec));
 		}
 		//中心頂点の設定
-		graph_draw_data_->SetVertexPosition(_horizontal_separation, center_pos);
+		graph_draw_data_->SetVertexPosition(_horizontal_separation, static_cast<Vector2Df>(center_pos));
 		//頂点色設定
 		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) {
 			graph_draw_data_->SetVertexColor(i, color());

@@ -30,8 +30,8 @@ namespace planeta_engine {
 		private:
 			void Update()override final;
 			void RemoveAll();
-			using CollisionGroupType = std::list<const core::Collider2DData&>;
-			using CollisionWithGroundListType = std::list<const core::Collider2DData&>;
+			using CollisionGroupType = std::list<std::reference_wrapper<const core::Collider2DData>>;
+			using CollisionWithGroundListType = std::list<std::reference_wrapper<const core::Collider2DData>>;
 			struct CCollider2DResistData_;
 			std::unordered_map<CCollider2D*, std::unique_ptr<CCollider2DResistData_>> collider_resist_data_map_; //コライダーの登録情報リスト
 			using CollisionGroupListType = std::unordered_map<std::string, CollisionGroupType>;

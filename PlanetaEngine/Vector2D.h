@@ -18,12 +18,13 @@ namespace planeta_engine {
 			constexpr Vector2D(T m_x, T m_y) : x(m_x), y(m_y) {};
 			constexpr Vector2D(const Vector2D<T>& obj) :x(obj.x), y(obj.y) {}
 			template<typename T2>
-			constexpr Vector2D(const Vector2D<T2>& obj) : x(obj.x), y(obj.y) {} //型変換の警告を出すために明示的キャストは用いない
+			explicit constexpr Vector2D(const Vector2D<T2>& obj) : x(static_cast<T>(obj.x)), y(static_cast<T>(obj.y)) {}
 			constexpr Vector2D(const Vector3D<T>& v3):x(v3.x), y(v3.y) {}
 			//代入演算子
 			Vector2D<T>& operator =(const Vector2D<T>& obj) { x = obj.x; y = obj.y; return *this; }
+			//キャスト演算子
 			template<typename T2>
-			Vector2D<T>& operator =(const Vector2D<T2>& obj) { x = obj.x; y = obj.y; return *this; } //型変換の警告を出すために明示的キャストは用いない
+			explicit constexpr operator Vector2D<T2>()const { return Vector2D<T2>(static_cast<T2>(x), static_cast<T2>(y)); }
 			//加減算演算子
 			constexpr Vector2D<T> operator+(const Vector2D<T>& in)const {
 				return Vector2D<T>(x + in.x, y + in.y);

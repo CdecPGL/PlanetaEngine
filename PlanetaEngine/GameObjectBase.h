@@ -5,14 +5,14 @@
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
 #include "NonOwingPointer.h"
+#include "GameObjectManagerConnection.h"
 
 namespace planeta_engine {
 	namespace core {
 		struct SceneData;
 	}
 	class GameObjectComponent;
-	class GameObjectManagerConnection;
-	class GameObjectBase : public IGameObjectForComponent,private utility::NonCopyable<GameObjectBase> {
+	class GameObjectBase : public IGameObjectForComponent, private utility::NonCopyable<GameObjectBase> {
 	public:
 		GameObjectBase();
 		~GameObjectBase();
@@ -50,7 +50,7 @@ namespace planeta_engine {
 		//GameObjectの作成関数。自分のスマートポインタを保持するためにこの関数を介する必要がある。
 		template<class T>
 		static std::shared_ptr<GameObjectBase> Create() {
-			static_assert(std::is_base_of<GameObjectBase, T>::value == true, "T must derive GameOBjectBase");
+			static_assert(std::is_base_of<GameObjectBase, T>::value == true, "T must derive GameObjectBase");
 			auto ptr = std::make_shared<T>();
 			ptr->this_weak_ptr_ = ptr;
 			return std::move(ptr);

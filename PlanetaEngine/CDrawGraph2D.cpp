@@ -56,10 +56,10 @@ namespace planeta_engine {
 		//右下の頂点ベクトル
 		Vector2Dd right_down_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * (graph_center_.y - 1.0));
 		//画像の回転度とゲームオブジェクトの回転度、表示中心位置から各頂点を求める
-		graph_draw_data_->SetVertexPosition(0, center_position + math::RotationalTransformation(GetDrawRotationRed(), left_down_vertex_vec));
-		graph_draw_data_->SetVertexPosition(1, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_down_vertex_vec));
-		graph_draw_data_->SetVertexPosition(2, center_position + math::RotationalTransformation(GetDrawRotationRed(), right_up_vertex_vec));
-		graph_draw_data_->SetVertexPosition(3, center_position + math::RotationalTransformation(GetDrawRotationRed(), left_up_vertex_vec));
+		graph_draw_data_->SetVertexPosition(0, static_cast<Vector2Df>(center_position + math::RotationalTransformation(GetDrawRotationRed(), left_down_vertex_vec)));
+		graph_draw_data_->SetVertexPosition(1, static_cast<Vector2Df>(center_position + math::RotationalTransformation(GetDrawRotationRed(), right_down_vertex_vec)));
+		graph_draw_data_->SetVertexPosition(2, static_cast<Vector2Df>(center_position + math::RotationalTransformation(GetDrawRotationRed(), right_up_vertex_vec)));
+		graph_draw_data_->SetVertexPosition(3, static_cast<Vector2Df>(center_position + math::RotationalTransformation(GetDrawRotationRed(), left_up_vertex_vec)));
 		//色
 		for (int i = 0; i < 4; ++i) {
 			graph_draw_data_->SetVertexColor(i, color());

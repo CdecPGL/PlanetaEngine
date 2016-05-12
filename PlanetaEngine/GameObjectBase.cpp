@@ -1,6 +1,5 @@
 #include <cassert>
 #include "GameObjectBase.h"
-#include "GameObjectManagerConnection.h"
 #include "GameObjectManagerPublicInterface.h"
 #include "SceneData.h"
 #include "GameObjectComponent.h"
