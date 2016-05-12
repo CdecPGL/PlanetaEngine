@@ -352,7 +352,7 @@ namespace planeta_engine {
 	bool CTransform2D::SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position) {
 		auto gcom = g->GetComponent<CGround2D>();
 		if (gcom) {
-			impl_->SetGround(g, keep_global_position);
+			impl_->SetGround(gcom, keep_global_position);
 			return true;
 		} else {
 			PE_LOG_ERROR("Groundコンポーネントを持たないGameObjectがTransformのGroundとして渡されました。");
