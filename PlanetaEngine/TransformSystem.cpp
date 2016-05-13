@@ -24,7 +24,7 @@ namespace planeta_engine {
 		void TransformSystem::ApplyVelocity() {
 			//ApplyVelocityに登録削除関連のコードはないはずなので、このループ内ではT2Dの登録削除(t2d_listの変更)は発生しない。
 			for (auto&& t2d : transform2d_map_) {
-				t2d.second->ApplyVelocity();
+				t2d.second->ApplyVelocity_();
 			}
 		}
 

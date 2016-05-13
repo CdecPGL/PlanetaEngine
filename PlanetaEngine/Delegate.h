@@ -328,15 +328,23 @@ namespace planeta_engine {
 			std::function<DelegateConnection(Delegate<EventArgType>&)> delegate_handle_adder_;
 		};
 
-		/*デリゲート追加クラス作成(公開関数)*/
+		/*WeakMenberデリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType,class C>
 		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(EventArgType)) {
 			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
 		}
-		/*デリゲート追加クラス作成(公開関数)*/
+		template<class C>
+		DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)()) {
+			return std::move(DelegateHandlerAdder<void>([c, f](Delegate<void>& dlgt) {return dlgt.Add(c, f); }));
+		}
+		/*MemberFunctionデリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType, class C>
 		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(C* c, typename void(C::*f)(EventArgType)) {
 			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
+		}
+		template<class C>
+		DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(C* c, typename void(C::*f)()) {
+			return std::move(DelegateHandlerAdder<void>([c, f](Delegate<void>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
 		template<typename EventArgType>

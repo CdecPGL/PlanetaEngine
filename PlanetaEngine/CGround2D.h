@@ -1,5 +1,6 @@
 #pragma once
-#include "boost/optional/optional.hpp"
+
+#include <list>
 #include "GameObjectStandardComponent.h"
 #include "MathMatrix.h"
 #include "Vector2D.h"
@@ -31,6 +32,8 @@ namespace planeta_engine {
 		Vector2Dd ConvertVelocityGroundToGlobalWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_velocity);
 		/*指定地形座標で地形座標系ベクトルをグローバル座標系での長さと一致するよう変換*/
 		virtual Vector2Dd NormalizeGroundVectorWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_vector)const = 0;
+
+		CTransform2D& transform2d();
 	protected:
 		utility::NonOwingPointer<CTransform2D> transform2d_;
 

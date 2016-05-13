@@ -41,6 +41,8 @@ namespace planeta_engine {
 		std::tuple<TransformData, PhisicalData> ground;
 		UpdateState last_update; //更新状況
 		utility::WeakPointer<CGround2D> belonging_ground;
+		//地形更新イベントコネクション
+		utility::DelegateConnection ground_updated_event_connection;
 
 		void PositionUpdated(CoordinationSpace space) {
 			last_update.position = space;
@@ -112,6 +114,10 @@ namespace planeta_engine {
 			}
 		}
 
+		//地形更新イベントハンドラ
+		void OnGroudUpdated() {
+
+		}
 	public:
 
 		const Vector2Dd& position() const {
@@ -220,6 +226,7 @@ namespace planeta_engine {
 			}
 
 			belonging_ground = g;
+			belonging_ground->transform2d().AddUpdatedEventHandler(utility::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
 
 			if (keep_global_position) {
 				last_update.position = CoordinationSpace::Global;
@@ -239,9 +246,12 @@ namespace planeta_engine {
 		void GroundOffset(const Vector2Dd& base_pos, const Vector2Dd& offset) {
 			ground_position(base_pos + cground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 		}
-
+		//速度空間
 		Space velocity_space = Space::Ground;
+		//トランスフォーム2D_ID
 		int t2d_id_ = -1;
+		//更新イベントデリゲート
+		utility::Delegate<void> updated_event_delegate;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
@@ -366,7 +376,7 @@ namespace planeta_engine {
 		impl_->velocity_space = space;
 	}
 
-	void CTransform2D::ApplyVelocity() {
+	void CTransform2D::ApplyVelocity_() {
 		rotation_rad(rotation_rad() + rotation_velocity_rad());
 		switch (impl_->velocity_space) {
 		case Space::Ground:
@@ -405,6 +415,10 @@ namespace planeta_engine {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 			return false;
 		}
+	}
+
+	utility::DelegateConnection CTransform2D::AddUpdatedEventHandler(utility::DelegateHandlerAdder<void>&& handler_adder) {
+		return handler_adder(impl_->updated_event_delegate);
 	}
 
 }

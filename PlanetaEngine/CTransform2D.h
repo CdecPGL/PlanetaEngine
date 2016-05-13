@@ -69,9 +69,11 @@ namespace planeta_engine {
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		utility::WeakPointer<CGround2D> GetGround()const;
 		bool SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position);
+		/*トランスフォーム更新イベントハンドラ追加*/
+		utility::DelegateConnection AddUpdatedEventHandler(utility::DelegateHandlerAdder<void>&& handler_adder);
 
 		//システム
-		void ApplyVelocity(); //速度適用
+		void ApplyVelocity_(); //速度適用
 	private:
 		//実装
 		class Impl_;
