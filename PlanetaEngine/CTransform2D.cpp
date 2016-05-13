@@ -116,7 +116,15 @@ namespace planeta_engine {
 
 		//地形更新イベントハンドラ
 		void OnGroudUpdated() {
-
+			UpdateGroundTransform();
+			UpdateGlobalPhisic();
+			last_update.position = CoordinationSpace::Ground;
+			last_update.scale = CoordinationSpace::Ground;
+			last_update.rotation = CoordinationSpace::Ground;
+			last_update.velocity = CoordinationSpace::Ground;
+			last_update.rota_vel = CoordinationSpace::Ground;
+			UpdateGroundTransform();
+			UpdateGroundPhisic();
 		}
 	public:
 
@@ -246,6 +254,11 @@ namespace planeta_engine {
 		void GroundOffset(const Vector2Dd& base_pos, const Vector2Dd& offset) {
 			ground_position(base_pos + cground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 		}
+
+		void Finalize() {
+			ground_updated_event_connection.Remove();
+		}
+
 		//速度空間
 		Space velocity_space = Space::Ground;
 		//トランスフォーム2D_ID
@@ -396,7 +409,7 @@ namespace planeta_engine {
 	}
 
 	void CTransform2D::OnFinalized()noexcept {
-
+		impl_->Finalize();
 	}
 
 	bool CTransform2D::OnActivated() {
