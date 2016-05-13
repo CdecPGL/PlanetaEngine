@@ -4,6 +4,7 @@
 #include "SystemLog.h"
 #include "CGround2D.h"
 #include "TransformSystem.h"
+#include "SceneData.h"
 #include <tuple>
 
 namespace planeta_engine {
@@ -240,6 +241,7 @@ namespace planeta_engine {
 		}
 
 		Space velocity_space = Space::Ground;
+		int t2d_id_ = -1;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
@@ -376,6 +378,32 @@ namespace planeta_engine {
 		default:
 			assert(false);
 			return;
+		}
+	}
+
+	bool CTransform2D::OnInitialized() {
+		return true;
+	}
+
+	void CTransform2D::OnFinalized()noexcept {
+
+	}
+
+	bool CTransform2D::OnActivated() {
+		//TransformSystem‚Ö“o˜^
+		impl_->t2d_id_ = scene_data_ref().transform_system.RegisterTransform2D(this);
+		PE_VERIFY(impl_->t2d_id_ >= 0);
+		return true;
+	}
+
+	bool CTransform2D::OnInactivated() {
+		PE_VERIFY(impl_->t2d_id_ >= 0);
+		//TransformSystem‚©‚ç“o˜^‰ðœ
+		if (scene_data_ref().transform_system.RemoveTransform2D(impl_->t2d_id_)) {
+			return true;
+		} else {
+			PE_LOG_FATAL("TransfromSystem‚©‚ç‚Ì“o˜^‰ðœ‚ÉŽ¸”s‚µ‚Ü‚µ‚½BID:", impl_->t2d_id_);
+			return false;
 		}
 	}
 

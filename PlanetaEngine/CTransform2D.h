@@ -73,7 +73,13 @@ namespace planeta_engine {
 		//システム
 		void ApplyVelocity(); //速度適用
 	private:
+		//実装
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
+		//GOCオーバーライド
+		bool OnInitialized()override final;
+		void OnFinalized()noexcept override final;
+		bool OnActivated()override final;
+		bool OnInactivated()override final;
 	};
 }
