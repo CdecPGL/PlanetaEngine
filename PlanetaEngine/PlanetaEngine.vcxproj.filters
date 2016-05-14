@@ -181,9 +181,6 @@
     <Filter Include="PlanetaEngine\SceneModules\GameObject\GameObjectInterface">
       <UniqueIdentifier>{56cd2c2b-652f-4629-9e10-12aaba99a599}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\SceneModules\GameObject\Factory">
-      <UniqueIdentifier>{aba12054-18db-4ae8-a61a-49f737699b14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\SceneModules\GameObject\Component">
       <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
     </Filter>
@@ -693,12 +690,6 @@
     <ClInclude Include="GameObjectBase.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectFactory.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectRegisterer.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Factory</Filter>
-    </ClInclude>
     <ClInclude Include="CTransform2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
     </ClInclude>
@@ -830,6 +821,12 @@
     </ClInclude>
     <ClInclude Include="Collider2DData.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalObjectFactory.h">
+      <Filter>PlanetaEngine\Core\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalObjectRegistrer.h">
+      <Filter>PlanetaEngine\Core\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1088,9 +1085,6 @@
     <ClCompile Include="GameObjectBase.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Factory</Filter>
-    </ClCompile>
     <ClCompile Include="CTransform2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
     </ClCompile>
@@ -1162,6 +1156,9 @@
     </ClCompile>
     <ClCompile Include="SceneSetUpProxy.cpp">
       <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalObjectFactory.cpp">
+      <Filter>PlanetaEngine\Core\Others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

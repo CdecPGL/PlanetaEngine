@@ -38,7 +38,7 @@ namespace planeta_engine {
 			static_assert(std::is_base_of<GameObjectInterface, GOI>::value == true, "GOI must drive GameObjectInterface.");
 			return GetInterface<GOI>() != nullptr;
 		}
-		//タスクをアタッチ
+		//タスクをアタッチ(TはTGameObjectOperationを継承したクラス)
 		template<class T>
 		utility::WeakPointer<T> CreateAndAttachTask(TaskSlot slot);
 		//有効化イベントハンドラ登録

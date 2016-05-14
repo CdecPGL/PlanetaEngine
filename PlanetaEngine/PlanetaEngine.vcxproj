@@ -146,7 +146,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
-    <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
     <ClInclude Include="BGMController.h" />
@@ -154,13 +153,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObjectBase.h" />
-    <ClInclude Include="GameObjectRegisterer.h" />
     <ClInclude Include="GIGameObject2D.h" />
     <ClInclude Include="GGameObject2DTemplate.h" />
     <ClInclude Include="GIGroundObject2D.h" />
     <ClInclude Include="GGroundObject2DTemplate.h" />
     <ClInclude Include="GIGUIObject2D.h" />
     <ClInclude Include="GGUIObjectTemplate.h" />
+    <ClInclude Include="GlobalObjectFactory.h" />
+    <ClInclude Include="GlobalObjectRegistrer.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
@@ -360,6 +360,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
+    <ClCompile Include="GlobalObjectFactory.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
@@ -383,7 +384,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="DataContainerSerializeUtility.cpp" />
     <ClCompile Include="GameObjectBase.cpp" />
     <ClCompile Include="GameObjectComponentHolder.cpp" />
-    <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
     <ClCompile Include="TGameObjectOperation.cpp" />
     <ClCompile Include="GraphDrawData2D.cpp" />

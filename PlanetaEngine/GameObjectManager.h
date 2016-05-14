@@ -12,7 +12,6 @@ namespace planeta_engine {
 	class SceneAccessorForGameObject;
 	class GameObjectBase;
 	class IGameObject;
-	class GameObjectFactory;
 	namespace core {
 		struct SceneData;
 	}
@@ -55,6 +54,5 @@ namespace planeta_engine {
 		void RemoveProc_();
 		int _id_counter;
 		utility::WeakPointer<core::SceneData> scene_data_;
-		GameObjectFactory& factory_;
 	};
 }

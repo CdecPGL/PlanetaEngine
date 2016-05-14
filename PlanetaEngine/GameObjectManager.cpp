@@ -4,10 +4,10 @@
 #include "SystemLog.h"
 #include "SceneDataForGameObject.h"
 #include "SceneData.h"
-#include "GameObjectFactory.h"
+#include "GlobalObjectFactory.h"
 
 namespace planeta_engine {
-	GameObjectManager::GameObjectManager() :_id_counter(0), factory_(GameObjectFactory::GetInstance()) {};
+	GameObjectManager::GameObjectManager() :_id_counter(0) {};
 	GameObjectManager::~GameObjectManager() = default;
 
 	void GameObjectManager::Update() {
@@ -36,7 +36,7 @@ namespace planeta_engine {
 	}
 
 	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
-		auto go = factory_.CreateGameObject(game_object_create_id);
+		auto go =  core::GlobalObjectFactory::GetInstance().CreateObjectByID<GameObjectBase>(game_object_create_id);
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 				return nullptr;
@@ -47,7 +47,7 @@ namespace planeta_engine {
 
 	}
 	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
-		auto go = factory_.CreateGameObject(game_object_create_id);
+		auto go = core::GlobalObjectFactory::GetInstance().CreateObjectByID<GameObjectBase>(game_object_create_id);
 		if (go == nullptr) {
 			debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 			return nullptr;
