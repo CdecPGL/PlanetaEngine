@@ -46,6 +46,20 @@ namespace planeta_engine {
 			}
 			return std::move(ret_list);
 		}
+		//コンポーネントに操作を適用
+		template<typename Ret>
+		bool DoAllWithCheck(Ret(GameObjectComponent::* pfunc)(),const Ret& true_value) {
+			for (auto&& com : component_list_) {
+				if (((*com).*pfunc)() != true_value) { return false; }
+			}
+			return true;
+		}
+		template<typename Ret>
+		void DoAll(Ret(GameObjectComponent::* pfunc)()) {
+			for (auto&& com : component_list_) {
+				((*com).*pfunc)();
+			}
+		}
 	private:
 		//コンポーネントリスト
 		std::list<std::shared_ptr<GameObjectComponent>> component_list_;

@@ -4,6 +4,7 @@
 #include "SceneData.h"
 #include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
+#include "SystemLog.h"
 
 namespace planeta_engine {
 
@@ -45,15 +46,39 @@ namespace planeta_engine {
 	}
 
 	bool GameObjectBase::ProcessActivation() {
-		return false;
+		if (!OnActivated()) {
+			PE_LOG_ERROR("GameObject‚Ì—LŒø‰»ˆ—‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		if (!component_holder_.DoAllWithCheck(&GameObjectComponent::Activate, true)) {
+			PE_LOG_ERROR("GameObjectComponent‚Ì—LŒø‰»‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		activated_event_delegate_();
+		return true;
 	}
 
 	bool GameObjectBase::ProcessInactivation() {
-		return false;
+		inactivated_event_delegate_();
+		if (!OnInactivated()) {
+			PE_LOG_ERROR("GameObject‚Ì–³Œø‰»ˆ—‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		if (!component_holder_.DoAllWithCheck(&GameObjectComponent::InActivate, true)) {
+			PE_LOG_ERROR("GameObjectComponent‚Ì–³Œø‰»‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		return true;
 	}
 
 	bool GameObjectBase::ProcessDisposal() {
-		return false;
+		disposed_event_delegate_();
+		if (!OnDisposed()) {
+			PE_LOG_ERROR("GameObject‚Ì”jŠüˆ—‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		component_holder_.DoAll(&GameObjectComponent::Finalize);
+		return true;
 	}
 
 	void GameObjectBase::SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn) {

@@ -25,7 +25,7 @@ namespace planeta_engine {
 		bool is_valied()const { return is_valied_; }
 		bool is_active()const { return is_active_; }
 
-		/*システム関数*/
+		/*システム関数(GameObjectBaseから呼び出される)*/
 		bool Initialize();
 		bool Activate();
 		bool InActivate();
