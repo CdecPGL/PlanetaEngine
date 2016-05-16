@@ -12,7 +12,7 @@ namespace planeta_engine {
 		struct SceneData;
 	}
 	class GameObjectComponent;
-	class GameObjectBase : public IGameObjectForComponent, private utility::NonCopyable<GameObjectBase> {
+	class GameObjectBase : public IGameObjectForComponent, private utility::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
 		GameObjectBase();
 		~GameObjectBase();
@@ -25,7 +25,7 @@ namespace planeta_engine {
 		//破棄する
 		void Dispose()override final;
 		//自分のstd::shared_ptrを取得する。
-		std::shared_ptr<IGameObject> GetSharedPointer()const override final;
+		std::shared_ptr<IGameObject> GetSharedPointer()override final;
 		//有効化イベントハンドラ登録
 		utility::DelegateConnection AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
 		//無効化イベントハンドラ登録
@@ -44,17 +44,6 @@ namespace planeta_engine {
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
 		//シーンデータをセット
 		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data);
-
-
-		//静的関数
-		//GameObjectの作成関数。自分のスマートポインタを保持するためにこの関数を介する必要がある。
-		template<class T>
-		static std::shared_ptr<GameObjectBase> Create() {
-			static_assert(std::is_base_of<GameObjectBase, T>::value == true, "T must derive GameObjectBase");
-			auto ptr = std::make_shared<T>();
-			ptr->this_weak_ptr_ = ptr;
-			return std::move(ptr);
-		}
 	protected:
 		//コンポーネントを作成、追加する。
 		template<class ComT>
@@ -74,8 +63,6 @@ namespace planeta_engine {
 		//コンポーネントを型ですべて取得
 		std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 
-		//自身の弱参照
-		std::weak_ptr<GameObjectBase> this_weak_ptr_;
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 		//シーンアクセサ
@@ -103,3 +90,7 @@ namespace planeta_engine {
 		virtual bool OnDisposed();
 	};
 }
+
+//GameObjectをシステムに登録する(型)
+#define PE_REGISTER_GAMEOBJECT(type)\
+PE_REGISTER_OBJECT(type,planeta_engine::GameObjectBase)

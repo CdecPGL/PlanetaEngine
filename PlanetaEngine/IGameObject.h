@@ -18,7 +18,7 @@ namespace planeta_engine {
 		//破棄
 		virtual void Dispose() = 0;
 		//自身のstd::shared_ptrを取得
-		virtual std::shared_ptr<IGameObject> GetSharedPointer()const = 0;
+		virtual std::shared_ptr<IGameObject> GetSharedPointer()= 0;
 		//コンポーネントを型で取得する。
 		template<class ComT>
 		utility::WeakPointer<ComT> GetComponent()const {

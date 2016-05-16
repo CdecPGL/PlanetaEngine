@@ -65,3 +65,7 @@ namespace planeta_engine {
 		virtual void OnDisposed() {};
 	};
 }
+
+//Task‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(Œ^)
+#define PE_REGISTER_TASK(type)\
+PE_REGISTER_OBJECT(type,planeta_engine::Task)

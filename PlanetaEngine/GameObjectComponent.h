@@ -49,3 +49,7 @@ namespace planeta_engine {
 		virtual void OnFinalized()noexcept {} //所属するゲームオブジェクトが破棄されるときに呼び出される(システム関数)
 	};
 }
+
+//GameObejectComponentをシステムに登録する(型)
+#define PE_REGISTER_GAMEOBJECTCOMPONENT(type)\
+PE_REGISTER_OBJECT(type,planeta_engine::GameObjectComponent)

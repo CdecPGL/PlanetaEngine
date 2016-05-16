@@ -1,11 +1,10 @@
 #pragma once
-#include "Object.h"
 
 namespace planeta_engine {
 	namespace utility {
 		/*ポインターでインスタンスを保持するシングルトン*/
 		template<class C>
-		class PointerSingletonTemplate : public core::Object {
+		class PointerSingletonTemplate {
 		public:
 			static bool Instantiate() {
 				_CreateInstance();

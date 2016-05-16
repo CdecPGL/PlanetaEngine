@@ -12,9 +12,9 @@ namespace planeta_engine {
 
 	GameObjectBase::~GameObjectBase() = default;
 
-	std::shared_ptr<IGameObject> GameObjectBase::GetSharedPointer() const {
-		assert(this_weak_ptr_.expired() == false);
-		return this_weak_ptr_.lock();
+	std::shared_ptr<IGameObject> GameObjectBase::GetSharedPointer() {
+		assert(shared_from_this() != nullptr);
+		return shared_from_this();
 	}
 
 	bool GameObjectBase::Activate() {
