@@ -21,4 +21,5 @@ namespace planeta_engine {
 		/*•`‰æˆ—*/
 		void DrawProc(ScreenDrawer2D& drawer)override;
 	};
+	PE_REGISTER_GAMEOBJECTCOMPONENT(CDrawPolygon2D);
 }

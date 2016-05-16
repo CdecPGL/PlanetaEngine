@@ -13,4 +13,5 @@ namespace planeta_engine {
 		bool OnInitialized() override;
 		void Update();
 	};
+	PE_REGISTER_GAMEOBJECTCOMPONENT(CBelongingGroundGravity);
 }

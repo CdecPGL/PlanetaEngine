@@ -38,6 +38,6 @@ namespace planeta_engine {
 		void SetCurrentFrameDrawAreaToDrawGraphComponent_();
 		bool OnInitialized() override;
 		void UpdateAnimation();
-
 	};
+	PE_REGISTER_GAMEOBJECTCOMPONENT(CGraph2DAnimator);
 }

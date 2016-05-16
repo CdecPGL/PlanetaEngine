@@ -13,4 +13,5 @@ namespace planeta_engine {
 
 		double length_ = 1.0;
 	};
+	PE_REGISTER_GAMEOBJECTCOMPONENT(CStraightLineCollider2D);
 }
