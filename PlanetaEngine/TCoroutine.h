@@ -21,5 +21,4 @@ namespace planeta_engine {
 		std::unique_ptr<coroutine::pull_type> coroutine_;
 		void Start();
 	};
-//	PE_REGISTER_TASK(TCoroutine);
 }

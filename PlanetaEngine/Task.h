@@ -5,6 +5,7 @@
 #include "Delegate.h"
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
+#include "NonOwingPointer.h"
 
 namespace planeta_engine {
 	class SceneAccessorForTask;
@@ -18,21 +19,21 @@ namespace planeta_engine {
 		public core::Object, private utility::NonCopyable<Task> {
 	public:
 		using GameObjectAccessorType = utility::WeakPointer<IGameObject>;
-		Task(core::IGameAccessor& gameaccess);
+		Task();
 		virtual ~Task();
 		virtual void Update() = 0;
 		bool Pause();
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data);
+		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data,core::IGameAccessor& game);
 		/*イベント*/
 		/*プロセスが破棄された*/
 		utility::Delegate<void> disposed;
 		/*ユーティリティ関数*/
 
 	protected:
-		core::IGameAccessor& game_accessor() { return game_; }
+		core::IGameAccessor& game_accessor();
 		//ゲームオブジェクトを作成
 		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
 		//ゲームオブジェクトを作成して有効化
@@ -40,12 +41,14 @@ namespace planeta_engine {
 		//タスクを作成
 		template<class T>
 		utility::WeakPointer<T> CreateTask(TaskSlot slot) {
-			return RefTaskManagerInterface_().CreateTask(slot);
+			auto task = std::make_shared<T>();
+			return RefTaskManagerInterface_().RegisterTask(task, slot) ? task : nullptr;
 		}
 		//名前付きタスクを作成
 		template<class T>
 		utility::WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
-			return RefTaskManagerInterface_().CreateTask(slot, name);
+			auto task = std::make_shared<T>();
+			return RefTaskManagerInterface_().RegisterTask(task, slot, name) ? task : nullptr;
 		}
 		//型でタスク取得
 		template<class T>
@@ -56,7 +59,7 @@ namespace planeta_engine {
 		utility::WeakPointer<Task> GetTaskByName(const std::string& name)const;
 
 	private:
-		core::IGameAccessor& game_;
+		utility::NonOwingPointer<core::IGameAccessor> game_;
 		utility::WeakPointer<core::SceneData> scene_data_;
 		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
 		TaskManagerPublicInterface& RefTaskManagerInterface_();

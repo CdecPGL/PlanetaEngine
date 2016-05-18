@@ -15,6 +15,6 @@ namespace planeta_engine {
 		unsigned int number_of_times_implemented_ = 0; //実行回数(0で無限)
 		unsigned int count_of_times_implemented_; //実行回数カウンタ
 	};
-//	PE_REGISTER_TASK(TInstant);
+	PE_REGISTER_TASK(TInstant);
 }
 

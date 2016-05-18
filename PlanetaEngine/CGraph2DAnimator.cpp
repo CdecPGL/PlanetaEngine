@@ -3,12 +3,12 @@
 #include "CDrawGraph2D.h"
 #include "SystemLog.h"
 #include "SystemLog.h"
-#include "TInstant.h"
+#include "TGInstant.h"
 
 namespace planeta_engine {
 	bool CGraph2DAnimator::OnInitialized() {
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
-		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto tsk = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreDrawUpdatePhase);
 		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
 
 		draw_graph_component_.reset(game_object().GetComponent<CDrawGraph2D>());

@@ -3,17 +3,17 @@
 #include "IGameObject.h"
 
 namespace planeta_engine {
-	bool TGameObjectOperation::Attach(GameObjectAccessorType& goa, bool dispose_on_target_disposed) {
+	bool TGameObjectOperation::Attach(const GameObjectAccessorType& goa, bool dispose_on_target_disposed) {
 		if (is_target_attached_) {
 			debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがすでにアタッチされています。", __FUNCTION__);
 			return false;
 		}
-		if (!AttachProc()) {
+		if (!OnGameObjectAttached()) {
 			debug::SystemLog::instance().LogWarning("ゲームオブジェクトのアタッチに失敗しました。", __FUNCTION__);
 			return false;
 		}
 		dispose_on_target_disposed_ = dispose_on_target_disposed;
-		RegisterEventHandler(goa);
+		RegisterEventHandler(*goa);
 		is_target_attached_ = true;
 		return true;
 	}
@@ -23,7 +23,7 @@ namespace planeta_engine {
 			debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがアタッチされていません。", __FUNCTION__);
 			return false;
 		}
-		if (!DetachProc()) {
+		if (!OnGameObjectDetached()) {
 			debug::SystemLog::instance().LogWarning("ゲームオブジェクトのデタッチに失敗しました。", __FUNCTION__);
 			return false;
 		}
@@ -31,17 +31,17 @@ namespace planeta_engine {
 		return true;
 	}
 
-	void TGameObjectOperation::RegisterEventHandler(GameObjectAccessorType& goa) {
-		dispose_event_connection_ = goa->AddDisposedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
+	void TGameObjectOperation::RegisterEventHandler(IGameObject& goa) {
+		dispose_event_connection_ = goa.AddDisposedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
 			OnTargetDisposed();
 			if (dispose_on_target_disposed_) {
 				Dispose();
 			}
 		}));
-		activate_event_connection_ = goa->AddActivatedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
+		activate_event_connection_ = goa.AddActivatedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
 			OnTargetActivated();
 		}));
-		inactivate_event_connection_ = goa->AddInactivatedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
+		inactivate_event_connection_ = goa.AddInactivatedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
 			OnTargetInactivated();
 		}));
 	}

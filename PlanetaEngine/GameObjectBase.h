@@ -59,9 +59,11 @@ namespace planeta_engine {
 		//ゲームオブジェクトを作成して有効化
 		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id)override final;
 		//コンポーネントを型で取得
-		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
+		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 		//コンポーネントを型ですべて取得
 		std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
+		TaskManagerPublicInterface& RefTaskManagerInterface_()override;
+		void SetUpAttachedTask_(TGameObjectOperation& task)override;
 
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;

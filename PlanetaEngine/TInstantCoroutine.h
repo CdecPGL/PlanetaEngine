@@ -12,5 +12,5 @@ namespace planeta_engine {
 		func_type function_;
 		void UpdateProc(func_arg_type yield) { function_(yield); }
 	};
-//	PE_REGISTER_TASK(TInstantCoroutine);
+	PE_REGISTER_TASK(TInstantCoroutine);
 }

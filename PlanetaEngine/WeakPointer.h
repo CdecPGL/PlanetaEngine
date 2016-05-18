@@ -60,18 +60,7 @@ namespace planeta_engine {
 				return s_ptr.get();
 			}
 			//////////ポインタ参照演算子//////////
-			T& operator*() {
-				std::shared_ptr<T> s_ptr = w_ptr_.lock();
-#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
-				assert(s_ptr != nullptr);
-#else
-				if (s_ptr == nullptr) {
-					throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
-				}
-#endif //それ以外では例外を投げる
-				return *s_ptr;
-			}
-			const T& operator*()const {
+			T& operator*()const {
 				std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
 				assert(s_ptr != nullptr);

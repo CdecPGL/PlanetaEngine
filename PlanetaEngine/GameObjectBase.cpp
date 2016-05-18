@@ -5,6 +5,7 @@
 #include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
 #include "SystemLog.h"
+#include "TGameObjectOperation.h"
 
 namespace planeta_engine {
 
@@ -116,12 +117,20 @@ namespace planeta_engine {
 		com.SystemSetUp(rd);
 	}
 
-	std::shared_ptr<GameObjectComponent> GameObjectBase::GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
+	std::shared_ptr<GameObjectComponent> GameObjectBase::GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
 		return component_holder_.GetComponentByTypeInfo(ti, type_checker);
 	}
 
 	std::vector<std::shared_ptr<GameObjectComponent>> GameObjectBase::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
 		return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
+	}
+
+	TaskManagerPublicInterface& GameObjectBase::RefTaskManagerInterface_() {
+		return scene_data_->task_manager_public_interface;
+	}
+
+	void GameObjectBase::SetUpAttachedTask_(TGameObjectOperation& task) {
+		task.Attach(GetSharedPointer(), true);
 	}
 
 }

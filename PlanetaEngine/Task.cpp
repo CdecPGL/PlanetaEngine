@@ -6,7 +6,7 @@
 
 
 namespace planeta_engine {
-	Task::Task(core::IGameAccessor& gameaccess) :game_(gameaccess) {}
+	Task::Task() {}
 	Task::~Task() = default;
 
 	void Task::Dispose() {
@@ -15,7 +15,8 @@ namespace planeta_engine {
 		manager_connection_->Dispose(); //”jŠü
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data) {
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data,core::IGameAccessor& game) {
+		game_.reset(&game);
 		scene_data_ = scene_data;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();
@@ -49,6 +50,10 @@ namespace planeta_engine {
 		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id);
 		go->Activate();
 		return go;
+	}
+
+	core::IGameAccessor& Task::game_accessor() {
+		return *game_;
 	}
 
 }

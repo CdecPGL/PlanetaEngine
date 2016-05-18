@@ -11,7 +11,7 @@ namespace planeta_engine {
 		template<class ComT>
 		utility::NonOwingPointer<ComT> GetComponent()const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
-			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
+			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
 		}
 		//コンポーネントを型で全て取得する。
 		template<class ComT>

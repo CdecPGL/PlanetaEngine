@@ -828,6 +828,9 @@
     <ClInclude Include="GlobalObjectRegistrer.h">
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClInclude>
+    <ClInclude Include="TGInstant.h">
+      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1159,6 +1162,9 @@
     </ClCompile>
     <ClCompile Include="GlobalObjectFactory.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="TGInstant.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

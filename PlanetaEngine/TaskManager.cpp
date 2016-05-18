@@ -170,7 +170,7 @@ namespace planeta_engine {
 				std::function<void()>([] { debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "システムタスクを削除しようとしました。"); }) :
 				[this, tdata] { DisposeTaskRequest(*tdata); } //Disposer(システムタスクの場合は削除できないDisposerをセット)
 				);
-			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_);
+			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_, game_);
 		}
 		/*タスクをマップに登録*/
 		std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number) {
@@ -250,24 +250,21 @@ namespace planeta_engine {
 		return impl_->GetTask(name);
 	}
 
-	std::shared_ptr<Task> TaskManager::CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot) {
-		auto task = creator(impl_->game_);
+	bool TaskManager::RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot) {
 		int group_number = GetGroupNumberFromSlot(slot);
 		auto ptdata = impl_->RegisterTaskToList(task, group_number);
 		impl_->SetupTask(ptdata, false);
-		return task;
+		return task != nullptr;
 	}
 
-	std::shared_ptr<Task> TaskManager::CreateTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, TaskSlot slot, const std::string& name) {
-		auto task = creator(impl_->game_);
+	bool TaskManager::RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot, const std::string& name) {
 		int group_number = GetGroupNumberFromSlot(slot);
 		auto ptdata = impl_->RegisterTaskToList(task, group_number);
 		impl_->SetupTask(ptdata, false);
-		return impl_->RegisterTaskName(name, ptdata) ? task : nullptr;
+		return impl_->RegisterTaskName(name, ptdata);
 	}
 
-	std::shared_ptr<Task> TaskManager::CreateSystemTask(const std::function<std::shared_ptr<Task>(core::IGameAccessor&)>& creator, core::SystemTaskSlot slot) {
-		auto task = creator(impl_->game_);
+	std::shared_ptr<Task> TaskManager::RegisterSystemTask(const std::shared_ptr<Task>& task, core::SystemTaskSlot slot) {
 		int group_number = GetGroupNumberFromSystemSlot(slot);
 		auto ptdata = impl_->RegisterTaskToList(task, group_number);
 		impl_->SetupTask(ptdata, true);
