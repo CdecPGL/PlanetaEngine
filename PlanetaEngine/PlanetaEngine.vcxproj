@@ -156,8 +156,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectBase.h" />
     <ClInclude Include="GIGameObject2D.h" />
     <ClInclude Include="GGameObject2DTemplate.h" />
-    <ClInclude Include="GIGroundObject2D.h" />
-    <ClInclude Include="GGroundObject2DTemplate.h" />
     <ClInclude Include="GIGUIObject2D.h" />
     <ClInclude Include="GGUIObjectTemplate.h" />
     <ClInclude Include="GlobalObjectFactory.h" />

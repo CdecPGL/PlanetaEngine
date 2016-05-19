@@ -759,13 +759,7 @@
     <ClInclude Include="GIGUIObject2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
     </ClInclude>
-    <ClInclude Include="GIGroundObject2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
-    </ClInclude>
     <ClInclude Include="GGameObject2DTemplate.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="GGroundObject2DTemplate.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GGUIObjectTemplate.h">
