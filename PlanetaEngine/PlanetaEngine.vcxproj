@@ -164,7 +164,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
@@ -353,7 +352,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ArchiveManipulator.cpp" />
     <ClCompile Include="CBelongingGroundGravity.cpp" />
     <ClCompile Include="BGMController.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CCamera2D.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />

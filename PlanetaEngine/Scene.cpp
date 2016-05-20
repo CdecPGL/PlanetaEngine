@@ -10,7 +10,6 @@
 #include "ISceneManagerAccessor.h"
 #include "IGameAccessor.h"
 #include "SceneData.h"
-#include "Camera.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
 

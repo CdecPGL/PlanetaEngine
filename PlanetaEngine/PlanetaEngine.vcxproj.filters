@@ -507,9 +507,6 @@
     <ClInclude Include="ConfigData.h">
       <Filter>PlanetaEngine\Core\Config</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
@@ -1003,9 +1000,6 @@
     </ClCompile>
     <ClCompile Include="ConfigData.cpp">
       <Filter>PlanetaEngine\Core\Config</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectComponent.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
