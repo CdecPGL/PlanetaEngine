@@ -43,9 +43,6 @@
     <Filter Include="PlanetaEngine\Core\GraphicSystem">
       <UniqueIdentifier>{bdb92e91-9337-4da0-a4c8-cbad3dbb95e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\_UnderReview">
-      <UniqueIdentifier>{1ff12165-4812-40b2-89b8-8dfea5388c06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\KeyInput">
       <UniqueIdentifier>{f8749ef8-c30b-4b76-86a1-8ed1d7014e59}</UniqueIdentifier>
     </Filter>
@@ -245,9 +242,6 @@
     </ClInclude>
     <ClInclude Include="TextPanel.h">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTransitionEffect.h">
-      <Filter>PlanetaEngine\_UnderReview</Filter>
     </ClInclude>
     <ClInclude Include="BadAllocException.h">
       <Filter>PlanetaEngine\Core\Memory</Filter>
@@ -533,9 +527,6 @@
     </ClInclude>
     <ClInclude Include="SceneData.h">
       <Filter>PlanetaEngine\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDataForGameObject.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManagerConnection.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>

@@ -2,7 +2,6 @@
 #include "GameObjectBase.h"
 #include "TaskManager.h"
 #include "SystemLog.h"
-#include "SceneDataForGameObject.h"
 #include "SceneData.h"
 #include "GlobalObjectFactory.h"
 

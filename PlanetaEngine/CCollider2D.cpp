@@ -5,7 +5,6 @@
 #include "SceneData.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
-#include "SceneDataForGameObject.h"
 #include "Collider2DData.h"
 
 namespace planeta_engine {

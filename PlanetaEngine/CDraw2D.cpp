@@ -6,7 +6,6 @@
 #include "Matrix2_2.h"
 #include "SystemLog.h"
 #include "SceneData.h"
-#include "SceneDataForGameObject.h"
 
 namespace planeta_engine {
 	CDraw2D::CDraw2D() :draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0) {

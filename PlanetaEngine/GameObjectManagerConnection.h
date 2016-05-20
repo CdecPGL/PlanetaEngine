@@ -1,9 +1,6 @@
 #pragma once
 
 namespace planeta_engine {
-	namespace core {
-		struct SceneDataForGameObject;
-	}
 	class GameObjectManager;
 	class GameObjectManagerConnection final {
 	public:
