@@ -16,7 +16,7 @@ namespace planeta_engine {
 		struct GameObjectComponentSetUpData;
 	}
 	class IGameObjectForComponent;
-	class GameObjectComponent : public core::Object, public utility::SharedPointerInstance<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
+	class GameObjectComponent : public core::Object, public std::enable_shared_from_this<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
 	public:
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;

@@ -60,7 +60,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;C:\libraries\boost\boost_1_61_0;C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -80,7 +80,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Debug;C:\libraries\boost\boost_1_61_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Debug;$(BOOST_ROOT)\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua_mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -106,7 +106,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;C:\libraries\boost\boost_1_61_0;C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -122,7 +122,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Release;C:\libraries\boost\boost_1_61_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Release;$(BOOST_ROOT)\boost_1_61_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Lib>
@@ -145,6 +145,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
+    <ClInclude Include="CCamera2D.h" />
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="GameObjectInterface.h" />
@@ -353,6 +354,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CBelongingGroundGravity.cpp" />
     <ClCompile Include="BGMController.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CCamera2D.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />

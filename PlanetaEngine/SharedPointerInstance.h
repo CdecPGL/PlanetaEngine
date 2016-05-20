@@ -4,6 +4,7 @@
 
 namespace planeta_engine {
 	namespace utility {
+		/*std::enable_shared_from_this‚ğg‚¤‚±‚Æ‚ğ„§I*/
 		template<class C>
 		class SharedPointerInstance {
 		public:

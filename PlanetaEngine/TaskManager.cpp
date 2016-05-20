@@ -20,12 +20,13 @@ namespace planeta_engine {
 		constexpr int TASK_SLOT_3 = 5;
 		constexpr int TASK_SLOT_4 = 6;
 		constexpr int TASK_SLOT_5 = 7;
-		constexpr int TASK_SLOT_6 = 8;
-		constexpr int TASK_SLOT_7 = 9;
-		constexpr int TASK_SLOT_8 = 10;
-		constexpr int TASK_SLOT_9 = 11;
-		constexpr int DRAW_SLOT = 12;
-		constexpr int SLOT_COUNT = 13;
+		constexpr int APPCAM_SLOT = 8;
+		constexpr int TASK_SLOT_6 = 9;
+		constexpr int TASK_SLOT_7 = 10;
+		constexpr int TASK_SLOT_8 = 11;
+		constexpr int TASK_SLOT_9 = 12;
+		constexpr int DRAW_SLOT = 13;
+		constexpr int SLOT_COUNT = 14;
 		//スロットマップ
 		constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
 			TASK_SLOT_0,
@@ -44,6 +45,7 @@ namespace planeta_engine {
 		constexpr std::array<int, SYSTEM_TASK_SLOT_SIZE> system_slot_group_number_map_ = {
 			APPVEL_SLOT,
 			COLDET_SLOT,
+			APPVEL_SLOT,
 			DRAW_SLOT,
 		};
 		/*タスクスロットからタスクグループ番号を取得*/

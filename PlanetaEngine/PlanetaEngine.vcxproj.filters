@@ -825,6 +825,9 @@
     <ClInclude Include="TGInstant.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClInclude>
+    <ClInclude Include="CCamera2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1159,6 +1162,9 @@
     </ClCompile>
     <ClCompile Include="TGInstant.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

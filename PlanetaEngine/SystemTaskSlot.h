@@ -5,8 +5,9 @@ namespace planeta_engine {
 		enum class SystemTaskSlot {
 			ApplyVelocityPhase = 0,
 			CollitionDetectPhase = 1,
-			DrawPhase = 2,
+			ApplyCameraPhase = 2,
+			DrawPhase = 3,
 		};
-		constexpr int SYSTEM_TASK_SLOT_SIZE = 3;
+		constexpr int SYSTEM_TASK_SLOT_SIZE = 4;
 	}
 }

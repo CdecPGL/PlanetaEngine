@@ -4,6 +4,10 @@
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
 #include "DrawManager.h"
+#include "CCamera2D.h"
+#include "DxLib.h"
+#include "ConfigData.h"
+#include "CTransform2D.h"
 
 namespace planeta_engine{
 	namespace core {
@@ -55,6 +59,37 @@ namespace planeta_engine{
 		void GameObjectDrawSystem::Finalize() {
 			DrawManager::instance().DisposeScreen(screen_);
 			return;
+		}
+
+		bool GameObjectDrawSystem::RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component) {
+			if (camera2d_) {
+				PE_LOG_WARNING("シーン内の複数カメラはサポートされていません。初めに登録されたカメラのみが有効です。カメラコンポーネントを持つゲームオブジェクトが複数存在する可能性があります。");
+				return false;
+			} else {
+				camera2d_ = camera_component;
+				return true;
+			}
+		}
+
+		void GameObjectDrawSystem::RemoveCamera(CCamera2D* camera_component) {
+			if (camera2d_ != nullptr && camera2d_.get() != camera_component) {
+				camera2d_.reset();
+			} else {
+				PE_LOG_WARNING("登録されていないカメラの削除が要求されました。シーン内に複数のカメラオブジェクトが存在しる可能性があります。");
+			}
+		}
+
+		void GameObjectDrawSystem::ApplyCameraState() {
+			if (camera2d_) {
+				CTransform2D& trans = camera2d_->transform2d();
+				double scale = camera2d_->expansion();
+				double rota_rad = trans.rotation_rad();
+				Vector2Dd pos = trans.position();
+				SetupCamera_Ortho((float)(core::config_data::engine::DrawSize().y / scale));
+				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
+			} else {
+				PE_LOG_WARNING("シーン内にカメラ2Dが登録されていません。");
+			}
 		}
 
 	}

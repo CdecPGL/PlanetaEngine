@@ -25,6 +25,9 @@ namespace planeta_engine {
 			//描画タスク
 			auto godp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);
 			godp->SetExcuteFunction([&drw_sys = *scene.gameobject_draw_system_]{ drw_sys.ExcuteDraw(); });
+			//カメラ適用タスク
+			auto act = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyCameraPhase);
+			godp->SetExcuteFunction([&drw_sys = *scene.gameobject_draw_system_]{ drw_sys.ApplyCameraState(); });
 			//Transform速度適用タスク
 			auto tavp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyVelocityPhase);
 			tavp->SetExcuteFunction([&tfm_sys = *scene.transform_system_]{ tfm_sys.ApplyVelocity(); });
