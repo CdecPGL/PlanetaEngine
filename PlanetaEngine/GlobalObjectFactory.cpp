@@ -29,5 +29,7 @@ namespace planeta_engine {
 			}
 		}
 
+		GlobalObjectFactory::GlobalObjectFactory() = default;
+
 	}
 }
