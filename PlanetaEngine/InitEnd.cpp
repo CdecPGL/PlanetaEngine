@@ -27,7 +27,7 @@ namespace planeta_engine{
 	namespace core{
 		namespace init_end{
 			bool LoadConfigData() {
-				std::string config_file_path(system_variables::SystemDataDirectory + "\\" + system_variables::system_file::ConfigFileName);
+				std::string config_file_path(system_variables::SystemDataDirectory + "\\" + system_variables::system_file::SystemConfigFileName);
 				return config_data::LoadConfigData(config_file_path);
 			}
 

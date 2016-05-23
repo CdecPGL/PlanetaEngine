@@ -11,7 +11,8 @@ namespace planeta_engine{
 				const std::string BuildDate(__DATE__);
 			}
 			namespace system_file {
-				const std::string ConfigFileName("Config");
+				const std::string SystemConfigFileName("Config");
+				const std::string UserConfigFileName("user_config.ini");
 			}
 			const bool DevelopmentMode(true);
 			const std::string SystemDataDirectory("system");

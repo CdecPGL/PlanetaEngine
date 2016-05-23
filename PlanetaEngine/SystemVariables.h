@@ -13,7 +13,8 @@ namespace planeta_engine{
 				extern const std::string BuildDate; //ビルドした日付
 			}
 			namespace system_file {
-				extern const std::string ConfigFileName; //設定ファイル名
+				extern const std::string SystemConfigFileName; //システム設定ファイル名
+				extern const std::string UserConfigFileName; //ユーザー設定ファイル名
 			}
 			/*デバッグ*/
 			extern const bool DevelopmentMode; //開発モードフラグ
