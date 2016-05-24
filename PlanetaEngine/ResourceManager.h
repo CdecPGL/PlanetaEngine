@@ -6,7 +6,7 @@
 #include <thread>
 #include <memory>
 #include "Object.h"
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 #include "MakeResource.h"
 
 namespace planeta_engine{
@@ -20,8 +20,8 @@ namespace planeta_engine{
 		PrepairResourcesでリソースの準備を開始し、IsReadyがtrueになるまで待つ。そしてUnloadUnusedResourscesを呼ぶ。
 		現状ではIsReadyは常にtrue、GetPrepairProgressは常に1.0を返す。
 		*/
-		class ResourceManager : public utility::PointerSingletonTemplate<ResourceManager>{
-			friend utility::PointerSingletonTemplate<ResourceManager>;
+		class ResourceManager : public utility::SingletonTemplate<ResourceManager>{
+			friend utility::SingletonTemplate<ResourceManager>;
 		public:
 			bool Initialize()override;
 			bool Finalize()override;

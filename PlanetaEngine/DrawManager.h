@@ -3,13 +3,13 @@
 #include <array>
 #include <memory>
 #include <deque>
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 
 namespace planeta_engine {
 	namespace core{
 		class Screen;
-		class DrawManager final : public utility::PointerSingletonTemplate<DrawManager>{
-			friend utility::PointerSingletonTemplate<DrawManager>;
+		class DrawManager final : public utility::SingletonTemplate<DrawManager>{
+			friend utility::SingletonTemplate<DrawManager>;
 		public:
 			bool Initialize() override;
 			bool Finalize() override;

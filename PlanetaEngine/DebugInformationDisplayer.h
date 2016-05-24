@@ -1,11 +1,12 @@
 #pragma once
 #include <memory>
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 #include "StringUtility.h"
 
 namespace planeta_engine {
 	namespace  debug {
-		class DebugInformationDisplayer : public utility::PointerSingletonTemplate<DebugInformationDisplayer>{
+		class DebugInformationDisplayer : public utility::SingletonTemplate<DebugInformationDisplayer>{
+			friend utility::SingletonTemplate<DebugInformationDisplayer>;
 		public:
 			DebugInformationDisplayer();
 			~DebugInformationDisplayer();

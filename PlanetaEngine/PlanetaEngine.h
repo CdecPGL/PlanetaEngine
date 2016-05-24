@@ -10,15 +10,15 @@
 
 #include <memory>
 #include "Object.h"
-#include "StaticSingletonTemplate.h"
+#include "SingletonTemplate.h"
 
 namespace planeta_engine {
 	namespace core {
 		class Game;
 	}
 	/*ゲームクラスはこのクラスを継承し、初期化を定義する。*/
-	class PlanetaEngine final : public utility::StaticSingletonTemplate<PlanetaEngine> {
-		friend utility::StaticSingletonTemplate<PlanetaEngine>;
+	class PlanetaEngine final : public utility::SingletonTemplate<PlanetaEngine> {
+		friend utility::SingletonTemplate<PlanetaEngine>;
 	public:
 		/*ゲームの作成(初期化前に行う)*/
 		template<class GameType>
@@ -29,7 +29,7 @@ namespace planeta_engine {
 		/*エンジンの初期化*/
 		bool Initialize()override;
 		/*エンジンの終了処理*/
-		void Finalize()override;
+		bool Finalize()override;
 		/*エンジンのステータス*/
 		enum class Status { Continue, Quit, Error };
 		/*エンジンの更新(初期化が正常に行われていない状態での呼び出しは未定義動作)*/

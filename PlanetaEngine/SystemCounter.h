@@ -1,12 +1,12 @@
 #pragma once
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 #include "PETime.h"
 
 namespace planeta_engine {
 	namespace debug {
 		//起動からの経過フレームと経過時間をカウントする(スタティックシングルトン)
-		class SystemCounter : public utility::PointerSingletonTemplate<SystemCounter> {
-			friend utility::PointerSingletonTemplate<SystemCounter>;
+		class SystemCounter : public utility::SingletonTemplate<SystemCounter> {
+			friend utility::SingletonTemplate<SystemCounter>;
 		public:
 			bool Initialize()override;
 			bool Finalize()override { return true; }

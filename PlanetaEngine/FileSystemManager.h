@@ -4,16 +4,16 @@
 #include<vector>
 #include <unordered_map>
 #include"FileManipulatorBase.h"
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 
 namespace planeta_engine{
 	namespace file_system{
 		class FileAccessor;
 		class FileManipulatorBase;
 		enum class AccessMode;
-		class FileSystemManager final: public utility::PointerSingletonTemplate<FileSystemManager>
+		class FileSystemManager final: public utility::SingletonTemplate<FileSystemManager>
 		{
-			friend utility::PointerSingletonTemplate<FileSystemManager>;
+			friend utility::SingletonTemplate<FileSystemManager>;
 		public:
 			bool Initialize()override;
 			bool Finalize()override;

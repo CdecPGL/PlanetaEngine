@@ -363,16 +363,10 @@
     <ClInclude Include="ParameterHolder.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="PointerSingletonTemplate.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="RectAngle.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="SharedPointerInstance.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticSingletonTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="TwoKeyMap.h">
@@ -816,6 +810,9 @@
     <ClInclude Include="CCamera2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
+    <ClInclude Include="SingletonTemplate.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1151,10 +1148,5 @@
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="PlanetaEngine.rc">
-      <Filter>リソース ファイル</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

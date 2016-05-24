@@ -46,31 +46,6 @@ namespace planeta_engine{
 				}
 			}
 
-			bool InstantiateSingletonManagers() {
-				if (
-					file_system::FileSystemManager::Instantiate()
-					&& core::ResourceManager::Instantiate()
-					&& core::DrawManager::Instantiate()
-					&& core::SoundManager::Instantiate()
-					) {
-					debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンス化に成功しました。", __FUNCTION__);
-					return true;
-				}
-				else {
-					debug::SystemLog::instance().LogError("シングルトンマネージャのインスタンス化に失敗しました。", __FUNCTION__);
-					return false;
-				}
-			}
-
-			bool DisposeSingletonManagers() {
-				core::SoundManager::Dispose();
-				core::DrawManager::Dispose();
-				core::ResourceManager::Dispose();
-				file_system::FileSystemManager::Dispose();
-				debug::SystemLog::instance().LogMessage("シングルトンマネージャのインスタンスを破棄しました。", __FUNCTION__);
-				return true;
-			}
-
 			bool InitializeSingletonManagers() {
 				if (
 					file_system::FileSystemManager::instance().Initialize()
@@ -126,10 +101,6 @@ namespace planeta_engine{
 
 			bool InitializeDebugSystem()
 			{
-				if(debug::SystemCounter::Instantiate()
-					&& debug::SystemLog::Instantiate()) {
-				}
-				else { return false; }
 				//システムログの設定
 				if (SetUpSystemLog() == false) { return false; }
 				if(debug::SystemCounter::instance().Initialize()
@@ -139,7 +110,6 @@ namespace planeta_engine{
 				else { return false; }
 				//デバッグ情報ウインドウの設定
 				if(
-					debug::DebugInformationDisplayer::Instantiate()&&
 					debug::DebugInformationDisplayer::instance().Initialize())
 				{
 					debug::SystemLog::instance().LogMessage("デバッグ情報ウインドウを準備しました。", __FUNCTION__);
@@ -154,14 +124,10 @@ namespace planeta_engine{
 			{
 				//デバッグ情報ウインドウの終了処理
 				debug::DebugInformationDisplayer::instance().Finalize();
-				debug::DebugInformationDisplayer::Dispose();
 				//システムログの終了処理
 				FinalizeSystemLog();
 				//システムカウンタの終了処理
 				debug::SystemCounter::instance().Finalize();
-				//破棄
-				debug::SystemLog::Dispose();
-				debug::SystemCounter::Dispose();
 				return true;
 			}
 

@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <vector>
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 #include "PEDateTime.h"
 #include "boost/optional.hpp"
 
@@ -14,8 +14,8 @@ namespace planeta_engine {
 		class FileAccessor;
 	}
 	namespace core {
-		class SaveDataManager final: public utility::PointerSingletonTemplate<SaveDataManager>{
-			friend class utility::PointerSingletonTemplate<SaveDataManager>;
+		class SaveDataManager final: public utility::SingletonTemplate<SaveDataManager>{
+			friend class utility::SingletonTemplate<SaveDataManager>;
 		public:
 			void SetFileAccessor(const std::shared_ptr<file_system::FileAccessor>& file_accessor);
 			bool Initialize()override;

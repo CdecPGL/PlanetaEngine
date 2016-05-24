@@ -1,15 +1,15 @@
 #pragma once
 
 #include <memory>
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 #include "IBGMController.h"
 #include "ISoundEffectController.h"
 
 namespace planeta_engine {
 	namespace core {
 		class ResourceBase;
-		class SoundManager final : public utility::PointerSingletonTemplate<SoundManager>{
-			friend utility::PointerSingletonTemplate<SoundManager>;
+		class SoundManager final : public utility::SingletonTemplate<SoundManager>{
+			friend utility::SingletonTemplate<SoundManager>;
 		public:
 			bool Initialize() override;
 			bool Finalize() override;

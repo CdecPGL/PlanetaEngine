@@ -10,9 +10,6 @@ namespace planeta_engine{
 
 			bool LoadConfigData(); //設定ファイルを読み込む
 
-			bool InstantiateSingletonManagers(); //シングルトンマネージャのインスタンス化
-			bool DisposeSingletonManagers(); //シングルトンマネージャインスタンスの破棄
-
 			bool SetUpSingletonManagers(); //シングルトンマネージャのセットアップ
 
 			bool InitializeSingletonManagers(); //シングルトンマネージャの初期化

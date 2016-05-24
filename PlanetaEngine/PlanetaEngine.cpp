@@ -39,14 +39,15 @@ namespace planeta_engine {
 		}
 	}
 
-	void PlanetaEngine::Finalize() {
-		if (!is_initialized_) { assert(false); return; }
+	bool PlanetaEngine::Finalize() {
+		if (!is_initialized_) { assert(false); return false; }
 		assert(game_ != nullptr);
 		game_->Finalize();
 		FinalzieEngine();
 		debug::SystemLog::instance().LogMessage("PlanetaEngineを終了しました。", __FUNCTION__);
 		FinalizeDebugSystem();
 		is_initialized_ = false;
+		return true;
 	}
 
 	PlanetaEngine::Status PlanetaEngine::Update() {
@@ -74,7 +75,6 @@ namespace planeta_engine {
 		using namespace planeta_engine::core::init_end;
 
 		if (InitDxLibrary() //DXライブラリの初期化
-			&& InstantiateSingletonManagers() //シングルトンマネージャのインスタンス化
 			&& SetUpSingletonManagers() //シングルトンマネージャのセットアップ
 			&& InitializeSingletonManagers() //シングルトンマネージャの初期化
 			) {
@@ -89,7 +89,6 @@ namespace planeta_engine {
 	void PlanetaEngine::FinalzieEngine() {
 		using namespace planeta_engine::core::init_end;
 		FinalizeSingletonManagers(); //シングルトンマネージャの終了処理
-		DisposeSingletonManagers(); //シングルトンマネージャの破棄
 		EndDxLibrary(); //DXライブラリの終了処理
 		debug::SystemLog::instance().LogMessage("PlanetaEngine本体を終了しました。", __FUNCTION__);
 	}

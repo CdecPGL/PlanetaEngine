@@ -5,15 +5,15 @@
 #include <fstream>
 #include <memory>
 #include <cstdio>
-#include "PointerSingletonTemplate.h"
+#include "SingletonTemplate.h"
 #include "StringUtility.h"
 
 namespace planeta_engine {
 	namespace debug {
 		//システムログ管理(スタティックシングルトン)
-		class SystemLog : public utility::PointerSingletonTemplate<SystemLog>
+		class SystemLog : public utility::SingletonTemplate<SystemLog>
 		{
-			friend utility::PointerSingletonTemplate<SystemLog>;
+			friend utility::SingletonTemplate<SystemLog>;
 		public:
 			bool Initialize()override;
 			bool Finalize()override;

@@ -291,7 +291,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="PlanetaEngine.h" />
     <ClInclude Include="CPlanet.h" />
     <ClInclude Include="CPlanetGround2D.h" />
-    <ClInclude Include="PointerSingletonTemplate.h" />
     <ClInclude Include="CPolygonCollider2D.h" />
     <ClInclude Include="ProcessAllocator.h" />
     <ClInclude Include="Property.h" />
@@ -313,7 +312,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SoundEffectController.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundResource.h" />
-    <ClInclude Include="StaticSingletonTemplate.h" />
+    <ClInclude Include="SingletonTemplate.h" />
     <ClInclude Include="CStraightLineCollider2D.h" />
     <ClInclude Include="StringPanel.h" />
     <ClInclude Include="StringUtility.h" />
@@ -457,9 +456,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TransformSystem.cpp" />
     <ClCompile Include="WindowsUtility.cpp" />
     <ClCompile Include="XMLResource.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="PlanetaEngine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

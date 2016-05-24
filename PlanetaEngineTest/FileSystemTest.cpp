@@ -24,9 +24,6 @@ namespace PlanetaEngineTest
 		FileSystemTest() {
 			using namespace planeta_engine::debug;
 			using namespace planeta_engine::file_system;
-			SystemCounter::Instantiate();
-			SystemLog::Instantiate();
-			FileSystemManager::Instantiate();
 			SystemCounter::instance().Initialize();
 			SystemLog::instance().Initialize();
 
@@ -40,9 +37,6 @@ namespace PlanetaEngineTest
 			FileSystemManager::instance().Finalize();
 			SystemLog::instance().Finalize();
 			SystemCounter::instance().Finalize();
-			FileSystemManager::Dispose();
-			SystemLog::Dispose();
-			SystemCounter::Dispose();
 		}
 
 		TEST_METHOD(FileLoadManagerTest)
