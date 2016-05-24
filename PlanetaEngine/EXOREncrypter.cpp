@@ -12,12 +12,12 @@ namespace {
 
 namespace planeta_engine {
 	namespace encrypters {
-		bool EXOREncrypter::DecryptPartiallyCore(const file_system::File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const
+		bool EXOREncrypter::DecryptPartiallyCore(const File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const
 		{
 			throw std::logic_error("The method or operation is not implemented.");
 		}
 
-		bool EXOREncrypter::EncryptCore(const file_system::File& src, file_system::File& dst) const
+		bool EXOREncrypter::EncryptCore(const File& src, File& dst) const
 		{
 			int b_key = main_key_;
 			uint_fast32_t buf;
@@ -36,7 +36,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool EXOREncrypter::DecryptCore(const file_system::File& src, file_system::File& dst) const
+		bool EXOREncrypter::DecryptCore(const File& src, File& dst) const
 		{
 			int b_key = main_key_;
 			uint_fast32_t buf;

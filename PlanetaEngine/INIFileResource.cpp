@@ -6,17 +6,17 @@
 namespace planeta_engine {
 	namespace resources {
 
-		bool INIFileResource::_Create(const std::shared_ptr<const file_system::File>& file)
+		bool INIFileResource::_Create(const std::shared_ptr<const File>& file)
 		{
 			using namespace std;
-			file_system::FileIStream fis(*file);
+			FileIStream fis(*file);
 			vector<string> lines;
 			string buf;
 			while (getline(fis, buf)) {
 				//改行コード除去
-				file_system::utility::RemoveLineFeedCode(buf);
+				utility::RemoveLineFeedCode(buf);
 				//スペースとタブ除去
-				file_system::utility::RemoveSpaceAndTab(buf);
+				utility::RemoveSpaceAndTab(buf);
 				//空行でもコメント行でもなかったら行リストに追加
 				if (buf.size() != 0 && buf[0] != ';') {
 					lines.push_back(move(buf));

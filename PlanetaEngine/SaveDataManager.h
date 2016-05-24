@@ -10,14 +10,12 @@ namespace planeta_engine {
 	namespace utility {
 		class DataContainer;
 	}
-	namespace file_system {
-		class FileAccessor;
-	}
+	class FileAccessor;
 	namespace core {
 		class SaveDataManager final: public utility::SingletonTemplate<SaveDataManager>{
 			friend class utility::SingletonTemplate<SaveDataManager>;
 		public:
-			void SetFileAccessor(const std::shared_ptr<file_system::FileAccessor>& file_accessor);
+			void SetFileAccessor(const std::shared_ptr<FileAccessor>& file_accessor);
 			bool Initialize()override;
 			bool Finalize()override;
 

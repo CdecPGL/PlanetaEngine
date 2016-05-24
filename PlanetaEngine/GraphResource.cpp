@@ -7,9 +7,9 @@
 
 namespace planeta_engine {
 	namespace resources {
-		bool GraphResource::_Create(const std::shared_ptr<const file_system::File>& file)
+		bool GraphResource::_Create(const std::shared_ptr<const File>& file)
 		{
-			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
+			if (file->GetStatus() != File::FileStatus::Available) { return false; }
 			_handle = CreateGraphFromMem(file->GetTopPointer(), file->GetSize(), nullptr, 0, 1, 0);
 			if (_handle >= 0) {
 				GetGraphSize(_handle, &image_size_.x, &image_size_.y);

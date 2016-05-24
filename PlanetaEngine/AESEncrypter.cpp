@@ -60,7 +60,7 @@ namespace planeta_engine {
 				return true;
 			}
 
-			bool Encrypt(file_system::File& dst,const file_system::File& src) {
+			bool Encrypt(File& dst,const File& src) {
 				UpdateEncObj();
 				std::string dat;
 				CryptoPP::StreamTransformationFilter enc_filter(*aes_enc_obj_, new CryptoPP::StringSink(dat));
@@ -70,7 +70,7 @@ namespace planeta_engine {
 				return true;
 			}
 
-			bool Decrypt(file_system::File& dst, const file_system::File& src) {
+			bool Decrypt(File& dst, const File& src) {
 				UpdateDecObj();
 				std::string dat;
 				CryptoPP::StreamTransformationFilter dec_filter(*aes_dec_obj_, new CryptoPP::StringSink(dat));
@@ -88,11 +88,11 @@ namespace planeta_engine {
 		AESEncrypter::AESEncrypter() :impl_(std::make_unique<Impl_>()) {};
 		AESEncrypter::~AESEncrypter() = default;
 
-		bool AESEncrypter::EncryptCore(const file_system::File& src, file_system::File& dst) const {
+		bool AESEncrypter::EncryptCore(const File& src, File& dst) const {
 			return impl_->Encrypt(dst, src);
 		}
 
-		bool AESEncrypter::DecryptCore(const file_system::File& src, file_system::File& dst) const {
+		bool AESEncrypter::DecryptCore(const File& src, File& dst) const {
 			return impl_->Decrypt(dst, src);
 		}
 

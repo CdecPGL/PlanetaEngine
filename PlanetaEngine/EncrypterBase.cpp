@@ -4,15 +4,15 @@
 namespace planeta_engine {
 	namespace encrypters {
 
-		bool EncrypterBase::Encrypt(const file_system::File& src, file_system::File& dst)const
+		bool EncrypterBase::Encrypt(const File& src, File& dst)const
 		{
 			if (&src == &dst) { return Encrypt(dst); } //ソースとデスティネーションが同じだったら同じ版を呼びだす
 			else { return EncryptCore(src, dst); }
 		}
 
-		bool EncrypterBase::Encrypt(file_system::File& src_and_dst)const
+		bool EncrypterBase::Encrypt(File& src_and_dst)const
 		{
-			file_system::File dst; //一時デスティネーション
+			File dst; //一時デスティネーション
 			if (EncryptCore(src_and_dst, dst)) 
 			{
 				src_and_dst = std::move(dst); 
@@ -21,9 +21,9 @@ namespace planeta_engine {
 			else { return false; }
 		}
 
-		bool EncrypterBase::Decrypt(file_system::File& src_and_dst)const
+		bool EncrypterBase::Decrypt(File& src_and_dst)const
 		{
-			file_system::File dst; //一時デスティネーション
+			File dst; //一時デスティネーション
 			if (DecryptCore(src_and_dst, dst))
 			{
 				src_and_dst = std::move(dst);
@@ -32,13 +32,13 @@ namespace planeta_engine {
 			else { return false; }
 		}
 
-		bool EncrypterBase::Decrypt(const file_system::File& src, file_system::File& dst)const
+		bool EncrypterBase::Decrypt(const File& src, File& dst)const
 		{
 			if (&src == &dst) { return Decrypt(dst); } //ソースとデスティネーションが同じだったら同じ版を呼びだす
 			else { return DecryptCore(src, dst); }
 		}
 
-		bool EncrypterBase::DecryptPartially(const file_system::File& src, size_t pos, size_t size, file_system::File& dst)const
+		bool EncrypterBase::DecryptPartially(const File& src, size_t pos, size_t size, File& dst)const
 		{
 			if (!dst.ChangeSize(size, false)) { return false; }
 			if (&src == &dst) { return false; } //ソースとデスティネーションが同じではいけない。

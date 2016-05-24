@@ -15,9 +15,9 @@ namespace planeta_engine {
 			uint_fast32_t sub_key_;
 			uint_fast32_t block_key(size_t block)const;
 			void CalculateKey();
-			bool DecryptPartiallyCore(const file_system::File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const override;
-			bool EncryptCore(const file_system::File& src, file_system::File& dst) const override;
-			bool DecryptCore(const file_system::File& src, file_system::File& dst) const override;
+			bool DecryptPartiallyCore(const File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const override;
+			bool EncryptCore(const File& src, File& dst) const override;
+			bool DecryptCore(const File& src, File& dst) const override;
 
 		};
 	}

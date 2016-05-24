@@ -42,7 +42,7 @@ namespace planeta_engine{
 
 		double ResourceManager::GetPrepairProgress() const { return 1.0; }
 
-		std::shared_ptr<ResourceBase> ResourceManager::_CreateResource(const std::string& attribute,const std::shared_ptr<const file_system::File>& file)
+		std::shared_ptr<ResourceBase> ResourceManager::_CreateResource(const std::string& attribute,const std::shared_ptr<const File>& file)
 		{
 			auto it = _resource_creator_map.find(attribute);
 			if (it == _resource_creator_map.end()) { return nullptr; }
@@ -68,7 +68,6 @@ namespace planeta_engine{
 				_unused_tag_map.erase(unused_map_it); //未使用リストから削除
 			}
 			else { //新規読み込み
-				using namespace file_system;
 				auto tag_map_it = _tag_resouce_map.find(tag);
 				if (tag_map_it == _tag_resouce_map.end()) {
 					debug::SystemLog::instance().LogError(std::string("要求されたタググループは存在しません。(") + tag + ")", __FUNCTION__);
@@ -98,12 +97,12 @@ namespace planeta_engine{
 
 		bool ResourceManager::_LoadResourceList()
 		{
-			std::shared_ptr<const file_system::File> file = file_accessor_->LoadFile(_resource_list_file_name);
+			std::shared_ptr<const File> file = file_accessor_->LoadFile(_resource_list_file_name);
 			if (file == nullptr) {
 				debug::SystemLog::instance().LogError(std::string("リソースリスト(") + _resource_list_file_name + ")の読み込みに失敗しました。", __FUNCTION__);
 				return false; 
 			}
-			if (file->GetStatus() != file_system::File::FileStatus::Available) {
+			if (file->GetStatus() != File::FileStatus::Available) {
 				debug::SystemLog::instance().LogError(std::string("リソースリストファイルを読み込めませんでした。(" + _resource_list_file_name + ")") + boost::lexical_cast<std::string>(_tag_resouce_map.size()) + "個)", __FUNCTION__);
 				return false;
 			}
@@ -147,7 +146,7 @@ namespace planeta_engine{
 
 		bool ResourceManager::Initialize()
 		{
-			file_accessor_ = file_system::FileSystemManager::instance().GetFileAccessor(system_variables::ResourceFileAccessorID);
+			file_accessor_ = FileSystemManager::instance().GetFileAccessor(system_variables::ResourceFileAccessorID);
 			if (!file_accessor_) {
 				debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルアクセサの取得に失敗しました。", __FUNCTION__);
 				return false;

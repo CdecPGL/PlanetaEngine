@@ -10,10 +10,8 @@
 #include "MakeResource.h"
 
 namespace planeta_engine{
-	namespace file_system {
-		class FileAccessor;
-		class File;
-	}
+	class FileAccessor;
+	class File;
 	namespace core{
 		class ResourceBase;
 		/*Resource管理クラス。非同期読み込みは未実装だが、実装時に変更が必要ないように非同期読み込みと同じように扱う。
@@ -38,7 +36,7 @@ namespace planeta_engine{
 			/*リソースの属性を追加*/
 			template<class C>
 			void AddResourceType(const std::string& type_name) {
-				_resource_creator_map.emplace(type_name, [](const std::shared_ptr<const file_system::File>& file)->std::shared_ptr<ResourceBase>{
+				_resource_creator_map.emplace(type_name, [](const std::shared_ptr<const File>& file)->std::shared_ptr<ResourceBase>{
 					std::shared_ptr<ResourceBase> new_res = MakeResource<C>();
 					return new_res->Create(file) ? new_res : nullptr;
 				});
@@ -51,7 +49,7 @@ namespace planeta_engine{
 			ResourceManager()=default;
 			ResourceManager(const ResourceManager&) = delete;
 			~ResourceManager() {};
-			std::shared_ptr<file_system::FileAccessor> file_accessor_;
+			std::shared_ptr<FileAccessor> file_accessor_;
 			/*リソースリストのファイル名*/
 			std::string _resource_list_file_name;
 
@@ -82,11 +80,11 @@ namespace planeta_engine{
 
 
 			/*リソースクリエータ関数型*/
-			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>(const std::shared_ptr<const file_system::File>&)>;
+			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>(const std::shared_ptr<const File>&)>;
 			/*ResourceのタイプによるResourceクリエータマップ*/
 			std::unordered_map<std::string, _ResourceCreatorType> _resource_creator_map;
 			/*リソースの作成*/
-			std::shared_ptr<ResourceBase> _CreateResource(const std::string& type, const std::shared_ptr<const file_system::File>& file);
+			std::shared_ptr<ResourceBase> _CreateResource(const std::string& type, const std::shared_ptr<const File>& file);
 
 			/*リソースリストの読み込み*/
 			bool _LoadResourceList();

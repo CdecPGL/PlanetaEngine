@@ -48,7 +48,7 @@ namespace planeta_engine{
 
 			bool InitializeSingletonManagers() {
 				if (
-					file_system::FileSystemManager::instance().Initialize()
+					FileSystemManager::instance().Initialize()
 					&& core::ResourceManager::instance().Initialize()
 					&& core::DrawManager::instance().Initialize()
 					&& core::SoundManager::instance().Initialize()
@@ -70,7 +70,7 @@ namespace planeta_engine{
 				//リソースマネージャの終了
 				core::ResourceManager::instance().Finalize();
 				//ファイルシステムの終了
-				file_system::FileSystemManager::instance().Finalize();
+				FileSystemManager::instance().Finalize();
 				debug::SystemLog::instance().LogMessage("シングルトンマネージャの終了処理を実行しました。", __FUNCTION__);
 				return true;
 			}
@@ -133,12 +133,11 @@ namespace planeta_engine{
 
 			bool SetUpFileSystem()
 			{
-				using namespace file_system;
 				FileSystemManager& flm = FileSystemManager::instance();
 				//リソース用ファイルアクセサ設定
-				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::DevResourceDataFolderPath,false),file_system::AccessMode::ReadOnly);
+				flm.CreateFileAccessor(system_variables::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::DevResourceDataFolderPath,false),AccessMode::ReadOnly);
 				//GameData用ファイルアクセサ設定
-				flm.CreateFileAccessor(system_variables::GameDataFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::SaveDataDirectory,true), file_system::AccessMode::ReadWrite);
+				flm.CreateFileAccessor(system_variables::GameDataFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::SaveDataDirectory,true), AccessMode::ReadWrite);
 
 				debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "ファイルシステムの設定を行いました。");
 				//リソースマネージャの設定も行う

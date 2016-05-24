@@ -75,7 +75,7 @@ namespace planeta_engine {
 			bool LoadConfigData(const std::string& file_path) {
 				auto ini_res = MakeResource<resources::INIFileResource>();
 				//標準ファイル入力からFileを作成
-				std::shared_ptr<file_system::File> file = file_system::utility::CreateFileFromStandardFileInput(file_path);
+				std::shared_ptr<File> file = utility::CreateFileFromStandardFileInput(file_path);
 				if (file == nullptr) {
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, "設定ファイル\"", file_path, "\"を読み込めませんでした", __FUNCTION__);
 					return false;

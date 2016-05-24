@@ -22,7 +22,7 @@ namespace planeta_engine {
 		public:
 			std::unique_ptr<utility::DataContainer> common_data_;
 			std::unique_ptr<utility::DataContainer> current_user_data_;
-			std::shared_ptr<file_system::FileAccessor> file_accessor_;
+			std::shared_ptr<FileAccessor> file_accessor_;
 			int current_user_data_idx_ = -1; //-1Ç≈ì«Ç›çûÇÒÇ≈Ç¢Ç»Ç¢
 
 			struct SaveDataInfo {
@@ -139,7 +139,7 @@ namespace planeta_engine {
 			return true;
 		}
 
-		void SaveDataManager::SetFileAccessor(const std::shared_ptr<file_system::FileAccessor>& file_accessor) {
+		void SaveDataManager::SetFileAccessor(const std::shared_ptr<FileAccessor>& file_accessor) {
 			impl_->file_accessor_ = file_accessor;
 		}
 

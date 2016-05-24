@@ -15,7 +15,7 @@ namespace planeta_engine {
 			INIType::const_iterator find(const std::string& s)const { return _data.find(s); }
 			const SectionType& GetSection(const std::string& s)const { return _data.at(s); }
 		private:
-			bool _Create(const std::shared_ptr<const file_system::File>& file) override;
+			bool _Create(const std::shared_ptr<const File>& file) override;
 			void _Dispose()override { _data.clear(); }
 			INIType _data;
 		};

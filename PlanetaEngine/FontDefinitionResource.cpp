@@ -15,10 +15,10 @@
 
 namespace planeta_engine {
 	namespace resources {
-		bool FontDefinitionResource::_Create(const std::shared_ptr<const file_system::File>& file)
+		bool FontDefinitionResource::_Create(const std::shared_ptr<const File>& file)
 		{
-			if (file->GetStatus() != file_system::File::FileStatus::Available) { return false; }
-			auto file_accessor = file_system::FileSystemManager::instance().GetFileAccessor(core::system_variables::ResourceFileAccessorID);
+			if (file->GetStatus() != File::FileStatus::Available) { return false; }
+			auto file_accessor = FileSystemManager::instance().GetFileAccessor(core::system_variables::ResourceFileAccessorID);
 			auto xml = core::MakeResource<XMLResource>();
 			if (xml->Create(file)) {
 				auto root = xml->GetRootElement();
