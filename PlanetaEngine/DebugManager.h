@@ -5,11 +5,11 @@
 
 namespace planeta_engine {
 	namespace  debug {
-		class DebugInformationDisplayer : public utility::SingletonTemplate<DebugInformationDisplayer>{
-			friend utility::SingletonTemplate<DebugInformationDisplayer>;
+		class DebugManager : public utility::SingletonTemplate<DebugManager>{
+			friend utility::SingletonTemplate<DebugManager>;
 		public:
-			DebugInformationDisplayer();
-			~DebugInformationDisplayer();
+			DebugManager();
+			~DebugManager();
 			bool Initialize()override;
 			bool Finalize()override;
 			void Update();

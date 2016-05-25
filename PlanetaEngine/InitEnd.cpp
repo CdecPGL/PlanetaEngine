@@ -8,8 +8,8 @@
 #include "SystemVariables.h"
 #include "ConfigData.h"
 #include "SystemLog.h"
-#include "SystemCounter.h"
-#include "DebugInformationDisplayer.h"
+#include "SystemTimer.h"
+#include "DebugManager.h"
 #include "FileSystemManager.h"
 #include "ArchiveManipulator.h"
 #include "NormalFolderManipulator.h"
@@ -103,14 +103,14 @@ namespace planeta_engine{
 			{
 				//システムログの設定
 				if (SetUpSystemLog() == false) { return false; }
-				if(debug::SystemCounter::instance().Initialize()
+				if(debug::SystemTimer::instance().Initialize()
 					&& debug::SystemLog::instance().Initialize()) {
 					debug::SystemLog::instance().LogMessage("システムログを開始しました。", __FUNCTION__);
 				}
 				else { return false; }
 				//デバッグ情報ウインドウの設定
 				if(
-					debug::DebugInformationDisplayer::instance().Initialize())
+					debug::DebugManager::instance().Initialize())
 				{
 					debug::SystemLog::instance().LogMessage("デバッグ情報ウインドウを準備しました。", __FUNCTION__);
 				} else {
@@ -123,11 +123,11 @@ namespace planeta_engine{
 			bool FinalizeDebugStstem()
 			{
 				//デバッグ情報ウインドウの終了処理
-				debug::DebugInformationDisplayer::instance().Finalize();
+				debug::DebugManager::instance().Finalize();
 				//システムログの終了処理
 				FinalizeSystemLog();
 				//システムカウンタの終了処理
-				debug::SystemCounter::instance().Finalize();
+				debug::SystemTimer::instance().Finalize();
 				return true;
 			}
 

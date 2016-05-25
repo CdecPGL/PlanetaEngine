@@ -208,6 +208,9 @@
     <Filter Include="PlanetaEngine\SubSystems\SystemLog">
       <UniqueIdentifier>{4c393383-d08a-45ed-b41e-059ea7dad009}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\SystemTimer">
+      <UniqueIdentifier>{e2eb296c-1515-43ba-b62f-735586ed09dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -323,9 +326,6 @@
     </ClInclude>
     <ClInclude Include="SystemVariables.h">
       <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemCounter.h">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
@@ -559,9 +559,6 @@
       <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClInclude>
     <ClInclude Include="DebugDrawInterface.h">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugInformationDisplayer.h">
       <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectSetUpperHeaders.h">
@@ -813,6 +810,12 @@
     <ClInclude Include="RenderManager.h">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClInclude>
+    <ClInclude Include="DebugManager.h">
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemTimer.h">
+      <Filter>PlanetaEngine\SubSystems\SystemTimer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -835,9 +838,6 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemCounter.cpp">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClCompile>
     <ClCompile Include="CSVResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -1022,9 +1022,6 @@
     <ClCompile Include="LuaBindClassFunctions.cpp">
       <Filter>Lua</Filter>
     </ClCompile>
-    <ClCompile Include="DebugInformationDisplayer.cpp">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="DataContainer.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer</Filter>
     </ClCompile>
@@ -1144,6 +1141,12 @@
     </ClCompile>
     <ClCompile Include="RenderManager.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemTimer.cpp">
+      <Filter>PlanetaEngine\SubSystems\SystemTimer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

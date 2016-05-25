@@ -179,7 +179,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Color.h" />
     <ClInclude Include="cpplinq.hpp" />
     <ClInclude Include="DebugDrawInterface.h" />
-    <ClInclude Include="DebugInformationDisplayer.h" />
+    <ClInclude Include="DebugManager.h" />
     <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="ConfigData.h" />
     <ClInclude Include="GameObjectComponentHeaders.h" />
@@ -314,7 +314,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CStraightLineCollider2D.h" />
     <ClInclude Include="StringPanel.h" />
     <ClInclude Include="StringUtility.h" />
-    <ClInclude Include="SystemCounter.h" />
+    <ClInclude Include="SystemTimer.h" />
     <ClInclude Include="SystemLog.h" />
     <ClInclude Include="SystemVariables.h" />
     <ClInclude Include="TalkWindows.h" />
@@ -360,7 +360,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
     <ClCompile Include="CSVResource.cpp" />
-    <ClCompile Include="DebugInformationDisplayer.cpp" />
+    <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="CDrawPolygon2D.cpp" />
     <ClCompile Include="EmptySceneDefinition.cpp" />
     <ClCompile Include="EncrypterBase.cpp" />
@@ -441,7 +441,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="CStraightLineCollider2D.cpp" />
-    <ClCompile Include="SystemCounter.cpp" />
+    <ClCompile Include="SystemTimer.cpp" />
     <ClCompile Include="SystemLog.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
     <ClCompile Include="PETime.cpp" />

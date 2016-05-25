@@ -1,4 +1,4 @@
-#include "DebugInformationDisplayer.h"
+#include "DebugManager.h"
 #include "SystemLog.h"
 #include "DxLib.h"
 #include <windows.h>
@@ -22,7 +22,7 @@ namespace planeta_engine {
 		//Impl
 		//////////////////////////////////////////////////////////////////////////
 
-		class DebugInformationDisplayer::Impl_ {
+		class DebugManager::Impl_ {
 		public:
 			HWND debug_window_handle;
 		};
@@ -31,10 +31,10 @@ namespace planeta_engine {
 		//DebugInformationDisplayer
 		//////////////////////////////////////////////////////////////////////////
 
-		DebugInformationDisplayer::DebugInformationDisplayer() :impl_(std::make_unique<Impl_>()) {}
-		DebugInformationDisplayer::~DebugInformationDisplayer() = default;
+		DebugManager::DebugManager() :impl_(std::make_unique<Impl_>()) {}
+		DebugManager::~DebugManager() = default;
 
-		bool DebugInformationDisplayer::Initialize() {
+		bool DebugManager::Initialize() {
 			SystemLog::instance().LogMessage("デバッグ情報ウインドウは未実装。", __FUNCTION__);
 			return true;
 			HWND m_hWnd = GetMainWindowHandle();
@@ -77,13 +77,13 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool DebugInformationDisplayer::Finalize() {
+		bool DebugManager::Finalize() {
 			return true;
 			DestroyWindow(impl_->debug_window_handle);
 			return true;
 		}
 
-		void DebugInformationDisplayer::Update() {
+		void DebugManager::Update() {
 			HDC hdc = GetDC(impl_->debug_window_handle);
 			SetWindowText(impl_->debug_window_handle, "test");
 			ReleaseDC(impl_->debug_window_handle,hdc);

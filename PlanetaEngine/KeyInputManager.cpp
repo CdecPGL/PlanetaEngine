@@ -476,6 +476,10 @@ namespace planeta_engine {
 			return _impl->GetDxMouseWheelRotation();
 		}
 
+		bool KeyInputManager::Finalize() {
+			return true;
+		}
+
 	}
 }
 

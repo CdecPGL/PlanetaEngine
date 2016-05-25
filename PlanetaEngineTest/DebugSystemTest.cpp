@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "SystemCounter.h"
+#include "SystemTimer.h"
 #include "SystemLog.h"
 #include <sstream>
 

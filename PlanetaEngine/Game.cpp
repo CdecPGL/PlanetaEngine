@@ -5,7 +5,7 @@
 
 namespace planeta_engine {
 	namespace core {
-		Game::Game():_scene_manager(std::make_unique<core::SceneManager>(*this)), _key_input_manager(std::make_unique<core::KeyInputManager>())
+		Game::Game():_scene_manager(std::make_unique<core::SceneManager>(*this))
 			,collision_group_matrix_(std::make_shared<core::CollisionGroupMatrix>())
 		{
 
@@ -27,7 +27,6 @@ namespace planeta_engine {
 		Game::Status Game::Update()
 		{
 			core::SoundManager::instance().Update();
-			_key_input_manager->Update();
 			Status status;
 			switch (_scene_manager->Process())
 			{
@@ -41,7 +40,6 @@ namespace planeta_engine {
 
 		bool Game::InitializeSystem() {
 			screen_ = RenderManager::instance().CreateScreen(); //スクリーンを作成
-			_key_input_manager->Initialize();
 			return _scene_manager->Initialize();
 		}
 
@@ -49,5 +47,10 @@ namespace planeta_engine {
 			_scene_manager->Finalize();
 			RenderManager::instance().DisposeScreen(screen_); //スクリーンを破棄
 		}
+
+		KeyInputManager& Game::key_input_manager() {
+			return KeyInputManager::instance();
+		}
+
 	}
 }

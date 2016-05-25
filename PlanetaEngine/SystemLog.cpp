@@ -1,5 +1,5 @@
 #include "SystemLog.h"
-#include "SystemCounter.h"
+#include "SystemTimer.h"
 #include "SystemVariables.h"
 #include <sstream>
 #include <iostream>
@@ -76,7 +76,7 @@ namespace planeta_engine {
 				//出力文字列を生成
 				stringstream sstrm;
 				//ログのシステム時刻
-				sstrm << '[' << SystemCounter::instance().GetCurrentTimeCount().ToString() << ',' << SystemCounter::instance().GetCurrentFrameCount() << ']';
+				sstrm << '[' << SystemTimer::instance().GetCurrentTimeCount().ToString() << ',' << SystemTimer::instance().GetCurrentFrameCount() << ']';
 				//ログのレベル
 				sstrm << header << ':';
 				//詳細

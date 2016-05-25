@@ -1,4 +1,4 @@
-#include "SystemCounter.h"
+#include "SystemTimer.h"
 #include <ctime>
 
 namespace planeta_engine {
@@ -6,7 +6,7 @@ namespace planeta_engine {
 
 	}
 
-	bool debug::SystemCounter::Initialize()
+	bool debug::SystemTimer::Initialize()
 	{
 		_frame_count = 0;
 		_start_time = utility::Time::GetCurrentTime();

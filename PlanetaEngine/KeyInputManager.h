@@ -7,15 +7,17 @@
 #include <vector>
 #include"KeyInputDefines.h"
 #include "Vector2D.h"
+#include "SingletonTemplate.h"
 
 namespace planeta_engine {
 	namespace core {
-		class KeyInputManager final {
+		class KeyInputManager final : public utility::SingletonTemplate<KeyInputManager>{
+			friend utility::SingletonTemplate<KeyInputManager>;
 		public:
-			KeyInputManager();
-			~KeyInputManager();
 			/*初期化*/
-			bool Initialize();
+			bool Initialize()override;
+			/*終了処理*/
+			bool Finalize()override;
 			/*更新*/
 			bool Update();
 			/*すべての設定をリセットする*/
@@ -79,6 +81,8 @@ namespace planeta_engine {
 			/*マウスホイールの回転量を取得*/
 			int GetMouseWheelRotation()const;
 		private:
+			KeyInputManager();
+			~KeyInputManager();
 			KeyInputManager(const KeyInputManager&) = delete;
 			KeyInputManager(KeyInputManager&&) = delete;
 			const KeyInputManager& operator = (const KeyInputManager&) = delete;

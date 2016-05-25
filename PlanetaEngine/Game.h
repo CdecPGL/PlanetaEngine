@@ -29,7 +29,6 @@ namespace planeta_engine {
 			Game(const Game&) = delete;
 			Game& operator=(const Game&) = delete;
 			std::unique_ptr<SceneManager> _scene_manager;
-			std::unique_ptr<KeyInputManager> _key_input_manager;
 
 			std::shared_ptr<core::CollisionGroupMatrix> collision_group_matrix_; //衝突マトリックス
 
@@ -45,7 +44,7 @@ namespace planeta_engine {
 			/*初期化用関数群*/
 			SceneManager& scene_manager()override { return *_scene_manager; }
 			ResourceManager& resource_manager()override { return ResourceManager::instance(); }
-			KeyInputManager& key_input_manager()override { return *_key_input_manager; }
+			KeyInputManager& key_input_manager()override;
 			core::CollisionGroupMatrix& RefCollisionGroupMatrix()override { return *collision_group_matrix_; }
 
 			std::shared_ptr<const core::CollisionGroupMatrix> GetCollisionGroupMatrix()const override { return collision_group_matrix_; }

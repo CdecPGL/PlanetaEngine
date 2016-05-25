@@ -5,7 +5,7 @@
 #include "PlanetaEngine.h"
 #include "InitEnd.h"
 #include "SystemLog.h"
-#include "SystemCounter.h"
+#include "SystemTimer.h"
 #include "Game.h"
 #include "RenderManager.h"
 
@@ -64,7 +64,7 @@ namespace planeta_engine {
 		default:status = Status::Error; break;
 		}
 
-		debug::SystemCounter::instance().IncrementFrameCount();
+		debug::SystemTimer::instance().IncrementFrameCount();
 		if (status == Status::Continue) {
 			if (RenderManager::instance().Update() == false) { status = Status::Error; }
 		}
