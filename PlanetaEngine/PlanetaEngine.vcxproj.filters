@@ -28,23 +28,8 @@
     <Filter Include="PlanetaEngine\Core\Object">
       <UniqueIdentifier>{a891554f-069d-48a9-9687-bb86bccc3680}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\Scene">
-      <UniqueIdentifier>{a7a17209-ac4b-4b38-abe5-54b35e8e3e18}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\InitEnd">
       <UniqueIdentifier>{d62977ac-2d9b-4cdc-bc1c-9273c8ab4911}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Debug">
-      <UniqueIdentifier>{9923b114-a87d-41d5-8e5e-1a788678fddd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GraphicSystem">
-      <UniqueIdentifier>{bdb92e91-9337-4da0-a4c8-cbad3dbb95e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\KeyInput">
-      <UniqueIdentifier>{f8749ef8-c30b-4b76-86a1-8ed1d7014e59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\Resource">
-      <UniqueIdentifier>{f23a3a1d-6410-44bc-ac6e-60606aa0718e}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\BuildinElements">
       <UniqueIdentifier>{9ebe99cf-e97c-407c-a4c3-de0396051b94}</UniqueIdentifier>
@@ -61,20 +46,8 @@
     <Filter Include="PlanetaEngine\Core\Memory">
       <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\Scene\Manager">
-      <UniqueIdentifier>{3ad2a0c2-8a6c-4d54-94dd-be6aa42d1e57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\Scene\SetUpper">
-      <UniqueIdentifier>{39704db5-1a23-46a0-b1f3-92d9d419dca0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\SoundSystem">
-      <UniqueIdentifier>{b9cc7bbc-7fcb-465c-be44-159dda5896f7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\Others">
       <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\Config">
-      <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\Math\Vector">
       <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
@@ -84,15 +57,6 @@
     </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GUIObjects">
       <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GraphicSystem\Screen">
-      <UniqueIdentifier>{2c044abd-aafc-4948-adaf-9d1de805a50b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GraphicSystem\2D">
-      <UniqueIdentifier>{1bbeb0a9-c694-4467-9cd9-0f6cf7822fa7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\GraphicSystem\GUI">
-      <UniqueIdentifier>{2c996d1e-a09c-420c-9dca-b3ae627bc599}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\ForUserHeaders">
       <UniqueIdentifier>{98b764e3-2aeb-49ed-afc6-29bf63729928}</UniqueIdentifier>
@@ -123,9 +87,6 @@
     </Filter>
     <Filter Include="PlanetaEngine\Utility\DateTime">
       <UniqueIdentifier>{0de0a5aa-9426-4eea-9453-906e3d75582a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Core\SaveData">
-      <UniqueIdentifier>{ef9d18d8-9c13-4e4c-8587-c8259919dff0}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\Math\Matrix">
       <UniqueIdentifier>{1826c0f3-9abb-467a-ab0a-0c55c95a2a8b}</UniqueIdentifier>
@@ -205,6 +166,48 @@
     <Filter Include="PlanetaEngine\SubSystems\FileSystem\Manipulator">
       <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Scene">
+      <UniqueIdentifier>{a7a17209-ac4b-4b38-abe5-54b35e8e3e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Scene\Manager">
+      <UniqueIdentifier>{3ad2a0c2-8a6c-4d54-94dd-be6aa42d1e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Scene\SetUpper">
+      <UniqueIdentifier>{39704db5-1a23-46a0-b1f3-92d9d419dca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\SoundSystem">
+      <UniqueIdentifier>{b9cc7bbc-7fcb-465c-be44-159dda5896f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\RenderSystem">
+      <UniqueIdentifier>{bdb92e91-9337-4da0-a4c8-cbad3dbb95e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\RenderSystem\Screen">
+      <UniqueIdentifier>{2c044abd-aafc-4948-adaf-9d1de805a50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\RenderSystem\2D">
+      <UniqueIdentifier>{1bbeb0a9-c694-4467-9cd9-0f6cf7822fa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\RenderSystem\GUI">
+      <UniqueIdentifier>{2c996d1e-a09c-420c-9dca-b3ae627bc599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\KeyInput">
+      <UniqueIdentifier>{f8749ef8-c30b-4b76-86a1-8ed1d7014e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Config">
+      <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Resource">
+      <UniqueIdentifier>{f23a3a1d-6410-44bc-ac6e-60606aa0718e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\SaveData">
+      <UniqueIdentifier>{ef9d18d8-9c13-4e4c-8587-c8259919dff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Debug">
+      <UniqueIdentifier>{9923b114-a87d-41d5-8e5e-1a788678fddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\SystemLog">
+      <UniqueIdentifier>{4c393383-d08a-45ed-b41e-059ea7dad009}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -268,22 +271,19 @@
       <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawManager.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClInclude>
     <ClInclude Include="KeyInputManager.h">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClInclude>
     <ClInclude Include="KeyInputDefines.h">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClInclude>
     <ClInclude Include="KeyInputUtils.h">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClInclude>
     <ClInclude Include="IOKeyConfig.h">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClInclude>
     <ClInclude Include="Memory.h">
       <Filter>PlanetaEngine\Core\Object</Filter>
@@ -298,16 +298,16 @@
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClInclude>
     <ClInclude Include="MakeResource.h">
-      <Filter>PlanetaEngine\Core\Resource</Filter>
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClInclude>
     <ClInclude Include="ResourceBase.h">
-      <Filter>PlanetaEngine\Core\Resource</Filter>
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>PlanetaEngine\Core\Resource</Filter>
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>PlanetaEngine\Core</Filter>
@@ -324,17 +324,8 @@
     <ClInclude Include="SystemVariables.h">
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="DebuggerCommunicater.h">
-      <Filter>PlanetaEngine\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugDataPool.h">
-      <Filter>PlanetaEngine\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="SystemCounter.h">
-      <Filter>PlanetaEngine\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemLog.h">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
@@ -391,7 +382,7 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="PEAssert.h">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
     <ClInclude Include="GlobalNewDeleteDefinition.h">
       <Filter>PlanetaEngine\Core\Memory</Filter>
@@ -418,34 +409,34 @@
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneSystemSetUpper.h">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="ISceneManagerAccessor.h">
-      <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneSetUpper.h">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="ErrorSceneDefinition.h">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="BGMController.h">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="SoundEffectController.h">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="IBGMController.h">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="ISoundEffectController.h">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="FileIStream.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
@@ -490,13 +481,13 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="EmptySceneDefinition.h">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="FileSystemUtility.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="ConfigData.h">
-      <Filter>PlanetaEngine\Core\Config</Filter>
+      <Filter>PlanetaEngine\SubSystems\Config</Filter>
     </ClInclude>
     <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -520,10 +511,10 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="SceneModule.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneData.h">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManagerConnection.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
@@ -550,28 +541,28 @@
       <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
     </ClInclude>
     <ClInclude Include="ScreenChangeEffecter.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
     </ClInclude>
     <ClInclude Include="ScreenDrawer2D.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClInclude>
     <ClInclude Include="ScreenDrawerGUI.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem\GUI</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
     </ClInclude>
     <ClInclude Include="DXGraphDrawData.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClInclude>
     <ClInclude Include="GraphDrawData2D.h">
-      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClInclude>
     <ClInclude Include="DebugDrawInterface.h">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
     <ClInclude Include="DebugInformationDisplayer.h">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectSetUpperHeaders.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
@@ -622,7 +613,7 @@
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClInclude>
     <ClInclude Include="SaveDataManager.h">
-      <Filter>PlanetaEngine\Core\SaveData</Filter>
+      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
     </ClInclude>
     <ClInclude Include="AESEncrypter.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
@@ -778,7 +769,7 @@
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="SceneSetUpProxy.h">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="Delegate.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -816,6 +807,12 @@
     <ClInclude Include="SingletonTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="SystemLog.h">
+      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -828,7 +825,7 @@
       <Filter>PlanetaEngine\InitEnd</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>PlanetaEngine\Core\Scene</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClCompile>
     <ClCompile Include="File.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
@@ -837,13 +834,10 @@
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
-      <Filter>PlanetaEngine\Core\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemLog.cpp">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
     <ClCompile Include="SystemCounter.cpp">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClCompile>
     <ClCompile Include="CSVResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -857,11 +851,8 @@
     <ClCompile Include="InitEndDX.cpp">
       <Filter>PlanetaEngine\InitEnd</Filter>
     </ClCompile>
-    <ClCompile Include="DrawManager.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClCompile>
     <ClCompile Include="SoundResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -882,13 +873,13 @@
       <Filter>PlanetaEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="IOKeyConfig.cpp">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClCompile>
     <ClCompile Include="KeyInputManager.cpp">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClCompile>
     <ClCompile Include="KeyInputUtils.cpp">
-      <Filter>PlanetaEngine\Core\KeyInput</Filter>
+      <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClCompile>
     <ClCompile Include="INIFileResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -901,9 +892,6 @@
     </ClCompile>
     <ClCompile Include="GraphPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="DebuggerCommunicater.cpp">
-      <Filter>PlanetaEngine\Debug</Filter>
     </ClCompile>
     <ClCompile Include="SimplePolygonPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
@@ -933,19 +921,19 @@
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>PlanetaEngine\Core\Scene\Manager</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SceneSystemSetUpper.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
     <ClCompile Include="SoundEffectController.cpp">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
     <ClCompile Include="BGMController.cpp">
-      <Filter>PlanetaEngine\Core\SoundSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
     <ClCompile Include="FileOStream.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
@@ -981,22 +969,22 @@
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClCompile>
     <ClCompile Include="EmptySceneDefinition.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="ErrorSceneDefinition.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="FileSystemUtility.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="ConfigData.cpp">
-      <Filter>PlanetaEngine\Core\Config</Filter>
+      <Filter>PlanetaEngine\SubSystems\Config</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectComponent.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="SceneSetUpper.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
@@ -1014,19 +1002,19 @@
       <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="ScreenChangeEffecter.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
     </ClCompile>
     <ClCompile Include="ScreenDrawer2D.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
     <ClCompile Include="ScreenDrawerGUI.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem\GUI</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GraphDrawData2D.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem\2D</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
     <ClCompile Include="Screen.cpp">
-      <Filter>PlanetaEngine\Core\GraphicSystem\Screen</Filter>
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
     </ClCompile>
     <ClCompile Include="WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
@@ -1035,7 +1023,7 @@
       <Filter>Lua</Filter>
     </ClCompile>
     <ClCompile Include="DebugInformationDisplayer.cpp">
-      <Filter>PlanetaEngine\Debug</Filter>
+      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClCompile>
     <ClCompile Include="DataContainer.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer</Filter>
@@ -1053,7 +1041,7 @@
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClCompile>
     <ClCompile Include="SaveDataManager.cpp">
-      <Filter>PlanetaEngine\Core\SaveData</Filter>
+      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
     </ClCompile>
     <ClCompile Include="AESEncrypter.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
@@ -1140,7 +1128,7 @@
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
     </ClCompile>
     <ClCompile Include="SceneSetUpProxy.cpp">
-      <Filter>PlanetaEngine\Core\Scene\SetUpper</Filter>
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="GlobalObjectFactory.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
@@ -1150,6 +1138,12 @@
     </ClCompile>
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemLog.cpp">
+      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

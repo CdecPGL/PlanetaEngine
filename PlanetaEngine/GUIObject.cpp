@@ -1,6 +1,6 @@
 #include "GUIObject.h"
 #include "GUIComponent.h"
-#include "DrawManager.h"
+#include "RenderManager.h"
 #include "SystemLog.h"
 
 

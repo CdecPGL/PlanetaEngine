@@ -1,5 +1,5 @@
 #include "GUIComponent.h"
-#include "DrawManager.h"
+#include "RenderManager.h"
 #include "SystemLog.h"
 #include <cassert>
 

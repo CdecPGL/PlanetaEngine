@@ -14,7 +14,7 @@
 #include "ArchiveManipulator.h"
 #include "NormalFolderManipulator.h"
 #include "ResourceManager.h"
-#include "DrawManager.h"
+#include "RenderManager.h"
 #include "SoundManager.h"
 #include "FileAccessMode.h"
 
@@ -50,7 +50,7 @@ namespace planeta_engine{
 				if (
 					FileSystemManager::instance().Initialize()
 					&& core::ResourceManager::instance().Initialize()
-					&& core::DrawManager::instance().Initialize()
+					&& core::RenderManager::instance().Initialize()
 					&& core::SoundManager::instance().Initialize()
 					) {
 					debug::SystemLog::instance().LogMessage("シングルトンマネージャの初期化に成功しました。", __FUNCTION__);
@@ -66,7 +66,7 @@ namespace planeta_engine{
 				//サウンドマネージャの終了
 				core::SoundManager::instance().Finalize();
 				//描画マネージャの終了
-				core::DrawManager::instance().Finalize();
+				core::RenderManager::instance().Finalize();
 				//リソースマネージャの終了
 				core::ResourceManager::instance().Finalize();
 				//ファイルシステムの終了

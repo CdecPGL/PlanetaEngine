@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "SoundManager.h"
 #include "CollisionGroupMatrix.h"
-#include "DrawManager.h"
+#include "RenderManager.h"
 
 namespace planeta_engine {
 	namespace core {
@@ -40,14 +40,14 @@ namespace planeta_engine {
 		}
 
 		bool Game::InitializeSystem() {
-			screen_ = DrawManager::instance().CreateScreen(); //スクリーンを作成
+			screen_ = RenderManager::instance().CreateScreen(); //スクリーンを作成
 			_key_input_manager->Initialize();
 			return _scene_manager->Initialize();
 		}
 
 		void Game::FinalizeSystem() {
 			_scene_manager->Finalize();
-			DrawManager::instance().DisposeScreen(screen_); //スクリーンを破棄
+			RenderManager::instance().DisposeScreen(screen_); //スクリーンを破棄
 		}
 	}
 }

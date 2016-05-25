@@ -8,8 +8,8 @@
 namespace planeta_engine {
 	namespace core{
 		class Screen;
-		class DrawManager final : public utility::SingletonTemplate<DrawManager>{
-			friend utility::SingletonTemplate<DrawManager>;
+		class RenderManager final : public utility::SingletonTemplate<RenderManager>{
+			friend utility::SingletonTemplate<RenderManager>;
 		public:
 			bool Initialize() override;
 			bool Finalize() override;
@@ -22,8 +22,8 @@ namespace planeta_engine {
 			/*スクリーンを破棄する*/
 			bool DisposeScreen(const std::shared_ptr<Screen>& screen);
 		private:
-			DrawManager() = default;
-			~DrawManager() = default;
+			RenderManager() = default;
+			~RenderManager() = default;
 
 			std::shared_ptr<Screen> primary_screen_; //メインスクリーン
 

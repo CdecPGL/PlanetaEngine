@@ -218,12 +218,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="FileOStream.h" />
     <ClInclude Include="FileStreamBuf.h" />
     <ClInclude Include="FileSystemUtility.h" />
-    <ClInclude Include="DebugDataPool.h" />
-    <ClInclude Include="DebuggerCommunicater.h" />
     <ClInclude Include="CDraw2D.h" />
     <ClInclude Include="CDrawGraph2D.h" />
     <ClInclude Include="CDrawLine2D.h" />
-    <ClInclude Include="DrawManager.h" />
+    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="CDrawPlanet2D.h" />
     <ClInclude Include="CDrawPolygon2D.h" />
     <ClInclude Include="CDumyGround2D.h" />
@@ -362,7 +360,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
     <ClCompile Include="CSVResource.cpp" />
-    <ClCompile Include="DebuggerCommunicater.cpp" />
     <ClCompile Include="DebugInformationDisplayer.cpp" />
     <ClCompile Include="CDrawPolygon2D.cpp" />
     <ClCompile Include="EmptySceneDefinition.cpp" />
@@ -405,7 +402,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GUIObject.cpp" />
     <ClCompile Include="CDraw2D.cpp" />
     <ClCompile Include="CDrawLine2D.cpp" />
-    <ClCompile Include="DrawManager.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="CDrawPlanet2D.cpp" />
     <ClCompile Include="DXUtility.cpp" />
     <ClCompile Include="Game.cpp" />

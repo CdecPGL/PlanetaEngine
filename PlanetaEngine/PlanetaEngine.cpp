@@ -7,7 +7,7 @@
 #include "SystemLog.h"
 #include "SystemCounter.h"
 #include "Game.h"
-#include "DrawManager.h"
+#include "RenderManager.h"
 
 namespace planeta_engine {
 	using namespace core;
@@ -66,7 +66,7 @@ namespace planeta_engine {
 
 		debug::SystemCounter::instance().IncrementFrameCount();
 		if (status == Status::Continue) {
-			if (DrawManager::instance().Update() == false) { status = Status::Error; }
+			if (RenderManager::instance().Update() == false) { status = Status::Error; }
 		}
 		return status;
 	}
