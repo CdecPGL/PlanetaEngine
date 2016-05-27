@@ -87,9 +87,8 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool SoundManager::Finalize()
+		void SoundManager::Finalize()
 		{
-			return true;
 		}
 
 		SoundManager::~SoundManager() = default;

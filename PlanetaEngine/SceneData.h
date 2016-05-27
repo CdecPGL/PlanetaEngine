@@ -6,6 +6,7 @@
 namespace planeta_engine {
 	class GameObjectManagerPublicInterface;
 	class TaskManagerPublicInterface;
+	class ISceneManagerAccessor;
 	namespace core {
 		class CollisionWorld;
 		class GameObjectDrawSystem;
@@ -18,6 +19,7 @@ namespace planeta_engine {
 			core::CollisionWorld& collision_world;
 			core::GameObjectDrawSystem& gameobject_draw_system;
 			core::TransformSystem& transform_system;
+			ISceneManagerAccessor& scene_manager;
 		};
 	}
 }

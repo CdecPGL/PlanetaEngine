@@ -35,7 +35,7 @@ namespace planeta_engine {
 	}
 
 	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
-		auto go =  core::GlobalObjectFactory::GetInstance().CreateObjectByID<GameObjectBase>(game_object_create_id);
+		auto go =  core::GlobalObjectFactory::instance().CreateObjectByID<GameObjectBase>(game_object_create_id);
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 				return nullptr;
@@ -46,7 +46,7 @@ namespace planeta_engine {
 
 	}
 	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
-		auto go = core::GlobalObjectFactory::GetInstance().CreateObjectByID<GameObjectBase>(game_object_create_id);
+		auto go = core::GlobalObjectFactory::instance().CreateObjectByID<GameObjectBase>(game_object_create_id);
 		if (go == nullptr) {
 			debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 			return nullptr;

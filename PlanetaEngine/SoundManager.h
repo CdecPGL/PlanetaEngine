@@ -12,7 +12,7 @@ namespace planeta_engine {
 			friend utility::SingletonTemplate<SoundManager>;
 		public:
 			bool Initialize() override;
-			bool Finalize() override;
+			void Finalize() override;
 			void Update();
 
 			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<core::ResourceBase>& music_resource);

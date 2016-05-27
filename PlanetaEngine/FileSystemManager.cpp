@@ -26,12 +26,11 @@ namespace planeta_engine {
 		return !error;
 	}
 
-	bool FileSystemManager::Finalize() {
+	void FileSystemManager::Finalize() {
 		for (auto& accessor : accessors_) {
 			accessor.second->Finalize();
 		}
 		is_initialized_ = false;
-		return true;
 	}
 
 	size_t FileSystemManager::GetCacheSize()const {

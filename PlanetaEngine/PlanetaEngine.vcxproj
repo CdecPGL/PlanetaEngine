@@ -163,11 +163,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GlobalObjectRegistrer.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
+    <ClInclude Include="InitFunctions.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
     <ClInclude Include="NonOwingPointer.h" />
+    <ClInclude Include="ProgramDefinitionData.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
@@ -181,7 +183,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DebugDrawInterface.h" />
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="GameObjectComponent.h" />
-    <ClInclude Include="ConfigData.h" />
+    <ClInclude Include="EngineConfigData.h" />
     <ClInclude Include="GameObjectComponentHeaders.h" />
     <ClInclude Include="GameObjectComponentSetUpData.h" />
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
@@ -235,7 +237,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="FontDefinitionResource.h" />
     <ClInclude Include="FontResource.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="DataContainerFunctionsForBoostSerialize.h" />
     <ClInclude Include="DataContainerSerializeUtility.h" />
     <ClInclude Include="GameObjectManagerConnection.h" />
@@ -254,12 +255,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CGround2D.h" />
     <ClInclude Include="IBGMController.h" />
     <ClInclude Include="IColliderWithCollider2D.h" />
-    <ClInclude Include="IGameAccessor.h" />
-    <ClInclude Include="IGameSetUp.h" />
     <ClInclude Include="IMemoryAllocator.h" />
     <ClInclude Include="DataContainerError.h" />
     <ClInclude Include="INIFileResource.h" />
-    <ClInclude Include="InitEnd.h" />
     <ClInclude Include="TInstant.h" />
     <ClInclude Include="TInstantCoroutine.h" />
     <ClInclude Include="IOKeyConfig.h" />
@@ -283,7 +281,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ObjectHolderTemplate_WithID.h" />
     <ClInclude Include="ObjectHolderTemplate_WithoutID.h" />
     <ClInclude Include="ParameterHolder.h" />
-    <ClInclude Include="PEAssert.h" />
     <ClInclude Include="PEDateTime.h" />
     <ClInclude Include="PETime.h" />
     <ClInclude Include="PlanetaEngine.h" />
@@ -353,9 +350,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="ConfigData.cpp" />
+    <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="GlobalObjectFactory.cpp" />
+    <ClCompile Include="InitFunctions.cpp" />
+    <ClCompile Include="InitFunctionsFIleSystem.cpp" />
+    <ClCompile Include="InitFunctionsResource.cpp" />
+    <ClCompile Include="InitializeFunctionsDxLib.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
@@ -405,7 +406,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="CDrawPlanet2D.cpp" />
     <ClCompile Include="DXUtility.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="CGraph2DAnimator.cpp" />
     <ClCompile Include="GraphResource.cpp" />
     <ClCompile Include="INIFileResource.cpp" />
@@ -428,9 +428,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="CDrawGraph2D.cpp" />
     <ClCompile Include="CGround2D.cpp" />
-    <ClCompile Include="InitEnd.cpp" />
-    <ClCompile Include="InitEndDX.cpp" />
-    <ClCompile Include="InitEndResource.cpp" />
     <ClCompile Include="NormalFolderManipulator.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlanetaEngine.cpp" />

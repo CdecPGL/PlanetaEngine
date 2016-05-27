@@ -13,9 +13,8 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool planeta_engine::core::RenderManager::Finalize()
+		void planeta_engine::core::RenderManager::Finalize()
 		{
-			return true;
 		}
 
 		bool RenderManager::Update()

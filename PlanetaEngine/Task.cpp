@@ -15,8 +15,7 @@ namespace planeta_engine {
 		manager_connection_->Dispose(); //”jŠü
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data,core::IGameAccessor& game) {
-		game_.reset(&game);
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();
@@ -52,8 +51,8 @@ namespace planeta_engine {
 		return go;
 	}
 
-	core::IGameAccessor& Task::game_accessor() {
-		return *game_;
+	ISceneManagerAccessor& Task::scene_manager() {
+		return scene_data_->scene_manager;
 	}
 
 }

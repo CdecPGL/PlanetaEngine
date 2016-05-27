@@ -11,7 +11,7 @@ namespace planeta_engine {
 			DebugManager();
 			~DebugManager();
 			bool Initialize()override;
-			bool Finalize()override;
+			void Finalize()override;
 			void Update();
 			template<typename... Details>
 			void PushDebugInformation(Details&&... details) {

@@ -17,7 +17,7 @@ namespace planeta_engine {
 		class GlobalObjectFactory : private utility::NonCopyable<GlobalObjectFactory> {
 		public:
 			/*インスタンスを取得*/
-			static GlobalObjectFactory& GetInstance();
+			static GlobalObjectFactory& instance();
 			/*オブジェクトを登録*/
 			template<class T>
 			void RegisterObject(const std::string& id, const std::function<std::shared_ptr<Object>()>& creator) {

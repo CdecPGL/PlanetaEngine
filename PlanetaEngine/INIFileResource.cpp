@@ -60,5 +60,13 @@ namespace planeta_engine {
 			return true;
 		}
 
+		boost::optional<const INIFileResource::SectionType&> INIFileResource::GetSection(const std::string& s) const {
+			try {
+				return _data.at(s);
+			} catch (std::out_of_range&) {
+				return boost::none;
+			}
+		}
+
 	}
 }

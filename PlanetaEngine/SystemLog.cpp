@@ -151,13 +151,13 @@ namespace planeta_engine {
 			SimpleLog(std::string("PlanetaEngine v") + core::system_variables::engine_information::VersionString, debug_mode ? " デバッグビルド" : "");
 			SimpleLog(std::string("起動日時:") + utility::DateTime::GetCurrentDateTime().ToString());
 			if (core::system_variables::DevelopmentMode) { SimpleLog("開発モードが有効です。"); }
-			Log(LogLevel::Message, __FUNCTION__, "初期化されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
+			PE_LOG_MESSAGE("ログ出力が開始されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
 			return true;
 		}
 
-		bool SystemLog::Finalize()
+		void SystemLog::Finalize()
 		{
-			LogMessage("終了処理が実行されました。", __FUNCTION__);
+			PE_LOG_MESSAGE("システムログを終了します。");
 			ResetLogOutStream();
 			if (impl_->output_console_flag_) {
 				CloseConsoleWindow();
@@ -165,7 +165,6 @@ namespace planeta_engine {
 			}
 			impl_->_log_history.clear();
 			impl_->_log_history_max_size = kDefaultLogHistoryMaxSize;
-			return true;
 		}
 
 		bool SystemLog::DumpLogHistory(const std::string& file_name)

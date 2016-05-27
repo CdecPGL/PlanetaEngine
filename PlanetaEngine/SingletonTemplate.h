@@ -11,7 +11,7 @@ namespace planeta_engine {
 				return c; 
 			}
 			virtual bool Initialize() = 0;
-			virtual bool Finalize() = 0;
+			virtual void Finalize() = 0;
 		protected:
 			SingletonTemplate() = default;
 			virtual ~SingletonTemplate() = default;

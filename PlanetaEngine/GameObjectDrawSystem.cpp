@@ -6,7 +6,7 @@
 #include "RenderManager.h"
 #include "CCamera2D.h"
 #include "DxLib.h"
-#include "ConfigData.h"
+#include "EngineConfigData.h"
 #include "CTransform2D.h"
 
 namespace planeta_engine{
@@ -85,7 +85,7 @@ namespace planeta_engine{
 				double scale = camera2d_->expansion();
 				double rota_rad = trans.rotation_rad();
 				Vector2Dd pos = trans.position();
-				SetupCamera_Ortho((float)(core::config_data::engine::DrawSize().y / scale));
+				SetupCamera_Ortho((float)(core::engine_config::engine::DrawSize().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
 			} else {
 				PE_LOG_WARNING("シーン内にカメラ2Dが登録されていません。");

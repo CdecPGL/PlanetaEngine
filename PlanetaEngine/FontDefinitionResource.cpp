@@ -18,7 +18,7 @@ namespace planeta_engine {
 		bool FontDefinitionResource::_Create(const std::shared_ptr<const File>& file)
 		{
 			if (file->GetStatus() != File::FileStatus::Available) { return false; }
-			auto file_accessor = FileSystemManager::instance().GetFileAccessor(core::system_variables::ResourceFileAccessorID);
+			auto file_accessor = FileSystemManager::instance().GetFileAccessor(core::system_variables::file_system::ResourceFileAccessorID);
 			auto xml = core::MakeResource<XMLResource>();
 			if (xml->Create(file)) {
 				auto root = xml->GetRootElement();

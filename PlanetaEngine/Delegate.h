@@ -7,7 +7,6 @@
 #include "boost/call_traits.hpp"
 
 #include "WeakPointer.h"
-#include "PEAssert.h"
 
 namespace planeta_engine {
 	namespace utility {

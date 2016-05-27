@@ -9,8 +9,8 @@
 
 namespace planeta_engine {
 	class SceneAccessorForTask;
+	class ISceneManagerAccessor;
 	namespace core {
-		class IGameAccessor;
 		struct SceneData;
 		class TaskManagerConnection;
 	}
@@ -26,14 +26,13 @@ namespace planeta_engine {
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data,core::IGameAccessor& game);
+		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data);
 		/*イベント*/
 		/*プロセスが破棄された*/
 		utility::Delegate<void> disposed;
 		/*ユーティリティ関数*/
 
 	protected:
-		core::IGameAccessor& game_accessor();
 		//ゲームオブジェクトを作成
 		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
 		//ゲームオブジェクトを作成して有効化
@@ -57,9 +56,9 @@ namespace planeta_engine {
 		}
 		//名前でタスクを取得
 		utility::WeakPointer<Task> GetTaskByName(const std::string& name)const;
-
+		//シーンマネージャへのアクセス
+		ISceneManagerAccessor& scene_manager();
 	private:
-		utility::NonOwingPointer<core::IGameAccessor> game_;
 		utility::WeakPointer<core::SceneData> scene_data_;
 		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
 		TaskManagerPublicInterface& RefTaskManagerInterface_();

@@ -16,7 +16,7 @@ namespace planeta_engine {
 			friend utility::SingletonTemplate<SystemLog>;
 		public:
 			bool Initialize()override;
-			bool Finalize()override;
+			void Finalize()override;
 			enum class LogLevel { Message, Warning, Error, Fatal };
 			/*コンソールへの出力を有効化*/
 			bool ValidateConsoleOutPut();

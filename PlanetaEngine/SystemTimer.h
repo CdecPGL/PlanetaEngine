@@ -9,7 +9,8 @@ namespace planeta_engine {
 			friend utility::SingletonTemplate<SystemTimer>;
 		public:
 			bool Initialize()override;
-			bool Finalize()override { return true; }
+			void Finalize()override {}
+
 			void IncrementFrameCount() { ++_frame_count; }
 			size_t GetCurrentFrameCount()const { return _frame_count; }
 			const utility::Time GetCurrentTimeCount()const { return utility::Time::GetCurrentTime() - _start_time; }

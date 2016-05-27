@@ -22,7 +22,7 @@ namespace planeta_engine{
 			friend utility::SingletonTemplate<ResourceManager>;
 		public:
 			bool Initialize()override;
-			bool Finalize()override;
+			void Finalize()override;
 			/*Resourceの準備。読み込んでいないタググループを読み込み、読み込み済みでいらないものを破棄リストに登録する(param:必要なタグリスト)*/
 			bool PrepareResources(const std::vector<std::string>& need_tag_groups);
 			/*未使用のタググループをアンロードする*/
@@ -41,10 +41,13 @@ namespace planeta_engine{
 					return new_res->Create(file) ? new_res : nullptr;
 				});
 			}
-			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/
-			void SetResourceListFileName(const std::string& file_name) { _resource_list_file_name = file_name; }
 			/*リソースを取得*/
 			std::shared_ptr<ResourceBase> GetResource(const std::string& id);
+
+			/*ファイルアクセサをセット。初期化前に呼び出す*/
+			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr);
+			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/
+			void SetResourceListFileName_(const std::string& file_name) { _resource_list_file_name = file_name; }
 		private:
 			ResourceManager()=default;
 			ResourceManager(const ResourceManager&) = delete;

@@ -12,7 +12,7 @@ namespace planeta_engine {
 			friend utility::SingletonTemplate<RenderManager>;
 		public:
 			bool Initialize() override;
-			bool Finalize() override;
+			void Finalize() override;
 
 			//ƒVƒXƒeƒ€ŠÖ”
 			bool Update();

@@ -8,8 +8,8 @@
 
 namespace planeta_engine {
 	class CCollider2D;
+	class CollisionGroupMatrix;
 	namespace core {
-		class CollisionGroupMatrix;
 		struct Collider2DData;
 	}
 	class EACollisionWithCollider2D;
@@ -20,7 +20,7 @@ namespace planeta_engine {
 		public:
 			CollisionWorld();
 			~CollisionWorld();
-			void SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix);
+			void SetCollisionGroupMatrix(const std::shared_ptr<const CollisionGroupMatrix>& col_matrix);
 			bool Resist(const core::Collider2DData collider_data); //引数は内部でコピーされるので一時オブジェクトでよい。
 			bool Remove(const CCollider2D* col_com_ptr);
 			bool ChangeCollisionGroup(const CCollider2D* col_com_ptr,const std::string& group_name);

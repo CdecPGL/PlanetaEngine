@@ -17,7 +17,7 @@ namespace planeta_engine {
 			/*初期化*/
 			bool Initialize()override;
 			/*終了処理*/
-			bool Finalize()override;
+			void Finalize()override;
 			/*更新*/
 			bool Update();
 			/*すべての設定をリセットする*/

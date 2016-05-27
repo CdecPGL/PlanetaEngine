@@ -15,7 +15,7 @@ namespace PlanetaEngineTest
 
 		TEST_METHOD(SystemCounterTest)
 		{
-			SystemCounter& sc = SystemCounter::instance();
+			SystemTimer& sc = SystemTimer::instance();
 			Assert::AreEqual(0u, sc.GetCurrentFrameCount(), L"初期フレームカウントが異常");
 			for (int i = 0; i < 123; ++i) { sc.IncrementFrameCount(); }
 			Assert::AreEqual(123u, sc.GetCurrentFrameCount(), L"加算後フレームカウントが異常");

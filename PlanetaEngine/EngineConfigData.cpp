@@ -1,12 +1,13 @@
 #include "boost/lexical_cast.hpp"
-#include "ConfigData.h"
+#include "EngineConfigData.h"
 #include "INIFileResource.h"
 #include "FileSystemUtility.h"
 #include "MakeResource.h"
+#include "File.h"
 
 namespace planeta_engine {
 	namespace core {
-		namespace config_data {
+		namespace engine_config {
 			std::string game::GameTitle_("NULL"); //ゲームタイトル
 			std::string game::VersionString_("0.0.0"); //バージョン文字列
 			int game::MajorVersionNumber_(0);
@@ -72,16 +73,10 @@ namespace planeta_engine {
 				}
 			}
 
-			bool LoadConfigData(const std::string& file_path) {
-				auto ini_res = MakeResource<resources::INIFileResource>();
-				//標準ファイル入力からFileを作成
-				std::shared_ptr<File> file = utility::CreateFileFromStandardFileInput(file_path);
-				if (file == nullptr) {
-					debug::SystemLog::instance().Log(debug::LogLevel::Error, "設定ファイル\"", file_path, "\"を読み込めませんでした", __FUNCTION__);
-					return false;
-				}
-				//Fileを復号化する
+			bool LoadConfigData(const std::shared_ptr<File>& file) {
+				assert(file != nullptr && file->GetStatus() == File::FileStatus::Available);
 
+				auto ini_res = MakeResource<resources::INIFileResource>();
 				//FileからINIリソースを作成する
 				if (!ini_res->Create(file)) {
 					debug::SystemLog::instance().LogError("設定ファイルをINIファイルとして読み込むことができませんでした。", __FUNCTION__);

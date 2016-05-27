@@ -63,7 +63,6 @@ namespace planeta_engine {
 	class TaskManager::Impl_ {
 	public:
 		struct TaskData;
-		core::IGameAccessor& game_;
 		//タスク群タイプ
 		using TaskGroupType = std::list<Task*>;
 		//タスクリストタイプ
@@ -100,7 +99,7 @@ namespace planeta_engine {
 
 		utility::WeakPointer<core::SceneData> scene_data_;
 	public:
-		Impl_(core::IGameAccessor& engine):game_(engine) {}
+		Impl_(){}
 		//////////////////////////////////////////////////////////////////////////
 		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
 			scene_data_ = scene_data_;
@@ -172,7 +171,7 @@ namespace planeta_engine {
 				std::function<void()>([] { debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "システムタスクを削除しようとしました。"); }) :
 				[this, tdata] { DisposeTaskRequest(*tdata); } //Disposer(システムタスクの場合は削除できないDisposerをセット)
 				);
-			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_, game_);
+			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_);
 		}
 		/*タスクをマップに登録*/
 		std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number) {
@@ -223,7 +222,7 @@ namespace planeta_engine {
 	//////////////////////////////////////////////////////////////////////////
 	//TaskManager
 	//////////////////////////////////////////////////////////////////////////
-	TaskManager::TaskManager(core::IGameAccessor& engine) :impl_(std::make_unique<Impl_>(engine)) {}
+	TaskManager::TaskManager() :impl_(std::make_unique<Impl_>()) {}
 
 	TaskManager::~TaskManager() = default;
 

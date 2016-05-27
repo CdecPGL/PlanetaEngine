@@ -15,9 +15,10 @@ namespace planeta_engine {
 		class SaveDataManager final: public utility::SingletonTemplate<SaveDataManager>{
 			friend class utility::SingletonTemplate<SaveDataManager>;
 		public:
-			void SetFileAccessor(const std::shared_ptr<FileAccessor>& file_accessor);
+			//ファイルアクセサを設定。初期化前に呼び出す。
+			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor);
 			bool Initialize()override;
-			bool Finalize()override;
+			void Finalize()override;
 
 			struct UserDataHeader {
 				utility::DateTime update_time;

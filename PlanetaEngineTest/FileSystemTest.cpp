@@ -23,7 +23,7 @@ namespace PlanetaEngineTest
 	public:
 		FileSystemTest() {
 			using namespace planeta_engine::debug;
-			SystemCounter::instance().Initialize();
+			SystemTimer::instance().Initialize();
 			SystemLog::instance().Initialize();
 
 			FileSystemManager::instance().CreateFileAccessor("archive_test", std::make_shared<ArchiveManipulator>(kTestArchive, kTestArchivePass), AccessMode::ReadWrite);
@@ -35,7 +35,7 @@ namespace PlanetaEngineTest
 			using namespace planeta_engine::debug;
 			FileSystemManager::instance().Finalize();
 			SystemLog::instance().Finalize();
-			SystemCounter::instance().Finalize();
+			SystemTimer::instance().Finalize();
 		}
 
 		TEST_METHOD(FileLoadManagerTest)

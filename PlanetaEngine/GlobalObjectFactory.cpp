@@ -4,7 +4,7 @@
 
 namespace planeta_engine {
 	namespace core {
-		GlobalObjectFactory& GlobalObjectFactory::GetInstance() {
+		GlobalObjectFactory& GlobalObjectFactory::instance() {
 			static GlobalObjectFactory gof;
 			return gof;
 		}

@@ -8,7 +8,6 @@
 namespace planeta_engine {
 	class SceneAccessorForTask;
 	namespace core {
-		class IGameAccessor;
 		struct SceneData;
 		enum class SystemTaskSlot;
 	}
@@ -16,7 +15,7 @@ namespace planeta_engine {
 	class TaskManager final : public core::SceneModule
 		, public TaskManagerPublicInterface {
 	public:
-		TaskManager(core::IGameAccessor& game);
+		TaskManager();
 		~TaskManager();
 		/*‰Šú‰»ˆ—*/
 		bool Initialize()override { return true; }

@@ -146,24 +146,17 @@ namespace planeta_engine{
 
 		bool ResourceManager::Initialize()
 		{
-			file_accessor_ = FileSystemManager::instance().GetFileAccessor(system_variables::ResourceFileAccessorID);
-			if (!file_accessor_) {
-				debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルアクセサの取得に失敗しました。", __FUNCTION__);
-				return false;
-			}
+			assert(file_accessor_ != nullptr);
 			if (_LoadResourceList() == false) {
 				debug::SystemLog::instance().LogError("初期化に失敗しました。リソースリストの取得に失敗しました。", __FUNCTION__);
 				return false; 
 			}
-			debug::SystemLog::instance().LogMessage("初期化しました。", __FUNCTION__);
 			return true;
 		}
 
-		bool ResourceManager::Finalize()
+		void ResourceManager::Finalize()
 		{
 			_UnloadAllLoadedResources();
-			debug::SystemLog::instance().LogMessage("終了処理を行いました。", __FUNCTION__);
-			return true;
 		}
 
 		void ResourceManager::_UnloadAllLoadedResources()
@@ -238,6 +231,10 @@ namespace planeta_engine{
 				if (need_tags_set.find(tagp.first) == need_tags_set.end()) { no_use.push_back(tagp.first); }
 			}
 			return std::make_pair(new_use, no_use);
+		}
+
+		void ResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
+			file_accessor_ = file_accessor_;
 		}
 
 	}

@@ -13,41 +13,24 @@
 #include "SingletonTemplate.h"
 
 namespace planeta_engine {
-	namespace core {
-		class Game;
-	}
+	/*ゲームのステータス*/
+	enum class GameStatus { Continue, Quit, Error };
 	/*ゲームクラスはこのクラスを継承し、初期化を定義する。*/
 	class PlanetaEngine final : public utility::SingletonTemplate<PlanetaEngine> {
 		friend utility::SingletonTemplate<PlanetaEngine>;
 	public:
-		/*ゲームの作成(初期化前に行う)*/
-		template<class GameType>
-		bool CreateGameInstance() {
-			game_ = std::make_unique<GameType>();
-			return game_ != nullptr;
-		}
 		/*エンジンの初期化*/
 		bool Initialize()override;
 		/*エンジンの終了処理*/
-		bool Finalize()override;
-		/*エンジンのステータス*/
-		enum class Status { Continue, Quit, Error };
+		void Finalize()override;
 		/*エンジンの更新(初期化が正常に行われていない状態での呼び出しは未定義動作)*/
-		Status Update();
+		GameStatus Update();
 	private:
 		PlanetaEngine();
 		~PlanetaEngine();
-		PlanetaEngine(const PlanetaEngine&) = delete;
-		PlanetaEngine(PlanetaEngine&&) = delete;
-		PlanetaEngine& operator=(const PlanetaEngine&) = delete;
-		PlanetaEngine& operator=(PlanetaEngine&&) = delete;
 		bool is_initialized_;
-		std::unique_ptr<core::Game> game_;
 
-		bool InitializeEngine();
-		void FinalzieEngine();
-
-		bool InitializeDebugSystem();
-		void FinalizeDebugSystem();
+		class Impl_;
+		std::unique_ptr<Impl_> impl_;
 	};
 }

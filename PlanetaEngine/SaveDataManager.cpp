@@ -121,10 +121,7 @@ namespace planeta_engine {
 		SaveDataManager::~SaveDataManager() = default;
 
 		bool SaveDataManager::Initialize() {
-			if (impl_->file_accessor_ == nullptr) {
-				debug::SystemLog::instance().LogError("ファイルアクセサが設定されていません。", __FUNCTION__);
-				return false;
-			}
+			assert(impl_->file_accessor_ != nullptr);
 			//セーブデータ情報の読み込み
 			if (!impl_->LoadSaveDataInformation()) { return false; }
 			//共通セーブデータのロード
@@ -134,12 +131,11 @@ namespace planeta_engine {
 			return true;
 		}
 
-		bool SaveDataManager::Finalize() {
+		void SaveDataManager::Finalize() {
 			Save();
-			return true;
 		}
 
-		void SaveDataManager::SetFileAccessor(const std::shared_ptr<FileAccessor>& file_accessor) {
+		void SaveDataManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor) {
 			impl_->file_accessor_ = file_accessor;
 		}
 

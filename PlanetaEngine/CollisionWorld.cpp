@@ -153,7 +153,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		void CollisionWorld::SetCollisionGroupMatrix(const std::shared_ptr<const core::CollisionGroupMatrix>& col_matrix) { 
+		void CollisionWorld::SetCollisionGroupMatrix(const std::shared_ptr<const CollisionGroupMatrix>& col_matrix) { 
 			auto collision_group_list = std::move(col_matrix->GetCollisionGroupList());
 			for (const auto& group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());

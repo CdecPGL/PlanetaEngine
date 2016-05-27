@@ -3,7 +3,6 @@
 #include "SceneData.h"
 #include "SystemTaskSlot.h"
 #include "TaskManager.h"
-#include "IGameAccessor.h"
 #include "TransformSystem.h"
 
 #include "CollisionWorld.h"
@@ -15,7 +14,7 @@ namespace planeta_engine {
 
 		bool SceneSystemSetUpper::operator()(Scene& scene)
 		{
-			scene.collision_world_->SetCollisionGroupMatrix(scene.game_accessor().GetCollisionGroupMatrix());
+			scene.collision_world_->SetCollisionGroupMatrix(scene.GetCollisionGroupMatrix());
 			//ゲームタスク
 			auto& t_mgr = *scene.task_manager_;
 			//システムタスク追加

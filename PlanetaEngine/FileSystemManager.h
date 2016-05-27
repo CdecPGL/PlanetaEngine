@@ -14,7 +14,7 @@ namespace planeta_engine {
 		friend utility::SingletonTemplate<FileSystemManager>;
 	public:
 		bool Initialize()override;
-		bool Finalize()override;
+		void Finalize()override;
 		std::shared_ptr<FileAccessor> CreateFileAccessor(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode);
 		std::shared_ptr<FileAccessor> GetFileAccessor(const std::string& id)const;
 		bool DeleteCache();
