@@ -17,6 +17,7 @@ namespace planeta_engine {
 		void Finalize()override;
 		std::shared_ptr<FileAccessor> CreateFileAccessor(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode);
 		std::shared_ptr<FileAccessor> GetFileAccessor(const std::string& id)const;
+		bool DisposeFileAccessor(const std::string& id);
 		bool DeleteCache();
 		size_t GetCacheSize()const;
 	private:

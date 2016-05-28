@@ -25,6 +25,8 @@ namespace planeta_engine {
 		bool SaveFile(const std::string& file_name, const File& file);
 		bool SaveFile(const std::string& file_name, File&& file);
 		bool SaveAllFilesFromCache();
+
+		bool is_valid()const;
 	private:
 		std::shared_ptr<FileManipulatorBase> manipulator_;
 		mutable std::unordered_map<std::string, std::shared_ptr<File>> file_caches_;

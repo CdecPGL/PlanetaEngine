@@ -28,6 +28,10 @@ namespace planeta_engine {
 	}
 
 	std::shared_ptr<const File> FileAccessor::LoadFile(const std::string& file_name) const {
+		if (is_valid() == false) {
+			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
+			return nullptr;
+		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Read) != access_mode::Read) {
 			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "読み込み属性がありません。");
 			return nullptr;
@@ -49,6 +53,10 @@ namespace planeta_engine {
 	}
 
 	bool FileAccessor::LoadAllFilesToCache() {
+		if (is_valid() == false) {
+			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
+			return false;
+		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Read) != access_mode::Read) {
 			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "読み込み属性がありません。");
 			return false;
@@ -62,6 +70,10 @@ namespace planeta_engine {
 	}
 
 	bool FileAccessor::SaveFile(const std::string& file_name, const File& file) {
+		if (is_valid() == false) {
+			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
+			return false;
+		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
 			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "書き込み属性がありません。");
 			return false;
@@ -72,6 +84,10 @@ namespace planeta_engine {
 	}
 
 	bool FileAccessor::SaveFile(const std::string& file_name, File&& file) {
+		if (is_valid() == false) {
+			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
+			return false;
+		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
 			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "書き込み属性がありません。");
 			return false;
@@ -82,6 +98,10 @@ namespace planeta_engine {
 	}
 
 	bool FileAccessor::SaveAllFilesFromCache() {
+		if (is_valid() == false) {
+			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
+			return false;
+		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
 			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "書き込み属性がありません。");
 			return false;
@@ -109,6 +129,10 @@ namespace planeta_engine {
 	}
 
 	void FileAccessor::DeleteCache() {
+		if (is_valid() == false) {
+			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
+			return;
+		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) == access_mode::Write) {
 			SaveAllFilesFromCache();
 		}
@@ -122,13 +146,17 @@ namespace planeta_engine {
 	}
 
 	bool FileAccessor::Initialize() {
-		if (is_initialized_) { return true; } //初期化済みだったら飛ばす
+		if (is_initialized_) {  //初期化済みだったら飛ばす
+			PE_LOG_WARNING("すでに初期化されています。");
+			return true;
+		}
 		if (manipulator_) {
 			if (!manipulator_->Initialize()) {
 				debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルマニピュレータの初期化に失敗しました。", __FUNCTION__);
 				return false;
 			} else {
 				debug::SystemLog::instance().LogMessage("初期化に成功しました。", __FUNCTION__);
+				is_initialized_ = true;
 				return true;
 			}
 		} else {
@@ -138,7 +166,10 @@ namespace planeta_engine {
 	}
 
 	void FileAccessor::Finalize() {
-		if (!is_initialized_) { return; } //初期化されていなかったら飛ばす
+		if (!is_initialized_) { //初期化されていなかったら飛ばす
+			PE_LOG_WARNING("終了処理を行う必要はありません。");
+			return; 
+		} 
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) == access_mode::Write) { //書き込み属性があったら
 			SaveAllFilesFromCache(); //キャッシュの内容をすべて保存する。
 		}
@@ -149,4 +180,9 @@ namespace planeta_engine {
 	FileAccessor::FileAccessor(const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode) :manipulator_(manipulator), mode_(mode) {
 
 	}
+
+	bool FileAccessor::is_valid() const {
+		return is_initialized_;
+	}
+
 }

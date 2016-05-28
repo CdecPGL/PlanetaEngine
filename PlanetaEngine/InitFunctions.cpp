@@ -38,7 +38,7 @@ namespace planeta_engine {
 				//システムログ出力先にファイル出力を追加
 				debug::SystemLog::instance().AddLogOutStream(LogFileOutPutStream);
 				if (debug::SystemLog::instance().Initialize()) {
-					return{ true, [] {debug::SystemLog::instance().Finalize(); LogFileOutPutStream.close(); } };
+					return{ true, [] {debug::SystemLog::instance().Finalize(); LogFileOutPutStream.flush(); LogFileOutPutStream.close(); } };
 				} else {
 					assert(false);
 					return{ false,[] {} };

@@ -6,6 +6,7 @@
 
 #include "InitFunctions.h"
 #include "ProgramDefinitionData.h"
+#include "SystemVariables.h"
 
 #include "PlanetaEngine.h"
 
@@ -40,23 +41,27 @@ namespace planeta_engine {
 			//////////////////////////////////////////////////////////////////////////
 			{
 				auto ret = init_funcs::InitializeLogSystem();
-				if (std::get<0>(ret) == false) { return false; } 
+				if (std::get<0>(ret) == false) { assert(false); return false; }
 				else { finalize_handls_.push_front(std::get<1>(ret)); }
 			}
 			//////////////////////////////////////////////////////////////////////////
 			//ファイルシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			FileSystemManager& flm = FileSystemManager::instance();
-			//リソース用ファイルアクセサ設定
-			auto resource_file_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::Resource);
-			//SaveData用ファイルアクセサ設定
-			auto savedata_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::SaveData);
-			//system用ファイルアクセサ設定
-			auto system_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::System);
-			//config用ファイルアクセサ設定
-			auto config_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::Config);
 			if(flm.Initialize()){ finalize_handls_.push_front([] {FileSystemManager::instance().Finalize(); }); }
 			else { PE_LOG_FATAL("ファイルシステムの初期化に失敗しました。"); return false; }
+			//リソース用ファイルアクセサ設定
+			auto resource_file_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::Resource);
+			if (resource_file_accesor == nullptr) { return false; }
+			//SaveData用ファイルアクセサ設定
+			auto savedata_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::SaveData);
+			if (savedata_dir_accesor == nullptr) { return false; }
+			//system用ファイルアクセサ設定
+			auto system_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::System);
+			if (system_dir_accesor == nullptr) { return false; }
+			//config用ファイルアクセサ設定
+			auto config_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::Config);
+			if (config_dir_accesor == nullptr) { return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//エンジン設定の読み込み
 			//////////////////////////////////////////////////////////////////////////
@@ -119,6 +124,11 @@ namespace planeta_engine {
 			scene_manager_->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(std::move(pdd.collision_group_matrix)));
 			if (scene_manager_->Initialize()) { finalize_handls_.push_front([&srn_mgr = *scene_manager_] {srn_mgr.Finalize(); }); }
 			else { PE_LOG_FATAL("シーンシステムの初期化に失敗しました。"); return false; }
+			//////////////////////////////////////////////////////////////////////////
+			//キャッシュなどの削除
+			//////////////////////////////////////////////////////////////////////////
+			flm.DisposeFileAccessor(system_variables::file_system::SystemFileAccessorID); //システムファイルアクセサ削除
+			flm.DeleteCache(); //キャッシュ削除
 			//////////////////////////////////////////////////////////////////////////
 			//ゲームの開始準備
 			//////////////////////////////////////////////////////////////////////////

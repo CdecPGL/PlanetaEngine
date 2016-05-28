@@ -14,11 +14,7 @@ namespace planeta_engine {
 	}
 
 	bool FileSystemManager::Initialize() {
-		assert(is_initialized_ == false);
 		bool error = false;
-		for (auto& accessor : accessors_) {
-			error = !accessor.second->Initialize();
-		}
 		if (error) {
 			debug::SystemLog::instance().LogError("初期化に失敗しました。FileAccessorの初期化に失敗しました。", __FUNCTION__);
 		}
@@ -51,7 +47,13 @@ namespace planeta_engine {
 
 	std::shared_ptr<FileAccessor> FileSystemManager::CreateFileAccessor(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode) {
 		auto accessor = CreateFileAccessorCore(id, manipulator, mode);
-		return accessor;
+		if (accessor->Initialize()) {
+			accessors_.emplace(id, accessor);
+			return accessor;
+		} else {
+			PE_LOG_ERROR("ファイルアクセサの初期化に失敗しました。");
+			return nullptr;
+		}
 	}
 
 	std::shared_ptr<FileAccessor> FileSystemManager::GetFileAccessor(const std::string& id) const {
@@ -62,9 +64,23 @@ namespace planeta_engine {
 	}
 
 	std::shared_ptr<FileAccessor> FileSystemManager::CreateFileAccessorCore(const std::string& id, const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode) {
-		assert(is_initialized_ == false); //これは初期化前に呼ぶ
+		assert(is_initialized_ == true); //これは初期化後に呼ぶ
 		auto accessor = std::make_shared<FileAccessor>(manipulator, mode);
-		accessors_.emplace(id, accessor);
 		return std::move(accessor);
 	}
+
+	bool FileSystemManager::DisposeFileAccessor(const std::string& id) {
+		auto it = accessors_.find(id);
+		if (it == accessors_.end()) { 
+			PE_LOG_ERROR("指定されたファイルアクセサ\"", id, "\"は存在しないため破棄できませんでした。");
+			return false; 
+		} 
+		else {
+			it->second->Finalize();
+			accessors_.erase(it);
+			PE_LOG_MESSAGE("ファイルアクセサ\"", id, "\"を破棄しました。");
+			return true;
+		}
+	}
+
 }
