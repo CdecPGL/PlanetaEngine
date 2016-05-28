@@ -60,7 +60,7 @@ namespace planeta_engine{
 			const std::vector<std::string>& ntags = _next_scene_setupper->GetUseTagGroups();
 			if (core::ResourceManager::instance().PrepareResources(ntags) == false) {
 				PE_LOG_ERROR("シーンの読み込みに失敗しました。指定されたシーン(", scene_name, ")のリソース準備に失敗しました。");
-				return false; 
+				return false;
 			} //リソースの準備ができなかった
 			//準備完了
 			_next_scene_id = scene_name;

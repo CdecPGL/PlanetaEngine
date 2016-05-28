@@ -33,7 +33,7 @@ namespace planeta_engine {
 		template<class C>
 		utility::WeakPointer<C> AddSystemTask(core::SystemTaskSlot sys_task_slot) {
 			static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");
-			auto task = std::shared_ptr<C>();
+			auto task = std::make_shared<C>();
 			return std::static_pointer_cast<C>(RegisterSystemTask(task, sys_task_slot));
 		}
 
