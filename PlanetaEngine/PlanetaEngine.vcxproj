@@ -192,7 +192,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Matrix2_2.h" />
     <ClInclude Include="Matrix3_3.h" />
-    <ClInclude Include="pe_assert.h" />
     <ClInclude Include="TaskSystemSetUpper.h" />
     <ClInclude Include="AccessorTemplate.h" />
     <ClInclude Include="SaveDataManager.h" />

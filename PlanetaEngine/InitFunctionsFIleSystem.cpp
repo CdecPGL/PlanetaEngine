@@ -15,7 +15,7 @@ namespace planeta_engine {
 				FileSystemManager& flm = FileSystemManager::instance();
 				switch (kind) {
 				case FileAccessorKind::Resource: //リソース用ファイルアクセサ設定(速度優先の暗号化)
-					return flm.CreateFileAccessor(system_variables::file_system::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::file_system::DevResourceDataFolderName, false), AccessMode::ReadOnly);
+					return flm.CreateFileAccessor(system_variables::file_system::ResourceFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::file_system::ResourceDataDirectory + "\\" + system_variables::file_system::DevResourceDataFolderName, false), AccessMode::ReadOnly);
 				case FileAccessorKind::SaveData://SaveData用ファイルアクセサ設定(速度優先の暗号化)
 					return flm.CreateFileAccessor(system_variables::file_system::SaveDataFileAccessorID, std::make_shared<NormalFolderManipulator>(system_variables::file_system::SaveDataDirectory, true), AccessMode::ReadWrite);
 				case FileAccessorKind::System://system用ファイルアクセサ設定(高強度な暗号化)

@@ -1,3 +1,5 @@
+#include "DxLib.h"
+
 #include "SystemLog.h"
 #include "SystemTimer.h"
 #include "SystemVariables.h"
@@ -5,7 +7,6 @@
 #include <iostream>
 #include <windows.h>
 #include <cassert>
-#include "pe_assert.h"
 #include "PEDateTime.h"
 #include "WindowsUtility.h"
 
@@ -125,7 +126,19 @@ namespace planeta_engine {
 
 			void _AssertionByLevel(LogLevel level,const std::string err_str) {
 				if (level == LogLevel::Fatal) {
-					pe_assert(false, err_str.c_str());
+#ifndef NDEBUG
+					int ret = MessageBox(GetMainWindowHandle(), "致命的なエラーが発生しました。ブレークポイントを作成しますか？", "致命的エラー", MB_YESNO | MB_ICONERROR | MB_APPLMODAL);
+					switch (ret) {
+					case IDYES:
+						DebugBreak();
+						break;
+					case IDNO:
+						return;
+					default:
+						assert(false);
+						return;
+					}
+#endif
 				}
 			}
 		private:

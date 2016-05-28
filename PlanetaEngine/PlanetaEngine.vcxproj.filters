@@ -603,9 +603,6 @@
     <ClInclude Include="Event.h">
       <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
     </ClInclude>
-    <ClInclude Include="pe_assert.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>

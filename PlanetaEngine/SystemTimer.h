@@ -13,7 +13,7 @@ namespace planeta_engine {
 
 			void IncrementFrameCount() { ++_frame_count; }
 			size_t GetCurrentFrameCount()const { return _frame_count; }
-			const utility::Time GetCurrentTimeCount()const { return utility::Time::GetCurrentTime() - _start_time; }
+			const utility::Time GetCurrentTimeCount()const;
 		private:
 			SystemTimer() = default;
 			size_t _frame_count = 0;

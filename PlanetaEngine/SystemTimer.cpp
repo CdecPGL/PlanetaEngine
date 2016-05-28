@@ -12,4 +12,7 @@ namespace planeta_engine {
 		_start_time = utility::Time::GetCurrentTime();
 		return true;
 	}
+
+	const utility::Time debug::SystemTimer::GetCurrentTimeCount() const { return utility::Time::GetCurrentTime() - _start_time; }
+
 }
