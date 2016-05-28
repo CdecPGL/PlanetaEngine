@@ -13,12 +13,17 @@ namespace planeta_engine {
 			vector<string> lines;
 			string buf;
 			while (getline(fis, buf)) {
+				//コメント除去
+				auto pos = buf.find_first_of(';');
+				if (pos != std::string::npos) {
+					buf.erase(pos, buf.size() - pos);
+				}
 				//改行コード除去
 				utility::RemoveLineFeedCode(buf);
 				//スペースとタブ除去
 				utility::RemoveSpaceAndTab(buf);
-				//空行でもコメント行でもなかったら行リストに追加
-				if (buf.size() != 0 && buf[0] != ';') {
+				//空行でなかったら行リストに追加
+				if (buf.size() != 0) {
 					lines.push_back(move(buf));
 				}
 			}
