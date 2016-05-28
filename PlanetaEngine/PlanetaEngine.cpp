@@ -189,8 +189,8 @@ namespace planeta_engine {
 
 	void PlanetaEngine::Finalize() {
 		if (!is_initialized_) { assert(false); return; }
+		PE_LOG_MESSAGE("PlanetaEngineを終了します。");
 		impl_->FinalizeSubSystems();
-		PE_LOG_MESSAGE("PlanetaEngineを終了しました。");
 	}
 
 	GameStatus PlanetaEngine::Update() {

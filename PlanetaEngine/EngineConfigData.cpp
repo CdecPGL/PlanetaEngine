@@ -30,7 +30,7 @@ namespace planeta_engine {
 				bool GetSection(const INIFileResource& ini, const std::string& section_name, SectionDataType& dst) {
 					auto it = ini.find(section_name);
 					if (it == ini.end()) {
-						SystemLog::instance().Log(LogLevel::Error, __FUNCTION__, "セクション\"", section_name, "\"が存在しません。");
+						PE_LOG_ERROR("セクション\"", section_name, "\"が存在しません。");
 						return false;
 					}
 					dst = *it;
@@ -40,7 +40,7 @@ namespace planeta_engine {
 				bool SetConfigData(const SectionDataType& section, const std::string& parameter_name, bool& dst) {
 					auto it = section.second.find(parameter_name);
 					if (it == section.second.end()) {
-						SystemLog::instance().Log(LogLevel::Error, __FUNCTION__, "セクション\"", section.first, "\"にパラメータ\"", parameter_name, "\"が存在しません。");
+						PE_LOG_ERROR("セクション\"", section.first, "\"にパラメータ\"", parameter_name, "\"が存在しません。");
 						return false;
 					}
 					if (it->second[0] == 't' || it->second[0] == 'T') { dst = true; } //一文字目がtだったらtrue
@@ -49,7 +49,7 @@ namespace planeta_engine {
 						try {
 							dst = boost::lexical_cast<bool>(it->second);
 						} catch (boost::bad_lexical_cast&) {
-							SystemLog::instance().Log(LogLevel::Error, __FUNCTION__, "セクション\"", section.first, "\"のパラメータ\"", parameter_name, "\"の値が不正です。");
+							PE_LOG_ERROR("セクション\"", section.first, "\"のパラメータ\"", parameter_name, "\"の値が不正です。");
 							return false;
 						}
 					}
@@ -60,13 +60,13 @@ namespace planeta_engine {
 				bool SetConfigData(const SectionDataType& section, const std::string& parameter_name, T& dst) {
 					auto it = section.second.find(parameter_name);
 					if (it == section.second.end()) {
-						SystemLog::instance().Log(LogLevel::Error, __FUNCTION__, "セクション\"", section.first, "\"にパラメータ\"", parameter_name, "\"が存在しません。");
+						PE_LOG_ERROR("セクション\"", section.first, "\"にパラメータ\"", parameter_name, "\"が存在しません。");
 						return false;
 					}
 					try {
 						dst = boost::lexical_cast<T>(it->second);
 					} catch (boost::bad_lexical_cast&) {
-						SystemLog::instance().Log(LogLevel::Error, __FUNCTION__, "セクション\"", section.first, "\"のパラメータ\"", parameter_name, "\"の値が不正です。");
+						PE_LOG_ERROR("セクション\"", section.first, "\"のパラメータ\"", parameter_name, "\"の値が不正です。");
 						return false;
 					}
 					return true;
@@ -79,7 +79,7 @@ namespace planeta_engine {
 				auto ini_res = MakeResource<resources::INIFileResource>();
 				//FileからINIリソースを作成する
 				if (!ini_res->Create(file)) {
-					debug::SystemLog::instance().LogError("設定ファイルをINIファイルとして読み込むことができませんでした。", __FUNCTION__);
+					PE_LOG_ERROR("設定ファイルをINIファイルとして読み込むことができませんでした。");
 					return false;
 				}
 				//各種設定データを取得する
@@ -109,7 +109,7 @@ namespace planeta_engine {
 					//設定をログに出力
 					using namespace debug;
 					auto& sys_log = SystemLog::instance();
-					sys_log.Log(LogLevel::Message, __FUNCTION__, "システム設定を読み込みました。");
+					PE_LOG_MESSAGE("エンジン設定を読み込みました。");
 					sys_log.SimpleLog("--------システム設定情報--------");
 					sys_log.SimpleLog("ゲームタイトル : ", game::GameTitle());
 					sys_log.SimpleLog("ゲームバージョン : ", game::VersionString());
@@ -121,7 +121,7 @@ namespace planeta_engine {
 					sys_log.SimpleLog("ユーザーによるウインドウモードの設定 : ", user::WindowModeConfigurable() ? "有効" : "無効");
 					sys_log.SimpleLog("--------------------------------");
 				} else { //設定データ取得失敗
-					debug::SystemLog::instance().LogError("設定ファイルからデータを取得することができませんでした。", __FUNCTION__);
+					PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。");
 					return false;
 				}
 				return true;

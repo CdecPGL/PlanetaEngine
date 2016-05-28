@@ -33,7 +33,7 @@ namespace planeta_engine {
 			return nullptr;
 		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Read) != access_mode::Read) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "読み込み属性がありません。");
+			PE_LOG_ERROR("読み込み属性がありません。");
 			return nullptr;
 		}
 		assert(manipulator_ != nullptr);
@@ -44,7 +44,7 @@ namespace planeta_engine {
 				file_caches_.emplace(file_name, file_ptr);
 				return file_ptr;
 			} else {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイルを読み込めませんでした。");
+				PE_LOG_ERROR("ファイルを読み込めませんでした。");
 				return nullptr;
 			}
 		} else {
@@ -58,7 +58,7 @@ namespace planeta_engine {
 			return false;
 		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Read) != access_mode::Read) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "読み込み属性がありません。");
+			PE_LOG_ERROR("読み込み属性がありません。");
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -75,7 +75,7 @@ namespace planeta_engine {
 			return false;
 		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "書き込み属性がありません。");
+			PE_LOG_ERROR("書き込み属性がありません。");
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -89,7 +89,7 @@ namespace planeta_engine {
 			return false;
 		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "書き込み属性がありません。");
+			PE_LOG_ERROR("書き込み属性がありません。");
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -103,7 +103,7 @@ namespace planeta_engine {
 			return false;
 		}
 		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "書き込み属性がありません。");
+			PE_LOG_ERROR("書き込み属性がありません。");
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -118,7 +118,7 @@ namespace planeta_engine {
 		assert(manipulator_ != nullptr);
 		auto file = manipulator_->LoadFile(file_name);
 		if (!file) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", file_name, "が読み込めませんでした。");
+			PE_LOG_ERROR("ファイル", file_name, "が読み込めませんでした。");
 		}
 		return file;
 	}
@@ -152,15 +152,15 @@ namespace planeta_engine {
 		}
 		if (manipulator_) {
 			if (!manipulator_->Initialize()) {
-				debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルマニピュレータの初期化に失敗しました。", __FUNCTION__);
+				PE_LOG_ERROR("初期化に失敗しました。ファイルマニピュレータの初期化に失敗しました。");
 				return false;
 			} else {
-				debug::SystemLog::instance().LogMessage("初期化に成功しました。", __FUNCTION__);
+//				PE_LOG_MESSAGE("初期化に成功しました。");
 				is_initialized_ = true;
 				return true;
 			}
 		} else {
-			debug::SystemLog::instance().LogError("初期化に失敗しました。ファイルマニピュレータがセットされていません。", __FUNCTION__);
+			PE_LOG_ERROR("初期化に失敗しました。ファイルマニピュレータがセットされていません。");
 			return false;
 		}
 	}

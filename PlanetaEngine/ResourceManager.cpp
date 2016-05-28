@@ -234,7 +234,7 @@ namespace planeta_engine{
 		}
 
 		void ResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
-			file_accessor_ = file_accessor_;
+			file_accessor_ = f_scsr;
 		}
 
 	}
