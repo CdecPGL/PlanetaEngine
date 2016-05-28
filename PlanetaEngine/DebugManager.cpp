@@ -36,7 +36,7 @@ namespace planeta_engine {
 		DebugManager::~DebugManager() = default;
 
 		bool DebugManager::Initialize() {
-			SystemLog::instance().LogMessage("デバッグ情報ウインドウは未実装。", __FUNCTION__);
+			PE_LOG_WARNING("DebugManagerは未実装どす。");
 			return true;
 			//HWND m_hWnd = GetMainWindowHandle();
 			//HINSTANCE hInst = GetModuleHandle(NULL);

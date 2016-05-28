@@ -123,11 +123,12 @@ namespace planeta_engine {
 		bool SaveDataManager::Initialize() {
 			assert(impl_->file_accessor_ != nullptr);
 			//セーブデータ情報の読み込み
-			if (!impl_->LoadSaveDataInformation()) { return false; }
+			//if (!impl_->LoadSaveDataInformation()) { return false; }
 			//共通セーブデータのロード
-			if (!impl_->LoadCommonSaveData()) { return false; }
+			//if (!impl_->LoadCommonSaveData()) { return false; }
 
-			debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "セーブデータを正常に読み込みました。");
+			//debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "セーブデータを正常に読み込みました。");
+			PE_LOG_WARNING("SaveDataManagerは未実装です。");
 			return true;
 		}
 
