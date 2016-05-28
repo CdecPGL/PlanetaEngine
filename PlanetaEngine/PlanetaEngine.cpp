@@ -29,6 +29,7 @@ namespace planeta_engine {
 		std::unique_ptr<SceneManager> scene_manager_;
 	public:
 		Impl_() :scene_manager_(std::make_unique<SceneManager>()) {}
+		bool is_initialized = false;
 		//エンジンの初期化
 		bool InitializeSubSystems() {
 			//////////////////////////////////////////////////////////////////////////
@@ -166,19 +167,19 @@ namespace planeta_engine {
 		}
 	};
 
-	PlanetaEngine::PlanetaEngine() :is_initialized_(false), impl_(std::make_unique<Impl_>()) {
+	PlanetaEngine::PlanetaEngine() :impl_(std::make_unique<Impl_>()) {
 
 	}
 
 	PlanetaEngine::~PlanetaEngine() {
-		assert(!is_initialized_);
+		assert(impl_->is_initialized == false);
 	}
 
 	bool PlanetaEngine::Initialize() {
-		if (is_initialized_) { assert(false); return false; }
+		if (impl_->is_initialized) { assert(false); return false; }
 		if (impl_->InitializeSubSystems()) {
 			PE_LOG_MESSAGE("PlanetaEngineが正常に初期化されました。");
-			is_initialized_ = true;
+			impl_->is_initialized = true;
 			return true;
 		} else {
 			PE_LOG_FATAL("PlanetaEngineの初期化に失敗しました。");
@@ -188,9 +189,10 @@ namespace planeta_engine {
 	}
 
 	void PlanetaEngine::Finalize() {
-		if (!is_initialized_) { assert(false); return; }
+		if (impl_->is_initialized==false) { assert(false); return; }
 		PE_LOG_MESSAGE("PlanetaEngineを終了します。");
 		impl_->FinalizeSubSystems();
+		impl_->is_initialized = false;
 	}
 
 	GameStatus PlanetaEngine::Update() {

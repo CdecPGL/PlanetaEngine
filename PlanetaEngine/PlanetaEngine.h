@@ -28,7 +28,6 @@ namespace planeta_engine {
 	private:
 		PlanetaEngine();
 		~PlanetaEngine();
-		bool is_initialized_;
 
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
