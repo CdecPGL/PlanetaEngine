@@ -133,7 +133,7 @@ namespace planeta_engine {
 		}
 
 		void SaveDataManager::Finalize() {
-			Save();
+			//Save();
 		}
 
 		void SaveDataManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor) {
