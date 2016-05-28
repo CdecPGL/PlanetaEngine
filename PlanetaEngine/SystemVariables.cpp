@@ -16,7 +16,7 @@ namespace planeta_engine{
 				const std::string UserConfigFileName("user_config.ini");
 				const std::string KeyConfigFileName("key_config.ini");
 				const std::string LogOutPutFileName("pe_log.txt");
-				const std::string ResourceListFileName("resource_list.csv");
+				const std::string ResourceListFileName("resource_list");
 				const std::string ResourceDataArchiveFileName("data");
 				const std::string DevResourceDataFolderName("dev_data");
 

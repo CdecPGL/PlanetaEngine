@@ -110,7 +110,7 @@ namespace planeta_engine {
 					using namespace debug;
 					auto& sys_log = SystemLog::instance();
 					PE_LOG_MESSAGE("エンジン設定を読み込みました。");
-					sys_log.SimpleLog("--------システム設定情報--------");
+					sys_log.SimpleLog("--------エンジン設定情報--------");
 					sys_log.SimpleLog("ゲームタイトル : ", game::GameTitle());
 					sys_log.SimpleLog("ゲームバージョン : ", game::VersionString());
 					sys_log.SimpleLog("ウインドウモード : ", engine::WindowMode() ? "有効" : "無効");

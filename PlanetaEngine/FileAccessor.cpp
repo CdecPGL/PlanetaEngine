@@ -32,8 +32,8 @@ namespace planeta_engine {
 			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
 			return nullptr;
 		}
-		if ((ConvertAccessModeToUint32(mode_) | access_mode::Read) != access_mode::Read) {
-			PE_LOG_ERROR("読み込み属性がありません。");
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Read) != access_mode::Read) {
+			PE_LOG_ERROR("読み込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
 			return nullptr;
 		}
 		assert(manipulator_ != nullptr);
@@ -57,8 +57,8 @@ namespace planeta_engine {
 			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
 			return false;
 		}
-		if ((ConvertAccessModeToUint32(mode_) | access_mode::Read) != access_mode::Read) {
-			PE_LOG_ERROR("読み込み属性がありません。");
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Read) != access_mode::Read) {
+			PE_LOG_ERROR("読み込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -74,8 +74,8 @@ namespace planeta_engine {
 			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
 			return false;
 		}
-		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
-			PE_LOG_ERROR("書き込み属性がありません。");
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Write) != access_mode::Write) {
+			PE_LOG_ERROR("書き込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -88,8 +88,8 @@ namespace planeta_engine {
 			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
 			return false;
 		}
-		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
-			PE_LOG_ERROR("書き込み属性がありません。");
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Write) != access_mode::Write) {
+			PE_LOG_ERROR("書き込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -102,8 +102,8 @@ namespace planeta_engine {
 			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
 			return false;
 		}
-		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) != access_mode::Write) {
-			PE_LOG_ERROR("書き込み属性がありません。");
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Write) != access_mode::Write) {
+			PE_LOG_ERROR("書き込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
 			return false;
 		}
 		assert(manipulator_ != nullptr);
@@ -133,7 +133,7 @@ namespace planeta_engine {
 			PE_LOG_ERROR("無効なファイルアクセサです。初期化されていないか、破棄された可能性があります。");
 			return;
 		}
-		if ((ConvertAccessModeToUint32(mode_) | access_mode::Write) == access_mode::Write) {
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Write) == access_mode::Write) {
 			SaveAllFilesFromCache();
 		}
 		file_caches_.clear();
