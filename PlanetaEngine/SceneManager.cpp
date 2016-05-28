@@ -57,10 +57,9 @@ namespace planeta_engine{
 				return false;
 			}
 			//リソース読み込み
-			const std::vector<std::string>& ntags = _next_scene_setupper->GetUseTagGroups();
-			if (core::ResourceManager::instance().PrepareResources(ntags) == false) {
-				PE_LOG_ERROR("シーンの読み込みに失敗しました。指定されたシーン(", scene_name, ")のリソース準備に失敗しました。");
-				return false;
+			if (core::ResourceManager::instance().PrepareResources({scene_name}) == false) {
+				PE_LOG_WARNING("指定されたシーン(", scene_name, ")のリソース準備に失敗しました。読み込みに失敗したか、対象のリソースが存在しない可能性があります。");
+				//return false;
 			} //リソースの準備ができなかった
 			//準備完了
 			_next_scene_id = scene_name;

@@ -13,11 +13,6 @@ namespace planeta_engine {
 				return utility::ParameterHolder();
 			}
 
-			virtual const std::vector<std::string> GetUseTagGroups() const override
-			{
-				return{};
-			}
-
 			virtual const std::vector<std::string> GetTransitionableSceneID() const override
 			{
 				return{};

@@ -26,8 +26,6 @@ namespace planeta_engine {
 		@return 次のシーンの初期化パラメータ
 		*/
 		utility::ParameterHolder TerminateScene(core::Scene& scene, const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters);
-		/*使用リソースのタググループリストを返す*/
-		virtual const std::vector<std::string> GetUseTagGroups()const = 0;
 		/*遷移可能SceneIDリスト(からの場合、全てのシーンに遷移可能とみなす)*/
 		virtual const std::vector<std::string> GetTransitionableSceneID()const = 0;
 		/*指定したシーンに遷移可能か*/
