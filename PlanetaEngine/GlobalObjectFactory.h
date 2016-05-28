@@ -22,6 +22,7 @@ namespace planeta_engine {
 			template<class T>
 			void RegisterObject(const std::string& id, const std::function<std::shared_ptr<Object>()>& creator) {
 				static_assert(std::is_base_of<Object, T>::value == true, "T must derive Object.");
+				//PE_LOG_MESSAGE("Object is registered.", id);
 				id_creator_map_.emplace(id, creator);
 				type_creator_map_.emplace(typeid(T), creator);
 			}

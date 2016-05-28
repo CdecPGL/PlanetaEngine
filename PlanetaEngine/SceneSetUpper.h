@@ -46,6 +46,6 @@ namespace planeta_engine {
 	};
 }
 
-//Sceneをシステムに登録する(SceneID,SetUpper型)
+//Sceneをシステムに登録する(SceneID[文字列リテラル],SetUpper型)
 #define PE_REGISTER_SCENE(id, type)\
 PE_REGISTER_OBJECT_WITH_ID(id, type,planeta_engine::SceneSetUpper)
