@@ -23,3 +23,7 @@ namespace planeta_engine {
 		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data);
 	};
 }
+
+//GameObject‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(Œ^)
+#define PE_REGISTER_GAMEOBJECT(type)\
+PE_REGISTER_OBJECT(type,planeta_engine::GameObjectBase)

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Object.h"
 #include "GameObjectComponentHolder.h"
 #include "IGameObjectForComponent.h"
 #include "NonCopyable.h"
@@ -12,7 +13,7 @@ namespace planeta_engine {
 		struct SceneData;
 	}
 	class GameObjectComponent;
-	class GameObjectBase : public IGameObjectForComponent, private utility::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
+	class GameObjectBase :public core::Object, public IGameObjectForComponent, private utility::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
 		GameObjectBase();
 		~GameObjectBase();
@@ -92,7 +93,3 @@ namespace planeta_engine {
 		virtual bool OnDisposed();
 	};
 }
-
-//GameObject‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(Œ^)
-#define PE_REGISTER_GAMEOBJECT(type)\
-PE_REGISTER_OBJECT(type,planeta_engine::GameObjectBase)
