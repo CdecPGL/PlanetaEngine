@@ -26,6 +26,7 @@ namespace planeta_engine {
 
 	utility::WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateGameObject(const std::string& id) {
 		auto go = scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id);
+		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
 	}
