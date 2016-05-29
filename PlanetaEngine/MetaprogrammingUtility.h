@@ -93,10 +93,11 @@ namespace planeta_engine {
 		};
 
 		//全ての要素First,Rest...が単項述語UnaryPredicateを満たしているか
+		template<template<class> class UnaryPredicate, typename... Args>
+		struct AllOf : public std::true_type {};
 		template<template<class> class UnaryPredicate, typename First, typename... Rest>
-		struct AllOf : public std::conditional_t<UnaryPredicate<First>::value, AllOf<UnaryPredicate, Rest...>, std::false_type> {};
+		struct AllOf<UnaryPredicate, First, Rest...> : public std::conditional_t<UnaryPredicate<First>::value, AllOf<UnaryPredicate, Rest...>, std::false_type> {};
 		template<template<class>class UnaryPredicate>
 		struct AllOf<UnaryPredicate, void> : public std::true_type{};
-
 	}
 }
