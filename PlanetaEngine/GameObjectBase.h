@@ -26,7 +26,7 @@ namespace planeta_engine {
 		//破棄する
 		void Dispose()override final;
 		//自分のstd::shared_ptrを取得する。
-		std::shared_ptr<IGameObject> GetSharedPointer()override final;
+		std::shared_ptr<IGameObject> GetSharedPointer() override final;
 		//有効化イベントハンドラ登録
 		utility::DelegateConnection AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
 		//無効化イベントハンドラ登録

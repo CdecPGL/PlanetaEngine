@@ -29,15 +29,15 @@ namespace planeta_engine {
 		}
 		//指定タイプのゲームオブジェクトインターフェイス取得
 		template<class GOI>
-		std::shared_ptr<GOI> GetInterface()const {
-			static_assert(std::is_base_of<GameObjectInterface, GOI>::value == true, "GOI must drive GameObjectInterface.");
+		std::shared_ptr<GOI> GetInterface() {
+			static_assert(std::is_base_of<GameObjectInterface<GOI>, GOI>::value == true, "GOI must drive GameObjectInterface.");
 			auto ptr = std::dynamic_pointer_cast<GOI>(GetSharedPointer());
 			return ptr;
 		}
 		//指定タイプのゲームオブジェクトインターフェイスを持っているか確認
 		template<class GOI>
-		bool HasInterface()const {
-			static_assert(std::is_base_of<GameObjectInterface, GOI>::value == true, "GOI must drive GameObjectInterface.");
+		bool HasInterface() {
+			static_assert(std::is_base_of<GameObjectInterface<GOI>, GOI>::value == true, "GOI must drive GameObjectInterface.");
 			return GetInterface<GOI>() != nullptr;
 		}
 		//タスクをアタッチ(TはTGameObjectOperationを継承したクラス)

@@ -8,6 +8,7 @@
 #include "DxLib.h"
 #include "EngineConfigData.h"
 #include "CTransform2D.h"
+#include "Screen.h"
 
 namespace planeta_engine{
 	namespace core {
@@ -45,7 +46,7 @@ namespace planeta_engine{
 		}
 
 		void GameObjectDrawSystem::Update() {
-
+			
 		}
 
 		bool GameObjectDrawSystem::Initialize() {
