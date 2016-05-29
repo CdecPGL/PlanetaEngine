@@ -35,6 +35,8 @@ namespace planeta_engine {
 		utility::DelegateConnection AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
 
 		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
+		//初期化時の処理
+		bool ProcessInitialization();
 		//有効化時の処理
 		bool ProcessActivation();
 		//無効化時の処理

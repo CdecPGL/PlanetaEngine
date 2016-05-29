@@ -34,9 +34,6 @@ namespace planeta_engine {
 
 		/*管理処理*/
 		void Update()override;
-		/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
-		int RegisterGameObject(const std::shared_ptr<GameObjectBase>& go);
-		int RegisterGameObject(const std::shared_ptr<GameObjectBase>& go, const std::string& name);
 		/*ゲームオブジェクト登録解除(終了処理を行う)*/
 		bool RemoveGameObject(int id);
 		/*有効化*/
@@ -55,5 +52,8 @@ namespace planeta_engine {
 		int _id_counter;
 		utility::WeakPointer<core::SceneData> scene_data_;
 		static std::shared_ptr<GameObjectBase >CreateGameObjectByID_(const std::string& id);
+		/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
+		int RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go);
+		int RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name);
 	};
 }

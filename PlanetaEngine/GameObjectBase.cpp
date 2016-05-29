@@ -46,6 +46,18 @@ namespace planeta_engine {
 		return true;
 	}
 
+	bool GameObjectBase::ProcessInitialization() {
+		if (!OnInitialized()) {
+			PE_LOG_ERROR("GameObject‚Ì‰Šú‰»ˆ—‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		if (!component_holder_.DoAllWithCheck(&GameObjectComponent::Initialize, true)) {
+			PE_LOG_ERROR("GameObjectComponent‚Ì‰Šú‰»ˆ—‚É¸”s‚µ‚Ü‚µ‚½B");
+			return false;
+		}
+		return true;
+	}
+
 	bool GameObjectBase::ProcessActivation() {
 		if (!OnActivated()) {
 			PE_LOG_ERROR("GameObject‚Ì—LŒø‰»ˆ—‚É¸”s‚µ‚Ü‚µ‚½B");
@@ -133,5 +145,4 @@ namespace planeta_engine {
 	void GameObjectBase::SetUpAttachedTask_(TGameObjectOperation& task) {
 		task.Attach(GetSharedPointer(), true);
 	}
-
 }

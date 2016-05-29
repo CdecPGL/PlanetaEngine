@@ -14,16 +14,20 @@ namespace planeta_engine {
 		RemoveProc_();
 	}
 
-	int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObjectBase>& go) {
+	int GameObjectManager::RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go) {
 		go->SetSceneData(scene_data_);
 		int id = _id_counter++;
 		go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
+		if (go->ProcessInitialization() == false) {
+			PE_LOG_ERROR("ゲームオブジェクトの初期化に失敗しました。");
+			return -1;
+		}
 		inactive_game_objects_.insert(std::make_pair(id, go));
 		return id;
 	}
 
-	int GameObjectManager::RegisterGameObject(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
-		int id = RegisterGameObject(go);
+	int GameObjectManager::RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
+		int id = RegisterAndSetUpGameObject_(go);
 		if (id < -1) { return -1; }
 		name_id_map_.emplace(name, id);
 		return id;
@@ -41,7 +45,7 @@ namespace planeta_engine {
 				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 				return nullptr;
 			}
-		if (RegisterGameObject(go) >= 0) {
+		if (RegisterAndSetUpGameObject_(go) >= 0) {
 			return go;
 		} else { return nullptr; }
 
@@ -52,7 +56,7 @@ namespace planeta_engine {
 			debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 			return nullptr;
 		}
-		if (RegisterGameObject(go, name) >= 0) {
+		if (RegisterAndSetUpGameObject_(go, name) >= 0) {
 			return go;
 		} else { return nullptr; }
 
