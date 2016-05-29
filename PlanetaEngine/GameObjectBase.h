@@ -63,8 +63,8 @@ namespace planeta_engine {
 		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 		//コンポーネントを型ですべて取得
 		std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
-		TaskManagerPublicInterface& RefTaskManagerInterface_()override;
-		void SetUpAttachedTask_(TGameObjectOperation& task)override;
+		TaskManagerPublicInterface& RefTaskManagerInterface_()override final;
+		void SetUpAttachedTask_(TGameObjectOperation& task)override final;
 
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
