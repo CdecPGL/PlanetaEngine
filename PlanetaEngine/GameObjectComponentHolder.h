@@ -17,7 +17,7 @@ namespace planeta_engine {
 		//コンポーネントを作成、追加する。
 		template<class ComT>
 		std::shared_ptr<ComT> CreateAndAddComponent() {
-			static_assert(std::is_base_of<GameObjectComponent, C>::value == true, "ComT must derive GameComponent.");
+			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must derive GameComponent.");
 			auto ptr = std::make_shared<ComT>();
 			component_list_.push_back(ptr);
 			AddComponentToTypeInfoMap(typeid(ComT), ptr);

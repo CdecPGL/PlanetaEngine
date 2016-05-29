@@ -49,10 +49,19 @@ namespace planeta_engine {
 		//コンポーネントを作成、追加する。
 		template<class ComT>
 		utility::NonOwingPointer<ComT> CreateAndAddComponent() {
-			auto com = component_holder_.CreateAndAddComponent();
+			auto com = component_holder_.CreateAndAddComponent<ComT>();
 			SetUpGameComponent(*com);
 			return com;
 		}
+		//イベント関数
+		//初期化イベント
+		virtual bool OnInitialized();
+		//有効化イベント
+		virtual bool OnActivated();
+		//無効化イベント
+		virtual bool OnInactivated();
+		//破棄時イベント
+		virtual bool OnDisposed();
 	private:
 		//インターフェイスのオーバーライド
 		//ゲームオブジェクトを作成
@@ -81,15 +90,5 @@ namespace planeta_engine {
 		utility::Delegate<void> activated_event_delegate_;
 		utility::Delegate<void> inactivated_event_delegate_;
 		utility::Delegate<void> disposed_event_delegate_;
-
-		//イベント関数
-		//初期化イベント
-		virtual bool OnInitialized();
-		//有効化イベント
-		virtual bool OnActivated();
-		//無効化イベント
-		virtual bool OnInactivated();
-		//破棄時イベント
-		virtual bool OnDisposed();
 	};
 }
