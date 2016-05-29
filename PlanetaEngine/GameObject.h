@@ -10,7 +10,7 @@ namespace planeta_engine {
 	template<typename... GOI>
 	class GameObject : public GameObjectBase , public GOI... {
 		//GOI...がGameObjectInterfaceの派生クラスか確認。
-		template<typename Arg> struct GOI_is_base_of :public std::is_base_of<GameObjectInterface, Arg> {};
+		template<typename Arg> struct GOI_is_base_of :public std::is_base_of<GameObjectInterface<Arg>, Arg> {};
 		static_assert(mp_utiliey::AllOf<GOI_is_base_of, GOI...>::value == true, "GOI must derive GameObjectInterface.");
 	public:
 		GameObject():GOI(*this)... {}
