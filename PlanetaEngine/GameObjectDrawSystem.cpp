@@ -63,7 +63,7 @@ namespace planeta_engine{
 
 		bool GameObjectDrawSystem::RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component) {
 			if (camera2d_) {
-				PE_LOG_WARNING("シーン内の複数カメラはサポートされていません。初めに登録されたカメラのみが有効です。カメラコンポーネントを持つゲームオブジェクトが複数存在する可能性があります。");
+				PE_LOG_ERROR("シーン内の複数カメラはサポートされていません。初めに登録されたカメラのみが有効です。カメラコンポーネントを持つゲームオブジェクトが複数存在する可能性があります。");
 				return false;
 			} else {
 				camera2d_ = camera_component;
@@ -72,10 +72,10 @@ namespace planeta_engine{
 		}
 
 		void GameObjectDrawSystem::RemoveCamera(CCamera2D* camera_component) {
-			if (camera2d_ != nullptr && camera2d_.get() != camera_component) {
+			if (camera2d_ != nullptr && camera2d_.get() == camera_component) {
 				camera2d_.reset();
 			} else {
-				PE_LOG_WARNING("登録されていないカメラの削除が要求されました。シーン内に複数のカメラオブジェクトが存在しる可能性があります。");
+				PE_LOG_ERROR("登録されていないカメラの削除が要求されました。シーン内に複数のカメラオブジェクトが存在する可能性があります。");
 			}
 		}
 
