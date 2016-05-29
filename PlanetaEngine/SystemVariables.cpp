@@ -42,6 +42,11 @@ namespace planeta_engine{
 				const std::string BuiltinXMLResourceTypeName("XML");
 				const std::string BuiltinFontDefinitionResourceTypeName("FontDefinition");
 			}
+			namespace prefixes {
+				const std::string Scene("S");
+				const std::string GameObject("G");
+				const std::string Task("T");
+			}
 			const bool DevelopmentMode(true);
 		}
 	}

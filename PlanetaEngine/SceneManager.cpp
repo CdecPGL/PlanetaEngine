@@ -2,11 +2,12 @@
 #include "Scene.h"
 #include "SceneSetUpper.h"
 #include "ResourceManager.h"
-#include "ErrorSceneDefinition.h"
-#include "EmptySceneDefinition.h"
+#include "SError.h"
+#include "SEmpty.h"
 #include "SystemLog.h"
 #include "NullWeakPointerException.h"
 #include "SceneSystemSetUpper.h"
+#include "SystemVariables.h"
 
 namespace planeta_engine{
 	namespace core{
@@ -107,7 +108,7 @@ namespace planeta_engine{
 		bool SceneManager::Initialize()
 		{
 			//空のシーンをセット
-			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<EmptySceneDefinition>();
+			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SEmpty>();
 			std::shared_ptr<Scene> es = std::make_shared<Scene>();
 			InitializeScene_(*es, *ecd, utility::ParameterHolder());
 			_current_scene = std::move(es);
@@ -127,14 +128,15 @@ namespace planeta_engine{
 
 		std::shared_ptr<SceneSetUpper> SceneManager::_CreateSceneSetUpper(const std::string& scene_name)
 		{
-			auto setupper = GlobalObjectFactory::instance().CreateObjectByID<SceneSetUpper>(scene_name);
+			//シーン名にプレフィックスをつけたクラスを作成。
+			auto setupper = GlobalObjectFactory::instance().CreateObjectByID<SceneSetUpper>(system_variables::prefixes::Scene + scene_name);
 			return setupper;
 		}
 
 		void SceneManager::_transition_to_error_scene()
 		{
 			PE_LOG_ERROR("エラーシーンに遷移します。");
-			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<ErrorSceneDefinition>();
+			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SError>();
 			std::shared_ptr<Scene> es = std::make_shared<Scene>();
 			InitializeScene_(*es, *ecd, utility::ParameterHolder());
 			_current_scene = std::move(es);

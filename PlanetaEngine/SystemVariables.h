@@ -44,6 +44,11 @@ namespace planeta_engine{
 				extern const std::string BuiltinXMLResourceTypeName; //標準のXMLファイルリソースタイプ名
 				extern const std::string BuiltinFontDefinitionResourceTypeName; //標準のフォント定義ファイルリソースタイプ名
 			}
+			namespace prefixes {
+				extern const std::string Scene;
+				extern const std::string GameObject;
+				extern const std::string Task;
+			}
 			/*デバッグ*/
 			extern const bool DevelopmentMode; //開発モードフラグ
 		}

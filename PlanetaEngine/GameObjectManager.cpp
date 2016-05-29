@@ -4,6 +4,7 @@
 #include "SystemLog.h"
 #include "SceneData.h"
 #include "GlobalObjectFactory.h"
+#include "SystemVariables.h"
 
 namespace planeta_engine {
 	GameObjectManager::GameObjectManager() :_id_counter(0) {};
@@ -35,7 +36,7 @@ namespace planeta_engine {
 	}
 
 	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
-		auto go =  core::GlobalObjectFactory::instance().CreateObjectByID<GameObjectBase>(game_object_create_id);
+		auto go = CreateGameObjectByID_(game_object_create_id);
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 				return nullptr;
@@ -46,7 +47,7 @@ namespace planeta_engine {
 
 	}
 	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
-		auto go = core::GlobalObjectFactory::instance().CreateObjectByID<GameObjectBase>(game_object_create_id);
+		auto go = CreateGameObjectByID_(game_object_create_id);
 		if (go == nullptr) {
 			debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
 			return nullptr;
@@ -121,4 +122,10 @@ namespace planeta_engine {
 	void GameObjectManager::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 	}
+
+	std::shared_ptr<GameObjectBase > GameObjectManager::CreateGameObjectByID_(const std::string& id) {
+		//IDにプレフィックスをつけたゲームオブジェクトを作成。
+		return core::GlobalObjectFactory::instance().CreateObjectByID<GameObjectBase>(core::system_variables::prefixes::GameObject + id);
+	}
+
 }

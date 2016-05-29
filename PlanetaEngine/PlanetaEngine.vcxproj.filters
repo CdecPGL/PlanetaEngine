@@ -405,9 +405,6 @@
     <ClInclude Include="SceneSetUpper.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorSceneDefinition.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
@@ -464,9 +461,6 @@
     </ClInclude>
     <ClInclude Include="RangeUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="EmptySceneDefinition.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="FileSystemUtility.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
@@ -804,6 +798,12 @@
     <ClInclude Include="ProgramDefinitionData.h">
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="SError.h">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClInclude>
+    <ClInclude Include="SEmpty.h">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -943,12 +943,6 @@
     </ClCompile>
     <ClCompile Include="CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="EmptySceneDefinition.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="ErrorSceneDefinition.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="FileSystemUtility.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
@@ -1135,6 +1129,12 @@
     </ClCompile>
     <ClCompile Include="InitFunctionsFIleSystem.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="SError.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="SEmpty.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

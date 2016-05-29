@@ -54,5 +54,6 @@ namespace planeta_engine {
 		void RemoveProc_();
 		int _id_counter;
 		utility::WeakPointer<core::SceneData> scene_data_;
+		static std::shared_ptr<GameObjectBase >CreateGameObjectByID_(const std::string& id);
 	};
 }

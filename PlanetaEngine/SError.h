@@ -4,7 +4,7 @@
 namespace planeta_engine {
 	namespace core {
 		/*シーン遷移エラー時に呼び出されるシーン*/
-		class ErrorSceneDefinition : public SceneSetUpper {
+		class SError : public SceneSetUpper {
 		public:
 			virtual bool SetUpScene(SceneSetUpProxy& scene, const utility::ParameterHolder& initialize_parameters) override;
 

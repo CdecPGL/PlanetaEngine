@@ -46,6 +46,6 @@ namespace planeta_engine {
 	};
 }
 
-//Scene‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(SceneID[•¶Žš—ñƒŠƒeƒ‰ƒ‹],SetUpperŒ^)
-#define PE_REGISTER_SCENE(id, type)\
-PE_REGISTER_OBJECT_WITH_ID(id, type,planeta_engine::SceneSetUpper)
+//Scene‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(SetUpperŒ^)
+#define PE_REGISTER_SCENE(type)\
+PE_REGISTER_OBJECT(type,planeta_engine::SceneSetUpper)

@@ -5,7 +5,7 @@
 namespace planeta_engine {
 	namespace core {
 		/*シーンがセットされていない時に呼び出されるシーン*/
-		class EmptySceneDefinition final: public SceneSetUpper {
+		class SEmpty final: public SceneSetUpper {
 		public:
 			virtual bool SetUpScene(SceneSetUpProxy& scene, const utility::ParameterHolder& initialize_parameters) override;
 
