@@ -6,8 +6,16 @@
 #include "TransformSystem.h"
 #include "SceneData.h"
 #include <tuple>
+#include "CDumyGround2D.h"
 
 namespace planeta_engine {
+	namespace {
+		//ダミーグラウンド取得
+		std::shared_ptr<CGround2D> GetDumyGround() {
+			static auto dg = std::make_shared<CDumyGround2D>();
+			return dg;
+		}
+	}
 	//definitions
 	namespace {
 		struct TransformData {
@@ -34,7 +42,7 @@ namespace planeta_engine {
 	//////////////////////////////////////////////////////////////////////////
 	class CTransform2D::Impl_ {
 	public:
-		Impl_::Impl_(){}
+		Impl_::Impl_():belonging_ground(GetDumyGround()){}
 	private:
 		//バッファデータ(適用前データ)
 		std::tuple<TransformData,PhisicalData> global;

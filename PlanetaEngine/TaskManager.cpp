@@ -81,33 +81,39 @@ namespace planeta_engine {
 			NameMapType::iterator iterator_at_name_map;
 			bool is_named = false;
 			int group_number; //所属しているタスクグループ番号
-			TaskGroupType::iterator iterator_at_runnning_task_group; //所属しているタスクグループでのイテレータ
+			TaskGroupType::iterator iterator_at_task_group; //所属しているタスクグループでのイテレータ
 			TaskState state = TaskState::Pausing;
 		};
 	private:
 		//タスク群リスト
-		std::array<TaskGroupType, SLOT_COUNT> running_task_group_list_;
-		//有効スロットビットマップ
-		std::bitset<SLOT_COUNT> valid_slot_bitmap_;
+		std::array<TaskGroupType, SLOT_COUNT> task_group_list_;
 
 		/*タスクリスト*/
-		TaskListType task_list_;
+		TaskListType task_data_list_;
 		/*名前マップ。<タスク名,タスクID>*/
 		NameMapType task_name_map_;
 		/*管理処理リスト*/
 		std::vector<std::function<void()>> management_process_list_;
+		/**/
+		bool is_system_task_disposable_ = false; //システムタスクが削除可能か。
 
 		utility::WeakPointer<core::SceneData> scene_data_;
 	public:
 		Impl_(){}
+		//システムタスク削除の有効化
+		void ValidateSystemTaskDisposal() { is_system_task_disposable_ = true; }
 		//////////////////////////////////////////////////////////////////////////
 		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
 			scene_data_ = scene_data_;
 		}
 		//////////////////////////////////////////////////////////////////////////
 		/*タスク削除要請*/
-		bool DisposeTaskRequest(TaskData& tdata) {
+		bool DisposeTaskRequest(TaskData& tdata, bool is_system_task) {
 			if (tdata.state == TaskState::Disposed) { return false; }
+			//システムタスクの削除をチェック
+			if (is_system_task == true && is_system_task_disposable_ == false) {
+				PE_LOG_ERROR("システムタスクの削除は許可されていません。");
+			}
 			//削除処理を追加
 			management_process_list_.push_back([&tdata, this] {
 				DisposeTask(tdata);
@@ -139,13 +145,13 @@ namespace planeta_engine {
 		/*タスクの有効化*/
 		void ActivateTask(TaskData& tdata) {
 			assert(tdata.state == TaskState::Running);
-			running_task_group_list_[tdata.group_number].push_back(tdata.task.get());
-			tdata.iterator_at_runnning_task_group = --running_task_group_list_[tdata.group_number].end();
+			task_group_list_[tdata.group_number].push_back(tdata.task.get());
+			tdata.iterator_at_task_group = --task_group_list_[tdata.group_number].end();
 		}
 		/*タスクの無効化*/
 		bool InctivateTask(TaskData& tdata) {
 			PE_VERIFY(tdata.state == TaskState::Running);
-			running_task_group_list_[tdata.group_number].erase(tdata.iterator_at_runnning_task_group);
+			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group);
 			return true;
 		}
 		/*タスクの破棄*/
@@ -154,10 +160,11 @@ namespace planeta_engine {
 			if (tdata.state == TaskState::Running) { //実行中だったら無効化する。
 				InctivateTask(tdata);
 			}
-			task_list_.erase(tdata.iterator_at_task_list); //タスクリストから削除
+			task_data_list_.erase(tdata.iterator_at_task_list); //タスクリストから削除
 			if (tdata.is_named) {
 				task_name_map_.erase(tdata.iterator_at_name_map); //名前マップから削除
 			}
+			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group); //タスクグループリストから削除
 			return true;
 		}
 		//////////////////////////////////////////////////////////////////////////
@@ -168,8 +175,8 @@ namespace planeta_engine {
 				[this, tdata] {return PauseTaskRequest(*tdata); }, //Pauser
 				[this, tdata] {return ResumeTaskRequest(*tdata); }, //Resumer
 				is_system_task ?
-				std::function<void()>([] { debug::SystemLog::instance().Log(debug::LogLevel::Fatal, __FUNCTION__, "システムタスクを削除しようとしました。"); }) :
-				[this, tdata] { DisposeTaskRequest(*tdata); } //Disposer(システムタスクの場合は削除できないDisposerをセット)
+				std::function<void()>([this, tdata] { DisposeTaskRequest(*tdata, true); }) :
+				[this, tdata] { DisposeTaskRequest(*tdata,false); } //Disposer(システムタスクの場合は削除できないDisposerをセット)
 				);
 			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_);
 		}
@@ -178,7 +185,8 @@ namespace planeta_engine {
 			auto ptdata = std::make_shared<TaskData>();
 			ptdata->task = task;
 			ptdata->group_number = group_number;
-			task_list_.push_back(ptdata);
+			task_data_list_.push_back(ptdata);
+			task_group_list_[group_number].push_back(task.get());
 			return ptdata;
 		}
 		/*名前を登録*/
@@ -202,12 +210,10 @@ namespace planeta_engine {
 		}
 		//有効なタスクのメンバ関数を実行
 		void ExcuteValidTasksFunction(void(Task::* func)()) {
-			for (int i = 0; i < TASK_SLOT_SIZE; ++i) {
-				if (valid_slot_bitmap_[i]) { //有効なものだけ実行
-					auto & tg = running_task_group_list_[i];
-					for (auto& t : tg) {
-						(t->*func)();
-					}
+			for (int i = 0; i < SLOT_COUNT; ++i) {
+				auto & tg = task_group_list_[i];
+				for (auto& t : tg) {
+					(t->*func)();
 				}
 			}
 		}
@@ -215,7 +221,10 @@ namespace planeta_engine {
 		void AllClear() {
 			management_process_list_.clear();
 			task_name_map_.clear();
-			task_list_.clear();
+			task_data_list_.clear();
+			for (auto&& tg : task_group_list_) {
+				tg.clear();
+			}
 		}
 	};
 
@@ -237,6 +246,7 @@ namespace planeta_engine {
 
 	void TaskManager::Finalize() {
 		impl_->HandleManagementQue(); //管理処理
+		impl_->ValidateSystemTaskDisposal(); //システムタスクを削除可能に。
 		//まだ存在するプロセスの終了処理を行う
 		impl_->ExcuteValidTasksFunction(&Task::Dispose);
 		//全部クリア
