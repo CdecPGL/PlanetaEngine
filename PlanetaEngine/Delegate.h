@@ -329,28 +329,28 @@ namespace planeta_engine {
 
 		/*WeakMenberデリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType,class C>
-		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(EventArgType)) {
+		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(EventArgType)) {
 			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		template<class C>
-		inline DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)()) {
+		inline DelegateHandlerAdder<void> CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)()) {
 			return std::move(DelegateHandlerAdder<void>([c, f](Delegate<void>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		/*MemberFunctionデリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType, class C>
-		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(C* c, typename void(C::*f)(EventArgType)) {
+		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(C* c, typename void(C::*f)(EventArgType)) {
 			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		template<class C>
-		inline DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(C* c, typename void(C::*f)()) {
+		inline DelegateHandlerAdder<void> CreateDelegateHandlerAdder(C* c, typename void(C::*f)()) {
 			return std::move(DelegateHandlerAdder<void>([c, f](Delegate<void>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
 		template<typename EventArgType>
-		DelegateHandlerAdder<EventArgType>&& CreateDelegateHandlerAdder(const std::function<void(EventArgType)>& func) {
+		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(const std::function<void(EventArgType)>& func) {
 			return std::move(DelegateHandlerAdder<EventArgType>([func](Delegate<EventArgType>& dlgt) {return dlgt.Add(func); }));
 		}
-		inline DelegateHandlerAdder<void>&& CreateDelegateHandlerAdder(const std::function<void()>& func) {
+		inline DelegateHandlerAdder<void> CreateDelegateHandlerAdder(const std::function<void()>& func) {
 			return std::move(DelegateHandlerAdder<void>([func](Delegate<void>& dlgt) {return dlgt.Add(func); }));
 		}
 	}

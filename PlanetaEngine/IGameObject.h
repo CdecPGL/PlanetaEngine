@@ -43,6 +43,7 @@ namespace planeta_engine {
 		//タスクをアタッチ(TはTGameObjectOperationを継承したクラス)
 		template<class T>
 		utility::WeakPointer<T> CreateAndAttachTask(TaskSlot slot) {
+			static_assert(std::is_base_of<TGameObjectOperation, T>::value == true, "T must derive TGameObjectOperation");
 			auto task = std::make_shared<T>();
 			if (!RefTaskManagerInterface_().RegisterTask(task, slot)) { return nullptr; }
 			SetUpAttachedTask_(*task);
