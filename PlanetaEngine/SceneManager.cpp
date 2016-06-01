@@ -35,7 +35,7 @@ namespace planeta_engine{
 				}
 				return SceneStatus_::Error;
 			}
-			catch (utility::NullWeakPointerException& e) {
+			catch (util::NullWeakPointerException& e) {
 				PE_LOG_ERROR("Scene::Updateで無効なWeakPointerが参照されました。", e.what());
 				return SceneStatus_::Error;
 			}
@@ -69,7 +69,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		bool SceneManager::TransitionScene(const utility::ParameterHolder& transition_parameters)
+		bool SceneManager::TransitionScene(const util::ParameterHolder& transition_parameters)
 		{
 			if (IsTransitionable()==false){
 				PE_LOG_ERROR("シーン遷移予約に失敗しました。遷移中のため、新たに遷移処理をはじめることはできません。");
@@ -85,7 +85,7 @@ namespace planeta_engine{
 		void SceneManager::_transition_proc()
 		{
 			//現在のシーンを終了
-			utility::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
+			util::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
 			//新しいシーンを作成
 			std::shared_ptr<Scene> new_scene = std::make_shared<Scene>();
 			//新しいシーンを初期化
@@ -110,7 +110,7 @@ namespace planeta_engine{
 			//空のシーンをセット
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SEmpty>();
 			std::shared_ptr<Scene> es = std::make_shared<Scene>();
-			InitializeScene_(*es, *ecd, utility::ParameterHolder());
+			InitializeScene_(*es, *ecd, util::ParameterHolder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
 			_request = _Request::None;
@@ -138,27 +138,27 @@ namespace planeta_engine{
 			PE_LOG_ERROR("エラーシーンに遷移します。");
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SError>();
 			std::shared_ptr<Scene> es = std::make_shared<Scene>();
-			InitializeScene_(*es, *ecd, utility::ParameterHolder());
+			InitializeScene_(*es, *ecd, util::ParameterHolder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
 			_request = _Request::None;
 			_is_next_scene_loaded = false;
 		}
 
-		utility::ParameterHolder SceneManager::_end_current_scene()
+		util::ParameterHolder SceneManager::_end_current_scene()
 		{
 			//現在のシーンを終了(現在のシーンがなかったら空のパラメータを格納)
 			if (_current_scene) {
 				return FinalizeScene_(*_current_scene, *_current_scene_setupper, _next_scene_id, _transition_parameters);
 			}
-			else { return utility::ParameterHolder(); }
+			else { return util::ParameterHolder(); }
 		}
 
 		void SceneManager::SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix) {
 			collision_group_matrix_ = std::move(cg_matrix);
 		}
 
-		bool SceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const utility::ParameterHolder& init_param) {
+		bool SceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {
 			SceneSetUpProxy safs(scene);
 			//シーンデータの準備
 			scene.SetCollisionGroupMatrix(collision_group_matrix_);
@@ -183,7 +183,7 @@ namespace planeta_engine{
 			return true;
 		}
 
-		utility::ParameterHolder SceneManager::FinalizeScene_(core::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) {
+		util::ParameterHolder SceneManager::FinalizeScene_(core::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
 			SceneSetUpProxy safs(scene);
 			auto ret = setupper.TerminateScene(scene,next_scene_id, finalize_parameters); //固有終了処理
 			scene.Finalize(); //終了処理

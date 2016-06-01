@@ -11,7 +11,7 @@
 
 namespace planeta_engine {
 	class GameObjectComponent;
-	class GameObjectComponentHolder : private utility::NonCopyable<GameObjectComponentHolder>{
+	class GameObjectComponentHolder : private util::NonCopyable<GameObjectComponentHolder>{
 	public:
 
 		//コンポーネントを作成、追加する。

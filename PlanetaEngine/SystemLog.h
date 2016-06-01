@@ -11,9 +11,9 @@
 namespace planeta_engine {
 	namespace debug {
 		//システムログ管理(スタティックシングルトン)
-		class SystemLog : public utility::SingletonTemplate<SystemLog>
+		class SystemLog : public util::SingletonTemplate<SystemLog>
 		{
-			friend utility::SingletonTemplate<SystemLog>;
+			friend util::SingletonTemplate<SystemLog>;
 		public:
 			bool Initialize()override;
 			void Finalize()override;
@@ -23,12 +23,12 @@ namespace planeta_engine {
 			/*レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/
 			template<typename... Details>
 			void Log(LogLevel level, const std::string& place, Details&&... details) {
-				_Log(level, utility::ConvertAndConnectToString(std::forward<Details>(details)...), place);
+				_Log(level, util::ConvertAndConnectToString(std::forward<Details>(details)...), place);
 			}
 			/*シンプルなログを出力*/
 			template<typename... Details>
 			void SimpleLog(Details&&... details) {
-				_OutPut(LogLevel::Message, utility::ConvertAndConnectToString(std::forward<Details>(details)...));
+				_OutPut(LogLevel::Message, util::ConvertAndConnectToString(std::forward<Details>(details)...));
 			}
 			/*メッセージ(詳細、発生個所)*/
 			void LogMessage(const std::string& detail, const std::string& place) { _Log(LogLevel::Message, detail, place); }

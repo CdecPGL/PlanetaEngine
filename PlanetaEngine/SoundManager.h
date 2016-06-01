@@ -8,8 +8,8 @@
 namespace planeta_engine {
 	namespace core {
 		class ResourceBase;
-		class SoundManager final : public utility::SingletonTemplate<SoundManager>{
-			friend utility::SingletonTemplate<SoundManager>;
+		class SoundManager final : public util::SingletonTemplate<SoundManager>{
+			friend util::SingletonTemplate<SoundManager>;
 		public:
 			bool Initialize() override;
 			void Finalize() override;

@@ -25,10 +25,10 @@ namespace planeta_engine {
 				void set_w(T v) { ptr_[3] = v; }
 			public:
 				XYZWIdentifer() :x(*this), y(*this), z(*this), w(*this) {}
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_z, &MyType::set_z> z;
-				utility::ReadWritePropertyV<MyType, T, &MyType::get_w, &MyType::set_w> w;
+				util::ReadWritePropertyV<MyType, T, &MyType::get_x, &MyType::set_x> x;
+				util::ReadWritePropertyV<MyType, T, &MyType::get_y, &MyType::set_y> y;
+				util::ReadWritePropertyV<MyType, T, &MyType::get_z, &MyType::set_z> z;
+				util::ReadWritePropertyV<MyType, T, &MyType::get_w, &MyType::set_w> w;
 			};
 		}
 	}

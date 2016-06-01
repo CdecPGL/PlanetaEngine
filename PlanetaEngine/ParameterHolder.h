@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		class ParameterHolder final: public core::Object{
 		public:
 			/*フラグを設定(名前、値)*/

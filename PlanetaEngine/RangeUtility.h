@@ -1,7 +1,7 @@
 #pragma once
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*’l‚ðŽw’è‚µ‚½”ÍˆÍ‚ÉŽû‚ß‚é*/
 		template<typename T>
 		constexpr T AdjustInRange(T value, T min, T max) {

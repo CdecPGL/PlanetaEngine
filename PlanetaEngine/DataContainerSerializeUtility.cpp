@@ -7,7 +7,7 @@
 #include "File.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 
 		std::shared_ptr<File> SerializeDataContainer(DataContainer& data_container)
 		{

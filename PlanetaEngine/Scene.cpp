@@ -55,14 +55,14 @@ namespace planeta_engine{
 			try {
 				task_manager_->ExcuteTask(); //タスク実行
 			}
-			catch (utility::NullWeakPointerException& e) {
+			catch (util::NullWeakPointerException& e) {
 				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), __FUNCTION__);
 				return;
 			}try {
 				//各シーンモジュールの更新
 				IterateSceneModule_([](SceneModule& sm) {sm.Update(); return true; });
 			}
-			catch (utility::NullWeakPointerException& e) {
+			catch (util::NullWeakPointerException& e) {
 				debug::SystemLog::instance().LogError(std::string("シーンモジュールの更新において無効なWeakPointerが参照されました。") + e.what(), __FUNCTION__);
 				return;
 			}
@@ -86,7 +86,7 @@ namespace planeta_engine{
 			IterateSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
-		void Scene::PrepareSceneData(const utility::NonOwingPointer<ISceneManagerAccessor> scn_mgr) {
+		void Scene::PrepareSceneData(const util::NonOwingPointer<ISceneManagerAccessor> scn_mgr) {
 			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*task_manager_,*collision_world_,*gameobject_draw_system_ ,*transform_system_, *scn_mgr });
 		}
 

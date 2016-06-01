@@ -16,9 +16,9 @@ namespace planeta_engine {
 	}
 	class IGameObject;
 	class Task :
-		public core::Object, private utility::NonCopyable<Task> {
+		public core::Object, private util::NonCopyable<Task> {
 	public:
-		using GameObjectAccessorType = utility::WeakPointer<IGameObject>;
+		using GameObjectAccessorType = util::WeakPointer<IGameObject>;
 		Task();
 		virtual ~Task();
 		virtual void Update() = 0;
@@ -26,40 +26,40 @@ namespace planeta_engine {
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data);
+		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const util::WeakPointer<core::SceneData>& scene_data);
 		/*イベント*/
 		/*プロセスが破棄された*/
-		utility::Delegate<void> disposed;
+		util::Delegate<void> disposed;
 		/*ユーティリティ関数*/
 
 	protected:
 		//ゲームオブジェクトを作成
-		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
 		//ゲームオブジェクトを作成して有効化
-		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
 		//タスクを作成
 		template<class T>
-		utility::WeakPointer<T> CreateTask(TaskSlot slot) {
+		util::WeakPointer<T> CreateTask(TaskSlot slot) {
 			auto task = std::make_shared<T>();
 			return RefTaskManagerInterface_().RegisterTask(task, slot) ? task : nullptr;
 		}
 		//名前付きタスクを作成
 		template<class T>
-		utility::WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
+		util::WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
 			auto task = std::make_shared<T>();
 			return RefTaskManagerInterface_().RegisterTask(task, slot, name) ? task : nullptr;
 		}
 		//型でタスク取得
 		template<class T>
-		utility::WeakPointer<T> GetTaskByType()const {
+		util::WeakPointer<T> GetTaskByType()const {
 			return RefTaskManagerInterface_().GetTask<T>();
 		}
 		//名前でタスクを取得
-		utility::WeakPointer<Task> GetTaskByName(const std::string& name)const;
+		util::WeakPointer<Task> GetTaskByName(const std::string& name)const;
 		//シーンマネージャへのアクセス
 		ISceneManagerAccessor& scene_manager();
 	private:
-		utility::WeakPointer<core::SceneData> scene_data_;
+		util::WeakPointer<core::SceneData> scene_data_;
 		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
 		TaskManagerPublicInterface& RefTaskManagerInterface_();
 		const TaskManagerPublicInterface& RefTaskManagerInterface_()const;

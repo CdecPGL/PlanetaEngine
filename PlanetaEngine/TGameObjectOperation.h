@@ -33,8 +33,8 @@ namespace planeta_engine {
 		virtual void OnTargetDisposed() {}
 		virtual void OnTargetActivated() {}
 		virtual void OnTargetInactivated() {}
-		utility::DelegateConnection dispose_event_connection_;
-		utility::DelegateConnection activate_event_connection_;
-		utility::DelegateConnection inactivate_event_connection_;
+		util::DelegateConnection dispose_event_connection_;
+		util::DelegateConnection activate_event_connection_;
+		util::DelegateConnection inactivate_event_connection_;
 	};
 }

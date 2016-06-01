@@ -8,8 +8,8 @@
 namespace planeta_engine {
 	namespace core{
 		class Screen;
-		class RenderManager final : public utility::SingletonTemplate<RenderManager>{
-			friend utility::SingletonTemplate<RenderManager>;
+		class RenderManager final : public util::SingletonTemplate<RenderManager>{
+			friend util::SingletonTemplate<RenderManager>;
 		public:
 			bool Initialize() override;
 			void Finalize() override;

@@ -42,7 +42,7 @@ namespace planeta_engine {
 		/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
 		Vector2Dd GetDrawScale()const;
 
-		utility::NonOwingPointer<CTransform2D> transform2d_;
+		util::NonOwingPointer<CTransform2D> transform2d_;
 
 		bool OnInitialized()override;
 	private:

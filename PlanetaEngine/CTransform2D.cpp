@@ -48,9 +48,9 @@ namespace planeta_engine {
 		std::tuple<TransformData,PhisicalData> global;
 		std::tuple<TransformData, PhisicalData> ground;
 		UpdateState last_update; //更新状況
-		utility::WeakPointer<CGround2D> belonging_ground;
+		util::WeakPointer<CGround2D> belonging_ground;
 		//地形更新イベントコネクション
-		utility::DelegateConnection ground_updated_event_connection;
+		util::DelegateConnection ground_updated_event_connection;
 
 		void PositionUpdated(CoordinationSpace space) {
 			last_update.position = space;
@@ -228,11 +228,11 @@ namespace planeta_engine {
 			return *belonging_ground;
 		}
 
-		utility::WeakPointer<CGround2D> GetGround() const {
+		util::WeakPointer<CGround2D> GetGround() const {
 			return belonging_ground;
 		}
 
-		void SetGround(const utility::WeakPointer<CGround2D>& g, bool keep_global_position) {
+		void SetGround(const util::WeakPointer<CGround2D>& g, bool keep_global_position) {
 			if (keep_global_position) {
 				UpdateGlobalTransform();
 				UpdateGlobalPhisic();
@@ -242,7 +242,7 @@ namespace planeta_engine {
 			}
 
 			belonging_ground = g;
-			belonging_ground->transform2d().AddUpdatedEventHandler(utility::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
+			belonging_ground->transform2d().AddUpdatedEventHandler(util::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
 
 			if (keep_global_position) {
 				last_update.position = CoordinationSpace::Global;
@@ -272,7 +272,7 @@ namespace planeta_engine {
 		//トランスフォーム2D_ID
 		int t2d_id_ = -1;
 		//更新イベントデリゲート
-		utility::Delegate<void> updated_event_delegate;
+		util::Delegate<void> updated_event_delegate;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
@@ -378,11 +378,11 @@ namespace planeta_engine {
 		return impl_->cground();
 	}
 
-	utility::WeakPointer<CGround2D> CTransform2D::GetGround() const {
+	util::WeakPointer<CGround2D> CTransform2D::GetGround() const {
 		return impl_->GetGround();
 	}
 
-	bool CTransform2D::SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position) {
+	bool CTransform2D::SetGround(const util::WeakPointer<IGameObject>& g, bool keep_global_position) {
 		auto gcom = g->GetComponent<CGround2D>();
 		if (gcom) {
 			impl_->SetGround(gcom, keep_global_position);
@@ -438,7 +438,7 @@ namespace planeta_engine {
 		}
 	}
 
-	utility::DelegateConnection CTransform2D::AddUpdatedEventHandler(utility::DelegateHandlerAdder<void>&& handler_adder) {
+	util::DelegateConnection CTransform2D::AddUpdatedEventHandler(util::DelegateHandlerAdder<void>&& handler_adder) {
 		return handler_adder(impl_->updated_event_delegate);
 	}
 

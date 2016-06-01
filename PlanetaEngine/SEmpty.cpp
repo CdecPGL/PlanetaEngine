@@ -6,7 +6,7 @@
 namespace planeta_engine {
 	namespace core {
 
-		bool SEmpty::SetUpScene(SceneSetUpProxy& scene, const utility::ParameterHolder& initialize_parameters) {
+		bool SEmpty::SetUpScene(SceneSetUpProxy& scene, const util::ParameterHolder& initialize_parameters) {
 			auto ip = scene.CreateTask<TInstant>(TaskSlot::EventUpdatePhase);
 			ip->SetExcuteFunction([]() {
 				PE_LOG_WARNING("シーンがセットされていません。");

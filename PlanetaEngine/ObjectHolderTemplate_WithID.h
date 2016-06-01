@@ -6,7 +6,7 @@
 #include<typeinfo>
 
 namespace planeta_engine{
-	namespace utility{
+	namespace util{
 		template <typename T_id, class C_obj>
 		class ObjectHolderTemplate_WithID{
 		public:

@@ -9,7 +9,7 @@
 #include "WeakPointer.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		//イベントハンドラ所有クラスインターフェイス(内部クラス)
 		template<typename EventArgType>
 		class IEventHandlerHolder {
@@ -32,7 +32,7 @@ namespace planeta_engine {
 		class WeakPointerMenberFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
 			using FunctionType = void(C::*)(ParamType);
-			WeakPointerMenberFunctionEventHandlerHolder(const utility::WeakPointer<C>& wp, FunctionType f)noexcept :w_ptr_(wp), func_(f) {}
+			WeakPointerMenberFunctionEventHandlerHolder(const util::WeakPointer<C>& wp, FunctionType f)noexcept :w_ptr_(wp), func_(f) {}
 			~WeakPointerMenberFunctionEventHandlerHolder()noexcept = default;
 			bool Call(ParamType e)override {
 				if (w_ptr_) {
@@ -44,7 +44,7 @@ namespace planeta_engine {
 				}
 			}
 		private:
-			utility::WeakPointer<C> w_ptr_;
+			util::WeakPointer<C> w_ptr_;
 			FunctionType func_;
 		};
 
@@ -52,7 +52,7 @@ namespace planeta_engine {
 		class WeakPointerMenberFunctionEventHandlerHolder<void, C> final : public IEventHandlerHolder<void> {
 		public:
 			using FunctionType = void(C::*)();
-			WeakPointerMenberFunctionEventHandlerHolder(const utility::WeakPointer<C>& wp, FunctionType f)noexcept :w_ptr_(wp), func_(f) {}
+			WeakPointerMenberFunctionEventHandlerHolder(const util::WeakPointer<C>& wp, FunctionType f)noexcept :w_ptr_(wp), func_(f) {}
 			~WeakPointerMenberFunctionEventHandlerHolder()noexcept = default;
 			bool Call()override {
 				if (w_ptr_) {
@@ -64,7 +64,7 @@ namespace planeta_engine {
 				}
 			}
 		private:
-			utility::WeakPointer<C> w_ptr_;
+			util::WeakPointer<C> w_ptr_;
 			FunctionType func_;
 		};
 

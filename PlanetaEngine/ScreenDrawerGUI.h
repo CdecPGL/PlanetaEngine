@@ -18,7 +18,7 @@ namespace planeta_engine {
 	public:
 		explicit ScreenDrawerGUI(core::Screen& scr) :screen_(scr) {}
 		/*画像を描画(描画範囲、画像上の描画範囲、反転フラグ、画像リソース)*/
-		void DrawGraph(const utility::RectAngle<int>& draw_area, const utility::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<resources::GraphResource>& graph_resource);
+		void DrawGraph(const util::RectAngle<int>& draw_area, const util::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<resources::GraphResource>& graph_resource);
 		/*ワイヤーを描画(点座標、幅(現状では無効)、色)*/
 		void DrawWire(const std::vector<Vector2Di>& positions, int width, const planeta_engine::Color& color);
 		/*多角形を描画(点座標、三角形ポリゴンインデックス、色)*/

@@ -4,20 +4,20 @@
 #include <string>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		class DataContainer;
 	}
 }
 namespace boost {
 	namespace serialization {
 		template<class Archive>
-		void save(Archive& ar, const planeta_engine::utility::DataContainer& datacontainer, unsigned int);
+		void save(Archive& ar, const planeta_engine::util::DataContainer& datacontainer, unsigned int);
 		template<class Archive>
-		void load(Archive& ar, planeta_engine::utility::DataContainer& data_container, unsigned int);
+		void load(Archive& ar, planeta_engine::util::DataContainer& data_container, unsigned int);
 	}
 }
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		class DataContainer {
 		public:
 			DataContainer();
@@ -42,9 +42,9 @@ namespace planeta_engine {
 			std::unique_ptr<Impl_> impl_;
 			//boostシリアライズのためのフレンド指定
 			template<class Archive>
-			friend void boost::serialization::save(Archive& ar, const planeta_engine::utility::DataContainer& datacontainer, unsigned int);
+			friend void boost::serialization::save(Archive& ar, const planeta_engine::util::DataContainer& datacontainer, unsigned int);
 			template<class Archive>
-			friend void boost::serialization::load(Archive& ar, planeta_engine::utility::DataContainer& data_container, unsigned int);
+			friend void boost::serialization::load(Archive& ar, planeta_engine::util::DataContainer& data_container, unsigned int);
 		};
 	}
 }

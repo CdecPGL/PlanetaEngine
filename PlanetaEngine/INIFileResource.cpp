@@ -19,9 +19,9 @@ namespace planeta_engine {
 					buf.erase(pos, buf.size() - pos);
 				}
 				//改行コード除去
-				utility::RemoveLineFeedCode(buf);
+				util::RemoveLineFeedCode(buf);
 				//スペースとタブ除去
-				utility::RemoveSpaceAndTab(buf);
+				util::RemoveSpaceAndTab(buf);
 				//空行でなかったら行リストに追加
 				if (buf.size() != 0) {
 					lines.push_back(move(buf));

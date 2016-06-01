@@ -4,7 +4,7 @@
 
 namespace planeta_engine {
 	class IGameObject;
-	using GameObjectAccessorType = utility::WeakPointer<IGameObject>;
+	using GameObjectAccessorType = util::WeakPointer<IGameObject>;
 	template<class CT>
-	using GOComponentAccessorType = utility::WeakPointer<CT>;
+	using GOComponentAccessorType = util::WeakPointer<CT>;
 }

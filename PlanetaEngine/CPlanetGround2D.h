@@ -7,7 +7,7 @@ namespace planeta_engine {
 	public:
 
 	private:
-		utility::NonOwingPointer<CPlanet> planet_component_;
+		util::NonOwingPointer<CPlanet> planet_component_;
 		bool OnInitialized()override;
 		virtual bool CollideWith(CCircleCollider2D& circle_collider) override;
 		double GetAltitudeWithGroundPosition(const Vector2Dd& ground_pos) const override;

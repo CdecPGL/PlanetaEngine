@@ -4,7 +4,7 @@
 
 namespace planeta_engine {
 	class Color;
-	namespace utility {
+	namespace util {
 		namespace dx {
 			COLOR_U8 PEColorToDXCOLORU8(const planeta_engine::Color& color);
 			unsigned int PEColorToDXColorHandle(const planeta_engine::Color& color);

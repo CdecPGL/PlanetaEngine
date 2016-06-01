@@ -14,7 +14,7 @@ namespace planeta_engine {
 	class CCamera2D;
 	namespace core {
 		class Screen;
-		class GameObjectDrawSystem :public core::SceneModule, private utility::NonCopyable<GameObjectDrawSystem>
+		class GameObjectDrawSystem :public core::SceneModule, private util::NonCopyable<GameObjectDrawSystem>
 		{
 		public:
 			GameObjectDrawSystem();

@@ -6,7 +6,7 @@
 #include <tuple>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*Keyには大小比較演算子が定義されていて、Elemにはデフォルトコンストラクタが定義されている必要がある。*/
 		template<typename Key, typename Elem>
 		class TwoKeyHashMap final{

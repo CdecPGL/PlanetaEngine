@@ -46,9 +46,9 @@ namespace planeta_engine {
 
 		/*イベント*/
 		/*2Dコライダーとの衝突イベントハンドラ追加*/
-		utility::DelegateConnection AddCollidedWithCollider2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
+		util::DelegateConnection AddCollidedWithCollider2DEventHandler(util::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
 		/*2D地形との衝突イベントハンドラ追加*/
-		utility::DelegateConnection AddCollidedWithGround2DEventHandler(utility::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
+		util::DelegateConnection AddCollidedWithGround2DEventHandler(util::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
 
 		CTransform2D& transform2d() { return *transform2d_; }
 		const CTransform2D& transform2d()const { return *transform2d_; }
@@ -60,10 +60,10 @@ namespace planeta_engine {
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
 
-		utility::NonOwingPointer<CTransform2D> transform2d_;
+		util::NonOwingPointer<CTransform2D> transform2d_;
 
-		utility::Delegate<EACollisionWithCollider2D> collided_event_;
-		utility::Delegate<EACollisionWithGround2D> collided_with_ground_event_;
+		util::Delegate<EACollisionWithCollider2D> collided_event_;
+		util::Delegate<EACollisionWithGround2D> collided_with_ground_event_;
 
 		/*位置*/
 		Vector2Dd position_;

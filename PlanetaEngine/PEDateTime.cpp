@@ -2,7 +2,7 @@
 #include <sstream>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 
 		std::string DateTime::ToString() const
 		{

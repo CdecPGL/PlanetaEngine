@@ -37,9 +37,9 @@ namespace planeta_engine{
 			/*現在のシーンIDを取得*/
 			const std::string GetCurrentSceneID()const override { return _current_scene_id; }
 			/*シーンの遷移(読み込みが必要。読み込み中だったら読み込みつつ遷移)*/
-			bool TransitionScene(const utility::ParameterHolder& transition_parameters)override;
+			bool TransitionScene(const util::ParameterHolder& transition_parameters)override;
 			/*シーンを読み込んで遷移する*/
-			bool LoadAndTransitionScene(const std::string& scene_id, const utility::ParameterHolder& transition_parameters = utility::ParameterHolder())override {
+			bool LoadAndTransitionScene(const std::string& scene_id, const util::ParameterHolder& transition_parameters = util::ParameterHolder())override {
 				return LoadNextScene(scene_id) && TransitionScene(transition_parameters);
 			}
 			/*終了*/
@@ -77,7 +77,7 @@ namespace planeta_engine{
 			/*次のシーンID*/
 			std::string _next_scene_id;
 			/*次のシーンの初期化パラメータリスト*/
-			utility::ParameterHolder _transition_parameters;
+			util::ParameterHolder _transition_parameters;
 			/*現在のシーンID*/
 			std::string _current_scene_id;
 			/*遷移中か*/
@@ -94,13 +94,13 @@ namespace planeta_engine{
 			/*遷移処理*/
 			void _transition_proc();
 			/*現在のシーンを終了*/
-			utility::ParameterHolder _end_current_scene();
+			util::ParameterHolder _end_current_scene();
 			/*エラーシーンへ遷移*/
 			void _transition_to_error_scene();
 			/*シーンの初期化*/
-			bool InitializeScene_(Scene& scene,SceneSetUpper& setupper, const utility::ParameterHolder& init_param);
+			bool InitializeScene_(Scene& scene,SceneSetUpper& setupper, const util::ParameterHolder& init_param);
 			/*シーンの終了処理*/
-			utility::ParameterHolder FinalizeScene_(core::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters);
+			util::ParameterHolder FinalizeScene_(core::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters);
 
 		};
 	}

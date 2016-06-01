@@ -3,7 +3,7 @@
 #include <memory>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		template<typename Base,typename ArgType>
 		bool CheckSharedPointerTypeOfBase(const std::shared_ptr<ArgType>& obj) { return std::dynamic_pointer_cast<Base>(obj) != nullptr; }
 		template<typename Base, typename ArgType>

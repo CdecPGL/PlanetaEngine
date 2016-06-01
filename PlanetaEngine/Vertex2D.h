@@ -4,7 +4,7 @@
 
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*2D’¸“_\‘¢‘Ì*/
 		struct Vertex2D {
 			Vector2Df position; //À•W

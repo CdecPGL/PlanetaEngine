@@ -9,10 +9,10 @@ namespace planeta_engine {
 	bool debug::SystemTimer::Initialize()
 	{
 		_frame_count = 0;
-		_start_time = utility::Time::GetCurrentTime();
+		_start_time = util::Time::GetCurrentTime();
 		return true;
 	}
 
-	const utility::Time debug::SystemTimer::GetCurrentTimeCount() const { return utility::Time::GetCurrentTime() - _start_time; }
+	const util::Time debug::SystemTimer::GetCurrentTimeCount() const { return util::Time::GetCurrentTime() - _start_time; }
 
 }

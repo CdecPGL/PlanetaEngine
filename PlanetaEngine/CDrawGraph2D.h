@@ -20,8 +20,8 @@ namespace planeta_engine {
 		~CDrawGraph2D();
 		bool SetGraphResource(const std::string& resource_id);
 		/*アクセサ*/
-		const utility::RectAngle<int>& draw_area()const { return _draw_area; }
-		CDrawGraph2D& draw_area(const utility::RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); return *this; }
+		const util::RectAngle<int>& draw_area()const { return _draw_area; }
+		CDrawGraph2D& draw_area(const util::RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); return *this; }
 		const bool reverse()const { return reverse_; }
 		CDrawGraph2D& reverse(bool rev) { reverse_ = rev; _UpdateUVPosition(); return *this; }
 		const Vector2Dd& graph_center()const { return graph_center_; }
@@ -30,7 +30,7 @@ namespace planeta_engine {
 		/*反転描画フラグ*/
 		bool reverse_ = false;
 		/*画像上で表示する範囲*/
-		utility::RectAngle<int> _draw_area;
+		util::RectAngle<int> _draw_area;
 		/*画像の中心位置*/
 		Vector2Dd graph_center_ = Vector2Dd(0.5, 0.5);
 		/*画像描画データ*/

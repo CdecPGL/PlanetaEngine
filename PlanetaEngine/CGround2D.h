@@ -35,7 +35,7 @@ namespace planeta_engine {
 
 		CTransform2D& transform2d();
 	protected:
-		utility::NonOwingPointer<CTransform2D> transform2d_;
+		util::NonOwingPointer<CTransform2D> transform2d_;
 
 		virtual bool OnInitialized() override;
 		virtual bool OnActivated() override;

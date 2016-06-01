@@ -18,7 +18,7 @@ namespace planeta_engine {
 
 			/*DX形式頂点情報の位置を設定*/
 			inline void SetPositionToDXVERTEX3D(VERTEX3D& dx_vtx3d, const Vector2Df& position) {
-				using namespace utility::dx;
+				using namespace util::dx;
 				dx_vtx3d.pos = PEVector2DToDXVECTOR(position);
 			}
 			/*DX形式頂点情報のUV座標を設定*/
@@ -28,13 +28,13 @@ namespace planeta_engine {
 			}
 			/*DX形式頂点情報の色を設定*/
 			inline void SetColorToDXVERTEX3D(VERTEX3D& dx_vtx3d, const Color& color) {
-				using namespace utility::dx;
+				using namespace util::dx;
 				dx_vtx3d.dif = PEColorToDXCOLORU8(color);
 //				vdx[i].spc = PEColorToDXCOLORU8(vertexes[i].color); //ライティング計算を行わないので使用しない
 			}
 			/*DX形式頂点情報を設定*/
-			inline void SetPEVertex2DToDXVERTEX3D(VERTEX3D& dx_vtx3d, const utility::Vertex2D& pe_vtx2d,const Vector2Dd& image_area) {
-				using namespace utility::dx;
+			inline void SetPEVertex2DToDXVERTEX3D(VERTEX3D& dx_vtx3d, const util::Vertex2D& pe_vtx2d,const Vector2Dd& image_area) {
+				using namespace util::dx;
 				SetPositionToDXVERTEX3D(dx_vtx3d, pe_vtx2d.position);
 				SetColorToDXVERTEX3D(dx_vtx3d, pe_vtx2d.color);
 				SetUVToDXVERTEX3D(dx_vtx3d, pe_vtx2d.u, pe_vtx2d.v, image_area);
@@ -80,7 +80,7 @@ namespace planeta_engine {
 			dx_data_->polygon_count = c;
 		}
 
-		bool GraphDrawData2D::SetVectex(size_t idx, const utility::Vertex2D& vtx)
+		bool GraphDrawData2D::SetVectex(size_t idx, const util::Vertex2D& vtx)
 		{
 			if (dx_data_->vertex_count <= idx) { return false; }
 			SetPEVertex2DToDXVERTEX3D(dx_data_->vertexes[idx], vtx, graph_resource_->image_area());
@@ -120,9 +120,9 @@ namespace planeta_engine {
 			return true;
 		}
 
-		void GraphDrawData2D::SetVertexes(const std::vector<utility::Vertex2D>& vertexes)
+		void GraphDrawData2D::SetVertexes(const std::vector<util::Vertex2D>& vertexes)
 		{
-			using namespace utility::dx;
+			using namespace util::dx;
 			//頂点情報のDX形式変換
 			std::unique_ptr<VERTEX3D[]> vdx = std::make_unique<VERTEX3D[]>(vertexes.size());
 			vertex_uv_information_buffer_.resize(vertexes.size());
@@ -147,7 +147,7 @@ namespace planeta_engine {
 			dx_data_->polygon_count = polygon_indexes.size();
 		}
 
-		void GraphDrawData2D::SetVertexesAndPolygonIndexes(const std::vector<utility::Vertex2D>& vertexes, const std::vector<std::array<size_t, 3>>& indexes)
+		void GraphDrawData2D::SetVertexesAndPolygonIndexes(const std::vector<util::Vertex2D>& vertexes, const std::vector<std::array<size_t, 3>>& indexes)
 		{
 			SetVertexes(vertexes);
 			SetPolygonIndexes(indexes);

@@ -5,7 +5,7 @@
 
 namespace planeta_engine {
 	class File;
-	namespace utility {
+	namespace util {
 		/*標準ファイル入力からFileを作成する*/
 		std::shared_ptr<File> CreateFileFromStandardFileInput(const std::string& file_name);
 		/*改行コードを\nに統一する(\r\nや\rを\nに)*/

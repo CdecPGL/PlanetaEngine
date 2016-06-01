@@ -10,8 +10,8 @@ namespace planeta_engine {
 	class FileAccessor;
 	class FileManipulatorBase;
 	enum class AccessMode;
-	class FileSystemManager final : public utility::SingletonTemplate<FileSystemManager> {
-		friend utility::SingletonTemplate<FileSystemManager>;
+	class FileSystemManager final : public util::SingletonTemplate<FileSystemManager> {
+		friend util::SingletonTemplate<FileSystemManager>;
 	public:
 		bool Initialize()override;
 		void Finalize()override;

@@ -6,7 +6,7 @@
 #include "SystemLog.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		std::shared_ptr<File> CreateFileFromStandardFileInput(const std::string& file_name) {
 			//ファイルを開く
 			std::ifstream ifs(file_name, std::ios::binary);

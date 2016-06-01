@@ -4,7 +4,7 @@
 #include <string>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		inline void ConvertAndConnectToString2(std::ostringstream&) {}
 		template<typename First, typename ... Rest>
 		void ConvertAndConnectToString2(std::ostringstream& oss, First&& first, Rest&&... rest) {

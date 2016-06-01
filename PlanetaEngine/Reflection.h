@@ -12,7 +12,7 @@
 
 /*–¢Š®¬*/
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		class Reflection {
 		public:
 			Reflection() = default;

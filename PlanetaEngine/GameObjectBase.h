@@ -13,7 +13,7 @@ namespace planeta_engine {
 		struct SceneData;
 	}
 	class GameObjectComponent;
-	class GameObjectBase :public core::Object, public IGameObjectForComponent, private utility::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
+	class GameObjectBase :public core::Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
 		GameObjectBase();
 		~GameObjectBase();
@@ -28,11 +28,11 @@ namespace planeta_engine {
 		//自分のstd::shared_ptrを取得する。
 		std::shared_ptr<IGameObject> GetSharedPointer() override final;
 		//有効化イベントハンドラ登録
-		utility::DelegateConnection AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
+		util::DelegateConnection AddActivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
 		//無効化イベントハンドラ登録
-		utility::DelegateConnection AddInactivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
+		util::DelegateConnection AddInactivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
 		//破棄イベントハンドラ登録
-		utility::DelegateConnection AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder)override final;
+		util::DelegateConnection AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
 
 		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
 		//初期化時の処理
@@ -46,11 +46,11 @@ namespace planeta_engine {
 		//マネージャコネクションをセット
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
 		//シーンデータをセット
-		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data);
+		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
 	protected:
 		//コンポーネントを作成、追加する。
 		template<class ComT>
-		utility::NonOwingPointer<ComT> CreateAndAddComponent() {
+		util::NonOwingPointer<ComT> CreateAndAddComponent() {
 			auto com = component_holder_.CreateAndAddComponent<ComT>();
 			SetUpGameComponent(*com);
 			return com;
@@ -67,9 +67,9 @@ namespace planeta_engine {
 	private:
 		//インターフェイスのオーバーライド
 		//ゲームオブジェクトを作成
-		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id)override final;
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id)override final;
 		//ゲームオブジェクトを作成して有効化
-		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id)override final;
+		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id)override final;
 		//コンポーネントを型で取得
 		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 		//コンポーネントを型ですべて取得
@@ -80,7 +80,7 @@ namespace planeta_engine {
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 		//シーンアクセサ
-		utility::WeakPointer<core::SceneData> scene_data_;
+		util::WeakPointer<core::SceneData> scene_data_;
 		//コンポーネントホルダー
 		GameObjectComponentHolder component_holder_;
 
@@ -89,8 +89,8 @@ namespace planeta_engine {
 		void SetUpGameComponent(GameObjectComponent& com);
 		
 		//イベントデリゲート
-		utility::Delegate<void> activated_event_delegate_;
-		utility::Delegate<void> inactivated_event_delegate_;
-		utility::Delegate<void> disposed_event_delegate_;
+		util::Delegate<void> activated_event_delegate_;
+		util::Delegate<void> inactivated_event_delegate_;
+		util::Delegate<void> disposed_event_delegate_;
 	};
 }

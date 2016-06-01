@@ -5,7 +5,7 @@
 #include "DataContainer.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*GameDataをシリアライズする*/
 		std::shared_ptr<File> SerializeDataContainer(DataContainer& data_container);
 		/*GameDataをデシリアライズする(失敗したらstd::runtime_errorを投げる)*/

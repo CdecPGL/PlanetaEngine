@@ -16,7 +16,7 @@ namespace planeta_engine {
 		struct GameObjectComponentSetUpData;
 	}
 	class IGameObjectForComponent;
-	class GameObjectComponent : public core::Object, public std::enable_shared_from_this<GameObjectComponent>, private utility::NonCopyable<GameObjectComponent>{
+	class GameObjectComponent : public core::Object, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
 	public:
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
@@ -37,10 +37,10 @@ namespace planeta_engine {
 		bool is_valied_ = false;
 		bool is_active_ = false;
 
-		utility::NonOwingPointer<IGameObjectForComponent> game_object_;
+		util::NonOwingPointer<IGameObjectForComponent> game_object_;
 
 		/*特別設定関数*/
-		virtual void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) = 0;
+		virtual void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) = 0;
 
 		/*イベント関数*/
 		virtual bool OnInitialized() { return true; }; //所属するゲームオブジェクトが生成されたときに呼び出される(システム関数)

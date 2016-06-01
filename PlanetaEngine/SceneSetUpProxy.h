@@ -10,27 +10,27 @@ namespace planeta_engine {
 	public:
 		SceneSetUpProxy(core::Scene& scene);
 		//ゲームオブジェクトを作成
-		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
 		//ゲームオブジェクトを作成して有効化
-		utility::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
 		//タスクを作成
 		template<class T>
-		utility::WeakPointer<T> CreateTask(TaskSlot slot) {
+		util::WeakPointer<T> CreateTask(TaskSlot slot) {
 			auto task = std::make_shared<T>();
 			return RefTaskManagerInterface_().RegisterTask(task, slot) ? task : nullptr;
 		}
 		//名前付きタスクを作成
 		template<class T>
-		utility::WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
+		util::WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
 			return RefTaskManagerInterface_().RegisterTask<T>(slot, name);
 		}
 		//型でタスク取得
 		template<class T>
-		utility::WeakPointer<T> GetTaskByType()const {
+		util::WeakPointer<T> GetTaskByType()const {
 			return RefTaskManagerInterface_().GetTask<T>();
 		}
 		//名前でタスクを取得
-		utility::WeakPointer<Task> GetTaskByName(const std::string& name)const;
+		util::WeakPointer<Task> GetTaskByName(const std::string& name)const;
 	private:
 		TaskManagerPublicInterface& RefTaskManagerInterface_();
 		const TaskManagerPublicInterface& RefTaskManagerInterface_()const;

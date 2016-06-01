@@ -8,7 +8,7 @@
 
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		template<typename T>
 		class WeakPointer;
 

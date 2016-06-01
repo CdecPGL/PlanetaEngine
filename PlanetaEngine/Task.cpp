@@ -15,7 +15,7 @@ namespace planeta_engine {
 		manager_connection_->Dispose(); //”jŠü
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const utility::WeakPointer<core::SceneData>& scene_data) {
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const util::WeakPointer<core::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();
@@ -37,15 +37,15 @@ namespace planeta_engine {
 		return scene_data_->task_manager_public_interface;
 	}
 
-	utility::WeakPointer<Task> Task::GetTaskByName(const std::string& name) const {
+	util::WeakPointer<Task> Task::GetTaskByName(const std::string& name) const {
 		return RefTaskManagerInterface_().GetTask(name);
 	}
 
-	utility::WeakPointer<IGameObject> Task::CreateGameObject(const std::string& id) {
+	util::WeakPointer<IGameObject> Task::CreateGameObject(const std::string& id) {
 		return scene_data_->game_object_manager_public_interface.CreateGameObject(id);
 	}
 
-	utility::WeakPointer<IGameObject> Task::CreateAndActivateGameObject(const std::string& id) {
+	util::WeakPointer<IGameObject> Task::CreateAndActivateGameObject(const std::string& id) {
 		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();

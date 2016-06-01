@@ -5,7 +5,7 @@ namespace planeta_engine {
 	namespace core {
 
 		void ScreenChangeEffecter::progress(double p) {
-			progress_ = utility::AdjustInRange(p, 0.0, 1.0);
+			progress_ = util::AdjustInRange(p, 0.0, 1.0);
 			UpdateInternalProgress_();
 		}
 
@@ -15,7 +15,7 @@ namespace planeta_engine {
 		}
 
 		void ScreenChangeEffecter::UpdateInternalProgress_() {
-			internal_progress_ = utility::AdjustInRange(progress_curve_(reverse_flag_ ? (1.0 - progress_) : progress_), 0.0, 1.0);
+			internal_progress_ = util::AdjustInRange(progress_curve_(reverse_flag_ ? (1.0 - progress_) : progress_), 0.0, 1.0);
 		}
 
 	}

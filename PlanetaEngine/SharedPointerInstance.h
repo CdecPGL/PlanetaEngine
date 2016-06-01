@@ -3,7 +3,7 @@
 #include <memory>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*std::enable_shared_from_this‚ğg‚¤‚±‚Æ‚ğ„§I*/
 		template<class C>
 		class SharedPointerInstance {

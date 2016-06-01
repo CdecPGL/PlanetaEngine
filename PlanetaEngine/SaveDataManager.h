@@ -7,13 +7,13 @@
 #include "boost/optional.hpp"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		class DataContainer;
 	}
 	class FileAccessor;
 	namespace core {
-		class SaveDataManager final: public utility::SingletonTemplate<SaveDataManager>{
-			friend class utility::SingletonTemplate<SaveDataManager>;
+		class SaveDataManager final: public util::SingletonTemplate<SaveDataManager>{
+			friend class util::SingletonTemplate<SaveDataManager>;
 		public:
 			//ファイルアクセサを設定。初期化前に呼び出す。
 			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor);
@@ -21,7 +21,7 @@ namespace planeta_engine {
 			void Finalize()override;
 
 			struct UserDataHeader {
-				utility::DateTime update_time;
+				util::DateTime update_time;
 				std::vector<std::string> header;
 			};
 			/*保存*/
@@ -35,13 +35,13 @@ namespace planeta_engine {
 			/*ユーザーデータのヘッダ情報を取得*/
 			const UserDataHeader& GetUserDataHeaderParam(int idx)const;
 			/*共通データを取得*/
-			const utility::DataContainer& GetCommonData()const;
+			const util::DataContainer& GetCommonData()const;
 			/*共通データを取得*/
-			utility::DataContainer& GetCommonData();
+			util::DataContainer& GetCommonData();
 			/*ユーザーデータを取得*/
-			boost::optional<const utility::DataContainer&> GetCurrentData()const;
+			boost::optional<const util::DataContainer&> GetCurrentData()const;
 			/*ユーザーデータを取得*/
-			boost::optional<utility::DataContainer&> GetCurrentData();
+			boost::optional<util::DataContainer&> GetCurrentData();
 			/*ユーザーデータを新規作成(インデックスを返す)*/
 			int CreateUserData();
 			/*ユーザーデータを複製(インデックスを返す)*/

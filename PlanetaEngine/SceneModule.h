@@ -14,7 +14,7 @@ namespace planeta_engine {
 			virtual void Finalize() { return; };
 			virtual void Update() = 0;
 
-			virtual void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {};
+			virtual void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) {};
 		private:
 
 		};

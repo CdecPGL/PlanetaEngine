@@ -11,8 +11,8 @@
 
 namespace planeta_engine {
 	namespace core {
-		class KeyInputManager final : public utility::SingletonTemplate<KeyInputManager>{
-			friend utility::SingletonTemplate<KeyInputManager>;
+		class KeyInputManager final : public util::SingletonTemplate<KeyInputManager>{
+			friend util::SingletonTemplate<KeyInputManager>;
 		public:
 			/*‰Šú‰»*/
 			bool Initialize()override;

@@ -5,8 +5,8 @@
 
 namespace planeta_engine {
 	namespace  debug {
-		class DebugManager : public utility::SingletonTemplate<DebugManager>{
-			friend utility::SingletonTemplate<DebugManager>;
+		class DebugManager : public util::SingletonTemplate<DebugManager>{
+			friend util::SingletonTemplate<DebugManager>;
 		public:
 			DebugManager();
 			~DebugManager();
@@ -15,7 +15,7 @@ namespace planeta_engine {
 			void Update();
 			template<typename... Details>
 			void PushDebugInformation(Details&&... details) {
-				utility::ConvertAndConnectToString(std::forward<Details>(details)...);
+				util::ConvertAndConnectToString(std::forward<Details>(details)...);
 			}
 		private:
 			class Impl_;

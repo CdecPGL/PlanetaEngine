@@ -20,8 +20,8 @@ namespace planeta_engine {
 		//////////////////////////////////////////////////////////////////////////
 		class SaveDataManager::Impl_ {
 		public:
-			std::unique_ptr<utility::DataContainer> common_data_;
-			std::unique_ptr<utility::DataContainer> current_user_data_;
+			std::unique_ptr<util::DataContainer> common_data_;
+			std::unique_ptr<util::DataContainer> current_user_data_;
 			std::shared_ptr<FileAccessor> file_accessor_;
 			int current_user_data_idx_ = -1; //-1で読み込んでいない
 
@@ -51,7 +51,7 @@ namespace planeta_engine {
 					return false;
 				}
 				try {
-					common_data_ = std::make_unique<utility::DataContainer>(std::move(utility::DeserializeDataContainer(file)));
+					common_data_ = std::make_unique<util::DataContainer>(std::move(util::DeserializeDataContainer(file)));
 				} catch (std::runtime_error&) {
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "共通セーブデータの読み込みに失敗しました。");
 					return false;
@@ -70,7 +70,7 @@ namespace planeta_engine {
 					return false;
 				}
 				try {
-					current_user_data_ = std::make_unique<utility::DataContainer>(std::move(utility::DeserializeDataContainer(file)));
+					current_user_data_ = std::make_unique<util::DataContainer>(std::move(util::DeserializeDataContainer(file)));
 				} catch (std::runtime_error&) {
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ユーザーセーブデータ", idx, "の読み込みに失敗しました。");
 					return false;
@@ -83,7 +83,7 @@ namespace planeta_engine {
 					return false;
 				}
 				assert(current_user_data_ != nullptr);
-				auto file = utility::SerializeDataContainer(*current_user_data_);
+				auto file = util::SerializeDataContainer(*current_user_data_);
 				if (file == nullptr) {
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ユーザーセーブデータ", current_user_data_idx_, "のファイル作成に失敗しました。");
 					return false;
@@ -95,7 +95,7 @@ namespace planeta_engine {
 				return true;
 			}
 			bool SaveCommonSaveData() {
-				auto file = utility::SerializeDataContainer(*common_data_);
+				auto file = util::SerializeDataContainer(*common_data_);
 				if (file == nullptr) {
 					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "共通セーブデータのファイル作成に失敗しました。");
 					return false;
@@ -161,31 +161,31 @@ namespace planeta_engine {
 			return impl_->save_data_info_.user_save_data_param_count;
 		}
 
-		const utility::DataContainer& SaveDataManager::GetCommonData() const {
+		const util::DataContainer& SaveDataManager::GetCommonData() const {
 			assert(impl_->common_data_ != nullptr);
 			return  *impl_->common_data_;
 		}
 
-		utility::DataContainer& SaveDataManager::GetCommonData() {
+		util::DataContainer& SaveDataManager::GetCommonData() {
 			assert(impl_->common_data_ != nullptr);
 			return  *impl_->common_data_;
 		}
 
-		boost::optional<const utility::DataContainer&> SaveDataManager::GetCurrentData() const {
+		boost::optional<const util::DataContainer&> SaveDataManager::GetCurrentData() const {
 			if (impl_->current_user_data_idx_ >= 0) {
 				assert(impl_->current_user_data_ != nullptr);
-				return boost::optional<const utility::DataContainer&>(*impl_->common_data_);
+				return boost::optional<const util::DataContainer&>(*impl_->common_data_);
 			} else {
-				return boost::optional<const utility::DataContainer&>();
+				return boost::optional<const util::DataContainer&>();
 			}
 		}
 
-		boost::optional<utility::DataContainer&> SaveDataManager::GetCurrentData() {
+		boost::optional<util::DataContainer&> SaveDataManager::GetCurrentData() {
 			if (impl_->current_user_data_idx_ >= 0) {
 				assert(impl_->current_user_data_ != nullptr);
-				return boost::optional<utility::DataContainer&>(*impl_->common_data_);
+				return boost::optional<util::DataContainer&>(*impl_->common_data_);
 			} else {
-				return boost::optional<utility::DataContainer&>();
+				return boost::optional<util::DataContainer&>();
 			}
 		}
 

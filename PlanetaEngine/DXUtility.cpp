@@ -2,7 +2,7 @@
 #include "Color.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		namespace dx {
 			COLOR_U8 PEColorToDXCOLORU8(const planeta_engine::Color& color)
 			{

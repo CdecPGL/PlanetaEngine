@@ -1,7 +1,7 @@
 #pragma once
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*関数内静的変数でインスタンスを保持するシングルトン*/
 		template<class C>
 		class SingletonTemplate {

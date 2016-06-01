@@ -4,7 +4,7 @@
 #include "Object.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/*“ú‚É‚¿ŠÔƒNƒ‰ƒX
 		‰‰ZŒ‹‰Ê‚ª•‰‚É‚È‚éê‡‚Í‚·‚×‚Ä0‚Æ‚·‚é*/
 		class DateTime : public core::Object {

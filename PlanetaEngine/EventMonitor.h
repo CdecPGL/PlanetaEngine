@@ -3,7 +3,7 @@
 #include "Delegate.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		/**
 		* @brief デリゲートイベント監視クラス本体。
 		*/

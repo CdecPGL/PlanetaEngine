@@ -14,7 +14,7 @@ namespace planeta_engine {
 	namespace core {
 		class Object;
 		//オブジェクトファクトリ(シングルトンクラス)
-		class GlobalObjectFactory : private utility::NonCopyable<GlobalObjectFactory> {
+		class GlobalObjectFactory : private util::NonCopyable<GlobalObjectFactory> {
 		public:
 			/*インスタンスを取得*/
 			static GlobalObjectFactory& instance();

@@ -8,6 +8,6 @@ namespace planeta_engine {
 		virtual ~GameObjectStandardComponent() = default;
 	private:
 		/*シーンデータのセットは行わない。子クラスにはオーバーライド不可にしておく。*/
-		void SetSceneData(const utility::WeakPointer<core::SceneData>&)override final{ return; }
+		void SetSceneData(const util::WeakPointer<core::SceneData>&)override final{ return; }
 	};
 }

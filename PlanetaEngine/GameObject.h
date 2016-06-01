@@ -20,7 +20,7 @@ namespace planeta_engine {
 		bool ProcessInactivation();
 		bool ProcessDisposal();
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
-		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data);
+		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
 	};
 }
 

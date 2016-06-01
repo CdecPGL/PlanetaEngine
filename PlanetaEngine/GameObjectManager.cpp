@@ -39,7 +39,7 @@ namespace planeta_engine {
 		}
 	}
 
-	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
+	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
 		auto go = CreateGameObjectByID_(game_object_create_id);
 			if (go == nullptr) {
 				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
@@ -50,7 +50,7 @@ namespace planeta_engine {
 		} else { return nullptr; }
 
 	}
-	utility::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
+	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
 		auto go = CreateGameObjectByID_(game_object_create_id);
 		if (go == nullptr) {
 			debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
@@ -123,7 +123,7 @@ namespace planeta_engine {
 		garbage_.clear();
 	}
 
-	void GameObjectManager::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data) {
+	void GameObjectManager::SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 	}
 

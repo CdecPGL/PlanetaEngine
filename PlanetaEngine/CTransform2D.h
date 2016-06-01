@@ -67,10 +67,10 @@ namespace planeta_engine {
 		const CGround2D& ground()const;
 		CGround2D& ground();
 		/*地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
-		utility::WeakPointer<CGround2D> GetGround()const;
-		bool SetGround(const utility::WeakPointer<IGameObject>& g, bool keep_global_position);
+		util::WeakPointer<CGround2D> GetGround()const;
+		bool SetGround(const util::WeakPointer<IGameObject>& g, bool keep_global_position);
 		/*トランスフォーム更新イベントハンドラ追加*/
-		utility::DelegateConnection AddUpdatedEventHandler(utility::DelegateHandlerAdder<void>&& handler_adder);
+		util::DelegateConnection AddUpdatedEventHandler(util::DelegateHandlerAdder<void>&& handler_adder);
 
 		//システム
 		void ApplyVelocity_(); //速度適用

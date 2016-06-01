@@ -2,7 +2,7 @@
 #include"Vector2D.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		template <typename T>
 		class RectAngle {
 		public:

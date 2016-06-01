@@ -41,7 +41,7 @@ namespace planeta_engine {
 		TextureMappingMode tex_map_mode_;
 		virtual bool OnInitialized() override;
 		virtual void OnFinalized()noexcept override;
-		utility::NonOwingPointer<CPlanet> _planet_component;
+		util::NonOwingPointer<CPlanet> _planet_component;
 		/*ポリゴンセット*/
 		void(CDrawPlanet2D::*polygon_setter_)();
 		void SetPolygon_();

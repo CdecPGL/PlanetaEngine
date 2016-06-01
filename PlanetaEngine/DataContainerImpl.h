@@ -4,7 +4,7 @@
 #include "DataContainer.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		namespace data_container_element_type {
 			using integer = int64_t;
 			using boolean = bool;

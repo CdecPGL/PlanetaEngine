@@ -16,15 +16,15 @@ namespace planeta_engine {
 		return scene_.RefSceneData().task_manager_public_interface;
 	}
 
-	utility::WeakPointer<Task> SceneSetUpProxy::GetTaskByName(const std::string& name) const {
+	util::WeakPointer<Task> SceneSetUpProxy::GetTaskByName(const std::string& name) const {
 		return RefTaskManagerInterface_().GetTask(name);
 	}
 
-	utility::WeakPointer<IGameObject> SceneSetUpProxy::CreateGameObject(const std::string& id) {
+	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateGameObject(const std::string& id) {
 		return scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id);
 	}
 
-	utility::WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateGameObject(const std::string& id) {
+	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateGameObject(const std::string& id) {
 		auto go = scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();

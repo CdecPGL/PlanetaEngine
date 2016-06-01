@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		DataContainer::DataContainer() :impl_(std::make_unique<Impl_>()) {}
 
 		//DataContainer::DataContainer(const DataContainer& obj) : impl_(std::make_unique<Impl_>(*obj.impl_)) {}

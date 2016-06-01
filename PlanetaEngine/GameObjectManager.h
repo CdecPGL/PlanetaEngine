@@ -16,13 +16,13 @@ namespace planeta_engine {
 		struct SceneData;
 	}
 	class GameObjectManager final : public core::SceneModule
-		, public GameObjectManagerPublicInterface, private utility::NonCopyable<GameObjectManager> {
+		, public GameObjectManagerPublicInterface, private util::NonCopyable<GameObjectManager> {
 	public:
 		GameObjectManager();
 		~GameObjectManager();
 		//ユーザアクセス可能関数
-		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_create_id)override;
-		utility::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_create_id, const std::string& name)override;
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_create_id)override;
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_create_id, const std::string& name)override;
 
 		//システム関数
 		/*初期化*/
@@ -30,7 +30,7 @@ namespace planeta_engine {
 		/*終了処理*/
 		void Finalize()override;
 		/*シーンデータセット*/
-		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data)override;
+		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data)override;
 
 		/*管理処理*/
 		void Update()override;
@@ -50,7 +50,7 @@ namespace planeta_engine {
 		std::vector<std::shared_ptr<GameObjectBase>> garbage_;
 		void RemoveProc_();
 		int _id_counter;
-		utility::WeakPointer<core::SceneData> scene_data_;
+		util::WeakPointer<core::SceneData> scene_data_;
 		static std::shared_ptr<GameObjectBase >CreateGameObjectByID_(const std::string& id);
 		/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
 		int RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go);

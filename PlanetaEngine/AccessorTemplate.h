@@ -1,7 +1,7 @@
 #pragma once
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		template<class PublicInterface, class... SAImpls>
 		class AccessorTemplate : public SAImpls...{
 		public:

@@ -32,16 +32,16 @@ namespace planeta_engine {
 	}
 
 	void TGameObjectOperation::RegisterEventHandler(IGameObject& goa) {
-		dispose_event_connection_ = goa.AddDisposedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
+		dispose_event_connection_ = goa.AddDisposedEventHandler(util::CreateDelegateHandlerAdder([this]() {
 			OnTargetDisposed();
 			if (dispose_on_target_disposed_) {
 				Dispose();
 			}
 		}));
-		activate_event_connection_ = goa.AddActivatedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
+		activate_event_connection_ = goa.AddActivatedEventHandler(util::CreateDelegateHandlerAdder([this]() {
 			OnTargetActivated();
 		}));
-		inactivate_event_connection_ = goa.AddInactivatedEventHandler(utility::CreateDelegateHandlerAdder([this]() {
+		inactivate_event_connection_ = goa.AddInactivatedEventHandler(util::CreateDelegateHandlerAdder([this]() {
 			OnTargetInactivated();
 		}));
 	}

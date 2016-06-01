@@ -23,7 +23,7 @@ namespace planeta_engine {
 		virtual std::shared_ptr<IGameObject> GetSharedPointer()= 0;
 		//コンポーネントを型で取得する。
 		template<class ComT>
-		utility::WeakPointer<ComT> GetComponent()const {
+		util::WeakPointer<ComT> GetComponent()const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
 			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
 		}
@@ -42,7 +42,7 @@ namespace planeta_engine {
 		}
 		//タスクをアタッチ(TはTGameObjectOperationを継承したクラス)
 		template<class T>
-		utility::WeakPointer<T> CreateAndAttachTask(TaskSlot slot) {
+		util::WeakPointer<T> CreateAndAttachTask(TaskSlot slot) {
 			static_assert(std::is_base_of<TGameObjectOperation, T>::value == true, "T must derive TGameObjectOperation");
 			auto task = std::make_shared<T>();
 			if (!RefTaskManagerInterface_().RegisterTask(task, slot)) { return nullptr; }
@@ -50,11 +50,11 @@ namespace planeta_engine {
 			return task;
 		}
 		//有効化イベントハンドラ登録
-		virtual utility::DelegateConnection AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
+		virtual util::DelegateConnection AddActivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) = 0;
 		//無効化イベントハンドラ登録
-		virtual utility::DelegateConnection AddInactivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
+		virtual util::DelegateConnection AddInactivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) = 0;
 		//破棄イベントハンドラ登録
-		virtual utility::DelegateConnection AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) = 0;
+		virtual util::DelegateConnection AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) = 0;
 	protected:
 		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const = 0;
 		virtual TaskManagerPublicInterface& RefTaskManagerInterface_() = 0;

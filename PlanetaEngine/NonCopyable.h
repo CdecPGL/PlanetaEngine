@@ -2,7 +2,7 @@
 
 namespace planeta_engine {
 	/*コピー禁止化クラス*/
-	namespace utility {
+	namespace util {
 		template <class T>
 		class NonCopyable {
 		protected:

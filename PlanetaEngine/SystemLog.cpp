@@ -162,7 +162,7 @@ namespace planeta_engine {
 			debug_mode = false;
 #endif
 			SimpleLog(std::string("PlanetaEngine v") + core::system_variables::engine_information::VersionString, debug_mode ? " デバッグビルド" : "");
-			SimpleLog(std::string("起動日時:") + utility::DateTime::GetCurrentDateTime().ToString());
+			SimpleLog(std::string("起動日時:") + util::DateTime::GetCurrentDateTime().ToString());
 			if (core::system_variables::DevelopmentMode) { SimpleLog("開発モードが有効です。"); }
 			PE_LOG_MESSAGE("ログ出力が開始されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
 			return true;

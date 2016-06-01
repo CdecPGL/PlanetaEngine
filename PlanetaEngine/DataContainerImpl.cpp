@@ -5,7 +5,7 @@
 #include "StringUtility.h"
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		DataContainer::Impl_::Impl_(const Impl_& obj) :
 			element_type_map_(obj.element_type_map_),
 			integer_elements_(obj.integer_elements_),
@@ -26,14 +26,14 @@ namespace planeta_engine {
 			auto it = element_type_map_.find(id);
 			assert(it != element_type_map_.end()); //‘¶İ‚µ‚Ä‚¢‚é—v‘f‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
 			if (it->second != type) {
-				std::string err(utility::ConvertAndConnectToString("Œ^‚ªˆÙ‚È‚è‚Ü‚·B(ID:", id, ",Œ^:", it->second.name(), ",w’èŒ^:", type.name(), ")"));
+				std::string err(util::ConvertAndConnectToString("Œ^‚ªˆÙ‚È‚è‚Ü‚·B(ID:", id, ",Œ^:", it->second.name(), ",w’èŒ^:", type.name(), ")"));
 				throw DataContainerError(err);
 			}
 		}
 
 		void DataContainer::Impl_::CheckElementExist(const std::string& id)const {
 			if (element_type_map_.find(id) == element_type_map_.end()) {
-				std::string err(utility::ConvertAndConnectToString("—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñB(ID:", id, ")"));
+				std::string err(util::ConvertAndConnectToString("—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñB(ID:", id, ")"));
 				throw DataContainerError(err);
 			}
 		}

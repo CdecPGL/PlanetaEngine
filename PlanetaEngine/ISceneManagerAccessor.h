@@ -22,9 +22,9 @@ namespace planeta_engine {
 		/*現在のシーンIDを取得*/
 		virtual const std::string GetCurrentSceneID()const = 0;
 		/*シーンの遷移(読み込みが必要。読み込み中だったら読み込みつつ遷移)*/
-		virtual bool TransitionScene(const utility::ParameterHolder& transition_parameters) = 0;
+		virtual bool TransitionScene(const util::ParameterHolder& transition_parameters) = 0;
 		/*シーンを読み込んで遷移する*/
-		virtual bool LoadAndTransitionScene(const std::string& scene_id, const utility::ParameterHolder& transition_parameters = utility::ParameterHolder()) = 0;
+		virtual bool LoadAndTransitionScene(const std::string& scene_id, const util::ParameterHolder& transition_parameters = util::ParameterHolder()) = 0;
 		/*終了*/
 		virtual void QuitScene() = 0;
 		/*エラー発生*/

@@ -3,7 +3,7 @@
 #include "SystemLog.h"
 
 namespace planeta_engine {
-	bool SceneSetUpper::InitializeScene(core::Scene& scene, const utility::ParameterHolder& initialize_parameters) {
+	bool SceneSetUpper::InitializeScene(core::Scene& scene, const util::ParameterHolder& initialize_parameters) {
 		SceneSetUpProxy safs(scene);
 		//ŒÅ—Lİ’è
 		if (!SetUpScene(safs, initialize_parameters)) {
@@ -13,7 +13,7 @@ namespace planeta_engine {
 		return true;
 	}
 
-	utility::ParameterHolder SceneSetUpper::TerminateScene(core::Scene& scene, const std::string& next_scene_id, const utility::ParameterHolder& finalize_parameters) {
+	util::ParameterHolder SceneSetUpper::TerminateScene(core::Scene& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
 		SceneSetUpProxy safs(scene);
 		auto ret = FinalizeScene(safs, next_scene_id, finalize_parameters); //ŒÅ—LI—¹ˆ—
 		return ret;

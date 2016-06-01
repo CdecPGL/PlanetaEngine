@@ -6,7 +6,7 @@
 #include <functional>
 
 namespace planeta_engine{
-	namespace utility{
+	namespace util{
 		/*IDなしのオブジェクト格納クラス。オブジェクトの全操作は登録した順番に行われる。*/
 		template <class C_obj>
 		class ObjectHolderTemplate_WithoutID{

@@ -16,8 +16,8 @@ namespace planeta_engine {
 	/*ゲームのステータス*/
 	enum class GameStatus { Continue, Quit, Error };
 	/*ゲームクラスはこのクラスを継承し、初期化を定義する。*/
-	class PlanetaEngine final : public utility::SingletonTemplate<PlanetaEngine> {
-		friend utility::SingletonTemplate<PlanetaEngine>;
+	class PlanetaEngine final : public util::SingletonTemplate<PlanetaEngine> {
+		friend util::SingletonTemplate<PlanetaEngine>;
 	public:
 		/*エンジンの初期化*/
 		bool Initialize()override;

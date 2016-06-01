@@ -98,30 +98,30 @@ namespace planeta_engine {
 		manager_connection_ = std::move(mgr_cnctn);
 	}
 
-	void GameObjectBase::SetSceneData(const utility::WeakPointer<core::SceneData>& scene_accessor) {
+	void GameObjectBase::SetSceneData(const util::WeakPointer<core::SceneData>& scene_accessor) {
 		scene_data_ = scene_accessor;
 	}
 
-	utility::WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id) {
+	util::WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id) {
 		return scene_data_->game_object_manager_public_interface.CreateGameObject(id);
 	}
 
-	utility::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id) {
+	util::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id) {
 		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
 	}
 
-	utility::DelegateConnection GameObjectBase::AddActivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) {
+	util::DelegateConnection GameObjectBase::AddActivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) {
 		return hander_adder(activated_event_delegate_);
 	}
 
-	utility::DelegateConnection GameObjectBase::AddInactivatedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) {
+	util::DelegateConnection GameObjectBase::AddInactivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) {
 		return hander_adder(inactivated_event_delegate_);
 	}
 
-	utility::DelegateConnection GameObjectBase::AddDisposedEventHandler(utility::DelegateHandlerAdder<void>&& hander_adder) {
+	util::DelegateConnection GameObjectBase::AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) {
 		return hander_adder(disposed_event_delegate_);
 	}
 

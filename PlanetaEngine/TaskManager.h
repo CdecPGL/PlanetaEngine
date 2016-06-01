@@ -22,7 +22,7 @@ namespace planeta_engine {
 		/*終了処理*/
 		void Finalize()override;
 		/*シーンデータをセット*/
-		void SetSceneData(const utility::WeakPointer<core::SceneData>& scene_data)override;
+		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data)override;
 
 		/*タスクの実行*/
 		void ExcuteTask();
@@ -31,14 +31,14 @@ namespace planeta_engine {
 
 		/*システムタスク追加(システムタスク削除不可能)*/
 		template<class C>
-		utility::WeakPointer<C> AddSystemTask(core::SystemTaskSlot sys_task_slot) {
+		util::WeakPointer<C> AddSystemTask(core::SystemTaskSlot sys_task_slot) {
 			static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");
 			auto task = std::make_shared<C>();
 			return std::static_pointer_cast<C>(RegisterSystemTask(task, sys_task_slot));
 		}
 
 		/*名前からゲームプロセスを取得*/
-		utility::WeakPointer<Task> GetTask(const std::string& name)const override;
+		util::WeakPointer<Task> GetTask(const std::string& name)const override;
 		/*ゲームプロセス作製*/
 		bool RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot)override;
 		bool RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot, const std::string& name)override;

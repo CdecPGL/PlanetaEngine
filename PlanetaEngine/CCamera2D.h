@@ -17,7 +17,7 @@ namespace planeta_engine {
 	private:
 		double expansion_ = 1.0;
 
-		utility::NonOwingPointer<CTransform2D> transform2d_;
+		util::NonOwingPointer<CTransform2D> transform2d_;
 		virtual bool OnInitialized() override;
 		virtual bool OnActivated() override;
 		virtual bool OnInactivated() override;

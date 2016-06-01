@@ -18,8 +18,8 @@ namespace planeta_engine{
 		PrepairResourcesでリソースの準備を開始し、IsReadyがtrueになるまで待つ。そしてUnloadUnusedResourscesを呼ぶ。
 		現状ではIsReadyは常にtrue、GetPrepairProgressは常に1.0を返す。
 		*/
-		class ResourceManager : public utility::SingletonTemplate<ResourceManager>{
-			friend utility::SingletonTemplate<ResourceManager>;
+		class ResourceManager : public util::SingletonTemplate<ResourceManager>{
+			friend util::SingletonTemplate<ResourceManager>;
 		public:
 			bool Initialize()override;
 			void Finalize()override;

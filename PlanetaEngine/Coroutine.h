@@ -3,7 +3,7 @@
 #include <functional>
 
 namespace planeta_engine {
-	namespace utility {
+	namespace util {
 		class Coroutine {
 		public:
 			Coroutine();

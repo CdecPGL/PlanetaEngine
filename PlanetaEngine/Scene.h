@@ -22,7 +22,7 @@ namespace planeta_engine{
 		class TransformSystem;
 		class SceneModule;
 		class Scene : public Object,public std::enable_shared_from_this<Scene>
-			,private utility::NonCopyable<Scene>{
+			,private util::NonCopyable<Scene>{
 			friend SceneSystemSetUpper;
 		public:
 			Scene();
@@ -40,7 +40,7 @@ namespace planeta_engine{
 
 			/*èâä˙âªópä÷êî*/
 			void SetCollisionGroupMatrix(const std::shared_ptr<CollisionGroupMatrix>& col_g_marix);
-			void PrepareSceneData(const utility::NonOwingPointer<ISceneManagerAccessor> scn_mgr);
+			void PrepareSceneData(const util::NonOwingPointer<ISceneManagerAccessor> scn_mgr);
 			void RegisterSceneDataToModules();
 
 		private:
