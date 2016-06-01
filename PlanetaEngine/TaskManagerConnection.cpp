@@ -1,6 +1,6 @@
 #include "TaskManagerConnection.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		bool TaskManagerConnection::Pause() {
 			return pauser_();

@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool SceneSetUpper::InitializeScene(core::Scene& scene, const util::ParameterHolder& initialize_parameters) {
 		SceneSetUpProxy safs(scene);
 		//å≈óLê›íË

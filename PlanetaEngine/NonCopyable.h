@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	/*コピー禁止化クラス*/
 	namespace util {
 		template <class T>

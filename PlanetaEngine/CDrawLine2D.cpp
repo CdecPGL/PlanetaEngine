@@ -4,7 +4,7 @@
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 
-namespace planeta_engine {
+namespace planeta {
 	CDrawLine2D::CDrawLine2D() :_wire_positions(2), _width(1), _length(0) {
 
 	}

@@ -1,7 +1,7 @@
 #include "TextResource.h"
 #include "File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		bool TextResource::_Create(const std::shared_ptr<const File>& file)
 		{

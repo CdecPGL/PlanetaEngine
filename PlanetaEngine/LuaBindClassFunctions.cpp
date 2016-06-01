@@ -9,7 +9,7 @@ namespace LuaIntf {
 	LUA_USING_MAP_TYPE(std::unordered_map)*/
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace lua_bind_class_functions {
 
 		void BindSceneAccessorForTask(lua_State* L) {

@@ -7,7 +7,7 @@
 #include "MathConstant.h"
 #include "IColliderWithCollider2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CCircleCollider2D;
 	class CStraightLineCollider2D;
 	class CTransform2D;

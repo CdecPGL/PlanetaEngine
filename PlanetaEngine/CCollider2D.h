@@ -6,7 +6,7 @@
 #include "Delegate.h"
 #include "IColliderWithCollider2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;

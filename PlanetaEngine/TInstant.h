@@ -3,7 +3,7 @@
 #include "Task.h"
 #include <functional>
 
-namespace planeta_engine {
+namespace planeta {
 	class TInstant final : public Task {
 	public:
 		using Task::Task;

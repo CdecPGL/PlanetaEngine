@@ -9,7 +9,7 @@
 #include "Vector2D.h"
 #include "SingletonTemplate.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class KeyInputManager final : public util::SingletonTemplate<KeyInputManager>{
 			friend util::SingletonTemplate<KeyInputManager>;

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 		namespace Allocators{
 			//template <class T>

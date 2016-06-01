@@ -5,7 +5,7 @@
 #include "ScreenDrawerGUI.h"
 #include "GraphResource.h"
 
-namespace planeta_engine {
+namespace planeta {
 	/*namespace gui_components {
 
 		void GraphPanel::UpdateProc()

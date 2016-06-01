@@ -4,7 +4,7 @@
 
 class Extracter;
 
-namespace planeta_engine {
+namespace planeta {
 	class ArchiveManipulator final : public FileManipulatorBase {
 	public:
 		explicit ArchiveManipulator(const std::string& path);

@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		class DataContainerError final: public std::domain_error{
 		public:

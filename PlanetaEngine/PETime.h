@@ -3,7 +3,7 @@
 #include <ctime>
 #include "Object.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		/*ŠÔƒNƒ‰ƒX
 		‰‰ZŒ‹‰Ê‚ª•‰‚É‚È‚éê‡‚Í‚·‚×‚Ä0‚Æ‚·‚é*/

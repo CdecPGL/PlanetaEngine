@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 
 		bool SoundResource::_Create(const std::shared_ptr<const File>& file)

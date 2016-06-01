@@ -1,6 +1,6 @@
 #include "TGInstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	void TGInstant::Update() {
 		function_();
 	}

@@ -2,7 +2,7 @@
 
 #include "TCoroutine.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class TInstantCoroutine : public CoroutineTask {
 	public:
 		using CoroutineTask::CoroutineTask;

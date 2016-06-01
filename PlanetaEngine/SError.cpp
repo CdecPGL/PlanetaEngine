@@ -4,7 +4,7 @@
 #include "TInstant.h"
 
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 		bool SError::SetUpScene(SceneSetUpProxy& scene, const util::ParameterHolder& initialize_parameters) {

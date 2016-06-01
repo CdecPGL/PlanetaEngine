@@ -4,7 +4,7 @@
 #include <functional>
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class IGameObject;
 	class GameObjectManagerPublicInterface {
 	public:

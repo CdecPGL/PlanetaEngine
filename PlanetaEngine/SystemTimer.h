@@ -2,7 +2,7 @@
 #include "SingletonTemplate.h"
 #include "PETime.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace debug {
 		//起動からの経過フレームと経過時間をカウントする(スタティックシングルトン)
 		class SystemTimer : public util::SingletonTemplate<SystemTimer> {

@@ -3,7 +3,7 @@
 #include "IGameObject.h"
 #include "NonOwingPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	//ここで定義された関数は、GameObjectBaseを継承したクラスと、GameObjectComponentに公開される。
 	class IGameObjectForComponent : public IGameObject{
 	public:

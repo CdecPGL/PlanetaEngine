@@ -9,7 +9,7 @@
 #include "GameObjectDrawSystem.h"
 #include "TInstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 		bool SceneSystemSetUpper::operator()(Scene& scene)

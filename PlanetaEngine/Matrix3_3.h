@@ -3,7 +3,7 @@
 #include <array>
 #include "Vector3D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace math {
 		//3*3s—ñ
 		template<typename T>

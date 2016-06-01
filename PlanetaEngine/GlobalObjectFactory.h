@@ -10,7 +10,7 @@
 #include "NonCopyable.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class Object;
 		//オブジェクトファクトリ(シングルトンクラス)

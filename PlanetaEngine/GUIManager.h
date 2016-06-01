@@ -8,7 +8,7 @@
 #include "GUIManagerPublicInterface.h"
 #include "NonCopyable.h"
 
-namespace planeta_engine{
+namespace planeta{
 	//class ScreenDrawerGUI;
 	//class SceneAccessorForGUI;
 	//namespace core {

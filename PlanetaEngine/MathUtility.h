@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	namespace math {
 		/*’l‚ª2‚Ì‚×‚«æ”‚©’²‚×‚é*/
 		bool is2Pow(unsigned int num);

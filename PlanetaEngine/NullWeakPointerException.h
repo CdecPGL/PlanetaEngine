@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		class NullWeakPointerException : public std::runtime_error {
 		public:

@@ -6,7 +6,7 @@
 #include "tinyxml2.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		bool XMLResource::_Create(const std::shared_ptr<const File>& file)
 		{

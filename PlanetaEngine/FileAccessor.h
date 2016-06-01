@@ -5,7 +5,7 @@
 #include "Object.h"
 #include "FileAccessMode.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	class FileManipulatorBase;
 	class FileAccessor final : public core::Object {

@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 
 
-namespace planeta_engine {
+namespace planeta {
 //	namespace game {
 //		GUIObject::GUIObject():component_holder_(std::make_unique<utility::ObjectHolderTemplate_WithoutID<GUIComponent>>()) {
 //		}

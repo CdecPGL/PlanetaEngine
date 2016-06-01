@@ -8,7 +8,7 @@
 #include "WeakPointer.h"
 #include "RectAngle.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CDrawGraph2D;
 	class CGraph2DAnimator : public GameObjectStandardComponent {
 	public:

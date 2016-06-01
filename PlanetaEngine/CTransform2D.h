@@ -5,7 +5,7 @@
 #include "Vector2D.h"
 #include "Delegate.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CGround2D;
 	class IGameObject;
 	/*形状情報コンポーネント*/

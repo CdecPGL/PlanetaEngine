@@ -3,7 +3,7 @@
 #include <memory>
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class GameObjectManagerPublicInterface;
 	class TaskManagerPublicInterface;
 	class ISceneManagerAccessor;

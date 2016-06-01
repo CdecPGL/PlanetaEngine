@@ -1,7 +1,7 @@
 #include "FileManipulatorBase.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool FileManipulatorBase::LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files) {
 		bool err = false;
 		for (const auto& fn : file_list_) {

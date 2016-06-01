@@ -2,7 +2,7 @@
 #include "GameObjectBase.h"
 #include "GameObjectComponentSetUpData.h"
 
-namespace planeta_engine{
+namespace planeta{
 		bool GameObjectComponent::Initialize() {
 			if (OnInitialized()) {
 				is_valied_ = true;

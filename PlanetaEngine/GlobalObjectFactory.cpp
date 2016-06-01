@@ -2,7 +2,7 @@
 
 #include "GlobalObjectFactory.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		GlobalObjectFactory& GlobalObjectFactory::instance() {
 			static GlobalObjectFactory gof;

@@ -8,7 +8,7 @@
 //http://marupeke296.com/ALG_No2_TLSFMemoryAllocator.html
 //ポインタが32bitであることが前提となっている。x64プログラムにするには修正が必要
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class TLSFMemoryAllocator : public IMemoryAllcator {
 		public:

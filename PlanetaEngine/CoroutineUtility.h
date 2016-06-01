@@ -3,7 +3,7 @@
 #include "EventMonitor.h"
 #include "boost/coroutine2/coroutine.hpp"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		template<typename EventArgType, typename CoroutineReturnType>
 		void WaitEventOccur(util::Delegate<EventArgType> dlgt, typename boost::coroutines2::coroutine<CoroutineReturnType>::push_type& y, const CoroutineReturnType& v) {

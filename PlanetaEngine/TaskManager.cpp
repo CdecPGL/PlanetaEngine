@@ -10,7 +10,7 @@
 #include "SystemLog.h"
 #include "SystemTaskSlot.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace {
 		constexpr int TASK_SLOT_0 = 0;
 		constexpr int TASK_SLOT_1 = 1;

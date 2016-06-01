@@ -6,7 +6,7 @@
 
 #undef max //windows.h‚Å’è‹`‚³‚ê‚Ä‚¢‚émaxƒ}ƒNƒ‚ğ–³Œø‰»(std::numeric_limits<size_t>::max()‚Ì‚½‚ß)
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class IMemoryAllcator;
 		class Object {

@@ -8,7 +8,7 @@
 #include "SceneSetUpProxy.h" //継承するクラスは必ず使うのでここでインクルード
 #include "NonCopyable.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class Scene;
 	}
@@ -48,4 +48,4 @@ namespace planeta_engine {
 
 //Sceneをシステムに登録する(SetUpper型)
 #define PE_REGISTER_SCENE(type)\
-PE_REGISTER_OBJECT(type,planeta_engine::SceneSetUpper)
+PE_REGISTER_OBJECT(type,planeta::SceneSetUpper)

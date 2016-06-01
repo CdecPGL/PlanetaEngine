@@ -3,7 +3,7 @@
 #include "GameObjectSystemComponent.h"
 #include "Vector2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CTransform2D;
 	class CCamera2D final: public core::GameObjectSystemComponent {
 	public:

@@ -2,7 +2,7 @@
 
 #include "GameObjectManager.h"
 
-namespace planeta_engine {
+namespace planeta {
 
 	bool GameObjectManagerConnection::RequestActivation() {
 		return game_object_manager_.ActivateGameObject(id_);

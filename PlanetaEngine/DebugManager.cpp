@@ -16,7 +16,7 @@ namespace {
 	}
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace debug {
 
 		//////////////////////////////////////////////////////////////////////////

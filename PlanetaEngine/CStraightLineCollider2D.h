@@ -2,7 +2,7 @@
 
 #include "CCollider2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CStraightLineCollider2D final : public CCollider2D {
 	public:
 		bool DetectCollision(core::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }

@@ -1,6 +1,6 @@
 #include "GameObjectComponentHolder.h"
 
-namespace planeta_engine {
+namespace planeta {
 	std::shared_ptr<GameObjectComponent> GameObjectComponentHolder::GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker) const {
 		auto it = component_type_map_.find(ti);
 		if (it == component_type_map_.end()) {

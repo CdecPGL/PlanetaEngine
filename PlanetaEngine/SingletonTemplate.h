@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		/*関数内静的変数でインスタンスを保持するシングルトン*/
 		template<class C>

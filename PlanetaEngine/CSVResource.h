@@ -3,7 +3,7 @@
 #include <vector>
 #include "ResourceBase.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class CSVResource : public core::ResourceBase{
 		public:

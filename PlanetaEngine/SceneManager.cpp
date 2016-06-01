@@ -9,7 +9,7 @@
 #include "SceneSystemSetUpper.h"
 #include "SystemVariables.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 		SceneManager::SceneManager() :_scene_progress_flag(true), _request(_Request::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
 
@@ -21,14 +21,14 @@ namespace planeta_engine{
 			try {
 				switch (_request)
 				{
-				case planeta_engine::core::SceneManager::_Request::Transition:
+				case planeta::core::SceneManager::_Request::Transition:
 					_transition_proc();
-				case planeta_engine::core::SceneManager::_Request::None:
+				case planeta::core::SceneManager::_Request::None:
 					if (_scene_progress_flag) { _current_scene->Update(); }
 					return SceneStatus_::Continue;
-				case planeta_engine::core::SceneManager::_Request::Quit:
+				case planeta::core::SceneManager::_Request::Quit:
 					return SceneStatus_::Quit;
-				case planeta_engine::core::SceneManager::_Request::Error:
+				case planeta::core::SceneManager::_Request::Error:
 					return SceneStatus_::Error;
 				default:
 					break;

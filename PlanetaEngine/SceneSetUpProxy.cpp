@@ -4,7 +4,7 @@
 #include "GameObjectManagerPublicInterface.h"
 #include "IGameObject.h"
 
-namespace planeta_engine {
+namespace planeta {
 
 	SceneSetUpProxy::SceneSetUpProxy(core::Scene& scene):scene_(scene) {}
 

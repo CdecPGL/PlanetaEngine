@@ -7,7 +7,7 @@
 #include "RectAngle.h"
 #include "Vertex2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class GraphDrawData2D;
 	}

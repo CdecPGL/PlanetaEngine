@@ -1,6 +1,6 @@
 #include "Color.h"
 
-namespace planeta_engine {
+namespace planeta {
 
 	const Color& Color::Red() {
 		static Color color(255, 0, 0);

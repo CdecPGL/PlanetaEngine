@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	namespace windows {
 		namespace console {
 			constexpr int COL_BLACK = 0x00;

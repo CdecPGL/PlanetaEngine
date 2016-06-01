@@ -1,5 +1,5 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	enum class AccessMode { ReadOnly, WriteOnly, ReadWrite, Invalid };
 }

@@ -3,7 +3,7 @@
 #include <istream>
 #include <memory>
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	class FileStreamBuf;
 	class FileIStream : public std::istream {

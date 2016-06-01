@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 #include "FileAccessMode.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace {
 		namespace access_mode {
 			using type = uint_fast32_t;
@@ -14,10 +14,10 @@ namespace planeta_engine {
 			constexpr type ReadWrite = 0b11;
 		}
 		constexpr access_mode::type ConvertAccessModeToUint32(AccessMode mode) {
-			return mode == planeta_engine::AccessMode::ReadOnly ? access_mode::Read :
-				mode == planeta_engine::AccessMode::WriteOnly ? access_mode::Write :
-				mode == planeta_engine::AccessMode::ReadWrite ? access_mode::ReadWrite :
-				mode == planeta_engine::AccessMode::Invalid ? access_mode::None : access_mode::None;
+			return mode == planeta::AccessMode::ReadOnly ? access_mode::Read :
+				mode == planeta::AccessMode::WriteOnly ? access_mode::Write :
+				mode == planeta::AccessMode::ReadWrite ? access_mode::ReadWrite :
+				mode == planeta::AccessMode::Invalid ? access_mode::None : access_mode::None;
 		}
 		constexpr AccessMode ConvertUint32ToAccessMode(access_mode::type amode_uint32) {
 			return amode_uint32 == access_mode::Read ? AccessMode::ReadOnly :

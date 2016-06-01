@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	enum class TaskSlot : unsigned int{
 		PreCollisionEarlyPhase = 0,
 		PreCollisionLatePhase = 1,

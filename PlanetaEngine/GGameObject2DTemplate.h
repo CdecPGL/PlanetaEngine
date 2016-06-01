@@ -3,7 +3,7 @@
 #include "GameObject.h"
 #include "GIGameObject2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	template<class... GOI>
 	class GGameObject2DTemplate : public GameObject<GIGameObject2D, GOI...>{
 	public:

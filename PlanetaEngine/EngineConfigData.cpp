@@ -5,7 +5,7 @@
 #include "MakeResource.h"
 #include "File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace engine_config {
 			std::string game::GameTitle_("NULL"); //ゲームタイトル
@@ -24,8 +24,8 @@ namespace planeta_engine {
 			bool user::WindowModeConfigurable_(false); //ウインドウモードか否かをユーザーが設定可能か
 
 			namespace {
-				using namespace planeta_engine::debug;
-				using namespace planeta_engine::resources;
+				using namespace planeta::debug;
+				using namespace planeta::resources;
 				using SectionDataType = std::pair<std::string, typename INIFileResource::SectionType>;
 				bool GetSection(const INIFileResource& ini, const std::string& section_name, SectionDataType& dst) {
 					auto it = ini.find(section_name);

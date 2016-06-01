@@ -5,7 +5,7 @@
 #include "IGameObject.h"
 
 
-namespace planeta_engine {
+namespace planeta {
 	Task::Task() {}
 	Task::~Task() = default;
 

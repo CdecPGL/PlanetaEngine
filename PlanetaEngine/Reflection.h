@@ -11,7 +11,7 @@
 #include "SystemLog.h"
 
 /*–¢Š®¬*/
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		class Reflection {
 		public:

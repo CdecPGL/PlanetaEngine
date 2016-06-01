@@ -7,7 +7,7 @@
 #include "SystemLog.h"
 #include "TGameObjectOperation.h"
 
-namespace planeta_engine {
+namespace planeta {
 
 	GameObjectBase::GameObjectBase() {}
 

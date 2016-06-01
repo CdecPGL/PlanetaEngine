@@ -5,7 +5,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PlanetaEngineTest {
-	using namespace planeta_engine::util;
+	using namespace planeta::util;
 	
 	TEST_CLASS(PropertyTest) {
 	public:

@@ -7,7 +7,7 @@
 #include "NullWeakPointerException.h"
 
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		template<typename T>
 		class WeakPointer;

@@ -3,7 +3,7 @@
 #include "FileAccessor.h"
 #include <cassert>
 
-namespace planeta_engine {
+namespace planeta {
 	FileSystemManager::FileSystemManager() {
 
 	}

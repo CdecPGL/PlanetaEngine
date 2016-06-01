@@ -1,7 +1,7 @@
 #include "SystemTimer.h"
 #include <ctime>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 	}

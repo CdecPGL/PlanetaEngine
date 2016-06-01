@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace planeta_engine{
+namespace planeta{
 	namespace util {
 		//所有管理しないポインタ
 		template<typename T>

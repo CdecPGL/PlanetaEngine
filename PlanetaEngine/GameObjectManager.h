@@ -8,7 +8,7 @@
 #include "WeakPointer.h"
 #include "NonCopyable.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class SceneAccessorForGameObject;
 	class GameObjectBase;
 	class IGameObject;

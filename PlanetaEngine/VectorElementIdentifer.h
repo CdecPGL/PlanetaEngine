@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	namespace math {
 		namespace vei {
 			template<typename T>

@@ -1,6 +1,6 @@
 #include <stdexcept>
 
-namespace planeta_engine{
+namespace planeta{
 	namespace util{
 		class BadNewDeleteOperation : public std::logic_error{
 		public:

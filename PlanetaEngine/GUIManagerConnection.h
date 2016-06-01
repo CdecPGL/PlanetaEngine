@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace planeta_engine {
+namespace planeta {
 	/*namespace core {
 		struct SceneDataForGUI;
 	}

@@ -3,7 +3,7 @@
 #include "FontDefinitionResource.h"
 #include "ScreenDrawerGUI.h"
 
-namespace planeta_engine {
+namespace planeta {
 	/*namespace gui_components {
 
 		void TextPanel::UpdateProc()

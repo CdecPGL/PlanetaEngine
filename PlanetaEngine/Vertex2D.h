@@ -3,7 +3,7 @@
 #include "Vector2D.h"
 
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		/*2D’¸“_\‘¢‘Ì*/
 		struct Vertex2D {

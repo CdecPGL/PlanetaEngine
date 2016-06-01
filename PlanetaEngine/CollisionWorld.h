@@ -6,7 +6,7 @@
 #include <functional>
 #include "SceneModule.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CCollider2D;
 	class CollisionGroupMatrix;
 	namespace core {

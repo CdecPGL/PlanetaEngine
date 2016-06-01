@@ -4,7 +4,7 @@
 #include <memory>
 #include "ISoundEffectController.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class SoundResource;
 	}

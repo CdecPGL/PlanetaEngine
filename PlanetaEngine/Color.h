@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class Color : public core::Object {
 	public:
 		Color(int r, int g, int b, int a) :_r(r), _g(g), _b(b), _a(a) {

@@ -4,7 +4,7 @@
 #include <array>
 #include "CDraw2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CDrawPolygon2D final : public CDraw2D {
 	public:
 		void SetNumberOfVertexes(size_t n);

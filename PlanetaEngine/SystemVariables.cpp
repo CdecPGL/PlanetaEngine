@@ -1,6 +1,6 @@
 #include "SystemVariables.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 		namespace system_variables{
 			namespace engine_information {

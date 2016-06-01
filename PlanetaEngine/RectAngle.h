@@ -1,7 +1,7 @@
 #pragma once
 #include"Vector2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		template <typename T>
 		class RectAngle {

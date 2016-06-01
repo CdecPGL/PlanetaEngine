@@ -14,7 +14,7 @@ namespace {
 	constexpr unsigned int kDefaultVerticalSeparation(5);
 }
 
-namespace planeta_engine {
+namespace planeta {
 
 	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<core::GraphDrawData2D>()) {
 		texture_mapping_mode(TextureMappingMode::Round);

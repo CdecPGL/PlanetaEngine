@@ -1,7 +1,7 @@
 #include "TCoroutine.h"
 
 
-namespace planeta_engine {
+namespace planeta {
 	void TCoroutine::Update() {
 		if (!coroutine_) { Start(); } else { (*coroutine_)(); }
 		if (!(*coroutine_)) {

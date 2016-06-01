@@ -1,7 +1,7 @@
 #pragma once
 #include "TaskManagerPublicInterface.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class Scene;
 	}

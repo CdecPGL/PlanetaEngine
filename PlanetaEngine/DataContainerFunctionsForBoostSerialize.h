@@ -20,12 +20,12 @@ namespace boost {
 	namespace serialization {
 		/*GameDataElement*/
 		template<class Archive>
-		void serialize(Archive& ar, planeta_engine::util::DataContainer& data_container, unsigned int version) {
+		void serialize(Archive& ar, planeta::util::DataContainer& data_container, unsigned int version) {
 			split_free(ar, data_container, version);
 		}
 		template<class Archive>
-		void save(Archive& ar, const planeta_engine::util::DataContainer& data_container, unsigned int) {
-			using namespace planeta_engine::util;
+		void save(Archive& ar, const planeta::util::DataContainer& data_container, unsigned int) {
+			using namespace planeta::util;
 			auto& dci = *data_container.impl_;
 			//®”—v‘f‚ğ•Û‘¶
 			ar & make_nvp("integer_elements", dci.integer_elements_);
@@ -37,8 +37,8 @@ namespace boost {
 			ar & make_nvp("number_elements", dci.number_elements_);
 		}
 		template<class Archive>
-		void load(Archive& ar, planeta_engine::util::DataContainer& data_container, unsigned int) {
-			using namespace planeta_engine::util;
+		void load(Archive& ar, planeta::util::DataContainer& data_container, unsigned int) {
+			using namespace planeta::util;
 			auto& dci = *data_container.impl_;
 			//®”—v‘f‚ğ“Ç‚İ‚İ
 			ar & make_nvp("integer_elements", dci.integer_elements_);

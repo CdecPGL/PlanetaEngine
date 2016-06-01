@@ -5,7 +5,7 @@
 #include "SystemLog.h"
 #include "TGInstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool CGraph2DAnimator::OnInitialized() {
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
 		auto tsk = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreDrawUpdatePhase);

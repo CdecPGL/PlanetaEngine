@@ -4,7 +4,7 @@
 #include"boost/filesystem/path.hpp"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	ArchiveManipulator::ArchiveManipulator(const std::string& path) :FileManipulatorBase(path, false), _extracter(std::make_unique<Extracter>()), _key(0) {}
 
 	ArchiveManipulator::ArchiveManipulator(const std::string& path, unsigned int k) : FileManipulatorBase(path, false), _extracter(std::make_unique<Extracter>()), _key(k) {}

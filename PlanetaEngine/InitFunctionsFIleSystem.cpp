@@ -8,7 +8,7 @@
 #include "ArchiveManipulator.h"
 #include "NormalFolderManipulator.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace init_funcs {
 			std::shared_ptr<FileAccessor> CreateFileAccessor(FileAccessorKind kind) {

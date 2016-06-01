@@ -3,7 +3,7 @@
 #include "File.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 
 		bool FontResource::_Create(const std::shared_ptr<const File>& file)

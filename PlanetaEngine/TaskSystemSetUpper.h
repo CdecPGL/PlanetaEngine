@@ -1,7 +1,7 @@
 #pragma once
 
 /*–¢ŽÀ‘•*/
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class TaskSystemSetUpper {
 		public:

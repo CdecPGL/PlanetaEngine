@@ -10,7 +10,7 @@
 
 #include "File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace encrypters {
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_

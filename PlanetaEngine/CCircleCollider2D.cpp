@@ -1,7 +1,7 @@
 #include "CCircleCollider2D.h"
 #include "CollisionDetectFunctions.h"
 
-namespace planeta_engine {
+namespace planeta {
 
 	bool CCircleCollider2D::CollideWith(CCircleCollider2D& circle_collider) {
 		return core::collision_detect_functions::CollisionDetectCircleAndCirecle(circle_collider, *this);

@@ -5,7 +5,7 @@
 #include "File.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		std::shared_ptr<File> CreateFileFromStandardFileInput(const std::string& file_name) {
 			//ファイルを開く

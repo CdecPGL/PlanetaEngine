@@ -9,7 +9,7 @@
 #include "WeakPointer.h"
 #include "NonCopyable.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class GameObjectComponent;
 	class GameObjectComponentHolder : private util::NonCopyable<GameObjectComponentHolder>{
 	public:

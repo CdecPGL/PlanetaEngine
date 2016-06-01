@@ -3,7 +3,7 @@
 #include <ostream>
 #include <memory>
 
-namespace planeta_engine {
+namespace planeta {
 	class FileStreamBuf;
 	class File;
 	class FileOStream final : public std::ostream {

@@ -6,7 +6,7 @@
 #include "SystemLog.h"
 #include "MathConstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool CPlanetGround2D::OnInitialized() {
 		if (CGround2D::OnInitialized() == false) {
 			debug::SystemLog::instance().LogError("GroundComponent‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B", "PlanetGroundComponent::Initialize_");

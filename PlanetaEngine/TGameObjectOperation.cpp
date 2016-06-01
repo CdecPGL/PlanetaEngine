@@ -2,7 +2,7 @@
 #include "SystemLog.h"
 #include "IGameObject.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool TGameObjectOperation::Attach(const GameObjectAccessorType& goa, bool dispose_on_target_disposed) {
 		if (is_target_attached_) {
 			debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがすでにアタッチされています。", __FUNCTION__);

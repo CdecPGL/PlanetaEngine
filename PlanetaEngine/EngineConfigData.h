@@ -10,7 +10,7 @@ static type param_name##_;\
 public:\
 static const type& param_name(){return param_name##_;}
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	namespace core {
 		namespace engine_config {

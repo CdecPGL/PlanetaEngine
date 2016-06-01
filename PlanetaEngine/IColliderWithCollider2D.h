@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	class CCircleCollider2D;
 	class CStraightLineCollider2D;
 	class CPolygonCollider2D;

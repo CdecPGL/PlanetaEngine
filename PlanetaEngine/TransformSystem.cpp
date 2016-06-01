@@ -2,7 +2,7 @@
 #include "CTransform2D.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		TransformSystem::TransformSystem() {}
 

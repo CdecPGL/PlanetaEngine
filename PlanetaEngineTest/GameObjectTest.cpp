@@ -8,7 +8,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PlanetaEngineTest
 {
-	using namespace planeta_engine;
+	using namespace planeta;
 
 	TEST_CLASS(GameObjectTest)
 	{

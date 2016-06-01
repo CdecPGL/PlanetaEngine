@@ -6,7 +6,7 @@
 #include "CTransform2D.h"
 #include "DxLib.h"
 
-namespace planeta_engine {
+namespace planeta {
 	
 	bool CCamera2D::OnInitialized() {
 		transform2d_.reset(game_object().GetComponent<CTransform2D>());

@@ -2,7 +2,7 @@
 #include "ResourceBase.h"
 #include "Vector2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		/*‰æ‘œƒŠƒ\[ƒX*/
 		class GraphResource : public core::ResourceBase {

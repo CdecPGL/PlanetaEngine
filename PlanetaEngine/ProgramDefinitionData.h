@@ -3,7 +3,7 @@
 #include <string>
 #include "CollisionGroupMatrix.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		struct ProgramDefinitionData {
 			bool load_from_file;

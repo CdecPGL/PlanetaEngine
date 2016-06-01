@@ -2,7 +2,7 @@
 
 #include "Object.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class EACollisionWithGround2D : public core::Object {
 	public:
 	private:

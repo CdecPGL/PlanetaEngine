@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	class GameObjectManager;
 	class GameObjectManagerConnection final {
 	public:

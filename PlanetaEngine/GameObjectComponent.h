@@ -9,7 +9,7 @@
 #include "WeakPointer.h"
 #include "NonOwingPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class SceneAccessorForGameObject;
 	namespace core{
 		struct SceneData;
@@ -52,4 +52,4 @@ namespace planeta_engine {
 
 //GameObejectComponent‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(Œ^)
 #define PE_REGISTER_GAMEOBJECTCOMPONENT(type)\
-PE_REGISTER_OBJECT(type,planeta_engine::GameObjectComponent)
+PE_REGISTER_OBJECT(type,planeta::GameObjectComponent)

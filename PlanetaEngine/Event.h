@@ -4,7 +4,7 @@
 #include <string>
 #include "boost/any.hpp"
 
-namespace planeta_engine {
+namespace planeta {
 	class Event {
 	public:
 		

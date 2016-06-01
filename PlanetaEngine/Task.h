@@ -7,7 +7,7 @@
 #include "TaskManagerPublicInterface.h"
 #include "NonOwingPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class SceneAccessorForTask;
 	class ISceneManagerAccessor;
 	namespace core {
@@ -70,4 +70,4 @@ namespace planeta_engine {
 
 //Task‚ðƒVƒXƒeƒ€‚É“o˜^‚·‚é(Œ^)
 #define PE_REGISTER_TASK(type)\
-PE_REGISTER_OBJECT(type,planeta_engine::Task)
+PE_REGISTER_OBJECT(type,planeta::Task)

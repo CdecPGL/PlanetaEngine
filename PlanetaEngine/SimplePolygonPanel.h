@@ -8,7 +8,7 @@
 #include "GUIComponent.h"
 #include "Color.h"
 
-namespace planeta_engine {
+namespace planeta {
 	//namespace gui_components {
 	//	class SimplePolygonPanel : public game::GUIComponent {
 	//	public:

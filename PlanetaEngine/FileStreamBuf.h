@@ -3,7 +3,7 @@
 #include <streambuf>
 #include <memory>
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	class FileStreamBuf : public std::streambuf {
 	public:

@@ -3,7 +3,7 @@
 #include "SingletonTemplate.h"
 #include "StringUtility.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace  debug {
 		class DebugManager : public util::SingletonTemplate<DebugManager>{
 			friend util::SingletonTemplate<DebugManager>;

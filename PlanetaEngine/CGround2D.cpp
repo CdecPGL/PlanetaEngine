@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 #include "CTransform2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	CGround2D::CGround2D() {}
 
 	bool CGround2D::OnInitialized() {

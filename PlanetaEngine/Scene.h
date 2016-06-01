@@ -9,7 +9,7 @@
 #include "NonCopyable.h"
 #include "NonOwingPointer.h"
 
-namespace planeta_engine{
+namespace planeta{
 	class GameObjectManager;
 	class TaskManager;
 	class ISceneManagerAccessor;

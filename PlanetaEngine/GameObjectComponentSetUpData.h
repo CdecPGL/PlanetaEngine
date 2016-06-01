@@ -2,7 +2,7 @@
 
 #include "NonOwingPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class SceneData;
 	class IGameObjectForComponent;
 	namespace core {

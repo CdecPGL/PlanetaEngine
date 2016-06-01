@@ -2,7 +2,7 @@
 
 #include "GameObjectComponent.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class GameObjectSystemComponent : public GameObjectComponent {
 		public:

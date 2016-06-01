@@ -3,7 +3,7 @@
 #include <functional>
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class TaskManagerConnection {
 		public:

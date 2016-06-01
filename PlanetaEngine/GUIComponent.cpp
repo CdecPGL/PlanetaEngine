@@ -3,7 +3,7 @@
 #include "SystemLog.h"
 #include <cassert>
 
-namespace planeta_engine {
+namespace planeta {
 //	namespace game {
 
 //		GUIComponent::GUIComponent() :children_holder_(std::make_unique<utility::ObjectHolderTemplate_WithoutID<GUIComponent>>()) {}

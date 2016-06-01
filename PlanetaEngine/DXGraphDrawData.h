@@ -3,7 +3,7 @@
 #include <memory>
 #include "DxLib.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		struct DXGraphDrawData{
 			std::unique_ptr<VERTEX3D[]> vertexes; //’¸“_î•ñ

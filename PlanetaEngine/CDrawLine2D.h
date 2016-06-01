@@ -4,7 +4,7 @@
 #include <array>
 #include <vector>
 
-namespace planeta_engine {
+namespace planeta {
 	class CDrawLine2D final : public CDraw2D {
 	public:
 		CDrawLine2D();

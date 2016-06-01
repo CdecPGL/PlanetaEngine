@@ -4,7 +4,7 @@
 #include "Color.h"
 #include "Vector2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class ScreenDrawer2D;
 	class CTransform2D;
 	class CDraw2D : public core::GameObjectSystemComponent {
@@ -31,9 +31,9 @@ namespace planeta_engine {
 		/*表示拡大度を設定*/
 		CDraw2D& scale(const Vector2Dd& s) { scale_ = s; return *this; }
 		/*表示色を取得*/
-		planeta_engine::Color color()const { return color_; }
+		planeta::Color color()const { return color_; }
 		/*表示色を設定*/
-		CDraw2D& color(const planeta_engine::Color& c) { color_ = c; return *this; }
+		CDraw2D& color(const planeta::Color& c) { color_ = c; return *this; }
 	protected:
 		/*描画の中心位置取得(ゲームオブジェクトの形状情報と、表示位置から算出)*/
 		Vector2Dd GetDrawCenterPosition()const;
@@ -53,7 +53,7 @@ namespace planeta_engine {
 		double rotation_rad_ = 0.0;
 		/*表示拡大度*/
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
-		planeta_engine::Color color_;
+		planeta::Color color_;
 		void RegisterToProcess_();
 		void RemoveFromProcess_();
 		void UpdatePriority_();

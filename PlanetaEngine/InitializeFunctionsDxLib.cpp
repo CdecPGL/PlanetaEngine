@@ -5,7 +5,7 @@
 #include "EngineConfigData.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeDxLib() {

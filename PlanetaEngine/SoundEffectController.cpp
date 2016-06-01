@@ -3,7 +3,7 @@
 #include "DxLib.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		void SoundEffectController::Dispose()
 		{

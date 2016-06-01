@@ -5,7 +5,7 @@
 #include "IBGMController.h"
 #include "ISoundEffectController.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class ResourceBase;
 		class SoundManager final : public util::SingletonTemplate<SoundManager>{

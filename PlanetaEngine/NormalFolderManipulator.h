@@ -2,7 +2,7 @@
 #include "FileManipulatorBase.h"
 #include<unordered_map>
 
-namespace planeta_engine {
+namespace planeta {
 	class NormalFolderManipulator final : public FileManipulatorBase {
 	public:
 		using FileManipulatorBase::FileManipulatorBase;

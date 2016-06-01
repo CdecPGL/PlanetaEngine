@@ -3,7 +3,7 @@
 #include "GameObjectInterface.h"
 #include "CTransform2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class GIGameObject2D : public GameObjectInterface<GIGameObject2D>{
 	public:
 		using GameObjectInterface::GameObjectInterface;

@@ -4,7 +4,7 @@
 #include "MathVector.h"
 #include "Property.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace system {
 		namespace vei {
 			template<typename T>

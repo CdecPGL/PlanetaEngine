@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObjectStandardComponent.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CTransform2D;
 	class CBelongingGroundGravity : public GameObjectStandardComponent {
 	public:

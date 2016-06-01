@@ -7,7 +7,7 @@
 #include "ParameterHolder.h"
 #include "ISceneManagerAccessor.h"
 
-namespace planeta_engine{
+namespace planeta{
 	class SceneSetUpper;
 	class CollisionGroupMatrix;
 	namespace core {

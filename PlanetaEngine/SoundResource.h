@@ -1,7 +1,7 @@
 #pragma once
 #include "ResourceBase.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		/*Œø‰Ê‰¹ƒŠƒ\[ƒX*/
 		class SoundResource : public core::ResourceBase {

@@ -7,7 +7,7 @@
 #include "Matrix2_2.h"
 #include "Collider2DData.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool CCollider2D::OnActivated() {
 		ResistToCollisionDetectProcess_();
 		return true;

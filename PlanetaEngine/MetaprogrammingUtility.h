@@ -6,7 +6,7 @@
 #include "boost/any.hpp"
 #include "boost/call_traits.hpp"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace mp_utiliey{
 		struct nil {};
 

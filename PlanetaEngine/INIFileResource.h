@@ -5,7 +5,7 @@
 #include "ResourceBase.h"
 #include "boost/optional.hpp"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class INIFileResource : public core::ResourceBase {
 		public:

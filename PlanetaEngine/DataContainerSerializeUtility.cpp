@@ -6,7 +6,7 @@
 #include "FileIStream.h"
 #include "File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 
 		std::shared_ptr<File> SerializeDataContainer(DataContainer& data_container)

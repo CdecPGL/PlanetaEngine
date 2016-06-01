@@ -5,7 +5,7 @@
 #include "TaskManagerPublicInterface.h"
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class SceneAccessorForTask;
 	namespace core {
 		struct SceneData;

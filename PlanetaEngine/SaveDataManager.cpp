@@ -13,7 +13,7 @@ namespace {
 	constexpr char* SaveDataInformationFileName("save_data_info");
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_

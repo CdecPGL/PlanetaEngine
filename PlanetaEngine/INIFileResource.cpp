@@ -3,7 +3,7 @@
 #include "FileIStream.h"
 #include "FileSystemUtility.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 
 		bool INIFileResource::_Create(const std::shared_ptr<const File>& file)

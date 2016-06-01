@@ -2,7 +2,7 @@
 
 #include "Object.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	namespace encrypters {
 		class EncrypterBase {

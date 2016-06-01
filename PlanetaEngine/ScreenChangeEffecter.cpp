@@ -1,7 +1,7 @@
 #include "ScreenChangeEffecter.h"
 #include "RangeUtility.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 		void ScreenChangeEffecter::progress(double p) {

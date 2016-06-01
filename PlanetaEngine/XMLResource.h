@@ -4,7 +4,7 @@
 #include <memory>
 #include "ResourceBase.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class XMLElement :public core::Object{
 		public:

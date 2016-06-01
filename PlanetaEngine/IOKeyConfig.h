@@ -2,7 +2,7 @@
 
 #include"KeyInputManager.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class KeyInputManager;
 		namespace key_input_io {

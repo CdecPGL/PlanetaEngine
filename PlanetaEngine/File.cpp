@@ -1,7 +1,7 @@
 #include "File.h"
 #include <cassert>
 
-namespace planeta_engine {
+namespace planeta {
 	File::File() {}
 
 	File::File(const std::string& ext) :extension_(ext) {}

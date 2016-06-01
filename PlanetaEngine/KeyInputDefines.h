@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace planeta_engine {
+namespace planeta {
 
 	namespace core {
 		namespace Button {

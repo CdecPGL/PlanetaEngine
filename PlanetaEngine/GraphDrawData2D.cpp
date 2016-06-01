@@ -4,7 +4,7 @@
 #include "GraphResource.h"
 #include <cassert>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace {
 			/*DXŒ`®’¸“_î•ñ‚Ì‰Šú‰»*/

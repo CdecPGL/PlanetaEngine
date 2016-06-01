@@ -11,7 +11,7 @@
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 
 		Scene::Scene() :game_object_manager_(std::make_unique<GameObjectManager>()), task_manager_(std::make_unique<TaskManager>()),collision_world_(std::make_unique<CollisionWorld>()),gameobject_draw_system_(std::make_unique<GameObjectDrawSystem>()),transform_system_(std::make_unique<TransformSystem>())

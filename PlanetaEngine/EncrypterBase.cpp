@@ -1,7 +1,7 @@
 #include "EncrypterBase.h"
 #include "File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace encrypters {
 
 		bool EncrypterBase::Encrypt(const File& src, File& dst)const

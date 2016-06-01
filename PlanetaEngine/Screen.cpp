@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		void Screen::HandleDrawReservations() {
 			if (!is_valid()) {

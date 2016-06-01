@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	namespace util {
 		/*標準ファイル入力からFileを作成する*/

@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		inline void ConvertAndConnectToString2(std::ostringstream&) {}
 		template<typename First, typename ... Rest>

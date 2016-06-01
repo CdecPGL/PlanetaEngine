@@ -4,7 +4,7 @@
 #include "MusicResource.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 		bool BGMController::is_valid() const
@@ -78,21 +78,21 @@ namespace planeta_engine {
 		{
 			switch (state_)
 			{
-			case planeta_engine::core::BGMController::State_::FadeIn:
+			case planeta::core::BGMController::State_::FadeIn:
 			{
 				double ratio = (double)fade_frame_counter_ / fade_total_frame_;
 				ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
 				++fade_frame_counter_;
 				break;
 			}
-			case planeta_engine::core::BGMController::State_::FadeOut:
+			case planeta::core::BGMController::State_::FadeOut:
 			{
 				double ratio = 1.0 - (double)fade_frame_counter_ / fade_total_frame_;
 				ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
 				++fade_frame_counter_;
 				break;
 			}
-			case planeta_engine::core::BGMController::State_::None:
+			case planeta::core::BGMController::State_::None:
 				break;
 			default:
 				assert(false);

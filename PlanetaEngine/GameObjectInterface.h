@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	class IGameObject;
 	//楔形継承を回避するため、テンプレートにより別の型とする。(子クラスに仮想継承してもらう方法では、virtualの指定忘れが発生する可能性があるため。)
 	template<class GIType>

@@ -5,7 +5,7 @@
 #include "GameObjectInterface.h"
 #include "MetaprogrammingUtility.h"
 
-namespace planeta_engine {
+namespace planeta {
 	//ゲームオブジェクトを定義するときは、このクラスを継承する。テンプレート引数にはGameObjectInterfaceを任意個指定する。
 	template<typename... GOI>
 	class GameObject : public GameObjectBase , public GOI... {
@@ -26,4 +26,4 @@ namespace planeta_engine {
 
 //GameObjectをシステムに登録する(型)
 #define PE_REGISTER_GAMEOBJECT(type)\
-PE_REGISTER_OBJECT(type,planeta_engine::GameObjectBase)
+PE_REGISTER_OBJECT(type,planeta::GameObjectBase)

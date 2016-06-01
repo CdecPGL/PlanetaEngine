@@ -21,7 +21,7 @@
 #include "SceneManager.h"
 #include "SoundManager.h"
 
-namespace planeta_engine {
+namespace planeta {
 	using namespace core;
 	class PlanetaEngine::Impl_ {
 	private:
@@ -154,11 +154,11 @@ namespace planeta_engine {
 			debug::SystemTimer::instance().IncrementFrameCount(); //フレームカウントのインクリメント
 			
 			switch (sst) {
-			case planeta_engine::core::SceneManager::SceneStatus_::Continue:
+			case planeta::core::SceneManager::SceneStatus_::Continue:
 				return GameStatus::Continue;
-			case planeta_engine::core::SceneManager::SceneStatus_::Quit:
+			case planeta::core::SceneManager::SceneStatus_::Quit:
 				return GameStatus::Quit;
-			case planeta_engine::core::SceneManager::SceneStatus_::Error:
+			case planeta::core::SceneManager::SceneStatus_::Error:
 				return GameStatus::Error;
 			default:
 				assert(false);

@@ -2,7 +2,7 @@
 
 #include "ResourceBase.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class FontDefinitionResource final: public core::ResourceBase {
 		public:

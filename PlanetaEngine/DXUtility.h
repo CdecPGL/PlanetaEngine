@@ -2,12 +2,12 @@
 #include "DxLib.h"
 #include "Vector2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class Color;
 	namespace util {
 		namespace dx {
-			COLOR_U8 PEColorToDXCOLORU8(const planeta_engine::Color& color);
-			unsigned int PEColorToDXColorHandle(const planeta_engine::Color& color);
+			COLOR_U8 PEColorToDXCOLORU8(const planeta::Color& color);
+			unsigned int PEColorToDXColorHandle(const planeta::Color& color);
 			template<typename T>
 			VECTOR PEVector2DToDXVECTOR(const math::Vector2D<T>& v) {
 				VECTOR dxv;

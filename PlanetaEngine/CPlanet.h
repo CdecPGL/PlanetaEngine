@@ -2,7 +2,7 @@
 #include "GameObjectStandardComponent.h"
 #include <vector>
 
-namespace planeta_engine {
+namespace planeta {
 	class CPlanet : public GameObjectStandardComponent {
 	public:
 		CPlanet();

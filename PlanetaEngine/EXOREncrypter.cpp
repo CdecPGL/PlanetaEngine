@@ -10,7 +10,7 @@ namespace {
 	constexpr size_t HEADER_BYTE_SIZE(4);
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace encrypters {
 		bool EXOREncrypter::DecryptPartiallyCore(const File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const
 		{

@@ -6,7 +6,7 @@
 #include"FileManipulatorBase.h"
 #include "SingletonTemplate.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class FileAccessor;
 	class FileManipulatorBase;
 	enum class AccessMode;

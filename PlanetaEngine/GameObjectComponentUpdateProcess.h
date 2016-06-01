@@ -3,7 +3,7 @@
 #include "Task.h"
 #include "GameObjectComponent.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class GameObjectCoponentUpdateProcess : public game::Task{
 		public:

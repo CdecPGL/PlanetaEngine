@@ -6,7 +6,7 @@
 #include "WeakPointer.h"
 #include "Vertex2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class GraphResource;
 	}

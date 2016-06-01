@@ -3,7 +3,7 @@
 #include "Task.h"
 #include "Delegate.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class TGameObjectOperation : public Task {
 	public:
 		using Task::Task;

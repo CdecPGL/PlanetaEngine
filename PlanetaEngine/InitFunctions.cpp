@@ -24,7 +24,7 @@ namespace {
 	}
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeLogSystem() {

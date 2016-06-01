@@ -6,7 +6,7 @@
 #include "Vertex2D.h"
 #include "Color.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		class GraphResource;
 	}

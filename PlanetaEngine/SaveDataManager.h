@@ -6,7 +6,7 @@
 #include "PEDateTime.h"
 #include "boost/optional.hpp"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		class DataContainer;
 	}

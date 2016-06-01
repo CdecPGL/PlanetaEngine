@@ -2,7 +2,7 @@
 
 #include "GameObjectComponent.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class GameObjectStandardComponent : public GameObjectComponent {
 	public:
 		virtual ~GameObjectStandardComponent() = default;

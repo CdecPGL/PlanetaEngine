@@ -13,7 +13,7 @@
 #include "FileSystemManager.h"
 #include "FileAccessor.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		bool FontDefinitionResource::_Create(const std::shared_ptr<const File>& file)
 		{

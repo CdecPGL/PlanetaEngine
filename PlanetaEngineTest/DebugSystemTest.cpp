@@ -8,7 +8,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PlanetaEngineTest
 {
-	using namespace planeta_engine::debug;
+	using namespace planeta::debug;
 	TEST_CLASS(DebugSystemTest)
 	{
 	public:

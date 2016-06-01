@@ -8,7 +8,7 @@ namespace {
 	constexpr unsigned int kDefaultSeparation(90);
 }
 
-namespace planeta_engine {
+namespace planeta {
 	CPlanet::CPlanet() {
 		separation(kDefaultSeparation);
 	}

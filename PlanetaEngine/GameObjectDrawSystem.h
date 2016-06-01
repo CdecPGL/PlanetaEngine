@@ -7,7 +7,7 @@
 #include "NonCopyable.h"
 #include "SceneModule.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class ScreenDrawer2D;
 	class ScreenDrawerGUI;
 	class CDraw2D;

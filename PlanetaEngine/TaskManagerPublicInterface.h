@@ -7,7 +7,7 @@
 #include "TypeChecker.h"
 #include "TaskSlot.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class IGameAccessor;
 	}

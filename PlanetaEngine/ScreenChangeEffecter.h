@@ -2,7 +2,7 @@
 
 #include <functional>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class Screen;
 		class ScreenChangeEffecter {

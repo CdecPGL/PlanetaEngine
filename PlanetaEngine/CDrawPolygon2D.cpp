@@ -4,7 +4,7 @@
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 
-namespace planeta_engine {
+namespace planeta {
 	void CDrawPolygon2D::DrawProc(ScreenDrawer2D& drawer) {
 		UpdateVertex_();
 		drawer.DrawPolygon(vertexes_, indexes_, color());

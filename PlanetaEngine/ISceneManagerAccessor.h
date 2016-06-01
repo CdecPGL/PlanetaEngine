@@ -3,7 +3,7 @@
 #include <string>
 #include "ParameterHolder.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class ISceneManagerAccessor {
 	public:
 		virtual ~ISceneManagerAccessor() = 0 {};

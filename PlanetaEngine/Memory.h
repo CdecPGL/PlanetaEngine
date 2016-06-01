@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 		namespace ObjectUtility{
 			template<class C>

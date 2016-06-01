@@ -10,7 +10,7 @@
 #include "XMLResource.h"
 #include "FontDefinitionResource.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeResourceSystem(const std::shared_ptr<FileAccessor> res_file_accessor) {

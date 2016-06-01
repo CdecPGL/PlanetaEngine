@@ -9,7 +9,7 @@
 #include "MathConstant.h"
 #include "GraphDrawData2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	/*í∏ì_ÇÕ[0]ç∂â∫,[1]âEâ∫,[2]âEè„,[3]ç∂è„Ç∆Ç∑ÇÈ*/
 	CDrawGraph2D::CDrawGraph2D() :graph_draw_data_(std::make_shared<core::GraphDrawData2D>()) {
 		graph_draw_data_->SetVertexCount(4);

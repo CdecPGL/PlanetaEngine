@@ -1,10 +1,10 @@
 #include "DXUtility.h"
 #include "Color.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		namespace dx {
-			COLOR_U8 PEColorToDXCOLORU8(const planeta_engine::Color& color)
+			COLOR_U8 PEColorToDXCOLORU8(const planeta::Color& color)
 			{
 				COLOR_U8 cu8;
 				cu8.r = (unsigned char)color.r();
@@ -14,7 +14,7 @@ namespace planeta_engine {
 				return cu8;
 			}
 
-			unsigned int PEColorToDXColorHandle(const planeta_engine::Color& color)
+			unsigned int PEColorToDXColorHandle(const planeta::Color& color)
 			{
 				return GetColor(color.r(), color.g(), color.b());
 			}

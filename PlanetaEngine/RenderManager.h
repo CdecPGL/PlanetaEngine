@@ -5,7 +5,7 @@
 #include <deque>
 #include "SingletonTemplate.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core{
 		class Screen;
 		class RenderManager final : public util::SingletonTemplate<RenderManager>{

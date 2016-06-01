@@ -5,7 +5,7 @@
 #include "GUIComponent.h"
 #include "Color.h"
 
-namespace planeta_engine {
+namespace planeta {
 	//namespace resources {
 	//	class FontDefinitionResource;
 	//}

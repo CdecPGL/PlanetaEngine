@@ -7,7 +7,7 @@
 #include "Delegate.h"
 #include "TaskSlot.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class Task;
 	class GameObjectComponent;
 	class TGameObjectOperation;

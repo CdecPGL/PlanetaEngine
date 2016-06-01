@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		enum class SystemTaskSlot {
 			ApplyVelocityPhase = 0,

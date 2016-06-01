@@ -2,7 +2,7 @@
 
 #include "TGameObjectOperation.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class TGInstant final : public TGameObjectOperation {
 	public:
 		void SetExcuteFunction(const std::function<void()>& func) { function_ = func; }

@@ -40,7 +40,7 @@ namespace {
 	}
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace debug {
 		//////////////////////////////////////////////////////////////////////////
 		//SystemLog::Impl_
@@ -104,16 +104,16 @@ namespace planeta_engine {
 			void _OutPutToConsole(const std::string& str, LogLevel level) {
 				int col = 0;
 				switch (level) {
-				case planeta_engine::debug::SystemLog::LogLevel::Message:
+				case planeta::debug::SystemLog::LogLevel::Message:
 					col = windows::console::COL_GRAY;
 					break;
-				case planeta_engine::debug::SystemLog::LogLevel::Warning:
+				case planeta::debug::SystemLog::LogLevel::Warning:
 					col = windows::console::COL_YELLOW;
 					break;
-				case planeta_engine::debug::SystemLog::LogLevel::Error:
+				case planeta::debug::SystemLog::LogLevel::Error:
 					col = windows::console::COL_RED;
 					break;
-				case planeta_engine::debug::SystemLog::LogLevel::Fatal:
+				case planeta::debug::SystemLog::LogLevel::Fatal:
 					col = windows::console::COL_VIOLET;
 					break;
 				default:

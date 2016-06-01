@@ -12,7 +12,7 @@
 #include "Object.h"
 #include "SingletonTemplate.h"
 
-namespace planeta_engine {
+namespace planeta {
 	/*ゲームのステータス*/
 	enum class GameStatus { Continue, Quit, Error };
 	/*ゲームクラスはこのクラスを継承し、初期化を定義する。*/

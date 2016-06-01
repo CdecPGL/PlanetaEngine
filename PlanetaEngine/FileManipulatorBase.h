@@ -6,7 +6,7 @@
 #include "Object.h"
 #include"File.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace encrypters {
 		class EncrypterBase;
 	}

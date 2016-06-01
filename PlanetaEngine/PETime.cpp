@@ -1,7 +1,7 @@
 #include "PETime.h"
 #include <sstream>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 
 		std::string Time::ToString() const

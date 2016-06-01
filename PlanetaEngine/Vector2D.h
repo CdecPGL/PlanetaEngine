@@ -4,7 +4,7 @@
 #include <string>
 #include "MathConstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace math {
 		template<typename T>
 		struct Vector3D;

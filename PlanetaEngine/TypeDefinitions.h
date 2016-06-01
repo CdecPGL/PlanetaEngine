@@ -2,7 +2,7 @@
 
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class IGameObject;
 	using GameObjectAccessorType = util::WeakPointer<IGameObject>;
 	template<class CT>

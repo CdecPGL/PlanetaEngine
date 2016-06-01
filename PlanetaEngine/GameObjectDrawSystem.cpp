@@ -10,7 +10,7 @@
 #include "CTransform2D.h"
 #include "Screen.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core {
 		GameObjectDrawSystem::GameObjectDrawSystem()
 		{

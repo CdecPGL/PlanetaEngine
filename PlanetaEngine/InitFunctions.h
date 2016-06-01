@@ -4,7 +4,7 @@
 #include <tuple>
 #include <memory>
 
-namespace planeta_engine {
+namespace planeta {
 	class FileAccessor;
 	namespace core {
 		struct ProgramDefinitionData;

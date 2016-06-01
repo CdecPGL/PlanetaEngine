@@ -3,7 +3,7 @@
 #include "Object.h"
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class IGameObject;
 	class EACollisionWithCollider2D : public core::Object {
 	public:

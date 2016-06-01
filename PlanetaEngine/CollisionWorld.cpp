@@ -11,7 +11,7 @@
 #include "CTransform2D.h"
 #include "Collider2DData.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core {
 		struct CollisionWorld::CCollider2DResistData_ {
 			core::Collider2DData collider2d_data; //コライダーデータ

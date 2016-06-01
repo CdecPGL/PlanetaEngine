@@ -6,7 +6,7 @@
 #include "GlobalObjectFactory.h"
 #include "SystemVariables.h"
 
-namespace planeta_engine {
+namespace planeta {
 	GameObjectManager::GameObjectManager() :_id_counter(0) {};
 	GameObjectManager::~GameObjectManager() = default;
 

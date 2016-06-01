@@ -5,7 +5,7 @@
 #include "FileAccessor.h"
 #include "SystemVariables.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 
 		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags)

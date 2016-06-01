@@ -3,7 +3,7 @@
 #include "Object.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class File;
 	class FileAccessor;
 	namespace core {

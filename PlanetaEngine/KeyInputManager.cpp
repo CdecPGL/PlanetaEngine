@@ -8,7 +8,7 @@
 	if (tagit != _impl->_tag_invalid_flag.end() && tagit->second){ return false; }\
 }
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 		namespace {

@@ -9,7 +9,7 @@
 #include "SingletonTemplate.h"
 #include "MakeResource.h"
 
-namespace planeta_engine{
+namespace planeta{
 	class FileAccessor;
 	class File;
 	namespace core{

@@ -4,7 +4,7 @@
 
 #include"KeyInputDefines.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		namespace utils {
 			std::string ConvertKeyToString(Key::type);

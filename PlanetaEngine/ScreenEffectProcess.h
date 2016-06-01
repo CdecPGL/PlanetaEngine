@@ -3,7 +3,7 @@
 #include "Task.h"
 
 /*–¢ŽÀ‘•*/
-namespace planeta_engine {
+namespace planeta {
 	class ScreenEffectProcess : public game::Task{
 	public:
 		using Task::Task;

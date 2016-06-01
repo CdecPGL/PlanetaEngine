@@ -17,12 +17,12 @@ namespace {
 
 namespace PlanetaEngineTest
 {
-	using namespace planeta_engine;
+	using namespace planeta;
 	TEST_CLASS(FileSystemTest)
 	{
 	public:
 		FileSystemTest() {
-			using namespace planeta_engine::debug;
+			using namespace planeta::debug;
 			SystemTimer::instance().Initialize();
 			SystemLog::instance().Initialize();
 
@@ -32,7 +32,7 @@ namespace PlanetaEngineTest
 		}
 
 		~FileSystemTest() {
-			using namespace planeta_engine::debug;
+			using namespace planeta::debug;
 			FileSystemManager::instance().Finalize();
 			SystemLog::instance().Finalize();
 			SystemTimer::instance().Finalize();

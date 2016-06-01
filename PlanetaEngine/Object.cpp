@@ -2,7 +2,7 @@
 #include "TLSFMemoryAllocator.h"
 #include <cassert>
 
-namespace planeta_engine{
+namespace planeta{
 	namespace core{
 		namespace {
 //			TLSFMemoryAllocator object_memory_allocator(1024*1024);

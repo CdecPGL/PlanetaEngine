@@ -3,7 +3,7 @@
 #include "SystemLog.h"
 #include "ScreenDrawerGUI.h"
 
-namespace planeta_engine {
+namespace planeta {
 	//namespace gui_components {
 
 	//	void SimplePolygonPanel::UpdateProc()

@@ -1,7 +1,7 @@
 #include "CollisionGroupMatrix.h"
 #include "SystemLog.h"
 
-namespace planeta_engine {
+namespace planeta {
 	void CollisionGroupMatrix::AddCollisionGroup(const std::string& col_group_name) {
 		collision_matrix_.emplace(col_group_name, std::unordered_map<std::string, bool>());
 		for (auto& col_line : collision_matrix_) {

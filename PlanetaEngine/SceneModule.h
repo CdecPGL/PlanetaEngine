@@ -3,7 +3,7 @@
 #include "Object.h"
 #include "WeakPointer.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		class ScenePublicInterface;
 		struct SceneData;

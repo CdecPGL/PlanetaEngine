@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include "SceneModule.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CTransform2D;
 	namespace core {
 		class TransformSystem  : public SceneModule{

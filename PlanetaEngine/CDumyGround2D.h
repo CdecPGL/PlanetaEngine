@@ -4,7 +4,7 @@
 #include "CGround2D.h"
 #include "MathConstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CDumyGround2D final : public CGround2D {
 	public:
 	private:

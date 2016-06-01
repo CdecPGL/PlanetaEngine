@@ -1,7 +1,7 @@
 #pragma once
 #include "CGround2D.h"
 
-namespace planeta_engine {
+namespace planeta {
 	class CPlanet;
 	class CPlanetGround2D final : public CGround2D {
 	public:

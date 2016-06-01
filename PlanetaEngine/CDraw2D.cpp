@@ -7,7 +7,7 @@
 #include "SystemLog.h"
 #include "SceneData.h"
 
-namespace planeta_engine {
+namespace planeta {
 	CDraw2D::CDraw2D() :draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0) {
 
 	}

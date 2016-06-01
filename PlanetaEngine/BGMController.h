@@ -3,7 +3,7 @@
 #include <memory>
 #include "IBGMController.h"
 
-namespace planeta_engine{
+namespace planeta{
 	namespace resources {
 		class MusicResource;
 	}

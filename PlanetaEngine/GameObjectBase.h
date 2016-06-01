@@ -8,7 +8,7 @@
 #include "NonOwingPointer.h"
 #include "GameObjectManagerConnection.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		struct SceneData;
 	}

@@ -2,7 +2,7 @@
 
 #include "SceneSetUpper.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 		/*シーンがセットされていない時に呼び出されるシーン*/
 		class SEmpty final: public SceneSetUpper {

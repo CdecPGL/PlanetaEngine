@@ -5,7 +5,7 @@
 #include "CGround2D.h"
 #include "TGInstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	bool CBelongingGroundGravity::OnInitialized() {
 		transform2d_.reset(game_object().GetComponent<CTransform2D>());
 		auto proc = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreCollisionEarlyPhase);

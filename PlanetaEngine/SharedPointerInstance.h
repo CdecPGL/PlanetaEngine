@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		/*std::enable_shared_from_this‚ğg‚¤‚±‚Æ‚ğ„§I*/
 		template<class C>

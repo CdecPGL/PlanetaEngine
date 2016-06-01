@@ -5,7 +5,7 @@
 #include "SystemLog.h"
 //#include "boost/lexical_cast.hpp"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace resources {
 		bool GraphResource::_Create(const std::shared_ptr<const File>& file)
 		{

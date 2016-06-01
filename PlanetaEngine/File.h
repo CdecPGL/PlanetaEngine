@@ -6,7 +6,7 @@
 #include <memory.h>
 #include <istream>
 
-namespace planeta_engine {
+namespace planeta {
 	class File : public core::Object {
 	public:
 		/*ファイルの状態(利用可能、暗号化されている、ロードされていない、問題発生)*/

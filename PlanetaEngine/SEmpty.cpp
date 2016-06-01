@@ -3,7 +3,7 @@
 #include "SceneDefinitionHeaders.h"
 #include "TInstant.h"
 
-namespace planeta_engine {
+namespace planeta {
 	namespace core {
 
 		bool SEmpty::SetUpScene(SceneSetUpProxy& scene, const util::ParameterHolder& initialize_parameters) {

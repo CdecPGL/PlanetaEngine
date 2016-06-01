@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta_engine {
+namespace planeta {
 	namespace util {
 		/*’l‚ðŽw’è‚µ‚½”ÍˆÍ‚ÉŽû‚ß‚é*/
 		template<typename T>
