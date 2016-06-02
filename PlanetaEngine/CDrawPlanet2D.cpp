@@ -35,7 +35,7 @@ namespace planeta {
 		if (CDraw2D::OnInitialized() == false) { return false; }
 		_planet_component.reset(game_object().GetComponent<CPlanet>());
 		if (_planet_component) {
-			SetPolygonRoundly_();
+			SetPolygon_();
 			return true;
 		} else {
 			debug::SystemLog::instance().LogError("‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½BPlanetComponent‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B", "DrawPlanetComponent::Initialize_");

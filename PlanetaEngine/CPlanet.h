@@ -18,7 +18,7 @@ namespace planeta {
 	private:
 		void SetGapByIndex(unsigned int idx, double gap);
 		double GetGapByRad(double rad)const;
-		double _radius;
+		double _radius = 100;
 		unsigned int _separation;
 		std::vector<double> _gap;
 	};

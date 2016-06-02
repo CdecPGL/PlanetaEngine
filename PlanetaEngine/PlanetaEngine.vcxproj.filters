@@ -1136,5 +1136,8 @@
     <ClCompile Include="SEmpty.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
+    <ClCompile Include="ISerializable.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
