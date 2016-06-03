@@ -8,7 +8,11 @@ namespace planeta {
 	CGround2D::CGround2D() {}
 
 	bool CGround2D::OnInitialized() {
-
+		transform2d_.reset(game_object().GetComponent<CTransform2D>());
+		if (!transform2d_) {
+			PE_LOG_ERROR("Transform2D‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			return false;
+		}
 		return true;
 	}
 
@@ -17,11 +21,7 @@ namespace planeta {
 	}
 
 	bool CGround2D::OnInactivated() {
-		transform2d_.reset(game_object().GetComponent<CTransform2D>());
-		if (!transform2d_) {
-			PE_LOG_ERROR("Transform2D‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
-			return false;
-		}
+		
 		return true;
 	}
 
