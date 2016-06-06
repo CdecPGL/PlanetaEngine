@@ -97,8 +97,7 @@ namespace planeta{
 		bool CollisionWorld::Remove(const CCollider2D* col_com_ptr) {
 			auto it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (it == collider_resist_data_map_.end()) {//登録されていないコライダー
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
-				assert(false);
+				PE_LOG_FATAL("存在しないコライダーが指定されました。");
 				return false;
 			} 
 			//地形衝突コライダーリストから除去
@@ -115,14 +114,13 @@ namespace planeta{
 		bool CollisionWorld::ChangeCollisionGroup(const CCollider2D* col_com_ptr, const std::string& group_name) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
-				assert(false);
+				PE_LOG_FATAL("存在しないコライダーが指定されました。");
 				return false;
 			}
 			if (resist_data_it->second->group_iterator_at_collision_groups->first == group_name) { return true; } //変更の必要はない
 			auto group_it = collision_groupes_.find(group_name);
 			if (group_it == collision_groupes_.end()) { //指定されたグループが存在しない
-				debug::SystemLog::instance().Log(debug::LogLevel::Warning, __FUNCTION__, "存在しない衝突グループ", group_name, "が指定されました。");
+				PE_LOG_WARNING("存在しない衝突グループ", group_name, "が指定されました。");
 				return false;
 			}
 			//現在の衝突グループから除去
@@ -137,8 +135,7 @@ namespace planeta{
 		bool CollisionWorld::ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "存在しないコライダーが指定されました。");
-				assert(false);
+				PE_LOG_FATAL("存在しないコライダーが指定されました。");
 				return false;
 			}
 

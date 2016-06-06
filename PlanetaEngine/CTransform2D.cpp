@@ -44,7 +44,7 @@ namespace planeta {
 	public:
 		Impl_::Impl_():belonging_ground(GetDumyGround()){}
 	private:
-		//バッファデータ(適用前データ)
+		//各種データ
 		std::tuple<TransformData,PhisicalData> global;
 		std::tuple<TransformData, PhisicalData> ground;
 		UpdateState last_update; //更新状況
@@ -125,14 +125,14 @@ namespace planeta {
 		//地形更新イベントハンドラ
 		void OnGroudUpdated() {
 			UpdateGroundTransform();
-			UpdateGlobalPhisic();
+			UpdateGroundPhisic();
 			last_update.position = CoordinationSpace::Ground;
 			last_update.scale = CoordinationSpace::Ground;
 			last_update.rotation = CoordinationSpace::Ground;
 			last_update.velocity = CoordinationSpace::Ground;
 			last_update.rota_vel = CoordinationSpace::Ground;
-			UpdateGroundTransform();
-			UpdateGroundPhisic();
+			UpdateGlobalTransform();
+			UpdateGlobalPhisic();
 		}
 	public:
 
