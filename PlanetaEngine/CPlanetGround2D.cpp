@@ -31,9 +31,9 @@ namespace planeta {
 		if (planet_component_->GetHeightByRad(collider_ground_pos.x) + collider.radius()*collider.GetCollisionScale() > collider_ground_pos.y) {
 			auto& collider_transform = collider.transform2d();
 			//‘¬“x‚ÌC³
-			collider_transform.velocity(Vector2Dd(collider_transform.velocity().x, 0));
+			collider_transform.ground_velocity({ collider_transform.ground_velocity().x, 0 });
 			//‰Ÿ‚µo‚µ
-			collider_transform.position(Vector2Dd(collider_transform.position().x, planet_component_->GetHeightByRad(collider_transform.position().x) + collider.radius()*collider.GetCollisionScale()));
+			collider_transform.ground_position({ collider_transform.ground_position().x, planet_component_->GetHeightByRad(collider_transform.ground_position().x) + collider.radius()*collider.GetCollisionScale() });
 			return true;
 		} else {
 			return false;
