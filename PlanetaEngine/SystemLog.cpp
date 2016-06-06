@@ -1,5 +1,3 @@
-#include "DxLib.h"
-
 #include "SystemLog.h"
 #include "SystemTimer.h"
 #include "SystemVariables.h"
@@ -127,7 +125,7 @@ namespace planeta {
 			void _AssertionByLevel(LogLevel level,const std::string err_str) {
 				if (level == LogLevel::Fatal) {
 #ifndef NDEBUG
-					int ret = MessageBox(GetMainWindowHandle(), "致命的なエラーが発生しました。ブレークポイントを作成しますか？", "致命的エラー", MB_YESNO | MB_ICONERROR | MB_APPLMODAL);
+					int ret = MessageBox(NULL, "致命的なエラーが発生しました。ブレークポイントを作成しますか？", "致命的エラー", MB_YESNO | MB_ICONERROR | MB_APPLMODAL);
 					switch (ret) {
 					case IDYES:
 						DebugBreak();
