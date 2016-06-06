@@ -14,6 +14,6 @@ namespace planeta {
 	}
 
 	void CBelongingGroundGravity::Update() {
-		transform2d_->Accelerate(Vector2Dd(0.0f, -1.0f) * _gravity_scale);
+		transform2d_->GroundAccelerate(Vector2Dd(0.0f, -1.0f) * _gravity_scale);
 	}
 }
