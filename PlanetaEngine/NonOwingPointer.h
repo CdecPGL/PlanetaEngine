@@ -18,6 +18,8 @@ namespace planeta{
 
 			NonOwingPointer& operator=(const NonOwingPointer&) = delete;
 
+			bool operator==(std::nullptr_t)const { return ptr_ == nullptr; }
+
 			//ポインタへのアクセス
 			T* operator->()const {
 				return ptr_;
