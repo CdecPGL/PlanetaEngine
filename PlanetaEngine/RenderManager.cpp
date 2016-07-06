@@ -11,6 +11,7 @@ namespace planeta {
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetUseLighting(false); //ライティング計算を行わない
 			SetUseSetDrawScreenSettingReset(false); //スクリーン変更時にカメラ情報のリセットを行わない。
+			SetDrawMode(DX_DRAWMODE_BILINEAR); //バイリニア法で描画
 			return true;
 		}
 
