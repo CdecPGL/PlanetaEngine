@@ -1,6 +1,7 @@
 #include <cassert>
 
 #include "boost/algorithm/string.hpp"
+#include "boost/filesystem.hpp"
 
 #include "InitFunctions.h"
 #include "SystemVariables.h"
@@ -32,6 +33,10 @@ namespace planeta {
 				if (system_variables::DevelopmentMode) {
 					//コンソール出力を有効化
 					debug::SystemLog::instance().ValidateConsoleOutPut();
+				}
+				//ログディレクトリがなかったら作る
+				if(!boost::filesystem::exists(system_variables::file_system::LogDirectory)) {
+					boost::filesystem::create_directory(system_variables::file_system::LogDirectory);
 				}
 				//ログ出力ファイルを開く
 				LogFileOutPutStream.open(system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName, std::ios::out | std::ios::trunc);
