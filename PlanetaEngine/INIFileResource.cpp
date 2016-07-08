@@ -2,6 +2,7 @@
 #include "INIFileResource.h"
 #include "FileIStream.h"
 #include "FileSystemUtility.h"
+#include "CharacterCode.h"
 
 namespace planeta {
 	namespace resources {
@@ -51,6 +52,7 @@ namespace planeta {
 			}
 
 			//データ抽出
+			INIType origin_data;
 			for (auto it = section.begin(); it != section.end(); ++it) {
 				unordered_map<string, string> s;
 				for (string& l : (*it).second) {
@@ -60,7 +62,16 @@ namespace planeta {
 					string value = l.substr(eq_idx + 1, l.size() - 1);
 					s.insert(pair<string, string>(name, value));
 				}
-				_data.insert(pair<string, unordered_map<string, string>>((*it).first,s));
+				origin_data.insert(pair<string, unordered_map<string, string>>((*it).first,s));
+			}
+
+			//UTF8からシステム文字コードへ変換
+			for (auto&& sec : origin_data) {
+				unordered_map<string, string> n_sec;
+				for (auto&& data : sec.second) {
+					n_sec.emplace(util::ConvertUTF8ToSystemCode(data.first), util::ConvertUTF8ToSystemCode(data.second));
+				}
+				_data.emplace(util::ConvertUTF8ToSystemCode(sec.first), std::move(n_sec));
 			}
 			return true;
 		}

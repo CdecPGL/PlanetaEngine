@@ -8,6 +8,7 @@
 #include "boost/algorithm/string.hpp"
 #include "File.h"
 #include "SystemLog.h"
+#include "CharacterCode.h"
 
 namespace planeta {
 	namespace resources {
@@ -70,6 +71,13 @@ namespace planeta {
 				}
 				//データを保存
 				loaded_datas.push_back(std::move(datas));
+			}
+
+			//読み込んだデータの文字コードをUTF8からシステム文字コードへ変換
+			for (auto&& line : loaded_datas) {
+				for (auto&& elem : line) {
+					elem = util::ConvertUTF8ToSystemCode(elem);
+				}
 			}
 			return true;
 		}

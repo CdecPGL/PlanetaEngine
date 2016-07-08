@@ -1,5 +1,6 @@
 #include "TextResource.h"
 #include "File.h"
+#include "CharacterCode.h"
 
 namespace planeta {
 	namespace resources {
@@ -11,6 +12,8 @@ namespace planeta {
 			for (unsigned int i = 0; i < size; ++i) {
 				_text.push_back(c_ptr[i]);
 			}
+			//UTF8からシステム文字コードへ
+			_text = util::ConvertUTF8ToSystemCode(_text);
 			return true;
 		}
 

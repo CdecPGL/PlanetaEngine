@@ -5,6 +5,7 @@
 #include "File.h"
 #include "tinyxml2.h"
 #include "SystemLog.h"
+#include "CharacterCode.h"
 
 namespace planeta {
 	namespace resources {
@@ -14,8 +15,8 @@ namespace planeta {
 			std::function<void(const std::shared_ptr<XMLElement>&, const tinyxml2::XMLNode&)> element_setter = [&element_setter](const std::shared_ptr<XMLElement>& target,const tinyxml2::XMLNode& source){
 				for (auto* s_element = source.FirstChildElement(); s_element != nullptr; s_element = s_element->NextSiblingElement()) {
 					auto c_element = std::make_shared<XMLElement>();
-					target->AddChild(s_element->Name(), c_element);
-					c_element->text(s_element->GetText() ? s_element->GetText() : "");
+					target->AddChild(util::ConvertUTF8ToSystemCode(s_element->Name()), c_element);
+					c_element->text(s_element->GetText() ? util::ConvertUTF8ToSystemCode(s_element->GetText()) : "");
 					element_setter(c_element, *s_element);
 				}
 			};
