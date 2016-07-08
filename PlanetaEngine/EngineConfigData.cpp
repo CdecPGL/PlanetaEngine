@@ -1,7 +1,8 @@
 #include "boost/lexical_cast.hpp"
 #include "EngineConfigData.h"
-#include "INIFileResource.h"
+#include "JSONResource.h"
 #include "FileSystemUtility.h"
+#include "INIFileResource.h"
 #include "MakeResource.h"
 #include "File.h"
 
@@ -26,80 +27,95 @@ namespace planeta {
 			namespace {
 				using namespace planeta::debug;
 				using namespace planeta::resources;
-				using SectionDataType = std::pair<std::string, typename INIFileResource::SectionType>;
-				bool GetSection(const INIFileResource& ini, const std::string& section_name, SectionDataType& dst) {
-					auto it = ini.find(section_name);
-					if (it == ini.end()) {
-						PE_LOG_ERROR("セクション\"", section_name, "\"が存在しません。");
+				template<typename T>
+				bool SetValueFromJSONObject(const JSONObject& json_obj, const std::string& key, T& dst) {
+					//bool以外の数値型はdoubleとして扱う
+					using TT = std::conditional_t<std::is_same<T, bool>::value, bool,
+						std::conditional_t<std::is_arithmetic<T>::value, double, T>>;
+					decltype(auto) val = json_obj.At<TT>(key);
+					if (val) {
+						dst = static_cast<T>(*val);
+						return true;
+					} else {
+						PE_LOG_ERROR("キー\"", key, "\"の値が取得できませんでした。");
 						return false;
 					}
-					dst = *it;
+				}
+				template<typename T>
+				bool SetCRefOptFromJSONObject(const JSONObject& json_obj, const std::string& key,  boost::optional<const T&>& dst) {
+					decltype(auto) val = json_obj.At<T>(key);
+					if (val) {
+						dst = val;
+						return true;
+					} else {
+						PE_LOG_ERROR("キー\"", key, "\"の値が取得できませんでした。");
+						return false;
+					}
+				}
+				bool SetVector2DiFromJSONArray(const JSONArray& json_ary,Vector2Di& dst) {
+					decltype(auto) opt = json_ary.At<double>(0);
+					if (opt) {
+						dst.x = static_cast<int>(*opt);
+					} else {
+						PE_LOG_ERROR("JSONArray[0]をVector2Di.xに変換できませんでした。");
+						return false;
+					}
+					opt = json_ary.At<double>(1);
+					if (opt) {
+						dst.y = static_cast<int>(*opt);
+					} else {
+						PE_LOG_ERROR("JSONArray[1]をVector2Di.yに変換できませんでした。");
+						return false;
+					}
 					return true;
 				}
-
-				bool SetConfigData(const SectionDataType& section, const std::string& parameter_name, bool& dst) {
-					auto it = section.second.find(parameter_name);
-					if (it == section.second.end()) {
-						PE_LOG_ERROR("セクション\"", section.first, "\"にパラメータ\"", parameter_name, "\"が存在しません。");
-						return false;
-					}
-					if (it->second[0] == 't' || it->second[0] == 'T') { dst = true; } //一文字目がtだったらtrue
-					else if (it->second[0] == 'f' || it->second[0] == 'F') { dst = false; } //一文字目がfだったらfalse
-					else { //それ以外はキャストして判断
-						try {
-							dst = boost::lexical_cast<bool>(it->second);
-						} catch (boost::bad_lexical_cast&) {
-							PE_LOG_ERROR("セクション\"", section.first, "\"のパラメータ\"", parameter_name, "\"の値が不正です。");
+				template<typename T,int N>
+				bool SetDataToPointerArrayFromJSONArray(const JSONArray& json_ary, const std::array<T*, N>& ary) {
+					//bool以外の数値型はdoubleとして扱う
+					using TT = std::conditional_t<std::is_same<T, bool>::value, bool,
+						std::conditional_t<std::is_arithmetic<T>::value, double, T>>;
+					for (int i = 0; i < N; ++i) {
+						decltype(auto) opt = json_ary.At<TT>(i);
+						if (opt) {
+							*ary[i] = static_cast<T>(*opt);
+						} else {
+							PE_LOG_ERROR("JSONArray[", i, "]をstd::array<N,T*>[", i, "]にセットできませんでした。");
 							return false;
 						}
 					}
-					return true;
-				}
-
-				template<typename T>
-				bool SetConfigData(const SectionDataType& section, const std::string& parameter_name, T& dst) {
-					auto it = section.second.find(parameter_name);
-					if (it == section.second.end()) {
-						PE_LOG_ERROR("セクション\"", section.first, "\"にパラメータ\"", parameter_name, "\"が存在しません。");
-						return false;
-					}
-					try {
-						dst = boost::lexical_cast<T>(it->second);
-					} catch (boost::bad_lexical_cast&) {
-						PE_LOG_ERROR("セクション\"", section.first, "\"のパラメータ\"", parameter_name, "\"の値が不正です。");
-						return false;
-					}
-					return true;
+					return false;
 				}
 			}
 
 			bool LoadConfigData(const std::shared_ptr<File>& file) {
 				assert(file != nullptr && file->GetStatus() == File::FileStatus::Available);
 
-				auto ini_res = MakeResource<resources::INIFileResource>();
+				auto json_res = MakeResource<resources::JSONResource>();
 				//FileからINIリソースを作成する
-				if (!ini_res->Create(file)) {
-					PE_LOG_ERROR("設定ファイルをINIファイルとして読み込むことができませんでした。");
+				if (!json_res->Create(file)) {
+					PE_LOG_ERROR("設定ファイルをJSONファイルとして読み込むことができませんでした。");
 					return false;
 				}
-				//各種設定データを取得する
-				SectionDataType section;
-				if (GetSection(*ini_res, "Game", section)
-					&& SetConfigData(section, "GameTitle", game::GameTitle_)
-					&& SetConfigData(section, "MajorVersion", game::MajorVersionNumber_)
-					&& SetConfigData(section, "MinorVersion", game::MinorVersionNumber_)
-					&& SetConfigData(section, "SubVersion", game::SubVersionNumber_)
-					&& GetSection(*ini_res, "Engine", section)
-					&& SetConfigData(section, "WindowMode", engine::WindowMode_)
-					&& SetConfigData(section, "ColorBitDepth", engine::ColorBitDepth_)
-					&& SetConfigData(section, "DrawWidth", engine::DrawSize_.x)
-					&& SetConfigData(section, "DrawHeight", engine::DrawSize_.y)
-					&& SetConfigData(section, "WindowWidth", engine::WindowSize_.x)
-					&& SetConfigData(section, "WindowHeight", engine::WindowSize_.y)
-					&& SetConfigData(section, "ResourceDecryptionKey", engine::ResourceDecryptionKey_)
-					&& GetSection(*ini_res, "User", section)
-					&& SetConfigData(section, "WindowSizeConfigurable", user::WindowSizeConfigurable_)
-					&& SetConfigData(section, "WindowModeConfigurable", user::WindowModeConfigurable_)
+				decltype(auto) root_obj = json_res->GetRoot().Get<JSONObject>();
+				boost::optional<const JSONObject&> game_obj;
+				boost::optional<const JSONObject&> engine_obj;
+				boost::optional<const JSONObject&> user_obj;
+				boost::optional<const JSONArray&> buffer_array;
+				if (SetCRefOptFromJSONObject(*root_obj, "Game", game_obj)
+					&& SetValueFromJSONObject(*game_obj, "Title", game::GameTitle_)
+					&& SetCRefOptFromJSONObject(*game_obj, "Version", buffer_array)
+					&& SetDataToPointerArrayFromJSONArray(*buffer_array, std::array<int*,3>{&game::MajorVersionNumber_,&game::MinorVersionNumber_,&game::SubVersionNumber_})
+					&& SetCRefOptFromJSONObject(*root_obj, "Engine", engine_obj)
+					&& SetValueFromJSONObject(*engine_obj, "WindowMode", engine::WindowMode_)
+					&& SetValueFromJSONObject(*engine_obj, "ColorBitDepth", engine::ColorBitDepth_)
+					&& SetCRefOptFromJSONObject(*engine_obj, "DrawSize", buffer_array)
+					&& SetVector2DiFromJSONArray(*buffer_array,engine::DrawSize_)
+					&& SetCRefOptFromJSONObject(*engine_obj, "WindowSize", buffer_array)
+					&& SetVector2DiFromJSONArray(*buffer_array, engine::WindowSize_)
+					&& SetValueFromJSONObject(*engine_obj, "ResourceDecryptionKey", engine::ResourceDecryptionKey_)
+					&& SetCRefOptFromJSONObject(*root_obj, "User", user_obj)
+					&& SetValueFromJSONObject(*user_obj, "WindowSizeConfigurable", user::WindowSizeConfigurable_)
+					&& SetValueFromJSONObject(*user_obj, "WindowModeConfigurable", user::WindowModeConfigurable_)
 					) { //設定データ取得成功
 						//バージョン文字列設定
 						game::VersionString_ =

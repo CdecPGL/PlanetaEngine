@@ -99,5 +99,11 @@ namespace planeta {
 		struct AllOf<UnaryPredicate, First, Rest...> : public std::conditional_t<UnaryPredicate<First>::value, AllOf<UnaryPredicate, Rest...>, std::false_type> {};
 		/*template<template<class>class UnaryPredicate>
 		struct AllOf<UnaryPredicate, void> : public std::true_type{};*/
+
+		//‚¢‚¸‚ê‚©‚Ì—v‘fFirst,Rest...‚ª’P€qŒêUnaryPredicate‚ğ–‚½‚µ‚Ä‚¢‚é‚©
+		template<template<class> class UnaryPredicate, typename... Args>
+		struct AnyOf : public std::false_type {};
+		template<template<class> class UnaryPredicate, typename First, typename... Rest>
+		struct AnyOf<UnaryPredicate, First, Rest...> : public std::conditional_t<UnaryPredicate<First>::value,std::true_type, AnyOf<UnaryPredicate, Rest...>> {};
 	}
 }

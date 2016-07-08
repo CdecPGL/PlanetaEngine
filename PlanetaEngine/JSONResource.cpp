@@ -16,26 +16,50 @@ namespace planeta {
 					return pj_value.get<bool>();
 				} else if (pj_value.is<picojson::object>()) {
 					decltype(auto) pj_obj = pj_value.get<picojson::object>();
-					JSONObject out;
+					std::unordered_map<std::string, JSONValue> out;
 					for (auto&& v : pj_obj) {
 						auto key = v.first;
 						auto value = std::move(ConvertPicojsonValueToJSONValue(v.second));
 						out.emplace(key, std::move(value));
 					}
-					return out;
+					return std::move(out);
 				} else if (pj_value.is<picojson::array>()) {
 					decltype(auto) pj_ary = pj_value.get<picojson::array>();
-					JSONArray out;
+					std::vector<JSONValue> out;
 					for (auto&& v : pj_ary) {
-						out.push_back(std::move(ConvertPicojsonValueToJSONValue(pj_value)));
+						out.push_back(std::move(ConvertPicojsonValueToJSONValue(v)));
 					}
-					return out;
+					return std::move(out);
 				}else if (pj_value.is<picojson::null>()) {
 					return nullptr;
 				} else {
 					assert(false);
 					return nullptr;
 				}
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////
+		//JSONObject
+		//////////////////////////////////////////////////////////////////////////
+		JSONObject::JSONObject(std::unordered_map<std::string, JSONValue>&& obj) :obj_(std::move(obj)) {}
+		boost::optional<const JSONValue&> JSONObject::At(const std::string& key)const {
+			auto it = obj_.find(key);
+			if (it == obj_.end()) {
+				return boost::none;
+			} else {
+				return it->second;
+			}
+		}
+
+		//////////////////////////////////////////////////////////////////////////
+		//JSONArray
+		//////////////////////////////////////////////////////////////////////////
+		JSONArray::JSONArray(std::vector<JSONValue>&& ary) :array_(std::move(ary)) {}
+		boost::optional<const JSONValue&> JSONArray::At(size_t idx)const {
+			if (idx >= array_.size()) {
+				return boost::none;
+			} else {
+				return array_[idx];
 			}
 		}
 
@@ -50,22 +74,9 @@ namespace planeta {
 		JSONValue& JSONValue::operator= (const JSONValue& obj) = default;
 		JSONValue& JSONValue::operator=(JSONValue&& obj) = default;
 
-		template<typename T>
-		boost::optional<const T&> JSONValue::Get()const {
-			const T* v = boost::get<T>(&var_);
-			if (v) {
-				return *v;
-			} else {
-				return boost::none;
-			}
+		bool JSONValue::is_null()const {
+			return var_.which() == 0;
 		}
-
-		template boost::optional<const int&> JSONValue::Get<int>()const;
-		template boost::optional<const double&> JSONValue::Get<double>()const;
-		template boost::optional<const std::string&> JSONValue::Get<std::string>()const;
-		template boost::optional<const bool&> JSONValue::Get<bool>()const;
-		template boost::optional<const JSONObject&> JSONValue::Get<JSONObject>()const;
-		template boost::optional<const JSONArray&> JSONValue::Get<JSONArray>()const;
 
 		//////////////////////////////////////////////////////////////////////////
 		//JSONResource::Impl_
