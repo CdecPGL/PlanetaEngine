@@ -83,7 +83,7 @@ namespace planeta {
 							return false;
 						}
 					}
-					return false;
+					return true;
 				}
 			}
 
