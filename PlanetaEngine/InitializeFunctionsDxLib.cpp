@@ -17,7 +17,7 @@ namespace planeta {
 				//ウインドウモード設定
 				ChangeWindowMode(engine_config::engine::WindowMode());
 				//ウインドウタイトル設定(ゲームタイトル+ゲームバージョン)
-				SetMainWindowText(util::ConvertUTF8ToShiftJIS(engine_config::game::GameTitle() + " v" + engine_config::game::VersionString()).c_str());
+				SetMainWindowText(std::string(engine_config::game::GameTitle() + " v" + engine_config::game::VersionString()).c_str());
 				//描画サイズとカラービット深度設定
 				SetGraphMode(engine_config::engine::DrawSize().x, engine_config::engine::DrawSize().y, engine_config::engine::ColorBitDepth());
 				//必要ならウインドウサイズに合わせて拡縮

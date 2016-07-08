@@ -57,5 +57,17 @@ namespace planeta {
 			return str_utf8;
 		}
 
+		std::string ConvertUTF8ToSystemCode(const std::string& str_utf8) {
+#ifdef _MSC_VER
+			return ConvertUTF8ToShiftJIS(str_utf8);
+#endif
+		}
+
+		std::string ConvertSystemCodeToUTF8(const std::string& str_sys) {
+#ifdef _MSC_VER
+			return ConvertShiftJISToUTF8(str_sys);
+#endif
+		}
+
 	}
 }

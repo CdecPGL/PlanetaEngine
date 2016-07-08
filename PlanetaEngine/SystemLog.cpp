@@ -121,7 +121,7 @@ namespace planeta {
 				}
 				windows::console::SetCharacterColor(col);
 				auto ostr = AddNewLineIfNeed(str);
-				ostr = util::ConvertUTF8ToShiftJIS(ostr);
+				//ostr = util::ConvertUTF8ToShiftJIS(ostr);
 				std::cout << ostr;
 			}
 

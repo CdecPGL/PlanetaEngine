@@ -3,6 +3,7 @@
 #include "JSONResource.h"
 #include "File.h"
 #include "SystemLog.h"
+#include "CharacterCode.h"
 
 namespace planeta {
 	namespace resources {
@@ -11,7 +12,8 @@ namespace planeta {
 				if (pj_value.is<double>()) {
 					return pj_value.get<double>();
 				} else if (pj_value.is<std::string>()) {
-					return pj_value.get<std::string>();
+					//UTF8からシステム文字コードに変換
+					return util::ConvertUTF8ToSystemCode(pj_value.get<std::string>());
 				} else if (pj_value.is<bool>()) {
 					return pj_value.get<bool>();
 				} else if (pj_value.is<picojson::object>()) {
