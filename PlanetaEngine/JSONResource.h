@@ -47,6 +47,7 @@ namespace planeta {
 					return boost::none;
 				}
 			}
+			size_t size()const;
 		private:
 			std::vector<JSONValue> array_;
 		};

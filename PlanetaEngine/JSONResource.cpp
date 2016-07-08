@@ -64,6 +64,7 @@ namespace planeta {
 				return array_[idx];
 			}
 		}
+		size_t JSONArray::size()const { return array_.size(); }
 
 		//////////////////////////////////////////////////////////////////////////
 		//JSONValue
