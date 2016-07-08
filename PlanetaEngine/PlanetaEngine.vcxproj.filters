@@ -37,9 +37,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\EventArgs">
       <UniqueIdentifier>{fb1b3493-a736-4e3f-8b76-dae42031af3d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TinyXML2">
-      <UniqueIdentifier>{38d797a1-d619-4e63-aaf0-63156fa85703}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\Memory">
       <UniqueIdentifier>{2399abbf-6b25-4112-9eb9-a39e74e8d89b}</UniqueIdentifier>
     </Filter>
@@ -211,13 +208,22 @@
     <Filter Include="PlanetaEngine\Core\InitFuncs">
       <UniqueIdentifier>{5ea80f8e-44b4-41bd-934f-2258a6d7167b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExternalLibraries">
+      <UniqueIdentifier>{4ceed6c7-9d61-4ede-ab3f-e59cf30c833c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\TinyXML2">
+      <UniqueIdentifier>{38d797a1-d619-4e63-aaf0-63156fa85703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\picojson">
+      <UniqueIdentifier>{2d6791a8-84ab-4fbe-b78b-3af151fd1092}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyxml2.h">
-      <Filter>TinyXML2</Filter>
+      <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClInclude>
     <ClInclude Include="FontDefinitionResource.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -804,6 +810,12 @@
     <ClInclude Include="SEmpty.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
+    <ClInclude Include="JSONResource.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="picojson.h">
+      <Filter>ExternalLibraries\picojson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -879,7 +891,7 @@
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
-      <Filter>TinyXML2</Filter>
+      <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClCompile>
     <ClCompile Include="XMLResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
@@ -1138,6 +1150,9 @@
     </ClCompile>
     <ClCompile Include="ISerializable.cpp">
       <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONResource.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

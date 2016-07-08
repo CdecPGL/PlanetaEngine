@@ -164,11 +164,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="InitFunctions.h" />
+    <ClInclude Include="JSONResource.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
     <ClInclude Include="NonOwingPointer.h" />
+    <ClInclude Include="picojson.h" />
     <ClInclude Include="ProgramDefinitionData.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
@@ -357,6 +359,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InitFunctionsResource.cpp" />
     <ClCompile Include="InitializeFunctionsDxLib.cpp" />
     <ClCompile Include="ISerializable.cpp" />
+    <ClCompile Include="JSONResource.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
