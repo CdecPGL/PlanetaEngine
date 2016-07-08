@@ -146,6 +146,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadAllocException.h" />
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="CCamera2D.h" />
+    <ClInclude Include="CharacterCode.h" />
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="GameObjectInterface.h" />
@@ -348,6 +349,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CCamera2D.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
+    <ClCompile Include="CharacterCode.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />

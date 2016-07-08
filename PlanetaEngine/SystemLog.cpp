@@ -7,6 +7,7 @@
 #include <cassert>
 #include "PEDateTime.h"
 #include "WindowsUtility.h"
+#include "CharacterCode.h"
 
 /*ƒƒO‚Ì‘®
 [hh:mm:ss,frame]level:detail@place
@@ -119,7 +120,9 @@ namespace planeta {
 					break;
 				}
 				windows::console::SetCharacterColor(col);
-				std::cout << AddNewLineIfNeed(str);
+				auto ostr = AddNewLineIfNeed(str);
+				ostr = util::ConvertUTF8ToShiftJIS(ostr);
+				std::cout << ostr;
 			}
 
 			void _AssertionByLevel(LogLevel level,const std::string err_str) {

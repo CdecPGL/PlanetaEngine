@@ -816,6 +816,9 @@
     <ClInclude Include="picojson.h">
       <Filter>ExternalLibraries\picojson</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterCode.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1153,6 +1156,9 @@
     </ClCompile>
     <ClCompile Include="JSONResource.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterCode.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
