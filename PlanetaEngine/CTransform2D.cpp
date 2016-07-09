@@ -54,6 +54,7 @@ namespace planeta {
 
 		void PositionUpdated(CoordinationSpace space) {
 			last_update.position = space;
+			last_update.rotation = space; //位置に応じて回転度は変わる可能性があるので。
 		}
 		void ScaleUpdated(CoordinationSpace space) {
 			last_update.scale = space;
@@ -75,15 +76,10 @@ namespace planeta {
 			auto& grnd_t = std::get<TransformData>(ground);
 			if (last_update.position == CoordinationSpace::Ground) {
 				glbl_t.position = bground.ConvertPositionGroundToGlobal(grnd_t.position);
-				//位置に応じて回転度が変わる可能性があるので、回転度の最終更新がGlobalでなかったら回転度も更新する。
-				if (last_update.rotation != CoordinationSpace::Global) {
-					glbl_t.rotation_rad = bground.ConvertRotationGroundToGlobalWithGroundPosition(grnd_t.position, grnd_t.rotation_rad);
-					last_update.rotation = CoordinationSpace::None; //ここで更新したら再び回転度を更新する必要はないのでNoneに設定しておく。
-				}
 				last_update.position = CoordinationSpace::None;
 			}
 			if (last_update.rotation == CoordinationSpace::Ground) {
-				glbl_t.rotation_rad = bground.ConvertRotationGroundToGlobalWithGroundPosition(grnd_t.position, grnd_t.rotation_rad);
+				glbl_t.rotation_rad = bground.ConvertRotationGroundToGlobalWithGroundPosition(ground_position(), grnd_t.rotation_rad);
 				last_update.rotation = CoordinationSpace::None;
 			}
 		}
@@ -93,7 +89,7 @@ namespace planeta {
 			auto& glbl_p = std::get<PhisicalData>(global);
 			auto& grnd_p = std::get<PhisicalData>(ground);
 			if (last_update.velocity == CoordinationSpace::Ground) {
-				glbl_p.velocity = bground.ConvertVelocityGroundToGlobalWithGroundPosition(position(), grnd_p.velocity);
+				glbl_p.velocity = bground.ConvertVelocityGroundToGlobalWithGroundPosition(ground_position(), grnd_p.velocity);
 				last_update.velocity = CoordinationSpace::None;
 			}
 		}
@@ -117,7 +113,7 @@ namespace planeta {
 			auto& glbl_p = std::get<PhisicalData>(global);
 			auto& grnd_p = std::get<PhisicalData>(ground);
 			if (last_update.velocity == CoordinationSpace::Global) {
-				grnd_p.velocity = bground.ConvertVelocityGlobalToGroundWithGroundPosition(position(), glbl_p.velocity);
+				grnd_p.velocity = bground.ConvertVelocityGlobalToGroundWithGroundPosition(ground_position(), glbl_p.velocity);
 				last_update.velocity = CoordinationSpace::None;
 			}
 		}
