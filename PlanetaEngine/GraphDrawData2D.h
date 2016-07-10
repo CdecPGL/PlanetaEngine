@@ -7,9 +7,7 @@
 #include "Color.h"
 
 namespace planeta {
-	namespace resources {
-		class GraphResource;
-	}
+	class GraphResource;
 	namespace core {
 		struct DXGraphDrawData;
 		class GraphDrawData2D {
@@ -18,7 +16,7 @@ namespace planeta {
 			~GraphDrawData2D();
 			const DXGraphDrawData& GetDXData()const { return *dx_data_; }
 			/*画像リソースをセットする*/
-			void SetGraphResource(const std::shared_ptr<resources::GraphResource>& g_res);
+			void SetGraphResource(const std::shared_ptr<GraphResource>& g_res);
 			void SetVertexCount(size_t c); //頂点数を設定する
 			void SetPlygonCount(size_t c); //ポリゴン数を設定する
 			bool SetVectex(size_t idx,const util::Vertex2D& vtx); //頂点を設定する
@@ -33,10 +31,10 @@ namespace planeta {
 			bool is_valid()const;
 			size_t vertex_count()const;
 			size_t polygon_count()const;
-			std::shared_ptr<resources::GraphResource> graph_resource()const { return graph_resource_; }
+			std::shared_ptr<GraphResource> graph_resource()const { return graph_resource_; }
 		private:
 			std::unique_ptr<DXGraphDrawData> dx_data_;
-			std::shared_ptr<resources::GraphResource> graph_resource_;
+			std::shared_ptr<GraphResource> graph_resource_;
 			std::vector<Vector2Df> vertex_uv_information_buffer_; //頂点UVデータの更新用に、元のUV座標データを保持しておく
 		};
 	}

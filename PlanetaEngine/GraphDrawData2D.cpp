@@ -51,7 +51,7 @@ namespace planeta {
 
 		GraphDrawData2D::~GraphDrawData2D() = default;
 
-		void GraphDrawData2D::SetGraphResource(const std::shared_ptr<resources::GraphResource>& g_res)
+		void GraphDrawData2D::SetGraphResource(const std::shared_ptr<GraphResource>& g_res)
 		{
 			graph_resource_ = g_res;
 			dx_data_->graph_handle = g_res->GetHandle();

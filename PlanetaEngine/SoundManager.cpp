@@ -16,9 +16,8 @@ namespace planeta {
 			std::unordered_map<int, std::shared_ptr<SoundEffectController>> se_controllers_;
 		};
 
-		std::shared_ptr<IBGMController> SoundManager::GetBGMController(const std::shared_ptr<core::ResourceBase>& music_resource)
-		{
-			auto m_res = std::dynamic_pointer_cast<resources::MusicResource>(music_resource);
+		std::shared_ptr<IBGMController> SoundManager::GetBGMController(const std::shared_ptr<core::ResourceBase>& music_resource) {
+			auto m_res = std::dynamic_pointer_cast<MusicResource>(music_resource);
 			if (m_res == nullptr) {
 				debug::SystemLog::instance().LogError(std::string("Musicリソースでないリソースが渡されました。(") + music_resource->GetType().name() + ")", __FUNCTION__);
 				return nullptr;
@@ -26,14 +25,12 @@ namespace planeta {
 			if (impl_->bgm_controller_) {
 				if (impl_->bgm_controller_->resource()->GetHandle() == m_res->GetHandle()) {
 					return impl_->bgm_controller_;
-				}
-				else {
+				} else {
 					auto nbr = std::make_shared<BGMController>(m_res);
 					impl_->bgm_controller_ = nbr;
 					return nbr;
 				}
-			}
-			else {
+			} else {
 				auto nbr = std::make_shared<BGMController>(m_res);
 				impl_->bgm_controller_ = nbr;
 				return nbr;
@@ -41,9 +38,8 @@ namespace planeta {
 		}
 
 
-		std::shared_ptr<ISoundEffectController> SoundManager::GetSoundEffectController(const std::shared_ptr<core::ResourceBase>& sound_resource)
-		{
-			auto s_res = std::dynamic_pointer_cast<resources::SoundResource>(sound_resource);
+		std::shared_ptr<ISoundEffectController> SoundManager::GetSoundEffectController(const std::shared_ptr<core::ResourceBase>& sound_resource) {
+			auto s_res = std::dynamic_pointer_cast<SoundResource>(sound_resource);
 			if (s_res == nullptr) {
 				debug::SystemLog::instance().LogError(std::string("Soundリソースでないリソースが渡されました。(") + sound_resource->GetType().name() + ")", __FUNCTION__);
 				return nullptr;
@@ -54,26 +50,22 @@ namespace planeta {
 				auto new_se_ctlr = std::make_shared<SoundEffectController>(s_res);
 				impl_->se_controllers_.emplace(dx_handle, new_se_ctlr);
 				return new_se_ctlr;
-			}
-			else {
+			} else {
 				return it->second;
 			}
 		}
 
-		SoundManager::SoundManager() :impl_(std::make_unique<Impl_>())
-		{
+		SoundManager::SoundManager() :impl_(std::make_unique<Impl_>()) {
 
 		}
 
-		void SoundManager::Update()
-		{
+		void SoundManager::Update() {
 			if (impl_->bgm_controller_) { impl_->bgm_controller_->Update(); }
 		}
 
-		void SoundManager::Reset()
-		{
+		void SoundManager::Reset() {
 			if (impl_->bgm_controller_) {
-				impl_->bgm_controller_->Dispose(); 
+				impl_->bgm_controller_->Dispose();
 				impl_->bgm_controller_.reset();
 			}
 			for (auto& s : impl_->se_controllers_) {
@@ -82,14 +74,11 @@ namespace planeta {
 			impl_->se_controllers_.clear();
 		}
 
-		bool SoundManager::Initialize()
-		{
+		bool SoundManager::Initialize() {
 			return true;
 		}
 
-		void SoundManager::Finalize()
-		{
-		}
+		void SoundManager::Finalize() {}
 
 		SoundManager::~SoundManager() = default;
 	}

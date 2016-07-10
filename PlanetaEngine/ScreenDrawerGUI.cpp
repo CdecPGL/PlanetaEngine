@@ -9,7 +9,7 @@
 #include "Screen.h"
 
 namespace planeta {
-	void ScreenDrawerGUI::DrawGraph(const util::RectAngle<int>& draw_area, const util::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<resources::GraphResource>& graph_resource) {
+	void ScreenDrawerGUI::DrawGraph(const util::RectAngle<int>& draw_area, const util::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<GraphResource>& graph_resource) {
 		screen_.ReserveDraw([draw_area,draw_area_on_graph,reverse,graph_resource]() {
 			if (graph_resource == nullptr) { return; }
 			double scale_x = (double)draw_area.size.x / draw_area_on_graph.size.x;
@@ -49,7 +49,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<resources::FontDefinitionResource>& font_definition_resource) {
+	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<FontDefinitionResource>& font_definition_resource) {
 		screen_.ReserveDraw([position,scale,str,color,outline_color,font_definition_resource]() {
 			if (font_definition_resource == nullptr) { return; }
 			using namespace util::dx;

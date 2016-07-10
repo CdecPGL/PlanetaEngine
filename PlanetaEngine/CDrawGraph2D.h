@@ -11,9 +11,6 @@ namespace planeta {
 	namespace core {
 		class GraphDrawData2D;
 	}
-	namespace resources {
-		class GraphResource;
-	}
 	class CDrawGraph2D final : public CDraw2D {
 	public:
 		CDrawGraph2D();

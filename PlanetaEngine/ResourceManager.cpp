@@ -5,11 +5,10 @@
 #include "FileAccessor.h"
 #include "SystemVariables.h"
 
-namespace planeta{
-	namespace core{
+namespace planeta {
+	namespace core {
 
-		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags)
-		{
+		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
 			auto ret = std::move(_check_newuse_and_nouse_tag_groups(need_tags));
 			size_t new_num(ret.first.size()), no_num(ret.second.size()); //新規読み込み数と未使用数を記録
 			//アンロードするべきタグは、未使用タググループリストに登録
@@ -18,16 +17,15 @@ namespace planeta{
 			}
 			auto load_tags = std::move(ret.first);
 			//新規読み込み
-			for (const auto& tag : load_tags){
+			for (const auto& tag : load_tags) {
 				_load_tag_group(tag);
 			}
 			PE_LOG_MESSAGE(new_num, "個のタググループが新規読み込みされ、", no_num, "個のタグが未使用となりました。");
 			return true;
 		}
 
-		bool ResourceManager::UnloadUnusedResouces()
-		{
-			for (const auto& res_array : _unused_tag_map){
+		bool ResourceManager::UnloadUnusedResouces() {
+			for (const auto& res_array : _unused_tag_map) {
 				for (const auto& id : res_array.second) {
 					id.second->Dispose();
 				}
@@ -37,23 +35,20 @@ namespace planeta{
 			return true;
 		}
 
-		bool ResourceManager::IsReady()const{ return true; }
+		bool ResourceManager::IsReady()const { return true; }
 
 		double ResourceManager::GetPrepairProgress() const { return 1.0; }
 
-		std::shared_ptr<ResourceBase> ResourceManager::_CreateResource(const std::string& attribute,const std::shared_ptr<const File>& file)
-		{
+		std::shared_ptr<ResourceBase> ResourceManager::_CreateResource(const std::string& attribute, const std::shared_ptr<const File>& file) {
 			auto it = _resource_creator_map.find(attribute);
 			if (it == _resource_creator_map.end()) { return nullptr; }
 			return (it->second)(file);
 		}
 
-		bool ResourceManager::_load_tag_group(const std::string& tag)
-		{
+		bool ResourceManager::_load_tag_group(const std::string& tag) {
 			auto using_map_it = _using_tag_id_map.find(tag);
 			//すでに読み込まれている
-			if (using_map_it != _using_tag_id_map.end()) { return true;}
-			else { //読み込まれていない
+			if (using_map_it != _using_tag_id_map.end()) { return true; } else { //読み込まれていない
 				_using_tag_id_map.emplace(tag, std::vector<std::string>());
 				using_map_it = _using_tag_id_map.find(tag);
 			}
@@ -65,8 +60,7 @@ namespace planeta{
 					_using_resources.insert(res); //使用中リソースIDマップに追加
 				}
 				_unused_tag_map.erase(unused_map_it); //未使用リストから削除
-			}
-			else { //新規読み込み
+			} else { //新規読み込み
 				auto tag_map_it = _tag_resouce_map.find(tag);
 				if (tag_map_it == _tag_resouce_map.end()) {
 					PE_LOG_ERROR("要求されたタググループは存在しません。(", tag, ")");
@@ -79,13 +73,11 @@ namespace planeta{
 						std::shared_ptr<ResourceBase> new_res = _CreateResource(it->type, f);
 						if (new_res == nullptr) {
 							PE_LOG_ERROR("リソースの作成に失敗しました。(タググループ=", tag, ",ID=", it->id, ",ファイル名=", it->file_name, ")");
-						}
-						else {
+						} else {
 							_using_resources.emplace(it->id, new_res);
 							ids.push_back(it->id);
 						}
-					}
-					else {
+					} else {
 						PE_LOG_ERROR("リソースファイルの読み込みに失敗しました。(タググループ\"", tag, "\"の\"", it->file_name, "\")");
 					}
 				}
@@ -94,18 +86,17 @@ namespace planeta{
 			return true;
 		}
 
-		bool ResourceManager::_LoadResourceList()
-		{
+		bool ResourceManager::_LoadResourceList() {
 			std::shared_ptr<const File> file = file_accessor_->LoadFile(_resource_list_file_name);
 			if (file == nullptr) {
 				PE_LOG_ERROR("リソースリスト(", _resource_list_file_name, ")の読み込みに失敗しました。");
-				return false; 
+				return false;
 			}
 			if (file->GetStatus() != File::FileStatus::Available) {
 				PE_LOG_ERROR("リソースリストファイルを読み込めませんでした。(", _resource_list_file_name, ")", _tag_resouce_map.size(), +"個)");
 				return false;
 			}
-			auto csv = MakeResource<resources::CSVResource>();
+			auto csv = MakeResource<CSVResource>();
 			if (csv->Create(file) == false) {
 				PE_LOG_ERROR("リソースリストファイルをCSV形式として読み込めませんでした。(", _resource_list_file_name, ")", _tag_resouce_map.size(), "個)");
 				return false;
@@ -113,9 +104,9 @@ namespace planeta{
 			for (const auto& l : *csv) {
 				ResourceData rd;
 				std::vector<std::string> tags;
-				if (l.size() < 4) { 
+				if (l.size() < 4) {
 					std::string line;
-					for (auto it = l.begin(); it != l.end();++it) {
+					for (auto it = l.begin(); it != l.end(); ++it) {
 						line += *it;
 						if (it != l.end() - 1) { line += ","; }
 					}
@@ -143,23 +134,20 @@ namespace planeta{
 			return true;
 		}
 
-		bool ResourceManager::Initialize()
-		{
+		bool ResourceManager::Initialize() {
 			assert(file_accessor_ != nullptr);
 			if (_LoadResourceList() == false) {
 				PE_LOG_ERROR("初期化に失敗しました。リソースリストの取得に失敗しました。");
-				return false; 
+				return false;
 			}
 			return true;
 		}
 
-		void ResourceManager::Finalize()
-		{
+		void ResourceManager::Finalize() {
 			_UnloadAllLoadedResources();
 		}
 
-		void ResourceManager::_UnloadAllLoadedResources()
-		{
+		void ResourceManager::_UnloadAllLoadedResources() {
 			for (auto& res : _using_resources) {
 				res.second->Dispose();
 			}
@@ -174,14 +162,12 @@ namespace planeta{
 			PE_LOG_MESSAGE("すべてのリソースをアンロードしました。");
 		}
 
-		void ResourceManager::_AddUnusedtagGroups(const std::string& tag)
-		{
+		void ResourceManager::_AddUnusedtagGroups(const std::string& tag) {
 			auto unused_map_it = _unused_tag_map.find(tag);
 			if (unused_map_it == _unused_tag_map.end()) {
 				_unused_tag_map.emplace(tag, std::vector<std::pair<std::string, std::shared_ptr<ResourceBase>>>());
 				unused_map_it = _unused_tag_map.find(tag);
-			}
-			else { return; }
+			} else { return; }
 			auto it = _using_tag_id_map.find(tag);
 			if (it != _using_tag_id_map.end()) {
 				for (const auto& id : it->second) {
@@ -195,20 +181,17 @@ namespace planeta{
 			}
 		}
 
-		std::shared_ptr<ResourceBase> ResourceManager::GetResource(const std::string& id)
-		{
+		std::shared_ptr<ResourceBase> ResourceManager::GetResource(const std::string& id) {
 			auto it = _using_resources.find(id);
 			if (it == _using_resources.end()) {
 				PE_LOG_WARNING("読み込まれていないリソースが要求されました。(ID:", id, ")");
 				return nullptr;
-			}
-			else {
+			} else {
 				return it->second;
 			}
 		}
 
-		const std::unordered_set<std::string> ResourceManager::GetUsingTagGroups() const
-		{
+		const std::unordered_set<std::string> ResourceManager::GetUsingTagGroups() const {
 			std::unordered_set<std::string> out;
 			for (const auto& t : _using_tag_id_map) {
 				out.insert(t.first);
@@ -216,8 +199,7 @@ namespace planeta{
 			return std::move(out);
 		}
 
-		std::pair<std::vector<std::string>, std::vector<std::string>> ResourceManager::_check_newuse_and_nouse_tag_groups(const std::vector<std::string>& need_tags)
-		{
+		std::pair<std::vector<std::string>, std::vector<std::string>> ResourceManager::_check_newuse_and_nouse_tag_groups(const std::vector<std::string>& need_tags) {
 			std::vector<std::string> new_use, no_use;
 			std::unordered_set<std::string> need_tags_set;
 			//新たに読み込むべきタグを検索(ついでに未使用タグの検索を高速化するため、必要タグの連想配列を作っておく)

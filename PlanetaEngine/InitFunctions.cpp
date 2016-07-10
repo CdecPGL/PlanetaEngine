@@ -63,13 +63,12 @@ namespace planeta {
 			}
 
 			bool LoadProgramDefinition(const std::shared_ptr<FileAccessor> sys_dir_accessor, ProgramDefinitionData* out) {
-				using namespace resources;
 				auto file = sys_dir_accessor->LoadFile(system_variables::file_system::ProgramDefinitionFileName);
 				if (file == nullptr || file->GetStatus() != File::FileStatus::Available) {
 					PE_LOG_ERROR("プログラム用定義ファイルが開けませんでした。");
 					return false;
 				}
-				auto json_res = MakeResource<resources::JSONResource>();
+				auto json_res = MakeResource<JSONResource>();
 				//FileからINIリソースを作成する
 				if (!json_res->Create(file)) {
 					PE_LOG_ERROR("プログラム用定義ファイルを読み込めませんでした。");

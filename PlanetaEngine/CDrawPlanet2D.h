@@ -7,9 +7,6 @@
 #include "Vertex2D.h"
 
 namespace planeta {
-	namespace resources {
-		class GraphResource;
-	}
 	namespace core {
 		class GraphDrawData2D;
 	}

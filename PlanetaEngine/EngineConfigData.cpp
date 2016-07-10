@@ -26,7 +26,6 @@ namespace planeta {
 
 			namespace {
 				using namespace planeta::debug;
-				using namespace planeta::resources;
 				template<typename T>
 				bool SetValueFromJSONObject(const JSONObject& json_obj, const std::string& key, T& dst) {
 					//bool以外の数値型はdoubleとして扱う
@@ -90,7 +89,7 @@ namespace planeta {
 			bool LoadConfigData(const std::shared_ptr<File>& file) {
 				assert(file != nullptr && file->GetStatus() == File::FileStatus::Available);
 
-				auto json_res = MakeResource<resources::JSONResource>();
+				auto json_res = MakeResource<JSONResource>();
 				//FileからINIリソースを作成する
 				if (!json_res->Create(file)) {
 					PE_LOG_ERROR("設定ファイルをJSONファイルとして読み込むことができませんでした。");

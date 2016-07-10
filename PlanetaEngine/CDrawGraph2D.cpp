@@ -24,7 +24,7 @@ namespace planeta {
 			debug::SystemLog::instance().LogError(std::string("リソースの取得に失敗しました。(リソース名は") + resource_id + ")", "DrawGraphComponent::SetGraphResource");
 			return false;
 		}
-		std::shared_ptr<resources::GraphResource> gr = std::dynamic_pointer_cast<resources::GraphResource>(res);
+		std::shared_ptr<GraphResource> gr = std::dynamic_pointer_cast<GraphResource>(res);
 		if (gr) {
 			graph_draw_data_->SetGraphResource(gr);
 			_draw_area.Set(Vector2Di(0, 0), Vector2Di(gr->size().x, gr->size().y));
