@@ -8,6 +8,7 @@
 #include "RCsv.h"
 #include "RText.h"
 #include "RXml.h"
+#include "RJson.h"
 #include "RFontDefinition.h"
 
 namespace planeta {
@@ -23,6 +24,7 @@ namespace planeta {
 				rm.AddResourceType<RText>(system_variables::resource::BuiltinTextResourceTypeName); //テキストファイル
 				rm.AddResourceType<RXml>(system_variables::resource::BuiltinXMLResourceTypeName); //XMLファイル
 				rm.AddResourceType<RFontDefinition>(system_variables::resource::BuiltinFontDefinitionResourceTypeName); //フォント定義ファイル
+				rm.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName); //JSONファイル
 				rm.SetFileAccessor_(res_file_accessor); //ファイルアクセサセット
 				rm.SetResourceListFileName_(core::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
 				if (rm.Initialize()) {

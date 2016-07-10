@@ -43,6 +43,7 @@ namespace planeta{
 				extern const std::string BuiltinTextResourceTypeName; //標準のテキストファイルリソースタイプ名
 				extern const std::string BuiltinXMLResourceTypeName; //標準のXMLファイルリソースタイプ名
 				extern const std::string BuiltinFontDefinitionResourceTypeName; //標準のフォント定義ファイルリソースタイプ名
+				extern const std::string BuiltinJSONResourceTypeName; //標準のJSONファイルリソースタイプ名
 			}
 			namespace prefixes {
 				extern const std::string Scene;

@@ -41,6 +41,7 @@ namespace planeta{
 				const std::string BuiltinTextResourceTypeName("Text");
 				const std::string BuiltinXMLResourceTypeName("XML");
 				const std::string BuiltinFontDefinitionResourceTypeName("FontDefinition");
+				const std::string BuiltinJSONResourceTypeName("JSON");
 			}
 			namespace prefixes {
 				const std::string Scene("S");
