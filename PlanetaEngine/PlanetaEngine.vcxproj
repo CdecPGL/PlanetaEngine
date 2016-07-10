@@ -165,7 +165,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="InitFunctions.h" />
-    <ClInclude Include="JSONResource.h" />
+    <ClInclude Include="RJson.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
@@ -212,7 +212,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="TCoroutine.h" />
-    <ClInclude Include="CSVResource.h" />
+    <ClInclude Include="RCsv.h" />
     <ClInclude Include="DXGraphDrawData.h" />
     <ClInclude Include="SEmpty.h" />
     <ClInclude Include="EncrypterBase.h" />
@@ -237,8 +237,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="File.h" />
     <ClInclude Include="FileAccessor.h" />
     <ClInclude Include="FileSystemManager.h" />
-    <ClInclude Include="FontDefinitionResource.h" />
-    <ClInclude Include="FontResource.h" />
+    <ClInclude Include="RFontDefinition.h" />
+    <ClInclude Include="RFont.h" />
     <ClInclude Include="DataContainerFunctionsForBoostSerialize.h" />
     <ClInclude Include="DataContainerSerializeUtility.h" />
     <ClInclude Include="GameObjectManagerConnection.h" />
@@ -253,13 +253,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CGraph2DAnimator.h" />
     <ClInclude Include="GraphDrawData2D.h" />
     <ClInclude Include="GraphPanel.h" />
-    <ClInclude Include="GraphResource.h" />
+    <ClInclude Include="RGraph.h" />
     <ClInclude Include="CGround2D.h" />
     <ClInclude Include="IBGMController.h" />
     <ClInclude Include="IColliderWithCollider2D.h" />
     <ClInclude Include="IMemoryAllocator.h" />
     <ClInclude Include="DataContainerError.h" />
-    <ClInclude Include="INIFileResource.h" />
+    <ClInclude Include="RIni.h" />
     <ClInclude Include="TInstant.h" />
     <ClInclude Include="TInstantCoroutine.h" />
     <ClInclude Include="IOKeyConfig.h" />
@@ -276,7 +276,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="MathMatrix.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MetaprogrammingUtility.h" />
-    <ClInclude Include="MusicResource.h" />
+    <ClInclude Include="RMusic.h" />
     <ClInclude Include="NormalFolderManipulator.h" />
     <ClInclude Include="NullWeakPointerException.h" />
     <ClInclude Include="Object.h" />
@@ -308,7 +308,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SimplePolygonPanel.h" />
     <ClInclude Include="SoundEffectController.h" />
     <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="SoundResource.h" />
+    <ClInclude Include="RSound.h" />
     <ClInclude Include="SingletonTemplate.h" />
     <ClInclude Include="CStraightLineCollider2D.h" />
     <ClInclude Include="StringPanel.h" />
@@ -318,7 +318,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SystemVariables.h" />
     <ClInclude Include="TalkWindows.h" />
     <ClInclude Include="TextPanel.h" />
-    <ClInclude Include="TextResource.h" />
+    <ClInclude Include="RText.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="TLSFMemoryAllocator.h" />
     <ClInclude Include="CTransform2D.h" />
@@ -339,7 +339,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="WindowsUtility.h" />
-    <ClInclude Include="XMLResource.h" />
+    <ClInclude Include="RXml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AESEncrypter.cpp" />
@@ -361,11 +361,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InitFunctionsResource.cpp" />
     <ClCompile Include="InitializeFunctionsDxLib.cpp" />
     <ClCompile Include="ISerializable.cpp" />
-    <ClCompile Include="JSONResource.cpp" />
+    <ClCompile Include="RJson.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
-    <ClCompile Include="CSVResource.cpp" />
+    <ClCompile Include="RCsv.cpp" />
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="CDrawPolygon2D.cpp" />
     <ClCompile Include="SEmpty.cpp" />
@@ -377,8 +377,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="FileOStream.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
     <ClCompile Include="FileSystemUtility.cpp" />
-    <ClCompile Include="FontDefinitionResource.cpp" />
-    <ClCompile Include="FontResource.cpp" />
+    <ClCompile Include="RFontDefinition.cpp" />
+    <ClCompile Include="RFont.cpp" />
     <ClCompile Include="DataContainer.cpp" />
     <ClCompile Include="DataContainerImpl.cpp" />
     <ClCompile Include="DataContainerSerializeUtility.cpp" />
@@ -412,18 +412,18 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CDrawPlanet2D.cpp" />
     <ClCompile Include="DXUtility.cpp" />
     <ClCompile Include="CGraph2DAnimator.cpp" />
-    <ClCompile Include="GraphResource.cpp" />
-    <ClCompile Include="INIFileResource.cpp" />
+    <ClCompile Include="RGraph.cpp" />
+    <ClCompile Include="RIni.cpp" />
     <ClCompile Include="IOKeyConfig.cpp" />
     <ClCompile Include="KeyInputManager.cpp" />
     <ClCompile Include="KeyInputUtils.cpp" />
     <ClCompile Include="MathUtility.cpp" />
-    <ClCompile Include="MusicResource.cpp" />
+    <ClCompile Include="RMusic.cpp" />
     <ClCompile Include="PEDateTime.cpp" />
     <ClCompile Include="CPlanetGround2D.cpp" />
     <ClCompile Include="CPolygonCollider2D.cpp" />
     <ClCompile Include="SceneSystemSetUpper.cpp" />
-    <ClCompile Include="SoundResource.cpp" />
+    <ClCompile Include="RSound.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="CollisionWorld.cpp" />
     <ClCompile Include="GameObjectComponent.cpp" />
@@ -447,14 +447,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SystemLog.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
     <ClCompile Include="PETime.cpp" />
-    <ClCompile Include="TextResource.cpp" />
+    <ClCompile Include="RText.cpp" />
     <ClCompile Include="TLSFMemoryAllocator.cpp" />
     <ClCompile Include="CTransform2D.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="GUIManagerConnection.cpp" />
     <ClCompile Include="TransformSystem.cpp" />
     <ClCompile Include="WindowsUtility.cpp" />
-    <ClCompile Include="XMLResource.cpp" />
+    <ClCompile Include="RXml.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,7 +4,7 @@
 #include "DataContainerSerializeUtility.h"
 #include "FileAccessor.h"
 #include "SystemLog.h"
-#include "CSVResource.h"
+#include "RCsv.h"
 #include "MakeResource.h"
 
 namespace {

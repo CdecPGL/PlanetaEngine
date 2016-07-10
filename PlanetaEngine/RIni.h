@@ -6,7 +6,7 @@
 #include "boost/optional.hpp"
 
 namespace planeta {
-	class INIFileResource : public core::ResourceBase {
+	class RIni : public core::ResourceBase {
 	public:
 		using SectionType = std::unordered_map<std::string, std::string>;
 		using INIType = std::unordered_map<std::string, SectionType>;

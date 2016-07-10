@@ -1,7 +1,7 @@
 #include <cassert>
 #include "DxLib.h"
 #include "BGMController.h"
-#include "MusicResource.h"
+#include "RMusic.h"
 #include "SystemLog.h"
 
 namespace planeta {

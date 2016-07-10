@@ -4,11 +4,11 @@
 #include "IBGMController.h"
 
 namespace planeta{
-	class MusicResource;
+	class RMusic;
 	namespace core {
 		class BGMController final: public IBGMController{
 		public:
-			BGMController(const std::shared_ptr<MusicResource>& mr) :music_resource_(mr) {}
+			BGMController(const std::shared_ptr<RMusic>& mr) :music_resource_(mr) {}
 			~BGMController();
 			bool Start(bool loop_flag)override;
 			bool Stop()override;
@@ -19,9 +19,9 @@ namespace planeta{
 
 			void Update();
 			void Dispose();
-			const std::shared_ptr<MusicResource> resource()const { return music_resource_; }
+			const std::shared_ptr<RMusic> resource()const { return music_resource_; }
 		private:
-			std::shared_ptr<MusicResource> music_resource_;
+			std::shared_ptr<RMusic> music_resource_;
 			enum class State_{FadeIn,FadeOut,None};
 			State_ state_ = State_::None;
 			int fade_total_frame_ = 0;

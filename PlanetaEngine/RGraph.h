@@ -4,10 +4,10 @@
 
 namespace planeta {
 	/*画像リソース*/
-	class GraphResource : public core::ResourceBase {
+	class RGraph : public core::ResourceBase {
 	public:
-		GraphResource() :_handle(-1) {};
-		~GraphResource() {};
+		RGraph() :_handle(-1) {};
+		~RGraph() {};
 		/*画像ハンドルを取得する。通常使うことはない。*/
 		int GetHandle()const { return _handle; }
 		/*画像サイズを取得*/

@@ -1,11 +1,11 @@
-#include "FontDefinitionResource.h"
+#include "RFontDefinition.h"
 
 #include <windows.h>
 #include <sstream>
 #include "boost/lexical_cast.hpp"
 #include "DxLib.h"
 #include "MakeResource.h"
-#include "XMLResource.h"
+#include "RXml.h"
 #include "File.h"
 #include "FileSystemManager.h"
 #include "SystemLog.h"
@@ -14,10 +14,10 @@
 #include "FileAccessor.h"
 
 namespace planeta {
-	bool FontDefinitionResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RFontDefinition::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		auto file_accessor = FileSystemManager::instance().GetFileAccessor(core::system_variables::file_system::ResourceFileAccessorID);
-		auto xml = core::MakeResource<XMLResource>();
+		auto xml = core::MakeResource<RXml>();
 		if (xml->Create(file)) {
 			auto root = xml->GetRootElement();
 			auto fd_elem = root->FindFirstChild("font_definition");
@@ -94,7 +94,7 @@ namespace planeta {
 		}
 	}
 
-	void FontDefinitionResource::_Dispose() {
+	void RFontDefinition::_Dispose() {
 		if (handle_ >= 0) { DeleteFontToHandle(handle_); }
 	}
 }

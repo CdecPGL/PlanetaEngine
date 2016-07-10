@@ -3,7 +3,7 @@
 #include "ResourceManager.h"
 #include "SystemLog.h"
 #include "ScreenDrawerGUI.h"
-#include "GraphResource.h"
+#include "RGraph.h"
 
 namespace planeta {
 	/*namespace gui_components {

@@ -1,6 +1,6 @@
 #include "TextPanel.h"
 #include "ResourceManager.h"
-#include "FontDefinitionResource.h"
+#include "RFontDefinition.h"
 #include "ScreenDrawerGUI.h"
 
 namespace planeta {

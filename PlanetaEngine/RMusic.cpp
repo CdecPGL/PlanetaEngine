@@ -1,9 +1,9 @@
-#include "MusicResource.h"
+#include "RMusic.h"
 #include "DxLib.h"
 #include "File.h"
 
 namespace planeta {
-	bool MusicResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RMusic::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		//‰¹Šy‚Í‚·‚×‚Äƒƒ‚ƒŠã‚É•Û‘¶‚µ‚Ä‚¨‚¢‚ÄAÄ¶Žž‚É“WŠJ‚·‚é
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
@@ -13,14 +13,14 @@ namespace planeta {
 		return _handle >= 0;
 	}
 
-	void MusicResource::_Dispose() {
+	void RMusic::_Dispose() {
 		if (_handle >= 0) {
 			DeleteGraph(_handle);
 			_handle = -1;
 		}
 	}
 
-	int MusicResource::GetTotalTimeByMilliSecond() {
+	int RMusic::GetTotalTimeByMilliSecond() {
 		return GetSoundTotalTime(_handle);
 	}
 }

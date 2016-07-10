@@ -3,10 +3,10 @@
 
 namespace planeta {
 	/*Œø‰Ê‰¹ƒŠƒ\[ƒX*/
-	class SoundResource : public core::ResourceBase {
+	class RSound : public core::ResourceBase {
 	public:
-		SoundResource() :_handle(-1) {};
-		~SoundResource() {};
+		RSound() :_handle(-1) {};
+		~RSound() {};
 		int GetHandle()const { return _handle; }
 		int GetTotalTimeByMilliSecond();
 	private:

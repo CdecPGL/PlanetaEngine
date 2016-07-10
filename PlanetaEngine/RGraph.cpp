@@ -1,4 +1,4 @@
-#include "GraphResource.h"
+#include "RGraph.h"
 #include "DxLib.h"
 #include "File.h"
 #include "MathUtility.h"
@@ -6,7 +6,7 @@
 //#include "boost/lexical_cast.hpp"
 
 namespace planeta {
-	bool GraphResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RGraph::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		_handle = CreateGraphFromMem(file->GetTopPointer(), file->GetSize(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {
@@ -26,14 +26,14 @@ namespace planeta {
 		}
 	}
 
-	void GraphResource::_Dispose() {
+	void RGraph::_Dispose() {
 		if (_handle >= 0) {
 			DeleteGraph(_handle);
 			_handle = -1;
 		}
 	}
 
-	bool GraphResource::_AdjustImageSize() {
+	bool RGraph::_AdjustImageSize() {
 		bool adjust_flag = false; //サイズ調整を行うか否かのフラグ
 		internal_size_ = image_size_;
 		if (image_size_.x < 8) {

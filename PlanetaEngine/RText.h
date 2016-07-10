@@ -2,10 +2,10 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	class TextResource : public core::ResourceBase {
+	class RText : public core::ResourceBase {
 	public:
-		TextResource() {};
-		~TextResource() {};
+		RText() {};
+		~RText() {};
 		const std::string& GetText()const { return _text; }
 	private:
 		virtual bool _Create(const std::shared_ptr<const File>& file) override;

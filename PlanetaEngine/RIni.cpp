@@ -1,11 +1,11 @@
 #include <algorithm>
-#include "INIFileResource.h"
+#include "RIni.h"
 #include "FileIStream.h"
 #include "FileSystemUtility.h"
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool INIFileResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RIni::_Create(const std::shared_ptr<const File>& file) {
 		using namespace std;
 		FileIStream fis(*file);
 		vector<string> lines;
@@ -73,7 +73,7 @@ namespace planeta {
 		return true;
 	}
 
-	boost::optional<const INIFileResource::SectionType&> INIFileResource::GetSection(const std::string& s) const {
+	boost::optional<const RIni::SectionType&> RIni::GetSection(const std::string& s) const {
 		try {
 			return _data.at(s);
 		} catch (std::out_of_range&) {

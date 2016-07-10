@@ -225,30 +225,6 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClInclude>
-    <ClInclude Include="FontDefinitionResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="FontResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="MusicResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="INIFileResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="TextResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="CSVResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="SimplePolygonPanel.h">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClInclude>
@@ -362,9 +338,6 @@
     </ClInclude>
     <ClInclude Include="Vertex2D.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
     <ClInclude Include="TalkWindows.h">
       <Filter>PlanetaEngine\BuildinElements\GUIObjects</Filter>
@@ -810,14 +783,41 @@
     <ClInclude Include="SEmpty.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
-    <ClInclude Include="JSONResource.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="picojson.h">
       <Filter>ExternalLibraries\picojson</Filter>
     </ClInclude>
     <ClInclude Include="CharacterCode.h">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="RCsv.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RFontDefinition.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RFont.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RGraph.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RIni.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RJson.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RMusic.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RSound.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RText.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RXml.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -839,23 +839,8 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="CSVResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="TextResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="MusicResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="DXUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -875,9 +860,6 @@
     <ClCompile Include="KeyInputUtils.cpp">
       <Filter>PlanetaEngine\SubSystems\KeyInput</Filter>
     </ClCompile>
-    <ClCompile Include="INIFileResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="TextPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClCompile>
@@ -887,17 +869,8 @@
     <ClCompile Include="SimplePolygonPanel.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
     </ClCompile>
-    <ClCompile Include="FontResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="FontDefinitionResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>ExternalLibraries\TinyXML2</Filter>
-    </ClCompile>
-    <ClCompile Include="XMLResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="TalkWindows.cpp">
       <Filter>PlanetaEngine\BuildinElements\GUIObjects</Filter>
@@ -1154,11 +1127,38 @@
     <ClCompile Include="ISerializable.cpp">
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="JSONResource.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="CharacterCode.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="RCsv.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RFontDefinition.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RFont.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RGraph.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RIni.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RJson.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RMusic.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RSound.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RText.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RXml.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

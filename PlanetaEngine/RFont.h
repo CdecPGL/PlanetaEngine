@@ -6,10 +6,10 @@
 
 namespace planeta {
 	/*フォントリソース*/
-	class FontResource final : public core::ResourceBase {
+	class RFont final : public core::ResourceBase {
 	public:
-		FontResource() {};
-		~FontResource() {};
+		RFont() {};
+		~RFont() {};
 		HANDLE GetHandle()const { return handle_; }
 	private:
 		HANDLE handle_ = 0;

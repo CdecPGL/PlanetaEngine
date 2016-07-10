@@ -9,7 +9,7 @@
 #include "FileAccessor.h"
 #include "EngineConfigData.h"
 #include "File.h"
-#include "JSONResource.h"
+#include "RJson.h"
 #include "MakeResource.h"
 #include "ProgramDefinitionData.h"
 
@@ -68,7 +68,7 @@ namespace planeta {
 					PE_LOG_ERROR("プログラム用定義ファイルが開けませんでした。");
 					return false;
 				}
-				auto json_res = MakeResource<JSONResource>();
+				auto json_res = MakeResource<RJson>();
 				//FileからINIリソースを作成する
 				if (!json_res->Create(file)) {
 					PE_LOG_ERROR("プログラム用定義ファイルを読み込めませんでした。");

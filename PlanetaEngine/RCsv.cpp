@@ -2,7 +2,7 @@
 #pragma warning(push) 
 #pragma warning(disable:4996) 
 
-#include "CSVResource.h"
+#include "RCsv.h"
 
 #include <algorithm>
 #include "boost/algorithm/string.hpp"
@@ -11,7 +11,7 @@
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool CSVResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RCsv::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		size_t size = file->GetSize();
 		const char* c_ptr = (const char*)file->GetTopPointer();
@@ -34,7 +34,7 @@ namespace planeta {
 		return _CreateCSVFromLines(lines);
 	}
 
-	bool CSVResource::_CreateCSVFromLines(std::vector<std::string>& lines) {
+	bool RCsv::_CreateCSVFromLines(std::vector<std::string>& lines) {
 		loaded_datas.clear();
 		using namespace boost;
 		//ñ≥å¯Ç»çsÇéÊÇËèúÇ≠(ãÛÇæÇ¡ÇΩÇÁ)
@@ -78,11 +78,11 @@ namespace planeta {
 		return true;
 	}
 
-	CSVResource::CSV_DATA::iterator CSVResource::begin() { return loaded_datas.begin(); }
-	CSVResource::CSV_DATA::const_iterator CSVResource::cbegin()const { return loaded_datas.cbegin(); }
+	RCsv::CSV_DATA::iterator RCsv::begin() { return loaded_datas.begin(); }
+	RCsv::CSV_DATA::const_iterator RCsv::cbegin()const { return loaded_datas.cbegin(); }
 
-	CSVResource::CSV_DATA::iterator CSVResource::end() { return loaded_datas.end(); }
-	CSVResource::CSV_DATA::const_iterator CSVResource::cend()const { return loaded_datas.cend(); }
+	RCsv::CSV_DATA::iterator RCsv::end() { return loaded_datas.end(); }
+	RCsv::CSV_DATA::const_iterator RCsv::cend()const { return loaded_datas.cend(); }
 }
 
 #pragma warning(pop)

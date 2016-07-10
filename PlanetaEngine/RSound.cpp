@@ -1,9 +1,9 @@
-#include "SoundResource.h"
+#include "RSound.h"
 #include "DxLib.h"
 #include "File.h"
 
 namespace planeta {
-	bool SoundResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RSound::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		//Œø‰Ê‰¹‚Í‚·‚×‚Äƒƒ‚ƒŠã‚É“WŠJ
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
@@ -13,14 +13,14 @@ namespace planeta {
 		return _handle >= 0;
 	}
 
-	void SoundResource::_Dispose() {
+	void RSound::_Dispose() {
 		if (_handle >= 0) {
 			DeleteSoundMem(_handle);
 			_handle = -1;
 		}
 	}
 
-	int SoundResource::GetTotalTimeByMilliSecond() {
+	int RSound::GetTotalTimeByMilliSecond() {
 		return GetSoundTotalTime(_handle);
 	}
 }

@@ -1,9 +1,9 @@
-#include "TextResource.h"
+#include "RText.h"
 #include "File.h"
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool TextResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RText::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		size_t size = file->GetSize();
 		const char* c_ptr = (const char*)file->GetTopPointer();
@@ -15,7 +15,7 @@ namespace planeta {
 		return true;
 	}
 
-	void TextResource::_Dispose() {
+	void RText::_Dispose() {
 		_text.clear();
 	}
 }

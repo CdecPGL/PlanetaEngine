@@ -3,10 +3,10 @@
 
 namespace planeta {
 	/*音楽リソース*/
-	class MusicResource : public core::ResourceBase {
+	class RMusic : public core::ResourceBase {
 	public:
-		MusicResource() :_handle(-1) {};
-		~MusicResource() {}
+		RMusic() :_handle(-1) {};
+		~RMusic() {}
 		int GetHandle()const { return _handle; }
 		int GetTotalTimeByMilliSecond();
 	private:

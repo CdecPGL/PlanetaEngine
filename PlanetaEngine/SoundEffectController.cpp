@@ -1,5 +1,5 @@
 #include "SoundEffectController.h"
-#include "SoundResource.h"
+#include "RSound.h"
 #include "DxLib.h"
 #include "SystemLog.h"
 

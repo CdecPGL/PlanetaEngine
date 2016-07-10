@@ -1,4 +1,4 @@
-#include "XMLResource.h"
+#include "RXml.h"
 
 #include <cassert>
 #include <functional>
@@ -8,7 +8,7 @@
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool XMLResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RXml::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		std::function<void(const std::shared_ptr<XMLElement>&, const tinyxml2::XMLNode&)> element_setter = [&element_setter](const std::shared_ptr<XMLElement>& target, const tinyxml2::XMLNode& source) {
 			for (auto* s_element = source.FirstChildElement(); s_element != nullptr; s_element = s_element->NextSiblingElement()) {
@@ -33,7 +33,7 @@ namespace planeta {
 		}
 	}
 
-	void XMLResource::_Dispose() {
+	void RXml::_Dispose() {
 		root_element_.reset();
 	}
 

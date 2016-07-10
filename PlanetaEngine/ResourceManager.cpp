@@ -1,6 +1,6 @@
 #include"ResourceManager.h"
 #include "FileSystemManager.h"
-#include "CSVResource.h"
+#include "RCsv.h"
 #include "SystemLog.h"
 #include "FileAccessor.h"
 #include "SystemVariables.h"
@@ -96,7 +96,7 @@ namespace planeta {
 				PE_LOG_ERROR("リソースリストファイルを読み込めませんでした。(", _resource_list_file_name, ")", _tag_resouce_map.size(), +"個)");
 				return false;
 			}
-			auto csv = MakeResource<CSVResource>();
+			auto csv = MakeResource<RCsv>();
 			if (csv->Create(file) == false) {
 				PE_LOG_ERROR("リソースリストファイルをCSV形式として読み込めませんでした。(", _resource_list_file_name, ")", _tag_resouce_map.size(), "個)");
 				return false;

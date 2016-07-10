@@ -1,8 +1,8 @@
 #include "boost/lexical_cast.hpp"
 #include "EngineConfigData.h"
-#include "JSONResource.h"
+#include "RJson.h"
 #include "FileSystemUtility.h"
-#include "INIFileResource.h"
+#include "RIni.h"
 #include "MakeResource.h"
 #include "File.h"
 
@@ -89,7 +89,7 @@ namespace planeta {
 			bool LoadConfigData(const std::shared_ptr<File>& file) {
 				assert(file != nullptr && file->GetStatus() == File::FileStatus::Available);
 
-				auto json_res = MakeResource<JSONResource>();
+				auto json_res = MakeResource<RJson>();
 				//FileからINIリソースを作成する
 				if (!json_res->Create(file)) {
 					PE_LOG_ERROR("設定ファイルをJSONファイルとして読み込むことができませんでした。");

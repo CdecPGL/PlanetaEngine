@@ -86,10 +86,10 @@ namespace planeta {
 		boost::variant<JSONNull, double, std::string, bool, JSONObject, JSONArray> var_;
 	};
 
-	class JSONResource final : public core::ResourceBase {
+	class RJson final : public core::ResourceBase {
 	public:
-		JSONResource();
-		~JSONResource();
+		RJson();
+		~RJson();
 		const JSONValue& GetRoot()const;
 	private:
 		class Impl_;

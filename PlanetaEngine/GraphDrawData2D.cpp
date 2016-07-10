@@ -1,7 +1,7 @@
 #include "GraphDrawData2D.h"
 #include "DXGraphDrawData.h"
 #include "DXUtility.h"
-#include "GraphResource.h"
+#include "RGraph.h"
 #include <cassert>
 
 namespace planeta {
@@ -51,7 +51,7 @@ namespace planeta {
 
 		GraphDrawData2D::~GraphDrawData2D() = default;
 
-		void GraphDrawData2D::SetGraphResource(const std::shared_ptr<GraphResource>& g_res)
+		void GraphDrawData2D::SetGraphResource(const std::shared_ptr<RGraph>& g_res)
 		{
 			graph_resource_ = g_res;
 			dx_data_->graph_handle = g_res->GetHandle();

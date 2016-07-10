@@ -1,6 +1,6 @@
 #include "picojson.h"
 
-#include "JSONResource.h"
+#include "RJson.h"
 #include "File.h"
 #include "SystemLog.h"
 #include "CharacterCode.h"
@@ -83,17 +83,17 @@ namespace planeta {
 	//////////////////////////////////////////////////////////////////////////
 	//JSONResource::Impl_
 	//////////////////////////////////////////////////////////////////////////
-	class JSONResource::Impl_ {
+	class RJson::Impl_ {
 	public:
 		JSONValue value;
 	};
 	//////////////////////////////////////////////////////////////////////////
 	//JSONResource
 	//////////////////////////////////////////////////////////////////////////
-	JSONResource::JSONResource() :impl_(std::make_unique<Impl_>()) {}
-	JSONResource::~JSONResource() = default;
+	RJson::RJson() :impl_(std::make_unique<Impl_>()) {}
+	RJson::~RJson() = default;
 
-	bool JSONResource::_Create(const std::shared_ptr<const File>& file) {
+	bool RJson::_Create(const std::shared_ptr<const File>& file) {
 		using namespace picojson;
 		std::string err;
 		value v;
@@ -106,9 +106,9 @@ namespace planeta {
 		return true;
 	}
 
-	void JSONResource::_Dispose() {}
+	void RJson::_Dispose() {}
 
-	const JSONValue& JSONResource::GetRoot() const {
+	const JSONValue& RJson::GetRoot() const {
 		return impl_->value;
 	}
 }
