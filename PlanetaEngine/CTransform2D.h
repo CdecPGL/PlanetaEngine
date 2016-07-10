@@ -59,8 +59,8 @@ namespace planeta {
 		//地形速度を設定
 		CTransform2D&  ground_velocity(const Vector2Dd& vel);
 
-		//速度空間を設定
 		enum class Space { Ground, Global };
+		//速度空間を設定
 		void velocity_space(Space space);
 
 		/*地形関係*/
