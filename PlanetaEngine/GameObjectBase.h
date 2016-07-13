@@ -9,6 +9,7 @@
 #include "GameObjectManagerConnection.h"
 
 namespace planeta {
+	class JSONObject;
 	namespace core {
 		struct SceneData;
 	}
@@ -35,6 +36,8 @@ namespace planeta {
 		util::DelegateConnection AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
 
 		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
+		//ロード時の処理
+		bool ProcessLoading(const JSONObject& json_object);
 		//初期化時の処理
 		bool ProcessInitialization();
 		//有効化時の処理
@@ -55,6 +58,9 @@ namespace planeta {
 			SetUpGameComponent(*com);
 			return com;
 		}
+		//オーバーライド必須関数
+		//コンポーネントの登録を行う。
+		virtual bool RegisterComponents() = 0;
 		//イベント関数
 		//初期化イベント
 		virtual bool OnInitialized();

@@ -2,7 +2,7 @@
 #include <string>
 #include <typeinfo>
 #include <memory>
-#include "GlobalObjectRegistrer.h"
+#include "Reflection.h"
 
 #undef max //windows.h‚Å’è‹`‚³‚ê‚Ä‚¢‚émaxƒ}ƒNƒ‚ğ–³Œø‰»(std::numeric_limits<size_t>::max()‚Ì‚½‚ß)
 

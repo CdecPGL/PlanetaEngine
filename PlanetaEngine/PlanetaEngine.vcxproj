@@ -160,8 +160,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GGameObject2DTemplate.h" />
     <ClInclude Include="GIGUIObject2D.h" />
     <ClInclude Include="GGUIObjectTemplate.h" />
-    <ClInclude Include="GlobalObjectFactory.h" />
-    <ClInclude Include="GlobalObjectRegistrer.h" />
+    <ClInclude Include="Reflection.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="InitFunctions.h" />
@@ -293,7 +292,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Property.h" />
     <ClInclude Include="RangeUtility.h" />
     <ClInclude Include="RectAngle.h" />
-    <ClInclude Include="Reflection.h" />
     <ClInclude Include="ResourceBase.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -355,7 +353,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
-    <ClCompile Include="GlobalObjectFactory.cpp" />
+    <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="InitFunctions.cpp" />
     <ClCompile Include="InitFunctionsFIleSystem.cpp" />
     <ClCompile Include="InitFunctionsResource.cpp" />

@@ -129,7 +129,7 @@ namespace planeta{
 		std::shared_ptr<SceneSetUpper> SceneManager::_CreateSceneSetUpper(const std::string& scene_name)
 		{
 			//シーン名にプレフィックスをつけたクラスを作成。
-			auto setupper = GlobalObjectFactory::instance().CreateObjectByID<SceneSetUpper>(system_variables::prefixes::Scene + scene_name);
+			auto setupper = Reflection::CreateObjectByID<SceneSetUpper>(system_variables::prefixes::Scene + scene_name);
 			return setupper;
 		}
 

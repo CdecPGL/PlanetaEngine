@@ -3,7 +3,7 @@
 #include "TaskManager.h"
 #include "SystemLog.h"
 #include "SceneData.h"
-#include "GlobalObjectFactory.h"
+#include "Reflection.h"
 #include "SystemVariables.h"
 
 namespace planeta {
@@ -129,7 +129,7 @@ namespace planeta {
 
 	std::shared_ptr<GameObjectBase > GameObjectManager::CreateGameObjectByID_(const std::string& id) {
 		//IDにプレフィックスをつけたゲームオブジェクトを作成。
-		return core::GlobalObjectFactory::instance().CreateObjectByID<GameObjectBase>(core::system_variables::prefixes::GameObject + id);
+		return Reflection::CreateObjectByID<GameObjectBase>(core::system_variables::prefixes::GameObject + id);
 	}
 
 }

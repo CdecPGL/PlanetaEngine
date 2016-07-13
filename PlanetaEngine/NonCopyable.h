@@ -1,8 +1,8 @@
 #pragma once
 
 namespace planeta {
-	/*コピー禁止化クラス*/
 	namespace util {
+		/*コピー禁止化クラス*/
 		template <class T>
 		class NonCopyable {
 		protected:

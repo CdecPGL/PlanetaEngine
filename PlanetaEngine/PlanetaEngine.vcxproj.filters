@@ -217,6 +217,9 @@
     <Filter Include="ExternalLibraries\picojson">
       <UniqueIdentifier>{2d6791a8-84ab-4fbe-b78b-3af151fd1092}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Reflection">
+      <UniqueIdentifier>{47f543f7-b669-4479-b5a3-f8ad2d5bc270}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -352,9 +355,6 @@
       <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="TypeChecker.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Reflection.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="MetaprogrammingUtility.h">
@@ -741,12 +741,6 @@
     <ClInclude Include="Collider2DData.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalObjectFactory.h">
-      <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalObjectRegistrer.h">
-      <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClInclude>
     <ClInclude Include="TGInstant.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClInclude>
@@ -818,6 +812,9 @@
     </ClInclude>
     <ClInclude Include="RXml.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflection.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1082,9 +1079,6 @@
     <ClCompile Include="SceneSetUpProxy.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalObjectFactory.cpp">
-      <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClCompile>
     <ClCompile Include="TGInstant.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClCompile>
@@ -1159,6 +1153,9 @@
     </ClCompile>
     <ClCompile Include="RXml.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflection.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

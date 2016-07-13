@@ -30,21 +30,13 @@ namespace planeta {
 		manager_connection_->RequestDisposal();
 	}
 
-	bool GameObjectBase::OnInitialized() {
-		return true;
-	}
+	bool GameObjectBase::OnInitialized() { return true; }
 
-	bool GameObjectBase::OnActivated() {
-		return true;
-	}
+	bool GameObjectBase::OnActivated() { return true; }
 
-	bool GameObjectBase::OnInactivated() {
-		return true;
-	}
+	bool GameObjectBase::OnInactivated() { return true; }
 
-	bool GameObjectBase::OnDisposed() {
-		return true;
-	}
+	bool GameObjectBase::OnDisposed() { return true; }
 
 	bool GameObjectBase::ProcessInitialization() {
 		if (!OnInitialized()) {
