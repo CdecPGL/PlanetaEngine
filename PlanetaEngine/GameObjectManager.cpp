@@ -42,7 +42,7 @@ namespace planeta {
 	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
 		auto go = CreateGameObjectByID_(game_object_create_id);
 			if (go == nullptr) {
-				debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
+				PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
 				return nullptr;
 			}
 		if (RegisterAndSetUpGameObject_(go) >= 0) {
@@ -53,7 +53,7 @@ namespace planeta {
 	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
 		auto go = CreateGameObjectByID_(game_object_create_id);
 		if (go == nullptr) {
-			debug::SystemLog::instance().LogError("ゲームオブジェクトの作成に失敗しました。", __FUNCTION__);
+			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
 			return nullptr;
 		}
 		if (RegisterAndSetUpGameObject_(go, name) >= 0) {

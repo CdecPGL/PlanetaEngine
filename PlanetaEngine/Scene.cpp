@@ -38,7 +38,7 @@ namespace planeta{
 				return true;
 			}
 			else {
-				debug::SystemLog::instance().LogError("Sceneの初期化に失敗しました。", "Scene::Initialize");
+				PE_LOG_ERROR("Sceneの初期化に失敗しました。");
 				return false;
 			}
 		}
@@ -56,14 +56,14 @@ namespace planeta{
 				task_manager_->ExcuteTask(); //タスク実行
 			}
 			catch (util::NullWeakPointerException& e) {
-				debug::SystemLog::instance().LogError(std::string("TaskManager::Updateで無効なWeakPointerが参照されました。") + e.what(), __FUNCTION__);
+				PE_LOG_ERROR("TaskManager::Updateで無効なWeakPointerが参照されました。", e.what());
 				return;
 			}try {
 				//各シーンモジュールの更新
 				IterateSceneModule_([](SceneModule& sm) {sm.Update(); return true; });
 			}
 			catch (util::NullWeakPointerException& e) {
-				debug::SystemLog::instance().LogError(std::string("シーンモジュールの更新において無効なWeakPointerが参照されました。") + e.what(), __FUNCTION__);
+				PE_LOG_ERROR("シーンモジュールの更新において無効なWeakPointerが参照されました。", e.what());
 				return;
 			}
 		}

@@ -28,7 +28,7 @@ namespace planeta {
 			const char* err2 = xml_document.GetErrorStr2();
 			std::string err1_str = err1 ? err1 : "不明";
 			std::string err2_str = err2 ? err2 : "不明";
-			debug::SystemLog::instance().LogError(std::string("XMLファイルの解析に失敗しました。(エラー詳細1[") + err1_str + "],2[" + err2_str + "])", __FUNCTION__);
+			PE_LOG_ERROR("XMLファイルの解析に失敗しました。(エラー詳細1[", err1_str, "],2[", err2_str, "])");
 			return false;
 		}
 	}

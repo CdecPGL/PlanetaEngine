@@ -31,14 +31,14 @@ namespace planeta {
 					//フォントファイルを読み込み
 					auto font_file = file_accessor->LoadFile(elem->text());
 					if (font_file == nullptr) {
-						debug::SystemLog::instance().LogError(std::string("フォントファイルの読み込みに失敗しました。(" + elem->text() + ")"), __FUNCTION__);
+						PE_LOG_ERROR("フォントファイルの読み込みに失敗しました。(", elem->text(), ")");
 						return false;
 					}
 					//フォントを読み込み
 					DWORD num;
 					win_font_handle = AddFontMemResourceEx(const_cast<unsigned char*>(font_file->GetTopPointer()), font_file->GetSize(), nullptr, &num);
 					if (win_font_handle == 0) {
-						debug::SystemLog::instance().LogError(std::string("フォントの読み込みに失敗しました。(") + elem->text() + ")", __FUNCTION__);
+						PE_LOG_ERROR("フォントの読み込みに失敗しました。(", elem->text(), ")");
 						return false;
 					}
 				}
@@ -54,11 +54,11 @@ namespace planeta {
 				}
 				elem = fd_elem->FindFirstChild("size");
 				if (elem) {
-					try { size = boost::lexical_cast<int>(elem->text()); } catch (boost::bad_lexical_cast&) { debug::SystemLog::instance().LogWarning(std::string("sizeの値が不正です。(") + elem->text() + ")", __FUNCTION__); }
+					try { size = boost::lexical_cast<int>(elem->text()); } catch (boost::bad_lexical_cast&) { PE_LOG_WARNING("sizeの値が不正です。(", elem->text(), ")"); }
 				}
 				elem = fd_elem->FindFirstChild("thick");
 				if (elem) {
-					try { thick = boost::lexical_cast<int>(elem->text()); } catch (boost::bad_lexical_cast&) { debug::SystemLog::instance().LogWarning(std::string("thickの値が不正です。(") + elem->text() + ")", __FUNCTION__); }
+					try { thick = boost::lexical_cast<int>(elem->text()); } catch (boost::bad_lexical_cast&) { PE_LOG_WARNING("thickの値が不正です。(", elem->text(), ")"); }
 				}
 				elem = fd_elem->FindFirstChild("outline");
 				if (elem) {
@@ -77,7 +77,7 @@ namespace planeta {
 					err_str_str << "フォントハンドルの作成に失敗しました。(";
 					err_str_str << "file_name=" << file_name << ",name=" << name << ",size=" << size << ",thick=" << thick;
 					err_str_str << ",outline=" << (outline ? "true" : "false") << ",antialiasing=" << (antialiasing ? "true" : "false") << ")";
-					debug::SystemLog::instance().LogError(err_str_str.str(), __FUNCTION__);
+					PE_LOG_ERROR(err_str_str.str());
 					return false;
 				}
 				size_ = GetFontSizeToHandle(handle_);
@@ -85,11 +85,11 @@ namespace planeta {
 				if (win_font_handle) { RemoveFontMemResourceEx(win_font_handle); }
 				return true;
 			} else {
-				debug::SystemLog::instance().LogError("フォント定義ファイルの読み込みに失敗しました。XMLファイルに\"font_definition\"エレメントが存在しません。", __FUNCTION__);
+				PE_LOG_ERROR("フォント定義ファイルの読み込みに失敗しました。XMLファイルに\"font_definition\"エレメントが存在しません。");
 				return false;
 			}
 		} else { //XMLファイルの読み込みに失敗
-			debug::SystemLog::instance().LogError("フォント定義ファイルの読み込みに失敗しました。XMLファイルが読み込めません。", __FUNCTION__);
+			PE_LOG_ERROR("フォント定義ファイルの読み込みに失敗しました。XMLファイルが読み込めません。");
 			return false;
 		}
 	}

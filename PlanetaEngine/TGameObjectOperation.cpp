@@ -5,11 +5,11 @@
 namespace planeta {
 	bool TGameObjectOperation::Attach(const GameObjectAccessorType& goa, bool dispose_on_target_disposed) {
 		if (is_target_attached_) {
-			debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがすでにアタッチされています。", __FUNCTION__);
+			PE_LOG_WARNING("操作対象のゲームオブジェクトがすでにアタッチされています。");
 			return false;
 		}
 		if (!OnGameObjectAttached()) {
-			debug::SystemLog::instance().LogWarning("ゲームオブジェクトのアタッチに失敗しました。", __FUNCTION__);
+			PE_LOG_WARNING("ゲームオブジェクトのアタッチに失敗しました。");
 			return false;
 		}
 		dispose_on_target_disposed_ = dispose_on_target_disposed;
@@ -20,11 +20,11 @@ namespace planeta {
 
 	bool TGameObjectOperation::Detach() {
 		if (!is_target_attached_) {
-			debug::SystemLog::instance().LogWarning("操作対象のゲームオブジェクトがアタッチされていません。", __FUNCTION__);
+			PE_LOG_WARNING("操作対象のゲームオブジェクトがアタッチされていません。");
 			return false;
 		}
 		if (!OnGameObjectDetached()) {
-			debug::SystemLog::instance().LogWarning("ゲームオブジェクトのデタッチに失敗しました。", __FUNCTION__);
+			PE_LOG_WARNING("ゲームオブジェクトのデタッチに失敗しました。");
 			return false;
 		}
 		is_target_attached_ = false;

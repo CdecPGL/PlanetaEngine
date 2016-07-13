@@ -19,14 +19,14 @@ namespace planeta {
 			//ディレクトリがなくて自動作成が有効だったら作成する。
 			if (auto_create()) {
 				if (boost::filesystem::create_directories(bpath)) {
-					debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "ディレクトリ", path(), "を作成しました。");
+					PE_LOG_MESSAGE("ディレクトリ", path(), "を作成しました。");
 					return true;
 				} else {
-					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。ディレクトリ", path(), "を作成できませんでした。");
+					PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", path(), "を作成できませんでした。");
 					return false;
 				}
 			} else {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。ディレクトリ", path(), "が存在しません。");
+				PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", path(), "が存在しません。");
 				return false;
 			}
 		}
@@ -41,7 +41,7 @@ namespace planeta {
 		for (auto& f : file_name_path_map_) {
 			auto file = std::make_shared<File>();
 			if (!LoadFileByPath(*file, f.second)) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", f.first, "の読み込みに失敗しました。パスは", f.second, "です。");
+				PE_LOG_ERROR("ファイル", f.first, "の読み込みに失敗しました。パスは", f.second, "です。");
 				err = true;
 			} else {
 				files.push_back(std::make_pair(f.first, std::move(file)));
@@ -53,13 +53,13 @@ namespace planeta {
 	bool NormalFolderManipulator::SaveFileCore(const std::string& name, const File& file) {
 		std::ofstream ofs(path() + "\\" + name, std::ios::binary | std::ios::trunc);
 		if (!ofs) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", name, "をディレクトリ", path(), "に保存できませんでした");
+			PE_LOG_ERROR("ファイル", name, "をディレクトリ", path(), "に保存できませんでした");
 			return false;
 		}
 		if (is_encrypter_valid()) { //暗号化が有効だったら
 			File encd_file;
 			if (!encrypter()->Encrypt(file, encd_file)) { //暗号化して
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "暗号化に失敗しました。");
+				PE_LOG_ERROR("暗号化に失敗しました。");
 				return false;
 			}
 			ofs.write(reinterpret_cast<char*>(encd_file.GetTopPointer()), encd_file.GetSize()); //保存
@@ -81,7 +81,7 @@ namespace planeta {
 			}
 			return true;
 		} catch (bfs::filesystem_error&) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイルリストの更新に失敗しました。(パス ", path(), ")");
+			PE_LOG_ERROR("ファイルリストの更新に失敗しました。(パス ", path(), ")");
 			return false;
 		}
 	}
@@ -96,7 +96,7 @@ namespace planeta {
 		if (LoadDataCore(file, name) < 0) { return false; } else {
 			if (is_encrypter_valid()) {
 				if (!encrypter()->Decrypt(file)) { return true; } else {
-					debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "復号化に失敗しました。");
+					PE_LOG_ERROR("復号化に失敗しました。");
 					return false;
 				}
 			} else {

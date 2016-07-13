@@ -32,7 +32,7 @@ namespace planeta {
 				impl_->CheckElementType(id, typeid(data_container_element_type::integer));
 				return impl_->integer_elements_.at(id);
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 				return 0;
 			}
 		}
@@ -43,7 +43,7 @@ namespace planeta {
 				impl_->CheckElementType(id, typeid(data_container_element_type::string));
 				return impl_->string_elements_.at(id);
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 				return "NULL";
 			}
 		}
@@ -54,7 +54,7 @@ namespace planeta {
 				impl_->CheckElementType(id, typeid(data_container_element_type::boolean));
 				return impl_->boolean_elements_.at(id);
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 				return false;
 			}
 		}
@@ -65,7 +65,7 @@ namespace planeta {
 				impl_->CheckElementType(id, typeid(data_container_element_type::number));
 				return impl_->number_elements_.at(id);
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 				return 0.0;
 			}
 		}
@@ -82,7 +82,7 @@ namespace planeta {
 					e_map.emplace(id, value);
 				}
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 			}
 		}
 
@@ -98,7 +98,7 @@ namespace planeta {
 					e_map.emplace(id, value);
 				}
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 			}
 		}
 
@@ -114,7 +114,7 @@ namespace planeta {
 					e_map.emplace(id, value);
 				}
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace planeta {
 					e_map.emplace(id, value);
 				}
 			} catch (DataContainerError& e) {
-				debug::SystemLog::instance().LogError(e.what(), __FUNCTION__);
+				PE_LOG_ERROR(e.what());
 			}
 		}
 	}

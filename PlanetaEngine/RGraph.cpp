@@ -12,7 +12,7 @@ namespace planeta {
 		if (_handle >= 0) {
 			GetGraphSize(_handle, &image_size_.x, &image_size_.y);
 			if (_AdjustImageSize() == false) {
-				debug::SystemLog::instance().LogError("画像サイズの調整に失敗しました。", "GraphResource::_Create");
+				PE_LOG_ERROR("画像サイズの調整に失敗しました。");
 				return false;
 			}
 			image_area_.Set((double)image_size_.x / internal_size_.x, (double)image_size_.y / internal_size_.y);
@@ -21,7 +21,7 @@ namespace planeta {
 			image_size_.Set(0, 0);
 			internal_size_.Set(0, 0);
 			image_area_.Set(0, 0);
-			debug::SystemLog::instance().LogError("画像リソースの読み込みに失敗しました。", "GraphResource::_Create");
+			PE_LOG_ERROR("画像リソースの読み込みに失敗しました。");
 			return false;
 		}
 	}
@@ -51,36 +51,36 @@ namespace planeta {
 			adjust_flag = true;
 		}
 		if (internal_size_.x >= 2048 || internal_size_.y >= 2048) {
-			debug::SystemLog::instance().LogWarning(std::string("テクスチャサイズが2048以上です。デバイスによっては表示できない可能性があります。") + internal_size_.ToString(), "GraphResource::_AdjustImageSize");
+			PE_LOG_WARNING("テクスチャサイズが2048以上です。デバイスによっては表示できない可能性があります。size : ", internal_size_.ToString());
 		}
 		//サイズが2の累乗でなかったら画像作成
 		if (adjust_flag) {
 			int buf_gh = MakeScreen(internal_size_.x, internal_size_.y, true);
 			if (buf_gh < 0) {
-				debug::SystemLog::instance().LogError("バッファスクリーンの作成に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
+				PE_LOG_ERROR("バッファスクリーンの作成に失敗しました。");
 				return false;
 			}
 			int cur_draw_scr = GetDrawScreen();
 			bool error_flag = false;
 			int texture_ghandle = MakeGraph(internal_size_.x, internal_size_.y);
 			if (texture_ghandle < 0) {
-				debug::SystemLog::instance().LogError("新しい画像データの作成に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
+				PE_LOG_ERROR("新しい画像データの作成に失敗しました。");
 				error_flag = true;
 			}
 			if (SetDrawScreen(buf_gh) != 0) {
-				debug::SystemLog::instance().LogError("描画先の切り替えに失敗しました。", "GraphResourceComponent::_AdjustImageSize");
+				PE_LOG_ERROR("描画先の切り替えに失敗しました。");
 				error_flag = true;
 			}
 			if (DrawGraph(0, 0, _handle, true) != 0) {
-				debug::SystemLog::instance().LogError("画像データの描画に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
+				PE_LOG_ERROR("画像データの描画に失敗しました。");
 				error_flag = true;
 			}
 			if (GetDrawScreenGraph(0, 0, internal_size_.x, internal_size_.y, texture_ghandle) != 0) {
-				debug::SystemLog::instance().LogError("描画データの取得に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
+				PE_LOG_ERROR("描画データの取得に失敗しました。");
 				error_flag = true;
 			}
 			if (SetDrawScreen(cur_draw_scr) != 0) {
-				debug::SystemLog::instance().LogError("描画先の復元に失敗しました。", "GraphResourceComponent::_AdjustImageSize");
+				PE_LOG_ERROR("描画先の復元に失敗しました。");
 				error_flag = true;
 			}
 			DeleteGraph(buf_gh);

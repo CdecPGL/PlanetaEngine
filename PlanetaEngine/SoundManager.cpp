@@ -19,7 +19,7 @@ namespace planeta {
 		std::shared_ptr<IBGMController> SoundManager::GetBGMController(const std::shared_ptr<core::ResourceBase>& music_resource) {
 			auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
 			if (m_res == nullptr) {
-				debug::SystemLog::instance().LogError(std::string("Musicリソースでないリソースが渡されました。(") + music_resource->GetType().name() + ")", __FUNCTION__);
+				PE_LOG_ERROR("Musicリソースでないリソースが渡されました。(", music_resource->GetType().name(), ")");
 				return nullptr;
 			}
 			if (impl_->bgm_controller_) {
@@ -41,7 +41,7 @@ namespace planeta {
 		std::shared_ptr<ISoundEffectController> SoundManager::GetSoundEffectController(const std::shared_ptr<core::ResourceBase>& sound_resource) {
 			auto s_res = std::dynamic_pointer_cast<RSound>(sound_resource);
 			if (s_res == nullptr) {
-				debug::SystemLog::instance().LogError(std::string("Soundリソースでないリソースが渡されました。(") + sound_resource->GetType().name() + ")", __FUNCTION__);
+				PE_LOG_ERROR("Soundリソースでないリソースが渡されました。(", sound_resource->GetType().name(),")");
 				return nullptr;
 			}
 			int dx_handle = s_res->GetHandle();

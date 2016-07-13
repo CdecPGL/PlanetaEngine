@@ -15,12 +15,12 @@ namespace planeta {
 
 	bool ArchiveManipulator::InitializeCore() {
 		if (_extracter->SetEXOREncryptionKey((uint16_t)_key)) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
+			PE_LOG_ERROR("初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
 			return false;
 		}
 		int res = _extracter->OpenAchiveFile(path());
 		if (res < 0) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。アーカイブが開けませんでした。(原因 ", res, ",パス ", path(), ")");
+			PE_LOG_ERROR("初期化に失敗しました。アーカイブが開けませんでした。(原因 ", res, ",パス ", path(), ")");
 			return false;
 		}
 		return true;
@@ -35,7 +35,7 @@ namespace planeta {
 		for (const auto& f : file_list()) {
 			auto file = std::make_shared<File>();
 			if (!LoadFileCore(f, *file)) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", f, "の読み込みに失敗しました。");
+				PE_LOG_ERROR("ファイル", f, "の読み込みに失敗しました。");
 				err = true;
 			} else {
 				files.push_back(std::make_pair(f, std::move(file)));
@@ -48,7 +48,7 @@ namespace planeta {
 		_extracter->CloseArchiveFile();
 		int res = _extracter->OpenAchiveFile(path());
 		if (res < 0) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "アーカイブファイルのオープンに失敗しました。(原因 ", res, ",パス ", path(), ")");
+			PE_LOG_ERROR("アーカイブファイルのオープンに失敗しました。(原因 ", res, ",パス ", path(), ")");
 			return false;
 		}
 		//ファイルリスト取得

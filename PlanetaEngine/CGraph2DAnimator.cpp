@@ -15,7 +15,7 @@ namespace planeta {
 		if (draw_graph_component_) {
 			return true;
 		} else {
-			debug::SystemLog::instance().LogError("DrawGraphComponentを取得できませんでした。", "GraphAnimatorComponent::Initialize_");
+			PE_LOG_ERROR("DrawGraphComponentを取得できませんでした。");
 			return false;
 		}
 
@@ -63,7 +63,7 @@ namespace planeta {
 	bool CGraph2DAnimator::StartAnimation(const std::string& anim_name, bool roop_flag) {
 		auto it = animations_.find(anim_name);
 		if (it == animations_.end()) {
-			debug::SystemLog::instance().LogError(std::string("存在しないアニメーションが指定されました。(") + anim_name + ")", "GraphAnimatorComponent::StartAnimation");
+			PE_LOG_ERROR("存在しないアニメーションが指定されました。(", anim_name, ")");
 			return false;
 		} else {
 			current_animation_ = it->second;

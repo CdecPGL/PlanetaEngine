@@ -16,7 +16,7 @@ namespace planeta {
 	CPlanet& CPlanet::separation(unsigned int s) {
 		assert(s != 0);
 		if (s == 0) {
-			debug::SystemLog::instance().LogWarning("分割数に0が指定されましたが、1に設定します。", __FUNCTION__);
+			PE_LOG_WARNING("分割数に0が指定されましたが、1に設定します。");
 			s = 1;
 		}
 		_gap.resize(s);

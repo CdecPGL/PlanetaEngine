@@ -20,7 +20,7 @@ namespace planeta {
 
 	void CCollider2D::ResistToCollisionDetectProcess_() {
 		if (collision_group_name_.length() == 0) {
-			debug::SystemLog::instance().LogError("衝突グループが設定されていません。", __FUNCTION__);
+			PE_LOG_ERROR("衝突グループが設定されていません。");
 		} else {
 			core::Collider2DData col_dat{ *this,game_object(),*transform2d_
 				,[&eve = collided_event_](const EACollisionWithCollider2D& arg) {eve(arg); }
@@ -54,7 +54,7 @@ namespace planeta {
 			if (scene_data_ref().collision_world.ChangeCollisionGroup(this, cg)) {
 				collision_group_name_ = cg;
 			} else {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "衝突グループを", collision_group_name_, "から", cg, "に変更できませんでした。");
+				PE_LOG_ERROR("衝突グループを", collision_group_name_, "から", cg, "に変更できませんでした。");
 			}
 		} else {
 			collision_group_name_ = cg;
@@ -67,7 +67,7 @@ namespace planeta {
 			if (scene_data_ref().collision_world.ChangeCollisionWithGroundFlag(this, flag)) {
 				collide_with_ground_flag_ = flag;
 			} else {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "地形との衝突フラグを", collide_with_ground_flag_ ? "true" : "false", "から", flag ? "true" : "false", "に変更できませんでした。");
+				PE_LOG_ERROR("地形との衝突フラグを", collide_with_ground_flag_ ? "true" : "false", "から", flag ? "true" : "false", "に変更できませんでした。");
 			}
 		} else {
 			collide_with_ground_flag_ = flag;

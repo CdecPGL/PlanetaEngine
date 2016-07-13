@@ -44,9 +44,7 @@ namespace planeta {
 		});
 		//行がなかったら警告
 		if (lines.size() == 0) {
-			char str[256];
-			sprintf_s(str, 256, "空のSCVファイルです。又は行の抽出に失敗しました。");
-			debug::SystemLog::instance().LogWarning(str, "CSVResource::_CreateCSVFromLines");
+			PE_LOG_WARNING("空のSCVファイルです。又は行の抽出に失敗しました。");
 			return true;
 		}
 		//データ抽出
@@ -55,9 +53,7 @@ namespace planeta {
 			std::vector<std::string> datas;
 			algorithm::split(datas, line, algorithm::is_any_of(","));
 			if (datas.size() == 0) {
-				char str[256];
-				sprintf_s(str, 256, "csvファイルの読み込みエラー。:データの抽出に失敗しました(%d行目)。", i);
-				debug::SystemLog::instance().LogError(str, "CSVLoader::CreateCSVFromLines");
+				PE_LOG_ERROR("csvファイルの読み込みエラー。:データの抽出に失敗しました(", i, "行目)。");
 				return false;
 			}
 			++i;

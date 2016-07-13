@@ -16,7 +16,7 @@ namespace planeta {
 		bool SoundEffectController::Play()
 		{
 			if (!is_valid()) {
-				debug::SystemLog::instance().LogWarning("コントローラは無効です。", __FUNCTION__);
+				PE_LOG_WARNING("コントローラは無効です。");
 				return false;
 			}
 			//空いているサウンドを先頭から探していく

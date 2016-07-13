@@ -11,7 +11,7 @@ namespace planeta {
 			//ファイルを開く
 			std::ifstream ifs(file_name, std::ios::binary);
 			if (!ifs) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, "標準ファイル入力からファイル\"", file_name, "\"を開くことができませんでした。", __FUNCTION__);
+				PE_LOG_ERROR("標準ファイル入力からファイル\"", file_name, "\"を開くことができませんでした。");
 				return nullptr;
 			}
 			size_t size = (size_t)ifs.seekg(0, std::ios::end).tellg();
@@ -19,12 +19,12 @@ namespace planeta {
 			ifs.seekg(0, std::ios::beg);
 			std::shared_ptr<File> file = std::make_shared<File>();
 			if (!file->ChangeSize(size)) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, "標準ファイル入力からのファイル\"", file_name, "\"の領域", size, "バイトを確保できませんでした。", __FUNCTION__);
+				PE_LOG_ERROR("標準ファイル入力からのファイル\"", file_name, "\"の領域", size, "バイトを確保できませんでした。");
 				return nullptr;
 			}
 			ifs.read(reinterpret_cast<char*>(file->GetTopPointer()), size);
 			if (ifs.bad()) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, "標準ファイル入力からファイル\"", file_name, "\"を読込中にエラーが発生しました。", __FUNCTION__);
+				PE_LOG_ERROR("標準ファイル入力からファイル\"", file_name, "\"を読込中にエラーが発生しました。");
 				return nullptr;
 			}
 			return file;

@@ -37,7 +37,7 @@ namespace planeta{
 						(*it)->Draw(*screen_drawer_2d_);
 					}
 					catch (util::NullWeakPointerException& e) {
-						debug::SystemLog::instance().LogError(std::string("DrawComponent::Drawで無効なWeakPointerが参照されました。問題の発生したコンポーネントはリストから除外されます。") + e.what(), "GameObjectDrawProcess::Update");
+						PE_LOG_ERROR("DrawComponent::Drawで無効なWeakPointerが参照されました。問題の発生したコンポーネントはリストから除外されます。", e.what());
 						dcl.second.erase(it);
 						break;
 					}

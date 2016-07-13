@@ -7,7 +7,7 @@ namespace planeta {
 		for (const auto& fn : file_list_) {
 			auto file = std::make_shared<File>();
 			if (!LoadFileCore(fn, *file)) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", fn, "の読み込みに失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+				PE_LOG_ERROR("ファイル", fn, "の読み込みに失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 				err = true;
 			} else {
 				files.push_back(std::make_pair(fn, file));
@@ -36,7 +36,7 @@ namespace planeta {
 		if (LoadAllFilesCore(ret)) {
 			return std::move(ret);
 		} else {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイルの全ロードに失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+			PE_LOG_ERROR("ファイルの全ロードに失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 			return decltype(LoadAllFiles())();
 		}
 	}
@@ -46,14 +46,14 @@ namespace planeta {
 		if (InitializeCore()) {
 			is_valid_ = true;
 			if (UpdateFileList()) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Message, __FUNCTION__, "初期化されました。(パス ", path(), ",ファイル数 ", file_list_.size(), ",タイプ ", GetType().name(), ")");
+				PE_LOG_MESSAGE("初期化されました。(パス ", path(), ",ファイル数 ", file_list_.size(), ",タイプ ", GetType().name(), ")");
 				return true;
 			} else {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+				PE_LOG_ERROR("初期化に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 				return false;
 			}
 		} else {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "初期化に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+			PE_LOG_ERROR("初期化に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 			return false;
 		}
 	}
@@ -63,7 +63,7 @@ namespace planeta {
 			file_list_.emplace(name);
 			return true;
 		} else {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル,name,の保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+			PE_LOG_ERROR("ファイル,name,の保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 			return false;
 		}
 	}
@@ -71,7 +71,7 @@ namespace planeta {
 	bool FileManipulatorBase::SaveFiles(const std::vector<std::pair<std::string, const File&>>& files) {
 		bool ret = SaveFilesCore(files);
 		if (!ret) {
-			debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "複数ファイルの保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+			PE_LOG_ERROR("複数ファイルの保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 		}
 		UpdateFileList();
 		return ret;
@@ -81,7 +81,7 @@ namespace planeta {
 		bool err = false;
 		for (const auto& f : files) {
 			if (!SaveFile(f.first, f.second)) {
-				debug::SystemLog::instance().Log(debug::LogLevel::Error, __FUNCTION__, "ファイル", f.first, "の保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
+				PE_LOG_ERROR("ファイル", f.first, "の保存に失敗しました。(パス ", path(), ",タイプ ", GetType().name(), ")");
 				err = true;
 			}
 		}

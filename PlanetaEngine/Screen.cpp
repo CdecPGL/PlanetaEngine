@@ -6,7 +6,7 @@ namespace planeta {
 	namespace core {
 		void Screen::HandleDrawReservations() {
 			if (!is_valid()) {
-				debug::SystemLog::instance().LogError("無効なスクリーンに描画を行おうとしました。", __FUNCTION__);
+				PE_LOG_ERROR("無効なスクリーンに描画を行おうとしました。");
 			}
 			//必要なら対象のスクリーンに切り替え
 			if (GetDrawScreen() != dx_screen_handle_) { SetDrawScreen(dx_screen_handle_); }			for (int i = 0; i < draw_reservation_count_; ++i) {

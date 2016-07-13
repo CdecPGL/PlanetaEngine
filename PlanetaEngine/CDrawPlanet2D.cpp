@@ -38,7 +38,7 @@ namespace planeta {
 			SetPolygon_();
 			return true;
 		} else {
-			debug::SystemLog::instance().LogError("初期化に失敗しました。PlanetComponentを取得できませんでした。", "DrawPlanetComponent::Initialize_");
+			PE_LOG_ERROR("初期化に失敗しました。PlanetComponentを取得できませんでした。");
 			return false;
 		}
 	}
@@ -156,7 +156,7 @@ namespace planeta {
 	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
 		auto res = core::ResourceManager::instance().GetResource(resource_id);
 		if (res == nullptr) {
-			debug::SystemLog::instance().LogError(std::string("リソースの取得に失敗しました。(リソース名は") + resource_id + ")", "DrawPlanetComponent::SetGraphResource");
+			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;
 		}
 		std::shared_ptr<RGraph> gr = std::dynamic_pointer_cast<RGraph>(res);
@@ -165,7 +165,7 @@ namespace planeta {
 			set_polygon_flag_ = true;
 			return true;
 		} else {
-			debug::SystemLog::instance().LogError(std::string("画像リソースでないリソースが指定されました。(リソース名は") + resource_id + "、タイプは" + res->GetType().name() + ")", "DrawPlanetComponent::SetGraphResource");
+			PE_LOG_ERROR("画像リソースでないリソースが指定されました。(リソース名は", resource_id, "、タイプは", res->GetType().name(), ")");
 			return false;
 		}
 	}

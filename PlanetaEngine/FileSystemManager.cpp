@@ -16,7 +16,7 @@ namespace planeta {
 	bool FileSystemManager::Initialize() {
 		bool error = false;
 		if (error) {
-			debug::SystemLog::instance().LogError("初期化に失敗しました。FileAccessorの初期化に失敗しました。", __FUNCTION__);
+			PE_LOG_ERROR("初期化に失敗しました。FileAccessorの初期化に失敗しました。");
 		}
 		if (!error) { is_initialized_ = true; }
 		return !error;
@@ -41,7 +41,7 @@ namespace planeta {
 		for (auto& accessor : accessors_) {
 			accessor.second->DeleteCache();
 		}
-		debug::SystemLog::instance().LogMessage("ファイルキャッシュを削除しました。", __FUNCTION__);
+		PE_LOG_MESSAGE("ファイルキャッシュを削除しました。");
 		return true;
 	}
 

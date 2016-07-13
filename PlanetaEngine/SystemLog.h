@@ -30,12 +30,6 @@ namespace planeta {
 			void SimpleLog(Details&&... details) {
 				_OutPut(LogLevel::Message, util::ConvertAndConnectToString(std::forward<Details>(details)...));
 			}
-			/*メッセージ(詳細、発生個所)*/
-			void LogMessage(const std::string& detail, const std::string& place) { _Log(LogLevel::Message, detail, place); }
-			/*警告(詳細、発生個所)*/
-			void LogWarning(const std::string& detail, const std::string& place) { _Log(LogLevel::Warning, detail, place); }
-			/*エラー(詳細、発生個所)*/
-			void LogError(const std::string& detail, const std::string& place) { _Log(LogLevel::Error, detail, place); }
 
 			/*ログ出力ストリームを追加(インスタンスの生成、破棄は外部で行う)*/
 			void AddLogOutStream(std::ostream& ostrm);

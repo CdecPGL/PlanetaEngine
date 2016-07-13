@@ -9,12 +9,12 @@
 namespace planeta {
 	bool CPlanetGround2D::OnInitialized() {
 		if (CGround2D::OnInitialized() == false) {
-			debug::SystemLog::instance().LogError("GroundComponentの初期化に失敗しました。", "PlanetGroundComponent::Initialize_");
+			PE_LOG_ERROR("GroundComponentの初期化に失敗しました。");
 			return false;
 		} else {
 			planet_component_.reset(game_object().GetComponent<CPlanet>());
 			if (!planet_component_) {
-				debug::SystemLog::instance().LogError("PlanetComponentを取得できませんでした。", "PlanetGroundComponent::Initialize_");
+				PE_LOG_ERROR("PlanetComponentを取得できませんでした。");
 				return false;
 			} else {
 				return true;

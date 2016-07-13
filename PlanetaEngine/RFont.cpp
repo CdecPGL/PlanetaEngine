@@ -8,7 +8,7 @@ namespace planeta {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char*>(file->GetTopPointer()), file->GetSize(), nullptr, &font_num_);
 		if (handle_ == 0) {
-			debug::SystemLog::instance().LogError("フォントの読み込みに失敗しました。", "FontResource::_Create");
+			PE_LOG_ERROR("フォントの読み込みに失敗しました。");
 			return false;
 		} else {
 			return true;

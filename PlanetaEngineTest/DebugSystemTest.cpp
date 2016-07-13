@@ -25,11 +25,11 @@ namespace PlanetaEngineTest
 			SystemLog& sl = SystemLog::instance();
 			std::stringstream test_stream0, test_stream1;
 			sl.AddLogOutStream(test_stream0);
-			sl.LogMessage("てすとまっせーじ","test");
+			//PE_LOG_MESSAGE("てすとまっせーじ");
 
 			sl.AddLogOutStream(test_stream1);
-			sl.LogWarning("てすと警告", "test1");
-			sl.LogError("てすとエラー", "test1");
+			//PE_LOG_WARNING("てすと警告");
+			//PE_LOG_ERROR("てすとエラー");
 		}
 	};
 }

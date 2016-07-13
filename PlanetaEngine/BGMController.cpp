@@ -28,7 +28,7 @@ namespace planeta {
 		bool BGMController::Start(bool loop_flag)
 		{
 			if (!is_valid()) { 
-				debug::SystemLog::instance().LogWarning("コントローラは無効です。", __FUNCTION__);
+				PE_LOG_WARNING("コントローラは無効です。");
 				return false;
 			}
 			ChangeVolumeSoundMem(255, music_resource_->GetHandle());
@@ -38,7 +38,7 @@ namespace planeta {
 		bool BGMController::Stop()
 		{
 			if (!is_valid()) {
-				debug::SystemLog::instance().LogWarning("コントローラは無効です。", __FUNCTION__);
+				PE_LOG_WARNING("コントローラは無効です。");
 				return false; 
 			}
 			return StopSoundMem(music_resource_->GetHandle()) >= 0;
@@ -52,7 +52,7 @@ namespace planeta {
 		bool BGMController::FadeIn(int frame, bool loop_flag)
 		{
 			if (!is_valid()) {
-				debug::SystemLog::instance().LogWarning("コントローラは無効です。", __FUNCTION__);
+				PE_LOG_WARNING("コントローラは無効です。");
 				return false;
 			}
 			if (is_playing()) { return false; }
@@ -65,7 +65,7 @@ namespace planeta {
 		bool BGMController::FadeOut(int frame)
 		{
 			if (!is_valid()) {
-				debug::SystemLog::instance().LogWarning("コントローラは無効です。", __FUNCTION__);
+				PE_LOG_WARNING("コントローラは無効です。");
 				return false;
 			}
 			if (!is_playing()) { return false; }
