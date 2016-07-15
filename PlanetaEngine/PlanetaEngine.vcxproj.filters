@@ -61,9 +61,6 @@
     <Filter Include="PlanetaEngine\Windows">
       <UniqueIdentifier>{86890a22-3624-4169-b8e6-b4c08bff5891}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LinqForCpp">
-      <UniqueIdentifier>{cf38c700-36a3-40d4-a3d7-8ca8f098f1cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lua">
       <UniqueIdentifier>{d0528160-be9e-47ac-acff-8c9b7b787093}</UniqueIdentifier>
     </Filter>
@@ -219,6 +216,9 @@
     </Filter>
     <Filter Include="PlanetaEngine\Reflection">
       <UniqueIdentifier>{47f543f7-b669-4479-b5a3-f8ad2d5bc270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\LinqForCpp">
+      <UniqueIdentifier>{cf38c700-36a3-40d4-a3d7-8ca8f098f1cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -535,7 +535,7 @@
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
     <ClInclude Include="cpplinq.hpp">
-      <Filter>LinqForCpp</Filter>
+      <Filter>ExternalLibraries\LinqForCpp</Filter>
     </ClInclude>
     <ClInclude Include="LuaBindClassFunctions.h">
       <Filter>Lua</Filter>
@@ -814,6 +814,12 @@
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Reflection.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="GOComponentAdder.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionExceptions.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1156,6 +1162,9 @@
     </ClCompile>
     <ClCompile Include="Reflection.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="GOComponentAdder.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

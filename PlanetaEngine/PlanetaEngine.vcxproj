@@ -160,10 +160,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GGameObject2DTemplate.h" />
     <ClInclude Include="GIGUIObject2D.h" />
     <ClInclude Include="GGUIObjectTemplate.h" />
+    <ClInclude Include="GOComponentAdder.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="InitFunctions.h" />
+    <ClInclude Include="ReflectionExceptions.h" />
     <ClInclude Include="RJson.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="CCircleCollider2D.h" />
@@ -353,6 +355,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
+    <ClCompile Include="GOComponentAdder.cpp" />
     <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="InitFunctions.cpp" />
     <ClCompile Include="InitFunctionsFIleSystem.cpp" />

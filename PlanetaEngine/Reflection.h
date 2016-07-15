@@ -2,11 +2,8 @@
 
 #include <string>
 #include <memory>
-#include <unordered_map>
 #include <functional>
 #include <type_traits>
-#include <typeindex>
-#include <cassert>
 #include "NonCopyable.h"
 #include "SystemLog.h"
 
@@ -22,14 +19,12 @@ namespace planeta {
 		static void RegisterObject(const std::string& id, const std::function<std::shared_ptr<core::Object>()>& creator) {
 			static_assert(std::is_base_of<core::Object, T>::value == true, "T must derive Object.");
 			//PE_LOG_MESSAGE("Object is registered.", id);
-			type_id_map_.emplace(typeid(T), id);
-			id_creator_map_.emplace(id, creator);
-			type_creator_map_.emplace(typeid(T), creator);
+			RegisterObject_(typeid(T), id, creator);
 		}
 		/*ID(型名)でオブジェクトを作成*/
-		static std::shared_ptr<core::Object> CreateObjectByID(const std::string& id);
+		static std::shared_ptr<core::Object> CreateObjectByID(const std::string& id)noexcept;
 		template<typename T>
-		static std::shared_ptr<T> CreateObjectByID(const std::string& id) {
+		static std::shared_ptr<T> CreateObjectByID(const std::string& id)noexcept {
 			auto ptr = CreateObjectByID(id);
 			if (ptr == nullptr) { return nullptr; }
 			auto tptr = std::dynamic_pointer_cast<T>(ptr);
@@ -41,18 +36,21 @@ namespace planeta {
 
 		}
 		/*型情報でオブジェクトを作成*/
-		static std::shared_ptr<core::Object> CreateObjectByTypeInfo(const std::type_info& t_info);
+		static std::shared_ptr<core::Object> CreateObjectByStdTypeInfo(const std::type_info& t_info)noexcept;
 		/*型から型IDを取得*/
 		template<typename T>
 		static std::string GetTypeIDByType() {
-			auto it = type_id_map_(typeid(T));
-			return it == type_id_map_.end() ? ""
+			return GetTypeIDByStdTypeInfo(typeid(T));
 		}
+		/*std::type_infoから型IDを取得*/
+		static std::string GetTypeIDByStdTypeInfo(const std::type_info& tinfo);
+		/*型IDからstd::type_infoを取得*/
+		const std::type_info& GetStdTypeInfoByTypeID(const std::string& id);
 	private:
 		Reflection();
-		static std::unordered_map<std::type_index, std::string> type_id_map_;
-		static std::unordered_map<std::string, std::function<std::shared_ptr<core::Object>()>> id_creator_map_;
-		static std::unordered_map<std::type_index, std::function<std::shared_ptr<core::Object>()>> type_creator_map_;
+		class Impl_;
+		static Impl_& impl_();
+		static void RegisterObject_(const std::type_info& tinfo ,const std::string& id, const std::function<std::shared_ptr<core::Object>()>& creator);
 	};
 
 	namespace core {

@@ -55,4 +55,10 @@ namespace planeta {
 			component_type_map_[ti].second.push_back(com);
 		}
 	}
+
+	void GameObjectComponentHolder::RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo) {
+		component_list_.push_back(com);
+		AddComponentToTypeInfoMap(tinfo, com);
+	}
+
 }

@@ -13,16 +13,8 @@ namespace planeta {
 	class GameObjectComponent;
 	class GameObjectComponentHolder : private util::NonCopyable<GameObjectComponentHolder>{
 	public:
-
-		//コンポーネントを作成、追加する。
-		template<class ComT>
-		std::shared_ptr<ComT> CreateAndAddComponent() {
-			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must derive GameComponent.");
-			auto ptr = std::make_shared<ComT>();
-			component_list_.push_back(ptr);
-			AddComponentToTypeInfoMap(typeid(ComT), ptr);
-			return ptr;
-		}
+		//コンポーネントを登録する
+		void RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& t_info);
 		//タイプでコンポーネントを取得
 		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
 		//コンポーネントを型で取得する。
