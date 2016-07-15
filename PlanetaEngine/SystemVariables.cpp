@@ -44,9 +44,14 @@ namespace planeta{
 				const std::string BuiltinJSONResourceTypeName("JSON");
 			}
 			namespace prefixes {
-				const std::string Scene("S");
-				const std::string GameObject("G");
-				const std::string Task("T");
+				const char Scene{ 'S' };
+				const char GameObject{ 'G' };
+				const char Task{ 'T' };
+				const char GameObjectComponent{ 'C' };
+				const char GameObjectInterface{ 'J' };
+				const char StandardInterface{ 'I' };
+				const char EventArg{ 'E' };
+				const char Resource{ 'R' };
 			}
 			const bool DevelopmentMode(true);
 		}

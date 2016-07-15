@@ -366,6 +366,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ISerializable.cpp" />
     <ClCompile Include="RJson.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
+    <ClCompile Include="StringUtility.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
     <ClCompile Include="RCsv.cpp" />

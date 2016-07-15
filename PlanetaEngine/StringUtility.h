@@ -18,5 +18,9 @@ namespace planeta {
 			ConvertAndConnectToString2(oss, std::forward<Elements>(elements)...);
 			return std::move(oss.str());
 		}
+		/*文字が大文字アルファベッットか*/
+		bool IsUpperCaseCharacter(char c);
+		/*文字が小文字アルファベットか*/
+		bool IsLowerCaseCharacter(char c);
 	}
 }

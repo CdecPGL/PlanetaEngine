@@ -489,7 +489,8 @@ namespace picojson {
 	return false;
       }
     } while (in.expect(','));
-    return in.expect(']');
+    //return in.expect(']');
+	return in.expect(']') != 0;
   }
   
   template <typename Iter> inline bool _parse_object(value& out, input<Iter>& in) {
@@ -509,7 +510,8 @@ namespace picojson {
 	return false;
       }
     } while (in.expect(','));
-    return in.expect('}');
+    //return in.expect('}');
+	return in.expect('}') != 0;
   }
   
   template <typename Iter> inline bool _parse_number(value& out, input<Iter>& in) {

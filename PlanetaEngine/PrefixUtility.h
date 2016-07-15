@@ -4,7 +4,7 @@
 
 namespace planeta {
 	namespace core {
-		enum class ObjectCategory{
+		enum class ObjectCategory {
 			GameObject,
 			GameObjectComponent,
 			GameObjectInterface,
@@ -12,6 +12,7 @@ namespace planeta {
 			Resource,
 			EventArg,
 			Scene,
+			StandardInterface,
 			Others
 		};
 		std::string RemovePrefix(const std::string& class_name);

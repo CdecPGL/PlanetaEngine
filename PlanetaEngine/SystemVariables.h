@@ -46,9 +46,14 @@ namespace planeta{
 				extern const std::string BuiltinJSONResourceTypeName; //標準のJSONファイルリソースタイプ名
 			}
 			namespace prefixes {
-				extern const std::string Scene;
-				extern const std::string GameObject;
-				extern const std::string Task;
+				extern const char Scene;
+				extern const char GameObject;
+				extern const char Task;
+				extern const char GameObjectComponent;
+				extern const char GameObjectInterface;
+				extern const char StandardInterface;
+				extern const char EventArg;
+				extern const char Resource;
 			}
 			/*デバッグ*/
 			extern const bool DevelopmentMode; //開発モードフラグ
