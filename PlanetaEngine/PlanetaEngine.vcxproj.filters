@@ -678,12 +678,6 @@
     <ClInclude Include="TGameObjectOperation.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClInclude>
-    <ClInclude Include="GIGameObject2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="GIGUIObject2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
-    </ClInclude>
     <ClInclude Include="GGameObject2DTemplate.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
     </ClInclude>
@@ -821,6 +815,15 @@
     </ClInclude>
     <ClInclude Include="ReflectionExceptions.h">
       <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefixUtility.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="JGameObject2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="JGUIObject2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1165,6 +1168,9 @@
     </ClCompile>
     <ClCompile Include="GOComponentAdder.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefixUtility.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

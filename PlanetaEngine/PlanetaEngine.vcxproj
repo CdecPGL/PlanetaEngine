@@ -156,11 +156,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObjectBase.h" />
-    <ClInclude Include="GIGameObject2D.h" />
+    <ClInclude Include="JGameObject2D.h" />
     <ClInclude Include="GGameObject2DTemplate.h" />
-    <ClInclude Include="GIGUIObject2D.h" />
+    <ClInclude Include="JGUIObject2D.h" />
     <ClInclude Include="GGUIObjectTemplate.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="PrefixUtility.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
@@ -356,6 +357,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="GOComponentAdder.cpp" />
+    <ClCompile Include="PrefixUtility.cpp" />
     <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="InitFunctions.cpp" />
     <ClCompile Include="InitFunctionsFIleSystem.cpp" />

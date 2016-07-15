@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include"ResourceManager.h"
 #include "FileSystemManager.h"
 #include "RCsv.h"

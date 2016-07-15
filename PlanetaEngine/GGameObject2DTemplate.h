@@ -1,11 +1,11 @@
 #pragma once
 
 #include "GameObject.h"
-#include "GIGameObject2D.h"
+#include "JGameObject2D.h"
 
 namespace planeta {
 	template<class... GOI>
-	class GGameObject2DTemplate : public GameObject<GIGameObject2D, GOI...>{
+	class GGameObject2DTemplate : public GameObject<JGameObject2D, GOI...>{
 	public:
 		CTransform2D& transform2d()override { return *transform2d_; }
 	protected:
