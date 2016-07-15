@@ -4,6 +4,7 @@
 
 namespace planeta {
 	namespace core {
+		/*接頭辞で用いるオブジェクトのカテゴリ*/
 		enum class ObjectCategory {
 			GameObject,
 			GameObjectComponent,

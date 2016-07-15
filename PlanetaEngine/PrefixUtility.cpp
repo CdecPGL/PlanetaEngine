@@ -12,23 +12,23 @@ namespace planeta {
 			//マップの初期化クラス
 			class PrefixCategoryMapInitializer {
 			public:
-				PrefixCategoryMapInitializer(PCMapType& map) {
+				PrefixCategoryMapInitializer() {
 					using vt = PCMapType::value_type;
-					map.insert(vt(prefixes::GameObject, ObjectCategory::GameObject));
-					map.insert(vt(prefixes::GameObjectComponent, ObjectCategory::GameObjectComponent));
-					map.insert(vt(prefixes::GameObjectInterface, ObjectCategory::GameObjectInterface));
-					map.insert(vt(prefixes::Task, ObjectCategory::Task));
-					map.insert(vt(prefixes::Resource, ObjectCategory::Resource));
-					map.insert(vt(prefixes::EventArg, ObjectCategory::EventArg));
-					map.insert(vt(prefixes::Scene, ObjectCategory::Scene));
-					map.insert(vt(prefixes::StandardInterface, ObjectCategory::StandardInterface));
+					prefix_category_map.insert(vt(prefixes::GameObject, ObjectCategory::GameObject));
+					prefix_category_map.insert(vt(prefixes::GameObjectComponent, ObjectCategory::GameObjectComponent));
+					prefix_category_map.insert(vt(prefixes::GameObjectInterface, ObjectCategory::GameObjectInterface));
+					prefix_category_map.insert(vt(prefixes::Task, ObjectCategory::Task));
+					prefix_category_map.insert(vt(prefixes::Resource, ObjectCategory::Resource));
+					prefix_category_map.insert(vt(prefixes::EventArg, ObjectCategory::EventArg));
+					prefix_category_map.insert(vt(prefixes::Scene, ObjectCategory::Scene));
+					prefix_category_map.insert(vt(prefixes::StandardInterface, ObjectCategory::StandardInterface));
 				}
+				PCMapType prefix_category_map;
 			};
 			//boost::bimapは宣言時に初期化をできなさそうなのでこうする。
 			PCMapType& prefix_category_map() {
-				static PCMapType prefix_category_map_;
-				static PrefixCategoryMapInitializer initializer(prefix_category_map_);
-				return prefix_category_map_;
+				static PrefixCategoryMapInitializer initializer;
+				return initializer.prefix_category_map;
 			}
 
 			std::pair<bool, char> CheckPrefixFormat(const std::string& str) {
