@@ -7,7 +7,7 @@
 #include "SystemLog.h"
 #include "NullWeakPointerException.h"
 #include "SceneSystemSetUpper.h"
-#include "SystemVariables.h"
+#include "PrefixUtility.h"
 
 namespace planeta{
 	namespace core{
@@ -129,7 +129,7 @@ namespace planeta{
 		std::shared_ptr<SceneSetUpper> SceneManager::_CreateSceneSetUpper(const std::string& scene_name)
 		{
 			//シーン名にプレフィックスをつけたクラスを作成。
-			auto setupper = Reflection::CreateObjectByID<SceneSetUpper>(system_variables::prefixes::Scene + scene_name);
+			auto setupper = Reflection::CreateObjectByID<SceneSetUpper>(core::AddPrefix(scene_name, core::ObjectCategory::Scene));
 			return setupper;
 		}
 

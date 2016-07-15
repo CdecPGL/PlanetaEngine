@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 #include "SceneData.h"
 #include "Reflection.h"
-#include "SystemVariables.h"
+#include "PrefixUtility.h"
 
 namespace planeta {
 	GameObjectManager::GameObjectManager() :_id_counter(0) {};
@@ -129,7 +129,7 @@ namespace planeta {
 
 	std::shared_ptr<GameObjectBase > GameObjectManager::CreateGameObjectByID_(const std::string& id) {
 		//IDにプレフィックスをつけたゲームオブジェクトを作成。
-		return Reflection::CreateObjectByID<GameObjectBase>(core::system_variables::prefixes::GameObject + id);
+		return Reflection::CreateObjectByID<GameObjectBase>(core::AddPrefix(id, core::ObjectCategory::GameObject));
 	}
 
 }
