@@ -52,16 +52,17 @@ namespace planeta {
 	};
 	using JSONNull = std::nullptr_t;
 	class JSONValue {
+		using JsonVariantType = boost::variant<JSONNull, double, std::string, bool, JSONObject, JSONArray, int64_t>;
 	public:
 		JSONValue();
 		JSONValue(const JSONValue& obj);
 		JSONValue(JSONValue&& obj);
 		//各要素からの暗黙的変換を許可
-		JSONValue(boost::variant<JSONNull, double, std::string, bool, JSONObject, JSONArray>&& var);
+		JSONValue(JsonVariantType&& var);
 		~JSONValue();
 		JSONValue& operator=(const JSONValue& obj);
 		JSONValue& operator=(JSONValue&& obj);
-		/*型を指定して値を取得する。(double,std::string,bool,JSONObject,JSONArrayのいずれか)*/
+		/*型を指定して値をoptionalで取得する。(double,int64_t,std::string,bool,JSONObject,JSONArrayのいずれか)*/
 		template<typename T>
 		boost::optional<const T&> Get()const {
 			static_assert(
@@ -71,8 +72,9 @@ namespace planeta {
 				std::conditional_t<std::is_same<T, bool>::value, std::true_type,
 				std::conditional_t<std::is_same<T, JSONObject>::value, std::true_type,
 				std::conditional_t<std::is_same<T, JSONArray>::value, std::true_type,
-				std::false_type>>>>>>::value,
-				"T mest be JSONNull, double, std::string, bool, JSONObject or JSONArray."
+				std::conditional_t<std::is_same<T, int64_t>::value, std::true_type,
+				std::false_type>>>>>>>::value,
+				"T mest be JSONNull, double, int64_t, std::string, bool, JSONObject or JSONArray."
 				);
 			const T* v = boost::get<T>(&var_);
 			if (v) {
@@ -83,7 +85,7 @@ namespace planeta {
 		}
 		bool is_null()const;
 	private:
-		boost::variant<JSONNull, double, std::string, bool, JSONObject, JSONArray> var_;
+		JsonVariantType var_;
 	};
 
 	class RJson final : public core::ResourceBase {

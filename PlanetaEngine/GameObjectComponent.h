@@ -11,6 +11,7 @@
 
 namespace planeta {
 	class SceneAccessorForGameObject;
+	class JSONObject;
 	namespace core{
 		struct SceneData;
 		struct GameObjectComponentSetUpData;
@@ -26,6 +27,7 @@ namespace planeta {
 		bool is_active()const { return is_active_; }
 
 		/*システム関数(GameObjectBaseから呼び出される)*/
+		bool Load(const JSONObject& json_obj);
 		bool Initialize();
 		bool Activate();
 		bool InActivate();

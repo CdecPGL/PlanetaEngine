@@ -1,3 +1,4 @@
+#define PICOJSON_USE_INT64 //picojsonでint64型を有効にする
 #include "picojson.h"
 
 #include "RJson.h"
@@ -10,6 +11,8 @@ namespace planeta {
 		JSONValue ConvertPicojsonValueToJSONValue(const picojson::value& pj_value) {
 			if (pj_value.is<double>()) {
 				return pj_value.get<double>();
+			} else if (pj_value.is<int64_t>()){
+				return pj_value.get<int64_t>();
 			} else if (pj_value.is<std::string>()) {
 				//UTF8からシステム文字コードに変換
 				return util::ConvertUTF8ToSystemCode(pj_value.get<std::string>());
@@ -71,7 +74,7 @@ namespace planeta {
 	JSONValue::JSONValue() :JSONValue(nullptr) {}
 	JSONValue::JSONValue(const JSONValue& obj) = default;
 	JSONValue::JSONValue(JSONValue&& obj) :var_(std::move(obj.var_)) {}
-	JSONValue::JSONValue(boost::variant<JSONNull, double, std::string, bool, JSONObject, JSONArray>&& var) : var_(std::move(var)) {}
+	JSONValue::JSONValue(JsonVariantType&& var) : var_(std::move(var)) {}
 	JSONValue::~JSONValue() = default;
 	JSONValue& JSONValue::operator= (const JSONValue& obj) = default;
 	JSONValue& JSONValue::operator=(JSONValue&& obj) = default;
