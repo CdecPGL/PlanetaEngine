@@ -30,7 +30,7 @@ namespace planeta {
 		util::NonOwingPointer<ComT> CreateAndAddComponent() {
 			auto ret = GetDefaultComID_(typeid(ComT));
 			if (ret.first) {
-				return CreateAndAddComponent(ret.second);
+				return CreateAndAddComponent<ComT>(ret.second);
 			} else {
 				PE_LOG_ERROR("デフォルトのコンポーネントエイリアスを取得できませんでした。");
 				return nullptr;

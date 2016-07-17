@@ -4,6 +4,7 @@
 #include "GameObjectBase.h"
 #include "GameObjectInterface.h"
 #include "MetaprogrammingUtility.h"
+#include "GOComponentAdder.h"
 
 namespace planeta {
 	//ゲームオブジェクトを定義するときは、このクラスを継承する。テンプレート引数にはGameObjectInterfaceを任意個指定する。

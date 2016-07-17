@@ -9,9 +9,8 @@ namespace planeta {
 	public:
 		CTransform2D& transform2d()override { return *transform2d_; }
 	protected:
-		bool OnInitialized()override {
-			transform2d_.reset(CreateAndAddComponent<CTransform2D>());
-			return true;
+		void AddComponentsProc(GOComponentAdder& com_adder) {
+			transform2d_.reset(com_adder.CreateAndAddComponent<CTransform2D>());
 		}
 	private:
 		util::NonOwingPointer<CTransform2D> transform2d_;
