@@ -75,73 +75,31 @@ namespace planeta {
 					return false;
 				}
 				//各種設定データを取得する
-				//シーン
-				auto root_obj = json_res->GetRoot().Get<JSONObject>();
-				if (!root_obj) {
-					PE_LOG_ERROR("プログラム用定義ファイルにルートオブジェクトが存在しません。");
-					return false;
-				}
-				auto s_obj = root_obj->At<JSONObject>(prog_def::SCENE_SECTION);
-				if (s_obj) {
-					auto startup_scene = s_obj->At<std::string>(prog_def::STARTUPSCENE_DATA_NAME);
-					if (startup_scene) {
-						out->startup_scene_id = *startup_scene;
-					} else {
-						PE_LOG_ERROR("プログラム用定義ファイルのシーンに関するオブジェクトに、文字列型の値スタートアップシーンが定義されていません。");
-						return false;
-					}
-				} else {
-					PE_LOG_ERROR("プログラム用定義ファイルにシーンに関するオブジェクトが存在しません。");
-					return false;
-				}
-				//衝突システム
-				std::vector<std::string> group_list;
-				auto c_obj = root_obj->At<JSONObject>(prog_def::COLLISION_SECTION);
-				if (c_obj) {
-					//衝突グループリスト
-					auto g_ary = c_obj->At<JSONArray>(prog_def::COLLISIONGROUP_SECTION);
-					if (g_ary) {
-						for (size_t i = 0; i < g_ary->size(); ++i) {
-							auto group_name = g_ary->At<std::string>(i);
-							if (group_name) {
-								group_list.push_back(*group_name);
-							} else {
-								PE_LOG_ERROR("衝突グループリスト", i, "番目の型が不正です。");
-								return false;
-							}
-						}
-						out->collision_group_matrix.AddCollisionGroups(group_list);
-					} else {
-						PE_LOG_ERROR("プログラム用定義ファイルにコリジョンシステムに関するオブジェクトに、配列型の値衝突グループが定義されていません。");
-						return false;
-					}
+				try {
+					auto root_obj = json_res->GetRoot().Get<JSONObject>();
+					auto scene_obj = root_obj->AtWithException(prog_def::SCENE_SECTION)->GetWithException<JSONObject>();
+					auto col_obj = root_obj->AtWithException(prog_def::COLLISION_SECTION)->GetWithException<JSONObject>();
+					//シーン
+					out->startup_scene_id = *scene_obj->AtWithException(prog_def::STARTUPSCENE_DATA_NAME)->GetWithException<std::string>();
+					//衝突システム
+					//衝突グループ
+					std::vector<std::string> group_list;
+					group_list = *col_obj->AtWithException(prog_def::COLLISIONGROUP_SECTION)->GetWithException<std::vector<std::string>>();
+					out->collision_group_matrix.AddCollisionGroups(group_list);
 					//衝突可能マトリックス
-					auto cm_obj = c_obj->At<JSONObject>(prog_def::COLLISIONMATRIX_SECTION);
-					if (cm_obj) {
-						for (auto&& group_name : group_list) {
-							auto cgl = cm_obj->At<JSONArray>(group_name);
-							if (cgl) { //ない場合もあるのでなくてもエラーは出さない。
-								std::vector<std::string> colable_list;
-								for (size_t i = 0; i < cgl->size(); ++i) {
-									auto cgn = cgl->At<std::string>(i);
-									if (cgn) {
-										colable_list.push_back(*cgn);
-									} else {
-										//エラーにはしない。
-										PE_LOG_ERROR("衝突グループ\"", group_name, "\"の衝突可能配列において", i, "番目の要素の型が不正です。");
-									}
-								}
-								for (auto&& colable_group : colable_list) {
-									out->collision_group_matrix.SetCollisionFlag(group_name, colable_group, true);
-								}
+					auto col_mtx = *col_obj->AtWithException(prog_def::COLLISIONMATRIX_SECTION)->GetWithException<std::unordered_map<std::string, std::vector<std::string>>>();
+					for (auto&& group : col_mtx) {
+						for (auto&& cbl_group : group.second) {
+							if (!out->collision_group_matrix.SetCollisionFlag(group.first, cbl_group, true)) {
+								PE_LOG_WARNING("衝突グループ\"", group.first, "\"と\"", cbl_group, "\"のフラグの設定に失敗しました。どちらかのグループが定義されていない可能性があります。");
 							}
 						}
-					} else {
-						PE_LOG_ERROR("プログラム用定義ファイルにコリジョンシステムに関するオブジェクトに、衝突可能マトリックスオブジェクトが定義されていません。");
-						return false;
 					}
-				} else {
-					PE_LOG_ERROR("プログラム用定義ファイルにコリジョンシステムに関するオブジェクトが存在しません。");
+				} catch (std::out_of_range& e) {
+					PE_LOG_ERROR("プログラム用定義の取得に失敗しました。内容が不足している可能性があります。(", e.what(), ")");
+					return false;
+				} catch (JSONTypeError& e) {
+					PE_LOG_ERROR("プログラム用定義の取得に失敗しました。型が間違えている可能性があります。(", e.what(), ")");
 					return false;
 				}
 				return true;

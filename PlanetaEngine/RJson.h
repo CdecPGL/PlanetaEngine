@@ -5,7 +5,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "boost/optional.hpp"
+#include "SystemLog.h"
+
 //http://stackoverflow.com/questions/32907385/cant-compile-boost-spirit-example4-cpp より
 #define BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 #include "boost/variant.hpp"
@@ -13,48 +14,44 @@
 #include "ResourceBase.h"
 
 namespace planeta {
+	/*JSON型の不一致エラー*/
+	class JSONTypeError : public std::runtime_error {
+	public:
+		using runtime_error::runtime_error;
+	};
+
 	//全般的に、コピームーブの挙動の検証が必要。
 	class JSONValue;
 	class JSONObject {
 	public:
 		//暗黙的変換を許可
-		JSONObject(std::unordered_map<std::string, JSONValue>&& obj);
-		boost::optional<const JSONValue&> At(const std::string& key)const;
-		template<typename T>
-		boost::optional<const T&> At(const std::string& key)const {
-			decltype(auto) obj = At(key);
-			if (obj) {
-				return obj->Get<T>();
-			} else {
-				return boost::none;
-			}
-		}
+		JSONObject(std::unordered_map<std::string, std::shared_ptr<JSONValue>>&& obj);
+		std::shared_ptr<const JSONValue> At(const std::string& key)const noexcept;
+		std::shared_ptr<const JSONValue> AtWithException(const std::string& key)const;
+		auto begin()const { return obj_.begin(); }
+		auto end()const { return obj_.end(); }
 	private:
-		std::unordered_map<std::string, JSONValue> obj_;
+		std::unordered_map<std::string, std::shared_ptr<JSONValue>> obj_;
 	};
 	class JSONArray {
 	public:
 		//暗黙的変換を許可
-		JSONArray(std::vector<JSONValue>&& ary);
-		boost::optional<const JSONValue&> At(size_t idx)const;
-		template<typename T>
-		boost::optional<const T&> At(size_t idx)const {
-			decltype(auto) obj = At(idx);
-			if (obj) {
-				return obj->Get<T>();
-			} else {
-				return boost::none;
-			}
-		}
+		JSONArray(std::vector<std::shared_ptr<JSONValue>>&& ary);
+		std::shared_ptr<const JSONValue> At(size_t idx)const noexcept;
+		std::shared_ptr<const JSONValue> AtWithException(size_t idx)const;
 		size_t size()const;
+		auto begin()const { return array_.begin(); }
+		auto end()const { return array_.end(); }
 	private:
-		std::vector<JSONValue> array_;
+		std::vector<std::shared_ptr<JSONValue>> array_;
 	};
-	using JSONNull = std::nullptr_t;
+	class JSONNull{};
 	class JSONValue {
-		using JsonVariantType = boost::variant<JSONNull, double, std::string, bool, JSONObject, JSONArray, int64_t>;
+		template<typename T>
+		using sp = std::shared_ptr<T>;
 	public:
-		JSONValue();
+		using JsonVariantType = boost::variant<sp<JSONNull>, sp<double>, sp<std::string>, sp<bool>, sp<JSONObject>, sp<JSONArray>>;
+		//JSONValue();
 		JSONValue(const JSONValue& obj);
 		JSONValue(JSONValue&& obj);
 		//各要素からの暗黙的変換を許可
@@ -62,32 +59,133 @@ namespace planeta {
 		~JSONValue();
 		JSONValue& operator=(const JSONValue& obj);
 		JSONValue& operator=(JSONValue&& obj);
-		/*型を指定して値をoptionalで取得する。(double,int64_t,std::string,bool,JSONObject,JSONArrayのいずれか)*/
+		
+		/*型を指定して値を取得する。(算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれか)*/
+		template<class T>
+		std::shared_ptr<const T> Get()const noexcept;
+		/*型を指定して値を取得する。失敗した場合は例外を投げる。(算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれか)*/
+		template<class T>
+		std::shared_ptr<const T> GetWithException()const;
+		/*型とデフォルト値を指定して値を取得する。(算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれか)*/
 		template<typename T>
-		boost::optional<const T&> Get()const {
-			static_assert(
-				std::conditional_t<std::is_same<T, JSONNull>::value, std::true_type,
-				std::conditional_t<std::is_same<T, double>::value, std::true_type,
-				std::conditional_t<std::is_same<T, std::string>::value, std::true_type,
-				std::conditional_t<std::is_same<T, bool>::value, std::true_type,
-				std::conditional_t<std::is_same<T, JSONObject>::value, std::true_type,
-				std::conditional_t<std::is_same<T, JSONArray>::value, std::true_type,
-				std::conditional_t<std::is_same<T, int64_t>::value, std::true_type,
-				std::false_type>>>>>>>::value,
-				"T mest be JSONNull, double, int64_t, std::string, bool, JSONObject or JSONArray."
-				);
-			const T* v = boost::get<T>(&var_);
-			if (v) {
-				return *v;
-			} else {
-				return boost::none;
-			}
-		}
+		std::shared_ptr<const T> GetWithDefault(T&& default_value)const noexcept;
 		bool is_null()const;
 	private:
 		JsonVariantType var_;
+		/*jSONValueの値を様々な型で取得するためのヘルパークラス*/
+		//JSON組み込み型以外の数値型の場合
+		template<class T>
+		struct JSONValueGetter {
+			static std::shared_ptr<const T> GetWithException(const JSONValue::JsonVariantType& var) {
+				//型が不正でないかチェック(ほかのJSON型は別のオーバーロードうや特殊化で処理されるはず)
+				static_assert(
+					std::conditional_t<std::is_same<T, JSONNull>::value, std::true_type,
+					std::conditional_t<std::is_same<T, double>::value, std::true_type,
+					std::conditional_t<std::is_same<T, std::string>::value, std::true_type,
+					std::conditional_t<std::is_same<T, bool>::value, std::true_type,
+					std::conditional_t<std::is_same<T, JSONObject>::value, std::true_type,
+					std::conditional_t<std::is_same<T, JSONArray>::value, std::true_type,
+					std::false_type>>>>>>::value==false,
+					"T must not be double, JSONNull, std::string, bool, JSONObject, JSONArray type."
+					);
+				//double以外の数値型か確認
+				static_assert(std::is_arithmetic<T>::value, "T must be a arithmetic type.");
+				auto v = JSONValueGetter<double>::GetWithException(var);
+				return std::make_shared<T>(static_cast<T>(*v));
+			}
+		};
+		//JSONでの組み込み型の場合
+#define GET_WITH_EXCEPTION(ptype)\
+		template<>\
+		struct JSONValueGetter<ptype> {\
+			static std::shared_ptr<const ptype> GetWithException(const JSONValue::JsonVariantType& var) {\
+				auto v = boost::get<std::shared_ptr<ptype>>(&var);\
+				if (v) {\
+					return *v;\
+				} else {\
+					throw JSONTypeError(util::ConvertAndConnectToString("型を変換できませんでした。ターゲットは\"",#ptype,"\"、ソースは\"", var.type().name(), "\"です。"));\
+				}\
+			}\
+		};
+
+GET_WITH_EXCEPTION(bool);
+GET_WITH_EXCEPTION(double);
+GET_WITH_EXCEPTION(JSONNull);
+GET_WITH_EXCEPTION(std::string);
+GET_WITH_EXCEPTION(JSONObject);
+GET_WITH_EXCEPTION(JSONArray);
+
+#undef  GET_WITH_EXCEPTION
+		//std::vectorの場合
+		template<class T, class Allocator>
+		struct JSONValueGetter<std::vector<T, Allocator>> {
+			static std::shared_ptr<const std::vector<T, Allocator>> GetWithException(const JSONValue::JsonVariantType& var) {
+				std::vector<T, Allocator> out;
+				if (var.type() == typeid(std::shared_ptr<JSONArray>)) {
+					auto ary = boost::get<std::shared_ptr<JSONArray>>(var);
+					int idx = 0;
+					for (auto&& elem : *ary) {
+						try {
+							out.push_back(*elem->GetWithException<T>());
+						} catch (std::bad_cast& e) {
+							throw JSONTypeError(util::ConvertAndConnectToString("At[Index:", idx, "],",e.what()));
+						}
+						++idx;
+					}
+					return std::make_shared<const std::vector<T, Allocator>>(std::move(out));
+				} else {
+					throw JSONTypeError("型をstd::vectorに変換できませんでした。JSONArray型である必要があります。");
+				}
+			}
+		};
+		//std::unordered_mapの場合
+		template<class T, class Hasher, class KeyEQ, class Allocator>
+		struct JSONValueGetter < std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>> {
+			static std::shared_ptr<const std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>>
+				GetWithException(const JSONValue::JsonVariantType& var) {
+				std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator> out;
+				if (var.type() == typeid(std::shared_ptr<JSONObject>)) {
+					auto obj = boost::get<std::shared_ptr<JSONObject>>(var);
+					for (auto&& elem : *obj) {
+						try {
+							out.emplace(elem.first, *elem.second->GetWithException<T>());
+						} catch (std::bad_cast& e) {
+							throw JSONTypeError(util::ConvertAndConnectToString("At[Key:", elem.first, "],",e.what()));
+						}
+					}
+					return std::make_shared<const std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>>(std::move(out));
+				} else {
+					throw JSONTypeError("型をstd::unordered_mapに変換できませんでした。JSONObject型である必要があります。");
+				}
+			}
+		};
 	};
 
+	template<class T>
+	std::shared_ptr<const T> JSONValue::Get()const noexcept {
+		try {
+			return GetWithException<T>();
+		} catch (std::bad_cast& e) {
+			PE_LOG_ERROR(e.what());
+			return nullptr;
+		}
+	}
+
+	template<class T>
+	std::shared_ptr<const T> JSONValue::GetWithException()const {
+		return JSONValueGetter<T>::GetWithException(var_);
+	}
+
+	template<class T>
+	std::shared_ptr<const T> JSONValue::GetWithDefault(T&& default_value)const noexcept {
+		try {
+			return GetWithException<T>();
+		} catch (std::bad_cast&) {
+			return std::make_shared<const T>(std::move(default_value));
+		}
+	}
+	
+	/*JSONリソース*/
 	class RJson final : public core::ResourceBase {
 	public:
 		RJson();
