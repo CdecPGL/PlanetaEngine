@@ -10,7 +10,7 @@ namespace planeta {
 	class GameObjectComponentHolder;
 	class GOComponentAdder {
 	public:
-		GOComponentAdder(GameObjectComponentHolder& com_holder,std::vector<std::pair<std::string,std::shared_ptr<GameObjectComponent>>>& alias_goc_list_buf);
+		GOComponentAdder(GameObjectComponentHolder& com_holder);
 		/*GOコンポーネントをIDで追加し名前を付ける*/
 		util::NonOwingPointer<GameObjectComponent> CreateAndAddComponent(const std::string& com_id, const std::string& alias);
 		/*GOコンポーネントをIDで追加*/
@@ -20,7 +20,9 @@ namespace planeta {
 		util::NonOwingPointer<ComT> CreateAndAddComponent(const std::string& alias) {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value, "ComT must derive GAmeObjectComponent.");
 			auto com = std::make_shared<ComT>();
-			alias_goc_list_buf_.push_back(std::make_pair(alias, com));
+			if (!AddComponentToHolder_(com, typeid(ComT), alias)) {
+				return nullptr;
+			}
 			return com;
 		}
 		/*GOコンポーネントを型で追加*/
@@ -38,7 +40,6 @@ namespace planeta {
 	private:
 		GameObjectComponentHolder& com_holder_;
 		std::pair<bool,std::string> GetDefaultComID_(const std::type_info& tinfo);
-		std::vector<std::pair<std::string, std::shared_ptr<GameObjectComponent>>>& alias_goc_list_buf_;
-		void AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com,const std::type_info& tinfo);
+		bool AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com,const std::type_info& tinfo, const std::string& alias);
 	};
 }

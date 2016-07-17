@@ -1,4 +1,5 @@
 #include "GameObjectComponentHolder.h"
+#include "SystemLog.h"
 
 namespace planeta {
 	std::shared_ptr<GameObjectComponent> GameObjectComponentHolder::GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker) const {
@@ -46,7 +47,7 @@ namespace planeta {
 		}
 	}
 
-	void GameObjectComponentHolder::AddComponentToTypeInfoMap(const std::type_info& ti, const std::shared_ptr<GameObjectComponent>& com) {
+	void GameObjectComponentHolder::AddComponentToTypeInfoMap_(const std::type_info& ti, const std::shared_ptr<GameObjectComponent>& com) {
 		auto it = component_type_map_.find(ti);
 		if (it == component_type_map_.end()) {
 			component_type_map_.emplace(ti, std::make_pair(false, std::vector<std::shared_ptr<GameObjectComponent>>({ com })));
@@ -56,9 +57,25 @@ namespace planeta {
 		}
 	}
 
-	void GameObjectComponentHolder::RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo) {
+	bool GameObjectComponentHolder::RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo, const std::string& alias) {
+		if (!AddComponentToAliasMap_(alias, com)) {
+			PE_LOG_ERROR("ゲームオブジェクトコンポーネント(タイプ\"", tinfo.name(), "\",エイリアス\"", alias, "\")の登録に失敗しました。");
+			return false;
+		}
 		component_list_.push_back(com);
-		AddComponentToTypeInfoMap(tinfo, com);
+		AddComponentToTypeInfoMap_(tinfo, com);
+		return true;
+	}
+
+	bool GameObjectComponentHolder::AddComponentToAliasMap_(const std::string& alias, const std::shared_ptr<GameObjectComponent>& com) {
+		auto it = alias_map_.find(alias);
+		if (it == alias_map_.end()) {
+			alias_map_.emplace(alias, com);
+			return true;
+		} else {
+			PE_LOG_ERROR("ゲームオブジェクトコンポーネントエイリアス\"", alias, "\"はすでに登録されています。");
+			return false;
+		}
 	}
 
 }

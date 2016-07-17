@@ -11,10 +11,13 @@
 
 namespace planeta {
 	class GameObjectComponent;
+	/*GOコンポーネントを管理するクラス
+	GOCエイリアスはゲームオブジェクトによって変わるので、ゲームオブジェクト内でしかアクセスするべきでない。
+	*/
 	class GameObjectComponentHolder : private util::NonCopyable<GameObjectComponentHolder>{
 	public:
 		//コンポーネントを登録する
-		void RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& t_info);
+		bool RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& t_info,const std::string& alias);
 		//タイプでコンポーネントを取得
 		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
 		//コンポーネントを型で取得する。
@@ -55,9 +58,13 @@ namespace planeta {
 	private:
 		//コンポーネントリスト
 		std::list<std::shared_ptr<GameObjectComponent>> component_list_;
+		//エイリアスによるコンポーネントマップ
+		std::unordered_map<std::string, std::shared_ptr<GameObjectComponent>> alias_map_;
 		//タイプによるコンポーネントマップ<typeindex,<完全探索済みか(false:少なくとも１つは探索済み,true:全て探索済み),コンポーネントリスト>>
 		mutable std::unordered_map<std::type_index, std::pair<bool, std::vector<std::shared_ptr<GameObjectComponent>>>> component_type_map_;
 		//タイプマップにコンポーネントを追加
-		void AddComponentToTypeInfoMap(const std::type_info& ti, const std::shared_ptr<GameObjectComponent>& com);
+		void AddComponentToTypeInfoMap_(const std::type_info& ti, const std::shared_ptr<GameObjectComponent>& com);
+		//エイリアスマップにコンポーネントを追加
+		bool AddComponentToAliasMap_(const std::string& alias, const std::shared_ptr<GameObjectComponent>& com);
 	};
 }

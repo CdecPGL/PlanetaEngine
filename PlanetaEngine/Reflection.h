@@ -45,7 +45,7 @@ namespace planeta {
 		/*std::type_info‚©‚çŒ^ID‚ðŽæ“¾*/
 		static std::string GetTypeIDByStdTypeInfo(const std::type_info& tinfo);
 		/*Œ^ID‚©‚çstd::type_info‚ðŽæ“¾*/
-		const std::type_info& GetStdTypeInfoByTypeID(const std::string& id);
+		static const std::type_info& GetStdTypeInfoByTypeID(const std::string& id);
 	private:
 		Reflection();
 		class Impl_;

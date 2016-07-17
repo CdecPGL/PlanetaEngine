@@ -6,6 +6,8 @@
 #include "GameObjectComponentSetUpData.h"
 #include "SystemLog.h"
 #include "TGameObjectOperation.h"
+#include "GOComponentAdder.h"
+#include "RJson.h"
 
 namespace planeta {
 
@@ -37,6 +39,16 @@ namespace planeta {
 	bool GameObjectBase::OnInactivated() { return true; }
 
 	bool GameObjectBase::OnDisposed() { return true; }
+
+	bool GameObjectBase::ProcessInstantiation() {
+		GOComponentAdder gocadder(component_holder_);
+		AddComponentsProc(gocadder);
+		return true;
+	}
+
+	bool GameObjectBase::ProcessLoading(const JSONObject& json_object) {
+		return false;
+	}
 
 	bool GameObjectBase::ProcessInitialization() {
 		if (!OnInitialized()) {

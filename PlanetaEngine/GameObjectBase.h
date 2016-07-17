@@ -14,6 +14,7 @@ namespace planeta {
 		struct SceneData;
 	}
 	class GameObjectComponent;
+	class GOComponentAdder;
 	class GameObjectBase :public core::Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
 		GameObjectBase();
@@ -36,6 +37,8 @@ namespace planeta {
 		util::DelegateConnection AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
 
 		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
+		//インスタンス化時の処理
+		bool ProcessInstantiation();
 		//ロード時の処理
 		bool ProcessLoading(const JSONObject& json_object);
 		//初期化時の処理
@@ -51,16 +54,9 @@ namespace planeta {
 		//シーンデータをセット
 		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
 	protected:
-		//コンポーネントを作成、追加する。
-		template<class ComT>
-		util::NonOwingPointer<ComT> CreateAndAddComponent() {
-			auto com = component_holder_.CreateAndAddComponent<ComT>();
-			SetUpGameComponent(*com);
-			return com;
-		}
 		//オーバーライド必須関数
 		//コンポーネントの登録を行う。
-		virtual bool RegisterComponents() = 0;
+		virtual void AddComponentsProc(GOComponentAdder& com_adder) = 0;
 		//イベント関数
 		//初期化イベント
 		virtual bool OnInitialized();

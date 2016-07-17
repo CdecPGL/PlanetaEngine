@@ -5,24 +5,23 @@
 #include <unordered_map>
 #include <vector>
 
-#include "SystemLog.h"
-
 //http://stackoverflow.com/questions/32907385/cant-compile-boost-spirit-example4-cpp より
 #define BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 #include "boost/variant.hpp"
 
 #include "ResourceBase.h"
+#include "SystemLog.h"
 
 namespace planeta {
 	/*JSON型の不一致エラー*/
-	class JSONTypeError : public std::runtime_error {
+	class JSONTypeError final: public std::runtime_error {
 	public:
 		using runtime_error::runtime_error;
 	};
 
 	//全般的に、コピームーブの挙動の検証が必要。
 	class JSONValue;
-	class JSONObject {
+	class JSONObject final{
 	public:
 		//暗黙的変換を許可
 		JSONObject(std::unordered_map<std::string, std::shared_ptr<JSONValue>>&& obj);
@@ -33,7 +32,7 @@ namespace planeta {
 	private:
 		std::unordered_map<std::string, std::shared_ptr<JSONValue>> obj_;
 	};
-	class JSONArray {
+	class JSONArray final{
 	public:
 		//暗黙的変換を許可
 		JSONArray(std::vector<std::shared_ptr<JSONValue>>&& ary);
@@ -45,8 +44,8 @@ namespace planeta {
 	private:
 		std::vector<std::shared_ptr<JSONValue>> array_;
 	};
-	class JSONNull{};
-	class JSONValue {
+	class JSONNull final{};
+	class JSONValue final{
 		template<typename T>
 		using sp = std::shared_ptr<T>;
 	public:
@@ -75,7 +74,7 @@ namespace planeta {
 		/*jSONValueの値を様々な型で取得するためのヘルパークラス*/
 		//JSON組み込み型以外の数値型の場合
 		template<class T>
-		struct JSONValueGetter {
+		struct JSONValueGetter final{
 			static std::shared_ptr<const T> GetWithException(const JSONValue::JsonVariantType& var) {
 				//型が不正でないかチェック(ほかのJSON型は別のオーバーロードうや特殊化で処理されるはず)
 				static_assert(
@@ -95,9 +94,9 @@ namespace planeta {
 			}
 		};
 		//JSONでの組み込み型の場合
-#define GET_WITH_EXCEPTION(ptype)\
+#define JSON_VALUE_GETTER_FOR_JSONTYPE(ptype)\
 		template<>\
-		struct JSONValueGetter<ptype> {\
+		struct JSONValueGetter<ptype> final{\
 			static std::shared_ptr<const ptype> GetWithException(const JSONValue::JsonVariantType& var) {\
 				auto v = boost::get<std::shared_ptr<ptype>>(&var);\
 				if (v) {\
@@ -108,17 +107,17 @@ namespace planeta {
 			}\
 		};
 
-GET_WITH_EXCEPTION(bool);
-GET_WITH_EXCEPTION(double);
-GET_WITH_EXCEPTION(JSONNull);
-GET_WITH_EXCEPTION(std::string);
-GET_WITH_EXCEPTION(JSONObject);
-GET_WITH_EXCEPTION(JSONArray);
+JSON_VALUE_GETTER_FOR_JSONTYPE(bool);
+JSON_VALUE_GETTER_FOR_JSONTYPE(double);
+JSON_VALUE_GETTER_FOR_JSONTYPE(JSONNull);
+JSON_VALUE_GETTER_FOR_JSONTYPE(std::string);
+JSON_VALUE_GETTER_FOR_JSONTYPE(JSONObject);
+JSON_VALUE_GETTER_FOR_JSONTYPE(JSONArray);
 
 #undef  GET_WITH_EXCEPTION
 		//std::vectorの場合
 		template<class T, class Allocator>
-		struct JSONValueGetter<std::vector<T, Allocator>> {
+		struct JSONValueGetter<std::vector<T, Allocator>> final{
 			static std::shared_ptr<const std::vector<T, Allocator>> GetWithException(const JSONValue::JsonVariantType& var) {
 				std::vector<T, Allocator> out;
 				if (var.type() == typeid(std::shared_ptr<JSONArray>)) {
@@ -140,7 +139,7 @@ GET_WITH_EXCEPTION(JSONArray);
 		};
 		//std::unordered_mapの場合
 		template<class T, class Hasher, class KeyEQ, class Allocator>
-		struct JSONValueGetter < std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>> {
+		struct JSONValueGetter < std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>> final{
 			static std::shared_ptr<const std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>>
 				GetWithException(const JSONValue::JsonVariantType& var) {
 				std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator> out;

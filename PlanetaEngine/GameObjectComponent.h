@@ -45,6 +45,7 @@ namespace planeta {
 		virtual void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) = 0;
 
 		/*イベント関数*/
+		virtual bool OnLoaded(const JSONObject& json_obj) { return false; }
 		virtual bool OnInitialized() { return true; }; //所属するゲームオブジェクトが生成されたときに呼び出される(システム関数)
 		virtual bool OnActivated() { return true; }; //所属するゲームオブジェクトがシーンに登録されるときに呼び出される(システム関数)
 		virtual bool OnInactivated() { return true; } //所属するゲームオブジェクトがシーンから登録解除されるときに呼び出され(システム関数)
