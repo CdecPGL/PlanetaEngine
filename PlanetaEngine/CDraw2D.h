@@ -44,7 +44,8 @@ namespace planeta {
 
 		util::NonOwingPointer<CTransform2D> transform2d_;
 
-		bool OnInitialized()override;
+		virtual bool GetOtherComponentProc(const GOComponentGetter& com_getter)override;
+		virtual bool OnInitialized()override;
 	private:
 		int draw_priority_ = 0; //•`‰æ—Dæ“x
 		/*•\¦ˆÊ’u*/

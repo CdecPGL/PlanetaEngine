@@ -7,12 +7,12 @@
 #include "MathConstant.h"
 
 namespace planeta {
-	bool CPlanetGround2D::OnInitialized() {
-		if (CGround2D::OnInitialized() == false) {
+	bool CPlanetGround2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		if (CGround2D::GetOtherComponentProc(com_getter) == false) {
 			PE_LOG_ERROR("GroundComponent‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B");
 			return false;
 		} else {
-			planet_component_.reset(game_object().GetComponent<CPlanet>());
+			planet_component_.reset(com_getter.GetComponent<CPlanet>());
 			if (!planet_component_) {
 				PE_LOG_ERROR("PlanetComponent‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
 				return false;

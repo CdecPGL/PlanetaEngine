@@ -8,6 +8,7 @@
 #include "Object.h"
 #include "SingletonTemplate.h"
 #include "MakeResource.h"
+#include "SystemLog.h"
 
 namespace planeta{
 	class FileAccessor;
@@ -43,6 +44,22 @@ namespace planeta{
 			}
 			/*リソースを取得*/
 			std::shared_ptr<ResourceBase> GetResource(const std::string& id);
+			template<class RT>
+			std::shared_ptr<RT> GetResource(const std::string& id) {
+				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
+				auto rsc = GetResource(id);
+				if (rsc) {
+					auto out = std::dynamic_pointer_cast<RT>(rsc);
+					if (out) {
+						return out;
+					} else {
+						PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
+						return nullptr;
+					}
+				} else {
+					return nullptr;
+				}
+			}
 
 			/*ファイルアクセサをセット。初期化前に呼び出す*/
 			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr);

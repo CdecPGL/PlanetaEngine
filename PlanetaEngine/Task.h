@@ -34,9 +34,13 @@ namespace planeta {
 
 	protected:
 		//ゲームオブジェクトを作成
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& gameobject_type_id, const std::string& resource_id);
 		//ゲームオブジェクトを作成して有効化
-		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& gameobject_type_id, const std::string& resource_id);
+		//定義ファイルの読み込みを行わないゲームオブジェクトを作成
+		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& gameobject_type_id);
+		//定義ファイルの読み込みを行わないゲームオブジェクトを作成して有効化
+		util::WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& gameobject_type_id);
 		//タスクを作成
 		template<class T>
 		util::WeakPointer<T> CreateTask(TaskSlot slot) {

@@ -13,62 +13,107 @@
 #include "SystemLog.h"
 
 namespace planeta {
-	/*JSON型の不一致エラー*/
+	//! JSON型の不一致エラー例外クラス
 	class JSONTypeError final: public std::runtime_error {
 	public:
 		using runtime_error::runtime_error;
 	};
 
-	//全般的に、コピームーブの挙動の検証が必要。
 	class JSONValue;
+	/*! @brief Object型のJSONValueを扱うクラス
+	*/
 	class JSONObject final{
 	public:
-		//暗黙的変換を許可
+		//! std::unordered_mapからJSONObjectを構築するコンストラクタ。暗黙的変換を許す
 		JSONObject(std::unordered_map<std::string, std::shared_ptr<JSONValue>>&& obj);
+		//! 指定したキーに対応するJSONValueを取得する
 		std::shared_ptr<const JSONValue> At(const std::string& key)const noexcept;
+		/*! @brief 指定したキーに対応するJSONValueを取得する。存在しない場合は例外を投げる。
+			@exception キーが存在しなかった場合、std::out_of_rangを投げる
+		*/
 		std::shared_ptr<const JSONValue> AtWithException(const std::string& key)const;
+		//! 先頭を示すイテレータを取得する
 		auto begin()const { return obj_.begin(); }
+		//! 末尾を示すイテレータを取得する
 		auto end()const { return obj_.end(); }
 	private:
 		std::unordered_map<std::string, std::shared_ptr<JSONValue>> obj_;
 	};
+	/*! @brief Array型のJSONValueを扱うクラス
+	*/
 	class JSONArray final{
 	public:
-		//暗黙的変換を許可
+		//! std::vectorからJSONArrayを構築するコンストラクタ。暗黙的変換を許す
 		JSONArray(std::vector<std::shared_ptr<JSONValue>>&& ary);
+		//! 指定したインデックスに対応するJSONValueを取得する
 		std::shared_ptr<const JSONValue> At(size_t idx)const noexcept;
+		/*! @brief 指定したインデックスに対応するJSONValueを取得する。存在しない場合は例外を投げる。
+		@exception キーが存在しなかった場合、std::out_of_rangを投げる
+		*/
 		std::shared_ptr<const JSONValue> AtWithException(size_t idx)const;
+		//! 配列のサイズを取得する
 		size_t size()const;
-		auto begin()const { return array_.begin(); }
+		//! 先頭を示すイテレータを取得する
+		auto begin()const {return array_.begin(); }
+		//! 末尾を示すイテレータを取得する
 		auto end()const { return array_.end(); }
 	private:
 		std::vector<std::shared_ptr<JSONValue>> array_;
 	};
+	/*! @brief null型のJSONValueを扱うクラス
+	*/
 	class JSONNull final{};
+	/*! @brief JSONValueを扱うクラス
+	*/
 	class JSONValue final{
 		template<typename T>
 		using sp = std::shared_ptr<T>;
 	public:
+		//! JSONValueを保持するためのVariant型
 		using JsonVariantType = boost::variant<sp<JSONNull>, sp<double>, sp<std::string>, sp<bool>, sp<JSONObject>, sp<JSONArray>>;
-		//JSONValue();
+		//! コピーコンストラクタ
 		JSONValue(const JSONValue& obj);
+		//! ムーブコンストラクタ
 		JSONValue(JSONValue&& obj);
-		//各要素からの暗黙的変換を許可
+		//! Variantから構築するコンストラクタ。暗黙的変換を許可する
 		JSONValue(JsonVariantType&& var);
+		//! デストラクタ
 		~JSONValue();
+		//! 代入演算子
 		JSONValue& operator=(const JSONValue& obj);
+		//! ムーブ演算子
 		JSONValue& operator=(JSONValue&& obj);
-		
-		/*型を指定して値を取得する。(算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれか)*/
+		/*! @brief 型を指定して値を取得する。
+			
+			テンプレートパラメータは、算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれかである必要がある。
+		*/
 		template<class T>
 		std::shared_ptr<const T> Get()const noexcept;
-		/*型を指定して値を取得する。失敗した場合は例外を投げる。(算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれか)*/
+		/*! @brief 型を指定して値を取得する。失敗した場合は例外を投げる。
+		
+			テンプレートパラメータは、算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれかである必要がある。
+
+			@exception 型の変換に失敗した場合、JSONTypeErrorを投げる
+		*/
 		template<class T>
 		std::shared_ptr<const T> GetWithException()const;
-		/*型とデフォルト値を指定して値を取得する。(算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれか)*/
+		/*! @brief 型とデフォルト値を指定して値を取得する。
+		
+			テンプレートパラメータは、算術型,std::string,bool,JSONObject,JSONArray、またはそれらを要素とするstd::vector、std::unordered_mapのいずれかである必要がある。
+		*/
 		template<typename T>
 		std::shared_ptr<const T> GetWithDefault(T&& default_value)const noexcept;
+		//! nullかどうか
 		bool is_null()const;
+		/*! @brief 指定したJson型であるか
+
+			テンプレートパラメータは、double,std::string,bool,JSONObject,JSONArray,JSONNullのいずれかである必要がある。
+		*/
+		template<typename T>
+		bool is_json_type()const {
+			decltype(auto) ptr = boost::get<T>(&var_);
+			return ptr != nullptr;
+		}
 	private:
 		JsonVariantType var_;
 		/*jSONValueの値を様々な型で取得するためのヘルパークラス*/
@@ -184,11 +229,16 @@ JSON_VALUE_GETTER_FOR_JSONTYPE(JSONArray);
 		}
 	}
 	
-	/*JSONリソース*/
+	/*! @brief JSONファイルを扱うリソースクラス
+		@todo 全般的にコピームーブの挙動の検証が必要。
+	*/
 	class RJson final : public core::ResourceBase {
 	public:
+		//! 基底のコンストラクタ
 		RJson();
+		//! デストラクタ
 		~RJson();
+		//! Jsonのルート値を取得する
 		const JSONValue& GetRoot()const;
 	private:
 		class Impl_;

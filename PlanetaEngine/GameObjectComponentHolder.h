@@ -41,20 +41,10 @@ namespace planeta {
 			}
 			return std::move(ret_list);
 		}
-		//コンポーネントに操作を適用
-		template<typename Ret>
-		bool DoAllWithCheck(Ret(GameObjectComponent::* pfunc)(),const Ret& true_value) {
-			for (auto&& com : component_list_) {
-				if (((*com).*pfunc)() != true_value) { return false; }
-			}
-			return true;
-		}
-		template<typename Ret>
-		void DoAll(Ret(GameObjectComponent::* pfunc)()) {
-			for (auto&& com : component_list_) {
-				((*com).*pfunc)();
-			}
-		}
+		//エイリアスマップの参照
+		const auto& alias_map()const { return alias_map_; }
+		//コンオーネントリストの参照
+		const auto& component_list()const { return component_list_; }
 	private:
 		//コンポーネントリスト
 		std::list<std::shared_ptr<GameObjectComponent>> component_list_;

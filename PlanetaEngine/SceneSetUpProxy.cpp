@@ -21,11 +21,11 @@ namespace planeta {
 	}
 
 	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateGameObject(const std::string& id) {
-		return scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id);
+		return scene_.RefSceneData().game_object_manager_public_interface.CreateDefaultGameObject(id);
 	}
 
 	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateGameObject(const std::string& id) {
-		auto go = scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id);
+		auto go = scene_.RefSceneData().game_object_manager_public_interface.CreateDefaultGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;

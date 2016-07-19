@@ -7,7 +7,9 @@
 #include "SystemLog.h"
 #include "TGameObjectOperation.h"
 #include "GOComponentAdder.h"
+#include "GOComponentGetter.h"
 #include "RJson.h"
+#include "ResourceManager.h"
 
 namespace planeta {
 
@@ -40,6 +42,10 @@ namespace planeta {
 
 	bool GameObjectBase::OnDisposed() { return true; }
 
+	std::shared_ptr<GameObjectBase> GameObjectBase::Clone() {
+		return nullptr;
+	}
+
 	bool GameObjectBase::ProcessInstantiation() {
 		GOComponentAdder gocadder(component_holder_);
 		AddComponentsProc(gocadder);
@@ -47,7 +53,45 @@ namespace planeta {
 	}
 
 	bool GameObjectBase::ProcessLoading(const JSONObject& json_object) {
-		return false;
+		for (auto&& com_defs : json_object) {
+			std::string alias = com_defs.first;
+			auto it = component_holder_.alias_map().find(alias);
+			if (it == component_holder_.alias_map().end()) {
+				PE_LOG_ERROR("エイリアス\"", alias, "\"が指定されましたが、対応するエイリアスのゲームオブジェクトコンポーネントが存在しません。");
+				return false;
+			}
+			auto jval = com_defs.second;
+			//JsonObjectとして読み込んでみる
+			auto jobj = jval->Get<JSONObject>();
+			//だめならstd::stringとして読み込んでみる
+			if (jobj == nullptr) {
+				auto jstr = jval->Get<std::string>();
+				if (jstr) {
+					std::string res_id = *jstr;
+					auto jres = core::ResourceManager::instance().GetResource<RJson>(res_id);
+					//指定されたリソースがない
+					if (jres == nullptr) {
+						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたJsonリソース\"", res_id, "\"を読み込めませんでした。");
+						return false;
+					}
+					jobj = jres->GetRoot().Get<JSONObject>();
+					//指定JsonファイルのルートがObjectでない
+					if (jobj == nullptr) {
+						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")の定義ファイル\"", res_id, "\"のルートはJsonObject型でなければいけません。");
+						return false;
+					}
+				} else { //JObjでもstd::stringでもだめだったらエラー
+					PE_LOG_ERROR("ゲームオブジェクトコンポーネント定義(\"エイリアス:", alias, "\")の型が不正です。JSONObject型で直接定義するか、文字列型で定義ファイルを指定してください。");
+					return false;
+				}
+			}
+			//JsonObjの取得に成功したので読み込み
+			if (!it->second->Load(*jobj)) {
+				PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。");
+				return false;
+			}
+		}
+		return true;
 	}
 
 	bool GameObjectBase::ProcessInitialization() {
@@ -55,9 +99,12 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの初期化処理に失敗しました。");
 			return false;
 		}
-		if (!component_holder_.DoAllWithCheck(&GameObjectComponent::Initialize, true)) {
-			PE_LOG_ERROR("GameObjectComponentの初期化処理に失敗しました。");
-			return false;
+		GOComponentGetter com_getter(component_holder_);
+		for (auto&& com : component_holder_.alias_map()) {
+			if(!com.second->Initialize(com_getter)) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", com.first, "\"の初期化処理に失敗しました。");
+				return false;
+			}
 		}
 		return true;
 	}
@@ -67,9 +114,11 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの有効化処理に失敗しました。");
 			return false;
 		}
-		if (!component_holder_.DoAllWithCheck(&GameObjectComponent::Activate, true)) {
-			PE_LOG_ERROR("GameObjectComponentの有効化に失敗しました。");
-			return false;
+		for (auto&& com : component_holder_.alias_map()) {
+			if (!com.second->Activate()) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", com.first, "\"の有効化処理に失敗しました。");
+				return false;
+			}
 		}
 		activated_event_delegate_();
 		return true;
@@ -81,9 +130,11 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの無効化処理に失敗しました。");
 			return false;
 		}
-		if (!component_holder_.DoAllWithCheck(&GameObjectComponent::InActivate, true)) {
-			PE_LOG_ERROR("GameObjectComponentの無効化に失敗しました。");
-			return false;
+		for (auto&& com : component_holder_.alias_map()) {
+			if (!com.second->InActivate()) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", com.first, "\"の無効化処理に失敗しました。");
+				return false;
+			}
 		}
 		return true;
 	}
@@ -94,7 +145,9 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの破棄処理に失敗しました。");
 			return false;
 		}
-		component_holder_.DoAll(&GameObjectComponent::Finalize);
+		for (auto&& com : component_holder_.component_list()) {
+			com->Finalize();
+		}
 		return true;
 	}
 
@@ -106,12 +159,23 @@ namespace planeta {
 		scene_data_ = scene_accessor;
 	}
 
-	util::WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id) {
-		return scene_data_->game_object_manager_public_interface.CreateGameObject(id);
+	util::WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id, const std::string& resource_id) {
+		return scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
 	}
 
-	util::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id) {
-		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id);
+	util::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id, const std::string& resource_id) {
+		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
+		if (go == nullptr) { return nullptr; }
+		go->Activate();
+		return go;
+	}
+
+	util::WeakPointer<IGameObject> GameObjectBase::CreateDefaultGameObject(const std::string& id) {
+		return scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
+	}
+
+	util::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateDefaultGameObject(const std::string& id) {
+		auto go = scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
@@ -138,9 +202,9 @@ namespace planeta {
 		return component_holder_.GetComponentByTypeInfo(ti, type_checker);
 	}
 
-	std::vector<std::shared_ptr<GameObjectComponent>> GameObjectBase::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
-		return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
-	}
+	//std::vector<std::shared_ptr<GameObjectComponent>> GameObjectBase::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
+	//	return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
+	//}
 
 	TaskManagerPublicInterface& GameObjectBase::RefTaskManagerInterface_() {
 		return scene_data_->task_manager_public_interface;

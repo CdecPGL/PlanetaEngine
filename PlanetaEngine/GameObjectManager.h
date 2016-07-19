@@ -14,6 +14,7 @@ namespace planeta {
 	class IGameObject;
 	namespace core {
 		struct SceneData;
+		class GameObjectTemplateHolder;
 	}
 	class GameObjectManager final : public core::SceneModule
 		, public GameObjectManagerPublicInterface, private util::NonCopyable<GameObjectManager> {
@@ -21,8 +22,10 @@ namespace planeta {
 		GameObjectManager();
 		~GameObjectManager();
 		//ユーザアクセス可能関数
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_create_id)override;
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_create_id, const std::string& name)override;
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_type_id, const std::string& file_id)override;
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name)override;
+		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& game_object_type_id)override;
+		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& game_object_type_id, const std::string& name)override;
 
 		//システム関数
 		/*初期化*/
@@ -40,7 +43,6 @@ namespace planeta {
 		bool ActivateGameObject(int id);
 		/*無効化*/
 		bool InActivateGameObject(int id);
-		void TakeOver(const GameObjectManager& gom); //ゲームオブジェクトの引継ぎ処理(未実装)
 		/*すべてのゲームオブジェクトを破棄*/
 		void RemoveAllGameObjects();
 	private:
@@ -51,9 +53,15 @@ namespace planeta {
 		void RemoveProc_();
 		int _id_counter;
 		util::WeakPointer<core::SceneData> scene_data_;
-		static std::shared_ptr<GameObjectBase >CreateGameObjectByID_(const std::string& id);
-		/*ゲームオブジェクト登録(初期化も行い、IDを返す)*/
-		int RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go);
-		int RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name);
+		
+		/*ゲームオブジェクトテンプレートホルダー*/
+		std::unique_ptr<core::GameObjectTemplateHolder> game_object_template_holder_;
+
+		/*ゲームオブジェクトを作成し、セットアップを行う(作成、シーンデータのセットを行う)*/
+		std::shared_ptr<GameObjectBase> CreateAndSetUpGameObject_(const std::string& game_object_type_id, const std::string& resource_id);
+
+		/*ゲームオブジェクト登録(登録、マネージャコネクション設定、初期化を行い、IDを返す)*/
+		int RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go);
+		int RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name);
 	};
 }

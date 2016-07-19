@@ -8,14 +8,28 @@
 
 namespace planeta {
 	class GameObjectComponentHolder;
+	/*! @brief ゲームオブジェクトコンポーネントを追加するためのクラス
+
+	GameObject::AddConponentsProcの引数として渡される。
+	*/
 	class GOComponentAdder {
 	public:
 		GOComponentAdder(GameObjectComponentHolder& com_holder);
-		/*GOコンポーネントをIDで追加し名前を付ける*/
+		/*! @brief ゲームオブジェクトコンポーネントをIDで追加し名前を付ける
+
+			該当する型がシステムに登録されている必要がある。
+			名前は定義ファイルからのデータのロード時、コンポーネントにデータを振り分けるために使用される。
+		*/
 		util::NonOwingPointer<GameObjectComponent> CreateAndAddComponent(const std::string& com_id, const std::string& alias);
-		/*GOコンポーネントをIDで追加*/
+		/*! @brief ゲームオブジェクトコンポーネントをIDで追加する
+
+		該当する型がシステムに登録されている必要がある。
+		*/
 		util::NonOwingPointer<GameObjectComponent> CreateAndAddComponent(const std::string& com_id);
-		/*GOコンポーネントを型で追加し名前を付ける*/
+		/*! @brief ゲームオブジェクトコンポーネントを型で追加し名前を付ける
+
+		名前は定義ファイルからのデータのロード時、コンポーネントにデータを振り分けるために使用される。
+		*/
 		template<class ComT>
 		util::NonOwingPointer<ComT> CreateAndAddComponent(const std::string& alias) {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value, "ComT must derive GAmeObjectComponent.");
@@ -25,7 +39,11 @@ namespace planeta {
 			}
 			return com;
 		}
-		/*GOコンポーネントを型で追加*/
+		/*! @brief ゲームオブジェクトコンポーネントを型で追加する
+
+		システムに該当する型が登録されている必要がある。
+		名前は定義ファイルからのデータのロード時、コンポーネントにデータを振り分けるために使用される。
+		*/
 		template<class ComT>
 		util::NonOwingPointer<ComT> CreateAndAddComponent() {
 			auto ret = GetDefaultComID_(typeid(ComT));

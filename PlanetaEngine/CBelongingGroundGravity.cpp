@@ -6,8 +6,12 @@
 #include "TGInstant.h"
 
 namespace planeta {
+	bool CBelongingGroundGravity::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+		return true;
+	}
+
 	bool CBelongingGroundGravity::OnInitialized() {
-		transform2d_.reset(game_object().GetComponent<CTransform2D>());
 		auto proc = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreCollisionEarlyPhase);
 		proc->SetExcuteFunction([this]() {Update(); });
 		return true;

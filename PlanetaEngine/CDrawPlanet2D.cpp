@@ -31,9 +31,9 @@ namespace planeta {
 		drawer.DrawGraph(graph_draw_data_);
 	}
 
-	bool CDrawPlanet2D::OnInitialized() {
-		if (CDraw2D::OnInitialized() == false) { return false; }
-		_planet_component.reset(game_object().GetComponent<CPlanet>());
+	bool CDrawPlanet2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		if (CDraw2D::GetOtherComponentProc(com_getter) == false) { return false; }
+		_planet_component.reset(com_getter.GetComponent<CPlanet>());
 		if (_planet_component) {
 			SetPolygon_();
 			return true;
@@ -41,6 +41,11 @@ namespace planeta {
 			PE_LOG_ERROR("‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½BPlanetComponent‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
 			return false;
 		}
+	}
+
+	bool CDrawPlanet2D::OnInitialized() {
+		if (CDraw2D::OnInitialized() == false) { return false; }
+		return true;
 	}
 
 	void CDrawPlanet2D::OnFinalized()noexcept {

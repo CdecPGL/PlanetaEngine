@@ -7,12 +7,16 @@
 namespace planeta {
 	CGround2D::CGround2D() {}
 
-	bool CGround2D::OnInitialized() {
-		transform2d_.reset(game_object().GetComponent<CTransform2D>());
+	bool CGround2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2D‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
 			return false;
 		}
+		return true;
+	}
+
+	bool CGround2D::OnInitialized() {
 		return true;
 	}
 

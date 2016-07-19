@@ -7,9 +7,16 @@
 #include "DxLib.h"
 
 namespace planeta {
-	
+	bool  CCamera2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+		if (!transform2d_) {
+			PE_LOG_WARNING("CTransform2D‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+			return false;
+		}
+		return true;
+	}
+
 	bool CCamera2D::OnInitialized() {
-		transform2d_.reset(game_object().GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_WARNING("CTransform2D‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
 			return false;

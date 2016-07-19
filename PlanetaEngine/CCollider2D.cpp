@@ -75,12 +75,16 @@ namespace planeta {
 		return *this;
 	}
 
-	bool CCollider2D::OnInitialized() {
-		transform2d_.reset(game_object().GetComponent<CTransform2D>());
+	bool CCollider2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2D‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
 			return false;
 		}
+		return true;
+	}
+
+	bool CCollider2D::OnInitialized() {
 		return true;
 	}
 

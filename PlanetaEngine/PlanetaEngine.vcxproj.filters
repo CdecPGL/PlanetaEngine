@@ -825,6 +825,12 @@
     <ClInclude Include="JGUIObject2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectTemplateHolder.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GOComponentGetter.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1174,6 +1180,12 @@
     </ClCompile>
     <ClCompile Include="StringUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectTemplateHolder.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GOComponentGetter.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

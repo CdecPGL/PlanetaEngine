@@ -3,19 +3,24 @@
 #include "TaskManager.h"
 #include "SystemLog.h"
 #include "SceneData.h"
-#include "Reflection.h"
-#include "PrefixUtility.h"
+#include "GameObjectTemplateHolder.h"
 
 namespace planeta {
-	GameObjectManager::GameObjectManager() :_id_counter(0) {};
+	GameObjectManager::GameObjectManager() :game_object_template_holder_(std::make_unique<core::GameObjectTemplateHolder>()), _id_counter(0) {};
 	GameObjectManager::~GameObjectManager() = default;
 
 	void GameObjectManager::Update() {
 		RemoveProc_();
 	}
 
-	int GameObjectManager::RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go) {
-		go->SetSceneData(scene_data_);
+	std::shared_ptr<GameObjectBase> GameObjectManager::CreateAndSetUpGameObject_(const std::string& game_object_type_id, const std::string& resource_id) {
+		auto go = game_object_template_holder_->GetNewGameObject(game_object_type_id, resource_id,
+			[sd = scene_data_](GameObjectBase& go) {go.SetSceneData(sd); } //インスタンス化後にシーンデータ登録を行ってもらう
+		);
+		return go;
+	}
+
+	int GameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go) {
 		int id = _id_counter++;
 		go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
 		if (go->ProcessInitialization() == false) {
@@ -26,39 +31,38 @@ namespace planeta {
 		return id;
 	}
 
-	int GameObjectManager::RegisterAndSetUpGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
-		int id = RegisterAndSetUpGameObject_(go);
+	int GameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
+		int id = RegisterAndInitializeGameObject_(go);
 		if (id < -1) { return -1; }
 		name_id_map_.emplace(name, id);
 		return id;
 	}
 
-	void GameObjectManager::TakeOver(const GameObjectManager& gom) {
-		for (auto& go : gom.active_game_objects_) {
-			active_game_objects_.insert(std::move(go));
-		}
-	}
-
-	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id) {
-		auto go = CreateGameObjectByID_(game_object_create_id);
-			if (go == nullptr) {
-				PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
-				return nullptr;
-			}
-		if (RegisterAndSetUpGameObject_(go) >= 0) {
+	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id) {
+		auto go = CreateAndSetUpGameObject_(game_object_type_id, file_id);
+		if (go != nullptr && RegisterAndInitializeGameObject_(go)) {
 			return go;
-		} else { return nullptr; }
-
-	}
-	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_create_id, const std::string& name) {
-		auto go = CreateGameObjectByID_(game_object_create_id);
-		if (go == nullptr) {
+		} else {
 			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
 			return nullptr;
 		}
-		if (RegisterAndSetUpGameObject_(go, name) >= 0) {
+	}
+
+	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name) {
+		auto go = CreateAndSetUpGameObject_(game_object_type_id, file_id);
+		if (go != nullptr && RegisterAndInitializeGameObject_(go, name)) {
 			return go;
-		} else { return nullptr; }
+		} else {
+			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
+			return nullptr;
+		}
+	}
+
+	util::WeakPointer<IGameObject> GameObjectManager::CreateDefaultGameObject(const std::string& game_object_create_id) {
+		return CreateGameObject(game_object_create_id, {});
+	}
+	util::WeakPointer<IGameObject> GameObjectManager::CreateDefaultGameObject(const std::string& game_object_create_id, const std::string& name) {
+		return CreateGameObject(game_object_create_id, {}, name);
 
 	}
 
@@ -126,10 +130,4 @@ namespace planeta {
 	void GameObjectManager::SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 	}
-
-	std::shared_ptr<GameObjectBase > GameObjectManager::CreateGameObjectByID_(const std::string& id) {
-		//IDにプレフィックスをつけたゲームオブジェクトを作成。
-		return Reflection::CreateObjectByID<GameObjectBase>(core::AddPrefix(id, core::ObjectCategory::GameObject));
-	}
-
 }

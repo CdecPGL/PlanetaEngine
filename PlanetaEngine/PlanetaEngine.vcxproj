@@ -156,6 +156,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameObjectBase.h" />
+    <ClInclude Include="GameObjectTemplateHolder.h" />
+    <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="JGameObject2D.h" />
     <ClInclude Include="GGameObject2DTemplate.h" />
     <ClInclude Include="JGUIObject2D.h" />
@@ -356,7 +358,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
+    <ClCompile Include="GameObjectTemplateHolder.cpp" />
     <ClCompile Include="GOComponentAdder.cpp" />
+    <ClCompile Include="GOComponentGetter.cpp" />
     <ClCompile Include="PrefixUtility.cpp" />
     <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="InitFunctions.cpp" />

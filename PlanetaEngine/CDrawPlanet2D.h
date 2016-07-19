@@ -36,6 +36,7 @@ namespace planeta {
 		std::shared_ptr<core::GraphDrawData2D> graph_draw_data_;
 		/*テクスチャマッピングモード*/
 		TextureMappingMode tex_map_mode_;
+		bool GetOtherComponentProc(const GOComponentGetter& com_getter)override;
 		virtual bool OnInitialized() override;
 		virtual void OnFinalized()noexcept override;
 		util::NonOwingPointer<CPlanet> _planet_component;

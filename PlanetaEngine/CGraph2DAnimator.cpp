@@ -6,19 +6,21 @@
 #include "TGInstant.h"
 
 namespace planeta {
-	bool CGraph2DAnimator::OnInitialized() {
-		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
-		auto tsk = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreDrawUpdatePhase);
-		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
-
-		draw_graph_component_.reset(game_object().GetComponent<CDrawGraph2D>());
+	bool CGraph2DAnimator::GetOtherComponentProc(const GOComponentGetter& com_getter) {
+		draw_graph_component_.reset(com_getter.GetComponent<CDrawGraph2D>());
 		if (draw_graph_component_) {
 			return true;
 		} else {
 			PE_LOG_ERROR("DrawGraphComponentを取得できませんでした。");
 			return false;
 		}
+	}
 
+	bool CGraph2DAnimator::OnInitialized() {
+		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
+		auto tsk = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreDrawUpdatePhase);
+		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
+		return true;
 	}
 
 	void CGraph2DAnimator::UpdateAnimation() {

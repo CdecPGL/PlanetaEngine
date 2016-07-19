@@ -7,16 +7,22 @@
 #include "GOComponentAdder.h"
 
 namespace planeta {
-	//ゲームオブジェクトを定義するときは、このクラスを継承する。テンプレート引数にはGameObjectInterfaceを任意個指定する。
+	/*! @brief ゲームオブジェクトの基底となるクラス。ゲームオブジェクトを定義するときはこのクラスを継承する。
+	
+		テンプレート引数にはGameObjectInterfaceを任意個指定する。
+	*/
 	template<typename... GOI>
 	class GameObject : public GameObjectBase , public GOI... {
 		//GOI...がGameObjectInterfaceの派生クラスか確認。
 		template<typename Arg> struct GOI_is_base_of :public std::is_base_of<GameObjectInterface<Arg>, Arg> {};
 		static_assert(mp_utiliey::AllOf<GOI_is_base_of, GOI...>::value == true, "GOI must derive GameObjectInterface.");
 	public:
+		//! 規定のコンストラクタ
 		GameObject():GOI(*this)... {}
 	private:
 		//システム関数の隠蔽
+		bool ProcessInstantiation();
+		bool ProcessLoading();
 		bool ProcessActivation();
 		bool ProcessInactivation();
 		bool ProcessDisposal();
@@ -25,6 +31,9 @@ namespace planeta {
 	};
 }
 
-//GameObjectをシステムに登録する(型)
+/*! @def
+	GameObjectをシステムに登録する
+	@param(type) 登録したい型
+*/
 #define PE_REGISTER_GAMEOBJECT(type)\
 PE_REGISTER_OBJECT(type,planeta::GameObjectBase)

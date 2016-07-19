@@ -3,13 +3,17 @@
 #include "GameObjectComponentSetUpData.h"
 
 namespace planeta{
-		bool GameObjectComponent::Initialize() {
-			if (OnInitialized()) {
-				is_valied_ = true;
-				return true;
-			} else {
+		bool GameObjectComponent::Initialize(const GOComponentGetter& com_getter) {
+			if (!GetOtherComponentProc(com_getter)) {
+				PE_LOG_ERROR("コンポーネントの取得処理に失敗しました。");
 				return false;
 			}
+			if (!OnInitialized()) {
+				PE_LOG_ERROR("コンポーネントの初期化処理に失敗しました。");
+				return false;
+			}
+			is_valied_ = true;
+			return true;
 		}
 
 		void GameObjectComponent::Finalize() {
@@ -45,6 +49,10 @@ namespace planeta{
 
 		IGameObjectForComponent& GameObjectComponent::game_object() {
 			return *game_object_;
+		}
+
+		bool GameObjectComponent::Load(const JSONObject& json_obj) {
+			return LoadProc(json_obj);
 		}
 
 }
