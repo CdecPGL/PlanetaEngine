@@ -10,7 +10,7 @@ namespace planeta {
 		class ResourceBase : public core::Object{
 		public:
 			ResourceBase() = default;
-			virtual ~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", GetType().name(), ")"); } };
+			virtual ~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } };
 			bool Create(const std::shared_ptr<const File>& file) {
 				if (is_usable_) { return false; }
 				if (_Create(file)) {

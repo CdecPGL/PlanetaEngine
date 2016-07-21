@@ -78,4 +78,8 @@ namespace planeta {
 		}
 	}
 
+	void GameObjectComponentHolder::CloneToOtherHolder(GameObjectComponentHolder& com_holder) {
+
+	}
+
 }

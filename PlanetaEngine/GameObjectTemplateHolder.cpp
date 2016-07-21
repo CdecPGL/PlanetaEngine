@@ -33,7 +33,7 @@ namespace planeta {
 		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::CreateGameObject_(const std::string& game_object_type_id, const std::string& file_id, const std::function<void(GameObjectBase&)>& post_instantiate_proc) {
 			auto obj_type_id = core::AddPrefix(game_object_type_id, core::ObjectCategory::GameObject);
 			//生成
-			auto ngo = Reflection::CreateObjectByID<GameObjectBase>(obj_type_id);
+			auto ngo = Reflection::CreateObjectByObjectTypeID<GameObjectBase>(obj_type_id);
 			if (ngo == nullptr) {
 				PE_LOG_ERROR("ゲームオブジェクトテンプレート(GameObjectTypeID:\"", game_object_type_id, "\"の作成に失敗しました。");
 				return nullptr;
@@ -59,7 +59,7 @@ namespace planeta {
 					PE_LOG_ERROR("ゲームオブジェクトへファイル定義\"",file_id,"\"を読み込むことができませんでした。");
 					return nullptr;
 				}
-			} catch (JSONTypeError& e) {
+			} catch (JSONTypeError&) {
 				PE_LOG_ERROR("ゲームオブジェクト定義リソースのJSONファイルは、ルートValueがObjectである必要があります。");
 				return nullptr;
 			}

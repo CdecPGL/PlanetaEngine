@@ -72,7 +72,7 @@ namespace planeta {
 			using type = typename ExpandParameterList2<typename ParamList::rest, typename ParamList::first>::type;
 		};
 
-		/*引数を文字列化*/
+		//! 引数を文字列化
 		template<typename FirstParam, typename ... Params>
 		std::string ConvertParametersToString(FirstParam fparam, Params... params) {
 			return std::move(std::string(typeid(FirstParam).name()) + " " + boost::lexical_cast<std::string>(fparam) + "," + ConvertParametersToString(params...));
@@ -82,7 +82,7 @@ namespace planeta {
 			return std::move(std::string(typeid(FirstParam).name()) + " " + boost::lexical_cast<std::string>(fparam));
 		};
 
-		/*引数の型を文字列化*/
+		//! 引数の型を文字列化
 		template<typename FirstParam, typename ... Params>
 		std::string ConvertParameterTypesToString() {
 			return std::move(std::string(std::typeid(FirstParam).name()) + "," + ConvertParameterTypesToString<Params...>());
@@ -92,7 +92,7 @@ namespace planeta {
 			return std::move(std::string(std::typeid(FirstParam).name()));
 		};
 
-		//全ての要素First,Rest...が単項述語UnaryPredicateを満たしているか
+		//! 全ての要素First,Rest...が単項述語UnaryPredicateを満たしているか
 		template<template<class> class UnaryPredicate, typename... Args>
 		struct AllOf : public std::true_type {};
 		template<template<class> class UnaryPredicate, typename First, typename... Rest>
@@ -100,10 +100,41 @@ namespace planeta {
 		/*template<template<class>class UnaryPredicate>
 		struct AllOf<UnaryPredicate, void> : public std::true_type{};*/
 
-		//いずれかの要素First,Rest...が単項述語UnaryPredicateを満たしているか
+		//! いずれかの要素First,Rest...が単項述語UnaryPredicateを満たしているか
 		template<template<class> class UnaryPredicate, typename... Args>
 		struct AnyOf : public std::false_type {};
 		template<template<class> class UnaryPredicate, typename First, typename... Rest>
 		struct AnyOf<UnaryPredicate, First, Rest...> : public std::conditional_t<UnaryPredicate<First>::value,std::true_type, AnyOf<UnaryPredicate, Rest...>> {};
+
+		//! メンバ関数の引数の数を取得する
+		template<class C, typename Ret, typename... Args>
+		constexpr int GetFunctionArgCount(Ret(C::*)(Args...)) {
+			return sizeof...(Args);
+		}
+		//! 関数の引数の数を取得する
+		template<class C, typename Ret, typename... Args>
+		constexpr int GetFunctionArgCount(Ret(Args...)) {
+			return sizeof...(Args);
+		}
+
+		//引数リストからメンバ関数を呼び出す関数と、引数リストから関数を呼び出す関数を取得する関数。コンパイルの確認すらしていないので、エラーになる可能性が高い。
+		/*template<class C, typename Ret, typename... Args, int N, int IDX, typename... FArgs>
+		Ret CallMemFuncWithParamArray(std::enable_if_t<!N, C*> cptr, Ret(C::*)(Args...) mpfunc, FArgs... fargs) {
+			return (cptr->*mpfunc)(fargs...);
+		}
+
+		template<class C, typename Ret, typename FirstArg, typename... RestArgs, int N, int IDX, typename... FArgs>
+		Ret CallMemFuncWithParamArray(std::enable_if_t<N, C*> cptr, Ret(C::*)(Args...) mpfunc, const std::vector<boost::any>& arg_list, FArgs... fargs) {
+			return CallMemFuncWithParamArray<C, Ret, RestArgs..., N, IDX + 1, FArgs..., FirstArg>(cptr, mpfunc, arg_list, fargs..., boost::any_cast<FirstArg>(arg_list.at(IDX)));
+		}
+
+		template<class C, typename Ret, typename... Args>
+		Ret CallMemFuncWithParamArray(C* cptr, Ret(C::*mfunc)(Args...), const std::vector<boost::any>& arg_list) {
+			return CallMemFuncWithParamArray<C, Ret, Args..., sizeof...(Args), 0>(cptr, mfunc, arg_list);
+		}
+
+		template<class C, typename Ret, typename... Args>
+		std::function<boost::any(void*, const std::vector<boost::any>&)> GetMemFuncCaller(Ret(C::*mpfunc)(Args...)) {
+			return [](void* cptr, const std::vector<boost::any>& arg_list) {CallMemFuncWithParamArray(reinterpret_cast<C*>(cptr), mpfunc, arg_list); };*/
 	}
 }

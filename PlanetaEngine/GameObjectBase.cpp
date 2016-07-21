@@ -10,6 +10,7 @@
 #include "GOComponentGetter.h"
 #include "RJson.h"
 #include "ResourceManager.h"
+#include "Reflection.h"
 
 namespace planeta {
 
@@ -43,7 +44,10 @@ namespace planeta {
 	bool GameObjectBase::OnDisposed() { return true; }
 
 	std::shared_ptr<GameObjectBase> GameObjectBase::Clone() {
-		return nullptr;
+		auto ptr = Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*this));
+		assert(ptr != nullptr);
+		component_holder_.CloneToOtherHolder(ptr->component_holder_);
+		return ptr;
 	}
 
 	bool GameObjectBase::ProcessInstantiation() {

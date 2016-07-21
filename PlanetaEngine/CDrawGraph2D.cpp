@@ -31,7 +31,7 @@ namespace planeta {
 			_UpdateUVPosition();
 			return true;
 		} else {
-			PE_LOG_ERROR("画像リソースでないリソースが指定されました。(リソース名は", resource_id, "、タイプは", res->GetType().name(), ")");
+			PE_LOG_ERROR("画像リソースでないリソースが指定されました。(リソース名は", resource_id, "、タイプは", typeid(*res).name(), ")");
 			return false;
 		}
 	}

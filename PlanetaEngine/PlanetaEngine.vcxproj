@@ -147,6 +147,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="CCamera2D.h" />
     <ClInclude Include="CharacterCode.h" />
+    <ClInclude Include="ClassRegisterer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ClassRegistererImpl.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="GameObjectInterface.h" />

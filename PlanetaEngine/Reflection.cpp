@@ -51,7 +51,7 @@ namespace planeta {
 		return impl;
 	}
 
-	std::shared_ptr<Object> Reflection::CreateObjectByID(const std::string& id)noexcept {
+	std::shared_ptr<Object> Reflection::CreateObjectByObjectTypeID(const std::string& id)noexcept {
 		decltype(auto) id_map = impl_().type_data_map.get<tag::ID>();
 		auto it = id_map.find(id);
 		if (it == id_map.end()) {
@@ -73,7 +73,7 @@ namespace planeta {
 		}
 	}
 
-	std::string Reflection::GetTypeIDByStdTypeInfo(const std::type_info& tinfo) {
+	std::string Reflection::GetObjectTypeIDByStdTypeInfo(const std::type_info& tinfo) {
 		decltype(auto) std_ti_map = impl_().type_data_map.get<tag::StdTypeInfo>();
 		auto it = std_ti_map.find(tinfo);
 		if (it == std_ti_map.end()) {
@@ -82,7 +82,7 @@ namespace planeta {
 		return it->id;
 	}
 
-	const std::type_info& Reflection::GetStdTypeInfoByTypeID(const std::string& id) {
+	const std::type_info& Reflection::GetStdTypeInfoByObjectTypeID(const std::string& id) {
 		decltype(auto) id_map = impl_().type_data_map.get<tag::ID>();
 		auto it = id_map.find(id);
 		if (it == id_map.end()) {

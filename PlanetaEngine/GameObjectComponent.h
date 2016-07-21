@@ -19,6 +19,7 @@ namespace planeta {
 	}
 	class IGameObjectForComponent;
 	/*! @brief ゲームオブジェクトコンポーネントの基底クラス
+		@attention クラス宣言の先頭にPE_CLONABLE_GAMEOBJECTCOMPONENTマクロ、抽象クラスならPE_COPIABLE_GAMEOBJECTCOMPONENTを記述しなければならない。
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
 	*/
 	class GameObjectComponent : public core::Object, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
@@ -46,7 +47,7 @@ namespace planeta {
 	protected:
 		/*! @brief 所有されているゲームオブジェクトへの参照
 			
-			通常のIGameObjectInterfaceではなく、ゲームオブジェクトコンポーネント用に関数が追加されたものを返す。
+			通常のIGameObjectではなく、ゲームオブジェクトコンポーネント用に関数が追加されたものを返す。
 		*/
 		IGameObjectForComponent& game_object();
 		//オーバーライド可能関数
@@ -60,7 +61,7 @@ namespace planeta {
 			この関数がfalseを返すコンポーネントを含むゲームオブジェクトをファイル定義から読み込む場合、定義にそのコンポーネントの定義が含まれているとエラーになる。<br/>
 			先頭で親クラスの同関数を呼び出す必要がある。
 
-			@attention 現在は、所有されているゲームオブジェクトごとの初期化前に呼び出されるが、今後、データのロード時に一度だけ呼び出されるように変更される可能性あり。
+			@note 現在は、所有されているゲームオブジェクトごとの初期化前に呼び出されるが、今後、データのロード時に一度だけ呼び出されるように変更される可能性あり。
 			@param データを格納したJSONObject
 			@return データ読み込みの成否
 		*/

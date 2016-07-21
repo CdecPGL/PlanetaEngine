@@ -831,6 +831,12 @@
     <ClInclude Include="GOComponentGetter.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="ClassRegisterer.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassRegistererImpl.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

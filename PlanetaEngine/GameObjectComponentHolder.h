@@ -41,6 +41,7 @@ namespace planeta {
 			}
 			return std::move(ret_list);
 		}
+		void CloneToOtherHolder(GameObjectComponentHolder& com_holder);
 		//エイリアスマップの参照
 		const auto& alias_map()const { return alias_map_; }
 		//コンオーネントリストの参照

@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include <vector>
-#include "GameObject.h"
 
 #include "TLSFMemoryAllocator.h"
-//#include "GameObject.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
