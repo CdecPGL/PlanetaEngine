@@ -40,5 +40,5 @@ namespace planeta {
 		bool OnInitialized() override;
 		void UpdateAnimation();
 	};
-	PE_REGISTER_GAMEOBJECTCOMPONENT(CGraph2DAnimator);
+	PE_REFLECTABLE_CLASS(CGraph2DAnimator);
 }

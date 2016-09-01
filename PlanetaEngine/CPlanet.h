@@ -22,5 +22,5 @@ namespace planeta {
 		unsigned int _separation;
 		std::vector<double> _gap;
 	};
-	PE_REGISTER_GAMEOBJECTCOMPONENT(CPlanet);
+	PE_REFLECTABLE_CLASS(CPlanet);
 }

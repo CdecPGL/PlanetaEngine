@@ -13,5 +13,5 @@ namespace planeta {
 
 		double length_ = 1.0;
 	};
-	PE_REGISTER_GAMEOBJECTCOMPONENT(CStraightLineCollider2D);
+	PE_REFLECTABLE_CLASS(CStraightLineCollider2D);
 }

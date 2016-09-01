@@ -6,5 +6,5 @@ namespace planeta {
 	class CPolygonCollider2D : public CCollider2D {
 		bool DetectCollision(core::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }
 	};
-	PE_REGISTER_GAMEOBJECTCOMPONENT(CPolygonCollider2D);
+	PE_REFLECTABLE_CLASS(CPolygonCollider2D);
 }

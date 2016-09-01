@@ -837,6 +837,21 @@
     <ClInclude Include="ClassRegistererImpl.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="ClassInfo.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassInfoCaller.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflectable.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionUtility.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeInfoWrapper.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -1192,6 +1207,12 @@
     </ClCompile>
     <ClCompile Include="GOComponentGetter.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassInfoCaller.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Reflectable.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

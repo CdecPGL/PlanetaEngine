@@ -45,7 +45,3 @@ namespace planeta {
 		virtual util::ParameterHolder FinalizeScene(SceneSetUpProxy& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) = 0;
 	};
 }
-
-//Sceneをシステムに登録する(SetUpper型)
-#define PE_REGISTER_SCENE(type)\
-PE_REGISTER_OBJECT(type,planeta::SceneSetUpper)

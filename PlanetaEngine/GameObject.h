@@ -30,10 +30,3 @@ namespace planeta {
 		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
 	};
 }
-
-/*! @def
-	GameObjectをシステムに登録する
-	@param(type) 登録したい型
-*/
-#define PE_REGISTER_GAMEOBJECT(type)\
-PE_REGISTER_OBJECT(type,planeta::GameObjectBase)

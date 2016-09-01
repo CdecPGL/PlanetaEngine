@@ -147,13 +147,15 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BadNewDeleteOperation.h" />
     <ClInclude Include="CCamera2D.h" />
     <ClInclude Include="CharacterCode.h" />
+    <ClInclude Include="ClassInfo.h" />
+    <ClInclude Include="ClassInfoCaller.h" />
     <ClInclude Include="ClassRegisterer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ClassRegistererImpl.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
@@ -172,11 +174,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GGUIObjectTemplate.h" />
     <ClInclude Include="GOComponentAdder.h" />
     <ClInclude Include="PrefixUtility.h" />
+    <ClInclude Include="Reflectable.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="InitFunctions.h" />
     <ClInclude Include="ReflectionExceptions.h" />
+    <ClInclude Include="ReflectionUtility.h" />
     <ClInclude Include="RJson.h" />
     <ClInclude Include="LuaBindClassFunctions.h" />
     <ClInclude Include="CCircleCollider2D.h" />
@@ -221,6 +225,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TGInstant.h" />
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
+    <ClInclude Include="TypeInfoWrapper.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="TCoroutine.h" />
@@ -361,6 +366,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
     <ClCompile Include="CharacterCode.cpp" />
+    <ClCompile Include="ClassInfoCaller.cpp" />
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -370,6 +376,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GOComponentAdder.cpp" />
     <ClCompile Include="GOComponentGetter.cpp" />
     <ClCompile Include="PrefixUtility.cpp" />
+    <ClCompile Include="Reflectable.cpp" />
     <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="InitFunctions.cpp" />
     <ClCompile Include="InitFunctionsFIleSystem.cpp" />

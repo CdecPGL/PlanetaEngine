@@ -39,5 +39,5 @@ namespace planeta {
 		/*描画処理*/
 		void DrawProc(ScreenDrawer2D& drawer)override;
 	};
-	PE_REGISTER_GAMEOBJECTCOMPONENT(CDrawGraph2D);
+	PE_REFLECTABLE_CLASS(CDrawGraph2D);
 }

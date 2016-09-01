@@ -71,7 +71,3 @@ namespace planeta {
 		virtual void OnDisposed() {};
 	};
 }
-
-//Taskをシステムに登録する(型)
-#define PE_REGISTER_TASK(type)\
-PE_REGISTER_OBJECT(type,planeta::Task)
