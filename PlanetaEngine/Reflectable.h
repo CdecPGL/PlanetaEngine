@@ -52,3 +52,10 @@ namespace planeta {
 		void GetVariable_(const std::string& var_id, boost::any& v);
 	};
 }
+
+/*! リフレクションデータ登録関数の宣言を行うマクロ*/
+#define PE_REFLECTION_DATA_REGISTERER_DECLARATION(type)\
+public:\
+static void ReflectionDataRegisterer(ClassRegisterer<type>& registerer);\
+private:
+

@@ -13,6 +13,7 @@ namespace planeta {
 	}
 	class CDrawGraph2D final : public CDraw2D {
 	public:
+		using Super = CDraw2D;
 		CDrawGraph2D();
 		~CDrawGraph2D();
 		bool SetGraphResource(const std::string& resource_id);

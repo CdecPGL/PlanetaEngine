@@ -5,7 +5,7 @@ namespace planeta {
 	class CPlanet;
 	class CPlanetGround2D final : public CGround2D {
 	public:
-
+		using Super = CPlanetGround2D;
 	private:
 		util::NonOwingPointer<CPlanet> planet_component_;
 		bool GetOtherComponentProc(const GOComponentGetter& com_getter)override;

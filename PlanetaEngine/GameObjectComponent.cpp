@@ -50,9 +50,4 @@ namespace planeta{
 		IGameObjectForComponent& GameObjectComponent::game_object() {
 			return *game_object_;
 		}
-
-		bool GameObjectComponent::Load(const JSONObject& json_obj) {
-			return LoadProc(json_obj);
-		}
-
 }

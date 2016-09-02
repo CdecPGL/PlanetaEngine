@@ -12,6 +12,7 @@ namespace planeta {
 	class CDrawGraph2D;
 	class CGraph2DAnimator : public GameObjectStandardComponent {
 	public:
+		using Super = GameObjectStandardComponent;
 		/*フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
 		using FrameDataType = std::tuple<unsigned int, util::RectAngle<int>, Vector2Dd, double>;
 		/*単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/

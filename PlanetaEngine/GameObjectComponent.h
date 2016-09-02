@@ -12,7 +12,6 @@
 
 namespace planeta {
 	class SceneAccessorForGameObject;
-	class JSONObject;
 	namespace core{
 		struct SceneData;
 		struct GameObjectComponentSetUpData;
@@ -24,6 +23,7 @@ namespace planeta {
 	*/
 	class GameObjectComponent : public core::Object, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
 	public:
+		using Super = core::Object;
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
 		bool SystemSetUp(const core::GameObjectComponentSetUpData& resistration_data);
@@ -37,8 +37,6 @@ namespace planeta {
 		bool is_active()const { return is_active_; }
 
 		/*システム関数(GameObjectBaseから呼び出される)*/
-		//ファイルの読み込み
-		bool Load(const JSONObject& json_obj);
 		//ほかコンポーネント取得と初期化
 		bool Initialize(const GOComponentGetter& com_getter);
 		bool Activate();
@@ -53,19 +51,6 @@ namespace planeta {
 		//オーバーライド可能関数
 		//! コンポーネント取得処理関数
 		virtual bool GetOtherComponentProc(const GOComponentGetter& com_getter) { return true; }
-		/*! @brief ロード処理関数
-			
-			所有されているゲームオブジェクトの初期化前に呼び出される。
-			引数のGOComponentGetterを用いて所有されているゲームオブジェクトの他のコンポーネントを取得する。<br/>
-			デフォルトではfalseを返すので、ファイル定義読み込みに対応させたい場合は必ずオーバーライドする。<br/>
-			この関数がfalseを返すコンポーネントを含むゲームオブジェクトをファイル定義から読み込む場合、定義にそのコンポーネントの定義が含まれているとエラーになる。<br/>
-			先頭で親クラスの同関数を呼び出す必要がある。
-
-			@note 現在は、所有されているゲームオブジェクトごとの初期化前に呼び出されるが、今後、データのロード時に一度だけ呼び出されるように変更される可能性あり。
-			@param データを格納したJSONObject
-			@return データ読み込みの成否
-		*/
-		virtual bool LoadProc(const JSONObject& json_obj) { return false; }
 		/*イベント関数*/
 		/*! @brief 初期化時イベント関数
 
@@ -100,4 +85,5 @@ namespace planeta {
 		/*特別設定関数*/
 		virtual void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) = 0;
 	};
+	PE_REFLECTABLE_CLASS(GameObjectComponent);
 }

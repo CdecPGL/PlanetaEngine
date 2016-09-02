@@ -89,11 +89,12 @@ namespace planeta {
 					return false;
 				}
 			}
+			return false;
 			//JsonObjの取得に成功したので読み込み
-			if (!it->second->Load(*jobj)) {
+			/*if (!it->second->Load(*jobj)) {
 				PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。");
 				return false;
-			}
+			}*/
 		}
 		return true;
 	}

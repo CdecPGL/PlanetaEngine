@@ -6,6 +6,7 @@ namespace planeta {
 	namespace core {
 		class GameObjectSystemComponent : public GameObjectComponent {
 		public:
+			using Super = GameObjectComponent;
 			/*シーンデータをセットして、子クラスが参照できるようにし、オーバーライドできないようにする。*/
 			void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data)override final { scene_data_ = scene_data; }
 			virtual ~GameObjectSystemComponent() = default;
@@ -15,5 +16,6 @@ namespace planeta {
 		private:
 			util::WeakPointer<core::SceneData> scene_data_;
 		};
+		PE_REFLECTABLE_CLASS(GameObjectSystemComponent);
 	}
 }

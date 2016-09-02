@@ -5,6 +5,7 @@
 namespace planeta {
 	class CPlanet : public GameObjectStandardComponent {
 	public:
+		using Super = GameObjectStandardComponent;
 		CPlanet();
 		~CPlanet() = default;
 		void SetHeightByIndex(unsigned int idx, double h) { SetGapByIndex(idx, h - _radius); }

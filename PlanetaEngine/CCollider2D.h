@@ -15,6 +15,7 @@ namespace planeta {
 	}
 	class CCollider2D : public core::GameObjectSystemComponent, public core::IColliderWithCollider2D {
 	public:
+		using Super = core::GameObjectSystemComponent;
 		virtual ~CCollider2D() = default;
 		/*衝突判定を行う*/
 		virtual bool DetectCollision(core::IColliderWithCollider2D& collider) = 0;
@@ -75,4 +76,5 @@ namespace planeta {
 		/*衝突グループ名*/
 		std::string collision_group_name_;
 	};
+	PE_REFLECTABLE_CLASS(CCollider2D);
 }

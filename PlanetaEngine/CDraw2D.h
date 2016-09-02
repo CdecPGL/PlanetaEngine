@@ -9,6 +9,7 @@ namespace planeta {
 	class CTransform2D;
 	class CDraw2D : public core::GameObjectSystemComponent {
 	public:
+		using Super = core::GameObjectSystemComponent;
 		CDraw2D();
 		virtual ~CDraw2D() = default;
 		/*描画処理*/
@@ -63,4 +64,5 @@ namespace planeta {
 		/*描画処理*/
 		virtual void DrawProc(ScreenDrawer2D& drawer) = 0;
 	};
+	PE_REFLECTABLE_CLASS(CDraw2D);
 }

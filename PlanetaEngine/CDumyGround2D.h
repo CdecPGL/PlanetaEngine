@@ -7,6 +7,7 @@
 namespace planeta {
 	class CDumyGround2D final : public CGround2D {
 	public:
+		using Super = CGround2D;
 	private:
 		double GetAltitudeWithGroundPosition(const Vector2Dd& ground_pos) const override { return -1; }
 		Vector2Dd ConvertPositionGlobalToGround(const Vector2Dd& global_pos) const override { return global_pos; }

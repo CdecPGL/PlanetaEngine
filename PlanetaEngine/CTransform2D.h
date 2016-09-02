@@ -11,6 +11,7 @@ namespace planeta {
 	/*形状情報コンポーネント*/
 	class CTransform2D : public core::GameObjectSystemComponent {
 	public:
+		using Super = core::GameObjectSystemComponent;
 		CTransform2D();
 		~CTransform2D();
 

@@ -7,6 +7,7 @@
 namespace planeta {
 	class CDrawLine2D final : public CDraw2D {
 	public:
+		using Super = CDraw2D;
 		CDrawLine2D();
 		/*アクセサ*/
 		int width()const { return _width; }

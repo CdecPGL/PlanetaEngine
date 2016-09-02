@@ -7,6 +7,7 @@
 namespace planeta {
 	class CDrawPolygon2D final : public CDraw2D {
 	public:
+		using Super = CDraw2D;
 		void SetNumberOfVertexes(size_t n);
 		/*指定インデックスの座標を設定*/
 		bool SetVertexPosition(size_t idx, const Vector2Dd& pos);
