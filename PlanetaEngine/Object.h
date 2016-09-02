@@ -14,6 +14,7 @@ namespace planeta {
 		*/
 		class Object : public Reflectable {
 		public:
+			using Super = Reflectable;
 			//! デフォルトコンストラクタ
 			Object() = default;
 			//! デストラクタ
@@ -29,3 +30,10 @@ namespace planeta {
 	}
 }
 
+//template<typename T>
+//struct A {
+//	static planeta::private_::ClassRegisterTrigger<planeta::core::Object> globalobject_registerer;
+//};
+//template<typename T>
+//planeta::private_::ClassRegisterTrigger<planeta::core::Object> A<T>::globalobject_registerer = {""};
+//template struct A<int>;

@@ -1,5 +1,7 @@
 ﻿/*Reflectionライブラリ
 Version 1.0.0 2016/9/1
+Version 1.0.1 2016/9/2 Reflectableクラスをコピームーブ可能に。RegisterObject時のエラー報告を初期化時に行うよう変更。
+Version 1.0.2 2016/9/3 RE_REFLECTABLE_CLASSで、登録トリガーの無名名前空間変数が、翻訳空間ごとに作成されることが原因でクラスの重複登録エラーが起きていたのを修正。
 
 @exception noexcept出ないクラスは、reflection_errorを投げる可能性がある
 
@@ -27,7 +29,7 @@ namespace planeta {
 		friend Reflectable;
 	public:
 		/*リフレクションシステムの初期化*/
-		static bool Initialize();
+		static void Initialize();
 		/*オブジェクトを登録*/
 		template<class T>
 		static void RegisterObject(const std::string& object_type_id, std::unique_ptr<private_::ClassInfo>&& class_info) {
@@ -172,16 +174,30 @@ namespace planeta {
 	}
 }
 
+namespace planeta {
+	namespace private_ {
+		//メンバクラス内静的変数がクラス単位で生成されることを利用して、複数回呼ばれても最初の一回しか登録処理を行わないようにする。
+		template<typename T>
+		struct ReflectableClassRegisterHelper {
+			template<typename... Params>
+			ReflectableClassRegisterHelper(Params... params) {
+				static planeta::private_::ClassRegisterTrigger<T> class_register_trigger{ params... };
+			}
+		};
+	}
+}
+
 /*! @def
 	Objectをシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS(type)\
-namespace {planeta::private_::ClassRegisterTrigger<type> globalobject_registerer_##type (#type);}
+namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
+
 /*! @def
 Objectをクリエータを指定してシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
 @param type 型
 @param creator クリエータ(std::shared_ptr<Object>()の関数型)
 */
 #define PE_REFLECTABLE_CLASS_WITH_CREATOR(type, creator)\
-namespace {planeta::private_::ClassRegisterTrigger<type> globalobject_registerer_##type (#type,creator);}
+namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, creator}; }

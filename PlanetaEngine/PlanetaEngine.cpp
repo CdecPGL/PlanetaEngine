@@ -10,6 +10,8 @@
 
 #include "PlanetaEngine.h"
 
+#include "Reflection.h"
+
 #include "SystemLog.h"
 #include "SystemTimer.h"
 #include "RenderManager.h"
@@ -44,6 +46,16 @@ namespace planeta {
 				auto ret = init_funcs::InitializeLogSystem();
 				if (std::get<0>(ret) == false) { assert(false); return false; }
 				else { finalize_handls_.push_front(std::get<1>(ret)); }
+			}
+			//////////////////////////////////////////////////////////////////////////
+			//リフレクションシステムの初期化
+			//////////////////////////////////////////////////////////////////////////
+			try {
+				Reflection::Initialize();
+			} 
+			catch (reflection_error& e) {
+				PE_LOG_FATAL("リフレクションシステムの初期化に失敗しました。:", e.what());
+				return false;
 			}
 			//////////////////////////////////////////////////////////////////////////
 			//ファイルシステムの初期化

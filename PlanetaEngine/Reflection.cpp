@@ -32,6 +32,7 @@ namespace planeta {
 		TypeDataMapType type_data_map;
 		bool is_initialized_ = false;
 		ClassInfo* reflection_root_class_info = nullptr;
+		std::vector<std::string> error_que;
 		//コンストラクタ
 		Impl_()noexcept {
 			//リフレクションルートを登録
@@ -163,11 +164,13 @@ namespace planeta {
 
 	void Reflection::RegisterObject_(const std::type_info& tinfo, const std::string& object_type_id, std::unique_ptr<ClassInfo>&& class_info) {
 		if (impl_().is_initialized_) {
+			//初期化が終わっているときは例外を投げても問題ない
 			throw reflection_error("オブジェクトの登録は初期化前に行われなければなりません。");
 		}
 		class_info->object_type_id = object_type_id;
 		if (!impl_().type_data_map.insert(std::move(class_info)).second) {
-			throw reflection_error(util::ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
+			//初期化前は例外が投げられないのでエラーqueに追加し、初期化時に確認する
+			impl_().error_que.push_back(util::ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
 		}
 	}
 
@@ -181,10 +184,21 @@ namespace planeta {
 		return (*it).get();
 	}
 
-	bool Reflection::Initialize() {
+	void Reflection::Initialize() {
+		//エラーチェック
+		if (impl_().error_que.size() > 0) {
+			std::string estr;
+			for (auto&& err : impl_().error_que) {
+				estr += "\t";
+				estr += err;
+				estr += "\n";
+			}
+			impl_().error_que.clear();
+			throw reflection_error(util::ConvertAndConnectToString("エラーが存在するため初期化を行えませんでした。エラー内容:\n", estr));
+		}
+		//リフレクション情報の処理
 		impl_().ProcessReflectionData();
 		impl_().is_initialized_ = true;
-		return true;
 	}
 
 }
