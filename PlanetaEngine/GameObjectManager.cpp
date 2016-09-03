@@ -21,6 +21,7 @@ namespace planeta {
 	}
 
 	int GameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go) {
+		assert(go != nullptr);
 		int id = _id_counter++;
 		go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
 		if (go->ProcessInitialization() == false) {
@@ -32,6 +33,7 @@ namespace planeta {
 	}
 
 	int GameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
+		assert(go != nullptr);
 		int id = RegisterAndInitializeGameObject_(go);
 		if (id < -1) { return -1; }
 		name_id_map_.emplace(name, id);
@@ -40,20 +42,20 @@ namespace planeta {
 
 	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id) {
 		auto go = CreateAndSetUpGameObject_(game_object_type_id, file_id);
-		if (go != nullptr && RegisterAndInitializeGameObject_(go)) {
+		if (go != nullptr && RegisterAndInitializeGameObject_(go)>=0) {
 			return go;
 		} else {
-			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
+			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。(GameObjectTypeID:", game_object_type_id, ", FileID:", file_id, ")");
 			return nullptr;
 		}
 	}
 
 	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name) {
 		auto go = CreateAndSetUpGameObject_(game_object_type_id, file_id);
-		if (go != nullptr && RegisterAndInitializeGameObject_(go, name)) {
+		if (go != nullptr && RegisterAndInitializeGameObject_(go, name)>=0) {
 			return go;
 		} else {
-			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。");
+			PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。(GameObjectTypeID:", game_object_type_id, ", FileID:", file_id, ")");
 			return nullptr;
 		}
 	}

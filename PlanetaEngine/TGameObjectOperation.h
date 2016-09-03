@@ -6,6 +6,7 @@
 namespace planeta {
 	class TGameObjectOperation : public Task {
 	public:
+		using Super = Task;
 		using Task::Task;
 		/**
 		* @brief 操作対象のゲームオブジェクトをセットする
@@ -37,4 +38,5 @@ namespace planeta {
 		util::DelegateConnection activate_event_connection_;
 		util::DelegateConnection inactivate_event_connection_;
 	};
+	PE_TASK_CLASS(TGameObjectOperation);
 }

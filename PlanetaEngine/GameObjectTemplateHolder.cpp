@@ -14,19 +14,25 @@ namespace planeta {
 			auto gtit = game_object_templates_.find(game_object_type_id);
 			if (gtit == game_object_templates_.end()) {
 				go_temp = CreateGameObject_(game_object_type_id, file_id, post_instantiate_proc);
+				if (go_temp == nullptr) { return nullptr; }
 				game_object_templates_.emplace(game_object_type_id, std::unordered_map<std::string, std::shared_ptr<GameObjectBase>>{ { file_id, go_temp } });
 			} else {
 				decltype(auto) fileid_temp_map = gtit->second;
 				auto fit = fileid_temp_map.find(file_id);
 				if (fit == fileid_temp_map.end()) {
 					go_temp = CreateGameObject_(game_object_type_id, file_id, post_instantiate_proc);
+					if (go_temp == nullptr) { return nullptr; }
 					fileid_temp_map.emplace(file_id, go_temp);
 				} else {
 					go_temp = fit->second;
 				}
 			}
+			assert(go_temp != nullptr);
 			//テンプレートをクローンし、返す
 			auto ngo = go_temp->Clone();
+			if (ngo == nullptr) {
+				PE_LOG_ERROR("GameObjectテンプレートからのクローン作製に失敗しました。");
+			}
 			return ngo;
 		}
 

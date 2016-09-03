@@ -18,6 +18,7 @@ namespace planeta {
 	class Task :
 		public core::Object, private util::NonCopyable<Task> {
 	public:
+		using Super = core::Object;
 		using GameObjectAccessorType = util::WeakPointer<IGameObject>;
 		Task();
 		virtual ~Task();
@@ -70,6 +71,7 @@ namespace planeta {
 		virtual bool OnCreated() { return true; }
 		virtual void OnDisposed() {};
 	};
+	PE_REFLECTABLE_CLASS(Task);
 }
 
 #define PE_TASK_CLASS(type)\

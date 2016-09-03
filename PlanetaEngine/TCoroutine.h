@@ -8,6 +8,7 @@ namespace planeta {
 
 	class TCoroutine :public Task {
 	public:
+		using Super = Task;
 		using coroutine = boost::coroutines2::coroutine<void>;
 		using func_arg_type = coroutine::push_type&;
 		using Task::Task;
@@ -21,4 +22,5 @@ namespace planeta {
 		std::unique_ptr<coroutine::pull_type> coroutine_;
 		void Start();
 	};
+	PE_TASK_CLASS(TCoroutine);
 }

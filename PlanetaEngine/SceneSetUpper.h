@@ -15,6 +15,7 @@ namespace planeta {
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
 	class SceneSetUpper : public core::Object, private util::NonCopyable<SceneSetUpper> {
 	public:
+		using Super = core::Object;
 		SceneSetUpper() = default;
 		virtual ~SceneSetUpper() = default;
 		/*シーンを初期化する
@@ -44,6 +45,7 @@ namespace planeta {
 		*/
 		virtual util::ParameterHolder FinalizeScene(SceneSetUpProxy& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) = 0;
 	};
+	PE_REFLECTABLE_CLASS(SceneSetUpper);
 }
 
 #define PE_SCENE_CLASS(type)\

@@ -5,6 +5,7 @@
 namespace planeta {
 	class TGInstant final : public TGameObjectOperation {
 	public:
+		using Super = TGameObjectOperation;
 		void SetExcuteFunction(const std::function<void()>& func) { function_ = func; }
 	private:
 		std::function<void()> function_;
