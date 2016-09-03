@@ -76,5 +76,5 @@ namespace planeta {
 		/*衝突グループ名*/
 		std::string collision_group_name_;
 	};
-	PE_REFLECTABLE_CLASS(CCollider2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CCollider2D);
 }

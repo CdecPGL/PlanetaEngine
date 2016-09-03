@@ -85,5 +85,5 @@ namespace planeta {
 		bool OnActivated()override final;
 		bool OnInactivated()override final;
 	};
-	PE_REFLECTABLE_CLASS(CTransform2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CTransform2D);
 }

@@ -25,5 +25,5 @@ namespace planeta {
 		virtual bool OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	};
-	PE_REFLECTABLE_CLASS(CCamera2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CCamera2D);
 }

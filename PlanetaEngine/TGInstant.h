@@ -10,5 +10,5 @@ namespace planeta {
 		std::function<void()> function_;
 		void Update() override;
 	};
-	PE_REFLECTABLE_CLASS(TGInstant);
+	PE_TASK_CLASS(TGInstant);
 }

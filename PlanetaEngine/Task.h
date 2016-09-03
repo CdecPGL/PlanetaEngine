@@ -71,3 +71,6 @@ namespace planeta {
 		virtual void OnDisposed() {};
 	};
 }
+
+#define PE_TASK_CLASS(type)\
+PE_REFLECTABLE_CLASS(type)

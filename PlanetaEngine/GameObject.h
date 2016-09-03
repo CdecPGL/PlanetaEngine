@@ -17,6 +17,7 @@ namespace planeta {
 		template<typename Arg> struct GOI_is_base_of :public std::is_base_of<GameObjectInterface<Arg>, Arg> {};
 		static_assert(mp_utiliey::AllOf<GOI_is_base_of, GOI...>::value == true, "GOI must derive GameObjectInterface.");
 	public:
+		using Super = GameObjectBase;
 		//! 規定のコンストラクタ
 		GameObject():GOI(*this)... {}
 	private:
@@ -30,3 +31,6 @@ namespace planeta {
 		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
 	};
 }
+
+#define PE_GAMEOBJECT_CLASS(type)\
+PE_REFLECTABLE_CLASS_SPECIFY_SUPER(type,planeta::GameObjectBase)

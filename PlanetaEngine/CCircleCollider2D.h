@@ -16,5 +16,5 @@ namespace planeta {
 
 		double _radius = 1.0;
 	};
-	PE_REFLECTABLE_CLASS(CCircleCollider2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CCircleCollider2D);
 }

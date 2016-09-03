@@ -19,6 +19,7 @@ namespace planeta {
 	*/
 	class GameObjectBase :public core::Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
+		using Super = core::Object;
 		GameObjectBase();
 		~GameObjectBase();
 
@@ -130,4 +131,5 @@ namespace planeta {
 		util::Delegate<void> inactivated_event_delegate_;
 		util::Delegate<void> disposed_event_delegate_;
 	};
+	PE_REFLECTABLE_CLASS(GameObjectBase);
 }

@@ -9,5 +9,5 @@ namespace planeta {
 	private:
 		bool DetectCollision(core::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }
 	};
-	PE_REFLECTABLE_CLASS(CPolygonCollider2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CPolygonCollider2D);
 }

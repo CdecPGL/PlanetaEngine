@@ -15,5 +15,5 @@ namespace planeta {
 		bool OnInitialized() override;
 		void Update();
 	};
-	PE_REFLECTABLE_CLASS(CBelongingGroundGravity);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CBelongingGroundGravity);
 }

@@ -16,5 +16,5 @@ namespace planeta {
 		Vector2Dd NormalizeGroundVectorWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_vector) const override;
 		double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2Dd& ground_pos) const override;
 	};
-	PE_REFLECTABLE_CLASS(CPlanetGround2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CPlanetGround2D);
 }

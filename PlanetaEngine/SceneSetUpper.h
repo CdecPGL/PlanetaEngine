@@ -45,3 +45,6 @@ namespace planeta {
 		virtual util::ParameterHolder FinalizeScene(SceneSetUpProxy& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) = 0;
 	};
 }
+
+#define PE_SCENE_CLASS(type)\
+PE_REFLECTABLE_CLASS(type)

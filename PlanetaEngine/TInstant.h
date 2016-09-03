@@ -15,6 +15,6 @@ namespace planeta {
 		unsigned int number_of_times_implemented_ = 0; //実行回数(0で無限)
 		unsigned int count_of_times_implemented_; //実行回数カウンタ
 	};
-	PE_REFLECTABLE_CLASS(TInstant);
+	PE_TASK_CLASS(TInstant);
 }
 

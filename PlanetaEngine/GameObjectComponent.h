@@ -87,3 +87,6 @@ namespace planeta {
 	};
 	PE_REFLECTABLE_CLASS(GameObjectComponent);
 }
+
+#define PE_GAMEOBJECTCOMPONENT_CLASS(type)\
+PE_REFLECTABLE_CLASS(type)

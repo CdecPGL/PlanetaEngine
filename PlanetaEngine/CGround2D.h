@@ -46,5 +46,5 @@ namespace planeta {
 		/*指定地形座標で地形座標系回転度のグローバル座標系回転度との差を取得する*/
 		virtual double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2Dd& ground_pos)const = 0;
 	};
-	PE_REFLECTABLE_CLASS(CGround2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(CGround2D);
 }

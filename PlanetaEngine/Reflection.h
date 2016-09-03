@@ -1,7 +1,7 @@
 ﻿/*Reflectionライブラリ
 Version 1.0.0 2016/9/1
 Version 1.0.1 2016/9/2 Reflectableクラスをコピームーブ可能に。RegisterObject時のエラー報告を初期化時に行うよう変更。
-Version 1.0.2 2016/9/3 RE_REFLECTABLE_CLASSで、登録トリガーの無名名前空間変数が、翻訳空間ごとに作成されることが原因でクラスの重複登録エラーが起きていたのを修正。
+Version 1.0.2 2016/9/3 RE_REFLECTABLE_CLASSで、登録トリガーの無名名前空間変数が、翻訳空間ごとに作成されることが原因でクラスの重複登録エラーが起きていたのを修正。基底型を指定して登録することを可能に。
 
 @exception noexcept出ないクラスは、reflection_errorを投げる可能性がある
 
@@ -15,6 +15,9 @@ Version 1.0.2 2016/9/3 RE_REFLECTABLE_CLASSで、登録トリガーの無名名�
 #include <memory>
 #include <functional>
 #include <type_traits>
+
+#include "boost/core/enable_if.hpp"
+
 #include "SystemLog.h"
 #include "ClassRegisterer.h"
 #include "ReflectionExceptions.h"
@@ -35,8 +38,6 @@ namespace planeta {
 		static void RegisterObject(const std::string& object_type_id, std::unique_ptr<private_::ClassInfo>&& class_info) {
 			static_assert(std::is_base_of<Reflectable, T>::value == true, "T must derive Reflectable.");
 			//PE_LOG_MESSAGE("Object is registered.", id);
-			class_info->this_t_info = typeid(T);
-			class_info->super_t_info = typeid(T::Super);
 			RegisterObject_(typeid(T), object_type_id, std::move(class_info));
 		}
 		//! ObjectTypeIDでオブジェクトを作成
@@ -98,78 +99,104 @@ namespace planeta {
 		struct HasReflectionDataRegisterer : public std::false_type {};
 		template<class C> 
 		struct HasReflectionDataRegisterer < C, decltype(&C::ReflectionDataRegisterer, std::declval<void>()) > : public std::true_type {};
+		//C::Superを持っているか
+		template<class C, typename T = void>
+		struct HasSuperAlias : public std::false_type {};
 		template<class C>
-		constexpr bool HasReflection_v = typename HasReflectionDataRegisterer<C>::value;
+		struct HasSuperAlias < C, decltype(std::declval<typename C::Super>(), std::declval<void>()) > : public std::true_type {};
 
-		//Cが抽象クラスでない場合
-		template<typename C, typename T = void>
+		//抽象クラスでクリエータが指定された場合(ありえないので定義しない)
+		/*template<class C>
+		auto SetCreator(ClassInfo& ci, const std::function<std::shared_ptr<Reflectable>()>& creator) -> typename boost::enable_if<std::is_abstract<C>, void>::type {
+			ci.is_abstract = true;
+		}*/
+		//抽象クラスでなくクリエータが指定された場合
+		template<class C>
+		auto SetCreator(ClassInfo& ci, const std::function<std::shared_ptr<Reflectable>()>& creator) -> typename boost::disable_if<std::is_abstract<C>, void>::type {
+			ci.is_abstract = false;
+			ci.creator = creator;
+		}
+		//抽象クラスでクリエータが指定されていない場合
+		template<class C>
+		auto SetCreator(ClassInfo& ci) -> typename boost::enable_if<std::is_abstract<C>, void>::type {
+			ci.is_abstract = true;
+		}
+		//抽象クラスでなくクリエータが指定されていない場合
+		template<class C>
+		auto SetCreator(ClassInfo& ci) -> typename boost::disable_if<std::is_abstract<C>, void>::type {
+			ci.is_abstract = false;
+			ci.creator = [] {return std::make_shared<C>(); };
+		}
+		//ReflectionDataRegisterer静的関数を持っている場合
+		template<class C>
+		auto RegisterReflectionData(ClassInfo& ci) -> typename boost::enable_if<HasReflectionDataRegisterer<C>, void>::type {
+			ClassRegisterer<C> cregr(ci);
+			C::ReflectionDataRegisterer(cregr);
+		}
+		//ReflectionDataRegisterer静的関数を持っていない場合
+		template<class C>
+		auto RegisterReflectionData(ClassInfo&) -> typename boost::disable_if<HasReflectionDataRegisterer<C>, void>::type {
+			//何もしない
+		}
+		//Superエイリアスを持っているとき
+		template<class C>
+		auto RegisterTypeInfo(ClassInfo& ci) -> typename boost::enable_if<HasSuperAlias<C>, void>::type {
+			ci.this_t_info = typeid(C);
+			ci.super_t_info = typeid(C::Super);
+		}
+		//Superエイリアスを持っていないとき(エラーにするために定義しない)
+		/*template<class C>
+		auto RegisterTypeInfo(ClassInfo&) -> typename boost::disable_if<HasSuperAlias<C>, void>::type {
+
+		}*/
+		//Superエイリアスを持っていて基底クラスの型情報が指定されたとき
+		template<class C>
+		auto RegisterTypeInfo(ClassInfo& ci, const std::type_info& sti) -> typename boost::enable_if<HasSuperAlias<C>, void>::type {
+			ci.this_t_info = typeid(C);
+			ci.super_t_info = sti;
+		}
+		//Superエイリアスを持っていなくて基底クラスの型情報が指定されたとき
+		template<class C>
+		auto RegisterTypeInfo(ClassInfo& ci, const std::type_info& sti) -> typename boost::disable_if<HasSuperAlias<C>, void>::type {
+			ci.this_t_info = typeid(C);
+			ci.super_t_info = sti;
+		}
+
+		template<typename C>
 		class ClassRegisterTrigger {
 		public:
-			//U::Reflectionを持っていない場合
-			template<typename U, typename V = void>
-			struct CallSwicher {
-				CallSwicher(const char* object_id, const std::function<std::shared_ptr<Reflectable>()>& creator) {
-					auto ci = std::make_unique<ClassInfo>();
-					ci->is_abstract = false;
-					ci->creator = creator;
-					Reflection::RegisterObject<C>(object_id, std::move(ci));
-				}
-				CallSwicher(const char* object_id) {
-					auto ci = std::make_unique<ClassInfo>();
-					ci->is_abstract = false;
-					ci->creator = [] {return std::make_shared<C>(); };
-					Reflection::RegisterObject<C>(object_id, std::move(ci));
-				}
-			};
-			//U::Reflectionを持っている場合
-			template<typename U>
-			struct CallSwicher<U, decltype(std::enable_if_t<HasReflection_v<U>>(), std::declval<void>())> {
-				CallSwicher(const char* object_id, const std::function<std::shared_ptr<Reflectable>()>& creator) {
-					auto ci = std::make_unique<ClassInfo>();
-					ci->is_abstract = false;
-					ci->creator = creator;
-					ClassRegisterer<C> cregr(*ci);
-					C::ReflectionDataRegisterer(cregr);
-					Reflection::RegisterObject<C>(object_id, std::move(ci));
-				}
-				CallSwicher(const char* object_id) {
-					auto ci = std::make_unique<ClassInfo>();
-					ci->is_abstract = false;
-					ci->creator = [] {return std::make_shared<C>(); };
-					ClassRegisterer<C> cregr(*ci);
-					C::ReflectionDataRegisterer(cregr);
-					Reflection::RegisterObject<C>(object_id, std::move(ci));
-				}
-			};
-
-			ClassRegisterTrigger(const char* object_id, const std::function<std::shared_ptr<Reflectable>()>& creator) { CallSwicher<C> cs(object_id, creator); }
-			ClassRegisterTrigger(const char* object_id) { CallSwicher<C> cs(object_id); }
-		};
-		//Cが抽象クラスの場合
-		template<typename C>
-		class ClassRegisterTrigger<C, decltype(std::enable_if_t<std::is_abstract_v<C>>(), std::declval<void>())> {
-		public:
-			//U::Reflectionを持っていない場合
-			template<typename U, typename V = void>
-			struct CallSwicher {
-				CallSwicher(const char* object_id) {
-					auto ci = std::make_unique<ClassInfo>();
-					ci->is_abstract = true;
-					Reflection::RegisterObject<C>(object_id, std::move(ci));
-				}
-			};
-			//U::Reflectionを持っている場合
-			template<typename U>
-			struct CallSwicher<U, decltype(std::enable_if_t<HasReflection_v<U>>(), std::declval<void>())> {
-				CallSwicher(const char* object_id) {
-					auto ci = std::make_unique<ClassInfo>();
-					ci->is_abstract = true;
-					ClassRegisterer<C> cregr(*ci);
-					C::Reflection(cregr);
-					Reflection::RegisterObject<C>(object_id, std::move(ci));
-				}
-			};
-			ClassRegisterTrigger(const char* object_id) { CallSwicher<C> cs(object_id); }
+			//オブジェクトタイプIDとクリエータを指定
+			ClassRegisterTrigger(const char* object_id, const std::function<std::shared_ptr<Reflectable>()>& creator) {
+				auto ci = std::make_unique<ClassInfo>();
+				SetCreator<C>(*ci, creator);
+				RegisterReflectionData<C>(*ci);
+				RegisterTypeInfo<C>(*ci);
+				Reflection::RegisterObject<C>(object_id, std::move(ci));
+			}
+			//オブジェクトタイプIDを指定
+			ClassRegisterTrigger(const char* object_id) { 
+				auto ci = std::make_unique<ClassInfo>();
+				SetCreator<C>(*ci);
+				RegisterReflectionData<C>(*ci);
+				RegisterTypeInfo<C>(*ci);
+				Reflection::RegisterObject<C>(object_id, std::move(ci));
+			}
+			//オブジェクトタイプIDとクリエータ、基底クラスの型情報を指定
+			ClassRegisterTrigger(const char* object_id, const std::function<std::shared_ptr<Reflectable>()>& creator, const std::type_info& sti) {
+				auto ci = std::make_unique<ClassInfo>();
+				SetCreator<C>(*ci, creator);
+				RegisterReflectionData<C>(*ci);
+				RegisterTypeInfo<C>(*ci, sti);
+				Reflection::RegisterObject<C>(object_id, std::move(ci));
+			}
+			//オブジェクトタイプID、基底クラスの型情報を指定
+			ClassRegisterTrigger(const char* object_id, const std::type_info& sti) {
+				auto ci = std::make_unique<ClassInfo>();
+				SetCreator<C>(*ci);
+				RegisterReflectionData<C>(*ci);
+				RegisterTypeInfo<C>(*ci, sti);
+				Reflection::RegisterObject<C>(object_id, std::move(ci));
+			}
 		};
 	}
 }
@@ -180,7 +207,7 @@ namespace planeta {
 		template<typename T>
 		struct ReflectableClassRegisterHelper {
 			template<typename... Params>
-			ReflectableClassRegisterHelper(Params... params) {
+			ReflectableClassRegisterHelper(Params&&... params) {
 				static planeta::private_::ClassRegisterTrigger<T> class_register_trigger{ params... };
 			}
 		};
@@ -188,14 +215,21 @@ namespace planeta {
 }
 
 /*! @def
-	Objectをシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
+	クラスをリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS(type)\
 namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
 
 /*! @def
-Objectをクリエータを指定してシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
+	クラスをリフレクションシステムに登録する(登録する型に公開型エイリアスSuperは定義されている必要はない。定義されていても参照されない)
+	@param type 型
+*/
+#define PE_REFLECTABLE_CLASS_SPECIFY_SUPER(type, super)\
+namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, typeid(super)}; }
+
+/*! @def
+クラスをクリエータを指定してリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
 @param type 型
 @param creator クリエータ(std::shared_ptr<Object>()の関数型)
 */
