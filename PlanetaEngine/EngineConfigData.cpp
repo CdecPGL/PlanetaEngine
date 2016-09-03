@@ -49,9 +49,9 @@ namespace planeta {
 					engine::DrawSize_.Set(buf_array[0], buf_array[1]);
 					buf_array = *engine_obj->AtWithException("WindowSize")->GetWithException<std::vector<int>>();
 					engine::WindowSize_.Set(buf_array[0], buf_array[1]);
-					engine::ResourceDecryptionKey_ = *engine_obj->AtWithException("ColorBitDepthResourceDecryptionKey")->GetWithException<int>();
+					engine::ResourceDecryptionKey_ = *engine_obj->AtWithException("ColorBitDepth")->GetWithException<int>();
 					user::WindowSizeConfigurable_ = *user_obj->AtWithException("WindowSizeConfigurable")->GetWithException<bool>();
-					user::WindowModeConfigurable_ = *user_obj->AtWithException("WindowSModeConfigurable")->GetWithException<bool>();
+					user::WindowModeConfigurable_ = *user_obj->AtWithException("WindowModeConfigurable")->GetWithException<bool>();
 				} catch (std::out_of_range& e) {
 					PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
 					return false;

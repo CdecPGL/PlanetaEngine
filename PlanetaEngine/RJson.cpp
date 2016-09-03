@@ -14,7 +14,7 @@ namespace planeta {
 				//UTF8からシステム文字コードに変換
 				return std::make_shared<JSONValue>(std::make_shared<std::string>(util::ConvertUTF8ToSystemCode(pj_value.get<std::string>())));
 			} else if (pj_value.is<bool>()) {
-				return std::make_shared<JSONValue>(std::make_shared<double>(pj_value.get<bool>()));
+				return std::make_shared<JSONValue>(std::make_shared<bool>(pj_value.get<bool>()));
 			} else if (pj_value.is<picojson::object>()) {
 				decltype(auto) pj_obj = pj_value.get<picojson::object>();
 				std::unordered_map<std::string, std::shared_ptr<JSONValue>> out;
