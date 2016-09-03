@@ -21,7 +21,7 @@ namespace planeta {
 		Reflectable& operator=(Reflectable&& obj)noexcept;
 		//! 変数またはプロパティを変更する
 		template<typename T>
-		void SetVariable(const std::string& var_id, const T& v) {
+		void ReflectiveSetVariable(const std::string& var_id, const T& v) {
 			SetVariable_(var_id, v);
 		}
 		/*!
@@ -29,7 +29,7 @@ namespace planeta {
 		@todo コピー不可能な型を取得できない
 		*/
 		template<typename T>
-		void GetVariable(const std::string& var_id, T& v) {
+		void ReflectiveGetVariable(const std::string& var_id, T& v) {
 			boost::any av;
 			GetVariable_(var_id, av);
 			try {
@@ -40,11 +40,11 @@ namespace planeta {
 			}
 		}
 		//! クローンを作成する
-		std::shared_ptr<Reflectable> Clone();
+		std::shared_ptr<Reflectable> ReflectiveClone();
 		//! コピーする(未実装)
-		void CopyFrom(const Reflectable& src);
+		void ReflectiveCopyFrom(const Reflectable& src);
 		//! boost::ptreeからデータの読み込み
-		void LoadFromPtree(const boost::property_tree::ptree& pt);
+		void ReflectiveLoadFromPtree(const boost::property_tree::ptree& pt);
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;

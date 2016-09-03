@@ -62,11 +62,11 @@ namespace planeta {
 		impl_->class_info_caller().GetVariable(var_id, *this, v);
 	}
 
-	std::shared_ptr<Reflectable> Reflectable::Clone() {
+	std::shared_ptr<Reflectable> Reflectable::ReflectiveClone() {
 		return impl_->class_info_caller().Clone(*this);
 	}
 
-	void Reflectable::LoadFromPtree(const boost::property_tree::ptree& pt) {
+	void Reflectable::ReflectiveLoadFromPtree(const boost::property_tree::ptree& pt) {
 		try {
 			impl_->class_info_caller().SetDataFromPtree(pt, *this);
 		} catch (reflection_error& e) {
@@ -74,7 +74,7 @@ namespace planeta {
 		}
 	}
 
-	void Reflectable::CopyFrom(const Reflectable& obj) {
+	void Reflectable::ReflectiveCopyFrom(const Reflectable& obj) {
 		impl_->class_info_caller().CopyFrom(*this, obj);
 	}
 }
