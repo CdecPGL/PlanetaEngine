@@ -7,7 +7,7 @@ namespace planeta {
 	namespace util {
 		/*時間クラス
 		演算結果が負になる場合はすべて0とする*/
-		class Time : public core::Object {
+		class Time : public Object {
 		public:
 			Time() :Time(0) {}
 			/*コンストラクタ(秒)*/

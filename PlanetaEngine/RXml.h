@@ -5,7 +5,7 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	class XMLElement :public core::Object {
+	class XMLElement :public Object {
 	public:
 		std::shared_ptr<const XMLElement> FindFirstChild(const std::string& name)const;
 		void AddChild(const std::string& name, const std::shared_ptr<XMLElement>& elem);

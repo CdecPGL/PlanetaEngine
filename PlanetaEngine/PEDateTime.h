@@ -7,7 +7,7 @@ namespace planeta {
 	namespace util {
 		/*日にち時間クラス
 		演算結果が負になる場合はすべて0とする*/
-		class DateTime : public core::Object {
+		class DateTime : public Object {
 		public:
 			DateTime():DateTime(0, 0, 0, 0, 0, 0) {}
 			/*コンストラクタ(年、月、日、時間、分、秒)*/

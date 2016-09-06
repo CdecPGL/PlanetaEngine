@@ -8,7 +8,7 @@
 namespace planeta {
 	class File;
 	class FileManipulatorBase;
-	class FileAccessor final : public core::Object {
+	class FileAccessor final : public Object {
 	public:
 		FileAccessor(const std::shared_ptr<FileManipulatorBase>& manipulator, AccessMode mode);
 		~FileAccessor() = default;

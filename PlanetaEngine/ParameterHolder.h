@@ -4,7 +4,7 @@
 
 namespace planeta {
 	namespace util {
-		class ParameterHolder final: public core::Object{
+		class ParameterHolder final: public Object{
 		public:
 			/*フラグを設定(名前、値)*/
 			bool SetFlag(const std::string& name, bool value) { _flag_map[name] = value; }

@@ -276,9 +276,6 @@
     <ClInclude Include="Memory.h">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClInclude>
     <ClInclude Include="UnorderedMap.h">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClInclude>
@@ -858,11 +855,11 @@
     <ClInclude Include="GameObejctComponentReferencer.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Object.cpp">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClCompile>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
       <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClCompile>
@@ -1219,6 +1216,9 @@
     </ClCompile>
     <ClCompile Include="Reflectable.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

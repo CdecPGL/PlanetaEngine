@@ -10,7 +10,7 @@ namespace planeta {
 	namespace encrypters {
 		class EncrypterBase;
 	}
-	class FileManipulatorBase : public core::Object {
+	class FileManipulatorBase : public Object {
 	public:
 		explicit FileManipulatorBase(const std::string& p, bool auto_create) :path_(p), is_valid_(false), auto_create_(auto_create) {}
 		explicit FileManipulatorBase(const std::string& p, std::shared_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) :path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {}

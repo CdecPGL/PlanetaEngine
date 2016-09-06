@@ -7,7 +7,7 @@
 #include <istream>
 
 namespace planeta {
-	class File : public core::Object {
+	class File : public Object {
 	public:
 		/*ファイルの状態(利用可能、暗号化されている、ロードされていない、問題発生)*/
 		enum class FileStatus { Available, Encrypted, Unloaded, Error };

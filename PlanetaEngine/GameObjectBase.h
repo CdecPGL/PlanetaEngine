@@ -18,9 +18,9 @@ namespace planeta {
 	class GOComponentGetter;
 	/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 	*/
-	class GameObjectBase :public core::Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
+	class GameObjectBase :public Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
-		using Super = core::Object;
+		using Super = Object;
 		GameObjectBase();
 		~GameObjectBase();
 

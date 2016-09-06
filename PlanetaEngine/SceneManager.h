@@ -16,7 +16,7 @@ namespace planeta{
 		/*シーン管理クラス
 		非同期処理は未実装だが、実装した場合に変更が少なくなるよう、使い方は非同期処理がある場合と同じ。
 		*/
-		class SceneManager : public core::Object,public ISceneManagerAccessor{
+		class SceneManager : public Object,public ISceneManagerAccessor{
 		public:
 			explicit SceneManager();
 			SceneManager(const SceneManager&) = delete;

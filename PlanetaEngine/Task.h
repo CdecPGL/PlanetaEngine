@@ -16,9 +16,9 @@ namespace planeta {
 	}
 	class IGameObject;
 	class Task :
-		public core::Object, private util::NonCopyable<Task> {
+		public Object, private util::NonCopyable<Task> {
 	public:
-		using Super = core::Object;
+		using Super = Object;
 		using GameObjectAccessorType = util::WeakPointer<IGameObject>;
 		Task();
 		virtual ~Task();

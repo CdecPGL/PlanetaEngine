@@ -7,7 +7,7 @@ namespace planeta {
 	class File;
 	class FileAccessor;
 	namespace core {
-		class ResourceBase : public core::Object{
+		class ResourceBase : public Object{
 		public:
 			ResourceBase() = default;
 			virtual ~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } };

@@ -21,9 +21,9 @@ namespace planeta {
 		@attention クラス宣言の先頭にPE_CLONABLE_GAMEOBJECTCOMPONENTマクロ、抽象クラスならPE_COPIABLE_GAMEOBJECTCOMPONENTを記述しなければならない。
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
 	*/
-	class GameObjectComponent : public core::Object, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
+	class GameObjectComponent : public Object, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
 	public:
-		using Super = core::Object;
+		using Super = Object;
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
 		bool SetSceneAndHolderGOData(const core::GameObjectComponentSetUpData& resistration_data);

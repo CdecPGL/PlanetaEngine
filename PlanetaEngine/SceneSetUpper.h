@@ -13,9 +13,9 @@ namespace planeta {
 		class Scene;
 	}
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
-	class SceneSetUpper : public core::Object, private util::NonCopyable<SceneSetUpper> {
+	class SceneSetUpper : public Object, private util::NonCopyable<SceneSetUpper> {
 	public:
-		using Super = core::Object;
+		using Super = Object;
 		SceneSetUpper() = default;
 		virtual ~SceneSetUpper() = default;
 		/*シーンを初期化する

@@ -3,6 +3,5 @@
 #include <cassert>
 
 namespace planeta{
-	namespace core {
-	}
+	
 }

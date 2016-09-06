@@ -1,7 +1,5 @@
 ﻿#pragma once
 
-#include "Object.h"
-
 namespace planeta {
 	class File;
 	namespace encrypters {
