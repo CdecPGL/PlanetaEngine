@@ -8,7 +8,7 @@
 #include "TGameObjectOperation.h"
 #include "GOComponentAdder.h"
 #include "GOComponentGetter.h"
-#include "RJson.h"
+#include "RPtree.h"
 #include "ResourceManager.h"
 #include "Reflection.h"
 
@@ -49,45 +49,35 @@ namespace planeta {
 		return true;
 	}
 
-	bool GameObjectBase::ProcessLoading(const JSONObject& json_object) {
-		for (auto&& com_defs : json_object) {
+	bool GameObjectBase::ProcessLoading(const boost::property_tree::ptree& pt) {
+		for (auto&& com_defs : pt) {
 			std::string alias = com_defs.first;
 			auto it = component_holder_.alias_idx_map().find(alias);
 			if (it == component_holder_.alias_idx_map().end()) {
 				PE_LOG_ERROR("エイリアス\"", alias, "\"が指定されましたが、対応するエイリアスのゲームオブジェクトコンポーネントが存在しません。");
 				return false;
 			}
-			auto jval = com_defs.second;
-			//JsonObjectとして読み込んでみる
-			auto jobj = jval->Get<JSONObject>();
-			//だめならstd::stringとして読み込んでみる
-			if (jobj == nullptr) {
-				auto jstr = jval->Get<std::string>();
-				if (jstr) {
-					std::string res_id = *jstr;
-					auto jres = private_::ResourceManager::instance().GetResource<RJson>(res_id);
-					//指定されたリソースがない
-					if (jres == nullptr) {
-						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたJsonリソース\"", res_id, "\"を読み込めませんでした。");
-						return false;
-					}
-					jobj = jres->GetRoot().Get<JSONObject>();
-					//指定JsonファイルのルートがObjectでない
-					if (jobj == nullptr) {
-						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")の定義ファイル\"", res_id, "\"のルートはJsonObject型でなければいけません。");
-						return false;
-					}
-				} else { //JObjでもstd::stringでもだめだったらエラー
-					PE_LOG_ERROR("ゲームオブジェクトコンポーネント定義(\"エイリアス:", alias, "\")の型が不正です。JSONObject型で直接定義するか、文字列型で定義ファイルを指定してください。");
+			auto cd_pt = com_defs.second;
+
+			//文字列として読み込んでみる
+			std::string res_id = cd_pt.get_value<std::string>();
+			//文字列が空でなかったらリソースIDとみなす
+			if (!res_id.empty()) {
+				auto jres = private_::ResourceManager::instance().GetResource<RPtree>(res_id);
+				//指定されたリソースがない
+				if (jres == nullptr) {
+					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
 					return false;
 				}
+				cd_pt = *(jres->GetPtree());
 			}
-			return false;
-			//JsonObjの取得に成功したので読み込み
-			/*if (!it->second->Load(*jobj)) {
-				PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。");
+			//Ptreeからリフレクションシステムを用いて読み込み
+			try {
+				component_holder_.component_array()[it->second]->ReflectiveLoadFromPtree(cd_pt);
+			} catch (reflection_error& e) {
+				PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。(", e.what(), ")");
 				return false;
-			}*/
+			}
 		}
 		return true;
 	}

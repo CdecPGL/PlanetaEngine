@@ -158,7 +158,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
-    <ClInclude Include="GameObejctComponentReferencer.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
@@ -190,6 +189,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="NonOwingPointer.h" />
     <ClInclude Include="picojson.h" />
     <ClInclude Include="ProgramDefinitionData.h" />
+    <ClInclude Include="RPtree.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
@@ -386,6 +386,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InitializeFunctionsDxLib.cpp" />
     <ClCompile Include="ISerializable.cpp" />
     <ClCompile Include="RJson.cpp" />
+    <ClCompile Include="RPtree.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="StringUtility.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />

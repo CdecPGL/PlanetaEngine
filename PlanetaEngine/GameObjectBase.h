@@ -46,7 +46,7 @@ namespace planeta {
 		//クローン時の処理
 		bool ProcessClonation(const std::shared_ptr<GameObjectBase>& dst);
 		//ロード時の処理
-		bool ProcessLoading(const JSONObject& json_object);
+		bool ProcessLoading(const boost::property_tree::ptree& pt);
 		//初期化時の処理
 		bool ProcessInitialization();
 		//有効化時の処理

@@ -10,9 +10,14 @@ namespace planeta {
 	public:
 		SceneSetUpProxy(private_::Scene& scene);
 		//ゲームオブジェクトを作成
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& id);
 		//ゲームオブジェクトを作成して有効化
-		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id);
+		util::WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& id);
+		//ゲームオブジェクトを作成
+		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id, const std::string& file_id);
+		//ゲームオブジェクトを作成して有効化
+		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id, const std::string& file_id);
+
 		//タスクを作成
 		template<class T>
 		util::WeakPointer<T> CreateTask(TaskSlot slot) {

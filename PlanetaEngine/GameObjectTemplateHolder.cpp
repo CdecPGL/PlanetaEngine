@@ -3,7 +3,7 @@
 #include "Reflection.h"
 #include "GameObjectBase.h"
 #include "ResourceManager.h"
-#include "RJson.h"
+#include "RPtree.h"
 
 #include "SceneData.h"
 
@@ -59,18 +59,13 @@ namespace planeta {
 				return ngo;
 			}
 			//ファイル読み込み
-			auto json_res = ResourceManager::instance().GetResource<RJson>(file_id);
-			if (json_res == nullptr) {
+			auto ptree_res = ResourceManager::instance().GetResource<RPtree>(file_id);
+			if (ptree_res == nullptr) {
 				PE_LOG_ERROR("ゲームオブジェクト定義リソース\"", file_id, "\"の読み込みに失敗しました。");
 				return nullptr;
 			}
-			try {
-				if(!ngo->ProcessLoading(*json_res->GetRoot().GetWithException<JSONObject>())) {
-					PE_LOG_ERROR("ゲームオブジェクトへファイル定義\"",file_id,"\"を読み込むことができませんでした。");
-					return nullptr;
-				}
-			} catch (JSONTypeError&) {
-				PE_LOG_ERROR("ゲームオブジェクト定義リソースのJSONファイルは、ルートValueがObjectである必要があります。");
+			if (!ngo->ProcessLoading(*ptree_res->GetPtree())) {
+				PE_LOG_ERROR("ゲームオブジェクトへファイル定義\"", file_id, "\"を読み込むことができませんでした。");
 				return nullptr;
 			}
 			//成功

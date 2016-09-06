@@ -852,11 +852,11 @@
     <ClInclude Include="TypeTraitsUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="GameObejctComponentReferencer.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="RPtree.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1219,6 +1219,9 @@
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="RPtree.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
