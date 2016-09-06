@@ -8,7 +8,7 @@ namespace planeta {
 		using Super = CPlanetGround2D;
 	private:
 		util::NonOwingPointer<CPlanet> planet_component_;
-		bool OnInitialized(const GOComponentGetter& com_getter)override;
+		bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
 		virtual bool CollideWith(CCircleCollider2D& circle_collider) override;
 		double GetAltitudeWithGroundPosition(const Vector2Dd& ground_pos) const override;
 		Vector2Dd ConvertPositionGlobalToGround(const Vector2Dd& global_pos) const override;

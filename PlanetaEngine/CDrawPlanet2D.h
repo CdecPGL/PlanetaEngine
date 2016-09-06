@@ -37,7 +37,8 @@ namespace planeta {
 		std::shared_ptr<private_::GraphDrawData2D> graph_draw_data_;
 		/*テクスチャマッピングモード*/
 		TextureMappingMode tex_map_mode_;
-		virtual bool OnInitialized(const GOComponentGetter& com_getter) override;
+		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
+		virtual bool OnInitialized() override;
 		virtual void OnFinalized()noexcept override;
 		util::NonOwingPointer<CPlanet> _planet_component;
 		/*ポリゴンセット*/

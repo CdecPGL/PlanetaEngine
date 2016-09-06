@@ -95,15 +95,23 @@ namespace planeta {
 	bool GameObjectBase::ProcessInitialization() {
 		GOComponentGetter com_getter(component_holder_);
 
+		decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
+		decltype(auto) com_ary = component_holder_.component_array();
+
+		for (auto&& alias_idx : com_alias_idx_map) {
+			if (!com_ary[alias_idx.second]->GetOtherComponentsProc(com_getter)) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"でほかのオブジェクトを取得する処理に失敗しました。");
+				return false;
+			}
+		}
+
 		if (!OnInitialized(com_getter)) {
 			PE_LOG_ERROR("GameObjectの初期化処理に失敗しました。");
 			return false;
 		}
 
-		decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
-		decltype(auto) com_ary = component_holder_.component_array();
 		for (auto&& alias_idx : com_alias_idx_map) {
-			if(!com_ary[alias_idx.second]->Initialize(com_getter)) {
+			if(!com_ary[alias_idx.second]->Initialize()) {
 				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"の初期化処理に失敗しました。");
 				return false;
 			}

@@ -54,7 +54,7 @@ namespace planeta {
 		CTransform2D& transform2d() { return *transform2d_; }
 		const CTransform2D& transform2d()const { return *transform2d_; }
 	protected:
-		virtual bool OnInitialized(const GOComponentGetter& com_getter)override;
+		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
 	private:
 		bool OnActivated() override final;
 		bool OnInactivated() override final;

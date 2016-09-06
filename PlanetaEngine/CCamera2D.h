@@ -19,7 +19,8 @@ namespace planeta {
 		double expansion_ = 1.0;
 
 		util::NonOwingPointer<CTransform2D> transform2d_;
-		virtual bool OnInitialized(const GOComponentGetter& com_getter) override;
+		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
+		virtual bool OnInitialized()override;
 		virtual bool OnActivated() override;
 		virtual bool OnInactivated() override;
 		virtual void OnFinalized() noexcept override;

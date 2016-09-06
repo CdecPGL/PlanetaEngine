@@ -11,7 +11,8 @@ namespace planeta {
 	private:
 		util::NonOwingPointer<CTransform2D> transform2d_;
 		double _gravity_scale = 0.5;
-		bool OnInitialized(const GOComponentGetter& com_getter) override;
+		bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
+		bool OnInitialized()override;
 		void Update();
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CBelongingGroundGravity);

@@ -131,6 +131,20 @@ namespace planeta {
 			UpdateGlobalPhisic();
 		}
 	public:
+		//速度空間
+		Space velocity_space = Space::Ground;
+		//トランスフォーム2D_ID
+		int t2d_id_ = -1;
+		//更新イベントデリゲート
+		util::Delegate<void> updated_event_delegate;
+
+		Impl_& operator=(const Impl_& obj) {
+			global = obj.global;
+			ground = obj.ground;
+			belonging_ground = obj.belonging_ground;
+			velocity_space = obj.velocity_space;
+			return *this;
+		}
 
 		const Vector2Dd& position() const {
 			const_cast<Impl_*>(this)->UpdateGlobalTransform();
@@ -229,6 +243,10 @@ namespace planeta {
 		}
 
 		void SetGround(const util::WeakPointer<CGround2D>& g, bool keep_global_position) {
+			if (belonging_ground) {
+				ground_updated_event_connection.Remove();
+			}
+
 			if (keep_global_position) {
 				UpdateGlobalTransform();
 				UpdateGlobalPhisic();
@@ -238,7 +256,7 @@ namespace planeta {
 			}
 
 			belonging_ground = g;
-			belonging_ground->transform2d().AddUpdatedEventHandler(util::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
+			ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler(util::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
 
 			if (keep_global_position) {
 				last_update.position = CoordinationSpace::Global;
@@ -259,21 +277,25 @@ namespace planeta {
 			ground_position(base_pos + cground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 		}
 
+		bool Initialize() {
+			if (typeid(*belonging_ground) != typeid(CDumyGround2D)) { //所属地形があったら、自分を更新イベントリスナーに登録
+				ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler(util::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
+			}
+			return true;
+		}
+
 		void Finalize() {
 			ground_updated_event_connection.Remove();
 		}
-
-		//速度空間
-		Space velocity_space = Space::Ground;
-		//トランスフォーム2D_ID
-		int t2d_id_ = -1;
-		//更新イベントデリゲート
-		util::Delegate<void> updated_event_delegate;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
 	//CTransform2D
 	//////////////////////////////////////////////////////////////////////////
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CTransform2D) {
+		registerer.DeepCopyTarget(&CTransform2D::impl_);
+	}
+
 	CTransform2D::CTransform2D() :impl_(std::make_unique<Impl_>()) {};
 
 	CTransform2D::~CTransform2D() = default;
@@ -408,9 +430,9 @@ namespace planeta {
 		}
 	}
 
-	bool CTransform2D::OnInitialized(const GOComponentGetter& com_getter) {
-		if (!Super::OnInitialized(com_getter)) { return false; }
-		return true;
+	bool CTransform2D::OnInitialized() {
+		if (!Super::OnInitialized()) { return false; }
+		return impl_->Initialize();
 	}
 
 	void CTransform2D::OnFinalized()noexcept {
@@ -438,5 +460,4 @@ namespace planeta {
 	util::DelegateConnection CTransform2D::AddUpdatedEventHandler(util::DelegateHandlerAdder<void>&& handler_adder) {
 		return handler_adder(impl_->updated_event_delegate);
 	}
-
 }

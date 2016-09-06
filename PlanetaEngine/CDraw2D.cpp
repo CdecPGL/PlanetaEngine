@@ -58,8 +58,8 @@ namespace planeta {
 		return true;
 	}
 
-	bool CDraw2D::OnInitialized(const GOComponentGetter& com_getter) {
-		if (!Super::OnInitialized(com_getter)) { return false; }
+	bool CDraw2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dを取得できませんでした。");

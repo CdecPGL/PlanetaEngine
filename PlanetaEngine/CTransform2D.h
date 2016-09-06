@@ -10,6 +10,7 @@ namespace planeta {
 	class IGameObject;
 	/*形状情報コンポーネント*/
 	class CTransform2D : public private_::GameObjectSystemComponent {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransform2D);
 	public:
 		using Super = private_::GameObjectSystemComponent;
 		CTransform2D();
@@ -80,7 +81,7 @@ namespace planeta {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		//GOCオーバーライド
-		bool OnInitialized(const GOComponentGetter& com_getter)override final;
+		bool OnInitialized()override final;
 		void OnFinalized()noexcept override final;
 		bool OnActivated()override final;
 		bool OnInactivated()override final;

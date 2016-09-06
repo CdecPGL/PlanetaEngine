@@ -7,13 +7,18 @@
 #include "DxLib.h"
 
 namespace planeta {
-	bool CCamera2D::OnInitialized(const GOComponentGetter& com_getter) {
-		if (!Super::OnInitialized(com_getter)) { return false; }
+	bool CCamera2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_WARNING("CTransform2Dが取得できませんでした。");
 			return false;
 		}
+		return true;
+	}
+
+	bool CCamera2D::OnInitialized() {
+		if (!Super::OnInitialized()) { return false; }
 		return scene_data_ref().gameobject_draw_system.RegisterCamera(std::static_pointer_cast<CCamera2D>(shared_from_this()));
 	}
 

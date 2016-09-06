@@ -7,8 +7,8 @@
 #include "MathConstant.h"
 
 namespace planeta {
-	bool CPlanetGround2D::OnInitialized(const GOComponentGetter& com_getter) {
-		if (!CGround2D::OnInitialized(com_getter)) { return false; };
+	bool CPlanetGround2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+		if (!CGround2D::GetOtherComponentsProc(com_getter)) { return false; };
 		planet_component_.reset(com_getter.GetComponent<CPlanet>());
 		if (!planet_component_) {
 			PE_LOG_ERROR("PlanetComponentを取得できませんでした。");

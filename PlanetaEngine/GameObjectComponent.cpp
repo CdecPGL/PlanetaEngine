@@ -3,8 +3,8 @@
 #include "GameObjectComponentSetUpData.h"
 
 namespace planeta{
-		bool GameObjectComponent::Initialize(const GOComponentGetter& com_getter) {
-			if (!OnInitialized(com_getter)) {
+		bool GameObjectComponent::Initialize() {
+			if (!OnInitialized()) {
 				PE_LOG_ERROR("コンポーネントの初期化処理に失敗しました。");
 				return false;
 			}

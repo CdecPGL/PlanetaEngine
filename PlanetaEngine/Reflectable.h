@@ -59,3 +59,6 @@ public:\
 static void ReflectionDataRegisterer(ClassRegisterer<type>& registerer);\
 private:
 
+/*! リフレクションデータ登録関数の定義を行うマクロ*/
+#define PE_REFLECTION_DATA_REGISTERER_DEFINITION(type)\
+void type::ReflectionDataRegisterer(ClassRegisterer<type>& registerer)

@@ -7,8 +7,8 @@
 namespace planeta {
 	CGround2D::CGround2D() {}
 
-	bool CGround2D::OnInitialized(const GOComponentGetter& com_getter) {
-		if (!Super::OnInitialized(com_getter)) { return false; }
+	bool CGround2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dが取得できませんでした。");

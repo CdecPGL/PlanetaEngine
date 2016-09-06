@@ -37,8 +37,14 @@ namespace planeta {
 		bool is_active()const { return is_active_; }
 
 		/*システム関数(GameObjectBaseから呼び出される)*/
-		//ほかコンポーネント取得と初期化
-		bool Initialize(const GOComponentGetter& com_getter);
+		/*! @brief 保持されているゲームオブジェクトのほかのコンポーネントを取得する。
+
+		この関数内でコンポーネントを初期化することもできるが、特定のゲームオブジェクトインスタンスに依存する処理(thisのセットなど)は行ってはいけない。
+		先頭で親クラスの同関数を呼び出す必要がある。
+		*/
+		virtual bool GetOtherComponentsProc(const GOComponentGetter&) { return true; }
+		//初期化
+		bool Initialize();
 		bool Activate();
 		bool InActivate();
 		void Finalize();
@@ -55,7 +61,7 @@ namespace planeta {
 			所属するゲームオブジェクトが初期化されたときに呼び出される。ほかのコンポーネントの取得もここで行う。<br/>
 			先頭で親クラスの同関数を呼び出す必要がある。
 		*/
-		virtual bool OnInitialized(const GOComponentGetter&) { return true; };
+		virtual bool OnInitialized() { return true; };
 		/*! @brief 有効化時イベント関数
 
 			所属するゲームオブジェクトが有効化されたときに呼び出される。<br/>
