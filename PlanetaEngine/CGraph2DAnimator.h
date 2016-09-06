@@ -31,15 +31,14 @@ namespace planeta {
 
 		//アクセサ
 		void animation_data(const std::unordered_map<std::string,std::vector<FrameDataType>>& data);
-		void simple_animation_data();
 	private:
 		util::NonOwingPointer<CDrawGraph2D> draw_graph_component_;
 		unsigned int frame_counter_ = 0;
 		bool is_playing_ = false;
 		bool roop_flag_ = false;
 		unsigned int current_frame_ = 0;
-		std::unordered_map<std::string, std::shared_ptr<std::vector<FrameDataType>>> animations_;
-		std::shared_ptr<std::vector<FrameDataType>> current_animation_;
+		std::unordered_map<std::string, std::vector<FrameDataType>> animations_;
+		std::vector<FrameDataType>* current_animation_;
 		std::string current_animation_name_;
 		void SetCurrentFrameDrawAreaToDrawGraphComponent_();
 		bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;

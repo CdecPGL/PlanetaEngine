@@ -7,8 +7,9 @@
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CGraph2DAnimator) {
-		//registerer
-		//	.
+		registerer
+			.WriteOnlyProperty("animation_data", &CGraph2DAnimator::animation_data)
+			.ShallowCopyTarget(&CGraph2DAnimator::animations_);
 	}
 
 	bool CGraph2DAnimator::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
@@ -54,16 +55,14 @@ namespace planeta {
 	}
 
 	void CGraph2DAnimator::SetAnimation(const std::string& anim_name, const std::vector<FrameDataType>& frames) {
-		std::shared_ptr<std::vector<FrameDataType>> new_frames = std::make_shared<std::vector<FrameDataType>>();
-		*new_frames = frames;
-		animations_[anim_name] = new_frames;
+		animations_[anim_name] = frames;
 	}
 
 	void CGraph2DAnimator::SetAnimation(const std::string& anim_name, const std::vector<SimpleFrameDataType>& frames) {
-		std::shared_ptr<std::vector<FrameDataType>> new_frames = std::make_shared<std::vector<FrameDataType>>();
-		new_frames->resize(frames.size());
+		std::vector<FrameDataType> new_frames;
+		new_frames.resize(frames.size());
 		for (unsigned int i = 0; i < frames.size(); ++i) {
-			(*new_frames)[i] = FrameDataType(frames[i].first, frames[i].second, Vector2Dd(1.0, 1.0), 0.0);
+			new_frames[i] = FrameDataType(frames[i].first, frames[i].second, Vector2Dd(1.0, 1.0), 0.0);
 		}
 		animations_[anim_name] = new_frames;
 	}
@@ -74,7 +73,7 @@ namespace planeta {
 			PE_LOG_ERROR("存在しないアニメーションが指定されました。(", anim_name, ")");
 			return false;
 		} else {
-			current_animation_ = it->second;
+			current_animation_ = &(it->second);
 			current_animation_name_ = anim_name;
 			current_frame_ = 0;
 			frame_counter_ = 0;
@@ -87,6 +86,10 @@ namespace planeta {
 
 	void CGraph2DAnimator::StopAnimation() {
 		is_playing_ = false;
+	}
+
+	void CGraph2DAnimator::animation_data(const std::unordered_map<std::string, std::vector<FrameDataType>>& data) {
+		animations_ = data;
 	}
 
 	void CGraph2DAnimator::SetCurrentFrameDrawAreaToDrawGraphComponent_() {
