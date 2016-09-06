@@ -3,7 +3,7 @@
 #include <functional>
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class Screen;
 		class ScreenChangeEffecter {
 		public:

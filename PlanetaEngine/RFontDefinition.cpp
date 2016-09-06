@@ -16,8 +16,8 @@
 namespace planeta {
 	bool RFontDefinition::_Create(const std::shared_ptr<const File>& file) {
 		if (file->GetStatus() != File::FileStatus::Available) { return false; }
-		auto file_accessor = FileSystemManager::instance().GetFileAccessor(core::system_variables::file_system::ResourceFileAccessorID);
-		auto xml = core::MakeResource<RXml>();
+		auto file_accessor = FileSystemManager::instance().GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
+		auto xml = private_::MakeResource<RXml>();
 		if (xml->Create(file)) {
 			auto root = xml->GetRootElement();
 			auto fd_elem = root->FindFirstChild("font_definition");

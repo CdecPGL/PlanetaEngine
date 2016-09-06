@@ -10,8 +10,8 @@
 namespace planeta{
 	class SceneSetUpper;
 	class CollisionGroupMatrix;
-	namespace core {
-		class KeyInputManager;
+	class KeyInputManager;
+	namespace private_ {
 		class Scene;
 		/*シーン管理クラス
 		非同期処理は未実装だが、実装した場合に変更が少なくなるよう、使い方は非同期処理がある場合と同じ。
@@ -100,7 +100,7 @@ namespace planeta{
 			/*シーンの初期化*/
 			bool InitializeScene_(Scene& scene,SceneSetUpper& setupper, const util::ParameterHolder& init_param);
 			/*シーンの終了処理*/
-			util::ParameterHolder FinalizeScene_(core::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters);
+			util::ParameterHolder FinalizeScene_(private_::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters);
 
 		};
 	}

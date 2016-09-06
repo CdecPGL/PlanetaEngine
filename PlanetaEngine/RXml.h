@@ -20,7 +20,7 @@ namespace planeta {
 		XMLElement* parent_ = nullptr;
 	};
 
-	class RXml final : public core::ResourceBase {
+	class RXml final : public private_::ResourceBase {
 	public:
 		std::shared_ptr<const XMLElement> GetRootElement()const { return root_element_; }
 	private:

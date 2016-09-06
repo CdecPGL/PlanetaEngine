@@ -12,9 +12,9 @@ namespace planeta {
 	class ScreenDrawerGUI;
 	class CDraw2D;
 	class CCamera2D;
-	namespace core {
+	namespace private_ {
 		class Screen;
-		class GameObjectDrawSystem :public core::SceneModule, private util::NonCopyable<GameObjectDrawSystem>
+		class GameObjectDrawSystem :public private_::SceneModule, private util::NonCopyable<GameObjectDrawSystem>
 		{
 		public:
 			GameObjectDrawSystem();

@@ -12,7 +12,7 @@ namespace planeta {
 	class CStraightLineCollider2D;
 	class CTransform2D;
 	class CGround2D :
-		public GameObjectStandardComponent, public core::IColliderWithCollider2D {
+		public GameObjectStandardComponent, public private_::IColliderWithCollider2D {
 	public:
 		using Super = GameObjectStandardComponent;
 		CGround2D();

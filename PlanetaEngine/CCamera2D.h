@@ -5,9 +5,9 @@
 
 namespace planeta {
 	class CTransform2D;
-	class CCamera2D final: public core::GameObjectSystemComponent {
+	class CCamera2D final: public private_::GameObjectSystemComponent {
 	public:
-		using Super = core::GameObjectSystemComponent;
+		using Super = private_::GameObjectSystemComponent;
 		//拡大率
 		double expansion()const;
 		void expansion(double e);

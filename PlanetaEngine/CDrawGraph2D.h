@@ -8,7 +8,7 @@
 #include "Vertex2D.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class GraphDrawData2D;
 	}
 	class CDrawGraph2D final : public CDraw2D {
@@ -32,7 +32,7 @@ namespace planeta {
 		/*画像の中心位置*/
 		Vector2Dd graph_center_ = Vector2Dd(0.5, 0.5);
 		/*画像描画データ*/
-		std::shared_ptr<core::GraphDrawData2D> graph_draw_data_;
+		std::shared_ptr<private_::GraphDrawData2D> graph_draw_data_;
 		/*ポリゴン情報更新*/
 		void _UpdatePolygon();
 		/*UV座標更新*/

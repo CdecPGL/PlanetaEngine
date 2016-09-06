@@ -9,7 +9,7 @@
 #include "NormalFolderManipulator.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace init_funcs {
 			std::shared_ptr<FileAccessor> CreateFileAccessor(FileAccessorKind kind) {
 				FileSystemManager& flm = FileSystemManager::instance();

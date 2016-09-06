@@ -14,7 +14,7 @@ namespace planeta{
 	class TaskManager;
 	class ISceneManagerAccessor;
 	class CollisionGroupMatrix;
-	namespace core{
+	namespace private_{
 		class SceneSystemSetUpper;
 		struct SceneData;
 		class CollisionWorld;

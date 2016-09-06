@@ -3,7 +3,7 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		/*この関数を使ってリソースを作成することでリソースの破棄が自動で行われるようになる*/
 		template<class Res>
 		std::shared_ptr<Res> MakeResource() {

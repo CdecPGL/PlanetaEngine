@@ -2,7 +2,7 @@
 #include <ctime>
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 
 	}
 

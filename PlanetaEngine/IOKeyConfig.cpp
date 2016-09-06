@@ -33,7 +33,7 @@ namespace {
 
 namespace planeta {
 
-	namespace core {
+	namespace private_ {
 		namespace key_input_io {
 			int LoadKeyConfigFromINIFileToKIM(const std::string& fn, KeyInputManager& kim) {
 				INILoader inil;

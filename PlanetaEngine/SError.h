@@ -2,7 +2,7 @@
 #include "SceneSetUpper.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		/*シーン遷移エラー時に呼び出されるシーン*/
 		class SError : public SceneSetUpper {
 		public:

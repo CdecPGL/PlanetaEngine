@@ -11,7 +11,7 @@
 
 namespace planeta {
 	/*頂点は[0]左下,[1]右下,[2]右上,[3]左上とする*/
-	CDrawGraph2D::CDrawGraph2D() :graph_draw_data_(std::make_shared<core::GraphDrawData2D>()) {
+	CDrawGraph2D::CDrawGraph2D() :graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
 		graph_draw_data_->SetVertexCount(4);
 		graph_draw_data_->SetPolygonIndexes({ { 0,1,3 } ,{ 1,3,2 } });
 	}
@@ -19,7 +19,7 @@ namespace planeta {
 	CDrawGraph2D::~CDrawGraph2D() = default;
 
 	bool CDrawGraph2D::SetGraphResource(const std::string& resource_id) {
-		auto res = core::ResourceManager::instance().GetResource(resource_id);
+		auto res = private_::ResourceManager::instance().GetResource(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;

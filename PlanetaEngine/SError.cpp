@@ -5,7 +5,7 @@
 
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 
 		bool SError::SetUpScene(SceneSetUpProxy& scene, const util::ParameterHolder& initialize_parameters) {
 			auto ip = scene.CreateTask<TInstant>(TaskSlot::EventUpdatePhase);

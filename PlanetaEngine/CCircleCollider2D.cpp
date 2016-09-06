@@ -4,10 +4,10 @@
 namespace planeta {
 
 	bool CCircleCollider2D::CollideWith(CCircleCollider2D& circle_collider) {
-		return core::collision_detect_functions::CollisionDetectCircleAndCirecle(circle_collider, *this);
+		return private_::collision_detect_functions::CollisionDetectCircleAndCirecle(circle_collider, *this);
 	}
 
 	bool CCircleCollider2D::CollideWith(CStraightLineCollider2D& straight_line_collider) {
-		return core::collision_detect_functions::CollisionDetectCircleAndStraightLine(*this, straight_line_collider);
+		return private_::collision_detect_functions::CollisionDetectCircleAndStraightLine(*this, straight_line_collider);
 	}
 }

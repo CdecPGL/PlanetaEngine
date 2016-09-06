@@ -6,7 +6,7 @@
 namespace planeta {
 	class File;
 	class FileAccessor;
-	namespace core {
+	namespace private_ {
 		class ResourceBase : public Object{
 		public:
 			ResourceBase() = default;

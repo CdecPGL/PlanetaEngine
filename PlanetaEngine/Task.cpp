@@ -15,7 +15,7 @@ namespace planeta {
 		manager_connection_->Dispose(); //破棄
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const util::WeakPointer<core::SceneData>& scene_data) {
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const util::WeakPointer<private_::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();

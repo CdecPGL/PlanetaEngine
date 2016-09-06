@@ -2,7 +2,7 @@
 #include "RangeUtility.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 
 		void ScreenChangeEffecter::progress(double p) {
 			progress_ = util::AdjustInRange(p, 0.0, 1.0);

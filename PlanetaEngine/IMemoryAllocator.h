@@ -2,7 +2,7 @@
 
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class IMemoryAllcator {
 		public:
 			IMemoryAllcator() = default;

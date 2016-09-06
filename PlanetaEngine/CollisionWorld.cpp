@@ -12,9 +12,9 @@
 #include "Collider2DData.h"
 
 namespace planeta{
-	namespace core {
+	namespace private_ {
 		struct CollisionWorld::CCollider2DResistData_ {
-			core::Collider2DData collider2d_data; //コライダーデータ
+			private_::Collider2DData collider2d_data; //コライダーデータ
 			std::unordered_map<std::string, CollisionGroupType>::iterator group_iterator_at_collision_groups; //コリジョングループのグループリスト内でのイテレータ
 			CollisionGroupType::iterator iterator_at_collision_group; //コリジョングループ内でのイテレータ
 			bool collision_with_ground_flag; //地形との衝突フラグ
@@ -67,7 +67,7 @@ namespace planeta{
 			}
 		}
 
-		bool CollisionWorld::Resist(const core::Collider2DData collider_data) {
+		bool CollisionWorld::Resist(const private_::Collider2DData collider_data) {
 			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(new CCollider2DResistData_{ collider_data, });
 			const Collider2DData& col_dat = ccrd->collider2d_data;
 			CCollider2D& ccol = col_dat.collider2d;

@@ -12,11 +12,11 @@ namespace planeta {
 	class SceneAccessorForGameObject;
 	class GameObjectBase;
 	class IGameObject;
-	namespace core {
+	namespace private_ {
 		struct SceneData;
 		class GameObjectTemplateHolder;
 	}
-	class GameObjectManager final : public core::SceneModule
+	class GameObjectManager final : public private_::SceneModule
 		, public GameObjectManagerPublicInterface, private util::NonCopyable<GameObjectManager> {
 	public:
 		GameObjectManager();
@@ -33,7 +33,7 @@ namespace planeta {
 		/*終了処理*/
 		void Finalize()override;
 		/*シーンデータセット*/
-		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data)override;
+		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data)override;
 
 		/*管理処理*/
 		void Update()override;
@@ -52,10 +52,10 @@ namespace planeta {
 		std::vector<std::shared_ptr<GameObjectBase>> garbage_;
 		void RemoveProc_();
 		int _id_counter;
-		util::WeakPointer<core::SceneData> scene_data_;
+		util::WeakPointer<private_::SceneData> scene_data_;
 		
 		/*ゲームオブジェクトテンプレートホルダー*/
-		std::unique_ptr<core::GameObjectTemplateHolder> game_object_template_holder_;
+		std::unique_ptr<private_::GameObjectTemplateHolder> game_object_template_holder_;
 
 		/*ゲームオブジェクトを作成し、セットアップを行う(作成、シーンデータのセットを行う)*/
 		std::shared_ptr<GameObjectBase> CreateAndSetUpGameObject_(const std::string& game_object_type_id, const std::string& resource_id);

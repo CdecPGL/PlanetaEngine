@@ -7,7 +7,7 @@
 #include "CharacterCode.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeDxLib() {
 				//DXライブラリの初期化

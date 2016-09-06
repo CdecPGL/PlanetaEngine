@@ -2,13 +2,13 @@
 #include "TaskManagerPublicInterface.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class Scene;
 	}
 	class IGameObject;
 	class SceneSetUpProxy {
 	public:
-		SceneSetUpProxy(core::Scene& scene);
+		SceneSetUpProxy(private_::Scene& scene);
 		//ゲームオブジェクトを作成
 		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id);
 		//ゲームオブジェクトを作成して有効化
@@ -34,6 +34,6 @@ namespace planeta {
 	private:
 		TaskManagerPublicInterface& RefTaskManagerInterface_();
 		const TaskManagerPublicInterface& RefTaskManagerInterface_()const;
-		core::Scene& scene_;
+		private_::Scene& scene_;
 	};
 }

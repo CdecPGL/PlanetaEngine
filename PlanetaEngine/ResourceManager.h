@@ -13,7 +13,7 @@
 namespace planeta{
 	class FileAccessor;
 	class File;
-	namespace core{
+	namespace private_{
 		class ResourceBase;
 		/*Resource管理クラス。非同期読み込みは未実装だが、実装時に変更が必要ないように非同期読み込みと同じように扱う。
 		PrepairResourcesでリソースの準備を開始し、IsReadyがtrueになるまで待つ。そしてUnloadUnusedResourscesを呼ぶ。

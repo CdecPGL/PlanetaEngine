@@ -9,7 +9,7 @@
 #include "NonCopyable.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class Scene;
 	}
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
@@ -21,12 +21,12 @@ namespace planeta {
 		/*シーンを初期化する
 		@param 対象シーン、初期化パラメータリスト
 		*/
-		bool InitializeScene(core::Scene& scene, const util::ParameterHolder& initialize_parameters);
+		bool InitializeScene(private_::Scene& scene, const util::ParameterHolder& initialize_parameters);
 		/*シーンを終了する
 		@param 対象シーン、次のシーンのID、終了処理パラメータリスト
 		@return 次のシーンの初期化パラメータ
 		*/
-		util::ParameterHolder TerminateScene(core::Scene& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters);
+		util::ParameterHolder TerminateScene(private_::Scene& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters);
 		/*遷移可能SceneIDリスト(からの場合、全てのシーンに遷移可能とみなす)*/
 		virtual const std::vector<std::string> GetTransitionableSceneID()const = 0;
 		/*指定したシーンに遷移可能か*/

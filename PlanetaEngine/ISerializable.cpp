@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class ISerialize {
 			void Serialize();
 			void Deserialize();

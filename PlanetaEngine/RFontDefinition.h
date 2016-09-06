@@ -3,7 +3,7 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	class RFontDefinition final : public core::ResourceBase {
+	class RFontDefinition final : public private_::ResourceBase {
 	public:
 		int GetHandle()const { return handle_; }
 		int font_size()const { return size_; }

@@ -2,7 +2,7 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	class RText : public core::ResourceBase {
+	class RText : public private_::ResourceBase {
 	public:
 		RText() {};
 		~RText() {};

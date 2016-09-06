@@ -12,7 +12,7 @@
 #include "RFontDefinition.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeResourceSystem(const std::shared_ptr<FileAccessor> res_file_accessor) {
 				auto& rm = ResourceManager::instance();
@@ -26,7 +26,7 @@ namespace planeta {
 				rm.AddResourceType<RFontDefinition>(system_variables::resource::BuiltinFontDefinitionResourceTypeName); //フォント定義ファイル
 				rm.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName); //JSONファイル
 				rm.SetFileAccessor_(res_file_accessor); //ファイルアクセサセット
-				rm.SetResourceListFileName_(core::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
+				rm.SetResourceListFileName_(private_::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
 				if (rm.Initialize()) {
 					return{ true, [] {ResourceManager::instance().Finalize(); } };
 				} else {

@@ -4,7 +4,7 @@
 #include "SystemLog.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		void SoundEffectController::Dispose()
 		{
 			for (auto& dh : duplicated_dx_handles_) {

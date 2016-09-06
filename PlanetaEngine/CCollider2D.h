@@ -10,15 +10,15 @@ namespace planeta {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
-	namespace core {
+	namespace private_ {
 		struct Collider2DData;
 	}
-	class CCollider2D : public core::GameObjectSystemComponent, public core::IColliderWithCollider2D {
+	class CCollider2D : public private_::GameObjectSystemComponent, public private_::IColliderWithCollider2D {
 	public:
-		using Super = core::GameObjectSystemComponent;
+		using Super = private_::GameObjectSystemComponent;
 		virtual ~CCollider2D() = default;
 		/*衝突判定を行う*/
-		virtual bool DetectCollision(core::IColliderWithCollider2D& collider) = 0;
+		virtual bool DetectCollision(private_::IColliderWithCollider2D& collider) = 0;
 
 		/*グローバル中心位置取得*/
 		const Vector2Dd GetCollisionGlobalCenterPosition()const;

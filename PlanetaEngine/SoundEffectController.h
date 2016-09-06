@@ -6,7 +6,7 @@
 
 namespace planeta {
 	class RSound;
-	namespace core {
+	namespace private_ {
 		class SoundEffectController final: public ISoundEffectController{
 		public:
 			SoundEffectController(const std::shared_ptr<RSound>& mr) :sound_resource_(mr) {}

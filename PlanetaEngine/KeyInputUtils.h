@@ -5,7 +5,7 @@
 #include"KeyInputDefines.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace utils {
 			std::string ConvertKeyToString(Key::type);
 			std::string ConvertPadToString(Pad::type);

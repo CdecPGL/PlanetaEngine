@@ -7,9 +7,9 @@
 namespace planeta {
 	class ScreenDrawer2D;
 	class CTransform2D;
-	class CDraw2D : public core::GameObjectSystemComponent {
+	class CDraw2D : public private_::GameObjectSystemComponent {
 	public:
-		using Super = core::GameObjectSystemComponent;
+		using Super = private_::GameObjectSystemComponent;
 		CDraw2D();
 		virtual ~CDraw2D() = default;
 		/*描画処理*/

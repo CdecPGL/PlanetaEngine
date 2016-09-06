@@ -3,7 +3,7 @@
 
 namespace planeta {
 	/*音楽リソース*/
-	class RMusic : public core::ResourceBase {
+	class RMusic : public private_::ResourceBase {
 	public:
 		RMusic() :_handle(-1) {};
 		~RMusic() {}

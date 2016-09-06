@@ -5,7 +5,7 @@
 
 namespace planeta{
 	class RMusic;
-	namespace core {
+	namespace private_ {
 		class BGMController final: public IBGMController{
 		public:
 			BGMController(const std::shared_ptr<RMusic>& mr) :music_resource_(mr) {}

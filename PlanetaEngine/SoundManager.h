@@ -6,7 +6,7 @@
 #include "ISoundEffectController.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class ResourceBase;
 		class SoundManager final : public util::SingletonTemplate<SoundManager>{
 			friend util::SingletonTemplate<SoundManager>;
@@ -15,8 +15,8 @@ namespace planeta {
 			void Finalize() override;
 			void Update();
 
-			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<core::ResourceBase>& music_resource);
-			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<core::ResourceBase>& sound_resource);
+			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<private_::ResourceBase>& music_resource);
+			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<private_::ResourceBase>& sound_resource);
 			void Reset();
 		private:
 			SoundManager();

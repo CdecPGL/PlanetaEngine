@@ -10,7 +10,7 @@
 #include "PrefixUtility.h"
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 		SceneManager::SceneManager() :_scene_progress_flag(true), _request(_Request::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
 
 		}
@@ -21,14 +21,14 @@ namespace planeta{
 			try {
 				switch (_request)
 				{
-				case planeta::core::SceneManager::_Request::Transition:
+				case planeta::private_::SceneManager::_Request::Transition:
 					_transition_proc();
-				case planeta::core::SceneManager::_Request::None:
+				case planeta::private_::SceneManager::_Request::None:
 					if (_scene_progress_flag) { _current_scene->Update(); }
 					return SceneStatus_::Continue;
-				case planeta::core::SceneManager::_Request::Quit:
+				case planeta::private_::SceneManager::_Request::Quit:
 					return SceneStatus_::Quit;
-				case planeta::core::SceneManager::_Request::Error:
+				case planeta::private_::SceneManager::_Request::Error:
 					return SceneStatus_::Error;
 				default:
 					break;
@@ -58,7 +58,7 @@ namespace planeta{
 				return false;
 			}
 			//リソース読み込み
-			if (core::ResourceManager::instance().PrepareResources({scene_name}) == false) {
+			if (private_::ResourceManager::instance().PrepareResources({scene_name}) == false) {
 				PE_LOG_WARNING("指定されたシーン(", scene_name, ")のリソース準備に失敗しました。読み込みに失敗したか、対象のリソースが存在しない可能性があります。");
 				//return false;
 			} //リソースの準備ができなかった
@@ -97,7 +97,7 @@ namespace planeta{
 			_current_scene = std::move(new_scene);
 			_current_scene_setupper = std::move(_next_scene_setupper);
 			//未使用リソースを削除(シーンの更新前のため、ここで削除してよい)
-			core::ResourceManager::instance().UnloadUnusedResouces();
+			private_::ResourceManager::instance().UnloadUnusedResouces();
 			//リクエストと準備状況をリセット
 			_request = _Request::None;
 			_is_next_scene_loaded = false;
@@ -129,7 +129,7 @@ namespace planeta{
 		std::shared_ptr<SceneSetUpper> SceneManager::_CreateSceneSetUpper(const std::string& scene_name)
 		{
 			//シーン名にプレフィックスをつけたクラスを作成。
-			auto setupper = Reflection::CreateObjectByObjectTypeID<SceneSetUpper>(core::AddPrefix(scene_name, core::ObjectCategory::Scene));
+			auto setupper = Reflection::CreateObjectByObjectTypeID<SceneSetUpper>(private_::AddPrefix(scene_name, private_::ObjectCategory::Scene));
 			return setupper;
 		}
 
@@ -164,7 +164,7 @@ namespace planeta{
 			scene.SetCollisionGroupMatrix(collision_group_matrix_);
 			scene.PrepareSceneData(this);
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
-			if (!core::SceneSystemSetUpper()(scene)) {
+			if (!private_::SceneSystemSetUpper()(scene)) {
 				PE_LOG_ERROR("シーンのシステム設定に失敗しました。");
 				return false;
 			}
@@ -183,7 +183,7 @@ namespace planeta{
 			return true;
 		}
 
-		util::ParameterHolder SceneManager::FinalizeScene_(core::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
+		util::ParameterHolder SceneManager::FinalizeScene_(private_::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
 			SceneSetUpProxy safs(scene);
 			auto ret = setupper.TerminateScene(scene,next_scene_id, finalize_parameters); //固有終了処理
 			scene.Finalize(); //終了処理

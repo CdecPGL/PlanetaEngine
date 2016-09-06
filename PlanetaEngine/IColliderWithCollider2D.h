@@ -4,7 +4,7 @@ namespace planeta {
 	class CCircleCollider2D;
 	class CStraightLineCollider2D;
 	class CPolygonCollider2D;
-	namespace core {
+	namespace private_ {
 		/*コライダーと衝突するコライダーのインターフェイス*/
 		class IColliderWithCollider2D {
 		public:

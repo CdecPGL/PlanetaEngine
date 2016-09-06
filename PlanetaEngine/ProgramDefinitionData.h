@@ -4,7 +4,7 @@
 #include "CollisionGroupMatrix.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		struct ProgramDefinitionData {
 			bool load_from_file;
 			std::string startup_scene_id;

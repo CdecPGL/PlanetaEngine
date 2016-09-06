@@ -2,7 +2,7 @@
 
 /*未実装*/
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class TaskSystemSetUpper {
 		public:
 		};

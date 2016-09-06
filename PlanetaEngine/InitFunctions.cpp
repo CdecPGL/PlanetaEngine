@@ -26,7 +26,7 @@ namespace {
 }
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeLogSystem() {
 				//開発モードならコンソールウインドウを作成し、そこにログを出力

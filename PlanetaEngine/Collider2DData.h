@@ -8,7 +8,7 @@ namespace planeta {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
-	namespace core {
+	namespace private_ {
 		//このデータがCollisionWorldで保持されている間はそのColiderは存在しているはずなので、メンバに参照を含んでもよい。
 		struct Collider2DData {
 			CCollider2D& collider2d;

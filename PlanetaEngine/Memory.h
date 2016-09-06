@@ -3,7 +3,7 @@
 #include <memory>
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 		namespace ObjectUtility{
 			template<class C>
 			std::shared_ptr<C> make_shared(){ return std::make_shared<C>(); }

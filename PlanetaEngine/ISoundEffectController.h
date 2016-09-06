@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class ISoundEffectController {
 		public:
 			virtual ~ISoundEffectController() = default;

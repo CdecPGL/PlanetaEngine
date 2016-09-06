@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 		namespace ObjectUtility{
 			template<class C>
 			using vector = std::vector < C > ;

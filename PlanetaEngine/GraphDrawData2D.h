@@ -8,7 +8,7 @@
 
 namespace planeta {
 	class RGraph;
-	namespace core {
+	namespace private_ {
 		struct DXGraphDrawData;
 		class GraphDrawData2D {
 		public:

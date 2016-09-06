@@ -12,7 +12,7 @@ static const type& param_name(){return param_name##_;}
 
 namespace planeta {
 	class File;
-	namespace core {
+	namespace private_ {
 		namespace engine_config {
 			//設定データを読み込む
 			bool LoadConfigData(const std::shared_ptr<File>& file);

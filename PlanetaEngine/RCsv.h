@@ -4,7 +4,7 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	class RCsv : public core::ResourceBase {
+	class RCsv : public private_::ResourceBase {
 	public:
 		using CSV_DATA = std::vector < std::vector<std::string> >;
 		CSV_DATA::iterator begin();

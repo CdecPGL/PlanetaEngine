@@ -41,7 +41,7 @@ namespace planeta {
 			TASK_SLOT_9,
 		};
 		//システムスロットマップ
-		using namespace core;
+		using namespace private_;
 		constexpr std::array<int, SYSTEM_TASK_SLOT_SIZE> system_slot_group_number_map_ = {
 			APPVEL_SLOT,
 			COLDET_SLOT,
@@ -53,8 +53,8 @@ namespace planeta {
 			return slot_group_number_map_[static_cast<std::underlying_type_t<TaskSlot>>(slot)];
 		}
 		/*システムタスクスロットからタスクグループ番号を取得*/
-		int GetGroupNumberFromSystemSlot(core::SystemTaskSlot slot) {
-			return system_slot_group_number_map_[static_cast<std::underlying_type_t<core::SystemTaskSlot>>(slot)];
+		int GetGroupNumberFromSystemSlot(private_::SystemTaskSlot slot) {
+			return system_slot_group_number_map_[static_cast<std::underlying_type_t<private_::SystemTaskSlot>>(slot)];
 		}
 	}
 	//////////////////////////////////////////////////////////////////////////
@@ -97,13 +97,13 @@ namespace planeta {
 		/**/
 		bool is_system_task_disposable_ = false; //システムタスクが削除可能か。
 
-		util::WeakPointer<core::SceneData> scene_data_;
+		util::WeakPointer<private_::SceneData> scene_data_;
 	public:
 		Impl_(){}
 		//システムタスク削除の有効化
 		void ValidateSystemTaskDisposal() { is_system_task_disposable_ = true; }
 		//////////////////////////////////////////////////////////////////////////
-		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) {
+		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {
 			scene_data_ = scene_data_;
 		}
 		//////////////////////////////////////////////////////////////////////////
@@ -171,7 +171,7 @@ namespace planeta {
 		/*タスクの設定*/
 		void SetupTask(const std::shared_ptr<TaskData> tdata, bool is_system_task) {
 			//ここでラムダ関数がtdataのシェアポをキャプチャしておくことで、tdata使用中の解放を防ぐ。
-			std::unique_ptr<core::TaskManagerConnection> manager_connection = std::make_unique<core::TaskManagerConnection>(
+			std::unique_ptr<private_::TaskManagerConnection> manager_connection = std::make_unique<private_::TaskManagerConnection>(
 				[this, tdata] {return PauseTaskRequest(*tdata); }, //Pauser
 				[this, tdata] {return ResumeTaskRequest(*tdata); }, //Resumer
 				is_system_task ?
@@ -253,7 +253,7 @@ namespace planeta {
 		impl_->AllClear();
 	}
 
-	void TaskManager::SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) {
+	void TaskManager::SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {
 		impl_->SetSceneData(scene_data);
 	}
 
@@ -275,7 +275,7 @@ namespace planeta {
 		return impl_->RegisterTaskName(name, ptdata);
 	}
 
-	std::shared_ptr<Task> TaskManager::RegisterSystemTask(const std::shared_ptr<Task>& task, core::SystemTaskSlot slot) {
+	std::shared_ptr<Task> TaskManager::RegisterSystemTask(const std::shared_ptr<Task>& task, private_::SystemTaskSlot slot) {
 		int group_number = GetGroupNumberFromSystemSlot(slot);
 		auto ptdata = impl_->RegisterTaskToList(task, group_number);
 		impl_->SetupTask(ptdata, true);

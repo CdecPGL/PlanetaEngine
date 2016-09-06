@@ -6,7 +6,7 @@
 
 namespace planeta {
 	class FileAccessor;
-	namespace core {
+	namespace private_ {
 		struct ProgramDefinitionData;
 		namespace init_funcs {
 			//PlanetaEngineのInit関数内で呼ばれる。戻り値に初期化の成否と、終了処理関数を返す。エラーメッセージはこれらの関数内で出力する。

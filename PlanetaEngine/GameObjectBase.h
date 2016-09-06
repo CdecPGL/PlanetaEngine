@@ -10,7 +10,7 @@
 
 namespace planeta {
 	class JSONObject;
-	namespace core {
+	namespace private_ {
 		struct SceneData;
 	}
 	class GameObjectComponent;
@@ -58,7 +58,7 @@ namespace planeta {
 		//マネージャコネクションをセット
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
 		//シーンデータをセット
-		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
+		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data);
 		//シーンデータとゲームオブジェクトのデータをコンポーネントにセット
 		void SetSceneAndGODataToCOmponents();
 	protected:
@@ -119,7 +119,7 @@ namespace planeta {
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 		//シーンアクセサ
-		util::WeakPointer<core::SceneData> scene_data_;
+		util::WeakPointer<private_::SceneData> scene_data_;
 		//コンポーネントホルダー
 		GameObjectComponentHolder component_holder_;
 

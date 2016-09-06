@@ -65,7 +65,7 @@ namespace planeta {
 				auto jstr = jval->Get<std::string>();
 				if (jstr) {
 					std::string res_id = *jstr;
-					auto jres = core::ResourceManager::instance().GetResource<RJson>(res_id);
+					auto jres = private_::ResourceManager::instance().GetResource<RJson>(res_id);
 					//指定されたリソースがない
 					if (jres == nullptr) {
 						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたJsonリソース\"", res_id, "\"を読み込めませんでした。");
@@ -163,7 +163,7 @@ namespace planeta {
 		manager_connection_ = std::move(mgr_cnctn);
 	}
 
-	void GameObjectBase::SetSceneData(const util::WeakPointer<core::SceneData>& scene_accessor) {
+	void GameObjectBase::SetSceneData(const util::WeakPointer<private_::SceneData>& scene_accessor) {
 		scene_data_ = scene_accessor;
 	}
 
@@ -202,7 +202,7 @@ namespace planeta {
 	}
 
 	void GameObjectBase::SetSceneAndGODataToComponent_(GameObjectComponent& com) {
-		core::GameObjectComponentSetUpData rd{ this, scene_data_ };
+		private_::GameObjectComponentSetUpData rd{ this, scene_data_ };
 		com.SetSceneAndHolderGOData(rd);
 	}
 

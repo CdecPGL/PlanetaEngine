@@ -1,7 +1,7 @@
 ﻿#include "TaskManagerConnection.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		bool TaskManagerConnection::Pause() {
 			return pauser_();
 		}

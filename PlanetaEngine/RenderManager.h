@@ -6,7 +6,7 @@
 #include "SingletonTemplate.h"
 
 namespace planeta {
-	namespace core{
+	namespace private_{
 		class Screen;
 		class RenderManager final : public util::SingletonTemplate<RenderManager>{
 			friend util::SingletonTemplate<RenderManager>;

@@ -7,7 +7,7 @@ namespace planeta {
 	public:
 		using Super = CCollider2D;
 	private:
-		bool DetectCollision(core::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }
+		bool DetectCollision(private_::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CPolygonCollider2D);
 }

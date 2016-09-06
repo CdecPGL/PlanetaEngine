@@ -3,7 +3,7 @@
 #include "SystemLog.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		TransformSystem::TransformSystem() {}
 
 

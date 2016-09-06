@@ -10,7 +10,7 @@
 #include "TInstant.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 
 		bool SceneSystemSetUpper::operator()(Scene& scene)
 		{

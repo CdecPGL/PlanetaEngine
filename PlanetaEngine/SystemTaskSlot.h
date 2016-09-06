@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		enum class SystemTaskSlot {
 			ApplyVelocityPhase = 0,
 			CollitionDetectPhase = 1,

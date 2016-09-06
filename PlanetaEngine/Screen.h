@@ -4,7 +4,7 @@
 #include <functional>
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class Screen {
 		public:
 			explicit Screen(int dx_handle):dx_screen_handle_(dx_handle),is_valid_(true){}

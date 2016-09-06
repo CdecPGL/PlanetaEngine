@@ -3,7 +3,7 @@
 #include <string>
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		/*接頭辞で用いるオブジェクトのカテゴリ*/
 		enum class ObjectCategory {
 			GameObject,

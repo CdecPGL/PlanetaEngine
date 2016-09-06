@@ -3,6 +3,6 @@
 
 namespace planeta {
 	bool CStraightLineCollider2D::CollideWith(CCircleCollider2D& circle_collider) {
-		return core::collision_detect_functions::CollisionDetectCircleAndStraightLine(circle_collider, *this);
+		return private_::collision_detect_functions::CollisionDetectCircleAndStraightLine(circle_collider, *this);
 	}
 }

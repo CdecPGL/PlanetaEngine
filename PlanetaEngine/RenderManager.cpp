@@ -5,8 +5,8 @@
 #include "SystemLog.h"
 
 namespace planeta {
-	namespace core {
-		bool planeta::core::RenderManager::Initialize()
+	namespace private_ {
+		bool planeta::private_::RenderManager::Initialize()
 		{
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetUseLighting(false); //ライティング計算を行わない
@@ -15,7 +15,7 @@ namespace planeta {
 			return true;
 		}
 
-		void planeta::core::RenderManager::Finalize()
+		void planeta::private_::RenderManager::Finalize()
 		{
 		}
 

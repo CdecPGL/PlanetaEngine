@@ -12,7 +12,7 @@
 
 namespace planeta {
 	class SceneAccessorForGameObject;
-	namespace core{
+	namespace private_{
 		struct SceneData;
 		struct GameObjectComponentSetUpData;
 	}
@@ -26,7 +26,7 @@ namespace planeta {
 		using Super = Object;
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
-		bool SetSceneAndHolderGOData(const core::GameObjectComponentSetUpData& resistration_data);
+		bool SetSceneAndHolderGOData(const private_::GameObjectComponentSetUpData& resistration_data);
 
 		/*! @brief ゲームオブジェクトコンポーネントが使用可能か
 			
@@ -81,7 +81,7 @@ namespace planeta {
 		util::NonOwingPointer<IGameObjectForComponent> game_object_;
 
 		/*特別設定関数*/
-		virtual void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) = 0;
+		virtual void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) = 0;
 	};
 	PE_REFLECTABLE_CLASS(GameObjectComponent);
 }

@@ -4,7 +4,7 @@
 #include "GameObjectComponent.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class GameObjectCoponentUpdateProcess : public game::Task{
 		public:
 			using GComUpdateFuncType = void(GameObjectComponent::*)();

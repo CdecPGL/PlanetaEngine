@@ -4,7 +4,7 @@
 #include "WeakPointer.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class TaskManagerConnection {
 		public:
 			TaskManagerConnection(std::function<bool()>&& pauser, std::function<bool()>&& resumer, std::function<void()>&& disposer)

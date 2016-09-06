@@ -5,7 +5,7 @@
 #include "SystemLog.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		using namespace system_variables;
 		namespace {
 			using PCMapType = boost::bimaps::bimap<char, ObjectCategory>;

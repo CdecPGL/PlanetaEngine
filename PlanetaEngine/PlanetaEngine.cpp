@@ -24,7 +24,7 @@
 #include "SoundManager.h"
 
 namespace planeta {
-	using namespace core;
+	using namespace private_;
 	class PlanetaEngine::Impl_ {
 	private:
 		std::list<std::function<void()>> finalize_handls_;
@@ -104,18 +104,18 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//描画システムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if(core::RenderManager::instance().Initialize()){ finalize_handls_.push_front([] {core::RenderManager::instance().Finalize(); }); }
+			if(private_::RenderManager::instance().Initialize()){ finalize_handls_.push_front([] {private_::RenderManager::instance().Finalize(); }); }
 			else{ PE_LOG_FATAL("描画システムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//サウンドシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if(core::SoundManager::instance().Initialize()){ finalize_handls_.push_front([] {core::SoundManager::instance().Finalize(); }); }
+			if(private_::SoundManager::instance().Initialize()){ finalize_handls_.push_front([] {private_::SoundManager::instance().Finalize(); }); }
 			else{ PE_LOG_FATAL("サウンドシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//入力システムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			//キーコンフィグデータのセット予定
-			if(core::KeyInputManager::instance().Initialize()){ finalize_handls_.push_front([] {core::KeyInputManager::instance().Finalize(); }); }
+			if(KeyInputManager::instance().Initialize()){ finalize_handls_.push_front([] {KeyInputManager::instance().Finalize(); }); }
 			else{ PE_LOG_FATAL("入力システムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//デバッグシステムの初期化
@@ -125,7 +125,7 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//プログラム用定義の読み込み
 			//////////////////////////////////////////////////////////////////////////
-			core::ProgramDefinitionData pdd;
+			private_::ProgramDefinitionData pdd;
 			if (!init_funcs::LoadProgramDefinition(system_dir_accesor, &pdd)) {
 				PE_LOG_ERROR("プログラム用定義ファイルの読み込みに失敗しました。");
 				return false;
@@ -166,11 +166,11 @@ namespace planeta {
 			debug::SystemTimer::instance().IncrementFrameCount(); //フレームカウントのインクリメント
 			
 			switch (sst) {
-			case planeta::core::SceneManager::SceneStatus_::Continue:
+			case planeta::private_::SceneManager::SceneStatus_::Continue:
 				return GameStatus::Continue;
-			case planeta::core::SceneManager::SceneStatus_::Quit:
+			case planeta::private_::SceneManager::SceneStatus_::Quit:
 				return GameStatus::Quit;
-			case planeta::core::SceneManager::SceneStatus_::Error:
+			case planeta::private_::SceneManager::SceneStatus_::Error:
 				return GameStatus::Error;
 			default:
 				assert(false);

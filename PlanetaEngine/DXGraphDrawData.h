@@ -4,7 +4,7 @@
 #include "DxLib.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		struct DXGraphDrawData{
 			std::unique_ptr<VERTEX3D[]> vertexes; //頂点情報
 			size_t vertex_count = 0; //頂点数

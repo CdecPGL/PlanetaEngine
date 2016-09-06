@@ -7,7 +7,7 @@
 #include "File.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace engine_config {
 			std::string game::GameTitle_("NULL"); //ゲームタイトル
 			std::string game::VersionString_("0.0.0"); //バージョン文字列

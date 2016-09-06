@@ -11,7 +11,7 @@
 #include "Screen.h"
 
 namespace planeta{
-	namespace core {
+	namespace private_ {
 		GameObjectDrawSystem::GameObjectDrawSystem()
 		{
 
@@ -86,7 +86,7 @@ namespace planeta{
 				double scale = camera2d_->expansion();
 				double rota_rad = trans.rotation_rad();
 				Vector2Dd pos = trans.position();
-				SetupCamera_Ortho((float)(core::engine_config::engine::DrawSize().y / scale));
+				SetupCamera_Ortho((float)(private_::engine_config::engine::DrawSize().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
 			} else {
 				PE_LOG_WARNING("シーン内にカメラ2Dが登録されていません。");

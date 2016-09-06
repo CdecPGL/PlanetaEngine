@@ -5,7 +5,7 @@
 #include <cassert>
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace {
 			/*DX形式頂点情報の初期化*/
 			inline void InitializeDXVERTEX3D(VERTEX3D& dx_vtx3d) {

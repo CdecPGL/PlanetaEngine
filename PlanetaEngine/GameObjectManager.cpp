@@ -6,7 +6,7 @@
 #include "GameObjectTemplateHolder.h"
 
 namespace planeta {
-	GameObjectManager::GameObjectManager() :game_object_template_holder_(std::make_unique<core::GameObjectTemplateHolder>()), _id_counter(0) {};
+	GameObjectManager::GameObjectManager() :game_object_template_holder_(std::make_unique<private_::GameObjectTemplateHolder>()), _id_counter(0) {};
 	GameObjectManager::~GameObjectManager() = default;
 
 	void GameObjectManager::Update() {
@@ -127,7 +127,7 @@ namespace planeta {
 		garbage_.clear();
 	}
 
-	void GameObjectManager::SetSceneData(const util::WeakPointer<core::SceneData>& scene_data) {
+	void GameObjectManager::SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 	}
 }

@@ -12,7 +12,7 @@
 #include "ScreenDrawerGUI.h"
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 
 		Scene::Scene() :game_object_manager_(std::make_unique<GameObjectManager>()), task_manager_(std::make_unique<TaskManager>()),collision_world_(std::make_unique<CollisionWorld>()),gameobject_draw_system_(std::make_unique<GameObjectDrawSystem>()),transform_system_(std::make_unique<TransformSystem>())
 		{
@@ -34,7 +34,7 @@ namespace planeta{
 
 		{
 			//モジュールを初期化
-			if (IterateSceneModule_([](core::SceneModule& sm) {return sm.Initialize(); })) {
+			if (IterateSceneModule_([](private_::SceneModule& sm) {return sm.Initialize(); })) {
 				return true;
 			}
 			else {
@@ -83,7 +83,7 @@ namespace planeta{
 		}
 
 		void Scene::RegisterSceneDataToModules() {
-			IterateSceneModule_([&scene_data = scene_data_](core::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
+			IterateSceneModule_([&scene_data = scene_data_](private_::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
 		void Scene::PrepareSceneData(const util::NonOwingPointer<ISceneManagerAccessor> scn_mgr) {

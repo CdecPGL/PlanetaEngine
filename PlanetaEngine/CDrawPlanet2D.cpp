@@ -16,7 +16,7 @@ namespace {
 
 namespace planeta {
 
-	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<core::GraphDrawData2D>()) {
+	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
 		texture_mapping_mode(TextureMappingMode::Round);
 	}
 
@@ -65,7 +65,7 @@ namespace planeta {
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//中心以外はポリゴンを2枚ずつ張る
 			for (unsigned int j = 0; j < _vertical_separation - 1; ++j) {
-				core::GraphDrawData2D::PolygonIndexType poly1, poly2;
+				private_::GraphDrawData2D::PolygonIndexType poly1, poly2;
 				poly1[0] = i*(_vertical_separation + 1) + j;
 				poly1[1] = i*(_vertical_separation + 1) + j + 1;
 				poly1[2] = (i + 1)*(_vertical_separation + 1) + j;
@@ -76,7 +76,7 @@ namespace planeta {
 				graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
 			}
 			//中心はポリゴンを1枚だけ張る
-			core::GraphDrawData2D::PolygonIndexType poly;
+			private_::GraphDrawData2D::PolygonIndexType poly;
 			poly[0] = i*(_vertical_separation + 1) + (_vertical_separation - 1);
 			poly[1] = i*(_vertical_separation + 1) + (_vertical_separation - 1) + 1;
 			poly[2] = (i + 1)*(_vertical_separation + 1) + (_vertical_separation - 1);
@@ -125,7 +125,7 @@ namespace planeta {
 		//インデックスの設定
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//ポリゴンを1枚ずつ張る
-			core::GraphDrawData2D::PolygonIndexType poly1;
+			private_::GraphDrawData2D::PolygonIndexType poly1;
 			poly1[0] = i;
 			poly1[1] = (i + 1) % _horizontal_separation;
 			poly1[2] = _horizontal_separation;
@@ -154,7 +154,7 @@ namespace planeta {
 	}
 
 	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
-		auto res = core::ResourceManager::instance().GetResource(resource_id);
+		auto res = private_::ResourceManager::instance().GetResource(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;

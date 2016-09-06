@@ -7,18 +7,18 @@ namespace planeta {
 	class GameObjectManagerPublicInterface;
 	class TaskManagerPublicInterface;
 	class ISceneManagerAccessor;
-	namespace core {
+	namespace private_ {
 		class CollisionWorld;
 		class GameObjectDrawSystem;
 		class TransformSystem;
 	}
-	namespace core {
+	namespace private_ {
 		struct SceneData {
 			GameObjectManagerPublicInterface& game_object_manager_public_interface;
 			TaskManagerPublicInterface& task_manager_public_interface;
-			core::CollisionWorld& collision_world;
-			core::GameObjectDrawSystem& gameobject_draw_system;
-			core::TransformSystem& transform_system;
+			private_::CollisionWorld& collision_world;
+			private_::GameObjectDrawSystem& gameobject_draw_system;
+			private_::TransformSystem& transform_system;
 			ISceneManagerAccessor& scene_manager;
 		};
 	}

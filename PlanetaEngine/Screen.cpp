@@ -3,7 +3,7 @@
 #include "SystemLog.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		void Screen::HandleDrawReservations() {
 			if (!is_valid()) {
 				PE_LOG_ERROR("無効なスクリーンに描画を行おうとしました。");

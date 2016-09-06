@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 		namespace Allocators{
 			//template <class T>
 			//struct GameObjectAllocator {

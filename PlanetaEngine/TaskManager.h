@@ -7,12 +7,12 @@
 
 namespace planeta {
 	class SceneAccessorForTask;
-	namespace core {
+	namespace private_ {
 		struct SceneData;
 		enum class SystemTaskSlot;
 	}
 	class Task;
-	class TaskManager final : public core::SceneModule
+	class TaskManager final : public private_::SceneModule
 		, public TaskManagerPublicInterface {
 	public:
 		TaskManager();
@@ -22,7 +22,7 @@ namespace planeta {
 		/*終了処理*/
 		void Finalize()override;
 		/*シーンデータをセット*/
-		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data)override;
+		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data)override;
 
 		/*タスクの実行*/
 		void ExcuteTask();
@@ -31,7 +31,7 @@ namespace planeta {
 
 		/*システムタスク追加(システムタスク削除不可能)*/
 		template<class C>
-		util::WeakPointer<C> AddSystemTask(core::SystemTaskSlot sys_task_slot) {
+		util::WeakPointer<C> AddSystemTask(private_::SystemTaskSlot sys_task_slot) {
 			static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");
 			auto task = std::make_shared<C>();
 			return std::static_pointer_cast<C>(RegisterSystemTask(task, sys_task_slot));
@@ -47,6 +47,6 @@ namespace planeta {
 		std::unique_ptr<Impl_> impl_;
 
 		/*システムタスク作製*/
-		std::shared_ptr<Task> RegisterSystemTask(const std::shared_ptr<Task>& task, core::SystemTaskSlot slot);
+		std::shared_ptr<Task> RegisterSystemTask(const std::shared_ptr<Task>& task, private_::SystemTaskSlot slot);
 	};
 }

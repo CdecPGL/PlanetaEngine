@@ -9,7 +9,7 @@
 //ポインタが32bitであることが前提となっている。x64プログラムにするには修正が必要
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class TLSFMemoryAllocator : public IMemoryAllcator {
 		public:
 			TLSFMemoryAllocator();

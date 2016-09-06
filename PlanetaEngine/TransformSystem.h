@@ -6,7 +6,7 @@
 
 namespace planeta {
 	class CTransform2D;
-	namespace core {
+	namespace private_ {
 		class TransformSystem  : public SceneModule{
 		public:
 			TransformSystem();

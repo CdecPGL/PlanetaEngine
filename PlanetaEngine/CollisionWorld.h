@@ -9,19 +9,19 @@
 namespace planeta {
 	class CCollider2D;
 	class CollisionGroupMatrix;
-	namespace core {
+	namespace private_ {
 		struct Collider2DData;
 	}
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
-	namespace core {
-		class CollisionWorld final: public core::SceneModule
+	namespace private_ {
+		class CollisionWorld final: public private_::SceneModule
 		{
 		public:
 			CollisionWorld();
 			~CollisionWorld();
 			void SetCollisionGroupMatrix(const std::shared_ptr<const CollisionGroupMatrix>& col_matrix);
-			bool Resist(const core::Collider2DData collider_data); //引数は内部でコピーされるので一時オブジェクトでよい。
+			bool Resist(const private_::Collider2DData collider_data); //引数は内部でコピーされるので一時オブジェクトでよい。
 			bool Remove(const CCollider2D* col_com_ptr);
 			bool ChangeCollisionGroup(const CCollider2D* col_com_ptr,const std::string& group_name);
 			bool ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag);
@@ -30,8 +30,8 @@ namespace planeta {
 		private:
 			void Update()override final;
 			void RemoveAll();
-			using CollisionGroupType = std::list<std::reference_wrapper<const core::Collider2DData>>;
-			using CollisionWithGroundListType = std::list<std::reference_wrapper<const core::Collider2DData>>;
+			using CollisionGroupType = std::list<std::reference_wrapper<const private_::Collider2DData>>;
+			using CollisionWithGroundListType = std::list<std::reference_wrapper<const private_::Collider2DData>>;
 			struct CCollider2DResistData_;
 			std::unordered_map<CCollider2D*, std::unique_ptr<CCollider2DResistData_>> collider_resist_data_map_; //コライダーの登録情報リスト
 			using CollisionGroupListType = std::unordered_map<std::string, CollisionGroupType>;

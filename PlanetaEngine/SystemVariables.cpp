@@ -1,7 +1,7 @@
 ﻿#include "SystemVariables.h"
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 		namespace system_variables{
 			namespace engine_information {
 				const std::string VersionString("1.0.0");

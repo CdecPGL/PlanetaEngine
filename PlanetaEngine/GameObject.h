@@ -29,7 +29,7 @@ namespace planeta {
 		bool ProcessInactivation();
 		bool ProcessDisposal();
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
-		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
+		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data);
 		void SetSceneAndGODataToCOmponents();
 	};
 }

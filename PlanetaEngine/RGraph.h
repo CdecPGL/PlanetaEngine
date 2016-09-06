@@ -4,7 +4,7 @@
 
 namespace planeta {
 	/*画像リソース*/
-	class RGraph : public core::ResourceBase {
+	class RGraph : public private_::ResourceBase {
 	public:
 		RGraph() :_handle(-1) {};
 		~RGraph() {};

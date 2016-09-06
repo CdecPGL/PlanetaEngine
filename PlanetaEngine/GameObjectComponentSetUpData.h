@@ -5,7 +5,7 @@
 namespace planeta {
 	class SceneData;
 	class IGameObjectForComponent;
-	namespace core {
+	namespace private_ {
 		struct GameObjectComponentSetUpData {
 			util::NonOwingPointer<IGameObjectForComponent> holder_game_object;
 			util::WeakPointer<SceneData> scene_data;

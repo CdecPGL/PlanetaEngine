@@ -9,7 +9,7 @@
 #include <cassert>
 
 namespace planeta {
-	using namespace core;
+	using namespace private_;
 	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Dd>& positions, double width, const planeta::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
 			using namespace util::dx;
@@ -44,7 +44,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<core::GraphDrawData2D>& graph_draw_data) {
+	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<private_::GraphDrawData2D>& graph_draw_data) {
 		screen_.ReserveDraw([graph_draw_data]() {
 			//画像描画データが無効な場合は描画しない
 			if (!graph_draw_data->is_valid()) { return; }

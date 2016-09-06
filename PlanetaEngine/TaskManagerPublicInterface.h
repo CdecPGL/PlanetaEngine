@@ -8,7 +8,7 @@
 #include "TaskSlot.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class IGameAccessor;
 	}
 	class Task;

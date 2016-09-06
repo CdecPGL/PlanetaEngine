@@ -3,7 +3,7 @@
 #include "CStraightLineCollider2D.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		namespace collision_detect_functions {
 
 			bool CollisionDetectCircleAndCirecle(CCircleCollider2D& circle_collider0, CCircleCollider2D& circle_collider1)

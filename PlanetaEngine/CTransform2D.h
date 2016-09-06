@@ -9,9 +9,9 @@ namespace planeta {
 	class CGround2D;
 	class IGameObject;
 	/*形状情報コンポーネント*/
-	class CTransform2D : public core::GameObjectSystemComponent {
+	class CTransform2D : public private_::GameObjectSystemComponent {
 	public:
-		using Super = core::GameObjectSystemComponent;
+		using Super = private_::GameObjectSystemComponent;
 		CTransform2D();
 		~CTransform2D();
 

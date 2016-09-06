@@ -6,7 +6,7 @@
 
 namespace planeta {
 	/*フォントリソース*/
-	class RFont final : public core::ResourceBase {
+	class RFont final : public private_::ResourceBase {
 	public:
 		RFont() {};
 		~RFont() {};

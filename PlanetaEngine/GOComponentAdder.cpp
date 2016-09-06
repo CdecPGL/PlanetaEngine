@@ -10,7 +10,7 @@ namespace planeta {
 
 	bool GOComponentAdder::CreateAndAddComponent(const std::string& com_id, const std::string& alias) {
 		//オブジェクトIDを取得し、コンポーネント作成
-		auto obj_id = core::AddPrefix(com_id, core::ObjectCategory::GameObjectComponent);
+		auto obj_id = private_::AddPrefix(com_id, private_::ObjectCategory::GameObjectComponent);
 		auto com = Reflection::CreateObjectByObjectTypeID<GameObjectComponent>(obj_id);
 		if (com) {
 			decltype(auto) tinfo = Reflection::GetStdTypeInfoByObjectTypeID(obj_id);
@@ -32,7 +32,7 @@ namespace planeta {
 	std::pair<bool, std::string> GOComponentAdder::GetDefaultComID_(const std::type_info& tinfo) {
 		try {
 			auto id = Reflection::GetObjectTypeIDByStdTypeInfo(tinfo);
-			id = core::RemovePrefix(id);
+			id = private_::RemovePrefix(id);
 			return{ true, id };
 		} catch (reflection_error& e) {
 			PE_LOG_ERROR("コンポーネントIDを取得できませんでした。ゲームオブジェクトコンポーネントの型が登録されていない可能性があります。(", e.what(), ")");

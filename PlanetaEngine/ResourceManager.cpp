@@ -8,7 +8,7 @@
 #include "SystemVariables.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 
 		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
 			auto ret = std::move(_check_newuse_and_nouse_tag_groups(need_tags));

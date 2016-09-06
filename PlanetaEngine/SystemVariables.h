@@ -3,7 +3,7 @@
 #include <string>
 
 namespace planeta{
-	namespace core{
+	namespace private_{
 		namespace system_variables{
 			namespace engine_information {
 				extern const std::string VersionString; //バージョン文字列

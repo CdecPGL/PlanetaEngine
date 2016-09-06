@@ -11,7 +11,7 @@ namespace planeta {
 		class DataContainer;
 	}
 	class FileAccessor;
-	namespace core {
+	namespace private_ {
 		class SaveDataManager final: public util::SingletonTemplate<SaveDataManager>{
 			friend class util::SingletonTemplate<SaveDataManager>;
 		public:

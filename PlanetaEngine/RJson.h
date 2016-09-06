@@ -232,7 +232,7 @@ JSON_VALUE_GETTER_FOR_JSONTYPE(JSONArray);
 	/*! @brief JSONファイルを扱うリソースクラス
 		@todo 全般的にコピームーブの挙動の検証が必要。
 	*/
-	class RJson final : public core::ResourceBase {
+	class RJson final : public private_::ResourceBase {
 	public:
 		//! 基底のコンストラクタ
 		RJson();

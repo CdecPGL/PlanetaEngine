@@ -3,7 +3,7 @@
 
 namespace planeta {
 	/*効果音リソース*/
-	class RSound : public core::ResourceBase {
+	class RSound : public private_::ResourceBase {
 	public:
 		RSound() :_handle(-1) {};
 		~RSound() {};

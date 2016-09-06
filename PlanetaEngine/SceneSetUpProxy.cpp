@@ -6,7 +6,7 @@
 
 namespace planeta {
 
-	SceneSetUpProxy::SceneSetUpProxy(core::Scene& scene):scene_(scene) {}
+	SceneSetUpProxy::SceneSetUpProxy(private_::Scene& scene):scene_(scene) {}
 
 	TaskManagerPublicInterface& SceneSetUpProxy::RefTaskManagerInterface_() {
 		return scene_.RefSceneData().task_manager_public_interface;

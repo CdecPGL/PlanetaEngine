@@ -22,7 +22,7 @@ namespace planeta {
 		if (collision_group_name_.length() == 0) {
 			PE_LOG_ERROR("衝突グループが設定されていません。");
 		} else {
-			core::Collider2DData col_dat{ *this,game_object(),*transform2d_
+			private_::Collider2DData col_dat{ *this,game_object(),*transform2d_
 				,[&eve = collided_event_](const EACollisionWithCollider2D& arg) {eve(arg); }
 				,[&eve = collided_with_ground_event_](const EACollisionWithGround2D& arg) {eve(arg); }
 			};

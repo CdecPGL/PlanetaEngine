@@ -6,7 +6,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-using namespace planeta::core;
+using namespace planeta::private_;
 
 namespace PlanetaEngineTest
 {		
@@ -34,7 +34,7 @@ namespace PlanetaEngineTest
 		}
 
 		TEST_METHOD(TLSFmalloc_dealloc時間){
-			using namespace planeta::core;
+			using namespace planeta::private_;
 			TestType* ptrs[test_count];
 			for (int i = 0; i < test_count; ++i){
 				ptrs[i] = tlsf.Alloc<TestType>();
@@ -47,7 +47,7 @@ namespace PlanetaEngineTest
 		TEST_METHOD(TLSLMemoryAllocatorテスト)
 		{
 			// TODO: テスト コードをここに挿入します
-			using namespace planeta::core;
+			using namespace planeta::private_;
 			try{
 				TLSFMemoryAllocator tlsl;
 				TLSFMemoryAllocator::MemoryDetailScanResult scres;

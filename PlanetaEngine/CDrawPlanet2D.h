@@ -7,7 +7,7 @@
 #include "Vertex2D.h"
 
 namespace planeta {
-	namespace core {
+	namespace private_ {
 		class GraphDrawData2D;
 	}
 	/*惑星描画コンポーネント。DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる*/
@@ -34,7 +34,7 @@ namespace planeta {
 		/*ポリゴンの設定が必要か*/
 		bool set_polygon_flag_ = false;
 		/*画像描画データ*/
-		std::shared_ptr<core::GraphDrawData2D> graph_draw_data_;
+		std::shared_ptr<private_::GraphDrawData2D> graph_draw_data_;
 		/*テクスチャマッピングモード*/
 		TextureMappingMode tex_map_mode_;
 		virtual bool OnInitialized(const GOComponentGetter& com_getter) override;

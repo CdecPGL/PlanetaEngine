@@ -10,7 +10,7 @@
 namespace planeta {
 	class SceneAccessorForTask;
 	class ISceneManagerAccessor;
-	namespace core {
+	namespace private_ {
 		struct SceneData;
 		class TaskManagerConnection;
 	}
@@ -27,7 +27,7 @@ namespace planeta {
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<core::TaskManagerConnection>&& manager_connection, const util::WeakPointer<core::SceneData>& scene_data);
+		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const util::WeakPointer<private_::SceneData>& scene_data);
 		/*イベント*/
 		/*プロセスが破棄された*/
 		util::Delegate<void> disposed;
@@ -64,8 +64,8 @@ namespace planeta {
 		//シーンマネージャへのアクセス
 		ISceneManagerAccessor& scene_manager();
 	private:
-		util::WeakPointer<core::SceneData> scene_data_;
-		std::unique_ptr<core::TaskManagerConnection> manager_connection_;
+		util::WeakPointer<private_::SceneData> scene_data_;
+		std::unique_ptr<private_::TaskManagerConnection> manager_connection_;
 		TaskManagerPublicInterface& RefTaskManagerInterface_();
 		const TaskManagerPublicInterface& RefTaskManagerInterface_()const;
 		virtual bool OnCreated() { return true; }
