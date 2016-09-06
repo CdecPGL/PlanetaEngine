@@ -6,6 +6,11 @@
 #include "TGInstant.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CGraph2DAnimator) {
+		//registerer
+		//	.
+	}
+
 	bool CGraph2DAnimator::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		draw_graph_component_.reset(com_getter.GetComponent<CDrawGraph2D>());

@@ -6,6 +6,7 @@
 namespace planeta {
 	class CTransform2D;
 	class CCamera2D final: public private_::GameObjectSystemComponent {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCamera2D);
 	public:
 		using Super = private_::GameObjectSystemComponent;
 		//拡大率

@@ -4,6 +4,7 @@
 
 namespace planeta {
 	class CPlanet : public GameObjectStandardComponent {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CPlanet);
 	public:
 		using Super = GameObjectStandardComponent;
 		CPlanet();

@@ -11,6 +11,7 @@
 namespace planeta {
 	class CDrawGraph2D;
 	class CGraph2DAnimator : public GameObjectStandardComponent {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CGraph2DAnimator);
 	public:
 		using Super = GameObjectStandardComponent;
 		/*フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/

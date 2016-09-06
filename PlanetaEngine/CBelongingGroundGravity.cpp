@@ -6,6 +6,12 @@
 #include "TGInstant.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CBelongingGroundGravity) {
+		registerer
+			.PE_REFLECTABLE_CLASS_PROPERTY(CBelongingGroundGravity, gravity_scale)
+			.ShallowCopyTarget(&CBelongingGroundGravity::_gravity_scale);
+	}
+
 	bool CBelongingGroundGravity::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());

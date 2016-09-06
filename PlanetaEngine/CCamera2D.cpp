@@ -7,6 +7,12 @@
 #include "DxLib.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCamera2D) {
+		registerer
+			.PE_REFLECTABLE_CLASS_PROPERTY(CCamera2D, expansion)
+			.ShallowCopyTarget(&CCamera2D::expansion_);
+	}
+
 	bool CCamera2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());

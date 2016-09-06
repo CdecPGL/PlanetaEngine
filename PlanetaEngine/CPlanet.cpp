@@ -9,6 +9,15 @@ namespace {
 }
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CPlanet) {
+		registerer
+			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, radius)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, separation)
+			.ShallowCopyTarget(&CPlanet::_radius)
+			.ShallowCopyTarget(&CPlanet::_separation)
+			.ShallowCopyTarget(&CPlanet::_gap);
+	}
+
 	CPlanet::CPlanet() {
 		separation(kDefaultSeparation);
 	}

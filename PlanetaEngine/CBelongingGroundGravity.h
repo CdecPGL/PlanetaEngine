@@ -4,6 +4,7 @@
 namespace planeta {
 	class CTransform2D;
 	class CBelongingGroundGravity final: public GameObjectStandardComponent {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CBelongingGroundGravity);
 	public:
 		using Super = GameObjectStandardComponent;
 		const double gravity_scale()const { return _gravity_scale; }
