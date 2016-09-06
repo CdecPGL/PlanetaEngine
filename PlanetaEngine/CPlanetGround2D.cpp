@@ -7,18 +7,14 @@
 #include "MathConstant.h"
 
 namespace planeta {
-	bool CPlanetGround2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
-		if (CGround2D::GetOtherComponentProc(com_getter) == false) {
-			PE_LOG_ERROR("GroundComponentの初期化に失敗しました。");
+	bool CPlanetGround2D::OnInitialized(const GOComponentGetter& com_getter) {
+		if (!CGround2D::OnInitialized(com_getter)) { return false; };
+		planet_component_.reset(com_getter.GetComponent<CPlanet>());
+		if (!planet_component_) {
+			PE_LOG_ERROR("PlanetComponentを取得できませんでした。");
 			return false;
 		} else {
-			planet_component_.reset(com_getter.GetComponent<CPlanet>());
-			if (!planet_component_) {
-				PE_LOG_ERROR("PlanetComponentを取得できませんでした。");
-				return false;
-			} else {
-				return true;
-			}
+			return true;
 		}
 	}
 

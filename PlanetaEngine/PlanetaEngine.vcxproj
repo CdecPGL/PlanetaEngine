@@ -158,6 +158,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
+    <ClInclude Include="GameObejctComponentReferencer.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="GameObjectInterface.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
@@ -226,6 +227,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="TypeInfoWrapper.h" />
+    <ClInclude Include="TypeTraitsUtility.h" />
     <ClInclude Include="VectorElementIdentifer.h" />
     <ClInclude Include="Coroutine.h" />
     <ClInclude Include="TCoroutine.h" />

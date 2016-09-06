@@ -4,11 +4,7 @@
 
 namespace planeta{
 		bool GameObjectComponent::Initialize(const GOComponentGetter& com_getter) {
-			if (!GetOtherComponentProc(com_getter)) {
-				PE_LOG_ERROR("コンポーネントの取得処理に失敗しました。");
-				return false;
-			}
-			if (!OnInitialized()) {
+			if (!OnInitialized(com_getter)) {
 				PE_LOG_ERROR("コンポーネントの初期化処理に失敗しました。");
 				return false;
 			}
@@ -41,7 +37,7 @@ namespace planeta{
 			}
 		}
 
-		bool GameObjectComponent::SystemSetUp(const core::GameObjectComponentSetUpData& resistration_data) {
+		bool GameObjectComponent::SetSceneAndHolderGOData(const core::GameObjectComponentSetUpData& resistration_data) {
 			game_object_.reset(resistration_data.holder_game_object);
 			SetSceneData(resistration_data.scene_data);
 			return true;

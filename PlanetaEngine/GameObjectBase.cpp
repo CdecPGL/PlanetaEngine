@@ -35,20 +35,13 @@ namespace planeta {
 		manager_connection_->RequestDisposal();
 	}
 
-	bool GameObjectBase::OnInitialized() { return true; }
+	bool GameObjectBase::OnInitialized(const GOComponentGetter&) { return true; }
 
 	bool GameObjectBase::OnActivated() { return true; }
 
 	bool GameObjectBase::OnInactivated() { return true; }
 
 	bool GameObjectBase::OnDisposed() { return true; }
-
-	std::shared_ptr<GameObjectBase> GameObjectBase::Clone() {
-		auto ptr = Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*this));
-		assert(ptr != nullptr);
-		component_holder_.CloneToOtherHolder(ptr->component_holder_);
-		return ptr;
-	}
 
 	bool GameObjectBase::ProcessInstantiation() {
 		GOComponentAdder gocadder(component_holder_);
@@ -59,8 +52,8 @@ namespace planeta {
 	bool GameObjectBase::ProcessLoading(const JSONObject& json_object) {
 		for (auto&& com_defs : json_object) {
 			std::string alias = com_defs.first;
-			auto it = component_holder_.alias_map().find(alias);
-			if (it == component_holder_.alias_map().end()) {
+			auto it = component_holder_.alias_idx_map().find(alias);
+			if (it == component_holder_.alias_idx_map().end()) {
 				PE_LOG_ERROR("エイリアス\"", alias, "\"が指定されましたが、対応するエイリアスのゲームオブジェクトコンポーネントが存在しません。");
 				return false;
 			}
@@ -100,14 +93,18 @@ namespace planeta {
 	}
 
 	bool GameObjectBase::ProcessInitialization() {
-		if (!OnInitialized()) {
+		GOComponentGetter com_getter(component_holder_);
+
+		if (!OnInitialized(com_getter)) {
 			PE_LOG_ERROR("GameObjectの初期化処理に失敗しました。");
 			return false;
 		}
-		GOComponentGetter com_getter(component_holder_);
-		for (auto&& com : component_holder_.alias_map()) {
-			if(!com.second->Initialize(com_getter)) {
-				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", com.first, "\"の初期化処理に失敗しました。");
+
+		decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
+		decltype(auto) com_ary = component_holder_.component_array();
+		for (auto&& alias_idx : com_alias_idx_map) {
+			if(!com_ary[alias_idx.second]->Initialize(com_getter)) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"の初期化処理に失敗しました。");
 				return false;
 			}
 		}
@@ -119,9 +116,12 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの有効化処理に失敗しました。");
 			return false;
 		}
-		for (auto&& com : component_holder_.alias_map()) {
-			if (!com.second->Activate()) {
-				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", com.first, "\"の有効化処理に失敗しました。");
+
+		decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
+		decltype(auto) com_ary = component_holder_.component_array();
+		for (auto&& alias_idx : com_alias_idx_map) {
+			if (!com_ary[alias_idx.second]->Activate()) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"の有効化処理に失敗しました。");
 				return false;
 			}
 		}
@@ -135,9 +135,12 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの無効化処理に失敗しました。");
 			return false;
 		}
-		for (auto&& com : component_holder_.alias_map()) {
-			if (!com.second->InActivate()) {
-				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", com.first, "\"の無効化処理に失敗しました。");
+
+		decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
+		decltype(auto) com_ary = component_holder_.component_array();
+		for (auto&& alias_idx : com_alias_idx_map) {
+			if (!com_ary[alias_idx.second]->InActivate()) {
+				PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"の無効化処理に失敗しました。");
 				return false;
 			}
 		}
@@ -150,7 +153,7 @@ namespace planeta {
 			PE_LOG_ERROR("GameObjectの破棄処理に失敗しました。");
 			return false;
 		}
-		for (auto&& com : component_holder_.component_list()) {
+		for (auto&& com : component_holder_.component_array()) {
 			com->Finalize();
 		}
 		return true;
@@ -198,9 +201,9 @@ namespace planeta {
 		return hander_adder(disposed_event_delegate_);
 	}
 
-	void GameObjectBase::SetUpGameComponent(GameObjectComponent& com) {
+	void GameObjectBase::SetSceneAndGODataToComponent_(GameObjectComponent& com) {
 		core::GameObjectComponentSetUpData rd{ this, scene_data_ };
-		com.SystemSetUp(rd);
+		com.SetSceneAndHolderGOData(rd);
 	}
 
 	std::shared_ptr<GameObjectComponent> GameObjectBase::GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
@@ -218,4 +221,25 @@ namespace planeta {
 	void GameObjectBase::SetUpAttachedTask_(TGameObjectOperation& task) {
 		task.Attach(GetSharedPointer(), true);
 	}
+
+	bool GameObjectBase::ProcessClonation(const std::shared_ptr<GameObjectBase>& dst) {
+		//シーンデータのセット
+		scene_data_ = dst->scene_data_;
+		//コンポーネントのクローン
+		dst->component_holder_.CloneToOtherHolder(component_holder_);
+		//コンポーネントへシーンとGOデータをセット
+		SetSceneAndGODataToCOmponents();
+		return true;
+	}
+
+	void GameObjectBase::SetSceneAndGODataToCOmponents() {
+		decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
+		decltype(auto) com_ary = component_holder_.component_array();
+		for (auto&& alias_idx : com_alias_idx_map) {
+			SetSceneAndGODataToComponent_(*com_ary[alias_idx.second]);
+		}
+	}
+
+	void GameObjectBase::AddComponentsProc(GOComponentAdder& com_adder) {}
+
 }

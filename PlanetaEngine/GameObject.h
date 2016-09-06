@@ -23,12 +23,14 @@ namespace planeta {
 	private:
 		//システム関数の隠蔽
 		bool ProcessInstantiation();
+		bool ProcessClonation(const std::shared_ptr<GameObjectBase>&);
 		bool ProcessLoading();
 		bool ProcessActivation();
 		bool ProcessInactivation();
 		bool ProcessDisposal();
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
 		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
+		void SetSceneAndGODataToCOmponents();
 	};
 }
 

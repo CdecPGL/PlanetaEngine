@@ -8,24 +8,24 @@ namespace planeta {
 
 	GOComponentAdder::GOComponentAdder(GameObjectComponentHolder& com_holder) :com_holder_(com_holder) {}
 
-	util::NonOwingPointer<GameObjectComponent> GOComponentAdder::CreateAndAddComponent(const std::string& com_id, const std::string& alias) {
+	bool GOComponentAdder::CreateAndAddComponent(const std::string& com_id, const std::string& alias) {
 		//オブジェクトIDを取得し、コンポーネント作成
 		auto obj_id = core::AddPrefix(com_id, core::ObjectCategory::GameObjectComponent);
 		auto com = Reflection::CreateObjectByObjectTypeID<GameObjectComponent>(obj_id);
 		if (com) {
 			decltype(auto) tinfo = Reflection::GetStdTypeInfoByObjectTypeID(obj_id);
 			if (AddComponentToHolder_(com, tinfo, alias)) {
-				return com;
+				return true;
 			} else {
-				return nullptr;
+				return false;
 			}
 		} else {
 			PE_LOG_ERROR("GameObjectComponent(ObjectTypeID:\"", obj_id, "\"を作成できませんでした。");
-			return nullptr;
+			return false;
 		}
 	}
 
-	util::NonOwingPointer<GameObjectComponent> GOComponentAdder::CreateAndAddComponent(const std::string& com_id) {
+	bool GOComponentAdder::CreateAndAddComponent(const std::string& com_id) {
 		return CreateAndAddComponent(com_id, com_id);
 	}
 

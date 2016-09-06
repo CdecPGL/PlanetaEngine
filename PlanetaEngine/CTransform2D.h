@@ -80,7 +80,7 @@ namespace planeta {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		//GOCオーバーライド
-		bool OnInitialized()override final;
+		bool OnInitialized(const GOComponentGetter& com_getter)override final;
 		void OnFinalized()noexcept override final;
 		bool OnActivated()override final;
 		bool OnInactivated()override final;

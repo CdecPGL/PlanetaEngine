@@ -45,8 +45,7 @@ namespace planeta {
 
 		util::NonOwingPointer<CTransform2D> transform2d_;
 
-		virtual bool GetOtherComponentProc(const GOComponentGetter& com_getter)override;
-		virtual bool OnInitialized()override;
+		virtual bool OnInitialized(const GOComponentGetter& com_getter)override;
 	private:
 		int draw_priority_ = 0; //描画優先度
 		/*表示位置*/

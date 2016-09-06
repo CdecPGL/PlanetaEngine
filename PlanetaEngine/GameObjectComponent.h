@@ -26,7 +26,7 @@ namespace planeta {
 		using Super = core::Object;
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
-		bool SystemSetUp(const core::GameObjectComponentSetUpData& resistration_data);
+		bool SetSceneAndHolderGOData(const core::GameObjectComponentSetUpData& resistration_data);
 
 		/*! @brief ゲームオブジェクトコンポーネントが使用可能か
 			
@@ -49,15 +49,13 @@ namespace planeta {
 		*/
 		IGameObjectForComponent& game_object();
 		//オーバーライド可能関数
-		//! コンポーネント取得処理関数
-		virtual bool GetOtherComponentProc(const GOComponentGetter& com_getter) { return true; }
 		/*イベント関数*/
 		/*! @brief 初期化時イベント関数
 
-			所属するゲームオブジェクトが初期化されたときに呼び出される。<br/>
+			所属するゲームオブジェクトが初期化されたときに呼び出される。ほかのコンポーネントの取得もここで行う。<br/>
 			先頭で親クラスの同関数を呼び出す必要がある。
 		*/
-		virtual bool OnInitialized() { return true; };
+		virtual bool OnInitialized(const GOComponentGetter&) { return true; };
 		/*! @brief 有効化時イベント関数
 
 			所属するゲームオブジェクトが有効化されたときに呼び出される。<br/>

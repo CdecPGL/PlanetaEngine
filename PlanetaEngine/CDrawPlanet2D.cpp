@@ -31,8 +31,8 @@ namespace planeta {
 		drawer.DrawGraph(graph_draw_data_);
 	}
 
-	bool CDrawPlanet2D::GetOtherComponentProc(const GOComponentGetter& com_getter) {
-		if (CDraw2D::GetOtherComponentProc(com_getter) == false) { return false; }
+	bool CDrawPlanet2D::OnInitialized(const GOComponentGetter& com_getter) {
+		if (Super::OnInitialized(com_getter) == false) { return false; }
 		_planet_component.reset(com_getter.GetComponent<CPlanet>());
 		if (_planet_component) {
 			SetPolygon_();
@@ -41,11 +41,6 @@ namespace planeta {
 			PE_LOG_ERROR("初期化に失敗しました。PlanetComponentを取得できませんでした。");
 			return false;
 		}
-	}
-
-	bool CDrawPlanet2D::OnInitialized() {
-		if (CDraw2D::OnInitialized() == false) { return false; }
-		return true;
 	}
 
 	void CDrawPlanet2D::OnFinalized()noexcept {

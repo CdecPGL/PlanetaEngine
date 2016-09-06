@@ -408,7 +408,8 @@ namespace planeta {
 		}
 	}
 
-	bool CTransform2D::OnInitialized() {
+	bool CTransform2D::OnInitialized(const GOComponentGetter& com_getter) {
+		if (!Super::OnInitialized(com_getter)) { return false; }
 		return true;
 	}
 

@@ -10,7 +10,13 @@ namespace planeta {
 		CTransform2D& transform2d()override { return *transform2d_; }
 	protected:
 		void AddComponentsProc(GOComponentAdder& com_adder) {
-			transform2d_.reset(com_adder.CreateAndAddComponent<CTransform2D>());
+			Super::AddComponentsProc(com_adder);
+			com_adder.CreateAndAddComponent<CTransform2D>();
+		}
+		bool OnInitialized(const GOComponentGetter& com_getter) {
+			if (!Super::OnInitialized(com_getter)) { return false; }
+			transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+			return true;
 		}
 	private:
 		util::NonOwingPointer<CTransform2D> transform2d_;

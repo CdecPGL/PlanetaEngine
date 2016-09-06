@@ -14,9 +14,7 @@ namespace planeta {
 	}
 
 	std::shared_ptr<GameObjectBase> GameObjectManager::CreateAndSetUpGameObject_(const std::string& game_object_type_id, const std::string& resource_id) {
-		auto go = game_object_template_holder_->GetNewGameObject(game_object_type_id, resource_id,
-			[sd = scene_data_](GameObjectBase& go) {go.SetSceneData(sd); } //インスタンス化後にシーンデータ登録を行ってもらう
-		);
+		auto go = game_object_template_holder_->GetNewGameObject(game_object_type_id, resource_id, scene_data_);
 		return go;
 	}
 

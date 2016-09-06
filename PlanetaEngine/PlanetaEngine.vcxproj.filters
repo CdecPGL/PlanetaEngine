@@ -852,6 +852,12 @@
     <ClInclude Include="TypeInfoWrapper.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="TypeTraitsUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObejctComponentReferencer.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">

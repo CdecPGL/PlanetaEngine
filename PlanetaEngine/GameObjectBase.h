@@ -15,6 +15,7 @@ namespace planeta {
 	}
 	class GameObjectComponent;
 	class GOComponentAdder;
+	class GOComponentGetter;
 	/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 	*/
 	class GameObjectBase :public core::Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
@@ -40,11 +41,10 @@ namespace planeta {
 		util::DelegateConnection AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
 
 		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
-		//クローンを作成する
-		std::shared_ptr<GameObjectBase> Clone();
-
 		//インスタンス化時の処理
 		bool ProcessInstantiation();
+		//クローン時の処理
+		bool ProcessClonation(const std::shared_ptr<GameObjectBase>& dst);
 		//ロード時の処理
 		bool ProcessLoading(const JSONObject& json_object);
 		//初期化時の処理
@@ -59,24 +59,25 @@ namespace planeta {
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
 		//シーンデータをセット
 		void SetSceneData(const util::WeakPointer<core::SceneData>& scene_data);
+		//シーンデータとゲームオブジェクトのデータをコンポーネントにセット
+		void SetSceneAndGODataToCOmponents();
 	protected:
 		//オーバーライド必須関数
 		/*! @brief コンポーネントの登録を行う
 		
 			シーン内で、GameObjectTypeID、ResourceIDの指定が初めての組み合わせでゲームオブジェクトを生成した場合に一度だけ呼び出される。<br/>
 			引数のGOComponentAdderを利用してコンポーネントの追加を行う。<br/>
-			同時にコンポーネントの設定もい行うことができるが、ゲームオブジェクトのインスタンスに依存する設定(thisポインタをコンポーネントに渡すなど)は行ってはいけない。<br/>
 			関数の先頭で、親クラスの同関数を呼び出す必要がある。
 		*/
-		virtual void AddComponentsProc(GOComponentAdder& com_adder) = 0;
+		virtual void AddComponentsProc(GOComponentAdder& com_adder);
 		//イベント関数
 		/*! @brief 初期化イベント関数
 
 			ゲームオブジェクトが生成されたときに呼び出される。<br/>
-			タスクの作成など、ゲームオブジェクトの初期化処理を行う。戻り値は初期化の成否を示す。<br/>
+			タスクの作成など、ゲームオブジェクトの初期化処理と必要なコンポーネントへの参照の取得を行う。戻り値は初期化の成否を示す。<br/>
 			関数の先頭で、親クラスの同関数を呼び出す必要がある。
 		*/
-		virtual bool OnInitialized();
+		virtual bool OnInitialized(const GOComponentGetter& com_getter);
 		/*! @brief 有効化イベント関数
 		
 			ゲームオブジェクトが有効化されるたびに呼び出される。<br/>
@@ -124,7 +125,7 @@ namespace planeta {
 
 		//コンポーネント関連の処理
 
-		void SetUpGameComponent(GameObjectComponent& com);
+		void SetSceneAndGODataToComponent_(GameObjectComponent& com);
 		
 		//イベントデリゲート
 		util::Delegate<void> activated_event_delegate_;
