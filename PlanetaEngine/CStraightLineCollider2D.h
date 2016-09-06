@@ -4,6 +4,7 @@
 
 namespace planeta {
 	class CStraightLineCollider2D final : public CCollider2D {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CStraightLineCollider2D);
 	public:
 		using Super = CCollider2D;
 		bool DetectCollision(private_::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }

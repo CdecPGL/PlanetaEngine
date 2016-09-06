@@ -210,3 +210,12 @@ namespace planeta {
 		return *this;
 	}
 }
+
+/*! @brief 標準的なプロパティを登録するユーティリティマクロ
+
+	型の変換なしにClassRegisterer::Propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
+	registerer.PE_REFLECTION_CLASS_PROPERTY(prop);
+	のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_PROPERTY(ctype, id)\
+Property(#id, &ctype::id, &ctype::id)

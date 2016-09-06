@@ -4,6 +4,7 @@
 
 namespace planeta {
 	class CCircleCollider2D final : public CCollider2D {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCircleCollider2D);
 	public:
 		using Super = CCollider2D;
 		bool DetectCollision(private_::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }

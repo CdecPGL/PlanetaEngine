@@ -52,6 +52,7 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			try {
 				Reflection::Initialize();
+				PE_LOG_MESSAGE("リフレクションシステムが有効です。", Reflection::GetRegisteredClassCount(),"個のクラスが登録されています。");
 			} 
 			catch (reflection_error& e) {
 				PE_LOG_FATAL("リフレクションシステムの初期化に失敗しました。:", e.what());

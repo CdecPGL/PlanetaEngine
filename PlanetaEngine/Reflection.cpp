@@ -201,4 +201,8 @@ namespace planeta {
 		impl_().is_initialized_ = true;
 	}
 
+	size_t Reflection::GetRegisteredClassCount()noexcept {
+		return  impl_().type_data_map.get<tag::StdTypeInfo>().size();
+	}
+
 }

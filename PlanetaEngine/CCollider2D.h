@@ -14,6 +14,7 @@ namespace planeta {
 		struct Collider2DData;
 	}
 	class CCollider2D : public private_::GameObjectSystemComponent, public private_::IColliderWithCollider2D {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCollider2D);
 	public:
 		using Super = private_::GameObjectSystemComponent;
 		virtual ~CCollider2D() = default;

@@ -2,7 +2,7 @@
 Version 1.0.0 2016/9/1
 Version 1.0.1 2016/9/2 Reflectableクラスをコピームーブ可能に。RegisterObject時のエラー報告を初期化時に行うよう変更。
 Version 1.0.2 2016/9/3 RE_REFLECTABLE_CLASSで、登録トリガーの無名名前空間変数が、翻訳空間ごとに作成されることが原因でクラスの重複登録エラーが起きていたのを修正。基底型を指定して登録することを可能に。
-Version 1.0.3 2016/9/6 ReflectionUtility.hにostreamのインクルードを追加し、変換可能な型が変換できないバグを修正。
+Version 1.0.3 2016/9/6 ReflectionUtility.hにostreamのインクルードを追加し、変換可能な型が変換できないバグを修正。プロパティ登録の補助マクロ追加。ReflectionDataRegistererの引数型も確認するように変更。
 
 @exception noexcept出ないクラスは、reflection_errorを投げる可能性がある
 
@@ -84,6 +84,9 @@ namespace planeta {
 		static std::string GetObjectTypeIDByStdTypeInfo(const std::type_info& tinfo);
 		//! ObjectTypeIDから型情報を取得する
 		static const std::type_info& GetStdTypeInfoByObjectTypeID(const std::string& id);
+
+		//! 登録されたクラス数を取得
+		static size_t GetRegisteredClassCount()noexcept;
 	private:
 		Reflection()noexcept;
 		class Impl_;
@@ -95,11 +98,11 @@ namespace planeta {
 	};
 
 	namespace private_ {
-		//C::Reflectionを持っているか
+		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っているか
 		template<class C, typename T = void>
 		struct HasReflectionDataRegisterer : public std::false_type {};
 		template<class C> 
-		struct HasReflectionDataRegisterer < C, decltype(&C::ReflectionDataRegisterer, std::declval<void>()) > : public std::true_type {};
+		struct HasReflectionDataRegisterer < C, decltype(C::ReflectionDataRegisterer(std::declval<ClassRegisterer<C>>()), std::declval<void>()) > : public std::true_type {};
 		//C::Superを持っているか
 		template<class C, typename T = void>
 		struct HasSuperAlias : public std::false_type {};

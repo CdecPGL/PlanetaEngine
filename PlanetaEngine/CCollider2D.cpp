@@ -8,6 +8,18 @@
 #include "Collider2DData.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCollider2D) {
+		registerer
+		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_position)
+		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_rotation_rad)
+		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, collide_with_ground_flag)
+		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, collision_group)
+		.ShallowCopyTarget(&CCollider2D::position_)
+		.ShallowCopyTarget(&CCollider2D::rotation_rad_)
+		.ShallowCopyTarget(&CCollider2D::collide_with_ground_flag_)
+		.ShallowCopyTarget(&CCollider2D::collision_group_name_);
+	}
+
 	bool CCollider2D::OnActivated() {
 		ResistToCollisionDetectProcess_();
 		return true;
