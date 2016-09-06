@@ -28,6 +28,10 @@ namespace planeta {
 		void StopAnimation();
 		/*再生中のアニメーション名を取得する*/
 		const std::string GetPlayingAnimationName()const { return is_playing_ ? current_animation_name_ : ""; }
+
+		//アクセサ
+		void animation_data(const std::unordered_map<std::string,std::vector<FrameDataType>>& data);
+		void simple_animation_data();
 	private:
 		util::NonOwingPointer<CDrawGraph2D> draw_graph_component_;
 		unsigned int frame_counter_ = 0;

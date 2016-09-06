@@ -56,3 +56,31 @@ namespace planeta {
 		T RectAngle<T>::height()const { return size.y; }
 	}
 }
+
+#ifdef PE_ENABLE_REFLECTION_SYSTEM
+
+namespace planeta {
+	namespace util {
+		//ReflectionシステムのPtree読み込みを有効にするための定義
+		template<typename T>
+		void ReflectivePtreeConverter(util::RectAngle<T>& dst, const boost::property_tree::ptree& src) {
+			using namespace math;
+			if (src.size() != 2) {
+				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、RectAngleでは2である必要があります。"));
+			}
+			size_t idx = 0;
+			std::array<Vector2D<T>, 2> ary; //座標とサイズ
+			for (auto&& pp : src) {
+				if (pp.first.empty() == false) {
+					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+				}
+				Vector2D<T> dat{};
+				ReflectivePtreeConverter(dat, pp.second);
+				ary[idx++] = std::move(dat);
+			}
+			dst.Set(ary[0], ary[1]);
+		}
+	}
+}
+
+#endif

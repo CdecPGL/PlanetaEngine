@@ -212,7 +212,7 @@ namespace planeta {
 		template<typename T>
 		void ReflectivePtreeConverter(math::Vector3D<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 3) {
-				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、3である必要があります。"));
+				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector3Dでは3である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 3> ary;

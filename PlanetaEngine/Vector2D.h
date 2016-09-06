@@ -206,7 +206,7 @@ namespace planeta {
 		template<typename T>
 		void ReflectivePtreeConverter(math::Vector2D<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 2) {
-				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、2である必要があります。"));
+				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 2> ary;
