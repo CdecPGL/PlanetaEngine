@@ -293,7 +293,16 @@ namespace planeta {
 	//CTransform2D
 	//////////////////////////////////////////////////////////////////////////
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CTransform2D) {
-		registerer.DeepCopyTarget(&CTransform2D::impl_);
+		registerer
+			.Property("position", &CTransform2D::position, &CTransform2D::position)
+			.Property("scale", &CTransform2D::scale, &CTransform2D::scale)
+			.Property("rotation_rad", &CTransform2D::rotation_rad, &CTransform2D::rotation_rad)
+			.Property("ground_position", &CTransform2D::ground_position, &CTransform2D::ground_position)
+			.Property("ground_rotation_rad", &CTransform2D::ground_rotation_rad, &CTransform2D::ground_rotation_rad)
+			.Property("velocity", &CTransform2D::velocity, &CTransform2D::velocity)
+			.Property("rotation_velocity_rad", &CTransform2D::rotation_velocity_rad, &CTransform2D::rotation_velocity_rad)
+			.Property("ground_velocity", &CTransform2D::ground_velocity, &CTransform2D::ground_velocity)
+			.DeepCopyTarget(&CTransform2D::impl_);
 	}
 
 	CTransform2D::CTransform2D() :impl_(std::make_unique<Impl_>()) {};

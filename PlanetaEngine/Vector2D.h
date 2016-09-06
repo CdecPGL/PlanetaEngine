@@ -4,6 +4,8 @@
 #include <string>
 #include "MathConstant.h"
 
+#define PE_ENABLE_REFLECTION_SYSTEM
+
 namespace planeta {
 	namespace math {
 		template<typename T>
@@ -193,3 +195,32 @@ namespace planeta {
 	using Vector2Di = math::Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
 
 }
+
+#ifdef PE_ENABLE_REFLECTION_SYSTEM
+
+#include "boost/property_tree/ptree.hpp"
+
+namespace planeta {
+	namespace util {
+		//ReflectionシステムのPtree読み込みを有効にするための定義
+		template<typename T>
+		void ReflectivePtreeConverter(math::Vector2D<T>& dst, const boost::property_tree::ptree& src) {
+			if (src.size() != 2) {
+				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、2である必要があります。"));
+			}
+			size_t idx = 0;
+			std::array<T, 2> ary;
+			for (auto&& pp : src) {
+				if (pp.first.empty() == false) {
+					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+				}
+				T dat{};
+				ReflectivePtreeConverter(dat, pp.second);
+				ary[idx++] = std::move(dat);
+			}
+			dst.Set(ary[0], ary[1]);
+		}
+	}
+}
+
+#endif

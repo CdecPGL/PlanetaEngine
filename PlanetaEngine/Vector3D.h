@@ -4,6 +4,8 @@
 #include <string>
 #include "MathConstant.h"
 
+#define PE_ENABLE_REFLECTION_SYSTEM
+
 namespace planeta {
 	namespace math {
 		template<typename T>
@@ -198,3 +200,33 @@ namespace planeta {
 	using Vector3Dd = math::Vector3D<double>; //倍精度浮動小数点型三次元ベクトル
 	using Vector3Di = math::Vector3D<int32_t>; //32bit符号付き整数型三次元ベクトル
 }
+
+
+#ifdef PE_ENABLE_REFLECTION_SYSTEM
+
+#include "boost/property_tree/ptree.hpp"
+
+namespace planeta {
+	namespace util {
+		//ReflectionシステムのPtree読み込みを有効にするための定義
+		template<typename T>
+		void ReflectivePtreeConverter(math::Vector3D<T>& dst, const boost::property_tree::ptree& src) {
+			if (src.size() != 3) {
+				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、3である必要があります。"));
+			}
+			size_t idx = 0;
+			std::array<T, 3> ary;
+			for (auto&& pp : src) {
+				if (pp.first.empty() == false) {
+					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+				}
+				T dat{};
+				ReflectivePtreeConverter(dat, pp.second);
+				ary[idx++] = std::move(dat);
+			}
+			dst.Set(ary[0], ary[1], ary[3]);
+		}
+	}
+}
+
+#endif
