@@ -12,12 +12,16 @@ namespace planeta {
 		class GraphDrawData2D;
 	}
 	class CDrawGraph2D final : public CDraw2D {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraph2D);
 	public:
 		using Super = CDraw2D;
 		CDrawGraph2D();
 		~CDrawGraph2D();
+		
+		/*! 画像リソースをセット*/
 		bool SetGraphResource(const std::string& resource_id);
 		/*アクセサ*/
+		CDrawGraph2D& graph_resource_id(const std::string& res_id);
 		const util::RectAngle<int>& draw_area()const { return _draw_area; }
 		CDrawGraph2D& draw_area(const util::RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); return *this; }
 		const bool reverse()const { return reverse_; }

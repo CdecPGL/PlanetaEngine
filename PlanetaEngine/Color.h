@@ -1,8 +1,7 @@
 ﻿#pragma once
-#include "Object.h"
 
 namespace planeta {
-	class Color : public Object {
+	class Color {
 	public:
 		Color(int r, int g, int b, int a) :_r(r), _g(g), _b(b), _a(a) {
 			if (_r < 0) { _r = 0; } else if (_r>255) { _r = 255; }

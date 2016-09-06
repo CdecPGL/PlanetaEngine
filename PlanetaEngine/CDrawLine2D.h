@@ -6,6 +6,7 @@
 
 namespace planeta {
 	class CDrawLine2D final : public CDraw2D {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawLine2D);
 	public:
 		using Super = CDraw2D;
 		CDrawLine2D();

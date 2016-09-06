@@ -5,6 +5,14 @@
 #include "Matrix2_2.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawPolygon2D) {
+		registerer
+			.WriteOnlyProperty("vertexes", &CDrawPolygon2D::vertexes)
+			.ShallowCopyTarget(&CDrawPolygon2D::points_)
+			.ShallowCopyTarget(&CDrawPolygon2D::vertexes_)
+			.ShallowCopyTarget(&CDrawPolygon2D::indexes_);
+	}
+
 	void CDrawPolygon2D::DrawProc(ScreenDrawer2D& drawer) {
 		UpdateVertex_();
 		drawer.DrawPolygon(vertexes_, indexes_, color());
@@ -23,7 +31,7 @@ namespace planeta {
 		}
 	}
 
-	void CDrawPolygon2D::SetVertexes(const std::vector<Vector2Dd>& vs) {
+	void CDrawPolygon2D::vertexes(const std::vector<Vector2Dd>& vs) {
 		points_ = vs;
 		vertexes_.resize(points_.size());
 		UpdatePorygonIndex_();

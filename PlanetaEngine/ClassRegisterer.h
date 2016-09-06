@@ -8,6 +8,8 @@
 //#include "LuaIntf.h"
 #include "boost/any.hpp"
 #include "boost/type_traits.hpp"
+#include "boost/function_types/function_type.hpp"
+#include "boost/function_types/parameter_types.hpp"
 
 #include "ClassInfo.h"
 #include "ReflectionUtility.h"
@@ -179,19 +181,19 @@ namespace planeta {
 	template<class C>
 	template<typename Setter>
 	ClassRegisterer<C>& ClassRegisterer<C>::WriteOnlyProperty(const std::string& prop_id, const Setter& setter, AccessAttiribute access_attribute)noexcept {
-		using PType = std::remove_cv_t<std::remove_reference_t<get_function_argument_type_t<Setter, 0>>>;
+		using PType = std::remove_cv_t<std::remove_reference_t<boost::mpl::at_c<boost::function_types::parameter_types<Setter>,1>::type>>;
 		if (access_attribute == AccessAttiribute::Public) {
-			private_::VariableOrPropertyInfo pinfo{ typeid(PType) }
+			private_::VariableOrPropertyInfo pinfo{ typeid(PType) };
 			pinfo.is_readable = false;
 			pinfo.is_writable = true;
 			pinfo.setter = [setter](Reflectable& c, const boost::any& v) {
 				(static_cast<C&>(c).*setter)(boost::any_cast<PType>(v));
 			};
 			pinfo.ptree_loeder = [setter](Reflectable& c, const boost::property_tree::ptree& pt) {
-				PType dat;
+				PType dat{};
 				util::ReflectivePtreeConverter(dat, pt);
-				(static_cast<C&>(c).Clone*setter)(dat);
-			}
+				(static_cast<C&>(c).*setter)(dat);
+			};
 			pinfo.access_attribute = access_attribute;
 			class_info_.public_variable_prpperty_info.emplace(prop_id, pinfo);
 		}
@@ -214,7 +216,7 @@ namespace planeta {
 /*! @brief 標準的なプロパティを登録するユーティリティマクロ
 
 	型の変換なしにClassRegisterer::Propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
-	registerer.PE_REFLECTION_CLASS_PROPERTY(prop);
+	registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
 	のように使用する。
 */
 #define PE_REFLECTABLE_CLASS_PROPERTY(ctype, id)\

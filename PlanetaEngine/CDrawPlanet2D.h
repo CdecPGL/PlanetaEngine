@@ -13,6 +13,7 @@ namespace planeta {
 	/*惑星描画コンポーネント。DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる*/
 	class CPlanet;
 	class CDrawPlanet2D final : public CDraw2D {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawPlanet2D);
 	public:
 		using Super = CDraw2D;
 		CDrawPlanet2D();
@@ -20,6 +21,7 @@ namespace planeta {
 		bool SetGraphResource(const std::string& resource_id);
 		enum class TextureMappingMode { Round, Plain };
 		/*アクセサ*/
+		CDrawPlanet2D& graph_resource_id(const std::string& res_id);
 		unsigned int horizontal_separation()const { return _horizontal_separation; }
 		CDrawPlanet2D& horizontal_separation(unsigned int sep);
 		unsigned int vertical_separation()const { return _vertical_separation; }

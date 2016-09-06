@@ -8,6 +8,7 @@ namespace planeta {
 	class ScreenDrawer2D;
 	class CTransform2D;
 	class CDraw2D : public private_::GameObjectSystemComponent {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDraw2D);
 	public:
 		using Super = private_::GameObjectSystemComponent;
 		CDraw2D();

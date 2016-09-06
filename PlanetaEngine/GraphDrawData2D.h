@@ -32,6 +32,8 @@ namespace planeta {
 			size_t vertex_count()const;
 			size_t polygon_count()const;
 			std::shared_ptr<RGraph> graph_resource()const { return graph_resource_; }
+
+			GraphDrawData2D& operator=(const GraphDrawData2D& obj);
 		private:
 			std::unique_ptr<DXGraphDrawData> dx_data_;
 			std::shared_ptr<RGraph> graph_resource_;

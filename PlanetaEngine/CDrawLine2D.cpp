@@ -5,6 +5,15 @@
 #include "Matrix2_2.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawLine2D) {
+		registerer
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, width)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, length)
+			.ShallowCopyTarget(&CDrawLine2D::_width)
+			.ShallowCopyTarget(&CDrawLine2D::_length)
+			.ShallowCopyTarget(&CDrawLine2D::_wire_positions);
+	}
+
 	CDrawLine2D::CDrawLine2D() :_wire_positions(2), _width(1), _length(0) {
 
 	}

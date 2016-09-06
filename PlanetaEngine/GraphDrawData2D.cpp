@@ -167,5 +167,19 @@ namespace planeta {
 			return dx_data_->polygon_count;
 		}
 
+		GraphDrawData2D& GraphDrawData2D::operator=(const GraphDrawData2D& obj) {
+			dx_data_->graph_handle = obj.dx_data_->graph_handle;
+			dx_data_->vertex_count = obj.dx_data_->vertex_count;
+			dx_data_->polygon_count = obj.dx_data_->polygon_count;
+			dx_data_->vertexes = std::make_unique<VERTEX3D[]>(dx_data_->vertex_count);
+			memcpy_s(dx_data_->vertexes.get(), sizeof(VERTEX3D)*dx_data_->vertex_count, obj.dx_data_->vertexes.get(), sizeof(VERTEX3D)*dx_data_->vertex_count);
+			dx_data_->indexes = std::make_unique<unsigned short[]>(dx_data_->polygon_count * 3);
+			memcpy_s(dx_data_->indexes.get(), sizeof(unsigned short)*dx_data_->polygon_count * 3, obj.dx_data_->indexes.get(), sizeof(unsigned short)*dx_data_->polygon_count * 3);
+
+			graph_resource_ = obj.graph_resource_;
+			vertex_uv_information_buffer_ = obj.vertex_uv_information_buffer_;
+			return *this;
+		}
+
 	}
 }

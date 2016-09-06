@@ -15,6 +15,17 @@ namespace {
 }
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawPlanet2D) {
+		registerer
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, horizontal_separation)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, vertical_separation)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, texture_mapping_mode)
+			.WriteOnlyProperty("graph_resource_id", &CDrawPlanet2D::graph_resource_id)
+			.ShallowCopyTarget(&CDrawPlanet2D::_horizontal_separation)
+			.ShallowCopyTarget(&CDrawPlanet2D::_vertical_separation)
+			.DeepCopyTarget(&CDrawPlanet2D::graph_draw_data_)
+			.ShallowCopyTarget(&CDrawPlanet2D::tex_map_mode_);
+	}
 
 	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
 		texture_mapping_mode(TextureMappingMode::Round);
@@ -209,4 +220,10 @@ namespace planeta {
 	void CDrawPlanet2D::UpdatePolygon_() {
 		(this->*polygon_updater_)();
 	}
+
+	CDrawPlanet2D& CDrawPlanet2D::graph_resource_id(const std::string& res_id) {
+		SetGraphResource(res_id);
+		return *this;
+	}
+
 }

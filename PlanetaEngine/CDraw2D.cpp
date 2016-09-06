@@ -8,6 +8,20 @@
 #include "SceneData.h"
 
 namespace planeta {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDraw2D) {
+		registerer
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, draw_priority)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, position)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, rotation_rad)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, scale)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, color)
+			.ShallowCopyTarget(&CDraw2D::draw_priority_)
+			.ShallowCopyTarget(&CDraw2D::position_)
+			.ShallowCopyTarget(&CDraw2D::rotation_rad_)
+			.ShallowCopyTarget(&CDraw2D::scale_)
+			.ShallowCopyTarget(&CDraw2D::color_);
+	}
+
 	CDraw2D::CDraw2D() :draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0) {
 
 	}

@@ -110,7 +110,7 @@ namespace planeta {
 		/*! Reflectableを継承している型のコピーハンドラ*/
 		template<typename T>
 		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if<std::is_base_of<Reflectable, T>, void>::type {
-			dst.CopyFrom(src);
+			dst.ReflectiveCopyFrom(src);
 		}
 	}
 }
