@@ -14,7 +14,7 @@ namespace planeta {
 		template<typename EventArgType>
 		class IEventHandlerHolder {
 		public:
-			using ParamType = typename boost::call_traits<EventArgType>::param_type;
+			using ParamType = const EventArgType&;
 			IEventHandlerHolder()noexcept = default;
 			virtual ~IEventHandlerHolder()noexcept = default;
 			virtual bool Call(ParamType) = 0;
@@ -329,7 +329,7 @@ namespace planeta {
 
 		/*WeakMenberデリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType,class C>
-		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(EventArgType)) {
+		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(const EventArgType&)) {
 			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		template<class C>
@@ -338,7 +338,7 @@ namespace planeta {
 		}
 		/*MemberFunctionデリゲート追加クラス作成(公開関数)*/
 		template<typename EventArgType, class C>
-		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(C* c, typename void(C::*f)(EventArgType)) {
+		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(C* c, typename void(C::*f)(const EventArgType&)) {
 			return std::move(DelegateHandlerAdder<EventArgType>([c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); }));
 		}
 		template<class C>
@@ -347,7 +347,7 @@ namespace planeta {
 		}
 		/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
 		template<typename EventArgType>
-		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(const std::function<void(EventArgType)>& func) {
+		DelegateHandlerAdder<EventArgType> CreateDelegateHandlerAdder(const std::function<void(const EventArgType&)>& func) {
 			return std::move(DelegateHandlerAdder<EventArgType>([func](Delegate<EventArgType>& dlgt) {return dlgt.Add(func); }));
 		}
 		inline DelegateHandlerAdder<void> CreateDelegateHandlerAdder(const std::function<void()>& func) {
