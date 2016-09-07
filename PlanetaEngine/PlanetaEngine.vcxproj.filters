@@ -220,6 +220,12 @@
     <Filter Include="ExternalLibraries\LinqForCpp">
       <UniqueIdentifier>{cf38c700-36a3-40d4-a3d7-8ca8f098f1cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjects\ParticleSystem">
+      <UniqueIdentifier>{2eb90c38-2afc-426c-aef8-a0bdefff5d92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ParticleSystem">
+      <UniqueIdentifier>{2d03f87b-613c-4dfa-b55b-6dcbeea4666b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -858,6 +864,12 @@
     <ClInclude Include="RPtree.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GParticleElement.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GParticleEmitter.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1222,6 +1234,12 @@
     </ClCompile>
     <ClCompile Include="RPtree.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GParticleElement.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GParticleEmitter.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

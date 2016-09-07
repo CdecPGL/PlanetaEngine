@@ -168,6 +168,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectBase.h" />
     <ClInclude Include="GameObjectTemplateHolder.h" />
     <ClInclude Include="GOComponentGetter.h" />
+    <ClInclude Include="GParticleElement.h" />
+    <ClInclude Include="GParticleEmitter.h" />
     <ClInclude Include="JGameObject2D.h" />
     <ClInclude Include="GGameObject2DTemplate.h" />
     <ClInclude Include="JGUIObject2D.h" />
@@ -377,6 +379,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectTemplateHolder.cpp" />
     <ClCompile Include="GOComponentAdder.cpp" />
     <ClCompile Include="GOComponentGetter.cpp" />
+    <ClCompile Include="GParticleElement.cpp" />
+    <ClCompile Include="GParticleEmitter.cpp" />
     <ClCompile Include="PrefixUtility.cpp" />
     <ClCompile Include="Reflectable.cpp" />
     <ClCompile Include="Reflection.cpp" />
