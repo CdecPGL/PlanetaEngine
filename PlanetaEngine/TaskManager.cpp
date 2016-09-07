@@ -14,19 +14,20 @@ namespace planeta {
 	namespace {
 		constexpr int TASK_SLOT_0 = 0;
 		constexpr int TASK_SLOT_1 = 1;
-		constexpr int APPVEL_SLOT = 2;
-		constexpr int COLDET_SLOT = 3;
-		constexpr int TASK_SLOT_2 = 4;
+		constexpr int TASK_SLOT_2 = 2;
+		constexpr int APPVEL_SLOT = 3;
+		constexpr int COLDET_SLOT = 4;
 		constexpr int TASK_SLOT_3 = 5;
 		constexpr int TASK_SLOT_4 = 6;
 		constexpr int TASK_SLOT_5 = 7;
-		constexpr int APPCAM_SLOT = 8;
-		constexpr int TASK_SLOT_6 = 9;
+		constexpr int TASK_SLOT_6 = 8;
+		constexpr int APPCAM_SLOT = 9;
 		constexpr int TASK_SLOT_7 = 10;
 		constexpr int TASK_SLOT_8 = 11;
 		constexpr int TASK_SLOT_9 = 12;
-		constexpr int DRAW_SLOT = 13;
-		constexpr int SLOT_COUNT = 14;
+		constexpr int TASK_SLOT_10 = 13;
+		constexpr int DRAW_SLOT = 14;
+		constexpr int SLOT_COUNT = 15;
 		//スロットマップ
 		constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
 			TASK_SLOT_0,
@@ -39,6 +40,7 @@ namespace planeta {
 			TASK_SLOT_7,
 			TASK_SLOT_8,
 			TASK_SLOT_9,
+			TASK_SLOT_10,
 		};
 		//システムスロットマップ
 		using namespace private_;
