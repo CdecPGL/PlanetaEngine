@@ -256,7 +256,7 @@ namespace planeta {
 			}
 
 			belonging_ground = g;
-			ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler(util::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
+			ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler({ this, &Impl_::OnGroudUpdated });
 
 			if (keep_global_position) {
 				last_update.position = CoordinationSpace::Global;
@@ -279,7 +279,7 @@ namespace planeta {
 
 		bool Initialize() {
 			if (typeid(*belonging_ground) != typeid(CDumyGround2D)) { //所属地形があったら、自分を更新イベントリスナーに登録
-				ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler(util::CreateDelegateHandlerAdder(this, &Impl_::OnGroudUpdated));
+				ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler({ this, &Impl_::OnGroudUpdated });
 			}
 			return true;
 		}
