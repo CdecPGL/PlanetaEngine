@@ -159,9 +159,9 @@ namespace planeta {
 		public:
 			using HandlerListType = std::unordered_map<size_t, std::unique_ptr<IEventHandlerHolder<EventArgType>>>;
 			DelegateConnecter(const std::weak_ptr<HandlerListType>& handler_list, size_t id)noexcept :handler_list_(handler_list), id_(id) {}
-			~DelegateConnecter()noexcept = default;
+			~DelegateConnecter()noexcept { DelegateConnecter::Remove(); }
 			/*登録したデリゲートから削除*/
-			void Remove()override {
+			void Remove()override final{
 				if (!handler_list_.expired()) {
 					auto handler_list_ptr = handler_list_.lock();
 					auto it = handler_list_ptr->find(id_);
