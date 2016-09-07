@@ -56,9 +56,9 @@ namespace planeta {
 /*! リフレクションデータ登録関数の宣言を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DECLARATION(type)\
 public:\
-static void ReflectionDataRegisterer(ClassRegisterer<type>& registerer);\
+static void ReflectionDataRegisterer(planeta::ClassRegisterer<type>& registerer);\
 private:
 
 /*! リフレクションデータ登録関数の定義を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DEFINITION(type)\
-void type::ReflectionDataRegisterer(ClassRegisterer<type>& registerer)
+void type::ReflectionDataRegisterer(planeta::ClassRegisterer<type>& registerer)

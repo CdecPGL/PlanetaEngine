@@ -7,11 +7,17 @@
 #include "FileIStream.h"
 
 namespace planeta {
+	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定
 	bool RPtree::_Create(const std::shared_ptr<const File>& file) {
 		using namespace boost::property_tree;
 		std::shared_ptr<ptree> pt = std::make_shared<ptree>();
 		FileIStream fis(*file);
-		read_json(fis, *pt);
+		try {
+			read_json(fis, *pt);
+		} catch (json_parser_error& e) {
+			PE_LOG_ERROR("JSONファイルの読み込みに失敗しました。(", e.what(), ")");
+			return false;
+		}
 
 		ptree_ = std::move(pt);
 		return true;
