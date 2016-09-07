@@ -152,6 +152,9 @@ namespace planeta {
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
+			if (sizeof...(Ts) != ptree_vec.size()) {
+				throw reflection_error(ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
+			}
 			private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
 		}
 

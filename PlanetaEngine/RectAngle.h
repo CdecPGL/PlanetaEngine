@@ -74,9 +74,7 @@ namespace planeta {
 				if (pp.first.empty() == false) {
 					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
-				Vector2D<T> dat{};
-				ReflectivePtreeConverter(dat, pp.second);
-				ary[idx++] = std::move(dat);
+				ReflectivePtreeConverter(ary[idx++], pp.second);
 			}
 			dst.Set(ary[0], ary[1]);
 		}

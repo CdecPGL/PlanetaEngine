@@ -38,7 +38,7 @@ namespace planeta {
 		bool roop_flag_ = false;
 		unsigned int current_frame_ = 0;
 		std::unordered_map<std::string, std::vector<FrameDataType>> animations_;
-		std::vector<FrameDataType>* current_animation_;
+		std::vector<FrameDataType>* current_animation_ = nullptr;
 		std::string current_animation_name_;
 		void SetCurrentFrameDrawAreaToDrawGraphComponent_();
 		bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
