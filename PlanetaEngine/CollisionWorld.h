@@ -30,9 +30,9 @@ namespace planeta {
 		private:
 			void Update()override final;
 			void RemoveAll();
-			using CollisionGroupType = std::list<std::reference_wrapper<const private_::Collider2DData>>;
-			using CollisionWithGroundListType = std::list<std::reference_wrapper<const private_::Collider2DData>>;
 			struct CCollider2DResistData_;
+			using CollisionGroupType = std::list<std::reference_wrapper<CCollider2DResistData_>>;
+			using CollisionWithGroundListType = std::list<std::reference_wrapper<CCollider2DResistData_>>;
 			std::unordered_map<CCollider2D*, std::unique_ptr<CCollider2DResistData_>> collider_resist_data_map_; //コライダーの登録情報リスト
 			using CollisionGroupListType = std::unordered_map<std::string, CollisionGroupType>;
 			CollisionGroupListType collision_groupes_;

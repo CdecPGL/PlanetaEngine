@@ -870,6 +870,9 @@
     <ClInclude Include="GParticleEmitter.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionState.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">

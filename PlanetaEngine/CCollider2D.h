@@ -10,9 +10,6 @@ namespace planeta {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
-	namespace private_ {
-		struct Collider2DData;
-	}
 	class CCollider2D : public private_::GameObjectSystemComponent, public private_::IColliderWithCollider2D {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCollider2D);
 	public:
@@ -38,9 +35,9 @@ namespace planeta {
 		/*相対回転度を設定*/
 		CCollider2D& relative_rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; return *this; }
 		/*地形衝突フラグを取得*/
-		const bool collide_with_ground_flag()const { return collide_with_ground_flag_; }
+		const bool is_collidable_with_ground()const { return collide_with_ground_flag_; }
 		/*地形衝突フラグを設定*/
-		CCollider2D& collide_with_ground_flag(bool flag);
+		CCollider2D& is_collidable_with_ground(bool flag);
 		/*衝突グループを取得*/
 		const std::string& collision_group()const { return collision_group_name_; }
 		/*衝突グループを設定*/

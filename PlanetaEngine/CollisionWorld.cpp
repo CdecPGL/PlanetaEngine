@@ -17,8 +17,9 @@ namespace planeta{
 			private_::Collider2DData collider2d_data; //コライダーデータ
 			std::unordered_map<std::string, CollisionGroupType>::iterator group_iterator_at_collision_groups; //コリジョングループのグループリスト内でのイテレータ
 			CollisionGroupType::iterator iterator_at_collision_group; //コリジョングループ内でのイテレータ
-			bool collision_with_ground_flag; //地形との衝突フラグ
+			bool collidable_with_ground_flag; //地形との衝突可能フラグ
 			CollisionWithGroundListType::iterator iterator_at_collision_with_ground_list; //地形と衝突する場合の、地形衝突リスト内でのイテレータ
+			bool is_collided_with_ground_last_proc; //前回の判定で地面と衝突していたかどうか
 		};
 
 		CollisionWorld::CollisionWorld() = default;
@@ -32,12 +33,12 @@ namespace planeta{
 		void CollisionWorld::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_que)const {
 			for (auto ccc_it = group.begin(); ccc_it != group.end(); ++ccc_it) {
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
-					if ((*ccc_it).get().collider2d.DetectCollision((*ccc_it2).get().collider2d)) {
+					if ((*ccc_it).get().collider2d_data.collider2d.DetectCollision((*ccc_it2).get().collider2d_data.collider2d)) {
 						//衝突していたら衝突イベントをホルダーに追加
-						EACollisionWithCollider2D cea0((*ccc_it2).get().game_object);
-						collision_event_que.push_back([eve = (*ccc_it).get().collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
-						EACollisionWithCollider2D cea1((*ccc_it).get().game_object);
-						collision_event_que.push_back([eve = (*ccc_it2).get().collide_with_collider_event_evoker, arg = cea1]() {eve(arg); });
+						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.game_object);
+						collision_event_que.push_back([eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
+						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.game_object);
+						collision_event_que.push_back([eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_evoker, arg = cea1]() {eve(arg); });
 					}
 				}
 			}
@@ -46,12 +47,12 @@ namespace planeta{
 		void CollisionWorld::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_que)const {
 			for (auto ccc_it = group1.begin(); ccc_it != group1.end(); ++ccc_it) {
 				for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
-					if ((*ccc_it).get().collider2d.DetectCollision((*ccc_it2).get().collider2d)) {
+					if ((*ccc_it).get().collider2d_data.collider2d.DetectCollision((*ccc_it2).get().collider2d_data.collider2d)) {
 						//衝突していたら衝突イベントをホルダーに追加
-						EACollisionWithCollider2D cea0((*ccc_it2).get().game_object);
-						collision_event_que.push_back([eve = (*ccc_it).get().collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
-						EACollisionWithCollider2D cea1((*ccc_it).get().game_object);
-						collision_event_que.push_back([eve = (*ccc_it2).get().collide_with_collider_event_evoker, arg = cea1]() {eve(arg); });
+						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.game_object);
+						collision_event_que.push_back([eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
+						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.game_object);
+						collision_event_que.push_back([eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_evoker, arg = cea1]() {eve(arg); });
 					}
 				}
 			}
@@ -59,16 +60,33 @@ namespace planeta{
 
 		void CollisionWorld::ProcessCollisionWithGround(CollisionEventQue& collision_event_que)const {
 			for (const auto& col_com : collision_with_ground_list_) {
-				if (col_com.get().collider2d.DetectCollision(col_com.get().transform2d.ground())) {
-					//衝突していたら地形衝突イベントをホルダーに追加
+				auto& col_reg_data = col_com.get();
+				if (col_reg_data.collider2d_data.collider2d.DetectCollision(col_reg_data.collider2d_data.transform2d.ground())) {
+					//地形衝突イベントをホルダーに追加
 					EACollisionWithGround2D cwgea;
-					collision_event_que.push_back([eve = col_com.get().collide_with_ground_event_evoker, arg = cwgea]() {eve(arg); });
+					if (col_reg_data.is_collided_with_ground_last_proc) { //前回も衝突していたら
+						cwgea.collision_state = CollisionState::Stay;
+					} else { //新たな衝突だったら
+						cwgea.collision_state = CollisionState::Enter;
+					}
+					collision_event_que.push_back([eve = col_reg_data.collider2d_data.collide_with_ground_event_evoker, arg = cwgea]() {eve(arg); });
+					col_reg_data.is_collided_with_ground_last_proc = true; //地面との衝突状況を更新
+				} else {
+					if (col_reg_data.is_collided_with_ground_last_proc) { //前回衝突していたら
+						//地面衝突イベントをホルダーに追加
+						EACollisionWithGround2D cwgea;
+						cwgea.collision_state = CollisionState::Exit;
+						collision_event_que.push_back([eve = col_reg_data.collider2d_data.collide_with_ground_event_evoker, arg = cwgea]() {eve(arg); });
+						col_reg_data.is_collided_with_ground_last_proc = false; //地面との衝突状況を更新
+					} else {
+					}
 				}
 			}
 		}
 
 		bool CollisionWorld::Resist(const private_::Collider2DData collider_data) {
-			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(new CCollider2DResistData_{ collider_data, });
+			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(new CCollider2DResistData_{ collider_data,});
+			ccrd->is_collided_with_ground_last_proc = false;
 			const Collider2DData& col_dat = ccrd->collider2d_data;
 			CCollider2D& ccol = col_dat.collider2d;
 			std::string group_name = ccol.collision_group();
@@ -80,13 +98,13 @@ namespace planeta{
 			}
 			//衝突グループに登録
 			ccrd->group_iterator_at_collision_groups = it;
-			it->second.push_front(col_dat);
+			it->second.push_front(*ccrd);
 			ccrd->iterator_at_collision_group = it->second.begin();
 
 			//地形衝突コライダーリストに登録
-			ccrd->collision_with_ground_flag = ccol.collide_with_ground_flag();
-			if (ccrd->collision_with_ground_flag) {
-				collision_with_ground_list_.push_front(col_dat);
+			ccrd->collidable_with_ground_flag = ccol.is_collidable_with_ground();
+			if (ccrd->collidable_with_ground_flag) {
+				collision_with_ground_list_.push_front(*ccrd);
 				ccrd->iterator_at_collision_with_ground_list = collision_with_ground_list_.begin();
 			}
 			//登録情報を登録
@@ -101,7 +119,7 @@ namespace planeta{
 				return false;
 			} 
 			//地形衝突コライダーリストから除去
-			if (it->second->collision_with_ground_flag) {
+			if (it->second->collidable_with_ground_flag) {
 				collision_with_ground_list_.erase(it->second->iterator_at_collision_with_ground_list);
 			}
 			//衝突グループから除去
@@ -127,7 +145,7 @@ namespace planeta{
 			resist_data_it->second->group_iterator_at_collision_groups->second.erase(resist_data_it->second->iterator_at_collision_group);
 			//新しい衝突グループに登録
 			resist_data_it->second->group_iterator_at_collision_groups = group_it;
-			group_it->second.push_front(resist_data_it->second->collider2d_data);
+			group_it->second.push_front(*(resist_data_it->second));
 			resist_data_it->second->iterator_at_collision_group = group_it->second.begin();
 			return true;
 		}
@@ -139,10 +157,10 @@ namespace planeta{
 				return false;
 			}
 
-			if (resist_data_it->second->collision_with_ground_flag == flag) { return true; } //変更は必要ない
-			resist_data_it->second->collision_with_ground_flag = flag;
+			if (resist_data_it->second->collidable_with_ground_flag == flag) { return true; } //変更は必要ない
+			resist_data_it->second->collidable_with_ground_flag = flag;
 			if (flag) { //地形衝突コライダーリストに登録
-				collision_with_ground_list_.push_front(resist_data_it->second->collider2d_data);
+				collision_with_ground_list_.push_front(*(resist_data_it->second));
 				resist_data_it->second->iterator_at_collision_with_ground_list = collision_with_ground_list_.begin();
 			} else { //地形衝突コライダーリストから除去
 				collision_with_ground_list_.erase(resist_data_it->second->iterator_at_collision_with_ground_list);

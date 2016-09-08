@@ -12,7 +12,7 @@ namespace planeta {
 		registerer
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_position)
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_rotation_rad)
-		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, collide_with_ground_flag)
+		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, is_collidable_with_ground)
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, collision_group)
 		.ShallowCopyTarget(&CCollider2D::position_)
 		.ShallowCopyTarget(&CCollider2D::rotation_rad_)
@@ -74,7 +74,7 @@ namespace planeta {
 		return *this;
 	}
 
-	CCollider2D& CCollider2D::collide_with_ground_flag(bool flag) {
+	CCollider2D& CCollider2D::is_collidable_with_ground(bool flag) {
 		if (is_active()) { //アクティブだったら衝突判定プロセスでの変更を行う。
 			if (scene_data_ref().collision_world.ChangeCollisionWithGroundFlag(this, flag)) {
 				collide_with_ground_flag_ = flag;
