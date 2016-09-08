@@ -9,8 +9,8 @@
 #include "WeakPointer.h"
 
 namespace planeta {
-	namespace util {
-		//イベントハンドラ所有クラスインターフェイス(内部クラス)
+	namespace private_ {
+		//イベントハンドラ所有クラスインターフェイス
 		template<typename EventArgType>
 		class IEventHandlerHolder {
 		public:
@@ -27,7 +27,7 @@ namespace planeta {
 			virtual ~IEventHandlerHolder()noexcept = default;
 			virtual bool Call() = 0;
 		};
-		//WeakPointerメンバ関数イベントハンドラ所有クラス(内部クラス)
+		//WeakPointerメンバ関数イベントハンドラ所有クラス
 		template<typename EventArgType, class C>
 		class WeakPointerMenberFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -38,8 +38,7 @@ namespace planeta {
 				if (w_ptr_) {
 					((*w_ptr_).*func_)(e);
 					return true;
-				}
-				else {
+				} else {
 					return false;
 				}
 			}
@@ -58,8 +57,7 @@ namespace planeta {
 				if (w_ptr_) {
 					((*w_ptr_).*func_)();
 					return true;
-				}
-				else {
+				} else {
 					return false;
 				}
 			}
@@ -68,7 +66,7 @@ namespace planeta {
 			FunctionType func_;
 		};
 
-		//メンバ関数イベントハンドラ所有クラス(内部クラス)
+		//メンバ関数イベントハンドラ所有クラス
 		template<typename EventArgType, class C>
 		class MenberFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -99,7 +97,7 @@ namespace planeta {
 			FunctionType func_;
 		};
 
-		//通常関数イベントハンドラ保有クラス(内部クラス)
+		//通常関数イベントハンドラ保有クラス
 		template<typename EventArgType>
 		class NormalFunctionEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -126,7 +124,7 @@ namespace planeta {
 		private:
 			FunctionType func_;
 		};
-		//破棄イベントハンドラ保有クラス(内部クラス)
+		//破棄イベントハンドラ保有クラス
 		template<typename EventArgType>
 		class GarbageEventHandlerHolder final : public IEventHandlerHolder<EventArgType> {
 		public:
@@ -146,22 +144,21 @@ namespace planeta {
 		private:
 			std::unique_ptr<IEventHandlerHolder<void>> garbage_;
 		};
-		//Delegateへの接続クラスインターフェス(内部クラス)
+		//Delegateへの接続クラスインターフェス
 		class IDelegateConnecter {
 		public:
 			IDelegateConnecter()noexcept = default;
 			virtual ~IDelegateConnecter()noexcept = default;
 			virtual void Remove() = 0;
 		};
-		//Delegateへの接続クラス(内部クラス)
+		//Delegateへの接続クラス
 		template<typename EventArgType>
 		class DelegateConnecter final : public IDelegateConnecter {
 		public:
 			using HandlerListType = std::unordered_map<size_t, std::unique_ptr<IEventHandlerHolder<EventArgType>>>;
 			DelegateConnecter(const std::weak_ptr<HandlerListType>& handler_list, size_t id)noexcept :handler_list_(handler_list), id_(id) {}
-			~DelegateConnecter()noexcept { DelegateConnecter::Remove(); }
 			/*登録したデリゲートから削除*/
-			void Remove()override final{
+			void Remove()override final {
 				if (!handler_list_.expired()) {
 					auto handler_list_ptr = handler_list_.lock();
 					auto it = handler_list_ptr->find(id_);
@@ -179,33 +176,41 @@ namespace planeta {
 			std::weak_ptr<HandlerListType> handler_list_;
 			size_t id_;
 		};
+	}
+	namespace util {
 		/**
-		* @brief Delegateへの接続保持クラス(公開クラス)
+		* @brief Delegateへの接続保持クラス
+
+		　コピー禁止。ムーブ可能。
 		*/
 		class DelegateConnection final {
 		public:
 			DelegateConnection()noexcept = default;
-			DelegateConnection(const DelegateConnection& wpdc)noexcept :connector_(wpdc.connector_) {}
+			DelegateConnection(const DelegateConnection& wpdc) = delete;
 			DelegateConnection(DelegateConnection&& wpdc)noexcept : connector_(std::move(wpdc.connector_)) {}
-			explicit DelegateConnection(const std::shared_ptr<IDelegateConnecter>& cp)noexcept : connector_(cp) {}
-			explicit DelegateConnection(std::shared_ptr<IDelegateConnecter>&& cp)noexcept : connector_(std::move(cp)) {}
-			DelegateConnection& operator =(const DelegateConnection& wpdc)noexcept { connector_ = wpdc.connector_; return *this; }
+			explicit DelegateConnection(std::unique_ptr<private_::IDelegateConnecter>&& cp)noexcept : connector_(std::move(cp)) {}
+			~DelegateConnection()noexcept {
+				if (connector_) {
+					connector_->Remove();
+				}
+			}
+			DelegateConnection& operator =(const DelegateConnection& wpdc) = delete;
 			DelegateConnection& operator =(DelegateConnection&& wpdc)noexcept { connector_ = std::move(wpdc.connector_); return *this; }
 			/**
 			* @brief デリゲートから削除する
 			*/
 			void Remove() { if (connector_) { connector_->Remove(); connector_.reset(); } }
 		private:
-			std::shared_ptr<IDelegateConnecter> connector_;
+			std::unique_ptr<private_::IDelegateConnecter> connector_;
 		};
 		/**
-		* @brief デリゲート(公開クラス)
+		* @brief デリゲート
 		*/
 		template<typename EventArgType = void>
 		class Delegate final {
 		public:
-			using HandlerParamType = typename IEventHandlerHolder<EventArgType>::ParamType;
-			Delegate()noexcept:handlers_(std::make_shared<DelegateConnecter<EventArgType>::HandlerListType>()) {}
+			using HandlerParamType = typename private_::IEventHandlerHolder<EventArgType>::ParamType;
+			Delegate()noexcept:handlers_(std::make_shared<private_::DelegateConnecter<EventArgType>::HandlerListType>()) {}
 			Delegate(const Delegate&) = delete;
 			~Delegate()noexcept = default;
 			Delegate& operator=(const Delegate&) = delete;
@@ -229,8 +234,8 @@ namespace planeta {
 			template<class C>
 			DelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)(HandlerParamType)) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<WeakPointerMenberFunctionEventHandlerHolder<EventArgType, C>>(c, f));
-				return DelegateConnection(std::make_shared<DelegateConnecter<EventArgType>>(handlers_, id));
+				handlers_->emplace(id, std::make_unique<private_::WeakPointerMenberFunctionEventHandlerHolder<EventArgType, C>>(c, f));
+				return DelegateConnection(std::make_unique<private_::DelegateConnecter<EventArgType>>(handlers_, id));
 			}
 			/**
 			* @brief デリケートにメンバ関数を登録する
@@ -241,8 +246,8 @@ namespace planeta {
 			template<class C>
 			DelegateConnection Add(C* c, typename void(C::*f)(HandlerParamType)) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<MenberFunctionEventHandlerHolder<EventArgType, C>>(c, f));
-				return DelegateConnection(std::make_shared<DelegateConnecter<EventArgType>>(handlers_, id));
+				handlers_->emplace(id, std::make_unique<private_::MenberFunctionEventHandlerHolder<EventArgType, C>>(c, f));
+				return DelegateConnection(std::make_unique<private_::DelegateConnecter<EventArgType>>(handlers_, id));
 			}
 			/**
 			* @brief デリケートに通常関数を登録する
@@ -251,19 +256,19 @@ namespace planeta {
 			*/
 			DelegateConnection Add(const std::function<void(HandlerParamType)>& func) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<NormalFunctionEventHandlerHolder<EventArgType>>(func));
-				return DelegateConnection(std::make_shared<DelegateConnecter<EventArgType>>(handlers_, id));
+				handlers_->emplace(id, std::make_unique<private_::NormalFunctionEventHandlerHolder<EventArgType>>(func));
+				return DelegateConnection(std::make_unique<private_::DelegateConnecter<EventArgType>>(handlers_, id));
 			}
 		private:
 			size_t id_counter_ = 0;
-			std::shared_ptr<typename DelegateConnecter<EventArgType>::HandlerListType> handlers_;
+			std::shared_ptr<typename private_::DelegateConnecter<EventArgType>::HandlerListType> handlers_;
 		};
 
 		template<>
 		class Delegate<void> final {
 		public:
 			using HandlerParamType = void;
-			Delegate()noexcept : handlers_(std::make_shared<DelegateConnecter<void>::HandlerListType>()) {}
+			Delegate()noexcept : handlers_(std::make_shared<private_::DelegateConnecter<void>::HandlerListType>()) {}
 			Delegate(const Delegate&) = delete;
 			~Delegate()noexcept = default;
 			Delegate& operator=(const Delegate&) = delete;
@@ -287,8 +292,8 @@ namespace planeta {
 			template<class C>
 			DelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)()) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<WeakPointerMenberFunctionEventHandlerHolder<void, C>>(c, f));
-				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
+				handlers_->emplace(id, std::make_unique<private_::WeakPointerMenberFunctionEventHandlerHolder<void, C>>(c, f));
+				return DelegateConnection(std::make_unique<private_::DelegateConnecter<void>>(handlers_, id));
 			}
 			/**
 			* @brief デリケートにメンバ関数を登録する
@@ -299,8 +304,8 @@ namespace planeta {
 			template<class C>
 			DelegateConnection Add(C* c, typename void(C::*f)()) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<MenberFunctionEventHandlerHolder<void, C>>(c, f));
-				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
+				handlers_->emplace(id, std::make_unique<private_::MenberFunctionEventHandlerHolder<void, C>>(c, f));
+				return DelegateConnection(std::make_unique<private_::DelegateConnecter<void>>(handlers_, id));
 			}
 			/**
 			* @brief デリケートに通常関数を登録する
@@ -309,29 +314,29 @@ namespace planeta {
 			*/
 			DelegateConnection Add(const std::function<void(void)>& func) {
 				size_t id = id_counter_++;
-				handlers_->emplace(id, std::make_unique<NormalFunctionEventHandlerHolder<void>>(func));
-				return DelegateConnection(std::make_shared<DelegateConnecter<void>>(handlers_, id));
+				handlers_->emplace(id, std::make_unique<private_::NormalFunctionEventHandlerHolder<void>>(func));
+				return DelegateConnection(std::make_unique<private_::DelegateConnecter<void>>(handlers_, id));
 			}
 		private:
 			size_t id_counter_ = 0;
-			std::shared_ptr<typename DelegateConnecter<void>::HandlerListType> handlers_;
+			std::shared_ptr<typename private_::DelegateConnecter<void>::HandlerListType> handlers_;
 		};
 
-		/*デリゲートハンドラ追加クラス(公開クラス)*/
+		/*デリゲートハンドラ追加クラス*/
 		template<typename EventArgType>
 		class DelegateHandlerAdder final{
 		public:
-			/*WeakMenberデリゲート追加クラス作成(公開関数)*/
+			/*WeakMenberデリゲート追加クラス作成*/
 			template<class C>
 			DelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)(const EventArgType&)) {
 				delegate_handle_adder_ = [c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); };
 			}
-			/*MemberFunctionデリゲート追加クラス作成(公開関数)*/
+			/*MemberFunctionデリゲート追加クラス作成*/
 			template<class C>
 			DelegateHandlerAdder(C* c, typename void(C::*f)(const EventArgType&)) {
 				delegate_handle_adder_ = [c, f](Delegate<EventArgType>& dlgt) {return dlgt.Add(c, f); };
 			}
-			/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
+			/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。*/
 			DelegateHandlerAdder(const std::function<void(const EventArgType&)>& func) {
 				delegate_handle_adder_ = [func](Delegate<EventArgType>& dlgt) {return dlgt.Add(func); };
 			}
@@ -343,17 +348,17 @@ namespace planeta {
 		template<>
 		class DelegateHandlerAdder<void> final {
 		public:
-			/*WeakMenberデリゲート追加クラス作成(公開関数)*/
+			/*WeakMenberデリゲート追加クラス作成*/
 			template<class C>
 			DelegateHandlerAdder(const WeakPointer<C>& c, typename void(C::*f)()) {
 				delegate_handle_adder_ = [c, f](Delegate<void>& dlgt) {return dlgt.Add(c, f); };
 			}
-			/*MemberFunctionデリゲート追加クラス作成(公開関数)*/
+			/*MemberFunctionデリゲート追加クラス作成*/
 			template<class C>
 			DelegateHandlerAdder(C* c, typename void(C::*f)()) {
 				delegate_handle_adder_ = [c, f](Delegate<void>& dlgt) {return dlgt.Add(c, f); };
 			}
-			/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。(公開関数)*/
+			/*デリゲート追加クラス作成。EventArgがvoidの時はテンプレート引数なし、それ以外は指定して利用する。*/
 			DelegateHandlerAdder(const std::function<void()>& func) {
 				delegate_handle_adder_ = [func](Delegate<void>& dlgt) {return dlgt.Add(func); };
 			}

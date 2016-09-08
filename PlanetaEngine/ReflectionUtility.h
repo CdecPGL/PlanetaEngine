@@ -126,7 +126,7 @@ namespace planeta {
 	namespace util{
 		template<typename... Ts>
 		void ReflectivePtreeConverter(Ts...) {
-			private_::ReflectivePtreeConverterError<Ts...>();
+			planeta::private_::ReflectivePtreeConverterError<Ts...>();
 		}
 
 		template<typename T>
