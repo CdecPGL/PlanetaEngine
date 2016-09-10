@@ -88,7 +88,8 @@ namespace planeta {
 		auto it = active_game_objects_.find(id);
 		if (it == active_game_objects_.end()) {
 			it = inactive_game_objects_.find(id);
-			if (it == inactive_game_objects_.end()) { return false; } else {
+			if (it == inactive_game_objects_.end()) { return false; }
+			else {
 				it->second->ProcessDisposal();
 				garbage_.push_back(it->second);
 				inactive_game_objects_.erase(it);

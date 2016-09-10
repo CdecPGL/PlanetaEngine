@@ -6,6 +6,7 @@
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 #include "Collider2DData.h"
+#include "EACollisionWithGround2D.h"
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCollider2D) {
@@ -14,6 +15,7 @@ namespace planeta {
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_rotation_rad)
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, is_collidable_with_ground)
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, collision_group)
+		.ReadOnlyProperty("is_grounded", &CCollider2D::is_grounded)
 		.ShallowCopyTarget(&CCollider2D::position_)
 		.ShallowCopyTarget(&CCollider2D::rotation_rad_)
 		.ShallowCopyTarget(&CCollider2D::collide_with_ground_flag_)
@@ -34,9 +36,22 @@ namespace planeta {
 		if (collision_group_name_.length() == 0) {
 			PE_LOG_ERROR("衝突グループが設定されていません。");
 		} else {
+			auto col_grng_eve = [&eve = collided_with_ground_event_,&is_grounded_flag = is_grounded_](const EACollisionWithGround2D& arg) {
+				switch (arg.collision_state) {
+				case CollisionState::Enter:
+					is_grounded_flag = true;
+					break;
+				case CollisionState::Exit:
+					is_grounded_flag = false;
+					break;
+				default:
+					break;
+				}
+				eve(arg);
+			};
 			private_::Collider2DData col_dat{ *this,game_object(),*transform2d_
 				,[&eve = collided_event_](const EACollisionWithCollider2D& arg) {eve(arg); }
-				,[&eve = collided_with_ground_event_](const EACollisionWithGround2D& arg) {eve(arg); }
+				,col_grng_eve
 			};
 			scene_data_ref().collision_world.Resist(col_dat);
 		}

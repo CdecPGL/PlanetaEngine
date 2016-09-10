@@ -162,7 +162,7 @@ namespace planeta {
 	template<typename Getter>
 	ClassRegisterer<C>& ClassRegisterer<C>::ReadOnlyProperty(const std::string& prop_id, const Getter& getter, AccessAttiribute access_attribute)noexcept {
 		if (access_attribute == AccessAttiribute::Public) {
-			private_::VariableOrPropertyInfo pinfo{ decltype((C().*getter)()) };
+			private_::VariableOrPropertyInfo pinfo{ typeid(decltype((std::declval<C>().*getter)())) };
 			pinfo.is_readable = true;
 			pinfo.is_writable = false;
 			pinfo.getter = [getter](Reflectable& c) {

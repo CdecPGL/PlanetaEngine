@@ -42,7 +42,8 @@ namespace planeta {
 		const std::string& collision_group()const { return collision_group_name_; }
 		/*衝突グループを設定*/
 		CCollider2D& collision_group(const std::string& cg);
-
+		/*接地しているかを取得*/
+		bool is_grounded()const { return is_grounded_; }
 		/*イベント*/
 		/*2Dコライダーとの衝突イベントハンドラ追加*/
 		util::DelegateConnection AddCollidedWithCollider2DEventHandler(util::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
@@ -72,6 +73,8 @@ namespace planeta {
 		bool collide_with_ground_flag_ = false;
 		/*衝突グループ名*/
 		std::string collision_group_name_;
+		/*接地しているか*/
+		bool is_grounded_ = false;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CCollider2D);
 }

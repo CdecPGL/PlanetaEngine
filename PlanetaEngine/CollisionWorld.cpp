@@ -64,11 +64,7 @@ namespace planeta{
 				if (col_reg_data.collider2d_data.collider2d.DetectCollision(col_reg_data.collider2d_data.transform2d.ground())) {
 					//地形衝突イベントをホルダーに追加
 					EACollisionWithGround2D cwgea;
-					if (col_reg_data.is_collided_with_ground_last_proc) { //前回も衝突していたら
-						cwgea.collision_state = CollisionState::Stay;
-					} else { //新たな衝突だったら
-						cwgea.collision_state = CollisionState::Enter;
-					}
+					cwgea.collision_state = col_reg_data.is_collided_with_ground_last_proc ? CollisionState::Stay : CollisionState::Enter;
 					collision_event_que.push_back([eve = col_reg_data.collider2d_data.collide_with_ground_event_evoker, arg = cwgea]() {eve(arg); });
 					col_reg_data.is_collided_with_ground_last_proc = true; //地面との衝突状況を更新
 				} else {
@@ -78,7 +74,6 @@ namespace planeta{
 						cwgea.collision_state = CollisionState::Exit;
 						collision_event_que.push_back([eve = col_reg_data.collider2d_data.collide_with_ground_event_evoker, arg = cwgea]() {eve(arg); });
 						col_reg_data.is_collided_with_ground_last_proc = false; //地面との衝突状況を更新
-					} else {
 					}
 				}
 			}
@@ -86,7 +81,7 @@ namespace planeta{
 
 		bool CollisionWorld::Resist(const private_::Collider2DData collider_data) {
 			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(new CCollider2DResistData_{ collider_data,});
-			ccrd->is_collided_with_ground_last_proc = false;
+			ccrd->is_collided_with_ground_last_proc = false; //地面と衝突していないとして初期化する
 			const Collider2DData& col_dat = ccrd->collider2d_data;
 			CCollider2D& ccol = col_dat.collider2d;
 			std::string group_name = ccol.collision_group();
@@ -118,6 +113,11 @@ namespace planeta{
 				PE_LOG_FATAL("存在しないコライダーが指定されました。");
 				return false;
 			} 
+			if (it->second->is_collided_with_ground_last_proc) { //最後に地面と衝突した状態だったら、地面との衝突終了イベントを送っておく
+				EACollisionWithGround2D e;
+				e.collision_state = CollisionState::Exit;
+				it->second->collider2d_data.collide_with_ground_event_evoker(e);
+			}
 			//地形衝突コライダーリストから除去
 			if (it->second->collidable_with_ground_flag) {
 				collision_with_ground_list_.erase(it->second->iterator_at_collision_with_ground_list);

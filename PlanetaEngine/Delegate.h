@@ -287,7 +287,7 @@ namespace planeta {
 			* @brief デリケートにWeakPointerメンバ関数を登録する
 			* @param (c) オブジェクトのWeakPointer
 			* @param (f) メンバ関数ポインタ
-			* @return ハンドラの削除に使うデリゲート接続クラス
+			* @return ハンドラの削除に使うデリゲート接続クラス。無視すると登録されない。
 			*/
 			template<class C>
 			DelegateConnection Add(const WeakPointer<C>& c, typename void(C::*f)()) {
@@ -299,7 +299,7 @@ namespace planeta {
 			* @brief デリケートにメンバ関数を登録する
 			* @param (c) オブジェクトのPointer
 			* @param (f) メンバ関数ポインタ
-			* @return ハンドラの削除に使うデリゲート接続クラス
+			* @return ハンドラの削除に使うデリゲート接続クラス。無視すると登録されない。
 			*/
 			template<class C>
 			DelegateConnection Add(C* c, typename void(C::*f)()) {
@@ -310,7 +310,7 @@ namespace planeta {
 			/**
 			* @brief デリケートに通常関数を登録する
 			* @param (func) 登録したい関数
-			* @return ハンドラの削除に使うデリゲート接続クラス
+			* @return ハンドラの削除に使うデリゲート接続クラス。無視すると登録されない。
 			*/
 			DelegateConnection Add(const std::function<void(void)>& func) {
 				size_t id = id_counter_++;
