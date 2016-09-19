@@ -6,7 +6,7 @@
 
 namespace planeta {
 
-	GOComponentAdder::GOComponentAdder(GameObjectComponentHolder& com_holder) :com_holder_(com_holder) {}
+	GOComponentAdder::GOComponentAdder(GameObjectComponentHolder& com_holder)noexcept :com_holder_(com_holder) {}
 
 	bool GOComponentAdder::CreateAndAddComponent(const std::string& com_id, const std::string& alias) {
 		//オブジェクトIDを取得し、コンポーネント作成
@@ -29,7 +29,7 @@ namespace planeta {
 		return CreateAndAddComponent(com_id, com_id);
 	}
 
-	std::pair<bool, std::string> GOComponentAdder::GetDefaultComID_(const std::type_info& tinfo) {
+	std::pair<bool, std::string> GOComponentAdder::GetDefaultComID_(const std::type_info& tinfo)noexcept {
 		try {
 			auto id = Reflection::GetObjectTypeIDByStdTypeInfo(tinfo);
 			id = private_::RemovePrefix(id);
@@ -40,7 +40,7 @@ namespace planeta {
 		}
 	}
 
-	bool GOComponentAdder::AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo, const std::string& alias) {
+	bool GOComponentAdder::AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo, const std::string& alias)noexcept {
 		if (com_holder_.RegisterComponent(com, tinfo, alias)) {
 			return true;
 		} else {

@@ -14,7 +14,7 @@ namespace planeta {
 	*/
 	class GOComponentAdder {
 	public:
-		GOComponentAdder(GameObjectComponentHolder& com_holder);
+		GOComponentAdder(GameObjectComponentHolder& com_holder)noexcept;
 		/*! @brief ゲームオブジェクトコンポーネントをIDで追加し名前を付ける
 
 			該当する型がシステムに登録されている必要がある。
@@ -57,7 +57,7 @@ namespace planeta {
 
 	private:
 		GameObjectComponentHolder& com_holder_;
-		std::pair<bool,std::string> GetDefaultComID_(const std::type_info& tinfo);
-		bool AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com,const std::type_info& tinfo, const std::string& alias);
+		std::pair<bool,std::string> GetDefaultComID_(const std::type_info& tinfo)noexcept;
+		bool AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com,const std::type_info& tinfo, const std::string& alias)noexcept;
 	};
 }
