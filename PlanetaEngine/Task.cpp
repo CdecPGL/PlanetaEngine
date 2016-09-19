@@ -15,7 +15,7 @@ namespace planeta {
 		manager_connection_->Dispose(); //破棄
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const util::WeakPointer<private_::SceneData>& scene_data) {
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<private_::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();
@@ -37,26 +37,26 @@ namespace planeta {
 		return scene_data_->task_manager_public_interface;
 	}
 
-	util::WeakPointer<Task> Task::GetTaskByName(const std::string& name) const {
+	WeakPointer<Task> Task::GetTaskByName(const std::string& name) const {
 		return RefTaskManagerInterface_().GetTask(name);
 	}
 
-	util::WeakPointer<IGameObject> Task::CreateGameObject(const std::string& id, const std::string& resource_id) {
+	WeakPointer<IGameObject> Task::CreateGameObject(const std::string& id, const std::string& resource_id) {
 		return scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
 	}
 
-	util::WeakPointer<IGameObject> Task::CreateAndActivateGameObject(const std::string& id, const std::string& resource_id) {
+	WeakPointer<IGameObject> Task::CreateAndActivateGameObject(const std::string& id, const std::string& resource_id) {
 		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
 	}
 
-	util::WeakPointer<IGameObject> Task::CreateDefaultGameObject(const std::string& id) {
+	WeakPointer<IGameObject> Task::CreateDefaultGameObject(const std::string& id) {
 		return scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
 	}
 
-	util::WeakPointer<IGameObject> Task::CreateAndActivateDefaultGameObject(const std::string& id) {
+	WeakPointer<IGameObject> Task::CreateAndActivateDefaultGameObject(const std::string& id) {
 		auto go = scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();

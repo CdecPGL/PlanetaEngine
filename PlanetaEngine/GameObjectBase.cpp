@@ -161,41 +161,41 @@ namespace planeta {
 		manager_connection_ = std::move(mgr_cnctn);
 	}
 
-	void GameObjectBase::SetSceneData(const util::WeakPointer<private_::SceneData>& scene_accessor) {
+	void GameObjectBase::SetSceneData(const WeakPointer<private_::SceneData>& scene_accessor) {
 		scene_data_ = scene_accessor;
 	}
 
-	util::WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id, const std::string& resource_id) {
+	WeakPointer<IGameObject> GameObjectBase::CreateGameObject(const std::string& id, const std::string& resource_id) {
 		return scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
 	}
 
-	util::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id, const std::string& resource_id) {
+	WeakPointer<IGameObject> GameObjectBase::CreateAndActivateGameObject(const std::string& id, const std::string& resource_id) {
 		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
 	}
 
-	util::WeakPointer<IGameObject> GameObjectBase::CreateDefaultGameObject(const std::string& id) {
+	WeakPointer<IGameObject> GameObjectBase::CreateDefaultGameObject(const std::string& id) {
 		return scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
 	}
 
-	util::WeakPointer<IGameObject> GameObjectBase::CreateAndActivateDefaultGameObject(const std::string& id) {
+	WeakPointer<IGameObject> GameObjectBase::CreateAndActivateDefaultGameObject(const std::string& id) {
 		auto go = scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
 	}
 
-	util::DelegateConnection GameObjectBase::AddActivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) {
+	DelegateConnection GameObjectBase::AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) {
 		return hander_adder(activated_event_delegate_);
 	}
 
-	util::DelegateConnection GameObjectBase::AddInactivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) {
+	DelegateConnection GameObjectBase::AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) {
 		return hander_adder(inactivated_event_delegate_);
 	}
 
-	util::DelegateConnection GameObjectBase::AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder) {
+	DelegateConnection GameObjectBase::AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder) {
 		return hander_adder(disposed_event_delegate_);
 	}
 

@@ -42,7 +42,7 @@ namespace planeta {
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
 		virtual bool OnInitialized() override;
 		virtual void OnFinalized()noexcept override;
-		util::NonOwingPointer<CPlanet> _planet_component;
+		NonOwingPointer<CPlanet> _planet_component;
 		/*ポリゴンセット*/
 		void(CDrawPlanet2D::*polygon_setter_)();
 		void SetPolygon_();

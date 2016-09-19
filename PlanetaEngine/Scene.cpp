@@ -86,7 +86,7 @@ namespace planeta{
 			IterateSceneModule_([&scene_data = scene_data_](private_::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
-		void Scene::PrepareSceneData(const util::NonOwingPointer<ISceneManagerAccessor> scn_mgr) {
+		void Scene::PrepareSceneData(const NonOwingPointer<ISceneManagerAccessor> scn_mgr) {
 			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*task_manager_,*collision_world_,*gameobject_draw_system_ ,*transform_system_, *scn_mgr });
 		}
 

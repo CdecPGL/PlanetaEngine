@@ -34,11 +34,11 @@ namespace planeta {
 		//自分のstd::shared_ptrを取得する。
 		std::shared_ptr<IGameObject> GetSharedPointer() override final;
 		//有効化イベントハンドラ登録
-		util::DelegateConnection AddActivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
+		DelegateConnection AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
 		//無効化イベントハンドラ登録
-		util::DelegateConnection AddInactivatedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
+		DelegateConnection AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
 		//破棄イベントハンドラ登録
-		util::DelegateConnection AddDisposedEventHandler(util::DelegateHandlerAdder<void>&& hander_adder)override final;
+		DelegateConnection AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
 
 		//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
 		//インスタンス化時の処理
@@ -58,7 +58,7 @@ namespace planeta {
 		//マネージャコネクションをセット
 		void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
 		//シーンデータをセット
-		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data);
+		void SetSceneData(const WeakPointer<private_::SceneData>& scene_data);
 		//シーンデータとゲームオブジェクトのデータをコンポーネントにセット
 		void SetSceneAndGODataToCOmponents();
 	protected:
@@ -102,13 +102,13 @@ namespace planeta {
 	private:
 		//インターフェイスのオーバーライド
 		//ゲームオブジェクトを作成
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& id, const std::string& resource_id)override final;
+		WeakPointer<IGameObject> CreateGameObject(const std::string& id, const std::string& resource_id)override final;
 		//ゲームオブジェクトを作成して有効化
-		util::WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id, const std::string& resource_id)override final;
+		WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id, const std::string& resource_id)override final;
 		//デフォルトゲームオブジェクトを作成
-		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& id)override final;
+		WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& id)override final;
 		//デフォルトゲームオブジェクトを作成して有効化
-		util::WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& id)override final;
+		WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& id)override final;
 		//コンポーネントを型で取得
 		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 		//コンポーネントを型ですべて取得
@@ -119,7 +119,7 @@ namespace planeta {
 		//マネージャコネクション
 		std::unique_ptr<GameObjectManagerConnection> manager_connection_;
 		//シーンアクセサ
-		util::WeakPointer<private_::SceneData> scene_data_;
+		WeakPointer<private_::SceneData> scene_data_;
 		//コンポーネントホルダー
 		GameObjectComponentHolder component_holder_;
 
@@ -128,9 +128,9 @@ namespace planeta {
 		void SetSceneAndGODataToComponent_(GameObjectComponent& com);
 		
 		//イベントデリゲート
-		util::Delegate<void> activated_event_delegate_;
-		util::Delegate<void> inactivated_event_delegate_;
-		util::Delegate<void> disposed_event_delegate_;
+		Delegate<void> activated_event_delegate_;
+		Delegate<void> inactivated_event_delegate_;
+		Delegate<void> disposed_event_delegate_;
 	};
 	PE_REFLECTABLE_CLASS(GameObjectBase);
 }

@@ -10,7 +10,7 @@ namespace planeta {
 		const double gravity_scale()const { return _gravity_scale; }
 		CBelongingGroundGravity& gravity_scale(double gs) { _gravity_scale = gs; return *this; }
 	private:
-		util::NonOwingPointer<CTransform2D> transform2d_;
+		NonOwingPointer<CTransform2D> transform2d_;
 		double _gravity_scale = 0.5;
 		bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
 		bool OnInitialized()override;

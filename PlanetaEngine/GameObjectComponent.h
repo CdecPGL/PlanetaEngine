@@ -84,10 +84,10 @@ namespace planeta {
 		bool is_valied_ = false;
 		bool is_active_ = false;
 
-		util::NonOwingPointer<IGameObjectForComponent> game_object_;
+		NonOwingPointer<IGameObjectForComponent> game_object_;
 
 		/*特別設定関数*/
-		virtual void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) = 0;
+		virtual void SetSceneData(const WeakPointer<private_::SceneData>& scene_data) = 0;
 	};
 	PE_REFLECTABLE_CLASS(GameObjectComponent);
 }

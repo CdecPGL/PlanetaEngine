@@ -14,7 +14,7 @@ namespace planeta {
 			virtual void Finalize() { return; };
 			virtual void Update() = 0;
 
-			virtual void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {};
+			virtual void SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {};
 		private:
 
 		};

@@ -9,7 +9,7 @@
 
 namespace planeta {
 	namespace private_ {
-		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::GetNewGameObject(const std::string& game_object_type_id, const std::string& file_id, const util::WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::GetNewGameObject(const std::string& game_object_type_id, const std::string& file_id, const WeakPointer<private_::SceneData>& scene_data) {
 			//テンプレート
 			std::shared_ptr<GameObjectBase> go_temp;
 			//必要ならテンプレートを作成登録し、使用するテンプレートをセットする
@@ -38,7 +38,7 @@ namespace planeta {
 			return ngo;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::CreateGameObject_(const std::string& game_object_type_id, const std::string& file_id, const util::WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::CreateGameObject_(const std::string& game_object_type_id, const std::string& file_id, const WeakPointer<private_::SceneData>& scene_data) {
 			auto obj_type_id = private_::AddPrefix(game_object_type_id, private_::ObjectCategory::GameObject);
 			//生成
 			auto ngo = Reflection::CreateObjectByObjectTypeID<GameObjectBase>(obj_type_id);
@@ -72,7 +72,7 @@ namespace planeta {
 			return ngo;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::CloneGameObjectFromTemplate_(const std::shared_ptr<GameObjectBase>& go_temp, const util::WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectTemplateHolder::CloneGameObjectFromTemplate_(const std::shared_ptr<GameObjectBase>& go_temp, const WeakPointer<private_::SceneData>& scene_data) {
 			assert(go_temp != nullptr);
 			//生成
 			auto ngo = Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*go_temp));

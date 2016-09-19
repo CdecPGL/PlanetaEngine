@@ -43,9 +43,6 @@
     <Filter Include="PlanetaEngine\Core\Others">
       <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Math\Vector">
-      <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GUIComponents">
       <UniqueIdentifier>{8f5b81f3-4ca5-4cd6-b5ed-9c99e6598f8b}</UniqueIdentifier>
     </Filter>
@@ -72,9 +69,6 @@
     </Filter>
     <Filter Include="PlanetaEngine\Utility\DataContainer\Serialize">
       <UniqueIdentifier>{c6e9ec24-a912-40a2-be57-cdac00a89a8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\Utility\WeakPointer">
-      <UniqueIdentifier>{32c98a0e-63bf-4b63-b39c-6b6deccf06b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\Utility\DateTime">
       <UniqueIdentifier>{0de0a5aa-9426-4eea-9453-906e3d75582a}</UniqueIdentifier>
@@ -226,6 +220,12 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ParticleSystem">
       <UniqueIdentifier>{2d03f87b-613c-4dfa-b55b-6dcbeea4666b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\Pointer">
+      <UniqueIdentifier>{3081a548-9794-4243-8e5d-4ace9272a9bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\Vector">
+      <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -331,9 +331,6 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="ParameterHolder.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="RectAngle.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="SharedPointerInstance.h">
@@ -451,13 +448,10 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">
-      <Filter>PlanetaEngine\Math\Vector</Filter>
+      <Filter>PlanetaEngine\Core\Vector</Filter>
     </ClInclude>
     <ClInclude Include="Vector4D.h">
-      <Filter>PlanetaEngine\Math\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorElementIdentifer.h">
-      <Filter>PlanetaEngine\Math\Vector</Filter>
+      <Filter>PlanetaEngine\Core\Vector</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
@@ -476,9 +470,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectManagerConnection.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="MathVector.h">
-      <Filter>PlanetaEngine\Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="ScreenEffectProcess.h">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
@@ -558,9 +549,6 @@
     <ClInclude Include="DataContainerError.h">
       <Filter>PlanetaEngine\Utility\DataContainer\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="WeakPointer.h">
-      <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
-    </ClInclude>
     <ClInclude Include="PEDateTime.h">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClInclude>
@@ -576,11 +564,8 @@
     <ClInclude Include="TypeDefinitions.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>PlanetaEngine\Utility\WeakPointer</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2D.h">
-      <Filter>PlanetaEngine\Math\Vector</Filter>
+      <Filter>PlanetaEngine\Core\Vector</Filter>
     </ClInclude>
     <ClInclude Include="Matrix2_2.h">
       <Filter>PlanetaEngine\Math\Matrix</Filter>
@@ -716,12 +701,6 @@
     </ClInclude>
     <ClInclude Include="SceneSetUpProxy.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
-    <ClInclude Include="Delegate.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="NonOwingPointer.h">
-      <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="IGameObjectForComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
@@ -872,6 +851,24 @@
     </ClInclude>
     <ClInclude Include="CollisionState.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Delegate.h">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="NonOwingPointer.h">
+      <Filter>PlanetaEngine\Core\Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="WeakPointer.h">
+      <Filter>PlanetaEngine\Core\Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="RectAngle.h">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MathVector.h">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorElementIdentifer.h">
+      <Filter>PlanetaEngine\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

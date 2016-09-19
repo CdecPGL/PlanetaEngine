@@ -22,10 +22,10 @@ namespace planeta {
 		GameObjectManager();
 		~GameObjectManager();
 		//ユーザアクセス可能関数
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_type_id, const std::string& file_id)override;
-		util::WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name)override;
-		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& game_object_type_id)override;
-		util::WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& game_object_type_id, const std::string& name)override;
+		WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_type_id, const std::string& file_id)override;
+		WeakPointer<IGameObject> CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name)override;
+		WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& game_object_type_id)override;
+		WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& game_object_type_id, const std::string& name)override;
 
 		//システム関数
 		/*初期化*/
@@ -33,7 +33,7 @@ namespace planeta {
 		/*終了処理*/
 		void Finalize()override;
 		/*シーンデータセット*/
-		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data)override;
+		void SetSceneData(const WeakPointer<private_::SceneData>& scene_data)override;
 
 		/*管理処理*/
 		void Update()override;
@@ -52,7 +52,7 @@ namespace planeta {
 		std::vector<std::shared_ptr<GameObjectBase>> garbage_;
 		void RemoveProc_();
 		int _id_counter;
-		util::WeakPointer<private_::SceneData> scene_data_;
+		WeakPointer<private_::SceneData> scene_data_;
 		
 		/*ゲームオブジェクトテンプレートホルダー*/
 		std::unique_ptr<private_::GameObjectTemplateHolder> game_object_template_holder_;

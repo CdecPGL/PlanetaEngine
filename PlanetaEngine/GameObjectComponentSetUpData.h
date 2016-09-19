@@ -7,8 +7,8 @@ namespace planeta {
 	class IGameObjectForComponent;
 	namespace private_ {
 		struct GameObjectComponentSetUpData {
-			util::NonOwingPointer<IGameObjectForComponent> holder_game_object;
-			util::WeakPointer<SceneData> scene_data;
+			NonOwingPointer<IGameObjectForComponent> holder_game_object;
+			WeakPointer<SceneData> scene_data;
 		};
 	}
 }

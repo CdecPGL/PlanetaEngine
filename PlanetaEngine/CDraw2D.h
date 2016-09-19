@@ -44,7 +44,7 @@ namespace planeta {
 		/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
 		Vector2Dd GetDrawScale()const;
 
-		util::NonOwingPointer<CTransform2D> transform2d_;
+		NonOwingPointer<CTransform2D> transform2d_;
 
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
 	private:

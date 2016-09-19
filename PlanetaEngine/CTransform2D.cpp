@@ -48,9 +48,9 @@ namespace planeta {
 		std::tuple<TransformData,PhisicalData> global;
 		std::tuple<TransformData, PhisicalData> ground;
 		UpdateState last_update; //更新状況
-		util::WeakPointer<CGround2D> belonging_ground;
+		WeakPointer<CGround2D> belonging_ground;
 		//地形更新イベントコネクション
-		util::DelegateConnection ground_updated_event_connection;
+		DelegateConnection ground_updated_event_connection;
 
 		void PositionUpdated(CoordinationSpace space) {
 			last_update.position = space;
@@ -136,7 +136,7 @@ namespace planeta {
 		//トランスフォーム2D_ID
 		int t2d_id_ = -1;
 		//更新イベントデリゲート
-		util::Delegate<void> updated_event_delegate;
+		Delegate<void> updated_event_delegate;
 
 		Impl_& operator=(const Impl_& obj) {
 			global = obj.global;
@@ -238,11 +238,11 @@ namespace planeta {
 			return *belonging_ground;
 		}
 
-		util::WeakPointer<CGround2D> GetGround() const {
+		WeakPointer<CGround2D> GetGround() const {
 			return belonging_ground;
 		}
 
-		void SetGround(const util::WeakPointer<CGround2D>& g, bool keep_global_position) {
+		void SetGround(const WeakPointer<CGround2D>& g, bool keep_global_position) {
 			if (belonging_ground) {
 				ground_updated_event_connection.Remove();
 			}
@@ -405,11 +405,11 @@ namespace planeta {
 		return impl_->cground();
 	}
 
-	util::WeakPointer<CGround2D> CTransform2D::GetGround() const {
+	WeakPointer<CGround2D> CTransform2D::GetGround() const {
 		return impl_->GetGround();
 	}
 
-	bool CTransform2D::SetGround(const util::WeakPointer<IGameObject>& g, bool keep_global_position) {
+	bool CTransform2D::SetGround(const WeakPointer<IGameObject>& g, bool keep_global_position) {
 		auto gcom = g->GetComponent<CGround2D>();
 		if (gcom) {
 			impl_->SetGround(gcom, keep_global_position);
@@ -466,7 +466,7 @@ namespace planeta {
 		}
 	}
 
-	util::DelegateConnection CTransform2D::AddUpdatedEventHandler(util::DelegateHandlerAdder<void>&& handler_adder) {
+	DelegateConnection CTransform2D::AddUpdatedEventHandler(DelegateHandlerAdder<void>&& handler_adder) {
 		return handler_adder(impl_->updated_event_delegate);
 	}
 }

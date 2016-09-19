@@ -34,9 +34,9 @@ namespace planeta {
 		virtual void OnTargetDisposed() {}
 		virtual void OnTargetActivated() {}
 		virtual void OnTargetInactivated() {}
-		util::DelegateConnection dispose_event_connection_;
-		util::DelegateConnection activate_event_connection_;
-		util::DelegateConnection inactivate_event_connection_;
+		DelegateConnection dispose_event_connection_;
+		DelegateConnection activate_event_connection_;
+		DelegateConnection inactivate_event_connection_;
 	};
 	PE_TASK_CLASS(TGameObjectOperation);
 }

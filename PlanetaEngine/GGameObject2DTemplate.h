@@ -19,6 +19,6 @@ namespace planeta {
 			return true;
 		}
 	private:
-		util::NonOwingPointer<CTransform2D> transform2d_;
+		NonOwingPointer<CTransform2D> transform2d_;
 	};
 }

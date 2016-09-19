@@ -16,26 +16,26 @@ namespace planeta {
 		return scene_.RefSceneData().task_manager_public_interface;
 	}
 
-	util::WeakPointer<Task> SceneSetUpProxy::GetTaskByName(const std::string& name) const {
+	WeakPointer<Task> SceneSetUpProxy::GetTaskByName(const std::string& name) const {
 		return RefTaskManagerInterface_().GetTask(name);
 	}
 
-	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateDefaultGameObject(const std::string& id) {
+	WeakPointer<IGameObject> SceneSetUpProxy::CreateDefaultGameObject(const std::string& id) {
 		return scene_.RefSceneData().game_object_manager_public_interface.CreateDefaultGameObject(id);
 	}
 
-	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateDefaultGameObject(const std::string& id) {
+	WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateDefaultGameObject(const std::string& id) {
 		auto go = scene_.RefSceneData().game_object_manager_public_interface.CreateDefaultGameObject(id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();
 		return go;
 	}
 
-	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateGameObject(const std::string& id, const std::string& file_id) {
+	WeakPointer<IGameObject> SceneSetUpProxy::CreateGameObject(const std::string& id, const std::string& file_id) {
 		return scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id, file_id);
 	}
 
-	util::WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateGameObject(const std::string& id, const std::string& file_id) {
+	WeakPointer<IGameObject> SceneSetUpProxy::CreateAndActivateGameObject(const std::string& id, const std::string& file_id) {
 		auto go = scene_.RefSceneData().game_object_manager_public_interface.CreateGameObject(id, file_id);
 		if (go == nullptr) { return nullptr; }
 		go->Activate();

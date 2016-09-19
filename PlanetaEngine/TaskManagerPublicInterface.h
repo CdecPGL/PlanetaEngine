@@ -20,6 +20,6 @@ namespace planeta {
 		/*ゲームプロセスを登録して名前をつける*/
 		virtual bool RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot, const std::string& name) = 0;
 		/*ゲームプロセスを名前から取得する*/
-		virtual util::WeakPointer<Task> GetTask(const std::string& name)const = 0;
+		virtual WeakPointer<Task> GetTask(const std::string& name)const = 0;
 	};
 }

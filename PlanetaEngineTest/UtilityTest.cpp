@@ -7,6 +7,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PlanetaEngineTest
 {
+	using namespace planeta;
 	using namespace planeta::util;
 	class Base {
 	public:

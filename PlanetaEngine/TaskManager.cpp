@@ -99,13 +99,13 @@ namespace planeta {
 		/**/
 		bool is_system_task_disposable_ = false; //システムタスクが削除可能か。
 
-		util::WeakPointer<private_::SceneData> scene_data_;
+		WeakPointer<private_::SceneData> scene_data_;
 	public:
 		Impl_(){}
 		//システムタスク削除の有効化
 		void ValidateSystemTaskDisposal() { is_system_task_disposable_ = true; }
 		//////////////////////////////////////////////////////////////////////////
-		void SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {
+		void SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {
 			scene_data_ = scene_data_;
 		}
 		//////////////////////////////////////////////////////////////////////////
@@ -255,11 +255,11 @@ namespace planeta {
 		impl_->AllClear();
 	}
 
-	void TaskManager::SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {
+	void TaskManager::SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {
 		impl_->SetSceneData(scene_data);
 	}
 
-	util::WeakPointer<Task> TaskManager::GetTask(const std::string& name)const {
+	WeakPointer<Task> TaskManager::GetTask(const std::string& name)const {
 		return impl_->GetTask(name);
 	}
 

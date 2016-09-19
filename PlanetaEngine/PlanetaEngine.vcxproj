@@ -165,7 +165,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BGMController.h" />
     <ClInclude Include="DataContainer.h" />
     <ClInclude Include="DataContainerImpl.h" />
-    <ClInclude Include="Event.h" />
     <ClInclude Include="GameObjectBase.h" />
     <ClInclude Include="GameObjectTemplateHolder.h" />
     <ClInclude Include="GOComponentGetter.h" />

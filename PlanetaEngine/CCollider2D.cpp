@@ -112,11 +112,11 @@ namespace planeta {
 		return true;
 	}
 
-	util::DelegateConnection CCollider2D::AddCollidedWithCollider2DEventHandler(util::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder) {
+	DelegateConnection CCollider2D::AddCollidedWithCollider2DEventHandler(DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder) {
 		return handler_adder(collided_event_);
 	}
 
-	util::DelegateConnection CCollider2D::AddCollidedWithGround2DEventHandler(util::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder) {
+	DelegateConnection CCollider2D::AddCollidedWithGround2DEventHandler(DelegateHandlerAdder<EACollisionWithGround2D> handler_adder) {
 		return handler_adder(collided_with_ground_event_);
 	}
 

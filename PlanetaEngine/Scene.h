@@ -40,7 +40,7 @@ namespace planeta{
 
 			/*初期化用関数*/
 			void SetCollisionGroupMatrix(const std::shared_ptr<CollisionGroupMatrix>& col_g_marix);
-			void PrepareSceneData(const util::NonOwingPointer<ISceneManagerAccessor> scn_mgr);
+			void PrepareSceneData(const NonOwingPointer<ISceneManagerAccessor> scn_mgr);
 			void RegisterSceneDataToModules();
 
 		private:

@@ -46,9 +46,9 @@ namespace planeta {
 		bool is_grounded()const { return is_grounded_; }
 		/*イベント*/
 		/*2Dコライダーとの衝突イベントハンドラ追加*/
-		util::DelegateConnection AddCollidedWithCollider2DEventHandler(util::DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
+		DelegateConnection AddCollidedWithCollider2DEventHandler(DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
 		/*2D地形との衝突イベントハンドラ追加*/
-		util::DelegateConnection AddCollidedWithGround2DEventHandler(util::DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
+		DelegateConnection AddCollidedWithGround2DEventHandler(DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
 
 		CTransform2D& transform2d() { return *transform2d_; }
 		const CTransform2D& transform2d()const { return *transform2d_; }
@@ -60,10 +60,10 @@ namespace planeta {
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
 
-		util::NonOwingPointer<CTransform2D> transform2d_;
+		NonOwingPointer<CTransform2D> transform2d_;
 
-		util::Delegate<EACollisionWithCollider2D> collided_event_;
-		util::Delegate<EACollisionWithGround2D> collided_with_ground_event_;
+		Delegate<EACollisionWithCollider2D> collided_event_;
+		Delegate<EACollisionWithGround2D> collided_with_ground_event_;
 
 		/*位置*/
 		Vector2Dd position_;

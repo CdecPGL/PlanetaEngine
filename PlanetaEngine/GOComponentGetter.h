@@ -9,7 +9,7 @@ namespace planeta {
 	class GameObjectComponent;
 	/*! @brief ゲームオブジェクトコンポーネントを取得するためのクラス
 		
-		GameObjectComponetが自信を所有するゲームオブジェクトのコンポーネントを取得するために使われることを想定し、util::NonOwingPointerで返す。<br/>
+		GameObjectComponetが自信を所有するゲームオブジェクトのコンポーネントを取得するために使われることを想定し、NonOwingPointerで返す。<br/>
 		GameObjectComponent::GetComponentsProcの引数として渡される。
 	*/
 	class GOComponentGetter {
@@ -17,16 +17,16 @@ namespace planeta {
 		GOComponentGetter(const GameObjectComponentHolder& com_holder);
 		//! コンポーネントを型で取得する。
 		template<class ComT>
-		util::NonOwingPointer<ComT> GetComponent()const {
+		NonOwingPointer<ComT> GetComponent()const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
 			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
 		}
 		//! コンポーネントを型で全て取得する。
 		template<class ComT>
-		std::vector<util::NonOwingPointer<ComT>> GetAllComponents()const {
+		std::vector<NonOwingPointer<ComT>> GetAllComponents()const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
 			auto lst = std::move(GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
-			std::vector<util::NonOwingPointer<ComT>> out();
+			std::vector<NonOwingPointer<ComT>> out();
 			for (auto&& com : lst) {
 				out.push_back(std::static_pointer_cast<ComT>(com));
 			}

@@ -15,9 +15,9 @@ namespace planeta {
 	public:
 		using Super = GameObjectStandardComponent;
 		/*フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
-		using FrameDataType = std::tuple<unsigned int, util::RectAngle<int>, Vector2Dd, double>;
+		using FrameDataType = std::tuple<unsigned int, RectAngle<int>, Vector2Dd, double>;
 		/*単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/
-		using SimpleFrameDataType = std::pair<unsigned int, util::RectAngle<int>>;
+		using SimpleFrameDataType = std::pair<unsigned int, RectAngle<int>>;
 		/*アニメーションセット(フル)*/
 		void SetAnimation(const std::string& anim_name, const std::vector<FrameDataType>& frames);
 		/*アニメーションセット(シンプル)*/
@@ -32,7 +32,7 @@ namespace planeta {
 		//アクセサ
 		void animation_data(const std::unordered_map<std::string,std::vector<FrameDataType>>& data);
 	private:
-		util::NonOwingPointer<CDrawGraph2D> draw_graph_component_;
+		NonOwingPointer<CDrawGraph2D> draw_graph_component_;
 		unsigned int frame_counter_ = 0;
 		bool is_playing_ = false;
 		bool roop_flag_ = false;

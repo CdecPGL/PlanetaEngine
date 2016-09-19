@@ -38,7 +38,7 @@ namespace planeta {
 		return id;
 	}
 
-	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id) {
+	WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id) {
 		auto go = CreateAndSetUpGameObject_(game_object_type_id, file_id);
 		if (go != nullptr && RegisterAndInitializeGameObject_(go)>=0) {
 			return go;
@@ -48,7 +48,7 @@ namespace planeta {
 		}
 	}
 
-	util::WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name) {
+	WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_type_id, const std::string& file_id, const std::string& name) {
 		auto go = CreateAndSetUpGameObject_(game_object_type_id, file_id);
 		if (go != nullptr && RegisterAndInitializeGameObject_(go, name)>=0) {
 			return go;
@@ -58,10 +58,10 @@ namespace planeta {
 		}
 	}
 
-	util::WeakPointer<IGameObject> GameObjectManager::CreateDefaultGameObject(const std::string& game_object_create_id) {
+	WeakPointer<IGameObject> GameObjectManager::CreateDefaultGameObject(const std::string& game_object_create_id) {
 		return CreateGameObject(game_object_create_id, {});
 	}
-	util::WeakPointer<IGameObject> GameObjectManager::CreateDefaultGameObject(const std::string& game_object_create_id, const std::string& name) {
+	WeakPointer<IGameObject> GameObjectManager::CreateDefaultGameObject(const std::string& game_object_create_id, const std::string& name) {
 		return CreateGameObject(game_object_create_id, {}, name);
 
 	}
@@ -128,7 +128,7 @@ namespace planeta {
 		garbage_.clear();
 	}
 
-	void GameObjectManager::SetSceneData(const util::WeakPointer<private_::SceneData>& scene_data) {
+	void GameObjectManager::SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {
 		scene_data_ = scene_data;
 	}
 }

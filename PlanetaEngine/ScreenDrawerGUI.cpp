@@ -9,7 +9,7 @@
 #include "Screen.h"
 
 namespace planeta {
-	void ScreenDrawerGUI::DrawGraph(const util::RectAngle<int>& draw_area, const util::RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<RGraph>& graph_resource) {
+	void ScreenDrawerGUI::DrawGraph(const RectAngle<int>& draw_area, const RectAngle<int>& draw_area_on_graph, bool reverse, const std::shared_ptr<RGraph>& graph_resource) {
 		screen_.ReserveDraw([draw_area,draw_area_on_graph,reverse,graph_resource]() {
 			if (graph_resource == nullptr) { return; }
 			double scale_x = (double)draw_area.size.x / draw_area_on_graph.size.x;
