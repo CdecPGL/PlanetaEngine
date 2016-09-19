@@ -798,9 +798,6 @@
     <ClInclude Include="ReflectionExceptions.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="PrefixUtility.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="JGameObject2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
     </ClInclude>
@@ -869,6 +866,9 @@
     </ClInclude>
     <ClInclude Include="VectorElementIdentifer.h">
       <Filter>PlanetaEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefixUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
