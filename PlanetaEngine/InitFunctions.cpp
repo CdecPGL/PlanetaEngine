@@ -55,7 +55,7 @@ namespace planeta {
 					PE_LOG_FATAL("エンジン設定ファイル\"", system_variables::file_system::EngineConfigFileName, "\"が開けませんでした。");
 					return false;
 				}
-				if (engine_config::LoadConfigData(std::const_pointer_cast<File>(ec_file)) == false) {
+				if (engine_config::private_::LoadConfigData(std::const_pointer_cast<File>(ec_file)) == false) {
 					PE_LOG_FATAL("エンジン設定ファイル\"", system_variables::file_system::EngineConfigFileName, "\"が読み込めませんでした。");
 					return false;
 				}

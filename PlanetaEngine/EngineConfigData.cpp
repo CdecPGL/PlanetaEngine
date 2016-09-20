@@ -7,27 +7,27 @@
 #include "File.h"
 
 namespace planeta {
-	namespace private_ {
-		namespace engine_config {
-			std::string game::GameTitle_("NULL"); //ゲームタイトル
-			std::string game::VersionString_("0.0.0"); //バージョン文字列
-			int game::MajorVersionNumber_(0);
-			int game::MinorVersionNumber_(0);
-			int game::SubVersionNumber_(0);
+	namespace engine_config {
+		std::string game::GameTitle_("NULL"); //ゲームタイトル
+		std::string game::VersionString_("0.0.0"); //バージョン文字列
+		int game::MajorVersionNumber_(0);
+		int game::MinorVersionNumber_(0);
+		int game::SubVersionNumber_(0);
 
-			bool engine::WindowMode_(true); //ウインドウモードか
-			int engine::ColorBitDepth_(32); //カラービット深度
-			Vector2Di engine::DrawSize_(640, 480); //描画ザイズ
-			Vector2Di engine::WindowSize_(640, 480); //ウインドウサイズ
-			unsigned int engine::ResourceDecryptionKey_(0);
+		bool engine::WindowMode_(true); //ウインドウモードか
+		int engine::ColorBitDepth_(32); //カラービット深度
+		Vector2Di engine::DrawSize_(640, 480); //描画ザイズ
+		Vector2Di engine::WindowSize_(640, 480); //ウインドウサイズ
+		unsigned int engine::ResourceDecryptionKey_(0);
 
-			bool user::WindowSizeConfigurable_(false); //ウインドウサイズをユーザーが設定可能か
-			bool user::WindowModeConfigurable_(false); //ウインドウモードか否かをユーザーが設定可能か
+		bool user::WindowSizeConfigurable_(false); //ウインドウサイズをユーザーが設定可能か
+		bool user::WindowModeConfigurable_(false); //ウインドウモードか否かをユーザーが設定可能か
 
+		namespace private_ {
 			bool LoadConfigData(const std::shared_ptr<File>& file) {
 				assert(file != nullptr && file->GetStatus() == File::FileStatus::Available);
 
-				auto json_res = MakeResource<RJson>();
+				auto json_res = planeta::private_::MakeResource<RJson>();
 				//FileからJSONリソースを作成する
 				if (!json_res->Create(file)) {
 					PE_LOG_ERROR("設定ファイルをJSONファイルとして読み込むことができませんでした。");
@@ -81,6 +81,6 @@ namespace planeta {
 				sys_log.SimpleLog("--------------------------------");
 				return true;
 			}
-		};
-	}
+		}
+	};
 }
