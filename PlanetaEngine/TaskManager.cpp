@@ -47,7 +47,7 @@ namespace planeta {
 		constexpr std::array<int, SYSTEM_TASK_SLOT_SIZE> system_slot_group_number_map_ = {
 			APPVEL_SLOT,
 			COLDET_SLOT,
-			APPVEL_SLOT,
+			APPCAM_SLOT,
 			DRAW_SLOT,
 		};
 		/*タスクスロットからタスクグループ番号を取得*/
@@ -127,7 +127,7 @@ namespace planeta {
 					DisposeTask(tdata);
 				});
 			} else {
-				PE_VERIFY(false);
+				assert(false);
 			}
 			tdata.state = TaskState::Disposed;
 			return true;
