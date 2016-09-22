@@ -108,7 +108,7 @@ namespace planeta {
 		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>, void>::type>());
 		/*! Reflectable‚ğŒp³‚µ‚½Œ^‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<std::is_base_of<Reflectable, T>, void>::type;
+		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src);
 		/*! std::tuple‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
 		template<typename... Ts>
 		void ReflectivePtreeConverter(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src);
@@ -160,7 +160,7 @@ namespace planeta {
 		}
 
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<std::is_base_of<Reflectable, T>, void>::type {
+		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src) {
 			dst.ReflectiveLoadFromPtree(src);
 		}
 
