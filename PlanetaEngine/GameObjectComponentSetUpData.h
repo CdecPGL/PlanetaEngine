@@ -4,10 +4,10 @@
 
 namespace planeta {
 	class SceneData;
-	class IGameObjectForComponent;
+	class IGameObject;
 	namespace private_ {
 		struct GameObjectComponentSetUpData {
-			NonOwingPointer<IGameObjectForComponent> holder_game_object;
+			NonOwingPointer<IGameObject> holder_game_object;
 			WeakPointer<SceneData> scene_data;
 		};
 	}

@@ -2,7 +2,7 @@
 #include "GameObjectDrawSystem.h"
 #include "SceneData.h"
 #include "SystemLog.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CTransform2D.h"
 #include "DxLib.h"
 

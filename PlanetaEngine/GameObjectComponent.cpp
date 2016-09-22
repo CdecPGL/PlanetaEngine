@@ -43,7 +43,7 @@ namespace planeta{
 			return true;
 		}
 
-		IGameObjectForComponent& GameObjectComponent::game_object() {
+		IGameObject& GameObjectComponent::game_object() {
 			return *game_object_;
 		}
 }

@@ -62,6 +62,15 @@ namespace planeta {
 			SetUpAttachedTask_(*task);
 			return task;
 		}
+		//! ゲームオブジェクトを作成
+		virtual WeakPointer<IGameObject> CreateGameObject(const std::string& gameobject_type_id, const std::string& resource_id) = 0;
+		//!ゲームオブジェクトを作成して有効化
+		virtual WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& gameobject_type_id, const std::string& resource_id) = 0;
+		//! 定義ファイルを読み込まないでゲームオブジェクトを作成
+		virtual WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& gameobject_type_id) = 0;
+		//! 定義ファイルを読み込まないでゲームオブジェクトを作成して有効化
+		virtual WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& gameobject_type_id) = 0;
+
 		//! 有効化イベントハンドラを登録する
 		virtual DelegateConnection AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;
 		//! 無効化イベントハンドラを登録する

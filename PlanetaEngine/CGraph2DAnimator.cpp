@@ -1,5 +1,5 @@
 ﻿#include "CGraph2DAnimator.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CDrawGraph2D.h"
 #include "SystemLog.h"
 #include "SystemLog.h"

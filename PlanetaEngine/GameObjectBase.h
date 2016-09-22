@@ -2,7 +2,7 @@
 
 #include "Object.h"
 #include "GameObjectComponentHolder.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
 #include "NonOwingPointer.h"
@@ -18,7 +18,7 @@ namespace planeta {
 	class GOComponentGetter;
 	/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 	*/
-	class GameObjectBase :public Object, public IGameObjectForComponent, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
+	class GameObjectBase :public Object, public IGameObject, private util::NonCopyable<GameObjectBase>, public std::enable_shared_from_this<GameObjectBase> {
 	public:
 		using Super = Object;
 		GameObjectBase();

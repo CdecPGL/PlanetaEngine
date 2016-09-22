@@ -4,7 +4,7 @@
 #include "RGraph.h"
 #include "SystemLog.h"
 #include "CTransform2D.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "Matrix2_2.h"
 #include "MathConstant.h"
 #include "GraphDrawData2D.h"

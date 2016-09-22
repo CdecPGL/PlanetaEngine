@@ -1,5 +1,5 @@
 ﻿#include "CCollider2D.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CollisionWorld.h"
 #include "SystemLog.h"
 #include "SceneData.h"

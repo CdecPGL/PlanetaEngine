@@ -702,9 +702,6 @@
     <ClInclude Include="SceneSetUpProxy.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
-    <ClInclude Include="IGameObjectForComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectComponentSetUpData.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>

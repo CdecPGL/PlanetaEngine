@@ -1,5 +1,5 @@
 ﻿#include "CPlanetGround2D.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CTransform2D.h"
 #include "CCircleCollider2D.h"
 #include "CPlanet.h"

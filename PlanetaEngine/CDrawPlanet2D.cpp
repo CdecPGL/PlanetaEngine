@@ -3,7 +3,7 @@
 #include "ScreenDrawer2D.h"
 #include "ResourceManager.h"
 #include "RGraph.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CPlanet.h"
 #include "MathConstant.h"
 #include "SystemLog.h"

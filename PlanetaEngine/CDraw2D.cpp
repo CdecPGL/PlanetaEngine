@@ -1,5 +1,5 @@
 ﻿#include "CDraw2D.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 //#include "GameObjectDrawComponentProcessRegistrator.h"
 #include "GameObjectDrawSystem.h"
 #include "CTransform2D.h"

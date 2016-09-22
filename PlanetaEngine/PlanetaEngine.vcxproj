@@ -181,7 +181,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Reflectable.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="IGameObject.h" />
-    <ClInclude Include="IGameObjectForComponent.h" />
     <ClInclude Include="InitFunctions.h" />
     <ClInclude Include="ReflectionExceptions.h" />
     <ClInclude Include="ReflectionUtility.h" />

@@ -1,6 +1,6 @@
 ﻿#include "CDrawPolygon2D.h"
 #include "ScreenDrawer2D.h"
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 

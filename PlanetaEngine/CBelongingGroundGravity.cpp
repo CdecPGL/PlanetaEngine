@@ -1,6 +1,6 @@
 ﻿#include "CBelongingGroundGravity.h"
 
-#include "IGameObjectForComponent.h"
+#include "IGameObject.h"
 #include "CTransform2D.h"
 #include "CGround2D.h"
 #include "TGInstant.h"
