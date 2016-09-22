@@ -15,6 +15,27 @@
 #include "boost/property_tree/ptree.hpp"
 #include "boost/core/enable_if.hpp"
 
+//////////////////////////////////////////////////////////////////////////
+//特定の条件を満たしているか確認するメタ関数
+//////////////////////////////////////////////////////////////////////////
+namespace planeta {
+	namespace private_ {
+		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っているか
+		template<class C, typename T = void>
+		struct HasReflectionDataRegisterer : public std::false_type {};
+		template<class C>
+		struct HasReflectionDataRegisterer < C, decltype(C::ReflectionDataRegisterer(std::declval<ClassRegisterer<C>>()), std::declval<void>()) > : public std::true_type {};
+		//C::Superを持っているか
+		template<class C, typename T = void>
+		struct HasSuperAlias : public std::false_type {};
+		template<class C>
+		struct HasSuperAlias < C, decltype(std::declval<typename C::Super>(), std::declval<void>()) > : public std::true_type {};
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+//Ptreeからの変換関数
+//////////////////////////////////////////////////////////////////////////
 #define PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(array_type)\
 template<typename T, typename... Rest>\
 void ReflectivePtreeConverter(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src);
@@ -177,7 +198,9 @@ namespace planeta {
 #undef PE_PTREE_CONVERT_TO_SET_TYPE_DEF
 #undef PE_PTREE_CONVERT_TO_MAP_TYPE_DEF
 
-
+//////////////////////////////////////////////////////////////////////////
+//コピーハンドラ
+//////////////////////////////////////////////////////////////////////////
 namespace planeta {
 	class Reflectable;
 	namespace util {

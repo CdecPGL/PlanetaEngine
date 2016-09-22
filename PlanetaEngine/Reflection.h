@@ -98,17 +98,6 @@ namespace planeta {
 	};
 
 	namespace private_ {
-		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っているか
-		template<class C, typename T = void>
-		struct HasReflectionDataRegisterer : public std::false_type {};
-		template<class C> 
-		struct HasReflectionDataRegisterer < C, decltype(C::ReflectionDataRegisterer(std::declval<ClassRegisterer<C>>()), std::declval<void>()) > : public std::true_type {};
-		//C::Superを持っているか
-		template<class C, typename T = void>
-		struct HasSuperAlias : public std::false_type {};
-		template<class C>
-		struct HasSuperAlias < C, decltype(std::declval<typename C::Super>(), std::declval<void>()) > : public std::true_type {};
-
 		//抽象クラスでクリエータが指定された場合(ありえないので定義しない)
 		/*template<class C>
 		auto SetCreator(ClassInfo& ci, const std::function<std::shared_ptr<Reflectable>()>& creator) -> typename boost::enable_if<std::is_abstract<C>, void>::type {
