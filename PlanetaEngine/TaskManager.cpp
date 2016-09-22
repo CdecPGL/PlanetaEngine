@@ -79,11 +79,11 @@ namespace planeta {
 			TaskData(const TaskData&) = delete;
 			TaskData& operator=(const TaskData&) = delete;
 			std::shared_ptr<Task> task;
-			TaskListType::iterator iterator_at_task_list;
-			NameMapType::iterator iterator_at_name_map;
+			TaskListType::iterator iterator_at_task_data_list;
+			NameMapType::iterator iterator_at_task_name_map;
 			bool is_named = false;
 			int group_number; //所属しているタスクグループ番号
-			TaskGroupType::iterator iterator_at_task_group; //所属しているタスクグループでのイテレータ
+			TaskGroupType::iterator iterator_at_task_group_list; //所属しているタスクグループでのイテレータ
 			TaskState state = TaskState::Pausing;
 		};
 	private:
@@ -117,9 +117,18 @@ namespace planeta {
 				PE_LOG_ERROR("システムタスクの削除は許可されていません。");
 			}
 			//削除処理を追加
-			management_process_list_.push_back([&tdata, this] {
-				DisposeTask(tdata);
-			});
+			if (tdata.state == TaskState::Running) {
+				management_process_list_.push_back([&tdata, this] {
+					InctivateTask(tdata);
+					DisposeTask(tdata);
+				});
+			} else if (tdata.state == TaskState::Pausing) {
+				management_process_list_.push_back([&tdata, this] {
+					DisposeTask(tdata);
+				});
+			} else {
+				PE_VERIFY(false);
+			}
 			tdata.state = TaskState::Disposed;
 			return true;
 		}
@@ -146,27 +155,21 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		/*タスクの有効化*/
 		void ActivateTask(TaskData& tdata) {
-			assert(tdata.state == TaskState::Running);
 			task_group_list_[tdata.group_number].push_back(tdata.task.get());
-			tdata.iterator_at_task_group = --task_group_list_[tdata.group_number].end();
+			tdata.iterator_at_task_group_list = --task_group_list_[tdata.group_number].end();
 		}
 		/*タスクの無効化*/
 		bool InctivateTask(TaskData& tdata) {
-			PE_VERIFY(tdata.state == TaskState::Running);
-			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group);
+			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list);
 			return true;
 		}
 		/*タスクの破棄*/
 		bool DisposeTask(TaskData& tdata) {
-			PE_VERIFY(tdata.state != TaskState::Disposed);
-			if (tdata.state == TaskState::Running) { //実行中だったら無効化する。
-				InctivateTask(tdata);
-			}
-			task_data_list_.erase(tdata.iterator_at_task_list); //タスクリストから削除
+			task_data_list_.erase(tdata.iterator_at_task_data_list); //タスクリストから削除
 			if (tdata.is_named) {
-				task_name_map_.erase(tdata.iterator_at_name_map); //名前マップから削除
+				task_name_map_.erase(tdata.iterator_at_task_name_map); //名前マップから削除
 			}
-			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group); //タスクグループリストから削除
+			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list); //タスクグループリストから削除
 			return true;
 		}
 		//////////////////////////////////////////////////////////////////////////
@@ -187,14 +190,20 @@ namespace planeta {
 			auto ptdata = std::make_shared<TaskData>();
 			ptdata->task = task;
 			ptdata->group_number = group_number;
+			ptdata->is_named = false;
+			//タスクデータリストに登録して、自身を指すイテレータを保持
 			task_data_list_.push_back(ptdata);
+			ptdata->iterator_at_task_data_list = --task_data_list_.end();
+			//タスクグループリストに登録して、自身を指すイテレータを保持
 			task_group_list_[group_number].push_back(task.get());
+			ptdata->iterator_at_task_group_list = --task_group_list_[group_number].end();
+
 			return ptdata;
 		}
 		/*名前を登録*/
 		bool RegisterTaskName(const std::string& name, const std::shared_ptr<TaskData>& ptdata) {
 			//名前マップに登録し、タスクデータにそのイテレータをセットする。
-			ptdata->iterator_at_name_map = task_name_map_.emplace(name, ptdata).first;
+			ptdata->iterator_at_task_name_map = task_name_map_.emplace(name, ptdata).first;
 			ptdata->is_named = true;
 			return true;
 		}

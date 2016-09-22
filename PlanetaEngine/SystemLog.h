@@ -69,4 +69,4 @@ planeta::debug::SystemLog::instance().Log(debug::LogLevel::Error,__FUNCTION__,__
 planeta::debug::SystemLog::instance().Log(debug::LogLevel::Fatal,__FUNCTION__,__VA_ARGS__)
 //条件チェック(引数がfalseなら致命的エラーを発生させる)
 #define PE_VERIFY(condition)\
-if((condition)==false){planeta::debug::SystemLog::instance().Log(debug::LogLevel::Fatal,__FUNCTION__,", expression : ",#condition);}
+if((condition)==false){planeta::debug::SystemLog::instance().Log(debug::LogLevel::Fatal,__FUNCTION__,"expression : ",#condition);}
