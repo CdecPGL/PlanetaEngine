@@ -35,7 +35,7 @@ namespace planeta{
 				}
 				return SceneStatus_::Error;
 			}
-			catch (util::NullWeakPointerException& e) {
+			catch (NullWeakPointerException& e) {
 				PE_LOG_ERROR("Scene::Updateで無効なWeakPointerが参照されました。", e.what());
 				return SceneStatus_::Error;
 			}

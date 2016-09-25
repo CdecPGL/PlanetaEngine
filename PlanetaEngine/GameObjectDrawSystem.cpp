@@ -36,7 +36,7 @@ namespace planeta{
 					try {
 						(*it)->Draw(*screen_drawer_2d_);
 					}
-					catch (util::NullWeakPointerException& e) {
+					catch (NullWeakPointerException& e) {
 						PE_LOG_ERROR("DrawComponent::Drawで無効なWeakPointerが参照されました。問題の発生したコンポーネントはリストから除外されます。", e.what());
 						dcl.second.erase(it);
 						break;

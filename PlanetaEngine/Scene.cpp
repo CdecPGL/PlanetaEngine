@@ -55,14 +55,14 @@ namespace planeta{
 			try {
 				task_manager_->ExcuteTask(); //タスク実行
 			}
-			catch (util::NullWeakPointerException& e) {
+			catch (NullWeakPointerException& e) {
 				PE_LOG_ERROR("TaskManager::Updateで無効なWeakPointerが参照されました。", e.what());
 				return;
 			}try {
 				//各シーンモジュールの更新
 				IterateSceneModule_([](SceneModule& sm) {sm.Update(); return true; });
 			}
-			catch (util::NullWeakPointerException& e) {
+			catch (NullWeakPointerException& e) {
 				PE_LOG_ERROR("シーンモジュールの更新において無効なWeakPointerが参照されました。", e.what());
 				return;
 			}
