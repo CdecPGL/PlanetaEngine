@@ -54,6 +54,10 @@ namespace planeta {
 
 	template<typename T>
 	T RectAngle<T>::height()const { return size.y; }
+
+	using RectAnglei = RectAngle<int>;
+	using RectAnglef = RectAngle<float>;
+	using RectAngled = RectAngle<double>;
 }
 
 #ifdef PE_ENABLE_REFLECTION_SYSTEM

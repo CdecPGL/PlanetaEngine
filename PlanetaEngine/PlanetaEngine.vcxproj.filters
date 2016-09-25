@@ -591,9 +591,6 @@
     <ClInclude Include="GameObjectInterface.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\GameObjectInterface</Filter>
     </ClInclude>
-    <ClInclude Include="IGameObject.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\GameObjectInterface</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectComponentHolder.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
@@ -866,6 +863,9 @@
     </ClInclude>
     <ClInclude Include="PrefixUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

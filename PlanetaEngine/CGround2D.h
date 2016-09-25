@@ -4,6 +4,7 @@
 #include "GameObjectStandardComponent.h"
 #include "MathMatrix.h"
 #include "Vector2D.h"
+#include "RectAngle.h"
 #include "MathConstant.h"
 #include "IColliderWithCollider2D.h"
 
@@ -36,12 +37,12 @@ namespace planeta {
 
 		CTransform2D& transform2d();
 	protected:
-		NonOwingPointer<CTransform2D> transform2d_;
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
 		virtual bool OnActivated() override;
 		virtual bool OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	private:
+		NonOwingPointer<CTransform2D> transform2d_;
 		/*指定地形座標で地形座標系回転度のグローバル座標系回転度との差を取得する*/
 		virtual double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2Dd& ground_pos)const = 0;
 	};

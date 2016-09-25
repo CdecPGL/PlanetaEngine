@@ -25,11 +25,15 @@ namespace planeta {
 		struct HasReflectionDataRegisterer : public std::false_type {};
 		template<class C>
 		struct HasReflectionDataRegisterer < C, decltype(C::ReflectionDataRegisterer(std::declval<ClassRegisterer<C>>()), std::declval<void>()) > : public std::true_type {};
+		template<class C>
+		bool HasReflectionDataRegisterer_v = HasReflectionDataRegisterer<C>::value;
 		//C::Superを持っているか
 		template<class C, typename T = void>
 		struct HasSuperAlias : public std::false_type {};
 		template<class C>
 		struct HasSuperAlias < C, decltype(std::declval<typename C::Super>(), std::declval<void>()) > : public std::true_type {};
+		template<class C>
+		bool HasSuperAlias_v = HasSuperAlias<C>::value;
 	}
 }
 
@@ -101,11 +105,14 @@ namespace planeta {
 		/*! 変換不可能な型のPtree変換関数*/
 		template<typename... Ts>
 		void ReflectivePtreeConverter(Ts...);
+		/*! C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っている型の変換関数*/
+		/*template<typename T>
+		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<HasReflectionDataRegisterer<T>>::type;*/
 		/*! @brief ptreeから直接変換可能な型へのPtree変換関数
 			@note BoostLibrary1.61.0では、get_value内でistreamによる型の変換を行っている。これを利用して、get_valueに対応していない型に対しては、std::cinでもコンパイルエラーになることを利用してSFINEを用いオーバーロード対象外にする。get_valueの内部実装に依存しているため、それに変更があった場合は修正する必要がある。
 		*/
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>, void>::type>());
+		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>>::type>());
 		/*! Reflectableを継承した型へのPtree変換関数*/
 		template<typename T>
 		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src);
