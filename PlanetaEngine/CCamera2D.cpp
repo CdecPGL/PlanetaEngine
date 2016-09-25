@@ -41,10 +41,6 @@ namespace planeta {
 		scene_data_ref().gameobject_draw_system.RemoveCamera(this);
 	}
 
-	CTransform2D& CCamera2D::transform2d() {
-		return *transform2d_;
-	}
-
 	double CCamera2D::expansion() const {
 		return expansion_;
 	}
@@ -61,6 +57,22 @@ namespace planeta {
 	Vector2Di CCamera2D::CovertPositionGameObjectSpaceToGUISpace(const Vector2Dd& game_object_pos)const {
 		VECTOR uiv = ConvWorldPosToScreenPos(VGet((float)game_object_pos.x, (float)game_object_pos.y, 0.0f));
 		return Vector2Di((int)uiv.x, (int)uiv.y);
+	}
+
+	const planeta::Vector2Dd& CCamera2D::position() const {
+		return transform2d_->position();
+	}
+
+	void CCamera2D::position(const planeta::Vector2Dd& p) {
+		transform2d_->position(p);
+	}
+
+	double CCamera2D::rotation_rad() const {
+		return transform2d_->rotation_rad();
+	}
+
+	void CCamera2D::rotation_rad(double r) {
+		transform2d_->rotation_rad(r);
 	}
 
 }

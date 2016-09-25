@@ -36,6 +36,7 @@ namespace planeta {
 		virtual Vector2Dd NormalizeGroundVectorWithGroundPosition(const Vector2Dd& ground_pos, const Vector2Dd& ground_vector)const = 0;
 
 		CTransform2D& transform2d();
+		const CTransform2D& transform2d()const;
 	protected:
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
 		virtual bool OnActivated() override;

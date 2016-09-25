@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "GameObject.h"
 #include "CPlanet.h"
 #include "GameObjectManager.h"
 
@@ -21,6 +20,6 @@ namespace PlanetaEngineTest
 //			auto go = gom->CreateGameObject(TestGOSetter());
 		}
 	private:
-		std::shared_ptr<GameObjectManager> gom;
+		std::shared_ptr<private_::GameObjectManager> gom;
 	};
 }

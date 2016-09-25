@@ -82,10 +82,9 @@ namespace planeta{
 
 		void GameObjectDrawSystem::ApplyCameraState() {
 			if (camera2d_) {
-				CTransform2D& trans = camera2d_->transform2d();
 				double scale = camera2d_->expansion();
-				double rota_rad = trans.rotation_rad();
-				Vector2Dd pos = trans.position();
+				double rota_rad = camera2d_->rotation_rad();
+				Vector2Dd pos = camera2d_->position();
 				SetupCamera_Ortho((float)(engine_config::engine::DrawSize().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
 			} else {

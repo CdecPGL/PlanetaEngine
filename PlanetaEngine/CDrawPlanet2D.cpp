@@ -24,7 +24,9 @@ namespace planeta {
 			.ShallowCopyTarget(&CDrawPlanet2D::_horizontal_separation)
 			.ShallowCopyTarget(&CDrawPlanet2D::_vertical_separation)
 			.DeepCopyTarget(&CDrawPlanet2D::graph_draw_data_)
-			.ShallowCopyTarget(&CDrawPlanet2D::tex_map_mode_);
+			.CopyHandler([](const CDrawPlanet2D& src, CDrawPlanet2D& dst) {
+				dst.texture_mapping_mode(src.texture_mapping_mode());
+			});
 	}
 
 	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {

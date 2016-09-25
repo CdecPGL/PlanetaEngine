@@ -8,7 +8,7 @@
 #include "ProgramDefinitionData.h"
 #include "SystemVariables.h"
 
-#include "PlanetaEngine.h"
+#include "PlanetaEngineImpl.h"
 
 #include "Reflection.h"
 

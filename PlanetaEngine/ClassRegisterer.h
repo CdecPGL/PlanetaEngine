@@ -221,3 +221,19 @@ namespace planeta {
 */
 #define PE_REFLECTABLE_CLASS_PROPERTY(ctype, id)\
 Property(#id, &ctype::id, &ctype::id)
+/*! @brief 書き込み専用プロパティを登録するユーティリティマクロ
+
+型の変換なしにClassRegisterer::Propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
+registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
+のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_READONLY_PROPERTY(ctype, id)\
+ReadOnlyProperty(#id, &ctype::id)
+/*! @brief 書き込み専用プロパティを登録するユーティリティマクロ
+
+型の変換なしにClassRegisterer::Propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
+registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
+のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(ctype, id)\
+WriteOnlyProperty(#id, &ctype::id)

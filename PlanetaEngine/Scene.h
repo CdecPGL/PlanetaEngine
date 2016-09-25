@@ -10,11 +10,11 @@
 #include "NonOwingPointer.h"
 
 namespace planeta{
-	class GameObjectManager;
 	class TaskManager;
 	class ISceneManagerAccessor;
 	class CollisionGroupMatrix;
 	namespace private_{
+		class GameObjectManager;
 		class SceneSystemSetUpper;
 		struct SceneData;
 		class CollisionWorld;

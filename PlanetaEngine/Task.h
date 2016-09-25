@@ -5,6 +5,7 @@
 #include "Delegate.h"
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
+#include "GameObjectManagerPublicInterface.h"
 #include "NonOwingPointer.h"
 
 namespace planeta {
@@ -34,14 +35,8 @@ namespace planeta {
 		/*ユーティリティ関数*/
 
 	protected:
-		//ゲームオブジェクトを作成
-		WeakPointer<IGameObject> CreateGameObject(const std::string& gameobject_type_id, const std::string& resource_id);
-		//ゲームオブジェクトを作成して有効化
-		WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& gameobject_type_id, const std::string& resource_id);
-		//定義ファイルの読み込みを行わないゲームオブジェクトを作成
-		WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& gameobject_type_id);
-		//定義ファイルの読み込みを行わないゲームオブジェクトを作成して有効化
-		WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& gameobject_type_id);
+		//! ゲームオブジェクトマネージャへのアクセス
+		GameObjectManagerPublicInterface& game_object_manager();
 		//タスクを作成
 		template<class T>
 		WeakPointer<T> CreateTask(TaskSlot slot) {

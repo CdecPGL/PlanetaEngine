@@ -1,6 +1,5 @@
 ﻿#include "SEmpty.h"
 
-#include "SceneDefinitionHeaders.h"
 #include "TInstant.h"
 
 namespace planeta {

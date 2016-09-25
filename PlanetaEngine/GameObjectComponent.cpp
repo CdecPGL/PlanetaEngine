@@ -1,5 +1,4 @@
 ﻿#include "GameObjectComponent.h"
-#include "GameObjectBase.h"
 #include "GameObjectComponentSetUpData.h"
 
 namespace planeta{

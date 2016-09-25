@@ -5,7 +5,9 @@
 #include "NonOwingPointer.h"
 
 namespace planeta {
-	class GameObjectComponentHolder;
+	namespace private_ {
+		class GameObjectComponentHolder;
+	}
 	class GameObjectComponent;
 	/*! @brief ゲームオブジェクトコンポーネントを取得するためのクラス
 		
@@ -14,7 +16,7 @@ namespace planeta {
 	*/
 	class GOComponentGetter {
 	public:
-		GOComponentGetter(const GameObjectComponentHolder& com_holder);
+		GOComponentGetter(const private_::GameObjectComponentHolder& com_holder);
 		//! コンポーネントを型で取得する。
 		template<class ComT>
 		NonOwingPointer<ComT> GetComponent()const {
@@ -33,7 +35,7 @@ namespace planeta {
 			return std::move(lst);
 		}
 	private:
-		const GameObjectComponentHolder& com_holder_;
+		const private_::GameObjectComponentHolder& com_holder_;
 		std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const;
 		std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const;
 	};

@@ -2,8 +2,8 @@
 
 #include <type_traits>
 #include <memory>
-#include "GameObjectInterface.h"
 #include "TaskManagerPublicInterface.h"
+#include "GameObjectManagerPublicInterface.h"
 #include "Delegate.h"
 #include "TaskSlot.h"
 
@@ -23,31 +23,23 @@ namespace planeta {
 		virtual void Dispose() = 0;
 		//! 自身のstd::shared_ptrを取得する
 		virtual std::shared_ptr<IGameObject> GetSharedPointer()= 0;
-		//! コンポーネントを型で取得する。乱用禁止。できれば代わりにGetInterface()を使う。
+		//! コンポーネントを型で取得する
 		template<class ComT>
 		WeakPointer<ComT> GetComponent()const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
 			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
 		}
-		/*! @brief 指定タイプのゲームオブジェクトインターフェイス取得
-			
-			テンプレート引数で指定した型か、その子クラスのインターフェイスを持っていれば返す。持っていない場合はnullptrを返す。
-		*/
-		template<class GOI>
-		std::shared_ptr<GOI> GetInterface() {
-			static_assert(std::is_base_of<GameObjectInterface<GOI>, GOI>::value == true, "GOI must drive GameObjectInterface.");
-			auto ptr = std::dynamic_pointer_cast<GOI>(GetSharedPointer());
-			return ptr;
-		}
-		/*! @brief 指定タイプのゲームオブジェクトインターフェイスを持っているか確認
+		//! 特定型のコンポーネントを持っているか確認する
+		template<class ComT>
+		bool HasComponentType()const { return false; }
+		//! コンポーネントを型ですべて取得する
 
-			テンプレート引数で指定した型か、その子クラスのインターフェイスを持っているかどうかを返す。
-		*/
-		template<class GOI>
-		bool HasInterface() {
-			static_assert(std::is_base_of<GameObjectInterface<GOI>, GOI>::value == true, "GOI must drive GameObjectInterface.");
-			return GetInterface<GOI>() != nullptr;
-		}
+		//! コンポーネントをコンポーネント型IDで取得する
+
+		//! コンポーネントをコンポーネント型IDで全て取得する
+
+		//! 特定のコンポーネント型IDのコンポーネントを持っているか確認
+
 		/*! @brief タスクをアタッチする
 
 			テンプレート引数で指定した型のタスクを作成し、アタッチする。
@@ -62,14 +54,8 @@ namespace planeta {
 			SetUpAttachedTask_(*task);
 			return task;
 		}
-		//! ゲームオブジェクトを作成
-		virtual WeakPointer<IGameObject> CreateGameObject(const std::string& gameobject_type_id, const std::string& resource_id) = 0;
-		//!ゲームオブジェクトを作成して有効化
-		virtual WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& gameobject_type_id, const std::string& resource_id) = 0;
-		//! 定義ファイルを読み込まないでゲームオブジェクトを作成
-		virtual WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& gameobject_type_id) = 0;
-		//! 定義ファイルを読み込まないでゲームオブジェクトを作成して有効化
-		virtual WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& gameobject_type_id) = 0;
+		//! ゲームオブジェクトマネージャへのアクセスを取得
+		virtual GameObjectManagerPublicInterface& game_object_manager() = 0;
 
 		//! 有効化イベントハンドラを登録する
 		virtual DelegateConnection AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;

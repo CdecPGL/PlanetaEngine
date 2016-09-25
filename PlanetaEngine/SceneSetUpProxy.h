@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "TaskManagerPublicInterface.h"
+#include "GameObjectManagerPublicInterface.h"
 
 namespace planeta {
 	namespace private_ {
@@ -9,15 +10,8 @@ namespace planeta {
 	class SceneSetUpProxy {
 	public:
 		SceneSetUpProxy(private_::Scene& scene);
-		//ゲームオブジェクトを作成
-		WeakPointer<IGameObject> CreateDefaultGameObject(const std::string& id);
-		//ゲームオブジェクトを作成して有効化
-		WeakPointer<IGameObject> CreateAndActivateDefaultGameObject(const std::string& id);
-		//ゲームオブジェクトを作成
-		WeakPointer<IGameObject> CreateGameObject(const std::string& id, const std::string& file_id);
-		//ゲームオブジェクトを作成して有効化
-		WeakPointer<IGameObject> CreateAndActivateGameObject(const std::string& id, const std::string& file_id);
-
+		//! ゲームオブジェクトマネージャへのアクセス
+		GameObjectManagerPublicInterface& game_object_manager();
 		//タスクを作成
 		template<class T>
 		WeakPointer<T> CreateTask(TaskSlot slot) {

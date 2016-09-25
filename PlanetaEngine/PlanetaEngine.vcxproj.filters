@@ -94,12 +94,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D">
       <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameObjects">
-      <UniqueIdentifier>{dfe1d2e1-4581-4384-8a5b-f68d5b40f2d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameObjectInterface">
-      <UniqueIdentifier>{8f00986c-a368-4763-9128-2370d73c0055}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\SceneModules">
       <UniqueIdentifier>{bc4efac9-0f98-444c-886a-babca34e88df}</UniqueIdentifier>
     </Filter>
@@ -108,9 +102,6 @@
     </Filter>
     <Filter Include="PlanetaEngine\SceneModules\GameObject\Manager">
       <UniqueIdentifier>{01ba8182-1e53-4fcf-8506-2633085a97fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\SceneModules\GameObject\GameObjectInterface">
-      <UniqueIdentifier>{56cd2c2b-652f-4629-9e10-12aaba99a599}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\SceneModules\GameObject\Component">
       <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
@@ -214,9 +205,6 @@
     <Filter Include="ExternalLibraries\LinqForCpp">
       <UniqueIdentifier>{cf38c700-36a3-40d4-a3d7-8ca8f098f1cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameObjects\ParticleSystem">
-      <UniqueIdentifier>{2eb90c38-2afc-426c-aef8-a0bdefff5d92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ParticleSystem">
       <UniqueIdentifier>{2d03f87b-613c-4dfa-b55b-6dcbeea4666b}</UniqueIdentifier>
     </Filter>
@@ -299,9 +287,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="PlanetaEngine.h">
-      <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="SystemVariables.h">
       <Filter>PlanetaEngine\Core</Filter>
@@ -510,9 +495,6 @@
     <ClInclude Include="DebugDrawInterface.h">
       <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectSetUpperHeaders.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectComponentUpdateProcess.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
@@ -521,12 +503,6 @@
     </ClInclude>
     <ClInclude Include="AccessorTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDefinitionHeaders.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectComponentHeaders.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
     <ClInclude Include="cpplinq.hpp">
       <Filter>ExternalLibraries\LinqForCpp</Filter>
@@ -588,14 +564,8 @@
     <ClInclude Include="TaskManagerPublicInterface.h">
       <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectInterface.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\GameObjectInterface</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectComponentHolder.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectBase.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
@@ -662,12 +632,6 @@
     </ClInclude>
     <ClInclude Include="TGameObjectOperation.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
-    </ClInclude>
-    <ClInclude Include="GGameObject2DTemplate.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="GGUIObjectTemplate.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="TaskSlot.h">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
@@ -792,15 +756,6 @@
     <ClInclude Include="ReflectionExceptions.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="JGameObject2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="JGUIObject2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectTemplateHolder.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GOComponentGetter.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
@@ -834,12 +789,6 @@
     <ClInclude Include="RPtree.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="GParticleElement.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="GParticleEmitter.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionState.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
     </ClInclude>
@@ -867,6 +816,24 @@
     <ClInclude Include="IGameObject.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BuiltInGameObjectComponents.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="BuiltInTasks.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="BuiltInResources.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetaEngineImpl.h">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetaEngine.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -889,9 +856,6 @@
     </ClCompile>
     <ClCompile Include="DXUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="PlanetaEngine.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="MathUtility.cpp">
       <Filter>PlanetaEngine\Math</Filter>
@@ -1214,9 +1178,6 @@
     <ClCompile Include="StringUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectTemplateHolder.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="GOComponentGetter.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
@@ -1232,11 +1193,11 @@
     <ClCompile Include="RPtree.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="GParticleElement.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="GParticleEmitter.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjects\ParticleSystem</Filter>
+    <ClCompile Include="PlanetaEngineImpl.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

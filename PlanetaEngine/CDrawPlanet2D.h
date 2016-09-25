@@ -57,4 +57,22 @@ namespace planeta {
 		void DrawProc(ScreenDrawer2D& drawer)override;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawPlanet2D);
+
+	namespace util{
+		//ReflectionシステムのPtree読み込みを有効にするための定義
+		inline void ReflectivePtreeConverter(CDrawPlanet2D::TextureMappingMode& dst, const boost::property_tree::ptree& src) {
+			try {
+				std::string str = src.get_value<std::string>();
+				if (str == "Round") {
+					dst = CDrawPlanet2D::TextureMappingMode::Round;
+				} else if (str == "Plain") {
+					dst = CDrawPlanet2D::TextureMappingMode::Plain;
+				} else {
+					throw planeta::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
+				}
+			} catch (boost::property_tree::ptree_bad_data& e) {
+				throw planeta::reflection_error(e.what());
+			}
+		}
+	}
 }

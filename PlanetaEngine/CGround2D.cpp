@@ -50,4 +50,8 @@ namespace planeta {
 		return *transform2d_;
 	}
 
+	const planeta::CTransform2D& CGround2D::transform2d() const {
+		return *transform2d_;
+	}
+
 }

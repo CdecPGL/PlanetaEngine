@@ -41,26 +41,8 @@ namespace planeta {
 		return RefTaskManagerInterface_().GetTask(name);
 	}
 
-	WeakPointer<IGameObject> Task::CreateGameObject(const std::string& id, const std::string& resource_id) {
-		return scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
-	}
-
-	WeakPointer<IGameObject> Task::CreateAndActivateGameObject(const std::string& id, const std::string& resource_id) {
-		auto go = scene_data_->game_object_manager_public_interface.CreateGameObject(id, resource_id);
-		if (go == nullptr) { return nullptr; }
-		go->Activate();
-		return go;
-	}
-
-	WeakPointer<IGameObject> Task::CreateDefaultGameObject(const std::string& id) {
-		return scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
-	}
-
-	WeakPointer<IGameObject> Task::CreateAndActivateDefaultGameObject(const std::string& id) {
-		auto go = scene_data_->game_object_manager_public_interface.CreateDefaultGameObject(id);
-		if (go == nullptr) { return nullptr; }
-		go->Activate();
-		return go;
+	planeta::GameObjectManagerPublicInterface& Task::game_object_manager() {
+		return scene_data_->game_object_manager_public_interface;
 	}
 
 	ISceneManagerAccessor& Task::scene_manager() {

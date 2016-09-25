@@ -1,35 +1,20 @@
-ï»¿#pragma once
+#pragma once
 
+//PlanetaEngine‚ğg‚¤‚½‚ß‚ÌŠî–{“I‚Èƒwƒbƒ_ƒtƒ@ƒCƒ‹B
+//mainƒtƒ@ƒCƒ‹‚ÅƒCƒ“ƒNƒ‹[ƒh‚µAŠî–{“I‚É‚Ù‚©‚Ìƒtƒ@ƒCƒ‹‚Å‚ÍƒCƒ“ƒNƒ‹[ƒh‚µ‚È‚¢‚±‚Æ
 
-//ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®æŒ‡å®š
+//ƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìw’è
 #ifdef _DEBUG
 #pragma comment(lib,"planetaengine_mtd.lib")
 #else
 #pragma comment(lib,"planetaengine_mt.lib")
 #endif
 
-#include <memory>
-#include "Object.h"
-#include "SingletonTemplate.h"
+#include "PlanetaEngineImpl.h"
 
-namespace planeta {
-	/*ã‚²ãƒ¼ãƒ ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹*/
-	enum class GameStatus { Continue, Quit, Error };
-	/*ã‚²ãƒ¼ãƒ ã‚¯ãƒ©ã‚¹ã¯ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ç¶™æ‰¿ã—ã€åˆæœŸåŒ–ã‚’å®šç¾©ã™ã‚‹ã€‚*/
-	class PlanetaEngine final : public util::SingletonTemplate<PlanetaEngine> {
-		friend util::SingletonTemplate<PlanetaEngine>;
-	public:
-		/*ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–*/
-		bool Initialize()override;
-		/*ã‚¨ãƒ³ã‚¸ãƒ³ã®çµ‚äº†å‡¦ç†*/
-		void Finalize()override;
-		/*ã‚¨ãƒ³ã‚¸ãƒ³ã®æ›´æ–°(åˆæœŸåŒ–ãŒæ­£å¸¸ã«è¡Œã‚ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã§ã®å‘¼ã³å‡ºã—ã¯æœªå®šç¾©å‹•ä½œ)*/
-		GameStatus Update();
-	private:
-		PlanetaEngine();
-		~PlanetaEngine();
-
-		class Impl_;
-		std::unique_ptr<Impl_> impl_;
-	};
-}
+//ReflectionƒVƒXƒeƒ€‚É“o˜^‚·‚é‚½‚ß‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹“WŠJ
+//PlanetaEngineƒ‰ƒCƒuƒ‰ƒŠ‚ğg—p‚·‚éƒvƒƒWƒFƒNƒg“à‚Åˆê“x‚àAPE_REFLECTABLE_CLASSƒ}ƒNƒ“ñ‚æ‚èƒgƒŠƒK[ƒNƒ‰ƒX‚ª’è‹`‚³‚ê‚Ä‚¢‚È‚¢A‚Â‚Ü‚èƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğƒCƒ“ƒNƒ‹[ƒh‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢ê‡AƒgƒŠƒK[ƒNƒ‰ƒX‚ªŒÄ‚Ño‚³‚ê‚È‚¢B
+//‚»‚ê‚ğ”ğ‚¯‚é‚½‚ß‚ÉAƒvƒƒWƒFƒNƒg“à‚ÅÅ’áˆê‰ñ‚ÍƒCƒ“ƒNƒ‹[ƒh‚³‚ê‚éA‚©‚ÂƒCƒ“ƒNƒ‹[ƒh‰ñ”‚ªˆê‰ñ‚É‹ß‚¢‚±‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚É‹Lq‚·‚éB
+#include "BuiltInGameObjectComponents.h"
+#include "BuiltInTasks.h"
+#include "BuiltInResources.h"
