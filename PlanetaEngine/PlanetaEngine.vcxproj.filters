@@ -202,9 +202,6 @@
     <Filter Include="PlanetaEngine\Reflection">
       <UniqueIdentifier>{47f543f7-b669-4479-b5a3-f8ad2d5bc270}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ExternalLibraries\LinqForCpp">
-      <UniqueIdentifier>{cf38c700-36a3-40d4-a3d7-8ca8f098f1cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ParticleSystem">
       <UniqueIdentifier>{2d03f87b-613c-4dfa-b55b-6dcbeea4666b}</UniqueIdentifier>
     </Filter>
@@ -503,9 +500,6 @@
     </ClInclude>
     <ClInclude Include="AccessorTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="cpplinq.hpp">
-      <Filter>ExternalLibraries\LinqForCpp</Filter>
     </ClInclude>
     <ClInclude Include="LuaBindClassFunctions.h">
       <Filter>Lua</Filter>
@@ -1172,9 +1166,6 @@
     <ClCompile Include="GOComponentAdder.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="PrefixUtility.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="StringUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
@@ -1198,6 +1189,9 @@
     </ClCompile>
     <ClCompile Include="PlanetaEngineImpl.cpp">
       <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefixUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

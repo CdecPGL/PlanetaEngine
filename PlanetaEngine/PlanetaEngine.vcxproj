@@ -199,7 +199,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="EACollisionWithGround2D.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="cpplinq.hpp" />
     <ClInclude Include="DebugDrawInterface.h" />
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="GameObjectComponent.h" />
