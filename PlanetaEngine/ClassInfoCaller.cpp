@@ -1,4 +1,4 @@
-#include "ClassInfoCaller.h"
+ï»¿#include "ClassInfoCaller.h"
 #include "ClassInfo.h"
 #include "ReflectionExceptions.h"
 #include "StringUtility.h"
@@ -14,13 +14,13 @@ namespace planeta {
 		auto it = class_info_.public_variable_prpperty_info.find(var_id);
 		if (it == class_info_.public_variable_prpperty_info.end()) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"",obj_tid,"\"‚É•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Í“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB"));
+			throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"",obj_tid,"\"ã«å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"));
 		}
 		try {
 			it->second.setter(obj, v);
 		} catch (boost::bad_any_cast&) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"", obj_tid, "\"‚Ì•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Ì“Ç‚İ‚İ‚É‚¨‚¢‚ÄŒ^‚Ì•sˆê’vƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(•Ï”Œ^:", it->second.t_info.name(), ", w’èŒ^:", v.type().name(), ")"));
+			throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"", obj_tid, "\"ã®å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã®èª­ã¿è¾¼ã¿ã«ãŠã„ã¦å‹ã®ä¸ä¸€è‡´ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(å¤‰æ•°å‹:", it->second.t_info.name(), ", æŒ‡å®šå‹:", v.type().name(), ")"));
 		}
 	}
 
@@ -28,13 +28,13 @@ namespace planeta {
 		auto it = class_info_.public_variable_prpperty_info.find(var_id);
 		if (it == class_info_.public_variable_prpperty_info.end()) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"", obj_tid, "\"‚É•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Í“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB"));
+			throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"", obj_tid, "\"ã«å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"));
 		}
 		try {
 			v = it->second.getter(obj);
 		} catch (boost::bad_any_cast&) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"", obj_tid, "\"‚Ì•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Ì‘‚«‚İ‚É‚¨‚¢‚ÄŒ^‚Ì•sˆê’vƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(•Ï”Œ^:", it->second.t_info.name(), ", w’èŒ^:", v.type().name(), ")"));
+			throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"", obj_tid, "\"ã®å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã®æ›¸ãè¾¼ã¿ã«ãŠã„ã¦å‹ã®ä¸ä¸€è‡´ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(å¤‰æ•°å‹:", it->second.t_info.name(), ", æŒ‡å®šå‹:", v.type().name(), ")"));
 		}
 	}
 
@@ -44,18 +44,18 @@ namespace planeta {
 			auto it = class_info_.public_variable_prpperty_info.find(var_id);
 			if (it == class_info_.public_variable_prpperty_info.end()) {
 				std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-				throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"", obj_tid, "\"‚É•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Í“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB"));
+				throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"", obj_tid, "\"ã«å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"));
 			}
 			try {
 				it->second.ptree_loeder(obj, ptp.second);
 			}
 			catch (reflection_error& e) {
-				throw reflection_error(util::ConvertAndConnectToString("•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½B:", e.what()));
+				throw reflection_error(util::ConvertAndConnectToString("å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚:", e.what()));
 			}
 		}
 	}
 
-	//copy_handler‚ª—áŠO‚ğ“Š‚°‚é‰Â”\«‚ª‚ ‚é‚Ì‚Ånoexcept‚Å‚Í‚È‚¢
+	//copy_handlerãŒä¾‹å¤–ã‚’æŠ•ã’ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§noexceptã§ã¯ãªã„
 	std::shared_ptr<Reflectable> ClassInfoCaller::Clone(Reflectable& src_obj) {
 		auto obj = class_info_.creator();
 		for (auto&& copy_handler : class_info_.copy_handler_list) {
@@ -65,7 +65,7 @@ namespace planeta {
 	}
 
 	void ClassInfoCaller::CopyFrom(Reflectable& me, const Reflectable& src) {
-		throw reflection_error("Copy‚Í–¢À‘•‚Å‚·B");
+		throw reflection_error("Copyã¯æœªå®Ÿè£…ã§ã™ã€‚");
 	}
 
 }

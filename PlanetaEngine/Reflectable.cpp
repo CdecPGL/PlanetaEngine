@@ -1,4 +1,4 @@
-#include "Reflectable.h"
+ï»¿#include "Reflectable.h"
 #include "ClassInfoCaller.h"
 
 namespace planeta {
@@ -13,7 +13,7 @@ namespace planeta {
 			if (class_info_ == nullptr) {
 				class_info_ = Reflection::GetClassInfo_Reflectable(typeid(*obj_));
 				if (class_info_ == nullptr) {
-					throw reflection_error(util::ConvertAndConnectToString("ƒŠƒtƒŒƒNƒVƒ‡ƒ“ƒVƒXƒeƒ€‚©‚çƒNƒ‰ƒXî•ñ(typeinfo:", typeid(obj_).name(), ")‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B"));
+					throw reflection_error(util::ConvertAndConnectToString("ãƒªãƒ•ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã‚¯ãƒ©ã‚¹æƒ…å ±(typeinfo:", typeid(obj_).name(), ")ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"));
 				}
 			}
 			return ClassInfoCaller(*class_info_);
@@ -70,7 +70,7 @@ namespace planeta {
 		try {
 			impl_->class_info_caller().SetDataFromPtree(pt, *this);
 		} catch (reflection_error& e) {
-			throw reflection_error(util::ConvertAndConnectToString("Ptree‚©‚ç‚Ì“Ç‚İ‚İ‚É‚¨‚¢‚ÄƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B:", e.what()));
+			throw reflection_error(util::ConvertAndConnectToString("Ptreeã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã«ãŠã„ã¦ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚:", e.what()));
 		}
 	}
 

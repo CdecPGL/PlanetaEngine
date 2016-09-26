@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 
@@ -8,7 +8,7 @@
 #include "Reflection.h"
 
 namespace planeta {
-	/*! ReflectionŠî’êƒNƒ‰ƒXBƒŒƒtƒŒƒNƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒNƒ‰ƒX‚ÍŒp³‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+	/*! ReflectionåŸºåº•ã‚¯ãƒ©ã‚¹ã€‚ãƒ¬ãƒ•ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚¯ãƒ©ã‚¹ã¯ç¶™æ‰¿ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
 	*/
 	class Reflectable {
 	public:
@@ -19,14 +19,14 @@ namespace planeta {
 		virtual ~Reflectable()noexcept;
 		Reflectable& operator=(const Reflectable& obj)noexcept;
 		Reflectable& operator=(Reflectable&& obj)noexcept;
-		//! •Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB‚ğ•ÏX‚·‚é
+		//! å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å¤‰æ›´ã™ã‚‹
 		template<typename T>
 		void ReflectiveSetVariable(const std::string& var_id, const T& v) {
 			SetVariable_(var_id, v);
 		}
 		/*!
-		@brief •Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB‚ğæ“¾‚·‚é
-		@todo ƒRƒs[•s‰Â”\‚ÈŒ^‚ğæ“¾‚Å‚«‚È‚¢
+		@brief å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
+		@todo ã‚³ãƒ”ãƒ¼ä¸å¯èƒ½ãªå‹ã‚’å–å¾—ã§ããªã„
 		*/
 		template<typename T>
 		void ReflectiveGetVariable(const std::string& var_id, T& v) {
@@ -36,14 +36,14 @@ namespace planeta {
 				v = boost::any_cast<T>(av);
 			} catch (boost::bad_any_cast&) {
 				std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(*this));
-				throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"", obj_tid, "\"‚Ì•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id, "\"‚Ì‘‚«‚İ‚É‚¨‚¢‚ÄŒ^‚Ì•sˆê’vƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(•Ï”Œ^:", av.type().name(), ", w’èŒ^:", typeid(T).name(), ")"));
+				throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"", obj_tid, "\"ã®å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id, "\"ã®æ›¸ãè¾¼ã¿ã«ãŠã„ã¦å‹ã®ä¸ä¸€è‡´ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(å¤‰æ•°å‹:", av.type().name(), ", æŒ‡å®šå‹:", typeid(T).name(), ")"));
 			}
 		}
-		//! ƒNƒ[ƒ“‚ğì¬‚·‚é
+		//! ã‚¯ãƒ­ãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹
 		std::shared_ptr<Reflectable> ReflectiveClone();
-		//! ƒRƒs[‚·‚é(–¢À‘•)
+		//! ã‚³ãƒ”ãƒ¼ã™ã‚‹(æœªå®Ÿè£…)
 		void ReflectiveCopyFrom(const Reflectable& src);
-		//! boost::ptree‚©‚çƒf[ƒ^‚Ì“Ç‚İ‚İ
+		//! boost::ptreeã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		void ReflectiveLoadFromPtree(const boost::property_tree::ptree& pt);
 	private:
 		class Impl_;
@@ -53,12 +53,12 @@ namespace planeta {
 	};
 }
 
-/*! ƒŠƒtƒŒƒNƒVƒ‡ƒ“ƒf[ƒ^“o˜^ŠÖ”‚ÌéŒ¾‚ğs‚¤ƒ}ƒNƒ*/
+/*! ãƒªãƒ•ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ç™»éŒ²é–¢æ•°ã®å®£è¨€ã‚’è¡Œã†ãƒã‚¯ãƒ­*/
 #define PE_REFLECTION_DATA_REGISTERER_DECLARATION(type)\
 public:\
 static void ReflectionDataRegisterer(planeta::ClassRegisterer<type>& registerer);\
 private:
 
-/*! ƒŠƒtƒŒƒNƒVƒ‡ƒ“ƒf[ƒ^“o˜^ŠÖ”‚Ì’è‹`‚ğs‚¤ƒ}ƒNƒ*/
+/*! ãƒªãƒ•ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ç™»éŒ²é–¢æ•°ã®å®šç¾©ã‚’è¡Œã†ãƒã‚¯ãƒ­*/
 #define PE_REFLECTION_DATA_REGISTERER_DEFINITION(type)\
 void type::ReflectionDataRegisterer(planeta::ClassRegisterer<type>& registerer)

@@ -5,6 +5,7 @@
 #include "MathConstant.h"
 
 namespace planeta {
+	/*! 何もしない地面コンポーネント*/
 	class CDumyGround2D final : public CGround2D {
 	public:
 		using Super = CGround2D;

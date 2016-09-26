@@ -10,7 +10,10 @@ namespace planeta {
 	namespace private_ {
 		class GraphDrawData2D;
 	}
-	/*惑星描画コンポーネント。DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる*/
+	/*! 惑星描画コンポーネント。
+	
+		@note DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる
+	*/
 	class CPlanet;
 	class CDrawPlanet2D final : public CDraw2D {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawPlanet2D);
@@ -18,15 +21,24 @@ namespace planeta {
 		using Super = CDraw2D;
 		CDrawPlanet2D();
 		~CDrawPlanet2D();
+		/*! 画像リソースを設定する*/
 		bool SetGraphResource(const std::string& resource_id);
+		/*! 画像のマッピングモードを表す列挙体*/
 		enum class TextureMappingMode { Round, Plain };
 		/*アクセサ*/
+		/*! 画像リソースをIDで設定する*/
 		CDrawPlanet2D& graph_resource_id(const std::string& res_id);
+		/*! 水平方向の分割数を取得する*/
 		unsigned int horizontal_separation()const { return _horizontal_separation; }
+		/*! 水平方向の分割数を設定する*/
 		CDrawPlanet2D& horizontal_separation(unsigned int sep);
+		/*! 垂直方向の分割数を取得する*/
 		unsigned int vertical_separation()const { return _vertical_separation; }
+		/*! 垂直方向の分割数を設定する*/
 		CDrawPlanet2D& vertical_separation(unsigned int sep);
+		/*! 画像のマッピングモードを取得する*/
 		TextureMappingMode texture_mapping_mode()const { return tex_map_mode_; }
+		/*! 画像のマッピングモードを設定する*/
 		void texture_mapping_mode(TextureMappingMode tmm);
 	private:
 		/*水平分割数*/

@@ -7,6 +7,7 @@
 namespace planeta {
 	class ScreenDrawer2D;
 	class CTransform2D;
+	/*! 描画基底コンポーネント*/
 	class CDraw2D : public private_::GameObjectSystemComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDraw2D);
 	public:
@@ -16,25 +17,29 @@ namespace planeta {
 		/*描画処理*/
 		void Draw(ScreenDrawer2D& drawer) { DrawProc(drawer); }
 		/*Accessor*/
-		/*描画優先度を取得*/
+		/*! @brief 描画優先度を取得
+		
+			値が大きいほど手前に表示される*/
 		int draw_priority()const { return draw_priority_; }
-		/*描画優先度を設定*/
+		/*! @brief 描画優先度を設定
+		
+			値が大きいほど手前に表示される*/
 		CDraw2D& draw_priority(int priority);
-		/*表示位置を取得*/
-		const Vector2Dd& position()const { return position_; }
-		/*表示位置を設定*/
-		CDraw2D& position(const Vector2Dd& pos) { position_ = pos; return *this; }
-		/*表示回転度を取得*/
-		double rotation_rad()const { return rotation_rad_; }
-		/*表示回転度を設定*/
-		CDraw2D& rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; return *this; }
-		/*表示拡大度を取得*/
-		const Vector2Dd& scale()const { return scale_; }
-		/*表示拡大度を設定*/
-		CDraw2D& scale(const Vector2Dd& s) { scale_ = s; return *this; }
-		/*表示色を取得*/
+		/*! 表示位置を取得(CTransform2Dからの相対値)*/
+		const Vector2Dd& relative_position()const { return position_; }
+		/*表示位置を設定(CTransform2Dからの相対値)*/
+		CDraw2D& relative_position(const Vector2Dd& pos) { position_ = pos; return *this; }
+		/*表示回転度を取得(CTransform2Dからの相対値)*/
+		double relative_rotation_rad()const { return rotation_rad_; }
+		/*表示回転度を設定(CTransform2Dからの相対値)*/
+		CDraw2D& relative_rotation_rad(double rota_rad) { rotation_rad_ = rota_rad; return *this; }
+		/*! 表示拡大度を取得(CTransform2Dからの相対値)*/
+		const Vector2Dd& relative_scale()const { return scale_; }
+		/*! 表示拡大度を設定(CTransform2Dからの相対値)*/
+		CDraw2D& relative_scale(const Vector2Dd& s) { scale_ = s; return *this; }
+		/*! 表示色を取得*/
 		planeta::Color color()const { return color_; }
-		/*表示色を設定*/
+		/*! 表示色を設定*/
 		CDraw2D& color(const planeta::Color& c) { color_ = c; return *this; }
 	protected:
 		/*描画の中心位置取得(ゲームオブジェクトの形状情報と、表示位置から算出)*/

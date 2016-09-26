@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <functional>
 #include <unordered_map>
@@ -12,7 +12,7 @@
 
 namespace planeta {
 	class Reflectable;
-	//! ƒAƒNƒZƒX‘®«
+	//! ã‚¢ã‚¯ã‚»ã‚¹å±æ€§
 	enum class AccessAttiribute { Public, Protected };
 	namespace private_ {
 		struct VariableOrPropertyInfo {

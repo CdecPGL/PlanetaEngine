@@ -5,23 +5,27 @@
 
 namespace planeta {
 	class CTransform2D;
+	/*! 二次元カメラコンポーネント*/
 	class CCamera2D final: public private_::GameObjectSystemComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCamera2D);
 	public:
 		using Super = private_::GameObjectSystemComponent;
 
-		//位置
+		/*! 位置を取得*/
 		const planeta::Vector2Dd& position()const;
+		/*! 位置を設定*/
 		void position(const planeta::Vector2Dd& p);
-		//回転度
+		/*! 回転度を取得*/
 		double rotation_rad()const;
+		/*! 回転度を設定*/
 		void rotation_rad(double r);
-		//拡大率
+		/*! 拡大度を取得*/
 		double expansion()const;
+		/*! 拡大度を設定*/
 		void expansion(double e);
-
-
+		/*! GUI座標をGameObject座空間標に変換*/
 		Vector2Dd CovertPositionGUISpaceToGameObjectSpace(const Vector2Di& gui_space_pos)const;
+		/*! GameObject座標をGUI座標に変換*/
 		Vector2Di CovertPositionGameObjectSpaceToGUISpace(const Vector2Dd& gameobject_space_pos)const;
 	private:
 		double expansion_ = 1.0;

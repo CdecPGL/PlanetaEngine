@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "boost/core/enable_if.hpp"
 
@@ -6,16 +6,16 @@
 
 namespace planeta {
 	namespace util {
-		/*!ƒ^ƒvƒ‹‚É—v‘f‚ğ’Ç‰Á*/
+		/*!ã‚¿ãƒ—ãƒ«ã«è¦ç´ ã‚’è¿½åŠ */
 		template<typename...>
 		struct TupleAdd {};
 		template<typename... TArgs, typename... NArgs>
 		struct TupleAdd<std::tuple<TArgs...>, NArgs...> {
 			using type = std::tuple<TArgs..., NArgs...>;
 		};
-		/*! @brief ƒX[ƒp[ƒNƒ‰ƒX‚ğƒ^ƒvƒ‹‚Åæ“¾‚·‚é
+		/*! @brief ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã‚’ã‚¿ãƒ—ãƒ«ã§å–å¾—ã™ã‚‹
 			
-			Super‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ƒNƒ‰ƒX‚©AL‚É’B‚·‚é‚Ü‚Å‚ÌƒX[ƒp[ƒNƒ‰ƒX‚ªƒ^ƒvƒ‹‚Å•Ô‚³‚ê‚éB
+			SuperãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„ã‚¯ãƒ©ã‚¹ã‹ã€Lã«é”ã™ã‚‹ã¾ã§ã®ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ãŒã‚¿ãƒ—ãƒ«ã§è¿”ã•ã‚Œã‚‹ã€‚
 		*/
 		template<typename T, typename L = void, typename U = void>
 		struct GetSuperClassAsTuple {

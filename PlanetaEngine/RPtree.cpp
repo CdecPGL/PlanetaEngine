@@ -1,4 +1,4 @@
-#include "RPtree.h"
+ï»¿#include "RPtree.h"
 
 #include "boost/property_tree/json_parser.hpp"
 #include "boost/property_tree/ini_parser.hpp"
@@ -7,7 +7,7 @@
 #include "FileIStream.h"
 
 namespace planeta {
-	//Œ»İ‚ÍJSON‚©‚ç‚Ì“Ç‚İ‚İ‚É‚µ‚©‘Î‰‚µ‚Ä‚¢‚È‚¢‚ªAINI‚âXML‚É‚à‘Î‰—\’è
+	//ç¾åœ¨ã¯JSONã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã«ã—ã‹å¯¾å¿œã—ã¦ã„ãªã„ãŒã€INIã‚„XMLã«ã‚‚å¯¾å¿œäºˆå®š
 	bool RPtree::_Create(const std::shared_ptr<const File>& file) {
 		using namespace boost::property_tree;
 		std::shared_ptr<ptree> pt = std::make_shared<ptree>();
@@ -15,7 +15,7 @@ namespace planeta {
 		try {
 			read_json(fis, *pt);
 		} catch (json_parser_error& e) {
-			PE_LOG_ERROR("JSONƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½B(", e.what(), ")");
+			PE_LOG_ERROR("JSONãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚(", e.what(), ")");
 			return false;
 		}
 

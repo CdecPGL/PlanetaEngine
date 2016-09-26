@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <vector>
 #include <list>
@@ -16,18 +16,18 @@
 #include "boost/core/enable_if.hpp"
 
 //////////////////////////////////////////////////////////////////////////
-//“Á’è‚ÌğŒ‚ğ–‚½‚µ‚Ä‚¢‚é‚©Šm”F‚·‚éƒƒ^ŠÖ”
+//ç‰¹å®šã®æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹ãƒ¡ã‚¿é–¢æ•°
 //////////////////////////////////////////////////////////////////////////
 namespace planeta {
 	namespace private_ {
-		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)‚ğ‚Á‚Ä‚¢‚é‚©
+		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)ã‚’æŒã£ã¦ã„ã‚‹ã‹
 		template<class C, typename T = void>
 		struct HasReflectionDataRegisterer : public std::false_type {};
 		template<class C>
 		struct HasReflectionDataRegisterer < C, decltype(C::ReflectionDataRegisterer(std::declval<ClassRegisterer<C>>()), std::declval<void>()) > : public std::true_type {};
 		template<class C>
 		bool HasReflectionDataRegisterer_v = HasReflectionDataRegisterer<C>::value;
-		//C::Super‚ğ‚Á‚Ä‚¢‚é‚©
+		//C::Superã‚’æŒã£ã¦ã„ã‚‹ã‹
 		template<class C, typename T = void>
 		struct HasSuperAlias : public std::false_type {};
 		template<class C>
@@ -38,7 +38,7 @@ namespace planeta {
 }
 
 //////////////////////////////////////////////////////////////////////////
-//Ptree‚©‚ç‚Ì•ÏŠ·ŠÖ”
+//Ptreeã‹ã‚‰ã®å¤‰æ›é–¢æ•°
 //////////////////////////////////////////////////////////////////////////
 #define PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(array_type)\
 template<typename T, typename... Rest>\
@@ -49,7 +49,7 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
-			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("”z—ñŒ^‚ÌPtreeƒL[‚Í‹ó‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B(“Ç‚İæ‚ç‚ê‚½ƒL[:",pp.first,")"));\
+			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("é…åˆ—å‹ã®Ptreeã‚­ãƒ¼ã¯ç©ºã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚(èª­ã¿å–ã‚‰ã‚ŒãŸã‚­ãƒ¼:",pp.first,")"));\
 		}\
 		T dat{};\
 		ReflectivePtreeConverter(dat, pp.second);\
@@ -66,7 +66,7 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
-			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("”z—ñŒ^‚ÌPtreeƒL[‚Í‹ó‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B(“Ç‚İæ‚ç‚ê‚½ƒL[:",pp.first,")"));\
+			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("é…åˆ—å‹ã®Ptreeã‚­ãƒ¼ã¯ç©ºã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚(èª­ã¿å–ã‚‰ã‚ŒãŸã‚­ãƒ¼:",pp.first,")"));\
 		}\
 		T dat{};\
 		ReflectivePtreeConverter(dat, pp.second);\
@@ -83,7 +83,7 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == true) {\
-			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("ƒ}ƒbƒvŒ^‚ÌPtreeƒL[‚Í‹ó‚Å‚ ‚Á‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñB"));\
+			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("ãƒãƒƒãƒ—å‹ã®Ptreeã‚­ãƒ¼ã¯ç©ºã§ã‚ã£ã¦ã¯ã„ã‘ã¾ã›ã‚“ã€‚"));\
 		}\
 		T dat{};\
 		ReflectivePtreeConverter(dat, pp.second);\
@@ -102,32 +102,32 @@ namespace planeta {
 		void ReflectivePtreeConverterToStdTuple(std::tuple<F, R...>& dst, const std::vector<const boost::property_tree::ptree*>& src);
 	}
 	namespace util {
-		/*! •ÏŠ·•s‰Â”\‚ÈŒ^‚ÌPtree•ÏŠ·ŠÖ”*/
+		/*! å¤‰æ›ä¸å¯èƒ½ãªå‹ã®Ptreeå¤‰æ›é–¢æ•°*/
 		template<typename... Ts>
 		void ReflectivePtreeConverter(Ts...);
-		/*! C::ReflectionDataRegisterer(ClassRegisterer<C>&)‚ğ‚Á‚Ä‚¢‚éŒ^‚Ì•ÏŠ·ŠÖ”*/
+		/*! C::ReflectionDataRegisterer(ClassRegisterer<C>&)ã‚’æŒã£ã¦ã„ã‚‹å‹ã®å¤‰æ›é–¢æ•°*/
 		/*template<typename T>
 		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<HasReflectionDataRegisterer<T>>::type;*/
-		/*! @brief ptree‚©‚ç’¼Ú•ÏŠ·‰Â”\‚ÈŒ^‚Ö‚ÌPtree•ÏŠ·ŠÖ”
-			@note BoostLibrary1.61.0‚Å‚ÍAget_value“à‚Åistream‚É‚æ‚éŒ^‚Ì•ÏŠ·‚ğs‚Á‚Ä‚¢‚éB‚±‚ê‚ğ—˜—p‚µ‚ÄAget_value‚É‘Î‰‚µ‚Ä‚¢‚È‚¢Œ^‚É‘Î‚µ‚Ä‚ÍAstd::cin‚Å‚àƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚É‚È‚é‚±‚Æ‚ğ—˜—p‚µ‚ÄSFINE‚ğ—p‚¢ƒI[ƒo[ƒ[ƒh‘ÎÛŠO‚É‚·‚éBget_value‚Ì“à•”À‘•‚ÉˆË‘¶‚µ‚Ä‚¢‚é‚½‚ßA‚»‚ê‚É•ÏX‚ª‚ ‚Á‚½ê‡‚ÍC³‚·‚é•K—v‚ª‚ ‚éB
+		/*! @brief ptreeã‹ã‚‰ç›´æ¥å¤‰æ›å¯èƒ½ãªå‹ã¸ã®Ptreeå¤‰æ›é–¢æ•°
+			@note BoostLibrary1.61.0ã§ã¯ã€get_valueå†…ã§istreamã«ã‚ˆã‚‹å‹ã®å¤‰æ›ã‚’è¡Œã£ã¦ã„ã‚‹ã€‚ã“ã‚Œã‚’åˆ©ç”¨ã—ã¦ã€get_valueã«å¯¾å¿œã—ã¦ã„ãªã„å‹ã«å¯¾ã—ã¦ã¯ã€std::cinã§ã‚‚ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã“ã¨ã‚’åˆ©ç”¨ã—ã¦SFINEã‚’ç”¨ã„ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰å¯¾è±¡å¤–ã«ã™ã‚‹ã€‚get_valueã®å†…éƒ¨å®Ÿè£…ã«ä¾å­˜ã—ã¦ã„ã‚‹ãŸã‚ã€ãã‚Œã«å¤‰æ›´ãŒã‚ã£ãŸå ´åˆã¯ä¿®æ­£ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 		*/
 		template<typename T>
 		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>>::type>());
-		/*! Reflectable‚ğŒp³‚µ‚½Œ^‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
+		/*! Reflectableã‚’ç¶™æ‰¿ã—ãŸå‹ã¸ã®Ptreeå¤‰æ›é–¢æ•°*/
 		template<typename T>
 		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src);
-		/*! std::tuple‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
+		/*! std::tupleã¸ã®Ptreeå¤‰æ›é–¢æ•°*/
 		template<typename... Ts>
 		void ReflectivePtreeConverter(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src);
 
-		/*! ”z—ñŒ^‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
+		/*! é…åˆ—å‹ã¸ã®Ptreeå¤‰æ›é–¢æ•°*/
 		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(std::vector);
 		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(std::list);
 		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(std::deque);
-		/*! ƒZƒbƒgŒ^‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
+		/*! ã‚»ãƒƒãƒˆå‹ã¸ã®Ptreeå¤‰æ›é–¢æ•°*/
 		PE_PTREE_CONVERT_TO_SET_TYPE_DEC(std::set);
 		PE_PTREE_CONVERT_TO_SET_TYPE_DEC(std::unordered_set);
-		/*! ƒ}ƒbƒvŒ^‚Ö‚ÌPtree•ÏŠ·ŠÖ”*/
+		/*! ãƒãƒƒãƒ—å‹ã¸ã®Ptreeå¤‰æ›é–¢æ•°*/
 		PE_PTREE_CONVERT_TO_MAP_TYPE_DEC(std::map);
 		PE_PTREE_CONVERT_TO_MAP_TYPE_DEC(std::unordered_map);
 
@@ -136,7 +136,7 @@ namespace planeta {
 	namespace private_ {
 		template<typename T, typename... Rest>
 		void ReflectivePtreeConverterError() {
-			throw reflection_error(util::ConvertAndConnectToString("Ptree‚©‚ç‚Ì•ÏŠ·‚É‘Î‰‚µ‚Ä‚¢‚È‚¢Œ^\"", typeid(T).name(), "\"‚ªw’è‚³‚ê‚Ü‚µ‚½B"));
+			throw reflection_error(util::ConvertAndConnectToString("Ptreeã‹ã‚‰ã®å¤‰æ›ã«å¯¾å¿œã—ã¦ã„ãªã„å‹\"", typeid(T).name(), "\"ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸã€‚"));
 		}
 
 		template<size_t idx>
@@ -162,7 +162,7 @@ namespace planeta {
 			try {
 				dst = src.get_value<T>();
 			} catch (boost::property_tree::ptree_bad_data& e) {
-				throw reflection_error(util::ConvertAndConnectToString("Ptree‚©‚çŒ^\"", typeid(T).name(), "\"‚Ö‚Ì•ÏŠ·‚É¸”s‚µ‚Ü‚µ‚½B(", e.what(), ")"));
+				throw reflection_error(util::ConvertAndConnectToString("Ptreeã‹ã‚‰å‹\"", typeid(T).name(), "\"ã¸ã®å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸã€‚(", e.what(), ")"));
 			}
 		}
 
@@ -176,12 +176,12 @@ namespace planeta {
 			std::vector<const boost::property_tree::ptree*> ptree_vec;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("std::tuple‚ÌPtreeƒL[‚Í‹ó‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B(“Ç‚İæ‚ç‚ê‚½ƒL[:", pp.first, ")"));
+					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("std::tupleã®Ptreeã‚­ãƒ¼ã¯ç©ºã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚(èª­ã¿å–ã‚‰ã‚ŒãŸã‚­ãƒ¼:", pp.first, ")"));
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
 			if (sizeof...(Ts) != ptree_vec.size()) {
-				throw reflection_error(ConvertAndConnectToString("—v‘f”‚ª", ptree_vec.size(), "‚Å‚·‚ªA‘ÎÛ‚Ìstd::tuple‚Ì—v‘f”‚Í", sizeof...(Ts), "‚Å‚·B"));
+				throw reflection_error(ConvertAndConnectToString("è¦ç´ æ•°ãŒ", ptree_vec.size(), "ã§ã™ãŒã€å¯¾è±¡ã®std::tupleã®è¦ç´ æ•°ã¯", sizeof...(Ts), "ã§ã™ã€‚"));
 			}
 			private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
 		}
@@ -206,17 +206,17 @@ namespace planeta {
 #undef PE_PTREE_CONVERT_TO_MAP_TYPE_DEF
 
 //////////////////////////////////////////////////////////////////////////
-//ƒRƒs[ƒnƒ“ƒhƒ‰
+//ã‚³ãƒ”ãƒ¼ãƒãƒ³ãƒ‰ãƒ©
 //////////////////////////////////////////////////////////////////////////
 namespace planeta {
 	class Reflectable;
 	namespace util {
-		/*! Reflectable‚ğŒp³‚µ‚Ä‚¢‚È‚¢Œ^‚ÌƒRƒs[ƒnƒ“ƒhƒ‰*/
+		/*! Reflectableã‚’ç¶™æ‰¿ã—ã¦ã„ãªã„å‹ã®ã‚³ãƒ”ãƒ¼ãƒãƒ³ãƒ‰ãƒ©*/
 		template<typename T>
 		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::disable_if<std::is_base_of<Reflectable, T>, void>::type {
 			dst = src;
 		}
-		/*! Reflectable‚ğŒp³‚µ‚Ä‚¢‚éŒ^‚ÌƒRƒs[ƒnƒ“ƒhƒ‰*/
+		/*! Reflectableã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹å‹ã®ã‚³ãƒ”ãƒ¼ãƒãƒ³ãƒ‰ãƒ©*/
 		template<typename T>
 		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if<std::is_base_of<Reflectable, T>, void>::type {
 			dst.ReflectiveCopyFrom(src);

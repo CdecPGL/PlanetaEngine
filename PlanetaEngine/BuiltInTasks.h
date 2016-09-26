@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 
-//! ’è‹`Ï‚İƒ^ƒXƒN‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ‚Ü‚Æ‚ß‚ÄƒCƒ“ƒNƒ‹[ƒh‚·‚é
-//! PlanetaEngine“à•”‚Å‚Íg‚í‚È‚¢‚±‚Æ
+//! å®šç¾©æ¸ˆã¿ã‚¿ã‚¹ã‚¯ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã¾ã¨ã‚ã¦ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹
+//! PlanetaEngineå†…éƒ¨ã§ã¯ä½¿ã‚ãªã„ã“ã¨
 
 #include "TCoroutine.h"
 #include "TInstant.h"

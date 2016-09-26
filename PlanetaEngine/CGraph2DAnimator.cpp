@@ -94,7 +94,7 @@ namespace planeta {
 
 	void CGraph2DAnimator::SetCurrentFrameDrawAreaToDrawGraphComponent_() {
 		draw_graph_component_->draw_area(std::get<1>((*current_animation_)[current_frame_]));
-		draw_graph_component_->scale(std::get<2>((*current_animation_)[current_frame_]));
-		draw_graph_component_->rotation_rad(std::get<3>((*current_animation_)[current_frame_]));
+		draw_graph_component_->relative_scale(std::get<2>((*current_animation_)[current_frame_]));
+		draw_graph_component_->relative_rotation_rad(std::get<3>((*current_animation_)[current_frame_]));
 	}
 }

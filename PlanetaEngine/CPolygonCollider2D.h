@@ -2,7 +2,7 @@
 #include "CCollider2D.h"
 
 namespace planeta {
-	/*多角形衝突クラス(未実装)*/
+	/*! 多角形コライダーコンポーネント(未実装)*/
 	class CPolygonCollider2D : public CCollider2D {
 	public:
 		using Super = CCollider2D;

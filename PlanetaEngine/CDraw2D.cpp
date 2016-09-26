@@ -11,9 +11,9 @@ namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDraw2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, draw_priority)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, position)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, rotation_rad)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, scale)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, relative_position)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, relative_rotation_rad)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, relative_scale)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, color)
 			.ShallowCopyTarget(&CDraw2D::draw_priority_)
 			.ShallowCopyTarget(&CDraw2D::position_)

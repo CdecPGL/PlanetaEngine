@@ -11,6 +11,7 @@ namespace planeta {
 	namespace private_ {
 		class GraphDrawData2D;
 	}
+	/*! 平面画像描画コンポーネント*/
 	class CDrawGraph2D final : public CDraw2D {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraph2D);
 	public:
@@ -21,12 +22,19 @@ namespace planeta {
 		/*! 画像リソースをセット*/
 		bool SetGraphResource(const std::string& resource_id);
 		/*アクセサ*/
+		/*! 画像リソースをIDでセット*/
 		CDrawGraph2D& graph_resource_id(const std::string& res_id);
+		/*! 画像上の描画領域をピクセル単位で取得*/
 		const RectAngle<int>& draw_area()const { return _draw_area; }
+		/*! 画像上の描画領域をピクセル単位で設定*/
 		CDrawGraph2D& draw_area(const RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); return *this; }
+		/*! 画像を反転しているか取得*/
 		const bool reverse()const { return reverse_; }
+		/*! 画像を反転させるか設定*/
 		CDrawGraph2D& reverse(bool rev) { reverse_ = rev; _UpdateUVPosition(); return *this; }
+		/*! 画像の中心を[0.0,1.0]*[0.0,1.0]の範囲で取得*/
 		const Vector2Dd& graph_center()const { return graph_center_; }
+		/*! 画像の中心を[0.0,1.0]*[0.0,1.0]の範囲で設定*/
 		void graph_center(const Vector2Dd& pos) { graph_center_ = pos; }
 	private:
 		/*反転描画フラグ*/

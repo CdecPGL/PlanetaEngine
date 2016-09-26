@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
-//! ��`�ς݃Q�[���I�u�W�F�N�g�R���|�[�l���g�̃w�b�_�t�@�C�����܂Ƃ߂ăC���N���[�h����
-//! PlanetaEngine�����ł͎g��Ȃ�����
+//! 定義済みゲームオブジェクトコンポーネントのヘッダファイルをまとめてインクルードする
+//! PlanetaEngine内部では使わないこと
 
 //CCollider2D
 #include "CCollider2D.h"

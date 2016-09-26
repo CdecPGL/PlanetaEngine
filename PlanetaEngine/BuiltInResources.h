@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
-//! ��`�ς݃��\�[�X�̃w�b�_�t�@�C�����܂Ƃ߂ăC���N���[�h����
-//! PlanetaEngine�����ł͎g��Ȃ�����
+//! 定義済みリソースのヘッダファイルをまとめてインクルードする
+//! PlanetaEngine内部では使わないこと
 
 #include "RCsv.h"
 #include "RFont.h"

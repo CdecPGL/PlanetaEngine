@@ -10,26 +10,28 @@
 
 namespace planeta {
 	class CDrawGraph2D;
+	/*! 平面画像アニメータコンポーネント*/
 	class CGraph2DAnimator : public GameObjectStandardComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CGraph2DAnimator);
 	public:
 		using Super = GameObjectStandardComponent;
-		/*フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
+		/*! フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
 		using FrameDataType = std::tuple<unsigned int, RectAngle<int>, Vector2Dd, double>;
-		/*単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/
+		/*! 単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/
 		using SimpleFrameDataType = std::pair<unsigned int, RectAngle<int>>;
-		/*アニメーションセット(フル)*/
+		/*! アニメーションセット(フル)*/
 		void SetAnimation(const std::string& anim_name, const std::vector<FrameDataType>& frames);
-		/*アニメーションセット(シンプル)*/
+		/*! アニメーションセット(シンプル)*/
 		void SetAnimation(const std::string& anim_name, const std::vector<SimpleFrameDataType>& frames);
-		/*指定名のアニメーションの再生を開始する*/
+		/*! 指定名のアニメーションの再生を開始する*/
 		bool StartAnimation(const std::string& anim_name, bool roop_flag);
-		/*アニメーションが再生中なら停止する*/
+		/*! アニメーションが再生中なら停止する*/
 		void StopAnimation();
-		/*再生中のアニメーション名を取得する*/
+		/*! 再生中のアニメーション名を取得する*/
 		const std::string GetPlayingAnimationName()const { return is_playing_ ? current_animation_name_ : ""; }
 
 		//アクセサ
+		/*! 全アニメーションデータの設定*/
 		void animation_data(const std::unordered_map<std::string,std::vector<FrameDataType>>& data);
 	private:
 		NonOwingPointer<CDrawGraph2D> draw_graph_component_;
