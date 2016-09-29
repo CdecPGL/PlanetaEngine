@@ -9,6 +9,7 @@
 #include "WeakPointer.h"
 #include "NonOwingPointer.h"
 #include "GOComponentGetter.h"
+#include "ReflectionAccessible.h"
 
 namespace planeta {
 	class SceneAccessorForGameObject;
@@ -21,7 +22,7 @@ namespace planeta {
 		@attention クラス宣言の先頭にPE_CLONABLE_GAMEOBJECTCOMPONENTマクロ、抽象クラスならPE_COPIABLE_GAMEOBJECTCOMPONENTを記述しなければならない。
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
 	*/
-	class GameObjectComponent : public Object, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
+	class GameObjectComponent : public Object, public ReflectionAccessible, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
 	public:
 		using Super = Object;
 		GameObjectComponent() = default;

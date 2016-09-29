@@ -10,10 +10,9 @@
 
 #include "TypeInfoWrapper.h"
 
+struct lua_State;
 namespace planeta {
 	class Reflectable;
-	//! アクセス属性
-	enum class AccessAttiribute { Public, Protected };
 	namespace private_ {
 		struct VariableOrPropertyInfo {
 			VariableOrPropertyInfo(const std::type_info& ti) :t_info(ti) {}
@@ -22,7 +21,6 @@ namespace planeta {
 			bool is_readable = false;
 			std::function<void(Reflectable&, const boost::any&)> setter;
 			std::function<boost::any(Reflectable&)> getter;
-			AccessAttiribute access_attribute;
 			std::function<void(Reflectable&, const boost::property_tree::ptree&)> ptree_loeder;
 		};
 		struct ClassInfo {
@@ -37,6 +35,7 @@ namespace planeta {
 			bool is_abstract;
 			std::function<std::shared_ptr<Reflectable>()> creator;
 			std::unordered_map<std::string, VariableOrPropertyInfo> public_variable_prpperty_info;
+			std::function<void(lua_State*)> lua_binder;
 		};
 	}
 }

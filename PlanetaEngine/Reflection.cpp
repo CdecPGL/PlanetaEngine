@@ -9,10 +9,12 @@
 #include "Reflection.h"
 #include "ReflectionExceptions.h"
 #include "StringUtility.h"
+#include "ClassInfoCaller.h"
+#include "ReflectableClassAccessor.h"
 
 namespace planeta {
 	namespace {
-		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("ReflectionRoot");
+		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("RReflectable");
 	}
 	using namespace private_;
 	namespace bmi = boost::multi_index;
@@ -160,6 +162,21 @@ namespace planeta {
 			throw reflection_error(util::ConvertAndConnectToString("登録されていない型ID\"", id, "\"が指定されました。"));
 		}
 		return (*it)->this_t_info.get_type_info();
+	}
+
+	std::shared_ptr<planeta::ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info& ti) {
+		auto* class_info = GetClassInfo_Reflectable(ti);
+		if (class_info == nullptr) {
+			throw reflection_error(util::ConvertAndConnectToString("登録されていない型\"", ti.name(), "\"が指定されました。"));
+		}
+		return std::make_shared<ReflectableClassAccessor>(class_info);
+	}
+
+	void Reflection::BindClassesToLua(lua_State* l) {
+		decltype(auto) id_map = impl_().type_data_map.get<tag::ObjectTypeID>();
+		for (auto&& ci : id_map) {
+			ci->lua_binder(l);
+		}
 	}
 
 	void Reflection::RegisterObject_(const std::type_info& tinfo, const std::string& object_type_id, std::unique_ptr<ClassInfo>&& class_info) {

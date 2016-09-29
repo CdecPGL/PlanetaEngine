@@ -15,6 +15,10 @@
 #include "boost/property_tree/ptree.hpp"
 #include "boost/core/enable_if.hpp"
 
+namespace planeta {
+	class Reflectable;
+}
+
 //////////////////////////////////////////////////////////////////////////
 //特定の条件を満たしているか確認するメタ関数
 //////////////////////////////////////////////////////////////////////////
@@ -95,7 +99,7 @@ namespace planeta {
 	namespace private_ {
 		template<typename T, typename... Rest>
 		void ReflectivePtreeConverterError();
-
+		void ReflectivePtreeConverterFromReflectionSystem(Reflectable& dst, const boost::property_tree::ptree& src);
 		template<size_t idx>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<>& dst, const std::vector<const boost::property_tree::ptree*>& src);
 		template<size_t idx, typename F, typename... R>
@@ -105,9 +109,6 @@ namespace planeta {
 		/*! 変換不可能な型のPtree変換関数*/
 		template<typename... Ts>
 		void ReflectivePtreeConverter(Ts...);
-		/*! C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っている型の変換関数*/
-		/*template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<HasReflectionDataRegisterer<T>>::type;*/
 		/*! @brief ptreeから直接変換可能な型へのPtree変換関数
 			@note BoostLibrary1.61.0では、get_value内でistreamによる型の変換を行っている。これを利用して、get_valueに対応していない型に対しては、std::cinでもコンパイルエラーになることを利用してSFINEを用いオーバーロード対象外にする。get_valueの内部実装に依存しているため、それに変更があった場合は修正する必要がある。
 		*/
@@ -168,7 +169,11 @@ namespace planeta {
 
 		template<typename T>
 		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src) {
-			dst.ReflectiveLoadFromPtree(src);
+			try {
+				ReflectivePtreeConverterFromReflectionSystem(dst, src);
+			} catch (reflection_error& e) {
+				throw reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
+			}
 		}
 
 		template<typename... Ts>

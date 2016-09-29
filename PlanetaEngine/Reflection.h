@@ -3,6 +3,7 @@ Version 1.0.0 2016/9/1
 Version 1.0.1 2016/9/2 Reflectableクラスをコピームーブ可能に。RegisterObject時のエラー報告を初期化時に行うよう変更。
 Version 1.0.2 2016/9/3 RE_REFLECTABLE_CLASSで、登録トリガーの無名名前空間変数が、翻訳空間ごとに作成されることが原因でクラスの重複登録エラーが起きていたのを修正。基底型を指定して登録することを可能に。
 Version 1.0.3 2016/9/6 ReflectionUtility.hにostreamのインクルードを追加し、変換可能な型が変換できないバグを修正。プロパティ登録の補助マクロ追加。ReflectionDataRegistererの引数型も確認するように変更。WriteOnlyPropertyのコンパイルエラーを修正。
+Vertion 2.0.0 2016/9/29 LuaBind機能の追加。Reflectableのリフレクションアクセス機能をRefrectionAccessibleとReflectableClassAccessorに移譲し軽量化。単純な構造体でも、Reflectableクラスを継承しやすくなった。Ptree読み込みにおいて、Reflectableクラスの読み込み実装を変更。
 
 @exception noexcept出ないクラスは、reflection_errorを投げる可能性がある
 
@@ -20,17 +21,19 @@ Version 1.0.3 2016/9/6 ReflectionUtility.hにostreamのインクルードを追�
 #include "boost/core/enable_if.hpp"
 
 #include "SystemLog.h"
-#include "ClassRegisterer.h"
+#include "ClassRegistererImpl.h"
 #include "ReflectionExceptions.h"
 
 namespace planeta {
-	class Reflectable;
+	class ReflectableClassAccessor;
+	class ReflectionAccessible;
 	/*! @brief リフレクションシステム
 		
 		リフレクションシステムに静的関数でアクセスできるクラス。
 	*/
 	class Reflection{
-		friend Reflectable;
+		friend ReflectableClassAccessor;
+		friend ReflectionAccessible;
 	public:
 		/*リフレクションシステムの初期化*/
 		static void Initialize();
@@ -84,7 +87,10 @@ namespace planeta {
 		static std::string GetObjectTypeIDByStdTypeInfo(const std::type_info& tinfo);
 		//! ObjectTypeIDから型情報を取得する
 		static const std::type_info& GetStdTypeInfoByObjectTypeID(const std::string& id);
-
+		//! リフレクションクラスへのアクセサを得る
+		static std::shared_ptr<ReflectableClassAccessor> GetRefrectableClassAccessor(const std::type_info& ti);
+		//! LuaStateに登録されているクラスを登録する
+		static void BindClassesToLua(lua_State* l);
 		//! 登録されたクラス数を取得
 		static size_t GetRegisteredClassCount()noexcept;
 	private:
@@ -123,8 +129,10 @@ namespace planeta {
 		//ReflectionDataRegisterer静的関数を持っている場合
 		template<class C>
 		auto RegisterReflectionData(ClassInfo& ci) -> typename boost::enable_if<HasReflectionDataRegisterer<C>, void>::type {
-			ClassRegisterer<C> cregr(ci);
+			ClassRegistererImpl<C> cregr(ci);
+			cregr.BegineProc();
 			C::ReflectionDataRegisterer(cregr);
+			cregr.EndProc();
 		}
 		//ReflectionDataRegisterer静的関数を持っていない場合
 		template<class C>
@@ -137,11 +145,12 @@ namespace planeta {
 			ci.this_t_info = typeid(C);
 			ci.super_t_info = typeid(C::Super);
 		}
-		//Superエイリアスを持っていないとき(エラーにするために定義しない)
-		/*template<class C>
+		//Superエイリアスを持っていないとき(Reflectableを親とする)
+		template<class C>
 		auto RegisterTypeInfo(ClassInfo&) -> typename boost::disable_if<HasSuperAlias<C>, void>::type {
-
-		}*/
+			ci.this_t_info = typeid(C);
+			ci.super_t_info = typeid(Reflectable);
+		}
 		//Superエイリアスを持っていて基底クラスの型情報が指定されたとき
 		template<class C>
 		auto RegisterTypeInfo(ClassInfo& ci, const std::type_info& sti) -> typename boost::enable_if<HasSuperAlias<C>, void>::type {

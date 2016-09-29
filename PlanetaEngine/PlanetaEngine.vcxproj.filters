@@ -58,9 +58,6 @@
     <Filter Include="PlanetaEngine\Windows">
       <UniqueIdentifier>{86890a22-3624-4169-b8e6-b4c08bff5891}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lua">
-      <UniqueIdentifier>{d0528160-be9e-47ac-acff-8c9b7b787093}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Utility\DataContainer">
       <UniqueIdentifier>{7af39fec-41ae-4243-aa12-5394b1cfa6e0}</UniqueIdentifier>
     </Filter>
@@ -501,9 +498,6 @@
     <ClInclude Include="AccessorTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="LuaBindClassFunctions.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
     <ClInclude Include="DataContainer.h">
       <Filter>PlanetaEngine\Utility\DataContainer</Filter>
     </ClInclude>
@@ -828,6 +822,15 @@
     <ClInclude Include="PlanetaEngine.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
+    <ClInclude Include="LuaBindHelder.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectableClassAccessor.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAccessible.h">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -976,9 +979,6 @@
     </ClCompile>
     <ClCompile Include="WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="LuaBindClassFunctions.cpp">
-      <Filter>Lua</Filter>
     </ClCompile>
     <ClCompile Include="DataContainer.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer</Filter>
@@ -1175,9 +1175,6 @@
     <ClCompile Include="ClassInfoCaller.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="Reflectable.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
@@ -1192,6 +1189,15 @@
     </ClCompile>
     <ClCompile Include="PrefixUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="ReflectionUtility.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="ReflectableClassAccessor.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="ReflectionAccessible.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
