@@ -831,6 +831,9 @@
     <ClInclude Include="ReflectionAccessible.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="RLuaScript.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1198,6 +1201,9 @@
     </ClCompile>
     <ClCompile Include="ReflectionAccessible.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="RLuaScript.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -191,6 +191,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="NonOwingPointer.h" />
     <ClInclude Include="picojson.h" />
     <ClInclude Include="ProgramDefinitionData.h" />
+    <ClInclude Include="RLuaScript.h" />
     <ClInclude Include="RPtree.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
@@ -385,6 +386,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ReflectionAccessible.cpp" />
     <ClCompile Include="ReflectionUtility.cpp" />
     <ClCompile Include="RJson.cpp" />
+    <ClCompile Include="RLuaScript.cpp" />
     <ClCompile Include="RPtree.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="StringUtility.cpp" />

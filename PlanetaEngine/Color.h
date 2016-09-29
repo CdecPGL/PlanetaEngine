@@ -1,7 +1,20 @@
 ﻿#pragma once
 
+#include "Reflectable.h"
+
 namespace planeta {
-	class Color {
+	class Color : public Reflectable{
+		PE_REFLECTION_DATA_REGISTERER_DECL_DEF(Color) {
+			registerer
+				.PE_REFLECTABLE_CLASS_PROPERTY(Color, r)
+				.PE_REFLECTABLE_CLASS_PROPERTY(Color, g)
+				.PE_REFLECTABLE_CLASS_PROPERTY(Color, b)
+				.PE_REFLECTABLE_CLASS_PROPERTY(Color, a)
+				.ShallowCopyTarget(&Color::_r)
+				.ShallowCopyTarget(&Color::_g)
+				.ShallowCopyTarget(&Color::_b)
+				.ShallowCopyTarget(&Color::_a);
+		}
 	public:
 		Color(int r, int g, int b, int a) :_r(r), _g(g), _b(b), _a(a) {
 			if (_r < 0) { _r = 0; } else if (_r>255) { _r = 255; }
@@ -40,4 +53,5 @@ namespace planeta {
 		int _b;
 		int _a;
 	};
+	PE_REFLECTABLE_CLASS(Color);
 }

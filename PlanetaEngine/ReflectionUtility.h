@@ -17,6 +17,7 @@
 
 namespace planeta {
 	class Reflectable;
+	class ReflectionAccessible;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -145,7 +146,7 @@ namespace planeta {
 		template<size_t idx, typename F, typename... R>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<F, R...>& dst, const std::vector<const boost::property_tree::ptree*>& src) {
 			F f{};
-			util::ReflectivePtreeConverter(f, *src[idx]);
+			planeta::util::ReflectivePtreeConverter(f, *src[idx]);
 			std::tuple<R...> rtuple;
 			ReflectivePtreeConverterToStdTuple<idx + 1, R...>(rtuple, src);
 			dst = std::tuple_cat(std::make_tuple<F>(std::move(f)), rtuple);
@@ -188,7 +189,7 @@ namespace planeta {
 			if (sizeof...(Ts) != ptree_vec.size()) {
 				throw reflection_error(ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
 			}
-			private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
+			planeta::private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
 		}
 
 		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEF(std::vector);
@@ -215,16 +216,24 @@ namespace planeta {
 //////////////////////////////////////////////////////////////////////////
 namespace planeta {
 	class Reflectable;
+	namespace private_ {
+		void ReflectiveCopyFromReflectionSystem(Reflectable& dst, const Reflectable& src);
+	}
 	namespace util {
-		/*! Reflectableを継承していない型のコピーハンドラ*/
+		/*! コピー代入可能な型のコピーハンドラ*/
 		template<typename T>
-		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::disable_if<std::is_base_of<Reflectable, T>, void>::type {
+		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if<std::is_copy_assignable<T>, void>::type {
 			dst = src;
 		}
-		/*! Reflectableを継承している型のコピーハンドラ*/
+		/*! コピー代入不可能でReflectionAccessibleを継承している型*/
 		template<typename T>
-		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if<std::is_base_of<Reflectable, T>, void>::type {
+		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&std::is_base_of_v<ReflectionAccessible, T>, void>::type {
 			dst.ReflectiveCopyFrom(src);
+		}
+		/*! コピー代入不可能でReflectionAssignableを継承しておらず、Reflectableを継承している型*/
+		template<typename T>
+		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&!std::is_base_of_v<ReflectionAccessible, T>&&std::is_base_of_v<Reflectable, T>, void>::type {
+			planeta::private_::ReflectiveCopyFromReflectionSystem(dst, src);
 		}
 	}
 }

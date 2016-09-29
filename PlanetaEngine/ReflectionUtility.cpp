@@ -9,5 +9,9 @@ namespace planeta {
 			auto rca = Reflection::GetRefrectableClassAccessor(typeid(dst));
 			rca->LoadFromPtree(dst, src);
 		}
+		void ReflectiveCopyFromReflectionSystem(Reflectable& dst, const Reflectable& src) {
+			auto rca = Reflection::GetRefrectableClassAccessor(typeid(dst));
+			rca->Copy(dst, src);
+		}
 	}
 }

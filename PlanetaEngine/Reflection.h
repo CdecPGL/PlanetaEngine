@@ -147,7 +147,7 @@ namespace planeta {
 		}
 		//Superエイリアスを持っていないとき(Reflectableを親とする)
 		template<class C>
-		auto RegisterTypeInfo(ClassInfo&) -> typename boost::disable_if<HasSuperAlias<C>, void>::type {
+		auto RegisterTypeInfo(ClassInfo& ci) -> typename boost::disable_if<HasSuperAlias<C>, void>::type {
 			ci.this_t_info = typeid(C);
 			ci.super_t_info = typeid(Reflectable);
 		}
