@@ -5,9 +5,9 @@
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool RIni::_Create(const std::shared_ptr<const File>& file) {
+	bool RIni::_Create(const File& file) {
 		using namespace std;
-		FileIStream fis(*file);
+		FileIStream fis(file);
 		vector<string> lines;
 		string buf;
 		while (getline(fis, buf)) {

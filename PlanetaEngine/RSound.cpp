@@ -3,13 +3,13 @@
 #include "File.h"
 
 namespace planeta {
-	bool RSound::_Create(const std::shared_ptr<const File>& file) {
-		if (file->GetStatus() != File::FileStatus::Available) { return false; }
+	bool RSound::_Create(const File& file) {
+		if (file.GetStatus() != File::FileStatus::Available) { return false; }
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
 		}
-		_handle = LoadSoundMemByMemImage(file->GetTopPointer(), file->GetSize());
+		_handle = LoadSoundMemByMemImage(file.GetTopPointer(), file.GetSize());
 		return _handle >= 0;
 	}
 

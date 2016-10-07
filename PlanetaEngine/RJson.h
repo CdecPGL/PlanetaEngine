@@ -243,7 +243,7 @@ JSON_VALUE_GETTER_FOR_JSONTYPE(JSONArray);
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
-		bool _Create(const std::shared_ptr<const File>& file) override;
+		bool _Create(const File& file) override;
 		void _Dispose() override;
 	};
 }

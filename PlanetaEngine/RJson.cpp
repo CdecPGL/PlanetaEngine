@@ -110,11 +110,11 @@ namespace planeta {
 	RJson::RJson() :impl_(std::make_unique<Impl_>()) {}
 	RJson::~RJson() = default;
 
-	bool RJson::_Create(const std::shared_ptr<const File>& file) {
+	bool RJson::_Create(const File& file) {
 		using namespace picojson;
 		std::string err;
 		value v;
-		parse(v, file->GetTopPointer(), file->GetTopPointer() + file->GetSize(), &err);
+		parse(v, file.GetTopPointer(), file.GetTopPointer() + file.GetSize(), &err);
 		if (!err.empty()) {
 			PE_LOG_ERROR("JSONファイルの読み込みに失敗しました。(", err, ")");
 			return false;

@@ -11,7 +11,7 @@ namespace planeta {
 		int GetTotalTimeByMilliSecond();
 	private:
 		int _handle;
-		virtual bool _Create(const std::shared_ptr<const File>& file) override;
+		virtual bool _Create(const File& file) override;
 		virtual void _Dispose() override;
 	};
 }

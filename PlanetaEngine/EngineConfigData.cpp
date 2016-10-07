@@ -29,7 +29,7 @@ namespace planeta {
 
 				auto json_res = planeta::private_::MakeResource<RJson>();
 				//FileからJSONリソースを作成する
-				if (!json_res->Create(file)) {
+				if (!json_res->Create(*file)) {
 					PE_LOG_ERROR("設定ファイルをJSONファイルとして読み込むことができませんでした。");
 					return false;
 				}

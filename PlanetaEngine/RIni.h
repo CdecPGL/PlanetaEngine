@@ -15,7 +15,7 @@ namespace planeta {
 		INIType::const_iterator find(const std::string& s)const { return _data.find(s); }
 		boost::optional<const SectionType&> GetSection(const std::string& s)const;
 	private:
-		bool _Create(const std::shared_ptr<const File>& file) override;
+		bool _Create(const File& file) override;
 		void _Dispose()override { _data.clear(); }
 		INIType _data;
 	};

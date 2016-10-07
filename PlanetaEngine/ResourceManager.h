@@ -39,7 +39,7 @@ namespace planeta{
 			void AddResourceType(const std::string& type_name) {
 				_resource_creator_map.emplace(type_name, [](const std::shared_ptr<const File>& file)->std::shared_ptr<ResourceBase>{
 					std::shared_ptr<ResourceBase> new_res = MakeResource<C>();
-					return new_res->Create(file) ? new_res : nullptr;
+					return new_res->Create(*file) ? new_res : nullptr;
 				});
 			}
 			/*リソースを取得*/

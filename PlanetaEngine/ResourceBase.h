@@ -11,7 +11,7 @@ namespace planeta {
 		public:
 			ResourceBase() = default;
 			virtual ~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } };
-			bool Create(const std::shared_ptr<const File>& file) {
+			bool Create(const File& file) {
 				if (is_usable_) { return false; }
 				if (_Create(file)) {
 					is_usable_ = true;
@@ -27,7 +27,7 @@ namespace planeta {
 			}
 			bool is_usable()const { return is_usable_; }
 		protected:
-			virtual bool _Create(const std::shared_ptr<const File>& file) = 0;
+			virtual bool _Create(const File& file) = 0;
 			virtual void _Dispose() = 0;
 		private:
 			ResourceBase(const ResourceBase&) = delete;

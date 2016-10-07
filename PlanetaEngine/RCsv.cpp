@@ -11,10 +11,10 @@
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool RCsv::_Create(const std::shared_ptr<const File>& file) {
-		if (file->GetStatus() != File::FileStatus::Available) { return false; }
-		size_t size = file->GetSize();
-		const char* c_ptr = (const char*)file->GetTopPointer();
+	bool RCsv::_Create(const File& file) {
+		if (file.GetStatus() != File::FileStatus::Available) { return false; }
+		size_t size = file.GetSize();
+		const char* c_ptr = (const char*)file.GetTopPointer();
 		unsigned int pos = 0;
 		std::vector<std::string> lines;
 		std::string buf;

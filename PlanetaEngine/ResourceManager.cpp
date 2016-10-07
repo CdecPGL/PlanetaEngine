@@ -99,7 +99,7 @@ namespace planeta {
 				return false;
 			}
 			auto csv = MakeResource<RCsv>();
-			if (csv->Create(file) == false) {
+			if (csv->Create(*file) == false) {
 				PE_LOG_ERROR("リソースリストファイルをCSV形式として読み込めませんでした。(", _resource_list_file_name, ")", _tag_resouce_map.size(), "個)");
 				return false;
 			}

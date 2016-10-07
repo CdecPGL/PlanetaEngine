@@ -70,7 +70,7 @@ namespace planeta {
 				}
 				auto json_res = MakeResource<RJson>();
 				//FileからINIリソースを作成する
-				if (!json_res->Create(file)) {
+				if (!json_res->Create(*file)) {
 					PE_LOG_ERROR("プログラム用定義ファイルを読み込めませんでした。");
 					return false;
 				}

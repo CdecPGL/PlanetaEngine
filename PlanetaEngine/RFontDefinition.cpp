@@ -14,8 +14,8 @@
 #include "FileAccessor.h"
 
 namespace planeta {
-	bool RFontDefinition::_Create(const std::shared_ptr<const File>& file) {
-		if (file->GetStatus() != File::FileStatus::Available) { return false; }
+	bool RFontDefinition::_Create(const File& file) {
+		if (file.GetStatus() != File::FileStatus::Available) { return false; }
 		auto file_accessor = FileSystemManager::instance().GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
 		auto xml = private_::MakeResource<RXml>();
 		if (xml->Create(file)) {

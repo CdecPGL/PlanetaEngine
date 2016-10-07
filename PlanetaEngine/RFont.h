@@ -14,7 +14,7 @@ namespace planeta {
 	private:
 		HANDLE handle_ = 0;
 		DWORD font_num_ = 0;
-		bool _Create(const std::shared_ptr<const File>& file) override;
+		bool _Create(const File& file) override;
 		void _Dispose() override;
 	};
 }

@@ -24,7 +24,7 @@ namespace planeta {
 		Vector2Di internal_size_;
 		/*画像サイズ/内部サイズ*/
 		Vector2Dd image_area_;
-		bool _Create(const std::shared_ptr<const File>& file) override;
+		bool _Create(const File& file) override;
 		void _Dispose() override;
 		bool _AdjustImageSize(); //DXライブラリのDrawPolygon関数に合わせて、画像を8以上の2のべき乗数に合わせる
 	};
