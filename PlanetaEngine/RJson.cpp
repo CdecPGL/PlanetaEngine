@@ -114,7 +114,7 @@ namespace planeta {
 		using namespace picojson;
 		std::string err;
 		value v;
-		parse(v, file.GetTopPointer(), file.GetTopPointer() + file.GetSize(), &err);
+		parse(v, file.top_pointer(), file.top_pointer() + file.size(), &err);
 		if (!err.empty()) {
 			PE_LOG_ERROR("JSONファイルの読み込みに失敗しました。(", err, ")");
 			return false;

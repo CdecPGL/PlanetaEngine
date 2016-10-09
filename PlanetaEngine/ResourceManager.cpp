@@ -94,7 +94,7 @@ namespace planeta {
 				PE_LOG_ERROR("リソースリスト(", _resource_list_file_name, ")の読み込みに失敗しました。");
 				return false;
 			}
-			if (file->GetStatus() != File::FileStatus::Available) {
+			if (!file->is_available()) {
 				PE_LOG_ERROR("リソースリストファイルを読み込めませんでした。(", _resource_list_file_name, ")", _tag_resouce_map.size(), +"個)");
 				return false;
 			}

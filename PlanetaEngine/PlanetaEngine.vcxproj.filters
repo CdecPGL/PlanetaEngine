@@ -1205,5 +1205,8 @@
     <ClCompile Include="RLuaScript.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceBase.cpp">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

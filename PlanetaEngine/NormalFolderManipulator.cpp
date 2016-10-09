@@ -62,9 +62,9 @@ namespace planeta {
 				PE_LOG_ERROR("暗号化に失敗しました。");
 				return false;
 			}
-			ofs.write(reinterpret_cast<char*>(encd_file.GetTopPointer()), encd_file.GetSize()); //保存
+			ofs.write(reinterpret_cast<char*>(encd_file.top_pointer()), encd_file.size()); //保存
 		} else {
-			ofs.write(reinterpret_cast<const char*>(file.GetTopPointer()), file.GetSize());
+			ofs.write(reinterpret_cast<const char*>(file.top_pointer()), file.size());
 		}
 		return true;
 	}
@@ -112,12 +112,12 @@ namespace planeta {
 		ifs.seekg(0, std::ios::end);
 		int size = (int)ifs.tellg();
 		//メモリ確保
-		if (!file.ChangeSize(size)) {
+		if (!file.Reserve(size)) {
 			ifs.close();
 			return -1;
 		}
 		ifs.seekg(0, std::ios::beg);
-		ifs.read(reinterpret_cast<char*>(file.GetTopPointer()), file.GetSize());
+		ifs.read(reinterpret_cast<char*>(file.top_pointer()), file.size());
 		//終了
 		ifs.close();
 		return 0;

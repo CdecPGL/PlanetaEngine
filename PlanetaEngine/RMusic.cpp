@@ -4,12 +4,11 @@
 
 namespace planeta {
 	bool RMusic::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
 		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMPRESS);
 		}
-		_handle = LoadSoundMemByMemImage(file.GetTopPointer(), file.GetSize());
+		_handle = LoadSoundMemByMemImage(file.top_pointer(), file.size());
 		return _handle >= 0;
 	}
 

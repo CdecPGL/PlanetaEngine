@@ -4,12 +4,11 @@
 
 namespace planeta {
 	bool RSound::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
 		}
-		_handle = LoadSoundMemByMemImage(file.GetTopPointer(), file.GetSize());
+		_handle = LoadSoundMemByMemImage(file.top_pointer(), file.size());
 		return _handle >= 0;
 	}
 

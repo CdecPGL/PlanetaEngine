@@ -40,9 +40,9 @@ namespace planeta {
 
 		bool EncrypterBase::DecryptPartially(const File& src, size_t pos, size_t size, File& dst)const
 		{
-			if (!dst.ChangeSize(size, false)) { return false; }
+			if (!dst.Reserve(size, false)) { return false; }
 			if (&src == &dst) { return false; } //ソースとデスティネーションが同じではいけない。
-			return DecryptPartiallyCore(src, pos, size, reinterpret_cast<char*>(dst.GetTopPointer()), dst.GetSize());
+			return DecryptPartiallyCore(src, pos, size, reinterpret_cast<char*>(dst.top_pointer()), dst.size());
 		}
 
 	}

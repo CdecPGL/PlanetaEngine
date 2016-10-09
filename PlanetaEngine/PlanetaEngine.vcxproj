@@ -385,6 +385,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ISerializable.cpp" />
     <ClCompile Include="ReflectionAccessible.cpp" />
     <ClCompile Include="ReflectionUtility.cpp" />
+    <ClCompile Include="ResourceBase.cpp" />
     <ClCompile Include="RJson.cpp" />
     <ClCompile Include="RLuaScript.cpp" />
     <ClCompile Include="RPtree.cpp" />

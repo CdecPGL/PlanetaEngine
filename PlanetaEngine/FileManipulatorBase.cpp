@@ -24,20 +24,26 @@ namespace planeta {
 		if (file_list_.find(name) == file_list_.end()) { return nullptr; }
 		auto file = std::make_shared<File>();
 		if (LoadFileCore(name, *file)) {
+			file->SetFileName(name);
 			return std::move(file);
 		} else {
 			return nullptr;
 		}
 	}
 
-	std::vector<std::pair<std::string, std::shared_ptr<File>>> FileManipulatorBase::LoadAllFiles() {
+	std::vector<std::shared_ptr<File>> FileManipulatorBase::LoadAllFiles() {
 		UpdateFileList();
 		std::vector<std::pair<std::string, std::shared_ptr<File>>> ret;
 		if (LoadAllFilesCore(ret)) {
-			return std::move(ret);
+			std::vector<std::shared_ptr<File>> out;
+			for (auto&& pf : ret) {
+				pf.second->SetFileName(pf.first);
+				out.push_back(pf.second);
+			}
+			return std::move(out);
 		} else {
 			PE_LOG_ERROR("ファイルの全ロードに失敗しました。(パス ", path(), ",タイプ ", typeid(*this).name(), ")");
-			return decltype(LoadAllFiles())();
+			return{};
 		}
 	}
 

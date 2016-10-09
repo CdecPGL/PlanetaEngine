@@ -64,7 +64,7 @@ namespace planeta {
 				UpdateEncObj();
 				std::string dat;
 				CryptoPP::StreamTransformationFilter enc_filter(*aes_enc_obj_, new CryptoPP::StringSink(dat));
-				enc_filter.Put(src.GetTopPointer(), src.GetSize());
+				enc_filter.Put(src.top_pointer(), src.size());
 				enc_filter.MessageEnd();
 				dst.SetData(dat);
 				return true;
@@ -74,7 +74,7 @@ namespace planeta {
 				UpdateDecObj();
 				std::string dat;
 				CryptoPP::StreamTransformationFilter dec_filter(*aes_dec_obj_, new CryptoPP::StringSink(dat));
-				dec_filter.Put(src.GetTopPointer(), src.GetSize());
+				dec_filter.Put(src.top_pointer(), src.size());
 				dec_filter.MessageEnd();
 				dst.SetData(dat);
 				return true;

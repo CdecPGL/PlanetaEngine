@@ -25,7 +25,7 @@ namespace planeta {
 
 		namespace private_ {
 			bool LoadConfigData(const std::shared_ptr<File>& file) {
-				assert(file != nullptr && file->GetStatus() == File::FileStatus::Available);
+				assert(file != nullptr && file->is_available());
 
 				auto json_res = planeta::private_::MakeResource<RJson>();
 				//FileからJSONリソースを作成する

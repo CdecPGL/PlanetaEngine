@@ -64,7 +64,7 @@ namespace planeta {
 		assert(manipulator_ != nullptr);
 		auto files = std::move(manipulator_->LoadAllFiles());
 		for (auto file : files) {
-			file_caches_.emplace(file.first, file.second);
+			file_caches_.emplace(file->file_name(), file);
 		}
 		return true;
 	}
@@ -141,7 +141,7 @@ namespace planeta {
 
 	size_t FileAccessor::GetCacheSize() const {
 		size_t size = 0;
-		for (auto& c : file_caches_) { size += c.second->GetSize(); }
+		for (auto& c : file_caches_) { size += c.second->size(); }
 		return size;
 	}
 

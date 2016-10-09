@@ -7,8 +7,7 @@
 
 namespace planeta {
 	bool RGraph::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
-		_handle = CreateGraphFromMem(file.GetTopPointer(), file.GetSize(), nullptr, 0, 1, 0);
+		_handle = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {
 			GetGraphSize(_handle, &image_size_.x, &image_size_.y);
 			if (_AdjustImageSize() == false) {

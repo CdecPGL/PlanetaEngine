@@ -24,7 +24,7 @@ namespace planeta {
 		/*ファイルの読み込み*/
 		std::shared_ptr<File> LoadFile(const std::string& name);
 		/*すべてのファイルを読み込み*/
-		std::vector<std::pair<std::string, std::shared_ptr<File>>> LoadAllFiles();
+		std::vector<std::shared_ptr<File>> LoadAllFiles();
 		/*ファイルリストを更新*/
 		bool UpdateFileList() { file_list_.clear(); return UpdateFileListCore(file_list_); }
 		/*ファイルの保存(保存名、ファイル)*/

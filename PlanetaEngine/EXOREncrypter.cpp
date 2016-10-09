@@ -21,11 +21,11 @@ namespace planeta {
 		{
 			int b_key = main_key_;
 			uint_fast32_t buf;
-			size_t block_num = (src.GetSize() + block_byte_size - 1) / block_byte_size; //必要ブロック数
+			size_t block_num = (src.size() + block_byte_size - 1) / block_byte_size; //必要ブロック数
 			//ディスティネーションのサイズ変更
-			dst.ChangeSize(block_num*block_byte_size + HEADER_BYTE_SIZE);
+			dst.Reserve(block_num*block_byte_size + HEADER_BYTE_SIZE);
 			//サイズ書き込み
-			buf = src.GetSize() ^ b_key;
+			buf = src.size() ^ b_key;
 			dst.WriteData(0, buf);
 			//暗号化しつつ書き込み
 			for (size_t block = 0; block < block_num; ++block, b_key += sub_key_) {
@@ -44,12 +44,12 @@ namespace planeta {
 			src.ReadData(0, buf);
 			uint_fast32_t size = buf ^ b_key; 
 			//ブロック数計算
-			if ((src.GetSize() - HEADER_BYTE_SIZE) % block_byte_size != 0) { //ブロックが合わない
+			if ((src.size() - HEADER_BYTE_SIZE) % block_byte_size != 0) { //ブロックが合わない
 				return false;
 			}
-			size_t block_num = (src.GetSize() - HEADER_BYTE_SIZE) / block_byte_size;
+			size_t block_num = (src.size() - HEADER_BYTE_SIZE) / block_byte_size;
 			//ディスティネーションのサイズ変更
-			dst.ChangeSize(size, false);
+			dst.Reserve(size, false);
 			//復号化しつつ書き込み
 			for (size_t block = 0; block < block_num; ++block,b_key += sub_key_) {
 				src.ReadData(block*block_byte_size+HEADER_BYTE_SIZE, buf);

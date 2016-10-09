@@ -4,9 +4,8 @@
 
 namespace planeta {
 	bool RText::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
-		size_t size = file.GetSize();
-		const char* c_ptr = (const char*)file.GetTopPointer();
+		size_t size = file.size();
+		const char* c_ptr = (const char*)file.top_pointer();
 		for (unsigned int i = 0; i < size; ++i) {
 			_text.push_back(c_ptr[i]);
 		}

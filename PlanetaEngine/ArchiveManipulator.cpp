@@ -65,7 +65,7 @@ namespace planeta {
 		if (data.first == nullptr) {
 			return false;
 		}
-		file.SetData(reinterpret_cast<unsigned char*>(data.first), data.second);
+		file.MoveData(reinterpret_cast<unsigned char*>(data.first), data.second);
 		return true;
 	}
 

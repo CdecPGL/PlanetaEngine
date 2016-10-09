@@ -15,7 +15,6 @@
 
 namespace planeta {
 	bool RFontDefinition::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
 		auto file_accessor = FileSystemManager::instance().GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
 		auto xml = private_::MakeResource<RXml>();
 		if (xml->Create(file)) {
@@ -36,7 +35,7 @@ namespace planeta {
 					}
 					//フォントを読み込み
 					DWORD num;
-					win_font_handle = AddFontMemResourceEx(const_cast<unsigned char*>(font_file->GetTopPointer()), font_file->GetSize(), nullptr, &num);
+					win_font_handle = AddFontMemResourceEx(const_cast<unsigned char*>(font_file->top_pointer()), font_file->size(), nullptr, &num);
 					if (win_font_handle == 0) {
 						PE_LOG_ERROR("フォントの読み込みに失敗しました。(", elem->text(), ")");
 						return false;

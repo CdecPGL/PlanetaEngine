@@ -64,7 +64,7 @@ namespace planeta {
 
 			bool LoadProgramDefinition(const std::shared_ptr<FileAccessor> sys_dir_accessor, ProgramDefinitionData* out) {
 				auto file = sys_dir_accessor->LoadFile(system_variables::file_system::ProgramDefinitionFileName);
-				if (file == nullptr || file->GetStatus() != File::FileStatus::Available) {
+				if (file == nullptr || file->is_available() == false) {
 					PE_LOG_ERROR("プログラム用定義ファイルが開けませんでした。");
 					return false;
 				}

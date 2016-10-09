@@ -18,11 +18,11 @@ namespace planeta {
 			ifs.clear();
 			ifs.seekg(0, std::ios::beg);
 			std::shared_ptr<File> file = std::make_shared<File>();
-			if (!file->ChangeSize(size)) {
+			if (!file->Reserve(size)) {
 				PE_LOG_ERROR("標準ファイル入力からのファイル\"", file_name, "\"の領域", size, "バイトを確保できませんでした。");
 				return nullptr;
 			}
-			ifs.read(reinterpret_cast<char*>(file->GetTopPointer()), size);
+			ifs.read(reinterpret_cast<char*>(file->top_pointer()), size);
 			if (ifs.bad()) {
 				PE_LOG_ERROR("標準ファイル入力からファイル\"", file_name, "\"を読込中にエラーが発生しました。");
 				return nullptr;

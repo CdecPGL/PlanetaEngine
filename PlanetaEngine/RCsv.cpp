@@ -12,9 +12,8 @@
 
 namespace planeta {
 	bool RCsv::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
-		size_t size = file.GetSize();
-		const char* c_ptr = (const char*)file.GetTopPointer();
+		size_t size = file.size();
+		const char* c_ptr = (const char*)file.top_pointer();
 		unsigned int pos = 0;
 		std::vector<std::string> lines;
 		std::string buf;

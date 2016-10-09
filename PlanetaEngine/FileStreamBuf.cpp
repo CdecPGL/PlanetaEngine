@@ -6,8 +6,8 @@ namespace planeta {
 
 	FileStreamBuf::FileStreamBuf(File& file) :file_(file), write_buffer_(std::make_unique<char[]>(buffer_size)) {
 		write_buffer_[0] = (char)std::char_traits<char>::eof();
-		char* top = reinterpret_cast<char*>(file.GetTopPointer());
-		setg(top, top, top + file.GetSize());
+		char* top = reinterpret_cast<char*>(file.top_pointer());
+		setg(top, top, top + file.size());
 	}
 
 	FileStreamBuf::int_type FileStreamBuf::overflow(int_type d/*= char_traits<char>::eof()*/) {
@@ -32,7 +32,7 @@ namespace planeta {
 
 	FileStreamBuf::pos_type FileStreamBuf::seekoff(off_type off, std::ios_base::seekdir dir, std::ios_base::openmode mode/*= ios_base::in | ios_base::out*/) {
 		size_t buf_pos;
-		pos_type way = dir == std::ios_base::beg ? 0 : file_.GetSize() - 1;
+		pos_type way = dir == std::ios_base::beg ? 0 : file_.size() - 1;
 		switch (mode & (std::ios_base::in | std::ios_base::out)) {
 		case std::ios_base::out:
 			//書き込み位置
@@ -57,7 +57,7 @@ namespace planeta {
 		{
 			pos_type cur_pos = gptr() - eback();
 			cur_pos += way + off;
-			if (cur_pos < 0 || file_.GetSize() >= cur_pos) {
+			if (cur_pos < 0 || file_.size() >= cur_pos) {
 				return std::char_traits<char>::eof();
 			} else {
 				setg(eback(), eback() + (int)cur_pos, egptr());

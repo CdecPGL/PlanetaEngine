@@ -9,7 +9,6 @@
 
 namespace planeta {
 	bool RXml::_Create(const File& file) {
-		if (file.GetStatus() != File::FileStatus::Available) { return false; }
 		std::function<void(const std::shared_ptr<XMLElement>&, const tinyxml2::XMLNode&)> element_setter = [&element_setter](const std::shared_ptr<XMLElement>& target, const tinyxml2::XMLNode& source) {
 			for (auto* s_element = source.FirstChildElement(); s_element != nullptr; s_element = s_element->NextSiblingElement()) {
 				auto c_element = std::make_shared<XMLElement>();
@@ -20,7 +19,7 @@ namespace planeta {
 		};
 		root_element_ = std::make_shared<XMLElement>();
 		tinyxml2::XMLDocument xml_document;
-		if (xml_document.Parse(reinterpret_cast<const char*>(file.GetTopPointer()), file.GetSize()) == tinyxml2::XMLError::XML_SUCCESS) {
+		if (xml_document.Parse(reinterpret_cast<const char*>(file.top_pointer()), file.size()) == tinyxml2::XMLError::XML_SUCCESS) {
 			element_setter(root_element_, xml_document);
 			return true;
 		} else { //失敗

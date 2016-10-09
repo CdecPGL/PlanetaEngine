@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include <memory>
 #include "Object.h"
-#include "SystemLog.h"
 
 namespace planeta {
 	class File;
@@ -10,21 +9,10 @@ namespace planeta {
 		class ResourceBase : public Object{
 		public:
 			ResourceBase() = default;
-			virtual ~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } };
-			bool Create(const File& file) {
-				if (is_usable_) { return false; }
-				if (_Create(file)) {
-					is_usable_ = true;
-					return true;
-				}
-				else { return false; }
-			}
-			void Dispose() {
-				if (is_usable_) { 
-					_Dispose();
-					is_usable_ = false;
-				}
-			}
+			virtual ~ResourceBase();;
+
+			bool Create(const File& file);
+			void Dispose();
 			bool is_usable()const { return is_usable_; }
 		protected:
 			virtual bool _Create(const File& file) = 0;
