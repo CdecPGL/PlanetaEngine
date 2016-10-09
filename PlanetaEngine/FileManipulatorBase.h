@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include "Object.h"
 #include"File.h"
+#include "boost/optional.hpp"
 
 namespace planeta {
 	namespace encrypters {
@@ -12,15 +13,11 @@ namespace planeta {
 	}
 	class FileManipulatorBase : public Object {
 	public:
-		explicit FileManipulatorBase(const std::string& p, bool auto_create) :path_(p), is_valid_(false), auto_create_(auto_create) {}
-		explicit FileManipulatorBase(const std::string& p, std::shared_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) :path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {}
-		virtual ~FileManipulatorBase() = default;
+		explicit FileManipulatorBase(const std::string& p, bool auto_create);
+		explicit FileManipulatorBase(const std::string& p, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create);
+		virtual ~FileManipulatorBase();
 		bool Initialize();
-		void Finalize() {
-			if (!is_valid_) { return; }
-			FinalizeCore();
-			is_valid_ = false;
-		}
+		void Finalize();
 		/*ファイルの読み込み*/
 		std::shared_ptr<File> LoadFile(const std::string& name);
 		/*すべてのファイルを読み込み*/
@@ -36,18 +33,18 @@ namespace planeta {
 		/*ファイルの削除*/
 //			bool DeleteFile(const std::string& file_name);
 		bool is_valid()const { return is_valid_; }
-		const std::unordered_set<std::string>& file_list()const { return file_list_; }
+		const std::unordered_set<std::string>& file_list()const& { return file_list_; }
 	protected:
-		const std::string& path()const { return path_; }
+		const std::string& path()const& { return path_; }
 		void path(const std::string& p) { path_ = p; }
 		bool is_encrypter_valid()const { return encrypter_ != nullptr; }
-		std::shared_ptr<const encrypters::EncrypterBase> encrypter()const { return encrypter_; }
+		boost::optional<const encrypters::EncrypterBase&> encrypter()const&;
 		bool auto_create()const { return auto_create_; }
 	private:
 		std::string path_;
 		bool is_valid_; //有効か
 		bool auto_create_;
-		std::shared_ptr<const encrypters::EncrypterBase> encrypter_;
+		std::unique_ptr<const encrypters::EncrypterBase> encrypter_;
 		std::unordered_set<std::string> file_list_;
 		virtual bool InitializeCore() = 0;
 		virtual void FinalizeCore() = 0;

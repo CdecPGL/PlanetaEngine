@@ -1,5 +1,6 @@
 ﻿#include "FileManipulatorBase.h"
 #include "SystemLog.h"
+#include "EncrypterBase.h"
 
 namespace planeta {
 	bool FileManipulatorBase::LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files) {
@@ -18,6 +19,14 @@ namespace planeta {
 
 	bool FileManipulatorBase::CheckFileExist(const std::string& file_name) const {
 		return file_list_.find(file_name) != file_list_.end();
+	}
+
+	boost::optional<const encrypters::EncrypterBase&> FileManipulatorBase::encrypter() const& {
+		if (encrypter_) {
+			return *encrypter_;
+		} else {
+			return boost::none;
+		}
 	}
 
 	std::shared_ptr<File> FileManipulatorBase::LoadFile(const std::string& name) {
@@ -47,6 +56,16 @@ namespace planeta {
 		}
 	}
 
+	FileManipulatorBase::FileManipulatorBase(const std::string& p, bool auto_create) :path_(p), is_valid_(false), auto_create_(auto_create) {
+
+	}
+
+	FileManipulatorBase::FileManipulatorBase(const std::string& p, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) : path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {
+
+	}
+
+	FileManipulatorBase::~FileManipulatorBase() = default;
+
 	bool FileManipulatorBase::Initialize() {
 		if (is_valid_) { return true; }
 		if (InitializeCore()) {
@@ -62,6 +81,12 @@ namespace planeta {
 			PE_LOG_ERROR("初期化に失敗しました。(パス ", path(), ",タイプ ", typeid(*this).name(), ")");
 			return false;
 		}
+	}
+
+	void FileManipulatorBase::Finalize() {
+		if (!is_valid_) { return; }
+		FinalizeCore();
+		is_valid_ = false;
 	}
 
 	bool FileManipulatorBase::SaveFile(const std::string& name, const File& file) {
