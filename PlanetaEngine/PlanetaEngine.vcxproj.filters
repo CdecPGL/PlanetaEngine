@@ -834,6 +834,9 @@
     <ClInclude Include="RLuaScript.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="MacroUtility.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
