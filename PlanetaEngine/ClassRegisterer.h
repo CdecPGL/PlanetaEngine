@@ -232,3 +232,11 @@ registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
 */
 #define PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(ctype, id)\
 WriteOnlyProperty(#id, &ctype::id)
+/*! @brief 変数を登録するユーティリティマクロ
+
+型の変換なしにClassRegisterer::Variableに登録して、コンパイルエラーにならないような変数の場合に使用可能。
+registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
+のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_VARIABLE(ctype, id)\
+Variable(#id, &ctype::id)

@@ -14,7 +14,7 @@
 
 namespace planeta {
 	namespace {
-		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("RReflectable");
+		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("Reflectable");
 	}
 	using namespace private_;
 	namespace bmi = boost::multi_index;

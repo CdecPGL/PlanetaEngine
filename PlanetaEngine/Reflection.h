@@ -224,7 +224,14 @@ namespace planeta {
 namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
 
 /*! @def
-	クラスをリフレクションシステムに登録する(登録する型に公開型エイリアスSuperは定義されている必要はない。定義されていても参照されない)
+IDを指定してクラスをリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
+@param type 型
+*/
+#define PE_REFLECTABLE_CLASS_WITH_ID(type, id)\
+namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##id##_ = {#id}; }
+
+/*! @def
+	親クラスを指定してクラスをリフレクションシステムに登録する(登録する型に公開型エイリアスSuperは定義されている必要はない。定義されていても参照されない)
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS_SPECIFY_SUPER(type, super)\

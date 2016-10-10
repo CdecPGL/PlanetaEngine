@@ -117,7 +117,7 @@ namespace planeta {
 		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>>::type>());
 		/*! Reflectableを継承した型へのPtree変換関数*/
 		template<typename T>
-		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src);
+		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<std::is_base_of<planeta::Reflectable, T>, void>::type;
 		/*! std::tupleへのPtree変換関数*/
 		template<typename... Ts>
 		void ReflectivePtreeConverter(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src);
@@ -169,11 +169,11 @@ namespace planeta {
 		}
 
 		template<typename T>
-		auto ReflectivePtreeConverter(Reflectable& dst, const boost::property_tree::ptree& src) {
+		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<std::is_base_of<planeta::Reflectable, T>,void>::type {
 			try {
-				ReflectivePtreeConverterFromReflectionSystem(dst, src);
+				planeta::private_::ReflectivePtreeConverterFromReflectionSystem(dst, src);
 			} catch (reflection_error& e) {
-				throw reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
+				throw planeta::reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
 			}
 		}
 
