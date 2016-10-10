@@ -22,7 +22,7 @@ namespace planeta {
 		//! ゲームオブジェクトをシーンから破棄する
 		virtual void Dispose() = 0;
 		//! 自身のstd::shared_ptrを取得する
-		virtual std::shared_ptr<IGameObject> GetSharedPointer()= 0;
+		virtual WeakPointer<IGameObject> GetPointer()= 0;
 		//! コンポーネントを型で取得する
 		template<class ComT>
 		WeakPointer<ComT> GetComponent()const {

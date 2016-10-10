@@ -31,7 +31,7 @@ namespace planeta {
 
 		GameObjectBase::~GameObjectBase() = default;
 
-		std::shared_ptr<IGameObject> GameObjectBase::GetSharedPointer() {
+		WeakPointer<IGameObject> GameObjectBase::GetPointer() {
 			assert(shared_from_this() != nullptr);
 			return shared_from_this();
 		}
@@ -193,7 +193,7 @@ namespace planeta {
 		}
 
 		void GameObjectBase::SetUpAttachedTask_(TGameObjectOperation& task) {
-			task.Attach(GetSharedPointer(), true);
+			task.Attach(GetPointer(), true);
 		}
 
 		bool GameObjectBase::ProcessClonation(const std::shared_ptr<GameObjectBase>& dst) {
