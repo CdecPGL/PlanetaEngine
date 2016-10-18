@@ -10,7 +10,9 @@ namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeDxLib() {
+				//////////////////////////////////////////////////////////////////////////
 				//DXライブラリの初期化
+				//Effekseerの初期化も行う
 				//////////////////////////////////////////////////////////////////////////
 				//ログ出力先を変更
 				SetApplicationLogSaveDirectory(system_variables::file_system::LogDirectory.c_str());
@@ -28,6 +30,9 @@ namespace planeta {
 						SetWindowSizeExtendRate((double)ws.x / ds.x, (double)ws.y / ds.y);
 					}
 				}
+				//Effekseerを利用するために、DirextX9を使用するよう設定する
+				SetUseDirect3DVersion(DX_DIRECT3D_9);
+				//DXライブラリの初期化
 				if (DxLib_Init() == 0) {
 					return{ true,[] {DxLib_End(); } };
 				} else { 
