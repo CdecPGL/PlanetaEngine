@@ -19,40 +19,35 @@ namespace planeta {
 		bool Initialize();
 		void Finalize();
 		/*ファイルの読み込み*/
-		std::shared_ptr<File> LoadFile(const std::string& name);
-		/*すべてのファイルを読み込み*/
-		std::vector<std::shared_ptr<File>> LoadAllFiles();
-		/*ファイルリストを更新*/
-		bool UpdateFileList() { file_list_.clear(); return UpdateFileListCore(file_list_); }
+		std::shared_ptr<File> LoadFile(const std::string& path);
 		/*ファイルの保存(保存名、ファイル)*/
-		bool SaveFile(const std::string& name, const File& file);
-		/*複数ファイルの保存*/
-		bool SaveFiles(const std::vector<std::pair<std::string, const File&>>& files);
+		bool SaveFile(const std::string& name, const File& path);
+		/*管理情報の更新*/
+		bool Reload();
 		/*ファイルの存在を確認*/
-		bool CheckFileExist(const std::string& file_name)const;
-		/*ファイルの削除*/
-//			bool DeleteFile(const std::string& file_name);
+		bool CheckFileExist(const std::string& path)const;
+		/*全てのファイルパスを取得*/
+		std::vector<std::string> GetAllFilePaths()const;
+		/*有効か*/
 		bool is_valid()const { return is_valid_; }
-		const std::unordered_set<std::string>& file_list()const& { return file_list_; }
 	protected:
-		const std::string& path()const& { return path_; }
-		void path(const std::string& p) { path_ = p; }
+		const std::string& root_path()const& { return root_path_; }
+		void root_path(const std::string& p) { root_path_ = p; }
 		bool is_encrypter_valid()const { return encrypter_ != nullptr; }
 		boost::optional<const encrypters::EncrypterBase&> encrypter()const&;
 		bool auto_create()const { return auto_create_; }
 	private:
-		std::string path_;
+		std::string root_path_;
 		bool is_valid_; //有効か
 		bool auto_create_;
 		std::unique_ptr<const encrypters::EncrypterBase> encrypter_;
-		std::unordered_set<std::string> file_list_;
-		virtual bool InitializeCore() = 0;
-		virtual void FinalizeCore() = 0;
-		virtual bool UpdateFileListCore(std::unordered_set<std::string>& file_list) = 0;
-		virtual bool LoadFileCore(const std::string& name, File& file) = 0;
-		virtual bool LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files);
-		virtual bool SaveFileCore(const std::string& name, const File& file) = 0;
-		virtual bool SaveFilesCore(const std::vector<std::pair<std::string, const File&>>& files);
-		//			virtual bool DeleteFileCore(const std::string& file_name) { return false; }; //未実装
+		virtual bool InitializeProc() = 0;
+		virtual void FinalizeProc() = 0;
+		virtual bool CheckFileExistenceProc(const std::string& path)const = 0;
+		virtual bool ReloadProc() { return true; };
+		virtual bool LoadFileProc(const std::string& name, File& file) = 0;
+		virtual bool SaveFileProc(const std::string& name, const File& file) = 0;
+		virtual size_t GetFileCountProc()const = 0;
+		virtual bool GetAllFilePathsProc(std::vector<std::string>& path_list)const = 0;
 	};
 }

@@ -1,4 +1,5 @@
 ﻿#include "DxLib.h"
+#include "EffekseerForDXLib.h"
 
 #include "InitFunctions.h"
 #include "SystemVariables.h"
@@ -33,12 +34,20 @@ namespace planeta {
 				//Effekseerを利用するために、DirextX9を使用するよう設定する
 				SetUseDirect3DVersion(DX_DIRECT3D_9);
 				//DXライブラリの初期化
-				if (DxLib_Init() == 0) {
-					return{ true,[] {DxLib_End(); } };
-				} else { 
+				if (DxLib_Init() < 0) { 
 					PE_LOG_FATAL("DXライブラリの初期化に失敗しました。");
 					return{ false,[] {} };
 				}
+				//Effekseerの初期化
+				if (Effkseer_Init(2000) < 0) {
+					PE_LOG_FATAL("Effekseerの初期化に失敗しました。");
+					return{ false,[] { DxLib_End(); } };
+				}
+				//Effeseerの設定
+				SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
+				Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+
+				return{ true,[] { Effkseer_End(); DxLib_End(); } };
 			}
 		}
 	}

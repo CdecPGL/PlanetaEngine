@@ -10,50 +10,36 @@ namespace planeta {
 	namespace bfs = boost::filesystem;
 	NormalFolderManipulator::~NormalFolderManipulator() {}
 
-	bool NormalFolderManipulator::InitializeCore() {
+	bool NormalFolderManipulator::InitializeProc() {
 		//ディレクトリの存在確認
-		boost::filesystem::path bpath(path());
+		boost::filesystem::path bpath(root_path());
 		if (boost::filesystem::is_directory(bpath)) {
 			return true;
 		} else {
 			//ディレクトリがなくて自動作成が有効だったら作成する。
 			if (auto_create()) {
 				if (boost::filesystem::create_directories(bpath)) {
-					PE_LOG_MESSAGE("ディレクトリ", path(), "を作成しました。");
+					PE_LOG_MESSAGE("ディレクトリ", root_path(), "を作成しました。");
 					return true;
 				} else {
-					PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", path(), "を作成できませんでした。");
+					PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", root_path(), "を作成できませんでした。");
 					return false;
 				}
 			} else {
-				PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", path(), "が存在しません。");
+				PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", root_path(), "が存在しません。");
 				return false;
 			}
 		}
 	}
 
-	void NormalFolderManipulator::FinalizeCore() {
+	void NormalFolderManipulator::FinalizeProc() {
 
 	}
 
-	bool NormalFolderManipulator::LoadAllFilesCore(std::vector<std::pair<std::string, std::shared_ptr<File>>>& files) {
-		bool err = false;
-		for (auto& f : file_name_path_map_) {
-			auto file = std::make_shared<File>();
-			if (!LoadFileByPath(*file, f.second)) {
-				PE_LOG_ERROR("ファイル", f.first, "の読み込みに失敗しました。パスは", f.second, "です。");
-				err = true;
-			} else {
-				files.push_back(std::make_pair(f.first, std::move(file)));
-			}
-		}
-		return !err;
-	}
-
-	bool NormalFolderManipulator::SaveFileCore(const std::string& name, const File& file) {
-		std::ofstream ofs(path() + "\\" + name, std::ios::binary | std::ios::trunc);
+	bool NormalFolderManipulator::SaveFileProc(const std::string& name, const File& file) {
+		std::ofstream ofs(root_path() + "\\" + name, std::ios::binary | std::ios::trunc);
 		if (!ofs) {
-			PE_LOG_ERROR("ファイル", name, "をディレクトリ", path(), "に保存できませんでした");
+			PE_LOG_ERROR("ファイル", name, "をディレクトリ", root_path(), "に保存できませんでした");
 			return false;
 		}
 		if (is_encrypter_valid()) { //暗号化が有効だったら
@@ -69,31 +55,15 @@ namespace planeta {
 		return true;
 	}
 
-	bool NormalFolderManipulator::UpdateFileListCore(std::unordered_set<std::string>& file_list) {
-		try {
-			file_name_path_map_.clear();
-			const bfs::path res_path(path());
-			BOOST_FOREACH(const bfs::path& p, std::make_pair(bfs::recursive_directory_iterator(res_path), bfs::recursive_directory_iterator())) {
-				if (!bfs::is_directory(p)) {
-					file_list.emplace(p.filename().string());
-					file_name_path_map_.emplace(p.filename().string(), p.string());
-				}
-			}
-			return true;
-		} catch (bfs::filesystem_error&) {
-			PE_LOG_ERROR("ファイルリストの更新に失敗しました。(パス ", path(), ")");
-			return false;
-		}
-	}
-
-	bool NormalFolderManipulator::LoadFileCore(const std::string& fn, File& file) {
-		auto it = file_name_path_map_.find(fn);
-		assert(it != file_name_path_map_.end()); //存在チェックはファイルリストを参考にすでに行われているはず。
-		return LoadFileByPath(file, it->second);
+	bool NormalFolderManipulator::LoadFileProc(const std::string& fn, File& file) {
+		return LoadFileByPath(file, fn);
 	}
 
 	bool NormalFolderManipulator::LoadFileByPath(File& file, const std::string& name) {
-		if (LoadDataCore(file, name) < 0) { return false; } else {
+		if (LoadDataCore(file, root_path() + "\\" + name) < 0) {
+			PE_LOG_ERROR("ファイル\"", name, "\"の読み込みに失敗しました。ファイルが存在しない可能性があります。");
+			return false;
+		} else {
 			if (is_encrypter_valid()) {
 				if (!encrypter()->Decrypt(file)) { return true; } else {
 					PE_LOG_ERROR("復号化に失敗しました。");
@@ -107,7 +77,9 @@ namespace planeta {
 
 	int NormalFolderManipulator::LoadDataCore(File& file, const std::string& ap) {
 		std::ifstream ifs(ap, std::ios::binary | std::ios::in);
-		if (!ifs) { return -1; }
+		if (!ifs) {
+			return -1;
+		}
 		//サイズ取得
 		ifs.seekg(0, std::ios::end);
 		int size = (int)ifs.tellg();
@@ -122,4 +94,42 @@ namespace planeta {
 		ifs.close();
 		return 0;
 	}
+
+	size_t NormalFolderManipulator::GetFileCountProc() const {
+		size_t cnt = 0;
+		const bfs::path path(root_path());
+		BOOST_FOREACH(const bfs::path& p, std::make_pair(bfs::recursive_directory_iterator(path),
+			bfs::recursive_directory_iterator())) {
+			if (!bfs::is_directory(p)) { ++cnt; }
+		}
+		return cnt;
+	}
+
+	bool NormalFolderManipulator::CheckFileExistenceProc(const std::string& ppath) const {
+		const bfs::path path(root_path() + "\\" + ppath);
+
+		boost::system::error_code error;
+		const bool result = bfs::exists(path, error);
+		if (!result || error) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	bool NormalFolderManipulator::GetAllFilePathsProc(std::vector<std::string>& path_list) const {
+		const bfs::path path(root_path());
+		BOOST_FOREACH(const bfs::path& p, std::make_pair(bfs::recursive_directory_iterator(path),
+			bfs::recursive_directory_iterator())) {
+			if (!bfs::is_directory(p)) {
+				//カレントディレクトリからの相対パスを取得
+				//auto rp_str = p.relative_path().string();
+				auto rp_str = p.string();
+				//root_path()からの相対パスに変換する
+				path_list.push_back(rp_str.substr(root_path().size() + 1, rp_str.size() - 1));
+			}
+		}
+		return true;
+	}
+
 }

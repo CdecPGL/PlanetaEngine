@@ -62,11 +62,14 @@ namespace planeta {
 			return false;
 		}
 		assert(manipulator_ != nullptr);
-		auto files = std::move(manipulator_->LoadAllFiles());
-		for (auto file : files) {
+		auto path_list = manipulator_->GetAllFilePaths();
+		bool scc = true;
+		for (auto&& p : path_list) {
+			auto file = manipulator_->LoadFile(p);
+			if (file == nullptr) { scc = false; continue; }
 			file_caches_.emplace(file->file_name(), file);
 		}
-		return true;
+		return scc;
 	}
 
 	bool FileAccessor::SaveFile(const std::string& file_name, const File& file) {
@@ -107,11 +110,11 @@ namespace planeta {
 			return false;
 		}
 		assert(manipulator_ != nullptr);
-		std::vector<std::pair<std::string, const File&>> files;
+		bool scc = true;
 		for (const auto& fc : file_caches_) {
-			files.push_back(std::make_pair(fc.first, *fc.second));
+			scc &= manipulator_->SaveFile(fc.first, *fc.second);
 		}
-		return manipulator_->SaveFiles(files);
+		return scc;
 	}
 
 	std::shared_ptr<File> FileAccessor::LoadProc(const std::string& file_name) const {
