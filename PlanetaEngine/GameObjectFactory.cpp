@@ -65,7 +65,7 @@ namespace planeta {
 			//シーンデータセット
 			ngo->SetSceneData(scene_data);
 			//ファイル読み込み
-			auto ptree_res = ResourceManager::instance().GetResource<RPtree>(game_object_def_file_id);
+			auto ptree_res = ResourceManager::instance().GetResourceByID<RPtree>(game_object_def_file_id);
 			if (ptree_res == nullptr) {
 				PE_LOG_ERROR("ゲームオブジェクト定義リソース\"", game_object_def_file_id, "\"の読み込みに失敗しました。");
 				return nullptr;

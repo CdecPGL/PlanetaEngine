@@ -58,7 +58,11 @@ namespace planeta{
 				return false;
 			}
 			//リソース読み込み
-			if (private_::ResourceManager::instance().PrepareResources({scene_name}) == false) {
+			//シーンIDと同じIDのタグをアンロード対象外に指定し、読み込む
+			auto& rm = private_::ResourceManager::instance();
+			bool scc = rm.SetNotUnloadTags({ scene_name });
+			scc &= rm.PrepareResources({ scene_name });
+			if (!scc) {
 				PE_LOG_WARNING("指定されたシーン(", scene_name, ")のリソース準備に失敗しました。読み込みに失敗したか、対象のリソースが存在しない可能性があります。");
 				//return false;
 			} //リソースの準備ができなかった

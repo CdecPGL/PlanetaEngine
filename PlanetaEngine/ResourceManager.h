@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <vector>
-#include <unordered_set>
+#include <set>
 #include <unordered_map>
 #include <thread>
 #include <memory>
@@ -24,16 +24,16 @@ namespace planeta{
 		public:
 			bool Initialize()override;
 			void Finalize()override;
-			/*Resourceの準備。読み込んでいないタググループを読み込み、読み込み済みでいらないものを破棄リストに登録する(param:必要なタグリスト)*/
+			/*アンロード対象外のタグを設定*/
+			bool SetNotUnloadTags(const std::set<std::string>& tags);
+			/*タグで指定されたリソースをまとめて読み込む*/
 			bool PrepareResources(const std::vector<std::string>& need_tag_groups);
-			/*未使用のタググループをアンロードする*/
+			/*未使用のタリソースをアンロードする*/
 			bool UnloadUnusedResouces();
 			/*Resourceの準備が完了したか*/
 			bool IsReady()const;
 			/*準備進行度(読み込みしていない時は1.0とする)*/
 			double GetPrepairProgress()const;
-			/*使っているタググループ名を取得*/
-			const std::unordered_set<std::string> GetUsingTagGroups()const;
 			/*リソースの属性を追加*/
 			template<class C>
 			void AddResourceType(const std::string& type_name) {
@@ -42,12 +42,30 @@ namespace planeta{
 					return new_res->Create(*file) ? new_res : nullptr;
 				});
 			}
-			/*リソースを取得*/
-			std::shared_ptr<ResourceBase> GetResource(const std::string& id);
+			/*リソースをIDで取得*/
+			std::shared_ptr<ResourceBase> GetResourceByID(const std::string& id);
 			template<class RT>
-			std::shared_ptr<RT> GetResource(const std::string& id) {
+			std::shared_ptr<RT> GetResourceByID(const std::string& id) {
 				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-				auto rsc = GetResource(id);
+				auto rsc = GetResourceByID(id);
+				if (rsc) {
+					auto out = std::dynamic_pointer_cast<RT>(rsc);
+					if (out) {
+						return out;
+					} else {
+						PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
+						return nullptr;
+					}
+				} else {
+					return nullptr;
+				}
+			}
+			/*リソースをパスで取得*/
+			std::shared_ptr<ResourceBase> GetResourceByPath(const std::string& path);
+			template<class RT>
+			std::shared_ptr<RT> GetResourceByPath(const std::string& path) {
+				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
+				auto rsc = GetResourceByPath(path);
 				if (rsc) {
 					auto out = std::dynamic_pointer_cast<RT>(rsc);
 					if (out) {
@@ -74,37 +92,46 @@ namespace planeta{
 			std::string _resource_list_file_name;
 
 			struct ResourceData{
+				ResourceData() = default;
+				ResourceData(const ResourceData&) = delete;
+				ResourceData(ResourceData&&) = default;
+				ResourceData& operator=(const ResourceData&) = delete;
+				ResourceData& operator= (ResourceData&&) = default;
 				/*ID*/
 				std::string id = "\0";
-				/*ファイル名*/
-				std::string file_name = "\0";
+				/*ファイルパス*/
+				std::string file_path = "\0";
 				/*種類*/
 				std::string type = "\0";
+				/*リソース本体*/
+				std::shared_ptr<ResourceBase> resouce;
+				/*リソースがロードされているか*/
+				bool is_loaded = false;
+				/*タグ*/
+				std::vector<std::string> tags;
+				/*アンロード対象外か*/
+				bool not_unload = false;
 			};
-			/*タグによるResourceデータマップ*/
-			std::unordered_map<std::string, std::vector<ResourceData>> _tag_resouce_map;
-
-			/*使われているリソースのタグマップ(タグ,ID配列)*/
-			std::unordered_map<std::string, std::vector<std::string>> _using_tag_id_map;
-			/*使われていないリソースのマップ<タグ,<ID,リソース>配列>*/
-			std::unordered_map<std::string,std::vector<std::pair<std::string,std::shared_ptr<ResourceBase>>>> _unused_tag_map;
-			/*使われているリソース(ID,リソース)*/
-			std::unordered_map<std::string, std::shared_ptr<ResourceBase>> _using_resources;
-
-			/*指定タググループを未使用タググループに追加*/
-			void _AddUnusedtagGroups(const std::string& tag);
-			/*タググループを読み込み*/
-			bool _load_tag_group(const std::string& tag);
-			/*必要なタグと現在読み込まれているタググループを比較し、新たに使うもの、もう使わないものを返す*/
-			std::pair<std::vector<std::string>, std::vector<std::string>> _check_newuse_and_nouse_tag_groups(const std::vector<std::string>& need_tags);
-
+			using ResourceDataListType = std::list<ResourceData>;
+			ResourceDataListType resource_data_list_;
+			std::unordered_map<std::string, std::vector<ResourceDataListType::iterator>> tag_map_;
+			std::unordered_map<std::string, ResourceDataListType::iterator> id_map_;
+			std::unordered_map<std::string, ResourceDataListType::iterator> path_map_;
+			std::set<std::string> not_unload_tags_;
 
 			/*リソースクリエータ関数型*/
 			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>(const std::shared_ptr<const File>&)>;
 			/*ResourceのタイプによるResourceクリエータマップ*/
 			std::unordered_map<std::string, _ResourceCreatorType> _resource_creator_map;
 			/*リソースの作成*/
-			std::shared_ptr<ResourceBase> _CreateResource(const std::string& type, const std::shared_ptr<const File>& file);
+			std::shared_ptr<ResourceBase> _CreateResourceInstanceAndInitialize(const std::string& type, const std::shared_ptr<const File>& file);
+			/*リソースのロード*/
+			std::shared_ptr<ResourceBase> LoadResource_(ResourceData& res_dat);
+			/*リソースのアンロード*/
+			void UnloadResource_(ResourceData& res_dat);
+			/*リソースデータの登録*/
+			bool RegisterResourceData_(ResourceData&& res_dat);
+
 
 			/*リソースリストの読み込み*/
 			bool _LoadResourceList();

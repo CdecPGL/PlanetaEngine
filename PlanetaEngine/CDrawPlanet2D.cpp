@@ -171,7 +171,7 @@ namespace planeta {
 	}
 
 	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
-		auto res = private_::ResourceManager::instance().GetResource(resource_id);
+		auto res = private_::ResourceManager::instance().GetResourceByID(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;

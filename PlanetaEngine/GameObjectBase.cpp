@@ -157,7 +157,7 @@ namespace planeta {
 				std::string res_id = cd_pt.get_value<std::string>();
 				//文字列が空でなかったらリソースIDとみなす
 				if (!res_id.empty()) {
-					auto jres = private_::ResourceManager::instance().GetResource<RPtree>(res_id);
+					auto jres = private_::ResourceManager::instance().GetResourceByID<RPtree>(res_id);
 					//指定されたリソースがない
 					if (jres == nullptr) {
 						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
