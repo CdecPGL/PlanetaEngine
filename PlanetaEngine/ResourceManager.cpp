@@ -9,54 +9,69 @@
 
 namespace planeta {
 	namespace private_ {
+		//////////////////////////////////////////////////////////////////////////
+		//Impl_
+		//////////////////////////////////////////////////////////////////////////
+		class ResourceManager::Impl_ {
+		public:
+			std::shared_ptr<FileAccessor> file_accessor_;
+			/*リソースリストのファイル名*/
+			std::string _resource_list_file_name;
 
-		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
-			size_t new_loaded{ 0 }, already{ 0 };
-			for (auto&& tag : need_tags) {
-				auto it = tag_map_.find(tag);
-				if (it == tag_map_.end()) {
-					PE_LOG_ERROR("存在しないタグ\"", tag, "\"が指定されました。");
-					return false;
-				}
-				for (auto&& res_data_it : it->second) {
-					if (res_data_it->is_loaded) { ++already; }
-					else {
-						if (LoadResource_(*res_data_it) == nullptr) {
-							PE_LOG_ERROR("リソースの読み込みに失敗しました。(タグ:", tag, ", ID:", res_data_it->id, ", パス:", res_data_it->file_path, ")");
-							return false;
-						}
-						++new_loaded;
-					}
-				}
-			}
-			PE_LOG_MESSAGE("指定されたタググループに含まれるリソースのうち、", already, "個のリソースが既に読み込まれていて、", new_loaded, "個のリソースが新たに読み込まれました。");
-			return true;
-		}
+			struct ResourceData {
+				ResourceData() = default;
+				ResourceData(const ResourceData&) = delete;
+				ResourceData(ResourceData&&) = default;
+				ResourceData& operator=(const ResourceData&) = delete;
+				ResourceData& operator= (ResourceData&&) = default;
+				/*ID*/
+				std::string id = "\0";
+				/*ファイルパス*/
+				std::string file_path = "\0";
+				/*種類*/
+				std::string type = "\0";
+				/*リソース本体*/
+				std::shared_ptr<ResourceBase> resouce;
+				/*リソースがロードされているか*/
+				bool is_loaded = false;
+				/*タグ*/
+				std::vector<std::string> tags;
+				/*アンロード対象外か*/
+				bool not_unload = false;
+			};
+			using ResourceDataListType = std::list<ResourceData>;
+			ResourceDataListType resource_data_list_;
+			std::unordered_map<std::string, std::vector<ResourceDataListType::iterator>> tag_map_;
+			std::unordered_map<std::string, ResourceDataListType::iterator> id_map_;
+			std::unordered_map<std::string, ResourceDataListType::iterator> path_map_;
+			std::set<std::string> not_unload_tags_;
 
-		bool ResourceManager::UnloadUnusedResouces() {
-			size_t unload{ 0 };
-			for (auto& res_dat : resource_data_list_) {
-				//参照カウントが1だったら未使用とみなす。アンロード不可フラグが立っていたら無視
-				if (res_dat.is_loaded && res_dat.resouce.use_count() == 1 && !res_dat.not_unload) {
-					UnloadResource_(res_dat);
-					++unload;
-				}
-			}
-			PE_LOG_MESSAGE(unload, "個の未使用リソースがアンロードされました。");
-			return true;
-		}
+			
+			/*ResourceのタイプによるResourceクリエータマップ*/
+			std::unordered_map<std::string, _ResourceCreatorType> _resource_creator_map;
+			/*リソースの作成*/
+			std::shared_ptr<ResourceBase> _CreateResourceInstanceAndInitialize(const std::string& type, const std::shared_ptr<const File>& file);
+			/*リソースのロード*/
+			std::shared_ptr<ResourceBase> LoadResource_(ResourceData& res_dat);
+			/*リソースのアンロード*/
+			void UnloadResource_(ResourceData& res_dat);
+			/*リソースデータの登録*/
+			bool RegisterResourceData_(ResourceData&& res_dat);
+			/*アンロードタグの指定*/
+			bool SetNotUnloadTags_(const std::set<std::string>& tags);
+			/*リソースリストの読み込み*/
+			bool _LoadResourceList();
+			/*読み込まれているすべてのリソースをアンロードする*/
+			void _UnloadAllLoadedResources();
+		};
 
-		bool ResourceManager::IsReady()const { return true; }
-
-		double ResourceManager::GetPrepairProgress() const { return 1.0; }
-
-		std::shared_ptr<ResourceBase> ResourceManager::_CreateResourceInstanceAndInitialize(const std::string& attribute, const std::shared_ptr<const File>& file) {
+		std::shared_ptr<ResourceBase> ResourceManager::Impl_::_CreateResourceInstanceAndInitialize(const std::string& attribute, const std::shared_ptr<const File>& file) {
 			auto it = _resource_creator_map.find(attribute);
 			if (it == _resource_creator_map.end()) { return nullptr; }
 			return (it->second)(file);
 		}
 
-		std::shared_ptr<planeta::private_::ResourceBase> ResourceManager::LoadResource_(ResourceData& res_dat) {
+		std::shared_ptr<planeta::private_::ResourceBase> ResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			auto file = file_accessor_->LoadFile(res_dat.file_path);
@@ -82,7 +97,7 @@ namespace planeta {
 			return res;
 		}
 
-		void ResourceManager::UnloadResource_(ResourceData& res_dat) {
+		void ResourceManager::Impl_::UnloadResource_(ResourceData& res_dat) {
 			assert(res_dat.is_loaded);
 			assert(res_dat.resouce != nullptr);
 			res_dat.resouce->Dispose();
@@ -90,7 +105,7 @@ namespace planeta {
 			res_dat.is_loaded = false;
 		}
 
-		bool ResourceManager::RegisterResourceData_(ResourceData&& res_dat) {
+		bool ResourceManager::Impl_::RegisterResourceData_(ResourceData&& res_dat) {
 			resource_data_list_.push_back(std::move(res_dat));
 			auto it = --resource_data_list_.end();
 			for (auto&& tag : it->tags) {
@@ -110,7 +125,7 @@ namespace planeta {
 			return true;
 		}
 
-		bool ResourceManager::_LoadResourceList() {
+		bool ResourceManager::Impl_::_LoadResourceList() {
 			std::shared_ptr<const File> file = file_accessor_->LoadFile(_resource_list_file_name);
 			if (file == nullptr) {
 				PE_LOG_ERROR("リソースリスト(", _resource_list_file_name, ")の読み込みに失敗しました。");
@@ -152,20 +167,19 @@ namespace planeta {
 			return true;
 		}
 
-		bool ResourceManager::Initialize() {
-			assert(file_accessor_ != nullptr);
-			if (_LoadResourceList() == false) {
-				PE_LOG_ERROR("初期化に失敗しました。リソースリストの取得に失敗しました。");
-				return false;
+		void ResourceManager::Impl_::_UnloadAllLoadedResources() {
+			SetNotUnloadTags_({});
+			size_t unload{ 0 };
+			for (auto& res_dat : resource_data_list_) {
+				if (res_dat.is_loaded) {
+					UnloadResource_(res_dat);
+					++unload;
+				}
 			}
-			return true;
+			PE_LOG_MESSAGE("すべてのリソース(", unload, "個)をアンロードしました。");
 		}
 
-		void ResourceManager::Finalize() {
-			_UnloadAllLoadedResources();
-		}
-
-		bool ResourceManager::SetNotUnloadTags(const std::set<std::string>& tags) {
+		bool ResourceManager::Impl_::SetNotUnloadTags_(const std::set<std::string>& tags) {
 			//新たに指定されたタグを求める
 			std::vector<std::string> new_set_tags;
 			std::set_difference(tags.begin(), tags.end(), not_unload_tags_.begin(), not_unload_tags_.end(), std::back_inserter(new_set_tags));
@@ -197,20 +211,77 @@ namespace planeta {
 			not_unload_tags_ = tags;
 			return true;
 		}
+		//////////////////////////////////////////////////////////////////////////
+		//ResourceManager
+		//////////////////////////////////////////////////////////////////////////
+		ResourceManager::ResourceManager():impl_(std::make_unique<Impl_>()) {}
+		ResourceManager::~ResourceManager() = default;
 
-		void ResourceManager::_UnloadAllLoadedResources() {
-			SetNotUnloadTags({});
+		void ResourceManager::AddResourceCreatorMap_(const std::string& type_name, const _ResourceCreatorType& creator) {
+			impl_->_resource_creator_map.emplace(type_name, creator);
+		}
+
+		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
+			auto& tag_map_ = impl_->tag_map_;
+			size_t new_loaded{ 0 }, already{ 0 };
+			for (auto&& tag : need_tags) {
+				auto it = tag_map_.find(tag);
+				if (it == tag_map_.end()) {
+					PE_LOG_ERROR("存在しないタグ\"", tag, "\"が指定されました。");
+					return false;
+				}
+				for (auto&& res_data_it : it->second) {
+					if (res_data_it->is_loaded) { ++already; }
+					else {
+						if (impl_->LoadResource_(*res_data_it) == nullptr) {
+							PE_LOG_ERROR("リソースの読み込みに失敗しました。(タグ:", tag, ", ID:", res_data_it->id, ", パス:", res_data_it->file_path, ")");
+							return false;
+						}
+						++new_loaded;
+					}
+				}
+			}
+			PE_LOG_MESSAGE("指定されたタググループに含まれるリソースのうち、", already, "個のリソースが既に読み込まれていて、", new_loaded, "個のリソースが新たに読み込まれました。");
+			return true;
+		}
+
+		bool ResourceManager::UnloadUnusedResouces() {
+			auto& resource_data_list_ = impl_->resource_data_list_;
 			size_t unload{ 0 };
 			for (auto& res_dat : resource_data_list_) {
-				if (res_dat.is_loaded) {
-					UnloadResource_(res_dat);
+				//参照カウントが1だったら未使用とみなす。アンロード不可フラグが立っていたら無視
+				if (res_dat.is_loaded && res_dat.resouce.use_count() == 1 && !res_dat.not_unload) {
+					impl_->UnloadResource_(res_dat);
 					++unload;
 				}
 			}
-			PE_LOG_MESSAGE("すべてのリソース(", unload, "個)をアンロードしました。");
+			PE_LOG_MESSAGE(unload, "個の未使用リソースがアンロードされました。");
+			return true;
+		}
+
+		bool ResourceManager::IsReady()const { return true; }
+
+		double ResourceManager::GetPrepairProgress() const { return 1.0; }
+
+		bool ResourceManager::Initialize() {
+			assert(impl_->file_accessor_ != nullptr);
+			if (impl_->_LoadResourceList() == false) {
+				PE_LOG_ERROR("初期化に失敗しました。リソースリストの取得に失敗しました。");
+				return false;
+			}
+			return true;
+		}
+
+		void ResourceManager::Finalize() {
+			impl_->_UnloadAllLoadedResources();
+		}
+
+		bool ResourceManager::SetNotUnloadTags(const std::set<std::string>& tags) {
+			return impl_->SetNotUnloadTags_(tags);
 		}
 
 		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByID(const std::string& id) {
+			auto& id_map_ = impl_->id_map_;
 			auto it = id_map_.find(id);
 			if (it == id_map_.end()) {
 				PE_LOG_WARNING("定義されていないリソースが要求されました。(ID:", id, ")");
@@ -218,7 +289,7 @@ namespace planeta {
 			}
 			if (!it->second->is_loaded) {
 				PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", id, ", パス:", it->second->file_path, ")");
-				return LoadResource_(*it->second);
+				return impl_->LoadResource_(*it->second);
 			} else {
 				assert(it->second->resouce != nullptr);
 				return it->second->resouce;
@@ -226,6 +297,7 @@ namespace planeta {
 		}
 
 		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByPath(const std::string& path) {
+			auto& path_map_ = impl_->path_map_;
 			auto it = path_map_.find(path);
 			if (it == path_map_.end()) {
 				PE_LOG_WARNING("定義されていないリソースが要求されました。(パス:", path, ")");
@@ -233,7 +305,7 @@ namespace planeta {
 			}
 			if (!it->second->is_loaded) {
 				PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", it->second->id, ", パス:", path, ")");
-				return LoadResource_(*it->second);
+				return impl_->LoadResource_(*it->second);
 			} else {
 				assert(it->second->resouce != nullptr);
 				return it->second->resouce;
@@ -241,7 +313,11 @@ namespace planeta {
 		}
 
 		void ResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
-			file_accessor_ = f_scsr;
+			impl_->file_accessor_ = f_scsr;
+		}
+
+		void ResourceManager::SetResourceListFileName_(const std::string& file_name) {
+			impl_->_resource_list_file_name = file_name;
 		}
 
 	}

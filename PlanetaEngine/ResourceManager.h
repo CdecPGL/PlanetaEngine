@@ -37,7 +37,7 @@ namespace planeta{
 			/*リソースの属性を追加*/
 			template<class C>
 			void AddResourceType(const std::string& type_name) {
-				_resource_creator_map.emplace(type_name, [](const std::shared_ptr<const File>& file)->std::shared_ptr<ResourceBase>{
+				AddResourceCreatorMap_(type_name, [](const std::shared_ptr<const File>& file)->std::shared_ptr<ResourceBase> {
 					std::shared_ptr<ResourceBase> new_res = MakeResource<C>();
 					return new_res->Create(*file) ? new_res : nullptr;
 				});
@@ -82,61 +82,16 @@ namespace planeta{
 			/*ファイルアクセサをセット。初期化前に呼び出す*/
 			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr);
 			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/
-			void SetResourceListFileName_(const std::string& file_name) { _resource_list_file_name = file_name; }
+			void SetResourceListFileName_(const std::string& file_name);
 		private:
-			ResourceManager()=default;
+			ResourceManager();
 			ResourceManager(const ResourceManager&) = delete;
-			~ResourceManager() {};
-			std::shared_ptr<FileAccessor> file_accessor_;
-			/*リソースリストのファイル名*/
-			std::string _resource_list_file_name;
-
-			struct ResourceData{
-				ResourceData() = default;
-				ResourceData(const ResourceData&) = delete;
-				ResourceData(ResourceData&&) = default;
-				ResourceData& operator=(const ResourceData&) = delete;
-				ResourceData& operator= (ResourceData&&) = default;
-				/*ID*/
-				std::string id = "\0";
-				/*ファイルパス*/
-				std::string file_path = "\0";
-				/*種類*/
-				std::string type = "\0";
-				/*リソース本体*/
-				std::shared_ptr<ResourceBase> resouce;
-				/*リソースがロードされているか*/
-				bool is_loaded = false;
-				/*タグ*/
-				std::vector<std::string> tags;
-				/*アンロード対象外か*/
-				bool not_unload = false;
-			};
-			using ResourceDataListType = std::list<ResourceData>;
-			ResourceDataListType resource_data_list_;
-			std::unordered_map<std::string, std::vector<ResourceDataListType::iterator>> tag_map_;
-			std::unordered_map<std::string, ResourceDataListType::iterator> id_map_;
-			std::unordered_map<std::string, ResourceDataListType::iterator> path_map_;
-			std::set<std::string> not_unload_tags_;
-
+			~ResourceManager();
+			class Impl_;
+			std::unique_ptr<Impl_> impl_;
 			/*リソースクリエータ関数型*/
 			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>(const std::shared_ptr<const File>&)>;
-			/*ResourceのタイプによるResourceクリエータマップ*/
-			std::unordered_map<std::string, _ResourceCreatorType> _resource_creator_map;
-			/*リソースの作成*/
-			std::shared_ptr<ResourceBase> _CreateResourceInstanceAndInitialize(const std::string& type, const std::shared_ptr<const File>& file);
-			/*リソースのロード*/
-			std::shared_ptr<ResourceBase> LoadResource_(ResourceData& res_dat);
-			/*リソースのアンロード*/
-			void UnloadResource_(ResourceData& res_dat);
-			/*リソースデータの登録*/
-			bool RegisterResourceData_(ResourceData&& res_dat);
-
-
-			/*リソースリストの読み込み*/
-			bool _LoadResourceList();
-			/*読み込まれているすべてのリソースをアンロードする*/
-			void _UnloadAllLoadedResources();
+			void AddResourceCreatorMap_(const std::string& type_name, const _ResourceCreatorType& creator);
 		};
 	}
 }
