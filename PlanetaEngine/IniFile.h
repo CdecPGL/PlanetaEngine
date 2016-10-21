@@ -2,10 +2,10 @@
 
 #include <vector>
 #include <unordered_map>
-#include "ResourceBase.h"
 #include "boost/optional.hpp"
 
 namespace planeta {
+	class File;
 	/*! INIファイルを扱うためのクラス*/
 	class IniFile final{
 	public:

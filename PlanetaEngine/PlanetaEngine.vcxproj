@@ -164,6 +164,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="CollisionState.h" />
+    <ClInclude Include="CsvFile.h" />
     <ClInclude Include="EffekseerUtil.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
@@ -374,6 +375,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="CsvFile.cpp" />
     <ClCompile Include="EffekseerUtil.cpp" />
     <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />

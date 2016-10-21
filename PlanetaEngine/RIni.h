@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "ResourceBase.h"
 #include "IniFile.h"
 
 namespace planeta {

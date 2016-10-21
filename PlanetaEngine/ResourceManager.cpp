@@ -150,7 +150,8 @@ namespace planeta {
 				PE_LOG_ERROR("リソースリストファイルをCSV形式として読み込めませんでした。(", _resource_list_file_name, ")");
 				return false;
 			}
-			for (const auto& l : *csv) {
+			decltype(auto) csv_file = csv->csv_file();
+			for (const auto& l : csv_file) {
 				ResourceData rd;
 				std::vector<std::string> tags;
 				if (l.size() < 4) {

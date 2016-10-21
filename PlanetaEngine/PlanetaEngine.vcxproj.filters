@@ -849,6 +849,9 @@
     <ClInclude Include="IniFile.h">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClInclude>
+    <ClInclude Include="CsvFile.h">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1230,6 +1233,9 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="IniFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="CsvFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
   </ItemGroup>
