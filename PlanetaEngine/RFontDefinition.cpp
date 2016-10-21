@@ -5,7 +5,7 @@
 #include "boost/lexical_cast.hpp"
 #include "DxLib.h"
 #include "MakeResource.h"
-#include "RXml.h"
+#include "XmlFile.h"
 #include "File.h"
 #include "FileSystemManager.h"
 #include "SystemLog.h"
@@ -18,9 +18,9 @@
 namespace planeta {
 	bool RFontDefinition::_Create(const File& file) {
 		auto file_accessor = FileSystemManager::instance().GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
-		auto xml = private_::MakeResource<RXml>();
-		if (xml->Create(file)) {
-			auto root = xml->GetRootElement();
+		XmlFile xml{};
+		if (xml.Load(file)) {
+			auto root = xml.GetRootElement();
 			auto fd_elem = root->FindFirstChild("font_definition");
 			std::string resource_id_or_path = "<リソースID又はパスが未指定>";
 			if (fd_elem) {

@@ -855,6 +855,9 @@
     <ClInclude Include="JsonFile.h">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClInclude>
+    <ClInclude Include="XmlFile.h">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1242,6 +1245,9 @@
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="JsonFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
   </ItemGroup>

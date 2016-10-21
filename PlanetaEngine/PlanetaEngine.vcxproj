@@ -362,6 +362,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="WindowsUtility.h" />
     <ClInclude Include="RXml.h" />
+    <ClInclude Include="XmlFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AESEncrypter.cpp" />
@@ -493,6 +494,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TransformSystem.cpp" />
     <ClCompile Include="WindowsUtility.cpp" />
     <ClCompile Include="RXml.cpp" />
+    <ClCompile Include="XmlFile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
