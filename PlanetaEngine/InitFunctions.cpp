@@ -76,7 +76,8 @@ namespace planeta {
 				}
 				//各種設定データを取得する
 				try {
-					auto root_obj = json_res->GetRoot().Get<JSONObject>();
+					decltype(auto) json_file = json_res->json_file();
+					auto root_obj = json_file.GetRoot().Get<JSONObject>();
 					auto scene_obj = root_obj->AtWithException(prog_def::SCENE_SECTION)->GetWithException<JSONObject>();
 					auto col_obj = root_obj->AtWithException(prog_def::COLLISION_SECTION)->GetWithException<JSONObject>();
 					//シーン

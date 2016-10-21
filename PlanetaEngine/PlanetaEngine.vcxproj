@@ -176,6 +176,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
     <ClInclude Include="IniFile.h" />
+    <ClInclude Include="JsonFile.h" />
     <ClInclude Include="LuaBindHelder.h" />
     <ClInclude Include="MacroUtility.h" />
     <ClInclude Include="PlanetaEngine.h" />
@@ -383,6 +384,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GOComponentAdder.cpp" />
     <ClCompile Include="GOComponentGetter.cpp" />
     <ClCompile Include="IniFile.cpp" />
+    <ClCompile Include="JsonFile.cpp" />
     <ClCompile Include="PrefixUtility.cpp" />
     <ClCompile Include="REffect.cpp" />
     <ClCompile Include="ReflectableClassAccessor.cpp" />

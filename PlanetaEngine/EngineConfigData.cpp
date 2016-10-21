@@ -33,7 +33,8 @@ namespace planeta {
 					return false;
 				}
 				try {
-					decltype(auto) root_obj = json_res->GetRoot().GetWithException<JSONObject>();
+					decltype(auto) json_file = json_res->json_file();
+					decltype(auto) root_obj = json_file.GetRoot().GetWithException<JSONObject>();
 					auto game_obj = root_obj->AtWithException("Game")->GetWithException<JSONObject>();
 					auto engine_obj = root_obj->AtWithException("Engine")->GetWithException<JSONObject>();
 					auto user_obj = root_obj->AtWithException("User")->GetWithException<JSONObject>();
