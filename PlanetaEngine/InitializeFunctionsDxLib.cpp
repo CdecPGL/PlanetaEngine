@@ -7,14 +7,15 @@
 #include "SystemLog.h"
 #include "CharacterCode.h"
 
+#include "EffekseerUtil.h"
+
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
+			//////////////////////////////////////////////////////////////////////////
+			//DXライブラリの初期化
+			//////////////////////////////////////////////////////////////////////////
 			std::tuple<bool, std::function<void()>> InitializeDxLib() {
-				//////////////////////////////////////////////////////////////////////////
-				//DXライブラリの初期化
-				//Effekseerの初期化も行う
-				//////////////////////////////////////////////////////////////////////////
 				//ログ出力先を変更
 				SetApplicationLogSaveDirectory(system_variables::file_system::LogDirectory.c_str());
 				//ウインドウモード設定
@@ -38,16 +39,26 @@ namespace planeta {
 					PE_LOG_FATAL("DXライブラリの初期化に失敗しました。");
 					return{ false,[] {} };
 				}
+				return{ true,[] { DxLib_End(); } };
+			}
+			//////////////////////////////////////////////////////////////////////////
+			//Effekseerの初期化
+			//////////////////////////////////////////////////////////////////////////
+			class 
+			std::tuple<bool, std::function<void()>> InitializeEffekseer() {
 				//Effekseerの初期化
 				if (Effkseer_Init(2000) < 0) {
 					PE_LOG_FATAL("Effekseerの初期化に失敗しました。");
-					return{ false,[] { DxLib_End(); } };
+					return{ false,[] {} };
 				}
 				//Effeseerの設定
 				SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 				Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+				decltype(auto) eff_mgr = GetEffekseer3DManager();
+				eff_mgr->SetEffectLoader(new private_::EffectLoaderForEffekseer{});
+				eff_mgr->SetTextureLoader(new private_::TextureLoaderForEffekseer{ GetEffekseer3DRenderer() });
 
-				return{ true,[] { Effkseer_End(); DxLib_End(); } };
+				return{ true,[] { Effkseer_End(); } };
 			}
 		}
 	}

@@ -164,6 +164,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="CollisionState.h" />
+    <ClInclude Include="EffekseerUtil.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
     <ClInclude Include="BGMController.h" />
@@ -173,10 +174,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="IniFile.h" />
     <ClInclude Include="LuaBindHelder.h" />
     <ClInclude Include="MacroUtility.h" />
     <ClInclude Include="PlanetaEngine.h" />
     <ClInclude Include="PrefixUtility.h" />
+    <ClInclude Include="REffect.h" />
     <ClInclude Include="Reflectable.h" />
     <ClInclude Include="ReflectableClassAccessor.h" />
     <ClInclude Include="Reflection.h" />
@@ -371,12 +374,15 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionDetectFunctions.cpp" />
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="EffekseerUtil.cpp" />
     <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GOComponentAdder.cpp" />
     <ClCompile Include="GOComponentGetter.cpp" />
+    <ClCompile Include="IniFile.cpp" />
     <ClCompile Include="PrefixUtility.cpp" />
+    <ClCompile Include="REffect.cpp" />
     <ClCompile Include="ReflectableClassAccessor.cpp" />
     <ClCompile Include="Reflection.cpp" />
     <ClCompile Include="InitFunctions.cpp" />

@@ -208,6 +208,9 @@
     <Filter Include="PlanetaEngine\Core\Vector">
       <UniqueIdentifier>{bc9953e4-eaa5-4ab3-b8dc-7f0910d884cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\FileFormats">
+      <UniqueIdentifier>{4bc3e4db-8f4d-461f-8e63-dd0aaa068d6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -837,6 +840,15 @@
     <ClInclude Include="MacroUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="REffect.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="EffekseerUtil.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="IniFile.h">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1210,6 +1222,15 @@
     </ClCompile>
     <ClCompile Include="ResourceBase.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="REffect.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="EffekseerUtil.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="IniFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@ namespace planeta {
 				is_usable_ = true;
 				return true;
 			} else { 
+				ClearReference();
 				PE_LOG_ERROR("ファイル\"", file.file_name(), "\"からのリソース作成に失敗しました。リソースタイプは\"", typeid(*this).name(), "\"。");
 				return false; 
 			}
@@ -30,11 +31,20 @@ namespace planeta {
 		void ResourceBase::Dispose() {
 			if (is_usable_) {
 				_Dispose();
+				ClearReference();
 				is_usable_ = false;
 			} else {
 				//破棄処理の重複は許す
 				//PE_LOG_ERROR("破棄済みのリソースを破棄しようとしました。リソースタイプは\"", typeid(*this).name(), "\"。");
 			}
+		}
+
+		void ResourceBase::AddReferenceResource(const std::shared_ptr<ResourceBase>& res) {
+			reference_resources.push_back(res);
+		}
+
+		void ResourceBase::ClearReference() {
+			reference_resources.clear();
 		}
 
 	}

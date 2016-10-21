@@ -61,11 +61,11 @@ namespace planeta{
 				}
 			}
 			/*リソースをパスで取得*/
-			std::shared_ptr<ResourceBase> GetResourceByPath(const std::string& path);
+			std::shared_ptr<ResourceBase> GetResourceByPath(const std::string& path, const std::string& root_path = "");
 			template<class RT>
-			std::shared_ptr<RT> GetResourceByPath(const std::string& path) {
+			std::shared_ptr<RT> GetResourceByPath(const std::string& path, const std::string& root_path = "") {
 				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-				auto rsc = GetResourceByPath(path);
+				auto rsc = GetResourceByPath(path, root_path);
 				if (rsc) {
 					auto out = std::dynamic_pointer_cast<RT>(rsc);
 					if (out) {
@@ -78,7 +78,24 @@ namespace planeta{
 					return nullptr;
 				}
 			}
-
+			/*リソースをIDかパスで取得(重複時はIDが優先される)*/
+			std::shared_ptr<ResourceBase> GetResourceByIDorPath(const std::string& id_or_path, const std::string& root_path = "");
+			template<class RT>
+			std::shared_ptr<RT> GetResourceByIDorPath(const std::string& id_or_path, const std::string& root_path = "") {
+				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
+				auto rsc = GetResourceByIDorPath(id_or_path, root_path);
+				if (rsc) {
+					auto out = std::dynamic_pointer_cast<RT>(rsc);
+					if (out) {
+						return out;
+					} else {
+						PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
+						return nullptr;
+					}
+				} else {
+					return nullptr;
+				}
+			}
 			/*ファイルアクセサをセット。初期化前に呼び出す*/
 			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr);
 			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/

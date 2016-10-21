@@ -103,6 +103,14 @@ namespace planeta {
 				else { finalize_handls_.push_front(std::get<1>(ret)); }
 			}
 			//////////////////////////////////////////////////////////////////////////
+			//Effekseerの初期化
+			//////////////////////////////////////////////////////////////////////////
+			{
+				auto ret = init_funcs::InitializeEffekseer();
+				if (std::get<0>(ret) == false) { return false; }
+				else { finalize_handls_.push_front(std::get<1>(ret)); }
+			}
+			//////////////////////////////////////////////////////////////////////////
 			//描画システムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			if(private_::RenderManager::instance().Initialize()){ finalize_handls_.push_front([] {private_::RenderManager::instance().Finalize(); }); }

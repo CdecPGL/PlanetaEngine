@@ -10,7 +10,7 @@ namespace planeta {
 	private:
 		bool _Create(const File& file) override;
 		void _Dispose() override;
-		int handle_ = -1;
+		int handle_;
 		int size_ = 0;
 	};
 }

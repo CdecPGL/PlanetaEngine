@@ -11,6 +11,7 @@
 #include "RJson.h"
 #include "RFontDefinition.h"
 #include "RPtree.h"
+#include "REffect.h"
 
 namespace planeta {
 	namespace private_ {
@@ -27,6 +28,7 @@ namespace planeta {
 				rm.AddResourceType<RFontDefinition>(system_variables::resource::BuiltinFontDefinitionResourceTypeName); //フォント定義ファイル
 				rm.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName); //JSONファイル
 				rm.AddResourceType<RPtree>(system_variables::resource::BuiltinPtreeResourceTypeName); //Ptree
+				rm.AddResourceType<REffect>(system_variables::resource::BuiltinEffectResourceTypeName); //Effect
 				rm.SetFileAccessor_(res_file_accessor); //ファイルアクセサセット
 				rm.SetResourceListFileName_(private_::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
 				if (rm.Initialize()) {

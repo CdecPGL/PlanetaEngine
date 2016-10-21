@@ -17,12 +17,15 @@ namespace planeta {
 		protected:
 			virtual bool _Create(const File& file) = 0;
 			virtual void _Dispose() = 0;
+			void AddReferenceResource(const std::shared_ptr<ResourceBase>& res);
 		private:
 			ResourceBase(const ResourceBase&) = delete;
 			ResourceBase(ResourceBase&&) = delete;
 			ResourceBase& operator=(const ResourceBase&) = delete;
 			ResourceBase& operator=(ResourceBase&&) = delete;
 			bool is_usable_ = false; //使用可能か
+			std::vector<std::shared_ptr<ResourceBase>> reference_resources; //参照しているリソース
+			void ClearReference();
 		};
 	}
 }

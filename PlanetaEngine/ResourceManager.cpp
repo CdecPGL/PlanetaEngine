@@ -9,6 +9,9 @@
 
 namespace planeta {
 	namespace private_ {
+		namespace {
+			constexpr char* ANONYMOUS_ID{"<ID未設定>"};
+		}
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_
 		//////////////////////////////////////////////////////////////////////////
@@ -26,6 +29,8 @@ namespace planeta {
 				ResourceData& operator= (ResourceData&&) = default;
 				/*ID*/
 				std::string id = "\0";
+				/*IDが割り当てられているか*/
+				bool is_id_assigned = false;
 				/*ファイルパス*/
 				std::string file_path = "\0";
 				/*種類*/
@@ -108,14 +113,19 @@ namespace planeta {
 		bool ResourceManager::Impl_::RegisterResourceData_(ResourceData&& res_dat) {
 			resource_data_list_.push_back(std::move(res_dat));
 			auto it = --resource_data_list_.end();
+			//タグマップに登録
 			for (auto&& tag : it->tags) {
 				tag_map_[tag].push_back(it);
 			}
-			auto id_map_it = id_map_.find(it->id);
-			if (id_map_.find(it->id) != id_map_.end()) {
-				PE_LOG_ERROR("ID\"", it->id, "\"が重複登録されました。(パス:", it->file_path, ")");
-				return false;
+			//IDマップに登録
+			if (it->is_id_assigned) {
+				auto id_map_it = id_map_.find(it->id);
+				if (id_map_.find(it->id) != id_map_.end()) {
+					PE_LOG_ERROR("ID\"", it->id, "\"が重複登録されました。(パス:", it->file_path, ")");
+					return false;
+				}
 			}
+			//Pathマップに登録
 			id_map_[it->id] = it;
 			if (path_map_.find(it->id) != path_map_.end()) {
 				PE_LOG_ERROR("パス\"", it->file_path, "\"が重複登録されました。(ID:", it->id, ")");
@@ -152,7 +162,13 @@ namespace planeta {
 					PE_LOG_WARNING("リソース定義の項目数が足りません。この行はスキップします。(", line, ")");
 					continue;
 				}
-				rd.id = l[0];
+				if (l[0].empty()) { //IDが指定されていない場合
+					rd.is_id_assigned = false;
+					rd.id = ANONYMOUS_ID;
+				} else { //IDが指定されている場合
+					rd.is_id_assigned = true;
+					rd.id = l[0];
+				}
 				rd.file_path = l[1];
 				rd.type = l[2];
 				for (unsigned int i = 3; i < l.size(); ++i) {
@@ -248,12 +264,18 @@ namespace planeta {
 		bool ResourceManager::UnloadUnusedResouces() {
 			auto& resource_data_list_ = impl_->resource_data_list_;
 			size_t unload{ 0 };
-			for (auto& res_dat : resource_data_list_) {
-				//参照カウントが1だったら未使用とみなす。アンロード不可フラグが立っていたら無視
-				if (res_dat.is_loaded && res_dat.resouce.use_count() == 1 && !res_dat.not_unload) {
-					impl_->UnloadResource_(res_dat);
-					++unload;
+			//未使用リソースがなくなるまでループ。(依存関係によっては一度の走査でアンロードしきれないため)
+			while (true) {
+				size_t new_unload{ 0 };
+				for (auto& res_dat : resource_data_list_) {
+					//参照カウントが1だったら未使用とみなす。アンロード不可フラグが立っていたら無視
+					if (res_dat.is_loaded && res_dat.resouce.use_count() == 1 && !res_dat.not_unload) {
+						impl_->UnloadResource_(res_dat);
+						++unload;
+						++new_unload;
+					}
 				}
+				if (new_unload == 0) { break; }
 			}
 			PE_LOG_MESSAGE(unload, "個の未使用リソースがアンロードされました。");
 			return true;
@@ -296,9 +318,10 @@ namespace planeta {
 			}
 		}
 
-		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByPath(const std::string& path) {
+		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByPath(const std::string& path, const std::string& root_path) {
 			auto& path_map_ = impl_->path_map_;
-			auto it = path_map_.find(path);
+			//必要ならルートパスを連結して検索
+			auto it = path_map_.find(root_path.empty() ? path : root_path + "\\" + path);
 			if (it == path_map_.end()) {
 				PE_LOG_WARNING("定義されていないリソースが要求されました。(パス:", path, ")");
 				return nullptr;
@@ -310,6 +333,14 @@ namespace planeta {
 				assert(it->second->resouce != nullptr);
 				return it->second->resouce;
 			}
+		}
+
+		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByIDorPath(const std::string& id_or_path, const std::string& root_path) {
+			auto res = GetResourceByID(id_or_path);
+			if (res == nullptr) {
+				res = GetResourceByPath(id_or_path, root_path);
+			}
+			return res;
 		}
 
 		void ResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
