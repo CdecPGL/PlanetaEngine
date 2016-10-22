@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <memory>
 #include "Object.h"
+#include "SystemLog.h"
+#include "ResourceReferencer.h"
 
 namespace planeta {
 	class File;
@@ -9,15 +11,15 @@ namespace planeta {
 		class ResourceBase : public Object{
 		public:
 			ResourceBase() = default;
-			virtual ~ResourceBase();;
+			virtual ~ResourceBase();
 
-			bool Create(const File& file);
+			bool Create(const File& file, ResourceManagerInternalAccessor& mgr_acsr);
 			void Dispose();
 			bool is_usable()const { return is_usable_; }
+			size_t reference_conunt()const;
 		protected:
-			virtual bool _Create(const File& file) = 0;
+			virtual bool _Create(const File& file, ResourceReferencer& referencer) = 0;
 			virtual void _Dispose() = 0;
-			void AddReferenceResource(const std::shared_ptr<ResourceBase>& res);
 		private:
 			ResourceBase(const ResourceBase&) = delete;
 			ResourceBase(ResourceBase&&) = delete;

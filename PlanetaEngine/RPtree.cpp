@@ -8,7 +8,7 @@
 
 namespace planeta {
 	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定
-	bool RPtree::_Create(const File& file) {
+	bool RPtree::_Create(const File& file, private_::ResourceReferencer&) {
 		using namespace boost::property_tree;
 		std::shared_ptr<ptree> pt = std::make_shared<ptree>();
 		FileIStream fis(file);

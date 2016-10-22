@@ -1,4 +1,5 @@
 #include "EffekseerUtil.h"
+#include "CharacterCode.h"
 
 namespace planeta {
 	namespace private_ {
@@ -21,25 +22,19 @@ namespace planeta {
 			file_ = file;
 		}
 
-		TextureLoaderForEffekseer::TextureLoaderForEffekseer(::EffekseerRenderer::Renderer* renderer):m_renderer(renderer) {}
+		TextureLoaderForEffekseer::TextureLoaderForEffekseer() {}
 
 		void* TextureLoaderForEffekseer::Load(const EFK_CHAR* path) {
-			/*IDirect3DTexture9* ret = call_back_func_on_load_(path);
-			if (ret) {
-				return ret;
-			} else {
-				PE_LOG_ERROR("テクスチャの読み込みに失敗しました。テクスチャパスは\"", path, "\"。");
-				return nullptr;
-			}*/
-			return nullptr;
+			auto tex = texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)));
+			return tex;
 		}
 
 		void TextureLoaderForEffekseer::Unload(void* data) {
 
 		}
 
-		void TextureLoaderForEffekseer::SetCaIllBackFunctionOnLoad(const std::function<IDirect3DTexture9*(const std::string&)>& func) {
-			call_back_func_on_load_ = func;
+		void TextureLoaderForEffekseer::SetTextureGetter(const std::function<void*(const std::string&)>& func) {
+			texture_getter_ = func;
 		}
 
 	}

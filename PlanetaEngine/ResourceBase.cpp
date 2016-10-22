@@ -9,7 +9,7 @@ namespace planeta {
 			if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); }
 		}
 
-		bool ResourceBase::Create(const File& file) {
+		bool ResourceBase::Create(const File& file, ResourceManagerInternalAccessor& mgr_acsr) {
 			if (is_usable_) { 
 				PE_LOG_ERROR("読み込み済みのリソースをファイル\"", file.file_name(), "\"から再読み込みしようとしました。リソースタイプは\"",typeid(*this).name(),"\"。");
 				return false;
@@ -18,11 +18,13 @@ namespace planeta {
 				PE_LOG_ERROR("無効なファイル\"", file.file_name(), "\"が指定されました。リソースタイプは\"", typeid(*this).name(), "\"。");
 				return false;
 			}
-			if (_Create(file)) {
+			std::vector<std::shared_ptr<ResourceBase>> ref_list;
+			ResourceReferencer referencer{ mgr_acsr, file.file_name(), ref_list };
+			if (_Create(file,referencer)) {
+				reference_resources = std::move(ref_list);
 				is_usable_ = true;
 				return true;
 			} else { 
-				ClearReference();
 				PE_LOG_ERROR("ファイル\"", file.file_name(), "\"からのリソース作成に失敗しました。リソースタイプは\"", typeid(*this).name(), "\"。");
 				return false; 
 			}
@@ -39,8 +41,8 @@ namespace planeta {
 			}
 		}
 
-		void ResourceBase::AddReferenceResource(const std::shared_ptr<ResourceBase>& res) {
-			reference_resources.push_back(res);
+		size_t ResourceBase::reference_conunt() const {
+			return reference_resources.size();
 		}
 
 		void ResourceBase::ClearReference() {

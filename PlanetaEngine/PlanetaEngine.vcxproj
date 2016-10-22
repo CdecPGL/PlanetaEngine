@@ -62,7 +62,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -82,9 +82,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Debug;$(BOOST_ROOT)\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua_mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Debug;$(BOOST_ROOT)\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua_mtd.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -108,7 +110,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -124,9 +126,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Release;$(BOOST_ROOT)\boost_1_61_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Release;$(BOOST_ROOT)\boost_1_61_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua_mt.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -190,6 +194,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ReflectionAccessible.h" />
     <ClInclude Include="ReflectionExceptions.h" />
     <ClInclude Include="ReflectionUtility.h" />
+    <ClInclude Include="ResourceReferencer.h" />
     <ClInclude Include="RJson.h" />
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
@@ -199,6 +204,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ProgramDefinitionData.h" />
     <ClInclude Include="RLuaScript.h" />
     <ClInclude Include="RPtree.h" />
+    <ClInclude Include="REffectTexture.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
@@ -292,7 +298,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="KeyInputManager.h" />
     <ClInclude Include="KeyInputUtils.h" />
     <ClInclude Include="FileManipulatorBase.h" />
-    <ClInclude Include="MakeResource.h" />
     <ClInclude Include="MathConstant.h" />
     <ClInclude Include="MathUtility.h" />
     <ClInclude Include="MathVector.h" />
@@ -398,9 +403,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ReflectionAccessible.cpp" />
     <ClCompile Include="ReflectionUtility.cpp" />
     <ClCompile Include="ResourceBase.cpp" />
+    <ClCompile Include="ResourceReferencer.cpp" />
     <ClCompile Include="RJson.cpp" />
     <ClCompile Include="RLuaScript.cpp" />
     <ClCompile Include="RPtree.cpp" />
+    <ClCompile Include="REffectTexture.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="StringUtility.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />

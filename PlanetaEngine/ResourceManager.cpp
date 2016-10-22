@@ -2,10 +2,12 @@
 
 #include"ResourceManager.h"
 #include "FileSystemManager.h"
-#include "RCsv.h"
+#include "CsvFile.h"
 #include "SystemLog.h"
 #include "FileAccessor.h"
 #include "SystemVariables.h"
+#include "ResourceReferencer.h"
+#include "ResourceBase.h"
 
 namespace planeta {
 	namespace private_ {
@@ -55,7 +57,7 @@ namespace planeta {
 			/*ResourceのタイプによるResourceクリエータマップ*/
 			std::unordered_map<std::string, _ResourceCreatorType> _resource_creator_map;
 			/*リソースの作成*/
-			std::shared_ptr<ResourceBase> _CreateResourceInstanceAndInitialize(const std::string& type, const std::shared_ptr<const File>& file);
+			std::shared_ptr<ResourceBase> _CreateResourceInstanceAndInitialize(const std::string& type, const std::shared_ptr<const File>& file, ResourceManagerInternalAccessor& mgr_acsr);
 			/*リソースのロード*/
 			std::shared_ptr<ResourceBase> LoadResource_(ResourceData& res_dat);
 			/*リソースのアンロード*/
@@ -68,12 +70,27 @@ namespace planeta {
 			bool _LoadResourceList();
 			/*読み込まれているすべてのリソースをアンロードする*/
 			void _UnloadAllLoadedResources();
+			/*内部マネージャアクセサを取得*/
+			ResourceManagerInternalAccessor CreateInternalManagerAccessor();
+			/*リソースをIDで取得する。ロードされていないリソース指定時に警告を出すか指定可能*/
+			std::shared_ptr<ResourceBase> GetResourceByID(const std::string& id, bool is_valid_not_preload_warning);
+			/*リソースをパスで取得する。ロードされていないリソース指定時に警告を出すか指定可能*/
+			std::shared_ptr<ResourceBase> GetResourceByPath(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning);
 		};
 
-		std::shared_ptr<ResourceBase> ResourceManager::Impl_::_CreateResourceInstanceAndInitialize(const std::string& attribute, const std::shared_ptr<const File>& file) {
+		std::shared_ptr<ResourceBase> ResourceManager::Impl_::_CreateResourceInstanceAndInitialize(const std::string& attribute, const std::shared_ptr<const File>& file, ResourceManagerInternalAccessor& mgr_acsr) {
 			auto it = _resource_creator_map.find(attribute);
 			if (it == _resource_creator_map.end()) { return nullptr; }
-			return (it->second)(file);
+			auto res = (it->second)();
+			if (res == nullptr) {
+				PE_LOG_ERROR("リソースのインスタンス作成に失敗しました。");
+				return nullptr;
+			}
+			if (!res->Create(*file, mgr_acsr)) {
+				PE_LOG_ERROR("リソースの作成に失敗しました。");
+				return nullptr;
+			}
+			return res;
 		}
 
 		std::shared_ptr<planeta::private_::ResourceBase> ResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
@@ -84,14 +101,17 @@ namespace planeta {
 				PE_LOG_ERROR("リソースの読み込みに失敗しました。ファイルを読み込めませんでした。");
 				return nullptr;
 			}
+			//マネージャアクセサ作成
+			ResourceManagerInternalAccessor mgr_acsr{CreateInternalManagerAccessor()};
+			//インスタンス作成と初期化
 			std::shared_ptr<ResourceBase> res;
-			if (res_dat.resouce) {
+			if (res_dat.resouce) { //すでにインスタンスは存在したら
 				res = res_dat.resouce;
-				if (res->Create(*file) == false) {
+				if (res->Create(*file, mgr_acsr) == false) {
 					res.reset();
 				}
-			} else {
-				res = _CreateResourceInstanceAndInitialize(res_dat.type, file);
+			} else { //インスタンスが存在しなかったら
+				res = _CreateResourceInstanceAndInitialize(res_dat.type, file, mgr_acsr);
 			}
 			if (res == nullptr) {
 				PE_LOG_ERROR("リソースの読み込みに失敗しました。リソースの作成でエラーが発生しました。");
@@ -145,12 +165,11 @@ namespace planeta {
 				PE_LOG_ERROR("リソースリストファイルを読み込めませんでした。(", _resource_list_file_name, ")");
 				return false;
 			}
-			auto csv = MakeResource<RCsv>();
-			if (csv->Create(*file) == false) {
+			CsvFile csv_file{};
+			if (csv_file.Load(*file) == false) {
 				PE_LOG_ERROR("リソースリストファイルをCSV形式として読み込めませんでした。(", _resource_list_file_name, ")");
 				return false;
 			}
-			decltype(auto) csv_file = csv->csv_file();
 			for (const auto& l : csv_file) {
 				ResourceData rd;
 				std::vector<std::string> tags;
@@ -228,6 +247,50 @@ namespace planeta {
 			not_unload_tags_ = tags;
 			return true;
 		}
+
+		std::shared_ptr<ResourceBase> ResourceManager::Impl_::GetResourceByID(const std::string& id, bool is_valid_not_preload_warning) {
+			auto it = id_map_.find(id);
+			if (it == id_map_.end()) {
+				PE_LOG_WARNING("定義されていないリソースが要求されました。(ID:", id, ")");
+				return nullptr;
+			}
+			if (!it->second->is_loaded) {
+				if (is_valid_not_preload_warning) {
+					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", id, ", パス:", it->second->file_path, ")");
+				}
+				return LoadResource_(*it->second);
+			} else {
+				assert(it->second->resouce != nullptr);
+				return it->second->resouce;
+			}
+		}
+
+		std::shared_ptr<ResourceBase> ResourceManager::Impl_::GetResourceByPath(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
+			//必要ならルートパスを連結して検索
+			auto it = path_map_.find(root_path.empty() ? path : root_path + "\\" + path);
+			if (it == path_map_.end()) {
+				PE_LOG_WARNING("定義されていないリソースが要求されました。(パス:", path, ")");
+				return nullptr;
+			}
+			if (!it->second->is_loaded) {
+				if (is_valid_not_preload_warning) {
+					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", it->second->id, ", パス:", path, ")");
+				}
+				return LoadResource_(*it->second);
+			} else {
+				assert(it->second->resouce != nullptr);
+				return it->second->resouce;
+			}
+		}
+
+		ResourceManagerInternalAccessor ResourceManager::Impl_::CreateInternalManagerAccessor() {
+			namespace sp = std::placeholders;
+			ResourceManagerInternalAccessor mgr_acsr{
+				std::bind(&Impl_::GetResourceByID, this, sp::_1, sp::_2),
+				std::bind(&Impl_::GetResourceByPath, this, sp::_1, sp::_2, sp::_3)
+			};
+			return std::move(mgr_acsr);
+		}
 		//////////////////////////////////////////////////////////////////////////
 		//ResourceManager
 		//////////////////////////////////////////////////////////////////////////
@@ -304,44 +367,7 @@ namespace planeta {
 		}
 
 		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByID(const std::string& id) {
-			auto& id_map_ = impl_->id_map_;
-			auto it = id_map_.find(id);
-			if (it == id_map_.end()) {
-				PE_LOG_WARNING("定義されていないリソースが要求されました。(ID:", id, ")");
-				return nullptr;
-			}
-			if (!it->second->is_loaded) {
-				PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", id, ", パス:", it->second->file_path, ")");
-				return impl_->LoadResource_(*it->second);
-			} else {
-				assert(it->second->resouce != nullptr);
-				return it->second->resouce;
-			}
-		}
-
-		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByPath(const std::string& path, const std::string& root_path) {
-			auto& path_map_ = impl_->path_map_;
-			//必要ならルートパスを連結して検索
-			auto it = path_map_.find(root_path.empty() ? path : root_path + "\\" + path);
-			if (it == path_map_.end()) {
-				PE_LOG_WARNING("定義されていないリソースが要求されました。(パス:", path, ")");
-				return nullptr;
-			}
-			if (!it->second->is_loaded) {
-				PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", it->second->id, ", パス:", path, ")");
-				return impl_->LoadResource_(*it->second);
-			} else {
-				assert(it->second->resouce != nullptr);
-				return it->second->resouce;
-			}
-		}
-
-		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByIDorPath(const std::string& id_or_path, const std::string& root_path) {
-			auto res = GetResourceByID(id_or_path);
-			if (res == nullptr) {
-				res = GetResourceByPath(id_or_path, root_path);
-			}
-			return res;
+			return impl_->GetResourceByID(id, true);
 		}
 
 		void ResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {

@@ -7,7 +7,6 @@
 #include <memory>
 #include "Object.h"
 #include "SingletonTemplate.h"
-#include "MakeResource.h"
 #include "SystemLog.h"
 
 namespace planeta{
@@ -37,9 +36,8 @@ namespace planeta{
 			/*リソースの属性を追加*/
 			template<class C>
 			void AddResourceType(const std::string& type_name) {
-				AddResourceCreatorMap_(type_name, [](const std::shared_ptr<const File>& file)->std::shared_ptr<ResourceBase> {
-					std::shared_ptr<ResourceBase> new_res = MakeResource<C>();
-					return new_res->Create(*file) ? new_res : nullptr;
+				AddResourceCreatorMap_(type_name, []()->std::shared_ptr<ResourceBase> {
+					return MakeResource<C>();
 				});
 			}
 			/*リソースをIDで取得*/
@@ -48,42 +46,6 @@ namespace planeta{
 			std::shared_ptr<RT> GetResourceByID(const std::string& id) {
 				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
 				auto rsc = GetResourceByID(id);
-				if (rsc) {
-					auto out = std::dynamic_pointer_cast<RT>(rsc);
-					if (out) {
-						return out;
-					} else {
-						PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
-						return nullptr;
-					}
-				} else {
-					return nullptr;
-				}
-			}
-			/*リソースをパスで取得*/
-			std::shared_ptr<ResourceBase> GetResourceByPath(const std::string& path, const std::string& root_path = "");
-			template<class RT>
-			std::shared_ptr<RT> GetResourceByPath(const std::string& path, const std::string& root_path = "") {
-				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-				auto rsc = GetResourceByPath(path, root_path);
-				if (rsc) {
-					auto out = std::dynamic_pointer_cast<RT>(rsc);
-					if (out) {
-						return out;
-					} else {
-						PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
-						return nullptr;
-					}
-				} else {
-					return nullptr;
-				}
-			}
-			/*リソースをIDかパスで取得(重複時はIDが優先される)*/
-			std::shared_ptr<ResourceBase> GetResourceByIDorPath(const std::string& id_or_path, const std::string& root_path = "");
-			template<class RT>
-			std::shared_ptr<RT> GetResourceByIDorPath(const std::string& id_or_path, const std::string& root_path = "") {
-				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-				auto rsc = GetResourceByIDorPath(id_or_path, root_path);
 				if (rsc) {
 					auto out = std::dynamic_pointer_cast<RT>(rsc);
 					if (out) {
@@ -107,8 +69,14 @@ namespace planeta{
 			class Impl_;
 			std::unique_ptr<Impl_> impl_;
 			/*リソースクリエータ関数型*/
-			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>(const std::shared_ptr<const File>&)>;
+			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>()>;
 			void AddResourceCreatorMap_(const std::string& type_name, const _ResourceCreatorType& creator);
+			/*リソース用shared_ptr作成*/
+			template<class Res>
+			static std::shared_ptr<Res> MakeResource() {
+				static_assert(std::is_base_of<ResourceBase, Res>::value == true, "Res is not derived ResourceBase.");
+				return std::move(std::shared_ptr<Res>(new Res(), [](Res* r)->void {r->Dispose(); delete r; }));
+			}
 		};
 	}
 }

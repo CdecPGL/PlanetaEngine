@@ -273,9 +273,6 @@
     <ClInclude Include="Vector.h">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClInclude>
-    <ClInclude Include="MakeResource.h">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceBase.h">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClInclude>
@@ -858,6 +855,12 @@
     <ClInclude Include="XmlFile.h">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClInclude>
+    <ClInclude Include="REffectTexture.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceReferencer.h">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1249,6 +1252,12 @@
     </ClCompile>
     <ClCompile Include="XmlFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="REffectTexture.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceReferencer.cpp">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@
 #include "FileAccessor.h"
 #include "SystemLog.h"
 #include "RCsv.h"
-#include "MakeResource.h"
 
 namespace {
 	constexpr char* CommonSaveDataFileName("common_save_data");

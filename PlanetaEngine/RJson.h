@@ -12,7 +12,7 @@ namespace planeta {
 		JsonFile& json_file();
 	private:
 		std::unique_ptr<JsonFile> json_file_;
-		bool _Create(const File& file) override;
+		bool _Create(const File& file, private_::ResourceReferencer&) override;
 		void _Dispose() override;
 	};
 }

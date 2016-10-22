@@ -9,8 +9,7 @@
 #include "FileAccessor.h"
 #include "EngineConfigData.h"
 #include "File.h"
-#include "RJson.h"
-#include "MakeResource.h"
+#include "JsonFile.h"
 #include "ProgramDefinitionData.h"
 
 
@@ -68,15 +67,14 @@ namespace planeta {
 					PE_LOG_ERROR("プログラム用定義ファイルが開けませんでした。");
 					return false;
 				}
-				auto json_res = MakeResource<RJson>();
-				//FileからINIリソースを作成する
-				if (!json_res->Create(*file)) {
+				JsonFile json_file{};
+				//FileからJsonリソースを作成する
+				if (!json_file.Load(*file)) {
 					PE_LOG_ERROR("プログラム用定義ファイルを読み込めませんでした。");
 					return false;
 				}
 				//各種設定データを取得する
 				try {
-					decltype(auto) json_file = json_res->json_file();
 					auto root_obj = json_file.GetRoot().Get<JSONObject>();
 					auto scene_obj = root_obj->AtWithException(prog_def::SCENE_SECTION)->GetWithException<JSONObject>();
 					auto col_obj = root_obj->AtWithException(prog_def::COLLISION_SECTION)->GetWithException<JSONObject>();

@@ -46,6 +46,7 @@ namespace planeta{
 				extern const std::string BuiltinJSONResourceTypeName; //標準のJSONファイルリソースタイプ名
 				extern const std::string BuiltinPtreeResourceTypeName; //標準のPropertyTreeリソースタイプ名
 				extern const std::string BuiltinEffectResourceTypeName; //標準のEffectリソースタイプ名
+				extern const std::string BuiltinEffectTextureResourceTypeName; //標準のEffectテクスチャリソースタイプ名
 			}
 			namespace prefixes {
 				extern const char Scene;

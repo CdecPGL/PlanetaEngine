@@ -4,7 +4,6 @@
 #include <sstream>
 #include "boost/lexical_cast.hpp"
 #include "DxLib.h"
-#include "MakeResource.h"
 #include "XmlFile.h"
 #include "File.h"
 #include "FileSystemManager.h"
@@ -16,7 +15,7 @@
 #include "RFont.h"
 
 namespace planeta {
-	bool RFontDefinition::_Create(const File& file) {
+	bool RFontDefinition::_Create(const File& file, private_::ResourceReferencer& referencer) {
 		auto file_accessor = FileSystemManager::instance().GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
 		XmlFile xml{};
 		if (xml.Load(file)) {
@@ -29,12 +28,11 @@ namespace planeta {
 				if (elem) {
 					resource_id_or_path = elem->text();
 					//指定されたフォントリソース取得
-					auto f_res = private_::ResourceManager::instance().GetResourceByIDorPath<RFont>(resource_id_or_path);
+					auto f_res = referencer.ReferenceResourceByIDorPath<RFont>(resource_id_or_path);
 					if (f_res == nullptr) {
 						PE_LOG_ERROR("フォントリソースの取得に失敗しました。(", elem->text(), ")");
 						return false;
 					}
-					AddReferenceResource(f_res);
 				}
 				//フォント定義データを読み込み
 				std::string name;
@@ -87,6 +85,6 @@ namespace planeta {
 	}
 
 	void RFontDefinition::_Dispose() {
-		
+		if (handle_ >= 0) { DeleteFontToHandle(handle_); }
 	}
 }

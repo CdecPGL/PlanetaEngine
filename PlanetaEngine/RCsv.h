@@ -11,7 +11,7 @@ namespace planeta {
 	private:
 		std::unique_ptr<CsvFile> csv_file_;
 
-		bool _Create(const File& file) override;
+		bool _Create(const File& file, private_::ResourceReferencer&) override;
 		void _Dispose()override;
 	};
 }

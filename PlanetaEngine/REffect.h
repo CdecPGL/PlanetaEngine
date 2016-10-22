@@ -8,7 +8,7 @@ namespace planeta {
 		~REffect() {};
 		int effect_handle()const;
 	private:
-		virtual bool _Create(const File& file) override;
+		virtual bool _Create(const File& file, private_::ResourceReferencer&) override;
 		virtual void _Dispose() override;
 		int effect_handle_ = -1;
 	};

@@ -1,8 +1,7 @@
 ﻿#include "boost/lexical_cast.hpp"
 #include "EngineConfigData.h"
-#include "RJson.h"
+#include "JsonFile.h"
 #include "FileSystemUtility.h"
-#include "MakeResource.h"
 #include "File.h"
 
 namespace planeta {
@@ -25,15 +24,13 @@ namespace planeta {
 		namespace private_ {
 			bool LoadConfigData(const std::shared_ptr<File>& file) {
 				assert(file != nullptr && file->is_available());
-
-				auto json_res = planeta::private_::MakeResource<RJson>();
+				JsonFile json_file{};
 				//FileからJSONリソースを作成する
-				if (!json_res->Create(*file)) {
+				if (!json_file.Load(*file)) {
 					PE_LOG_ERROR("設定ファイルをJSONファイルとして読み込むことができませんでした。");
 					return false;
 				}
 				try {
-					decltype(auto) json_file = json_res->json_file();
 					decltype(auto) root_obj = json_file.GetRoot().GetWithException<JSONObject>();
 					auto game_obj = root_obj->AtWithException("Game")->GetWithException<JSONObject>();
 					auto engine_obj = root_obj->AtWithException("Engine")->GetWithException<JSONObject>();

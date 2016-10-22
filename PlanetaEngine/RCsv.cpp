@@ -10,7 +10,7 @@ namespace planeta {
 		return *csv_file_;
 	}
 
-	bool RCsv::_Create(const File& file) {
+	bool RCsv::_Create(const File& file, private_::ResourceReferencer&) {
 		csv_file_ = std::make_unique<CsvFile>();
 		if (!csv_file_->Load(file)) {
 			PE_LOG_ERROR("CSVファイルの読み込みに失敗しました。");
