@@ -1,6 +1,7 @@
 ﻿#include <cassert>
 #include "RenderManager.h"
 #include "DxLib.h"
+#include "EffekseerForDXLib.h"
 #include "Screen.h"
 #include "SystemLog.h"
 
@@ -38,8 +39,19 @@ namespace planeta {
 			////DrawWire({ Vector2Dd(640,0),Vector2Dd(608,32) }, 1, Color::Yellow());
 			////DrawWire({ Vector2Dd(640,480),Vector2Dd(608,448) }, 1, Color::Magenta());
 			////DrawWire({ Vector2Dd(0,480),Vector2Dd(32,448) }, 1, Color::Cyan());
-			//スクリーンに描画
+
+			//DXライブラリ描画
 			primary_screen_->HandleDrawReservations();
+			//Effekseerの更新
+			Effekseer::Manager* eff_mgr = GetEffekseer3DManager();
+			eff_mgr->Update();
+			//Effekseer描画
+			EffekseerRenderer::Renderer* eff_rederr = GetEffekseer3DRenderer();
+			RenderVertex();
+			eff_rederr->BeginRendering();
+			eff_mgr->Draw();
+			eff_rederr->EndRendering();
+			RefreshDxLibDirect3DSetting();
 			//画面更新
 			if (!(ScreenFlip() == 0 && ClearDrawScreen() == 0)) { return false; }
 			return true;

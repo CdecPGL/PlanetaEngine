@@ -6,6 +6,7 @@
 #include "RenderManager.h"
 #include "CCamera2D.h"
 #include "DxLib.h"
+#include "EffekseerForDXLib.h"
 #include "EngineConfigData.h"
 #include "CTransform2D.h"
 #include "Screen.h"
@@ -87,6 +88,8 @@ namespace planeta{
 				Vector2Dd pos = camera2d_->position();
 				SetupCamera_Ortho((float)(engine_config::engine::DrawSize().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
+				//Effekseerのカメラを同期
+				Effekseer_Sync3DSetting();
 			} else {
 				PE_LOG_WARNING("シーン内にカメラ2Dが登録されていません。");
 			}
