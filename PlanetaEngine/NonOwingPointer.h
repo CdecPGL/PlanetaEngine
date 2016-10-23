@@ -39,7 +39,7 @@ namespace planeta {
 			return ptr_ != nullptr;
 		}
 		//! ポインタのリセット
-		void reset(NonOwingPointer no_ptr) {
+		void reset(const NonOwingPointer& no_ptr) {
 			ptr_ = no_ptr.ptr_;
 		}
 	private:

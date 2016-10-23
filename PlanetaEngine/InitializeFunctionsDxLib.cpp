@@ -54,6 +54,8 @@ namespace planeta {
 				//Effeseerの設定
 				SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 				Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+				SetUseZBuffer3D(true);
+				SetWriteZBuffer3D(true);
 				decltype(auto) eff_mgr = GetEffekseer3DManager();
 				//eff_mgr->SetEffectLoader(new private_::EffectLoaderForEffekseer{});
 				eff_mgr->SetTextureLoader(new private_::TextureLoaderForEffekseer{});

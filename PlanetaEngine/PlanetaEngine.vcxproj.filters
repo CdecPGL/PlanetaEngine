@@ -861,6 +861,9 @@
     <ClInclude Include="ResourceReferencer.h">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="CEffect.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1258,6 +1261,9 @@
     </ClCompile>
     <ClCompile Include="ResourceReferencer.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
