@@ -45,8 +45,8 @@ namespace planeta {
 			auto* eff_mgr = GetEffekseer3DManager();
 			auto& trans = *my_c_transform_2d_;
 			effect_handle_ = eff_mgr->Play(reffect_->effekseer_effect(), trans.position().x, trans.position().y, 0);
-			//eff_mgr->SetPaused(effect_handle_, false);
-			//eff_mgr->SetShown(effect_handle_, false);
+			eff_mgr->SetPaused(effect_handle_, true);
+			eff_mgr->SetShown(effect_handle_, false);
 			return effect_handle_ >= 0;
 		} else {
 			return true;
@@ -56,8 +56,8 @@ namespace planeta {
 	bool CEffect::Impl_::StartEffect() {
 		if (reffect_) {
 			auto* eff_mgr = GetEffekseer3DManager();
-			//eff_mgr->SetPaused(effect_handle_, true);
-			//eff_mgr->SetShown(effect_handle_, true);
+			eff_mgr->SetPaused(effect_handle_, false);
+			eff_mgr->SetShown(effect_handle_, true);
 		}
 		return true;
 	}
@@ -65,8 +65,8 @@ namespace planeta {
 	bool CEffect::Impl_::PauseEffect() {
 		if (reffect_) {
 			auto* eff_mgr = GetEffekseer3DManager();
-			//eff_mgr->SetPaused(effect_handle_, false);
-			//eff_mgr->SetShown(effect_handle_, false);
+			eff_mgr->SetPaused(effect_handle_, true);
+			eff_mgr->SetShown(effect_handle_, false);
 		}
 		return true;
 	}
@@ -148,6 +148,7 @@ namespace planeta {
 					}
 				}
 			}
+			PE_LOG_MESSAGE("asdjiaosjdiajdiasjdiajsiod");
 		});
 		return true;
 	}
