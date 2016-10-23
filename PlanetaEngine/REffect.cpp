@@ -6,6 +6,8 @@
 #include "EffekseerUtil.h"
 #include "REffectTexture.h"
 
+#include "EffekseerUtil.h"
+
 Effekseer::Effect* planeta::REffect::effekseer_effect() const {
 	return effekseer_effect_;
 }
@@ -18,6 +20,7 @@ bool planeta::REffect::_Create(const File& file, private_::ResourceReferencer& r
 	assert(dynamic_cast<private_::EffectLoaderForEffekseer*>(eff_ldr) != nullptr);
 	static_cast<private_::EffectLoaderForEffekseer*>(eff_ldr)->SetFile(&file);*/
 	//テクスチャローダーの設定
+	eff_mgr->SetTextureLoader(new private_::TextureLoaderForEffekseer);
 	decltype(auto) txr_ldr = eff_mgr->GetTextureLoader();
 	assert(dynamic_cast<private_::TextureLoaderForEffekseer*>(txr_ldr) != nullptr);
 	static_cast<private_::TextureLoaderForEffekseer*>(txr_ldr)->SetTextureGetter([&referencer] (const std::string& path)->void*{
@@ -36,12 +39,6 @@ bool planeta::REffect::_Create(const File& file, private_::ResourceReferencer& r
 		return false;
 	}
 	effekseer_effect_ = effect;
-	/*int hdr = LoadEffekseerEffect(file.file_name().c_str());
-	if (hdr < 0) {
-		PE_LOG_ERROR("Effekseerファイルの読み込みに失敗しました。");
-		return false;
-	}
-	effect_handle_ = hdr;*/
 	return true;
 }
 

@@ -4,7 +4,6 @@
 namespace planeta {
 	namespace private_ {
 		bool EffectLoaderForEffekseer::Load(const EFK_CHAR*, void*& data, int32_t& size) {
-			PE_LOG_MESSAGE("EffekseerEffectLoaderé¿çs");
 			assert(file_ != nullptr);
 			size = static_cast<int32_t>(file_->size());
 			data = new uint8_t[size];
@@ -25,8 +24,7 @@ namespace planeta {
 
 		TextureLoaderForEffekseer::TextureLoaderForEffekseer() {}
 
-		void* TextureLoaderForEffekseer::Load(const EFK_CHAR* path) {
-			PE_LOG_MESSAGE("EffekseerTextureLoaderé¿çs");
+		void* TextureLoaderForEffekseer::Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType) {
 			auto tex = texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)));
 			return tex;
 		}

@@ -1,5 +1,7 @@
 ﻿#include <cassert>
 
+#include "boost/algorithm/string.hpp"
+
 #include"ResourceManager.h"
 #include "FileSystemManager.h"
 #include "CsvFile.h"
@@ -8,6 +10,12 @@
 #include "SystemVariables.h"
 #include "ResourceReferencer.h"
 #include "ResourceBase.h"
+
+namespace {
+	std::string UnifyPath(const std::string& src) {
+		return boost::algorithm::replace_all_copy(src, "/", "\\");
+	}
+}
 
 namespace planeta {
 	namespace private_ {
@@ -144,9 +152,9 @@ namespace planeta {
 					PE_LOG_ERROR("ID\"", it->id, "\"が重複登録されました。(パス:", it->file_path, ")");
 					return false;
 				}
+				id_map_[it->id] = it;
 			}
 			//Pathマップに登録
-			id_map_[it->id] = it;
 			if (path_map_.find(it->id) != path_map_.end()) {
 				PE_LOG_ERROR("パス\"", it->file_path, "\"が重複登録されました。(ID:", it->id, ")");
 				return false;
@@ -189,7 +197,8 @@ namespace planeta {
 					rd.is_id_assigned = true;
 					rd.id = l[0];
 				}
-				rd.file_path = l[1];
+				//パスの設定
+				rd.file_path = UnifyPath(l[1]);
 				rd.type = l[2];
 				for (unsigned int i = 3; i < l.size(); ++i) {
 					rd.tags.push_back(l[i]);
@@ -266,15 +275,16 @@ namespace planeta {
 		}
 
 		std::shared_ptr<ResourceBase> ResourceManager::Impl_::GetResourceByPath(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
-			//必要ならルートパスを連結して検索
-			auto it = path_map_.find(root_path.empty() ? path : root_path + "\\" + path);
+			//必要ならルートパスを連結
+			std::string upath = UnifyPath(root_path.empty() ? path : root_path + "\\" + path);
+			auto it = path_map_.find(upath);
 			if (it == path_map_.end()) {
-				PE_LOG_WARNING("定義されていないリソースが要求されました。(パス:", path, ")");
+				PE_LOG_WARNING("定義されていないリソースが要求されました。(パス:", upath, ")");
 				return nullptr;
 			}
 			if (!it->second->is_loaded) {
 				if (is_valid_not_preload_warning) {
-					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", it->second->id, ", パス:", path, ")");
+					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", it->second->id, ", パス:", upath, ")");
 				}
 				return LoadResource_(*it->second);
 			} else {

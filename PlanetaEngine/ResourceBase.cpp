@@ -1,6 +1,7 @@
 #include "ResourceBase.h"
 #include "SystemLog.h"
 #include "File.h"
+#include "boost/filesystem/path.hpp"
 
 namespace planeta {
 	namespace private_ {
@@ -19,7 +20,9 @@ namespace planeta {
 				return false;
 			}
 			std::vector<std::shared_ptr<ResourceBase>> ref_list;
-			ResourceReferencer referencer{ mgr_acsr, file.file_name(), ref_list };
+			//このリソースの存在するディレクトリパスを求める。
+			std::string rpath = boost::filesystem::path(file.file_name()).parent_path().string();
+			ResourceReferencer referencer{ mgr_acsr, rpath, ref_list };
 			if (_Create(file,referencer)) {
 				reference_resources = std::move(ref_list);
 				is_usable_ = true;

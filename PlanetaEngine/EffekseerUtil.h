@@ -21,7 +21,7 @@ namespace planeta {
 		public:
 			TextureLoaderForEffekseer();
 			void SetTextureGetter(const std::function<void*(const std::string&)>& func);
-			void* Load(const EFK_CHAR* path);
+			void* Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType)override;
 			void Unload(void* data);
 		private:
 			std::function<void*(const std::string&)> texture_getter_;
