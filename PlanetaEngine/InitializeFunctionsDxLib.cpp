@@ -51,6 +51,9 @@ namespace planeta {
 					PE_LOG_FATAL("Effekseerの初期化に失敗しました。");
 					return{ false,[] {} };
 				}
+				if (Effekseer_InitDistortion(1) < 0) {
+					PE_LOG_WARNING("Effekseerの歪み機能を初期化できませんでした。");
+				}
 				//Effeseerの設定
 				SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 				Effekseer_SetGraphicsDeviceLostCallbackFunctions();
