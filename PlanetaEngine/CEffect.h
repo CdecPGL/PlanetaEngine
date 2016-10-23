@@ -11,8 +11,11 @@ namespace planeta {
 		CEffect();
 		~CEffect();
 		void resource_id(const std::string& resource_id);
+		/*! エフェクトを再生中か確認*/
 		bool is_playing()const;
+		/*! ループするかのフラグを設定*/
 		void roop_flag(bool f);
+		/*! ループするかのフラグを取得*/
 		bool roop_flag()const;
 	protected:
 		virtual bool GetOtherComponentsProc(const GOComponentGetter&) override;

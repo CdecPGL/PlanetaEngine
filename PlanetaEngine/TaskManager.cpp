@@ -83,12 +83,12 @@ namespace planeta {
 			NameMapType::iterator iterator_at_task_name_map;
 			bool is_named = false;
 			int group_number; //所属しているタスクグループ番号
-			TaskGroupType::iterator iterator_at_task_group_list; //所属しているタスクグループでのイテレータ
+			TaskGroupType::iterator iterator_at_task_excution_list; //所属しているタスクグループでのイテレータ
 			TaskState state = TaskState::Pausing;
 		};
 	private:
 		//タスク群リスト
-		std::array<TaskGroupType, SLOT_COUNT> task_group_list_;
+		std::array<TaskGroupType, SLOT_COUNT> task_excution_list_;
 
 		/*タスクリスト*/
 		TaskListType task_data_list_;
@@ -168,22 +168,24 @@ namespace planeta {
 				return false;
 			}
 			//再開処理を追加
-			management_process_list_.push_back([&tdata, this] {
-				ActivateTask(tdata);
-			});
+			/*management_process_list_.push_back([&tdata, this] {
+			ActivateTask(tdata);
+			});*/
 			tdata.state = TaskState::ResumeRequested;
+			//再開処理はすぐに実行する。(実行リストにはstd::listを用いており、ループ中に末尾に追加されても問題ないため)
+			ActivateTask(tdata);
 			return true;
 		}
 		//////////////////////////////////////////////////////////////////////////
 		/*タスクの有効化*/
 		void ActivateTask(TaskData& tdata) {
-			task_group_list_[tdata.group_number].push_back(tdata.task.get());
-			tdata.iterator_at_task_group_list = --task_group_list_[tdata.group_number].end();
+			task_excution_list_[tdata.group_number].push_back(tdata.task.get());
+			tdata.iterator_at_task_excution_list = --task_excution_list_[tdata.group_number].end();
 			tdata.state = TaskState::Running;
 		}
 		/*タスクの無効化*/
 		bool InctivateTask(TaskData& tdata) {
-			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list);
+			task_excution_list_[tdata.group_number].erase(tdata.iterator_at_task_excution_list);
 			tdata.state = TaskState::Pausing;
 			return true;
 		}
@@ -194,7 +196,7 @@ namespace planeta {
 				task_name_map_.erase(tdata.iterator_at_task_name_map); //名前マップから削除
 			}
 			if (tdata.state == TaskState::Running) {
-				task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list); //タスクグループリストから削除
+				task_excution_list_[tdata.group_number].erase(tdata.iterator_at_task_excution_list); //タスクグループリストから削除
 			}
 			tdata.state = TaskState::Disposed;
 			return true;
@@ -225,8 +227,8 @@ namespace planeta {
 			//タスクグループリストに登録して、自身を指すイテレータを保持
 			if (auto_run) {
 				ptdata->state = TaskState::Running;
-				task_group_list_[group_number].push_back(task.get());
-				ptdata->iterator_at_task_group_list = --task_group_list_[group_number].end();
+				task_excution_list_[group_number].push_back(task.get());
+				ptdata->iterator_at_task_excution_list = --task_excution_list_[group_number].end();
 			}
 
 			return ptdata;
@@ -253,7 +255,7 @@ namespace planeta {
 		//有効なタスクのメンバ関数を実行
 		void ExcuteValidTasksFunction(void(Task::* func)()) {
 			for (int i = 0; i < SLOT_COUNT; ++i) {
-				auto & tg = task_group_list_[i];
+				auto & tg = task_excution_list_[i];
 				for (auto& t : tg) {
 					(t->*func)();
 				}
@@ -264,7 +266,7 @@ namespace planeta {
 			management_process_list_.clear();
 			task_name_map_.clear();
 			task_data_list_.clear();
-			for (auto&& tg : task_group_list_) {
+			for (auto&& tg : task_excution_list_) {
 				tg.clear();
 			}
 		}
