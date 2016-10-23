@@ -119,6 +119,7 @@ namespace planeta {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CEffect, roop_flag)
 			.PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(CEffect, resource_id)
+			.PE_REFLECTABLE_CLASS_READONLY_PROPERTY(CEffect, is_playing)
 			.DeepCopyTarget(&CEffect::impl_);
 	}
 
