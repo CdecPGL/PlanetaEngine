@@ -76,9 +76,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\Tasks">
       <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask">
-      <UniqueIdentifier>{5235ed91-74d5-4bc0-b42b-cbe152f8cf62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D">
       <UniqueIdentifier>{20c2ee0b-64fc-4ceb-8e46-5c2ffa7748b6}</UniqueIdentifier>
     </Filter>
@@ -618,9 +615,6 @@
     <ClInclude Include="TCoroutine.h">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClInclude>
-    <ClInclude Include="TGameObjectOperation.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
-    </ClInclude>
     <ClInclude Include="TaskSlot.h">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClInclude>
@@ -662,9 +656,6 @@
     </ClInclude>
     <ClInclude Include="Collider2DData.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="TGInstant.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClInclude>
     <ClInclude Include="CCamera2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
@@ -1097,9 +1088,6 @@
     <ClCompile Include="TCoroutine.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClCompile>
-    <ClCompile Include="TGameObjectOperation.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
-    </ClCompile>
     <ClCompile Include="TaskManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClCompile>
@@ -1117,9 +1105,6 @@
     </ClCompile>
     <ClCompile Include="SceneSetUpProxy.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="TGInstant.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks\GameObjectOperationTask</Filter>
     </ClCompile>
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>

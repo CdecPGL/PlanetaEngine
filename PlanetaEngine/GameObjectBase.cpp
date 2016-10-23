@@ -5,7 +5,7 @@
 #include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
 #include "SystemLog.h"
-#include "TGameObjectOperation.h"
+#include "Task.h"
 #include "GOComponentAdder.h"
 #include "GOComponentGetter.h"
 #include "RPtree.h"
@@ -49,6 +49,8 @@ namespace planeta {
 		}
 
 		bool GameObjectBase::ProcessInitialization() {
+			state_ = GameObjectState::Initializing;
+
 			GOComponentGetter com_getter(component_holder_);
 
 			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
@@ -57,6 +59,7 @@ namespace planeta {
 			for (auto&& alias_idx : com_alias_idx_map) {
 				if (!com_ary[alias_idx.second]->GetOtherComponentsProc(com_getter)) {
 					PE_LOG_ERROR("GameObjectComponent\"エイリアス:", alias_idx.first, "\"でほかのオブジェクトを取得する処理に失敗しました。");
+					state_ = GameObjectState::Invalid;
 					return false;
 				}
 			}
@@ -64,42 +67,64 @@ namespace planeta {
 			for (auto&& alias_idx : com_alias_idx_map) {
 				if (!com_ary[alias_idx.second]->Initialize()) {
 					PE_LOG_ERROR("GameObjectComponent\"エイリアス:", alias_idx.first, "\"の初期化処理に失敗しました。");
+					state_ = GameObjectState::Invalid;
 					return false;
 				}
 			}
+			state_ = GameObjectState::Inactive;
 			return true;
 		}
 
 		bool GameObjectBase::ProcessActivation() {
+			state_ = GameObjectState::Activating;
+			//コンポーネントの有効化
 			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
 			decltype(auto) com_ary = component_holder_.component_array();
 			for (auto&& alias_idx : com_alias_idx_map) {
 				if (!com_ary[alias_idx.second]->Activate()) {
 					PE_LOG_ERROR("GameObjectComponent\"エイリアス:", alias_idx.first, "\"の有効化処理に失敗しました。");
+					state_ = GameObjectState::Invalid;
 					return false;
 				}
 			}
+			//有効化イベント
 			activated_event_delegate_();
+			//アタッチされたタスクの再開
+			CheckAndApplyProcessToAttachedTask([](Task& t)-> bool {return t.Resume(); });
+
+			state_ = GameObjectState::Active;
 			return true;
 		}
 
 		bool GameObjectBase::ProcessInactivation() {
+			state_ = GameObjectState::Inactivating;
+			//アタッチされたタスクの停止
+			CheckAndApplyProcessToAttachedTask([](Task& t)-> bool {return t.Pause(); });
+			//無効化イベント
 			inactivated_event_delegate_();
-
+			//コンポーネントの無効化
 			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
 			decltype(auto) com_ary = component_holder_.component_array();
 			for (auto&& alias_idx : com_alias_idx_map) {
 				if (!com_ary[alias_idx.second]->InActivate()) {
 					PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"の無効化処理に失敗しました。");
+					state_ = GameObjectState::Invalid;
 					return false;
 				}
 			}
+			
+			state_ = GameObjectState::Inactive;
 			return true;
 		}
 
 		bool GameObjectBase::ProcessDisposal() {
+			state_ = GameObjectState::Invalid;
+			//アタッチされたタスクの破棄
+			CheckAndApplyProcessToAttachedTask([](Task& t)-> bool {t.Dispose(); return true; });
+			attached_tasks_.clear();
+			//破棄時イベント
 			disposed_event_delegate_();
-
+			//コンポーネントの終了処理
 			for (auto&& com : component_holder_.component_array()) {
 				com->Finalize();
 			}
@@ -192,8 +217,11 @@ namespace planeta {
 			return scene_data_->task_manager_public_interface;
 		}
 
-		void GameObjectBase::SetUpAttachedTask_(TGameObjectOperation& task) {
-			task.Attach(GetPointer(), true);
+		void GameObjectBase::SetUpAttachedTask_(const WeakPointer<Task>& task) {
+			if (state_ == GameObjectState::Active || state_ == GameObjectState::Activating) {
+				task->Resume();
+			}
+			attached_tasks_.push_back(task);
 		}
 
 		bool GameObjectBase::ProcessClonation(const std::shared_ptr<GameObjectBase>& dst) {
@@ -243,6 +271,24 @@ namespace planeta {
 			for (auto&& alias_idx : com_alias_idx_map) {
 				SetSceneAndGODataToComponent_(*com_ary[alias_idx.second]);
 			}
+		}
+
+		bool GameObjectBase::CheckAndApplyProcessToAttachedTask(const std::function<bool(Task&)>& proc) {
+			bool scc = true;
+			for (auto it = attached_tasks_.begin(); it != attached_tasks_.end();) {
+				auto pre = it++;
+				if (!(*pre)) {
+					attached_tasks_.erase(pre);
+					continue;
+				} else {
+					scc &= proc(**pre);
+				}
+			}
+			return scc;
+		}
+
+		GameObjectState GameObjectBase::state()const {
+			return state_;
 		}
 	}
 }

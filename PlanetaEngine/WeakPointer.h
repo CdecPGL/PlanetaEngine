@@ -36,18 +36,7 @@ namespace planeta {
 		/*ポインターを取得*/
 		T* get()const { return w_ptr_._Get(); }
 		//////////アクセス演算子//////////
-		T* operator->() {
-			std::shared_ptr<T> s_ptr = w_ptr_.lock();
-#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
-			assert(s_ptr != nullptr);
-#else //それ以外では例外を投げる
-			if (s_ptr == nullptr) {
-				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
-			}
-#endif
-			return s_ptr.get();
-		}
-		const T* operator->()const {
+		T* operator->()const {
 			std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
 			assert(s_ptr != nullptr);

@@ -38,6 +38,8 @@ namespace planeta {
 			DelegateConnection AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
 			//破棄イベントハンドラ登録
 			DelegateConnection AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
+			//状態を取得
+			GameObjectState state()const override;
 
 			//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
 			//クローン時の処理
@@ -59,6 +61,7 @@ namespace planeta {
 			//boost::ptreeからコンポーネントを作成追加し、シーンデータなどをセット
 			bool AddAndSetUpComponents(const boost::property_tree::ptree& pt);
 		private:
+			GameObjectState state_ = GameObjectState::Invalid;
 			//インターフェイスのオーバーライド
 			GameObjectManagerPublicInterface& game_object_manager()override;
 			//コンポーネントを型で取得
@@ -66,7 +69,7 @@ namespace planeta {
 			//コンポーネントを型ですべて取得
 			//std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 			TaskManagerPublicInterface& RefTaskManagerInterface_()override final;
-			void SetUpAttachedTask_(TGameObjectOperation& task)override final;
+			void SetUpAttachedTask_(const WeakPointer<Task>& task)override final;
 
 			//マネージャコネクション
 			std::unique_ptr<GameObjectManagerConnection> manager_connection_;
@@ -82,6 +85,11 @@ namespace planeta {
 			bool AddComponentsFromTypeIDList_(const std::vector<std::string>& com_type_id_list);
 			//コンポーネントをPtreeから設定
 			bool SetDataToComponentsFromPtree_(const boost::property_tree::ptree& pt);
+
+			//アタッチされたタスク
+			std::list<WeakPointer<Task>> attached_tasks_;
+			//アタッチされたが存在しるか確認しつつ、タスクに処理を行う。存在しない場合はリストから外す。
+			bool CheckAndApplyProcessToAttachedTask(const std::function<bool(Task&)>& proc);
 
 			//イベントデリゲート
 			Delegate<void> activated_event_delegate_;

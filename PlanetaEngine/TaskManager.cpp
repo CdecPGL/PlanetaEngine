@@ -72,7 +72,7 @@ namespace planeta {
 		//名前マップタイプ
 		using NameMapType = std::unordered_map<std::string, std::shared_ptr<TaskData>>;
 		/*タスクの状態(順に、実行中、停止中、破棄された)*/
-		enum class TaskState { Running, Pausing, Disposed };
+		enum class TaskState { Running, Pausing, Disposed, PauseRequested, ResumeRequested, DisposeRequested };
 		/*タスクの情報*/
 		struct TaskData {
 			TaskData() = default;
@@ -111,45 +111,67 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		/*タスク削除要請*/
 		bool DisposeTaskRequest(TaskData& tdata, bool is_system_task) {
-			if (tdata.state == TaskState::Disposed) { return false; }
+			//実行中、停止中、実行再開依頼中、停止依頼中に有効
+			if (tdata.state == TaskState::Disposed || 
+				tdata.state == TaskState::DisposeRequested) { return false; }
 			//システムタスクの削除をチェック
 			if (is_system_task == true && is_system_task_disposable_ == false) {
 				PE_LOG_ERROR("システムタスクの削除は許可されていません。");
 			}
 			//削除処理を追加
-			if (tdata.state == TaskState::Running) {
+			switch (tdata.state) {
+			case TaskState::Running:
+			case TaskState::ResumeRequested:
 				management_process_list_.push_back([&tdata, this] {
 					InctivateTask(tdata);
 					DisposeTask(tdata);
 				});
-			} else if (tdata.state == TaskState::Pausing) {
+				break;
+			case TaskState::Pausing:
+			case TaskState::PauseRequested:
 				management_process_list_.push_back([&tdata, this] {
 					DisposeTask(tdata);
 				});
-			} else {
+				break;
+			default:
 				assert(false);
+				return false;
 			}
-			tdata.state = TaskState::Disposed;
+			tdata.state = TaskState::DisposeRequested;
 			return true;
 		}
 		/*タスク停止要請*/
 		bool PauseTaskRequest(TaskData& tdata) {
-			if (tdata.state != TaskState::Running) { return false; }
-			//削除処理を追加
+			//実行中か、実行再開依頼が発行されている場合にのみ有効
+			if (tdata.state == TaskState::Disposed ||
+				tdata.state == TaskState::DisposeRequested ||
+				tdata.state == TaskState::Pausing ||
+				tdata.state == TaskState::PauseRequested
+				) {
+				return false;
+			}
+			//停止処理を追加
 			management_process_list_.push_back([&tdata, this] {
 				InctivateTask(tdata);
 			});
-			tdata.state = TaskState::Pausing;
+			tdata.state = TaskState::PauseRequested;
 			return true;
 		}
 		/*タスク再開要請*/
 		bool ResumeTaskRequest(TaskData& tdata) {
-			if (tdata.state != TaskState::Pausing) { return false; }
-			//削除処理を追加
+			//停止か、停止依頼が発行されている場合にのみ有効
+			if (tdata.state == TaskState::Disposed ||
+				tdata.state == TaskState::DisposeRequested ||
+				tdata.state == TaskState::Running ||
+				tdata.state == TaskState::ResumeRequested
+				) {
+				return false;
+			}
+			//再開処理を追加
 			management_process_list_.push_back([&tdata, this] {
 				ActivateTask(tdata);
 			});
-			tdata.state = TaskState::Running;
+			tdata.state = TaskState::ResumeRequested;
 			return true;
 		}
 		//////////////////////////////////////////////////////////////////////////
@@ -157,10 +179,12 @@ namespace planeta {
 		void ActivateTask(TaskData& tdata) {
 			task_group_list_[tdata.group_number].push_back(tdata.task.get());
 			tdata.iterator_at_task_group_list = --task_group_list_[tdata.group_number].end();
+			tdata.state = TaskState::Running;
 		}
 		/*タスクの無効化*/
 		bool InctivateTask(TaskData& tdata) {
 			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list);
+			tdata.state = TaskState::Pausing;
 			return true;
 		}
 		/*タスクの破棄*/
@@ -169,7 +193,10 @@ namespace planeta {
 			if (tdata.is_named) {
 				task_name_map_.erase(tdata.iterator_at_task_name_map); //名前マップから削除
 			}
-			task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list); //タスクグループリストから削除
+			if (tdata.state == TaskState::Running) {
+				task_group_list_[tdata.group_number].erase(tdata.iterator_at_task_group_list); //タスクグループリストから削除
+			}
+			tdata.state = TaskState::Disposed;
 			return true;
 		}
 		//////////////////////////////////////////////////////////////////////////
@@ -186,17 +213,21 @@ namespace planeta {
 			tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), scene_data_);
 		}
 		/*タスクをマップに登録*/
-		std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number) {
+		std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task>& task, int group_number, bool auto_run) {
 			auto ptdata = std::make_shared<TaskData>();
 			ptdata->task = task;
 			ptdata->group_number = group_number;
 			ptdata->is_named = false;
+			ptdata->state = TaskState::Pausing;
 			//タスクデータリストに登録して、自身を指すイテレータを保持
 			task_data_list_.push_back(ptdata);
 			ptdata->iterator_at_task_data_list = --task_data_list_.end();
 			//タスクグループリストに登録して、自身を指すイテレータを保持
-			task_group_list_[group_number].push_back(task.get());
-			ptdata->iterator_at_task_group_list = --task_group_list_[group_number].end();
+			if (auto_run) {
+				ptdata->state = TaskState::Running;
+				task_group_list_[group_number].push_back(task.get());
+				ptdata->iterator_at_task_group_list = --task_group_list_[group_number].end();
+			}
 
 			return ptdata;
 		}
@@ -272,23 +303,23 @@ namespace planeta {
 		return impl_->GetTask(name);
 	}
 
-	bool TaskManager::RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot) {
+	bool TaskManager::RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot, bool auto_run) {
 		int group_number = GetGroupNumberFromSlot(slot);
-		auto ptdata = impl_->RegisterTaskToList(task, group_number);
+		auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
 		impl_->SetupTask(ptdata, false);
 		return task != nullptr;
 	}
 
-	bool TaskManager::RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot, const std::string& name) {
+	bool TaskManager::RegisterTask(const std::shared_ptr<Task>& task, TaskSlot slot, const std::string& name, bool auto_run) {
 		int group_number = GetGroupNumberFromSlot(slot);
-		auto ptdata = impl_->RegisterTaskToList(task, group_number);
+		auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
 		impl_->SetupTask(ptdata, false);
 		return impl_->RegisterTaskName(name, ptdata);
 	}
 
 	std::shared_ptr<Task> TaskManager::RegisterSystemTask(const std::shared_ptr<Task>& task, private_::SystemTaskSlot slot) {
 		int group_number = GetGroupNumberFromSystemSlot(slot);
-		auto ptdata = impl_->RegisterTaskToList(task, group_number);
+		auto ptdata = impl_->RegisterTaskToList(task, group_number, true);
 		impl_->SetupTask(ptdata, true);
 		return task;
 	}

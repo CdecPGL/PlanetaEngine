@@ -3,7 +3,7 @@
 #include "REffect.h"
 #include "EffekseerForDXLib.h"
 #include "ResourceManager.h"
-#include "TGInstant.h"
+#include "TInstant.h"
 #include "IGameObject.h"
 
 namespace planeta {
@@ -44,7 +44,8 @@ namespace planeta {
 		if (reffect_) {
 			auto* eff_mgr = GetEffekseer3DManager();
 			auto& trans = *my_c_transform_2d_;
-			effect_handle_ = eff_mgr->Play(reffect_->effekseer_effect(), trans.position().x, trans.position().y, 0);
+			effect_handle_ = eff_mgr->Play(reffect_->effekseer_effect(),
+				static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
 			eff_mgr->SetPaused(effect_handle_, true);
 			eff_mgr->SetShown(effect_handle_, false);
 			return effect_handle_ >= 0;
@@ -102,9 +103,12 @@ namespace planeta {
 	void CEffect::Impl_::ApplyTransformToEffect() {
 		auto& trans = *my_c_transform_2d_;
 		auto* eff_mgr = GetEffekseer3DManager();
-		eff_mgr->SetLocation(effect_handle_, trans.position().x, trans.position().y, 0);
-		eff_mgr->SetRotation(effect_handle_, 0, 0, trans.rotation_rad());
-		eff_mgr->SetScale(effect_handle_, trans.scale().x, trans.scale().y, (trans.scale().x + trans.scale().y) / 2);
+		eff_mgr->SetLocation(effect_handle_,
+			static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
+		eff_mgr->SetRotation(effect_handle_, 0, 0,
+			static_cast<float>(trans.rotation_rad()));
+		eff_mgr->SetScale(effect_handle_, 
+			static_cast<float>(trans.scale().x), static_cast<float>(trans.scale().y), static_cast<float>((trans.scale().x + trans.scale().y) / 2));
 	}
 
 	void CEffect::Impl_::SetMyCTransform2D(const NonOwingPointer<CTransform2D>& com) {
@@ -136,7 +140,7 @@ namespace planeta {
 	bool CEffect::OnInitialized() {
 		if (!Super::OnInitialized()) { return false; }
 		if (!impl_->ClearEffectInstance()) { return false; }
-		auto task = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto task = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		task->SetExcuteFunction([this] {
 			impl_->ApplyTransformToEffect();
 			//エフェクトのループ確認
@@ -148,7 +152,6 @@ namespace planeta {
 					}
 				}
 			}
-			PE_LOG_MESSAGE("asdjiaosjdiajdiasjdiajsiod");
 		});
 		return true;
 	}

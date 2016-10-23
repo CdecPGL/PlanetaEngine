@@ -3,7 +3,7 @@
 #include "CDrawGraph2D.h"
 #include "SystemLog.h"
 #include "SystemLog.h"
-#include "TGInstant.h"
+#include "TInstant.h"
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CGraph2DAnimator) {
@@ -25,7 +25,7 @@ namespace planeta {
 	bool CGraph2DAnimator::OnInitialized() {
 		if (!Super::OnInitialized()) { return false; }
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
-		auto tsk = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
 		return true;
 	}

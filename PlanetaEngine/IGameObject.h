@@ -10,7 +10,9 @@
 namespace planeta {
 	class Task;
 	class GameObjectComponent;
-	class TGameObjectOperation;
+	class Task;
+	/*! ゲームオブジェクトの状態*/
+	enum class GameObjectState { Invalid, Inactive, Active, Initializing, Inactivating, Activating };
 	/*! @brief ゲームオブジェクトへのアクセスを提供するインターフェイスクラス
 	*/
 	class IGameObject {
@@ -43,15 +45,14 @@ namespace planeta {
 		/*! @brief タスクをアタッチする
 
 			テンプレート引数で指定した型のタスクを作成し、アタッチする。
-			TはTGameObjectOperationを継承したクラス。
 			ゲームオブジェクトのアタッチされたタスクの寿命はそのゲームオブジェクトと同じになり、ゲームオブジェクトの無効化有効化に合わせて停止、再開する。
 		*/
 		template<class T>
 		WeakPointer<T> CreateAndAttachTask(TaskSlot slot) {
-			static_assert(std::is_base_of<TGameObjectOperation, T>::value == true, "T must derive TGameObjectOperation");
+			static_assert(std::is_base_of<Task, T>::value == true, "T must derive Task");
 			auto task = std::make_shared<T>();
-			if (!RefTaskManagerInterface_().RegisterTask(task, slot)) { return nullptr; }
-			SetUpAttachedTask_(*task);
+			if (!RefTaskManagerInterface_().RegisterTask(task, slot, false)) { return nullptr; }
+			SetUpAttachedTask_(task);
 			return task;
 		}
 		//! ゲームオブジェクトマネージャへのアクセスを取得
@@ -63,9 +64,11 @@ namespace planeta {
 		virtual DelegateConnection AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;
 		//! 破棄イベントハンドラを登録する
 		virtual DelegateConnection AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;
+		//! ゲームオブジェクトの状態を取得する
+		virtual GameObjectState state()const = 0;
 	protected:
 		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const = 0;
 		virtual TaskManagerPublicInterface& RefTaskManagerInterface_() = 0;
-		virtual void SetUpAttachedTask_(TGameObjectOperation& task) = 0;
+		virtual void SetUpAttachedTask_(const WeakPointer<Task>& task) = 0;
 	};
 }

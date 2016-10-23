@@ -16,12 +16,12 @@ namespace planeta {
 		template<class T>
 		WeakPointer<T> CreateTask(TaskSlot slot) {
 			auto task = std::make_shared<T>();
-			return RefTaskManagerInterface_().RegisterTask(task, slot) ? task : nullptr;
+			return RefTaskManagerInterface_().RegisterTask(task, slot, true) ? task : nullptr;
 		}
 		//名前付きタスクを作成
 		template<class T>
 		WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
-			return RefTaskManagerInterface_().RegisterTask<T>(slot, name);
+			return RefTaskManagerInterface_().RegisterTask<T>(slot, name, true);
 		}
 		//型でタスク取得
 		template<class T>

@@ -221,7 +221,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="EngineConfigData.h" />
     <ClInclude Include="GameObjectComponentSetUpData.h" />
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
-    <ClInclude Include="TGameObjectOperation.h" />
     <ClInclude Include="Matrix2_2.h" />
     <ClInclude Include="Matrix3_3.h" />
     <ClInclude Include="TaskSystemSetUpper.h" />
@@ -234,7 +233,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="ScreenEffectProcess.h" />
-    <ClInclude Include="TGInstant.h" />
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="TypeInfoWrapper.h" />
@@ -434,10 +432,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GameObjectBase.cpp" />
     <ClCompile Include="GameObjectComponentHolder.cpp" />
     <ClCompile Include="GameObjectManagerConnection.cpp" />
-    <ClCompile Include="TGameObjectOperation.cpp" />
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
-    <ClCompile Include="TGInstant.cpp" />
     <ClCompile Include="TInstant.cpp" />
     <ClCompile Include="SaveDataManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />

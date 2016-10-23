@@ -3,7 +3,7 @@
 #include "IGameObject.h"
 #include "CTransform2D.h"
 #include "CGround2D.h"
-#include "TGInstant.h"
+#include "TInstant.h"
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CBelongingGroundGravity) {
@@ -20,7 +20,7 @@ namespace planeta {
 
 	bool CBelongingGroundGravity::OnInitialized() {
 		if (!Super::OnInitialized()) { return false; }
-		auto proc = game_object().CreateAndAttachTask<TGInstant>(TaskSlot::PreCollisionEarlyPhase);
+		auto proc = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreCollisionEarlyPhase);
 		proc->SetExcuteFunction([this]() {Update(); });
 		return true;
 	}
