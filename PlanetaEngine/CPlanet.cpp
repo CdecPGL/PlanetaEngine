@@ -1,6 +1,6 @@
 ﻿#include "CPlanet.h"
 #include "MathConstant.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include <cmath>
 #include <cassert>
 

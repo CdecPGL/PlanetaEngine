@@ -1,7 +1,7 @@
 ﻿#include "CTransform2D.h"
 #include <cassert>
 #include "IGameObject.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CGround2D.h"
 #include "TransformSystem.h"
 #include "SceneData.h"

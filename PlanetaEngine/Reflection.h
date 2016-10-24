@@ -20,7 +20,7 @@ Vertion 2.0.0 2016/9/29 LuaBind機能の追加。Reflectableのリフレクシ�
 
 #include "boost/core/enable_if.hpp"
 
-#include "SystemLog.h"
+#include "StringUtility.h"
 #include "ClassRegistererImpl.h"
 #include "ReflectionExceptions.h"
 
@@ -55,7 +55,7 @@ namespace planeta {
 			if (ptr == nullptr) { return nullptr; }
 			auto tptr = std::dynamic_pointer_cast<T>(ptr);
 			if (tptr == nullptr) {
-				PE_LOG_ERROR("指定型に変換できませんでした。(ObjectTypeID:", object_type_id, ",TargetType:", typeid(T).name(), ")");
+				OutPutErrorLog(util::ConvertAndConnectToString("指定型に変換できませんでした。(ObjectTypeID:", object_type_id, ",TargetType:", typeid(T).name(), ")"), __FUNCTION__);
 				return nullptr;
 			}
 			return tptr;
@@ -72,7 +72,7 @@ namespace planeta {
 			if (ptr == nullptr) { return nullptr; }
 			auto tptr = std::dynamic_pointer_cast<T>(ptr);
 			if (tptr == nullptr) {
-				PE_LOG_ERROR("指定型に変換できませんでした。(type_indo:", t_info.name(), ",TargetType:", typeid(T).name(), ")");
+				OutPutErrorLog(util::ConvertAndConnectToString("指定型に変換できませんでした。(std::type_info:", t_info.name(), ",TargetType:", typeid(T).name(), ")"), __FUNCTION__);
 				return nullptr;
 			}
 			return tptr;
@@ -98,6 +98,8 @@ namespace planeta {
 		class Impl_;
 		static Impl_& impl_();
 		static void RegisterObject_(const std::type_info& tinfo ,const std::string& id, std::unique_ptr<private_::ClassInfo>&& class_info);
+		//Gameクラスへのヘッダファイル依存をなくすためにこうする
+		static void OutPutErrorLog(const std::string& detail, const std::string& place);
 
 		//Reflectableに公開
 		static const private_::ClassInfo* GetClassInfo_Reflectable(const std::type_info& ti)noexcept;

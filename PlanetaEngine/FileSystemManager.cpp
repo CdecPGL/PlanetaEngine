@@ -1,5 +1,5 @@
 ﻿#include "FileSystemManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "FileAccessor.h"
 #include <cassert>
 

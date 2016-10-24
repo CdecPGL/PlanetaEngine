@@ -1,5 +1,5 @@
 ﻿#include "DebugManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "DxLib.h"
 #include <windows.h>
 

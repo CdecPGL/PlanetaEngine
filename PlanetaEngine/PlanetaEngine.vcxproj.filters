@@ -663,9 +663,6 @@
     <ClInclude Include="SingletonTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="SystemLog.h">
-      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
-    </ClInclude>
     <ClInclude Include="RenderManager.h">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClInclude>
@@ -862,6 +859,18 @@
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="StandardResourceManager.h">
+      <Filter>PlanetaEngine\StandardManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogManager.h">
+      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+    </ClInclude>
+    <ClInclude Include="LogManager.h">
+      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+    </ClInclude>
+    <ClInclude Include="LogUtility.h">
+      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardLogManager.h">
       <Filter>PlanetaEngine\StandardManagers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1115,9 +1124,6 @@
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="SystemLog.cpp">
-      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
-    </ClCompile>
     <ClCompile Include="RenderManager.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClCompile>
@@ -1260,6 +1266,9 @@
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="StandardResourceManager.cpp">
+      <Filter>PlanetaEngine\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardLogManager.cpp">
       <Filter>PlanetaEngine\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>

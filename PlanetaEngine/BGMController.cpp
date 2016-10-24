@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "BGMController.h"
 #include "RMusic.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

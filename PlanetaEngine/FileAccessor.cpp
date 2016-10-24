@@ -1,7 +1,7 @@
 ﻿#include <cassert>
 #include "FileAccessor.h"
 #include "FileManipulatorBase.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "FileAccessMode.h"
 
 namespace planeta {

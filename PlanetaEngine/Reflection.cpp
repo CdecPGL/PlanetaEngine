@@ -6,6 +6,7 @@
 #include "boost/multi_index/member.hpp"
 #include "boost/multi_index/hashed_index.hpp"
 
+#include "LogUtility.h"
 #include "Reflection.h"
 #include "ReflectionExceptions.h"
 #include "StringUtility.h"
@@ -189,6 +190,10 @@ namespace planeta {
 			//初期化前は例外が投げられないのでエラーqueに追加し、初期化時に確認する
 			impl_().error_que.push_back(util::ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
 		}
+	}
+
+	void Reflection::OutPutErrorLog(const std::string& detail, const std::string& place) {
+		Game::instance().log_manager()->Log(LogLevel::Error, place, detail);
 	}
 
 	const ClassInfo* Reflection::GetClassInfo_Reflectable(const std::type_info& t_info)noexcept {

@@ -5,7 +5,6 @@
 
 #include "InitFunctions.h"
 #include "SystemVariables.h"
-#include "SystemLog.h"
 #include "FileAccessor.h"
 #include "EngineConfigData.h"
 #include "File.h"
@@ -14,7 +13,6 @@
 
 
 namespace {
-	std::ofstream LogFileOutPutStream; //ログ出力用ストリーム
 	namespace prog_def {
 		constexpr char* SCENE_SECTION{ "Scene" };
 		constexpr char* COLLISION_SECTION{ "Collision" };
@@ -27,27 +25,6 @@ namespace {
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
-			std::tuple<bool, std::function<void()>> InitializeLogSystem() {
-				//開発モードならコンソールウインドウを作成し、そこにログを出力
-				if (system_variables::DevelopmentMode) {
-					//コンソール出力を有効化
-					debug::SystemLog::instance().ValidateConsoleOutPut();
-				}
-				//ログディレクトリがなかったら作る
-				if(!boost::filesystem::exists(system_variables::file_system::LogDirectory)) {
-					boost::filesystem::create_directory(system_variables::file_system::LogDirectory);
-				}
-				//ログ出力ファイルを開く
-				LogFileOutPutStream.open(system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName, std::ios::out | std::ios::trunc);
-				//システムログ出力先にファイル出力を追加
-				debug::SystemLog::instance().AddLogOutStream(LogFileOutPutStream);
-				if (debug::SystemLog::instance().Initialize()) {
-					return{ true, [] {debug::SystemLog::instance().Finalize(); LogFileOutPutStream.flush(); LogFileOutPutStream.close(); } };
-				} else {
-					assert(false);
-					return{ false,[] {} };
-				}
-			}
 			bool LoadEngineConfig(const std::shared_ptr<FileAccessor> sys_dir_accessor) {
 				auto ec_file = sys_dir_accessor->LoadFile(system_variables::file_system::EngineConfigFileName);
 				if (ec_file == nullptr) {

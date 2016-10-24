@@ -3,7 +3,7 @@
 #include "DataContainer.h"
 #include "DataContainerSerializeUtility.h"
 #include "FileAccessor.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "RCsv.h"
 
 namespace {

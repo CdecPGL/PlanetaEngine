@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <memory>
 #include "Object.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "ResourceReferencer.h"
 
 namespace planeta {

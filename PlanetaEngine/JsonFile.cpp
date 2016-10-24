@@ -3,7 +3,7 @@
 #include "picojson.h"
 
 #include "File.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CharacterCode.h"
 
 namespace planeta {

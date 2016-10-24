@@ -1,6 +1,6 @@
 ﻿#include "GameObjectDrawSystem.h"
 #include "CDraw2D.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
 #include "RenderManager.h"

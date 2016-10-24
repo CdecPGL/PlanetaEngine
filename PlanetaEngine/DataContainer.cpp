@@ -1,7 +1,7 @@
 ﻿#include "DataContainer.h"
 #include "DataContainerImpl.h"
 #include "DataContainerError.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace util {

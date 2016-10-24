@@ -1,5 +1,6 @@
 ﻿#include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
+#include "LogUtility.h"
 
 namespace planeta{
 		bool GameObjectComponent::Initialize() {

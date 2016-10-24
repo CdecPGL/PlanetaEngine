@@ -1,6 +1,6 @@
 ﻿#include "SimplePolygonPanel.h"
 
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "ScreenDrawerGUI.h"
 
 namespace planeta {

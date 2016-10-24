@@ -1,4 +1,6 @@
 ﻿#include "boost/lexical_cast.hpp"
+#include "Game.h"
+#include "ILogManager.h"
 #include "EngineConfigData.h"
 #include "JsonFile.h"
 #include "FileSystemUtility.h"
@@ -63,8 +65,7 @@ namespace planeta {
 					+ "." + boost::lexical_cast<std::string>(game::MinorVersionNumber())
 					+ "." + boost::lexical_cast<std::string>(game::SubVersionNumber());
 				//設定をログに出力
-				using namespace debug;
-				auto& sys_log = SystemLog::instance();
+				auto& sys_log = *Game::instance().log_manager();
 				PE_LOG_MESSAGE("エンジン設定を読み込みました。");
 				sys_log.SimpleLog("--------エンジン設定情報--------");
 				sys_log.SimpleLog("ゲームタイトル : ", game::GameTitle());

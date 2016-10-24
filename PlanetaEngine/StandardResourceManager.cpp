@@ -5,7 +5,7 @@
 #include"StandardResourceManager.h"
 #include "FileSystemManager.h"
 #include "CsvFile.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "FileAccessor.h"
 #include "SystemVariables.h"
 #include "ResourceReferencer.h"

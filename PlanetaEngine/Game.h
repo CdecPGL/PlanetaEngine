@@ -6,8 +6,10 @@
 
 namespace planeta {
 	class IResourceManager;
+	class ILogManager;
 	namespace private_ {
 		class ResourceManager;
+		class LogManager;
 	}
 	/*! ゲームのステータス*/
 	enum class GameStatus { Continue, Quit, Error };
@@ -27,8 +29,12 @@ namespace planeta {
 		bool is_initialized()const;
 		/*! リソースマネージャを設定する(初期化前)*/
 		void SetResourceManager(const std::shared_ptr<private_::ResourceManager>& mgr);
+		/*! ログマネージャを設定する(初期化前)*/
+		void SetLogManager(const std::shared_ptr<private_::LogManager>& mgr);
 		/*! リソースマネージャにアクセスする*/
 		std::shared_ptr<IResourceManager> resource_manager()const;
+		/*! ログマネージャにアクセスする*/
+		std::shared_ptr<ILogManager> log_manager()const;
 	private:
 		Game();
 		~Game();

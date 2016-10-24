@@ -1,5 +1,5 @@
 ﻿#include "FileManipulatorBase.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "EncrypterBase.h"
 
 namespace planeta {

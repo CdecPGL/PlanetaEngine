@@ -4,7 +4,7 @@
 #include "InitFunctions.h"
 #include "SystemVariables.h"
 #include "EngineConfigData.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CharacterCode.h"
 
 #include "EffekseerUtil.h"

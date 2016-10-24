@@ -4,7 +4,7 @@
 #include "SceneSetUpper.h"
 #include "SError.h"
 #include "SEmpty.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "NullWeakPointerException.h"
 #include "SceneSystemSetUpper.h"
 #include "PrefixUtility.h"

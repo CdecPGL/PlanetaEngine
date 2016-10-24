@@ -1,5 +1,5 @@
 #include "ResourceBase.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "File.h"
 #include "boost/filesystem/path.hpp"
 

@@ -7,7 +7,7 @@
 #include <algorithm>
 #include "boost/algorithm/string.hpp"
 #include "File.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CharacterCode.h"
 
 

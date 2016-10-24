@@ -7,7 +7,7 @@
 #include "XmlFile.h"
 #include "File.h"
 #include "FileSystemManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "SystemVariables.h"
 #include "FileSystemManager.h"
 #include "FileAccessor.h"

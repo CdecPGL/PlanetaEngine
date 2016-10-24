@@ -4,7 +4,7 @@
 
 #include "NonOwingPointer.h"
 #include "GameObjectComponent.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	class GameObjectComponentHolder;

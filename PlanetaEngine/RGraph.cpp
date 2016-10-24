@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "File.h"
 #include "MathUtility.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 //#include "boost/lexical_cast.hpp"
 
 namespace planeta {

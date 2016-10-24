@@ -3,7 +3,7 @@
 #include "boost/algorithm/string.hpp"
 #include "FileSystemUtility.h"
 #include "File.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace util {

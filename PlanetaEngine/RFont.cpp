@@ -1,7 +1,7 @@
 ﻿#include <windows.h>
 #include "RFont.h"
 #include "File.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	bool RFont::_Create(const File& file, private_::ResourceReferencer&) {

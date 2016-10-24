@@ -4,7 +4,7 @@
 #include "GameObjectDrawSystem.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "SceneData.h"
 
 namespace planeta {

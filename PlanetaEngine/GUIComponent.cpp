@@ -1,6 +1,6 @@
 ﻿#include "GUIComponent.h"
 #include "RenderManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include <cassert>
 
 namespace planeta {

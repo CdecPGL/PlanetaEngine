@@ -5,7 +5,7 @@
 #include "SceneData.h"
 #include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "Task.h"
 #include "GOComponentAdder.h"
 #include "GOComponentGetter.h"

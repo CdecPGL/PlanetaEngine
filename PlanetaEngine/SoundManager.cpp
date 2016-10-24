@@ -5,7 +5,7 @@
 #include "SoundEffectController.h"
 #include "RMusic.h"
 #include "RSound.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

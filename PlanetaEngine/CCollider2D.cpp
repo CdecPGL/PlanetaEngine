@@ -1,7 +1,7 @@
 ﻿#include "CCollider2D.h"
 #include "IGameObject.h"
 #include "CollisionWorld.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "SceneData.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"

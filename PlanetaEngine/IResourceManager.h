@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include <type_traits>
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

@@ -7,7 +7,7 @@
 #include "IGameObject.h"
 #include "CPlanet.h"
 #include "MathConstant.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "GraphDrawData2D.h"
 
 namespace {

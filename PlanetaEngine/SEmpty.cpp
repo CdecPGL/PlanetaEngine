@@ -1,5 +1,5 @@
 ﻿#include "SEmpty.h"
-
+#include "LogUtility.h"
 #include "TInstant.h"
 
 namespace planeta {

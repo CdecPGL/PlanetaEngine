@@ -3,7 +3,7 @@
 #include "CTransform2D.h"
 #include "CCircleCollider2D.h"
 #include "CPlanet.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "MathConstant.h"
 
 namespace planeta {

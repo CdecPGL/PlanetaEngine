@@ -1,7 +1,7 @@
 ﻿#include "CGround2D.h"
 #include "Matrix2_2.h"
 #include "IGameObject.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CTransform2D.h"
 
 namespace planeta {

@@ -1,7 +1,7 @@
 ﻿#include "NormalFolderManipulator.h"
 #include"boost/filesystem.hpp"
 #include"boost/foreach.hpp"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "EncrypterBase.h"
 #include<fstream>
 #include<iomanip>

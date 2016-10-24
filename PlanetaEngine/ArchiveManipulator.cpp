@@ -2,7 +2,7 @@
 #include"Extracter.h"
 #include "Archiver.h"
 #include"boost/filesystem/path.hpp"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	ArchiveManipulator::ArchiveManipulator(const std::string& path) :FileManipulatorBase(path, false), _extracter(std::make_unique<Extracter>()), _key(0) {}

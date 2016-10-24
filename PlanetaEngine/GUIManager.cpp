@@ -2,7 +2,7 @@
 #include "GUIObject.h"
 #include "SceneData.h"
 #include "GUIManagerConnection.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "boost/lexical_cast.hpp"
 
 namespace planeta {

@@ -6,7 +6,7 @@
 #include "GameObjectDrawSystem.h"
 #include "TransformSystem.h"
 
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "SceneData.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"

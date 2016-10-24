@@ -1,7 +1,7 @@
 ﻿#include "GameObjectManager.h"
 #include "GameObjectBase.h"
 #include "TaskManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "SceneData.h"
 #include "GameObjectFactory.h"
 #include "boost/algorithm/string.hpp"

@@ -4,17 +4,20 @@
 
 #include "DxLib.h"
 
+#include "Game.h"
+
 #include "ResourceManager.h"
+#include "LogManager.h"
+
+#include "LogUtility.h"
 
 #include "InitFunctions.h"
 #include "ProgramDefinitionData.h"
 #include "SystemVariables.h"
 
-#include "Game.h"
 
 #include "Reflection.h"
 
-#include "SystemLog.h"
 #include "SystemTimer.h"
 #include "RenderManager.h"
 #include "DebugManager.h"
@@ -33,6 +36,7 @@ namespace planeta {
 		std::unique_ptr<SceneManager> scene_manager_;
 	public:
 		std::shared_ptr<ResourceManager> resource_manager;
+		std::shared_ptr<LogManager> log_manager;
 
 		Impl_() :scene_manager_(std::make_unique<SceneManager>()) {}
 		bool is_initialized = false;
@@ -47,9 +51,16 @@ namespace planeta {
 			//システムログの初期化
 			//////////////////////////////////////////////////////////////////////////
 			{
-				auto ret = init_funcs::InitializeLogSystem();
-				if (std::get<0>(ret) == false) { assert(false); return false; }
-				else { finalize_handls_.push_front(std::get<1>(ret)); }
+				if (log_manager == nullptr) {
+					PE_LOG_FATAL("ログマネージャが設定されていません。");
+					return false;
+				}
+				if (log_manager->Initialize()) {
+					finalize_handls_.push_front([this] {log_manager->Finalize(); });
+				} else {
+					PE_LOG_FATAL("ログシステムの初期化に失敗しました。");
+					return false;
+				}
 			}
 			//////////////////////////////////////////////////////////////////////////
 			//リフレクションシステムの初期化
@@ -244,6 +255,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::IResourceManager> Game::resource_manager()const {
 		return impl_->resource_manager;
+	}
+
+	void Game::SetLogManager(const std::shared_ptr<private_::LogManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->log_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::ILogManager> Game::log_manager() const {
+		return impl_->log_manager;
 	}
 
 }

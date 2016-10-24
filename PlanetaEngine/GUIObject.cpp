@@ -1,7 +1,7 @@
 ﻿#include "GUIObject.h"
 #include "GUIComponent.h"
 #include "RenderManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 
 namespace planeta {

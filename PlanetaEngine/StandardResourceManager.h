@@ -6,7 +6,7 @@
 #include <thread>
 #include <memory>
 #include "Object.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "ResourceManager.h"
 
 namespace planeta{

@@ -1,5 +1,5 @@
 ﻿#include "GameObjectComponentHolder.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "GameObjectComponent.h"
 
 namespace planeta {

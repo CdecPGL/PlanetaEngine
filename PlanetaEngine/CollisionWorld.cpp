@@ -7,7 +7,7 @@
 #include "EACollisionWithCollider2D.h"
 #include "EACollisionWithGround2D.h"
 #include "CollisionGroupMatrix.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CTransform2D.h"
 #include "Collider2DData.h"
 

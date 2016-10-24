@@ -1,8 +1,8 @@
 ﻿#include "CGraph2DAnimator.h"
 #include "IGameObject.h"
 #include "CDrawGraph2D.h"
-#include "SystemLog.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
+#include "LogUtility.h"
 #include "TInstant.h"
 
 namespace planeta {

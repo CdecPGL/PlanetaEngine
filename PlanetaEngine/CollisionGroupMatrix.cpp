@@ -1,5 +1,5 @@
 ﻿#include "CollisionGroupMatrix.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	void CollisionGroupMatrix::AddCollisionGroup(const std::string& col_group_name) {

@@ -180,9 +180,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="ILogManager.h" />
     <ClInclude Include="IniFile.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="JsonFile.h" />
+    <ClInclude Include="LogManager.h" />
+    <ClInclude Include="LogUtility.h" />
     <ClInclude Include="LuaBindHelder.h" />
     <ClInclude Include="MacroUtility.h" />
     <ClInclude Include="PlanetaEngine.h" />
@@ -342,7 +345,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="StringPanel.h" />
     <ClInclude Include="StringUtility.h" />
     <ClInclude Include="SystemTimer.h" />
-    <ClInclude Include="SystemLog.h" />
+    <ClInclude Include="StandardLogManager.h" />
     <ClInclude Include="SystemVariables.h" />
     <ClInclude Include="TalkWindows.h" />
     <ClInclude Include="TextPanel.h" />
@@ -491,7 +494,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="CStraightLineCollider2D.cpp" />
     <ClCompile Include="SystemTimer.cpp" />
-    <ClCompile Include="SystemLog.cpp" />
+    <ClCompile Include="StandardLogManager.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
     <ClCompile Include="PETime.cpp" />
     <ClCompile Include="RText.cpp" />

@@ -1,6 +1,6 @@
 ﻿#include "TransformSystem.h"
 #include "CTransform2D.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

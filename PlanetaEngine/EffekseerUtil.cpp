@@ -1,5 +1,6 @@
 #include "EffekseerUtil.h"
 #include "CharacterCode.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

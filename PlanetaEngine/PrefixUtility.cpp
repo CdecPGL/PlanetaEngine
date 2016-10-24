@@ -2,7 +2,7 @@
 #include "PrefixUtility.h"
 #include "SystemVariables.h"
 #include "StringUtility.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

@@ -7,7 +7,7 @@
 #include "Task.h"
 #include "SceneData.h"
 #include "TaskManagerConnection.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "SystemTaskSlot.h"
 
 namespace planeta {

@@ -1,6 +1,6 @@
 ﻿#include "GOComponentGetter.h"
 #include "GameObjectComponentHolder.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 

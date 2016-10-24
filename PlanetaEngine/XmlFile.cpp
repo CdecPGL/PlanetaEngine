@@ -4,7 +4,7 @@
 #include <functional>
 #include "File.h"
 #include "tinyxml2.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "CharacterCode.h"
 
 namespace planeta {

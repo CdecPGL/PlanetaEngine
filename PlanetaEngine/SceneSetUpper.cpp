@@ -1,6 +1,6 @@
 ﻿#include "SceneSetUpper.h"
 #include "Scene.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	bool SceneSetUpper::InitializeScene(private_::Scene& scene, const util::ParameterHolder& initialize_parameters) {

@@ -1,7 +1,7 @@
 ﻿#include "GraphPanel.h"
 
 #include "StandardResourceManager.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "ScreenDrawerGUI.h"
 #include "RGraph.h"
 

@@ -3,7 +3,7 @@
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
 #include "Screen.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {

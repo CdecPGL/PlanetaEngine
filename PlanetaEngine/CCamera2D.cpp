@@ -1,7 +1,7 @@
 ﻿#include "CCamera2D.h"
 #include "GameObjectDrawSystem.h"
 #include "SceneData.h"
-#include "SystemLog.h"
+#include "LogUtility.h"
 #include "IGameObject.h"
 #include "CTransform2D.h"
 #include "DxLib.h"
