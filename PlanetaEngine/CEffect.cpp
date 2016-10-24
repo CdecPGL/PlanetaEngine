@@ -1,8 +1,10 @@
+#include "Game.h"
+#include "IResourceManager.h"
 #include "CEffect.h"
 #include "CTransform2D.h"
 #include "REffect.h"
 #include "EffekseerForDXLib.h"
-#include "ResourceManager.h"
+#include "StandardResourceManager.h"
 #include "TInstant.h"
 #include "IGameObject.h"
 
@@ -81,7 +83,7 @@ namespace planeta {
 	}
 
 	bool CEffect::Impl_::SetResourceByID(const std::string& resource_id) {
-		auto res = private_::ResourceManager::instance().GetResourceByID<REffect>(resource_id);
+		auto res = Game::instance().resource_manager()->GetResourceByID<REffect>(resource_id);
 		if (res) {
 			reffect_ = res;
 			return true;

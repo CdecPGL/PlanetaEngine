@@ -1,6 +1,6 @@
 ﻿#include "GraphPanel.h"
 
-#include "ResourceManager.h"
+#include "StandardResourceManager.h"
 #include "SystemLog.h"
 #include "ScreenDrawerGUI.h"
 #include "RGraph.h"

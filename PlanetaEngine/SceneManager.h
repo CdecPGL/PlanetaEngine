@@ -12,6 +12,7 @@ namespace planeta{
 	class CollisionGroupMatrix;
 	class KeyInputManager;
 	namespace private_ {
+		class ResourceManager;
 		class Scene;
 		/*シーン管理クラス
 		非同期処理は未実装だが、実装した場合に変更が少なくなるよう、使い方は非同期処理がある場合と同じ。
@@ -58,7 +59,10 @@ namespace planeta{
 			SceneStatus_ Process_();
 			/*衝突グループマップを登録*/
 			void SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix);
+			/*リソースマネージャをセット(初期化前)*/
+			void SetResouceManager(const std::shared_ptr<ResourceManager>& mgr);
 		private:
+			std::shared_ptr<ResourceManager> resource_manager_;
 			/*シーン進行フラグ*/
 			bool _scene_progress_flag;
 			/*現在のシーン*/

@@ -11,7 +11,7 @@
 #include "SystemVariables.h"
 #include "FileSystemManager.h"
 #include "FileAccessor.h"
-#include "ResourceManager.h"
+#include "StandardResourceManager.h"
 #include "RFont.h"
 
 namespace planeta {

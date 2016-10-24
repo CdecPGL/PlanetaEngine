@@ -1,6 +1,7 @@
-﻿#include "CDrawGraph2D.h"
+﻿#include "Game.h"
+#include "IResourceManager.h"
+#include "CDrawGraph2D.h"
 #include "ScreenDrawer2D.h"
-#include "ResourceManager.h"
 #include "RGraph.h"
 #include "SystemLog.h"
 #include "CTransform2D.h"
@@ -31,7 +32,7 @@ namespace planeta {
 	CDrawGraph2D::~CDrawGraph2D() = default;
 
 	bool CDrawGraph2D::SetGraphResource(const std::string& resource_id) {
-		auto res = private_::ResourceManager::instance().GetResourceByID(resource_id);
+		auto res = Game::instance().resource_manager()->GetResourceByID(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;

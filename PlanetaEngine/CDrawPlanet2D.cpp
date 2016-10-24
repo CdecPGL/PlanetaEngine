@@ -1,7 +1,8 @@
-﻿#include "CDrawPlanet2D.h"
+﻿#include "Game.h"
+#include "CDrawPlanet2D.h"
 #include <cmath>
 #include "ScreenDrawer2D.h"
-#include "ResourceManager.h"
+#include "IResourceManager.h"
 #include "RGraph.h"
 #include "IGameObject.h"
 #include "CPlanet.h"
@@ -171,7 +172,7 @@ namespace planeta {
 	}
 
 	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
-		auto res = private_::ResourceManager::instance().GetResourceByID(resource_id);
+		auto res = Game::instance().resource_manager()->GetResourceByID(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;

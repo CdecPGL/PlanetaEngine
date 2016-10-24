@@ -17,24 +17,23 @@
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
-			std::tuple<bool, std::function<void()>> InitializeResourceSystem(const std::shared_ptr<FileAccessor> res_file_accessor) {
-				auto& rm = ResourceManager::instance();
+			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileAccessor> res_file_accessor) {
 				//ビルドインリソースの設定
-				rm.AddResourceType<RGraph>(system_variables::resource::BuiltinGraphResourceTypeName); //画像
-				rm.AddResourceType<RSound>(system_variables::resource::BuiltinSoundResourceTypeName); //効果音
-				rm.AddResourceType<RMusic>(system_variables::resource::BuiltinMusicResourceTypeName); //音楽
-				rm.AddResourceType<RCsv>(system_variables::resource::BuiltinCSVResourceTypeName); //CSVファイル
-				rm.AddResourceType<RText>(system_variables::resource::BuiltinTextResourceTypeName); //テキストファイル
-				rm.AddResourceType<RXml>(system_variables::resource::BuiltinXMLResourceTypeName); //XMLファイル
-				rm.AddResourceType<RFontDefinition>(system_variables::resource::BuiltinFontDefinitionResourceTypeName); //フォント定義ファイル
-				rm.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName); //JSONファイル
-				rm.AddResourceType<RPtree>(system_variables::resource::BuiltinPtreeResourceTypeName); //Ptree
-				rm.AddResourceType<REffect>(system_variables::resource::BuiltinEffectResourceTypeName); //Effect
-				rm.AddResourceType<REffectTexture>(system_variables::resource::BuiltinEffectTextureResourceTypeName); //EffectTexture
-				rm.SetFileAccessor_(res_file_accessor); //ファイルアクセサセット
-				rm.SetResourceListFileName_(private_::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
-				if (rm.Initialize()) {
-					return{ true, [] {ResourceManager::instance().Finalize(); } };
+				mgr.AddResourceType<RGraph>(system_variables::resource::BuiltinGraphResourceTypeName); //画像
+				mgr.AddResourceType<RSound>(system_variables::resource::BuiltinSoundResourceTypeName); //効果音
+				mgr.AddResourceType<RMusic>(system_variables::resource::BuiltinMusicResourceTypeName); //音楽
+				mgr.AddResourceType<RCsv>(system_variables::resource::BuiltinCSVResourceTypeName); //CSVファイル
+				mgr.AddResourceType<RText>(system_variables::resource::BuiltinTextResourceTypeName); //テキストファイル
+				mgr.AddResourceType<RXml>(system_variables::resource::BuiltinXMLResourceTypeName); //XMLファイル
+				mgr.AddResourceType<RFontDefinition>(system_variables::resource::BuiltinFontDefinitionResourceTypeName); //フォント定義ファイル
+				mgr.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName); //JSONファイル
+				mgr.AddResourceType<RPtree>(system_variables::resource::BuiltinPtreeResourceTypeName); //Ptree
+				mgr.AddResourceType<REffect>(system_variables::resource::BuiltinEffectResourceTypeName); //Effect
+				mgr.AddResourceType<REffectTexture>(system_variables::resource::BuiltinEffectTextureResourceTypeName); //EffectTexture
+				mgr.SetFileAccessor_(res_file_accessor); //ファイルアクセサセット
+				mgr.SetResourceListFileName_(private_::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
+				if (mgr.Initialize()) {
+					return{ true, [&mgr] {mgr.Finalize(); } };
 				} else {
 					PE_LOG_FATAL("リソースシステムの初期化に失敗しました。");
 					return{ false, [] {} };

@@ -208,6 +208,9 @@
     <Filter Include="PlanetaEngine\Core\FileFormats">
       <UniqueIdentifier>{4bc3e4db-8f4d-461f-8e63-dd0aaa068d6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\StandardManagers">
+      <UniqueIdentifier>{6ae360d7-a063-403b-a4b4-a4ac48abd556}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -271,9 +274,6 @@
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClInclude>
     <ClInclude Include="ResourceBase.h">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
@@ -807,12 +807,6 @@
     <ClInclude Include="BuiltInResources.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="PlanetaEngineImpl.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="PlanetaEngine.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="LuaBindHelder.h">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClInclude>
@@ -855,6 +849,21 @@
     <ClInclude Include="CEffect.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClInclude>
+    <ClInclude Include="IResourceManager.h">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetaEngine.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardResourceManager.h">
+      <Filter>PlanetaEngine\StandardManagers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -868,9 +877,6 @@
     </ClCompile>
     <ClCompile Include="SystemVariables.cpp">
       <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
@@ -1202,9 +1208,6 @@
     <ClCompile Include="GameObjectFactory.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="PlanetaEngineImpl.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
     <ClCompile Include="PrefixUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
@@ -1249,6 +1252,15 @@
     </ClCompile>
     <ClCompile Include="CEffect.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSetStandardManagerImpl.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardResourceManager.cpp">
+      <Filter>PlanetaEngine\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

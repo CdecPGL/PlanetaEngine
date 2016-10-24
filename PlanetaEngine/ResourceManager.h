@@ -1,82 +1,54 @@
-ï»¿#pragma once
+#pragma once
 
-#include <vector>
 #include <set>
-#include <unordered_map>
-#include <thread>
-#include <memory>
-#include "Object.h"
-#include "SingletonTemplate.h"
-#include "SystemLog.h"
+#include <vector>
+#include <functional>
+#include "IResourceManager.h"
+#include "NonCopyable.h"
 
-namespace planeta{
+namespace planeta {
 	class FileAccessor;
-	class File;
-	namespace private_{
-		class ResourceBase;
-		/*Resourceç®¡ç†ã‚¯ãƒ©ã‚¹ã€‚éåŒæœŸèª­ã¿è¾¼ã¿ã¯æœªå®Ÿè£…ã ãŒã€å®Ÿè£…æ™‚ã«å¤‰æ›´ãŒå¿…è¦ãªã„ã‚ˆã†ã«éåŒæœŸèª­ã¿è¾¼ã¿ã¨åŒã˜ã‚ˆã†ã«æ‰±ã†ã€‚
-		PrepairResourcesã§ãƒªã‚½ãƒ¼ã‚¹ã®æº–å‚™ã‚’é–‹å§‹ã—ã€IsReadyãŒtrueã«ãªã‚‹ã¾ã§å¾…ã¤ã€‚ãã—ã¦UnloadUnusedResourscesã‚’å‘¼ã¶ã€‚
-		ç¾çŠ¶ã§ã¯IsReadyã¯å¸¸ã«trueã€GetPrepairProgressã¯å¸¸ã«1.0ã‚’è¿”ã™ã€‚
-		*/
-		class ResourceManager : public util::SingletonTemplate<ResourceManager>{
-			friend util::SingletonTemplate<ResourceManager>;
+	namespace private_ {
+		/*ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ*/
+		class ResourceManager : public IResourceManager, private util::NonCopyable<ResourceManager>{
 		public:
-			bool Initialize()override;
-			void Finalize()override;
-			/*ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å¯¾è±¡å¤–ã®ã‚¿ã‚°ã‚’è¨­å®š*/
-			bool SetNotUnloadTags(const std::set<std::string>& tags);
-			/*ã‚¿ã‚°ã§æŒ‡å®šã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹ã‚’ã¾ã¨ã‚ã¦èª­ã¿è¾¼ã‚€*/
-			bool PrepareResources(const std::vector<std::string>& need_tag_groups);
-			/*æœªä½¿ç”¨ã®ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹*/
-			bool UnloadUnusedResouces();
-			/*Resourceã®æº–å‚™ãŒå®Œäº†ã—ãŸã‹*/
-			bool IsReady()const;
-			/*æº–å‚™é€²è¡Œåº¦(èª­ã¿è¾¼ã¿ã—ã¦ã„ãªã„æ™‚ã¯1.0ã¨ã™ã‚‹)*/
-			double GetPrepairProgress()const;
-			/*ãƒªã‚½ãƒ¼ã‚¹ã®å±æ€§ã‚’è¿½åŠ */
+			virtual ~ResourceManager()override = default;
+			/*‰Šú‰»*/
+			virtual bool Initialize() = 0;
+			/*I—¹ˆ—*/
+			virtual void Finalize() = 0;
+			/*ƒAƒ“ƒ[ƒh‘ÎÛŠO‚Ìƒ^ƒO‚ğİ’è*/
+			virtual bool SetNotUnloadTags(const std::set<std::string>& tags) = 0;
+			/*ƒ^ƒO‚Åw’è‚³‚ê‚½ƒŠƒ\[ƒX‚ğ‚Ü‚Æ‚ß‚Ä“Ç‚İ‚Ş*/
+			virtual bool PrepareResources(const std::vector<std::string>& need_tag_groups) = 0;
+			/*–¢g—p‚Ìƒ^ƒŠƒ\[ƒX‚ğƒAƒ“ƒ[ƒh‚·‚é*/
+			virtual bool UnloadUnusedResouces() = 0;
+			/*Resource‚Ì€”õ‚ªŠ®—¹‚µ‚½‚©*/
+			virtual bool IsReady()const = 0;
+			/*€”õis“x(“Ç‚İ‚İ‚µ‚Ä‚¢‚È‚¢‚Í1.0‚Æ‚·‚é)*/
+			virtual double GetPrepairProgress()const = 0;
+			/*ƒtƒ@ƒCƒ‹ƒAƒNƒZƒT‚ğƒZƒbƒgB‰Šú‰»‘O‚ÉŒÄ‚Ño‚·*/
+			virtual void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) = 0;
+			/*ƒŠƒ\[ƒXƒŠƒXƒgƒtƒ@ƒCƒ‹–¼‚ğİ’èB‰Šú‰»‘O‚ÉŒÄ‚Ño‚·•K—v‚ª‚ ‚é*/
+			virtual void SetResourceListFileName_(const std::string& file_name) = 0;
+			/*ƒŠƒ\[ƒX‚Ì‘®«‚ğ’Ç‰Á*/
 			template<class C>
 			void AddResourceType(const std::string& type_name) {
-				AddResourceCreatorMap_(type_name, []()->std::shared_ptr<ResourceBase> {
+				AddResourceCreator(type_name, []()->std::shared_ptr<ResourceBase> {
 					return MakeResource<C>();
 				});
 			}
-			/*ãƒªã‚½ãƒ¼ã‚¹ã‚’IDã§å–å¾—*/
-			std::shared_ptr<ResourceBase> GetResourceByID(const std::string& id);
-			template<class RT>
-			std::shared_ptr<RT> GetResourceByID(const std::string& id) {
-				static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-				auto rsc = GetResourceByID(id);
-				if (rsc) {
-					auto out = std::dynamic_pointer_cast<RT>(rsc);
-					if (out) {
-						return out;
-					} else {
-						PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å‹ã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚(\"ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå‹:", typeid(RT).name(), "\")");
-						return nullptr;
-					}
-				} else {
-					return nullptr;
-				}
-			}
-			/*ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚µã‚’ã‚»ãƒƒãƒˆã€‚åˆæœŸåŒ–å‰ã«å‘¼ã³å‡ºã™*/
-			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr);
-			/*ãƒªã‚½ãƒ¼ã‚¹ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¨­å®šã€‚åˆæœŸåŒ–å‰ã«å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚‹*/
-			void SetResourceListFileName_(const std::string& file_name);
+		protected:
+			/*ƒŠƒ\[ƒXƒNƒŠƒG[ƒ^ŠÖ”Œ^*/
+			using ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>()>;
 		private:
-			ResourceManager();
-			ResourceManager(const ResourceManager&) = delete;
-			~ResourceManager();
-			class Impl_;
-			std::unique_ptr<Impl_> impl_;
-			/*ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªã‚¨ãƒ¼ã‚¿é–¢æ•°å‹*/
-			using _ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>()>;
-			void AddResourceCreatorMap_(const std::string& type_name, const _ResourceCreatorType& creator);
-			/*ãƒªã‚½ãƒ¼ã‚¹ç”¨shared_pträ½œæˆ*/
+			/*ƒŠƒ\[ƒX—pshared_ptrì¬*/
 			template<class Res>
 			static std::shared_ptr<Res> MakeResource() {
 				static_assert(std::is_base_of<ResourceBase, Res>::value == true, "Res is not derived ResourceBase.");
 				return std::move(std::shared_ptr<Res>(new Res(), [](Res* r)->void {r->Dispose(); delete r; }));
 			}
+			virtual void AddResourceCreator(const std::string& type_name, const ResourceCreatorType& creator) = 0;
 		};
 	}
 }

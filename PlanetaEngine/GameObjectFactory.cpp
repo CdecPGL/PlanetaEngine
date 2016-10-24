@@ -1,8 +1,9 @@
-﻿#include "GameObjectFactory.h"
+﻿#include "Game.h"
+#include "IResourceManager.h"
+#include "GameObjectFactory.h"
 #include "PrefixUtility.h"
 #include "Reflection.h"
 #include "GameObjectBase.h"
-#include "ResourceManager.h"
 #include "RPtree.h"
 
 #include "SceneData.h"
@@ -65,7 +66,7 @@ namespace planeta {
 			//シーンデータセット
 			ngo->SetSceneData(scene_data);
 			//ファイル読み込み
-			auto ptree_res = ResourceManager::instance().GetResourceByID<RPtree>(game_object_def_file_id);
+			auto ptree_res = Game::instance().resource_manager()->GetResourceByID<RPtree>(game_object_def_file_id);
 			if (ptree_res == nullptr) {
 				PE_LOG_ERROR("ゲームオブジェクト定義リソース\"", game_object_def_file_id, "\"の読み込みに失敗しました。");
 				return nullptr;

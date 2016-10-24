@@ -1,7 +1,7 @@
-﻿#include "SceneManager.h"
+﻿#include "ResourceManager.h"
+#include "SceneManager.h"
 #include "Scene.h"
 #include "SceneSetUpper.h"
-#include "ResourceManager.h"
 #include "SError.h"
 #include "SEmpty.h"
 #include "SystemLog.h"
@@ -59,7 +59,8 @@ namespace planeta{
 			}
 			//リソース読み込み
 			//シーンIDと同じIDのタグをアンロード対象外に指定し、読み込む
-			auto& rm = private_::ResourceManager::instance();
+			assert(resource_manager_ != nullptr);
+			auto& rm = *resource_manager_;
 			bool scc = rm.SetNotUnloadTags({ scene_name });
 			scc &= rm.PrepareResources({ scene_name });
 			if (!scc) {
@@ -101,7 +102,8 @@ namespace planeta{
 			_current_scene = std::move(new_scene);
 			_current_scene_setupper = std::move(_next_scene_setupper);
 			//未使用リソースを削除(シーンの更新前のため、ここで削除してよい)
-			private_::ResourceManager::instance().UnloadUnusedResouces();
+			assert(resource_manager_ != nullptr);
+			resource_manager_->UnloadUnusedResouces();
 			//リクエストと準備状況をリセット
 			_request = _Request::None;
 			_is_next_scene_loaded = false;
@@ -160,6 +162,10 @@ namespace planeta{
 
 		void SceneManager::SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix) {
 			collision_group_matrix_ = std::move(cg_matrix);
+		}
+
+		void SceneManager::SetResouceManager(const std::shared_ptr<ResourceManager>& mgr) {
+			resource_manager_ = mgr;
 		}
 
 		bool SceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {

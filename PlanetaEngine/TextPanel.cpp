@@ -1,5 +1,5 @@
 ﻿#include "TextPanel.h"
-#include "ResourceManager.h"
+#include "StandardResourceManager.h"
 #include "RFontDefinition.h"
 #include "ScreenDrawerGUI.h"
 

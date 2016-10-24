@@ -4,11 +4,13 @@
 
 #include "DxLib.h"
 
+#include "ResourceManager.h"
+
 #include "InitFunctions.h"
 #include "ProgramDefinitionData.h"
 #include "SystemVariables.h"
 
-#include "PlanetaEngineImpl.h"
+#include "Game.h"
 
 #include "Reflection.h"
 
@@ -18,18 +20,20 @@
 #include "DebugManager.h"
 #include "FileSystemManager.h"
 #include "KeyInputManager.h"
-#include "ResourceManager.h"
+#include "StandardResourceManager.h"
 #include "SaveDataManager.h"
 #include "SceneManager.h"
 #include "SoundManager.h"
 
 namespace planeta {
 	using namespace private_;
-	class PlanetaEngine::Impl_ {
+	class Game::Impl_ {
 	private:
 		std::list<std::function<void()>> finalize_handls_;
 		std::unique_ptr<SceneManager> scene_manager_;
 	public:
+		std::shared_ptr<ResourceManager> resource_manager;
+
 		Impl_() :scene_manager_(std::make_unique<SceneManager>()) {}
 		bool is_initialized = false;
 		//エンジンの初期化
@@ -81,10 +85,14 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			if (!init_funcs::LoadEngineConfig(system_dir_accesor)) { return false; }
 			//////////////////////////////////////////////////////////////////////////
-			//リソースシステムの初期化
+			//リソースマネージャの初期化
 			//////////////////////////////////////////////////////////////////////////
 			{
-				auto ret = init_funcs::InitializeResourceSystem(resource_file_accesor);
+				if (resource_manager == nullptr) {
+					PE_LOG_FATAL("リソースマネージャが設定されていません。");
+					return false;
+				}
+				auto ret = init_funcs::InitializeResourceSystem(*resource_manager, resource_file_accesor);
 				if (std::get<0>(ret) == false) { return false; }
 				else { finalize_handls_.push_front(std::get<1>(ret)); }
 			}
@@ -142,6 +150,8 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//シーンシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
+			//リソースマネージャのセット
+			scene_manager_->SetResouceManager(resource_manager);
 			//衝突マトリックスの設定
 			scene_manager_->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(std::move(pdd.collision_group_matrix)));
 			if (scene_manager_->Initialize()) { finalize_handls_.push_front([&srn_mgr = *scene_manager_] {srn_mgr.Finalize(); }); }
@@ -188,15 +198,15 @@ namespace planeta {
 		}
 	};
 
-	PlanetaEngine::PlanetaEngine() :impl_(std::make_unique<Impl_>()) {
+	Game::Game() :impl_(std::make_unique<Impl_>()) {
 
 	}
 
-	PlanetaEngine::~PlanetaEngine() {
+	Game::~Game() {
 		assert(impl_->is_initialized == false);
 	}
 
-	bool PlanetaEngine::Initialize() {
+	bool Game::Initialize() {
 		if (impl_->is_initialized) { assert(false); return false; }
 		if (impl_->InitializeSubSystems()) {
 			PE_LOG_MESSAGE("PlanetaEngineが正常に初期化されました。");
@@ -209,14 +219,31 @@ namespace planeta {
 		}
 	}
 
-	void PlanetaEngine::Finalize() {
+	void Game::Finalize() {
 		if (impl_->is_initialized==false) { assert(false); return; }
 		PE_LOG_MESSAGE("PlanetaEngineを終了します。");
 		impl_->FinalizeSubSystems();
 		impl_->is_initialized = false;
 	}
 
-	GameStatus PlanetaEngine::Update() {
+	GameStatus Game::Update() {
 		return impl_->UpdateSubSystems();
 	}
+
+	bool Game::is_initialized() const {
+		return impl_->is_initialized;
+	}
+
+	void Game::SetResourceManager(const std::shared_ptr<private_::ResourceManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->resource_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IResourceManager> Game::resource_manager()const {
+		return impl_->resource_manager;
+	}
+
 }

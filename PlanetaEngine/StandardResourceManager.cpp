@@ -2,7 +2,7 @@
 
 #include "boost/algorithm/string.hpp"
 
-#include"ResourceManager.h"
+#include"StandardResourceManager.h"
 #include "FileSystemManager.h"
 #include "CsvFile.h"
 #include "SystemLog.h"
@@ -25,7 +25,7 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_
 		//////////////////////////////////////////////////////////////////////////
-		class ResourceManager::Impl_ {
+		class StandardResourceManager::Impl_ {
 		public:
 			std::shared_ptr<FileAccessor> file_accessor_;
 			/*リソースリストのファイル名*/
@@ -63,7 +63,7 @@ namespace planeta {
 
 			
 			/*ResourceのタイプによるResourceクリエータマップ*/
-			std::unordered_map<std::string, _ResourceCreatorType> _resource_creator_map;
+			std::unordered_map<std::string, ResourceCreatorType> _resource_creator_map;
 			/*リソースの作成*/
 			std::shared_ptr<ResourceBase> _CreateResourceInstanceAndInitialize(const std::string& type, const std::shared_ptr<const File>& file, ResourceManagerInternalAccessor& mgr_acsr);
 			/*リソースのロード*/
@@ -86,7 +86,7 @@ namespace planeta {
 			std::shared_ptr<ResourceBase> GetResourceByPath(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning);
 		};
 
-		std::shared_ptr<ResourceBase> ResourceManager::Impl_::_CreateResourceInstanceAndInitialize(const std::string& attribute, const std::shared_ptr<const File>& file, ResourceManagerInternalAccessor& mgr_acsr) {
+		std::shared_ptr<ResourceBase> StandardResourceManager::Impl_::_CreateResourceInstanceAndInitialize(const std::string& attribute, const std::shared_ptr<const File>& file, ResourceManagerInternalAccessor& mgr_acsr) {
 			auto it = _resource_creator_map.find(attribute);
 			if (it == _resource_creator_map.end()) { return nullptr; }
 			auto res = (it->second)();
@@ -101,7 +101,7 @@ namespace planeta {
 			return res;
 		}
 
-		std::shared_ptr<planeta::private_::ResourceBase> ResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
+		std::shared_ptr<planeta::private_::ResourceBase> StandardResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			auto file = file_accessor_->LoadFile(res_dat.file_path);
@@ -130,7 +130,7 @@ namespace planeta {
 			return res;
 		}
 
-		void ResourceManager::Impl_::UnloadResource_(ResourceData& res_dat) {
+		void StandardResourceManager::Impl_::UnloadResource_(ResourceData& res_dat) {
 			assert(res_dat.is_loaded);
 			assert(res_dat.resouce != nullptr);
 			res_dat.resouce->Dispose();
@@ -138,7 +138,7 @@ namespace planeta {
 			res_dat.is_loaded = false;
 		}
 
-		bool ResourceManager::Impl_::RegisterResourceData_(ResourceData&& res_dat) {
+		bool StandardResourceManager::Impl_::RegisterResourceData_(ResourceData&& res_dat) {
 			resource_data_list_.push_back(std::move(res_dat));
 			auto it = --resource_data_list_.end();
 			//タグマップに登録
@@ -163,7 +163,7 @@ namespace planeta {
 			return true;
 		}
 
-		bool ResourceManager::Impl_::_LoadResourceList() {
+		bool StandardResourceManager::Impl_::_LoadResourceList() {
 			std::shared_ptr<const File> file = file_accessor_->LoadFile(_resource_list_file_name);
 			if (file == nullptr) {
 				PE_LOG_ERROR("リソースリスト(", _resource_list_file_name, ")の読み込みに失敗しました。");
@@ -212,7 +212,7 @@ namespace planeta {
 			return true;
 		}
 
-		void ResourceManager::Impl_::_UnloadAllLoadedResources() {
+		void StandardResourceManager::Impl_::_UnloadAllLoadedResources() {
 			SetNotUnloadTags_({});
 			size_t unload{ 0 };
 			for (auto& res_dat : resource_data_list_) {
@@ -224,7 +224,7 @@ namespace planeta {
 			PE_LOG_MESSAGE("すべてのリソース(", unload, "個)をアンロードしました。");
 		}
 
-		bool ResourceManager::Impl_::SetNotUnloadTags_(const std::set<std::string>& tags) {
+		bool StandardResourceManager::Impl_::SetNotUnloadTags_(const std::set<std::string>& tags) {
 			//新たに指定されたタグを求める
 			std::vector<std::string> new_set_tags;
 			std::set_difference(tags.begin(), tags.end(), not_unload_tags_.begin(), not_unload_tags_.end(), std::back_inserter(new_set_tags));
@@ -257,7 +257,7 @@ namespace planeta {
 			return true;
 		}
 
-		std::shared_ptr<ResourceBase> ResourceManager::Impl_::GetResourceByID(const std::string& id, bool is_valid_not_preload_warning) {
+		std::shared_ptr<ResourceBase> StandardResourceManager::Impl_::GetResourceByID(const std::string& id, bool is_valid_not_preload_warning) {
 			auto it = id_map_.find(id);
 			if (it == id_map_.end()) {
 				PE_LOG_WARNING("定義されていないリソースが要求されました。(ID:", id, ")");
@@ -274,7 +274,7 @@ namespace planeta {
 			}
 		}
 
-		std::shared_ptr<ResourceBase> ResourceManager::Impl_::GetResourceByPath(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
+		std::shared_ptr<ResourceBase> StandardResourceManager::Impl_::GetResourceByPath(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
 			//必要ならルートパスを連結
 			std::string upath = UnifyPath(root_path.empty() ? path : root_path + "\\" + path);
 			auto it = path_map_.find(upath);
@@ -293,7 +293,7 @@ namespace planeta {
 			}
 		}
 
-		ResourceManagerInternalAccessor ResourceManager::Impl_::CreateInternalManagerAccessor() {
+		ResourceManagerInternalAccessor StandardResourceManager::Impl_::CreateInternalManagerAccessor() {
 			namespace sp = std::placeholders;
 			ResourceManagerInternalAccessor mgr_acsr{
 				std::bind(&Impl_::GetResourceByID, this, sp::_1, sp::_2),
@@ -304,14 +304,14 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		//ResourceManager
 		//////////////////////////////////////////////////////////////////////////
-		ResourceManager::ResourceManager():impl_(std::make_unique<Impl_>()) {}
-		ResourceManager::~ResourceManager() = default;
+		StandardResourceManager::StandardResourceManager():impl_(std::make_unique<Impl_>()) {}
+		StandardResourceManager::~StandardResourceManager() = default;
 
-		void ResourceManager::AddResourceCreatorMap_(const std::string& type_name, const _ResourceCreatorType& creator) {
+		void StandardResourceManager::AddResourceCreator(const std::string& type_name, const ResourceCreatorType& creator) {
 			impl_->_resource_creator_map.emplace(type_name, creator);
 		}
 
-		bool ResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
+		bool StandardResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
 			auto& tag_map_ = impl_->tag_map_;
 			size_t new_loaded{ 0 }, already{ 0 };
 			for (auto&& tag : need_tags) {
@@ -335,7 +335,7 @@ namespace planeta {
 			return true;
 		}
 
-		bool ResourceManager::UnloadUnusedResouces() {
+		bool StandardResourceManager::UnloadUnusedResouces() {
 			auto& resource_data_list_ = impl_->resource_data_list_;
 			size_t unload{ 0 };
 			//未使用リソースがなくなるまでループ。(依存関係によっては一度の走査でアンロードしきれないため)
@@ -355,11 +355,11 @@ namespace planeta {
 			return true;
 		}
 
-		bool ResourceManager::IsReady()const { return true; }
+		bool StandardResourceManager::IsReady()const { return true; }
 
-		double ResourceManager::GetPrepairProgress() const { return 1.0; }
+		double StandardResourceManager::GetPrepairProgress() const { return 1.0; }
 
-		bool ResourceManager::Initialize() {
+		bool StandardResourceManager::Initialize() {
 			assert(impl_->file_accessor_ != nullptr);
 			if (impl_->_LoadResourceList() == false) {
 				PE_LOG_ERROR("初期化に失敗しました。リソースリストの取得に失敗しました。");
@@ -368,23 +368,23 @@ namespace planeta {
 			return true;
 		}
 
-		void ResourceManager::Finalize() {
+		void StandardResourceManager::Finalize() {
 			impl_->_UnloadAllLoadedResources();
 		}
 
-		bool ResourceManager::SetNotUnloadTags(const std::set<std::string>& tags) {
+		bool StandardResourceManager::SetNotUnloadTags(const std::set<std::string>& tags) {
 			return impl_->SetNotUnloadTags_(tags);
 		}
 
-		std::shared_ptr<ResourceBase> ResourceManager::GetResourceByID(const std::string& id) {
+		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByID(const std::string& id) {
 			return impl_->GetResourceByID(id, true);
 		}
 
-		void ResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
+		void StandardResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
 			impl_->file_accessor_ = f_scsr;
 		}
 
-		void ResourceManager::SetResourceListFileName_(const std::string& file_name) {
+		void StandardResourceManager::SetResourceListFileName_(const std::string& file_name) {
 			impl_->_resource_list_file_name = file_name;
 		}
 

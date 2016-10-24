@@ -1,4 +1,5 @@
 ﻿#include <cassert>
+#include "Game.h"
 #include "GameObjectBase.h"
 #include "GameObjectManagerPublicInterface.h"
 #include "SceneData.h"
@@ -9,7 +10,7 @@
 #include "GOComponentAdder.h"
 #include "GOComponentGetter.h"
 #include "RPtree.h"
-#include "ResourceManager.h"
+#include "IResourceManager.h"
 #include "Reflection.h"
 
 namespace planeta {
@@ -182,7 +183,7 @@ namespace planeta {
 				std::string res_id = cd_pt.get_value<std::string>();
 				//文字列が空でなかったらリソースIDとみなす
 				if (!res_id.empty()) {
-					auto jres = private_::ResourceManager::instance().GetResourceByID<RPtree>(res_id);
+					auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id);
 					//指定されたリソースがない
 					if (jres == nullptr) {
 						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");

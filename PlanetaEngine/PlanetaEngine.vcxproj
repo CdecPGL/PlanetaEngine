@@ -181,6 +181,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
     <ClInclude Include="IniFile.h" />
+    <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="JsonFile.h" />
     <ClInclude Include="LuaBindHelder.h" />
     <ClInclude Include="MacroUtility.h" />
@@ -195,6 +196,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ReflectionAccessible.h" />
     <ClInclude Include="ReflectionExceptions.h" />
     <ClInclude Include="ReflectionUtility.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourceReferencer.h" />
     <ClInclude Include="RJson.h" />
     <ClInclude Include="CCircleCollider2D.h" />
@@ -312,7 +314,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ParameterHolder.h" />
     <ClInclude Include="PEDateTime.h" />
     <ClInclude Include="PETime.h" />
-    <ClInclude Include="PlanetaEngineImpl.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="CPlanet.h" />
     <ClInclude Include="CPlanetGround2D.h" />
     <ClInclude Include="CPolygonCollider2D.h" />
@@ -321,7 +323,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="RangeUtility.h" />
     <ClInclude Include="RectAngle.h" />
     <ClInclude Include="ResourceBase.h" />
-    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="StandardResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpper.h" />
@@ -391,6 +393,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GOComponentGetter.cpp" />
     <ClCompile Include="IniFile.cpp" />
     <ClCompile Include="JsonFile.cpp" />
+    <ClCompile Include="GameSetStandardManagerImpl.cpp" />
     <ClCompile Include="PrefixUtility.cpp" />
     <ClCompile Include="REffect.cpp" />
     <ClCompile Include="ReflectableClassAccessor.cpp" />
@@ -479,11 +482,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CGround2D.cpp" />
     <ClCompile Include="NormalFolderManipulator.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="PlanetaEngineImpl.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="CPlanet.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskManager.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="StandardResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="CStraightLineCollider2D.cpp" />
