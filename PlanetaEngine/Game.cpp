@@ -9,6 +9,7 @@
 #include "ResourceManager.h"
 #include "LogManager.h"
 #include "FileSystemManager.h"
+#include "SceneManager.h"
 
 #include "LogUtility.h"
 
@@ -24,7 +25,6 @@
 #include "DebugManager.h"
 #include "KeyInputManager.h"
 #include "SaveDataManager.h"
-#include "SceneManager.h"
 #include "SoundManager.h"
 
 namespace planeta {
@@ -32,13 +32,13 @@ namespace planeta {
 	class Game::Impl_ {
 	private:
 		std::list<std::function<void()>> finalize_handls_;
-		std::unique_ptr<SceneManager> scene_manager_;
 	public:
 		std::shared_ptr<ResourceManager> resource_manager;
 		std::shared_ptr<LogManager> log_manager;
 		std::shared_ptr<FileSystemManager> file_system_manager;
+		std::shared_ptr<SceneManager> scene_manager;
 
-		Impl_() :scene_manager_(std::make_unique<SceneManager>()) {}
+		Impl_() {}
 		bool is_initialized = false;
 		//エンジンの初期化
 		bool InitializeSubSystems() {
@@ -165,11 +165,15 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//シーンシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
+			if (scene_manager == nullptr) {
+				PE_LOG_FATAL("シーンマネージャが設定されていません。");
+				return false;
+			}
 			//リソースマネージャのセット
-			scene_manager_->SetResouceManager(resource_manager);
+			scene_manager->SetResouceManager(resource_manager);
 			//衝突マトリックスの設定
-			scene_manager_->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(std::move(pdd.collision_group_matrix)));
-			if (scene_manager_->Initialize()) { finalize_handls_.push_front([&srn_mgr = *scene_manager_] {srn_mgr.Finalize(); }); }
+			scene_manager->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(std::move(pdd.collision_group_matrix)));
+			if (scene_manager->Initialize()) { finalize_handls_.push_front([this] {scene_manager->Finalize(); }); }
 			else { PE_LOG_FATAL("シーンシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//キャッシュなどの削除
@@ -179,7 +183,7 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//ゲームの開始準備
 			//////////////////////////////////////////////////////////////////////////
-			scene_manager_->LoadAndTransitionScene(pdd.startup_scene_id); //スタートアップシーンの開始依頼
+			scene_manager->LoadAndTransitionScene(pdd.startup_scene_id); //スタートアップシーンの開始依頼
 
 			return true;
 
@@ -194,17 +198,17 @@ namespace planeta {
 		GameStatus UpdateSubSystems() {
 			if (ProcessMessage() < 0) { return GameStatus::Quit; } //DXライブラリの更新
 			KeyInputManager::instance().Update(); //キー入力の更新
-			auto sst = scene_manager_->Process_(); //シーンの更新
+			auto sst = scene_manager->Process_(); //シーンの更新
 			RenderManager::instance().Update(); //描画システムの更新
 			SoundManager::instance().Update(); //サウンドシステムの更新
 			debug::SystemTimer::instance().IncrementFrameCount(); //フレームカウントのインクリメント
 			
 			switch (sst) {
-			case planeta::private_::SceneManager::SceneStatus_::Continue:
+			case planeta::private_::SceneStatus_::Continue:
 				return GameStatus::Continue;
-			case planeta::private_::SceneManager::SceneStatus_::Quit:
+			case planeta::private_::SceneStatus_::Quit:
 				return GameStatus::Quit;
-			case planeta::private_::SceneManager::SceneStatus_::Error:
+			case planeta::private_::SceneStatus_::Error:
 				return GameStatus::Error;
 			default:
 				assert(false);
@@ -283,6 +287,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::IFileSystemManager> Game::file_system_manager() const {
 		return impl_->file_system_manager;
+	}
+
+	void Game::SetSceneManager(const std::shared_ptr<private_::SceneManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->scene_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::ISceneManager> Game::scene_manager() const {
+		return impl_->scene_manager;
 	}
 
 }

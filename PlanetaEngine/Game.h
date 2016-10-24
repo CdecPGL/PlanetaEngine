@@ -8,10 +8,12 @@ namespace planeta {
 	class IResourceManager;
 	class ILogManager;
 	class IFileSystemManager;
+	class ISceneManager;
 	namespace private_ {
 		class ResourceManager;
 		class LogManager;
 		class FileSystemManager;
+		class SceneManager;
 	}
 	/*! ゲームのステータス*/
 	enum class GameStatus { Continue, Quit, Error };
@@ -33,14 +35,18 @@ namespace planeta {
 		void SetResourceManager(const std::shared_ptr<private_::ResourceManager>& mgr);
 		/*! ログマネージャを設定する(初期化前)*/
 		void SetLogManager(const std::shared_ptr<private_::LogManager>& mgr);
-		/*! ログマネージャを設定する(初期化前)*/
+		/*! ファイルシステムマネージャを設定する(初期化前)*/
 		void SetFileSystemManager(const std::shared_ptr<private_::FileSystemManager>& mgr);
+		/*! シーンマネージャを設定する(初期化前)*/
+		void SetSceneManager(const std::shared_ptr<private_::SceneManager>& mgr);
 		/*! リソースマネージャにアクセスする*/
 		std::shared_ptr<IResourceManager> resource_manager()const;
 		/*! ログマネージャにアクセスする*/
 		std::shared_ptr<ILogManager> log_manager()const;
 		/*! ファイルシステムマネージャにアクセスする*/
 		std::shared_ptr<IFileSystemManager> file_system_manager()const;
+		/*! シーンマネージャにアクセスする*/
+		std::shared_ptr<ISceneManager> scene_manager()const;
 	private:
 		Game();
 		~Game();

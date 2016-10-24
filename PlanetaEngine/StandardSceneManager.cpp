@@ -1,5 +1,5 @@
 ﻿#include "ResourceManager.h"
-#include "SceneManager.h"
+#include "StandardSceneManager.h"
 #include "Scene.h"
 #include "SceneSetUpper.h"
 #include "SError.h"
@@ -11,24 +11,24 @@
 
 namespace planeta{
 	namespace private_{
-		SceneManager::SceneManager() :_scene_progress_flag(true), _request(_Request::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
+		StandardSceneManager::StandardSceneManager() :_scene_progress_flag(true), _request(_Request::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
 
 		}
 
 
-		SceneManager::SceneStatus_ SceneManager::Process_()
+		SceneStatus_ StandardSceneManager::Process_()
 		{
 			try {
 				switch (_request)
 				{
-				case planeta::private_::SceneManager::_Request::Transition:
+				case planeta::private_::StandardSceneManager::_Request::Transition:
 					_transition_proc();
-				case planeta::private_::SceneManager::_Request::None:
+				case planeta::private_::StandardSceneManager::_Request::None:
 					if (_scene_progress_flag) { _current_scene->Update(); }
 					return SceneStatus_::Continue;
-				case planeta::private_::SceneManager::_Request::Quit:
+				case planeta::private_::StandardSceneManager::_Request::Quit:
 					return SceneStatus_::Quit;
-				case planeta::private_::SceneManager::_Request::Error:
+				case planeta::private_::StandardSceneManager::_Request::Error:
 					return SceneStatus_::Error;
 				default:
 					break;
@@ -41,7 +41,7 @@ namespace planeta{
 			}
 		}
 
-		bool SceneManager::LoadNextScene(const std::string& scene_name){
+		bool StandardSceneManager::LoadNextScene(const std::string& scene_name){
 			if (IsLoading() || IsTransitioning()){ 
 				PE_LOG_ERROR("シーンの読み込みに失敗しました。シーンの読み込み中、または遷移中のため新たにシーン(", scene_name, ")を読み込むことはできません。");
 				return false;
@@ -74,7 +74,7 @@ namespace planeta{
 			return true;
 		}
 
-		bool SceneManager::TransitionScene(const util::ParameterHolder& transition_parameters)
+		bool StandardSceneManager::TransitionScene(const util::ParameterHolder& transition_parameters)
 		{
 			if (IsTransitionable()==false){
 				PE_LOG_ERROR("シーン遷移予約に失敗しました。遷移中のため、新たに遷移処理をはじめることはできません。");
@@ -87,7 +87,7 @@ namespace planeta{
 			return true;
 		}
 
-		void SceneManager::_transition_proc()
+		void StandardSceneManager::_transition_proc()
 		{
 			//現在のシーンを終了
 			util::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
@@ -111,7 +111,7 @@ namespace planeta{
 			_next_scene_id = "";
 		}
 
-		bool SceneManager::Initialize()
+		bool StandardSceneManager::Initialize()
 		{
 			//空のシーンをセット
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SEmpty>();
@@ -125,21 +125,21 @@ namespace planeta{
 			return true;
 		}
 
-		bool SceneManager::Finalize()
+		bool StandardSceneManager::Finalize()
 		{
 			//現在のシーンを終了
 			_end_current_scene();
 			return true;
 		}
 
-		std::shared_ptr<SceneSetUpper> SceneManager::_CreateSceneSetUpper(const std::string& scene_name)
+		std::shared_ptr<SceneSetUpper> StandardSceneManager::_CreateSceneSetUpper(const std::string& scene_name)
 		{
 			//シーン名にプレフィックスをつけたクラスを作成。
 			auto setupper = Reflection::CreateObjectByObjectTypeID<SceneSetUpper>(private_::AddPrefix(scene_name, private_::ObjectCategory::Scene));
 			return setupper;
 		}
 
-		void SceneManager::_transition_to_error_scene()
+		void StandardSceneManager::_transition_to_error_scene()
 		{
 			PE_LOG_ERROR("エラーシーンに遷移します。");
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SError>();
@@ -151,7 +151,7 @@ namespace planeta{
 			_is_next_scene_loaded = false;
 		}
 
-		util::ParameterHolder SceneManager::_end_current_scene()
+		util::ParameterHolder StandardSceneManager::_end_current_scene()
 		{
 			//現在のシーンを終了(現在のシーンがなかったら空のパラメータを格納)
 			if (_current_scene) {
@@ -160,19 +160,19 @@ namespace planeta{
 			else { return util::ParameterHolder(); }
 		}
 
-		void SceneManager::SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix) {
+		void StandardSceneManager::SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix) {
 			collision_group_matrix_ = std::move(cg_matrix);
 		}
 
-		void SceneManager::SetResouceManager(const std::shared_ptr<ResourceManager>& mgr) {
+		void StandardSceneManager::SetResouceManager(const std::shared_ptr<ResourceManager>& mgr) {
 			resource_manager_ = mgr;
 		}
 
-		bool SceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {
+		bool StandardSceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {
 			SceneSetUpProxy safs(scene);
 			//シーンデータの準備
 			scene.SetCollisionGroupMatrix(collision_group_matrix_);
-			scene.PrepareSceneData(this);
+			scene.PrepareSceneData();
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
 			if (!private_::SceneSystemSetUpper()(scene)) {
 				PE_LOG_ERROR("シーンのシステム設定に失敗しました。");
@@ -193,7 +193,7 @@ namespace planeta{
 			return true;
 		}
 
-		util::ParameterHolder SceneManager::FinalizeScene_(private_::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
+		util::ParameterHolder StandardSceneManager::FinalizeScene_(private_::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
 			SceneSetUpProxy safs(scene);
 			auto ret = setupper.TerminateScene(scene,next_scene_id, finalize_parameters); //固有終了処理
 			scene.Finalize(); //終了処理

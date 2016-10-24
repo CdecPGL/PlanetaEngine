@@ -5,6 +5,7 @@
 #include "StandardResourceManager.h"
 #include "StandardLogManager.h"
 #include "StandardFileSystemManager.h"
+#include "StandardSceneManager.h"
 
 #include "SystemVariables.h"
 
@@ -26,5 +27,6 @@ namespace planeta {
 		log_mgr->ValidateFileOutPut(system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName);
 		SetLogManager(log_mgr);
 		SetFileSystemManager(std::make_shared<private_::StandardFileSystemManager>());
+		SetSceneManager(std::make_shared<private_::StandardSceneManager>());
 	}
 }

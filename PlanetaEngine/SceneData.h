@@ -6,7 +6,6 @@
 namespace planeta {
 	class GameObjectManagerPublicInterface;
 	class TaskManagerPublicInterface;
-	class ISceneManagerAccessor;
 	namespace private_ {
 		class CollisionWorld;
 		class GameObjectDrawSystem;
@@ -19,7 +18,6 @@ namespace planeta {
 			private_::CollisionWorld& collision_world;
 			private_::GameObjectDrawSystem& gameobject_draw_system;
 			private_::TransformSystem& transform_system;
-			ISceneManagerAccessor& scene_manager;
 		};
 	}
 }

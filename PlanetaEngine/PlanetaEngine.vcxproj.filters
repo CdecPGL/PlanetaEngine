@@ -208,7 +208,7 @@
     <Filter Include="PlanetaEngine\Core\FileFormats">
       <UniqueIdentifier>{4bc3e4db-8f4d-461f-8e63-dd0aaa068d6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\StandardManagers">
+    <Filter Include="PlanetaEngine\SubSystems\StandardManagers">
       <UniqueIdentifier>{6ae360d7-a063-403b-a4b4-a4ac48abd556}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -348,14 +348,8 @@
     <ClInclude Include="GameObjectManagerPublicInterface.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="SceneSystemSetUpper.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneManagerAccessor.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneSetUpper.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
@@ -856,7 +850,7 @@
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="StandardResourceManager.h">
-      <Filter>PlanetaEngine\StandardManagers</Filter>
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
     <ClInclude Include="ILogManager.h">
       <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
@@ -868,16 +862,25 @@
       <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
     </ClInclude>
     <ClInclude Include="StandardLogManager.h">
-      <Filter>PlanetaEngine\StandardManagers</Filter>
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
     <ClInclude Include="IFileSystemManager.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="StandardFileSystemManager.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
-    </ClInclude>
     <ClInclude Include="FileSystemManager.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardFileSystemManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="ISceneManager.h">
+      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardSceneManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -934,9 +937,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SceneSystemSetUpper.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
@@ -1269,13 +1269,16 @@
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="StandardResourceManager.cpp">
-      <Filter>PlanetaEngine\StandardManagers</Filter>
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardLogManager.cpp">
-      <Filter>PlanetaEngine\StandardManagers</Filter>
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardFileSystemManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardSceneManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

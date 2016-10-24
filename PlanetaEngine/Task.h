@@ -56,8 +56,6 @@ namespace planeta {
 		}
 		//名前でタスクを取得
 		WeakPointer<Task> GetTaskByName(const std::string& name)const;
-		//シーンマネージャへのアクセス
-		ISceneManagerAccessor& scene_manager();
 	private:
 		WeakPointer<private_::SceneData> scene_data_;
 		std::unique_ptr<private_::TaskManagerConnection> manager_connection_;

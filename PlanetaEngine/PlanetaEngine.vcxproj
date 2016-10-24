@@ -185,6 +185,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ILogManager.h" />
     <ClInclude Include="IniFile.h" />
     <ClInclude Include="IResourceManager.h" />
+    <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="JsonFile.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="LogUtility.h" />
@@ -213,6 +214,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="RLuaScript.h" />
     <ClInclude Include="RPtree.h" />
     <ClInclude Include="REffectTexture.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
@@ -298,7 +300,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TInstant.h" />
     <ClInclude Include="TInstantCoroutine.h" />
     <ClInclude Include="IOKeyConfig.h" />
-    <ClInclude Include="ISceneManagerAccessor.h" />
     <ClInclude Include="ISoundEffectController.h" />
     <ClInclude Include="KeyInputDefines.h" />
     <ClInclude Include="KeyInputManager.h" />
@@ -330,7 +331,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ResourceBase.h" />
     <ClInclude Include="StandardResourceManager.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="StandardSceneManager.h" />
     <ClInclude Include="SceneSetUpper.h" />
     <ClInclude Include="SceneSystemSetUpper.h" />
     <ClInclude Include="Screen.h" />
@@ -493,7 +494,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="StandardResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="StandardSceneManager.cpp" />
     <ClCompile Include="CStraightLineCollider2D.cpp" />
     <ClCompile Include="SystemTimer.cpp" />
     <ClCompile Include="StandardLogManager.cpp" />

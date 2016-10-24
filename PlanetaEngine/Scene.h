@@ -11,7 +11,6 @@
 
 namespace planeta{
 	class TaskManager;
-	class ISceneManagerAccessor;
 	class CollisionGroupMatrix;
 	namespace private_{
 		class GameObjectManager;
@@ -40,7 +39,7 @@ namespace planeta{
 
 			/*初期化用関数*/
 			void SetCollisionGroupMatrix(const std::shared_ptr<CollisionGroupMatrix>& col_g_marix);
-			void PrepareSceneData(const NonOwingPointer<ISceneManagerAccessor> scn_mgr);
+			void PrepareSceneData();
 			void RegisterSceneDataToModules();
 
 		private:

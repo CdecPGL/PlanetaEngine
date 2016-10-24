@@ -1,33 +1,34 @@
-ï»¿#pragma once
+#pragma once
 
 #include <string>
 #include "ParameterHolder.h"
 
 namespace planeta {
-	class ISceneManagerAccessor {
+	/*! ƒV[ƒ“ƒ}ƒl[ƒWƒƒ‚ÌŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	class ISceneManager {
 	public:
-		virtual ~ISceneManagerAccessor() = 0 {};
-		/*æ¬¡ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚€(é·ç§»ã¯ã—ãªã„)*/
+		virtual ~ISceneManager() = 0 {};
+		/*ŸƒV[ƒ“‚ğ“Ç‚İ‚Ş(‘JˆÚ‚Í‚µ‚È‚¢)*/
 		virtual bool LoadNextScene(const std::string& scene_id) = 0;
-		/*èª­ã¿è¾¼ã¿é€²è¡Œåº¦å–å¾—(0.0-1.0ã€‚æœªèª­ã¿è¾¼ã¿æ™‚ã«ã¯0.0)*/
+		/*“Ç‚İ‚İis“xæ“¾(0.0-1.0B–¢“Ç‚İ‚İ‚É‚Í0.0)*/
 		virtual double GetLoadProgress()const = 0;
-		/*èª­ã¿è¾¼ã¿ä¸­ã‹*/
+		/*“Ç‚İ‚İ’†‚©*/
 		virtual bool IsLoading()const = 0;
-		/*é·ç§»ä¸­ã‹*/
+		/*‘JˆÚ’†‚©*/
 		virtual bool IsTransitioning()const = 0;
-		/*é·ç§»å¯èƒ½ã‹*/
+		/*‘JˆÚ‰Â”\‚©*/
 		virtual bool IsTransitionable()const = 0;
-		/*æ¬¡ã®ã‚·ãƒ¼ãƒ³IDã‚’å–å¾—*/
+		/*Ÿ‚ÌƒV[ƒ“ID‚ğæ“¾*/
 		virtual const std::string GetNextSceneID()const = 0;
-		/*ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³IDã‚’å–å¾—*/
+		/*Œ»İ‚ÌƒV[ƒ“ID‚ğæ“¾*/
 		virtual const std::string GetCurrentSceneID()const = 0;
-		/*ã‚·ãƒ¼ãƒ³ã®é·ç§»(èª­ã¿è¾¼ã¿ãŒå¿…è¦ã€‚èª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰èª­ã¿è¾¼ã¿ã¤ã¤é·ç§»)*/
+		/*ƒV[ƒ“‚Ì‘JˆÚ(“Ç‚İ‚İ‚ª•K—vB“Ç‚İ‚İ’†‚¾‚Á‚½‚ç“Ç‚İ‚İ‚Â‚Â‘JˆÚ)*/
 		virtual bool TransitionScene(const util::ParameterHolder& transition_parameters) = 0;
-		/*ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚“ã§é·ç§»ã™ã‚‹*/
+		/*ƒV[ƒ“‚ğ“Ç‚İ‚ñ‚Å‘JˆÚ‚·‚é*/
 		virtual bool LoadAndTransitionScene(const std::string& scene_id, const util::ParameterHolder& transition_parameters = util::ParameterHolder()) = 0;
-		/*çµ‚äº†*/
+		/*I—¹*/
 		virtual void QuitScene() = 0;
-		/*ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ*/
+		/*ƒGƒ‰[”­¶*/
 		virtual void ErrorOccured() = 0;
 	};
 }

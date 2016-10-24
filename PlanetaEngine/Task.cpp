@@ -44,9 +44,4 @@ namespace planeta {
 	planeta::GameObjectManagerPublicInterface& Task::game_object_manager() {
 		return scene_data_->game_object_manager_public_interface;
 	}
-
-	ISceneManagerAccessor& Task::scene_manager() {
-		return scene_data_->scene_manager;
-	}
-
 }
