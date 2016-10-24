@@ -8,6 +8,7 @@
 
 #include "ResourceManager.h"
 #include "LogManager.h"
+#include "FileSystemManager.h"
 
 #include "LogUtility.h"
 
@@ -21,9 +22,7 @@
 #include "SystemTimer.h"
 #include "RenderManager.h"
 #include "DebugManager.h"
-#include "FileSystemManager.h"
 #include "KeyInputManager.h"
-#include "StandardResourceManager.h"
 #include "SaveDataManager.h"
 #include "SceneManager.h"
 #include "SoundManager.h"
@@ -37,6 +36,7 @@ namespace planeta {
 	public:
 		std::shared_ptr<ResourceManager> resource_manager;
 		std::shared_ptr<LogManager> log_manager;
+		std::shared_ptr<FileSystemManager> file_system_manager;
 
 		Impl_() :scene_manager_(std::make_unique<SceneManager>()) {}
 		bool is_initialized = false;
@@ -76,20 +76,24 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//ファイルシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			FileSystemManager& flm = FileSystemManager::instance();
-			if(flm.Initialize()){ finalize_handls_.push_front([] {FileSystemManager::instance().Finalize(); }); }
+			if (file_system_manager == nullptr) {
+				PE_LOG_FATAL("ファイルシステムマネージャが設定されていません。");
+				return false;
+			}
+			FileSystemManager& flm = *file_system_manager;
+			if(flm.Initialize()){ finalize_handls_.push_front([this] {file_system_manager->Finalize(); }); }
 			else { PE_LOG_FATAL("ファイルシステムの初期化に失敗しました。"); return false; }
 			//リソース用ファイルアクセサ設定
-			auto resource_file_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::Resource);
+			auto resource_file_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::Resource);
 			if (resource_file_accesor == nullptr) { return false; }
 			//SaveData用ファイルアクセサ設定
-			auto savedata_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::SaveData);
+			auto savedata_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::SaveData);
 			if (savedata_dir_accesor == nullptr) { return false; }
 			//system用ファイルアクセサ設定
-			auto system_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::System);
+			auto system_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::System);
 			if (system_dir_accesor == nullptr) { return false; }
 			//config用ファイルアクセサ設定
-			auto config_dir_accesor = init_funcs::CreateFileAccessor(init_funcs::FileAccessorKind::Config);
+			auto config_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::Config);
 			if (config_dir_accesor == nullptr) { return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//エンジン設定の読み込み
@@ -267,6 +271,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::ILogManager> Game::log_manager() const {
 		return impl_->log_manager;
+	}
+
+	void Game::SetFileSystemManager(const std::shared_ptr<private_::FileSystemManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->file_system_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IFileSystemManager> Game::file_system_manager() const {
+		return impl_->file_system_manager;
 	}
 
 }

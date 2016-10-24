@@ -408,9 +408,6 @@
     <ClInclude Include="FileAccessMode.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="FileSystemManager.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionGroupMatrix.h">
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClInclude>
@@ -873,6 +870,15 @@
     <ClInclude Include="StandardLogManager.h">
       <Filter>PlanetaEngine\StandardManagers</Filter>
     </ClInclude>
+    <ClInclude Include="IFileSystemManager.h">
+      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardFileSystemManager.h">
+      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystemManager.h">
+      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -970,9 +976,6 @@
     </ClCompile>
     <ClCompile Include="ArchiveManipulator.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
-    </ClCompile>
-    <ClCompile Include="FileSystemManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
@@ -1270,6 +1273,9 @@
     </ClCompile>
     <ClCompile Include="StandardLogManager.cpp">
       <Filter>PlanetaEngine\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardFileSystemManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

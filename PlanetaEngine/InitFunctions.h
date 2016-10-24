@@ -8,6 +8,7 @@ namespace planeta {
 	class FileAccessor;
 	namespace private_ {
 		class ResourceManager;
+		class FileSystemManager;
 		struct ProgramDefinitionData;
 		namespace init_funcs {
 			//PlanetaEngineのInit関数内で呼ばれる。戻り値に初期化の成否と、終了処理関数を返す。エラーメッセージはこれらの関数内で出力する。
@@ -20,7 +21,7 @@ namespace planeta {
 			//その他初期化補助関数
 			bool LoadEngineConfig(const std::shared_ptr<FileAccessor> sys_dir_sccessor);
 			enum class FileAccessorKind{Resource,SaveData,System,Config};
-			std::shared_ptr<FileAccessor> CreateFileAccessor(FileAccessorKind kind);
+			std::shared_ptr<FileAccessor> CreateFileAccessor(FileSystemManager& mgr, FileAccessorKind kind);
 			bool LoadProgramDefinition(const std::shared_ptr<FileAccessor> sys_dir_accessor,ProgramDefinitionData* out);
 		}
 	}

@@ -4,19 +4,19 @@
 #include <sstream>
 #include "boost/lexical_cast.hpp"
 #include "DxLib.h"
+
+#include "Game.h"
+#include "FileSystemManager.h"
 #include "XmlFile.h"
 #include "File.h"
-#include "FileSystemManager.h"
 #include "LogUtility.h"
 #include "SystemVariables.h"
-#include "FileSystemManager.h"
 #include "FileAccessor.h"
-#include "StandardResourceManager.h"
 #include "RFont.h"
 
 namespace planeta {
 	bool RFontDefinition::_Create(const File& file, private_::ResourceReferencer& referencer) {
-		auto file_accessor = FileSystemManager::instance().GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
+		auto file_accessor = Game::instance().file_system_manager()->GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
 		XmlFile xml{};
 		if (xml.Load(file)) {
 			auto root = xml.GetRootElement();

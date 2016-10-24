@@ -1,6 +1,5 @@
 #include "REffect.h"
 #include "File.h"
-#include "StandardResourceManager.h"
 
 #include "EffekseerForDXLib.h"
 #include "EffekseerUtil.h"
