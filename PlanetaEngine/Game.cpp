@@ -11,6 +11,7 @@
 #include "FileSystemManager.h"
 #include "SceneManager.h"
 #include "InputManager.h"
+#include "PerfoamanceManager.h"
 
 #include "LogUtility.h"
 
@@ -21,7 +22,6 @@
 
 #include "Reflection.h"
 
-#include "SystemTimer.h"
 #include "RenderManager.h"
 #include "DebugManager.h"
 #include "SaveDataManager.h"
@@ -38,6 +38,7 @@ namespace planeta {
 		std::shared_ptr<FileSystemManager> file_system_manager;
 		std::shared_ptr<SceneManager> scene_manager;
 		std::shared_ptr<InputManager> input_manager;
+		std::shared_ptr<PerformanceManager> performance_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -46,7 +47,11 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//システムタイマーの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if (debug::SystemTimer::instance().Initialize()) { finalize_handls_.push_front([] {debug::SystemTimer::instance().Finalize(); }); }
+			if (performance_manager == nullptr) {
+				PE_LOG_FATAL("パフォーマンスマネージャが設定されていません。");
+				return false;
+			}
+			if (performance_manager->Initialize()) { finalize_handls_.push_front([this] {performance_manager->Finalize(); }); }
 			else { assert(false); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//システムログの初期化
@@ -206,7 +211,7 @@ namespace planeta {
 			auto sst = scene_manager->Process_(); //シーンの更新
 			RenderManager::instance().Update(); //描画システムの更新
 			SoundManager::instance().Update(); //サウンドシステムの更新
-			debug::SystemTimer::instance().IncrementFrameCount(); //フレームカウントのインクリメント
+			performance_manager->Update(); //パフォーマンスマネージャの更新
 			
 			switch (sst) {
 			case planeta::private_::SceneStatus_::Continue:
@@ -316,6 +321,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::IInputManager> Game::input_manager() const {
 		return impl_->input_manager;
+	}
+
+	void Game::SetPerformanceManager(const std::shared_ptr<private_::PerformanceManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->performance_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IPerformanceManager> Game::performance_manager() const {
+		return impl_->performance_manager;
 	}
 
 }

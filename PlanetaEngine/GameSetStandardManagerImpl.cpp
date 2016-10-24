@@ -7,6 +7,7 @@
 #include "StandardFileSystemManager.h"
 #include "StandardSceneManager.h"
 #include "StandardInputManager.h"
+#include "StandardPerformanceManager.h"
 
 #include "SystemVariables.h"
 
@@ -30,5 +31,6 @@ namespace planeta {
 		SetFileSystemManager(std::make_shared<private_::StandardFileSystemManager>());
 		SetSceneManager(std::make_shared<private_::StandardSceneManager>());
 		SetInputManager(std::make_shared<private_::StandardInputManager>());
+		SetPerformanceManager(std::make_shared<private_::StandardPerformanceManager>());
 	}
 }

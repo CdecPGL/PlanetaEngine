@@ -172,9 +172,6 @@
     <Filter Include="PlanetaEngine\SubSystems\SystemLog">
       <UniqueIdentifier>{4c393383-d08a-45ed-b41e-059ea7dad009}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\SubSystems\SystemTimer">
-      <UniqueIdentifier>{e2eb296c-1515-43ba-b62f-735586ed09dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\EngineConfig">
       <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
     </Filter>
@@ -210,6 +207,9 @@
     </Filter>
     <Filter Include="PlanetaEngine\SubSystems\InputSystem">
       <UniqueIdentifier>{f8749ef8-c30b-4b76-86a1-8ed1d7014e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\PerformanceManager">
+      <UniqueIdentifier>{e2eb296c-1515-43ba-b62f-735586ed09dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -648,9 +648,6 @@
     <ClInclude Include="DebugManager.h">
       <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="SystemTimer.h">
-      <Filter>PlanetaEngine\SubSystems\SystemTimer</Filter>
-    </ClInclude>
     <ClInclude Include="EngineConfigData.h">
       <Filter>PlanetaEngine\Core\EngineConfig</Filter>
     </ClInclude>
@@ -876,9 +873,6 @@
     <ClInclude Include="InputManager.h">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClInclude>
-    <ClInclude Include="StandardInputManager.h">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClInclude>
     <ClInclude Include="InputDefinitions.h">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClInclude>
@@ -887,6 +881,18 @@
     </ClInclude>
     <ClInclude Include="KeyConfig.h">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardInputManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="IPerformanceManager.h">
+      <Filter>PlanetaEngine\SubSystems\PerformanceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfoamanceManager.h">
+      <Filter>PlanetaEngine\SubSystems\PerformanceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardPerformanceManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1130,9 +1136,6 @@
     <ClCompile Include="DebugManager.cpp">
       <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="SystemTimer.cpp">
-      <Filter>PlanetaEngine\SubSystems\SystemTimer</Filter>
-    </ClCompile>
     <ClCompile Include="EngineConfigData.cpp">
       <Filter>PlanetaEngine\Core\EngineConfig</Filter>
     </ClCompile>
@@ -1277,14 +1280,17 @@
     <ClCompile Include="StandardSceneManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="StandardInputManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
     <ClCompile Include="InputUtility.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="KeyConfig.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardInputManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardPerformanceManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

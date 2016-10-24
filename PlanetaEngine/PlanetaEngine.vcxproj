@@ -186,6 +186,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ILogManager.h" />
     <ClInclude Include="IniFile.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="IPerformanceManager.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="JsonFile.h" />
@@ -193,6 +194,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="LogUtility.h" />
     <ClInclude Include="LuaBindHelder.h" />
     <ClInclude Include="MacroUtility.h" />
+    <ClInclude Include="PerfoamanceManager.h" />
     <ClInclude Include="PlanetaEngine.h" />
     <ClInclude Include="PrefixUtility.h" />
     <ClInclude Include="REffect.h" />
@@ -349,7 +351,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CStraightLineCollider2D.h" />
     <ClInclude Include="StringPanel.h" />
     <ClInclude Include="StringUtility.h" />
-    <ClInclude Include="SystemTimer.h" />
+    <ClInclude Include="StandardPerformanceManager.h" />
     <ClInclude Include="StandardLogManager.h" />
     <ClInclude Include="SystemVariables.h" />
     <ClInclude Include="TalkWindows.h" />
@@ -498,7 +500,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="StandardSceneManager.cpp" />
     <ClCompile Include="CStraightLineCollider2D.cpp" />
-    <ClCompile Include="SystemTimer.cpp" />
+    <ClCompile Include="StandardPerformanceManager.cpp" />
     <ClCompile Include="StandardLogManager.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
     <ClCompile Include="PETime.cpp" />

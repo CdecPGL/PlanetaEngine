@@ -1,6 +1,7 @@
 ﻿#include <fstream>
+#include "Game.h"
+#include "IPerformanceManager.h"
 #include "StandardLogManager.h"
-#include "SystemTimer.h"
 #include "SystemVariables.h"
 #include <sstream>
 #include <iostream>
@@ -40,7 +41,6 @@ namespace {
 		return std::move(out);
 	}
 }
-using namespace planeta::debug;
 namespace planeta {
 	namespace private_ {
 		//////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,8 @@ namespace planeta {
 				//出力文字列を生成
 				stringstream sstrm;
 				//ログのシステム時刻
-				sstrm << '[' << SystemTimer::instance().GetCurrentTimeCount().ToString() << ',' << SystemTimer::instance().GetCurrentFrameCount() << ']';
+				auto& pm = *Game::instance().performance_manager();
+				sstrm << '[' << pm.GetCurrentTimeCount().ToString() << ',' << pm.GetCurrentFrameCount() << ']';
 				//ログのレベル
 				sstrm << header << ':';
 				//詳細
