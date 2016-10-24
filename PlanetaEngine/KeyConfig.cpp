@@ -1,10 +1,10 @@
 ﻿#pragma warning(push)
 #pragma warning(disable:4996)
 
-#include"IOKeyConfig.h"
+#include"KeyConfig.h"
 #include"INILoader.h"
 #include"INISaver.h"
-#include"KeyInputUtils.h"
+#include"InputUtility.h"
 #include "boost/lexical_cast.hpp"
 #include"boost/algorithm/string.hpp"
 #include<list>
@@ -35,7 +35,7 @@ namespace planeta {
 
 	namespace private_ {
 		namespace key_input_io {
-			int LoadKeyConfigFromINIFileToKIM(const std::string& fn, KeyInputManager& kim) {
+			int LoadKeyConfigFromINIFileToKIM(const std::string& fn, InputManager& kim) {
 				INILoader inil;
 				if (inil.LoadINI(fn) < 0) { return -1; }
 				const INIData& inid = inil.GetINIData();
@@ -113,7 +113,7 @@ namespace planeta {
 				catch (boost::bad_lexical_cast&) { return -6; }
 				return 0;
 			}
-			int SaveKeyConfigToINIFileFromKIM(const std::string& fn, int m, const KeyInputManager& kim) {
+			int SaveKeyConfigToINIFileFromKIM(const std::string& fn, int m, const InputManager& kim) {
 				INIData inid;
 				{
 					std::unordered_map<std::string, std::string> _sys_sec;

@@ -6,6 +6,7 @@
 #include "StandardLogManager.h"
 #include "StandardFileSystemManager.h"
 #include "StandardSceneManager.h"
+#include "StandardInputManager.h"
 
 #include "SystemVariables.h"
 
@@ -28,5 +29,6 @@ namespace planeta {
 		SetLogManager(log_mgr);
 		SetFileSystemManager(std::make_shared<private_::StandardFileSystemManager>());
 		SetSceneManager(std::make_shared<private_::StandardSceneManager>());
+		SetInputManager(std::make_shared<private_::StandardInputManager>());
 	}
 }

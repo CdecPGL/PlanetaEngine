@@ -10,6 +10,7 @@
 #include "LogManager.h"
 #include "FileSystemManager.h"
 #include "SceneManager.h"
+#include "InputManager.h"
 
 #include "LogUtility.h"
 
@@ -23,7 +24,6 @@
 #include "SystemTimer.h"
 #include "RenderManager.h"
 #include "DebugManager.h"
-#include "KeyInputManager.h"
 #include "SaveDataManager.h"
 #include "SoundManager.h"
 
@@ -37,6 +37,7 @@ namespace planeta {
 		std::shared_ptr<LogManager> log_manager;
 		std::shared_ptr<FileSystemManager> file_system_manager;
 		std::shared_ptr<SceneManager> scene_manager;
+		std::shared_ptr<InputManager> input_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -146,8 +147,12 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//入力システムの初期化
 			//////////////////////////////////////////////////////////////////////////
+			if (input_manager == nullptr) {
+				PE_LOG_FATAL("インプットマネージャが設定されていません。");
+				return false;
+			}
 			//キーコンフィグデータのセット予定
-			if(KeyInputManager::instance().Initialize()){ finalize_handls_.push_front([] {KeyInputManager::instance().Finalize(); }); }
+			if(input_manager->Initialize()){ finalize_handls_.push_front([this] {input_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("入力システムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//デバッグシステムの初期化
@@ -197,7 +202,7 @@ namespace planeta {
 		//エンジンの更新
 		GameStatus UpdateSubSystems() {
 			if (ProcessMessage() < 0) { return GameStatus::Quit; } //DXライブラリの更新
-			KeyInputManager::instance().Update(); //キー入力の更新
+			input_manager->Update(); //入力の更新
 			auto sst = scene_manager->Process_(); //シーンの更新
 			RenderManager::instance().Update(); //描画システムの更新
 			SoundManager::instance().Update(); //サウンドシステムの更新
@@ -299,6 +304,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::ISceneManager> Game::scene_manager() const {
 		return impl_->scene_manager;
+	}
+
+	void Game::SetInputManager(const std::shared_ptr<private_::InputManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->input_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IInputManager> Game::input_manager() const {
+		return impl_->input_manager;
 	}
 
 }

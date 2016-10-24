@@ -2,7 +2,7 @@
 
 #include<string>
 
-#include"KeyInputDefines.h"
+#include"InputDefinitions.h"
 
 namespace planeta {
 	namespace private_ {
