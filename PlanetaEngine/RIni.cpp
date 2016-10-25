@@ -14,7 +14,7 @@ namespace planeta {
 		return *ini_file_;
 	}
 
-	bool RIni::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RIni::_Create(const File& file, ResourceReferencer&) {
 		ini_file_ = std::make_unique<IniFile>();
 		if (!ini_file_->Load(file)) {
 			PE_LOG_ERROR("INIファイルの読み込みに失敗しました。");

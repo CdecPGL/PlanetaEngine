@@ -6,7 +6,7 @@
 
 namespace planeta {
 	/*フォントリソース*/
-	class RFont final : public private_::ResourceBase {
+	class RFont final : public ResourceBase {
 	public:
 		RFont() {};
 		~RFont() {};
@@ -14,7 +14,7 @@ namespace planeta {
 	private:
 		HANDLE handle_ = 0;
 		DWORD font_num_ = 0;
-		bool _Create(const File& file, private_::ResourceReferencer&) override;
+		bool _Create(const File& file, ResourceReferencer&) override;
 		void _Dispose() override;
 	};
 }

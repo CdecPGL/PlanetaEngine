@@ -16,7 +16,7 @@ namespace planeta {
 		return true;
 	}
 
-	bool RLuaScript::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RLuaScript::_Create(const File& file, ResourceReferencer&) {
 		//ファイルのコピーを作成
 		file_ = std::make_unique<File>(file);
 		return true;

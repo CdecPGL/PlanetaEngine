@@ -5,7 +5,7 @@
 
 //#pragma comment(lib,"d3dx9.lib")
 
-bool planeta::REffectTexture::_Create(const File& file, private_::ResourceReferencer&) {
+bool planeta::REffectTexture::_Create(const File& file, ResourceReferencer&) {
 	auto ret = D3DXCreateTextureFromFileInMemory(GetEffekseer3DRenderer()->GetDevice(), file.top_pointer(), file.size(), &texture_d9_);
 	switch (ret) {
 	case D3D_OK:

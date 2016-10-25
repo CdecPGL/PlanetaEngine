@@ -102,7 +102,7 @@ namespace planeta {
 			return res;
 		}
 
-		std::shared_ptr<planeta::private_::ResourceBase> StandardResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
+		std::shared_ptr<planeta::ResourceBase> StandardResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			auto file = file_accessor_->LoadFile(res_dat.file_path);

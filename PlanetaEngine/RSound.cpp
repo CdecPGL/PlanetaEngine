@@ -3,7 +3,7 @@
 #include "File.h"
 
 namespace planeta {
-	bool RSound::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RSound::_Create(const File& file, ResourceReferencer&) {
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);

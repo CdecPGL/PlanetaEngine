@@ -3,7 +3,7 @@
 
 namespace planeta {
 	/*効果音リソース*/
-	class RSound : public private_::ResourceBase {
+	class RSound : public ResourceBase {
 	public:
 		RSound() :_handle(-1) {};
 		~RSound() {};
@@ -11,7 +11,7 @@ namespace planeta {
 		int GetTotalTimeByMilliSecond();
 	private:
 		int _handle;
-		virtual bool _Create(const File& file, private_::ResourceReferencer&) override;
+		virtual bool _Create(const File& file, ResourceReferencer&) override;
 		virtual void _Dispose() override;
 	};
 }

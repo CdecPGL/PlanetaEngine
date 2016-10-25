@@ -12,8 +12,8 @@ namespace planeta {
 			void Finalize() override;
 			void Update()override;
 
-			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<private_::ResourceBase>& music_resource);
-			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<private_::ResourceBase>& sound_resource);
+			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<ResourceBase>& music_resource);
+			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<ResourceBase>& sound_resource);
 			void Reset()override;
 		private:
 			class Impl_;

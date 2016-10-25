@@ -3,7 +3,7 @@
 #include "CharacterCode.h"
 
 namespace planeta {
-	bool RText::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RText::_Create(const File& file, ResourceReferencer&) {
 		size_t size = file.size();
 		const char* c_ptr = (const char*)file.top_pointer();
 		for (unsigned int i = 0; i < size; ++i) {

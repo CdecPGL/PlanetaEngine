@@ -3,7 +3,7 @@
 #include "File.h"
 
 namespace planeta {
-	bool RMusic::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RMusic::_Create(const File& file, ResourceReferencer&) {
 		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMPRESS);

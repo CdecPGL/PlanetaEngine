@@ -13,7 +13,6 @@ namespace planeta{
 	class FileAccessor;
 	class File;
 	namespace private_{
-		class ResourceBase;
 		/*標準のResource管理クラス。非同期読み込みは未実装だが、実装時に変更が必要ないように非同期読み込みと同じように扱う。
 		PrepairResourcesでリソースの準備を開始し、IsReadyがtrueになるまで待つ。そしてUnloadUnusedResourscesを呼ぶ。
 		現状ではIsReadyは常にtrue、GetPrepairProgressは常に1.0を返す。

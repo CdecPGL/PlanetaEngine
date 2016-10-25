@@ -6,7 +6,7 @@
 //#include "boost/lexical_cast.hpp"
 
 namespace planeta {
-	bool RGraph::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RGraph::_Create(const File& file, ResourceReferencer&) {
 		_handle = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {
 			GetGraphSize(_handle, &image_size_.x, &image_size_.y);

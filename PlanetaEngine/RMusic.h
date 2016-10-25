@@ -3,7 +3,7 @@
 
 namespace planeta {
 	/*音楽リソース*/
-	class RMusic : public private_::ResourceBase {
+	class RMusic : public ResourceBase {
 	public:
 		RMusic() :_handle(-1) {};
 		~RMusic() {}
@@ -11,7 +11,7 @@ namespace planeta {
 		int GetTotalTimeByMilliSecond();
 	private:
 		int _handle;
-		virtual bool _Create(const File& file, private_::ResourceReferencer&) override;
+		virtual bool _Create(const File& file, ResourceReferencer&) override;
 		virtual void _Dispose() override;
 	};
 }

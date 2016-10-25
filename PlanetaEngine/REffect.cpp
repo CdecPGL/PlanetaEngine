@@ -11,7 +11,7 @@ Effekseer::Effect* planeta::REffect::effekseer_effect() const {
 	return effekseer_effect_;
 }
 
-bool planeta::REffect::_Create(const File& file, private_::ResourceReferencer& referencer) {
+bool planeta::REffect::_Create(const File& file, ResourceReferencer& referencer) {
 	//読み込み用設定
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
 	//エフェクトローダーの設定

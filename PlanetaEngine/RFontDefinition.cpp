@@ -15,7 +15,7 @@
 #include "RFont.h"
 
 namespace planeta {
-	bool RFontDefinition::_Create(const File& file, private_::ResourceReferencer& referencer) {
+	bool RFontDefinition::_Create(const File& file, ResourceReferencer& referencer) {
 		auto file_accessor = Game::instance().file_system_manager()->GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
 		XmlFile xml{};
 		if (xml.Load(file)) {

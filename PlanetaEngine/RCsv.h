@@ -4,14 +4,14 @@
 #include "CsvFile.h"
 
 namespace planeta {
-	class RCsv : public private_::ResourceBase {
+	class RCsv : public ResourceBase {
 	public:
 		const CsvFile& csv_file()const;
 		CsvFile& csv_file();
 	private:
 		std::unique_ptr<CsvFile> csv_file_;
 
-		bool _Create(const File& file, private_::ResourceReferencer&) override;
+		bool _Create(const File& file, ResourceReferencer&) override;
 		void _Dispose()override;
 	};
 }

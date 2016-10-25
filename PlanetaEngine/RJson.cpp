@@ -1,7 +1,7 @@
 ﻿#include "RJson.h"
 
 namespace planeta {
-	bool RJson::_Create(const File& file, private_::ResourceReferencer&) {
+	bool RJson::_Create(const File& file, ResourceReferencer&) {
 		json_file_ = std::make_unique<JsonFile>();
 		if (!json_file_->Load(file)) {
 			PE_LOG_ERROR("JSONファイルの読み込みに失敗しました。");
