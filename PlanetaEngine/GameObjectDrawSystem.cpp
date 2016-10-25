@@ -1,5 +1,6 @@
 ﻿#include "Game.h"
 #include "RenderingManager.h"
+#include "ConfigManager.h"
 #include "GameObjectDrawSystem.h"
 #include "CDraw2D.h"
 #include "LogUtility.h"
@@ -8,7 +9,6 @@
 #include "CCamera2D.h"
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
-#include "EngineConfigData.h"
 #include "CTransform2D.h"
 #include "Screen.h"
 
@@ -87,7 +87,7 @@ namespace planeta{
 				double scale = camera2d_->expansion();
 				double rota_rad = camera2d_->rotation_rad();
 				Vector2Dd pos = camera2d_->position();
-				SetupCamera_Ortho((float)(engine_config::engine::DrawSize().y / scale));
+				SetupCamera_Ortho((float)(Game::instance().config_manager()->draw_size().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z), GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
 				//Effekseerのカメラを同期
 				Effekseer_Sync3DSetting();

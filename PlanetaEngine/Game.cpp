@@ -16,11 +16,11 @@
 #include "SoundManager.h"
 #include "SaveManager.h"
 #include "DebugManager.h"
+#include "ConfigManager.h"
 
 #include "LogUtility.h"
 
 #include "InitFunctions.h"
-#include "ProgramDefinitionData.h"
 #include "SystemVariables.h"
 
 
@@ -42,6 +42,7 @@ namespace planeta {
 		std::shared_ptr<SoundManager> sound_manager;
 		std::shared_ptr<SaveManager> save_manager;
 		std::shared_ptr<DebugManager> debug_manager;
+		std::shared_ptr<ConfigManager> config_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -105,9 +106,16 @@ namespace planeta {
 			auto config_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::Config);
 			if (config_dir_accesor == nullptr) { return false; }
 			//////////////////////////////////////////////////////////////////////////
-			//エンジン設定の読み込み
+			//設定の読み込み
 			//////////////////////////////////////////////////////////////////////////
-			if (!init_funcs::LoadEngineConfig(system_dir_accesor)) { return false; }
+			if (resource_manager == nullptr) {
+				PE_LOG_FATAL("コンフィグマネージャが設定されていません。");
+				return false;
+			}
+			if (!init_funcs::LoadConfig(*config_manager, system_dir_accesor, config_dir_accesor)) { 
+				PE_LOG_FATAL("設定ファイルの読み込みに失敗しました。");
+				return false;
+			}
 			//////////////////////////////////////////////////////////////////////////
 			//リソースマネージャの初期化
 			//////////////////////////////////////////////////////////////////////////
@@ -134,7 +142,7 @@ namespace planeta {
 			//DXライブラリの初期化
 			//////////////////////////////////////////////////////////////////////////
 			{
-				auto ret = init_funcs::InitializeDxLib();
+				auto ret = init_funcs::InitializeDxLib(*config_manager);
 				if (std::get<0>(ret) == false) { return false; } 
 				else { finalize_handls_.push_front(std::get<1>(ret)); }
 			}
@@ -184,14 +192,6 @@ namespace planeta {
 			if(debug_manager->Initialize()){ finalize_handls_.push_front([this] {debug_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("デバッグシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
-			//プログラム用定義の読み込み
-			//////////////////////////////////////////////////////////////////////////
-			private_::ProgramDefinitionData pdd;
-			if (!init_funcs::LoadProgramDefinition(system_dir_accesor, &pdd)) {
-				PE_LOG_ERROR("プログラム用定義ファイルの読み込みに失敗しました。");
-				return false;
-			}
-			//////////////////////////////////////////////////////////////////////////
 			//シーンシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			if (scene_manager == nullptr) {
@@ -201,7 +201,7 @@ namespace planeta {
 			//リソースマネージャのセット
 			scene_manager->SetResouceManager(resource_manager);
 			//衝突マトリックスの設定
-			scene_manager->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(std::move(pdd.collision_group_matrix)));
+			scene_manager->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(config_manager->collision_group_matrix()));
 			if (scene_manager->Initialize()) { finalize_handls_.push_front([this] {scene_manager->Finalize(); }); }
 			else { PE_LOG_FATAL("シーンシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,7 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//ゲームの開始準備
 			//////////////////////////////////////////////////////////////////////////
-			scene_manager->LoadAndTransitionScene(pdd.startup_scene_id); //スタートアップシーンの開始依頼
+			scene_manager->LoadAndTransitionScene(config_manager->startup_scene_id()); //スタートアップシーンの開始依頼
 
 			return true;
 
@@ -400,6 +400,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::IDebugManager> Game::debug_manager() const {
 		return impl_->debug_manager;
+	}
+
+	void Game::SetConfigManager(const std::shared_ptr<private_::ConfigManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->config_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IConfigManager> Game::config_manager() const {
+		return impl_->config_manager;
 	}
 
 }

@@ -15,6 +15,7 @@ namespace planeta {
 	class ISoundManager;
 	class ISaveManager;
 	class IDebugManager;
+	class IConfigManager;
 	namespace private_ {
 		class ResourceManager;
 		class LogManager;
@@ -26,6 +27,7 @@ namespace planeta {
 		class SoundManager;
 		class SaveManager;
 		class DebugManager;
+		class ConfigManager;
 	}
 	/*! ゲームのステータス*/
 	enum class GameStatus { Continue, Quit, Error };
@@ -63,6 +65,8 @@ namespace planeta {
 		void SetSaveManager(const std::shared_ptr<private_::SaveManager>& mgr);
 		/*! デバッグマネージャを設定する(初期化前)*/
 		void SetDebugManager(const std::shared_ptr<private_::DebugManager>& mgr);
+		/*! コンフィグマネージャを設定する(初期化前)*/
+		void SetConfigManager(const std::shared_ptr<private_::ConfigManager>& mgr);
 		/*! リソースマネージャにアクセスする*/
 		std::shared_ptr<IResourceManager> resource_manager()const;
 		/*! ログマネージャにアクセスする*/
@@ -83,6 +87,8 @@ namespace planeta {
 		std::shared_ptr<ISaveManager> save_manager()const;
 		/*! デバッグマネージャにアクセスする*/
 		std::shared_ptr<IDebugManager> debug_manager()const;
+		/*! コンフィグマネージャにアクセスする*/
+		std::shared_ptr<IConfigManager> config_manager()const;
 	private:
 		Game();
 		~Game();

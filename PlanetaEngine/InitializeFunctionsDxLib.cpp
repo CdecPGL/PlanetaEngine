@@ -3,9 +3,9 @@
 
 #include "InitFunctions.h"
 #include "SystemVariables.h"
-#include "EngineConfigData.h"
 #include "LogUtility.h"
 #include "CharacterCode.h"
+#include "ConfigManager.h"
 
 #include "EffekseerUtil.h"
 
@@ -15,19 +15,19 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//DXライブラリの初期化
 			//////////////////////////////////////////////////////////////////////////
-			std::tuple<bool, std::function<void()>> InitializeDxLib() {
+			std::tuple<bool, std::function<void()>> InitializeDxLib(ConfigManager& cfg_mgr) {
 				//ログ出力先を変更
 				SetApplicationLogSaveDirectory(system_variables::file_system::LogDirectory.c_str());
 				//ウインドウモード設定
-				ChangeWindowMode(engine_config::engine::WindowMode());
+				ChangeWindowMode(cfg_mgr.is_window_mode());
 				//ウインドウタイトル設定(ゲームタイトル+ゲームバージョン)
-				SetMainWindowText(std::string(engine_config::game::GameTitle() + " v" + engine_config::game::VersionString()).c_str());
+				SetMainWindowText(std::string(cfg_mgr.game_title() + " v" + cfg_mgr.game_version_string()).c_str());
 				//描画サイズとカラービット深度設定
-				SetGraphMode(engine_config::engine::DrawSize().x, engine_config::engine::DrawSize().y, engine_config::engine::ColorBitDepth());
+				SetGraphMode(cfg_mgr.draw_size().x, cfg_mgr.draw_size().y, cfg_mgr.color_bit_depth());
 				//必要ならウインドウサイズに合わせて拡縮
 				{
-					const auto& ds = engine_config::engine::DrawSize();
-					const auto& ws = engine_config::engine::WindowSize();
+					const auto& ds = cfg_mgr.draw_size();
+					const auto& ws = cfg_mgr.window_size();
 					if (ds.x != ws.x || ds.y != ws.y) {
 						SetWindowSizeExtendRate((double)ws.x / ds.x, (double)ws.y / ds.y);
 					}

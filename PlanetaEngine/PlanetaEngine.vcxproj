@@ -169,6 +169,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="CollisionState.h" />
+    <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="CsvFile.h" />
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="EffekseerUtil.h" />
@@ -182,6 +183,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="IConfigManager.h" />
     <ClInclude Include="IDebugManager.h" />
     <ClInclude Include="IFileSystemManager.h" />
     <ClInclude Include="IInputManager.h" />
@@ -220,7 +222,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CollisionDetectFunctions.h" />
     <ClInclude Include="NonOwingPointer.h" />
     <ClInclude Include="picojson.h" />
-    <ClInclude Include="ProgramDefinitionData.h" />
     <ClInclude Include="RLuaScript.h" />
     <ClInclude Include="RPtree.h" />
     <ClInclude Include="REffectTexture.h" />
@@ -228,6 +229,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="StandardConfigManager.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
@@ -239,7 +241,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DebugDrawInterface.h" />
     <ClInclude Include="StandardDebugManager.h" />
     <ClInclude Include="GameObjectComponent.h" />
-    <ClInclude Include="EngineConfigData.h" />
     <ClInclude Include="GameObjectComponentSetUpData.h" />
     <ClInclude Include="GameObjectComponentUpdateProcess.h" />
     <ClInclude Include="Matrix2_2.h" />
@@ -404,7 +405,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="CsvFile.cpp" />
     <ClCompile Include="EffekseerUtil.cpp" />
-    <ClCompile Include="EngineConfigData.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GOComponentAdder.cpp" />
@@ -430,6 +430,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="RPtree.cpp" />
     <ClCompile Include="REffectTexture.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
+    <ClCompile Include="StandardConfigManager.cpp" />
     <ClCompile Include="StringUtility.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />

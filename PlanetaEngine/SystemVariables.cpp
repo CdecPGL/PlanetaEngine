@@ -11,9 +11,9 @@ namespace planeta{
 				const std::string BuildDate(__DATE__);
 			}
 			namespace file_system {
-				const std::string EngineConfigFileName("engine_config");
+				const std::string SystemConfigFileName("system_config");
 				const std::string ProgramDefinitionFileName("prog_def");
-				const std::string UserConfigFileName("user_config.ini");
+				const std::string UserConfigFileName("user_config.json");
 				const std::string KeyConfigFileName("key_config.ini");
 				const std::string LogOutPutFileName("pe_log.txt");
 				const std::string ResourceListFileName("resource_list");

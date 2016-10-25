@@ -169,9 +169,6 @@
     <Filter Include="PlanetaEngine\SubSystems\Debug">
       <UniqueIdentifier>{9923b114-a87d-41d5-8e5e-1a788678fddd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Core\EngineConfig">
-      <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\InitFuncs">
       <UniqueIdentifier>{5ea80f8e-44b4-41bd-934f-2258a6d7167b}</UniqueIdentifier>
     </Filter>
@@ -210,6 +207,9 @@
     </Filter>
     <Filter Include="PlanetaEngine\SubSystems\LogSystem">
       <UniqueIdentifier>{4c393383-d08a-45ed-b41e-059ea7dad009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\Config">
+      <UniqueIdentifier>{1dd4adbf-4af0-4129-a0a7-18d16b01ad94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -636,14 +636,8 @@
     <ClInclude Include="SingletonTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="EngineConfigData.h">
-      <Filter>PlanetaEngine\Core\EngineConfig</Filter>
-    </ClInclude>
     <ClInclude Include="InitFunctions.h">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClInclude>
-    <ClInclude Include="ProgramDefinitionData.h">
-      <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="SError.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
@@ -918,6 +912,15 @@
     <ClInclude Include="StandardDebugManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
+    <ClInclude Include="IConfigManager.h">
+      <Filter>PlanetaEngine\SubSystems\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigManager.h">
+      <Filter>PlanetaEngine\SubSystems\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardConfigManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1148,9 +1151,6 @@
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="EngineConfigData.cpp">
-      <Filter>PlanetaEngine\Core\EngineConfig</Filter>
-    </ClCompile>
     <ClCompile Include="InitFunctionsResource.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
@@ -1314,6 +1314,9 @@
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardDebugManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardConfigManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>
