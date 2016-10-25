@@ -170,6 +170,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="CollisionState.h" />
     <ClInclude Include="CsvFile.h" />
+    <ClInclude Include="DebugManager.h" />
     <ClInclude Include="EffekseerUtil.h" />
     <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
@@ -181,6 +182,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="IDebugManager.h" />
     <ClInclude Include="IFileSystemManager.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="ILogManager.h" />
@@ -235,7 +237,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="EACollisionWithGround2D.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DebugDrawInterface.h" />
-    <ClInclude Include="DebugManager.h" />
+    <ClInclude Include="StandardDebugManager.h" />
     <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="EngineConfigData.h" />
     <ClInclude Include="GameObjectComponentSetUpData.h" />
@@ -432,7 +434,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
     <ClCompile Include="RCsv.cpp" />
-    <ClCompile Include="DebugManager.cpp" />
+    <ClCompile Include="StandardDebugManager.cpp" />
     <ClCompile Include="CDrawPolygon2D.cpp" />
     <ClCompile Include="SEmpty.cpp" />
     <ClCompile Include="EncrypterBase.cpp" />

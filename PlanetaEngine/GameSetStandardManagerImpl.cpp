@@ -11,6 +11,7 @@
 #include "StandardRenderingManager.h"
 #include "StandardSoundManager.h"
 #include "StandardSaveManager.h"
+#include "StandardDebugManager.h"
 
 #include "SystemVariables.h"
 
@@ -38,5 +39,6 @@ namespace planeta {
 		SetRenderingManager(std::make_shared<private_::StandardRenderingManager>());
 		SetSoundManager(std::make_shared<private_::StandardSoundManager>());
 		SetSaveManager(std::make_shared<private_::StandardSaveManager>());
+		SetDebugManager(std::make_shared<private_::StandardDebugManager>());
 	}
 }

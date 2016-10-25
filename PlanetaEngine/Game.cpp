@@ -15,6 +15,7 @@
 #include "RenderingManager.h"
 #include "SoundManager.h"
 #include "SaveManager.h"
+#include "DebugManager.h"
 
 #include "LogUtility.h"
 
@@ -24,8 +25,6 @@
 
 
 #include "Reflection.h"
-
-#include "DebugManager.h"
 
 namespace planeta {
 	using namespace private_;
@@ -42,6 +41,7 @@ namespace planeta {
 		std::shared_ptr<RenderingManager> rendering_manager;
 		std::shared_ptr<SoundManager> sound_manager;
 		std::shared_ptr<SaveManager> save_manager;
+		std::shared_ptr<DebugManager> debug_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -177,7 +177,11 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//デバッグシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if(debug::DebugManager::instance().Initialize()){ finalize_handls_.push_front([] {debug::DebugManager::instance().Finalize(); }); }
+			if (debug_manager == nullptr) {
+				PE_LOG_FATAL("デバッグマネージャが設定されていません。");
+				return false;
+			}
+			if(debug_manager->Initialize()){ finalize_handls_.push_front([this] {debug_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("デバッグシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//プログラム用定義の読み込み
@@ -384,6 +388,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::ISaveManager> Game::save_manager() const {
 		return impl_->save_manager;
+	}
+
+	void Game::SetDebugManager(const std::shared_ptr<private_::DebugManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->debug_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IDebugManager> Game::debug_manager() const {
+		return impl_->debug_manager;
 	}
 
 }

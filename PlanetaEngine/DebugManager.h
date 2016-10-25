@@ -1,25 +1,16 @@
-﻿#pragma once
-#include <memory>
-#include "SingletonTemplate.h"
-#include "StringUtility.h"
+#pragma once
+
+#include "IDebugManager.h"
+#include "NonCopyable.h"
 
 namespace planeta {
-	namespace  debug {
-		class DebugManager : public util::SingletonTemplate<DebugManager>{
-			friend util::SingletonTemplate<DebugManager>;
+	namespace private_ {
+		class DebugManager : public IDebugManager, private util::NonCopyable<DebugManager> {
 		public:
-			DebugManager();
-			~DebugManager();
-			bool Initialize()override;
-			void Finalize()override;
-			void Update();
-			template<typename... Details>
-			void PushDebugInformation(Details&&... details) {
-				util::ConvertAndConnectToString(std::forward<Details>(details)...);
-			}
-		private:
-			class Impl_;
-			std::unique_ptr<Impl_> impl_;
+			virtual ~DebugManager()override = default;
+			virtual bool Initialize() = 0;
+			virtual void Finalize() = 0;
+			virtual void Update() = 0;
 		};
-	};
+	}
 }

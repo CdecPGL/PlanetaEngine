@@ -1,4 +1,4 @@
-﻿#include "DebugManager.h"
+﻿#include "StandardDebugManager.h"
 #include "LogUtility.h"
 #include "DxLib.h"
 #include <windows.h>
@@ -17,13 +17,13 @@ namespace {
 }
 
 namespace planeta {
-	namespace debug {
+	namespace private_ {
 
 		//////////////////////////////////////////////////////////////////////////
 		//Impl
 		//////////////////////////////////////////////////////////////////////////
 
-		class DebugManager::Impl_ {
+		class StandardDebugManager::Impl_ {
 		public:
 			HWND debug_window_handle;
 		};
@@ -32,10 +32,10 @@ namespace planeta {
 		//DebugInformationDisplayer
 		//////////////////////////////////////////////////////////////////////////
 
-		DebugManager::DebugManager() :impl_(std::make_unique<Impl_>()) {}
-		DebugManager::~DebugManager() = default;
+		StandardDebugManager::StandardDebugManager() :impl_(std::make_unique<Impl_>()) {}
+		StandardDebugManager::~StandardDebugManager() = default;
 
-		bool DebugManager::Initialize() {
+		bool StandardDebugManager::Initialize() {
 			PE_LOG_WARNING("DebugManagerは未実装どす。");
 			return true;
 			//HWND m_hWnd = GetMainWindowHandle();
@@ -78,11 +78,11 @@ namespace planeta {
 			//return true;
 		}
 
-		void DebugManager::Finalize() {
+		void StandardDebugManager::Finalize() {
 			//DestroyWindow(impl_->debug_window_handle);
 		}
 
-		void DebugManager::Update() {
+		void StandardDebugManager::Update() {
 			HDC hdc = GetDC(impl_->debug_window_handle);
 			SetWindowText(impl_->debug_window_handle, "test");
 			ReleaseDC(impl_->debug_window_handle,hdc);
