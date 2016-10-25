@@ -9,6 +9,7 @@
 #include "StandardInputManager.h"
 #include "StandardPerformanceManager.h"
 #include "StandardRenderingManager.h"
+#include "StandardSoundManager.h"
 
 #include "SystemVariables.h"
 
@@ -34,5 +35,6 @@ namespace planeta {
 		SetInputManager(std::make_shared<private_::StandardInputManager>());
 		SetPerformanceManager(std::make_shared<private_::StandardPerformanceManager>());
 		SetRenderingManager(std::make_shared<private_::StandardRenderingManager>());
+		SetSoundManager(std::make_shared<private_::StandardSoundManager>());
 	}
 }

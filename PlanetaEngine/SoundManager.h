@@ -1,28 +1,17 @@
-﻿#pragma once
+#pragma once
 
-#include <memory>
-#include "SingletonTemplate.h"
-#include "IBGMController.h"
-#include "ISoundEffectController.h"
+#include "ISoundManager.h"
+#include "NonCopyable.h"
 
 namespace planeta {
 	namespace private_ {
-		class ResourceBase;
-		class SoundManager final : public util::SingletonTemplate<SoundManager>{
-			friend util::SingletonTemplate<SoundManager>;
+		class SoundManager : public ISoundManager, private util::NonCopyable<SoundManager> {
 		public:
-			bool Initialize() override;
-			void Finalize() override;
-			void Update();
-
-			std::shared_ptr<IBGMController> GetBGMController(const std::shared_ptr<private_::ResourceBase>& music_resource);
-			std::shared_ptr<ISoundEffectController> GetSoundEffectController(const std::shared_ptr<private_::ResourceBase>& sound_resource);
-			void Reset();
-		private:
-			SoundManager();
-			~SoundManager();
-			class Impl_;
-			std::unique_ptr<Impl_> impl_;
+			virtual ~SoundManager() = default;
+			virtual bool Initialize() = 0;
+			virtual void Finalize() = 0;
+			virtual void Update() = 0;
+			virtual void Reset() = 0;
 		};
 	}
 }

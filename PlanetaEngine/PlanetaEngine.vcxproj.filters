@@ -342,9 +342,6 @@
     <ClInclude Include="SceneSetUpper.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
     <ClInclude Include="BGMController.h">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
@@ -900,6 +897,15 @@
     <ClInclude Include="StandardRenderingManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
+    <ClInclude Include="ISoundManager.h">
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardSoundManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -949,9 +955,6 @@
     </ClCompile>
     <ClCompile Include="SceneSystemSetUpper.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
     <ClCompile Include="SoundEffectController.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
@@ -1296,6 +1299,9 @@
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardRenderingManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardSoundManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>

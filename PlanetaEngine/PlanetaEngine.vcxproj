@@ -190,6 +190,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IRenderingManager.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="ISceneManager.h" />
+    <ClInclude Include="ISoundManager.h" />
     <ClInclude Include="JsonFile.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="LogUtility.h" />
@@ -222,6 +223,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="REffectTexture.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
@@ -347,7 +349,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SharedPointerInstance.h" />
     <ClInclude Include="SimplePolygonPanel.h" />
     <ClInclude Include="SoundEffectController.h" />
-    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="StandardSoundManager.h" />
     <ClInclude Include="RSound.h" />
     <ClInclude Include="SingletonTemplate.h" />
     <ClInclude Include="CStraightLineCollider2D.h" />
@@ -458,7 +460,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ScreenDrawerGUI.cpp" />
     <ClCompile Include="SimplePolygonPanel.cpp" />
     <ClCompile Include="SoundEffectController.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="StandardSoundManager.cpp" />
     <ClCompile Include="StringPanel.cpp" />
     <ClCompile Include="TalkWindows.cpp" />
     <ClCompile Include="TextPanel.cpp" />

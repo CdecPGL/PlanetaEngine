@@ -1,6 +1,6 @@
 ﻿
 #include <unordered_map>
-#include "SoundManager.h"
+#include "StandardSoundManager.h"
 #include "BGMController.h"
 #include "SoundEffectController.h"
 #include "RMusic.h"
@@ -10,13 +10,13 @@
 namespace planeta {
 	namespace private_ {
 
-		class SoundManager::Impl_ {
+		class StandardSoundManager::Impl_ {
 		public:
 			std::shared_ptr<BGMController> bgm_controller_;
 			std::unordered_map<int, std::shared_ptr<SoundEffectController>> se_controllers_;
 		};
 
-		std::shared_ptr<IBGMController> SoundManager::GetBGMController(const std::shared_ptr<private_::ResourceBase>& music_resource) {
+		std::shared_ptr<IBGMController> StandardSoundManager::GetBGMController(const std::shared_ptr<private_::ResourceBase>& music_resource) {
 			auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
 			if (m_res == nullptr) {
 				PE_LOG_ERROR("Musicリソースでないリソースが渡されました。(", typeid(*music_resource).name(), ")");
@@ -38,7 +38,7 @@ namespace planeta {
 		}
 
 
-		std::shared_ptr<ISoundEffectController> SoundManager::GetSoundEffectController(const std::shared_ptr<private_::ResourceBase>& sound_resource) {
+		std::shared_ptr<ISoundEffectController> StandardSoundManager::GetSoundEffectController(const std::shared_ptr<private_::ResourceBase>& sound_resource) {
 			auto s_res = std::dynamic_pointer_cast<RSound>(sound_resource);
 			if (s_res == nullptr) {
 				PE_LOG_ERROR("Soundリソースでないリソースが渡されました。(", typeid(*sound_resource).name(),")");
@@ -55,15 +55,15 @@ namespace planeta {
 			}
 		}
 
-		SoundManager::SoundManager() :impl_(std::make_unique<Impl_>()) {
+		StandardSoundManager::StandardSoundManager() :impl_(std::make_unique<Impl_>()) {
 
 		}
 
-		void SoundManager::Update() {
+		void StandardSoundManager::Update() {
 			if (impl_->bgm_controller_) { impl_->bgm_controller_->Update(); }
 		}
 
-		void SoundManager::Reset() {
+		void StandardSoundManager::Reset() {
 			if (impl_->bgm_controller_) {
 				impl_->bgm_controller_->Dispose();
 				impl_->bgm_controller_.reset();
@@ -74,12 +74,12 @@ namespace planeta {
 			impl_->se_controllers_.clear();
 		}
 
-		bool SoundManager::Initialize() {
+		bool StandardSoundManager::Initialize() {
 			return true;
 		}
 
-		void SoundManager::Finalize() {}
+		void StandardSoundManager::Finalize() {}
 
-		SoundManager::~SoundManager() = default;
+		StandardSoundManager::~StandardSoundManager() = default;
 	}
 }

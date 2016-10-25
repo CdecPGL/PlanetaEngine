@@ -13,6 +13,7 @@
 #include "InputManager.h"
 #include "PerfoamanceManager.h"
 #include "RenderingManager.h"
+#include "SoundManager.h"
 
 #include "LogUtility.h"
 
@@ -25,7 +26,6 @@
 
 #include "DebugManager.h"
 #include "SaveDataManager.h"
-#include "SoundManager.h"
 
 namespace planeta {
 	using namespace private_;
@@ -40,6 +40,7 @@ namespace planeta {
 		std::shared_ptr<InputManager> input_manager;
 		std::shared_ptr<PerformanceManager> performance_manager;
 		std::shared_ptr<RenderingManager> rendering_manager;
+		std::shared_ptr<SoundManager> sound_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -152,7 +153,11 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//サウンドシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if(private_::SoundManager::instance().Initialize()){ finalize_handls_.push_front([] {private_::SoundManager::instance().Finalize(); }); }
+			if (sound_manager == nullptr) {
+				PE_LOG_FATAL("サウンドマネージャが設定されていません。");
+				return false;
+			}
+			if(sound_manager->Initialize()){ finalize_handls_.push_front([this] {sound_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("サウンドシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//入力システムの初期化
@@ -215,7 +220,7 @@ namespace planeta {
 			input_manager->Update(); //入力の更新
 			auto sst = scene_manager->Process_(); //シーンの更新
 			rendering_manager->Update(); //描画システムの更新
-			SoundManager::instance().Update(); //サウンドシステムの更新
+			sound_manager->Update(); //サウンドシステムの更新
 			performance_manager->Update(); //パフォーマンスマネージャの更新
 			
 			switch (sst) {
@@ -350,6 +355,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::IRenderingManager> Game::rendering_manager() const {
 		return impl_->rendering_manager;
+	}
+
+	void Game::SetSoundManager(const std::shared_ptr<private_::SoundManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->sound_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::ISoundManager> Game::sound_manager() const {
+		return impl_->sound_manager;
 	}
 
 }
