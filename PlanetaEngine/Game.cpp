@@ -12,6 +12,7 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include "PerfoamanceManager.h"
+#include "RenderingManager.h"
 
 #include "LogUtility.h"
 
@@ -22,7 +23,6 @@
 
 #include "Reflection.h"
 
-#include "RenderManager.h"
 #include "DebugManager.h"
 #include "SaveDataManager.h"
 #include "SoundManager.h"
@@ -39,6 +39,7 @@ namespace planeta {
 		std::shared_ptr<SceneManager> scene_manager;
 		std::shared_ptr<InputManager> input_manager;
 		std::shared_ptr<PerformanceManager> performance_manager;
+		std::shared_ptr<RenderingManager> rendering_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -142,7 +143,11 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//描画システムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if(private_::RenderManager::instance().Initialize()){ finalize_handls_.push_front([] {private_::RenderManager::instance().Finalize(); }); }
+			if (rendering_manager == nullptr) {
+				PE_LOG_FATAL("レンダリングマネージャが設定されていません。");
+				return false;
+			}
+			if(rendering_manager->Initialize()){ finalize_handls_.push_front([this] {rendering_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("描画システムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//サウンドシステムの初期化
@@ -209,7 +214,7 @@ namespace planeta {
 			if (ProcessMessage() < 0) { return GameStatus::Quit; } //DXライブラリの更新
 			input_manager->Update(); //入力の更新
 			auto sst = scene_manager->Process_(); //シーンの更新
-			RenderManager::instance().Update(); //描画システムの更新
+			rendering_manager->Update(); //描画システムの更新
 			SoundManager::instance().Update(); //サウンドシステムの更新
 			performance_manager->Update(); //パフォーマンスマネージャの更新
 			
@@ -333,6 +338,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::IPerformanceManager> Game::performance_manager() const {
 		return impl_->performance_manager;
+	}
+
+	void Game::SetRenderingManager(const std::shared_ptr<private_::RenderingManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->rendering_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::IRenderingManager> Game::rendering_manager() const {
+		return impl_->rendering_manager;
 	}
 
 }

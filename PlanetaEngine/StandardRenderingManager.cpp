@@ -1,5 +1,5 @@
 ﻿#include <cassert>
-#include "RenderManager.h"
+#include "StandardRenderingManager.h"
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
 #include "Screen.h"
@@ -7,7 +7,7 @@
 
 namespace planeta {
 	namespace private_ {
-		bool planeta::private_::RenderManager::Initialize()
+		bool planeta::private_::StandardRenderingManager::Initialize()
 		{
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetUseLighting(false); //ライティング計算を行わない
@@ -16,11 +16,11 @@ namespace planeta {
 			return true;
 		}
 
-		void planeta::private_::RenderManager::Finalize()
+		void planeta::private_::StandardRenderingManager::Finalize()
 		{
 		}
 
-		bool RenderManager::Update()
+		bool StandardRenderingManager::Update()
 		{
 			////デバッグ用
 			////グリッド線(32ごとに引く)
@@ -57,7 +57,7 @@ namespace planeta {
 			return true;
 		}
 
-		std::shared_ptr<Screen> RenderManager::CreateScreen() {
+		std::shared_ptr<Screen> StandardRenderingManager::CreateScreen() {
 			if (primary_screen_) { 
 				assert(false); 
 				return nullptr;
@@ -66,13 +66,13 @@ namespace planeta {
 			return primary_screen_;
 		}
 
-		bool RenderManager::SetDrawScreen_(const std::shared_ptr<Screen>& screen) {
+		bool StandardRenderingManager::SetDrawScreen_(const std::shared_ptr<Screen>& screen) {
 			int gh = screen->GetHandle();
 			SetDrawScreen(gh);
 			return true;
 		}
 
-		bool RenderManager::DisposeScreen(const std::shared_ptr<Screen>& screen) {
+		bool StandardRenderingManager::DisposeScreen(const std::shared_ptr<Screen>& screen) {
 			if (primary_screen_ && primary_screen_.get() == screen.get()) {
 				primary_screen_.reset();
 				return true;

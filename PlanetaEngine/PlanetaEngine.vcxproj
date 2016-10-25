@@ -187,6 +187,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IniFile.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IPerformanceManager.h" />
+    <ClInclude Include="IRenderingManager.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="JsonFile.h" />
@@ -206,6 +207,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ReflectionAccessible.h" />
     <ClInclude Include="ReflectionExceptions.h" />
     <ClInclude Include="ReflectionUtility.h" />
+    <ClInclude Include="RenderingManager.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourceReferencer.h" />
     <ClInclude Include="RJson.h" />
@@ -266,7 +268,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CDraw2D.h" />
     <ClInclude Include="CDrawGraph2D.h" />
     <ClInclude Include="CDrawLine2D.h" />
-    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="StandardRenderingManager.h" />
     <ClInclude Include="CDrawPlanet2D.h" />
     <ClInclude Include="CDrawPolygon2D.h" />
     <ClInclude Include="CDumyGround2D.h" />
@@ -465,7 +467,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GUIObject.cpp" />
     <ClCompile Include="CDraw2D.cpp" />
     <ClCompile Include="CDrawLine2D.cpp" />
-    <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="StandardRenderingManager.cpp" />
     <ClCompile Include="CDrawPlanet2D.cpp" />
     <ClCompile Include="DXUtility.cpp" />
     <ClCompile Include="CGraph2DAnimator.cpp" />

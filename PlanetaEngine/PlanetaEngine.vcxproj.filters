@@ -169,9 +169,6 @@
     <Filter Include="PlanetaEngine\SubSystems\Debug">
       <UniqueIdentifier>{9923b114-a87d-41d5-8e5e-1a788678fddd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\SubSystems\SystemLog">
-      <UniqueIdentifier>{4c393383-d08a-45ed-b41e-059ea7dad009}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\EngineConfig">
       <UniqueIdentifier>{93cab7dc-ff6c-4001-8415-bad46025c9c9}</UniqueIdentifier>
     </Filter>
@@ -210,6 +207,9 @@
     </Filter>
     <Filter Include="PlanetaEngine\SubSystems\PerformanceManager">
       <UniqueIdentifier>{e2eb296c-1515-43ba-b62f-735586ed09dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\LogSystem">
+      <UniqueIdentifier>{4c393383-d08a-45ed-b41e-059ea7dad009}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -642,9 +642,6 @@
     <ClInclude Include="SingletonTemplate.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClInclude>
     <ClInclude Include="DebugManager.h">
       <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClInclude>
@@ -838,13 +835,13 @@
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
     <ClInclude Include="ILogManager.h">
-      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+      <Filter>PlanetaEngine\SubSystems\LogSystem</Filter>
     </ClInclude>
     <ClInclude Include="LogManager.h">
-      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+      <Filter>PlanetaEngine\SubSystems\LogSystem</Filter>
     </ClInclude>
     <ClInclude Include="LogUtility.h">
-      <Filter>PlanetaEngine\SubSystems\SystemLog</Filter>
+      <Filter>PlanetaEngine\SubSystems\LogSystem</Filter>
     </ClInclude>
     <ClInclude Include="StandardLogManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
@@ -892,6 +889,15 @@
       <Filter>PlanetaEngine\SubSystems\PerformanceManager</Filter>
     </ClInclude>
     <ClInclude Include="StandardPerformanceManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderingManager.h">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingManager.h">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardRenderingManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1130,9 +1136,6 @@
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClCompile>
     <ClCompile Include="DebugManager.cpp">
       <Filter>PlanetaEngine\SubSystems\Debug</Filter>
     </ClCompile>
@@ -1290,6 +1293,9 @@
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardPerformanceManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardRenderingManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>

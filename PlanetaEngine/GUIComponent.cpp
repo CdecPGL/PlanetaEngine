@@ -1,5 +1,4 @@
 ﻿#include "GUIComponent.h"
-#include "RenderManager.h"
 #include "LogUtility.h"
 #include <cassert>
 

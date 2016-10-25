@@ -1,9 +1,10 @@
-﻿#include "GameObjectDrawSystem.h"
+﻿#include "Game.h"
+#include "RenderingManager.h"
+#include "GameObjectDrawSystem.h"
 #include "CDraw2D.h"
 #include "LogUtility.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
-#include "RenderManager.h"
 #include "CCamera2D.h"
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
@@ -51,7 +52,7 @@ namespace planeta{
 		}
 
 		bool GameObjectDrawSystem::Initialize() {
-			screen_ = RenderManager::instance().CreateScreen();
+			screen_ = Game::instance().rendering_manager()->CreateScreen();
 			if (!screen_) { return false; }
 			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
 			screen_drawer_gui_ = std::make_unique<ScreenDrawerGUI>(*screen_);
@@ -59,7 +60,7 @@ namespace planeta{
 		}
 
 		void GameObjectDrawSystem::Finalize() {
-			RenderManager::instance().DisposeScreen(screen_);
+			Game::instance().rendering_manager()->DisposeScreen(screen_);
 			return;
 		}
 
