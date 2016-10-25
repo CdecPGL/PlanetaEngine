@@ -492,9 +492,6 @@
     <ClInclude Include="PETime.h">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClInclude>
-    <ClInclude Include="SaveDataManager.h">
-      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
-    </ClInclude>
     <ClInclude Include="AESEncrypter.h">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
     </ClInclude>
@@ -906,6 +903,15 @@
     <ClInclude Include="StandardSoundManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
+    <ClInclude Include="ISaveManager.h">
+      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveManager.h">
+      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardSaveManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1048,9 +1054,6 @@
     </ClCompile>
     <ClCompile Include="PETime.cpp">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveDataManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
     </ClCompile>
     <ClCompile Include="AESEncrypter.cpp">
       <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
@@ -1302,6 +1305,9 @@
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardSoundManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardSaveManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
   </ItemGroup>

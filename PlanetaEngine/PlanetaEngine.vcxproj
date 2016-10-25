@@ -189,6 +189,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IPerformanceManager.h" />
     <ClInclude Include="IRenderingManager.h" />
     <ClInclude Include="IResourceManager.h" />
+    <ClInclude Include="ISaveManager.h" />
     <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="ISoundManager.h" />
     <ClInclude Include="JsonFile.h" />
@@ -221,6 +222,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="RLuaScript.h" />
     <ClInclude Include="RPtree.h" />
     <ClInclude Include="REffectTexture.h" />
+    <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SoundManager.h" />
@@ -242,7 +244,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Matrix3_3.h" />
     <ClInclude Include="TaskSystemSetUpper.h" />
     <ClInclude Include="AccessorTemplate.h" />
-    <ClInclude Include="SaveDataManager.h" />
+    <ClInclude Include="StandardSaveManager.h" />
     <ClInclude Include="GameObjectStandardComponent.h" />
     <ClInclude Include="GameObjectSystemComponent.h" />
     <ClInclude Include="NonCopyable.h" />
@@ -452,7 +454,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="GraphDrawData2D.cpp" />
     <ClCompile Include="GraphPanel.cpp" />
     <ClCompile Include="TInstant.cpp" />
-    <ClCompile Include="SaveDataManager.cpp" />
+    <ClCompile Include="StandardSaveManager.cpp" />
     <ClCompile Include="SceneSetUpper.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenChangeEffecter.cpp" />

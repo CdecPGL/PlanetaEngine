@@ -1,8 +1,7 @@
 ﻿#pragma once
 
-#include <memory>
 #include <vector>
-#include "SingletonTemplate.h"
+#include "SaveManager.h"
 #include "PEDateTime.h"
 #include "boost/optional.hpp"
 
@@ -10,13 +9,13 @@ namespace planeta {
 	namespace util {
 		class DataContainer;
 	}
-	class FileAccessor;
 	namespace private_ {
-		class SaveDataManager final: public util::SingletonTemplate<SaveDataManager>{
-			friend class util::SingletonTemplate<SaveDataManager>;
+		class StandardSaveManager final: public SaveManager{
 		public:
+			StandardSaveManager();
+			~StandardSaveManager();
 			//ファイルアクセサを設定。初期化前に呼び出す。
-			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor);
+			void SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor)override;
 			bool Initialize()override;
 			void Finalize()override;
 
@@ -49,8 +48,6 @@ namespace planeta {
 			/*ユーザーデータを削除*/
 			bool DeleteUserData(int idx);
 		private:
-			SaveDataManager();
-			~SaveDataManager();
 			class Impl_;
 			std::unique_ptr<Impl_> impl_;
 		};

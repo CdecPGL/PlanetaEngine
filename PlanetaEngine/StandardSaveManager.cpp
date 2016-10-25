@@ -1,5 +1,5 @@
 ﻿#include "boost/lexical_cast.hpp"
-#include "SaveDataManager.h"
+#include "StandardSaveManager.h"
 #include "DataContainer.h"
 #include "DataContainerSerializeUtility.h"
 #include "FileAccessor.h"
@@ -17,7 +17,7 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_
 		//////////////////////////////////////////////////////////////////////////
-		class SaveDataManager::Impl_ {
+		class StandardSaveManager::Impl_ {
 		public:
 			std::unique_ptr<util::DataContainer> common_data_;
 			std::unique_ptr<util::DataContainer> current_user_data_;
@@ -115,11 +115,11 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		//SaveDataManager
 		//////////////////////////////////////////////////////////////////////////
-		SaveDataManager::SaveDataManager() :impl_(std::make_unique<Impl_>()) {}
+		StandardSaveManager::StandardSaveManager() :impl_(std::make_unique<Impl_>()) {}
 
-		SaveDataManager::~SaveDataManager() = default;
+		StandardSaveManager::~StandardSaveManager() = default;
 
-		bool SaveDataManager::Initialize() {
+		bool StandardSaveManager::Initialize() {
 			assert(impl_->file_accessor_ != nullptr);
 			//セーブデータ情報の読み込み
 			//if (!impl_->LoadSaveDataInformation()) { return false; }
@@ -131,15 +131,15 @@ namespace planeta {
 			return true;
 		}
 
-		void SaveDataManager::Finalize() {
+		void StandardSaveManager::Finalize() {
 			//Save();
 		}
 
-		void SaveDataManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor) {
+		void StandardSaveManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor) {
 			impl_->file_accessor_ = file_accessor;
 		}
 
-		void SaveDataManager::Save() {
+		void StandardSaveManager::Save() {
 			//共通データ
 			impl_->SaveCommonSaveData();
 			//ユーザーデータ
@@ -148,29 +148,29 @@ namespace planeta {
 			impl_->SaveSaveDataInformation();
 		}
 
-		bool SaveDataManager::LoadUserData(int idx) {
+		bool StandardSaveManager::LoadUserData(int idx) {
 			return impl_->LoadUserSaveData(idx);
 		}
 
-		int SaveDataManager::GetUserDataConut() const {
+		int StandardSaveManager::GetUserDataConut() const {
 			return impl_->save_data_info_.user_save_data_count;
 		}
 
-		int SaveDataManager::GetUserDataHeaderParamCount() const {
+		int StandardSaveManager::GetUserDataHeaderParamCount() const {
 			return impl_->save_data_info_.user_save_data_param_count;
 		}
 
-		const util::DataContainer& SaveDataManager::GetCommonData() const {
+		const util::DataContainer& StandardSaveManager::GetCommonData() const {
 			assert(impl_->common_data_ != nullptr);
 			return  *impl_->common_data_;
 		}
 
-		util::DataContainer& SaveDataManager::GetCommonData() {
+		util::DataContainer& StandardSaveManager::GetCommonData() {
 			assert(impl_->common_data_ != nullptr);
 			return  *impl_->common_data_;
 		}
 
-		boost::optional<const util::DataContainer&> SaveDataManager::GetCurrentData() const {
+		boost::optional<const util::DataContainer&> StandardSaveManager::GetCurrentData() const {
 			if (impl_->current_user_data_idx_ >= 0) {
 				assert(impl_->current_user_data_ != nullptr);
 				return boost::optional<const util::DataContainer&>(*impl_->common_data_);
@@ -179,7 +179,7 @@ namespace planeta {
 			}
 		}
 
-		boost::optional<util::DataContainer&> SaveDataManager::GetCurrentData() {
+		boost::optional<util::DataContainer&> StandardSaveManager::GetCurrentData() {
 			if (impl_->current_user_data_idx_ >= 0) {
 				assert(impl_->current_user_data_ != nullptr);
 				return boost::optional<util::DataContainer&>(*impl_->common_data_);

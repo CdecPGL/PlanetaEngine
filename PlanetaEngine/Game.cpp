@@ -14,6 +14,7 @@
 #include "PerfoamanceManager.h"
 #include "RenderingManager.h"
 #include "SoundManager.h"
+#include "SaveManager.h"
 
 #include "LogUtility.h"
 
@@ -25,7 +26,6 @@
 #include "Reflection.h"
 
 #include "DebugManager.h"
-#include "SaveDataManager.h"
 
 namespace planeta {
 	using namespace private_;
@@ -41,6 +41,7 @@ namespace planeta {
 		std::shared_ptr<PerformanceManager> performance_manager;
 		std::shared_ptr<RenderingManager> rendering_manager;
 		std::shared_ptr<SoundManager> sound_manager;
+		std::shared_ptr<SaveManager> save_manager;
 
 		Impl_() {}
 		bool is_initialized = false;
@@ -122,8 +123,12 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//セーブデータシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			SaveDataManager::instance().SetFileAccessor_(savedata_dir_accesor);
-			if(SaveDataManager::instance().Initialize()){ finalize_handls_.push_front([] {SaveDataManager::instance().Finalize(); }); }
+			if (save_manager == nullptr) {
+				PE_LOG_FATAL("セーブマネージャが設定されていません。");
+				return false;
+			}
+			save_manager->SetFileAccessor_(savedata_dir_accesor);
+			if(save_manager->Initialize()){ finalize_handls_.push_front([this] {save_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("セーブデータシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//DXライブラリの初期化
@@ -367,6 +372,18 @@ namespace planeta {
 
 	std::shared_ptr<planeta::ISoundManager> Game::sound_manager() const {
 		return impl_->sound_manager;
+	}
+
+	void Game::SetSaveManager(const std::shared_ptr<private_::SaveManager>& mgr) {
+		if (is_initialized()) {
+			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
+			return;
+		}
+		impl_->save_manager = mgr;
+	}
+
+	std::shared_ptr<planeta::ISaveManager> Game::save_manager() const {
+		return impl_->save_manager;
 	}
 
 }
