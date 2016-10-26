@@ -168,14 +168,14 @@ namespace planeta{
 			}
 			//シーンデータをモジュールに登録
 			scene.RegisterSceneDataToModules();
-			//固有設定
-			if (!setupper.InitializeScene(scene, init_param)) {
-				PE_LOG_ERROR("シーンの固有設定に失敗しました。");
-				return false;
-			}
 			//初期化
 			if (!scene.Initialize()) {
 				PE_LOG_ERROR("シーンの初期化に失敗しました。");
+				return false;
+			}
+			//固有設定
+			if (!setupper.InitializeScene(scene, init_param)) {
+				PE_LOG_ERROR("シーンの固有設定に失敗しました。");
 				return false;
 			}
 			return true;

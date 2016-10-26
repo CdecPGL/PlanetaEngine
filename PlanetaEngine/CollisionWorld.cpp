@@ -24,8 +24,10 @@ namespace planeta{
 			bool is_collided_with_ground_last_proc; //前回の判定で地面と衝突していたかどうか
 		};
 
-		CollisionWorld::CollisionWorld() = default;
-		CollisionWorld::~CollisionWorld() = default;
+		CollisionWorld::CollisionWorld() {
+		}
+		CollisionWorld::~CollisionWorld() {
+		}
 
 		void CollisionWorld::Update()
 		{
