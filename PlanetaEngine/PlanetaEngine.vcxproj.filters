@@ -423,9 +423,6 @@
     <ClInclude Include="GameObjectManagerConnection.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenEffectProcess.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
     <ClInclude Include="GUIComponent.h">
       <Filter>PlanetaEngine\SceneModules\GUI</Filter>
     </ClInclude>
@@ -920,6 +917,24 @@
     </ClInclude>
     <ClInclude Include="StandardConfigManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollisionWorld.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawSystem.h">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObjectManager.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ITaskManager.h">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ITransformSystem.h">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IScene.h">
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

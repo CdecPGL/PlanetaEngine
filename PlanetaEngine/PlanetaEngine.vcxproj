@@ -183,9 +183,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="ICollisionWorld.h" />
     <ClInclude Include="IConfigManager.h" />
     <ClInclude Include="IDebugManager.h" />
+    <ClInclude Include="IDrawSystem.h" />
     <ClInclude Include="IFileSystemManager.h" />
+    <ClInclude Include="IGameObjectManager.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="ILogManager.h" />
     <ClInclude Include="IniFile.h" />
@@ -194,8 +197,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IRenderingManager.h" />
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="ISaveManager.h" />
+    <ClInclude Include="IScene.h" />
     <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="ISoundManager.h" />
+    <ClInclude Include="ITaskManager.h" />
+    <ClInclude Include="ITransformSystem.h" />
     <ClInclude Include="JsonFile.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="LogUtility.h" />
@@ -254,7 +260,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneModule.h" />
-    <ClInclude Include="ScreenEffectProcess.h" />
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="TypeInfoWrapper.h" />
