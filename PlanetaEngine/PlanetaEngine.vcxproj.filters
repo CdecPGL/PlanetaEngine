@@ -639,9 +639,6 @@
     <ClInclude Include="SError.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
-    <ClInclude Include="SEmpty.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
     <ClInclude Include="picojson.h">
       <Filter>ExternalLibraries\picojson</Filter>
     </ClInclude>
@@ -1179,9 +1176,6 @@
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
     <ClCompile Include="SError.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="SEmpty.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="ISerializable.cpp">

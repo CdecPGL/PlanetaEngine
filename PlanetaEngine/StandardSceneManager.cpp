@@ -3,7 +3,6 @@
 #include "Scene.h"
 #include "SceneSetUpper.h"
 #include "SError.h"
-#include "SEmpty.h"
 #include "LogUtility.h"
 #include "NullWeakPointerException.h"
 #include "SceneSystemSetUpper.h"
@@ -11,7 +10,7 @@
 
 namespace planeta{
 	namespace private_{
-		StandardSceneManager::StandardSceneManager() :_scene_progress_flag(true), _request(_Request::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
+		StandardSceneManager::StandardSceneManager() :state_(State::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
 
 		}
 
@@ -19,16 +18,19 @@ namespace planeta{
 		SceneStatus_ StandardSceneManager::Process_()
 		{
 			try {
-				switch (_request)
+				switch (state_)
 				{
-				case planeta::private_::StandardSceneManager::_Request::Transition:
+				case State::None:
+					PE_LOG_WARNING("シーンが開始されていません。");
+					break;
+				case State::TransitionRequested:
 					_transition_proc();
-				case planeta::private_::StandardSceneManager::_Request::None:
-					if (_scene_progress_flag) { _current_scene->Update(); }
+				case State::Progress:
+					_current_scene->Update();
 					return SceneStatus_::Continue;
-				case planeta::private_::StandardSceneManager::_Request::Quit:
+				case State::QuitRequested:
 					return SceneStatus_::Quit;
-				case planeta::private_::StandardSceneManager::_Request::Error:
+				case State::ErrorOccured:
 					return SceneStatus_::Error;
 				default:
 					break;
@@ -77,7 +79,7 @@ namespace planeta{
 				return false;
 			} //遷移処理を始めることはできない
 			//シーン遷移要求
-			_request = _Request::Transition;
+			state_ = State::TransitionRequested;
 			_transition_parameters = transition_parameters;
 			PE_LOG_MESSAGE("シーン遷移予約を行いました。");
 			return true;
@@ -101,7 +103,7 @@ namespace planeta{
 			assert(resource_manager_ != nullptr);
 			resource_manager_->UnloadUnusedResouces();
 			//リクエストと準備状況をリセット
-			_request = _Request::None;
+			state_ = State::Progress;
 			_is_next_scene_loaded = false;
 			PE_LOG_MESSAGE("シーン(", _next_scene_id, ")に遷移しました。");
 			_next_scene_id = "";
@@ -109,15 +111,10 @@ namespace planeta{
 
 		bool StandardSceneManager::Initialize()
 		{
-			//空のシーンをセット
-			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SEmpty>();
-			std::shared_ptr<Scene> es = std::make_shared<Scene>();
-			InitializeScene_(*es, *ecd, util::ParameterHolder());
-			_current_scene = std::move(es);
-			_current_scene_setupper = ecd;
-			_request = _Request::None;
+			_current_scene.reset();
+			_current_scene_setupper.reset();
+			state_ = State::None;
 			_is_next_scene_loaded = false;
-
 			return true;
 		}
 
@@ -125,6 +122,7 @@ namespace planeta{
 		{
 			//現在のシーンを終了
 			_end_current_scene();
+			state_ = State::None;
 			return true;
 		}
 
@@ -143,7 +141,7 @@ namespace planeta{
 			InitializeScene_(*es, *ecd, util::ParameterHolder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
-			_request = _Request::None;
+			state_ = State::Progress;
 			_is_next_scene_loaded = false;
 		}
 

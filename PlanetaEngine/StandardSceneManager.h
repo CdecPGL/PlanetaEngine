@@ -41,9 +41,9 @@ namespace planeta{
 				return LoadNextScene(scene_id) && TransitionScene(transition_parameters);
 			}
 			/*終了*/
-			void QuitScene()override { _request = _Request::Quit; }
+			void QuitScene()override { state_ = State::QuitRequested; }
 			/*エラー発生*/
-			void ErrorOccured()override { _request = _Request::Error; }
+			void TriggerError()override { state_ = State::ErrorOccured; }
 
 			//////////システム関数//////////
 			/*マネージャの初期化*/
@@ -56,8 +56,6 @@ namespace planeta{
 			void SetResouceManager(const std::shared_ptr<ResourceManager>& mgr)override;
 		private:
 			std::shared_ptr<ResourceManager> resource_manager_;
-			/*シーン進行フラグ*/
-			bool _scene_progress_flag;
 			/*現在のシーン*/
 			std::shared_ptr<Scene> _current_scene;
 			/*次のシーン*/
@@ -68,9 +66,9 @@ namespace planeta{
 			std::shared_ptr<SceneSetUpper> _current_scene_setupper;
 			/*次のシーンセットクラス*/
 			std::shared_ptr<SceneSetUpper> _next_scene_setupper;
-			/*リクエスト*/
-			enum class _Request { None, Transition, Quit, Error };
-			_Request _request;
+			/*状態*/
+			enum class State { None, Progress, TransitionRequested, QuitRequested, ErrorOccured };
+			State state_;
 			/*次のシーンID*/
 			std::string _next_scene_id;
 			/*次のシーンの初期化パラメータリスト*/

@@ -28,7 +28,7 @@ namespace planeta {
 		virtual bool LoadAndTransitionScene(const std::string& scene_id, const util::ParameterHolder& transition_parameters = util::ParameterHolder()) = 0;
 		/*終了*/
 		virtual void QuitScene() = 0;
-		/*エラー発生*/
-		virtual void ErrorOccured() = 0;
+		/*エラーを発生させる*/
+		virtual void TriggerError() = 0;
 	};
 }
