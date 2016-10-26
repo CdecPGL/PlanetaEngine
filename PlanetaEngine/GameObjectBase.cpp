@@ -1,4 +1,6 @@
 ﻿#include <cassert>
+#include "boost/algorithm/string.hpp"
+
 #include "Game.h"
 #include "GameObjectBase.h"
 #include "GameObjectManagerPublicInterface.h"
@@ -15,19 +17,6 @@
 
 namespace planeta {
 	namespace private_ {
-		namespace {
-			std::pair<std::string, std::string> SeparateAliasAndComponentTypeID(const std::string str) {
-				auto del_pos = str.find_first_of(':');
-				if (del_pos == std::string::npos) {
-					return{ str,str }; //エイリアスが指定されていないので、型IDをエイリアスとする
-				} else {
-					auto alias = str.substr(0, del_pos);
-					auto tid = str.substr(del_pos + 1, str.size() - del_pos - 1);
-					return{ alias,tid };
-				}
-			}
-		}
-
 		GameObjectBase::GameObjectBase() {}
 
 		GameObjectBase::~GameObjectBase() = default;
@@ -54,20 +43,19 @@ namespace planeta {
 
 			GOComponentGetter com_getter(component_holder_);
 
-			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
 			decltype(auto) com_ary = component_holder_.component_array();
 
-			for (auto&& alias_idx : com_alias_idx_map) {
-				if (!com_ary[alias_idx.second]->GetOtherComponentsProc(com_getter)) {
-					PE_LOG_ERROR("GameObjectComponent\"エイリアス:", alias_idx.first, "\"でほかのオブジェクトを取得する処理に失敗しました。");
+			for (auto&& com : com_ary) {
+				if (!com->GetOtherComponentsProc(com_getter)) {
+					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"でほかのオブジェクトを取得する処理に失敗しました。");
 					state_ = GameObjectState::Invalid;
 					return false;
 				}
 			}
 
-			for (auto&& alias_idx : com_alias_idx_map) {
-				if (!com_ary[alias_idx.second]->Initialize()) {
-					PE_LOG_ERROR("GameObjectComponent\"エイリアス:", alias_idx.first, "\"の初期化処理に失敗しました。");
+			for (auto&& com : com_ary) {
+				if (!com->Initialize()) {
+					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"の初期化処理に失敗しました。");
 					state_ = GameObjectState::Invalid;
 					return false;
 				}
@@ -79,11 +67,10 @@ namespace planeta {
 		bool GameObjectBase::ProcessActivation() {
 			state_ = GameObjectState::Activating;
 			//コンポーネントの有効化
-			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
 			decltype(auto) com_ary = component_holder_.component_array();
-			for (auto&& alias_idx : com_alias_idx_map) {
-				if (!com_ary[alias_idx.second]->Activate()) {
-					PE_LOG_ERROR("GameObjectComponent\"エイリアス:", alias_idx.first, "\"の有効化処理に失敗しました。");
+			for (auto&& com : com_ary) {
+				if (!com->Activate()) {
+					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"の有効化処理に失敗しました。");
 					state_ = GameObjectState::Invalid;
 					return false;
 				}
@@ -104,11 +91,10 @@ namespace planeta {
 			//無効化イベント
 			inactivated_event_delegate_();
 			//コンポーネントの無効化
-			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
 			decltype(auto) com_ary = component_holder_.component_array();
-			for (auto&& alias_idx : com_alias_idx_map) {
-				if (!com_ary[alias_idx.second]->InActivate()) {
-					PE_LOG_ERROR("GameObjectComponent(\"エイリアス:", alias_idx.first, "\"の無効化処理に失敗しました。");
+			for (auto&& com : com_ary) {
+				if (!com->InActivate()) {
+					PE_LOG_ERROR("GameObjectComponent(\"型:", typeid(*com).name(), "\"の無効化処理に失敗しました。");
 					state_ = GameObjectState::Invalid;
 					return false;
 				}
@@ -157,45 +143,28 @@ namespace planeta {
 			com.SetSceneAndHolderGOData(rd);
 		}
 
-		bool GameObjectBase::AddComponentsFromTypeIDList_(const std::vector<std::string>& com_type_id_list) {
+		bool GameObjectBase::AddComponentsFromTypeIDList_(const std::vector<std::string>& com_type_id_list, std::vector<std::shared_ptr<GameObjectComponent>>& added_coms) {
 			private_::GOComponentAdder com_adder{ component_holder_ };
 			for (auto&& com_type_id : com_type_id_list) {
-				auto alias_tid = SeparateAliasAndComponentTypeID(com_type_id);
-				if (!com_adder.CreateAndAddComponent(alias_tid.first, alias_tid.second)) {
-					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(GOCTypeID:", alias_tid.second, ", エイリアス:", alias_tid.first, ")の追加に失敗しました。");
+				auto com = com_adder.CreateAndAddComponent(com_type_id);
+				if (com) {
+					added_coms.push_back(com);
+				}else{
+					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(GOCTypeID:", com_type_id, ")の追加に失敗しました。");
 					return false;
 				}
 			}
 			return true;
 		}
 
-		bool GameObjectBase::SetDataToComponentsFromPtree_(const boost::property_tree::ptree& pt) {
-			for (auto&& com_defs : pt) {
-				std::string alias = SeparateAliasAndComponentTypeID(com_defs.first).first;
-				auto it = component_holder_.alias_idx_map().find(alias);
-				if (it == component_holder_.alias_idx_map().end()) {
-					PE_LOG_ERROR("エイリアス\"", alias, "\"が指定されましたが、対応するエイリアスのゲームオブジェクトコンポーネントが存在しません。");
-					return false;
-				}
-				auto cd_pt = com_defs.second;
-
-				//文字列として読み込んでみる
-				std::string res_id = cd_pt.get_value<std::string>();
-				//文字列が空でなかったらリソースIDとみなす
-				if (!res_id.empty()) {
-					auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id);
-					//指定されたリソースがない
-					if (jres == nullptr) {
-						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
-						return false;
-					}
-					cd_pt = *(jres->GetPtree());
-				}
+		bool GameObjectBase::SetDataToComponentsFromPtree_(const std::vector<std::shared_ptr<GameObjectComponent>>& coms, const std::vector<std::shared_ptr<const boost::property_tree::ptree>>& pts) {
+			assert(coms.size() == pts.size());
+			for (size_t i = 0; i < coms.size();++i) {
 				//Ptreeからリフレクションシステムを用いて読み込み
 				try {
-					component_holder_.component_array()[it->second]->ReflectiveLoadFromPtree(cd_pt);
+					coms[i]->ReflectiveLoadFromPtree(*pts[i]);
 				} catch (reflection_error& e) {
-					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"エイリアス:", alias, "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。(", e.what(), ")");
+					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"型:", typeid(*coms[i]).name(), "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。(", e.what(), ")");
 					return false;
 				}
 			}
@@ -236,19 +205,38 @@ namespace planeta {
 		}
 
 		bool GameObjectBase::AddAndSetUpComponents(const boost::property_tree::ptree& pt) {
-			//コンポーネントの追加
-			std::vector<std::string> com_type_id_list;
+			//コンポーネント型IDと対応するPtreeの読み込み
+			std::vector<std::string> com_type_ids;
+			std::vector<std::shared_ptr<const boost::property_tree::ptree>> pts;
 			for (auto&& com_defs : pt) {
-				com_type_id_list.push_back(com_defs.first);
+				com_type_ids.push_back(com_defs.first);
+
+				const auto& lpt = com_defs.second;
+				//文字列として読み込んでみる
+				std::string res_id = lpt.get_value<std::string>();
+				//文字列が空でなかったらリソースIDとみなしてPtreeリソースを読み込む
+				if (!res_id.empty()) {
+					auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id);
+					//指定されたリソースがない
+					if (jres == nullptr) {
+						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"GOCTypeID:", com_defs.first, "\")のファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
+						return false;
+					}
+					pts.push_back(jres->GetPtree());
+				} else {
+					pts.push_back(std::make_shared<const boost::property_tree::ptree>(lpt));
+				}
 			}
-			if (!AddComponentsFromTypeIDList_(com_type_id_list)) {
+			//コンポーネントの追加
+			std::vector<std::shared_ptr<GameObjectComponent>> coms;
+			if (!AddComponentsFromTypeIDList_(com_type_ids, coms)) {
 				PE_LOG_ERROR("コンポーネントの作成に失敗しました。");
 				return false;
 			}
 			//コンポーネントのセットアップ
 			SetSceneAndGODataToCOmponents_();
 			//コンポーネントデータをptreeから読み込み
-			if (!SetDataToComponentsFromPtree_(pt)) {
+			if (!SetDataToComponentsFromPtree_(coms, pts)) {
 				PE_LOG_ERROR("PtreeからのComponentのデータセットに失敗しました。");
 				return false;
 			}
@@ -257,7 +245,8 @@ namespace planeta {
 
 		bool GameObjectBase::AddAndSetUpComponents(const std::vector<std::string>& com_type_id_list) {
 			//コンポーネントの追加
-			if (!AddComponentsFromTypeIDList_(com_type_id_list)) {
+			std::vector<std::shared_ptr<GameObjectComponent>> coms;
+			if (!AddComponentsFromTypeIDList_(com_type_id_list, coms)) {
 				PE_LOG_ERROR("コンポーネントの作成に失敗しました。");
 				return false;
 			}
@@ -267,10 +256,9 @@ namespace planeta {
 		}
 
 		void GameObjectBase::SetSceneAndGODataToCOmponents_() {
-			decltype(auto) com_alias_idx_map = component_holder_.alias_idx_map();
 			decltype(auto) com_ary = component_holder_.component_array();
-			for (auto&& alias_idx : com_alias_idx_map) {
-				SetSceneAndGODataToComponent_(*com_ary[alias_idx.second]);
+			for (auto&& com : com_ary) {
+				SetSceneAndGODataToComponent_(*com);
 			}
 		}
 

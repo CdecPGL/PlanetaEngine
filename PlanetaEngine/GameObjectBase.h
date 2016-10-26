@@ -82,9 +82,9 @@ namespace planeta {
 			void SetSceneAndGODataToCOmponents_();
 			void SetSceneAndGODataToComponent_(GameObjectComponent& com);
 			//コンポーネントTypeIDからコンポーネントを追加。("エイリアス:タイプID"とすることでエイリアスを指定可能。そうでない場合はTypeIDがエイリアスとなる)
-			bool AddComponentsFromTypeIDList_(const std::vector<std::string>& com_type_id_list);
+			bool AddComponentsFromTypeIDList_(const std::vector<std::string>& com_type_id_list, std::vector<std::shared_ptr<GameObjectComponent>>& added_coms);
 			//コンポーネントをPtreeから設定
-			bool SetDataToComponentsFromPtree_(const boost::property_tree::ptree& pt);
+			bool SetDataToComponentsFromPtree_(const std::vector<std::shared_ptr<GameObjectComponent>>& coms, const std::vector<std::shared_ptr<const boost::property_tree::ptree>>& pts);
 
 			//アタッチされたタスク
 			std::list<WeakPointer<Task>> attached_tasks_;

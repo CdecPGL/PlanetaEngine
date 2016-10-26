@@ -20,7 +20,7 @@ namespace planeta {
 			CollisionWorld();
 			~CollisionWorld();
 			bool Initialize()override;
-			bool Resist(const private_::Collider2DData collider_data); //引数は内部でコピーされるので一時オブジェクトでよい。
+			bool Resist(const private_::Collider2DData& collider_data); //引数は内部でコピーされるので一時オブジェクトでよい。
 			bool Remove(const CCollider2D* col_com_ptr);
 			bool ChangeCollisionGroup(const CCollider2D* col_com_ptr,const std::string& group_name);
 			bool ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag);

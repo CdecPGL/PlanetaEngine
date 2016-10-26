@@ -13,12 +13,11 @@ namespace planeta {
 	class GameObjectComponent;
 	namespace private_ {
 		/*GOコンポーネントを管理するクラス
-		GOCエイリアスはゲームオブジェクトによって変わるので、ゲームオブジェクト内でしかアクセスするべきでない。
 		*/
 		class GameObjectComponentHolder : private util::NonCopyable<GameObjectComponentHolder> {
 		public:
 			//コンポーネントを登録する
-			bool RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& t_info, const std::string& alias);
+			bool RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& t_info);
 			//タイプでコンポーネントを取得
 			std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
 			//コンポーネントを型で取得する。
@@ -43,22 +42,16 @@ namespace planeta {
 				return std::move(ret_list);
 			}
 			void CloneToOtherHolder(GameObjectComponentHolder& com_holder);
-			//エイリアスインデックスマップの参照
-			const auto& alias_idx_map()const { return alias_idx_map_; }
 			//コンオーネント配列の参照
 			const auto& component_array()const { return component_array_; }
 		private:
 			//コンポーネント配列
 			std::vector<std::shared_ptr<GameObjectComponent>> component_array_;
 			//コピーが簡単なので、基本的にコンポーネント配列へのインデックスでアクセスする。
-			//エイリアスによるコンポーネントインデックスマップ
-			std::unordered_map<std::string, size_t> alias_idx_map_;
 			//タイプによるコンポーネントインデックスマップ<typeindex,<完全探索済みか(false:少なくとも１つは探索済み,true:全て探索済み),idx>>
 			mutable std::unordered_map<std::type_index, std::pair<bool, std::vector<std::size_t>>> type_idx_map_;
 			//タイプマップにコンポーネントを追加
 			void AddComponentToTypeInfoMap_(const std::type_info& ti, size_t idx);
-			//エイリアスマップにコンポーネントを追加
-			bool AddComponentToAliasMap_(const std::string& alias, size_t idx);
 		};
 	}
 }

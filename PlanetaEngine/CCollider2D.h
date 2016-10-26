@@ -1,4 +1,6 @@
 ﻿#pragma once
+
+#include <set>
 #include "GameObjectSystemComponent.h"
 #include "WeakPointer.h"
 #include "Vector2D.h"
@@ -45,6 +47,7 @@ namespace planeta {
 		CCollider2D& collision_group(const std::string& cg);
 		/*! 接地しているかを取得*/
 		bool is_grounded()const { return is_grounded_; }
+
 		/*イベント*/
 		/*! Dコライダーとの衝突イベントハンドラ追加*/
 		DelegateConnection AddCollidedWithCollider2DEventHandler(DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);

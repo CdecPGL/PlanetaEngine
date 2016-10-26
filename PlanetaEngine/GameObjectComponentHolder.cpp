@@ -66,27 +66,13 @@ namespace planeta {
 			}
 		}
 
-		bool GameObjectComponentHolder::RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo, const std::string& alias) {
+		bool GameObjectComponentHolder::RegisterComponent(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo) {
 			size_t idx = component_array_.size();
-			if (!AddComponentToAliasMap_(alias, idx)) {
-				PE_LOG_ERROR("ゲームオブジェクトコンポーネント(タイプ\"", tinfo.name(), "\",エイリアス\"", alias, "\")の登録に失敗しました。");
-				return false;
-			}
 			component_array_.push_back(com);
 			AddComponentToTypeInfoMap_(tinfo, idx);
 			return true;
 		}
 
-		bool GameObjectComponentHolder::AddComponentToAliasMap_(const std::string& alias, size_t idx) {
-			auto it = alias_idx_map_.find(alias);
-			if (it == alias_idx_map_.end()) {
-				alias_idx_map_.emplace(alias, idx);
-				return true;
-			} else {
-				PE_LOG_ERROR("ゲームオブジェクトコンポーネントエイリアス\"", alias, "\"はすでに登録されています。");
-				return false;
-			}
-		}
 		//リフレクションシステムを用いてゲームオブジェクトコンポーネントのコピーを行い、エイリアスと型マップもコピーする。
 		void GameObjectComponentHolder::CloneToOtherHolder(GameObjectComponentHolder& com_holder) {
 			com_holder.component_array_.resize(component_array_.size());
@@ -94,7 +80,6 @@ namespace planeta {
 				auto ncom = std::static_pointer_cast<GameObjectComponent>(component_array_[idx]->ReflectiveClone());
 				com_holder.component_array_[idx] = ncom;
 			}
-			com_holder.alias_idx_map_ = alias_idx_map_;
 			com_holder.type_idx_map_ = type_idx_map_;
 		}
 	}

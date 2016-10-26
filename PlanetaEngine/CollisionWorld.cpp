@@ -83,7 +83,7 @@ namespace planeta{
 			}
 		}
 
-		bool CollisionWorld::Resist(const private_::Collider2DData collider_data) {
+		bool CollisionWorld::Resist(const private_::Collider2DData& collider_data) {
 			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(new CCollider2DResistData_{ collider_data,});
 			ccrd->is_collided_with_ground_last_proc = false; //地面と衝突していないとして初期化する
 			const Collider2DData& col_dat = ccrd->collider2d_data;

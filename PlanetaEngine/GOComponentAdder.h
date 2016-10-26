@@ -19,25 +19,22 @@ namespace planeta {
 			/*! @brief ゲームオブジェクトコンポーネントをIDで追加し名前を付ける
 
 				該当する型がシステムに登録されている必要がある。
-				名前は定義ファイルからのデータのロード時、コンポーネントにデータを振り分けるために使用される。
 			*/
-			bool CreateAndAddComponent(const std::string& com_id, const std::string& alias);
+			std::shared_ptr<GameObjectComponent> CreateAndAddComponent(const std::string& com_type_id);
 			/*! @brief ゲームオブジェクトコンポーネントを型で追加し名前を付ける
-
-			名前は定義ファイルからのデータのロード時、コンポーネントにデータを振り分けるために使用される。
 			*/
 			template<class ComT>
-			bool CreateAndAddComponent(const std::string& alias) {
+			std::shared_ptr<ComT> CreateAndAddComponent() {
 				static_assert(std::is_base_of<GameObjectComponent, ComT>::value, "ComT must derive GAmeObjectComponent.");
 				auto com = std::make_shared<ComT>();
-				if (!AddComponentToHolder_(com, typeid(ComT), alias)) {
-					return false;
+				if (!AddComponentToHolder_(com, typeid(ComT))) {
+					return nullptr;
 				}
-				return true;
+				return com;
 			}
 		private:
 			GameObjectComponentHolder& com_holder_;
-			bool AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo, const std::string& alias)noexcept;
+			bool AddComponentToHolder_(const std::shared_ptr<GameObjectComponent>& com, const std::type_info& tinfo)noexcept;
 		};
 	}
 }
