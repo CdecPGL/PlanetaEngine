@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <memory>
 #include <functional>
+#include <unordered_set>
 
 #include"Object.h"
 #include "NonCopyable.h"
@@ -23,6 +24,7 @@ namespace planeta {
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
 	*/
 	class GameObjectComponent : public Object, public ReflectionAccessible, public std::enable_shared_from_this<GameObjectComponent>, private util::NonCopyable<GameObjectComponent>{
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(GameObjectComponent);
 	public:
 		using Super = Object;
 		GameObjectComponent() = default;
@@ -38,6 +40,10 @@ namespace planeta {
 		bool is_active()const { return is_active_; }
 		/*! @brief 所有されているゲームオブジェクトへの参照*/
 		IGameObject& game_object();
+		/*! ラベルの取得*/
+		const std::unordered_set<std::string>& labels()const;
+		/*! ラベルの設定*/
+		void labels(const std::unordered_set<std::string>& l);
 
 		/*システム関数(GameObjectBaseから呼び出される)*/
 		/*! @brief 保持されているゲームオブジェクトのほかのコンポーネントを取得する。
@@ -82,6 +88,7 @@ namespace planeta {
 	private:
 		bool is_valied_ = false;
 		bool is_active_ = false;
+		std::unordered_set<std::string> labels_;
 
 		NonOwingPointer<IGameObject> game_object_;
 
