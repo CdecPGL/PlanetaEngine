@@ -2,12 +2,13 @@
 
 #include "Object.h"
 #include "WeakPointer.h"
+#include "NonCopyable.h"
 
 namespace planeta {
 	namespace private_ {
 		class ScenePublicInterface;
 		struct SceneData;
-		class SceneModule : public Object{
+		class SceneModule : public Object, private util::NonCopyable<SceneModule>{
 		public:
 			virtual ~SceneModule() = default;
 			virtual bool Initialize() { return true; };

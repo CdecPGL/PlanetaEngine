@@ -200,8 +200,6 @@ namespace planeta {
 			}
 			//リソースマネージャのセット
 			scene_manager->SetResouceManager(resource_manager);
-			//衝突マトリックスの設定
-			scene_manager->SetCollisionGroupMatrix_(std::make_shared<CollisionGroupMatrix>(config_manager->collision_group_matrix()));
 			if (scene_manager->Initialize()) { finalize_handls_.push_front([this] {scene_manager->Finalize(); }); }
 			else { PE_LOG_FATAL("シーンシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////

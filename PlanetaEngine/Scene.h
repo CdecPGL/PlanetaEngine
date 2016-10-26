@@ -11,7 +11,6 @@
 
 namespace planeta{
 	class TaskManager;
-	class CollisionGroupMatrix;
 	namespace private_{
 		class GameObjectManager;
 		class SceneSystemSetUpper;
@@ -35,10 +34,8 @@ namespace planeta{
 
 			/*設定関数*/
 			SceneData& RefSceneData() { return *scene_data_; }
-			std::shared_ptr<CollisionGroupMatrix> GetCollisionGroupMatrix();
 
 			/*初期化用関数*/
-			void SetCollisionGroupMatrix(const std::shared_ptr<CollisionGroupMatrix>& col_g_marix);
 			void PrepareSceneData();
 			void RegisterSceneDataToModules();
 
@@ -53,7 +50,6 @@ namespace planeta{
 			std::list<SceneModule*> scene_module_list_;
 
 			std::shared_ptr<SceneData> scene_data_; //シーンデータ
-			std::shared_ptr<CollisionGroupMatrix> collision_group_matrix_;
 		};
 	}
 }

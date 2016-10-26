@@ -89,14 +89,5 @@ namespace planeta{
 		void Scene::PrepareSceneData() {
 			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*task_manager_,*collision_world_,*gameobject_draw_system_ ,*transform_system_});
 		}
-
-		void Scene::SetCollisionGroupMatrix(const std::shared_ptr<CollisionGroupMatrix>& col_g_marix) {
-			collision_group_matrix_ = col_g_marix;
-		}
-
-		std::shared_ptr<CollisionGroupMatrix> Scene::GetCollisionGroupMatrix() {
-			return collision_group_matrix_;
-		}
-
 	}
 }

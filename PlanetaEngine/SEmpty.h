@@ -12,11 +12,6 @@ namespace planeta {
 			virtual util::ParameterHolder FinalizeScene(SceneSetUpProxy& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) override {
 				return{};
 			}
-
-			virtual const std::vector<std::string> GetTransitionableSceneID() const override {
-				return{};
-			}
-
 		};
 	}
 }

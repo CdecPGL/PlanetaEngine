@@ -12,12 +12,6 @@ namespace planeta {
 			{
 				return{};
 			}
-
-			virtual const std::vector<std::string> GetTransitionableSceneID() const override
-			{
-				return{};
-			}
-
 		};
 	}
 }

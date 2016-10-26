@@ -21,8 +21,6 @@ namespace planeta {
 			virtual bool Finalize() = 0;
 			/*シーン処理*/
 			virtual SceneStatus_ Process_() = 0;
-			/*衝突グループマップを登録*/
-			virtual void SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix) = 0;
 			/*リソースマネージャをセット(初期化前)*/
 			virtual void SetResouceManager(const std::shared_ptr<ResourceManager>& mgr) = 0;
 		};

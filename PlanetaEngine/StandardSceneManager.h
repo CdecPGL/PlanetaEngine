@@ -8,7 +8,6 @@
 
 namespace planeta{
 	class SceneSetUpper;
-	class CollisionGroupMatrix;
 	namespace private_ {
 		class ResourceManager;
 		class Scene;
@@ -53,10 +52,8 @@ namespace planeta{
 			bool Finalize();
 			/*シーン処理*/
 			SceneStatus_ Process_();
-			/*衝突グループマップを登録*/
-			void SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix);
 			/*リソースマネージャをセット(初期化前)*/
-			void SetResouceManager(const std::shared_ptr<ResourceManager>& mgr);
+			void SetResouceManager(const std::shared_ptr<ResourceManager>& mgr)override;
 		private:
 			std::shared_ptr<ResourceManager> resource_manager_;
 			/*シーン進行フラグ*/
@@ -88,8 +85,6 @@ namespace planeta{
 			bool _is_next_scene_loaded;
 			/*読み込み進行度*/
 			double _load_progress;
-			/*衝突グループマップ*/
-			std::shared_ptr<CollisionGroupMatrix> collision_group_matrix_;
 
 			/*遷移処理*/
 			void _transition_proc();

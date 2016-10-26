@@ -27,13 +27,6 @@ namespace planeta {
 		@return 次のシーンの初期化パラメータ
 		*/
 		util::ParameterHolder TerminateScene(private_::Scene& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters);
-		/*遷移可能SceneIDリスト(からの場合、全てのシーンに遷移可能とみなす)*/
-		virtual const std::vector<std::string> GetTransitionableSceneID()const = 0;
-		/*指定したシーンに遷移可能か*/
-		bool CheckTransitionable(const std::string& scene_id) {
-			auto l = GetTransitionableSceneID();
-			return l.size() == 0 || std::find(l.begin(), l.end(), scene_id) != l.end();
-		}
 	private:
 		/*シーンの設定処理を行う(初期オブジェクト、UI、プロセスの追加、[前シーンからオブジェクトの引継ぎ]未実装)
 		@param 設定するシーン、初期化パラメータリスト

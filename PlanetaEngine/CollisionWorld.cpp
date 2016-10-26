@@ -1,4 +1,6 @@
-﻿#include "CollisionWorld.h"
+﻿#include "Game.h"
+#include "ConfigManager.h"
+#include "CollisionWorld.h"
 #include "boost/next_prior.hpp"
 #include "IGameObject.h"
 #include "CollisionDetectFunctions.h"
@@ -168,13 +170,13 @@ namespace planeta{
 			return true;
 		}
 
-		void CollisionWorld::SetCollisionGroupMatrix(const std::shared_ptr<const CollisionGroupMatrix>& col_matrix) { 
-			auto collision_group_list = std::move(col_matrix->GetCollisionGroupList());
+		void CollisionWorld::SetCollisionGroupMatrix() { 
+			decltype(auto) collision_group_list = Game::instance().config_manager()->collision_group_matrix().GetCollisionGroupList();
 			for (const auto& group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());
 			}
 
-			auto collisionable_group_pair_list = std::move(col_matrix->GetCollisionableGroupPairList());
+			decltype(auto) collisionable_group_pair_list = Game::instance().config_manager()->collision_group_matrix().GetCollisionableGroupPairList();
 			collide_group_pair_list_.reserve(collisionable_group_pair_list.size());
 			for (const auto& collisionable_group_pair : collisionable_group_pair_list) {
 				auto it1 = collision_groupes_.find(collisionable_group_pair.first);
@@ -206,6 +208,11 @@ namespace planeta{
 			for (auto& eve : col_eve_que) {
 				eve();
 			}
+		}
+
+		bool CollisionWorld::Initialize() {
+			SetCollisionGroupMatrix();
+			return true;
 		}
 
 	}

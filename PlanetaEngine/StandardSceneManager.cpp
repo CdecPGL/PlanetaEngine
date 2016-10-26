@@ -48,14 +48,10 @@ namespace planeta{
 			} //すでに読み込み中か、遷移中のため、あらたに読み込みできない
 			//シーン定義クラス作成
 			_next_scene_setupper = _CreateSceneSetUpper(scene_name);
+			//シーン定義クラスが作成できなかった
 			if (_next_scene_setupper == nullptr) { 
 				PE_LOG_ERROR("シーンの読み込みに失敗しました。指定されたシーン(", scene_name, ")のセットアッパーが存在しません。");
 				return false; 
-			} //シーン定義クラスが作成できなかった
-			//現在のシーンから遷移可能なシーンか確認(現在のシーンが空だったら確認しない)
-			if (_current_scene!=nullptr && _current_scene_setupper->CheckTransitionable(scene_name) == false) {
-				PE_LOG_ERROR("シーンの読み込みに失敗しました。指定されたシーン(", scene_name, ")は現在のシーンから遷移可能なシーンではありません。");
-				return false;
 			}
 			//リソース読み込み
 			//シーンIDと同じIDのタグをアンロード対象外に指定し、読み込む
@@ -160,18 +156,12 @@ namespace planeta{
 			else { return util::ParameterHolder(); }
 		}
 
-		void StandardSceneManager::SetCollisionGroupMatrix_(std::shared_ptr<CollisionGroupMatrix>&& cg_matrix) {
-			collision_group_matrix_ = std::move(cg_matrix);
-		}
-
 		void StandardSceneManager::SetResouceManager(const std::shared_ptr<ResourceManager>& mgr) {
 			resource_manager_ = mgr;
 		}
 
 		bool StandardSceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {
 			SceneSetUpProxy safs(scene);
-			//シーンデータの準備
-			scene.SetCollisionGroupMatrix(collision_group_matrix_);
 			scene.PrepareSceneData();
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
 			if (!private_::SceneSystemSetUpper()(scene)) {

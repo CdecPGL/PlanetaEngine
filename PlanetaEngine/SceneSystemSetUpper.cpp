@@ -11,10 +11,8 @@
 
 namespace planeta {
 	namespace private_ {
-
 		bool SceneSystemSetUpper::operator()(Scene& scene)
 		{
-			scene.collision_world_->SetCollisionGroupMatrix(scene.GetCollisionGroupMatrix());
 			//ゲームタスク
 			auto& t_mgr = *scene.task_manager_;
 			//システムタスク追加
