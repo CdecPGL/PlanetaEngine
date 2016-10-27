@@ -16,6 +16,44 @@
 #include "Reflection.h"
 
 namespace planeta {
+	namespace {
+		std::vector<std::shared_ptr<const boost::property_tree::ptree>> GetComDefPtrees(const boost::property_tree::ptree& pt) {
+			std::vector<std::shared_ptr<const boost::property_tree::ptree>> out;
+			//文字列として読み込んでみる
+			std::string res_id = pt.get_value<std::string>();
+			//文字列が空でなかったらリソースIDとみなしてPtreeリソースを読み込む
+			if (!res_id.empty()) {
+				auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id);
+				//指定されたリソースがない
+				if (jres == nullptr) {
+					PE_LOG_ERROR("ゲームオブジェクトコンポーネントのファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
+				} else {
+					out.push_back(jres->GetPtree());
+				}
+			} else { //文字列でなかったら、オブジェクトか配列
+				if (pt.size() == 0 || !pt.ordered_begin()->first.empty()) { //要素がないか、最初の要素にキーが存在したらオブジェクト。オブジェクトならそれがGOCDefinition
+					out.push_back(std::make_shared<const boost::property_tree::ptree>(pt));
+				} else { //配列にはGOC定義か、そのリソースIDが含まれる。
+					for (auto&& ary_elm : pt) {
+						auto res_id2 = ary_elm.second.get_value<std::string>();
+						if (!res_id2.empty()) { //要素が文字列だったら、そのIDのリソースを読み込み
+							auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id2);
+							//指定されたリソースがない
+							if (jres == nullptr) {
+								PE_LOG_ERROR("ゲームオブジェクトコンポーネントのファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id2, "\"を読み込めませんでした。");
+							} else {
+								out.push_back(jres->GetPtree());
+							}
+						} else { //そうじゃなかったらそれがGOC定義の一つ
+							out.push_back(std::make_shared<const boost::property_tree::ptree>(ary_elm.second));
+						}
+					}
+				}
+			}
+			return out;
+		}
+	}
+
 	namespace private_ {
 		GameObjectBase::GameObjectBase() {}
 
@@ -207,38 +245,34 @@ namespace planeta {
 		bool GameObjectBase::AddAndSetUpComponents(const boost::property_tree::ptree& pt) {
 			//コンポーネント型IDと対応するPtreeの読み込み
 			std::vector<std::string> com_type_ids;
-			std::vector<std::shared_ptr<const boost::property_tree::ptree>> pts;
+			std::vector<std::vector<std::shared_ptr<const boost::property_tree::ptree>>> pts_each_com_tid;
 			for (auto&& com_defs : pt) {
+				auto com_def_pts = GetComDefPtrees(com_defs.second);
+				pts_each_com_tid.push_back(std::move(com_def_pts));
 				com_type_ids.push_back(com_defs.first);
-
-				const auto& lpt = com_defs.second;
-				//文字列として読み込んでみる
-				std::string res_id = lpt.get_value<std::string>();
-				//文字列が空でなかったらリソースIDとみなしてPtreeリソースを読み込む
-				if (!res_id.empty()) {
-					auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id);
-					//指定されたリソースがない
-					if (jres == nullptr) {
-						PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"GOCTypeID:", com_defs.first, "\")のファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
-						return false;
-					}
-					pts.push_back(jres->GetPtree());
-				} else {
-					pts.push_back(std::make_shared<const boost::property_tree::ptree>(lpt));
-				}
 			}
+			assert(com_type_ids.size() == pts_each_com_tid.size());
 			//コンポーネントの追加
-			std::vector<std::shared_ptr<GameObjectComponent>> coms;
-			if (!AddComponentsFromTypeIDList_(com_type_ids, coms)) {
-				PE_LOG_ERROR("コンポーネントの作成に失敗しました。");
-				return false;
+			std::vector<std::vector<std::shared_ptr<GameObjectComponent>>> coms_each_com_tid;
+			for (size_t i = 0; i < com_type_ids.size(); ++i) {
+				std::vector<std::shared_ptr<GameObjectComponent>> coms;
+				std::vector<std::string> com_tid_list;
+				com_tid_list.resize(pts_each_com_tid[i].size(), com_type_ids[i]);
+				if (!AddComponentsFromTypeIDList_(com_tid_list, coms)) {
+					PE_LOG_ERROR("コンポーネントの作成に失敗しました。");
+					return false;
+				}
+				coms_each_com_tid.push_back(std::move(coms));
 			}
+			assert(com_type_ids.size() == coms_each_com_tid.size());
 			//コンポーネントのセットアップ
 			SetSceneAndGODataToCOmponents_();
 			//コンポーネントデータをptreeから読み込み
-			if (!SetDataToComponentsFromPtree_(coms, pts)) {
-				PE_LOG_ERROR("PtreeからのComponentのデータセットに失敗しました。");
-				return false;
+			for (size_t i = 0; i < com_type_ids.size(); ++i) {
+				if (!SetDataToComponentsFromPtree_(coms_each_com_tid[i], pts_each_com_tid[i])) {
+					PE_LOG_ERROR("PtreeからのComponentのデータセットに失敗しました。");
+					return false;
+				}
 			}
 			return true;
 		}
