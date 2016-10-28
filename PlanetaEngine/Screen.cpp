@@ -1,18 +1,21 @@
 ﻿#include "Screen.h"
-#include "DxLib.h"
 #include "LogUtility.h"
 
 namespace planeta {
 	namespace private_ {
+
+		Screen::Screen() :is_valid_(true) {
+
+		}
+
 		void Screen::HandleDrawReservations() {
 			if (!is_valid()) {
 				PE_LOG_ERROR("無効なスクリーンに描画を行おうとしました。");
 			}
-			//必要なら対象のスクリーンに切り替え
-			if (GetDrawScreen() != dx_screen_handle_) { SetDrawScreen(dx_screen_handle_); }			for (int i = 0; i < draw_reservation_count_; ++i) {
+			for (int i = 0; i < draw_reservation_count_; ++i) {
 				draw_reservations_[i]();
 			}
-			draw_reservation_count_ = 0;
+			ResetAllReservations();
 		}
 
 		void Screen::ResetAllReservations() {
@@ -24,6 +27,10 @@ namespace planeta {
 			++draw_reservation_count_;
 			if ((signed)draw_reservations_.size() < draw_reservation_count_) { draw_reservations_.push_back(drawer); }
 			draw_reservations_[draw_reservation_count_ - 1] = drawer;
+		}
+
+		bool Screen::is_valid() const {
+			return is_valid_;
 		}
 
 		void Screen::Invalidate() {

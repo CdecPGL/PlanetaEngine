@@ -52,7 +52,7 @@ namespace planeta{
 		}
 
 		bool GameObjectDrawSystem::Initialize() {
-			screen_ = Game::instance().rendering_manager()->CreateScreen();
+			screen_ = Game::instance().rendering_manager()->GetMainScreen();
 			if (!screen_) { return false; }
 			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
 			screen_drawer_gui_ = std::make_unique<ScreenDrawerGUI>(*screen_);
@@ -60,7 +60,6 @@ namespace planeta{
 		}
 
 		void GameObjectDrawSystem::Finalize() {
-			Game::instance().rendering_manager()->DisposeScreen(screen_);
 			return;
 		}
 

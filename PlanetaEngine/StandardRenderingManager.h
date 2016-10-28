@@ -6,7 +6,7 @@ namespace planeta {
 	namespace private_{
 		class StandardRenderingManager final : public RenderingManager{
 		public:
-			StandardRenderingManager() = default;
+			StandardRenderingManager();
 			~StandardRenderingManager() = default;
 
 			bool Initialize() override;
@@ -15,14 +15,15 @@ namespace planeta {
 			//システム関数
 			bool Update()override;
 
-			/*新しいスクリーンを作成する(現状は一つのスクリーンにのみ対応)*/
-			std::shared_ptr<Screen> CreateScreen()override;
-			/*スクリーンを破棄する*/
-			bool DisposeScreen(const std::shared_ptr<Screen>& screen)override;
+			std::shared_ptr<Screen> GetMainScreen()override;
+			std::shared_ptr<Screen> GetDebugDrawScreen() override;
+			std::shared_ptr<Screen> GetInformationScreen() override;
+			std::shared_ptr<Screen> GetGUIScreen() override;
 		private:
-			std::shared_ptr<Screen> primary_screen_; //メインスクリーン
-
-			bool SetDrawScreen_(const std::shared_ptr<Screen>& screen);
+			std::shared_ptr<Screen> main_screen_; //メインスクリーン
+			std::shared_ptr<Screen> gui_screen_; //GUIスクリーン
+			std::shared_ptr<Screen> debug_draw_screen_; //デバッグ描画スクリーン
+			std::shared_ptr<Screen> debug_information_screen_; //デバッグ情報スクリーン
 		};
 	}
 }
