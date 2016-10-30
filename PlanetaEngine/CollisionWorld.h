@@ -13,6 +13,7 @@ namespace planeta {
 	}
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
+	class IDebugDrawer;
 	namespace private_ {
 		class CollisionWorld final: public private_::SceneModule
 		{
@@ -20,6 +21,7 @@ namespace planeta {
 			CollisionWorld();
 			~CollisionWorld();
 			bool Initialize()override;
+			void Finalize()override;
 			bool Resist(const private_::Collider2DData& collider_data); //引数は内部でコピーされるので一時オブジェクトでよい。
 			bool Remove(const CCollider2D* col_com_ptr);
 			bool ChangeCollisionGroup(const CCollider2D* col_com_ptr,const std::string& group_name);
@@ -52,6 +54,7 @@ namespace planeta {
 			std::pair<int, int> ProcessCollisionWithGround(CollisionEventQue& collision_event_holder)const; //地形との衝突判定
 
 			void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
+			void DebugDrawHandler(IDebugDrawer& dd);
 
 		};
 	}

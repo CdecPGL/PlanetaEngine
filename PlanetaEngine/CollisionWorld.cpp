@@ -13,6 +13,7 @@
 #include "CTransform2D.h"
 #include "Collider2DData.h"
 #include "IDebugManager.h"
+#include "ColliderComponent2DDebugDrawer.h"
 
 namespace planeta{
 	namespace private_ {
@@ -243,6 +244,8 @@ namespace planeta{
 
 		bool CollisionWorld::Initialize() {
 			SetCollisionGroupMatrix();
+			//デバッグ描画を作成
+			Game::instance().debug_manager()->CreateDebugDrawChannel("CollisionSystem", std::bind(&CollisionWorld::DebugDrawHandler, this, std::placeholders::_1));
 			return true;
 		}
 
@@ -252,6 +255,19 @@ namespace planeta{
 			di_adder.AddLineV("地面と衝突可能なコライダー数:", collision_with_ground_list_.size());
 			di_adder.AddLineV("衝突判定回数:", collision_process_count_);
 			di_adder.AddLineV("衝突回数:", collision_count_);
+		}
+
+		void CollisionWorld::DebugDrawHandler(IDebugDrawer& dd) {
+			ColliderComponent2DDebugDrawer ccdd{dd};
+			for (auto&& c : collider_resist_data_map_) {
+				//衝突判定に使うダブルディスパッチを用いてコライダーごとに描画処理を分ける。
+				c.second->collider2d_data.collider2d.DetectCollision(ccdd);
+			}
+		}
+
+		void CollisionWorld::Finalize() {
+			//デバッグ描画を破棄
+			Game::instance().debug_manager()->DeleteDebugDrawChannel("CollisionSystem");
 		}
 
 	}

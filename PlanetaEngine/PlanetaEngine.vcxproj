@@ -168,6 +168,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Collider2DData.h" />
+    <ClInclude Include="ColliderComponent2DDebugDrawer.h" />
     <ClInclude Include="CollisionState.h" />
     <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="CsvFile.h" />
@@ -402,6 +403,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CCamera2D.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
+    <ClCompile Include="ColliderComponent2DDebugDrawer.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CharacterCode.cpp" />
     <ClCompile Include="ClassInfoCaller.cpp" />

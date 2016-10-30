@@ -936,6 +936,9 @@
     <ClInclude Include="SubSystemManager.h">
       <Filter>PlanetaEngine\SubSystems</Filter>
     </ClInclude>
+    <ClInclude Include="ColliderComponent2DDebugDrawer.h">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1333,6 +1336,9 @@
     </ClCompile>
     <ClCompile Include="SubSystemManager.cpp">
       <Filter>PlanetaEngine\SubSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderComponent2DDebugDrawer.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
