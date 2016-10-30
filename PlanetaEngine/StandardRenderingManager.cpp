@@ -80,7 +80,7 @@ namespace planeta {
 			return debug_draw_screen_;
 		}
 
-		std::shared_ptr<planeta::private_::Screen> StandardRenderingManager::GetInformationScreen() {
+		std::shared_ptr<planeta::private_::Screen> StandardRenderingManager::GetDebugInformationScreen() {
 			return debug_information_screen_;
 		}
 

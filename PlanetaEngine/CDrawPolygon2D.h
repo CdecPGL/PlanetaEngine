@@ -17,8 +17,8 @@ namespace planeta {
 		/*! 全ての頂点を設定する*/
 		void vertexes(const std::vector<Vector2Dd>& vs);
 	private:
-		std::vector<Vector2Dd> points_;
-		std::vector<Vector2Dd> vertexes_;
+		std::vector<Vector2Df> points_;
+		std::vector<Vector2Df> vertexes_;
 		std::vector<std::array<int, 3>> indexes_;
 		void UpdateVertex_();
 		void UpdatePorygonIndex_();

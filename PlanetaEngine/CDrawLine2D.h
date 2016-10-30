@@ -21,7 +21,7 @@ namespace planeta {
 		/*! 線の長さを設定*/
 		CDrawLine2D& length(double l) { _length = l; return *this; }
 	private:
-		std::vector<Vector2Dd> _wire_positions;
+		std::vector<Vector2Df> _wire_positions;
 		int _width;
 		double _length;
 		/*描画処理*/

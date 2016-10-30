@@ -19,7 +19,7 @@ namespace planeta {
 			/*デバッグ描画用スクリーンを取得する*/
 			virtual std::shared_ptr<private_::Screen> GetDebugDrawScreen() = 0;
 			/*デバッグ情報描画用スクリーンを取得する*/
-			virtual std::shared_ptr<private_::Screen> GetInformationScreen() = 0;
+			virtual std::shared_ptr<private_::Screen> GetDebugInformationScreen() = 0;
 		};
 	}
 }

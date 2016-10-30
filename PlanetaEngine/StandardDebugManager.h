@@ -10,7 +10,7 @@ namespace planeta {
 		public:
 			StandardDebugManager();
 			~StandardDebugManager()override;
-			bool Initialize()override;
+			bool Initialize(RenderingManager& rendering_mgr)override;
 			void Finalize()override;
 			void Update()override;
 			bool CreateDebugInformationChannel(const std::string& channel_id, const std::function<void(IDebugInformationAdder &) >& handler) override;

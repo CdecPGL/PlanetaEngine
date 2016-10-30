@@ -17,7 +17,7 @@ namespace planeta {
 
 			std::shared_ptr<Screen> GetMainScreen()override;
 			std::shared_ptr<Screen> GetDebugDrawScreen() override;
-			std::shared_ptr<Screen> GetInformationScreen() override;
+			std::shared_ptr<Screen> GetDebugInformationScreen() override;
 			std::shared_ptr<Screen> GetGUIScreen() override;
 		private:
 			std::shared_ptr<Screen> main_screen_; //メインスクリーン

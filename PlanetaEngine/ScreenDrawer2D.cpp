@@ -10,7 +10,7 @@
 
 namespace planeta {
 	using namespace private_;
-	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Dd>& positions, double width, const planeta::Color& color) {
+	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Df>& positions, double width, const planeta::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
 			using namespace util::dx;
 			VECTOR v0, v1;
@@ -24,7 +24,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Dd>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta::Color& color) {
+	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Df>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta::Color& color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
 			using namespace util::dx;
 			VECTOR v0, v1, v2;
@@ -42,6 +42,16 @@ namespace planeta {
 				assert(false);
 			}
 		});
+	}
+
+	void ScreenDrawer2D::DrawCircle(const Vector2Df position, float radius, const Color& color) {
+		size_t separation = static_cast<size_t>(2 * radius*math::PI / 10 + 1);
+		std::vector<Vector2Df> poses{ separation + 1};
+		for (size_t i = 0; i < separation; ++i) {
+			poses[i] = position + GetUnitVectorByRadian<float>(math::PI * 2 / separation * i) * radius;
+		}
+		poses[separation] = poses[0];
+		DrawWire(poses, 1, color);
 	}
 
 	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<private_::GraphDrawData2D>& graph_draw_data) {

@@ -189,7 +189,7 @@ namespace planeta {
 				PE_LOG_FATAL("デバッグマネージャが設定されていません。");
 				return false;
 			}
-			if(debug_manager->Initialize()){ finalize_handls_.push_front([this] {debug_manager->Finalize(); }); }
+			if(debug_manager->Initialize(*rendering_manager)){ finalize_handls_.push_front([this] {debug_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("デバッグシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//シーンシステムの初期化
