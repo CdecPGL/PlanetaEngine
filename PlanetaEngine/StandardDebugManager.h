@@ -12,7 +12,8 @@ namespace planeta {
 			~StandardDebugManager()override;
 			bool Initialize(RenderingManager& rendering_mgr)override;
 			void Finalize()override;
-			void Update()override;
+			void PreRenderingUpdate()override;
+			void PostRenderingUpdate()override;
 			bool CreateDebugInformationChannel(const std::string& channel_id, const std::function<void(IDebugInformationAdder &) >& handler) override;
 			bool DeleteDebugInformationChannel(const std::string& channel_id) override;
 			bool CreateDebugDrawChannel(const std::string& channel_id, const std::function<void(IDebugDrawer &) > handler) override;

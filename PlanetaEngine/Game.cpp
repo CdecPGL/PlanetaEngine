@@ -226,10 +226,12 @@ namespace planeta {
 			if (ProcessMessage() < 0) { return GameStatus::Quit; } //DXライブラリの更新
 			input_manager->Update(); //入力の更新
 			auto sst = scene_manager->Process_(); //シーンの更新
+			debug_manager->PreRenderingUpdate(); //デバッグマネージャの描画前更新
 			rendering_manager->Update(); //描画システムの更新
 			sound_manager->Update(); //サウンドシステムの更新
 			performance_manager->Update(); //パフォーマンスマネージャの更新
-			
+			debug_manager->PostRenderingUpdate(); //デバッグマネージャの描画後更新
+
 			switch (sst) {
 			case planeta::private_::SceneStatus_::Continue:
 				return GameStatus::Continue;

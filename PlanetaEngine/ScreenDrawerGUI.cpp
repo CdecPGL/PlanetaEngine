@@ -56,4 +56,12 @@ namespace planeta {
 			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));
 		});
 	}
+
+	void ScreenDrawerGUI::DrawStringByDefaultFont(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color) {
+		screen_.ReserveDraw([position, scale, str, color, outline_color]() {
+			using namespace util::dx;
+			DrawExtendString(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), PEColorToDXColorHandle(outline_color));
+		});
+	}
+
 }
