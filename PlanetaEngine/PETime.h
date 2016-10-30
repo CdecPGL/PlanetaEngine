@@ -79,7 +79,7 @@ namespace planeta {
 
 			std::string ToString()const override;
 
-			/*現在時刻を取得*/
+			/*! 現在時刻を取得*/
 			static Time GetCurrentTime();
 		private:
 			int _second;
