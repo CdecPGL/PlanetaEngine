@@ -164,11 +164,8 @@ namespace planeta{
 
 		void StandardSceneManager::DebugInfotmationAddHandler(IDebugInformationAdder& di_adder) {
 			di_adder.AddLineV("現在のシーンID:", _current_scene_id);
-			di_adder.AddLine("-----現在のシーン-----");
 			if (_current_scene) {
 				_current_scene->DebugInformationAddHandle(di_adder);
-			} else {
-				di_adder.AddLine("シーンは開始されていません。");
 			}
 		}
 

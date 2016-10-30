@@ -9,6 +9,7 @@
 #include "TaskManagerConnection.h"
 #include "LogUtility.h"
 #include "SystemTaskSlot.h"
+#include "IDebugManager.h"
 
 namespace planeta {
 	namespace {
@@ -270,6 +271,28 @@ namespace planeta {
 				tg.clear();
 			}
 		}
+		//タスク数を数える
+		void CountTask(int& active_task_count, int& inactive_task_count) {
+			active_task_count = 0;
+			inactive_task_count = 0;
+			for (auto&& td : task_data_list_) {
+				switch (td->state) {
+				case TaskState::Running:
+				case TaskState::PauseRequested:
+					++active_task_count;
+					break;
+				case TaskState::Pausing:
+				case TaskState::ResumeRequested:
+					++inactive_task_count;
+					break;
+				case TaskState::Disposed:
+				case TaskState::DisposeRequested:
+				default:
+					break;
+
+				}
+			}
+		}
 	};
 
 	//////////////////////////////////////////////////////////////////////////
@@ -324,6 +347,14 @@ namespace planeta {
 		auto ptdata = impl_->RegisterTaskToList(task, group_number, true);
 		impl_->SetupTask(ptdata, true);
 		return task;
+	}
+
+	void TaskManager::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+		di_adder.AddLine("-----TaskManager-----");
+		int active_task{ 0 }, inactive_task{ 0 };
+		impl_->CountTask(active_task, inactive_task);
+		di_adder.AddLineV("アクティブなタスク数:", active_task);
+		di_adder.AddLineV("非アクティブなタスク数:", inactive_task);
 	}
 
 }

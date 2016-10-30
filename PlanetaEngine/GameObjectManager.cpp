@@ -4,6 +4,7 @@
 #include "LogUtility.h"
 #include "SceneData.h"
 #include "GameObjectFactory.h"
+#include "IDebugManager.h"
 #include "boost/algorithm/string.hpp"
 
 namespace planeta {
@@ -148,5 +149,12 @@ namespace planeta {
 		void GameObjectManager::SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {
 			scene_data_ = scene_data;
 		}
+
+		void GameObjectManager::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+			di_adder.AddLine("-----GameObjectManager-----");
+			di_adder.AddLineV("アクティブなゲームオブジェクト数:", active_game_objects_.size());
+			di_adder.AddLineV("非アクティブなゲームオブジェクト数:", inactive_game_objects_.size());
+		}
+
 	}
 }

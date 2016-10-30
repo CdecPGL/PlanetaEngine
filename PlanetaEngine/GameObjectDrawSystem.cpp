@@ -11,6 +11,7 @@
 #include "EffekseerForDXLib.h"
 #include "CTransform2D.h"
 #include "Screen.h"
+#include "IDebugManager.h"
 
 namespace planeta{
 	namespace private_ {
@@ -79,6 +80,11 @@ namespace planeta{
 			} else {
 				PE_LOG_ERROR("登録されていないカメラの削除が要求されました。シーン内に複数のカメラオブジェクトが存在する可能性があります。");
 			}
+		}
+
+		void GameObjectDrawSystem::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+			di_adder.AddLine("-----GameObjectDrawSystem-----");
+			di_adder.AddLineV("描画コンポーネント数:", _draw_component_map.size());
 		}
 
 		void GameObjectDrawSystem::ApplyCameraState() {

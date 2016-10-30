@@ -247,6 +247,7 @@ namespace planeta{
 		}
 
 		void CollisionWorld::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+			di_adder.AddLine("-----CollisionSystem-----");
 			di_adder.AddLineV("コライダー数:", collider_resist_data_map_.size());
 			di_adder.AddLineV("地形との衝突が有効なコライダー数:", collision_with_ground_list_.size());
 			di_adder.AddLineV("衝突判定回数:", collision_process_count_);

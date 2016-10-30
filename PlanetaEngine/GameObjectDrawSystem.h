@@ -41,6 +41,9 @@ namespace planeta {
 			bool RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component);
 			/*カメラコンポーネント登録解除*/
 			void RemoveCamera(CCamera2D* camera_component);
+
+			void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
+
 		private:
 			/*更新リスト(mapとlistは要素の追加削除を行ってもイテレータが有効)*/
 			std::map<int, std::list<std::shared_ptr<CDraw2D>>> _draw_component_update_list;

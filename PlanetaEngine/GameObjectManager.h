@@ -63,6 +63,9 @@ namespace planeta {
 			/*ゲームオブジェクト登録(登録、マネージャコネクション設定、初期化を行い、IDを返す)*/
 			int RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go);
 			int RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name);
+
+			virtual void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
+
 		};
 	}
 }

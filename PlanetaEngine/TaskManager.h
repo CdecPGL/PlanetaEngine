@@ -48,5 +48,8 @@ namespace planeta {
 
 		/*システムタスク作製*/
 		std::shared_ptr<Task> RegisterSystemTask(const std::shared_ptr<Task>& task, private_::SystemTaskSlot slot);
+
+		void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
+
 	};
 }
