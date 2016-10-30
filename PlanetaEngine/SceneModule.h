@@ -5,6 +5,7 @@
 #include "NonCopyable.h"
 
 namespace planeta {
+	class IDebugInformationAdder;
 	namespace private_ {
 		class ScenePublicInterface;
 		struct SceneData;
@@ -14,6 +15,7 @@ namespace planeta {
 			virtual bool Initialize() { return true; };
 			virtual void Finalize() { return; };
 			virtual void Update() = 0;
+			virtual void DebugInformationAddHandle(IDebugInformationAdder& di_adder) {};
 
 			virtual void SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {};
 		private:

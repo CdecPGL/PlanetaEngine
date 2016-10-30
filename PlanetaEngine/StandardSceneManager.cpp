@@ -1,5 +1,6 @@
 ﻿#include "ResourceManager.h"
 #include "StandardSceneManager.h"
+#include "IDebugManager.h"
 #include "Scene.h"
 #include "SceneSetUpper.h"
 #include "SError.h"
@@ -106,6 +107,7 @@ namespace planeta{
 			state_ = State::Progress;
 			_is_next_scene_loaded = false;
 			PE_LOG_MESSAGE("シーン(", _next_scene_id, ")に遷移しました。");
+			_current_scene_id = _next_scene_id;
 			_next_scene_id = "";
 		}
 
@@ -115,11 +117,13 @@ namespace planeta{
 			_current_scene_setupper.reset();
 			state_ = State::None;
 			_is_next_scene_loaded = false;
+			CreateDebugInformationChannel("SceneManager");
 			return true;
 		}
 
 		bool StandardSceneManager::Finalize()
 		{
+			DeleteDebugInformationChannel();
 			//現在のシーンを終了
 			_end_current_scene();
 			state_ = State::None;
@@ -156,6 +160,16 @@ namespace planeta{
 
 		void StandardSceneManager::SetResouceManager(const std::shared_ptr<ResourceManager>& mgr) {
 			resource_manager_ = mgr;
+		}
+
+		void StandardSceneManager::DebugInfotmationAddHandler(IDebugInformationAdder& di_adder) {
+			di_adder.AddLineV("現在のシーンID:", _current_scene_id);
+			di_adder.AddLine("-----現在のシーン-----");
+			if (_current_scene) {
+				_current_scene->DebugInformationAddHandle(di_adder);
+			} else {
+				di_adder.AddLine("シーンは開始されていません。");
+			}
 		}
 
 		bool StandardSceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {

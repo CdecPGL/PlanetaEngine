@@ -40,10 +40,19 @@ namespace planeta {
 
 			std::vector<std::pair<CollisionGroupListType::iterator, CollisionGroupListType::iterator>> collide_group_pair_list_; //衝突するグループペアのリスト
 
+			//衝突判定回数
+			int collision_process_count_ = 0;
+			//衝突発生回数
+			int collision_count_ = 0;
+
 			using CollisionEventQue = std::vector<std::function<void()>>;
-			void ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_holder)const; //２つのグループ間での衝突判定
-			void ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_holder)const; //グループ内での衝突判定
-			void ProcessCollisionWithGround(CollisionEventQue& collision_event_holder)const; //地形との衝突判定
+			//衝突判定実行関数。戻り値は<判定回数,衝突回数>
+			std::pair<int,int> ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_holder)const; //２つのグループ間での衝突判定
+			std::pair<int, int> ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_holder)const; //グループ内での衝突判定
+			std::pair<int, int> ProcessCollisionWithGround(CollisionEventQue& collision_event_holder)const; //地形との衝突判定
+
+			void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
+
 		};
 	}
 }

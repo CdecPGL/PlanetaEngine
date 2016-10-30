@@ -86,6 +86,10 @@ namespace planeta{
 			IterateSceneModule_([&scene_data = scene_data_](private_::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
+		void Scene::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+			IterateSceneModule_([&di_adder](SceneModule& sm) {sm.DebugInformationAddHandle(di_adder); return true; });
+		}
+
 		void Scene::PrepareSceneData() {
 			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*task_manager_,*collision_world_,*gameobject_draw_system_ ,*transform_system_});
 		}

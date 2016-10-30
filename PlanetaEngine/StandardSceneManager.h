@@ -54,6 +54,9 @@ namespace planeta{
 			SceneStatus_ Process_();
 			/*リソースマネージャをセット(初期化前)*/
 			void SetResouceManager(const std::shared_ptr<ResourceManager>& mgr)override;
+
+			void DebugInfotmationAddHandler(IDebugInformationAdder& di_adder) override;
+
 		private:
 			std::shared_ptr<ResourceManager> resource_manager_;
 			/*現在のシーン*/

@@ -11,6 +11,7 @@
 
 namespace planeta{
 	class TaskManager;
+	class IDebugInformationAdder;
 	namespace private_{
 		class GameObjectManager;
 		class SceneSystemSetUpper;
@@ -38,6 +39,8 @@ namespace planeta{
 			/*初期化用関数*/
 			void PrepareSceneData();
 			void RegisterSceneDataToModules();
+
+			void DebugInformationAddHandle(IDebugInformationAdder& di_adder);
 
 		private:
 			std::unique_ptr<TaskManager> task_manager_; //ゲームプロセスマネージャ

@@ -12,6 +12,7 @@
 #include "LogUtility.h"
 #include "CTransform2D.h"
 #include "Collider2DData.h"
+#include "IDebugManager.h"
 
 namespace planeta{
 	namespace private_ {
@@ -34,10 +35,13 @@ namespace planeta{
 			
 		}
 
-		void CollisionWorld::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_que)const {
+		std::pair<int, int> CollisionWorld::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_que)const {
+			int collision_process_count{ 0 }, collision_count{ 0 };
 			for (auto ccc_it = group.begin(); ccc_it != group.end(); ++ccc_it) {
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
+					++collision_process_count;
 					if ((*ccc_it).get().collider2d_data.collider2d.DetectCollision((*ccc_it2).get().collider2d_data.collider2d)) {
+						++collision_count;
 						//衝突していたら衝突イベントをホルダーに追加
 						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.game_object);
 						collision_event_que.push_back([eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
@@ -46,12 +50,16 @@ namespace planeta{
 					}
 				}
 			}
+			return{ collision_process_count, collision_count };
 		}
 
-		void CollisionWorld::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_que)const {
+		std::pair<int, int> CollisionWorld::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_que)const {
+			int collision_process_count{ 0 }, collision_count{ 0 };
 			for (auto ccc_it = group1.begin(); ccc_it != group1.end(); ++ccc_it) {
 				for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
+					++collision_process_count;
 					if ((*ccc_it).get().collider2d_data.collider2d.DetectCollision((*ccc_it2).get().collider2d_data.collider2d)) {
+						++collision_count;
 						//衝突していたら衝突イベントをホルダーに追加
 						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.game_object);
 						collision_event_que.push_back([eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
@@ -60,12 +68,16 @@ namespace planeta{
 					}
 				}
 			}
+			return{ collision_process_count, collision_count };
 		}
 
-		void CollisionWorld::ProcessCollisionWithGround(CollisionEventQue& collision_event_que)const {
+		std::pair<int, int> CollisionWorld::ProcessCollisionWithGround(CollisionEventQue& collision_event_que)const {
+			int collision_process_count{ 0 }, collision_count{ 0 };
 			for (const auto& col_com : collision_with_ground_list_) {
+				++collision_process_count;
 				auto& col_reg_data = col_com.get();
 				if (col_reg_data.collider2d_data.collider2d.DetectCollision(col_reg_data.collider2d_data.transform2d.ground())) {
+					++collision_count;
 					//地形衝突イベントをホルダーに追加
 					EACollisionWithGround2D cwgea;
 					cwgea.collision_state = col_reg_data.is_collided_with_ground_last_proc ? CollisionState::Stay : CollisionState::Enter;
@@ -81,6 +93,7 @@ namespace planeta{
 					}
 				}
 			}
+			return{ collision_process_count, collision_count };
 		}
 
 		bool CollisionWorld::Resist(const private_::Collider2DData& collider_data) {
@@ -198,14 +211,30 @@ namespace planeta{
 		}
 
 		void CollisionWorld::ExcuteCollisionDetection() {
-			CollisionEventQue col_eve_que; //衝突イベントQue
+			//衝突カウンタをリセット
+			collision_process_count_ = 0;
+			collision_count_ = 0;
+			//衝突イベントQue
+			CollisionEventQue col_eve_que;
 			//コライダー同士
 			for (const auto& gp : collide_group_pair_list_) {
-				if (gp.first == gp.second) { ProcessCollisionInAGroup(gp.first->second, col_eve_que); } //同一グループの場合
-				else { ProcessCollisionBetweenTwoGroups(gp.first->second, gp.second->second, col_eve_que); } //違うグループの場合
+				//同一グループの場合
+				if (gp.first == gp.second) {
+					auto ret = ProcessCollisionInAGroup(gp.first->second, col_eve_que); 
+					collision_process_count_ += ret.first;
+					collision_count_ += ret.second;
+				} 
+				//違うグループの場合
+				else {
+					auto ret = ProcessCollisionBetweenTwoGroups(gp.first->second, gp.second->second, col_eve_que);
+					collision_process_count_ += ret.first;
+					collision_count_ += ret.second;
+				}
 			}
 			//コライダーとその所属地形
-			ProcessCollisionWithGround(col_eve_que);
+			auto ret = ProcessCollisionWithGround(col_eve_que);
+			collision_process_count_ += ret.first;
+			collision_count_ += ret.second;
 			//衝突イベントの伝達
 			for (auto& eve : col_eve_que) {
 				eve();
@@ -215,6 +244,13 @@ namespace planeta{
 		bool CollisionWorld::Initialize() {
 			SetCollisionGroupMatrix();
 			return true;
+		}
+
+		void CollisionWorld::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+			di_adder.AddLineV("コライダー数:", collider_resist_data_map_.size());
+			di_adder.AddLineV("地形との衝突が有効なコライダー数:", collision_with_ground_list_.size());
+			di_adder.AddLineV("衝突判定回数:", collision_process_count_);
+			di_adder.AddLineV("衝突発生回数:", collision_count_);
 		}
 
 	}
