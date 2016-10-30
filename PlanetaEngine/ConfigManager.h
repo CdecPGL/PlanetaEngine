@@ -1,12 +1,12 @@
 #pragma once
 
 #include "IConfigManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	class File;
 	namespace private_ {
-		class ConfigManager : public IConfigManager, private util::NonCopyable<ConfigManager> {
+		class ConfigManager : public IConfigManager, public SubSystemManager {
 		public:
 			virtual ~ConfigManager()override = default;
 			virtual bool LoadSystemConfig(const File& file) = 0;

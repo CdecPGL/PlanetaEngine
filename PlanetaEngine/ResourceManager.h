@@ -4,13 +4,13 @@
 #include <vector>
 #include <functional>
 #include "IResourceManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	class FileAccessor;
 	namespace private_ {
 		/*リソースマネージャ*/
-		class ResourceManager : public IResourceManager, private util::NonCopyable<ResourceManager>{
+		class ResourceManager : public IResourceManager, public SubSystemManager {
 		public:
 			virtual ~ResourceManager()override = default;
 			/*初期化*/

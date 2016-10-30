@@ -3,12 +3,12 @@
 #include <unordered_map>
 #include <vector>
 #include "IInputManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	/*インプットマネージャ*/
 	namespace private_ {
-		class InputManager : public IInputManager, private util::NonCopyable<InputManager> {
+		class InputManager : public IInputManager, public SubSystemManager {
 		public:
 			virtual ~InputManager()override = default;
 			virtual bool Initialize() = 0;

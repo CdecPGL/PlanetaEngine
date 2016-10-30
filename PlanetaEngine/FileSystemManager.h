@@ -1,14 +1,14 @@
 #pragma once
 
 #include "IFileSystemManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 #include "FileAccessMode.h"
 
 namespace planeta {
 	class FileManipulatorBase;
 	namespace private_ {
 		/*ファイルシステムマネージャ*/
-		class FileSystemManager : public IFileSystemManager, private util::NonCopyable<FileSystemManager> {
+		class FileSystemManager : public IFileSystemManager, public SubSystemManager {
 		public:
 			virtual ~FileSystemManager()override = default;
 			/*初期化*/

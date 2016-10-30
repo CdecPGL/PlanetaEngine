@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "ISceneManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	class CollisionGroupMatrix;
@@ -12,7 +12,7 @@ namespace planeta {
 		/*シーンの状況(継続、終了、エラー発生)*/
 		enum class SceneStatus_ { Continue, Quit, Error };
 		/*シーンマネージャ*/
-		class SceneManager : public ISceneManager, private util::NonCopyable<SceneManager> {
+		class SceneManager : public ISceneManager, public SubSystemManager {
 		public:
 			virtual ~SceneManager()override = default;
 			/*マネージャの初期化*/

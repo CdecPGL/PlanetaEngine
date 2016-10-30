@@ -933,6 +933,9 @@
     <ClInclude Include="IScene.h">
       <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="SubSystemManager.h">
+      <Filter>PlanetaEngine\SubSystems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1327,6 +1330,9 @@
     </ClCompile>
     <ClCompile Include="StandardConfigManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="SubSystemManager.cpp">
+      <Filter>PlanetaEngine\SubSystems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

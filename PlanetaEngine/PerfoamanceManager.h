@@ -1,12 +1,12 @@
 #pragma once
 
 #include "IPerformanceManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	namespace private_ {
 		/*パフォーマンスマネージャ*/
-		class PerformanceManager : public IPerformanceManager, private util::NonCopyable<PerformanceManager> {
+		class PerformanceManager : public IPerformanceManager, public SubSystemManager {
 		public:
 			virtual ~PerformanceManager()override = default;
 			virtual bool Initialize() = 0;

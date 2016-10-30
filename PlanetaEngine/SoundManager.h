@@ -1,11 +1,11 @@
 #pragma once
 
 #include "ISoundManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	namespace private_ {
-		class SoundManager : public ISoundManager, private util::NonCopyable<SoundManager> {
+		class SoundManager : public ISoundManager, public SubSystemManager {
 		public:
 			virtual ~SoundManager() = default;
 			virtual bool Initialize() = 0;

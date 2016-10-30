@@ -2,12 +2,12 @@
 
 #include <memory>
 #include "ISaveManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	class FileAccessor;
 	namespace private_ {
-		class SaveManager : public ISaveManager, private util::NonCopyable<SaveManager> {
+		class SaveManager : public ISaveManager, public SubSystemManager {
 		public:
 			virtual ~SaveManager()override = default;
 			//ファイルアクセサを設定。初期化前に呼び出す。

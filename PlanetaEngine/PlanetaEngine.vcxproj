@@ -236,6 +236,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StandardConfigManager.h" />
+    <ClInclude Include="SubSystemManager.h" />
     <ClInclude Include="SystemTaskSlot.h" />
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
@@ -436,6 +437,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="StandardConfigManager.cpp" />
     <ClCompile Include="StringUtility.cpp" />
+    <ClCompile Include="SubSystemManager.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
     <ClCompile Include="TCoroutine.cpp" />
     <ClCompile Include="RCsv.cpp" />

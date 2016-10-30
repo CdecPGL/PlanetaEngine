@@ -1,12 +1,12 @@
 #pragma once
 
 #include "ILogManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	namespace private_ {
 		/*ログマネージャ*/
-		class LogManager : public ILogManager, private util::NonCopyable<LogManager> {
+		class LogManager : public ILogManager, public SubSystemManager {
 		public:
 			virtual ~LogManager()override = default;
 			/*初期化*/

@@ -1,13 +1,13 @@
 #pragma once
 
 #include "IRenderingManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	namespace private_ {
 		class Screen;
 		/*レンダリングマネージャ*/
-		class RenderingManager : public IRenderingManager, private util::NonCopyable<RenderingManager> {
+		class RenderingManager : public IRenderingManager, public SubSystemManager {
 		public:
 			virtual ~RenderingManager()override = default;
 			/*初期化する*/

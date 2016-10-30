@@ -1,12 +1,12 @@
 #pragma once
 
 #include "IDebugManager.h"
-#include "NonCopyable.h"
+#include "SubSystemManager.h"
 
 namespace planeta {
 	namespace private_ {
 		class RenderingManager;
-		class DebugManager : public IDebugManager, private util::NonCopyable<DebugManager> {
+		class DebugManager : public IDebugManager, public SubSystemManager {
 		public:
 			virtual ~DebugManager()override = default;
 			virtual bool Initialize(RenderingManager& rendering_mgr) = 0;
