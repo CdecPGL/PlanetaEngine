@@ -353,8 +353,8 @@ namespace planeta {
 		di_adder.AddLine("-----TaskManager-----");
 		int active_task{ 0 }, inactive_task{ 0 };
 		impl_->CountTask(active_task, inactive_task);
-		di_adder.AddLineV("アクティブなタスク数:", active_task);
-		di_adder.AddLineV("非アクティブなタスク数:", inactive_task);
+		di_adder.AddLineV("実行中タスク数:", active_task);
+		di_adder.AddLineV("停止中タスク数:", inactive_task);
 	}
 
 }

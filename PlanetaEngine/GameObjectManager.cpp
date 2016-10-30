@@ -152,8 +152,8 @@ namespace planeta {
 
 		void GameObjectManager::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
 			di_adder.AddLine("-----GameObjectManager-----");
-			di_adder.AddLineV("アクティブなゲームオブジェクト数:", active_game_objects_.size());
-			di_adder.AddLineV("非アクティブなゲームオブジェクト数:", inactive_game_objects_.size());
+			di_adder.AddLineV("活動中ゲームオブジェクト数:", active_game_objects_.size());
+			di_adder.AddLineV("停止中ゲームオブジェクト数:", inactive_game_objects_.size());
 		}
 
 	}
