@@ -4,10 +4,10 @@
 #include "WeakPointer.h"
 
 namespace planeta {
-	class IGameObject;
+	class CCollider2D;
 	class EACollisionWithCollider2D : public Object {
 	public:
-		EACollisionWithCollider2D(IGameObject& go) :game_object(go) {}
-		IGameObject& game_object;
+		EACollisionWithCollider2D(CCollider2D& cc) :collider(cc) {}
+		CCollider2D& collider;
 	};
 }

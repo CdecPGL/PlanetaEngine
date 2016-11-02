@@ -44,9 +44,9 @@ namespace planeta{
 					if ((*ccc_it).get().collider2d_data.collider2d.DetectCollision((*ccc_it2).get().collider2d_data.collider2d)) {
 						++collision_count;
 						//衝突していたら衝突イベントをホルダーに追加
-						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.game_object);
+						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.collider2d);
 						collision_event_que.push_back([eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
-						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.game_object);
+						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.collider2d);
 						collision_event_que.push_back([eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_evoker, arg = cea1]() {eve(arg); });
 					}
 				}
@@ -62,9 +62,9 @@ namespace planeta{
 					if ((*ccc_it).get().collider2d_data.collider2d.DetectCollision((*ccc_it2).get().collider2d_data.collider2d)) {
 						++collision_count;
 						//衝突していたら衝突イベントをホルダーに追加
-						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.game_object);
+						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.collider2d);
 						collision_event_que.push_back([eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {eve(arg); });
-						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.game_object);
+						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.collider2d);
 						collision_event_que.push_back([eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_evoker, arg = cea1]() {eve(arg); });
 					}
 				}
