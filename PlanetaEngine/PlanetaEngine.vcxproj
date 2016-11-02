@@ -377,7 +377,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CTransform2D.h" />
     <ClInclude Include="TwoKeyMap.h" />
     <ClInclude Include="TypeChecker.h" />
-    <ClInclude Include="UIAllocator.h" />
     <ClInclude Include="GUIComponent.h" />
     <ClInclude Include="GUIManager.h" />
     <ClInclude Include="GUIManagerPublicInterface.h" />
@@ -427,7 +426,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="InitFunctionsFIleSystem.cpp" />
     <ClCompile Include="InitFunctionsResource.cpp" />
     <ClCompile Include="InitializeFunctionsDxLib.cpp" />
-    <ClCompile Include="ISerializable.cpp" />
     <ClCompile Include="ReflectionAccessible.cpp" />
     <ClCompile Include="ReflectionUtility.cpp" />
     <ClCompile Include="ResourceBase.cpp" />

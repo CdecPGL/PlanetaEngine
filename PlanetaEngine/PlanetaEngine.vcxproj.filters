@@ -243,9 +243,6 @@
     <ClInclude Include="ProcessAllocator.h">
       <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
-    <ClInclude Include="UIAllocator.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
     <ClInclude Include="IMemoryAllocator.h">
       <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClInclude>
@@ -1183,9 +1180,6 @@
     </ClCompile>
     <ClCompile Include="SError.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="ISerializable.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="CharacterCode.cpp">
       <Filter>PlanetaEngine\Utility</Filter>

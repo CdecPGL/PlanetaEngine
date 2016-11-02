@@ -14,3 +14,5 @@
 #include "RSound.h"
 #include "RText.h"
 #include "RXml.h"
+#include "REffect.h"
+#include "REffectTexture.h"

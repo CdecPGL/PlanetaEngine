@@ -28,24 +28,24 @@ namespace planeta {
 		std::vector<NonOwingPointer<ComT>> GetAllComponents()const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
 			auto lst = std::move(GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
-			std::vector<NonOwingPointer<ComT>> out();
+			std::vector<NonOwingPointer<ComT>> out;
 			for (auto&& com : lst) {
 				out.push_back(std::static_pointer_cast<ComT>(com));
 			}
-			return std::move(lst);
+			return std::move(out);
 		}
 		//! 条件を満たすコンポーネントを型で全て取得する。
 		template<class ComT>
 		std::vector<NonOwingPointer<ComT>> GetAllComponentsWithCondition(const std::function<bool(const ComT&)> cond)const {
 			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must drive GameObjectComponent.");
 			auto lst = std::move(GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* goc) {return dynamic_cast<ComT*>(goc) != nullptr; }));
-			std::vector<NonOwingPointer<ComT>> out();
+			std::vector<NonOwingPointer<ComT>> out;
 			for (auto&& com : lst) {
-				if (cond(*com)) {
+				if (cond(static_cast<ComT&>(*com))) {
 					out.push_back(std::static_pointer_cast<ComT>(com));
 				}
 			}
-			return std::move(lst);
+			return std::move(out);
 		}
 	private:
 		const private_::GameObjectComponentHolder& com_holder_;
