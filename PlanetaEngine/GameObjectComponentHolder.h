@@ -28,12 +28,12 @@ namespace planeta {
 				return ptr ? std::static_pointer_cast<ComT>(ptr) : nullptr;
 			}
 			//タイプに一致するコンポーネントをすべて取得する。
-			const std::vector<std::shared_ptr<GameObjectComponent>>& GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
+			std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker)const;
 			//コンポーネントを型で全て取得する。
 			template<class ComT>
 			std::vector<std::shared_ptr<ComT>> GetAllComponents() {
 				static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must derive GameComponent.");
-				const auto& go_list = GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* com) {return dynamic_cast<C*>(com) != nullptr; });
+				auto go_list = std::move(GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* com) {return dynamic_cast<C*>(com) != nullptr; }));
 				std::vector<std::shared_ptr<ComT>> ret_list;
 				for (const auto& go : go_list) {
 					assert(dynamic_pointer_cast<ComT>(go) != nullptr);

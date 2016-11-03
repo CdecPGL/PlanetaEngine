@@ -23,7 +23,7 @@ namespace planeta {
 			}
 		}
 
-		const std::vector<std::shared_ptr<GameObjectComponent>>& GameObjectComponentHolder::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker) const {
+		std::vector<std::shared_ptr<GameObjectComponent>> GameObjectComponentHolder::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker) const {
 			auto it = type_idx_map_.find(ti);
 			auto all_search = [this, &type_checker, &ti](std::vector<size_t>& t_list) {
 				for (size_t i = 0; i < component_array_.size(); ++i) {
