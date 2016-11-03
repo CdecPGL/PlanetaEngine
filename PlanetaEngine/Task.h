@@ -1,8 +1,9 @@
 ﻿#pragma once
 
+#include "boost/signals2/signal.hpp"
+
 #include "Object.h"
 #include "WeakPointer.h"
-#include "Delegate.h"
 #include "NonCopyable.h"
 #include "TaskManagerPublicInterface.h"
 #include "GameObjectManagerPublicInterface.h"
@@ -30,10 +31,10 @@ namespace planeta {
 		/*システム関数*/
 		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<private_::SceneData>& scene_data);
 		/*イベント*/
-		/*プロセスが破棄された*/
-		Delegate<void> disposed;
-		/*ユーティリティ関数*/
-
+		/*! プロセス破棄イベント型*/
+		using DisposedEventType = boost::signals2::signal<void()>;
+		/*! プロセス破棄イベント*/
+		DisposedEventType disposed;
 	protected:
 		//! ゲームオブジェクトマネージャへのアクセス
 		GameObjectManagerPublicInterface& game_object_manager();

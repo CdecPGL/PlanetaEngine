@@ -936,9 +936,6 @@
     <ClInclude Include="ColliderComponent2DDebugDrawer.h">
       <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">

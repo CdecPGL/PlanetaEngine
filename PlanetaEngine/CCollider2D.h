@@ -1,11 +1,11 @@
 ﻿#pragma once
 
 #include <set>
+#include <functional>
+#include "boost/signals2/signal.hpp"
 #include "GameObjectSystemComponent.h"
 #include "WeakPointer.h"
 #include "Vector2D.h"
-#include <functional>
-#include "Delegate.h"
 #include "IColliderWithCollider2D.h"
 
 namespace planeta {
@@ -49,10 +49,15 @@ namespace planeta {
 		bool is_grounded()const { return is_grounded_; }
 
 		/*イベント*/
-		/*! Dコライダーとの衝突イベントハンドラ追加*/
-		DelegateConnection AddCollidedWithCollider2DEventHandler(DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder);
+		/*! コライダーとの衝突イベント型*/
+		using CollidedWithCollider2DEventType = boost::signals2::signal<void(const EACollisionWithCollider2D&)>;
+		/*! コライダーとの衝突イベント*/
+		CollidedWithCollider2DEventType collided_with_collider2d;
+		/*! 2D地形との衝突イベント型*/
+		using CollidedWithGround2DEventType = boost::signals2::signal<void(const EACollisionWithGround2D&)>;
 		/*! 2D地形との衝突イベントハンドラ追加*/
-		DelegateConnection AddCollidedWithGround2DEventHandler(DelegateHandlerAdder<EACollisionWithGround2D> handler_adder);
+		CollidedWithGround2DEventType collided_with_ground2d;
+
 		/*! 同じオブジェクトのCTransform2Dを取得*/
 		CTransform2D& transform2d() { return *transform2d_; }
 		/*! 同じオブジェクトのCTransform2Dを取得(const版)*/
@@ -66,9 +71,6 @@ namespace planeta {
 		void RemoveFromCollisionDetectProcess_();
 
 		NonOwingPointer<CTransform2D> transform2d_;
-
-		Delegate<EACollisionWithCollider2D> collided_event_;
-		Delegate<EACollisionWithGround2D> collided_with_ground_event_;
 
 		/*位置*/
 		Vector2Dd position_;

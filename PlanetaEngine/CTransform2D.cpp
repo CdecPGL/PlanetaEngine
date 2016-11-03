@@ -50,7 +50,7 @@ namespace planeta {
 		UpdateState last_update; //更新状況
 		WeakPointer<CGround2D> belonging_ground;
 		//地形更新イベントコネクション
-		DelegateConnection ground_updated_event_connection;
+		boost::signals2::connection ground_updated_event_connection;
 
 		void PositionUpdated(CoordinationSpace space) {
 			last_update.position = space;
@@ -135,8 +135,6 @@ namespace planeta {
 		Space velocity_space = Space::Ground;
 		//トランスフォーム2D_ID
 		int t2d_id_ = -1;
-		//更新イベントデリゲート
-		Delegate<void> updated_event_delegate;
 
 		Impl_& operator=(const Impl_& obj) {
 			global = obj.global;
@@ -244,7 +242,7 @@ namespace planeta {
 
 		void SetGround(const WeakPointer<CGround2D>& g, bool keep_global_position) {
 			if (belonging_ground) {
-				ground_updated_event_connection.Remove();
+				ground_updated_event_connection.disconnect();
 			}
 
 			if (keep_global_position) {
@@ -256,7 +254,7 @@ namespace planeta {
 			}
 
 			belonging_ground = g;
-			ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler({ this, &Impl_::OnGroudUpdated });
+			ground_updated_event_connection = belonging_ground->transform2d().updated.connect(std::bind(&Impl_::OnGroudUpdated, this));
 
 			if (keep_global_position) {
 				last_update.position = CoordinationSpace::Global;
@@ -279,13 +277,13 @@ namespace planeta {
 
 		bool Initialize() {
 			if (typeid(*belonging_ground) != typeid(CDumyGround2D)) { //所属地形があったら、自分を更新イベントリスナーに登録
-				ground_updated_event_connection = belonging_ground->transform2d().AddUpdatedEventHandler({ this, &Impl_::OnGroudUpdated });
+				ground_updated_event_connection = belonging_ground->transform2d().updated.connect(std::bind(&Impl_::OnGroudUpdated, this));
 			}
 			return true;
 		}
 
 		void Finalize() {
-			ground_updated_event_connection.Remove();
+			ground_updated_event_connection.disconnect();
 		}
 	};
 
@@ -464,9 +462,5 @@ namespace planeta {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 			return false;
 		}
-	}
-
-	DelegateConnection CTransform2D::AddUpdatedEventHandler(DelegateHandlerAdder<void>&& handler_adder) {
-		return handler_adder(impl_->updated_event_delegate);
 	}
 }

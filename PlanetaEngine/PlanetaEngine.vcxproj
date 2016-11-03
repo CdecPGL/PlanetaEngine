@@ -174,7 +174,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CsvFile.h" />
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="EffekseerUtil.h" />
-    <ClInclude Include="Event.h" />
     <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />

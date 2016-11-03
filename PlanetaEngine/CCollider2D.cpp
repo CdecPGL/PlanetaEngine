@@ -36,7 +36,7 @@ namespace planeta {
 		if (collision_group_name_.length() == 0) {
 			PE_LOG_ERROR("衝突グループが設定されていません。");
 		} else {
-			auto col_grng_eve = [&eve = collided_with_ground_event_,&is_grounded_flag = is_grounded_](const EACollisionWithGround2D& arg) {
+			auto col_grng_eve = [&eve = collided_with_ground2d,&is_grounded_flag = is_grounded_](const EACollisionWithGround2D& arg) {
 				switch (arg.collision_state) {
 				case CollisionState::Enter:
 					is_grounded_flag = true;
@@ -50,7 +50,7 @@ namespace planeta {
 				eve(arg);
 			};
 			private_::Collider2DData col_dat{ *this,game_object(),*transform2d_
-				,[&eve = collided_event_](const EACollisionWithCollider2D& arg) {eve(arg); }
+				,[&eve = collided_with_collider2d](const EACollisionWithCollider2D& arg) {eve(arg); }
 				,col_grng_eve
 			};
 			scene_data_ref().collision_world.Resist(col_dat);
@@ -111,13 +111,4 @@ namespace planeta {
 		}
 		return true;
 	}
-
-	DelegateConnection CCollider2D::AddCollidedWithCollider2DEventHandler(DelegateHandlerAdder<EACollisionWithCollider2D> handler_adder) {
-		return handler_adder(collided_event_);
-	}
-
-	DelegateConnection CCollider2D::AddCollidedWithGround2DEventHandler(DelegateHandlerAdder<EACollisionWithGround2D> handler_adder) {
-		return handler_adder(collided_with_ground_event_);
-	}
-
 }

@@ -114,7 +114,7 @@ namespace planeta {
 				}
 			}
 			//有効化イベント
-			activated_event_delegate_();
+			activated();
 			//アタッチされたタスクの再開
 			CheckAndApplyProcessToAttachedTask([](Task& t)-> bool {return t.Resume(); });
 
@@ -127,7 +127,7 @@ namespace planeta {
 			//アタッチされたタスクの停止
 			CheckAndApplyProcessToAttachedTask([](Task& t)-> bool {return t.Pause(); });
 			//無効化イベント
-			inactivated_event_delegate_();
+			inactivated();
 			//コンポーネントの無効化
 			decltype(auto) com_ary = component_holder_.component_array();
 			for (auto&& com : com_ary) {
@@ -148,7 +148,7 @@ namespace planeta {
 			CheckAndApplyProcessToAttachedTask([](Task& t)-> bool {t.Dispose(); return true; });
 			attached_tasks_.clear();
 			//破棄時イベント
-			disposed_event_delegate_();
+			disposed();
 			//コンポーネントの終了処理
 			for (auto&& com : component_holder_.component_array()) {
 				com->Finalize();
@@ -162,18 +162,6 @@ namespace planeta {
 
 		void GameObjectBase::SetSceneData(const WeakPointer<private_::SceneData>& scene_accessor) {
 			scene_data_ = scene_accessor;
-		}
-
-		DelegateConnection GameObjectBase::AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) {
-			return hander_adder(activated_event_delegate_);
-		}
-
-		DelegateConnection GameObjectBase::AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) {
-			return hander_adder(inactivated_event_delegate_);
-		}
-
-		DelegateConnection GameObjectBase::AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder) {
-			return hander_adder(disposed_event_delegate_);
 		}
 
 		void GameObjectBase::SetSceneAndGODataToComponent_(GameObjectComponent& com) {

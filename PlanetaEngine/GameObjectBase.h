@@ -32,12 +32,7 @@ namespace planeta {
 			void Dispose()override final;
 			//自分のstd::shared_ptrを取得する。
 			WeakPointer<IGameObject> GetPointer() override final;
-			//有効化イベントハンドラ登録
-			DelegateConnection AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
-			//無効化イベントハンドラ登録
-			DelegateConnection AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
-			//破棄イベントハンドラ登録
-			DelegateConnection AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder)override final;
+
 			//状態を取得
 			GameObjectState state()const override;
 
@@ -90,11 +85,6 @@ namespace planeta {
 			std::list<WeakPointer<Task>> attached_tasks_;
 			//アタッチされたが存在しるか確認しつつ、タスクに処理を行う。存在しない場合はリストから外す。
 			bool CheckAndApplyProcessToAttachedTask(const std::function<bool(Task&)>& proc);
-
-			//イベントデリゲート
-			Delegate<void> activated_event_delegate_;
-			Delegate<void> inactivated_event_delegate_;
-			Delegate<void> disposed_event_delegate_;
 		};
 		PE_REFLECTABLE_CLASS(GameObjectBase);
 	}

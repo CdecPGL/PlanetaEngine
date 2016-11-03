@@ -2,9 +2,9 @@
 
 #include <type_traits>
 #include <memory>
+#include "boost/signals2/signal.hpp"
 #include "TaskManagerPublicInterface.h"
 #include "GameObjectManagerPublicInterface.h"
-#include "Delegate.h"
 #include "TaskSlot.h"
 
 namespace planeta {
@@ -57,15 +57,22 @@ namespace planeta {
 		}
 		//! ゲームオブジェクトマネージャへのアクセスを取得
 		virtual GameObjectManagerPublicInterface& game_object_manager() = 0;
-
-		//! 有効化イベントハンドラを登録する
-		virtual DelegateConnection AddActivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;
-		//! 無効化イベントハンドラを登録する
-		virtual DelegateConnection AddInactivatedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;
-		//! 破棄イベントハンドラを登録する
-		virtual DelegateConnection AddDisposedEventHandler(DelegateHandlerAdder<void>&& hander_adder) = 0;
 		//! ゲームオブジェクトの状態を取得する
 		virtual GameObjectState state()const = 0;
+
+		/*イベント*/
+		/*! 有効化イベント型*/
+		using ActivatedEventType = boost::signals2::signal<void()>;
+		/*! 有効化イベント*/
+		ActivatedEventType activated;
+		/*! 無効化イベント型*/
+		using InactivatedEventType = boost::signals2::signal<void()>;
+		/*! 無効化イベント*/
+		InactivatedEventType inactivated;
+		/*! 破棄イベント型*/
+		using DisposedEventType = boost::signals2::signal<void()>;
+		/*! 破棄イベント*/
+		DisposedEventType disposed;
 	protected:
 		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const = 0;
 		virtual TaskManagerPublicInterface& RefTaskManagerInterface_() = 0;

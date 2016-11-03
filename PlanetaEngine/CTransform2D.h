@@ -1,9 +1,10 @@
 ﻿#pragma once
 
 #include <unordered_map>
+#include "boost/signals2/signal.hpp"
+
 #include "GameObjectSystemComponent.h"
 #include "Vector2D.h"
-#include "Delegate.h"
 
 namespace planeta {
 	class CGround2D;
@@ -74,8 +75,12 @@ namespace planeta {
 		WeakPointer<CGround2D> GetGround()const;
 		/*! 地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
 		bool SetGround(const WeakPointer<IGameObject>& g, bool keep_global_position);
-		/*! トランスフォーム更新イベントハンドラ追加*/
-		DelegateConnection AddUpdatedEventHandler(DelegateHandlerAdder<void>&& handler_adder);
+
+		/*イベント*/
+		/*! トランスフォーム更新イベント型*/
+		using UpdatedEventType = boost::signals2::signal<void()>;
+		/*! トランスフォーム更新イベント*/
+		UpdatedEventType updated;
 
 		//システム
 		void ApplyVelocity_(); //速度適用
