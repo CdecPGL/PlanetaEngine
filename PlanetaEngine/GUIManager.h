@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include <map>
-#include <unordered_map>
-#include <memory>
-#include "SceneModule.h"
-#include "WeakPointer.h"
-#include "GUIManagerPublicInterface.h"
-#include "NonCopyable.h"
+//#include <map>
+//#include <unordered_map>
+//#include <memory>
+//#include "SceneModule.h"
+//#include "WeakPointer.h"
+//#include "GUIManagerPublicInterface.h"
+//#include "NonCopyable.h"
 
 namespace planeta{
 	//class ScreenDrawerGUI;

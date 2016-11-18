@@ -1,9 +1,9 @@
-﻿#include "GUIManager.h"
-#include "GUIObject.h"
-#include "SceneData.h"
-#include "GUIManagerConnection.h"
-#include "LogUtility.h"
-#include "boost/lexical_cast.hpp"
+﻿//#include "GUIManager.h"
+//#include "GUIObject.h"
+//#include "SceneData.h"
+//#include "GUIManagerConnection.h"
+//#include "LogUtility.h"
+//#include "boost/lexical_cast.hpp"
 
 namespace planeta {
 	/*namespace game {

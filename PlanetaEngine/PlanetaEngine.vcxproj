@@ -377,11 +377,26 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CTransform2D.h" />
     <ClInclude Include="TwoKeyMap.h" />
     <ClInclude Include="TypeChecker.h" />
-    <ClInclude Include="GUIComponent.h" />
-    <ClInclude Include="GUIManager.h" />
-    <ClInclude Include="GUIManagerPublicInterface.h" />
-    <ClInclude Include="GUIObject.h" />
-    <ClInclude Include="GUIManagerConnection.h" />
+    <ClInclude Include="GUIComponent.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="GUIManagerPublicInterface.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="GUIObject.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="GUIManagerConnection.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector.h" />
@@ -475,8 +490,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="TalkWindows.cpp" />
     <ClCompile Include="TextPanel.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
-    <ClCompile Include="GUIComponent.cpp" />
-    <ClCompile Include="GUIObject.cpp" />
+    <ClCompile Include="GUIComponent.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GUIObject.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="CDraw2D.cpp" />
     <ClCompile Include="CDrawLine2D.cpp" />
     <ClCompile Include="StandardRenderingManager.cpp" />
@@ -521,8 +542,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="RText.cpp" />
     <ClCompile Include="TLSFMemoryAllocator.cpp" />
     <ClCompile Include="CTransform2D.cpp" />
-    <ClCompile Include="GUIManager.cpp" />
-    <ClCompile Include="GUIManagerConnection.cpp" />
+    <ClCompile Include="GUIManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GUIManagerConnection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="TransformSystem.cpp" />
     <ClCompile Include="WindowsUtility.cpp" />
     <ClCompile Include="RXml.cpp" />

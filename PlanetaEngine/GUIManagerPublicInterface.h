@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <memory>
-#include <functional>
+//#include <memory>
+//#include <functional>
 
 namespace planeta {
 	/*namespace game {

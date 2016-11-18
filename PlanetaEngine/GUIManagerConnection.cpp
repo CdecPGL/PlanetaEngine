@@ -1,6 +1,6 @@
-﻿#include "GUIManagerConnection.h"
-
-#include "GUIManager.h"
+﻿//#include "GUIManagerConnection.h"
+//
+//#include "GUIManager.h"
 
 namespace planeta {
 	/*namespace game {

@@ -5,6 +5,7 @@
 #include <functional>
 #include <list>
 #include "Object.h"
+#include "IScene.h"
 #include "WeakPointer.h"
 #include "NonCopyable.h"
 #include "NonOwingPointer.h"
@@ -20,7 +21,7 @@ namespace planeta{
 		class GameObjectDrawSystem;
 		class TransformSystem;
 		class SceneModule;
-		class Scene : public Object,public std::enable_shared_from_this<Scene>
+		class Scene : public Object,public IScene ,public std::enable_shared_from_this<Scene>
 			,private util::NonCopyable<Scene>{
 			friend SceneSystemSetUpper;
 		public:
