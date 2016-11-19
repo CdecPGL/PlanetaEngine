@@ -3,6 +3,7 @@
 #include "TInstant.h"
 #include "IScene.h"
 #include "ITaskManager.h"
+#include "SceneSetUpProxy.h"
 
 
 namespace planeta {

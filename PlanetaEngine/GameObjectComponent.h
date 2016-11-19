@@ -11,6 +11,7 @@
 #include "NonOwingPointer.h"
 #include "GOComponentGetter.h"
 #include "ReflectionAccessible.h"
+#include "IScene.h"
 
 namespace planeta {
 	class SceneAccessorForGameObject;
@@ -85,12 +86,15 @@ namespace planeta {
 			末尾で親クラスの同関数を呼び出す必要がある。
 		*/
 		virtual void OnFinalized()noexcept {} //所属するゲームオブジェクトが破棄されるときに呼び出される(システム関数)
+		/*! シーンへのアクセス*/
+		IScene& scene();
 	private:
 		bool is_valied_ = false;
 		bool is_active_ = false;
 		std::unordered_set<std::string> labels_;
 
 		NonOwingPointer<IGameObject> game_object_;
+		WeakPointer<IScene> scene_;
 
 		/*特別設定関数*/
 		virtual void SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal>& scene_data) = 0;

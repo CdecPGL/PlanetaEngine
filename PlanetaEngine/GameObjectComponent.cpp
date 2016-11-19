@@ -1,6 +1,7 @@
 ﻿#include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
 #include "LogUtility.h"
+#include "ISceneInternal.h"
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(GameObjectComponent) {
@@ -45,6 +46,7 @@ namespace planeta {
 
 	bool GameObjectComponent::SetSceneAndHolderGOData(const private_::GameObjectComponentSetUpData& resistration_data) {
 		game_object_.reset(resistration_data.holder_game_object);
+		scene_ = resistration_data.scene_internal_interface;
 		SetSceneInternalInterface(resistration_data.scene_internal_interface);
 		return true;
 	}
@@ -60,5 +62,7 @@ namespace planeta {
 	void GameObjectComponent::labels(const std::unordered_set<std::string>& l) {
 		labels_ = l;
 	}
+
+	IScene& GameObjectComponent::scene() { return *scene_; }
 
 }

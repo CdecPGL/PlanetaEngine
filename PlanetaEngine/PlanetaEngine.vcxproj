@@ -187,6 +187,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
+    <ClInclude Include="HeadersForGameObjectComponent.h" />
+    <ClInclude Include="HeadersForSceneSetUpper.h" />
+    <ClInclude Include="HeadersForTask.h" />
     <ClInclude Include="ICollisionWorld.h" />
     <ClInclude Include="IConfigManager.h" />
     <ClInclude Include="IDebugManager.h" />

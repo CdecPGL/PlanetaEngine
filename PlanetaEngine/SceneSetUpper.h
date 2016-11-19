@@ -5,13 +5,13 @@
 #include <functional>
 #include <algorithm>
 #include "ParameterHolder.h"
-#include "SceneSetUpProxy.h" //継承するクラスは必ず使うのでここでインクルード
 #include "NonCopyable.h"
 
 namespace planeta {
 	namespace private_ {
 		class Scene;
 	}
+	class SceneSetUpProxy;
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
 	class SceneSetUpper : public Object, private util::NonCopyable<SceneSetUpper> {
 	public:

@@ -193,7 +193,6 @@ namespace planeta{
 		}
 
 		util::ParameterHolder StandardSceneManager::FinalizeScene_(private_::Scene& scene, SceneSetUpper& setupper, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) {
-			SceneSetUpProxy safs(scene);
 			auto ret = setupper.TerminateScene(scene,next_scene_id, finalize_parameters); //固有終了処理
 			scene.Finalize(); //終了処理
 			return ret;

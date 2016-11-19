@@ -951,6 +951,15 @@
     <ClInclude Include="SceneSetUpProxy.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
+    <ClInclude Include="HeadersForGameObjectComponent.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadersForSceneSetUpper.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadersForTask.h">
+      <Filter>PlanetaEngine\ForUserHeaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
