@@ -1,11 +1,10 @@
 ﻿#include "CDraw2D.h"
 #include "IGameObject.h"
-//#include "GameObjectDrawComponentProcessRegistrator.h"
-#include "GameObjectDrawSystem.h"
+#include "DrawSystem.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 #include "LogUtility.h"
-#include "SceneData.h"
+#include "ISceneInternal.h"
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDraw2D) {
@@ -49,16 +48,16 @@ namespace planeta {
 	}
 
 	void CDraw2D::RegisterToProcess_() {
-		scene_data_ref().gameobject_draw_system.Register(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
+		scene_internal_interface().draw_system_internal_pointer()->Register(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
 	}
 
 	void CDraw2D::RemoveFromProcess_() {
-		scene_data_ref().gameobject_draw_system.Remove(std::static_pointer_cast<CDraw2D>(shared_from_this()));
+		scene_internal_interface().draw_system_internal_pointer()->Remove(std::static_pointer_cast<CDraw2D>(shared_from_this()));
 	}
 
 	void CDraw2D::UpdatePriority_() {
 		if (is_active()) {
-			scene_data_ref().gameobject_draw_system.ChangePriority(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
+			scene_internal_interface().draw_system_internal_pointer()->ChangePriority(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
 		}
 	}
 

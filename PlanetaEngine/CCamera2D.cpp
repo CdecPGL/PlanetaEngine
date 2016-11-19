@@ -1,6 +1,6 @@
 ﻿#include "CCamera2D.h"
-#include "GameObjectDrawSystem.h"
-#include "SceneData.h"
+#include "DrawSystem.h"
+#include "ISceneInternal.h"
 #include "LogUtility.h"
 #include "IGameObject.h"
 #include "CTransform2D.h"
@@ -25,7 +25,7 @@ namespace planeta {
 
 	bool CCamera2D::OnInitialized() {
 		if (!Super::OnInitialized()) { return false; }
-		return scene_data_ref().gameobject_draw_system.RegisterCamera(std::static_pointer_cast<CCamera2D>(shared_from_this()));
+		return scene_internal_interface().draw_system_internal_pointer()->RegisterCamera(std::static_pointer_cast<CCamera2D>(shared_from_this()));
 	}
 
 	bool CCamera2D::OnActivated() {
@@ -38,7 +38,7 @@ namespace planeta {
 	}
 
 	void CCamera2D::OnFinalized() noexcept {
-		scene_data_ref().gameobject_draw_system.RemoveCamera(this);
+		scene_internal_interface().draw_system_internal_pointer()->RemoveCamera(this);
 	}
 
 	double CCamera2D::expansion() const {

@@ -1,27 +1,17 @@
-﻿#pragma once
+#pragma once
 
-#include <functional>
-#include <unordered_map>
+#include "ITransformSystem.h"
 #include "SceneModule.h"
 
 namespace planeta {
 	class CTransform2D;
 	namespace private_ {
-		class TransformSystem  : public SceneModule{
+		class TransformSystem : public ITransformSystem, public SceneModule{
 		public:
-			TransformSystem();
-			~TransformSystem();
-			bool Initialize()override;
-			void Update()override;
-			void Finalize()override;
-
-			void ApplyVelocity();
-
-			int RegisterTransform2D(CTransform2D* transform2d);
-			bool RemoveTransform2D(int id);
-		private:
-			std::unordered_map<int, CTransform2D*> transform2d_map_;
-			int id_counter_ = 0;
+			virtual ~TransformSystem() = 0 {};
+			virtual void ApplyVelocity() = 0;
+			virtual int RegisterTransform2D(CTransform2D* transform2d) = 0;
+			virtual bool RemoveTransform2D(int id) = 0;
 		};
 	}
 }

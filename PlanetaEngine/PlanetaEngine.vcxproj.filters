@@ -43,12 +43,6 @@
     <Filter Include="PlanetaEngine\Core\Others">
       <UniqueIdentifier>{807b79e9-77e4-41fd-897c-6c0fb921f8dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GUIComponents">
-      <UniqueIdentifier>{8f5b81f3-4ca5-4cd6-b5ed-9c99e6598f8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GUIObjects">
-      <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\ForUserHeaders">
       <UniqueIdentifier>{98b764e3-2aeb-49ed-afc6-29bf63729928}</UniqueIdentifier>
     </Filter>
@@ -99,12 +93,6 @@
     </Filter>
     <Filter Include="PlanetaEngine\SceneModules\GameObject\Component">
       <UniqueIdentifier>{baa92adc-bcac-407f-b346-22168707ed21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\SceneModules\GUI">
-      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\SceneModules\GUI\Manager">
-      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\SceneModules\Task">
       <UniqueIdentifier>{2b098711-ed27-46b5-801d-60ee70d2e370}</UniqueIdentifier>
@@ -211,6 +199,24 @@
     <Filter Include="PlanetaEngine\SubSystems\Config">
       <UniqueIdentifier>{1dd4adbf-4af0-4129-a0a7-18d16b01ad94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Trash">
+      <UniqueIdentifier>{0901fa6a-2ca9-4eef-97b1-04b8bff009d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash\GUI">
+      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash\GUI\Manager">
+      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\SubSystems\StandardManagers\SceneManager">
+      <UniqueIdentifier>{31a7cbaf-90ef-43f6-b5ae-cec7d1a7ac60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash\GUIComponents">
+      <UniqueIdentifier>{8f5b81f3-4ca5-4cd6-b5ed-9c99e6598f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash\GUIObjects">
+      <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -220,13 +226,13 @@
       <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClInclude>
     <ClInclude Include="SimplePolygonPanel.h">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="GraphPanel.h">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="TextPanel.h">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="BadAllocException.h">
       <Filter>PlanetaEngine\Core\Memory</Filter>
@@ -304,10 +310,10 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="TalkWindows.h">
-      <Filter>PlanetaEngine\BuildinElements\GUIObjects</Filter>
+      <Filter>Trash\GUIObjects</Filter>
     </ClInclude>
     <ClInclude Include="StringPanel.h">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClInclude>
     <ClInclude Include="Coroutine.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -326,15 +332,6 @@
     </ClInclude>
     <ClInclude Include="EventMonitor.h">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManagerPublicInterface.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSystemSetUpper.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="SceneSetUpper.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
@@ -414,26 +411,23 @@
     <ClInclude Include="SceneModule.h">
       <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="SceneData.h">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectManagerConnection.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GUIComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GUI</Filter>
+      <Filter>Trash\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GUIObject.h">
-      <Filter>PlanetaEngine\SceneModules\GUI</Filter>
+      <Filter>Trash\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GUIManager.h">
-      <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
+      <Filter>Trash\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GUIManagerPublicInterface.h">
-      <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
+      <Filter>Trash\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GUIManagerConnection.h">
-      <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
+      <Filter>Trash\GUI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
@@ -509,12 +503,6 @@
     </ClInclude>
     <ClInclude Include="TaskSystemSetUpper.h">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManager.h">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManagerPublicInterface.h">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectComponentHolder.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
@@ -594,23 +582,11 @@
     <ClInclude Include="CollisionDetectFunctions.h">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionWorld.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectDrawSystem.h">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformSystem.h">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectStandardComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectSystemComponent.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetUpProxy.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectComponentSetUpData.h">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
@@ -837,9 +813,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="StandardSceneManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
     <ClInclude Include="IInputManager.h">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClInclude>
@@ -936,6 +909,48 @@
     <ClInclude Include="ColliderComponent2DDebugDrawer.h">
       <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="ISceneInternal.h">
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardCollisionWorld.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionWorld.h">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardDrawSystem.h">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawSystem.h">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardGameObjectManager.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardTaskManager.h">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardTransformSystem.h">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformSystem.h">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardSceneManager.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardSceneManagerUtility.h">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetUpProxy.h">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -960,31 +975,25 @@
       <Filter>PlanetaEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="TextPanel.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="GraphPanel.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="SimplePolygonPanel.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClCompile>
     <ClCompile Include="TalkWindows.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GUIObjects</Filter>
+      <Filter>Trash\GUIObjects</Filter>
     </ClCompile>
     <ClCompile Include="StringPanel.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GUIComponents</Filter>
+      <Filter>Trash\GUIComponents</Filter>
     </ClCompile>
     <ClCompile Include="Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSystemSetUpper.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="SoundEffectController.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
@@ -1035,16 +1044,16 @@
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GUIComponent.cpp">
-      <Filter>PlanetaEngine\SceneModules\GUI</Filter>
+      <Filter>Trash\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GUIObject.cpp">
-      <Filter>PlanetaEngine\SceneModules\GUI</Filter>
+      <Filter>Trash\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GUIManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
+      <Filter>Trash\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GUIManagerConnection.cpp">
-      <Filter>PlanetaEngine\SceneModules\GUI\Manager</Filter>
+      <Filter>Trash\GUI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="ScreenChangeEffecter.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
@@ -1084,9 +1093,6 @@
     </ClCompile>
     <ClCompile Include="Task.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectComponentHolder.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
@@ -1150,18 +1156,6 @@
     </ClCompile>
     <ClCompile Include="CollisionDetectFunctions.cpp">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionWorld.cpp">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectDrawSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSetUpProxy.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="CCamera2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
@@ -1298,9 +1292,6 @@
     <ClCompile Include="StandardFileSystemManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="StandardSceneManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
     <ClCompile Include="InputUtility.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClCompile>
@@ -1333,6 +1324,33 @@
     </ClCompile>
     <ClCompile Include="ColliderComponent2DDebugDrawer.cpp">
       <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardCollisionWorld.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardDrawSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardGameObjectManager.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardTaskManager.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardTransformSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardSceneManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardSceneModuleSetFunction.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardSystemSetUpSceneFunction.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSetUpProxy.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

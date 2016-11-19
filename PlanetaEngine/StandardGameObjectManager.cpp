@@ -1,32 +1,31 @@
-﻿#include "GameObjectManager.h"
+﻿#include "StandardGameObjectManager.h"
 #include "GameObjectBase.h"
-#include "TaskManager.h"
+#include "StandardTaskManager.h"
 #include "LogUtility.h"
-#include "SceneData.h"
 #include "GameObjectFactory.h"
 #include "IDebugManager.h"
 #include "boost/algorithm/string.hpp"
 
 namespace planeta {
 	namespace private_ {
-		GameObjectManager::GameObjectManager() :game_object_factory_(std::make_unique<private_::GameObjectFactory>()), _id_counter(0) {};
-		GameObjectManager::~GameObjectManager() = default;
+		StandardGameObjectManager::StandardGameObjectManager() :game_object_factory_(std::make_unique<private_::GameObjectFactory>()), _id_counter(0) {};
+		StandardGameObjectManager::~StandardGameObjectManager() = default;
 
-		void GameObjectManager::Update() {
+		void StandardGameObjectManager::Update() {
 			RemoveProc_();
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectManager::CreateAndSetUpGameObject_(const std::string& game_object_type_id) {
-			auto go = game_object_factory_->GetNewGameObject(game_object_type_id, scene_data_);
+		std::shared_ptr<GameObjectBase> StandardGameObjectManager::CreateAndSetUpGameObject_(const std::string& game_object_type_id) {
+			auto go = game_object_factory_->GetNewGameObject(game_object_type_id, scene_internal_interface());
 			return go;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectManager::CreateAndSetUpGameObject_(const std::vector<std::string>& com_type_list) {
-			auto go = game_object_factory_->GetNewGameObject(com_type_list, scene_data_);
+		std::shared_ptr<GameObjectBase> StandardGameObjectManager::CreateAndSetUpGameObject_(const std::vector<std::string>& com_type_list) {
+			auto go = game_object_factory_->GetNewGameObject(com_type_list, scene_internal_interface());
 			return go;
 		}
 
-		int GameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go) {
+		int StandardGameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go) {
 			assert(go != nullptr);
 			int id = _id_counter++;
 			go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
@@ -38,7 +37,7 @@ namespace planeta {
 			return id;
 		}
 
-		int GameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
+		int StandardGameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase>& go, const std::string& name) {
 			assert(go != nullptr);
 			int id = RegisterAndInitializeGameObject_(go);
 			if (id < -1) { return -1; }
@@ -46,7 +45,7 @@ namespace planeta {
 			return id;
 		}
 
-		WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_def_file_id) {
+		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObject(const std::string& game_object_def_file_id) {
 			auto go = CreateAndSetUpGameObject_(game_object_def_file_id);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go) >= 0) {
 				return go;
@@ -56,7 +55,7 @@ namespace planeta {
 			}
 		}
 
-		WeakPointer<IGameObject> GameObjectManager::CreateGameObject(const std::string& game_object_def_file_id, const std::string& name) {
+		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObject(const std::string& game_object_def_file_id, const std::string& name) {
 			auto go = CreateAndSetUpGameObject_(game_object_def_file_id);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go, name) >= 0) {
 				return go;
@@ -66,7 +65,7 @@ namespace planeta {
 			}
 		}
 
-		WeakPointer<IGameObject> GameObjectManager::CreateGameObjectWithComponentTypeIDList(const std::vector<std::string>& game_object_component_type_id_list) {
+		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObjectWithComponentTypeIDList(const std::vector<std::string>& game_object_component_type_id_list) {
 			auto go = CreateAndSetUpGameObject_(game_object_component_type_id_list);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go) >= 0) {
 				return go;
@@ -75,7 +74,7 @@ namespace planeta {
 				return nullptr;
 			}
 		}
-		WeakPointer<IGameObject> GameObjectManager::CreateGameObjectWithComponentTypeIDList(const std::vector<std::string>& game_object_component_type_id_list, const std::string& name) {
+		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObjectWithComponentTypeIDList(const std::vector<std::string>& game_object_component_type_id_list, const std::string& name) {
 			auto go = CreateAndSetUpGameObject_(game_object_component_type_id_list);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go, name) >= 0) {
 				return go;
@@ -85,7 +84,7 @@ namespace planeta {
 			}
 		}
 
-		bool GameObjectManager::ActivateGameObject(int id) {
+		bool StandardGameObjectManager::ActivateGameObject(int id) {
 			auto it = inactive_game_objects_.find(id);
 			if (it == inactive_game_objects_.end()) { return false; }
 			it->second->ProcessActivation();
@@ -94,7 +93,7 @@ namespace planeta {
 			return true;
 		}
 
-		bool GameObjectManager::InActivateGameObject(int id) {
+		bool StandardGameObjectManager::InActivateGameObject(int id) {
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) { return false; }
 			it->second->ProcessInactivation();
@@ -103,7 +102,7 @@ namespace planeta {
 			return true;
 		}
 
-		bool GameObjectManager::RemoveGameObject(int id) {
+		bool StandardGameObjectManager::RemoveGameObject(int id) {
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) {
 				it = inactive_game_objects_.find(id);
@@ -122,7 +121,7 @@ namespace planeta {
 			}
 		}
 
-		void GameObjectManager::RemoveAllGameObjects() {
+		void StandardGameObjectManager::RemoveAllGameObjects() {
 			for (auto& go : active_game_objects_) {
 				go.second->ProcessInactivation();
 				go.second->ProcessDisposal();
@@ -134,23 +133,19 @@ namespace planeta {
 			inactive_game_objects_.clear();
 		}
 
-		bool GameObjectManager::Initialize() {
+		bool StandardGameObjectManager::Initialize() {
 			return true;
 		}
 
-		void GameObjectManager::Finalize() {
+		void StandardGameObjectManager::Finalize() {
 			RemoveAllGameObjects();
 		}
 
-		void GameObjectManager::RemoveProc_() {
+		void StandardGameObjectManager::RemoveProc_() {
 			garbage_.clear();
 		}
 
-		void GameObjectManager::SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {
-			scene_data_ = scene_data;
-		}
-
-		void GameObjectManager::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+		void StandardGameObjectManager::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
 			di_adder.AddLine("-----GameObjectManager-----");
 			di_adder.AddLineV("活動中ゲームオブジェクト数:", active_game_objects_.size());
 			di_adder.AddLineV("停止中ゲームオブジェクト数:", inactive_game_objects_.size());

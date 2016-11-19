@@ -1,7 +1,7 @@
 ﻿#include "Game.h"
 #include "RenderingManager.h"
 #include "ConfigManager.h"
-#include "GameObjectDrawSystem.h"
+#include "StandardDrawSystem.h"
 #include "CDraw2D.h"
 #include "LogUtility.h"
 #include "ScreenDrawer2D.h"
@@ -15,12 +15,11 @@
 
 namespace planeta{
 	namespace private_ {
-		GameObjectDrawSystem::GameObjectDrawSystem()
-		{
+		StandardDrawSystem::StandardDrawSystem() = default;
 
-		}
+		StandardDrawSystem::~StandardDrawSystem() = default;
 
-		bool GameObjectDrawSystem::Remove(const std::shared_ptr<CDraw2D>& draw_component)
+		bool StandardDrawSystem::Remove(const std::shared_ptr<CDraw2D>& draw_component)
 		{
 			auto it = _draw_component_map.find(draw_component.get());
 			if (it == _draw_component_map.end()) { return false; }
@@ -31,7 +30,7 @@ namespace planeta{
 			}
 		}
 
-		void GameObjectDrawSystem::ExcuteDraw()
+		void StandardDrawSystem::ExcuteDraw()
 		{
 			//2DDraw
 			for (auto& dcl : _draw_component_update_list) {
@@ -48,11 +47,11 @@ namespace planeta{
 			}
 		}
 
-		void GameObjectDrawSystem::Update() {
+		void StandardDrawSystem::Update() {
 			
 		}
 
-		bool GameObjectDrawSystem::Initialize() {
+		bool StandardDrawSystem::Initialize() {
 			screen_ = Game::instance().rendering_manager()->GetMainScreen();
 			if (!screen_) { return false; }
 			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
@@ -60,11 +59,11 @@ namespace planeta{
 			return true;
 		}
 
-		void GameObjectDrawSystem::Finalize() {
+		void StandardDrawSystem::Finalize() {
 			return;
 		}
 
-		bool GameObjectDrawSystem::RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component) {
+		bool StandardDrawSystem::RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component) {
 			if (camera2d_) {
 				PE_LOG_ERROR("シーン内の複数カメラはサポートされていません。初めに登録されたカメラのみが有効です。カメラコンポーネントを持つゲームオブジェクトが複数存在する可能性があります。");
 				return false;
@@ -74,7 +73,7 @@ namespace planeta{
 			}
 		}
 
-		void GameObjectDrawSystem::RemoveCamera(CCamera2D* camera_component) {
+		void StandardDrawSystem::RemoveCamera(CCamera2D* camera_component) {
 			if (camera2d_ != nullptr && camera2d_.get() == camera_component) {
 				camera2d_.reset();
 			} else {
@@ -82,12 +81,12 @@ namespace planeta{
 			}
 		}
 
-		void GameObjectDrawSystem::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+		void StandardDrawSystem::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
 			di_adder.AddLine("-----GameObjectDrawSystem-----");
 			di_adder.AddLineV("描画コンポーネント数:", _draw_component_map.size());
 		}
 
-		void GameObjectDrawSystem::ApplyCameraState() {
+		void StandardDrawSystem::ApplyCameraState() {
 			if (camera2d_) {
 				double scale = camera2d_->expansion();
 				double rota_rad = camera2d_->rotation_rad();

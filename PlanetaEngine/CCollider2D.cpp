@@ -2,7 +2,7 @@
 #include "IGameObject.h"
 #include "CollisionWorld.h"
 #include "LogUtility.h"
-#include "SceneData.h"
+#include "ISceneInternal.h"
 #include "CTransform2D.h"
 #include "Matrix2_2.h"
 #include "Collider2DData.h"
@@ -53,12 +53,12 @@ namespace planeta {
 				,[&eve = collided_with_collider2d](const EACollisionWithCollider2D& arg) {eve(arg); }
 				,col_grng_eve
 			};
-			scene_data_ref().collision_world.Resist(col_dat);
+			scene_internal_interface().collision_world_internal_pointer()->Resist(col_dat);
 		}
 	}
 
 	void CCollider2D::RemoveFromCollisionDetectProcess_() {
-		scene_data_ref().collision_world.Remove(this);
+		scene_internal_interface().collision_world_internal_pointer()->Remove(this);
 	}
 
 	const Vector2Dd CCollider2D::GetCollisionGlobalCenterPosition() const {
@@ -78,7 +78,7 @@ namespace planeta {
 
 	CCollider2D& CCollider2D::collision_group(const std::string& cg) {
 		if (is_active()) { //アクティブだったら衝突判定プロセスに変更での変更を行う。
-			if (scene_data_ref().collision_world.ChangeCollisionGroup(this, cg)) {
+			if (scene_internal_interface().collision_world_internal_pointer()->ChangeCollisionGroup(this, cg)) {
 				collision_group_name_ = cg;
 			} else {
 				PE_LOG_ERROR("衝突グループを", collision_group_name_, "から", cg, "に変更できませんでした。");
@@ -91,7 +91,7 @@ namespace planeta {
 
 	CCollider2D& CCollider2D::is_collidable_with_ground(bool flag) {
 		if (is_active()) { //アクティブだったら衝突判定プロセスでの変更を行う。
-			if (scene_data_ref().collision_world.ChangeCollisionWithGroundFlag(this, flag)) {
+			if (scene_internal_interface().collision_world_internal_pointer()->ChangeCollisionWithGroundFlag(this, flag)) {
 				collide_with_ground_flag_ = flag;
 			} else {
 				PE_LOG_ERROR("地形との衝突フラグを", collide_with_ground_flag_ ? "true" : "false", "から", flag ? "true" : "false", "に変更できませんでした。");

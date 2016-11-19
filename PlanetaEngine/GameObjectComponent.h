@@ -15,7 +15,7 @@
 namespace planeta {
 	class SceneAccessorForGameObject;
 	namespace private_{
-		struct SceneData;
+		class ISceneInternal;
 		struct GameObjectComponentSetUpData;
 	}
 	class IGameObject;
@@ -93,7 +93,7 @@ namespace planeta {
 		NonOwingPointer<IGameObject> game_object_;
 
 		/*特別設定関数*/
-		virtual void SetSceneData(const WeakPointer<private_::SceneData>& scene_data) = 0;
+		virtual void SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal>& scene_data) = 0;
 	};
 	PE_REFLECTABLE_CLASS(GameObjectComponent);
 }

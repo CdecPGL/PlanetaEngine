@@ -6,13 +6,11 @@
 #include "GameObjectBase.h"
 #include "RPtree.h"
 
-#include "SceneData.h"
-
 #include "boost/algorithm/string.hpp"
 
 namespace planeta {
 	namespace private_ {
-		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::string& game_object_def_file_id, const WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::string& game_object_def_file_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			//テンプレート
 			std::shared_ptr<GameObjectBase> go_temp;
 			//必要ならテンプレートを作成登録し、使用するテンプレートをセットする
@@ -33,11 +31,11 @@ namespace planeta {
 			return ngo;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::vector<std::string>& game_object_component_type_id_list, const WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::vector<std::string>& game_object_component_type_id_list, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			return CreateGameObjectFromComponentTypeList_(game_object_component_type_id_list, scene_data);
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectFactory::CreateGameObjectFromComponentTypeList_(const std::vector<std::string>& game_object_component_type_id_list, const WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::CreateGameObjectFromComponentTypeList_(const std::vector<std::string>& game_object_component_type_id_list, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			auto go_info = util::ConvertAndConnectToString("ゲームオブジェクトコンポーネントリスト:", boost::algorithm::join(game_object_component_type_id_list, ","));
 			//生成
 			auto ngo = std::make_shared<GameObjectBase>();
@@ -46,7 +44,7 @@ namespace planeta {
 				return nullptr;
 			}
 			//シーンデータセット
-			ngo->SetSceneData(scene_data);
+			ngo->SetSceneInternalInterface(scene_data);
 			//コンポーネントの追加と設定
 			if (!ngo->AddAndSetUpComponents(game_object_component_type_id_list)) {
 				PE_LOG_ERROR("ゲームオブジェクト(", go_info, ")のコンポーネントの追加または設定に失敗しました。");
@@ -56,7 +54,7 @@ namespace planeta {
 			return ngo;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectFactory::CreateGameObjectFromFile_(const std::string& game_object_def_file_id, const WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::CreateGameObjectFromFile_(const std::string& game_object_def_file_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			//生成
 			auto ngo = std::make_shared<GameObjectBase>();
 			if (ngo == nullptr) {
@@ -64,7 +62,7 @@ namespace planeta {
 				return nullptr;
 			}
 			//シーンデータセット
-			ngo->SetSceneData(scene_data);
+			ngo->SetSceneInternalInterface(scene_data);
 			//ファイル読み込み
 			auto ptree_res = Game::instance().resource_manager()->GetResourceByID<RPtree>(game_object_def_file_id);
 			if (ptree_res == nullptr) {
@@ -80,7 +78,7 @@ namespace planeta {
 			return ngo;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectFactory::CloneGameObjectFromTemplate_(const std::shared_ptr<GameObjectBase>& go_temp, const WeakPointer<private_::SceneData>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::CloneGameObjectFromTemplate_(const std::shared_ptr<GameObjectBase>& go_temp, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			assert(go_temp != nullptr);
 			//生成
 			auto ngo = Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*go_temp));

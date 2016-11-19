@@ -1,6 +1,6 @@
 ﻿#include "Game.h"
 #include "ConfigManager.h"
-#include "CollisionWorld.h"
+#include "StandardCollisionWorld.h"
 #include "boost/next_prior.hpp"
 #include "IGameObject.h"
 #include "CollisionDetectFunctions.h"
@@ -17,7 +17,7 @@
 
 namespace planeta{
 	namespace private_ {
-		struct CollisionWorld::CCollider2DResistData_ {
+		struct StandardCollisionWorld::CCollider2DResistData_ {
 			private_::Collider2DData collider2d_data; //コライダーデータ
 			std::unordered_map<std::string, CollisionGroupType>::iterator group_iterator_at_collision_groups; //コリジョングループのグループリスト内でのイテレータ
 			CollisionGroupType::iterator iterator_at_collision_group; //コリジョングループ内でのイテレータ
@@ -26,17 +26,17 @@ namespace planeta{
 			bool is_collided_with_ground_last_proc; //前回の判定で地面と衝突していたかどうか
 		};
 
-		CollisionWorld::CollisionWorld() {
+		StandardCollisionWorld::StandardCollisionWorld() {
 		}
-		CollisionWorld::~CollisionWorld() {
+		StandardCollisionWorld::~StandardCollisionWorld() {
 		}
 
-		void CollisionWorld::Update()
+		void StandardCollisionWorld::Update()
 		{
 			
 		}
 
-		std::pair<int, int> CollisionWorld::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_que)const {
+		std::pair<int, int> StandardCollisionWorld::ProcessCollisionInAGroup(CollisionGroupType& group, CollisionEventQue& collision_event_que)const {
 			int collision_process_count{ 0 }, collision_count{ 0 };
 			for (auto ccc_it = group.begin(); ccc_it != group.end(); ++ccc_it) {
 				for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
@@ -54,7 +54,7 @@ namespace planeta{
 			return{ collision_process_count, collision_count };
 		}
 
-		std::pair<int, int> CollisionWorld::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_que)const {
+		std::pair<int, int> StandardCollisionWorld::ProcessCollisionBetweenTwoGroups(CollisionGroupType& group1, CollisionGroupType& group2, CollisionEventQue& collision_event_que)const {
 			int collision_process_count{ 0 }, collision_count{ 0 };
 			for (auto ccc_it = group1.begin(); ccc_it != group1.end(); ++ccc_it) {
 				for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
@@ -72,7 +72,7 @@ namespace planeta{
 			return{ collision_process_count, collision_count };
 		}
 
-		std::pair<int, int> CollisionWorld::ProcessCollisionWithGround(CollisionEventQue& collision_event_que)const {
+		std::pair<int, int> StandardCollisionWorld::ProcessCollisionWithGround(CollisionEventQue& collision_event_que)const {
 			int collision_process_count{ 0 }, collision_count{ 0 };
 			for (const auto& col_com : collision_with_ground_list_) {
 				++collision_process_count;
@@ -97,7 +97,7 @@ namespace planeta{
 			return{ collision_process_count, collision_count };
 		}
 
-		bool CollisionWorld::Resist(const private_::Collider2DData& collider_data) {
+		bool StandardCollisionWorld::Resist(const private_::Collider2DData& collider_data) {
 			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(new CCollider2DResistData_{ collider_data,});
 			ccrd->is_collided_with_ground_last_proc = false; //地面と衝突していないとして初期化する
 			const Collider2DData& col_dat = ccrd->collider2d_data;
@@ -125,7 +125,7 @@ namespace planeta{
 			return true;
 		}
 
-		bool CollisionWorld::Remove(const CCollider2D* col_com_ptr) {
+		bool StandardCollisionWorld::Remove(const CCollider2D* col_com_ptr) {
 			auto it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (it == collider_resist_data_map_.end()) {//登録されていないコライダー
 				PE_LOG_FATAL("存在しないコライダーが指定されました。");
@@ -147,7 +147,7 @@ namespace planeta{
 			return true;
 		}
 
-		bool CollisionWorld::ChangeCollisionGroup(const CCollider2D* col_com_ptr, const std::string& group_name) {
+		bool StandardCollisionWorld::ChangeCollisionGroup(const CCollider2D* col_com_ptr, const std::string& group_name) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
 				PE_LOG_FATAL("存在しないコライダーが指定されました。");
@@ -168,7 +168,7 @@ namespace planeta{
 			return true;
 		}
 
-		bool CollisionWorld::ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag) {
+		bool StandardCollisionWorld::ChangeCollisionWithGroundFlag(const CCollider2D* col_com_ptr, bool flag) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D*>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) { //登録されていないコライダー
 				PE_LOG_FATAL("存在しないコライダーが指定されました。");
@@ -186,7 +186,7 @@ namespace planeta{
 			return true;
 		}
 
-		void CollisionWorld::SetCollisionGroupMatrix() { 
+		void StandardCollisionWorld::SetCollisionGroupMatrix() { 
 			decltype(auto) collision_group_list = Game::instance().config_manager()->collision_group_matrix().GetCollisionGroupList();
 			for (const auto& group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());
@@ -203,7 +203,7 @@ namespace planeta{
 			}
 		}
 
-		void CollisionWorld::RemoveAll() {
+		void StandardCollisionWorld::RemoveAll() {
 			for (auto& group : collision_groupes_) {
 				group.second.clear();
 			}
@@ -211,7 +211,7 @@ namespace planeta{
 			collider_resist_data_map_.clear();
 		}
 
-		void CollisionWorld::ExcuteCollisionDetection() {
+		void StandardCollisionWorld::ExcuteCollisionDetection() {
 			//衝突カウンタをリセット
 			collision_process_count_ = 0;
 			collision_count_ = 0;
@@ -242,14 +242,14 @@ namespace planeta{
 			}
 		}
 
-		bool CollisionWorld::Initialize() {
+		bool StandardCollisionWorld::Initialize() {
 			SetCollisionGroupMatrix();
 			//デバッグ描画を作成
-			Game::instance().debug_manager()->CreateDebugDrawChannel("CollisionSystem", std::bind(&CollisionWorld::DebugDrawHandler, this, std::placeholders::_1));
+			Game::instance().debug_manager()->CreateDebugDrawChannel("CollisionSystem", std::bind(&StandardCollisionWorld::DebugDrawHandler, this, std::placeholders::_1));
 			return true;
 		}
 
-		void CollisionWorld::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
+		void StandardCollisionWorld::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
 			di_adder.AddLine("-----CollisionSystem-----");
 			di_adder.AddLineV("コライダー数:", collider_resist_data_map_.size());
 			di_adder.AddLineV("地面と衝突可能なコライダー数:", collision_with_ground_list_.size());
@@ -257,7 +257,7 @@ namespace planeta{
 			di_adder.AddLineV("衝突回数:", collision_count_);
 		}
 
-		void CollisionWorld::DebugDrawHandler(IDebugDrawer& dd) {
+		void StandardCollisionWorld::DebugDrawHandler(IDebugDrawer& dd) {
 			ColliderComponent2DDebugDrawer ccdd{dd};
 			for (auto&& c : collider_resist_data_map_) {
 				//衝突判定に使うダブルディスパッチを用いてコライダーごとに描画処理を分ける。
@@ -265,7 +265,7 @@ namespace planeta{
 			}
 		}
 
-		void CollisionWorld::Finalize() {
+		void StandardCollisionWorld::Finalize() {
 			//デバッグ描画を破棄
 			Game::instance().debug_manager()->DeleteDebugDrawChannel("CollisionSystem");
 		}

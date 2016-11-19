@@ -3,8 +3,6 @@
 
 #include "Game.h"
 #include "GameObjectBase.h"
-#include "GameObjectManagerPublicInterface.h"
-#include "SceneData.h"
 #include "GameObjectComponent.h"
 #include "GameObjectComponentSetUpData.h"
 #include "LogUtility.h"
@@ -14,6 +12,7 @@
 #include "RPtree.h"
 #include "IResourceManager.h"
 #include "Reflection.h"
+#include "ISceneInternal.h"
 
 namespace planeta {
 	namespace {
@@ -160,12 +159,12 @@ namespace planeta {
 			manager_connection_ = std::move(mgr_cnctn);
 		}
 
-		void GameObjectBase::SetSceneData(const WeakPointer<private_::SceneData>& scene_accessor) {
-			scene_data_ = scene_accessor;
+		void GameObjectBase::SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal>& iscene) {
+			scene_internal_interface_ = iscene;
 		}
 
 		void GameObjectBase::SetSceneAndGODataToComponent_(GameObjectComponent& com) {
-			private_::GameObjectComponentSetUpData rd{ this, scene_data_ };
+			private_::GameObjectComponentSetUpData rd{ this, scene_internal_interface_ };
 			com.SetSceneAndHolderGOData(rd);
 		}
 
@@ -197,10 +196,6 @@ namespace planeta {
 			return  true;
 		}
 
-		planeta::GameObjectManagerPublicInterface& GameObjectBase::game_object_manager() {
-			return scene_data_->game_object_manager_public_interface;
-		}
-
 		std::shared_ptr<GameObjectComponent> GameObjectBase::GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
 			return component_holder_.GetComponentByTypeInfo(ti, type_checker);
 		}
@@ -208,10 +203,6 @@ namespace planeta {
 		//std::vector<std::shared_ptr<GameObjectComponent>> GameObjectBase::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
 		//	return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
 		//}
-
-		TaskManagerPublicInterface& GameObjectBase::RefTaskManagerInterface_() {
-			return scene_data_->task_manager_public_interface;
-		}
 
 		void GameObjectBase::SetUpAttachedTask_(const WeakPointer<Task>& task) {
 			if (state_ == GameObjectState::Active || state_ == GameObjectState::Activating) {
@@ -222,7 +213,7 @@ namespace planeta {
 
 		bool GameObjectBase::ProcessClonation(const std::shared_ptr<GameObjectBase>& dst) {
 			//シーンデータのセット
-			scene_data_ = dst->scene_data_;
+			scene_internal_interface_ = dst->scene_internal_interface_;
 			//コンポーネントのクローン
 			dst->component_holder_.CloneToOtherHolder(component_holder_);
 			//コンポーネントへシーンとGOデータをセット
@@ -301,5 +292,10 @@ namespace planeta {
 		GameObjectState GameObjectBase::state()const {
 			return state_;
 		}
+
+		planeta::IScene& GameObjectBase::scene() {
+			return *scene_internal_interface_;
+		}
+
 	}
 }

@@ -8,13 +8,13 @@ namespace planeta {
 		public:
 			using Super = GameObjectComponent;
 			/*シーンデータをセットして、子クラスが参照できるようにし、オーバーライドできないようにする。*/
-			void SetSceneData(const WeakPointer<private_::SceneData>& scene_data)override final { scene_data_ = scene_data; }
+			void SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal>& scene_data)override final { scene_internal_interface_ = scene_data; }
 			virtual ~GameObjectSystemComponent() = default;
 		protected:
-			private_::SceneData& scene_data_ref() { return *scene_data_; }
-			const private_::SceneData& scene_data_ref()const { return *scene_data_; }
+			private_::ISceneInternal& scene_internal_interface() { return *scene_internal_interface_; }
+			const private_::ISceneInternal& scene_internal_interface()const { return *scene_internal_interface_; }
 		private:
-			WeakPointer<private_::SceneData> scene_data_;
+			WeakPointer<private_::ISceneInternal> scene_internal_interface_;
 		};
 		PE_REFLECTABLE_CLASS(GameObjectSystemComponent);
 	}

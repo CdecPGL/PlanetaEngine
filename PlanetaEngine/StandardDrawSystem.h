@@ -4,43 +4,41 @@
 #include <map>
 #include <list>
 #include <memory>
-#include "NonCopyable.h"
-#include "SceneModule.h"
+#include "DrawSystem.h"
 
 namespace planeta {
 	class ScreenDrawer2D;
 	class ScreenDrawerGUI;
-	class CDraw2D;
-	class CCamera2D;
 	namespace private_ {
 		class Screen;
-		class GameObjectDrawSystem :public private_::SceneModule, private util::NonCopyable<GameObjectDrawSystem>
+		class StandardDrawSystem final:public DrawSystem
 		{
 		public:
-			GameObjectDrawSystem();
+			StandardDrawSystem();
+			~StandardDrawSystem();
 			bool Initialize()override;
 			void Finalize()override;
 			void Update()override;
-			void ExcuteDraw();
-			void ApplyCameraState();
+			void ExcuteDraw()override;
+			void ApplyCameraState()override;
 			/*描画コンポーネント登録*/
-			void Register(const std::shared_ptr<CDraw2D>& draw_component, int priority) {
+			void Register(const std::shared_ptr<CDraw2D>& draw_component, int priority)override {
 				_draw_component_update_list[priority].push_back(draw_component);
 				_draw_component_map.emplace(draw_component.get(), std::make_pair(priority, --_draw_component_update_list[priority].end()));
 			}
 			/*描画コンポーネント登録解除*/
-			bool Remove(const std::shared_ptr<CDraw2D>& draw_component);
+			bool Remove(const std::shared_ptr<CDraw2D>& draw_component)override;
 			/*描画優先度変更*/
-			bool ChangePriority(const std::shared_ptr<CDraw2D>& draw_component, int priority) {
+			bool ChangePriority(const std::shared_ptr<CDraw2D>& draw_component, int priority)override {
 				if (!Remove(draw_component)) { return false; }
 				Register(draw_component, priority);
 				return true;
 			}
 
 			/*カメラコンポーネント登録*/
-			bool RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component);
+			bool RegisterCamera(const std::shared_ptr<CCamera2D>& camera_component)override;
 			/*カメラコンポーネント登録解除*/
-			void RemoveCamera(CCamera2D* camera_component);
+			void RemoveCamera(CCamera2D* camera_component)override;
 
 			void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
 

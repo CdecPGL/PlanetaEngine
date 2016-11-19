@@ -31,12 +31,12 @@ namespace planeta {
 		/*シーンの設定処理を行う(初期オブジェクト、UI、プロセスの追加、[前シーンからオブジェクトの引継ぎ]未実装)
 		@param 設定するシーン、初期化パラメータリスト
 		*/
-		virtual bool SetUpScene(SceneSetUpProxy& scene, const util::ParameterHolder& initialize_parameters) = 0;
+		virtual bool SetUpScene(SceneSetUpProxy& scene_proxy, const util::ParameterHolder& initialize_parameters) = 0;
 		/*シーンの終了処理を行う(次シーンの初期化パラメータ生成など)
 		@param 終了処理するシーン、次のシーンのID、終了処理パラメータリスト
 		@return 次のシーンの初期化パラメータ
 		*/
-		virtual util::ParameterHolder FinalizeScene(SceneSetUpProxy& scene, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) = 0;
+		virtual util::ParameterHolder FinalizeScene(SceneSetUpProxy& scene_proxy, const std::string& next_scene_id, const util::ParameterHolder& finalize_parameters) = 0;
 	};
 	PE_REFLECTABLE_CLASS(SceneSetUpper);
 }

@@ -3,12 +3,12 @@
 #include "NonOwingPointer.h"
 
 namespace planeta {
-	class SceneData;
+	class ISceneInternal;
 	class IGameObject;
 	namespace private_ {
 		struct GameObjectComponentSetUpData {
 			NonOwingPointer<IGameObject> holder_game_object;
-			WeakPointer<SceneData> scene_data;
+			WeakPointer<ISceneInternal> scene_internal_interface;
 		};
 	}
 }

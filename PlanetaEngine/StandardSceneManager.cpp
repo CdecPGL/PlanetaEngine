@@ -6,8 +6,8 @@
 #include "SError.h"
 #include "LogUtility.h"
 #include "NullWeakPointerException.h"
-#include "SceneSystemSetUpper.h"
 #include "PrefixUtility.h"
+#include "StandardSceneManagerUtility.h"
 
 namespace planeta{
 	namespace private_{
@@ -170,15 +170,15 @@ namespace planeta{
 		}
 
 		bool StandardSceneManager::InitializeScene_(Scene& scene, SceneSetUpper& setupper, const util::ParameterHolder& init_param) {
-			SceneSetUpProxy safs(scene);
-			scene.PrepareSceneData();
+			//標準のシーンModuleをセット
+			SetStandardSceneModules(scene);
+			//シーンModuleにシーンを登録
+			scene.SetSceneToModules();
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
-			if (!private_::SceneSystemSetUpper()(scene)) {
+			if (!StandardSystemSetUpScene(scene)) {
 				PE_LOG_ERROR("シーンのシステム設定に失敗しました。");
 				return false;
 			}
-			//シーンデータをモジュールに登録
-			scene.RegisterSceneDataToModules();
 			//初期化
 			if (!scene.Initialize()) {
 				PE_LOG_ERROR("シーンの初期化に失敗しました。");

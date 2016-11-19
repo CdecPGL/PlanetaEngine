@@ -5,15 +5,11 @@
 #include "Object.h"
 #include "WeakPointer.h"
 #include "NonCopyable.h"
-#include "TaskManagerPublicInterface.h"
-#include "GameObjectManagerPublicInterface.h"
 #include "NonOwingPointer.h"
 
 namespace planeta {
-	class SceneAccessorForTask;
-	class ISceneManagerAccessor;
+	class IScene;
 	namespace private_ {
-		struct SceneData;
 		class TaskManagerConnection;
 	}
 	class IGameObject;
@@ -29,39 +25,18 @@ namespace planeta {
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<private_::SceneData>& scene_data);
+		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<IScene>& pscene);
 		/*イベント*/
 		/*! プロセス破棄イベント型*/
 		using DisposedEventType = boost::signals2::signal<void()>;
 		/*! プロセス破棄イベント*/
 		DisposedEventType disposed;
 	protected:
-		//! ゲームオブジェクトマネージャへのアクセス
-		GameObjectManagerPublicInterface& game_object_manager();
-		//タスクを作成
-		template<class T>
-		WeakPointer<T> CreateTask(TaskSlot slot) {
-			auto task = std::make_shared<T>();
-			return RefTaskManagerInterface_().RegisterTask(task, slot, true) ? task : nullptr;
-		}
-		//名前付きタスクを作成
-		template<class T>
-		WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
-			auto task = std::make_shared<T>();
-			return RefTaskManagerInterface_().RegisterTask(task, slot, name, true) ? task : nullptr;
-		}
-		//型でタスク取得
-		template<class T>
-		WeakPointer<T> GetTaskByType()const {
-			return RefTaskManagerInterface_().GetTask<T>();
-		}
-		//名前でタスクを取得
-		WeakPointer<Task> GetTaskByName(const std::string& name)const;
+		//! シーンへのアクセス
+		IScene& scene() { return *scene_; }
 	private:
-		WeakPointer<private_::SceneData> scene_data_;
+		WeakPointer<IScene> scene_;
 		std::unique_ptr<private_::TaskManagerConnection> manager_connection_;
-		TaskManagerPublicInterface& RefTaskManagerInterface_();
-		const TaskManagerPublicInterface& RefTaskManagerInterface_()const;
 		virtual bool OnCreated() { return true; }
 		virtual void OnDisposed() {};
 	};

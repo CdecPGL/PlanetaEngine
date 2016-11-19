@@ -170,9 +170,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Collider2DData.h" />
     <ClInclude Include="ColliderComponent2DDebugDrawer.h" />
     <ClInclude Include="CollisionState.h" />
+    <ClInclude Include="CollisionWorld.h" />
     <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="CsvFile.h" />
     <ClInclude Include="DebugManager.h" />
+    <ClInclude Include="DrawSystem.h" />
     <ClInclude Include="EffekseerUtil.h" />
     <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
@@ -182,6 +184,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerImpl.h" />
     <ClInclude Include="GameObjectBase.h" />
     <ClInclude Include="GameObjectFactory.h" />
+    <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GOComponentGetter.h" />
     <ClInclude Include="GOComponentAdder.h" />
     <ClInclude Include="ICollisionWorld.h" />
@@ -199,6 +202,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IResourceManager.h" />
     <ClInclude Include="ISaveManager.h" />
     <ClInclude Include="IScene.h" />
+    <ClInclude Include="ISceneInternal.h" />
     <ClInclude Include="ISceneManager.h" />
     <ClInclude Include="ISoundManager.h" />
     <ClInclude Include="ITaskManager.h" />
@@ -237,11 +241,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SceneSetUpProxy.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StandardConfigManager.h" />
+    <ClInclude Include="StandardSceneManagerUtility.h" />
     <ClInclude Include="SubSystemManager.h" />
     <ClInclude Include="SystemTaskSlot.h" />
+    <ClInclude Include="TaskManager.h" />
     <ClInclude Include="TaskManagerConnection.h" />
     <ClInclude Include="TaskSlot.h" />
-    <ClInclude Include="CollisionWorld.h" />
+    <ClInclude Include="StandardCollisionWorld.h" />
     <ClInclude Include="EACollisionWithCollider2D.h" />
     <ClInclude Include="CollisionGroupMatrix.h" />
     <ClInclude Include="EACollisionWithGround2D.h" />
@@ -260,8 +266,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="GameObjectSystemComponent.h" />
     <ClInclude Include="NonCopyable.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneModule.h" />
+    <ClInclude Include="StandardTransformSystem.h" />
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="TypeInfoWrapper.h" />
@@ -299,12 +305,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DataContainerSerializeUtility.h" />
     <ClInclude Include="GameObjectManagerConnection.h" />
     <ClInclude Include="GameObjectAllocator.h" />
-    <ClInclude Include="GameObjectDrawSystem.h" />
-    <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="GameObjectManagerPublicInterface.h" />
+    <ClInclude Include="StandardDrawSystem.h" />
+    <ClInclude Include="StandardGameObjectManager.h" />
     <ClInclude Include="Task.h" />
-    <ClInclude Include="TaskManager.h" />
-    <ClInclude Include="TaskManagerPublicInterface.h" />
+    <ClInclude Include="StandardTaskManager.h" />
     <ClInclude Include="GlobalNewDeleteDefinition.h" />
     <ClInclude Include="CGraph2DAnimator.h" />
     <ClInclude Include="GraphDrawData2D.h" />
@@ -352,7 +356,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="Scene.h" />
     <ClInclude Include="StandardSceneManager.h" />
     <ClInclude Include="SceneSetUpper.h" />
-    <ClInclude Include="SceneSystemSetUpper.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenChangeEffecter.h" />
     <ClInclude Include="ScreenDrawer2D.h" />
@@ -451,6 +454,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="REffectTexture.cpp" />
     <ClCompile Include="SceneSetUpProxy.cpp" />
     <ClCompile Include="StandardConfigManager.cpp" />
+    <ClCompile Include="StandardSystemSetUpSceneFunction.cpp" />
+    <ClCompile Include="StandardSceneModuleSetFunction.cpp" />
     <ClCompile Include="StringUtility.cpp" />
     <ClCompile Include="SubSystemManager.cpp" />
     <ClCompile Include="TaskManagerConnection.cpp" />
@@ -514,15 +519,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="PEDateTime.cpp" />
     <ClCompile Include="CPlanetGround2D.cpp" />
     <ClCompile Include="CPolygonCollider2D.cpp" />
-    <ClCompile Include="SceneSystemSetUpper.cpp" />
     <ClCompile Include="RSound.cpp" />
     <ClCompile Include="File.cpp" />
-    <ClCompile Include="CollisionWorld.cpp" />
+    <ClCompile Include="StandardCollisionWorld.cpp" />
     <ClCompile Include="GameObjectComponent.cpp" />
     <ClCompile Include="FileAccessor.cpp" />
     <ClCompile Include="StandardFileSystemManager.cpp" />
-    <ClCompile Include="GameObjectDrawSystem.cpp" />
-    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="StandardDrawSystem.cpp" />
+    <ClCompile Include="StandardGameObjectManager.cpp" />
     <ClCompile Include="CDrawGraph2D.cpp" />
     <ClCompile Include="CGround2D.cpp" />
     <ClCompile Include="NormalFolderManipulator.cpp" />
@@ -530,7 +534,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="CPlanet.cpp" />
     <ClCompile Include="Task.cpp" />
-    <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="StandardTaskManager.cpp" />
     <ClCompile Include="StandardResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="StandardSceneManager.cpp" />
@@ -550,7 +554,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="TransformSystem.cpp" />
+    <ClCompile Include="StandardTransformSystem.cpp" />
     <ClCompile Include="WindowsUtility.cpp" />
     <ClCompile Include="RXml.cpp" />
     <ClCompile Include="XmlFile.cpp" />

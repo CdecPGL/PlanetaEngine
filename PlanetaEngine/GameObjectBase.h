@@ -4,7 +4,6 @@
 #include "GameObjectComponentHolder.h"
 #include "IGameObject.h"
 #include "NonCopyable.h"
-#include "TaskManagerPublicInterface.h"
 #include "NonOwingPointer.h"
 #include "GameObjectManagerConnection.h"
 
@@ -13,7 +12,7 @@ namespace planeta {
 	class GameObjectComponent;
 	class GOComponentGetter;
 	namespace private_ {
-		struct SceneData;
+		class ISceneInternal;
 
 		/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 		*/
@@ -35,6 +34,8 @@ namespace planeta {
 
 			//状態を取得
 			GameObjectState state()const override;
+			//シーンへのアクセスを取得
+			IScene& scene()override;
 
 			//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
 			//クローン時の処理
@@ -49,27 +50,24 @@ namespace planeta {
 			bool ProcessDisposal();
 			//マネージャコネクションをセット
 			void SetManagerConnection(std::unique_ptr<GameObjectManagerConnection>&& mgr_cnctn);
-			//シーンデータをセット
-			void SetSceneData(const WeakPointer<private_::SceneData>& scene_data);
+			//シーンをセット
+			void SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal>& iscene);
 			//コンポーネントリストからコンポーネントを追加し、シーンデータなどをセット
 			bool AddAndSetUpComponents(const std::vector<std::string>& com_type_id_list);
 			//boost::ptreeからコンポーネントを作成追加し、シーンデータなどをセット
 			bool AddAndSetUpComponents(const boost::property_tree::ptree& pt);
 		private:
 			GameObjectState state_ = GameObjectState::Invalid;
-			//インターフェイスのオーバーライド
-			GameObjectManagerPublicInterface& game_object_manager()override;
 			//コンポーネントを型で取得
 			std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
 			//コンポーネントを型ですべて取得
 			//std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
-			TaskManagerPublicInterface& RefTaskManagerInterface_()override final;
 			void SetUpAttachedTask_(const WeakPointer<Task>& task)override final;
 
 			//マネージャコネクション
 			std::unique_ptr<GameObjectManagerConnection> manager_connection_;
-			//シーンアクセサ
-			WeakPointer<private_::SceneData> scene_data_;
+			//シーン内部用インターフェイス
+			WeakPointer<private_::ISceneInternal> scene_internal_interface_;
 			//コンポーネントホルダー
 			GameObjectComponentHolder component_holder_;
 

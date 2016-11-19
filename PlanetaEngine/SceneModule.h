@@ -7,8 +7,7 @@
 namespace planeta {
 	class IDebugInformationAdder;
 	namespace private_ {
-		class ScenePublicInterface;
-		struct SceneData;
+		class ISceneInternal;
 		class SceneModule : public Object, private util::NonCopyable<SceneModule>{
 		public:
 			virtual ~SceneModule() = default;
@@ -16,10 +15,13 @@ namespace planeta {
 			virtual void Finalize() { return; };
 			virtual void Update() = 0;
 			virtual void DebugInformationAddHandle(IDebugInformationAdder& di_adder) {};
-
-			virtual void SetSceneData(const WeakPointer<private_::SceneData>& scene_data) {};
+			void SetScene(const WeakPointer<ISceneInternal>& scene) {
+				scene_ = scene;
+			}
+		protected:
+			WeakPointer<ISceneInternal> scene_internal_interface() { return scene_; }
 		private:
-
+			WeakPointer<ISceneInternal> scene_;
 		};
 	}
 }

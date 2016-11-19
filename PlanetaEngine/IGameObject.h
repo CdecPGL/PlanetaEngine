@@ -3,9 +3,9 @@
 #include <type_traits>
 #include <memory>
 #include "boost/signals2/signal.hpp"
-#include "TaskManagerPublicInterface.h"
-#include "GameObjectManagerPublicInterface.h"
+#include "ITaskManager.h"
 #include "TaskSlot.h"
+#include "IScene.h"
 
 namespace planeta {
 	class Task;
@@ -50,15 +50,15 @@ namespace planeta {
 		template<class T>
 		WeakPointer<T> CreateAndAttachTask(TaskSlot slot) {
 			static_assert(std::is_base_of<Task, T>::value == true, "T must derive Task");
-			auto task = std::make_shared<T>();
-			if (!RefTaskManagerInterface_().RegisterTask(task, slot, false)) { return nullptr; }
+			auto task = scene().task_manager().CreateTask<T>(slot);
+			if (task == nullptr) { return nullptr; }
 			SetUpAttachedTask_(task);
 			return task;
 		}
-		//! ゲームオブジェクトマネージャへのアクセスを取得
-		virtual GameObjectManagerPublicInterface& game_object_manager() = 0;
 		//! ゲームオブジェクトの状態を取得する
 		virtual GameObjectState state()const = 0;
+		/*! シーンへのアクセス*/
+		virtual IScene& scene() = 0;
 
 		/*イベント*/
 		/*! 有効化イベント型*/
@@ -75,7 +75,6 @@ namespace planeta {
 		DisposedEventType disposed;
 	protected:
 		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const = 0;
-		virtual TaskManagerPublicInterface& RefTaskManagerInterface_() = 0;
 		virtual void SetUpAttachedTask_(const WeakPointer<Task>& task) = 0;
 	};
 }

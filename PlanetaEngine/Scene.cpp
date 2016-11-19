@@ -3,26 +3,19 @@
 #include "GameObjectManager.h"
 #include "TaskManager.h"
 #include "CollisionWorld.h"
-#include "GameObjectDrawSystem.h"
+#include "DrawSystem.h"
 #include "TransformSystem.h"
 
 #include "LogUtility.h"
-#include "SceneData.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
 
 namespace planeta{
 	namespace private_{
 
-		Scene::Scene() :game_object_manager_(std::make_unique<GameObjectManager>()), task_manager_(std::make_unique<TaskManager>()),collision_world_(std::make_unique<CollisionWorld>()),gameobject_draw_system_(std::make_unique<GameObjectDrawSystem>()),transform_system_(std::make_unique<TransformSystem>())
+		Scene::Scene()
 		{
-			scene_module_list_ = {
-				game_object_manager_.get(),
-				collision_world_.get(),
-				gameobject_draw_system_.get(),
-				transform_system_.get(),
-				task_manager_.get(),
-			};
+			
 		}
 
 		Scene::~Scene()
@@ -69,29 +62,90 @@ namespace planeta{
 		}
 
 		bool Scene::IterateSceneModule_(std::function<bool(SceneModule&)>&& proc) {
-			for (auto it = scene_module_list_.begin(); it != scene_module_list_.end(); ++it) {
-				if (proc(**it) == false) { return false; }
-			}
+			if (!proc(*game_object_manager_)) { return false; }
+			if (!proc(*collision_world_)) { return false; }
+			if (!proc(*draw_system_)) { return false; }
+			if (!proc(*transform_system_)) { return false; }
+			if (!proc(*task_manager_)) { return false; }
 			return true;
 		}
 
 		bool Scene::ReverseIterateSceneModule_(std::function<bool(SceneModule&)>&& proc) {
-			for (auto it = scene_module_list_.rbegin(); it != scene_module_list_.rend(); ++it) {
-				if (proc(**it) == false) { return false; }
-			}
+			if (!proc(*task_manager_)) { return false; }
+			if (!proc(*transform_system_)) { return false; }
+			if (!proc(*draw_system_)) { return false; }
+			if (!proc(*collision_world_)) { return false; }
+			if (!proc(*game_object_manager_)) { return false; }
 			return true;
-		}
-
-		void Scene::RegisterSceneDataToModules() {
-			IterateSceneModule_([&scene_data = scene_data_](private_::SceneModule& sm) {sm.SetSceneData(scene_data); return true; });
 		}
 
 		void Scene::DebugInformationAddHandle(IDebugInformationAdder& di_adder) {
 			IterateSceneModule_([&di_adder](SceneModule& sm) {sm.DebugInformationAddHandle(di_adder); return true; });
 		}
 
-		void Scene::PrepareSceneData() {
-			scene_data_ = std::shared_ptr<SceneData>(new SceneData{ *game_object_manager_,*task_manager_,*collision_world_,*gameobject_draw_system_ ,*transform_system_});
+		planeta::WeakPointer<planeta::private_::CollisionWorld> Scene::collision_world_internal_pointer() {
+			return collision_world_;
 		}
+
+		planeta::WeakPointer<DrawSystem> Scene::draw_system_internal_pointer() {
+			return draw_system_;
+		}
+
+		planeta::WeakPointer<planeta::private_::GameObjectManager> Scene::game_object_manager_internal_pointer() {
+			return game_object_manager_;
+		}
+
+		planeta::WeakPointer<planeta::private_::TaskManager> Scene::task_manager_internal_pointer() {
+			return task_manager_;
+		}
+
+		planeta::WeakPointer<planeta::private_::TransformSystem> Scene::transform_system_internal_pointer() {
+			return transform_system_;
+		}
+
+		planeta::ICollisionWorld& Scene::collision_world() {
+			return *collision_world_;
+		}
+
+		planeta::IDrawSystem& Scene::draw_system() {
+			return *draw_system_;
+		}
+
+		planeta::IGameObjectManager& Scene::game_object_manager() {
+			return *game_object_manager_;
+		}
+
+		planeta::ITaskManager& Scene::task_manager() {
+			return *task_manager_;
+		}
+
+		planeta::ITransformSystem& Scene::transform_system() {
+			return *transform_system_;
+		}
+
+		void Scene::SetTaskManager(std::shared_ptr<TaskManager>&& mgr) {
+			task_manager_ = std::move(mgr);
+		}
+
+		void Scene::SetGameObjectManager(std::shared_ptr<GameObjectManager>&& mgr) {
+			game_object_manager_ = std::move(mgr);
+		}
+
+		void Scene::SetCollisionWorld(std::shared_ptr<CollisionWorld>&& mgr) {
+			collision_world_ = std::move(mgr);
+		}
+
+		void Scene::SetDrawSystem(std::shared_ptr<DrawSystem>&& mgr) {
+			draw_system_ = std::move(mgr);
+		}
+
+		void Scene::SetTransformManager(std::shared_ptr<TransformSystem>&& mgr) {
+			transform_system_ = std::move(mgr);
+		}
+
+		void Scene::SetSceneToModules() {
+			IterateSceneModule_([this](SceneModule& sm) {sm.SetScene(shared_from_this()); return true; });
+		}
+
 	}
 }

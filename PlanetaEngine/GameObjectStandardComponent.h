@@ -9,7 +9,7 @@ namespace planeta {
 		virtual ~GameObjectStandardComponent() = default;
 	private:
 		/*シーンデータのセットは行わない。子クラスにはオーバーライド不可にしておく。*/
-		void SetSceneData(const WeakPointer<private_::SceneData>&)override final{ return; }
+		void SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal>& scene_data)override final{ return; }
 	};
 	PE_REFLECTABLE_CLASS(GameObjectStandardComponent);
 }

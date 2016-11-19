@@ -45,7 +45,7 @@ namespace planeta {
 
 	bool GameObjectComponent::SetSceneAndHolderGOData(const private_::GameObjectComponentSetUpData& resistration_data) {
 		game_object_.reset(resistration_data.holder_game_object);
-		SetSceneData(resistration_data.scene_data);
+		SetSceneInternalInterface(resistration_data.scene_internal_interface);
 		return true;
 	}
 
