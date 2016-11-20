@@ -4,7 +4,6 @@
 #include "LogUtility.h"
 #include "IGameObject.h"
 #include "CTransform2D.h"
-#include "DxLib.h"
 
 namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCamera2D) {
@@ -47,16 +46,6 @@ namespace planeta {
 
 	void CCamera2D::expansion(double s) {
 		expansion_ = s;
-	}
-
-	Vector2Dd CCamera2D::CovertPositionGUISpaceToGameObjectSpace(const Vector2Di& ui_pos)const {
-		VECTOR gov = ConvScreenPosToWorldPos(VGet((float)ui_pos.x, (float)ui_pos.y, 0.0f));
-		return Vector2Dd(gov.x, gov.y);
-	}
-
-	Vector2Di CCamera2D::CovertPositionGameObjectSpaceToGUISpace(const Vector2Dd& game_object_pos)const {
-		VECTOR uiv = ConvWorldPosToScreenPos(VGet((float)game_object_pos.x, (float)game_object_pos.y, 0.0f));
-		return Vector2Di((int)uiv.x, (int)uiv.y);
 	}
 
 	const planeta::Vector2Dd& CCamera2D::position() const {

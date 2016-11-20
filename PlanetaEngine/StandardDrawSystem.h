@@ -42,6 +42,11 @@ namespace planeta {
 
 			void DebugInformationAddHandle(IDebugInformationAdder& di_adder) override;
 
+			/*! GUI座標をGameObject座空間標に変換*/
+			Vector2Dd CovertPositionScreenSpaceToGameObjectSpace(const Vector2Di& gui_space_pos)const override;
+			/*! GameObject座標をGUI座標に変換*/
+			Vector2Di CovertPositionGameObjectSpaceToScreenSpace(const Vector2Dd& gameobject_space_pos)const override;
+
 		private:
 			/*更新リスト(mapとlistは要素の追加削除を行ってもイテレータが有効)*/
 			std::map<int, std::list<std::shared_ptr<CDraw2D>>> _draw_component_update_list;

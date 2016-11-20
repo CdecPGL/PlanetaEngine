@@ -100,5 +100,15 @@ namespace planeta{
 			}
 		}
 
+		Vector2Dd StandardDrawSystem::CovertPositionScreenSpaceToGameObjectSpace(const Vector2Di& ui_pos)const {
+			VECTOR gov = ConvScreenPosToWorldPos(VGet((float)ui_pos.x, (float)ui_pos.y, 0.0f));
+			return Vector2Dd(gov.x, gov.y);
+		}
+
+		Vector2Di StandardDrawSystem::CovertPositionGameObjectSpaceToScreenSpace(const Vector2Dd& game_object_pos)const {
+			VECTOR uiv = ConvWorldPosToScreenPos(VGet((float)game_object_pos.x, (float)game_object_pos.y, 0.0f));
+			return Vector2Di((int)uiv.x, (int)uiv.y);
+		}
+
 	}
 }

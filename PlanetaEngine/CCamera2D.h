@@ -23,10 +23,6 @@ namespace planeta {
 		double expansion()const;
 		/*! 拡大度を設定*/
 		void expansion(double e);
-		/*! GUI座標をGameObject座空間標に変換*/
-		Vector2Dd CovertPositionGUISpaceToGameObjectSpace(const Vector2Di& gui_space_pos)const;
-		/*! GameObject座標をGUI座標に変換*/
-		Vector2Di CovertPositionGameObjectSpaceToGUISpace(const Vector2Dd& gameobject_space_pos)const;
 	private:
 		double expansion_ = 1.0;
 
