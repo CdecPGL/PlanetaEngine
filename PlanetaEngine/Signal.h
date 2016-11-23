@@ -54,12 +54,12 @@ namespace planeta {
 		/*! 通常関数をstd::shared_ptrを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const std::shared_ptr<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func, boost::placeholders::_1).track_foreign(ins))) };
+			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins))) };
 		}
 		/*! 通常関数をWeakPointerを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const WeakPointer<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func, boost::placeholders::_1).track_foreign(ins.get_shared()))) };
+			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
 		}
 		/*! メンバ関数をstd::shared_ptrを指定して接続*/
 		template<class InsType>
@@ -92,12 +92,12 @@ namespace planeta {
 		/*! 通常関数をstd::shared_ptrを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const std::shared_ptr<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func).track_foreign(ins))) };
+			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func)).track_foreign(ins))) };
 		}
 		/*! 通常関数をWeakPointerを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const WeakPointer<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func).track_foreign(ins.get_shared()))) };
+			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func)).track_foreign(ins.get_shared()))) };
 		}
 		/*! メンバ関数をstd::shared_ptrを指定して接続*/
 		template<class InsType>
