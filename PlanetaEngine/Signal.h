@@ -44,6 +44,8 @@ namespace planeta {
 	public:
 		/*! シグナル関数の引数型*/
 		using ArgType = typename boost::function_traits<SigType>::arg1_type;
+		/*! シグナル関数の戻り値型*/
+		using RetType = typename boost::function_traits<SigType>::result_type;
 		/*! 通常関数を接続*/
 		template<typename FuncType>
 		SignalConnection ConnectFunction(const FuncType& func) {
@@ -60,14 +62,17 @@ namespace planeta {
 			return SignalConnection{ std::move(connect(slot_type(func, boost::placeholders::_1).track_foreign(ins.get_shared()))) };
 		}
 		/*! メンバ関数をstd::shared_ptrを指定して接続*/
-		template<class InsType, typename FuncType>
-		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func, ins.get(), boost::placeholders::_1).track_foreign(ins))) };
+		template<class InsType>
+		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType>& ins, RetType(InsType::*m_func)(ArgType)) {
+			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get(), boost::placeholders::_1).track_foreign(ins))) };
 		}
-		/*! メンバ関数をWeakPointerを指定して接続*/
-		template<class InsType, typename FuncType>
-		SignalConnection ConnectMemberFunction(const WeakPointer<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func, ins.get(), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
+		/*! メンバ関数をWeakPointerを指定して接続
+		
+			インスタンスの型は、メンバ関数のクラス型と同じかその子クラスである必要がある。
+		*/
+		template<class InsType>
+		SignalConnection ConnectMemberFunction(const WeakPointer<InsType>& ins, RetType(InsType::*m_func)(ArgType)) {
+			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get(), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
 		}
 		/*! 関数呼び出し*/
 		auto operator()(const ArgType& arg) {
@@ -95,14 +100,14 @@ namespace planeta {
 			return SignalConnection{ std::move(connect(slot_type(func).track_foreign(ins.get_shared()))) };
 		}
 		/*! メンバ関数をstd::shared_ptrを指定して接続*/
-		template<class InsType, typename FuncType>
-		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func, ins.get()).track_foreign(ins))) };
+		template<class InsType>
+		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType>& ins, RetType(InsType::*m_func)()) {
+			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get()).track_foreign(ins))) };
 		}
 		/*! メンバ関数をWeakPointerを指定して接続*/
-		template<class InsType, typename FuncType>
-		SignalConnection ConnectMemberFunction(const WeakPointer<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(func, ins.get()).track_foreign(ins.get_shared()))) };
+		template<class InsType>
+		SignalConnection ConnectMemberFunction(const WeakPointer<InsType>& ins, RetType(InsType::*m_func)()) {
+			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get()).track_foreign(ins.get_shared()))) };
 		}
 		/*! 関数呼び出し*/
 		auto operator()() {
