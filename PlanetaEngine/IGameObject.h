@@ -2,7 +2,8 @@
 
 #include <type_traits>
 #include <memory>
-#include "boost/signals2/signal.hpp"
+
+#include "Signal.h"
 #include "ITaskManager.h"
 #include "TaskSlot.h"
 #include "IScene.h"
@@ -59,18 +60,12 @@ namespace planeta {
 		virtual GameObjectState state()const = 0;
 
 		/*イベント*/
-		/*! 有効化イベント型*/
-		using ActivatedEventType = boost::signals2::signal<void()>;
 		/*! 有効化イベント*/
-		ActivatedEventType activated;
-		/*! 無効化イベント型*/
-		using InactivatedEventType = boost::signals2::signal<void()>;
+		Signal<void()> activated;
 		/*! 無効化イベント*/
-		InactivatedEventType inactivated;
-		/*! 破棄イベント型*/
-		using DisposedEventType = boost::signals2::signal<void()>;
+		Signal<void()> inactivated;
 		/*! 破棄イベント*/
-		DisposedEventType disposed;
+		Signal<void()> disposed;
 	protected:
 		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const = 0;
 		virtual void SetUpAttachedTask_(const WeakPointer<Task>& task) = 0;

@@ -1,7 +1,6 @@
 ﻿#pragma once
 
-#include "boost/signals2/signal.hpp"
-
+#include "Signal.h"
 #include "Object.h"
 #include "WeakPointer.h"
 #include "NonCopyable.h"
@@ -27,10 +26,8 @@ namespace planeta {
 		/*システム関数*/
 		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<IScene>& pscene);
 		/*イベント*/
-		/*! プロセス破棄イベント型*/
-		using DisposedEventType = boost::signals2::signal<void()>;
 		/*! プロセス破棄イベント*/
-		DisposedEventType disposed;
+		Signal<void()> disposed;
 	protected:
 		//! シーンへのアクセス
 		IScene& scene() { return *scene_; }

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include <unordered_map>
-#include "boost/signals2/signal.hpp"
 
+#include "Signal.h"
 #include "GameObjectSystemComponent.h"
 #include "Vector2D.h"
 
@@ -77,10 +77,8 @@ namespace planeta {
 		bool SetGround(const WeakPointer<IGameObject>& g, bool keep_global_position);
 
 		/*イベント*/
-		/*! トランスフォーム更新イベント型*/
-		using UpdatedEventType = boost::signals2::signal<void()>;
 		/*! トランスフォーム更新イベント*/
-		UpdatedEventType updated;
+		Signal<void()> updated;
 
 		//システム
 		void ApplyVelocity_(); //速度適用

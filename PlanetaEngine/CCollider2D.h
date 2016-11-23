@@ -2,7 +2,7 @@
 
 #include <set>
 #include <functional>
-#include "boost/signals2/signal.hpp"
+#include "Signal.h"
 #include "GameObjectSystemComponent.h"
 #include "WeakPointer.h"
 #include "Vector2D.h"
@@ -49,14 +49,10 @@ namespace planeta {
 		bool is_grounded()const { return is_grounded_; }
 
 		/*イベント*/
-		/*! コライダーとの衝突イベント型*/
-		using CollidedWithCollider2DEventType = boost::signals2::signal<void(const EACollisionWithCollider2D&)>;
 		/*! コライダーとの衝突イベント*/
-		CollidedWithCollider2DEventType collided_with_collider2d;
-		/*! 2D地形との衝突イベント型*/
-		using CollidedWithGround2DEventType = boost::signals2::signal<void(const EACollisionWithGround2D&)>;
+		Signal<void(const EACollisionWithCollider2D&)> collided_with_collider2d;
 		/*! 2D地形との衝突イベントハンドラ追加*/
-		CollidedWithGround2DEventType collided_with_ground2d;
+		Signal<void(const EACollisionWithGround2D&)> collided_with_ground2d;
 
 		/*! 同じオブジェクトのCTransform2Dを取得*/
 		CTransform2D& transform2d() { return *transform2d_; }
