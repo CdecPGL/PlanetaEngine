@@ -960,6 +960,9 @@
     <ClInclude Include="HeadersForTask.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
     </ClInclude>
+    <ClInclude Include="Signal.h">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">

@@ -242,6 +242,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneSetUpProxy.h" />
+    <ClInclude Include="Signal.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StandardConfigManager.h" />
     <ClInclude Include="StandardSceneManagerUtility.h" />

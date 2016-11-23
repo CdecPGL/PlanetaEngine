@@ -31,20 +31,48 @@ namespace planeta {
 		template<typename T1>
 		WeakPointer(const std::shared_ptr<T1>& sp) : w_ptr_(sp) { static_assert(std::is_base_of<T, T1>::value == true, "T is not base of T1."); }
 		/*スマポを取得*/
-		std::shared_ptr<T>get_shared()const { return w_ptr_.lock(); }
-		std::weak_ptr<T>get_weak()const { return w_ptr_; }
+		std::shared_ptr<T>get_shared()const { 
+			auto s_ptr = w_ptr_.lock();
+#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
+			assert(s_ptr != nullptr);
+#else //それ以外では例外を投げる
+			if (s_ptr == nullptr) {
+				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+			}
+#endif
+			return s_ptr;
+		}
+		std::weak_ptr<T>get_weak()const {
+#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
+			assert(!w_ptr_.expired());
+#else //それ以外では例外を投げる
+			if (w_ptr_.expired()) {
+				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+			}
+#endif
+			return w_ptr_;
+		}
 		/*ポインターを取得*/
-		T* get()const { return w_ptr_._Get(); }
+		T* get()const {
+#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
+			assert(!w_ptr_.expired());
+#else //それ以外では例外を投げる
+			if (w_ptr_.expired()) {
+				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+			}
+#endif
+			return w_ptr_._Get();
+		}
 		//////////アクセス演算子//////////
 		T* operator->()const {
 			std::shared_ptr<T> s_ptr = w_ptr_.lock();
 #ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
 			assert(s_ptr != nullptr);
-#else
+#else //それ以外では例外を投げる
 			if (s_ptr == nullptr) {
 				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
 			}
-#endif //それ以外では例外を投げる
+#endif
 			return s_ptr.get();
 		}
 		//////////ポインタ参照演算子//////////
@@ -69,7 +97,7 @@ namespace planeta {
 			return !((*this) == b);
 		}
 		bool operator==(std::nullptr_t)const {
-			return w_ptr_._Get() == nullptr;
+			return w_ptr_.expired();
 		}
 		bool operator!=(std::nullptr_t)const {
 			return !((*this) == nullptr);
