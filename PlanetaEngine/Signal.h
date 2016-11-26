@@ -42,6 +42,8 @@ namespace planeta {
 	template<typename SigType>
 	class Signal final: private boost::signals2::signal<SigType> {
 	public:
+		//シグナル関数型の引数の個数が1以下か確認
+		static_assert(boost::function_traits<SigType>::arity <= 1, "The arity of signal function must be less than or equel to 1");
 		/*! シグナル関数の引数型*/
 		using ArgType = typename boost::function_traits<SigType>::arg1_type;
 		/*! シグナル関数の戻り値型*/
