@@ -58,6 +58,8 @@ namespace planeta {
 		}
 		//! ゲームオブジェクトの状態を取得する
 		virtual GameObjectState state()const = 0;
+		//! シーンへのアクセスを取得する
+		virtual IScene& scene() = 0;
 
 		/*イベント*/
 		/*! 有効化イベント*/
@@ -69,6 +71,5 @@ namespace planeta {
 	protected:
 		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const = 0;
 		virtual void SetUpAttachedTask_(const WeakPointer<Task>& task) = 0;
-		virtual IScene& scene() = 0;
 	};
 }
