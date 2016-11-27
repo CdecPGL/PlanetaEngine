@@ -39,6 +39,8 @@ namespace planeta {
 					PE_LOG_FATAL("DXライブラリの初期化に失敗しました。");
 					return{ false,[] {} };
 				}
+				//マウスカーソルの表示を設定
+				SetMouseDispFlag(cfg_mgr.is_cursor_visible());
 				return{ true,[] { DxLib_End(); } };
 			}
 			//////////////////////////////////////////////////////////////////////////

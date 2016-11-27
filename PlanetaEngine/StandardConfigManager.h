@@ -17,6 +17,7 @@ namespace planeta {
 			virtual Vector2Di draw_size() const override;
 			virtual Vector2Di window_size() const override;
 			virtual const CollisionGroupMatrix& collision_group_matrix() const override;
+			virtual bool is_cursor_visible()const override;
 		private:
 			int color_bit_depth_ = -1;
 			std::string startup_scene_id_ = "NULL";
@@ -27,6 +28,7 @@ namespace planeta {
 			Vector2Di draw_size_ = { -1,-1 };
 			Vector2Di window_size_ = { -1,-1 };
 			CollisionGroupMatrix collision_group_matrix_;
+			bool is_cursor_visible_ = true;
 		};
 	}
 }

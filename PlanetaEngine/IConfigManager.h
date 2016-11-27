@@ -23,5 +23,7 @@ namespace planeta {
 		virtual Vector2Di window_size()const = 0;
 		/*! 衝突グループマトリクスを取得する*/
 		virtual const CollisionGroupMatrix& collision_group_matrix()const = 0;
+		/*! Cursorを表示するかどうかを取得する*/
+		virtual bool is_cursor_visible()const = 0;
 	};
 }

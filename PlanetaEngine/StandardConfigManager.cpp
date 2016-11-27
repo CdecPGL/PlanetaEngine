@@ -26,6 +26,7 @@ namespace planeta {
 				color_bit_depth_ = *engine_obj->AtWithException("ColorBitDepth")->GetWithException<int>();
 				buf_array = *engine_obj->AtWithException("DrawSize")->GetWithException<std::vector<int>>();
 				draw_size_.Set(buf_array[0], buf_array[1]);
+				is_cursor_visible_ = *engine_obj->AtWithException("IsCursorVisible")->GetWithException<bool>();
 				//Program
 				auto prog_obj = root_obj->AtWithException("Program")->GetWithException<JSONObject>();
 				auto scene_obj = prog_obj->AtWithException("Scene")->GetWithException<JSONObject>();
@@ -134,6 +135,10 @@ namespace planeta {
 
 		const planeta::CollisionGroupMatrix& StandardConfigManager::collision_group_matrix() const {
 			return collision_group_matrix_;
+		}
+
+		bool StandardConfigManager::is_cursor_visible() const {
+			return is_cursor_visible_;
 		}
 
 	}
