@@ -9,6 +9,8 @@
 namespace planeta {
 	class CGround2D;
 	class IGameObject;
+	/*! 座標系*/
+	enum class CoordinateSystem { Global, Ground };
 	/*! 形状情報コンポーネント*/
 	class CTransform2D : public private_::GameObjectSystemComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransform2D);
@@ -62,9 +64,10 @@ namespace planeta {
 		//! 地形速度を設定
 		CTransform2D&  ground_velocity(const Vector2Dd& vel);
 
-		enum class Space { Ground, Global };
-		//! 速度空間を設定(無効かもしれない)
-		void velocity_space(Space space);
+		//! 速度空間を設定
+		void velocity_space(CoordinateSystem space);
+		//! 速度空間を取得
+		CoordinateSystem velocity_space()const;
 
 		/*地形関係*/
 		/*! 所属している地面を取得する(const版)*/
@@ -93,4 +96,22 @@ namespace planeta {
 		bool OnInactivated()override final;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransform2D);
+
+	namespace util {
+		//ReflectionシステムのPtree読み込みを有効にするための定義
+		inline void ReflectivePtreeConverter(::planeta::CoordinateSystem & dst, const boost::property_tree::ptree& src) {
+			try {
+				std::string str = src.get_value<std::string>();
+				if (str == "Ground") {
+					dst = ::planeta::CoordinateSystem::Ground;
+				} else if (str == "Global") {
+					dst = ::planeta::CoordinateSystem::Global;
+				} else {
+					throw planeta::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(::planeta::CoordinateSystem).name(), "\"のメンバーではありません。"));
+				}
+			} catch (boost::property_tree::ptree_bad_data& e) {
+				throw planeta::reflection_error(e.what());
+			}
+		}
+	}
 }

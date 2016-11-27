@@ -132,7 +132,7 @@ namespace planeta {
 		}
 	public:
 		//速度空間
-		Space velocity_space = Space::Ground;
+		CoordinateSystem velocity_space = CoordinateSystem::Ground;
 		//トランスフォーム2D_ID
 		int t2d_id_ = -1;
 
@@ -300,6 +300,7 @@ namespace planeta {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, velocity)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, rotation_velocity_rad)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, ground_velocity)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, velocity_space)
 			.DeepCopyTarget(&CTransform2D::impl_);
 	}
 
@@ -418,17 +419,21 @@ namespace planeta {
 		}
 	}
 
-	void CTransform2D::velocity_space(Space space) {
+	void CTransform2D::velocity_space(CoordinateSystem space) {
 		impl_->velocity_space = space;
+	}
+
+	CoordinateSystem CTransform2D::velocity_space() const {
+		return impl_->velocity_space;
 	}
 
 	void CTransform2D::ApplyVelocity_() {
 		rotation_rad(rotation_rad() + rotation_velocity_rad());
 		switch (impl_->velocity_space) {
-		case Space::Ground:
+		case CoordinateSystem::Ground:
 			GroundMove(ground_velocity());
 			return;
-		case Space::Global:
+		case CoordinateSystem::Global:
 			position(position() + velocity());
 			return;
 		default:
