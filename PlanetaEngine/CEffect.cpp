@@ -27,8 +27,13 @@ namespace planeta {
 		void ApplyTransformToEffect();
 
 		void SetMyCTransform2D(const NonOwingPointer<CTransform2D>& com);
+		void DisconnectMyCTransformUpdatedEvent();
+		void ConnectMyCTransformUpdatedEvent();
 		
-		bool roop_flag = false;
+		bool roop_flag_ = false;
+		bool auto_play_ = true;
+		double expansion_ = 1.0;
+		SignalConnection trans_update_eve_connection_;
 	private:
 		NonOwingPointer<CTransform2D> my_c_transform_2d_;
 		std::shared_ptr<REffect> reffect_;
@@ -37,7 +42,9 @@ namespace planeta {
 
 	CEffect::Impl_& CEffect::Impl_::operator=(const Impl_& obj) {
 		reffect_ = obj.reffect_;
-		roop_flag = obj.roop_flag;
+		roop_flag_ = obj.roop_flag_;
+		auto_play_ = obj.auto_play_;
+		expansion_ = obj.expansion_;
 		return *this;
 	}
 
@@ -109,12 +116,28 @@ namespace planeta {
 			static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
 		eff_mgr->SetRotation(effect_handle_, 0, 0,
 			static_cast<float>(trans.rotation_rad()));
+		auto scl = trans.scale();
+		scl *= expansion_; //拡大率適用
 		eff_mgr->SetScale(effect_handle_, 
-			static_cast<float>(trans.scale().x), static_cast<float>(trans.scale().y), static_cast<float>((trans.scale().x + trans.scale().y) / 2));
+			static_cast<float>(scl.x), static_cast<float>(scl.y), static_cast<float>((scl.x + scl.y) / 2));
+	}
+
+	void CEffect::Impl_::ConnectMyCTransformUpdatedEvent() {
+		if (my_c_transform_2d_) {
+			trans_update_eve_connection_.Disconnect();
+			trans_update_eve_connection_ = my_c_transform_2d_->updated.ConnectFunction([this]() {
+				ApplyTransformToEffect();
+			});
+		}
+	}
+
+	void CEffect::Impl_::DisconnectMyCTransformUpdatedEvent() {
+		trans_update_eve_connection_.Disconnect();
 	}
 
 	void CEffect::Impl_::SetMyCTransform2D(const NonOwingPointer<CTransform2D>& com) {
 		my_c_transform_2d_.reset(com);
+		ConnectMyCTransformUpdatedEvent();
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -124,6 +147,8 @@ namespace planeta {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CEffect) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CEffect, roop_flag)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CEffect, auto_play)
+			.PE_REFLECTABLE_CLASS_PROPERTY(CEffect, expansion)
 			.PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(CEffect, resource_id)
 			.PE_REFLECTABLE_CLASS_READONLY_PROPERTY(CEffect, is_playing)
 			.DeepCopyTarget(&CEffect::impl_);
@@ -141,12 +166,14 @@ namespace planeta {
 
 	bool CEffect::OnInitialized() {
 		if (!Super::OnInitialized()) { return false; }
-		if (!impl_->ClearEffectInstance()) { return false; }
+		if (!impl_->GetEffectExits()) {
+			if (!impl_->CreateEffectInstance()) { return false; }
+		}
 		auto task = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		task->SetExcuteFunction([this] {
 			impl_->ApplyTransformToEffect();
 			//エフェクトのループ確認
-			if (impl_->roop_flag && !impl_->GetEffectExits()) {
+			if (impl_->roop_flag_ && !impl_->GetEffectExits()) {
 				if (is_valied()) {
 					if (!impl_->CreateEffectInstance()) { return; }
 					if (is_active()) {
@@ -160,10 +187,16 @@ namespace planeta {
 
 	bool CEffect::OnActivated() {
 		if (!Super::OnActivated()) { return false; }
-		return impl_->StartEffect();
+		impl_->ConnectMyCTransformUpdatedEvent();
+		if (auto_play()) {
+			return impl_->StartEffect();
+		} else {
+			return true;
+		}
 	}
 
 	bool CEffect::OnInactivated() {
+		impl_->DisconnectMyCTransformUpdatedEvent();
 		impl_->PauseEffect();
 		return Super::OnInactivated();
 	}
@@ -177,7 +210,7 @@ namespace planeta {
 		if (!impl_->SetResourceByID(resource_id)) { return; }
 		if (is_valied()) {
 			if (!impl_->CreateEffectInstance()) { return; }
-			if (is_active()) {
+			if (is_active() && auto_play()) {
 				impl_->StartEffect();
 			}
 		}
@@ -188,12 +221,36 @@ namespace planeta {
 	}
 
 	void CEffect::roop_flag(bool f) {
-		impl_->roop_flag = f;
+		impl_->roop_flag_ = f;
 	}
 
 	bool CEffect::roop_flag() const {
-		bool f = impl_->roop_flag;
+		bool f = impl_->roop_flag_;
 		return f;
+	}
+
+	void CEffect::auto_play(bool f) {
+		impl_->auto_play_ = f;
+	}
+
+	bool CEffect::auto_play() const {
+		return impl_->auto_play_;
+	}
+
+	void CEffect::expansion(double e) {
+		impl_->expansion_ = e;
+	}
+
+	double CEffect::expansion() const {
+		return impl_->expansion_;
+	}
+
+	bool CEffect::Play() {
+		return impl_->StartEffect();
+	}
+
+	bool CEffect::Stop() {
+		return impl_->PauseEffect();
 	}
 
 }

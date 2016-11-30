@@ -10,6 +10,11 @@ namespace planeta {
 		using Super = GameObjectStandardComponent;
 		CEffect();
 		~CEffect();
+		/*! エフェクトを再生する*/
+		bool Play();
+		/*! エフェクトを停止する*/
+		bool Stop();
+		/*! エフェクトリソースIDを設定する*/
 		void resource_id(const std::string& resource_id);
 		/*! エフェクトを再生中か確認*/
 		bool is_playing()const;
@@ -17,6 +22,14 @@ namespace planeta {
 		void roop_flag(bool f);
 		/*! ループするかのフラグを取得*/
 		bool roop_flag()const;
+		/*! 自動再生するかどうかのフラグを設定*/
+		void auto_play(bool f);
+		/*! 自動再生するかどうかのフラグを取得*/
+		bool auto_play()const;
+		/*! エフェクトの拡大率を設定*/
+		void expansion(double e);
+		/*! エフェクトの拡大率を取得*/
+		double expansion()const;
 	protected:
 		virtual bool GetOtherComponentsProc(const GOComponentGetter&) override;
 		virtual bool OnInitialized() override;
