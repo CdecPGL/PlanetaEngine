@@ -76,9 +76,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D">
       <UniqueIdentifier>{363a6867-3602-4489-bdec-0dbf4a02ed15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D">
-      <UniqueIdentifier>{fa903434-b4de-4c4d-8c40-535dcbfb7978}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D">
       <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
@@ -216,6 +213,9 @@
     </Filter>
     <Filter Include="Trash\GUIObjects">
       <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent">
+      <UniqueIdentifier>{fa903434-b4de-4c4d-8c40-535dcbfb7978}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -511,7 +511,7 @@
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CTransform2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
     </ClInclude>
     <ClInclude Include="CDraw2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
@@ -963,6 +963,9 @@
     <ClInclude Include="Signal.h">
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="CTransformGUI.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1113,7 +1116,7 @@
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CTransform2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent2D</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
     </ClCompile>
     <ClCompile Include="CDraw2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
@@ -1363,6 +1366,9 @@
     </ClCompile>
     <ClCompile Include="SceneSetUpProxy.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransformGUI.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

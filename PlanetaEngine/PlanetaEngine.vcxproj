@@ -272,6 +272,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneModule.h" />
     <ClInclude Include="StandardTransformSystem.h" />
+    <ClInclude Include="CTransformGUI.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="TransformSystem.h" />
     <ClInclude Include="TypeDefinitions.h" />
     <ClInclude Include="TypeInfoWrapper.h" />
@@ -432,6 +436,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CollisionGroupMatrix.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="CsvFile.cpp" />
+    <ClCompile Include="CTransformGUI.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="EffekseerUtil.cpp" />
     <ClCompile Include="Coroutine.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
