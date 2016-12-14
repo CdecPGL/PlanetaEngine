@@ -1,4 +1,7 @@
 #include "CTransformGUI.h"
+#include "ISceneInternal.h"
+#include "TransformSystem.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	//////////////////////////////////////////////////////////////////////////
@@ -11,6 +14,16 @@ namespace planeta {
 		Vector2Di size{ 0,0 };
 		double rotation_rad = 0;
 		Vector2Dd pivot{ 0,0 };
+
+		int t2d_id_ = -1;
+
+		Impl_& operator=(const Impl_ imp) {
+			position = imp.position;
+			size = imp.size;
+			rotation_rad = imp.rotation_rad;
+			pivot = imp.pivot;
+			return *this;
+		}
 	};
 
 	//////////////////////////////////////////////////////////////////////////
@@ -64,6 +77,27 @@ namespace planeta {
 
 	const planeta::Vector2Dd& CTransformGUI::pivot() const {
 		return impl_->pivot;
+	}
+
+	bool CTransformGUI::OnActivated() {
+		if (!Super::OnActivated()) { return false; }
+		//TransformSystem‚Ö“o˜^
+		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransformGUI(this);
+		PE_VERIFY(impl_->t2d_id_ >= 0);
+		return true;
+	}
+
+	bool CTransformGUI::OnInactivated() {
+		PE_VERIFY(impl_->t2d_id_ >= 0);
+		//TransformSystem‚©‚ç“o˜^‰ğœ
+		bool noerr = true;
+		if (scene_internal_interface().transform_system_internal_pointer()->RemoveTransformGUI(impl_->t2d_id_)) {
+			noerr = true;
+		} else {
+			PE_LOG_FATAL("TransfromSystem‚©‚ç‚Ì“o˜^‰ğœ‚É¸”s‚µ‚Ü‚µ‚½BID:", impl_->t2d_id_);
+			noerr = false;
+		}
+		return noerr && Super::OnInactivated();
 	}
 
 }

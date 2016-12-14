@@ -452,6 +452,7 @@ namespace planeta {
 	}
 
 	bool CTransform2D::OnActivated() {
+		if (!Super::OnActivated()) { return false; }
 		//TransformSystemへ登録
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransform2D(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
@@ -461,11 +462,13 @@ namespace planeta {
 	bool CTransform2D::OnInactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 		//TransformSystemから登録解除
+		bool noerr = true;
 		if (scene_internal_interface().transform_system_internal_pointer()->RemoveTransform2D(impl_->t2d_id_)) {
-			return true;
+			noerr = true;
 		} else {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
-			return false;
+			noerr = false;
 		}
+		return noerr && Super::OnInactivated();
 	}
 }

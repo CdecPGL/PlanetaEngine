@@ -18,9 +18,13 @@ namespace planeta {
 
 			int RegisterTransform2D(CTransform2D* transform2d)override;
 			bool RemoveTransform2D(int id)override;
+			int RegisterTransformGUI(CTransformGUI* transformgui);
+			bool RemoveTransformGUI(int id);
 		private:
 			std::unordered_map<int, CTransform2D*> transform2d_map_;
-			int id_counter_ = 0;
+			std::unordered_map<int, CTransformGUI*> transformgui_map_;
+			int id_counter_2d_ = 0;
+			int id_counter_gui_ = 0;
 		};
 	}
 }

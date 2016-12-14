@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <string>
+#include <array>
 #include "MathConstant.h"
 
 #define PE_ENABLE_REFLECTION_SYSTEM
