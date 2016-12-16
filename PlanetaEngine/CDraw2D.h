@@ -13,7 +13,7 @@ namespace planeta {
 	public:
 		using Super = private_::GameObjectSystemComponent;
 		CDraw2D();
-		virtual ~CDraw2D() = default;
+		virtual ~CDraw2D();
 		/*描画処理*/
 		void Draw(ScreenDrawer2D& drawer) { DrawProc(drawer); }
 		/*Accessor*/
@@ -52,7 +52,13 @@ namespace planeta {
 		NonOwingPointer<CTransform2D> transform2d_;
 
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
+
+		bool OnInitialized()override;
+		void OnFinalized()noexcept override;
 	private:
+		class Impl_;
+		std::unique_ptr<Impl_> impl_;
+
 		int draw_priority_ = 0; //描画優先度
 		/*表示位置*/
 		Vector2Dd position_;
@@ -61,8 +67,6 @@ namespace planeta {
 		/*表示拡大度*/
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
 		planeta::Color color_;
-		void RegisterToProcess_();
-		void RemoveFromProcess_();
 		void UpdatePriority_();
 		bool OnActivated()override final;
 		bool OnInactivated()override final;

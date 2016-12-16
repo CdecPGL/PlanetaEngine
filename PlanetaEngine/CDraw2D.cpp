@@ -7,6 +7,19 @@
 #include "ISceneInternal.h"
 
 namespace planeta {
+	//////////////////////////////////////////////////////////////////////////
+	//CDraw2D::Impl_
+	//////////////////////////////////////////////////////////////////////////
+
+	class CDraw2D::Impl_ {
+	public:
+		std::unique_ptr<private_::CDraw2DManagerConnection> draw_system_connection;
+	};
+
+	//////////////////////////////////////////////////////////////////////////
+	//CDraw2D
+	//////////////////////////////////////////////////////////////////////////
+
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDraw2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, draw_priority)
@@ -21,9 +34,11 @@ namespace planeta {
 			.ShallowCopyTarget(&CDraw2D::color_);
 	}
 
-	CDraw2D::CDraw2D() :draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0) {
+	CDraw2D::CDraw2D():impl_(std::make_unique<Impl_>()), draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0) {
 
 	}
+
+	CDraw2D::~CDraw2D() = default;
 
 	CDraw2D& CDraw2D::draw_priority(int priority) {
 		draw_priority_ = priority;
@@ -47,28 +62,27 @@ namespace planeta {
 		return Vector2Dd(transform2d_->scale().x * scale_.x, transform2d_->scale().y * scale_.y);
 	}
 
-	void CDraw2D::RegisterToProcess_() {
-		scene_internal_interface().draw_system_internal_pointer()->Register(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
-	}
-
-	void CDraw2D::RemoveFromProcess_() {
-		scene_internal_interface().draw_system_internal_pointer()->Remove(std::static_pointer_cast<CDraw2D>(shared_from_this()));
-	}
-
 	void CDraw2D::UpdatePriority_() {
 		if (is_active()) {
-			scene_internal_interface().draw_system_internal_pointer()->ChangePriority(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
+			impl_->draw_system_connection->ChangePriority(draw_priority_);
 		}
 	}
 
+	bool CDraw2D::OnInitialized() {
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDraw2D(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
+		return impl_->draw_system_connection != nullptr;
+	}
+
+	void CDraw2D::OnFinalized()noexcept {
+		impl_->draw_system_connection->Remove();
+	}
+
 	bool CDraw2D::OnActivated() {
-		RegisterToProcess_();
-		return true;
+		return impl_->draw_system_connection->Activte();
 	}
 
 	bool CDraw2D::OnInactivated() {
-		RemoveFromProcess_();
-		return true;
+		return impl_->draw_system_connection->Inactivate();
 	}
 
 	bool CDraw2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {

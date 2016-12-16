@@ -62,7 +62,7 @@ namespace planeta {
 	}
 
 	void CDrawPlanet2D::OnFinalized()noexcept {
-
+		Super::OnFinalized();
 	}
 
 	void CDrawPlanet2D::SetPolygonRoundly_() {

@@ -11,6 +11,8 @@ namespace planeta {
 	public:
 		using Super = private_::GameObjectSystemComponent;
 
+		CCamera2D();
+		~CCamera2D();
 		/*! 位置を取得*/
 		const planeta::Vector2Dd& position()const;
 		/*! 位置を設定*/
@@ -24,6 +26,9 @@ namespace planeta {
 		/*! 拡大度を設定*/
 		void expansion(double e);
 	private:
+		class Impl_;
+		std::unique_ptr<Impl_> impl_;
+
 		double expansion_ = 1.0;
 
 		NonOwingPointer<CTransform2D> transform2d_;
