@@ -45,13 +45,13 @@
     <OutDir>C:\libraries\PlanetaEngine\lib\</OutDir>
     <TargetName>planetaengine_mt</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <IntDir>$(Configuration)\</IntDir>
+    <IntDir>$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>C:\libraries\PlanetaEngine\lib\</OutDir>
     <TargetName>planetaengine_mtd</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <IntDir>$(Configuration)\</IntDir>
+    <IntDir>$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -155,6 +155,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BuiltInResources.h" />
     <ClInclude Include="BuiltInTasks.h" />
     <ClInclude Include="CCamera2D.h" />
+    <ClInclude Include="CDrawGUI.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CharacterCode.h" />
     <ClInclude Include="ClassInfo.h" />
@@ -428,6 +429,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CCamera2D.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
+    <ClCompile Include="CDrawGUI.cpp" />
     <ClCompile Include="ColliderComponent2DDebugDrawer.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CharacterCode.cpp" />

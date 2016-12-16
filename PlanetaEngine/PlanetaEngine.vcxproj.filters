@@ -73,9 +73,6 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D">
       <UniqueIdentifier>{20c2ee0b-64fc-4ceb-8e46-5c2ffa7748b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D">
-      <UniqueIdentifier>{363a6867-3602-4489-bdec-0dbf4a02ed15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D">
       <UniqueIdentifier>{848979b6-82ac-4e0a-b095-1487a18c6740}</UniqueIdentifier>
     </Filter>
@@ -216,6 +213,21 @@
     </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent">
       <UniqueIdentifier>{fa903434-b4de-4c4d-8c40-535dcbfb7978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\2D">
+      <UniqueIdentifier>{5d6d6b8f-831d-45bb-8842-f414fa7b4cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI">
+      <UniqueIdentifier>{b26634a3-c05e-44a7-b338-84086e3eb06d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent">
+      <UniqueIdentifier>{363a6867-3602-4489-bdec-0dbf4a02ed15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D">
+      <UniqueIdentifier>{54ff0547-56cb-4d7c-9b08-d879f122d983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI">
+      <UniqueIdentifier>{7c57cc2a-d52d-4f46-a709-970aa13f0346}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -509,24 +521,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectBase.h">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CTransform2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="CDraw2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawGraph2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawLine2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawPlanet2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawPolygon2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
     </ClInclude>
     <ClInclude Include="IColliderWithCollider2D.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
@@ -963,8 +957,29 @@
     <ClInclude Include="Signal.h">
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="CTransform2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\2D</Filter>
+    </ClInclude>
     <ClInclude Include="CTransformGUI.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CDraw2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawGraph2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawLine2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawPlanet2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawPolygon2D.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawGUI.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1114,24 +1129,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectBase.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="CTransform2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="CDraw2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CDrawGraph2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CDrawLine2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CDrawPlanet2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CDrawPolygon2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent2D</Filter>
     </ClCompile>
     <ClCompile Include="CCircleCollider2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
@@ -1367,8 +1364,29 @@
     <ClCompile Include="SceneSetUpProxy.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
+    <ClCompile Include="CTransform2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\2D</Filter>
+    </ClCompile>
     <ClCompile Include="CTransformGUI.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent</Filter>
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CDraw2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawGraph2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawLine2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawPlanet2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawPolygon2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawGUI.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
