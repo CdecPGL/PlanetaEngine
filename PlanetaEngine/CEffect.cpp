@@ -195,7 +195,8 @@ namespace planeta {
 		}
 	}
 
-	bool CEffect::OnInactivated() {
+	void CEffect::OnInactivated()
+{
 		impl_->DisconnectMyCTransformUpdatedEvent();
 		impl_->PauseEffect();
 		return Super::OnInactivated();

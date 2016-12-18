@@ -93,7 +93,7 @@ namespace planeta {
 		bool OnInitialized()override final;
 		void OnFinalized()noexcept override final;
 		bool OnActivated()override final;
-		bool OnInactivated()override final;
+		void OnInactivated()override final;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransform2D);
 

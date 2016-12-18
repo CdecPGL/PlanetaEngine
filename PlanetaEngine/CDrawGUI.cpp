@@ -40,9 +40,9 @@ namespace planeta {
 		return impl_->draw_system_connection->Activte();
 	}
 
-	bool CDrawGUI::OnInactivated() {
-		auto ret = impl_->draw_system_connection->Inactivate();
-		return Super::OnInactivated() && ret;
+	void CDrawGUI::OnInactivated() {
+		impl_->draw_system_connection->Inactivate();
+		Super::OnInactivated();
 	}
 
 }

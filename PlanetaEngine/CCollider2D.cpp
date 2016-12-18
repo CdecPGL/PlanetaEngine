@@ -27,9 +27,9 @@ namespace planeta {
 		return true;
 	}
 
-	bool CCollider2D::OnInactivated() {
+	void CCollider2D::OnInactivated() {
 		RemoveFromCollisionDetectProcess_();
-		return true;
+		Super::OnInactivated();
 	}
 
 	void CCollider2D::ResistToCollisionDetectProcess_() {

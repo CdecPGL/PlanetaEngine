@@ -459,16 +459,12 @@ namespace planeta {
 		return true;
 	}
 
-	bool CTransform2D::OnInactivated() {
+	void CTransform2D::OnInactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 		//TransformSystemから登録解除
-		bool noerr = true;
-		if (scene_internal_interface().transform_system_internal_pointer()->RemoveTransform2D(impl_->t2d_id_)) {
-			noerr = true;
-		} else {
+		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransform2D(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
-			noerr = false;
 		}
-		return noerr && Super::OnInactivated();
+		Super::OnInactivated();
 	}
 }

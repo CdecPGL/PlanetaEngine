@@ -18,12 +18,11 @@ namespace planeta {
 	}
 
 	bool CGround2D::OnActivated() {
-		return true;
+		return Super::OnActivated();
 	}
 
-	bool CGround2D::OnInactivated() {
-		
-		return true;
+	void CGround2D::OnInactivated() {
+		Super::OnInactivated();
 	}
 
 	void CGround2D::OnFinalized() noexcept {

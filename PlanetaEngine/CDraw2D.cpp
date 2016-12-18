@@ -81,8 +81,9 @@ namespace planeta {
 		return impl_->draw_system_connection->Activte();
 	}
 
-	bool CDraw2D::OnInactivated() {
-		return impl_->draw_system_connection->Inactivate();
+	void CDraw2D::OnInactivated() {
+		impl_->draw_system_connection->Inactivate();
+		Super::OnInactivated();
 	}
 
 	bool CDraw2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {

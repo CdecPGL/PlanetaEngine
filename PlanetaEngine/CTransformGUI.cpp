@@ -87,17 +87,13 @@ namespace planeta {
 		return true;
 	}
 
-	bool CTransformGUI::OnInactivated() {
+	void CTransformGUI::OnInactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 		//TransformSystem‚©‚ç“o˜^‰ðœ
-		bool noerr = true;
-		if (scene_internal_interface().transform_system_internal_pointer()->RemoveTransformGUI(impl_->t2d_id_)) {
-			noerr = true;
-		} else {
+		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransformGUI(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystem‚©‚ç‚Ì“o˜^‰ðœ‚ÉŽ¸”s‚µ‚Ü‚µ‚½BID:", impl_->t2d_id_);
-			noerr = false;
 		}
-		return noerr && Super::OnInactivated();
+		Super::OnInactivated();
 	}
 
 }

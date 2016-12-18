@@ -62,7 +62,7 @@ namespace planeta {
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
 	private:
 		bool OnActivated() override final;
-		bool OnInactivated() override final;
+		void OnInactivated() override final;
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
 

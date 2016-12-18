@@ -34,7 +34,7 @@ namespace planeta {
 		virtual bool GetOtherComponentsProc(const GOComponentGetter&) override;
 		virtual bool OnInitialized() override;
 		virtual bool OnActivated() override;
-		virtual bool OnInactivated() override;
+		virtual void OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	private:
 		class Impl_;

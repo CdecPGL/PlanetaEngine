@@ -69,7 +69,7 @@ namespace planeta {
 		planeta::Color color_;
 		void UpdatePriority_();
 		bool OnActivated()override final;
-		bool OnInactivated()override final;
+		void OnInactivated()override final;
 		/*描画処理*/
 		virtual void DrawProc(ScreenDrawer2D& drawer) = 0;
 	};

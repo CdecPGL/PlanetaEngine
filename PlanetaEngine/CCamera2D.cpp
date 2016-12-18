@@ -48,9 +48,9 @@ namespace planeta {
 		return true;
 	}
 
-	bool CCamera2D::OnInactivated() {
+	void CCamera2D::OnInactivated() {
 		PE_LOG_WARNING("カメラ2Dコンポーネントは無効化に対応していません。");
-		return true;
+		Super::OnInactivated();
 	}
 
 	void CCamera2D::OnFinalized() noexcept {

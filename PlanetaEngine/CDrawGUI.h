@@ -13,7 +13,7 @@ namespace planeta {
 		virtual bool OnInitialized()override;
 		virtual void OnFinalized()noexcept override;
 		virtual bool OnActivated()override;
-		virtual bool OnInactivated()override;
+		virtual void OnInactivated()override;
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;

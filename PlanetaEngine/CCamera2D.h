@@ -35,7 +35,7 @@ namespace planeta {
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
 		virtual bool OnInitialized()override;
 		virtual bool OnActivated() override;
-		virtual bool OnInactivated() override;
+		virtual void OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CCamera2D);

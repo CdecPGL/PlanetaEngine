@@ -42,7 +42,7 @@ namespace planeta {
 	protected:
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
 		virtual bool OnActivated() override;
-		virtual bool OnInactivated() override;
+		virtual void OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	private:
 		NonOwingPointer<CTransform2D> transform2d_;

@@ -25,7 +25,10 @@ namespace planeta {
 	}
 
 	bool GameObjectComponent::Activate() {
-		if (is_active_) { return true; }
+		if (is_active_) { 
+			PE_LOG_WARNING("すでに有効なゲームオブジェクトコンポーネントを有効化しようとしました。type:", typeid(*this).name());
+			return true;
+		}
 		if (OnActivated()) {
 			is_active_ = true;
 			return true;
@@ -35,13 +38,13 @@ namespace planeta {
 	}
 
 	bool GameObjectComponent::InActivate() {
-		if (!is_active_) { return true; }
-		if (OnInactivated()) {
-			is_active_ = false;
-			return true;
-		} else {
-			return false;
+		if (!is_active_) { 
+			PE_LOG_WARNING("すでに無効なゲームオブジェクトコンポーネントを無効化しようとしました。type:", typeid(*this).name());
+			return true; 
 		}
+		OnInactivated();
+		is_active_ = false;
+		return true;
 	}
 
 	bool GameObjectComponent::SetSceneAndHolderGOData(const private_::GameObjectComponentSetUpData& resistration_data) {
