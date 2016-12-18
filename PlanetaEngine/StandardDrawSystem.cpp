@@ -5,6 +5,7 @@
 #include "ConfigManager.h"
 #include "StandardDrawSystem.h"
 #include "CDraw2D.h"
+#include "CDrawGUI.h"
 #include "LogUtility.h"
 #include "ScreenDrawer2D.h"
 #include "ScreenDrawerGUI.h"
@@ -73,6 +74,11 @@ namespace planeta{
 		{
 			//2DDraw
 			cdraw2d_holder_.Iterate([&sd_2d = *screen_drawer_2d_](CDraw2D& com){com.Draw(sd_2d); });
+		}
+
+		void StandardDrawSystem::ExcuteDrawGUI() {
+			//GUIDraw
+			cdrawgui_holder_.Iterate([&sd_gui = *screen_drawer_gui_](CDrawGUI& com){com.Draw(sd_gui); });
 		}
 
 		void StandardDrawSystem::Update() {

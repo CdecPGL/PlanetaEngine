@@ -20,6 +20,7 @@ namespace planeta {
 			void Finalize()override;
 			void Update()override;
 			void ExcuteDraw()override;
+			void ExcuteDrawGUI()override;
 			void ApplyCameraState()override;
 			/*描画コンポーネント登録*/
 			std::unique_ptr<CDraw2DManagerConnection> RegisterCDraw2D(const std::shared_ptr<CDraw2D>& draw_component, int priority)override;

@@ -20,6 +20,8 @@ namespace planeta {
 			//描画タスク
 			auto godp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);
 			godp->SetExcuteFunction([&drw_sys = *scene.draw_system_internal_pointer()]{ drw_sys.ExcuteDraw(); });
+			auto guidp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawGUIPhase);
+			guidp->SetExcuteFunction([&drw_sys = *scene.draw_system_internal_pointer()]{ drw_sys.ExcuteDrawGUI(); });
 			//カメラ適用タスク
 			auto act = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyCameraPhase);
 			act->SetExcuteFunction([&drw_sys = *scene.draw_system_internal_pointer()]{ drw_sys.ApplyCameraState(); });

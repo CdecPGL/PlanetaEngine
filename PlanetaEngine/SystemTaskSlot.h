@@ -7,7 +7,8 @@ namespace planeta {
 			CollitionDetectPhase = 1,
 			ApplyCameraPhase = 2,
 			DrawPhase = 3,
+			DrawGUIPhase = 4,
 		};
-		constexpr int SYSTEM_TASK_SLOT_SIZE = 4;
+		constexpr int SYSTEM_TASK_SLOT_SIZE = 5;
 	}
 }

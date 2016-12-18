@@ -29,7 +29,8 @@ namespace planeta {
 			constexpr int TASK_SLOT_9 = 12;
 			constexpr int TASK_SLOT_10 = 13;
 			constexpr int DRAW_SLOT = 14;
-			constexpr int SLOT_COUNT = 15;
+			constexpr int DRAW_GUI_SLOT = 15;
+			constexpr int SLOT_COUNT = 16;
 			//スロットマップ
 			constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
 				TASK_SLOT_0,
@@ -51,6 +52,7 @@ namespace planeta {
 				COLDET_SLOT,
 				APPCAM_SLOT,
 				DRAW_SLOT,
+				DRAW_GUI_SLOT,
 			};
 			/*タスクスロットからタスクグループ番号を取得*/
 			int GetGroupNumberFromSlot(TaskSlot slot) {

@@ -33,7 +33,11 @@ namespace planeta {
 		class DrawSystem : public IDrawSystem, public SceneModule {
 		public:
 			virtual ~DrawSystem() = 0 {};
+			/*ゲームオブジェクトの描画*/
 			virtual void ExcuteDraw() = 0;
+			/*GUIの描画*/
+			virtual void ExcuteDrawGUI() = 0;
+			/*カメラ状態の適用*/
 			virtual void ApplyCameraState() = 0;
 			/*2D描画コンポーネント登録*/
 			virtual std::unique_ptr<CDraw2DManagerConnection> RegisterCDraw2D(const std::shared_ptr<CDraw2D>& draw_component, int priority) = 0;
