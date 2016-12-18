@@ -40,7 +40,7 @@ namespace planeta {
 
 	bool CCamera2D::OnInitialized() {
 		if (!Super::OnInitialized()) { return false; }
-		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(std::static_pointer_cast<CCamera2D>(shared_from_this()));
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(shared_this<CCamera2D>());
 		return impl_->draw_system_connection != nullptr;
 	}
 

@@ -88,6 +88,16 @@ namespace planeta {
 		virtual void OnFinalized()noexcept {} //所属するゲームオブジェクトが破棄されるときに呼び出される(システム関数)
 		/*! シーンへのアクセス*/
 		IScene& scene();
+		/*! 自身のshared_ptrにアクセス(現在は、型変換のチェックはされない)*/
+		template<class T>
+		std::shared_ptr<T> shared_this() {
+			return std::static_pointer_cast<T>(shared_from_this());
+		}
+		/*! 自身のconstなshared_ptrにアクセス(現在は、型変換のチェックはされない)*/
+		template<class T>
+		std::shared_ptr<const T> shared_this()const {
+			return std::static_pointer_cast<const T>(shared_from_this());
+		}
 	private:
 		bool is_valied_ = false;
 		bool is_active_ = false;

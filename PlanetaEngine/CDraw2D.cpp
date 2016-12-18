@@ -69,7 +69,7 @@ namespace planeta {
 	}
 
 	bool CDraw2D::OnInitialized() {
-		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDraw2D(std::static_pointer_cast<CDraw2D>(shared_from_this()), draw_priority_);
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDraw2D(shared_this<CDraw2D>(), draw_priority_);
 		return impl_->draw_system_connection != nullptr;
 	}
 
