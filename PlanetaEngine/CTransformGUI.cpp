@@ -1,3 +1,5 @@
+#include <unordered_map>
+
 #include "CTransformGUI.h"
 #include "ISceneInternal.h"
 #include "TransformSystem.h"
@@ -14,9 +16,6 @@ namespace planeta {
 		Vector2Di size{ 0,0 };
 		double rotation_rad = 0;
 		Vector2Dd pivot{ 0,0 };
-
-		int t2d_id_ = -1;
-
 		Impl_& operator=(const Impl_ imp) {
 			position = imp.position;
 			size = imp.size;
@@ -24,6 +23,8 @@ namespace planeta {
 			pivot = imp.pivot;
 			return *this;
 		}
+
+		int t2d_id_ = -1;
 	};
 
 	//////////////////////////////////////////////////////////////////////////

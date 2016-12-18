@@ -155,6 +155,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="BuiltInResources.h" />
     <ClInclude Include="BuiltInTasks.h" />
     <ClInclude Include="CCamera2D.h" />
+    <ClInclude Include="CDrawGraphGUI.h" />
     <ClInclude Include="CDrawGUI.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CharacterCode.h" />
@@ -229,6 +230,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ReflectionExceptions.h" />
     <ClInclude Include="ReflectionUtility.h" />
     <ClInclude Include="RenderingManager.h" />
+    <ClInclude Include="ResourceHolder.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourceReferencer.h" />
     <ClInclude Include="RJson.h" />
@@ -429,6 +431,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="CCamera2D.cpp" />
     <ClCompile Include="CCircleCollider2D.cpp" />
     <ClCompile Include="CCollider2D.cpp" />
+    <ClCompile Include="CDrawGraphGUI.cpp" />
     <ClCompile Include="CDrawGUI.cpp" />
     <ClCompile Include="ColliderComponent2DDebugDrawer.cpp" />
     <ClCompile Include="CEffect.cpp" />

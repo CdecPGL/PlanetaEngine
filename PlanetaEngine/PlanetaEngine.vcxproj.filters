@@ -166,9 +166,6 @@
     <Filter Include="PlanetaEngine\Reflection">
       <UniqueIdentifier>{47f543f7-b669-4479-b5a3-f8ad2d5bc270}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\ParticleSystem">
-      <UniqueIdentifier>{2d03f87b-613c-4dfa-b55b-6dcbeea4666b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Core\Pointer">
       <UniqueIdentifier>{3081a548-9794-4243-8e5d-4ace9272a9bc}</UniqueIdentifier>
     </Filter>
@@ -981,6 +978,12 @@
     <ClInclude Include="CDrawGUI.h">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="CDrawGraphGUI.h">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceHolder.h">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1386,6 +1389,9 @@
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
     </ClCompile>
     <ClCompile Include="CDrawGUI.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawGraphGUI.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
     </ClCompile>
   </ItemGroup>
