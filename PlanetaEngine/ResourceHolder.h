@@ -8,8 +8,20 @@ namespace planeta {
 	namespace util {
 		/*! リソースを保持するためのヘルパークラス*/
 		template<class ResType>
-		class ResourceHolder {
+		class ResourceHolder final{
 		public:
+			/*! コンストラクタ*/
+			ResourceHolder() = default;
+			/*! デストラクタ*/
+			~ResourceHolder() = default;
+			/*! コピーコンストラクタ*/
+			ResourceHolder(const ResourceHolder& obj) = default;
+			/*! ムーブコンストラクタ*/
+			ResourceHolder(ResourceHolder&& obj) = default;
+			/*! 代入演算子*/
+			ResourceHolder& operator=(const ResourceHolder& obj) = default;
+			/*! ムーブコンストラクタ*/
+			ResourceHolder& operator=(ResourceHolder&& obj) = default;
 			/*! IDでリソースを設定する*/
 			bool SetResourceByID(const std::string& res_id)noexcept {
 				auto res = Game::instance().resource_manager()->GetResourceByID(res_id);
