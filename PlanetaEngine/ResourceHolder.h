@@ -33,7 +33,7 @@ namespace planeta {
 				if (gr) {
 					return true;
 				} else {
-					PE_LOG_ERROR("リソースの型変換に失敗しました。(リソースID:", resource_id, "、ソースの型", typeid(*res).name(), "、ターゲットの型:", typeid(ResType).name(), ")");
+					PE_LOG_ERROR("リソースの型変換に失敗しました。(リソースID:", res_id, "、ソースの型", typeid(*res).name(), "、ターゲットの型:", typeid(ResType).name(), ")");
 					return false;
 				}
 			}

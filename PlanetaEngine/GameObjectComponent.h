@@ -53,7 +53,7 @@ namespace planeta {
 		先頭で親クラスの同関数を呼び出す必要がある。
 		*/
 
-		virtual bool GetOtherComponentsProc(const GOComponentGetter&) { return true; }
+		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) { com_getter; return true; }
 		//初期化
 		bool Initialize();
 		bool Activate();

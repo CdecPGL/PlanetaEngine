@@ -21,7 +21,7 @@ namespace planeta {
 		//! コピーコンストラクタ
 		NonOwingPointer(const NonOwingPointer&) = default;
 		//! 代入演算子
-		NonOwingPointer& operator=(const NonOwingPointer&) = delete;
+		NonOwingPointer& operator=(const NonOwingPointer&) = default;
 		//! nullptrとの等価比較演算子
 		bool operator==(std::nullptr_t)const { return ptr_ == nullptr; }
 		//! nullptrとの非等価比較演算子

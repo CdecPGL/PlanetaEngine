@@ -28,7 +28,7 @@ namespace planeta {
 		const RectAngle<int>& draw_area()const { return _draw_area; }
 		/*! 画像上の描画領域をピクセル単位で設定*/
 		CDrawGraph2D& draw_area(const RectAngle<int>& rect) { _draw_area = rect; _UpdateUVPosition(); return *this; }
-		/*! 画像を反転しているか取得*/
+		/*! 画像を反転させるか取得*/
 		const bool reverse()const { return reverse_; }
 		/*! 画像を反転させるか設定*/
 		CDrawGraph2D& reverse(bool rev) { reverse_ = rev; _UpdateUVPosition(); return *this; }

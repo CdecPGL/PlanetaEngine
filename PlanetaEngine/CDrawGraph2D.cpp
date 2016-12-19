@@ -32,19 +32,13 @@ namespace planeta {
 	CDrawGraph2D::~CDrawGraph2D() = default;
 
 	bool CDrawGraph2D::SetGraphResource(const std::string& resource_id) {
-		auto res = Game::instance().resource_manager()->GetResourceByID(resource_id);
-		if (res == nullptr) {
-			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
-			return false;
-		}
-		std::shared_ptr<RGraph> gr = std::dynamic_pointer_cast<RGraph>(res);
-		if (gr) {
-			graph_draw_data_->SetGraphResource(gr);
-			_draw_area.Set(Vector2Di(0, 0), Vector2Di(gr->size().x, gr->size().y));
+		auto res = Game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
+		if (res) {
+			graph_draw_data_->SetGraphResource(res);
+			_draw_area.Set(Vector2Di(0, 0), Vector2Di(res->size().x, res->size().y));
 			_UpdateUVPosition();
 			return true;
 		} else {
-			PE_LOG_ERROR("画像リソースでないリソースが指定されました。(リソース名は", resource_id, "、タイプは", typeid(*res).name(), ")");
 			return false;
 		}
 	}
