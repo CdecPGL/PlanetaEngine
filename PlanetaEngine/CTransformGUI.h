@@ -23,9 +23,9 @@ namespace planeta {
 		CTransformGUI& size(const Vector2Di& s);
 		//! サイズを取得
 		const Vector2Di& size()const;
-		//! 中心位置を設定(0.0-1.0)
+		//! 変形中心位置を設定(0.0-1.0)
 		CTransformGUI& pivot(const Vector2Dd& p);
-		//! 中心位置を取得(0.0-1.0)
+		//! 変形中心位置を取得(0.0-1.0)
 		const Vector2Dd& pivot()const;
 	private:
 		class Impl_;

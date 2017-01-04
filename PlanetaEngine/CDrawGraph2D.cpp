@@ -78,17 +78,17 @@ namespace planeta {
 		Vector2Df uvs[4];
 		auto g_size = graph_draw_data_->graph_resource()->size();
 		//左下
-		uvs[0].x = (float)(reverse_ ? (_draw_area.right() + 1) : _draw_area.left()) / g_size.x;
-		uvs[0].y = (float)(_draw_area.bottom() + 1) / g_size.y;
+		uvs[0].x = (float)(reverse_ ? (_draw_area.x_max() + 1) : _draw_area.x_min()) / g_size.x;
+		uvs[0].y = (float)(_draw_area.y_max() + 1) / g_size.y;
 		//右下
-		uvs[1].x = (float)(reverse_ ? _draw_area.left() : (_draw_area.right() + 1)) / g_size.x;
-		uvs[1].y = (float)(_draw_area.bottom() + 1) / g_size.y;
+		uvs[1].x = (float)(reverse_ ? _draw_area.x_min() : (_draw_area.x_max() + 1)) / g_size.x;
+		uvs[1].y = (float)(_draw_area.y_max() + 1) / g_size.y;
 		//右上
-		uvs[2].x = (float)(reverse_ ? _draw_area.left() : (_draw_area.right() + 1)) / g_size.x;
-		uvs[2].y = (float)_draw_area.top() / g_size.y;
+		uvs[2].x = (float)(reverse_ ? _draw_area.x_min() : (_draw_area.x_max() + 1)) / g_size.x;
+		uvs[2].y = (float)_draw_area.y_min() / g_size.y;
 		//左上
-		uvs[3].x = (float)(reverse_ ? (_draw_area.right() + 1) : _draw_area.left()) / g_size.x;
-		uvs[3].y = (float)_draw_area.top() / g_size.y;
+		uvs[3].x = (float)(reverse_ ? (_draw_area.x_max() + 1) : _draw_area.x_min()) / g_size.x;
+		uvs[3].y = (float)_draw_area.y_min() / g_size.y;
 
 		for (int i = 0; i < 4; ++i) {
 			graph_draw_data_->SetVertexUV(i, uvs[i]);
