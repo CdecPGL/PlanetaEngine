@@ -12,11 +12,13 @@ namespace planeta {
 
 	class CTransformGUI::Impl_ {
 	public:
-		Vector2Di position{ 0,0 };
-		Vector2Di size{ 0,0 };
+		RectAnglei rect;
+		Vector2Di position;
+		Vector2Di size{ 1,1 };
 		double rotation_rad = 0;
-		Vector2Dd pivot{ 0,0 };
-		Impl_& operator=(const Impl_ imp) {
+		Vector2Dd pivot{ 0.5,0.5 };
+		Impl_& operator=(const Impl_& imp) {
+			rect = imp.rect;
 			position = imp.position;
 			size = imp.size;
 			rotation_rad = imp.rotation_rad;
@@ -95,6 +97,10 @@ namespace planeta {
 			PE_LOG_FATAL("TransfromSystem‚©‚ç‚Ì“o˜^‰ðœ‚ÉŽ¸”s‚µ‚Ü‚µ‚½BID:", impl_->t2d_id_);
 		}
 		Super::OnInactivated();
+	}
+
+	const planeta::RectAnglei& CTransformGUI::rect() const {
+		return impl_->rect;
 	}
 
 }
