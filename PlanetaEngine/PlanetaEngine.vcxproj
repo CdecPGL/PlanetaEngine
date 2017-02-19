@@ -62,7 +62,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -82,8 +82,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Debug;$(BOOST_ROOT)\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua_mtd.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
@@ -110,7 +110,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\cryptopp563;$(BOOST_ROOT);C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\lua_5_3_2\include;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -126,8 +126,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\cryptopp563\Win32\Output\Release;$(BOOST_ROOT)\boost_1_61_0\stage\x86\vc14\lib;C:\libraries\lua\lua_5_3_2\lib;C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua_mt.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
