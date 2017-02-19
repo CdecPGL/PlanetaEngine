@@ -99,8 +99,8 @@ namespace planeta {
 		Super::OnInactivated();
 	}
 
-	const planeta::RectAnglei& CTransformGUI::rect() const {
+	/*const planeta::RectAnglei& CTransformGUI::rect() const {
 		return impl_->rect;
-	}
+	}*/
 
 }
