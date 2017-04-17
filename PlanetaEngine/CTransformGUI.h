@@ -19,7 +19,7 @@ namespace planeta {
 		//! 回転度を取得。Pivotを中心とする
 		const double rotation_rad()const;
 		//! 回転度を設定。Pivotを中心とする
-		CTransformGUI&  rotation_rad(double rota_rad);
+		CTransformGUI& rotation_rad(double rota_rad);
 		//! サイズを取得。Pivotを基準点とする
 		const Vector2Di& size()const;
 		//! サイズを設定。Pivotを基準点とする

@@ -228,9 +228,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="tinyxml2.h">
       <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClInclude>

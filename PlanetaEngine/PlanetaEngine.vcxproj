@@ -146,9 +146,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AESEncrypter.h" />
     <ClInclude Include="ArchiveManipulator.h" />
     <ClInclude Include="BadAllocException.h" />
