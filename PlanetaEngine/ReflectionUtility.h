@@ -50,7 +50,9 @@ namespace planeta {
 //Ptreeからの変換関数
 //////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////
 //宣言短縮用マクロ
+//////////////////////////////////////////////////////////////////////////
 #define PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC(array_type)\
 template<typename T, typename... Rest>\
 struct ReflectivePtreeConverter_Layer0 <array_type<T, Rest...>> {\
@@ -66,7 +68,9 @@ template<typename T, typename... Rest>\
 struct ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>> {\
 	static void Convert(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src);\
 };
+//////////////////////////////////////////////////////////////////////////
 //定義短縮用マクロ
+//////////////////////////////////////////////////////////////////////////
 #define PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(array_type)\
 template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0<array_type<T, Rest...>>::Convert(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
@@ -104,8 +108,10 @@ void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Conver
 	}\
 }
 
-//宣言
 namespace planeta {
+	//////////////////////////////////////////////////////////////////////////
+	//宣言
+	//////////////////////////////////////////////////////////////////////////
 	namespace private_ {
 		template<typename T, typename... Rest>
 		void ReflectivePtreeConverterError();
@@ -115,7 +121,7 @@ namespace planeta {
 		template<size_t idx, typename F, typename... R>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<F, R...>& dst, const std::vector<const boost::property_tree::ptree*>& src);
 
-		//エラー分類(Layer3)
+		//Ptreeからの変換不可能(Layer3)
 		template<typename T>
 		struct ReflectivePtreeConverter_Layer3 {
 			static void Convert(T& dst, const boost::property_tree::ptree& src);
@@ -124,12 +130,12 @@ namespace planeta {
 		/*! @brief ptreeから直接変換可能な型へのPtree変換関数(Layer2)
 		@note BoostLibrary1.64.0では、get_value内でistreamによる型の変換を行っている。これを利用して、get_valueに対応していない型に対しては、std::cinでもコンパイルエラーになることを利用してSFINEを用いオーバーロード対象外にする。get_valueの内部実装に依存しているため、それに変更があった場合は修正する必要がある。
 		*/
-		//変換不可能
+		//Ptreeから直接変換可能
 		template<typename T, typename U = void>
 		struct ReflectivePtreeConverter_Layer2 {
 			static void Convert(T& dst, const boost::property_tree::ptree& src);
 		};
-		//変換可能
+		//直接変換不可能
 		template<typename T>
 		struct ReflectivePtreeConverter_Layer2<T, std::enable_if_t<mp_util::IsIStreamCompatible_v<T>>> {
 			static void Convert(T& dst, const boost::property_tree::ptree& src);
@@ -174,9 +180,9 @@ namespace planeta {
 		template<typename T>
 		void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src);
 	}
-
+	//////////////////////////////////////////////////////////////////////////
 	//定義
-
+	//////////////////////////////////////////////////////////////////////////
 	namespace private_ {
 		template<typename T, typename... Rest>
 		void ReflectivePtreeConverterError() {
