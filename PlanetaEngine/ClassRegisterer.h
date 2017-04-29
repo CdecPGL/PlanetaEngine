@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#define DISABLE_SCRIPT_REGISTRATION
+
 #include <string>
 #include <unordered_map>
 #include <functional>
@@ -87,9 +89,11 @@ namespace planeta {
 		private_::ClassInfo& class_info_;
 		template<typename PType,typename Getter, typename Setter>
 		ClassRegisterer& Property_(const std::string& prop_id, const Getter& getter, const Setter& setter)noexcept;
+#ifndef DISABLE_SCRIPT_REGISTRATION
 		using LuaBinderRet = decltype(std::declval<LuaIntf::LuaBinding>().beginClass<C>(""));
 		//引数は最初に事項される関数
 		std::function<LuaBinderRet(const std::function<LuaBinderRet()>&)> lua_binder_core_;
+#endif
 	};
 
 	template<class C>
@@ -110,9 +114,11 @@ namespace planeta {
 		};
 		class_info_.public_variable_prpperty_info.emplace(var_id, vpinfo);
 
+#ifndef DISABLE_SCRIPT_REGISTRATION
 		if (class_info_.is_bind_to_script) {
 			lua_binder_core_ = [lb = lua_binder_core_, var_id, mv_ptr](const std::function<LuaBinderRet()>& f) {return lb(f).addVariableRef(var_id.c_str(), mv_ptr); };
 		}
+#endif
 		return *this;
 	}
 
@@ -154,11 +160,13 @@ namespace planeta {
 		};
 		class_info_.public_variable_prpperty_info.emplace(prop_id, pinfo);
 
+#ifndef DISABLE_SCRIPT_REGISTRATION
 		if (class_info_.is_bind_to_script) {
 			//LuaIntfは戻り値がvoidでないsetterに対応していないので、必要なら戻り値をvoid化する。
 			auto bsetter = private_::GetMemberPropertySetterToLuaIntf(setter);
 			lua_binder_core_ = [lb = lua_binder_core_, prop_id, getter, setter = bsetter](const std::function<LuaBinderRet()>& f) {return lb(f).addProperty(prop_id.c_str(), getter, setter); };
 		}
+#endif
 		return *this;
 	}
 	/*! @brief 読み取り専用プロパティを登録する
@@ -173,9 +181,11 @@ namespace planeta {
 			return boost::any((static_cast<C&>(c).*getter)());
 		};
 		class_info_.public_variable_prpperty_info.emplace(prop_id, pinfo);
+#ifndef DISABLE_SCRIPT_REGISTRATION
 		if (class_info_.is_bind_to_script) {
 			lua_binder_core_ = [lb = lua_binder_core_, prop_id, getter](const std::function<LuaBinderRet()>& f) {return lb(f).addPropertyReadOnly(prop_id.c_str(), getter); };
 		}
+#endif
 		return *this;
 	}
 	/*! @brief 書き込み専用プロパティを登録する
@@ -196,10 +206,12 @@ namespace planeta {
 			(static_cast<C&>(c).*setter)(dat);
 		};
 		class_info_.public_variable_prpperty_info.emplace(prop_id, pinfo);
+#ifndef DISABLE_SCRIPT_REGISTRATION
 		if (class_info_.is_bind_to_script) {
 			//auto getter = []()->PType {return{}; }; //空のゲッターを指定する
 			//lua_binder_core_ = [lb = lua_binder_core_, prop_id, getter, setter](const std::function<LuaBinderRet()>& f) {return lb(f).addProperty(prop_id.c_str(), getter, setter); };
 		}
+#endif
 		return *this;
 	}
 	/*! @brief メンバ関数を追加する
@@ -207,9 +219,11 @@ namespace planeta {
 	template<class C>
 	template<typename Func>
 	ClassRegisterer<C>& ClassRegisterer<C>::Function(const std::string& func_id, const Func& func)noexcept {
+#ifndef DISABLE_SCRIPT_REGISTRATION
 		if (class_info_.is_bind_to_script) {
 			lua_binder_core_ = [lb = lua_binder_core_, func_id, func](const std::function<LuaBinderRet()>& f) {return lb(f).addFunction(func_id.c_str(), func); };
 		}
+#endif
 		return *this;
 	}
 }

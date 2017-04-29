@@ -13,9 +13,11 @@ namespace planeta {
 			void BegineProc() {}
 			void EndProc() {
 				//LuaBinderの設定
+#ifndef DISABLE_SCRIPT_REGISTRATION
 				class_info_.lua_binder = [lb = lua_binder_core_, class_id = class_info_.object_type_id](lua_State* L) {
 					lb([L, &class_id]() {return LuaIntf::LuaBinding(L).beginClass<C>(class_id.c_str()); }).endClass();
 				};
+#endif
 			}
 		};
 		//Superエイリアスが指定されているクラスの場合
@@ -26,9 +28,11 @@ namespace planeta {
 			void BegineProc() {}
 			void EndProc() {
 				//LuaBinderの設定
+#ifndef DISABLE_SCRIPT_REGISTRATION
 				class_info_.lua_binder = [lb = lua_binder_core_, class_id = class_info_.object_type_id](lua_State* L) {
 					lb([L, &class_id]() {return LuaIntf::LuaBinding(L).beginExtendClass<C, typename C::Super>(class_id.c_str()); }).endClass();
 				};
+#endif
 			}
 		};
 	}

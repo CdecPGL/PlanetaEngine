@@ -37,10 +37,10 @@ namespace planeta {
 					if (util::IsUpperCaseCharacter(c0) && util::IsUpperCaseCharacter(c1)) {
 						return{ true,c0 };
 					} else {
-						return{ false,0 };
+						return{ false,char(0) };
 					}
 				} else {
-					return{ false,0 };
+					return{ false,char(0) };
 				}
 			}
 			

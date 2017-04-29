@@ -3,11 +3,13 @@
 #include <string>
 #include <functional>
 #include <typeinfo>
+#include <iostream>
+#include <type_traits>
 #include "boost/any.hpp"
 #include "boost/call_traits.hpp"
 
 namespace planeta {
-	namespace mp_utiliey{
+	namespace mp_util{
 		struct nil {};
 
 		/*ペアを作成*/
@@ -136,5 +138,21 @@ namespace planeta {
 		template<class C, typename Ret, typename... Args>
 		std::function<boost::any(void*, const std::vector<boost::any>&)> GetMemFuncCaller(Ret(C::*mpfunc)(Args...)) {
 			return [](void* cptr, const std::vector<boost::any>& arg_list) {CallMemFuncWithParamArray(reinterpret_cast<C*>(cptr), mpfunc, arg_list); };*/
+
+		//入力ストリームに対応しているかどうかを判断するメタ関数
+		template<typename T, typename U = void>
+		struct IsIStreamCompatible : public std::false_type {};
+		template<typename T>
+		struct IsIStreamCompatible<T, decltype(std::declval<std::istream&>() >> std::declval<T&>(), std::declval<void>())> : public std::true_type {};
+		template<typename T>
+		constexpr bool IsIStreamCompatible_v = IsIStreamCompatible<T>::value;
+
+		//出力ストリームに対応しているかどうかを判断するメタ関数
+		template<typename T, typename U = void>
+		struct IsOStreamCompatible : public std::false_type {};
+		template<typename T>
+		struct IsOStreamCompatible<T, decltype(std::declval<std::ostream&>() << std::declval<T&>(), std::declval<void>())> : public std::true_type {};
+		template<typename T>
+		constexpr bool IsOStreamCompatible_v = IsOStreamCompatible<T>::value;
 	}
 }

@@ -71,16 +71,16 @@ namespace {
 		return true;
 	}
 	inline unsigned long getMSB(unsigned size) {
-//		return _MSB(size) - 1;
-		unsigned long index;
+		return _MSB(size) - 1;
+		/*unsigned long index;
 		_BitScanReverse(&index, size);
-		return index;
+		return index;*/
 	}
 	inline unsigned long getLSB(unsigned size) {
-//		return _LSB(size) - 1;
-		unsigned long index;
+		return _LSB(size) - 1;
+		/*unsigned long index;
 		_BitScanForward(&index, size);
-		return index;
+		return index;*/
 	}
 	int getFreeListSLI(unsigned int mySLI, unsigned freeListBit) {
 		// 自分のSLI以上が立っているビット列を作成 (ID = 0なら0xffffffff）

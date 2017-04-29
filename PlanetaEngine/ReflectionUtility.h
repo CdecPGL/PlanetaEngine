@@ -15,9 +15,13 @@
 #include "boost/property_tree/ptree.hpp"
 #include "boost/core/enable_if.hpp"
 
+#include "MetaprogrammingUtility.h"
+
 namespace planeta {
 	class Reflectable;
 	class ReflectionAccessible;
+	template<class C>
+	class ClassRegisterer;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -45,57 +49,62 @@ namespace planeta {
 //////////////////////////////////////////////////////////////////////////
 //Ptreeからの変換関数
 //////////////////////////////////////////////////////////////////////////
-#define PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(array_type)\
-template<typename T, typename... Rest>\
-void ReflectivePtreeConverter(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src);
 
-#define PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEF(array_type)\
+//宣言短縮用マクロ
+#define PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC(array_type)\
 template<typename T, typename... Rest>\
-void ReflectivePtreeConverter(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
+struct ReflectivePtreeConverter_Layer0 <array_type<T, Rest...>> {\
+	static void Convert(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src);\
+};
+#define PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEC(set_type)\
+template<typename T, typename... Rest>\
+struct ReflectivePtreeConverter_Layer0 <set_type<T, Rest...>> {\
+	static void Convert(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src);\
+};
+#define PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEC(map_type)\
+template<typename T, typename... Rest>\
+struct ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>> {\
+	static void Convert(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src);\
+};
+//定義短縮用マクロ
+#define PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(array_type)\
+template<typename T, typename... Rest>\
+void ReflectivePtreeConverter_Layer0<array_type<T, Rest...>>::Convert(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
 			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		ReflectivePtreeConverter(dat, pp.second);\
+		planeta::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.push_back(std::move(dat));\
 	}\
 }
-
-#define PE_PTREE_CONVERT_TO_SET_TYPE_DEC(set_type)\
+#define PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEF(set_type)\
 template<typename T, typename... Rest>\
-void ReflectivePtreeConverter(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src);
-
-#define PE_PTREE_CONVERT_TO_SET_TYPE_DEF(set_type)\
-template<typename T, typename... Rest>\
-void ReflectivePtreeConverter(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
+void ReflectivePtreeConverter_Layer0<set_type<T, Rest...>>::Convert(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
 			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		ReflectivePtreeConverter(dat, pp.second);\
+		planeta::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.insert(std::move(dat));\
 	}\
 }
-
-#define PE_PTREE_CONVERT_TO_MAP_TYPE_DEC(map_type)\
+#define PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEF(map_type)\
 template<typename T, typename... Rest>\
-void ReflectivePtreeConverter(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src);
-
-#define PE_PTREE_CONVERT_TO_MAP_TYPE_DEF(map_type)\
-template<typename T, typename... Rest>\
-void ReflectivePtreeConverter(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src) {\
+void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Convert(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src){\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == true) {\
 			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));\
 		}\
 		T dat{};\
-		ReflectivePtreeConverter(dat, pp.second);\
+		planeta::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.emplace(pp.first, std::move(dat));\
 	}\
 }
 
+//宣言
 namespace planeta {
 	namespace private_ {
 		template<typename T, typename... Rest>
@@ -105,42 +114,74 @@ namespace planeta {
 		void ReflectivePtreeConverterToStdTuple(std::tuple<>& dst, const std::vector<const boost::property_tree::ptree*>& src);
 		template<size_t idx, typename F, typename... R>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<F, R...>& dst, const std::vector<const boost::property_tree::ptree*>& src);
-	}
-	namespace util {
-		/*! 変換不可能な型のPtree変換関数*/
-		template<typename... Ts>
-		void ReflectivePtreeConverter(Ts...);
-		/*! @brief ptreeから直接変換可能な型へのPtree変換関数
-			@note BoostLibrary1.61.0では、get_value内でistreamによる型の変換を行っている。これを利用して、get_valueに対応していない型に対しては、std::cinでもコンパイルエラーになることを利用してSFINEを用いオーバーロード対象外にする。get_valueの内部実装に依存しているため、それに変更があった場合は修正する必要がある。
+
+		//エラー分類(Layer3)
+		template<typename T>
+		struct ReflectivePtreeConverter_Layer3 {
+			static void Convert(T& dst, const boost::property_tree::ptree& src);
+		};
+
+		/*! @brief ptreeから直接変換可能な型へのPtree変換関数(Layer2)
+		@note BoostLibrary1.64.0では、get_value内でistreamによる型の変換を行っている。これを利用して、get_valueに対応していない型に対しては、std::cinでもコンパイルエラーになることを利用してSFINEを用いオーバーロード対象外にする。get_valueの内部実装に依存しているため、それに変更があった場合は修正する必要がある。
 		*/
+		//変換不可能
+		template<typename T, typename U = void>
+		struct ReflectivePtreeConverter_Layer2 {
+			static void Convert(T& dst, const boost::property_tree::ptree& src);
+		};
+		//変換可能
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>>::type>());
-		/*! Reflectableを継承した型へのPtree変換関数*/
+		struct ReflectivePtreeConverter_Layer2<T, std::enable_if_t<mp_util::IsIStreamCompatible_v<T>>> {
+			static void Convert(T& dst, const boost::property_tree::ptree& src);
+		};
+
+		//Reflectableの継承による分岐(Layer1)
+		//非継承
+		template<typename T, typename U=void>
+		struct ReflectivePtreeConverter_Layer1 {
+			static void Convert(T& dst, const boost::property_tree::ptree& src);
+		};
+		//継承
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<std::is_base_of<planeta::Reflectable, T>, void>::type;
-		/*! std::tupleへのPtree変換関数*/
+		struct ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<planeta::Reflectable, T>>> {
+			static void Convert(T& dst, const boost::property_tree::ptree& src);
+		};
+
+		//特殊型への分岐(Layer0)
+		//非特殊型
+		template<typename T>
+		struct ReflectivePtreeConverter_Layer0 {
+			static void Convert(T& dst, const boost::property_tree::ptree& src);
+		};
+		//std::tuple
 		template<typename... Ts>
-		void ReflectivePtreeConverter(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src);
-
-		/*! 配列型へのPtree変換関数*/
-		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(std::vector);
-		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(std::list);
-		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC(std::deque);
-		/*! セット型へのPtree変換関数*/
-		PE_PTREE_CONVERT_TO_SET_TYPE_DEC(std::set);
-		PE_PTREE_CONVERT_TO_SET_TYPE_DEC(std::unordered_set);
-		/*! マップ型へのPtree変換関数*/
-		PE_PTREE_CONVERT_TO_MAP_TYPE_DEC(std::map);
-		PE_PTREE_CONVERT_TO_MAP_TYPE_DEC(std::unordered_map);
-
+		struct ReflectivePtreeConverter_Layer0<std::tuple<Ts...>> {
+			static void Convert(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src);
+		};
+		//std::vector
+		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC(std::vector);
+		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC(std::list);
+		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC(std::deque);
+		//std::set
+		PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEC(std::set);
+		PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEC(std::unordered_set);
+		//std::map
+		PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEC(std::map);
+		PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEC(std::unordered_map);
 	}
+
+	namespace util {
+		template<typename T>
+		void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src);
+	}
+
+	//定義
 
 	namespace private_ {
 		template<typename T, typename... Rest>
 		void ReflectivePtreeConverterError() {
 			throw reflection_error(util::ConvertAndConnectToString("Ptreeからの変換に対応していない型\"", typeid(T).name(), "\"が指定されました。"));
 		}
-
 		template<size_t idx>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<>& dst, const std::vector<const boost::property_tree::ptree*>& src) {}
 		template<size_t idx, typename F, typename... R>
@@ -151,34 +192,47 @@ namespace planeta {
 			ReflectivePtreeConverterToStdTuple<idx + 1, R...>(rtuple, src);
 			dst = std::tuple_cat(std::make_tuple<F>(std::move(f)), rtuple);
 		}
-	}
 
-	namespace util{
-		template<typename... Ts>
-		void ReflectivePtreeConverter(Ts...) {
-			planeta::private_::ReflectivePtreeConverterError<Ts...>();
-		}
-
+		//Layer3
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> decltype(std::cin >> dst, std::declval<typename boost::disable_if<std::is_base_of<Reflectable, T>, void>::type>()) {
+		void ReflectivePtreeConverter_Layer3<T>::Convert(T& dst, const boost::property_tree::ptree& src) {
+			planeta::private_::ReflectivePtreeConverterError<T>();
+		}
+		//Layer2
+		template<typename T, typename U = void>
+		void ReflectivePtreeConverter_Layer2<T, U>::Convert(T& dst, const boost::property_tree::ptree& src) {
+			ReflectivePtreeConverter_Layer3<T>::Convert(dst, src);
+		}
+		template<typename T>
+		void ReflectivePtreeConverter_Layer2<T, std::enable_if_t<mp_util::IsIStreamCompatible_v<T>>>::Convert(T& dst, const boost::property_tree::ptree& src) {
 			try {
 				dst = src.get_value<T>();
-			} catch (boost::property_tree::ptree_bad_data& e) {
+			}
+			catch (boost::property_tree::ptree_bad_data& e) {
 				throw reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
 			}
 		}
-
+		//Layer1
+		template<typename T, typename U = void>
+		void ReflectivePtreeConverter_Layer1<T, U>::Convert(T& dst, const boost::property_tree::ptree& src) {
+			ReflectivePtreeConverter_Layer2<T>::Convert(dst, src);
+		}
 		template<typename T>
-		auto ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) -> typename boost::enable_if<std::is_base_of<planeta::Reflectable, T>,void>::type {
+		void ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<planeta::Reflectable, T>>>::Convert(T& dst, const boost::property_tree::ptree& src) {
 			try {
 				planeta::private_::ReflectivePtreeConverterFromReflectionSystem(dst, src);
-			} catch (reflection_error& e) {
+			}
+			catch (reflection_error& e) {
 				throw planeta::reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
 			}
+		};
+		//Layer0
+		template<typename T>
+		void ReflectivePtreeConverter_Layer0<T>::Convert(T& dst, const boost::property_tree::ptree& src) {
+			ReflectivePtreeConverter_Layer1<T>::Convert(dst, src);
 		}
-
 		template<typename... Ts>
-		void ReflectivePtreeConverter(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src) {
+		void ReflectivePtreeConverter_Layer0<std::tuple<Ts...>>::Convert(std::tuple<Ts...>& dst, const boost::property_tree::ptree& src) {
 			std::vector<const boost::property_tree::ptree*> ptree_vec;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
@@ -187,29 +241,36 @@ namespace planeta {
 				ptree_vec.emplace_back(&(pp.second));
 			}
 			if (sizeof...(Ts) != ptree_vec.size()) {
-				throw reflection_error(ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
+				throw reflection_error(planeta::util::ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
 			}
 			planeta::private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
 		}
+		//std::vector
+		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(std::vector);
+		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(std::list);
+		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(std::deque);
+		//std::set
+		PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEF(std::set);
+		PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEF(std::unordered_set);
+		//std::map
+		PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEF(std::map);
+		PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEF(std::unordered_map);
+	}
 
-		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEF(std::vector);
-		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEF(std::list);
-		PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEF(std::deque);
-
-		PE_PTREE_CONVERT_TO_SET_TYPE_DEF(std::set);
-		PE_PTREE_CONVERT_TO_SET_TYPE_DEF(std::unordered_set);
-		
-		PE_PTREE_CONVERT_TO_MAP_TYPE_DEF(std::map);
-		PE_PTREE_CONVERT_TO_MAP_TYPE_DEF(std::unordered_map);
+	namespace util {
+		template<typename T>
+		void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) {
+			private_::ReflectivePtreeConverter_Layer0<T>::Convert(dst, src);
+		}
 	}
 }
 
-#undef PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEC
-#undef PE_PTREE_CONVERT_TO_SET_TYPE_DEC
-#undef PE_PTREE_CONVERT_TO_MAP_TYPE_DEC
-#undef PE_PTREE_CONVERT_TO_ARRAY_TYPE_DEF
-#undef PE_PTREE_CONVERT_TO_SET_TYPE_DEF
-#undef PE_PTREE_CONVERT_TO_MAP_TYPE_DEF
+#undef PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC
+#undef PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEC
+#undef PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEC
+#undef PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF
+#undef PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEF
+#undef PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEF
 
 //////////////////////////////////////////////////////////////////////////
 //コピーハンドラ
