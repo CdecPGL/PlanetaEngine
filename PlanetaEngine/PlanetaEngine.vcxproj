@@ -577,6 +577,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="RXml.cpp" />
     <ClCompile Include="XmlFile.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
