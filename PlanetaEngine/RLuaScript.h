@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ResourceBase.h"
-#include "lua.hpp"
+//#include "lua.hpp"
 
 namespace planeta {
 	class RLuaScript final: public ResourceBase {

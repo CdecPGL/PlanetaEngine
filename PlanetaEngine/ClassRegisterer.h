@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <functional>
 
+/*
 #include "lua.hpp"
 //Luaintfの警告を抑制
 #pragma warning(push)
@@ -13,6 +14,7 @@
 #pragma warning(disable:4100)
 #include "LuaIntf.h"
 #pragma warning(pop)
+*/
 
 #include "boost/any.hpp"
 #include "boost/type_traits.hpp"
