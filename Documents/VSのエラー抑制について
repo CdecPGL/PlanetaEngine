@@ -1,0 +1,2 @@
+# boost::signals2関連でc4996エラーが出る場合
+ プロジェクト設定->C/C++->コマンドラインに"-D_SCL_SECURE_NO_WARNINGS"を追加。

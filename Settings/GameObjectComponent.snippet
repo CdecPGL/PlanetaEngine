@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+	xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<CodeSnippet Format="1.0.0">
+  <Header>
+	<Title>PlanetaEngine_GameObjectComponent</Title>
+	<Shortcut>pegoc</Shortcut>
+	<Description>PlanetaEngineのGameObjectComponent</Description>
+  </Header>
+  <Snippet>
+	<Declarations>
+	  <Literal>
+		<ID>id</ID>
+		<Default>CGameObjectComponent</Default>
+	  </Literal>
+	  <Literal>
+		<ID>super_id</ID>
+		<Default>CGameObjectComponentSuper</Default>
+	  </Literal>
+	</Declarations>
+	<Code Language="CPP" kind="file">
+#include "$super_id$.h"
+
+class $id$ : public $super_id$ {
+	PE_REFLECTION_DATA_REGISTERER_DECLARATION($id$);
+public:
+	using Super = $super_id$;
+private:
+
+};
+PE_GAMEOBJECTCOMPONENT_CLASS($id$);
+
+	</Code>
+  </Snippet>
+</CodeSnippet>
+</CodeSnippets>

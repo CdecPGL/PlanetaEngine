@@ -1,0 +1,11 @@
+FileSystemManager<=LogManager
+RenderManager<=LogManager
+SaveManager<=LogManager,FileSystemManager
+ResourceManager<=LogManager,FileSystemManager
+DebugManager<=LogManager,RenderManager
+SoundManager<=LogManager
+InputManager<=LogManager
+ConfigManager<=LogManager,FileSystemManager
+SceneManager<=All
+SystemTimer
+LogManager<=SystemTimer

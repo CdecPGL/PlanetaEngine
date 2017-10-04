@@ -1,0 +1,22 @@
+{
+    "Game":{
+        "Title":"難易度コントローラー",
+        "Version":[0,0,0]
+    },
+    "Engine":{
+        "ColorBitDepth":32,
+        "DrawSize":[800,600],
+        "IsCursorVisible":true
+    },
+    "Program":{
+        "Scene":{
+            "Startup":"DebugMode"
+        },
+        "Collision":{
+            "Groups":["Player","Enemy"],
+            "CollidableMatrix":{
+                "Player":["Enemy"]
+            }
+        }
+    }
+}
