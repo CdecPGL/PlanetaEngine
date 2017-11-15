@@ -164,10 +164,13 @@ namespace planeta {
 		return true;
 	}
 
-	bool CEffect::OnInitialized() {
-		if (!Super::OnInitialized()) { return false; }
+	void CEffect::OnInitialized() {
+		Super::OnInitialized();
 		if (!impl_->GetEffectExits()) {
-			if (!impl_->CreateEffectInstance()) { return false; }
+			if (!impl_->CreateEffectInstance()) { 
+				PE_LOG_ERROR("エフェクトインスタンスの作成に失敗しました。");
+				return;
+			}
 		}
 		auto task = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		task->SetExcuteFunction([this] {
@@ -182,16 +185,15 @@ namespace planeta {
 				}
 			}
 		});
-		return true;
 	}
 
-	bool CEffect::OnActivated() {
-		if (!Super::OnActivated()) { return false; }
+	void CEffect::OnActivated() {
+		Super::OnActivated();
 		impl_->ConnectMyCTransformUpdatedEvent();
 		if (auto_play()) {
-			return impl_->StartEffect();
-		} else {
-			return true;
+			if (!impl_->StartEffect()) {
+				PE_LOG_ERROR("エフェクトの開始に失敗しました。");
+			}
 		}
 	}
 

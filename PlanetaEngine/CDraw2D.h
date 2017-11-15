@@ -53,7 +53,7 @@ namespace planeta {
 
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
 
-		bool OnInitialized()override;
+		void OnInitialized()override;
 		void OnFinalized()noexcept override;
 	private:
 		class Impl_;
@@ -68,7 +68,7 @@ namespace planeta {
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
 		planeta::Color color_;
 		void UpdatePriority_();
-		bool OnActivated()override final;
+		void OnActivated()override final;
 		void OnInactivated()override final;
 		/*描画処理*/
 		virtual void DrawProc(ScreenDrawer2D& drawer) = 0;

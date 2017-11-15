@@ -55,9 +55,9 @@ namespace planeta {
 
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) { com_getter; return true; }
 		//初期化
-		bool Initialize();
-		bool Activate();
-		bool InActivate();
+		void Initialize();
+		void Activate();
+		void InActivate();
 		void Finalize();
 	protected:
 		//オーバーライド可能関数
@@ -67,13 +67,13 @@ namespace planeta {
 			所属するゲームオブジェクトが初期化されたときに呼び出される。ほかのコンポーネントの取得もここで行う。<br/>
 			先頭で親クラスの同関数を呼び出す必要がある。
 		*/
-		virtual bool OnInitialized() { return true; };
+		virtual void OnInitialized() {};
 		/*! @brief 有効化時イベント関数
 
 			所属するゲームオブジェクトが有効化されたときに呼び出される。<br/>
 			先頭で親クラスの同関数を呼び出す必要がある。
 		*/
-		virtual bool OnActivated() { return true; };
+		virtual void OnActivated() {};
 		/*! @brief 無効化時イベント関数
 
 		所属するゲームオブジェクトが無効化されたときに呼び出される。<br/>

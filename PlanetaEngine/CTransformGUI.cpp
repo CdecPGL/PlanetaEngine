@@ -82,12 +82,11 @@ namespace planeta {
 		return impl_->pivot;
 	}
 
-	bool CTransformGUI::OnActivated() {
-		if (!Super::OnActivated()) { return false; }
+	void CTransformGUI::OnActivated() {
+		Super::OnActivated();
 		//TransformSystem‚Ö“o˜^
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransformGUI(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
-		return true;
 	}
 
 	void CTransformGUI::OnInactivated() {

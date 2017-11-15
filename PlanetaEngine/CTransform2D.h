@@ -90,9 +90,9 @@ namespace planeta {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		//GOCオーバーライド
-		bool OnInitialized()override final;
+		void OnInitialized()override final;
 		void OnFinalized()noexcept override final;
-		bool OnActivated()override final;
+		void OnActivated()override final;
 		void OnInactivated()override final;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransform2D);

@@ -33,8 +33,8 @@ namespace planeta {
 
 		NonOwingPointer<CTransform2D> transform2d_;
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
-		virtual bool OnInitialized()override;
-		virtual bool OnActivated() override;
+		virtual void OnInitialized()override;
+		virtual void OnActivated() override;
 		virtual void OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	};

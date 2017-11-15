@@ -10,13 +10,9 @@ namespace planeta {
 			.ShallowCopyTarget(&GameObjectComponent::labels_);
 	}
 
-	bool GameObjectComponent::Initialize() {
-		if (!OnInitialized()) {
-			PE_LOG_ERROR("コンポーネントの初期化処理に失敗しました。");
-			return false;
-		}
+	void GameObjectComponent::Initialize() {
+		OnInitialized();
 		is_valied_ = true;
-		return true;
 	}
 
 	void GameObjectComponent::Finalize() {
@@ -24,27 +20,22 @@ namespace planeta {
 		is_valied_ = false;
 	}
 
-	bool GameObjectComponent::Activate() {
-		if (is_active_) { 
+	void GameObjectComponent::Activate() {
+		if (is_active_) {
 			PE_LOG_WARNING("すでに有効なゲームオブジェクトコンポーネントを有効化しようとしました。type:", typeid(*this).name());
-			return true;
+			return;
 		}
-		if (OnActivated()) {
-			is_active_ = true;
-			return true;
-		} else {
-			return false;
-		}
+		OnActivated();
+		is_active_ = true;
 	}
 
-	bool GameObjectComponent::InActivate() {
+	void GameObjectComponent::InActivate() {
 		if (!is_active_) { 
 			PE_LOG_WARNING("すでに無効なゲームオブジェクトコンポーネントを無効化しようとしました。type:", typeid(*this).name());
-			return true; 
+			return; 
 		}
 		OnInactivated();
 		is_active_ = false;
-		return true;
 	}
 
 	bool GameObjectComponent::SetSceneAndHolderGOData(const private_::GameObjectComponentSetUpData& resistration_data) {

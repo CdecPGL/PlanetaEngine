@@ -44,7 +44,7 @@ namespace planeta {
 		std::string current_animation_name_;
 		void SetCurrentFrameDrawAreaToDrawGraphComponent_();
 		bool GetOtherComponentsProc(const GOComponentGetter& com_getter) override;
-		bool OnInitialized()override;
+		void OnInitialized()override;
 		void UpdateAnimation();
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CGraph2DAnimator);

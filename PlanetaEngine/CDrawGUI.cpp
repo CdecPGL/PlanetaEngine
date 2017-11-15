@@ -1,6 +1,7 @@
 #include "CDrawGUI.h"
 #include "ISceneInternal.h"
 #include "DrawSystem.h"
+#include "LogUtility.h"
 
 namespace planeta {
 	//////////////////////////////////////////////////////////////////////////
@@ -46,10 +47,10 @@ namespace planeta {
 		return *this;
 	}
 
-	bool CDrawGUI::OnInitialized() {
-		if (!Super::OnInitialized()) { return false; }
+	void CDrawGUI::OnInitialized() {
+		Super::OnInitialized();
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDrawGUI(shared_this<CDrawGUI>(), impl_->priority);
-		return impl_->draw_system_connection != nullptr;
+		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
 	void CDrawGUI::OnFinalized()noexcept {
@@ -57,9 +58,12 @@ namespace planeta {
 		Super::OnFinalized();
 	}
 
-	bool CDrawGUI::OnActivated() {
-		if (!Super::OnActivated()) { return false; }
-		return impl_->draw_system_connection->Activte();
+	void CDrawGUI::OnActivated() {
+		Super::OnActivated();
+		auto suceed = impl_->draw_system_connection->Activte();
+		if (!suceed) {
+			PE_LOG_ERROR("描画システムの有効化に失敗しました。");
+		}
 	}
 
 	void CDrawGUI::OnInactivated() {

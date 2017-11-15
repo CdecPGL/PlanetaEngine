@@ -275,11 +275,10 @@ namespace planeta {
 			ground_position(base_pos + cground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 		}
 
-		bool Initialize() {
+		void Initialize() {
 			if (typeid(*belonging_ground) != typeid(CDumyGround2D)) { //所属地形があったら、自分を更新イベントリスナーに登録
 				ground_updated_event_connection = belonging_ground->transform2d().updated.ConnectFunction(std::bind(&Impl_::OnGroudUpdated, this));
 			}
-			return true;
 		}
 
 		void Finalize() {
@@ -442,21 +441,20 @@ namespace planeta {
 		}
 	}
 
-	bool CTransform2D::OnInitialized() {
-		if (!Super::OnInitialized()) { return false; }
-		return impl_->Initialize();
+	void CTransform2D::OnInitialized() {
+		Super::OnInitialized();
+		impl_->Initialize();
 	}
 
 	void CTransform2D::OnFinalized()noexcept {
 		impl_->Finalize();
 	}
 
-	bool CTransform2D::OnActivated() {
-		if (!Super::OnActivated()) { return false; }
+	void CTransform2D::OnActivated() {
+		Super::OnActivated();
 		//TransformSystemへ登録
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransform2D(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
-		return true;
 	}
 
 	void CTransform2D::OnInactivated() {

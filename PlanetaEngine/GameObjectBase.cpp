@@ -91,11 +91,7 @@ namespace planeta {
 			}
 
 			for (auto&& com : com_ary) {
-				if (!com->Initialize()) {
-					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"の初期化処理に失敗しました。");
-					state_ = GameObjectState::Invalid;
-					return false;
-				}
+				com->Initialize();
 			}
 			state_ = GameObjectState::Inactive;
 			return true;
@@ -106,11 +102,7 @@ namespace planeta {
 			//コンポーネントの有効化
 			decltype(auto) com_ary = component_holder_.component_array();
 			for (auto&& com : com_ary) {
-				if (!com->Activate()) {
-					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"の有効化処理に失敗しました。");
-					state_ = GameObjectState::Invalid;
-					return false;
-				}
+				com->Activate();
 			}
 			//有効化イベント
 			activated();
@@ -130,11 +122,7 @@ namespace planeta {
 			//コンポーネントの無効化
 			decltype(auto) com_ary = component_holder_.component_array();
 			for (auto&& com : com_ary) {
-				if (!com->InActivate()) {
-					PE_LOG_ERROR("GameObjectComponent(\"型:", typeid(*com).name(), "\"の無効化処理に失敗しました。");
-					state_ = GameObjectState::Invalid;
-					return false;
-				}
+				com->InActivate();
 			}
 			
 			state_ = GameObjectState::Inactive;

@@ -52,7 +52,7 @@ namespace planeta {
 		/*テクスチャマッピングモード*/
 		TextureMappingMode tex_map_mode_;
 		virtual bool GetOtherComponentsProc(const GOComponentGetter& com_getter)override;
-		virtual bool OnInitialized() override;
+		virtual void OnInitialized() override;
 		virtual void OnFinalized()noexcept override;
 		NonOwingPointer<CPlanet> _planet_component;
 		/*ポリゴンセット*/

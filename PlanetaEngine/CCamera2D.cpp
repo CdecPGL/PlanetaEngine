@@ -38,15 +38,13 @@ namespace planeta {
 		return true;
 	}
 
-	bool CCamera2D::OnInitialized() {
-		if (!Super::OnInitialized()) { return false; }
+	void CCamera2D::OnInitialized() {
+		Super::OnInitialized();
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(shared_this<CCamera2D>());
-		return impl_->draw_system_connection != nullptr;
+		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
-	bool CCamera2D::OnActivated() {
-		return true;
-	}
+	void CCamera2D::OnActivated() {}
 
 	void CCamera2D::OnInactivated() {
 		PE_LOG_WARNING("カメラ2Dコンポーネントは無効化に対応していません。");

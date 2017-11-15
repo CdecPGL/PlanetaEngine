@@ -18,11 +18,10 @@ namespace planeta {
 		return true;
 	}
 
-	bool CBelongingGroundGravity::OnInitialized() {
-		if (!Super::OnInitialized()) { return false; }
+	void CBelongingGroundGravity::OnInitialized() {
+		Super::OnInitialized();
 		auto proc = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreCollisionEarlyPhase);
 		proc->SetExcuteFunction([this]() {Update(); });
-		return true;
 	}
 
 	void CBelongingGroundGravity::Update() {

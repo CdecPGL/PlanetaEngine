@@ -22,12 +22,11 @@ namespace planeta {
 		return true;
 	}
 
-	bool CGraph2DAnimator::OnInitialized() {
-		if (!Super::OnInitialized()) { return false; }
+	void CGraph2DAnimator::OnInitialized() {
+		Super::OnInitialized();
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
 		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
-		return true;
 	}
 
 	void CGraph2DAnimator::UpdateAnimation() {

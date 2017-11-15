@@ -17,8 +17,8 @@ namespace planeta {
 		return true;
 	}
 
-	bool CGround2D::OnActivated() {
-		return Super::OnActivated();
+	void CGround2D::OnActivated() {
+		Super::OnActivated();
 	}
 
 	void CGround2D::OnInactivated() {

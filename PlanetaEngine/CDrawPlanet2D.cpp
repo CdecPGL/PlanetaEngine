@@ -55,10 +55,9 @@ namespace planeta {
 		return true;
 	}
 
-	bool CDrawPlanet2D::OnInitialized() {
-		if (Super::OnInitialized() == false) { return false; }
+	void CDrawPlanet2D::OnInitialized() {
+		Super::OnInitialized();
 		SetPolygon_();
-		return true;
 	}
 
 	void CDrawPlanet2D::OnFinalized()noexcept {

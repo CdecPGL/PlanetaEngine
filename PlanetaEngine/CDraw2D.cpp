@@ -68,17 +68,20 @@ namespace planeta {
 		}
 	}
 
-	bool CDraw2D::OnInitialized() {
+	void CDraw2D::OnInitialized() {
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDraw2D(shared_this<CDraw2D>(), draw_priority_);
-		return impl_->draw_system_connection != nullptr;
+		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
 	void CDraw2D::OnFinalized()noexcept {
 		impl_->draw_system_connection->Remove();
 	}
 
-	bool CDraw2D::OnActivated() {
-		return impl_->draw_system_connection->Activte();
+	void CDraw2D::OnActivated() {
+		auto suceed = impl_->draw_system_connection->Activte();
+		if (!suceed) {
+			PE_LOG_ERROR("描画システムの有効化に失敗しました。");
+		}
 	}
 
 	void CDraw2D::OnInactivated() {

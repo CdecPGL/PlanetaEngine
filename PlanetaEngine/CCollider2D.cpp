@@ -22,9 +22,9 @@ namespace planeta {
 		.ShallowCopyTarget(&CCollider2D::collision_group_name_);
 	}
 
-	bool CCollider2D::OnActivated() {
+	void CCollider2D::OnActivated() {
+		Super::OnActivated();
 		ResistToCollisionDetectProcess_();
-		return true;
 	}
 
 	void CCollider2D::OnInactivated() {

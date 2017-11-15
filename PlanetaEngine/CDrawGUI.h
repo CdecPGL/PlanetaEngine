@@ -21,9 +21,9 @@ namespace planeta {
 		’l‚ª‘å‚«‚¢‚Ù‚ÇŽè‘O‚É•\Ž¦‚³‚ê‚é*/
 		CDrawGUI& draw_priority(int priority);
 	protected:
-		virtual bool OnInitialized()override;
+		virtual void OnInitialized()override;
 		virtual void OnFinalized()noexcept override;
-		virtual bool OnActivated()override;
+		virtual void OnActivated()override;
 		virtual void OnInactivated()override;
 	private:
 		class Impl_;

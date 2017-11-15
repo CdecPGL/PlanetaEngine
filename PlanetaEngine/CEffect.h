@@ -32,8 +32,8 @@ namespace planeta {
 		double expansion()const;
 	protected:
 		virtual bool GetOtherComponentsProc(const GOComponentGetter&) override;
-		virtual bool OnInitialized() override;
-		virtual bool OnActivated() override;
+		virtual void OnInitialized() override;
+		virtual void OnActivated() override;
 		virtual void OnInactivated() override;
 		virtual void OnFinalized() noexcept override;
 	private:

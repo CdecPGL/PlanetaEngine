@@ -42,7 +42,7 @@ namespace planeta {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		//GOCオーバーライド
-		bool OnActivated()override final;
+		void OnActivated()override final;
 		void OnInactivated()override final;
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransformGUI);
