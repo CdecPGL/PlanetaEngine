@@ -63,12 +63,16 @@ namespace planeta {
 			return shared_from_this();
 		}
 
-		bool GameObjectBase::Activate() {
-			return manager_connection_->RequestActivation();
+		void GameObjectBase::Activate() {
+			if(!manager_connection_->RequestActivation()) {
+				PE_LOG_FATAL("ゲームオブジェクトの有効化に失敗しました。");
+			}
 		}
 
-		bool GameObjectBase::Inactivate() {
-			return manager_connection_->RequestInactivation();
+		void GameObjectBase::Inactivate() {
+			if (!manager_connection_->RequestInactivation()) {
+				PE_LOG_FATAL("ゲームオブジェクトの無効化に失敗しました。");
+			}
 		}
 
 		void GameObjectBase::Dispose() {

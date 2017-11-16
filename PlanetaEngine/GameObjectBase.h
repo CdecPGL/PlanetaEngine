@@ -24,9 +24,9 @@ namespace planeta {
 
 			//インターフェイスのオーバーライド
 			//有効化する
-			bool Activate()override final;
+			void Activate()override final;
 			//無効化する
-			bool Inactivate()override final;
+			void Inactivate()override final;
 			//破棄する
 			void Dispose()override final;
 			//自分のstd::shared_ptrを取得する。

@@ -19,12 +19,12 @@ namespace planeta {
 	class IGameObject {
 	public:
 		//! ゲームオブジェクトをシーン内で有効化する。戻り値は有効化の成否を示す。  
-		virtual bool Activate() = 0;
+		virtual void Activate() = 0;
 		//! ゲームオブジェクトをシーン内で無効化する。戻り値は無効化の成否を示す。  
-		virtual bool Inactivate() = 0;
+		virtual void Inactivate() = 0;
 		//! ゲームオブジェクトをシーンから破棄する
 		virtual void Dispose() = 0;
-		//! 自身のstd::shared_ptrを取得する
+		//! 自身のWeakPointerを取得する
 		virtual WeakPointer<IGameObject> GetPointer()= 0;
 		//! コンポーネントを型で取得する
 		template<class ComT>
