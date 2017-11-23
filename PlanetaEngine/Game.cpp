@@ -85,17 +85,17 @@ namespace planeta {
 			//ファイルシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			//リソース用ファイルアクセサ設定
-			auto resource_file_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Resource);
-			if (resource_file_accesor == nullptr) { return false; }
+			auto resource_file_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Resource);
+			if (resource_file_manipulator == nullptr) { return false; }
 			//SaveData用ファイルアクセサ設定
-			auto savedata_dir_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::SaveData);
-			if (savedata_dir_accesor == nullptr) { return false; }
+			auto savedata_dir_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::SaveData);
+			if (savedata_dir_manipulator == nullptr) { return false; }
 			//system用ファイルアクセサ設定
-			auto system_dir_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::System);
-			if (system_dir_accesor == nullptr) { return false; }
+			auto system_dir_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::System);
+			if (system_dir_manipulator == nullptr) { return false; }
 			//config用ファイルアクセサ設定
-			auto config_dir_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Config);
-			if (config_dir_accesor == nullptr) { return false; }
+			auto config_dir_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Config);
+			if (config_dir_manipulator == nullptr) { return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//設定の読み込み
 			//////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace planeta {
 				PE_LOG_FATAL("コンフィグマネージャが設定されていません。");
 				return false;
 			}
-			if (!init_funcs::LoadConfig(*config_manager, system_dir_accesor, config_dir_accesor)) { 
+			if (!init_funcs::LoadConfig(*config_manager, system_dir_manipulator, config_dir_manipulator)) { 
 				PE_LOG_FATAL("設定ファイルの読み込みに失敗しました。");
 				return false;
 			}
@@ -115,7 +115,7 @@ namespace planeta {
 					PE_LOG_FATAL("リソースマネージャが設定されていません。");
 					return false;
 				}
-				auto ret = init_funcs::InitializeResourceSystem(*resource_manager, resource_file_accesor);
+				auto ret = init_funcs::InitializeResourceSystem(*resource_manager, resource_file_manipulator);
 				if (std::get<0>(ret) == false) { return false; }
 				else { finalize_handls_.push_front(std::get<1>(ret)); }
 			}
@@ -126,7 +126,7 @@ namespace planeta {
 				PE_LOG_FATAL("セーブマネージャが設定されていません。");
 				return false;
 			}
-			save_manager->SetFileManipurator_(savedata_dir_accesor);
+			save_manager->SetFileManipurator_(savedata_dir_manipulator);
 			if(save_manager->Initialize()){ finalize_handls_.push_front([this] {save_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("セーブデータシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////

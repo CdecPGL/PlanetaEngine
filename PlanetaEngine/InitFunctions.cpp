@@ -23,7 +23,7 @@ namespace planeta {
 					PE_LOG_FATAL("システム設定ファイル\"", system_variables::file_system::SystemConfigFileName, "\"の読み込みに失敗しました。");
 					return false;
 				}
-				auto uc_file = sys_dir_manipurator->LoadFile(system_variables::file_system::UserConfigFileName);
+				auto uc_file = cfg_dir_manipurator->LoadFile(system_variables::file_system::UserConfigFileName);
 				if (uc_file == nullptr) {
 					PE_LOG_FATAL("ユーザー設定ファイル\"", system_variables::file_system::UserConfigFileName, "\"が開けませんでした。");
 					return false;

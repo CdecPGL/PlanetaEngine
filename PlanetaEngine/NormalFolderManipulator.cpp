@@ -35,9 +35,10 @@ namespace planeta {
 	void NormalFolderManipulator::CloseProc() {}
 
 	bool NormalFolderManipulator::SaveFileProc(const std::string& name, const File& file) {
-		std::ofstream ofs(root_path() + "\\" + name, std::ios::binary | std::ios::trunc);
+		auto file_path = root_path() + "\\" + name;
+		std::ofstream ofs(file_path, std::ios::binary | std::ios::trunc);
 		if (!ofs) {
-			PE_LOG_ERROR("ファイル", name, "をディレクトリ", root_path(), "に保存できませんでした");
+			PE_LOG_ERROR("ファイル", file_path, "をディレクトリ", root_path(), "に保存できませんでした");
 			return false;
 		}
 		if (is_encrypter_valid()) { //暗号化が有効だったら
@@ -58,8 +59,9 @@ namespace planeta {
 	}
 
 	bool NormalFolderManipulator::LoadFileByPath(File& file, const std::string& name) {
-		if (LoadDataCore(file, root_path() + "\\" + name) < 0) {
-			PE_LOG_ERROR("ファイル\"", name, "\"の読み込みに失敗しました。ファイルが存在しない可能性があります。");
+		auto file_path = root_path() + "\\" + name;
+		if (LoadDataCore(file, file_path) < 0) {
+			PE_LOG_ERROR("ファイル\"", file_path, "\"の読み込みに失敗しました。ファイルが存在しない可能性があります。");
 			return false;
 		} else {
 			if (is_encrypter_valid()) {
