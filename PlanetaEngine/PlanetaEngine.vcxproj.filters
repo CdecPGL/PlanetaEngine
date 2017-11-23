@@ -372,9 +372,6 @@
     <ClInclude Include="EXOREncrypter.h">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClInclude>
-    <ClInclude Include="FileManipulatorBase.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
-    </ClInclude>
     <ClInclude Include="NormalFolderManipulator.h">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClInclude>
@@ -969,6 +966,9 @@
     <ClInclude Include="ResourceHolder.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="FileManipulator.h">
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1033,9 +1033,6 @@
     </ClCompile>
     <ClCompile Include="EXOREncrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="FileManipulatorBase.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
     <ClCompile Include="NormalFolderManipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
@@ -1372,6 +1369,9 @@
     </ClCompile>
     <ClCompile Include="CDrawGraphGUI.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManipulator.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

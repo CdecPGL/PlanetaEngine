@@ -12,10 +12,10 @@ namespace planeta {
 	namespace encrypters {
 		class EncrypterBase;
 	}
-	class FileManipulatorBase : public Object {
+	class FileManipulator : public Object {
 	public:
-		explicit FileManipulatorBase();
-		virtual ~FileManipulatorBase();
+		explicit FileManipulator();
+		virtual ~FileManipulator();
 		/*マニピュレータを開く*/
 		bool Open(const std::string& path, AccessMode access_mode, bool auto_create);
 		/*暗号化器を指定してマニピュレータを開く*/

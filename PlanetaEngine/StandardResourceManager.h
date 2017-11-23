@@ -37,7 +37,7 @@ namespace planeta{
 			/*リソースをIDで取得*/
 			std::shared_ptr<ResourceBase> GetResourceByID(const std::string& id)override;
 			/*ファイルアクセサをセット。初期化前に呼び出す*/
-			void SetFileManipulator_(const std::shared_ptr<FileManipulatorBase>& f_scsr)override;
+			void SetFileManipulator_(const std::shared_ptr<FileManipulator>& f_scsr)override;
 			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/
 			void SetResourceListFileName_(const std::string& file_name)override;
 		private:

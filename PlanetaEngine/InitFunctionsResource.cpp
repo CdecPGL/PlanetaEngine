@@ -17,7 +17,7 @@
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
-			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulatorBase>& res_file_manipurator) {
+			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulator>& res_file_manipurator) {
 				//ビルドインリソースの設定
 				mgr.AddResourceType<RGraph>(system_variables::resource::BuiltinGraphResourceTypeName); //画像
 				mgr.AddResourceType<RSound>(system_variables::resource::BuiltinSoundResourceTypeName); //効果音

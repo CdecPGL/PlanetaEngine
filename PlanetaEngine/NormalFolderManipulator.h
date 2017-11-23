@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include "FileManipulatorBase.h"
+#include "FileManipulator.h"
 #include<unordered_set>
 
 namespace planeta {
-	class NormalFolderManipulator final : public FileManipulatorBase {
+	class NormalFolderManipulator final : public FileManipulator {
 	public:
-		using FileManipulatorBase::FileManipulatorBase;
+		using FileManipulator::FileManipulator;
 		~NormalFolderManipulator()override;
 	private:
 		bool LoadFileByPath(File&, const std::string&);

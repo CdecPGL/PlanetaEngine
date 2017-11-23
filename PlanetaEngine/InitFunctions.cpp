@@ -5,7 +5,7 @@
 
 #include "InitFunctions.h"
 #include "SystemVariables.h"
-#include "FileManipulatorBase.h"
+#include "FileManipulator.h"
 #include "File.h"
 #include "JsonFile.h"
 #include "ConfigManager.h"
@@ -13,7 +13,7 @@
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
-			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulatorBase>& sys_dir_manipurator, const std::shared_ptr<FileManipulatorBase>& cfg_dir_manipurator) {
+			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulator>& sys_dir_manipurator, const std::shared_ptr<FileManipulator>& cfg_dir_manipurator) {
 				auto sc_file = sys_dir_manipurator->LoadFile(system_variables::file_system::SystemConfigFileName);
 				if (sc_file == nullptr) {
 					PE_LOG_FATAL("システム設定ファイル\"", system_variables::file_system::SystemConfigFileName, "\"が開けませんでした。");

@@ -10,7 +10,7 @@
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
-			std::shared_ptr<FileManipulatorBase> CreateFileManipurator(FileAccessorKind kind) {
+			std::shared_ptr<FileManipulator> CreateFileManipurator(FileAccessorKind kind) {
 				switch (kind) {
 				case FileAccessorKind::Resource: //リソース用ファイルアクセサ設定(速度優先の暗号化)
 				{

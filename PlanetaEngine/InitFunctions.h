@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace planeta {
-	class FileManipulatorBase;
+	class FileManipulator;
 	namespace private_ {
 		class ResourceManager;
 		class ConfigManager;
@@ -16,11 +16,11 @@ namespace planeta {
 			//Effekseerの初期化。DxLib初期化の後に行う
 			std::tuple<bool, std::function<void()>> InitializeEffekseer();
 			//リソースシステムの初期化
-			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulatorBase>& resource_dir_manipurator);
+			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulator>& resource_dir_manipurator);
 			//その他初期化補助関数
-			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulatorBase>& sys_dir_manipurator, const std::shared_ptr<FileManipulatorBase>& cfg_dir_manipurator);
+			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulator>& sys_dir_manipurator, const std::shared_ptr<FileManipulator>& cfg_dir_manipurator);
 			enum class FileAccessorKind{Resource,SaveData,System,Config};
-			std::shared_ptr<FileManipulatorBase> CreateFileManipurator(FileAccessorKind kind);
+			std::shared_ptr<FileManipulator> CreateFileManipurator(FileAccessorKind kind);
 		}
 	}
 }

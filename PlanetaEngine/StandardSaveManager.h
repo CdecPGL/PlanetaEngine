@@ -15,7 +15,7 @@ namespace planeta {
 			StandardSaveManager();
 			~StandardSaveManager();
 			//ファイルアクセサを設定。初期化前に呼び出す。
-			void SetFileManipurator_(const std::shared_ptr<FileManipulatorBase>& file_accessor)override;
+			void SetFileManipurator_(const std::shared_ptr<FileManipulator>& file_accessor)override;
 			bool Initialize()override;
 			void Finalize()override;
 

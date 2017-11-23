@@ -5,7 +5,7 @@
 #include "LogUtility.h"
 
 namespace planeta {
-	ArchiveManipulator::ArchiveManipulator() :FileManipulatorBase(), _extracter(std::make_unique<Extracter>()), _key(0) {}
+	ArchiveManipulator::ArchiveManipulator() :FileManipulator(), _extracter(std::make_unique<Extracter>()), _key(0) {}
 
 	ArchiveManipulator::~ArchiveManipulator() {
 		_extracter->CloseArchiveFile();

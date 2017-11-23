@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include "FileManipulatorBase.h"
+#include "FileManipulator.h"
 #include<unordered_map>
 
 class Extracter;
 
 namespace planeta {
-	class ArchiveManipulator final : public FileManipulatorBase {
+	class ArchiveManipulator final : public FileManipulator {
 	public:
 		ArchiveManipulator();
 		~ArchiveManipulator();

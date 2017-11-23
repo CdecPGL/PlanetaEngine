@@ -1,4 +1,4 @@
-﻿#include "FileManipulatorBase.h"
+﻿#include "FileManipulator.h"
 #include "LogUtility.h"
 #include "EncrypterBase.h"
 
@@ -25,11 +25,11 @@ namespace planeta {
 		}
 	}
 
-	bool FileManipulatorBase::CheckFileExist(const std::string& file_name) const {
+	bool FileManipulator::CheckFileExist(const std::string& file_name) const {
 		return CheckFileExistenceProc(file_name);
 	}
 
-	std::vector<std::string> FileManipulatorBase::GetAllFilePaths() const {
+	std::vector<std::string> FileManipulator::GetAllFilePaths() const {
 		std::vector<std::string> out{};
 		if (GetAllFilePathsProc(out)) {
 			return std::move(out);
@@ -39,11 +39,11 @@ namespace planeta {
 		}
 	}
 
-	AccessMode FileManipulatorBase::mode() const {
+	AccessMode FileManipulator::mode() const {
 		return mode_;
 	}
 
-	boost::optional<const encrypters::EncrypterBase&> FileManipulatorBase::encrypter() const& {
+	boost::optional<const encrypters::EncrypterBase&> FileManipulator::encrypter() const& {
 		if (encrypter_) {
 			return *encrypter_;
 		} else {
@@ -51,7 +51,7 @@ namespace planeta {
 		}
 	}
 
-	std::shared_ptr<File> FileManipulatorBase::LoadFile(const std::string& name) {
+	std::shared_ptr<File> FileManipulator::LoadFile(const std::string& name) {
 		if (is_opened() == false) {
 			PE_LOG_ERROR("無効なファイルマニピュレータです。初期化されていないか、破棄された可能性があります。");
 			return nullptr;
@@ -70,11 +70,11 @@ namespace planeta {
 		}
 	}
 
-	FileManipulatorBase::FileManipulatorBase() :root_path_(""), mode_(AccessMode::Invalid), is_opened_(false), auto_create_(false) {}
+	FileManipulator::FileManipulator() :root_path_(""), mode_(AccessMode::Invalid), is_opened_(false), auto_create_(false) {}
 
-	FileManipulatorBase::~FileManipulatorBase() = default;
+	FileManipulator::~FileManipulator() = default;
 
-	bool FileManipulatorBase::Open(const std::string& path, AccessMode access_mode, bool auto_create) {
+	bool FileManipulator::Open(const std::string& path, AccessMode access_mode, bool auto_create) {
 		if (is_opened_) { 
 			PE_LOG_ERROR("すでに開かれています。");
 			return false;
@@ -96,12 +96,12 @@ namespace planeta {
 		}
 	}
 
-	bool FileManipulatorBase::Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) {
+	bool FileManipulator::Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) {
 		encrypter_ = std::move(encrypter);
 		return Open(path, access_mode, auto_create);
 	}
 
-	void FileManipulatorBase::Close() {
+	void FileManipulator::Close() {
 		if (!is_opened_) {
 			PE_LOG_WARNING("開かれる前に閉じられようとしました。");
 			return; 
@@ -114,7 +114,7 @@ namespace planeta {
 		is_opened_ = false;
 	}
 
-	bool FileManipulatorBase::SaveFile(const std::string& name, const File& file) {
+	bool FileManipulator::SaveFile(const std::string& name, const File& file) {
 		if (is_opened() == false) {
 			PE_LOG_ERROR("無効なファイルマニピュレータです。初期化されていないか、破棄された可能性があります。");
 			return false;
@@ -131,7 +131,7 @@ namespace planeta {
 		}
 	}
 
-	bool FileManipulatorBase::Reload() {
+	bool FileManipulator::Reload() {
 		if (!ReloadProc()) {
 			PE_LOG_ERROR("管理情報の更新に失敗しました。(パス ", root_path(), ",タイプ ", typeid(*this).name(), ")");
 			return false;
