@@ -5,15 +5,13 @@
 #include "LogUtility.h"
 
 namespace planeta {
-	ArchiveManipulator::ArchiveManipulator(const std::string& path) :FileManipulatorBase(path, false), _extracter(std::make_unique<Extracter>()), _key(0) {}
-
-	ArchiveManipulator::ArchiveManipulator(const std::string& path, unsigned int k) : FileManipulatorBase(path, false), _extracter(std::make_unique<Extracter>()), _key(k) {}
+	ArchiveManipulator::ArchiveManipulator() :FileManipulatorBase(), _extracter(std::make_unique<Extracter>()), _key(0) {}
 
 	ArchiveManipulator::~ArchiveManipulator() {
 		_extracter->CloseArchiveFile();
 	}
 
-	bool ArchiveManipulator::InitializeProc() {
+	bool ArchiveManipulator::OpenProc(const std::string& path) {
 		/*if (_extracter->SetEXOREncryptionKey((uint16_t)_key)) {
 			PE_LOG_ERROR("初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
 			return false;
@@ -27,9 +25,7 @@ namespace planeta {
 		return false;
 	}
 
-	void ArchiveManipulator::FinalizeProc() {
-
-	}
+	void ArchiveManipulator::CloseProc() {}
 
 	bool ArchiveManipulator::ReloadProc() {
 		//_extracter->CloseArchiveFile();

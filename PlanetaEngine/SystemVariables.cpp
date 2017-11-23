@@ -26,11 +26,6 @@ namespace planeta{
 				const std::string ResourceDataDirectory("resources");
 				const std::string ConfigFileDirectory("config");
 
-				const std::string ResourceFileAccessorID("resource");
-				const std::string SaveDataFileAccessorID("save_data");
-				const std::string SystemFileAccessorID("system");
-				const std::string ConfigFileAccessorID("config");
-
 				const unsigned int ResourceDataArchiveDecryptionKey(0);
 			}
 			namespace resource {

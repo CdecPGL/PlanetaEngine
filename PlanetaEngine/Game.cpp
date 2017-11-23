@@ -8,7 +8,6 @@
 
 #include "ResourceManager.h"
 #include "LogManager.h"
-#include "FileSystemManager.h"
 #include "SceneManager.h"
 #include "InputManager.h"
 #include "PerfoamanceManager.h"
@@ -34,7 +33,6 @@ namespace planeta {
 	public:
 		std::shared_ptr<ResourceManager> resource_manager;
 		std::shared_ptr<LogManager> log_manager;
-		std::shared_ptr<FileSystemManager> file_system_manager;
 		std::shared_ptr<SceneManager> scene_manager;
 		std::shared_ptr<InputManager> input_manager;
 		std::shared_ptr<PerformanceManager> performance_manager;
@@ -86,24 +84,17 @@ namespace planeta {
 			//////////////////////////////////////////////////////////////////////////
 			//ファイルシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
-			if (file_system_manager == nullptr) {
-				PE_LOG_FATAL("ファイルシステムマネージャが設定されていません。");
-				return false;
-			}
-			FileSystemManager& flm = *file_system_manager;
-			if(flm.Initialize()){ finalize_handls_.push_front([this] {file_system_manager->Finalize(); }); }
-			else { PE_LOG_FATAL("ファイルシステムの初期化に失敗しました。"); return false; }
 			//リソース用ファイルアクセサ設定
-			auto resource_file_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::Resource);
+			auto resource_file_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Resource);
 			if (resource_file_accesor == nullptr) { return false; }
 			//SaveData用ファイルアクセサ設定
-			auto savedata_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::SaveData);
+			auto savedata_dir_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::SaveData);
 			if (savedata_dir_accesor == nullptr) { return false; }
 			//system用ファイルアクセサ設定
-			auto system_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::System);
+			auto system_dir_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::System);
 			if (system_dir_accesor == nullptr) { return false; }
 			//config用ファイルアクセサ設定
-			auto config_dir_accesor = init_funcs::CreateFileAccessor(flm, init_funcs::FileAccessorKind::Config);
+			auto config_dir_accesor = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Config);
 			if (config_dir_accesor == nullptr) { return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//設定の読み込み
@@ -135,7 +126,7 @@ namespace planeta {
 				PE_LOG_FATAL("セーブマネージャが設定されていません。");
 				return false;
 			}
-			save_manager->SetFileAccessor_(savedata_dir_accesor);
+			save_manager->SetFileManipurator_(savedata_dir_accesor);
 			if(save_manager->Initialize()){ finalize_handls_.push_front([this] {save_manager->Finalize(); }); }
 			else{ PE_LOG_FATAL("セーブデータシステムの初期化に失敗しました。"); return false; }
 			//////////////////////////////////////////////////////////////////////////
@@ -202,11 +193,6 @@ namespace planeta {
 			scene_manager->SetResouceManager(resource_manager);
 			if (scene_manager->Initialize()) { finalize_handls_.push_front([this] {scene_manager->Finalize(); }); }
 			else { PE_LOG_FATAL("シーンシステムの初期化に失敗しました。"); return false; }
-			//////////////////////////////////////////////////////////////////////////
-			//キャッシュなどの削除
-			//////////////////////////////////////////////////////////////////////////
-			flm.DisposeFileAccessor(system_variables::file_system::SystemFileAccessorID); //システムファイルアクセサ削除
-			flm.DeleteCache(); //キャッシュ削除
 			//////////////////////////////////////////////////////////////////////////
 			//ゲームの開始準備
 			//////////////////////////////////////////////////////////////////////////
@@ -304,18 +290,6 @@ namespace planeta {
 
 	std::shared_ptr<planeta::ILogManager> Game::log_manager() const {
 		return impl_->log_manager;
-	}
-
-	void Game::SetFileSystemManager(const std::shared_ptr<private_::FileSystemManager>& mgr) {
-		if (is_initialized()) {
-			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
-			return;
-		}
-		impl_->file_system_manager = mgr;
-	}
-
-	std::shared_ptr<planeta::IFileSystemManager> Game::file_system_manager() const {
-		return impl_->file_system_manager;
 	}
 
 	void Game::SetSceneManager(const std::shared_ptr<private_::SceneManager>& mgr) {

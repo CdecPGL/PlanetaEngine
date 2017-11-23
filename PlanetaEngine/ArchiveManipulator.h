@@ -7,13 +7,12 @@ class Extracter;
 namespace planeta {
 	class ArchiveManipulator final : public FileManipulatorBase {
 	public:
-		explicit ArchiveManipulator(const std::string& path);
-		ArchiveManipulator(const std::string& path, unsigned int key);
+		ArchiveManipulator();
 		~ArchiveManipulator();
 		void SetKey(unsigned int); //復号化キーセット
 	private:
-		bool InitializeProc()override;
-		void FinalizeProc()override;
+		bool OpenProc(const std::string& path)override;
+		void CloseProc()override;
 		std::unique_ptr<Extracter> _extracter;
 		unsigned int _key; //復号化キー
 		bool ReloadProc()override;

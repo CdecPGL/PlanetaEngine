@@ -10,31 +10,29 @@ namespace planeta {
 	namespace bfs = boost::filesystem;
 	NormalFolderManipulator::~NormalFolderManipulator() {}
 
-	bool NormalFolderManipulator::InitializeProc() {
+	bool NormalFolderManipulator::OpenProc(const std::string& path) {
 		//ディレクトリの存在確認
-		boost::filesystem::path bpath(root_path());
+		boost::filesystem::path bpath(path);
 		if (boost::filesystem::is_directory(bpath)) {
 			return true;
 		} else {
 			//ディレクトリがなくて自動作成が有効だったら作成する。
 			if (auto_create()) {
 				if (boost::filesystem::create_directories(bpath)) {
-					PE_LOG_MESSAGE("ディレクトリ", root_path(), "を作成しました。");
+					PE_LOG_MESSAGE("ディレクトリ", path, "を作成しました。");
 					return true;
 				} else {
-					PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", root_path(), "を作成できませんでした。");
+					PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", path, "を作成できませんでした。");
 					return false;
 				}
 			} else {
-				PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", root_path(), "が存在しません。");
+				PE_LOG_ERROR("初期化に失敗しました。ディレクトリ", path, "が存在しません。");
 				return false;
 			}
 		}
 	}
 
-	void NormalFolderManipulator::FinalizeProc() {
-
-	}
+	void NormalFolderManipulator::CloseProc() {}
 
 	bool NormalFolderManipulator::SaveFileProc(const std::string& name, const File& file) {
 		std::ofstream ofs(root_path() + "\\" + name, std::ios::binary | std::ios::trunc);

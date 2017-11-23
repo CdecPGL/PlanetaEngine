@@ -4,7 +4,6 @@
 
 #include "StandardResourceManager.h"
 #include "StandardLogManager.h"
-#include "StandardFileSystemManager.h"
 #include "StandardSceneManager.h"
 #include "StandardInputManager.h"
 #include "StandardPerformanceManager.h"
@@ -33,7 +32,6 @@ namespace planeta {
 		//ログ出力ファイルを有効にする
 		log_mgr->ValidateFileOutPut(system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName);
 		SetLogManager(log_mgr);
-		SetFileSystemManager(std::make_shared<private_::StandardFileSystemManager>());
 		SetSceneManager(std::make_shared<private_::StandardSceneManager>());
 		SetInputManager(std::make_shared<private_::StandardInputManager>());
 		SetPerformanceManager(std::make_shared<private_::StandardPerformanceManager>());

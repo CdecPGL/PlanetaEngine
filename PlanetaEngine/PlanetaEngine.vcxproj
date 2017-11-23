@@ -179,7 +179,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="DrawSystem.h" />
     <ClInclude Include="EffekseerUtil.h" />
-    <ClInclude Include="FileSystemManager.h" />
     <ClInclude Include="GameObjectComponentHolder.h" />
     <ClInclude Include="CBelongingGroundGravity.h" />
     <ClInclude Include="BGMController.h" />
@@ -197,7 +196,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="IConfigManager.h" />
     <ClInclude Include="IDebugManager.h" />
     <ClInclude Include="IDrawSystem.h" />
-    <ClInclude Include="IFileSystemManager.h" />
     <ClInclude Include="IGameObjectManager.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="ILogManager.h" />
@@ -309,8 +307,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="EventMonitor.h" />
     <ClInclude Include="CoroutineUtility.h" />
     <ClInclude Include="File.h" />
-    <ClInclude Include="FileAccessor.h" />
-    <ClInclude Include="StandardFileSystemManager.h" />
     <ClInclude Include="RFontDefinition.h" />
     <ClInclude Include="RFont.h" />
     <ClInclude Include="DataContainerFunctionsForBoostSerialize.h" />
@@ -541,8 +537,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="File.cpp" />
     <ClCompile Include="StandardCollisionWorld.cpp" />
     <ClCompile Include="GameObjectComponent.cpp" />
-    <ClCompile Include="FileAccessor.cpp" />
-    <ClCompile Include="StandardFileSystemManager.cpp" />
     <ClCompile Include="StandardDrawSystem.cpp" />
     <ClCompile Include="StandardGameObjectManager.cpp" />
     <ClCompile Include="CDrawGraph2D.cpp" />

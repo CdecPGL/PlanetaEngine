@@ -106,18 +106,6 @@
     <Filter Include="PlanetaEngine\SubSystems">
       <UniqueIdentifier>{e9140813-b0ab-405d-86d7-cb664ef72308}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\SubSystems\FileSystem">
-      <UniqueIdentifier>{bc6818a6-d916-45ec-ba68-0848ecaa7576}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\SubSystems\FileSystem\Stream">
-      <UniqueIdentifier>{dec49675-f1ec-4fb8-bf4d-24eb8d3dbcf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\SubSystems\FileSystem\Encrypter">
-      <UniqueIdentifier>{f6fa2f17-458a-4de9-b677-47427823fd5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlanetaEngine\SubSystems\FileSystem\Manipulator">
-      <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\SubSystems\Scene">
       <UniqueIdentifier>{a7a17209-ac4b-4b38-abe5-54b35e8e3e18}</UniqueIdentifier>
     </Filter>
@@ -226,6 +214,18 @@
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI">
       <UniqueIdentifier>{7c57cc2a-d52d-4f46-a709-970aa13f0346}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlanetaEngine\Core\FileSystem">
+      <UniqueIdentifier>{bc6818a6-d916-45ec-ba68-0848ecaa7576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\FileSystem\Stream">
+      <UniqueIdentifier>{dec49675-f1ec-4fb8-bf4d-24eb8d3dbcf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\FileSystem\Encrypter">
+      <UniqueIdentifier>{f6fa2f17-458a-4de9-b677-47427823fd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlanetaEngine\Core\FileSystem\Manipulator">
+      <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyxml2.h">
@@ -280,7 +280,7 @@
       <Filter>PlanetaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="File.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="MathUtility.h">
       <Filter>PlanetaEngine\Math</Filter>
@@ -355,37 +355,34 @@
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClInclude>
     <ClInclude Include="FileIStream.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClInclude>
     <ClInclude Include="FileStreamBuf.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClInclude>
     <ClInclude Include="FileOStream.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClInclude>
     <ClInclude Include="StringUtility.h">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="EncrypterBase.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClInclude>
     <ClInclude Include="EXOREncrypter.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
-    </ClInclude>
-    <ClInclude Include="FileAccessor.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClInclude>
     <ClInclude Include="FileManipulatorBase.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClInclude>
     <ClInclude Include="NormalFolderManipulator.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClInclude>
     <ClInclude Include="ArchiveManipulator.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClInclude>
     <ClInclude Include="FileAccessMode.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="CollisionGroupMatrix.h">
       <Filter>PlanetaEngine\Core\Others</Filter>
@@ -394,7 +391,7 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="FileSystemUtility.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="Property.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -487,7 +484,7 @@
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClInclude>
     <ClInclude Include="AESEncrypter.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefinitions.h">
       <Filter>PlanetaEngine\ForUserHeaders</Filter>
@@ -786,15 +783,6 @@
     <ClInclude Include="StandardLogManager.h">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClInclude>
-    <ClInclude Include="IFileSystemManager.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystemManager.h">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardFileSystemManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
     <ClInclude Include="ISceneManager.h">
       <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
     </ClInclude>
@@ -990,7 +978,7 @@
       <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClCompile>
     <ClCompile Include="File.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="SystemVariables.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -1032,37 +1020,34 @@
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
     <ClCompile Include="FileOStream.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClCompile>
     <ClCompile Include="FileIStream.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClCompile>
     <ClCompile Include="FileStreamBuf.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Stream</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClCompile>
     <ClCompile Include="EncrypterBase.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="EXOREncrypter.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="FileAccessor.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="FileManipulatorBase.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
     <ClCompile Include="NormalFolderManipulator.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
     <ClCompile Include="ArchiveManipulator.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Manipulator</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
     <ClCompile Include="CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClCompile>
     <ClCompile Include="FileSystemUtility.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectComponent.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
@@ -1119,7 +1104,7 @@
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClCompile>
     <ClCompile Include="AESEncrypter.cpp">
-      <Filter>PlanetaEngine\SubSystems\FileSystem\Encrypter</Filter>
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="Task.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
@@ -1299,9 +1284,6 @@
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="StandardLogManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardFileSystemManager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="InputUtility.cpp">

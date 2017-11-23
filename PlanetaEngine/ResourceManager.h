@@ -7,7 +7,7 @@
 #include "SubSystemManager.h"
 
 namespace planeta {
-	class FileAccessor;
+	class FileManipulatorBase;
 	namespace private_ {
 		/*リソースマネージャ*/
 		class ResourceManager : public IResourceManager, public SubSystemManager {
@@ -28,7 +28,7 @@ namespace planeta {
 			/*準備進行度(読み込みしていない時は1.0とする)*/
 			virtual double GetPrepairProgress()const = 0;
 			/*ファイルアクセサをセット。初期化前に呼び出す*/
-			virtual void SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) = 0;
+			virtual void SetFileManipulator_(const std::shared_ptr<FileManipulatorBase>& f_scsr) = 0;
 			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/
 			virtual void SetResourceListFileName_(const std::string& file_name) = 0;
 			/*リソースの属性を追加*/

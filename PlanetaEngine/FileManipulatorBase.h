@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include "Object.h"
 #include"File.h"
+#include "FileAccessMode.h"
 #include "boost/optional.hpp"
 
 namespace planeta {
@@ -13,11 +14,14 @@ namespace planeta {
 	}
 	class FileManipulatorBase : public Object {
 	public:
-		explicit FileManipulatorBase(const std::string& p, bool auto_create);
-		explicit FileManipulatorBase(const std::string& p, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create);
+		explicit FileManipulatorBase();
 		virtual ~FileManipulatorBase();
-		bool Initialize();
-		void Finalize();
+		/*マニピュレータを開く*/
+		bool Open(const std::string& path, AccessMode access_mode, bool auto_create);
+		/*暗号化器を指定してマニピュレータを開く*/
+		bool Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create);
+		/*閉じる*/
+		void Close();
 		/*ファイルの読み込み*/
 		std::shared_ptr<File> LoadFile(const std::string& path);
 		/*ファイルの保存(保存名、ファイル)*/
@@ -28,8 +32,10 @@ namespace planeta {
 		bool CheckFileExist(const std::string& path)const;
 		/*全てのファイルパスを取得*/
 		std::vector<std::string> GetAllFilePaths()const;
+		/*ファイルアクセスモードを取得する*/
+		AccessMode mode()const;
 		/*有効か*/
-		bool is_valid()const { return is_valid_; }
+		bool is_opened()const { return is_opened_; }
 	protected:
 		const std::string& root_path()const& { return root_path_; }
 		void root_path(const std::string& p) { root_path_ = p; }
@@ -38,11 +44,12 @@ namespace planeta {
 		bool auto_create()const { return auto_create_; }
 	private:
 		std::string root_path_;
-		bool is_valid_; //有効か
+		bool is_opened_; //有効か
 		bool auto_create_;
+		AccessMode mode_ = AccessMode::Invalid;
 		std::unique_ptr<const encrypters::EncrypterBase> encrypter_;
-		virtual bool InitializeProc() = 0;
-		virtual void FinalizeProc() = 0;
+		virtual bool OpenProc(const std::string& path) = 0;
+		virtual void CloseProc() = 0;
 		virtual bool CheckFileExistenceProc(const std::string& path)const = 0;
 		virtual bool ReloadProc() { return true; };
 		virtual bool LoadFileProc(const std::string& name, File& file) = 0;

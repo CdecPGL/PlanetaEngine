@@ -17,7 +17,7 @@
 namespace planeta {
 	namespace private_ {
 		namespace init_funcs {
-			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileAccessor> res_file_accessor) {
+			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulatorBase>& res_file_manipurator) {
 				//ビルドインリソースの設定
 				mgr.AddResourceType<RGraph>(system_variables::resource::BuiltinGraphResourceTypeName); //画像
 				mgr.AddResourceType<RSound>(system_variables::resource::BuiltinSoundResourceTypeName); //効果音
@@ -30,7 +30,7 @@ namespace planeta {
 				mgr.AddResourceType<RPtree>(system_variables::resource::BuiltinPtreeResourceTypeName); //Ptree
 				mgr.AddResourceType<REffect>(system_variables::resource::BuiltinEffectResourceTypeName); //Effect
 				mgr.AddResourceType<REffectTexture>(system_variables::resource::BuiltinEffectTextureResourceTypeName); //EffectTexture
-				mgr.SetFileAccessor_(res_file_accessor); //ファイルアクセサセット
+				mgr.SetFileManipulator_(res_file_manipurator); //ファイルアクセサセット
 				mgr.SetResourceListFileName_(private_::system_variables::file_system::ResourceListFileName); //リソースリストファイル名セット
 				if (mgr.Initialize()) {
 					return{ true, [&mgr] {mgr.Finalize(); } };

@@ -10,8 +10,8 @@ namespace planeta {
 	private:
 		bool LoadFileByPath(File&, const std::string&);
 		static int LoadDataCore(File&, const std::string&);
-		bool InitializeProc()override;
-		void FinalizeProc()override;
+		bool OpenProc(const std::string& path)override;
+		void CloseProc()override;
 		bool LoadFileProc(const std::string&, File& file)override;
 		bool SaveFileProc(const std::string& name, const File& file) override;
 		size_t GetFileCountProc()const override;

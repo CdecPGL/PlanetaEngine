@@ -2,7 +2,7 @@
 #include "StandardSaveManager.h"
 #include "DataContainer.h"
 #include "DataContainerSerializeUtility.h"
-#include "FileAccessor.h"
+#include "FileManipulatorBase.h"
 #include "LogUtility.h"
 #include "RCsv.h"
 
@@ -21,7 +21,7 @@ namespace planeta {
 		public:
 			std::unique_ptr<util::DataContainer> common_data_;
 			std::unique_ptr<util::DataContainer> current_user_data_;
-			std::shared_ptr<FileAccessor> file_accessor_;
+			std::shared_ptr<FileManipulatorBase> file_accessor_;
 			int current_user_data_idx_ = -1; //-1で読み込んでいない
 
 			struct SaveDataInfo {
@@ -135,7 +135,7 @@ namespace planeta {
 			//Save();
 		}
 
-		void StandardSaveManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& file_accessor) {
+		void StandardSaveManager::SetFileManipurator_(const std::shared_ptr<FileManipulatorBase>& file_accessor) {
 			impl_->file_accessor_ = file_accessor;
 		}
 

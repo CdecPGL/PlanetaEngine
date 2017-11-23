@@ -5,10 +5,9 @@
 #include <memory>
 
 namespace planeta {
-	class FileAccessor;
+	class FileManipulatorBase;
 	namespace private_ {
 		class ResourceManager;
-		class FileSystemManager;
 		class ConfigManager;
 		namespace init_funcs {
 			//PlanetaEngineのInit関数内で呼ばれる。戻り値に初期化の成否と、終了処理関数を返す。エラーメッセージはこれらの関数内で出力する。
@@ -17,11 +16,11 @@ namespace planeta {
 			//Effekseerの初期化。DxLib初期化の後に行う
 			std::tuple<bool, std::function<void()>> InitializeEffekseer();
 			//リソースシステムの初期化
-			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileAccessor> res_file_sccessor);
+			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulatorBase>& resource_dir_manipurator);
 			//その他初期化補助関数
-			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileAccessor>& sys_dir_accessor, const std::shared_ptr<FileAccessor>& cfg_dir_accessor);
+			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulatorBase>& sys_dir_manipurator, const std::shared_ptr<FileManipulatorBase>& cfg_dir_manipurator);
 			enum class FileAccessorKind{Resource,SaveData,System,Config};
-			std::shared_ptr<FileAccessor> CreateFileAccessor(FileSystemManager& mgr, FileAccessorKind kind);
+			std::shared_ptr<FileManipulatorBase> CreateFileManipurator(FileAccessorKind kind);
 		}
 	}
 }

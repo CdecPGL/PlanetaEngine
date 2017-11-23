@@ -3,6 +3,28 @@
 #include "EncrypterBase.h"
 
 namespace planeta {
+	namespace {
+		namespace access_mode {
+			using type = uint_fast32_t;
+			constexpr type None = 0b00;
+			constexpr type Read = 0b01;
+			constexpr type Write = 0b10;
+			constexpr type ReadWrite = 0b11;
+		}
+		constexpr access_mode::type ConvertAccessModeToUint32(AccessMode mode) {
+			return mode == planeta::AccessMode::ReadOnly ? access_mode::Read :
+				mode == planeta::AccessMode::WriteOnly ? access_mode::Write :
+				mode == planeta::AccessMode::ReadWrite ? access_mode::ReadWrite :
+				mode == planeta::AccessMode::Invalid ? access_mode::None : access_mode::None;
+		}
+		constexpr AccessMode ConvertUint32ToAccessMode(access_mode::type amode_uint32) {
+			return amode_uint32 == access_mode::Read ? AccessMode::ReadOnly :
+				amode_uint32 == access_mode::Write ? AccessMode::WriteOnly :
+				amode_uint32 == access_mode::ReadWrite ? AccessMode::ReadWrite :
+				amode_uint32 == access_mode::None ? AccessMode::Invalid : AccessMode::Invalid;
+		}
+	}
+
 	bool FileManipulatorBase::CheckFileExist(const std::string& file_name) const {
 		return CheckFileExistenceProc(file_name);
 	}
@@ -17,6 +39,10 @@ namespace planeta {
 		}
 	}
 
+	AccessMode FileManipulatorBase::mode() const {
+		return mode_;
+	}
+
 	boost::optional<const encrypters::EncrypterBase&> FileManipulatorBase::encrypter() const& {
 		if (encrypter_) {
 			return *encrypter_;
@@ -26,6 +52,14 @@ namespace planeta {
 	}
 
 	std::shared_ptr<File> FileManipulatorBase::LoadFile(const std::string& name) {
+		if (is_opened() == false) {
+			PE_LOG_ERROR("無効なファイルマニピュレータです。初期化されていないか、破棄された可能性があります。");
+			return nullptr;
+		}
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Read) != access_mode::Read) {
+			PE_LOG_ERROR("読み込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
+			return nullptr;
+		}
 		auto file = std::make_shared<File>();
 		if (LoadFileProc(name, *file)) {
 			file->SetFileName(name);
@@ -36,35 +70,59 @@ namespace planeta {
 		}
 	}
 
-	FileManipulatorBase::FileManipulatorBase(const std::string& p, bool auto_create) :root_path_(p), is_valid_(false), auto_create_(auto_create) {
-
-	}
-
-	FileManipulatorBase::FileManipulatorBase(const std::string& p, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) : root_path_(p), encrypter_(std::move(encrypter)), is_valid_(false), auto_create_(auto_create) {
-
-	}
+	FileManipulatorBase::FileManipulatorBase() :root_path_(""), mode_(AccessMode::Invalid), is_opened_(false), auto_create_(false) {}
 
 	FileManipulatorBase::~FileManipulatorBase() = default;
 
-	bool FileManipulatorBase::Initialize() {
-		if (is_valid_) { return true; }
-		if (InitializeProc()) {
-			is_valid_ = true;
+	bool FileManipulatorBase::Open(const std::string& path, AccessMode access_mode, bool auto_create) {
+		if (is_opened_) { 
+			PE_LOG_ERROR("すでに開かれています。");
+			return false;
+		}
+		mode_ = access_mode;
+		auto_create_ = auto_create;
+		root_path_ = path;
+		if (OpenProc(path)) {
+			is_opened_ = true;
 			PE_LOG_MESSAGE("初期化されました。(パス ", root_path(), ",ファイル数 ", GetFileCountProc(), ",タイプ ", typeid(*this).name(), ")");
 			return true;
 		} else {
 			PE_LOG_ERROR("初期化に失敗しました。(パス ", root_path(), ",タイプ ", typeid(*this).name(), ")");
+			mode_ = AccessMode::Invalid;
+			auto_create_ = false;
+			root_path_ = "";
+			encrypter_ = nullptr;
 			return false;
 		}
 	}
 
-	void FileManipulatorBase::Finalize() {
-		if (!is_valid_) { return; }
-		FinalizeProc();
-		is_valid_ = false;
+	bool FileManipulatorBase::Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) {
+		encrypter_ = std::move(encrypter);
+		return Open(path, access_mode, auto_create);
+	}
+
+	void FileManipulatorBase::Close() {
+		if (!is_opened_) {
+			PE_LOG_WARNING("開かれる前に閉じられようとしました。");
+			return; 
+		}
+		CloseProc();
+		mode_ = AccessMode::Invalid;
+		auto_create_ = false;
+		root_path_ = "";
+		encrypter_ = nullptr;
+		is_opened_ = false;
 	}
 
 	bool FileManipulatorBase::SaveFile(const std::string& name, const File& file) {
+		if (is_opened() == false) {
+			PE_LOG_ERROR("無効なファイルマニピュレータです。初期化されていないか、破棄された可能性があります。");
+			return false;
+		}
+		if ((ConvertAccessModeToUint32(mode_) & access_mode::Write) != access_mode::Write) {
+			PE_LOG_ERROR("書き込み属性がありません。value:", ConvertAccessModeToUint32(mode_));
+			return false;
+		}
 		if (SaveFileProc(name, file)) {
 			return true;
 		} else {

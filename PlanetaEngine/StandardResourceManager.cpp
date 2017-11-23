@@ -3,11 +3,10 @@
 #include "boost/algorithm/string.hpp"
 
 #include"StandardResourceManager.h"
-#include "FileSystemManager.h"
 #include "File.h"
 #include "CsvFile.h"
 #include "LogUtility.h"
-#include "FileAccessor.h"
+#include "FileManipulatorBase.h"
 #include "SystemVariables.h"
 #include "ResourceReferencer.h"
 #include "ResourceBase.h"
@@ -28,7 +27,7 @@ namespace planeta {
 		//////////////////////////////////////////////////////////////////////////
 		class StandardResourceManager::Impl_ {
 		public:
-			std::shared_ptr<FileAccessor> file_accessor_;
+			std::shared_ptr<FileManipulatorBase> file_accessor_;
 			/*リソースリストのファイル名*/
 			std::string _resource_list_file_name;
 
@@ -381,7 +380,7 @@ namespace planeta {
 			return impl_->GetResourceByID(id, true);
 		}
 
-		void StandardResourceManager::SetFileAccessor_(const std::shared_ptr<FileAccessor>& f_scsr) {
+		void StandardResourceManager::SetFileManipulator_(const std::shared_ptr<FileManipulatorBase>& f_scsr) {
 			impl_->file_accessor_ = f_scsr;
 		}
 
