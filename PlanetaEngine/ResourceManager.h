@@ -33,8 +33,8 @@ namespace planeta {
 			virtual void SetResourceListFileName_(const std::string& file_name) = 0;
 			/*ƒŠƒ\[ƒX‚Ì‘®«‚ğ’Ç‰Á*/
 			template<class C>
-			void AddResourceType(const std::string& type_name) {
-				AddResourceCreator(type_name, []()->std::shared_ptr<ResourceBase> {
+			void AddResourceType(const std::string& type_name, const std::string& type_prefix) {
+				AddResourceCreator(typeid(C), type_name, type_prefix, []()->std::shared_ptr<ResourceBase> {
 					return MakeResource<C>();
 				});
 			}
@@ -48,7 +48,7 @@ namespace planeta {
 				static_assert(std::is_base_of<ResourceBase, Res>::value == true, "Res is not derived ResourceBase.");
 				return std::move(std::shared_ptr<Res>(new Res(), [](Res* r)->void {r->Dispose(); delete r; }));
 			}
-			virtual void AddResourceCreator(const std::string& type_name, const ResourceCreatorType& creator) = 0;
+			virtual void AddResourceTypeProc(const std::type_info& type, const std::string& type_name, const std::string& type_prefix, const ResourceCreatorType& creator) = 0;
 		};
 	}
 }

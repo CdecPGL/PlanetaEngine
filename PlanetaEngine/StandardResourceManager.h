@@ -35,7 +35,7 @@ namespace planeta{
 			/*準備進行度(読み込みしていない時は1.0とする)*/
 			double GetPrepairProgress()const override;
 			/*リソースをIDで取得*/
-			std::shared_ptr<ResourceBase> GetResourceByID(const std::string& id)override;
+			std::shared_ptr<ResourceBase> GetResourceByTypeAndID(const std::type_info& type, const std::string& id)override;
 			/*ファイルアクセサをセット。初期化前に呼び出す*/
 			void SetFileManipulator_(const std::shared_ptr<FileManipulator>& f_scsr)override;
 			/*リソースリストファイル名を設定。初期化前に呼び出す必要がある*/
@@ -43,7 +43,7 @@ namespace planeta{
 		private:
 			class Impl_;
 			std::unique_ptr<Impl_> impl_;
-			void AddResourceCreator(const std::string& type_name, const ResourceCreatorType& creator)override;
+			void AddResourceTypeProc(const std::type_info& type, const std::string& type_name, const std::string& type_prefix, const ResourceCreatorType& creator)override;
 		};
 	}
 }

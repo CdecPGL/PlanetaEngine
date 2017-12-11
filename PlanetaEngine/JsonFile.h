@@ -240,8 +240,10 @@ namespace planeta {
 		~JsonFile();
 		//! Jsonのルート値を取得する
 		const JSONValue& GetRoot()const;
-
+		//! ファイルから読み込む
 		bool Load(const File& file);
+		//! ファイルが開かれているかどうか
+		bool is_opened()const;
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;

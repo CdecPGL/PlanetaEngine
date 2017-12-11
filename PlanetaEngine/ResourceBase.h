@@ -6,18 +6,18 @@
 
 namespace planeta {
 	class File;
-	class FileAccessor;
+	class JsonFile;
 	class ResourceBase : public Object {
 	public:
 		ResourceBase() = default;
 		virtual ~ResourceBase();
 
-		bool Create(const File& file, private_::ResourceManagerInternalAccessor& mgr_acsr);
+		bool Create(const File& file, const JsonFile& metadata, private_::ResourceManagerInternalAccessor& mgr_acsr);
 		void Dispose();
 		bool is_usable()const { return is_usable_; }
 		size_t reference_conunt()const;
 	protected:
-		virtual bool _Create(const File& file, ResourceReferencer& referencer) = 0;
+		virtual bool _Create(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) = 0;
 		virtual void _Dispose() = 0;
 	private:
 		ResourceBase(const ResourceBase&) = delete;

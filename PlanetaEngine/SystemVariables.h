@@ -42,11 +42,25 @@ namespace planeta{
 				extern const std::string BuiltinCSVResourceTypeName; //標準のCSV形式ファイルリソースタイプ名
 				extern const std::string BuiltinTextResourceTypeName; //標準のテキストファイルリソースタイプ名
 				extern const std::string BuiltinXMLResourceTypeName; //標準のXMLファイルリソースタイプ名
-				extern const std::string BuiltinFontDefinitionResourceTypeName; //標準のフォント定義ファイルリソースタイプ名
+				extern const std::string BuiltinFontResourceTypeName; //標準のフォント定義ファイルリソースタイプ名
 				extern const std::string BuiltinJSONResourceTypeName; //標準のJSONファイルリソースタイプ名
-				extern const std::string BuiltinPtreeResourceTypeName; //標準のPropertyTreeリソースタイプ名
+				extern const std::string BuiltinGameObjectResourceTypeName; //標準のGameObjectリソースタイプ名
+				extern const std::string BuiltinGameObjectComponentResourceTypeName; //標準のGameObjectComponentリソースタイプ名
 				extern const std::string BuiltinEffectResourceTypeName; //標準のEffectリソースタイプ名
 				extern const std::string BuiltinEffectTextureResourceTypeName; //標準のEffectテクスチャリソースタイプ名
+
+				extern const std::string BuiltinGraphResourceTypePrefix; //標準の画像リソース接頭辞
+				extern const std::string BuiltinSoundResourceTypePrefix; //標準の効果音リソース接頭辞
+				extern const std::string BuiltinMusicResourceTypePrefix; //標準の音楽リソース接頭辞
+				extern const std::string BuiltinCSVResourceTypePrefix; //標準のCSV形式ファイルリソース接頭辞
+				extern const std::string BuiltinTextResourceTypePrefix; //標準のテキストファイルリソース接頭辞
+				extern const std::string BuiltinXMLResourceTypePrefix; //標準のXMLファイルリソース接頭辞
+				extern const std::string BuiltinFontResourceTypePrefix; //標準のフォント定義ファイルリソース接頭辞
+				extern const std::string BuiltinJSONResourceTypePrefix; //標準のJSONファイルリソース接頭辞
+				extern const std::string BuiltinGameObjectResourceTypePrefix; //標準のGameObjectリソース接頭辞
+				extern const std::string BuiltinGameObjectComponentResourceTypePrefix; //標準のGameObjectComponentリソース接頭辞
+				extern const std::string BuiltinEffectResourceTypePrefix; //標準のEffectリソース接頭辞
+				extern const std::string BuiltinEffectTextureResourceTypePrefix; //標準のEffectテクスチャリソース接頭辞
 			}
 			namespace prefixes {
 				extern const char Scene;

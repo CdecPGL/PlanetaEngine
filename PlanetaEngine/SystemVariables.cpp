@@ -35,11 +35,25 @@ namespace planeta{
 				const std::string BuiltinCSVResourceTypeName("CSV");
 				const std::string BuiltinTextResourceTypeName("Text");
 				const std::string BuiltinXMLResourceTypeName("XML");
-				const std::string BuiltinFontDefinitionResourceTypeName("FontDefinition");
+				const std::string BuiltinFontResourceTypeName("Font");
 				const std::string BuiltinJSONResourceTypeName("JSON");
-				const std::string BuiltinPtreeResourceTypeName("Ptree");
+				const std::string BuiltinGameObjectResourceTypeName("GameObject");
+				const std::string BuiltinGameObjectComponentResourceTypeName("GameObjectComponent");
 				const std::string BuiltinEffectResourceTypeName("Effect");
 				const std::string BuiltinEffectTextureResourceTypeName("EffectTexture");
+
+				const std::string BuiltinGraphResourceTypePrefix("Grp");
+				const std::string BuiltinSoundResourceTypePrefix("Snd");
+				const std::string BuiltinMusicResourceTypePrefix("Msc");
+				const std::string BuiltinCSVResourceTypePrefix("Csv");
+				const std::string BuiltinTextResourceTypePrefix("Txt");
+				const std::string BuiltinXMLResourceTypePrefix("Xml");
+				const std::string BuiltinFontResourceTypePrefix("Fnt");
+				const std::string BuiltinJSONResourceTypePrefix("Jsn");
+				const std::string BuiltinGameObjectResourceTypePrefix("Gbj");
+				const std::string BuiltinGameObjectComponentResourceTypePrefix("Gcm");
+				const std::string BuiltinEffectResourceTypePrefix("Efc");
+				const std::string BuiltinEffectTextureResourceTypePrefix("Etx");
 			}
 			namespace prefixes {
 				const char Scene{ 'S' };

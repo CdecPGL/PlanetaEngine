@@ -127,4 +127,8 @@ namespace planeta {
 	const JSONValue& JsonFile::GetRoot() const {
 		return *impl_->value;
 	}
+
+	bool JsonFile::is_opened()const {
+		return impl_->value != nullptr;
+	}
 }
