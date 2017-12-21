@@ -1,5 +1,4 @@
-﻿#include <cassert>
-//#include <optional>
+﻿//#include <optional>
 
 #include "boost/algorithm/string.hpp"
 #include "boost/filesystem.hpp"

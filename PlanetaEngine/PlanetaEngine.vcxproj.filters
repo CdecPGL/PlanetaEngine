@@ -603,9 +603,6 @@
     <ClInclude Include="RCsv.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="RFontDefinition.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="RFont.h">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClInclude>
@@ -1173,9 +1170,6 @@
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="RCsv.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RFontDefinition.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="RFont.cpp">

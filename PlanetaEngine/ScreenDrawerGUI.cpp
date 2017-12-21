@@ -5,7 +5,7 @@
 #include "ScreenDrawerGUI.h"
 #include "RGraph.h"
 #include "DXUtility.h"
-#include "RFontDefinition.h"
+#include "RFont.h"
 #include "Screen.h"
 
 namespace planeta {
@@ -56,11 +56,11 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<RFontDefinition>& font_definition_resource) {
-		screen_.ReserveDraw([position,scale,str,color,outline_color,font_definition_resource]() {
-			if (font_definition_resource == nullptr) { return; }
+	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<RFont>& font_resource) {
+		screen_.ReserveDraw([position,scale,str,color,outline_color,font_resource]() {
+			if (font_resource == nullptr) { return; }
 			using namespace util::dx;
-			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_definition_resource->GetHandle(), PEColorToDXColorHandle(outline_color));
+			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_resource->GetDXHandle(), PEColorToDXColorHandle(outline_color));
 		});
 	}
 

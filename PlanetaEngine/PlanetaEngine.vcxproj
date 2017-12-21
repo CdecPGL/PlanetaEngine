@@ -311,7 +311,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="EventMonitor.h" />
     <ClInclude Include="CoroutineUtility.h" />
     <ClInclude Include="File.h" />
-    <ClInclude Include="RFontDefinition.h" />
     <ClInclude Include="RFont.h" />
     <ClInclude Include="DataContainerFunctionsForBoostSerialize.h" />
     <ClInclude Include="DataContainerSerializeUtility.h" />
@@ -489,7 +488,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="FileOStream.cpp" />
     <ClCompile Include="FileStreamBuf.cpp" />
     <ClCompile Include="FileSystemUtility.cpp" />
-    <ClCompile Include="RFontDefinition.cpp" />
     <ClCompile Include="RFont.cpp" />
     <ClCompile Include="DataContainer.cpp" />
     <ClCompile Include="DataContainerImpl.cpp" />

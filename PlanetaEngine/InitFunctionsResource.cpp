@@ -6,10 +6,10 @@
 #include "RSound.h"
 #include "RMusic.h"
 #include "RCsv.h"
+#include "RFont.h"
 #include "RText.h"
 #include "RXml.h"
 #include "RJson.h"
-#include "RFontDefinition.h"
 #include "RPtree.h"
 #include "REffect.h"
 #include "REffectTexture.h"
@@ -25,7 +25,7 @@ namespace planeta {
 				mgr.AddResourceType<RCsv>(system_variables::resource::BuiltinCSVResourceTypeName, system_variables::resource::BuiltinCSVResourceTypePrefix); //CSVファイル
 				mgr.AddResourceType<RText>(system_variables::resource::BuiltinTextResourceTypeName, system_variables::resource::BuiltinTextResourceTypePrefix); //テキストファイル
 				mgr.AddResourceType<RXml>(system_variables::resource::BuiltinXMLResourceTypeName, system_variables::resource::BuiltinXMLResourceTypePrefix); //XMLファイル
-				//mgr.AddResourceType<RFont>(system_variables::resource::BuiltinFontResourceTypeName, system_variables::resource::BuiltinFontResourceTypePrefix); //フォント定義ファイル
+				mgr.AddResourceType<RFont>(system_variables::resource::BuiltinFontResourceTypeName, system_variables::resource::BuiltinFontResourceTypePrefix); //フォントファイル
 				mgr.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName, system_variables::resource::BuiltinJSONResourceTypePrefix); //JSONファイル
 				//mgr.AddResourceType<RGameObject>(system_variables::resource::BuiltinGameObjectResourceTypeName, system_variables::resource::BuiltinGameObjectResourceTypePrefix); //GameObject
 				//mgr.AddResourceType<RGameObjectComponent>(system_variables::resource::BuiltinGameObjectComponentResourceTypeName, system_variables::resource::BuiltinGameObjectComponentResourceTypePrefix); //GameObject

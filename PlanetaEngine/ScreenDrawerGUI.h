@@ -8,7 +8,7 @@
 
 namespace planeta {
 	class RGraph;
-	class RFontDefinition;
+	class RFont;
 	namespace private_ {
 		class Screen;
 	}
@@ -23,7 +23,7 @@ namespace planeta {
 		/*! 多角形を描画(点座標、三角形ポリゴンインデックス、色)*/
 		void DrawPolygon(const std::vector<Vector2Di>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta::Color& color);
 		/*! 文字列を描画(描画位置、拡大度、描画文字列、色、縁色、フォント定義リソース)*/
-		void DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<RFontDefinition>& font_definition_resource);
+		void DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<RFont>& font_resource);
 		/*! 文字列を描画(描画位置、拡大度、描画文字列、色、縁色)*/
 		void DrawStringByDefaultFont(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color);
 	private:
