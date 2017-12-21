@@ -13,7 +13,7 @@
 #include "RFont.h"
 
 namespace planeta {
-	bool RFontDefinition::_Create(const File& file, ResourceReferencer& referencer) {
+	bool RFontDefinition::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		PE_LOG_ERROR("FontDefinitionリソースはFontリソ-スに統合予定です。");
 		return false;
 		//auto file_accessor = Game::instance().file_system_manager()->GetFileAccessor(private_::system_variables::file_system::ResourceFileAccessorID);
@@ -84,7 +84,7 @@ namespace planeta {
 		//}
 	}
 
-	void RFontDefinition::_Dispose() {
+	void RFontDefinition::OnDisposed() {
 		if (handle_ >= 0) { DeleteFontToHandle(handle_); }
 	}
 }

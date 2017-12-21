@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlanetaEngine", "PlanetaEngine\PlanetaEngine.vcxproj", "{51471B0A-7303-475C-9870-B7B14E0291FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetaEditor", "PlanetaEditor\PlanetaEditor.csproj", "{77B494CC-C8EE-4BBE-87AE-6217378A5D80}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonLibrary", "CommonLibrary\CommonLibrary.vcxproj", "{F8748FCE-E40B-4500-BA74-C3103C66BC39}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceArchiver", "ResourceArchiver\ResourceArchiver.vcxproj", "{ECBB2204-557A-4783-8E71-4CF8975412EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,28 +35,11 @@ Global
 		{77B494CC-C8EE-4BBE-87AE-6217378A5D80}.Release|Win32.ActiveCfg = Release|Any CPU
 		{77B494CC-C8EE-4BBE-87AE-6217378A5D80}.Release|x64.ActiveCfg = Release|Any CPU
 		{77B494CC-C8EE-4BBE-87AE-6217378A5D80}.Release|x64.Build.0 = Release|Any CPU
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Debug|Win32.Build.0 = Debug|Win32
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Debug|x64.ActiveCfg = Debug|x64
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Debug|x64.Build.0 = Debug|x64
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Release|Any CPU.ActiveCfg = Release|Win32
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Release|Win32.ActiveCfg = Release|Win32
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Release|Win32.Build.0 = Release|Win32
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Release|x64.ActiveCfg = Release|x64
-		{F8748FCE-E40B-4500-BA74-C3103C66BC39}.Release|x64.Build.0 = Release|x64
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Debug|Win32.Build.0 = Debug|Win32
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Debug|x64.ActiveCfg = Debug|x64
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Debug|x64.Build.0 = Debug|x64
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Release|Any CPU.ActiveCfg = Release|Win32
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Release|Win32.ActiveCfg = Release|Win32
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Release|Win32.Build.0 = Release|Win32
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Release|x64.ActiveCfg = Release|x64
-		{ECBB2204-557A-4783-8E71-4CF8975412EA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1230303-5A67-477D-9609-0801FF4B1D1A}
 	EndGlobalSection
 EndGlobal

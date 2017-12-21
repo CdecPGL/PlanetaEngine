@@ -9,8 +9,8 @@ namespace planeta {
 		const IniFile& ini_file()const;
 		IniFile& ini_file();
 	private:
-		bool _Create(const File& file, ResourceReferencer&) override;
-		void _Dispose()override;
+		bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		void OnDisposed()override;
 		std::unique_ptr<IniFile> ini_file_;
 	};
 }

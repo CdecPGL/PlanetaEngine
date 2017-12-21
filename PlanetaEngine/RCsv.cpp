@@ -10,7 +10,7 @@ namespace planeta {
 		return *csv_file_;
 	}
 
-	bool RCsv::_Create(const File& file, ResourceReferencer&) {
+	bool RCsv::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		csv_file_ = std::make_unique<CsvFile>();
 		if (!csv_file_->Load(file)) {
 			PE_LOG_ERROR("CSVファイルの読み込みに失敗しました。");
@@ -20,7 +20,7 @@ namespace planeta {
 		return true;
 	}
 
-	void RCsv::_Dispose() {
+	void RCsv::OnDisposed() {
 		csv_file_.release();
 	}
 

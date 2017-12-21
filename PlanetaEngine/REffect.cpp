@@ -11,7 +11,7 @@ Effekseer::Effect* planeta::REffect::effekseer_effect() const {
 	return effekseer_effect_;
 }
 
-bool planeta::REffect::_Create(const File& file, ResourceReferencer& referencer) {
+bool planeta::REffect::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 	//読み込み用設定
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
 	//エフェクトローダーの設定
@@ -41,7 +41,7 @@ bool planeta::REffect::_Create(const File& file, ResourceReferencer& referencer)
 	return true;
 }
 
-void planeta::REffect::_Dispose() {
+void planeta::REffect::OnDisposed() {
 	if (effekseer_effect_) {
 		ES_SAFE_RELEASE(effekseer_effect_);
 	}

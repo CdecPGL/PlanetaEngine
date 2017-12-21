@@ -8,8 +8,8 @@ namespace planeta {
 		~RText() {};
 		const std::string& GetText()const { return _text; }
 	private:
-		virtual bool _Create(const File& file, ResourceReferencer&) override;
-		virtual void _Dispose() override;
+		virtual bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		virtual void OnDisposed() override;
 		std::string _text;
 	};
 }

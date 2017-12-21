@@ -14,7 +14,7 @@ namespace planeta {
 	private:
 		HANDLE handle_ = 0;
 		DWORD font_num_ = 0;
-		bool _Create(const File& file, ResourceReferencer&) override;
-		void _Dispose() override;
+		bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		void OnDisposed() override;
 	};
 }

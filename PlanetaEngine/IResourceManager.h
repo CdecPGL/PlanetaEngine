@@ -17,18 +17,22 @@ namespace planeta {
 		template<class RT>
 		std::shared_ptr<RT> GetResourceByID(const std::string& id) {
 			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = GetResourceByID(typeid(RT), id);
+			auto rsc = GetResourceByTypeAndID(typeid(RT), id);
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) {
 					return out;
-				} else {
+				}
+				else {
 					PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
 					return nullptr;
 				}
-			} else {
+			}
+			else {
 				return nullptr;
 			}
 		}
+		/*リソースをFullIDで取得*/
+		virtual std::shared_ptr<ResourceBase> GetResourceByFullID(const std::string& full_id) = 0;
 	};
 }

@@ -1,8 +1,9 @@
 ﻿#include <cassert>
+//#include <optional>
 
 #include "boost/algorithm/string.hpp"
 #include "boost/filesystem.hpp"
-#include "boost/type_index.hpp"
+#include "boost/optional.hpp"
 
 #include"StandardResourceManager.h"
 #include "File.h"
@@ -22,79 +23,13 @@ namespace {
 namespace planeta {
 	namespace private_ {
 		namespace {
-			constexpr char* ANONYMOUS_ID{"<ID未設定>"};
-			constexpr char* META_DATA_FILE_SUFFIX{ "_meta.json" };
+			constexpr char* ANONYMOUS_ID{ "<ID未設定>" };
+			constexpr char* META_DATA_FILE_SUFFIX{ ".meta.json" };
 			constexpr unsigned int RESOURCE_FILE_NAME_SUFFIX_LENGTH{ 3 };
+			constexpr char* TAG_LIST_FILE_NAME{ "tag_list.json" };
 		}
-		//////////////////////////////////////////////////////////////////////////
-		//Impl_
-		//////////////////////////////////////////////////////////////////////////
-		class StandardResourceManager::Impl_ {
-		public:
-			std::shared_ptr<FileManipulator> file_accessor_;
-			/*リソースリストのファイル名*/
-			std::string _resource_list_file_name;
 
-			struct ResourceData {
-				/*ID*/
-				std::string id = "";
-				/*フルID*/
-				std::string full_id = "";
-				/*IDが割り当てられているか*/
-				bool is_id_assigned = false;
-				/*ファイルパス*/
-				std::string file_path = "";
-				/*メタデータファイルパス*/
-				std::string metadata_file_path = "";
-				/*種類*/
-				boost::typeindex::type_index type_index;
-				/*リソース本体*/
-				std::shared_ptr<ResourceBase> resouce;
-				/*リソースがロードされているか*/
-				bool is_loaded = false;
-				/*タグ*/
-				std::vector<std::string> tags;
-				/*アンロード対象外か*/
-				bool not_unload = false;
-			};
-			using ResourceDataListType = std::list<ResourceData>;
-			ResourceDataListType resource_data_list_;
-			std::unordered_map<std::string, std::vector<ResourceDataListType::iterator>> tag_map_;
-			std::unordered_map<std::string, ResourceDataListType::iterator> full_id_map_;
-			std::unordered_map<std::string, ResourceDataListType::iterator> path_map_;
-			std::set<std::string> not_unload_tags_;
-
-			struct ResourceTypeData {
-				const std::type_info& type;
-				std::string type_name;
-				std::string type_prefix;
-				ResourceCreatorType creator;
-			};
-			/*ResourceのタイプによるResourceタイプデータ*/
-			std::unordered_map<boost::typeindex::type_index, ResourceTypeData> resource_type_data_map_;
-			/*リソースの作成*/
-			std::shared_ptr<ResourceBase> CreateResource(const boost::typeindex::type_index& type);
-			/*リソースのロード*/
-			std::shared_ptr<ResourceBase> LoadResource_(ResourceData& res_dat);
-			/*リソースのアンロード*/
-			void UnloadResource_(ResourceData& res_dat);
-			/*リソースデータの登録*/
-			bool RegisterResourceData_(ResourceData&& res_dat);
-			/*アンロードタグの指定*/
-			bool SetNotUnloadTags_(const std::set<std::string>& tags);
-			/*リソースリストの読み込み*/
-			bool _LoadResourceList();
-			/*読み込まれているすべてのリソースをアンロードする*/
-			void _UnloadAllLoadedResources();
-			/*内部マネージャアクセサを取得*/
-			ResourceManagerInternalAccessor CreateInternalManagerAccessor();
-			/*リソースをIDで取得する。ロードされていないリソース指定時に警告を出すか指定可能*/
-			std::shared_ptr<ResourceBase> GetResourceByTypeAndID(const std::type_info& type, const std::string& id, bool is_valid_not_preload_warning);
-			/*リソースをパスで取得する。ロードされていないリソース指定時に警告を出すか指定可能*/
-			std::shared_ptr<ResourceBase> GetResourceByTypeAndPath(const std::type_info& type, const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning);
-		};
-
-		std::shared_ptr<ResourceBase> StandardResourceManager::Impl_::CreateResource(const boost::typeindex::type_index& type) {
+		std::shared_ptr<ResourceBase> StandardResourceManager::CreateResource_(const std::type_index& type) {
 			auto it = resource_type_data_map_.find(type);
 			if (it == resource_type_data_map_.end()) { return nullptr; }
 			//指定タイプのリソース作成
@@ -106,7 +41,7 @@ namespace planeta {
 			return res;
 		}
 
-		std::shared_ptr<planeta::ResourceBase> StandardResourceManager::Impl_::LoadResource_(ResourceData& res_dat) {
+		std::shared_ptr<planeta::ResourceBase> StandardResourceManager::LoadResource_(ResourceData_& res_dat) {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			//リソースファイルを読み込み
@@ -120,15 +55,16 @@ namespace planeta {
 			auto metadata_file = file_accessor_->LoadFile(res_dat.metadata_file_path);
 			if (metadata_file == nullptr) {
 				PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。");
-			}else if (!metadata->Load(*metadata_file)) {
+			}
+			else if (!metadata->Load(*metadata_file)) {
 				PE_LOG_ERROR("メタデータファイルの読み込みに失敗しました。Jsonファイルとして読み込めませんでした。");
 				return nullptr;
 			}
 			//マネージャアクセサ作成
-			ResourceManagerInternalAccessor mgr_acsr{ CreateInternalManagerAccessor() };
+			ResourceManagerInternalAccessor mgr_acsr{ CreateInternalManagerAccessor_() };
 			//インスタンス作成と初期化
-			auto resource = CreateResource(res_dat.type_index);
-			if (resource->Create(*file, *metadata, mgr_acsr) == false) {
+			auto resource = CreateResource_(res_dat.type_index);
+			if (resource->Load(*file, *metadata, mgr_acsr) == false) {
 				resource.reset();
 			}
 			if (resource == nullptr) {
@@ -140,7 +76,7 @@ namespace planeta {
 			return resource;
 		}
 
-		void StandardResourceManager::Impl_::UnloadResource_(ResourceData& res_dat) {
+		void StandardResourceManager::UnloadResource_(ResourceData_& res_dat) {
 			assert(res_dat.is_loaded);
 			assert(res_dat.resouce != nullptr);
 			res_dat.resouce->Dispose();
@@ -148,7 +84,7 @@ namespace planeta {
 			res_dat.is_loaded = false;
 		}
 
-		bool StandardResourceManager::Impl_::RegisterResourceData_(ResourceData&& res_dat) {
+		bool StandardResourceManager::RegisterResourceData_(ResourceData_&& res_dat) {
 			resource_data_list_.push_back(std::move(res_dat));
 			auto it = --resource_data_list_.end();
 			//タグマップに登録
@@ -156,14 +92,12 @@ namespace planeta {
 				tag_map_[tag].push_back(it);
 			}
 			//フルIDマップに登録
-			if (it->is_id_assigned) {
-				auto full_id_map_it = full_id_map_.find(it->full_id);
-				if (full_id_map_.find(it->full_id) != full_id_map_.end()) {
-					PE_LOG_ERROR("FullID\"", it->full_id, "\"が重複登録されました。(パス:", it->file_path, ")");
-					return false;
-				}
-				full_id_map_[it->full_id] = it;
+			auto full_id_map_it = full_id_map_.find(it->full_id);
+			if (full_id_map_.find(it->full_id) != full_id_map_.end()) {
+				PE_LOG_ERROR("FullID\"", it->full_id, "\"が重複登録されました。(パス:", it->file_path, ")");
+				return false;
 			}
+			full_id_map_[it->full_id] = it;
 			//Pathマップに登録
 			if (path_map_.find(it->full_id) != path_map_.end()) {
 				PE_LOG_ERROR("パス\"", it->file_path, "\"が重複登録されました。(ID:", it->full_id, ")");
@@ -173,31 +107,83 @@ namespace planeta {
 			return true;
 		}
 
-		bool StandardResourceManager::Impl_::_LoadResourceList() {
+		bool StandardResourceManager::LoadResourceList_() {
 			auto file_path_list = file_accessor_->GetAllFilePaths();
+			boost::optional<std::string> tag_list_path;
+			std::unordered_map<std::string, std::unique_ptr<ResourceData_>> full_id_to_resource_data_map;
 			for (auto&& file_path : file_path_list) {
 				//ファイル名本体を取得
 				boost::filesystem::path path(file_path);
 				auto file_name = path.filename().string();
+				//ファイルがタグリストならスキップする
+				if (file_name == TAG_LIST_FILE_NAME) {
+					tag_list_path = file_path;
+					continue;
+				}
 				auto file_base_name = path.stem().string();
-				auto meta_file_name = file_base_name + META_DATA_FILE_SUFFIX;
+				auto meta_file_name = file_name + META_DATA_FILE_SUFFIX;
 				//先頭3文字を接頭辞として取得
 				auto type_prefix = file_base_name.substr(0, RESOURCE_FILE_NAME_SUFFIX_LENGTH);
+				//接頭辞から型を取得
+				auto ti_it = resource_type_prefix_to_type_map_.find(type_prefix);
+				if (ti_it == resource_type_prefix_to_type_map_.end()) {
+					PE_LOG_WARNING("リソースの読み込みに失敗しました。指定された接頭辞のリソースタイプは存在しません。(type_prefix:", type_prefix, "file_path: ", file_path, ")");
+					continue;
+				}
+				auto res_dat = std::make_unique<ResourceData_>(ResourceData_{ ti_it->second });
 				//接頭辞を除いたものをリソースIDとする
-				auto resource_id = file_base_name.substr(RESOURCE_FILE_NAME_SUFFIX_LENGTH, file_base_name.size() - 3);
-
-				ResourceData res_dat{};
-				res_dat.id = resource_id;
-				res_dat.full_id = file_base_name;
-				res_dat.file_path = file_path;
-				res_dat.metadata_file_path = (path.parent_path() / meta_file_name).string();
+				res_dat->id = file_base_name.substr(RESOURCE_FILE_NAME_SUFFIX_LENGTH, file_base_name.size() - 3);
+				//ファイル名(タイプ接頭辞+リソースIDをFullIDとする)
+				res_dat->full_id = file_base_name;
+				res_dat->file_path = file_path;
+				res_dat->metadata_file_path = (path.parent_path() / meta_file_name).string();
+				full_id_to_resource_data_map.emplace(res_dat->full_id, std::move(res_dat));
 			}
-
-			PE_LOG_MESSAGE("リソースリストを読み込みました。(", resource_data_list_.size(), "個のリソース定義)");
+			PE_LOG_MESSAGE("リソース一覧を構築しました。(", resource_data_list_.size(), "個のリソース定義)");
+			//タグの読み込み
+			bool is_tag_list_loaded = false;
+			if (tag_list_path) {
+				auto tag_list_file = file_accessor_->LoadFile(*tag_list_path);
+				JsonFile tag_list;
+				if (tag_list.Load(*tag_list_file)) {
+					try {
+						auto tag_map = tag_list.GetRoot().GetWithException<std::unordered_map<std::string, std::vector<std::string>>>();
+						for (auto&& pair : *tag_map) {
+							auto tag = pair.first;
+							for (auto&& full_id : pair.second) {
+								try {
+									full_id_to_resource_data_map[full_id]->tags.push_back(tag);
+								}
+								catch (const std::out_of_range&) {
+									PE_LOG_WARNING("タグリストにおいて、タグ(", tag, ")に存在しないリソース(FullID:", full_id, "が関連付けられました。");
+									continue;
+								}
+							}
+						}
+						is_tag_list_loaded = true;
+					}
+					catch (const JSONTypeError& e) {
+						PE_LOG_WARNING("タグリストのルートオブジェクト読み込みに失敗しました。(file_path: ", tag_list_path, ", error: ", e.what(), ")");
+					}
+				}
+				else {
+					PE_LOG_WARNING("タグリストの読み込みに失敗しました。(file_path: ", tag_list_path, ")");
+				}
+			}
+			//リソースの登録
+			for (auto&& pair : full_id_to_resource_data_map) {
+				RegisterResourceData_(std::move(*pair.second));
+			}
+			if (is_tag_list_loaded) {
+				PE_LOG_MESSAGE("タグリストが読み込まれました。(file_path:", tag_list_path, ", タグ数:", tag_map_.size(), ")");
+			}
+			else {
+				PE_LOG_MESSAGE("タグリストは読み込まれませんでした。");
+			}
 			return true;
 		}
 
-		void StandardResourceManager::Impl_::_UnloadAllLoadedResources() {
+		void StandardResourceManager::UnloadAllLoadedResources_() {
 			SetNotUnloadTags_({});
 			size_t unload{ 0 };
 			for (auto& res_dat : resource_data_list_) {
@@ -209,7 +195,7 @@ namespace planeta {
 			PE_LOG_MESSAGE("すべてのリソース(", unload, "個)をアンロードしました。");
 		}
 
-		bool StandardResourceManager::Impl_::SetNotUnloadTags_(const std::set<std::string>& tags) {
+		bool StandardResourceManager::SetNotUnloadTags_(const std::set<std::string>& tags) {
 			//新たに指定されたタグを求める
 			std::vector<std::string> new_set_tags;
 			std::set_difference(tags.begin(), tags.end(), not_unload_tags_.begin(), not_unload_tags_.end(), std::back_inserter(new_set_tags));
@@ -242,24 +228,25 @@ namespace planeta {
 			return true;
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::Impl_::GetResourceByTypeAndID(const std::type_info& type_info, const std::string& id, bool is_valid_not_preload_warning) {
-			auto it = id_map_.find(id);
-			if (it == id_map_.end()) {
-				PE_LOG_WARNING("定義されていないリソースが要求されました。(ID:", id, ")");
+		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByFullID_(const std::string& full_id, bool is_valid_not_preload_warning) {
+			auto it = full_id_map_.find(full_id);
+			if (it == full_id_map_.end()) {
+				PE_LOG_WARNING("定義されていないリソースが要求されました。(FullID:", full_id, ")");
 				return nullptr;
 			}
 			if (!it->second->is_loaded) {
 				if (is_valid_not_preload_warning) {
-					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", id, ", パス:", it->second->file_path, ")");
+					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(FullID:", full_id, ", パス:", it->second->file_path, ")");
 				}
 				return LoadResource_(*it->second);
-			} else {
+			}
+			else {
 				assert(it->second->resouce != nullptr);
 				return it->second->resouce;
 			}
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::Impl_::GetResourceByTypeAndPath(const std::type_info& type, const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
+		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByPath_(const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
 			//必要ならルートパスを連結
 			std::string upath = UnifyPath(root_path.empty() ? path : root_path + "\\" + path);
 			auto it = path_map_.find(upath);
@@ -272,32 +259,35 @@ namespace planeta {
 					PE_LOG_WARNING("読み込まれていないリソースが要求されたため、読み込みを試みました。(ID:", it->second->id, ", パス:", upath, ")");
 				}
 				return LoadResource_(*it->second);
-			} else {
+			}
+			else {
 				assert(it->second->resouce != nullptr);
 				return it->second->resouce;
 			}
 		}
 
-		ResourceManagerInternalAccessor StandardResourceManager::Impl_::CreateInternalManagerAccessor() {
+		ResourceManagerInternalAccessor StandardResourceManager::CreateInternalManagerAccessor_() {
 			namespace sp = std::placeholders;
 			ResourceManagerInternalAccessor mgr_acsr{
-				std::bind(&Impl_::GetResourceByTypeAndID, this, sp::_1, sp::_2, sp::_3),
-				std::bind(&Impl_::GetResourceByTypeAndPath, this, sp::_1, sp::_2, sp::_3, sp::_4)
+				[this](const std::type_info& type, const std::string& id, bool is_valid_not_preload_warning) {
+				return GetResourceByFullID_(GetFullIDFromTypeAndID_(type, id),is_valid_not_preload_warning);
+			},
+				[this](const std::type_info& type, const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
+				return GetResourceByPath_(path, root_path, is_valid_not_preload_warning);
+			}
 			};
 			return std::move(mgr_acsr);
 		}
-		//////////////////////////////////////////////////////////////////////////
-		//ResourceManager
-		//////////////////////////////////////////////////////////////////////////
-		StandardResourceManager::StandardResourceManager():impl_(std::make_unique<Impl_>()) {}
+
+		StandardResourceManager::StandardResourceManager() = default;
 		StandardResourceManager::~StandardResourceManager() = default;
 
-		void StandardResourceManager::AddResourceTypeProc(const std::type_info& type, const std::string& type_name, const std::string& type_prefix, const ResourceCreatorType& creator) {
-			impl_->resource_type_data_map_.emplace(type_name, type, type_name, type_prefix, creator);
+		void StandardResourceManager::OnResourceTypeAdded(const std::type_info& type, const std::string& type_name, const std::string& type_prefix, const ResourceCreatorType& creator) {
+			resource_type_data_map_.emplace(type, ResourceTypeData_{ type, type_name, type_prefix, creator });
+			resource_type_prefix_to_type_map_.emplace(type_prefix, type);
 		}
 
 		bool StandardResourceManager::PrepareResources(const std::vector<std::string>& need_tags) {
-			auto& tag_map_ = impl_->tag_map_;
 			size_t new_loaded{ 0 }, already{ 0 };
 			for (auto&& tag : need_tags) {
 				auto it = tag_map_.find(tag);
@@ -308,7 +298,7 @@ namespace planeta {
 				for (auto&& res_data_it : it->second) {
 					if (res_data_it->is_loaded) { ++already; }
 					else {
-						if (impl_->LoadResource_(*res_data_it) == nullptr) {
+						if (LoadResource_(*res_data_it) == nullptr) {
 							PE_LOG_ERROR("リソースの読み込みに失敗しました。(タグ:", tag, ", ID:", res_data_it->id, ", パス:", res_data_it->file_path, ")");
 							return false;
 						}
@@ -321,7 +311,6 @@ namespace planeta {
 		}
 
 		bool StandardResourceManager::UnloadUnusedResouces() {
-			auto& resource_data_list_ = impl_->resource_data_list_;
 			size_t unload{ 0 };
 			//未使用リソースがなくなるまでループ。(依存関係によっては一度の走査でアンロードしきれないため)
 			while (true) {
@@ -329,7 +318,7 @@ namespace planeta {
 				for (auto& res_dat : resource_data_list_) {
 					//参照カウントが1だったら未使用とみなす。アンロード不可フラグが立っていたら無視
 					if (res_dat.is_loaded && res_dat.resouce.use_count() == 1 && !res_dat.not_unload) {
-						impl_->UnloadResource_(res_dat);
+						UnloadResource_(res_dat);
 						++unload;
 						++new_unload;
 					}
@@ -345,8 +334,8 @@ namespace planeta {
 		double StandardResourceManager::GetPrepairProgress() const { return 1.0; }
 
 		bool StandardResourceManager::Initialize() {
-			assert(impl_->file_accessor_ != nullptr);
-			if (impl_->_LoadResourceList() == false) {
+			assert(file_accessor_ != nullptr);
+			if (LoadResourceList_() == false) {
 				PE_LOG_ERROR("初期化に失敗しました。リソースリストの取得に失敗しました。");
 				return false;
 			}
@@ -354,23 +343,34 @@ namespace planeta {
 		}
 
 		void StandardResourceManager::Finalize() {
-			impl_->_UnloadAllLoadedResources();
+			UnloadAllLoadedResources_();
 		}
 
 		bool StandardResourceManager::SetNotUnloadTags(const std::set<std::string>& tags) {
-			return impl_->SetNotUnloadTags_(tags);
+			return SetNotUnloadTags_(tags);
 		}
 
 		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByTypeAndID(const std::type_info& type, const std::string& id) {
-			return impl_->GetResourceByTypeAndID(type, id, true);
+			return GetResourceByFullID_(GetFullIDFromTypeAndID_(type, id), true);
 		}
 
 		void StandardResourceManager::SetFileManipulator_(const std::shared_ptr<FileManipulator>& f_scsr) {
-			impl_->file_accessor_ = f_scsr;
+			file_accessor_ = f_scsr;
 		}
 
 		void StandardResourceManager::SetResourceListFileName_(const std::string& file_name) {
-			impl_->_resource_list_file_name = file_name;
+			resource_list_file_name_ = file_name;
+		}
+
+		std::string StandardResourceManager::GetFullIDFromTypeAndID_(const boost::typeindex::type_index& type_index, const std::string& id) {
+			auto it = resource_type_data_map_.find(type_index.type_info());
+			if (it == resource_type_data_map_.end()) { return "NULL"; }
+			//IDにリソースタイプのPrefixを付けたものをフルIDとして返す
+			return it->second.type_prefix + id;
+		}
+
+		std::shared_ptr<planeta::ResourceBase> StandardResourceManager::GetResourceByFullID(const std::string& full_id) {
+			return GetResourceByFullID_(full_id, true);
 		}
 
 	}

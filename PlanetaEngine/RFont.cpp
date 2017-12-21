@@ -4,7 +4,7 @@
 #include "LogUtility.h"
 
 namespace planeta {
-	bool RFont::_Create(const File& file, ResourceReferencer&) {
+	bool RFont::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char*>(file.top_pointer()), file.size(), nullptr, &font_num_);
 		if (handle_ == 0) {
 			PE_LOG_ERROR("フォントの読み込みに失敗しました。");
@@ -14,7 +14,7 @@ namespace planeta {
 		}
 	}
 
-	void RFont::_Dispose() {
+	void RFont::OnDisposed() {
 		if (handle_) { RemoveFontMemResourceEx(handle_); }
 	}
 }

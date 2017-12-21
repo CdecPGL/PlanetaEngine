@@ -8,8 +8,8 @@ namespace planeta {
 		int GetHandle()const { return handle_; }
 		int font_size()const { return size_; }
 	private:
-		bool _Create(const File& file, ResourceReferencer&) override;
-		void _Dispose() override;
+		bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		void OnDisposed() override;
 		int handle_;
 		int size_ = 0;
 	};

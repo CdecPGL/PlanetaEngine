@@ -1,7 +1,7 @@
 ﻿#include "RJson.h"
 
 namespace planeta {
-	bool RJson::_Create(const File& file, ResourceReferencer&) {
+	bool RJson::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		json_file_ = std::make_unique<JsonFile>();
 		if (!json_file_->Load(file)) {
 			PE_LOG_ERROR("JSONファイルの読み込みに失敗しました。");
@@ -11,7 +11,7 @@ namespace planeta {
 		return true;
 	}
 
-	void RJson::_Dispose() {
+	void RJson::OnDisposed() {
 		json_file_.release();
 	}
 

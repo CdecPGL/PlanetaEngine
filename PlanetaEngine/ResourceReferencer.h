@@ -45,7 +45,7 @@ namespace planeta {
 		template<class RT>
 		std::shared_ptr<RT> ReferenceResourceByPath(const std::string& path) {
 			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = ReferenceResourceByTypeAndPath(type, path);
+			auto rsc = ReferenceResourceByTypeAndPath(typeid(RT), path);
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) {

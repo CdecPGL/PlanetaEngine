@@ -14,7 +14,7 @@ namespace planeta {
 		return *ini_file_;
 	}
 
-	bool RIni::_Create(const File& file, ResourceReferencer&) {
+	bool RIni::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		ini_file_ = std::make_unique<IniFile>();
 		if (!ini_file_->Load(file)) {
 			PE_LOG_ERROR("INIファイルの読み込みに失敗しました。");
@@ -24,7 +24,7 @@ namespace planeta {
 		return true;
 	}
 
-	void RIni::_Dispose() {
+	void RIni::OnDisposed() {
 		ini_file_.release();
 	}
 

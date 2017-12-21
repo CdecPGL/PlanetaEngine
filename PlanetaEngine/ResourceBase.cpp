@@ -8,7 +8,7 @@ namespace planeta {
 		if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); }
 	}
 
-	bool ResourceBase::Create(const File& file, const JsonFile& metadata, private_::ResourceManagerInternalAccessor& mgr_acsr) {
+	bool ResourceBase::Load(const File& file, const JsonFile& metadata, private_::ResourceManagerInternalAccessor& mgr_acsr) {
 		if (is_usable_) {
 			PE_LOG_ERROR("読み込み済みのリソースをファイル\"", file.file_name(), "\"から再読み込みしようとしました。リソースタイプは\"", typeid(*this).name(), "\"。");
 			return false;
@@ -21,7 +21,7 @@ namespace planeta {
 		//このリソースの存在するディレクトリパスを求める。
 		std::string rpath = boost::filesystem::path(file.file_name()).parent_path().string();
 		ResourceReferencer referencer{ mgr_acsr, rpath, ref_list };
-		if (_Create(file, metadata, referencer)) {
+		if (OnLoaded(file, metadata, referencer)) {
 			reference_resources = std::move(ref_list);
 			is_usable_ = true;
 			return true;
@@ -34,7 +34,7 @@ namespace planeta {
 
 	void ResourceBase::Dispose() {
 		if (is_usable_) {
-			_Dispose();
+			OnDisposed();
 			ClearReference();
 			is_usable_ = false;
 		} else {

@@ -12,13 +12,13 @@ namespace planeta {
 		ResourceBase() = default;
 		virtual ~ResourceBase();
 
-		bool Create(const File& file, const JsonFile& metadata, private_::ResourceManagerInternalAccessor& mgr_acsr);
+		bool Load(const File& file, const JsonFile& metadata, private_::ResourceManagerInternalAccessor& mgr_acsr);
 		void Dispose();
 		bool is_usable()const { return is_usable_; }
 		size_t reference_conunt()const;
 	protected:
-		virtual bool _Create(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) = 0;
-		virtual void _Dispose() = 0;
+		virtual bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) = 0;
+		virtual void OnDisposed() = 0;
 	private:
 		ResourceBase(const ResourceBase&) = delete;
 		ResourceBase(ResourceBase&&) = delete;

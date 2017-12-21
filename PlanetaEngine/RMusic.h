@@ -11,8 +11,8 @@ namespace planeta {
 		int GetTotalTimeByMilliSecond();
 	private:
 		int _handle;
-		virtual bool _Create(const File& file, ResourceReferencer&) override;
-		virtual void _Dispose() override;
+		virtual bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		virtual void OnDisposed() override;
 	};
 }
 

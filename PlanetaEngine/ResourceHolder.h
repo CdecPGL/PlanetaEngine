@@ -24,7 +24,7 @@ namespace planeta {
 			ResourceHolder& operator=(ResourceHolder&& obj) = default;
 			/*! IDでリソースを設定する*/
 			bool SetResourceByID(const std::string& res_id)noexcept {
-				auto res = Game::instance().resource_manager()->GetResourceByID(res_id);
+				auto res = Game::instance().resource_manager()->GetResourceByTypeAndID(typeid(ResType), res_id);
 				if (res == nullptr) {
 					PE_LOG_ERROR("リソースの取得に失敗しました。(リソースID:", res_id, ")");
 					return false;

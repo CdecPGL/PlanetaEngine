@@ -8,8 +8,8 @@ namespace planeta {
 	public:
 		IDirect3DTexture9* texture_dx9()const;
 	private:
-		bool _Create(const File& file, ResourceReferencer&) override;
-		void _Dispose() override;
+		bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		void OnDisposed() override;
 		IDirect3DTexture9* texture_d9_ = nullptr;
 	};
 }

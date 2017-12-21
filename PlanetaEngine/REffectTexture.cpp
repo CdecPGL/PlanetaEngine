@@ -5,7 +5,7 @@
 
 //#pragma comment(lib,"d3dx9.lib")
 
-bool planeta::REffectTexture::_Create(const File& file, ResourceReferencer&) {
+bool planeta::REffectTexture::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 	auto ret = D3DXCreateTextureFromFileInMemory(GetEffekseer3DRenderer()->GetDevice(), file.top_pointer(), file.size(), &texture_d9_);
 	switch (ret) {
 	case D3D_OK:
@@ -31,7 +31,7 @@ bool planeta::REffectTexture::_Create(const File& file, ResourceReferencer&) {
 	}
 }
 
-void planeta::REffectTexture::_Dispose() {
+void planeta::REffectTexture::OnDisposed() {
 	if (texture_d9_) { texture_d9_->Release(); }
 }
 

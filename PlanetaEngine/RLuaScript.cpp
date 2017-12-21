@@ -19,13 +19,13 @@ namespace planeta {
 		return false;
 	}
 
-	bool RLuaScript::_Create(const File& file, ResourceReferencer&) {
+	bool RLuaScript::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		//ファイルのコピーを作成
 		file_ = std::make_unique<File>(file);
 		return true;
 	}
 
-	void RLuaScript::_Dispose() {
+	void RLuaScript::OnDisposed() {
 		file_.release();
 	}
 

@@ -8,7 +8,7 @@
 
 namespace planeta {
 	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定
-	bool RPtree::_Create(const File& file, ResourceReferencer&) {
+	bool RPtree::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		using namespace boost::property_tree;
 		std::shared_ptr<ptree> pt = std::make_shared<ptree>();
 		FileIStream fis(file);
@@ -23,7 +23,7 @@ namespace planeta {
 		return true;
 	}
 
-	void RPtree::_Dispose() {
+	void RPtree::OnDisposed() {
 		
 	}
 

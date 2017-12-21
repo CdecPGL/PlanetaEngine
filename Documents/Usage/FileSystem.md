@@ -1,13 +1,16 @@
-# 概要
+# FileSystem
 
-ファイルへのアクセスを行うためのAPI。
+ファイルへのアクセスを行うためのシステム。
 
-# FileManipulator
+## FileManipulator
+
 ファイルの読み込み保存を行う。キャッシュ処理は行わない。通常ファイルやアーカイブファイル(未実装)を同じインターフェイスで操作することができる。
 
-# Encrypter
+## Encrypter
+
 FileManipulatorにセットしする暗号化器。Manipulatorはセットされていれば暗号化器を用いて、保存時に暗号化、読み込み時に復号化を行う。
 セットしなければ場合は暗号化を行わない。
 
-# ArchiveManipulatorについて
+## ArchiveManipulatorについて
+
 現状ではArchiveLoaderManipulatorは暗号化器のセットに対応しておらず、内部で独自の暗号化処理を行っている。また、書き込みに対応しておらず書き込み系関数は必ずエラーを返す。

@@ -1,7 +1,7 @@
 ﻿#include "RXml.h"
 
 namespace planeta {
-	bool RXml::_Create(const File& file, ResourceReferencer&) {
+	bool RXml::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		xml_file_ = std::make_unique<XmlFile>();
 		if (!xml_file_->Load(file)) {
 			PE_LOG_ERROR("XMLファイルの読み込みに失敗しました。");
@@ -11,7 +11,7 @@ namespace planeta {
 		return true;
 	}
 
-	void RXml::_Dispose() {
+	void RXml::OnDisposed() {
 		xml_file_.release();
 	}
 

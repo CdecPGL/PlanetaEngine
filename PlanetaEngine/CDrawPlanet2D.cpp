@@ -26,8 +26,8 @@ namespace planeta {
 			.ShallowCopyTarget(&CDrawPlanet2D::_vertical_separation)
 			.DeepCopyTarget(&CDrawPlanet2D::graph_draw_data_)
 			.CopyHandler([](const CDrawPlanet2D& src, CDrawPlanet2D& dst) {
-				dst.texture_mapping_mode(src.texture_mapping_mode());
-			});
+			dst.texture_mapping_mode(src.texture_mapping_mode());
+		});
 	}
 
 	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
@@ -48,7 +48,7 @@ namespace planeta {
 	bool CDrawPlanet2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		_planet_component.reset(com_getter.GetComponent<CPlanet>());
-		if (_planet_component==nullptr){
+		if (_planet_component == nullptr) {
 			PE_LOG_ERROR("初期化に失敗しました。PlanetComponentを取得できませんでした。");
 			return false;
 		}
@@ -83,10 +83,10 @@ namespace planeta {
 			//中心以外はポリゴンを2枚ずつ張る
 			for (unsigned int j = 0; j < _vertical_separation - 1; ++j) {
 				private_::GraphDrawData2D::PolygonIndexType poly1, poly2;
-				poly1[0] = i*(_vertical_separation + 1) + j;
-				poly1[1] = i*(_vertical_separation + 1) + j + 1;
+				poly1[0] = i * (_vertical_separation + 1) + j;
+				poly1[1] = i * (_vertical_separation + 1) + j + 1;
 				poly1[2] = (i + 1)*(_vertical_separation + 1) + j;
-				poly2[0] = i*(_vertical_separation + 1) + j + 1;
+				poly2[0] = i * (_vertical_separation + 1) + j + 1;
 				poly2[1] = (i + 1)*(_vertical_separation + 1) + j;
 				poly2[2] = (i + 1)*(_vertical_separation + 1) + j + 1;
 				graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2, poly1);
@@ -94,8 +94,8 @@ namespace planeta {
 			}
 			//中心はポリゴンを1枚だけ張る
 			private_::GraphDrawData2D::PolygonIndexType poly;
-			poly[0] = i*(_vertical_separation + 1) + (_vertical_separation - 1);
-			poly[1] = i*(_vertical_separation + 1) + (_vertical_separation - 1) + 1;
+			poly[0] = i * (_vertical_separation + 1) + (_vertical_separation - 1);
+			poly[1] = i * (_vertical_separation + 1) + (_vertical_separation - 1) + 1;
 			poly[2] = (i + 1)*(_vertical_separation + 1) + (_vertical_separation - 1);
 			graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2, poly);
 		}
@@ -114,7 +114,7 @@ namespace planeta {
 			//中心以外の頂点座標を求める
 			for (unsigned int j = 0; j < _vertical_separation; ++j) {
 				double dis_ratio = 1.0f - (double)j / _vertical_separation;
-				graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + j, static_cast<Vector2Df>(center_pos + interface_vec*dis_ratio));
+				graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + j, static_cast<Vector2Df>(center_pos + interface_vec * dis_ratio));
 			}
 			//中心の頂点座標を求める
 			graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + _vertical_separation, static_cast<Vector2Df>(center_pos));
@@ -171,19 +171,15 @@ namespace planeta {
 	}
 
 	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
-		auto res = Game::instance().resource_manager()->GetResourceByID(resource_id);
+		auto res = Game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
 			return false;
 		}
-		std::shared_ptr<RGraph> gr = std::dynamic_pointer_cast<RGraph>(res);
-		if (gr) {
-			graph_draw_data_->SetGraphResource(gr);
+		else {
+			graph_draw_data_->SetGraphResource(res);
 			set_polygon_flag_ = true;
 			return true;
-		} else {
-			PE_LOG_ERROR("画像リソースでないリソースが指定されました。(リソース名は", resource_id, "、タイプは", typeid(*res).name(), ")");
-			return false;
 		}
 	}
 

@@ -6,7 +6,7 @@
 //#include "boost/lexical_cast.hpp"
 
 namespace planeta {
-	bool RGraph::_Create(const File& file, ResourceReferencer&) {
+	bool RGraph::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		_handle = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {
 			GetGraphSize(_handle, &image_size_.x, &image_size_.y);
@@ -25,7 +25,7 @@ namespace planeta {
 		}
 	}
 
-	void RGraph::_Dispose() {
+	void RGraph::OnDisposed() {
 		if (_handle >= 0) {
 			DeleteGraph(_handle);
 			_handle = -1;

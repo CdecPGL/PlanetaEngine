@@ -11,8 +11,8 @@ namespace planeta {
 		~REffect() {};
 		Effekseer::Effect* effekseer_effect()const;
 	private:
-		virtual bool _Create(const File& file, ResourceReferencer&) override;
-		virtual void _Dispose() override;
+		virtual bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		virtual void OnDisposed() override;
 		Effekseer::Effect* effekseer_effect_ = nullptr;
 	};
 }

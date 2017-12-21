@@ -9,8 +9,8 @@ namespace planeta {
 		~RLuaScript();
 		bool RegisterToLuaState(lua_State* l);
 	protected:
-		virtual bool _Create(const File& file, ResourceReferencer&) override;
-		virtual void _Dispose() override;
+		virtual bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		virtual void OnDisposed() override;
 		std::unique_ptr<File> file_;
 	};
 }
