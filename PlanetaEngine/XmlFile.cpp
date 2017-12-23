@@ -22,12 +22,8 @@ namespace planeta {
 		if (xml_document.Parse(reinterpret_cast<const char*>(file.top_pointer()), file.size()) == tinyxml2::XMLError::XML_SUCCESS) {
 			element_setter(root_element_, xml_document);
 			return true;
-		} else { //失敗
-			const char* err1 = xml_document.GetErrorStr1();
-			const char* err2 = xml_document.GetErrorStr2();
-			std::string err1_str = err1 ? err1 : "不明";
-			std::string err2_str = err2 ? err2 : "不明";
-			PE_LOG_ERROR("XMLファイルの解析に失敗しました。(エラー詳細1[", err1_str, "],2[", err2_str, "])");
+		} else {
+			PE_LOG_ERROR("XMLファイルの解析に失敗しました。(", xml_document.ErrorName(), "(", xml_document.ErrorID(), "), 行番号: ", xml_document.ErrorLineNum(), "詳細: ", xml_document.ErrorStr(), ")");
 			return false;
 		}
 	}

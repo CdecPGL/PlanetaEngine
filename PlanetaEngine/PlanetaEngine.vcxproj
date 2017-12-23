@@ -64,7 +64,7 @@
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -87,7 +87,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
@@ -115,7 +115,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;C:\libraries\自作ライブラリ\include;C:\libraries\DxLib;C:\libraries\lua\LuaIntf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -134,7 +134,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\libraries\DxLib;%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
@@ -241,7 +241,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="CCollider2D.h" />
     <ClInclude Include="CollisionDetectFunctions.h" />
     <ClInclude Include="NonOwingPointer.h" />
-    <ClInclude Include="picojson.h" />
     <ClInclude Include="RLuaScript.h" />
     <ClInclude Include="RPtree.h" />
     <ClInclude Include="REffectTexture.h" />
@@ -386,7 +385,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="TalkWindows.h" />
     <ClInclude Include="TextPanel.h" />
     <ClInclude Include="RText.h" />
-    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="TLSFMemoryAllocator.h" />
     <ClInclude Include="CTransform2D.h" />
     <ClInclude Include="TwoKeyMap.h" />
@@ -510,7 +508,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="StringPanel.cpp" />
     <ClCompile Include="TalkWindows.cpp" />
     <ClCompile Include="TextPanel.cpp" />
-    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="GUIComponent.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

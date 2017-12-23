@@ -19,12 +19,16 @@ namespace planeta {
 		//読み込み前にテクスチャ取得用のコールバック関数を設定し、それを用いてテクスチャを取得する。
 		class TextureLoaderForEffekseer final : public ::Effekseer::TextureLoader {
 		public:
+			using TextureGetterType = std::function<::Effekseer::TextureData*(const std::string&, ::Effekseer::TextureType)>;
 			TextureLoaderForEffekseer();
-			void SetTextureGetter(const std::function<void*(const std::string&)>& func);
-			void* Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType)override;
-			void Unload(void* data);
+			void SetTextureGetter(const TextureGetterType& func);
+			::Effekseer::TextureData* Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType)override;
+			void Unload(::Effekseer::TextureData* data);
 		private:
-			std::function<void*(const std::string&)> texture_getter_;
+			TextureGetterType texture_getter_;
 		};
+
+
+		std::unique_ptr<::Effekseer::TextureData> CreateEffekseerTextureDataFromFile(const File& file);
 	}
 }

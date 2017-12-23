@@ -142,15 +142,6 @@
     <Filter Include="PlanetaEngine\Core\InitFuncs">
       <UniqueIdentifier>{5ea80f8e-44b4-41bd-934f-2258a6d7167b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ExternalLibraries">
-      <UniqueIdentifier>{4ceed6c7-9d61-4ede-ab3f-e59cf30c833c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ExternalLibraries\TinyXML2">
-      <UniqueIdentifier>{38d797a1-d619-4e63-aaf0-63156fa85703}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ExternalLibraries\picojson">
-      <UniqueIdentifier>{2d6791a8-84ab-4fbe-b78b-3af151fd1092}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\Reflection">
       <UniqueIdentifier>{47f543f7-b669-4479-b5a3-f8ad2d5bc270}</UniqueIdentifier>
     </Filter>
@@ -228,9 +219,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tinyxml2.h">
-      <Filter>ExternalLibraries\TinyXML2</Filter>
-    </ClInclude>
     <ClInclude Include="SimplePolygonPanel.h">
       <Filter>Trash\GUIComponents</Filter>
     </ClInclude>
@@ -593,9 +581,6 @@
     </ClInclude>
     <ClInclude Include="SError.h">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
-    <ClInclude Include="picojson.h">
-      <Filter>ExternalLibraries\picojson</Filter>
     </ClInclude>
     <ClInclude Include="CharacterCode.h">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -997,9 +982,6 @@
     </ClCompile>
     <ClCompile Include="SimplePolygonPanel.cpp">
       <Filter>Trash\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
-      <Filter>ExternalLibraries\TinyXML2</Filter>
     </ClCompile>
     <ClCompile Include="TalkWindows.cpp">
       <Filter>Trash\GUIObjects</Filter>

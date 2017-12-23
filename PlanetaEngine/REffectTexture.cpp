@@ -1,13 +1,28 @@
 #include "REffectTexture.h"
+#include "Effekseer.h"
 #include "File.h"
-#include "EffekseerForDXLib.h"
-#include <d3dx9tex.h>
 
-//#pragma comment(lib,"d3dx9.lib")
+planeta::REffectTexture::REffectTexture() = default;
+planeta::REffectTexture::~REffectTexture() = default;
 
 bool planeta::REffectTexture::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
-	auto ret = D3DXCreateTextureFromFileInMemory(GetEffekseer3DRenderer()->GetDevice(), file.top_pointer(), file.size(), &texture_d9_);
-	switch (ret) {
+	dx_base_image_ = std::unique_ptr<::DxLib::BASEIMAGE>(new ::DxLib::BASEIMAGE{});
+	if (CreateBaseImageToMem(file.top_pointer(), file.size(), dx_base_image_.get(), false)) {
+		PE_LOG_ERROR("テクスチャの作成に失敗しました。");
+		dx_base_image_.release();
+		return false;
+	}
+	else {
+		effekseer_taxture_ = std::make_unique<::Effekseer::TextureData>();
+		effekseer_taxture_->Height = dx_base_image_->Height;
+		effekseer_taxture_->Width = dx_base_image_->Width;
+		effekseer_taxture_->UserPtr = dx_base_image_->GraphData;
+		return true;
+	}
+
+	/*effekseer_taxture_ = std::move(planeta::private_::CreateEffekseerTextureDataFromFile(file));
+	return effekseer_taxture_ != nullptr;*/
+	/*switch (ret) {
 	case D3D_OK:
 		return true;
 	case D3DERR_NOTAVAILABLE:
@@ -28,13 +43,11 @@ bool planeta::REffectTexture::OnLoaded(const File& file, const JsonFile& metadat
 	default:
 		PE_LOG_ERROR("テクスチャの作成に失敗しました。原因不明のエラーです。");
 		return false;
-	}
+	}*/
 }
 
-void planeta::REffectTexture::OnDisposed() {
-	if (texture_d9_) { texture_d9_->Release(); }
-}
+void planeta::REffectTexture::OnDisposed() {}
 
-IDirect3DTexture9* planeta::REffectTexture::texture_dx9()const {
-	return texture_d9_;
+::Effekseer::TextureData* planeta::REffectTexture::effekseer_taxture()const {
+	return effekseer_taxture_.get();
 }

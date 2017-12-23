@@ -1,8 +1,16 @@
 # 依存ライブラリ
 
-vcpkgを用いてインストールすれば設定不要
+## vcpkgを用いてインストール可能
 
-boost1.63
-cryptopp5.5
-zlib
-lua5.3
+- boost 1.66
+- cryptopp 5.6.5
+- zlib 1.2.11
+- lua 5.3.4
+- picojson 1.3.0
+- TinyXML2 6.0.0
+
+## Portファイルを設定することでvcpkgでインストール可能
+
+- DXライブラリ 3.18
+- EffekseerForDXLib 1.32
+- LuaIntf 2017-01-01
