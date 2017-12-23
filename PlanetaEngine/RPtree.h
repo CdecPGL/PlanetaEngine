@@ -3,8 +3,10 @@
 #include "ResourceBase.h"
 
 namespace planeta {
-	class RPtree final: public ResourceBase {
+	/*!Boost::Ptree形式で読み込まれるリソース*/
+	class RPtree : public ResourceBase {
 	public:
+		virtual ~RPtree() = default;
 		std::shared_ptr<const boost::property_tree::ptree> GetPtree()const;
 	private:
 		bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;

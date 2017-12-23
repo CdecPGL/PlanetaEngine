@@ -951,6 +951,9 @@
     <ClInclude Include="FileManipulator.h">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClInclude>
+    <ClInclude Include="RGameObject.h">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TLSFMemoryAllocator.cpp">
@@ -1348,6 +1351,9 @@
     </ClCompile>
     <ClCompile Include="FileManipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="RGameObject.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

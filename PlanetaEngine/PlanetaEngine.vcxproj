@@ -236,6 +236,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="ResourceHolder.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourceReferencer.h" />
+    <ClInclude Include="RGameObject.h" />
     <ClInclude Include="RJson.h" />
     <ClInclude Include="CCircleCollider2D.h" />
     <ClInclude Include="CCollider2D.h" />
@@ -463,6 +464,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="ReflectionUtility.cpp" />
     <ClCompile Include="ResourceBase.cpp" />
     <ClCompile Include="ResourceReferencer.cpp" />
+    <ClCompile Include="RGameObject.cpp" />
     <ClCompile Include="RJson.cpp" />
     <ClCompile Include="RLuaScript.cpp" />
     <ClCompile Include="RPtree.cpp" />

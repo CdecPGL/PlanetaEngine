@@ -13,6 +13,7 @@
 #include "RPtree.h"
 #include "REffect.h"
 #include "REffectTexture.h"
+#include "RGameObject.h"
 
 namespace planeta {
 	namespace private_ {
@@ -27,7 +28,7 @@ namespace planeta {
 				mgr.AddResourceType<RXml>(system_variables::resource::BuiltinXMLResourceTypeName, system_variables::resource::BuiltinXMLResourceTypePrefix); //XMLファイル
 				mgr.AddResourceType<RFont>(system_variables::resource::BuiltinFontResourceTypeName, system_variables::resource::BuiltinFontResourceTypePrefix); //フォントファイル
 				mgr.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName, system_variables::resource::BuiltinJSONResourceTypePrefix); //JSONファイル
-				//mgr.AddResourceType<RGameObject>(system_variables::resource::BuiltinGameObjectResourceTypeName, system_variables::resource::BuiltinGameObjectResourceTypePrefix); //GameObject
+				mgr.AddResourceType<RGameObject>(system_variables::resource::BuiltinGameObjectResourceTypeName, system_variables::resource::BuiltinGameObjectResourceTypePrefix); //GameObject
 				//mgr.AddResourceType<RGameObjectComponent>(system_variables::resource::BuiltinGameObjectComponentResourceTypeName, system_variables::resource::BuiltinGameObjectComponentResourceTypePrefix); //GameObject
 				mgr.AddResourceType<REffect>(system_variables::resource::BuiltinEffectResourceTypeName, system_variables::resource::BuiltinEffectResourceTypePrefix); //Effect
 				mgr.AddResourceType<REffectTexture>(system_variables::resource::BuiltinEffectTextureResourceTypeName, system_variables::resource::BuiltinEffectTextureResourceTypePrefix); //EffectTexture

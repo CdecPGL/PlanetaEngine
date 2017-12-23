@@ -11,6 +11,6 @@
 
 ## Portファイルを設定することでvcpkgでインストール可能
 
-- DXライブラリ 3.18
+- DXライブラリ 3.19
 - EffekseerForDXLib 1.32
-- LuaIntf 2017-01-01
+- LuaIntf 2017.01.06

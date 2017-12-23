@@ -4,21 +4,21 @@
 #include "PrefixUtility.h"
 #include "Reflection.h"
 #include "GameObjectBase.h"
-#include "RPtree.h"
+#include "RGameObject.h"
 
 #include "boost/algorithm/string.hpp"
 
 namespace planeta {
 	namespace private_ {
-		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::string& game_object_def_file_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::string& game_object_resource_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			//テンプレート
 			std::shared_ptr<GameObjectBase> go_temp;
 			//必要ならテンプレートを作成登録し、使用するテンプレートをセットする
-			auto gtit = game_object_templates_.find(game_object_def_file_id);
+			auto gtit = game_object_templates_.find(game_object_resource_id);
 			if (gtit == game_object_templates_.end()) {
-				go_temp = CreateGameObjectFromFile_(game_object_def_file_id, scene_data);
+				go_temp = CreateGameObjectFromResource_(game_object_resource_id, scene_data);
 				if (go_temp == nullptr) { return nullptr; }
-				game_object_templates_.emplace(game_object_def_file_id, go_temp);
+				game_object_templates_.emplace(game_object_resource_id, go_temp);
 			} else {
 				go_temp = gtit->second;
 			}
@@ -26,7 +26,7 @@ namespace planeta {
 			//テンプレートをクローンし、返す
 			auto ngo = CloneGameObjectFromTemplate_(go_temp, scene_data);
 			if (ngo == nullptr) {
-				PE_LOG_ERROR("GameObjectテンプレート(GameObject定義ファイルID:\"", game_object_def_file_id, "\")からのクローン作製に失敗しました。");
+				PE_LOG_ERROR("GameObjectテンプレート(GameObject定義ファイルID:\"", game_object_resource_id, "\")からのクローン作製に失敗しました。");
 			}
 			return ngo;
 		}
@@ -54,24 +54,24 @@ namespace planeta {
 			return ngo;
 		}
 
-		std::shared_ptr<GameObjectBase> GameObjectFactory::CreateGameObjectFromFile_(const std::string& game_object_def_file_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
+		std::shared_ptr<GameObjectBase> GameObjectFactory::CreateGameObjectFromResource_(const std::string& game_object_resource_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			//生成
 			auto ngo = std::make_shared<GameObjectBase>();
 			if (ngo == nullptr) {
-				PE_LOG_ERROR("ゲームオブジェクト(GameObject定義ファイルID:\"", game_object_def_file_id, "\")の作成に失敗しました。");
+				PE_LOG_ERROR("ゲームオブジェクト(リソースID:\"", game_object_resource_id, "\")の作成に失敗しました。");
 				return nullptr;
 			}
 			//シーンデータセット
 			ngo->SetSceneInternalInterface(scene_data);
 			//ファイル読み込み
-			auto ptree_res = Game::instance().resource_manager()->GetResourceByID<RPtree>(game_object_def_file_id);
-			if (ptree_res == nullptr) {
-				PE_LOG_ERROR("ゲームオブジェクト定義リソース\"", game_object_def_file_id, "\"の読み込みに失敗しました。");
+			auto go_res = Game::instance().resource_manager()->GetResourceByID<RGameObject>(game_object_resource_id);
+			if (go_res == nullptr) {
+				PE_LOG_ERROR("ゲームオブジェクト定義リソース\"", game_object_resource_id, "\"の読み込みに失敗しました。");
 				return nullptr;
 			}
 			//コンポーネントの追加と設定
-			if (!ngo->AddAndSetUpComponents(*ptree_res->GetPtree())) {
-				PE_LOG_ERROR("ゲームオブジェクトへファイル定義\"", game_object_def_file_id, "\"を読み込むことができませんでした。");
+			if (!ngo->AddAndSetUpComponents(*go_res->GetPtree())) {
+				PE_LOG_ERROR("ゲームオブジェクトへリソース\"", game_object_resource_id, "\"を読み込むことができませんでした。");
 				return nullptr;
 			}
 			//成功
