@@ -1,11 +1,14 @@
 #include "EffekseerUtil.h"
 #include "CharacterCode.h"
 #include "LogUtility.h"
+
+#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
+
 #include "File.h"
 #include "EffekseerForDXLib.h"
 #include <d3dx9tex.h>
 
-//#pragma comment(lib,"d3dx9.lib")
+#endif
 
 namespace planeta {
 	namespace private_ {
@@ -30,19 +33,29 @@ namespace planeta {
 
 		TextureLoaderForEffekseer::TextureLoaderForEffekseer() {}
 
+#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 		::Effekseer::TextureData* TextureLoaderForEffekseer::Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType) {
-			auto tex = texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)), textureType);
-			return tex;
+			return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)), textureType);
 		}
 
 		void TextureLoaderForEffekseer::Unload(::Effekseer::TextureData* data) {
 			//REffectTextureÇ≈çÌèúÇ∑ÇÈÇÃÇ≈Ç±Ç±Ç≈ÇÃçÌèúÇÕçsÇÌÇ»Ç¢
 		}
+#else
+		void* TextureLoaderForEffekseer::Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType) {
+			return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)));
+		}
+
+		void TextureLoaderForEffekseer::Unload(void* data) {
+			//REffectTextureÇ≈çÌèúÇ∑ÇÈÇÃÇ≈Ç±Ç±Ç≈ÇÃçÌèúÇÕçsÇÌÇ»Ç¢
+		}
+#endif
 
 		void TextureLoaderForEffekseer::SetTextureGetter(const TextureGetterType& func) {
 			texture_getter_ = func;
 		}
 
+#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 		std::unique_ptr<::Effekseer::TextureData> CreateEffekseerTextureDataFromFile(const File& file) {
 			::Effekseer::TextureData* textureData = nullptr;
 			DxLib::BASEIMAGE dx_base_image;
@@ -166,6 +179,6 @@ namespace planeta {
 		//Exit:;
 		//	return textureData;
 		}
-
+#endif
 	}
 }

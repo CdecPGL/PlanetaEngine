@@ -20,6 +20,7 @@ bool planeta::REffect::OnLoaded(const File& file, const JsonFile& metadata, Reso
 	eff_mgr->SetTextureLoader(new private_::TextureLoaderForEffekseer);
 	decltype(auto) txr_ldr = eff_mgr->GetTextureLoader();
 	assert(dynamic_cast<private_::TextureLoaderForEffekseer*>(txr_ldr) != nullptr);
+#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 	static_cast<private_::TextureLoaderForEffekseer*>(txr_ldr)->SetTextureGetter([&referencer] (const std::string& path, ::Effekseer::TextureType texture_type)->::Effekseer::TextureData*{
 		auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
 		if (tex_res) {
@@ -29,6 +30,18 @@ bool planeta::REffect::OnLoaded(const File& file, const JsonFile& metadata, Reso
 			return nullptr;
 		}
 	});
+#else
+	static_cast<private_::TextureLoaderForEffekseer*>(txr_ldr)->SetTextureGetter([&referencer](const std::string& path)->void* {
+		auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
+		if (tex_res) {
+			return tex_res->texture_dx9();
+		}
+		else {
+			PE_LOG_ERROR("エフェクトファイル内で参照されているテクスチャリソースの読み込みに失敗しました。(指定パス:", path, ")");
+			return nullptr;
+		}
+	});
+#endif
 	//読み込み
 	auto effect = Effekseer::Effect::Create(GetEffekseer3DManager(), const_cast<unsigned char*>(file.top_pointer()), file.size());
 	if (effect == nullptr) {
