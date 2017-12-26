@@ -40,6 +40,10 @@ namespace planeta {
 
 	CDraw2D::~CDraw2D() = default;
 
+	void CDraw2D::Draw(ScreenDrawer2D& drawer) {
+		DrawProc(drawer);
+	}
+
 	CDraw2D& CDraw2D::draw_priority(int priority) {
 		draw_priority_ = priority;
 		//ゲームオブジェクトがアクティブなら優先度更新

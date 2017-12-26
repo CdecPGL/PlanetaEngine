@@ -39,13 +39,16 @@ namespace planeta {
 			_UpdateUVPosition();
 			return true;
 		} else {
+			PE_LOG_ERROR("リソースの取得に失敗しました。(ResourceID: ", resource_id, ")");
 			return false;
 		}
 	}
 
 	void CDrawGraph2D::DrawProc(ScreenDrawer2D& drawer) {
-		_UpdatePolygon();
-		drawer.DrawGraph(graph_draw_data_);
+		if (graph_draw_data_->graph_resource()) {
+			_UpdatePolygon();
+			drawer.DrawGraph(graph_draw_data_);
+		}
 	}
 
 	void CDrawGraph2D::_UpdatePolygon() {

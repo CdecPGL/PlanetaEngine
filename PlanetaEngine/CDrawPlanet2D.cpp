@@ -37,12 +37,14 @@ namespace planeta {
 	CDrawPlanet2D::~CDrawPlanet2D() = default;
 
 	void CDrawPlanet2D::DrawProc(ScreenDrawer2D& drawer) {
-		if (set_polygon_flag_) {
-			SetPolygon_();
-			set_polygon_flag_ = false;
+		if (graph_draw_data_->graph_resource()) {
+			if (set_polygon_flag_) {
+				SetPolygon_();
+				set_polygon_flag_ = false;
+			}
+			UpdatePolygon_();
+			drawer.DrawGraph(graph_draw_data_);
 		}
-		UpdatePolygon_();
-		drawer.DrawGraph(graph_draw_data_);
 	}
 
 	bool CDrawPlanet2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
@@ -173,7 +175,7 @@ namespace planeta {
 	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
 		auto res = Game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
 		if (res == nullptr) {
-			PE_LOG_ERROR("リソースの取得に失敗しました。(リソース名は", resource_id, ")");
+			PE_LOG_ERROR("リソースの取得に失敗しました。(ResourceID: ", resource_id, ")");
 			return false;
 		}
 		else {

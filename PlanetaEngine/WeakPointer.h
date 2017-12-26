@@ -37,7 +37,7 @@ namespace planeta {
 			assert(s_ptr != nullptr);
 #else //それ以外では例外を投げる
 			if (s_ptr == nullptr) {
-				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+				throw NullWeakPointerException(std::string("Null weak pointer is called."));
 			}
 #endif
 			return s_ptr;
@@ -47,7 +47,7 @@ namespace planeta {
 			assert(!w_ptr_.expired());
 #else //それ以外では例外を投げる
 			if (w_ptr_.expired()) {
-				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+				throw NullWeakPointerException(std::string("Null weak pointer is called."));
 			}
 #endif
 			return w_ptr_;
@@ -58,7 +58,7 @@ namespace planeta {
 			assert(!w_ptr_.expired());
 #else //それ以外では例外を投げる
 			if (w_ptr_.expired()) {
-				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+				throw NullWeakPointerException(std::string("Null weak pointer is called."));
 			}
 #endif
 			return w_ptr_._Get();
@@ -70,7 +70,7 @@ namespace planeta {
 			assert(s_ptr != nullptr);
 #else //それ以外では例外を投げる
 			if (s_ptr == nullptr) {
-				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+				throw NullWeakPointerException(std::string("Null weak pointer is called."));
 			}
 #endif
 			return s_ptr.get();
@@ -82,7 +82,7 @@ namespace planeta {
 			assert(s_ptr != nullptr);
 #else
 			if (s_ptr == nullptr) {
-				throw NullWeakPointerException(std::string("Null weak pointer is called : ") + typeid(T).name());
+				throw NullWeakPointerException(std::string("Null weak pointer is called."));
 			}
 #endif //それ以外では例外を投げる
 			return *s_ptr;

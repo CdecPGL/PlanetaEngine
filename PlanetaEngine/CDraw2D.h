@@ -15,7 +15,7 @@ namespace planeta {
 		CDraw2D();
 		virtual ~CDraw2D();
 		/*描画処理*/
-		void Draw(ScreenDrawer2D& drawer) { DrawProc(drawer); }
+		void Draw(ScreenDrawer2D& drawer);
 		/*Accessor*/
 		/*! @brief 描画優先度を取得
 		

@@ -51,13 +51,16 @@ namespace planeta {
 			}
 			//メタデータを読み込み
 			std::unique_ptr<JsonFile> metadata = std::make_unique<JsonFile>();
-			auto metadata_file = file_accessor_->LoadFile(res_dat.metadata_file_path);
-			if (metadata_file == nullptr) {
-				PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。");
-			}
-			else if (!metadata->Load(*metadata_file)) {
-				PE_LOG_ERROR("メタデータファイルの読み込みに失敗しました。Jsonファイルとして読み込めませんでした。");
-				return nullptr;
+			if (res_dat.has_metadata) {
+				auto metadata_file = file_accessor_->LoadFile(res_dat.metadata_file_path);
+				metadata->Load(*metadata_file);
+				if (metadata_file == nullptr) {
+					PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。");
+				}
+				else if (!metadata->Load(*metadata_file)) {
+					PE_LOG_ERROR("メタデータファイルの読み込みに失敗しました。Jsonファイルとして読み込めませんでした。");
+					return nullptr;
+				}
 			}
 			//マネージャアクセサ作成
 			ResourceManagerInternalAccessor mgr_acsr{ CreateInternalManagerAccessor_() };
@@ -126,7 +129,7 @@ namespace planeta {
 				//接頭辞から型を取得
 				auto ti_it = resource_type_prefix_to_type_map_.find(type_prefix);
 				if (ti_it == resource_type_prefix_to_type_map_.end()) {
-					PE_LOG_WARNING("リソースの読み込みに失敗しました。指定された接頭辞のリソースタイプは存在しません。(type_prefix:", type_prefix, "file_path: ", file_path, ")");
+					PE_LOG_WARNING("リソースの読み込みに失敗しました。指定された接頭辞のリソースタイプは存在しません。(type_prefix:", type_prefix, ", file_path: ", file_path, ")");
 					continue;
 				}
 				auto res_dat = std::make_unique<ResourceData_>(ResourceData_{ ti_it->second });
@@ -136,9 +139,10 @@ namespace planeta {
 				res_dat->full_id = file_base_name;
 				res_dat->file_path = file_path;
 				res_dat->metadata_file_path = (path.parent_path() / meta_file_name).string();
+				res_dat->has_metadata = file_accessor_->CheckFileExist(res_dat->metadata_file_path);
 				full_id_to_resource_data_map.emplace(res_dat->full_id, std::move(res_dat));
 			}
-			PE_LOG_MESSAGE("リソース一覧を構築しました。(", resource_data_list_.size(), "個のリソース定義)");
+			PE_LOG_MESSAGE("リソース一覧を構築しました。(", full_id_to_resource_data_map.size(), "個のリソース定義)");
 			//タグの読み込み
 			bool is_tag_list_loaded = false;
 			if (tag_list_path) {
