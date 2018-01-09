@@ -97,7 +97,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)include\ C:\libraries\PlanetaEngine\include\ *.h /PURGE /NP
+      <Command>robocopy $(ProjectDir)include\ C:\libraries\PlanetaEngine\include\ * /PURGE /NP
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -144,7 +144,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)include\ C:\libraries\PlanetaEngine\include\ *.h /PURGE /NP
+      <Command>robocopy $(ProjectDir)include\ C:\libraries\PlanetaEngine\include\ * /PURGE /NP
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
     <PreBuildEvent>
