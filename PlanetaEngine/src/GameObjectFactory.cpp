@@ -8,7 +8,7 @@
 
 #include "boost/algorithm/string.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		std::shared_ptr<GameObjectBase> GameObjectFactory::GetNewGameObject(const std::string& game_object_resource_id, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			//テンプレート

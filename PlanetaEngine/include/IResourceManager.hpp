@@ -5,7 +5,7 @@
 #include <type_traits>
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	class ResourceBase;
 	/// <summary>リソースマネージャ公開インターフェイス。</summary>
 	class IResourceManager {

@@ -4,7 +4,7 @@
 #include "LogUtility.hpp"
 #include "ResourceReferencer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class File;
 	class JsonFile;
 	class ResourceBase : public Object {

@@ -3,7 +3,7 @@
 #include "Reflection.hpp"
 #include "Reflectable.hpp"
 
-namespace planeta {
+namespace plnt {
 	using namespace private_;
 	//////////////////////////////////////////////////////////////////////////
 	//Impl_

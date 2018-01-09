@@ -10,7 +10,7 @@
 #include "NonCopyable.hpp"
 #include "NonOwingPointer.hpp"
 
-namespace planeta{
+namespace plnt{
 	class IDebugInformationAdder;
 	namespace private_{
 		class SceneModule;

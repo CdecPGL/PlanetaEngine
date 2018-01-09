@@ -5,11 +5,11 @@
 #include "EffekseerUtil.hpp"
 #include "REffectTexture.hpp"
 
-Effekseer::Effect* planeta::REffect::effekseer_effect() const {
+Effekseer::Effect* plnt::REffect::effekseer_effect() const {
 	return effekseer_effect_;
 }
 
-bool planeta::REffect::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
+bool plnt::REffect::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 	//読み込み用設定
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
 	//エフェクトローダーの設定
@@ -52,7 +52,7 @@ bool planeta::REffect::OnLoaded(const File& file, const JsonFile& metadata, Reso
 	return true;
 }
 
-void planeta::REffect::OnDisposed() {
+void plnt::REffect::OnDisposed() {
 	if (effekseer_effect_) {
 		ES_SAFE_RELEASE(effekseer_effect_);
 	}

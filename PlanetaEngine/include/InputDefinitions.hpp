@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <cstdint>
 
-namespace planeta {
+namespace plnt {
 	namespace Button {
 		using type = uint32_t;
 		constexpr type UP = 1,

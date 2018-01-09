@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*効果音リソース*/
 	class RSound : public ResourceBase {
 	public:

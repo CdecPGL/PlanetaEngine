@@ -4,7 +4,7 @@
 
 #include <tuple>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*!タプルに要素を追加*/
 		template<typename...>

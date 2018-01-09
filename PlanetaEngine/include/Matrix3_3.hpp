@@ -3,7 +3,7 @@
 #include <array>
 #include "Vector3D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace math {
 		//3*3行列
 		template<typename T>

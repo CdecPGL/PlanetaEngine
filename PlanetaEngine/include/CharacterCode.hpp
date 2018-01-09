@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		//UTF-8をShift-JISに変換(WindowsAPIに依存)
 		std::string ConvertUTF8ToShiftJIS(const std::string& str_utf8);

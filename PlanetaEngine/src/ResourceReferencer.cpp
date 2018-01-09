@@ -1,6 +1,6 @@
 #include "ResourceReferencer.hpp"
 
-namespace planeta {
+namespace plnt {
 
 	ResourceReferencer::ResourceReferencer(private_::ResourceManagerInternalAccessor& res_mgr_acsr, const std::string& root_path, std::vector<std::shared_ptr<ResourceBase>>& reference_list) :manager_accessor_(res_mgr_acsr), reference_list_(reference_list), root_path_(root_path) {}
 
@@ -42,11 +42,11 @@ namespace planeta {
 	namespace private_ {
 		ResourceManagerInternalAccessor::ResourceManagerInternalAccessor(const std::function<std::shared_ptr<ResourceBase>(const std::type_info&, const std::string&, bool)>& ref_func_by_id, const std::function<std::shared_ptr<ResourceBase>(const std::type_info&, const std::string&, const std::string&, bool)>& ref_func_by_path) :ref_func_by_id_(ref_func_by_id), ref_func_by_path_(ref_func_by_path) {}
 
-		std::shared_ptr<planeta::ResourceBase> ResourceManagerInternalAccessor::GetResourceByTypeAndID(const std::type_info& type, const std::string& id, bool is_valid_not_preload_warning) {
+		std::shared_ptr<plnt::ResourceBase> ResourceManagerInternalAccessor::GetResourceByTypeAndID(const std::type_info& type, const std::string& id, bool is_valid_not_preload_warning) {
 			return ref_func_by_id_(type, id, is_valid_not_preload_warning);
 		}
 
-		std::shared_ptr<planeta::ResourceBase> ResourceManagerInternalAccessor::GetResourceByTypeAndPath(const std::type_info& type, const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
+		std::shared_ptr<plnt::ResourceBase> ResourceManagerInternalAccessor::GetResourceByTypeAndPath(const std::type_info& type, const std::string& path, const std::string& root_path, bool is_valid_not_preload_warning) {
 			return ref_func_by_path_(type, path, root_path, is_valid_not_preload_warning);
 		}
 	}

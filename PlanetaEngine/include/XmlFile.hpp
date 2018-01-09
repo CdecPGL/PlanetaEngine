@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace planeta {
+namespace plnt {
 	class File;
 
 	class XMLElement {

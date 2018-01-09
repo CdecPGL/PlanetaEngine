@@ -3,7 +3,7 @@
 #include "GameObjectSystemComponent.hpp"
 #include "RectAngle.hpp"
 
-namespace planeta {
+namespace plnt {
 	//! GUI用トランスフォームコンポーネント(親子関係関連の機能は未実装)
 	class CTransformGUI final : public private_::GameObjectSystemComponent{
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransformGUI);

@@ -4,7 +4,7 @@
 #include "RGraph.hpp"
 #include <cassert>
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace {
 			/*DX形式頂点情報の初期化*/

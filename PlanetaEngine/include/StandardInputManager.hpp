@@ -3,7 +3,7 @@
 #include<memory>
 #include "InputManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class StandardInputManager final : public InputManager {
 		public:

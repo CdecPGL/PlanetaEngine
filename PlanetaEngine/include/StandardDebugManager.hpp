@@ -3,7 +3,7 @@
 #include <memory>
 #include "DebugManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace  private_ {
 		/*標準のデバッグマネージャ*/
 		class StandardDebugManager final: public DebugManager{

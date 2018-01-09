@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "SceneSetUpper.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		/*シーン遷移エラー時に呼び出されるシーン*/
 		class SError : public SceneSetUpper {

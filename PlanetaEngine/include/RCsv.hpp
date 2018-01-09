@@ -3,7 +3,7 @@
 #include "ResourceBase.hpp"
 #include "CsvFile.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RCsv : public ResourceBase {
 	public:
 		const CsvFile& csv_file()const;

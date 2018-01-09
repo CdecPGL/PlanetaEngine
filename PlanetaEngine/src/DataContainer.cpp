@@ -3,7 +3,7 @@
 #include "DataContainerError.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		DataContainer::DataContainer() :impl_(std::make_unique<Impl_>()) {}
 

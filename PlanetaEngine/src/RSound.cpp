@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "File.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool RSound::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {

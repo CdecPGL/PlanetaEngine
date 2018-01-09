@@ -16,7 +16,7 @@
 #include "Screen.hpp"
 #include "IDebugManager.hpp"
 
-namespace planeta{
+namespace plnt{
 	namespace private_ {
 		//////////////////////////////////////////////////////////////////////////
 		//ManagerConnections
@@ -127,7 +127,7 @@ namespace planeta{
 			return Vector2Di((int)uiv.x, (int)uiv.y);
 		}
 
-		std::unique_ptr<planeta::private_::CDraw2DManagerConnection> StandardDrawSystem::RegisterCDraw2D(const std::shared_ptr<CDraw2D>& draw_component, int priority) {
+		std::unique_ptr<plnt::private_::CDraw2DManagerConnection> StandardDrawSystem::RegisterCDraw2D(const std::shared_ptr<CDraw2D>& draw_component, int priority) {
 			//コンポーネントを登録
 			auto reg_res = cdraw2d_holder_.Register(draw_component, priority);
 			if (!reg_res.first) { return nullptr; }
@@ -135,7 +135,7 @@ namespace planeta{
 			return std::make_unique<StandardCDraw2DManagerConnection>(cdraw2d_holder_, reg_res.second);
 		}
 
-		std::unique_ptr<planeta::private_::CDrawGUIManagerConnection> StandardDrawSystem::RegisterCDrawGUI(const std::shared_ptr<CDrawGUI>& draw_component, int priority) {
+		std::unique_ptr<plnt::private_::CDrawGUIManagerConnection> StandardDrawSystem::RegisterCDrawGUI(const std::shared_ptr<CDrawGUI>& draw_component, int priority) {
 			//コンポーネントを登録
 			auto reg_res = cdrawgui_holder_.Register(draw_component, priority);
 			if (!reg_res.first) { return nullptr; }
@@ -143,7 +143,7 @@ namespace planeta{
 			return std::make_unique<StandardCDrawGUIManagerConnection>(cdrawgui_holder_, reg_res.second);
 		}
 
-		std::unique_ptr<planeta::private_::CCamera2DManagerConnection> StandardDrawSystem::RegisterCCamera2D(const std::shared_ptr<CCamera2D>& camera_component) {
+		std::unique_ptr<plnt::private_::CCamera2DManagerConnection> StandardDrawSystem::RegisterCCamera2D(const std::shared_ptr<CCamera2D>& camera_component) {
 			if (camera2d_) {
 				PE_LOG_ERROR("シーン内の複数カメラはサポートされていません。初めに登録されたカメラのみが有効です。カメラコンポーネントを持つゲームオブジェクトが複数存在する可能性があります。");
 				return nullptr;

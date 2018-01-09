@@ -2,7 +2,7 @@
 
 #include "GameObjectSystemComponent.hpp"
 
-namespace planeta {
+namespace plnt {
 	class ScreenDrawerGUI;
 	class CDrawGUI : public private_::GameObjectSystemComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGUI);

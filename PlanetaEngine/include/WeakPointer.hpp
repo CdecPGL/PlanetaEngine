@@ -7,7 +7,7 @@
 #include "NullWeakPointerException.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	template<typename T>
 	class WeakPointer;
 

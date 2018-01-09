@@ -6,7 +6,7 @@
 #include <memory>
 #include "DrawSystem.hpp"
 
-namespace planeta {
+namespace plnt {
 	class ScreenDrawer2D;
 	class ScreenDrawerGUI;
 	namespace private_ {

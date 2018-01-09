@@ -3,7 +3,7 @@
 #include "Vector2D.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*2D頂点構造体*/
 		struct Vertex2D {

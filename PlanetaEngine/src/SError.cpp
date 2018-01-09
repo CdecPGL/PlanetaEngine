@@ -6,7 +6,7 @@
 #include "SceneSetUpProxy.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 
 		bool SError::SetUpScene(SceneSetUpProxy& scene_proxy, const util::ParameterHolder& initialize_parameters) {

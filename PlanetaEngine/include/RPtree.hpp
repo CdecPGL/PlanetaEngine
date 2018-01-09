@@ -2,7 +2,7 @@
 
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*!Boost::Ptree形式で読み込まれるリソース*/
 	class RPtree : public ResourceBase {
 	public:

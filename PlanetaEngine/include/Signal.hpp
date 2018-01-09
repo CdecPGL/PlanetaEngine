@@ -4,7 +4,7 @@
 
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! シグナルへの接続クラス*/
 	class SignalConnection final{
 	public:

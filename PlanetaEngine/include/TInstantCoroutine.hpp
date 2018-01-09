@@ -2,7 +2,7 @@
 
 #include "TCoroutine.hpp"
 
-namespace planeta {
+namespace plnt {
 	class TInstantCoroutine : public TCoroutine {
 	public:
 		using Super = TCoroutine;

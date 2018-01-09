@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta {
+namespace plnt {
 	class ISaveManager {
 	public:
 		virtual ~ISaveManager() = 0 {};

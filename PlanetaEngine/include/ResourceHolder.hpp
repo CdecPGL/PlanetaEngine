@@ -4,7 +4,7 @@
 #include "IResourceManager.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*! リソースを保持するためのヘルパークラス*/
 		template<class ResType>

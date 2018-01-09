@@ -19,7 +19,7 @@ namespace {
 	}
 }
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace {
 			constexpr char* ANONYMOUS_ID{ "<ID未設定>" };
@@ -40,7 +40,7 @@ namespace planeta {
 			return res;
 		}
 
-		std::shared_ptr<planeta::ResourceBase> StandardResourceManager::LoadResource_(ResourceData_& res_dat) {
+		std::shared_ptr<plnt::ResourceBase> StandardResourceManager::LoadResource_(ResourceData_& res_dat) {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			//リソースファイルを読み込み
@@ -372,7 +372,7 @@ namespace planeta {
 			return it->second.type_prefix + id;
 		}
 
-		std::shared_ptr<planeta::ResourceBase> StandardResourceManager::GetResourceByFullID(const std::string& full_id) {
+		std::shared_ptr<plnt::ResourceBase> StandardResourceManager::GetResourceByFullID(const std::string& full_id) {
 			return GetResourceByFullID_(full_id, true);
 		}
 

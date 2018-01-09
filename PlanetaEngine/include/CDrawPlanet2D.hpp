@@ -6,7 +6,7 @@
 #include "WeakPointer.hpp"
 #include "Vertex2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class GraphDrawData2D;
 	}
@@ -80,10 +80,10 @@ namespace planeta {
 				} else if (str == "Plain") {
 					dst = CDrawPlanet2D::TextureMappingMode::Plain;
 				} else {
-					throw planeta::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
+					throw plnt::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
 				}
 			} catch (boost::property_tree::ptree_bad_data& e) {
-				throw planeta::reflection_error(e.what());
+				throw plnt::reflection_error(e.what());
 			}
 		}
 	}

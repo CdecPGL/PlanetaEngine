@@ -3,7 +3,7 @@
 #include <string>
 #include "ParameterHolder.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! シーンマネージャの公開インターフェイス*/
 	class ISceneManager {
 	public:

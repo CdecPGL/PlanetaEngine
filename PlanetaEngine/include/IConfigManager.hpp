@@ -5,7 +5,7 @@
 #include "Vector2D.hpp"
 #include "CollisionGroupMatrix.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IConfigManager {
 	public:
 		virtual ~IConfigManager() = 0 {};

@@ -5,7 +5,7 @@
 #include <vector>
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IGameObject;
 	class IGameObjectManager {
 	public:

@@ -6,7 +6,7 @@
 #include <functional>
 #include <typeinfo>
 
-namespace planeta {
+namespace plnt {
 	class ResourceBase;
 	namespace private_ {
 		class ResourceManagerInternalAccessor {

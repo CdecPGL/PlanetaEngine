@@ -5,9 +5,9 @@
 #include "Screen.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
-		bool planeta::private_::StandardRenderingManager::Initialize()
+		bool plnt::private_::StandardRenderingManager::Initialize()
 		{
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetUseLighting(false); //ライティング計算を行わない
@@ -16,7 +16,7 @@ namespace planeta {
 			return true;
 		}
 
-		void planeta::private_::StandardRenderingManager::Finalize()
+		void plnt::private_::StandardRenderingManager::Finalize()
 		{
 		}
 
@@ -76,15 +76,15 @@ namespace planeta {
 			return main_screen_;
 		}
 
-		std::shared_ptr<planeta::private_::Screen> StandardRenderingManager::GetDebugDrawScreen() {
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetDebugDrawScreen() {
 			return debug_draw_screen_;
 		}
 
-		std::shared_ptr<planeta::private_::Screen> StandardRenderingManager::GetDebugInformationScreen() {
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetDebugInformationScreen() {
 			return debug_information_screen_;
 		}
 
-		std::shared_ptr<planeta::private_::Screen> StandardRenderingManager::GetGUIScreen() {
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetGUIScreen() {
 			return gui_screen_;
 		}
 

@@ -10,7 +10,7 @@
 
 #endif
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		bool EffectLoaderForEffekseer::Load(const EFK_CHAR*, void*& data, int32_t& size) {
 			assert(file_ != nullptr);

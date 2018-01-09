@@ -5,7 +5,7 @@
 #include "Vector2D.hpp"
 #include "Color.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! デバッグ情報追加クラス公開インターフェイス*/
 	class IDebugInformationAdder {
 	public:

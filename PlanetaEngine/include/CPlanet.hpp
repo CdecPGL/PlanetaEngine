@@ -2,7 +2,7 @@
 #include "GameObjectStandardComponent.hpp"
 #include <vector>
 
-namespace planeta {
+namespace plnt {
 	/*! 平面惑星コンポーネント*/
 	class CPlanet : public GameObjectStandardComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CPlanet);

@@ -4,7 +4,7 @@
 #include "TaskManager.hpp"
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Task;
 	namespace private_ {
 		enum class SystemTaskSlot;

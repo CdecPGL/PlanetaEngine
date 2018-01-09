@@ -6,7 +6,7 @@
 #include <memory.h>
 #include <istream>
 
-namespace planeta {
+namespace plnt {
 	/*! ファイルデータを格納するクラス*/
 	class File final: public Object {
 	public:

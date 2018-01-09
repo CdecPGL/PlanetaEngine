@@ -2,7 +2,7 @@
 
 #include "Vector2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IDrawSystem {
 	public:
 		virtual ~IDrawSystem() = 0 {};

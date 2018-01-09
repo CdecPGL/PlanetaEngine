@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <cassert>
 
-namespace planeta {
+namespace plnt {
 	/*衝突マトリックス。初期値はfalse*/
 	class CollisionGroupMatrix {
 	public:

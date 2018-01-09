@@ -6,7 +6,7 @@
 
 #include "FileIStream.hpp"
 
-namespace planeta {
+namespace plnt {
 	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定
 	bool RPtree::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		using namespace boost::property_tree;

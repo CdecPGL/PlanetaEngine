@@ -4,7 +4,7 @@
 #include <functional>
 #include "NonOwingPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class GameObjectComponentHolder;
 	}

@@ -2,7 +2,7 @@
 
 #include "RPtree.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RGameObject final : public RPtree {};
 }
 

@@ -3,7 +3,7 @@
 #include <array>
 #include "Vector2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace math {
 		//2*2行列
 		template<typename T>

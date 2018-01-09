@@ -2,7 +2,7 @@
 
 #include "NonOwingPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class ISceneInternal;
 	class IGameObject;
 	namespace private_ {

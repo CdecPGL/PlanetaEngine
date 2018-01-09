@@ -8,7 +8,7 @@ namespace {
 	constexpr unsigned int kDefaultSeparation(90);
 }
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CPlanet) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, radius)

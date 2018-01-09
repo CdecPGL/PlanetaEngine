@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*std::enable_shared_from_thisを使うことを推奨！*/
 		template<class C>

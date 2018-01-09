@@ -4,7 +4,7 @@
 #include "RMusic.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool BGMController::is_valid() const {
 		if (music_resource_ == nullptr) { return false; }
 		return music_resource_->is_usable();
@@ -66,21 +66,21 @@ namespace planeta {
 
 	void BGMController::Update() {
 		switch (state_) {
-		case planeta::BGMController::State_::FadeIn:
+		case plnt::BGMController::State_::FadeIn:
 		{
 			double ratio = (double)fade_frame_counter_ / fade_total_frame_;
 			ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
 			++fade_frame_counter_;
 			break;
 		}
-		case planeta::BGMController::State_::FadeOut:
+		case plnt::BGMController::State_::FadeOut:
 		{
 			double ratio = 1.0 - (double)fade_frame_counter_ / fade_total_frame_;
 			ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
 			++fade_frame_counter_;
 			break;
 		}
-		case planeta::BGMController::State_::None:
+		case plnt::BGMController::State_::None:
 			break;
 		default:
 			assert(false);

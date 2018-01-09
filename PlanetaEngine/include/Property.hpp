@@ -2,7 +2,7 @@
 
 #include <type_traits>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*読み取り専用プロパティ*/
 		template<class C, typename PropertyType, typename GetterRet, GetterRet(C::*getter)()const>

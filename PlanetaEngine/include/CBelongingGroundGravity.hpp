@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "GameObjectStandardComponent.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CTransform2D;
 	/*! 地面方向への重力発生コンポーネント*/
 	class CBelongingGroundGravity final: public GameObjectStandardComponent {

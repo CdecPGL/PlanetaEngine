@@ -7,7 +7,7 @@
 #include "RectAngle.hpp"
 #include "Vertex2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class GraphDrawData2D;
 	}

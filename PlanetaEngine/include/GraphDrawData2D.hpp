@@ -6,7 +6,7 @@
 #include "Vertex2D.hpp"
 #include "Color.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RGraph;
 	namespace private_ {
 		struct DXGraphDrawData;

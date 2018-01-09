@@ -6,7 +6,7 @@
 #include "SceneManager.hpp"
 #include "ParameterHolder.hpp"
 
-namespace planeta{
+namespace plnt{
 	class SceneSetUpper;
 	namespace private_ {
 		class ResourceManager;

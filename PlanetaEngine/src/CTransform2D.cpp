@@ -8,7 +8,7 @@
 #include <tuple>
 #include "CDumyGround2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace {
 		//ダミーグラウンド取得
 		std::shared_ptr<CGround2D> GetDumyGround() {

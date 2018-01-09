@@ -3,7 +3,7 @@
 #include "IGameObject.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	Task::Task() {}
 	Task::~Task() = default;
 

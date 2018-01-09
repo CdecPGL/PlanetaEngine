@@ -3,7 +3,7 @@
 #include "StandardPerformanceManager.hpp"
 #include "IDebugManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace {
 		constexpr int fps_measure_interval{ 60 };
 	}

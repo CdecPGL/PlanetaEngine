@@ -2,7 +2,7 @@
 
 #include "GUIObject.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*namespace gui_components {
 		class SimplePolygonPanel;
 		class TextPanel;

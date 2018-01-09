@@ -15,7 +15,7 @@
 #include "REffectTexture.hpp"
 #include "RGameObject.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace init_funcs {
 			std::tuple<bool, std::function<void()>> InitializeResourceSystem(ResourceManager& mgr, const std::shared_ptr<FileManipulator>& res_file_manipurator) {

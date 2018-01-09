@@ -11,7 +11,7 @@
 
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	//! JSON型の不一致エラー例外クラス
 	class JSONTypeError final : public std::runtime_error {
 	public:

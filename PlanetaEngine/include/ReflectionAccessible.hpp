@@ -5,7 +5,7 @@
 #include "boost/any.hpp"
 #include "boost/property_tree/ptree.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Reflectable;
 	/*! Reflection基底クラス。レフレクションに対応するクラスは継承しなければならない。
 	*/

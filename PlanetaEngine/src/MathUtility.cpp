@@ -1,7 +1,7 @@
 ﻿#include "MathUtility.hpp"
 #include <cmath>
 
-namespace planeta {
+namespace plnt {
 	namespace math {
 
 		bool is2Pow(unsigned int num)

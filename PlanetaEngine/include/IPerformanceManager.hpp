@@ -2,7 +2,7 @@
 
 #include "PETime.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! パフォーマンスマネージャの公開インターフェイス。パフォーマンスの計測や調整を行う。*/
 	class IPerformanceManager {
 	public:

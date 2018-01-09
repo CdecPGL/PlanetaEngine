@@ -2,7 +2,7 @@
 #include "Object.hpp"
 #include <unordered_map>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		class ParameterHolder final: public Object{
 		public:

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta {
+namespace plnt {
 	class File;
 	namespace encrypters {
 		class EncrypterBase {

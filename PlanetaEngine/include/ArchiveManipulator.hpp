@@ -4,7 +4,7 @@
 
 class Extracter;
 
-namespace planeta {
+namespace plnt {
 	class ArchiveManipulator final : public FileManipulator {
 	public:
 		ArchiveManipulator();

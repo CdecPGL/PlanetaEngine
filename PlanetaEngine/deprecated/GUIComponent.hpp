@@ -9,7 +9,7 @@
 #include "ObjectHolderTemplate_WithoutID.hpp"
 #include "NonCopyable.hpp"
 
-namespace planeta {
+namespace plnt {
 	//class ScreenDrawerGUI;
 	//namespace game {
 	//	class GUIComponent : public core::Object,private utility::NonCopyable<GUIComponent>{

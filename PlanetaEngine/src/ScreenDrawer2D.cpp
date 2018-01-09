@@ -8,9 +8,9 @@
 #include "Screen.hpp"
 #include <cassert>
 
-namespace planeta {
+namespace plnt {
 	using namespace private_;
-	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Df>& positions, double width, const planeta::Color& color) {
+	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Df>& positions, double width, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
 			using namespace util::dx;
 			VECTOR v0, v1;
@@ -24,7 +24,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Df>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta::Color& color) {
+	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Df>& positions, const std::vector<std::array<int, 3>>& indexes, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
 			using namespace util::dx;
 			VECTOR v0, v1, v2;

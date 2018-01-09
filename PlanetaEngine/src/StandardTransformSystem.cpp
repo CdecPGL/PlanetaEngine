@@ -2,7 +2,7 @@
 #include "CTransform2D.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		StandardTransformSystem::StandardTransformSystem() {}
 

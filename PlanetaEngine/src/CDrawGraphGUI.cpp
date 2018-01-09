@@ -5,7 +5,7 @@
 #include "CTransformGUI.hpp"
 #include "RectAngle.hpp"
 
-namespace planeta {
+namespace plnt {
 	//////////////////////////////////////////////////////////////////////////
 	//Impl_
 	//////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ namespace planeta {
 		return true;
 	}
 
-	const planeta::RectAnglei& CDrawGraphGUI::draw_area() const {
+	const plnt::RectAnglei& CDrawGraphGUI::draw_area() const {
 		return impl_->graph_draw_area;
 	}
 

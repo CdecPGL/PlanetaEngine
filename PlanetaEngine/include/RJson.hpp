@@ -3,7 +3,7 @@
 #include "JsonFile.hpp"
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! @brief JSONファイルを扱うリソースクラス
 	*/
 	class RJson final : public ResourceBase {

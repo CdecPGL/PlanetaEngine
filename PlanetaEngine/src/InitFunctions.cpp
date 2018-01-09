@@ -10,7 +10,7 @@
 #include "JsonFile.hpp"
 #include "ConfigManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace init_funcs {
 			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulator>& sys_dir_manipurator, const std::shared_ptr<FileManipulator>& cfg_dir_manipurator) {

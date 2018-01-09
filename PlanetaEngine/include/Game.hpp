@@ -4,7 +4,7 @@
 #include "Object.hpp"
 #include "SingletonTemplate.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IResourceManager;
 	class ILogManager;
 	class ISceneManager;

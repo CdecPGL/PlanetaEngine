@@ -2,7 +2,7 @@
 #include "File.hpp"
 #include "CharacterCode.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool RText::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		size_t size = file.size();
 		const char* c_ptr = (const char*)file.top_pointer();

@@ -2,7 +2,7 @@
 //
 //#include "GUIManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*namespace game {
 
 		bool GUIManagerConnection::Show()

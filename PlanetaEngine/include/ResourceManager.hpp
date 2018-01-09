@@ -6,7 +6,7 @@
 #include "IResourceManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	class FileManipulator;
 	namespace private_ {
 		/// <summary>リソースマネージャ.</summary>

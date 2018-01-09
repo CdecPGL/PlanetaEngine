@@ -4,7 +4,7 @@
 #include "WeakPointer.hpp"
 #include "NonCopyable.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IDebugInformationAdder;
 	namespace private_ {
 		class ISceneInternal;

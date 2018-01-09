@@ -12,7 +12,7 @@ namespace {
 	constexpr char* SaveDataInformationFileName("save_data_info");
 }
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_

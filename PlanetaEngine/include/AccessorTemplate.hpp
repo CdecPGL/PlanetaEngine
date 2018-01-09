@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		template<class PublicInterface, class... SAImpls>
 		class AccessorTemplate : public SAImpls...{

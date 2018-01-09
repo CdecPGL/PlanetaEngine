@@ -6,7 +6,7 @@
 
 #define EFFEKSEER_FOR_DXLIB_VERSION 122
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//Load関数の引数は使わずに、読み込み直前にFileを指定して、それを用いて読み込みを行う。
 		class EffectLoaderForEffekseer final: public ::Effekseer::EffectLoader {

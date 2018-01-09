@@ -8,7 +8,7 @@
 #include "Collider2DData.hpp"
 #include "EACollisionWithGround2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCollider2D) {
 		registerer
 		.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_position)

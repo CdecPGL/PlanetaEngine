@@ -3,7 +3,7 @@
 #include <vector>
 #include <functional>
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class Screen {
 		public:

@@ -9,7 +9,7 @@
 #include "PrefixUtility.hpp"
 #include "StandardSceneManagerUtility.hpp"
 
-namespace planeta{
+namespace plnt{
 	namespace private_{
 		StandardSceneManager::StandardSceneManager() :state_(State::None), _is_transitioning(false), _is_loading(false), _is_next_scene_loaded(false), _load_progress(0.0) {
 

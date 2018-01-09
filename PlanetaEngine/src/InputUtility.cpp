@@ -2,7 +2,7 @@
 
 #include<unordered_map>
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace {
 			const std::unordered_map<Key::type, std::string> _key_name_map = {

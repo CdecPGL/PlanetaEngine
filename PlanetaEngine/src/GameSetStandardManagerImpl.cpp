@@ -15,7 +15,7 @@
 
 #include "SystemVariables.hpp"
 
-namespace planeta {
+namespace plnt {
 	void Game::SetStandardManagers() {
 		using namespace private_;
 		SetResourceManager(std::make_shared<StandardResourceManager>());

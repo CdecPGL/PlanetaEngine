@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta {
+namespace plnt {
 	namespace debug {
 		class DebugDrawInterface {
 		public:

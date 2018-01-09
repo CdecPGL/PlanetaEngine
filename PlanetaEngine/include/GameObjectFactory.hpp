@@ -6,7 +6,7 @@
 
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class ISceneInternal;
 		class GameObjectBase;

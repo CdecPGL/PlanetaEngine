@@ -24,7 +24,7 @@ Vertion 2.0.0 2016/9/29 LuaBind機能の追加。Reflectableのリフレクシ�
 #include "ClassRegistererImpl.hpp"
 #include "ReflectionExceptions.hpp"
 
-namespace planeta {
+namespace plnt {
 	class ReflectableClassAccessor;
 	class ReflectionAccessible;
 	/*! @brief リフレクションシステム
@@ -205,14 +205,14 @@ namespace planeta {
 	}
 }
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//メンバクラス内静的変数がクラス単位で生成されることを利用して、複数回呼ばれても最初の一回しか登録処理を行わないようにする。
 		template<typename T>
 		struct ReflectableClassRegisterHelper {
 			template<typename... Params>
 			ReflectableClassRegisterHelper(Params&&... params) {
-				static planeta::private_::ClassRegisterTrigger<T> class_register_trigger{ params... };
+				static plnt::private_::ClassRegisterTrigger<T> class_register_trigger{ params... };
 			}
 		};
 	}
@@ -223,21 +223,21 @@ namespace planeta {
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS(type)\
-namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
+namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
 
 /*! @def
 IDを指定してクラスをリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
 @param type 型
 */
 #define PE_REFLECTABLE_CLASS_WITH_ID(type, id)\
-namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##id##_ = {#id}; }
+namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##id##_ = {#id}; }
 
 /*! @def
 	親クラスを指定してクラスをリフレクションシステムに登録する(登録する型に公開型エイリアスSuperは定義されている必要はない。定義されていても参照されない)
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS_SPECIFY_SUPER(type, super)\
-namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, typeid(super)}; }
+namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, typeid(super)}; }
 
 /*! @def
 クラスをクリエータを指定してリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
@@ -245,4 +245,4 @@ namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectab
 @param creator クリエータ(std::shared_ptr<Object>()の関数型)
 */
 #define PE_REFLECTABLE_CLASS_WITH_CREATOR(type, creator)\
-namespace { planeta::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, creator}; }
+namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, creator}; }

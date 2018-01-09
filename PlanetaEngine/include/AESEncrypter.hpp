@@ -5,7 +5,7 @@
 #include "EncrypterBase.hpp"
 #include "boost/multiprecision/cpp_int.hpp"
 
-namespace planeta{
+namespace plnt{
 	namespace encrypters {
 		//128bit鍵長AES暗号器
 		class AESEncrypter final : public EncrypterBase {

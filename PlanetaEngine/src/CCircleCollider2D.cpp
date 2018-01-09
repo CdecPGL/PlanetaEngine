@@ -1,7 +1,7 @@
 ﻿#include "CCircleCollider2D.hpp"
 #include "CollisionDetectFunctions.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCircleCollider2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CCircleCollider2D, radius)

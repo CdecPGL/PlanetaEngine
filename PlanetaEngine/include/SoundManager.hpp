@@ -3,7 +3,7 @@
 #include "ISoundManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class SoundManager : public ISoundManager, public SubSystemManager {
 		public:

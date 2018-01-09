@@ -10,7 +10,7 @@
 
 #include "File.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace encrypters {
 		//////////////////////////////////////////////////////////////////////////
 		//Impl_

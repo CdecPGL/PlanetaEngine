@@ -7,7 +7,7 @@
 #include "StandardGameObjectManager.hpp"
 #include "StandardTransformSystem.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		void SetStandardSceneModules(Scene& scene) {
 			scene.SetCollisionWorld(std::make_shared<StandardCollisionWorld>());

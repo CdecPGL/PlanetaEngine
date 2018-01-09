@@ -3,7 +3,7 @@
 #include "IDrawSystem.hpp"
 #include "SceneModule.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CDraw2D;
 	class CDrawGUI;
 	class CCamera2D;

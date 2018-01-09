@@ -1,7 +1,7 @@
 ﻿#include "FileStreamBuf.hpp"
 #include "File.hpp"
 
-namespace planeta {
+namespace plnt {
 	const size_t FileStreamBuf::buffer_size = 256;
 
 	FileStreamBuf::FileStreamBuf(File& file) :file_(file), write_buffer_(std::make_unique<char[]>(buffer_size)) {

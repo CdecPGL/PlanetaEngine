@@ -2,7 +2,7 @@
 
 #include "Delegate.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/**
 		* @brief デリゲートイベント監視クラス本体。

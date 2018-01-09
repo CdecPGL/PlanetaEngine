@@ -4,7 +4,7 @@
 #include "Game.hpp"
 #include "IDebugManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_{
 		void SubSystemManager::CreateDebugInformationChannel(const std::string& channel_id) {
 			Game::instance().debug_manager()->CreateDebugInformationChannel(channel_id, std::bind(&SubSystemManager::DebugInfotmationAddHandler, this, std::placeholders::_1));

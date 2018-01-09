@@ -6,7 +6,7 @@
 #include<fstream>
 #include<iomanip>
 
-namespace planeta {
+namespace plnt {
 	namespace bfs = boost::filesystem;
 	NormalFolderManipulator::~NormalFolderManipulator() {}
 

@@ -5,7 +5,7 @@
 #include "ScreenDrawerGUI.hpp"
 #include "RGraph.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*namespace gui_components {
 
 		void GraphPanel::UpdateProc()

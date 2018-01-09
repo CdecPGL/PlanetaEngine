@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta{
+namespace plnt{
 	namespace private_{
 		namespace Allocators{
 			//template <class T>

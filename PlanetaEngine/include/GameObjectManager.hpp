@@ -3,7 +3,7 @@
 #include "IGameObjectManager.hpp"
 #include "SceneModule.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class GameObjectManager : public IGameObjectManager, public SceneModule {
 		public:

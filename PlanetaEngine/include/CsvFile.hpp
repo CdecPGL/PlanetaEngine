@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace planeta {
+namespace plnt {
 	class File;
 	/*! Csvファイルクラス*/
 	class CsvFile final{

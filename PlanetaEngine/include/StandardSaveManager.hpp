@@ -5,7 +5,7 @@
 #include "PEDateTime.hpp"
 #include "boost/optional.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		class DataContainer;
 	}

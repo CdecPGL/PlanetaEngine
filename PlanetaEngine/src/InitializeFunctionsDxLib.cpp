@@ -9,7 +9,7 @@
 
 #include "EffekseerUtil.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace init_funcs {
 			//////////////////////////////////////////////////////////////////////////

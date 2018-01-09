@@ -2,7 +2,7 @@
 #include "ResourceBase.hpp"
 #include "Vector2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*画像リソース*/
 	class RGraph : public ResourceBase {
 	public:

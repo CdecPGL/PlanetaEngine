@@ -7,7 +7,7 @@
 #include <cstdio>
 #include "LogManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//システムログ管理(スタティックシングルトン)
 		class StandardLogManager final: public LogManager

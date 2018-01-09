@@ -3,7 +3,7 @@
 #include "GameObjectStandardComponent.hpp"
 #include "NonOwingPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CEffect final: public GameObjectStandardComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CEffect);
 	public:

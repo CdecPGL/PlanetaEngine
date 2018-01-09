@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-namespace planeta{
+namespace plnt{
 	namespace private_{
 		namespace ObjectUtility{
 			template<typename Key,class C>

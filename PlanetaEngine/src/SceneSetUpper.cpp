@@ -3,7 +3,7 @@
 #include "LogUtility.hpp"
 #include "SceneSetUpProxy.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool SceneSetUpper::InitializeScene(private_::Scene& scene, const util::ParameterHolder& initialize_parameters) {
 		SceneSetUpProxy safs(scene);
 		//固有設定

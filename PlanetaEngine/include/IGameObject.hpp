@@ -8,7 +8,7 @@
 #include "TaskSlot.hpp"
 #include "IScene.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Task;
 	class GameObjectComponent;
 	class Task;

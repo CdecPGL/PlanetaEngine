@@ -23,7 +23,7 @@ namespace std {
 struct IDirect3DTexture9;
 #endif
 
-namespace planeta {
+namespace plnt {
 	class REffectTexture final: public ResourceBase {
 	public:
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130

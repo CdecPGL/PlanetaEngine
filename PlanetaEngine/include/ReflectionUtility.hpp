@@ -17,7 +17,7 @@
 
 #include "MetaprogrammingUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Reflectable;
 	class ReflectionAccessible;
 	template<class C>
@@ -27,7 +27,7 @@ namespace planeta {
 //////////////////////////////////////////////////////////////////////////
 //特定の条件を満たしているか確認するメタ関数
 //////////////////////////////////////////////////////////////////////////
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っているか
 		template<class C, typename T = void>
@@ -76,10 +76,10 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0<array_type<T, Rest...>>::Convert(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
-			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
+			throw ::plnt::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		planeta::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.push_back(std::move(dat));\
 	}\
 }
@@ -88,10 +88,10 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0<set_type<T, Rest...>>::Convert(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
-			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
+			throw ::plnt::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		planeta::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.insert(std::move(dat));\
 	}\
 }
@@ -100,15 +100,15 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Convert(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src){\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == true) {\
-			throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));\
+			throw ::plnt::reflection_error(::plnt::util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));\
 		}\
 		T dat{};\
-		planeta::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.emplace(pp.first, std::move(dat));\
 	}\
 }
 
-namespace planeta {
+namespace plnt {
 	//////////////////////////////////////////////////////////////////////////
 	//宣言
 	//////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@ namespace planeta {
 		};
 		//継承
 		template<typename T>
-		struct ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<planeta::Reflectable, T>>> {
+		struct ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<plnt::Reflectable, T>>> {
 			static void Convert(T& dst, const boost::property_tree::ptree& src);
 		};
 
@@ -193,7 +193,7 @@ namespace planeta {
 		template<size_t idx, typename F, typename... R>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<F, R...>& dst, const std::vector<const boost::property_tree::ptree*>& src) {
 			F f{};
-			planeta::util::ReflectivePtreeConverter(f, *src[idx]);
+			plnt::util::ReflectivePtreeConverter(f, *src[idx]);
 			std::tuple<R...> rtuple;
 			ReflectivePtreeConverterToStdTuple<idx + 1, R...>(rtuple, src);
 			dst = std::tuple_cat(std::make_tuple<F>(std::move(f)), rtuple);
@@ -202,7 +202,7 @@ namespace planeta {
 		//Layer3
 		template<typename T>
 		void ReflectivePtreeConverter_Layer3<T>::Convert(T& dst, const boost::property_tree::ptree& src) {
-			planeta::private_::ReflectivePtreeConverterError<T>();
+			plnt::private_::ReflectivePtreeConverterError<T>();
 		}
 		//Layer2
 		template<typename T, typename U = void>
@@ -224,12 +224,12 @@ namespace planeta {
 			ReflectivePtreeConverter_Layer2<T>::Convert(dst, src);
 		}
 		template<typename T>
-		void ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<planeta::Reflectable, T>>>::Convert(T& dst, const boost::property_tree::ptree& src) {
+		void ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<plnt::Reflectable, T>>>::Convert(T& dst, const boost::property_tree::ptree& src) {
 			try {
-				planeta::private_::ReflectivePtreeConverterFromReflectionSystem(dst, src);
+				plnt::private_::ReflectivePtreeConverterFromReflectionSystem(dst, src);
 			}
 			catch (reflection_error& e) {
-				throw planeta::reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
+				throw plnt::reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
 			}
 		};
 		//Layer0
@@ -242,14 +242,14 @@ namespace planeta {
 			std::vector<const boost::property_tree::ptree*> ptree_vec;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
 			if (sizeof...(Ts) != ptree_vec.size()) {
-				throw reflection_error(planeta::util::ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
+				throw reflection_error(plnt::util::ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
 			}
-			planeta::private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
+			plnt::private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
 		}
 		//std::vector
 		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(std::vector);
@@ -281,7 +281,7 @@ namespace planeta {
 //////////////////////////////////////////////////////////////////////////
 //コピーハンドラ
 //////////////////////////////////////////////////////////////////////////
-namespace planeta {
+namespace plnt {
 	class Reflectable;
 	namespace private_ {
 		void ReflectiveCopyFromReflectionSystem(Reflectable& dst, const Reflectable& src);
@@ -300,7 +300,7 @@ namespace planeta {
 		/*! コピー代入不可能でReflectionAssignableを継承しておらず、Reflectableを継承している型*/
 		template<typename T>
 		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&!std::is_base_of_v<ReflectionAccessible, T>&&std::is_base_of_v<Reflectable, T>, void>::type {
-			planeta::private_::ReflectiveCopyFromReflectionSystem(dst, src);
+			plnt::private_::ReflectiveCopyFromReflectionSystem(dst, src);
 		}
 	}
 }

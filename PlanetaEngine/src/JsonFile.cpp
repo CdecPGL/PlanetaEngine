@@ -6,7 +6,7 @@
 #include "LogUtility.hpp"
 #include "CharacterCode.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace {
 		std::shared_ptr<JSONValue> ConvertPicojsonValueToJSONValue(const picojson::value& pj_value) {
 			if (pj_value.is<double>()) {

@@ -3,7 +3,7 @@
 #include <windows.h>
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*フォントリソース*/
 	class RFont final : public ResourceBase {
 	public:

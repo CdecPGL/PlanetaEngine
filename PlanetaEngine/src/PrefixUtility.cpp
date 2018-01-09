@@ -4,7 +4,7 @@
 #include "StringUtility.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		using namespace system_variables;
 		namespace {

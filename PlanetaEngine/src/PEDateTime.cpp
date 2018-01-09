@@ -1,7 +1,7 @@
 ﻿#include "PEDateTime.hpp"
 #include <sstream>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 
 		std::string DateTime::ToString() const

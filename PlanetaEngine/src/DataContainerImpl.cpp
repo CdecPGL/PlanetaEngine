@@ -4,7 +4,7 @@
 #include "DataContainerError.hpp"
 #include "StringUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		DataContainer::Impl_::Impl_(const Impl_& obj) :
 			element_type_map_(obj.element_type_map_),

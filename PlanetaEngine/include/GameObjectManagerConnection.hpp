@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class GameObjectManager;
 		class GameObjectManagerConnection final {

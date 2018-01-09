@@ -2,7 +2,7 @@
 
 #include <typeinfo>
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class TypeInfoWrapper final {
 		public:
@@ -36,7 +36,7 @@ namespace planeta {
 			const std::type_info& get_type_info()const { return *target; }
 
 			struct hash {
-				size_t operator() (planeta::private_::TypeInfoWrapper ti) const noexcept {
+				size_t operator() (plnt::private_::TypeInfoWrapper ti) const noexcept {
 					return ti.hash_code();
 				}
 			};

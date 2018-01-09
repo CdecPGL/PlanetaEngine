@@ -5,8 +5,8 @@
 
 #include "Effekseer.h"
 
-planeta::REffectTexture::REffectTexture() = default;
-planeta::REffectTexture::~REffectTexture() = default;
+plnt::REffectTexture::REffectTexture() = default;
+plnt::REffectTexture::~REffectTexture() = default;
 
 #else
 
@@ -15,7 +15,7 @@ planeta::REffectTexture::~REffectTexture() = default;
 
 #endif
 
-bool planeta::REffectTexture::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
+bool plnt::REffectTexture::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
 	dx_base_image_ = std::unique_ptr<::DxLib::BASEIMAGE>(new ::DxLib::BASEIMAGE{});
@@ -63,7 +63,7 @@ bool planeta::REffectTexture::OnLoaded(const File& file, const JsonFile& metadat
 #endif
 }
 
-void planeta::REffectTexture::OnDisposed() {
+void plnt::REffectTexture::OnDisposed() {
 #if not EFFEKSEER_FOR_DXLIB_VERSION >= 130
 	if (texture_d9_) { texture_d9_->Release(); }
 #endif
@@ -71,13 +71,13 @@ void planeta::REffectTexture::OnDisposed() {
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
-::Effekseer::TextureData* planeta::REffectTexture::effekseer_taxture()const {
+::Effekseer::TextureData* plnt::REffectTexture::effekseer_taxture()const {
 	return effekseer_taxture_.get();
 }
 
 #else
 
-IDirect3DTexture9* planeta::REffectTexture::texture_dx9()const {
+IDirect3DTexture9* plnt::REffectTexture::texture_dx9()const {
 	return texture_d9_;
 }
 

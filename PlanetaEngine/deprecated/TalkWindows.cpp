@@ -3,7 +3,7 @@
 #include "SimplePolygonPanel.hpp"
 #include "TextPanel.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*namespace gui_objects {
 
 		bool TalkWindow::InitializeProc()

@@ -2,7 +2,7 @@
 
 #include "StringUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 
 		bool IsUpperCaseCharacter(char c) {

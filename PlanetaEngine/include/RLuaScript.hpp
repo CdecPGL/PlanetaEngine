@@ -3,7 +3,7 @@
 #include "ResourceBase.hpp"
 //#include "lua.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RLuaScript final: public ResourceBase {
 		RLuaScript();
 		~RLuaScript();

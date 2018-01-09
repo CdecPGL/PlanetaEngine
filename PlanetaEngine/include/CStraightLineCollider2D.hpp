@@ -2,7 +2,7 @@
 
 #include "CCollider2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! 直線コライダーコンポーネント*/
 	class CStraightLineCollider2D final : public CCollider2D {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CStraightLineCollider2D);

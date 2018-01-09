@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta {
+namespace plnt {
 	class ICollisionWorld {
 	public:
 		virtual ~ICollisionWorld() = 0 {};

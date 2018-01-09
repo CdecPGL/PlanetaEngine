@@ -4,7 +4,7 @@
 #include <array>
 #include "CDraw2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! 平面多角形描画コンポーネント*/
 	class CDrawPolygon2D final : public CDraw2D {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawPolygon2D);

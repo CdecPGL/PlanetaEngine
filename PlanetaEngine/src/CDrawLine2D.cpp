@@ -4,7 +4,7 @@
 #include "CTransform2D.hpp"
 #include "Matrix2_2.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawLine2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, width)

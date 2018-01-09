@@ -6,7 +6,7 @@
 #include "LogUtility.hpp"
 #include "MathConstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool CPlanetGround2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
 		if (!CGround2D::GetOtherComponentsProc(com_getter)) { return false; };
 		planet_component_.reset(com_getter.GetComponent<CPlanet>());

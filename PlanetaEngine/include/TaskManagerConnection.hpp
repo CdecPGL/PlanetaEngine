@@ -3,7 +3,7 @@
 #include <functional>
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class TaskManagerConnection {
 		public:

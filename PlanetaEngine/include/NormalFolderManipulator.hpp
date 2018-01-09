@@ -2,7 +2,7 @@
 #include "FileManipulator.hpp"
 #include<unordered_set>
 
-namespace planeta {
+namespace plnt {
 	class NormalFolderManipulator final : public FileManipulator {
 	public:
 		using FileManipulator::FileManipulator;

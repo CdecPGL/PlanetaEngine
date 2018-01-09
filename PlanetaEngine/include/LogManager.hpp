@@ -3,7 +3,7 @@
 #include "ILogManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		/*ログマネージャ*/
 		class LogManager : public ILogManager, public SubSystemManager {

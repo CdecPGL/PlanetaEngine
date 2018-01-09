@@ -8,7 +8,7 @@
 #include "boost/any.hpp"
 #include "boost/call_traits.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace mp_util{
 		struct nil {};
 

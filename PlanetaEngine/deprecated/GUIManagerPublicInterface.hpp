@@ -3,7 +3,7 @@
 //#include <memory>
 //#include <functional>
 
-namespace planeta {
+namespace plnt {
 	/*namespace game {
 		class GUIObject;
 		class GUIManagerPublicInterface {

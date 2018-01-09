@@ -6,7 +6,7 @@
 
 #define PE_ENABLE_REFLECTION_SYSTEM
 
-namespace planeta {
+namespace plnt {
 	template<typename T>
 	struct Vector2D;
 	//三次元ベクトルテンプレート
@@ -203,7 +203,7 @@ namespace planeta {
 
 #include "boost/property_tree/ptree.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template<typename T>
@@ -215,7 +215,7 @@ namespace planeta {
 			std::array<T, 3> ary;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				T dat{};
 				ReflectivePtreeConverter(dat, pp.second);

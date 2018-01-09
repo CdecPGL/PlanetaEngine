@@ -2,7 +2,7 @@
 
 #include "ConfigManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class StandardConfigManager final: public ConfigManager{
 		public:

@@ -1,7 +1,7 @@
 ﻿#include "Screen.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 
 		Screen::Screen() :is_valid_(true) {

@@ -3,7 +3,7 @@
 #include "IConfigManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	class File;
 	namespace private_ {
 		class ConfigManager : public IConfigManager, public SubSystemManager {

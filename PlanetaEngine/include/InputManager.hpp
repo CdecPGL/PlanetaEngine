@@ -5,7 +5,7 @@
 #include "IInputManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*インプットマネージャ*/
 	namespace private_ {
 		class InputManager : public IInputManager, public SubSystemManager {

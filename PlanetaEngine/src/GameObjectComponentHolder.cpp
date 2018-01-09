@@ -2,7 +2,7 @@
 #include "LogUtility.hpp"
 #include "GameObjectComponent.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		std::shared_ptr<GameObjectComponent> GameObjectComponentHolder::GetComponentByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent*)>& type_checker) const {
 			auto it = type_idx_map_.find(ti);

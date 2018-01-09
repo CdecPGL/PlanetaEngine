@@ -2,7 +2,7 @@
 
 #include "CCollider2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! 円形コライダーコンポーネント*/
 	class CCircleCollider2D final : public CCollider2D {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCircleCollider2D);

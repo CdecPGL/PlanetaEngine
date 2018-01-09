@@ -11,7 +11,7 @@
 #include "CharacterCode.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	bool CsvFile::Load(const File& file) {
 		size_t size = file.size();
 		const char* c_ptr = (const char*)file.top_pointer();

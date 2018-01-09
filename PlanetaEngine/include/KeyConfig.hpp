@@ -2,7 +2,7 @@
 
 #include"InputManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace key_input_io {
 			int LoadKeyConfigFromINIFileToKIM(const std::string&, InputManager& kim); //キー設定をINIファイルから読み込み

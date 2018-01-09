@@ -4,7 +4,7 @@
 #include <tuple>
 #include <memory>
 
-namespace planeta {
+namespace plnt {
 	class FileManipulator;
 	namespace private_ {
 		class ResourceManager;

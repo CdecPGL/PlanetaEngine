@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		/*接頭辞で用いるオブジェクトのカテゴリ*/
 		enum class ObjectCategory {

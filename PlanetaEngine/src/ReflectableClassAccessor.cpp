@@ -2,7 +2,7 @@
 #include "ClassInfoCaller.hpp"
 #include "Reflection.hpp"
 
-namespace planeta {
+namespace plnt {
 	using namespace private_;
 	//////////////////////////////////////////////////////////////////////////
 	//Impl_

@@ -5,7 +5,7 @@
 
 #include "boost/property_tree/ptree.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Reflectable;
 	namespace private_ {
 		struct ClassInfo;

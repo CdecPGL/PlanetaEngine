@@ -14,7 +14,7 @@
 #include "Reflection.hpp"
 #include "ISceneInternal.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace {
 		std::vector<std::shared_ptr<const boost::property_tree::ptree>> GetComDefPtrees(const boost::property_tree::ptree& pt) {
 			std::vector<std::shared_ptr<const boost::property_tree::ptree>> out;
@@ -285,7 +285,7 @@ namespace planeta {
 			return state_;
 		}
 
-		planeta::IScene& GameObjectBase::scene() {
+		plnt::IScene& GameObjectBase::scene() {
 			return *scene_internal_interface_;
 		}
 

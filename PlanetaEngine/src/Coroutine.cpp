@@ -1,6 +1,6 @@
 ﻿#include "Coroutine.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 
 	}

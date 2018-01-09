@@ -9,7 +9,7 @@
 
 #include "Vector2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace math {
 		/*ベクトルクラス<要素の型,要素数,要素識別子付与クラス>*/
 		template<typename T,int S,template<typename>class VectorElementIdentifer = vei::DumyIdentifer>

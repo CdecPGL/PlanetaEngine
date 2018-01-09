@@ -8,7 +8,7 @@
 #include "FileAccessMode.hpp"
 #include "boost/optional.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace encrypters {
 		class EncrypterBase;
 	}

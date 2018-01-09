@@ -2,7 +2,7 @@
 
 #include "Reflectable.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Color : public Reflectable{
 		PE_REFLECTION_DATA_REGISTERER_DECL_DEF(Color) {
 			registerer

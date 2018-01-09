@@ -3,7 +3,7 @@
 #include "IPerformanceManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		/*パフォーマンスマネージャ*/
 		class PerformanceManager : public IPerformanceManager, public SubSystemManager {

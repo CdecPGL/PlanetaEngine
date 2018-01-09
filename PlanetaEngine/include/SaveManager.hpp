@@ -4,7 +4,7 @@
 #include "ISaveManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	class FileManipulator;
 	namespace private_ {
 		class SaveManager : public ISaveManager, public SubSystemManager {

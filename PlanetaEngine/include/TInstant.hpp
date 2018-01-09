@@ -3,7 +3,7 @@
 #include "Task.hpp"
 #include <functional>
 
-namespace planeta {
+namespace plnt {
 	class TInstant final : public Task {
 	public:
 		using Super = Task;

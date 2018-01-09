@@ -5,7 +5,7 @@
 #include<algorithm>
 #include<typeinfo>
 
-namespace planeta{
+namespace plnt{
 	namespace util{
 		template <typename T_id, class C_obj>
 		class ObjectHolderTemplate_WithID{

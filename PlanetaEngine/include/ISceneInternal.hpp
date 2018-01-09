@@ -3,7 +3,7 @@
 #include "IScene.hpp"
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class CollisionWorld;
 		class DrawSystem;

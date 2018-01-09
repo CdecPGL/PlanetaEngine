@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "File.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool RMusic::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {

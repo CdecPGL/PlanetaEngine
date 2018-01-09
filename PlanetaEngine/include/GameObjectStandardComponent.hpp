@@ -2,7 +2,7 @@
 
 #include "GameObjectComponent.hpp"
 
-namespace planeta {
+namespace plnt {
 	class GameObjectStandardComponent : public GameObjectComponent {
 	public:
 		using Super = GameObjectComponent;

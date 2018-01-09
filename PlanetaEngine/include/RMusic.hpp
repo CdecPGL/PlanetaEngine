@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*音楽リソース*/
 	class RMusic : public ResourceBase {
 	public:

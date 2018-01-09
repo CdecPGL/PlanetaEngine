@@ -3,7 +3,7 @@
 #include <memory>
 #include "DxLib.h"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		struct DXGraphDrawData{
 			std::unique_ptr<VERTEX3D[]> vertexes; //頂点情報

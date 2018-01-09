@@ -2,7 +2,7 @@
 
 #include "MathConstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace math {
 		/*値が2のべき乗数か調べる*/
 		bool is2Pow(unsigned int num);

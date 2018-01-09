@@ -2,7 +2,7 @@
 #include "StandardResourceManager.hpp"
 #include "ScreenDrawerGUI.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*namespace gui_components {
 
 		void TextPanel::UpdateProc()

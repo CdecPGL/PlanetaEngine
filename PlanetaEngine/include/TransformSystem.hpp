@@ -3,7 +3,7 @@
 #include "ITransformSystem.hpp"
 #include "SceneModule.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CTransform2D;
 	class CTransformGUI;
 	namespace private_ {

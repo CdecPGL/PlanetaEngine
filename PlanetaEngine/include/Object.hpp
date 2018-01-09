@@ -6,7 +6,7 @@
 
 #undef max //windows.hで定義されているmaxマクロを無効化(std::numeric_limits<size_t>::max()のため)
 
-namespace planeta {
+namespace plnt {
 	/*! @brief 全てのクラスの基底となる基本クラス
 
 		型情報管理、リフレクションシステムなどを提供する。これらの機能が必要ない場合は継承する必要はない

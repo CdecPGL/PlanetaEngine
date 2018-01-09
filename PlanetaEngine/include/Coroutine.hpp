@@ -2,7 +2,7 @@
 
 #include <functional>
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		class Coroutine {
 		public:

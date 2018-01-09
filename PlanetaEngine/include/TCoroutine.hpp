@@ -4,7 +4,7 @@
 #include "Task.hpp"
 #include "boost/coroutine2/all.hpp"
 
-namespace planeta {
+namespace plnt {
 
 	class TCoroutine :public Task {
 	public:

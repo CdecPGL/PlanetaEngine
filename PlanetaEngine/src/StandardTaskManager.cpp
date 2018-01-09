@@ -11,7 +11,7 @@
 #include "IDebugManager.hpp"
 #include "ISceneInternal.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace {
 			constexpr int TASK_SLOT_0 = 0;

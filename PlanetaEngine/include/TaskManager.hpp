@@ -4,7 +4,7 @@
 #include "SceneModule.hpp"
 #include "SystemTaskSlot.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class TaskManager : public ITaskManager, public SceneModule{
 		public:

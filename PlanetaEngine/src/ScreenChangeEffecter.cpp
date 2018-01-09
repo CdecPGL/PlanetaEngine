@@ -1,7 +1,7 @@
 ﻿#include "ScreenChangeEffecter.hpp"
 #include "RangeUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 
 		void ScreenChangeEffecter::progress(double p) {

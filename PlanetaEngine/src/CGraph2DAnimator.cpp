@@ -5,7 +5,7 @@
 #include "LogUtility.hpp"
 #include "TInstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CGraph2DAnimator) {
 		registerer
 			.WriteOnlyProperty("animation_data", &CGraph2DAnimator::animation_data)

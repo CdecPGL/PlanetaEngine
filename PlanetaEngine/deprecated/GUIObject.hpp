@@ -9,7 +9,7 @@
 #include "GUIManagerConnection.hpp"
 #include "NonCopyable.hpp"
 
-namespace planeta {
+namespace plnt {
 	//class ScreenDrawerGUI;
 	//namespace game {
 	//	class GUIComponent;

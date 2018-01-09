@@ -4,7 +4,7 @@
 
 using namespace boost::filesystem;
 
-namespace planeta {
+namespace plnt {
 	File::File() {}
 
 	File::File(unsigned char* top_ptr, size_t size, const std::string& file_name) :file_name_(file_name),data_top_(top_ptr),size_(size),is_available_(true) {

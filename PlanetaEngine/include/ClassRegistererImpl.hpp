@@ -3,7 +3,7 @@
 #include "ClassRegisterer.hpp"
 #include "ReflectionUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//Superエイリアスが指定されていないクラスの場合
 		template<class C, typename T = void>

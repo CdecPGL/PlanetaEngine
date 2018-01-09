@@ -2,7 +2,7 @@
 
 #include "GameObjectComponent.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class GameObjectSystemComponent : public GameObjectComponent {
 		public:

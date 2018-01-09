@@ -6,7 +6,7 @@
 #include <functional>
 #include "CollisionWorld.hpp"
 
-namespace planeta {
+namespace plnt {
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;
 	class IDebugDrawer;

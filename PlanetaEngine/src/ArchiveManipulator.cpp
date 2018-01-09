@@ -4,7 +4,7 @@
 #include"boost/filesystem/path.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	ArchiveManipulator::ArchiveManipulator() :FileManipulator(), _extracter(std::make_unique<Extracter>()), _key(0) {}
 
 	ArchiveManipulator::~ArchiveManipulator() {

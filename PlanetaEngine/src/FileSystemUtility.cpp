@@ -5,7 +5,7 @@
 #include "File.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		std::shared_ptr<File> CreateFileFromStandardFileInput(const std::string& file_name) {
 			//ファイルを開く

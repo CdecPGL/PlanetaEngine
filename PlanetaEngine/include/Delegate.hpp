@@ -8,7 +8,7 @@
 
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//イベントハンドラ所有クラスインターフェイス
 		template<typename EventArgType>

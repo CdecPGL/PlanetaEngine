@@ -4,7 +4,7 @@
 namespace Effekseer {
 	class Effect;
 }
-namespace planeta {
+namespace plnt {
 	class REffect : public ResourceBase {
 	public:
 		REffect() {};

@@ -6,7 +6,7 @@
 #include "IDebugManager.hpp"
 #include "boost/algorithm/string.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		StandardGameObjectManager::StandardGameObjectManager() :game_object_factory_(std::make_unique<private_::GameObjectFactory>()), _id_counter(0) {};
 		StandardGameObjectManager::~StandardGameObjectManager() = default;

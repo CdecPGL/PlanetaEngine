@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include "TransformSystem.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class StandardTransformSystem  : public TransformSystem {
 		public:

@@ -3,7 +3,7 @@
 #include "LogUtility.hpp"
 
 
-namespace planeta {
+namespace plnt {
 //	namespace game {
 //		GUIObject::GUIObject():component_holder_(std::make_unique<utility::ObjectHolderTemplate_WithoutID<GUIComponent>>()) {
 //		}

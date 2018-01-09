@@ -3,7 +3,7 @@
 #include "File.hpp"
 #include "boost/filesystem/path.hpp"
 
-namespace planeta {
+namespace plnt {
 	ResourceBase::~ResourceBase() {
 		if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); }
 	}

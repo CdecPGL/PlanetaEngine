@@ -5,7 +5,7 @@
 #include "LogUtility.hpp"
 //#include "boost/lexical_cast.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool RGraph::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		_handle = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {

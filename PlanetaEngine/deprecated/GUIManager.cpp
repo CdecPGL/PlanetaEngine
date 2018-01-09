@@ -5,7 +5,7 @@
 //#include "LogUtility.hpp"
 //#include "boost/lexical_cast.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*namespace game {
 		bool GUIManager::Process()
 		{

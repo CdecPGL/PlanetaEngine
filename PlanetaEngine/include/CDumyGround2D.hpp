@@ -4,7 +4,7 @@
 #include "CGround2D.hpp"
 #include "MathConstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! 何もしない地面コンポーネント*/
 	class CDumyGround2D final : public CGround2D {
 	public:

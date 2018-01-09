@@ -6,7 +6,7 @@
 #include "CPolygonCollider2D.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 
 		ColliderComponent2DDebugDrawer::ColliderComponent2DDebugDrawer(IDebugDrawer& dd) :debug_drawer_(dd) {}

@@ -7,7 +7,7 @@
 #include "TypeChecker.hpp"
 #include "TaskSlot.hpp"
 
-namespace planeta {
+namespace plnt {
 	class Task;
 	class ITaskManager {
 	public:

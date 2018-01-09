@@ -7,7 +7,7 @@
 #include "ArchiveManipulator.hpp"
 #include "NormalFolderManipulator.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace init_funcs {
 			std::shared_ptr<FileManipulator> CreateFileManipurator(FileAccessorKind kind) {

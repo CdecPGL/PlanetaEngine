@@ -2,7 +2,7 @@
 
 #include "SoundManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class StandardSoundManager final : public SoundManager{
 		public:

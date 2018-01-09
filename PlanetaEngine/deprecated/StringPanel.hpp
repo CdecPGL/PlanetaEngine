@@ -2,7 +2,7 @@
 #include "GUIComponent.hpp"
 #include "Color.hpp"
 
-namespace planeta {
+namespace plnt {
 	//namespace resources {
 	//	class FontDefinitionResource;
 	//}

@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <stdexcept>
 
-namespace planeta{
+namespace plnt{
 	namespace private_ {
 		class BadAlloc : public std::runtime_error {
 		public:

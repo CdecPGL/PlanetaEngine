@@ -5,7 +5,7 @@
 #undef min
 #undef max
 
-namespace planeta {
+namespace plnt {
 	/*! 矩形を表すクラス*/
 	template <typename T>
 	class RectAngle final{
@@ -102,7 +102,7 @@ namespace planeta {
 
 #ifdef PE_ENABLE_REFLECTION_SYSTEM
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template<typename T>
@@ -114,7 +114,7 @@ namespace planeta {
 			std::array<Vector2D<T>, 2> ary; //座標とサイズ
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw planeta::reflection_error(planeta::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				ReflectivePtreeConverter(ary[idx++], pp.second);
 			}

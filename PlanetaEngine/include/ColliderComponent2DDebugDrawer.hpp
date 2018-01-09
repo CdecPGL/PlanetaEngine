@@ -2,7 +2,7 @@
 
 #include "IColliderWithCollider2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IDebugDrawer;
 	namespace private_ {
 		class ColliderComponent2DDebugDrawer : public IColliderWithCollider2D{

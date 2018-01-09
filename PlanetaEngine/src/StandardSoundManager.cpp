@@ -7,7 +7,7 @@
 #include "RSound.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 
 		class StandardSoundManager::Impl_ {

@@ -3,7 +3,7 @@
 #include <string>
 #include "StringUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	enum class LogLevel { Message, Warning, Error, Fatal };
 	/*! ログマネージャ公開インターフェイス*/
 	class ILogManager {

@@ -6,7 +6,7 @@
 #include "GameObjectComponent.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	class GameObjectComponentHolder;
 	/*! @brief ゲームオブジェクトコンポーネントを追加するためのクラス
 

@@ -15,7 +15,7 @@
 #include "IDebugManager.hpp"
 #include "ColliderComponent2DDebugDrawer.hpp"
 
-namespace planeta{
+namespace plnt{
 	namespace private_ {
 		struct StandardCollisionWorld::CCollider2DResistData_ {
 			private_::Collider2DData collider2d_data; //コライダーデータ

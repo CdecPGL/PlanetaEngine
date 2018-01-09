@@ -3,7 +3,7 @@
 #include "LogUtility.hpp"
 #include "ISceneInternal.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(GameObjectComponent) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(GameObjectComponent, labels)

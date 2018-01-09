@@ -4,7 +4,7 @@
 #include <memory>
 #include "ISoundEffectController.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RSound;
 	class SoundEffectController final : public ISoundEffectController {
 	public:

@@ -3,7 +3,7 @@
 #include "ICollisionWorld.hpp"
 #include "SceneModule.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CCollider2D;
 	namespace private_ {
 		struct Collider2DData;

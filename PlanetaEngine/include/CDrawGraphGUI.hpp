@@ -3,7 +3,7 @@
 #include "CDrawGUI.hpp"
 #include "RectAngle.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! GUI領域に画像を描画するコンポーネント*/
 	class CDrawGraphGUI final: public CDrawGUI {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraphGUI);

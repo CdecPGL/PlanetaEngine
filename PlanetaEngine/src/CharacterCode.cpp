@@ -5,7 +5,7 @@
 
 //http://sayahamitt.net/utf8%E3%81%AAstring%E5%85%A5%E3%82%8C%E3%81%9F%E3%82%89shiftjis%E3%81%AAstring%E5%87%BA%E3%81%A6%E3%81%8F%E3%82%8B%E9%96%A2%E6%95%B0%E4%BD%9C%E3%81%A3%E3%81%9F/ を参考にした。
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 
 		std::string ConvertUTF8ToShiftJIS(const std::string& str_utf8) {

@@ -3,7 +3,7 @@
 #include <memory>
 #include "GUIComponent.hpp"
 
-namespace planeta {
+namespace plnt {
 	//namespace resources {
 	//	class GraphResource;
 	//}

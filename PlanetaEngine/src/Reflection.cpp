@@ -13,7 +13,7 @@
 #include "ClassInfoCaller.hpp"
 #include "ReflectableClassAccessor.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace {
 		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("Reflectable");
 	}
@@ -165,7 +165,7 @@ namespace planeta {
 		return (*it)->this_t_info.get_type_info();
 	}
 
-	std::shared_ptr<planeta::ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info& ti) {
+	std::shared_ptr<plnt::ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info& ti) {
 		auto* class_info = GetClassInfo_Reflectable(ti);
 		if (class_info == nullptr) {
 			throw reflection_error(util::ConvertAndConnectToString("登録されていない型\"", ti.name(), "\"が指定されました。"));

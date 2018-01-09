@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta {
+namespace plnt {
 	enum class TaskSlot : unsigned int{
 		PlayerInputUpdatePhase = 0,
 		PreCollisionEarlyPhase = 1,

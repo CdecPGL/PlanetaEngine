@@ -9,7 +9,7 @@
 #include "WeakPointer.hpp"
 #include "NonCopyable.hpp"
 
-namespace planeta {
+namespace plnt {
 	class GameObjectComponent;
 	namespace private_ {
 		/*GOコンポーネントを管理するクラス

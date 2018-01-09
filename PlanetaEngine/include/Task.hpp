@@ -6,7 +6,7 @@
 #include "NonCopyable.hpp"
 #include "NonOwingPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class IScene;
 	namespace private_ {
 		class TaskManagerConnection;

@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class Screen;
 	}

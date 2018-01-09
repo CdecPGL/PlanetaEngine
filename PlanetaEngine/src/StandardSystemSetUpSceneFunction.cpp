@@ -8,7 +8,7 @@
 
 #include "TInstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		bool StandardSystemSetUpScene(Scene& scene) {
 			//ゲームタスク

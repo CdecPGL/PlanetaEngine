@@ -3,7 +3,7 @@
 #include <chrono>
 #include "PerfoamanceManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//起動からの経過フレームと経過時間をカウントする
 		class StandardPerformanceManager : public PerformanceManager {

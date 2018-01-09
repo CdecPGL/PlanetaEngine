@@ -3,7 +3,7 @@
 #include "Reflectable.hpp"
 #include "ReflectableClassAccessor.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_{
 		void ReflectivePtreeConverterFromReflectionSystem(Reflectable& dst, const boost::property_tree::ptree& src) {
 			auto rca = Reflection::GetRefrectableClassAccessor(typeid(dst));

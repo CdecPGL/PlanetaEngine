@@ -1,7 +1,7 @@
 ﻿#include <windows.h>
 #include "WindowsUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace windows {
 		namespace console {
 			void SetCharacterColor(int col) {

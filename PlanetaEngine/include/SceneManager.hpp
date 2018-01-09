@@ -5,7 +5,7 @@
 #include "ISceneManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CollisionGroupMatrix;
 	namespace private_ {
 		class ResourceManager;

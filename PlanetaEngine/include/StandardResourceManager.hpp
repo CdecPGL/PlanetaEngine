@@ -14,7 +14,7 @@
 #include "ResourceManager.hpp"
 
 
-namespace planeta {
+namespace plnt {
 	class FileAccessor;
 	class File;
 	namespace private_ {

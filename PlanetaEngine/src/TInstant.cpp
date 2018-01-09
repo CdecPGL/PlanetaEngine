@@ -1,6 +1,6 @@
 ﻿#include "TInstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	void TInstant::Update() {
 		function_();
 		if (number_of_times_implemented_ > 0) {

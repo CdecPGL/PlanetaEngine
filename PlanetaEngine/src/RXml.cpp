@@ -1,6 +1,6 @@
 ﻿#include "RXml.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool RXml::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 		xml_file_ = std::make_unique<XmlFile>();
 		if (!xml_file_->Load(file)) {
@@ -15,11 +15,11 @@ namespace planeta {
 		xml_file_.release();
 	}
 
-	const planeta::XmlFile& RXml::xml_file() const {
+	const plnt::XmlFile& RXml::xml_file() const {
 		return *xml_file_;
 	}
 
-	planeta::XmlFile& RXml::xml_file() {
+	plnt::XmlFile& RXml::xml_file() {
 		return *xml_file_;
 	}
 

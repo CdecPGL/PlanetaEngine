@@ -15,7 +15,7 @@ namespace {
 	constexpr unsigned int kDefaultVerticalSeparation(5);
 }
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawPlanet2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, horizontal_separation)

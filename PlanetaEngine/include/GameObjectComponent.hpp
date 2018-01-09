@@ -13,7 +13,7 @@
 #include "ReflectionAccessible.hpp"
 #include "IScene.hpp"
 
-namespace planeta {
+namespace plnt {
 	class SceneAccessorForGameObject;
 	namespace private_{
 		class ISceneInternal;

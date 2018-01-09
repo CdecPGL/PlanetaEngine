@@ -2,7 +2,7 @@
 #include "GameObjectComponentHolder.hpp"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 
 	GOComponentGetter::GOComponentGetter(const private_::GameObjectComponentHolder& com_holder) :com_holder_(com_holder) {}
 

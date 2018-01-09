@@ -8,7 +8,7 @@
 #include "Vector2D.hpp"
 #include "IColliderWithCollider2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
 	class EACollisionWithGround2D;

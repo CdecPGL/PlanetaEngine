@@ -3,7 +3,7 @@
 #include "IDebugManager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class RenderingManager;
 		class DebugManager : public IDebugManager, public SubSystemManager {

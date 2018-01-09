@@ -1,6 +1,6 @@
 #pragma once
 
-namespace planeta {
+namespace plnt {
 	class IScene;
 	namespace private_ {
 		class Scene;

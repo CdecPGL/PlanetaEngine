@@ -3,7 +3,7 @@
 #include "DxLib.h"
 #include "LogUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	void SoundEffectController::Dispose() {
 		for (auto& dh : duplicated_dx_handles_) {
 			DeleteSoundMem(dh);

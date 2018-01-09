@@ -1,7 +1,7 @@
 #include "RLuaScript.hpp"
 #include "file.hpp"
 
-namespace planeta {
+namespace plnt {
 
 	bool RLuaScript::RegisterToLuaState(lua_State* l) {
 		/*

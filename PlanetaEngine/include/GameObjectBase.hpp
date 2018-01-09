@@ -7,7 +7,7 @@
 #include "NonOwingPointer.hpp"
 #include "GameObjectManagerConnection.hpp"
 
-namespace planeta {
+namespace plnt {
 	class JSONObject;
 	class GameObjectComponent;
 	class GOComponentGetter;

@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "CGround2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CPlanet;
 	/*! 惑星地面コンポーネント*/
 	class CPlanetGround2D final : public CGround2D {

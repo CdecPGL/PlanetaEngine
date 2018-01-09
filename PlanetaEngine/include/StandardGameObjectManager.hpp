@@ -5,7 +5,7 @@
 #include <functional>
 #include "GameObjectManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	class SceneAccessorForGameObject;
 	class IGameObject;
 	namespace private_ {

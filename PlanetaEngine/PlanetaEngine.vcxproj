@@ -213,7 +213,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="include\EACollisionWithGround2D.hpp" />
     <ClInclude Include="include\EffekseerUtil.hpp" />
     <ClInclude Include="include\EncrypterBase.hpp" />
-    <ClInclude Include="include\EngineAllocator.hpp" />
     <ClInclude Include="include\EventMonitor.hpp" />
     <ClInclude Include="include\EXOREncrypter.hpp" />
     <ClInclude Include="include\File.hpp" />
@@ -302,7 +301,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="include\PETime.hpp" />
     <ClInclude Include="include\PlanetaEngine.hpp" />
     <ClInclude Include="include\PrefixUtility.hpp" />
-    <ClInclude Include="include\ProcessAllocator.hpp" />
     <ClInclude Include="include\Property.hpp" />
     <ClInclude Include="include\RangeUtility.hpp" />
     <ClInclude Include="include\RCsv.hpp" />
@@ -317,7 +315,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="include\ReflectionExceptions.hpp" />
     <ClInclude Include="include\ReflectionUtility.hpp" />
     <ClInclude Include="include\RenderingManager.hpp" />
-    <ClInclude Include="include\resource.hpp" />
+    <ClInclude Include="src\resource.h" />
     <ClInclude Include="include\ResourceBase.hpp" />
     <ClInclude Include="include\ResourceHolder.hpp" />
     <ClInclude Include="include\ResourceManager.hpp" />

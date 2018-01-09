@@ -5,7 +5,7 @@
 #include "CGround2D.hpp"
 #include "TInstant.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CBelongingGroundGravity) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CBelongingGroundGravity, gravity_scale)

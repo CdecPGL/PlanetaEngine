@@ -2,7 +2,7 @@
 
 #include <functional>
 
-namespace planeta {
+namespace plnt {
 	class CCollider2D;
 	class IGameObject;
 	class CTransform2D;

@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace planeta {
+namespace plnt {
 	/*! @brief 所有しないポインタ
 
 		参照カウントなどを全く行わない生ポインタのラッパークラス。

@@ -4,7 +4,7 @@
 #include "File.hpp"
 #include "DataContainer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*GameDataをシリアライズする*/
 		std::shared_ptr<File> SerializeDataContainer(DataContainer& data_container);

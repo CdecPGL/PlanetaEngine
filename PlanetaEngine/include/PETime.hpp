@@ -3,7 +3,7 @@
 #include <ctime>
 #include "Object.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*時間クラス
 		演算結果が負になる場合はすべて0とする*/

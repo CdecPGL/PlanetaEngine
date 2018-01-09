@@ -3,7 +3,7 @@
 #include <cstdint>
 #include "EncrypterBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace encrypters {
 		class EXOREncrypter final: public EncrypterBase {
 		public:

@@ -3,7 +3,7 @@
 #include <typeindex>
 #include "DataContainer.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		namespace data_container_element_type {
 			using integer = int64_t;

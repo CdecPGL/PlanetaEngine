@@ -4,7 +4,7 @@
 #include <functional>
 #include "boost/type_traits.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//LuaIntfにプロパティセッターとして登録するために、戻り値をvoid化する。
 		/*戻り値がvoidの場合はそのまま*/

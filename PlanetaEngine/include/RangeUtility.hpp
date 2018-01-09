@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace planeta {
+namespace plnt {
 	namespace util {
 		/*値を指定した範囲に収める*/
 		template<typename T>

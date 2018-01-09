@@ -1,12 +1,12 @@
 #include "SceneSetUpProxy.hpp"
 #include "Scene.hpp"
 
-namespace planeta {
+namespace plnt {
 	SceneSetUpProxy::SceneSetUpProxy(private_::Scene& pscene) :scene_(pscene) {
 
 	}
 
-	planeta::IScene& SceneSetUpProxy::scene() {
+	plnt::IScene& SceneSetUpProxy::scene() {
 		return scene_;
 	}
 

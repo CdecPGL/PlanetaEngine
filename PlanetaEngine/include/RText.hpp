@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RText : public ResourceBase {
 	public:
 		RText() {};

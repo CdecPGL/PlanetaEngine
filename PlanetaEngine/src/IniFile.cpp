@@ -4,7 +4,7 @@
 #include "FileSystemUtility.hpp"
 #include "CharacterCode.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool IniFile::Load(const File& file) {
 		using namespace std;
 		FileIStream fis(file);

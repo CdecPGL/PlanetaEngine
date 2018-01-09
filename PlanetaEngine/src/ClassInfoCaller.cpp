@@ -5,7 +5,7 @@
 #include "Reflection.hpp"
 #include "Reflectable.hpp"
 
-namespace planeta {
+namespace plnt {
 	using namespace private_;
 
 	ClassInfoCaller::ClassInfoCaller(const ClassInfo& class_info)noexcept :class_info_(class_info) {}

@@ -2,7 +2,7 @@
 #include "CCircleCollider2D.hpp"
 #include "CStraightLineCollider2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace collision_detect_functions {
 

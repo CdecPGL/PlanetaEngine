@@ -4,7 +4,7 @@
 #include "IBGMController.hpp"
 #include "ISoundEffectController.hpp"
 
-namespace planeta {
+namespace plnt {
 	class ResourceBase;
 	class ISoundManager {
 	public:

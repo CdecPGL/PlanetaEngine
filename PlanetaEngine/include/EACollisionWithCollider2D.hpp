@@ -3,7 +3,7 @@
 #include "Object.hpp"
 #include "WeakPointer.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CCollider2D;
 	class EACollisionWithCollider2D : public Object {
 	public:

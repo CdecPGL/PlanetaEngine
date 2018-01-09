@@ -41,7 +41,7 @@ namespace {
 		return std::move(out);
 	}
 }
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//////////////////////////////////////////////////////////////////////////
 		//SystemLog::Impl_

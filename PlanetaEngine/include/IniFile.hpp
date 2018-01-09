@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include "boost/optional.hpp"
 
-namespace planeta {
+namespace plnt {
 	class File;
 	/*! INIファイルを扱うためのクラス*/
 	class IniFile final{

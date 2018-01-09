@@ -4,7 +4,7 @@
 #include "Vector2D.hpp"
 #include "InputDefinitions.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! インプットマネージャの公開インターフェイス*/
 	class IInputManager {
 	public:

@@ -10,7 +10,7 @@
 #include "ScreenDrawer2D.hpp"
 #include "ScreenDrawerGUI.hpp"
 
-namespace planeta{
+namespace plnt{
 	namespace private_{
 
 		Scene::Scene()
@@ -83,43 +83,43 @@ namespace planeta{
 			IterateSceneModule_([&di_adder](SceneModule& sm) {sm.DebugInformationAddHandle(di_adder); return true; });
 		}
 
-		planeta::WeakPointer<planeta::private_::CollisionWorld> Scene::collision_world_internal_pointer() {
+		plnt::WeakPointer<plnt::private_::CollisionWorld> Scene::collision_world_internal_pointer() {
 			return collision_world_;
 		}
 
-		planeta::WeakPointer<DrawSystem> Scene::draw_system_internal_pointer() {
+		plnt::WeakPointer<DrawSystem> Scene::draw_system_internal_pointer() {
 			return draw_system_;
 		}
 
-		planeta::WeakPointer<planeta::private_::GameObjectManager> Scene::game_object_manager_internal_pointer() {
+		plnt::WeakPointer<plnt::private_::GameObjectManager> Scene::game_object_manager_internal_pointer() {
 			return game_object_manager_;
 		}
 
-		planeta::WeakPointer<planeta::private_::TaskManager> Scene::task_manager_internal_pointer() {
+		plnt::WeakPointer<plnt::private_::TaskManager> Scene::task_manager_internal_pointer() {
 			return task_manager_;
 		}
 
-		planeta::WeakPointer<planeta::private_::TransformSystem> Scene::transform_system_internal_pointer() {
+		plnt::WeakPointer<plnt::private_::TransformSystem> Scene::transform_system_internal_pointer() {
 			return transform_system_;
 		}
 
-		planeta::ICollisionWorld& Scene::collision_world() {
+		plnt::ICollisionWorld& Scene::collision_world() {
 			return *collision_world_;
 		}
 
-		planeta::IDrawSystem& Scene::draw_system() {
+		plnt::IDrawSystem& Scene::draw_system() {
 			return *draw_system_;
 		}
 
-		planeta::IGameObjectManager& Scene::game_object_manager() {
+		plnt::IGameObjectManager& Scene::game_object_manager() {
 			return *game_object_manager_;
 		}
 
-		planeta::ITaskManager& Scene::task_manager() {
+		plnt::ITaskManager& Scene::task_manager() {
 			return *task_manager_;
 		}
 
-		planeta::ITransformSystem& Scene::transform_system() {
+		plnt::ITransformSystem& Scene::transform_system() {
 			return *transform_system_;
 		}
 

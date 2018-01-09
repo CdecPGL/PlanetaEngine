@@ -4,7 +4,7 @@
 #include "PrefixUtility.hpp"
 #include "ReflectionExceptions.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 
 		GOComponentAdder::GOComponentAdder(GameObjectComponentHolder& com_holder)noexcept :com_holder_(com_holder) {}

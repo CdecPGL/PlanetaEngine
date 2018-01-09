@@ -6,7 +6,7 @@
 #include "ScreenDrawer2D.hpp"
 #include "ScreenDrawerGUI.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//////////////////////////////////////////////////////////////////////////
 		//StandardDebugInformationAdder

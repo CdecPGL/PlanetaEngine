@@ -4,13 +4,13 @@
 #include "FileSystemUtility.hpp"
 #include "CharacterCode.hpp"
 
-namespace planeta {
+namespace plnt {
 
-	const planeta::IniFile& RIni::ini_file() const {
+	const plnt::IniFile& RIni::ini_file() const {
 		return *ini_file_;
 	}
 
-	planeta::IniFile& RIni::ini_file() {
+	plnt::IniFile& RIni::ini_file() {
 		return *ini_file_;
 	}
 

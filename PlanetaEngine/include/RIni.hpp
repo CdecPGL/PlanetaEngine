@@ -3,7 +3,7 @@
 #include "ResourceBase.hpp"
 #include "IniFile.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RIni : public ResourceBase {
 	public:
 		const IniFile& ini_file()const;

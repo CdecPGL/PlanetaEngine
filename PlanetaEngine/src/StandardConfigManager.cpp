@@ -3,7 +3,7 @@
 #include "LogUtility.hpp"
 #include "StringUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		bool StandardConfigManager::LoadSystemConfig(const File& file) {
 			JsonFile json_file{};
@@ -125,15 +125,15 @@ namespace planeta {
 			return is_window_mode_;
 		}
 
-		planeta::Vector2Di StandardConfigManager::draw_size() const {
+		plnt::Vector2Di StandardConfigManager::draw_size() const {
 			return draw_size_;
 		}
 
-		planeta::Vector2Di StandardConfigManager::window_size() const {
+		plnt::Vector2Di StandardConfigManager::window_size() const {
 			return window_size_;
 		}
 
-		const planeta::CollisionGroupMatrix& StandardConfigManager::collision_group_matrix() const {
+		const plnt::CollisionGroupMatrix& StandardConfigManager::collision_group_matrix() const {
 			return collision_group_matrix_;
 		}
 

@@ -31,7 +31,7 @@ namespace {
 	const std::string LATEST_VER("1.0");
 }
 
-namespace planeta {
+namespace plnt {
 
 	namespace private_ {
 		namespace key_input_io {

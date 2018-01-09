@@ -2,7 +2,7 @@
 
 #include "MacroUtility.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CCircleCollider2D;
 	class CStraightLineCollider2D;
 	class CPolygonCollider2D;

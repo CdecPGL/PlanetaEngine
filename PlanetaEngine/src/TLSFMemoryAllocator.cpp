@@ -97,7 +97,7 @@ namespace {
 	}
 }
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		//////////////////////////////////////////////////////////////////////////
 		//TLSFTLSFMemoryAllocator::_Impl
@@ -177,7 +177,7 @@ namespace planeta {
 			TLSFMemoryAllocator& _tlsf;
 		};
 
-		inline bool planeta::private_::TLSFMemoryAllocator::_Impl::reserve_memory(size_t size)
+		inline bool plnt::private_::TLSFMemoryAllocator::_Impl::reserve_memory(size_t size)
 		{
 			if (_tlsf._memory_pool) { free(_tlsf._memory_pool); } //確保してある領域を解放
 			_tlsf._allocated_memory_count = 0;

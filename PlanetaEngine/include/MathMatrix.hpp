@@ -4,7 +4,7 @@
 #include <array>
 #include<initializer_list>
 
-namespace planeta{
+namespace plnt{
 	namespace math{
 		template < typename V, int X, int Y >
 		class MathMatrix{

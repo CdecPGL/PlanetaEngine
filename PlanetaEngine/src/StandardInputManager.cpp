@@ -3,7 +3,7 @@
 #include<algorithm>
 #include"DxLib.h"
 
-namespace planeta {
+namespace plnt {
 	namespace {
 		namespace MY_POV_DIR {
 			const unsigned char UP = 1u << 0;

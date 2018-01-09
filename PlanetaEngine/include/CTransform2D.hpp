@@ -6,7 +6,7 @@
 #include "GameObjectSystemComponent.hpp"
 #include "Vector2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	class CGround2D;
 	class IGameObject;
 	/*! 座標系*/
@@ -99,18 +99,18 @@ namespace planeta {
 
 	namespace util {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
-		inline void ReflectivePtreeConverter(::planeta::CoordinateSystem & dst, const boost::property_tree::ptree& src) {
+		inline void ReflectivePtreeConverter(::plnt::CoordinateSystem & dst, const boost::property_tree::ptree& src) {
 			try {
 				std::string str = src.get_value<std::string>();
 				if (str == "Ground") {
-					dst = ::planeta::CoordinateSystem::Ground;
+					dst = ::plnt::CoordinateSystem::Ground;
 				} else if (str == "Global") {
-					dst = ::planeta::CoordinateSystem::Global;
+					dst = ::plnt::CoordinateSystem::Global;
 				} else {
-					throw planeta::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(::planeta::CoordinateSystem).name(), "\"のメンバーではありません。"));
+					throw ::plnt::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(::plnt::CoordinateSystem).name(), "\"のメンバーではありません。"));
 				}
 			} catch (boost::property_tree::ptree_bad_data& e) {
-				throw planeta::reflection_error(e.what());
+				throw ::plnt::reflection_error(e.what());
 			}
 		}
 	}

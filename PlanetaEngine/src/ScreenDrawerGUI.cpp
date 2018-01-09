@@ -8,7 +8,7 @@
 #include "RFont.hpp"
 #include "Screen.hpp"
 
-namespace planeta {
+namespace plnt {
 	void ScreenDrawerGUI::DrawGraph(const Vector2Di& position, const Vector2Di& size, const Vector2Dd& center_pivot, double rotation_rad, const RectAnglei& draw_area_on_graph, bool reverse, const std::shared_ptr<RGraph>& graph_resource) {
 		screen_.ReserveDraw([position,size,draw_area_on_graph,reverse,graph_resource,rotation_rad,center_pivot]() {
 			if (graph_resource == nullptr) { return; }
@@ -26,7 +26,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawWire(const std::vector<Vector2Di>& positions, int width, const planeta::Color& color) {
+	void ScreenDrawerGUI::DrawWire(const std::vector<Vector2Di>& positions, int width, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
 			using namespace util::dx;
 			int dxc = PEColorToDXColorHandle(color);
@@ -37,7 +37,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawPolygon(const std::vector<Vector2Di>& positions, const std::vector<std::array<int, 3>>& indexes, const planeta::Color& color) {
+	void ScreenDrawerGUI::DrawPolygon(const std::vector<Vector2Di>& positions, const std::vector<std::array<int, 3>>& indexes, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
 			using namespace util::dx;
 			int dxc = PEColorToDXColorHandle(color);
@@ -56,7 +56,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color, const std::shared_ptr<RFont>& font_resource) {
+	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const plnt::Color& color, const plnt::Color& outline_color, const std::shared_ptr<RFont>& font_resource) {
 		screen_.ReserveDraw([position,scale,str,color,outline_color,font_resource]() {
 			if (font_resource == nullptr) { return; }
 			using namespace util::dx;
@@ -64,7 +64,7 @@ namespace planeta {
 		});
 	}
 
-	void ScreenDrawerGUI::DrawStringByDefaultFont(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const planeta::Color& color, const planeta::Color& outline_color) {
+	void ScreenDrawerGUI::DrawStringByDefaultFont(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const plnt::Color& color, const plnt::Color& outline_color) {
 		screen_.ReserveDraw([position, scale, str, color, outline_color]() {
 			using namespace util::dx;
 			DrawExtendString(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), PEColorToDXColorHandle(outline_color));

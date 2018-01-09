@@ -3,7 +3,7 @@
 #include <memory>
 #include "IBGMController.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RMusic;
 	class BGMController final : public IBGMController {
 	public:

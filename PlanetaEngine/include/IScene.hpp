@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace planeta {
+namespace plnt {
 	class ICollisionWorld;
 	class IDrawSystem;
 	class IGameObjectManager;

@@ -7,7 +7,7 @@
 #include "LogUtility.hpp"
 #include "CharacterCode.hpp"
 
-namespace planeta {
+namespace plnt {
 	bool XmlFile::Load(const File& file) {
 		std::function<void(const std::shared_ptr<XMLElement>&, const tinyxml2::XMLNode&)> element_setter = [&element_setter](const std::shared_ptr<XMLElement>& target, const tinyxml2::XMLNode& source) {
 			for (auto* s_element = source.FirstChildElement(); s_element != nullptr; s_element = s_element->NextSiblingElement()) {

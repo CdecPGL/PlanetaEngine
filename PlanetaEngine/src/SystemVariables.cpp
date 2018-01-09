@@ -1,6 +1,6 @@
 ﻿#include "SystemVariables.hpp"
 
-namespace planeta{
+namespace plnt{
 	namespace private_{
 		namespace system_variables{
 			namespace engine_information {

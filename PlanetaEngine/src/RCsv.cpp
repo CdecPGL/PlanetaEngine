@@ -1,12 +1,12 @@
 ﻿#include "RCsv.hpp"
 
-namespace planeta {
+namespace plnt {
 
-	const planeta::CsvFile& RCsv::csv_file() const {
+	const plnt::CsvFile& RCsv::csv_file() const {
 		return *csv_file_;
 	}
 
-	planeta::CsvFile& RCsv::csv_file() {
+	plnt::CsvFile& RCsv::csv_file() {
 		return *csv_file_;
 	}
 

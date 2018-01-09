@@ -2,6 +2,6 @@
 #include "TLSFMemoryAllocator.hpp"
 #include <cassert>
 
-namespace planeta{
+namespace plnt{
 	
 }

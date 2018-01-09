@@ -11,7 +11,7 @@
 #include "TypeInfoWrapper.hpp"
 
 struct lua_State;
-namespace planeta {
+namespace plnt {
 	class Reflectable;
 	namespace private_ {
 		struct VariableOrPropertyInfo {

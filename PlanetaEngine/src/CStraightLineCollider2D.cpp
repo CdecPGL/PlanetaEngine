@@ -1,7 +1,7 @@
 ﻿#include "CStraightLineCollider2D.hpp"
 #include "CollisionDetectFunctions.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CStraightLineCollider2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CStraightLineCollider2D, length)

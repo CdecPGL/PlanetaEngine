@@ -4,7 +4,7 @@
 
 #include"InputDefinitions.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		namespace utils {
 			std::string ConvertKeyToString(Key::type);

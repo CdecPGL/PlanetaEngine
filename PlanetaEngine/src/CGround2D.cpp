@@ -4,7 +4,7 @@
 #include "LogUtility.hpp"
 #include "CTransform2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	CGround2D::CGround2D() {}
 
 	bool CGround2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
@@ -49,7 +49,7 @@ namespace planeta {
 		return *transform2d_;
 	}
 
-	const planeta::CTransform2D& CGround2D::transform2d() const {
+	const plnt::CTransform2D& CGround2D::transform2d() const {
 		return *transform2d_;
 	}
 

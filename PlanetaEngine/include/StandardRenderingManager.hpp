@@ -2,7 +2,7 @@
 
 #include "RenderingManager.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_{
 		class StandardRenderingManager final : public RenderingManager{
 		public:

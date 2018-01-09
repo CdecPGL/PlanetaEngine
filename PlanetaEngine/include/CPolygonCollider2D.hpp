@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "CCollider2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	/*! 多角形コライダーコンポーネント(未実装)*/
 	class CPolygonCollider2D : public CCollider2D {
 	public:

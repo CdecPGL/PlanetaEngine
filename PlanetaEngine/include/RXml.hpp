@@ -3,7 +3,7 @@
 #include "XmlFile.hpp"
 #include "ResourceBase.hpp"
 
-namespace planeta {
+namespace plnt {
 	class RXml final : public ResourceBase {
 	public:
 		const XmlFile& xml_file()const;

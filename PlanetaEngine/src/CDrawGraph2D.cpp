@@ -10,7 +10,7 @@
 #include "MathConstant.hpp"
 #include "GraphDrawData2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawGraph2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGraph2D, draw_area)

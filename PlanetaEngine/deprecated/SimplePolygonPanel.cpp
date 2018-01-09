@@ -3,7 +3,7 @@
 #include "LogUtility.hpp"
 #include "ScreenDrawerGUI.hpp"
 
-namespace planeta {
+namespace plnt {
 	//namespace gui_components {
 
 	//	void SimplePolygonPanel::UpdateProc()

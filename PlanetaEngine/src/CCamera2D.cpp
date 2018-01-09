@@ -5,7 +5,7 @@
 #include "IGameObject.hpp"
 #include "CTransform2D.hpp"
 
-namespace planeta {
+namespace plnt {
 	//////////////////////////////////////////////////////////////////////////
 	//CCamera2D::Impl_
 	//////////////////////////////////////////////////////////////////////////
@@ -63,11 +63,11 @@ namespace planeta {
 		expansion_ = s;
 	}
 
-	const planeta::Vector2Dd& CCamera2D::position() const {
+	const plnt::Vector2Dd& CCamera2D::position() const {
 		return transform2d_->position();
 	}
 
-	void CCamera2D::position(const planeta::Vector2Dd& p) {
+	void CCamera2D::position(const plnt::Vector2Dd& p) {
 		transform2d_->position(p);
 	}
 

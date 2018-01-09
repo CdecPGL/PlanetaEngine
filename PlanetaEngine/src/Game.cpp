@@ -25,7 +25,7 @@
 
 #include "Reflection.hpp"
 
-namespace planeta {
+namespace plnt {
 	using namespace private_;
 	class Game::Impl_ {
 	private:
@@ -219,11 +219,11 @@ namespace planeta {
 			debug_manager->PostRenderingUpdate(); //デバッグマネージャの描画後更新
 
 			switch (sst) {
-			case planeta::private_::SceneStatus_::Continue:
+			case plnt::private_::SceneStatus_::Continue:
 				return GameStatus::Continue;
-			case planeta::private_::SceneStatus_::Quit:
+			case plnt::private_::SceneStatus_::Quit:
 				return GameStatus::Quit;
-			case planeta::private_::SceneStatus_::Error:
+			case plnt::private_::SceneStatus_::Error:
 				return GameStatus::Error;
 			default:
 				assert(false);
@@ -276,7 +276,7 @@ namespace planeta {
 		impl_->resource_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::IResourceManager> Game::resource_manager()const {
+	std::shared_ptr<plnt::IResourceManager> Game::resource_manager()const {
 		return impl_->resource_manager;
 	}
 
@@ -288,7 +288,7 @@ namespace planeta {
 		impl_->log_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::ILogManager> Game::log_manager() const {
+	std::shared_ptr<plnt::ILogManager> Game::log_manager() const {
 		return impl_->log_manager;
 	}
 
@@ -300,7 +300,7 @@ namespace planeta {
 		impl_->scene_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::ISceneManager> Game::scene_manager() const {
+	std::shared_ptr<plnt::ISceneManager> Game::scene_manager() const {
 		return impl_->scene_manager;
 	}
 
@@ -312,7 +312,7 @@ namespace planeta {
 		impl_->input_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::IInputManager> Game::input_manager() const {
+	std::shared_ptr<plnt::IInputManager> Game::input_manager() const {
 		return impl_->input_manager;
 	}
 
@@ -324,7 +324,7 @@ namespace planeta {
 		impl_->performance_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::IPerformanceManager> Game::performance_manager() const {
+	std::shared_ptr<plnt::IPerformanceManager> Game::performance_manager() const {
 		return impl_->performance_manager;
 	}
 
@@ -336,7 +336,7 @@ namespace planeta {
 		impl_->rendering_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::IRenderingManager> Game::rendering_manager() const {
+	std::shared_ptr<plnt::IRenderingManager> Game::rendering_manager() const {
 		return impl_->rendering_manager;
 	}
 
@@ -348,7 +348,7 @@ namespace planeta {
 		impl_->sound_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::ISoundManager> Game::sound_manager() const {
+	std::shared_ptr<plnt::ISoundManager> Game::sound_manager() const {
 		return impl_->sound_manager;
 	}
 
@@ -360,7 +360,7 @@ namespace planeta {
 		impl_->save_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::ISaveManager> Game::save_manager() const {
+	std::shared_ptr<plnt::ISaveManager> Game::save_manager() const {
 		return impl_->save_manager;
 	}
 
@@ -372,7 +372,7 @@ namespace planeta {
 		impl_->debug_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::IDebugManager> Game::debug_manager() const {
+	std::shared_ptr<plnt::IDebugManager> Game::debug_manager() const {
 		return impl_->debug_manager;
 	}
 
@@ -384,7 +384,7 @@ namespace planeta {
 		impl_->config_manager = mgr;
 	}
 
-	std::shared_ptr<planeta::IConfigManager> Game::config_manager() const {
+	std::shared_ptr<plnt::IConfigManager> Game::config_manager() const {
 		return impl_->config_manager;
 	}
 

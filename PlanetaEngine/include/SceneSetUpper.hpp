@@ -7,7 +7,7 @@
 #include "ParameterHolder.hpp"
 #include "NonCopyable.hpp"
 
-namespace planeta {
+namespace plnt {
 	namespace private_ {
 		class Scene;
 	}
