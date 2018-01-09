@@ -3,7 +3,7 @@
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
-#include "Effekseer.hpp"
+#include "Effekseer.h"
 
 planeta::REffectTexture::REffectTexture() = default;
 planeta::REffectTexture::~REffectTexture() = default;
