@@ -1,0 +1,13 @@
+﻿#pragma once
+
+#include "Object.hpp"
+#include "WeakPointer.hpp"
+
+namespace planeta {
+	class CCollider2D;
+	class EACollisionWithCollider2D : public Object {
+	public:
+		EACollisionWithCollider2D(CCollider2D& cc) :collider(cc) {}
+		CCollider2D& collider;
+	};
+}

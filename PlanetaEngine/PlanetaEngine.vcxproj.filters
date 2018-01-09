@@ -169,23 +169,8 @@
     <Filter Include="PlanetaEngine\SubSystems\Config">
       <UniqueIdentifier>{1dd4adbf-4af0-4129-a0a7-18d16b01ad94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Trash">
-      <UniqueIdentifier>{0901fa6a-2ca9-4eef-97b1-04b8bff009d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Trash\GUI">
-      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Trash\GUI\Manager">
-      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\SubSystems\StandardManagers\SceneManager">
       <UniqueIdentifier>{31a7cbaf-90ef-43f6-b5ae-cec7d1a7ac60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Trash\GUIComponents">
-      <UniqueIdentifier>{8f5b81f3-4ca5-4cd6-b5ed-9c99e6598f8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Trash\GUIObjects">
-      <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent">
       <UniqueIdentifier>{fa903434-b4de-4c4d-8c40-535dcbfb7978}</UniqueIdentifier>
@@ -217,1881 +202,1161 @@
     <Filter Include="PlanetaEngine\Core\FileSystem\Manipulator">
       <UniqueIdentifier>{4a480599-7564-45b8-9bce-87feda2bfe9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Deprecated">
+      <UniqueIdentifier>{0901fa6a-2ca9-4eef-97b1-04b8bff009d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Deprecated\GUI">
+      <UniqueIdentifier>{909514ca-9f19-4811-9237-1ae504c3e65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Deprecated\GUI\Manager">
+      <UniqueIdentifier>{dd180588-c0a7-44b8-be78-04574025a524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Deprecated\GUIComponents">
+      <UniqueIdentifier>{8f5b81f3-4ca5-4cd6-b5ed-9c99e6598f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Deprecated\GUIObjects">
+      <UniqueIdentifier>{d6c2d73d-d639-453f-b33f-4cdc86ad0427}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimplePolygonPanel.h">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphPanel.h">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="TextPanel.h">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="BadAllocException.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="TLSFMemoryAllocator.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectAllocator.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineAllocator.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcessAllocator.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="IMemoryAllocator.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Memory.h">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="UnorderedMap.h">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceBase.h">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemVariables.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="MathUtility.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="MathConstant.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="BadNewDeleteOperation.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="DXUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="NullWeakPointerException.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectHolderTemplate_WithoutID.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectHolderTemplate_WithID.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="ParameterHolder.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="SharedPointerInstance.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="TwoKeyMap.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex2D.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="TalkWindows.h">
-      <Filter>Trash\GUIObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="StringPanel.h">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="Coroutine.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalNewDeleteDefinition.h">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeChecker.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="MetaprogrammingUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="CoroutineUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="EventMonitor.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetUpper.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
-    <ClInclude Include="BGMController.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundEffectController.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="IBGMController.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="ISoundEffectController.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="FileIStream.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClInclude>
-    <ClInclude Include="FileStreamBuf.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClInclude>
-    <ClInclude Include="FileOStream.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClInclude>
-    <ClInclude Include="StringUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="EncrypterBase.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClInclude>
-    <ClInclude Include="EXOREncrypter.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalFolderManipulator.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
-    </ClInclude>
-    <ClInclude Include="ArchiveManipulator.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
-    </ClInclude>
-    <ClInclude Include="FileAccessMode.h">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionGroupMatrix.h">
-      <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClInclude>
-    <ClInclude Include="RangeUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystemUtility.h">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Property.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3D.h">
-      <Filter>PlanetaEngine\Core\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4D.h">
-      <Filter>PlanetaEngine\Core\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="NonCopyable.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneModule.h">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManagerConnection.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIComponent.h">
-      <Filter>Trash\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIObject.h">
-      <Filter>Trash\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIManager.h">
-      <Filter>Trash\GUI\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIManagerPublicInterface.h">
-      <Filter>Trash\GUI\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIManagerConnection.h">
-      <Filter>Trash\GUI\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenChangeEffecter.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenDrawer2D.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenDrawerGUI.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="DXGraphDrawData.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphDrawData2D.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugDrawInterface.h">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectComponentUpdateProcess.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsUtility.h">
-      <Filter>PlanetaEngine\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="AccessorTemplate.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="DataContainer.h">
-      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="DataContainerImpl.h">
-      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="DataContainerSerializeUtility.h">
-      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
-    </ClInclude>
-    <ClInclude Include="DataContainerFunctionsForBoostSerialize.h">
-      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
-    </ClInclude>
-    <ClInclude Include="DataContainerError.h">
-      <Filter>PlanetaEngine\Utility\DataContainer\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="PEDateTime.h">
-      <Filter>PlanetaEngine\Utility\DateTime</Filter>
-    </ClInclude>
-    <ClInclude Include="PETime.h">
-      <Filter>PlanetaEngine\Utility\DateTime</Filter>
-    </ClInclude>
-    <ClInclude Include="AESEncrypter.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeDefinitions.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>PlanetaEngine\Core\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix2_2.h">
-      <Filter>PlanetaEngine\Math\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix3_3.h">
-      <Filter>PlanetaEngine\Math\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="MathMatrix.h">
-      <Filter>PlanetaEngine\Math\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskSystemSetUpper.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectComponentHolder.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectBase.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="IColliderWithCollider2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CCircleCollider2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CCollider2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CPolygonCollider2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CStraightLineCollider2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CGround2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDumyGround2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlanetGround2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CBelongingGroundGravity.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="CGraph2DAnimator.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlanet.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="TInstant.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClInclude>
-    <ClInclude Include="TInstantCoroutine.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClInclude>
-    <ClInclude Include="TCoroutine.h">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskSlot.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManagerConnection.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemTaskSlot.h">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionDetectFunctions.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectStandardComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectSystemComponent.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectComponentSetUpData.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="EACollisionWithGround2D.h">
-      <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="EACollisionWithCollider2D.h">
-      <Filter>PlanetaEngine\BuildinElements\EventArgs</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider2DData.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="CCamera2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="SingletonTemplate.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="InitFunctions.h">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClInclude>
-    <ClInclude Include="SError.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterCode.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="RCsv.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RFont.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RGraph.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RIni.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RJson.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RMusic.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RSound.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RText.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RXml.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Reflection.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="GOComponentAdder.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionExceptions.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="GOComponentGetter.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassRegisterer.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassRegistererImpl.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassInfo.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassInfoCaller.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Reflectable.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionUtility.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeInfoWrapper.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeTraitsUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="RPtree.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionState.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Delegate.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="NonOwingPointer.h">
-      <Filter>PlanetaEngine\Core\Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="WeakPointer.h">
-      <Filter>PlanetaEngine\Core\Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="RectAngle.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="MathVector.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorElementIdentifer.h">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="PrefixUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameObject.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectFactory.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="BuiltInGameObjectComponents.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="BuiltInTasks.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="BuiltInResources.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="LuaBindHelder.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectableClassAccessor.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionAccessible.h">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="RLuaScript.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="MacroUtility.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="REffect.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="EffekseerUtil.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="IniFile.h">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClInclude>
-    <ClInclude Include="CsvFile.h">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClInclude>
-    <ClInclude Include="JsonFile.h">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClInclude>
-    <ClInclude Include="XmlFile.h">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClInclude>
-    <ClInclude Include="REffectTexture.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceReferencer.h">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="CEffect.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="IResourceManager.h">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="PlanetaEngine.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardResourceManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="ILogManager.h">
-      <Filter>PlanetaEngine\SubSystems\LogSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="LogManager.h">
-      <Filter>PlanetaEngine\SubSystems\LogSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="LogUtility.h">
-      <Filter>PlanetaEngine\SubSystems\LogSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardLogManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneManager.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="IInputManager.h">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="InputDefinitions.h">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="InputUtility.h">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyConfig.h">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardInputManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="IPerformanceManager.h">
-      <Filter>PlanetaEngine\SubSystems\PerformanceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="PerfoamanceManager.h">
-      <Filter>PlanetaEngine\SubSystems\PerformanceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardPerformanceManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderingManager.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderingManager.h">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardRenderingManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="ISoundManager.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardSoundManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="ISaveManager.h">
-      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveManager.h">
-      <Filter>PlanetaEngine\SubSystems\SaveData</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardSaveManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="IDebugManager.h">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugManager.h">
-      <Filter>PlanetaEngine\SubSystems\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardDebugManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="IConfigManager.h">
-      <Filter>PlanetaEngine\SubSystems\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigManager.h">
-      <Filter>PlanetaEngine\SubSystems\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardConfigManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClInclude>
-    <ClInclude Include="ICollisionWorld.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="IDrawSystem.h">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameObjectManager.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ITaskManager.h">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ITransformSystem.h">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="IScene.h">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystemManager.h">
-      <Filter>PlanetaEngine\SubSystems</Filter>
-    </ClInclude>
-    <ClInclude Include="ColliderComponent2DDebugDrawer.h">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ISceneInternal.h">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardCollisionWorld.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionWorld.h">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardDrawSystem.h">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawSystem.h">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardGameObjectManager.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardTaskManager.h">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManager.h">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardTransformSystem.h">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformSystem.h">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardSceneManager.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="StandardSceneManagerUtility.h">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSetUpProxy.h">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClInclude>
-    <ClInclude Include="HeadersForGameObjectComponent.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="HeadersForSceneSetUpper.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="HeadersForTask.h">
-      <Filter>PlanetaEngine\ForUserHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Signal.h">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CTransform2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CTransformGUI.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="CDraw2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawGraph2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawLine2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawPlanet2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawPolygon2D.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawGUI.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawGraphGUI.h">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceHolder.h">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="FileManipulator.h">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
-    </ClInclude>
-    <ClInclude Include="RGameObject.h">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="AccessorTemplate.hpp">
+    <ClInclude Include="deprecated\GraphPanel.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="AESEncrypter.hpp">
+    <ClInclude Include="deprecated\GUIComponent.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ArchiveManipulator.hpp">
+    <ClInclude Include="deprecated\GUIManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BadAllocException.hpp">
+    <ClInclude Include="deprecated\GUIManagerConnection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BadNewDeleteOperation.hpp">
+    <ClInclude Include="deprecated\GUIManagerPublicInterface.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BGMController.hpp">
+    <ClInclude Include="deprecated\GUIObject.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BuiltInGameObjectComponents.hpp">
+    <ClInclude Include="deprecated\SimplePolygonPanel.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BuiltInResources.hpp">
+    <ClInclude Include="deprecated\StringPanel.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BuiltInTasks.hpp">
+    <ClInclude Include="deprecated\TalkWindows.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CBelongingGroundGravity.hpp">
+    <ClInclude Include="deprecated\TextPanel.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CCamera2D.hpp">
+    <ClInclude Include="include\AccessorTemplate.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CCircleCollider2D.hpp">
+    <ClInclude Include="include\AESEncrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CCollider2D.hpp">
+    <ClInclude Include="include\ArchiveManipulator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDraw2D.hpp">
+    <ClInclude Include="include\BadAllocException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawGraph2D.hpp">
+    <ClInclude Include="include\BadNewDeleteOperation.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawGraphGUI.hpp">
+    <ClInclude Include="include\BGMController.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawGUI.hpp">
+    <ClInclude Include="include\BuiltInGameObjectComponents.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawLine2D.hpp">
+    <ClInclude Include="include\BuiltInResources.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawPlanet2D.hpp">
+    <ClInclude Include="include\BuiltInTasks.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawPolygon2D.hpp">
+    <ClInclude Include="include\CBelongingGroundGravity.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CDumyGround2D.hpp">
+    <ClInclude Include="include\CCamera2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CEffect.hpp">
+    <ClInclude Include="include\CCircleCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CGraph2DAnimator.hpp">
+    <ClInclude Include="include\CCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CGround2D.hpp">
+    <ClInclude Include="include\CDraw2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterCode.hpp">
+    <ClInclude Include="include\CDrawGraph2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ClassInfo.hpp">
+    <ClInclude Include="include\CDrawGraphGUI.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ClassInfoCaller.hpp">
+    <ClInclude Include="include\CDrawGUI.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ClassRegisterer.hpp">
+    <ClInclude Include="include\CDrawLine2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ClassRegistererImpl.hpp">
+    <ClInclude Include="include\CDrawPlanet2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Collider2DData.hpp">
+    <ClInclude Include="include\CDrawPolygon2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderComponent2DDebugDrawer.hpp">
+    <ClInclude Include="include\CDumyGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionDetectFunctions.hpp">
+    <ClInclude Include="include\CEffect.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionGroupMatrix.hpp">
+    <ClInclude Include="include\CGraph2DAnimator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionState.hpp">
+    <ClInclude Include="include\CGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionWorld.hpp">
+    <ClInclude Include="include\CharacterCode.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Color.hpp">
+    <ClInclude Include="include\ClassInfo.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigManager.hpp">
+    <ClInclude Include="include\ClassInfoCaller.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Coroutine.hpp">
+    <ClInclude Include="include\ClassRegisterer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CoroutineUtility.hpp">
+    <ClInclude Include="include\ClassRegistererImpl.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CPlanet.hpp">
+    <ClInclude Include="include\Collider2DData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CPlanetGround2D.hpp">
+    <ClInclude Include="include\ColliderComponent2DDebugDrawer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CPolygonCollider2D.hpp">
+    <ClInclude Include="include\CollisionDetectFunctions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CStraightLineCollider2D.hpp">
+    <ClInclude Include="include\CollisionGroupMatrix.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CsvFile.hpp">
+    <ClInclude Include="include\CollisionState.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CTransform2D.hpp">
+    <ClInclude Include="include\CollisionWorld.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CTransformGUI.hpp">
+    <ClInclude Include="include\Color.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DataContainer.hpp">
+    <ClInclude Include="include\ConfigManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DataContainerError.hpp">
+    <ClInclude Include="include\Coroutine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DataContainerFunctionsForBoostSerialize.hpp">
+    <ClInclude Include="include\CoroutineUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DataContainerImpl.hpp">
+    <ClInclude Include="include\CPlanet.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DataContainerSerializeUtility.hpp">
+    <ClInclude Include="include\CPlanetGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DebugDrawInterface.hpp">
+    <ClInclude Include="include\CPolygonCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DebugManager.hpp">
+    <ClInclude Include="include\CStraightLineCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Delegate.hpp">
+    <ClInclude Include="include\CsvFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DrawSystem.hpp">
+    <ClInclude Include="include\CTransform2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DXGraphDrawData.hpp">
+    <ClInclude Include="include\CTransformGUI.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DXUtility.hpp">
+    <ClInclude Include="include\DataContainer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EACollisionWithCollider2D.hpp">
+    <ClInclude Include="include\DataContainerError.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EACollisionWithGround2D.hpp">
+    <ClInclude Include="include\DataContainerFunctionsForBoostSerialize.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EffekseerUtil.hpp">
+    <ClInclude Include="include\DataContainerImpl.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EncrypterBase.hpp">
+    <ClInclude Include="include\DataContainerSerializeUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EngineAllocator.hpp">
+    <ClInclude Include="include\DebugDrawInterface.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EventMonitor.hpp">
+    <ClInclude Include="include\DebugManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EXOREncrypter.hpp">
+    <ClInclude Include="include\Delegate.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="File.hpp">
+    <ClInclude Include="include\DrawSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileAccessMode.hpp">
+    <ClInclude Include="include\DXGraphDrawData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileIStream.hpp">
+    <ClInclude Include="include\DXUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileManipulator.hpp">
+    <ClInclude Include="include\EACollisionWithCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileOStream.hpp">
+    <ClInclude Include="include\EACollisionWithGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileStreamBuf.hpp">
+    <ClInclude Include="include\EffekseerUtil.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FileSystemUtility.hpp">
+    <ClInclude Include="include\EncrypterBase.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Game.hpp">
+    <ClInclude Include="include\EngineAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectAllocator.hpp">
+    <ClInclude Include="include\EventMonitor.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectBase.hpp">
+    <ClInclude Include="include\EXOREncrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponent.hpp">
+    <ClInclude Include="include\File.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponentHolder.hpp">
+    <ClInclude Include="include\FileAccessMode.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponentSetUpData.hpp">
+    <ClInclude Include="include\FileIStream.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectComponentUpdateProcess.hpp">
+    <ClInclude Include="include\FileManipulator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectFactory.hpp">
+    <ClInclude Include="include\FileOStream.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManager.hpp">
+    <ClInclude Include="include\FileStreamBuf.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManagerConnection.hpp">
+    <ClInclude Include="include\FileSystemUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectStandardComponent.hpp">
+    <ClInclude Include="include\Game.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectSystemComponent.hpp">
+    <ClInclude Include="include\GameObjectAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalNewDeleteDefinition.hpp">
+    <ClInclude Include="include\GameObjectBase.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GOComponentAdder.hpp">
+    <ClInclude Include="include\GameObjectComponent.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GOComponentGetter.hpp">
+    <ClInclude Include="include\GameObjectComponentHolder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GraphDrawData2D.hpp">
+    <ClInclude Include="include\GameObjectComponentSetUpData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GraphPanel.hpp">
+    <ClInclude Include="include\GameObjectComponentUpdateProcess.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GUIComponent.hpp">
+    <ClInclude Include="include\GameObjectFactory.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GUIManager.hpp">
+    <ClInclude Include="include\GameObjectManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GUIManagerConnection.hpp">
+    <ClInclude Include="include\GameObjectManagerConnection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GUIManagerPublicInterface.hpp">
+    <ClInclude Include="include\GameObjectStandardComponent.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GUIObject.hpp">
+    <ClInclude Include="include\GameObjectSystemComponent.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="HeadersForGameObjectComponent.hpp">
+    <ClInclude Include="include\GlobalNewDeleteDefinition.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="HeadersForSceneSetUpper.hpp">
+    <ClInclude Include="include\GOComponentAdder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="HeadersForTask.hpp">
+    <ClInclude Include="include\GOComponentGetter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IBGMController.hpp">
+    <ClInclude Include="include\GraphDrawData2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IColliderWithCollider2D.hpp">
+    <ClInclude Include="include\HeadersForGameObjectComponent.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ICollisionWorld.hpp">
+    <ClInclude Include="include\HeadersForSceneSetUpper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IConfigManager.hpp">
+    <ClInclude Include="include\HeadersForTask.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IDebugManager.hpp">
+    <ClInclude Include="include\IBGMController.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IDrawSystem.hpp">
+    <ClInclude Include="include\IColliderWithCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IGameObject.hpp">
+    <ClInclude Include="include\ICollisionWorld.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IGameObjectManager.hpp">
+    <ClInclude Include="include\IConfigManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IInputManager.hpp">
+    <ClInclude Include="include\IDebugManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ILogManager.hpp">
+    <ClInclude Include="include\IDrawSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IMemoryAllocator.hpp">
+    <ClInclude Include="include\IGameObject.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IniFile.hpp">
+    <ClInclude Include="include\IGameObjectManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="InitFunctions.hpp">
+    <ClInclude Include="include\IInputManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="InputDefinitions.hpp">
+    <ClInclude Include="include\ILogManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.hpp">
+    <ClInclude Include="include\IMemoryAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="InputUtility.hpp">
+    <ClInclude Include="include\IniFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IPerformanceManager.hpp">
+    <ClInclude Include="include\InitFunctions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderingManager.hpp">
+    <ClInclude Include="include\InputDefinitions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IResourceManager.hpp">
+    <ClInclude Include="include\InputManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ISaveManager.hpp">
+    <ClInclude Include="include\InputUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="IScene.hpp">
+    <ClInclude Include="include\IPerformanceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ISceneInternal.hpp">
+    <ClInclude Include="include\IRenderingManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ISceneManager.hpp">
+    <ClInclude Include="include\IResourceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ISoundEffectController.hpp">
+    <ClInclude Include="include\ISaveManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ISoundManager.hpp">
+    <ClInclude Include="include\IScene.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ITaskManager.hpp">
+    <ClInclude Include="include\ISceneInternal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ITransformSystem.hpp">
+    <ClInclude Include="include\ISceneManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="JsonFile.hpp">
+    <ClInclude Include="include\ISoundEffectController.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="KeyConfig.hpp">
+    <ClInclude Include="include\ISoundManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="LogManager.hpp">
+    <ClInclude Include="include\ITaskManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="LogUtility.hpp">
+    <ClInclude Include="include\ITransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="LuaBindHelder.hpp">
+    <ClInclude Include="include\JsonFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MacroUtility.hpp">
+    <ClInclude Include="include\KeyConfig.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MathConstant.hpp">
+    <ClInclude Include="include\LogManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MathMatrix.hpp">
+    <ClInclude Include="include\LogUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MathUtility.hpp">
+    <ClInclude Include="include\LuaBindHelder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MathVector.hpp">
+    <ClInclude Include="include\MacroUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix2_2.hpp">
+    <ClInclude Include="include\MathConstant.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix3_3.hpp">
+    <ClInclude Include="include\MathMatrix.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Memory.hpp">
+    <ClInclude Include="include\MathUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MetaprogrammingUtility.hpp">
+    <ClInclude Include="include\MathVector.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="NonCopyable.hpp">
+    <ClInclude Include="include\Matrix2_2.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="NonOwingPointer.hpp">
+    <ClInclude Include="include\Matrix3_3.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="NormalFolderManipulator.hpp">
+    <ClInclude Include="include\Memory.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="NullWeakPointerException.hpp">
+    <ClInclude Include="include\MetaprogrammingUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Object.hpp">
+    <ClInclude Include="include\NonCopyable.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectHolderTemplate_WithID.hpp">
+    <ClInclude Include="include\NonOwingPointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectHolderTemplate_WithoutID.hpp">
+    <ClInclude Include="include\NormalFolderManipulator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ParameterHolder.hpp">
+    <ClInclude Include="include\NullWeakPointerException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PEDateTime.hpp">
+    <ClInclude Include="include\Object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PerfoamanceManager.hpp">
+    <ClInclude Include="include\ObjectHolderTemplate_WithID.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PETime.hpp">
+    <ClInclude Include="include\ObjectHolderTemplate_WithoutID.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PlanetaEngine.hpp">
+    <ClInclude Include="include\ParameterHolder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PrefixUtility.hpp">
+    <ClInclude Include="include\PEDateTime.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ProcessAllocator.hpp">
+    <ClInclude Include="include\PerfoamanceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Property.hpp">
+    <ClInclude Include="include\PETime.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RangeUtility.hpp">
+    <ClInclude Include="include\PlanetaEngine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RCsv.hpp">
+    <ClInclude Include="include\PrefixUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RectAngle.hpp">
+    <ClInclude Include="include\ProcessAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="REffect.hpp">
+    <ClInclude Include="include\Property.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="REffectTexture.hpp">
+    <ClInclude Include="include\RangeUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Reflectable.hpp">
+    <ClInclude Include="include\RCsv.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectableClassAccessor.hpp">
+    <ClInclude Include="include\RectAngle.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Reflection.hpp">
+    <ClInclude Include="include\REffect.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionAccessible.hpp">
+    <ClInclude Include="include\REffectTexture.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionClassData.hpp">
+    <ClInclude Include="include\Reflectable.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionExceptions.hpp">
+    <ClInclude Include="include\ReflectableClassAccessor.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionUtility.hpp">
+    <ClInclude Include="include\Reflection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RenderingManager.hpp">
+    <ClInclude Include="include\ReflectionAccessible.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="resource.hpp">
+    <ClInclude Include="include\ReflectionClassData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceBase.hpp">
+    <ClInclude Include="include\ReflectionExceptions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceHolder.hpp">
+    <ClInclude Include="include\ReflectionUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.hpp">
+    <ClInclude Include="include\RenderingManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceReferencer.hpp">
+    <ClInclude Include="include\resource.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RFont.hpp">
+    <ClInclude Include="include\ResourceBase.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RGameObject.hpp">
+    <ClInclude Include="include\ResourceHolder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RGraph.hpp">
+    <ClInclude Include="include\ResourceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RIni.hpp">
+    <ClInclude Include="include\ResourceReferencer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RJson.hpp">
+    <ClInclude Include="include\RFont.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RLuaScript.hpp">
+    <ClInclude Include="include\RGameObject.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RMusic.hpp">
+    <ClInclude Include="include\RGraph.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RPtree.hpp">
+    <ClInclude Include="include\RIni.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RSound.hpp">
+    <ClInclude Include="include\RJson.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RText.hpp">
+    <ClInclude Include="include\RLuaScript.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RXml.hpp">
+    <ClInclude Include="include\RMusic.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SaveManager.hpp">
+    <ClInclude Include="include\RPtree.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.hpp">
+    <ClInclude Include="include\RSound.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.hpp">
+    <ClInclude Include="include\RText.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneModule.hpp">
+    <ClInclude Include="include\RXml.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneSetUpper.hpp">
+    <ClInclude Include="include\SaveManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneSetUpProxy.hpp">
+    <ClInclude Include="include\Scene.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Screen.hpp">
+    <ClInclude Include="include\SceneManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenChangeEffecter.hpp">
+    <ClInclude Include="include\SceneModule.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenDrawer2D.hpp">
+    <ClInclude Include="include\SceneSetUpper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenDrawerGUI.hpp">
+    <ClInclude Include="include\SceneSetUpProxy.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SError.hpp">
+    <ClInclude Include="include\Screen.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SharedPointerInstance.hpp">
+    <ClInclude Include="include\ScreenChangeEffecter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Signal.hpp">
+    <ClInclude Include="include\ScreenDrawer2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SimplePolygonPanel.hpp">
+    <ClInclude Include="include\ScreenDrawerGUI.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SingletonTemplate.hpp">
+    <ClInclude Include="include\SError.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SoundEffectController.hpp">
+    <ClInclude Include="include\SharedPointerInstance.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.hpp">
+    <ClInclude Include="include\Signal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardCollisionWorld.hpp">
+    <ClInclude Include="include\SingletonTemplate.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardConfigManager.hpp">
+    <ClInclude Include="include\SoundEffectController.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardDebugManager.hpp">
+    <ClInclude Include="include\SoundManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardDrawSystem.hpp">
+    <ClInclude Include="include\StandardCollisionWorld.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardGameObjectManager.hpp">
+    <ClInclude Include="include\StandardConfigManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardInputManager.hpp">
+    <ClInclude Include="include\StandardDebugManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardLogManager.hpp">
+    <ClInclude Include="include\StandardDrawSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardPerformanceManager.hpp">
+    <ClInclude Include="include\StandardGameObjectManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardRenderingManager.hpp">
+    <ClInclude Include="include\StandardInputManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardResourceManager.hpp">
+    <ClInclude Include="include\StandardLogManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardSaveManager.hpp">
+    <ClInclude Include="include\StandardPerformanceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardSceneManager.hpp">
+    <ClInclude Include="include\StandardRenderingManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardSceneManagerUtility.hpp">
+    <ClInclude Include="include\StandardResourceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardSoundManager.hpp">
+    <ClInclude Include="include\StandardSaveManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardTaskManager.hpp">
+    <ClInclude Include="include\StandardSceneManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StandardTransformSystem.hpp">
+    <ClInclude Include="include\StandardSceneManagerUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StringPanel.hpp">
+    <ClInclude Include="include\StandardSoundManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StringUtility.hpp">
+    <ClInclude Include="include\StandardTaskManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SubSystemManager.hpp">
+    <ClInclude Include="include\StandardTransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SystemTaskSlot.hpp">
+    <ClInclude Include="include\StringUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SystemVariables.hpp">
+    <ClInclude Include="include\SubSystemManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TalkWindows.hpp">
+    <ClInclude Include="include\SystemTaskSlot.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Task.hpp">
+    <ClInclude Include="include\SystemVariables.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TaskManager.hpp">
+    <ClInclude Include="include\Task.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TaskManagerConnection.hpp">
+    <ClInclude Include="include\TaskManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TaskSlot.hpp">
+    <ClInclude Include="include\TaskManagerConnection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TaskSystemSetUpper.hpp">
+    <ClInclude Include="include\TaskSlot.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TCoroutine.hpp">
+    <ClInclude Include="include\TaskSystemSetUpper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TextPanel.hpp">
+    <ClInclude Include="include\TCoroutine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TInstant.hpp">
+    <ClInclude Include="include\TInstant.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TInstantCoroutine.hpp">
+    <ClInclude Include="include\TInstantCoroutine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TLSFMemoryAllocator.hpp">
+    <ClInclude Include="include\TLSFMemoryAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TransformSystem.hpp">
+    <ClInclude Include="include\TransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TwoKeyMap.hpp">
+    <ClInclude Include="include\TwoKeyMap.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TypeChecker.hpp">
+    <ClInclude Include="include\TypeChecker.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TypeDefinitions.hpp">
+    <ClInclude Include="include\TypeDefinitions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TypeInfoWrapper.hpp">
+    <ClInclude Include="include\TypeInfoWrapper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TypeTraitsUtility.hpp">
+    <ClInclude Include="include\TypeTraitsUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="UnorderedMap.hpp">
+    <ClInclude Include="include\UnorderedMap.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.hpp">
+    <ClInclude Include="include\Vector.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2D.hpp">
+    <ClInclude Include="include\Vector2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3D.hpp">
+    <ClInclude Include="include\Vector3D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4D.hpp">
+    <ClInclude Include="include\Vector4D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="VectorElementIdentifer.hpp">
+    <ClInclude Include="include\VectorElementIdentifer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex2D.hpp">
+    <ClInclude Include="include\Vertex2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="WeakPointer.hpp">
+    <ClInclude Include="include\WeakPointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsUtility.hpp">
+    <ClInclude Include="include\WindowsUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="XmlFile.hpp">
+    <ClInclude Include="include\XmlFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TLSFMemoryAllocator.cpp">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="File.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemVariables.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="DXUtility.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtility.cpp">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="TextPanel.cpp">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphPanel.cpp">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="SimplePolygonPanel.cpp">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="TalkWindows.cpp">
-      <Filter>Trash\GUIObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="StringPanel.cpp">
-      <Filter>Trash\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Coroutine.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundEffectController.cpp">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="BGMController.cpp">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="FileOStream.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClCompile>
-    <ClCompile Include="FileIStream.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClCompile>
-    <ClCompile Include="FileStreamBuf.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClCompile>
-    <ClCompile Include="EncrypterBase.cpp">
+    <ClCompile Include="src\AESEncrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
-    <ClCompile Include="EXOREncrypter.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalFolderManipulator.cpp">
+    <ClCompile Include="src\ArchiveManipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
-    <ClCompile Include="ArchiveManipulator.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    <ClCompile Include="src\BGMController.cpp">
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionGroupMatrix.cpp">
+    <ClCompile Include="src\CBelongingGroundGravity.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCamera2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCircleCollider2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCollider2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDraw2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDrawGraph2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDrawGraphGUI.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDrawGUI.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDrawLine2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDrawPlanet2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CDrawPolygon2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CEffect.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CGraph2DAnimator.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CGround2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CharacterCode.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClassInfoCaller.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ColliderComponent2DDebugDrawer.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CollisionDetectFunctions.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
     </ClCompile>
-    <ClCompile Include="FileSystemUtility.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
+    <ClCompile Include="src\Color.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectComponent.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    <ClCompile Include="src\Coroutine.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="SceneSetUpper.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    <ClCompile Include="src\CPlanet.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectManagerConnection.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIComponent.cpp">
-      <Filter>Trash\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIObject.cpp">
-      <Filter>Trash\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIManager.cpp">
-      <Filter>Trash\GUI\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIManagerConnection.cpp">
-      <Filter>Trash\GUI\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenChangeEffecter.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenDrawer2D.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenDrawerGUI.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphDrawData2D.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsUtility.cpp">
-      <Filter>PlanetaEngine\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="DataContainer.cpp">
-      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="DataContainerImpl.cpp">
-      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="DataContainerSerializeUtility.cpp">
-      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
-    </ClCompile>
-    <ClCompile Include="PEDateTime.cpp">
-      <Filter>PlanetaEngine\Utility\DateTime</Filter>
-    </ClCompile>
-    <ClCompile Include="PETime.cpp">
-      <Filter>PlanetaEngine\Utility\DateTime</Filter>
-    </ClCompile>
-    <ClCompile Include="AESEncrypter.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="Task.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectComponentHolder.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectBase.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="CCircleCollider2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CCollider2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CPolygonCollider2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CStraightLineCollider2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CGround2D.cpp">
+    <ClCompile Include="src\CPlanetGround2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="CPlanetGround2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
+    <ClCompile Include="src\CPolygonCollider2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="CBelongingGroundGravity.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
+    <ClCompile Include="src\CStraightLineCollider2D.cpp">
+      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="CGraph2DAnimator.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlanet.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="TInstant.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClCompile>
-    <ClCompile Include="TCoroutine.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskManagerConnection.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionDetectFunctions.cpp">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="CCamera2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="InitFunctionsResource.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="InitializeFunctionsDxLib.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="InitFunctions.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="InitFunctionsFIleSystem.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="SError.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterCode.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="RCsv.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RFont.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RGraph.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RIni.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RJson.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RMusic.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RSound.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RText.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RXml.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Reflection.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="GOComponentAdder.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="StringUtility.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="GOComponentGetter.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassInfoCaller.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="RPtree.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="PrefixUtility.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="ReflectionUtility.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="ReflectableClassAccessor.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="ReflectionAccessible.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="RLuaScript.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceBase.cpp">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="REffect.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="EffekseerUtil.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="IniFile.cpp">
+    <ClCompile Include="src\CsvFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
-    <ClCompile Include="CsvFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClCompile>
-    <ClCompile Include="XmlFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClCompile>
-    <ClCompile Include="REffectTexture.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceReferencer.cpp">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="CEffect.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameSetStandardManagerImpl.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardResourceManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardLogManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="InputUtility.cpp">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyConfig.cpp">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardInputManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardPerformanceManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardRenderingManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardSoundManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardSaveManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardDebugManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardConfigManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystemManager.cpp">
-      <Filter>PlanetaEngine\SubSystems</Filter>
-    </ClCompile>
-    <ClCompile Include="ColliderComponent2DDebugDrawer.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardCollisionWorld.cpp">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardDrawSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardGameObjectManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardTaskManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardTransformSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardSceneManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardSceneModuleSetFunction.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardSystemSetUpSceneFunction.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSetUpProxy.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="CTransform2D.cpp">
+    <ClCompile Include="src\CTransform2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CTransformGUI.cpp">
+    <ClCompile Include="src\CTransformGUI.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="CDraw2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    <ClCompile Include="src\DataContainer.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawGraph2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    <ClCompile Include="src\DataContainerImpl.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawLine2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    <ClCompile Include="src\DataContainerSerializeUtility.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawPlanet2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    <ClCompile Include="src\DXUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawPolygon2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
+    <ClCompile Include="src\EffekseerUtil.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawGUI.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    <ClCompile Include="src\EncrypterBase.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawGraphGUI.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
+    <ClCompile Include="src\EXOREncrypter.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
-    <ClCompile Include="FileManipulator.cpp">
+    <ClCompile Include="src\File.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileIStream.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileManipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
-    <ClCompile Include="RGameObject.cpp">
+    <ClCompile Include="src\FileOStream.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileStreamBuf.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystemUtility.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectBase.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectComponent.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectComponentHolder.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectFactory.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectManagerConnection.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameSetStandardManagerImpl.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GOComponentAdder.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GOComponentGetter.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphDrawData2D.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IniFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InitFunctions.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InitFunctionsFIleSystem.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InitFunctionsResource.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InitializeFunctionsDxLib.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputUtility.cpp">
+      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JsonFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KeyConfig.cpp">
+      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MathUtility.cpp">
+      <Filter>PlanetaEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NormalFolderManipulator.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object.cpp">
+      <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PEDateTime.cpp">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PETime.cpp">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrefixUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RCsv.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\REffect.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\REffectTexture.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReflectableClassAccessor.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Reflection.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReflectionAccessible.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReflectionUtility.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceBase.cpp">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceReferencer.cpp">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RFont.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RGameObject.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RGraph.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RIni.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RJson.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLuaScript.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RMusic.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RPtree.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RSound.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RText.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RXml.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneSetUpper.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneSetUpProxy.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenChangeEffecter.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenDrawer2D.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenDrawerGUI.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SError.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundEffectController.cpp">
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardCollisionWorld.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardConfigManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardDebugManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardDrawSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardGameObjectManager.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardInputManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardLogManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardPerformanceManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardRenderingManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardResourceManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardSaveManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardSceneManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardSceneModuleSetFunction.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardSoundManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardSystemSetUpSceneFunction.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardTaskManager.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardTransformSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StringUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SubSystemManager.cpp">
+      <Filter>PlanetaEngine\SubSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SystemVariables.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TaskManagerConnection.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TCoroutine.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TInstant.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TLSFMemoryAllocator.cpp">
+      <Filter>PlanetaEngine\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowsUtility.cpp">
+      <Filter>PlanetaEngine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XmlFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\GraphPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\GUIComponent.cpp">
+      <Filter>Deprecated\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\GUIManager.cpp">
+      <Filter>Deprecated\GUI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\GUIManagerConnection.cpp">
+      <Filter>Deprecated\GUI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\GUIObject.cpp">
+      <Filter>Deprecated\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\SimplePolygonPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\StringPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\TalkWindows.cpp">
+      <Filter>Deprecated\GUIObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="deprecated\TextPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

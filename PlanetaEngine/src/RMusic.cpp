@@ -1,0 +1,25 @@
+﻿#include "RMusic.hpp"
+#include "DxLib.hpp"
+#include "File.hpp"
+
+namespace planeta {
+	bool RMusic::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
+		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
+		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
+			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMPRESS);
+		}
+		_handle = LoadSoundMemByMemImage(file.top_pointer(), file.size());
+		return _handle >= 0;
+	}
+
+	void RMusic::OnDisposed() {
+		if (_handle >= 0) {
+			DeleteGraph(_handle);
+			_handle = -1;
+		}
+	}
+
+	int RMusic::GetTotalTimeByMilliSecond() {
+		return GetSoundTotalTime(_handle);
+	}
+}
