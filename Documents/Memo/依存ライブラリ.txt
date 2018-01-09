@@ -1,7 +1,0 @@
-ライブラリファイルをリンク
-BoostLibrary
-DXLibrary
-
-プロジェクトに組み込み
-tinyxml zlib/libpngライセンス
-picojson 2016/7/16での最新ビルド The BSD 2-Clause License https://opensource.org/licenses/BSD-2-Clause 
