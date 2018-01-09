@@ -1,7 +1,7 @@
 ﻿#include "StandardInputManager.hpp"
 #include <cassert>
 #include<algorithm>
-#include"DxLib.hpp"
+#include"DxLib.h"
 
 namespace planeta {
 	namespace {

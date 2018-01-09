@@ -1,6 +1,6 @@
 #include "JsonFile.hpp"
 
-#include "picojson/picojson.hpp"
+#include "picojson/picojson.h"
 
 #include "File.hpp"
 #include "LogUtility.hpp"

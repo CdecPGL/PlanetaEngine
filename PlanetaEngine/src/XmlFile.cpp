@@ -3,7 +3,7 @@
 #include <cassert>
 #include <functional>
 #include "File.hpp"
-#include "tinyxml2.hpp"
+#include "tinyxml2.h"
 #include "LogUtility.hpp"
 #include "CharacterCode.hpp"
 

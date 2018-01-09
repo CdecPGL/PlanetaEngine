@@ -1,5 +1,5 @@
 ﻿#include <cassert>
-#include "DxLib.hpp"
+#include "DxLib.h"
 #include "BGMController.hpp"
 #include "RMusic.hpp"
 #include "LogUtility.hpp"

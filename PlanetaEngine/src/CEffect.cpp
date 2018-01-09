@@ -3,7 +3,7 @@
 #include "CEffect.hpp"
 #include "CTransform2D.hpp"
 #include "REffect.hpp"
-#include "EffekseerForDXLib.hpp"
+#include "EffekseerForDXLib.h"
 #include "StandardResourceManager.hpp"
 #include "TInstant.hpp"
 #include "IGameObject.hpp"

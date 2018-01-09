@@ -2,7 +2,7 @@
 #include "File.hpp"
 #include "LogUtility.hpp"
 #include "JsonFile.hpp"
-#include "DxLib.hpp"
+#include "DxLib.h"
 
 namespace planeta {
 	bool RFont::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {

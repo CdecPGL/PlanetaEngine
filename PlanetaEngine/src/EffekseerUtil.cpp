@@ -5,7 +5,7 @@
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
 #include "File.hpp"
-#include "EffekseerForDXLib.hpp"
+#include "EffekseerForDXLib.h"
 #include <d3dx9tex.h>
 
 #endif

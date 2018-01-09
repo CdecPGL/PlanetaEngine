@@ -1,7 +1,7 @@
 ﻿#include <cassert>
 #include "StandardRenderingManager.hpp"
-#include "DxLib.hpp"
-#include "EffekseerForDXLib.hpp"
+#include "DxLib.h"
+#include "EffekseerForDXLib.h"
 #include "Screen.hpp"
 #include "LogUtility.hpp"
 

@@ -1,5 +1,5 @@
-﻿#include "DxLib.hpp"
-#include "EffekseerForDXLib.hpp"
+﻿#include "DxLib.h"
+#include "EffekseerForDXLib.h"
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"

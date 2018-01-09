@@ -1,6 +1,6 @@
 ﻿#include "ScreenDrawer2D.hpp"
 
-#include "DxLib.hpp"
+#include "DxLib.h"
 #include "DXUtility.hpp"
 #include "DXGraphDrawData.hpp"
 #include "GraphDrawData2D.hpp"

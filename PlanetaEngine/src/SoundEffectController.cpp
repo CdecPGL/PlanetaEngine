@@ -1,6 +1,6 @@
 ﻿#include "SoundEffectController.hpp"
 #include "RSound.hpp"
-#include "DxLib.hpp"
+#include "DxLib.h"
 #include "LogUtility.hpp"
 
 namespace planeta {

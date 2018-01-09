@@ -1,7 +1,7 @@
 #include "REffect.hpp"
 #include "File.hpp"
 
-#include "EffekseerForDXLib.hpp"
+#include "EffekseerForDXLib.h"
 #include "EffekseerUtil.hpp"
 #include "REffectTexture.hpp"
 

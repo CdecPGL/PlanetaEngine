@@ -1,5 +1,5 @@
 ﻿#include "RSound.hpp"
-#include "DxLib.hpp"
+#include "DxLib.h"
 #include "File.hpp"
 
 namespace planeta {

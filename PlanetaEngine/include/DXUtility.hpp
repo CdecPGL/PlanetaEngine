@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "DxLib.hpp"
+#include "DxLib.h"
 #include "Vector2D.hpp"
 
 namespace planeta {

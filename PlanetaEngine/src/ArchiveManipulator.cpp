@@ -1,6 +1,6 @@
 ﻿#include "ArchiveManipulator.hpp"
-#include"Extracter.hpp"
-#include "Archiver.hpp"
+#include"Extracter.h"
+#include "Archiver.h"
 #include"boost/filesystem/path.hpp"
 #include "LogUtility.hpp"
 

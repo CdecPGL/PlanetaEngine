@@ -2,7 +2,7 @@
 #include <functional>
 #include <list>
 
-#include "DxLib.hpp"
+#include "DxLib.h"
 
 #include "Game.hpp"
 

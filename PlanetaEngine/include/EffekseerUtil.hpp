@@ -2,7 +2,7 @@
 
 #include <functional>
 #include "File.hpp"
-#include "EffekseerForDXLib.hpp"
+#include "EffekseerForDXLib.h"
 
 #define EFFEKSEER_FOR_DXLIB_VERSION 122
 

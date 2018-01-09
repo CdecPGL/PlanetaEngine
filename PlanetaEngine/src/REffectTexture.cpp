@@ -10,7 +10,7 @@ planeta::REffectTexture::~REffectTexture() = default;
 
 #else
 
-#include "EffekseerForDXLib.hpp"
+#include "EffekseerForDXLib.h"
 #include <d3dx9tex.h>
 
 #endif

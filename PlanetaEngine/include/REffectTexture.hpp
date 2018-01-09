@@ -5,7 +5,7 @@
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
-#include "DxLib.hpp"
+#include "DxLib.h"
 
 namespace Effekseer {
 	struct TextureData;

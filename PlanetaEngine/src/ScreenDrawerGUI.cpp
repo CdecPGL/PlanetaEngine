@@ -1,6 +1,6 @@
 ﻿#include <cassert>
 
-#include "DxLib.hpp"
+#include "DxLib.h"
 
 #include "ScreenDrawerGUI.hpp"
 #include "RGraph.hpp"
