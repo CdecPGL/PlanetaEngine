@@ -11,7 +11,7 @@
 #include "GOComponentGetter.hpp"
 #include "planeta/buildin/RPtree.hpp"
 #include "planeta/IResourceManager.hpp"
-#include "Reflection.hpp"
+#include "planeta/reflection/Reflection.hpp"
 #include "planeta/ISceneInternal.hpp"
 
 namespace plnt {

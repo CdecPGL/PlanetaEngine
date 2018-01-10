@@ -20,9 +20,9 @@ Vertion 2.0.0 2016/9/29 LuaBind機能の追加。Reflectableのリフレクシ�
 
 #include "boost/core/enable_if.hpp"
 
-#include "StringUtility.hpp"
-#include "ClassRegistererImpl.hpp"
-#include "ReflectionExceptions.hpp"
+#include "planeta/StringUtility.hpp"
+#include "planeta/reflection/ClassRegistererImpl.hpp"
+#include "planeta/reflection/ReflectionExceptions.hpp"
 
 namespace plnt {
 	class ReflectableClassAccessor;

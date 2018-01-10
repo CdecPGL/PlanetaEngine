@@ -1,7 +1,7 @@
 ﻿#include "boost/bimap/bimap.hpp"
 #include "PrefixUtility.hpp"
 #include "SystemVariables.hpp"
-#include "StringUtility.hpp"
+#include "planeta/StringUtility.hpp"
 #include "planeta/LogUtility.hpp"
 
 namespace plnt {

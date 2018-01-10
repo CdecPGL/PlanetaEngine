@@ -1,8 +1,8 @@
 ﻿#include "planeta/GOComponentAdder.hpp"
 #include "GameObjectComponentHolder.hpp"
-#include "Reflection.hpp"
+#include "planeta/reflection/Reflection.hpp"
 #include "PrefixUtility.hpp"
-#include "ReflectionExceptions.hpp"
+#include "planeta/reflection/ReflectionExceptions.hpp"
 
 namespace plnt {
 	namespace private_ {

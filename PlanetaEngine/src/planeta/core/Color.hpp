@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/Reflectable.hpp"
+#include "planeta/reflection/Reflectable.hpp"
 
 namespace plnt {
 	class Color : public Reflectable{

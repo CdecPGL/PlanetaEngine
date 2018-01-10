@@ -294,18 +294,6 @@
     <ClInclude Include="src\planeta\CharacterCode.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\ClassInfo.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ClassInfoCaller.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ClassRegisterer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ClassRegistererImpl.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\Collider2DData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -621,27 +609,6 @@
     <ClInclude Include="src\planeta\RectAngle.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Reflectable.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ReflectableClassAccessor.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Reflection.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ReflectionAccessible.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ReflectionClassData.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ReflectionExceptions.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ReflectionUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\RenderingManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -790,9 +757,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\TypeDefinitions.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TypeInfoWrapper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\TypeTraitsUtility.hpp">
@@ -948,6 +912,42 @@
     <ClInclude Include="src\planeta\core\NonOwingPointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ReflectionUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\Reflectable.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ReflectableClassAccessor.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\Reflection.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ReflectionAccessible.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ReflectionClassData.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ReflectionExceptions.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ClassRegistererImpl.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ClassInfo.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ClassInfoCaller.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\ClassRegisterer.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\TypeInfoWrapper.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -991,9 +991,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\CharacterCode.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ClassInfoCaller.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\ColliderComponent2DDebugDrawer.cpp">
       <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
@@ -1117,18 +1114,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\PrefixUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ReflectableClassAccessor.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Reflection.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ReflectionAccessible.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ReflectionUtility.cpp">
-      <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\ResourceBase.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
@@ -1348,6 +1333,21 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\SError.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\reflection\ReflectableClassAccessor.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\reflection\Reflection.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\reflection\ReflectionAccessible.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\reflection\ReflectionUtility.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\reflection\ClassInfoCaller.cpp">
+      <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

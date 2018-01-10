@@ -2,7 +2,7 @@
 
 #include "planeta/DataContainerImpl.hpp"
 #include "DataContainerError.hpp"
-#include "StringUtility.hpp"
+#include "planeta/StringUtility.hpp"
 
 namespace plnt {
 	namespace util {

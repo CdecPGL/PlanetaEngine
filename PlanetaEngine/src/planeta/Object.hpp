@@ -2,7 +2,7 @@
 #include <string>
 #include <typeinfo>
 #include <memory>
-#include "planeta/Reflectable.hpp"
+#include "planeta/reflection/Reflectable.hpp"
 
 #undef max //windows.hで定義されているmaxマクロを無効化(std::numeric_limits<size_t>::max()のため)
 

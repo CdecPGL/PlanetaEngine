@@ -7,11 +7,11 @@
 #include "boost/multi_index/hashed_index.hpp"
 
 #include "planeta/LogUtility.hpp"
-#include "Reflection.hpp"
-#include "ReflectionExceptions.hpp"
-#include "StringUtility.hpp"
-#include "ClassInfoCaller.hpp"
-#include "ReflectableClassAccessor.hpp"
+#include "planeta/reflection/Reflection.hpp"
+#include "planeta/reflection/ReflectionExceptions.hpp"
+#include "planeta/StringUtility.hpp"
+#include "planeta/reflection/ClassInfoCaller.hpp"
+#include "planeta/reflection/ReflectableClassAccessor.hpp"
 
 namespace plnt {
 	namespace {

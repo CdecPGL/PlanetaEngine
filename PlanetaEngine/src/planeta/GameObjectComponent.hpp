@@ -10,7 +10,7 @@
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/NonOwingPointer.hpp"
 #include "GOComponentGetter.hpp"
-#include "ReflectionAccessible.hpp"
+#include "planeta/reflection/ReflectionAccessible.hpp"
 #include "planeta/IScene.hpp"
 
 namespace plnt {

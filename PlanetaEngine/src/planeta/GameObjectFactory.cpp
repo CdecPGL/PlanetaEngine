@@ -2,7 +2,7 @@
 #include "planeta/IResourceManager.hpp"
 #include "GameObjectFactory.hpp"
 #include "PrefixUtility.hpp"
-#include "Reflection.hpp"
+#include "planeta/reflection/Reflection.hpp"
 #include "GameObjectBase.hpp"
 #include "planeta/buildin/RGameObject.hpp"
 
