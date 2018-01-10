@@ -4,9 +4,9 @@
 #include <memory>
 
 #include "planeta/Signal.hpp"
-#include "ITaskManager.hpp"
+#include "planeta/ITaskManager.hpp"
 #include "TaskSlot.hpp"
-#include "IScene.hpp"
+#include "planeta/IScene.hpp"
 
 namespace plnt {
 	class Task;

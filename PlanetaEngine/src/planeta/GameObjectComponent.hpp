@@ -11,7 +11,7 @@
 #include "planeta/NonOwingPointer.hpp"
 #include "GOComponentGetter.hpp"
 #include "ReflectionAccessible.hpp"
-#include "IScene.hpp"
+#include "planeta/IScene.hpp"
 
 namespace plnt {
 	class SceneAccessorForGameObject;

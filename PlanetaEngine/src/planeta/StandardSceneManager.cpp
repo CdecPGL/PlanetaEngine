@@ -3,7 +3,7 @@
 #include "IDebugManager.hpp"
 #include "Scene.hpp"
 #include "SceneSetUpper.hpp"
-#include "SError.hpp"
+#include "planeta/buildin/SError.hpp"
 #include "planeta/LogUtility.hpp"
 #include "NullWeakPointerException.hpp"
 #include "PrefixUtility.hpp"

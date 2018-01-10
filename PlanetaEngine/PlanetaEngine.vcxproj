@@ -359,7 +359,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\ScreenChangeEffecter.hpp" />
     <ClInclude Include="src\planeta\ScreenDrawer2D.hpp" />
     <ClInclude Include="src\planeta\ScreenDrawerGUI.hpp" />
-    <ClInclude Include="src\planeta\SError.hpp" />
+    <ClInclude Include="src\planeta\buildin\SError.hpp" />
     <ClInclude Include="src\planeta\SharedPointerInstance.hpp" />
     <ClInclude Include="src\planeta\Signal.hpp" />
     <ClInclude Include="deprecated\SimplePolygonPanel.hpp">
@@ -486,7 +486,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\StandardDebugManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPolygon2D.cpp" />
     <ClCompile Include="src\planeta\EncrypterBase.cpp" />
-    <ClCompile Include="src\planeta\SError.cpp" />
+    <ClCompile Include="src\planeta\buildin\SError.cpp" />
     <ClCompile Include="src\planeta\EXOREncrypter.cpp" />
     <ClCompile Include="src\planeta\FileIStream.cpp" />
     <ClCompile Include="src\planeta\FileManipulator.cpp" />

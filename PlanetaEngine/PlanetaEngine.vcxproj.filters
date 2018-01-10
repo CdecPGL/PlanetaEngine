@@ -690,9 +690,6 @@
     <ClInclude Include="src\planeta\ScreenDrawerGUI.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\SError.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\SharedPointerInstance.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -948,6 +945,9 @@
     <ClInclude Include="src\planeta\buildin\RXml.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\buildin\SError.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1157,9 +1157,6 @@
     <ClCompile Include="src\planeta\ScreenDrawerGUI.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\SError.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\SoundEffectController.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
@@ -1348,6 +1345,9 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\RXml.cpp">
       <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\SError.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,9 +5,9 @@
 
 #include "planeta/Task.hpp"
 #include "planeta/IGameObject.hpp"
-#include "IScene.hpp"
+#include "planeta/IScene.hpp"
 #include "IGameObjectManager.hpp"
-#include "ITaskManager.hpp"
+#include "planeta/ITaskManager.hpp"
 #include "ICollisionWorld.hpp"
 #include "IDrawSystem.hpp"
 #include "ITransformSystem.hpp"

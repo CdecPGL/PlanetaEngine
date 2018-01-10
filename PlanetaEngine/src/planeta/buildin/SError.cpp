@@ -1,9 +1,9 @@
-﻿#include "planeta/SError.hpp"
+﻿#include "planeta/buildin/SError.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/buildin/TInstant.hpp"
-#include "IScene.hpp"
-#include "ITaskManager.hpp"
-#include "SceneSetUpProxy.hpp"
+#include "planeta/IScene.hpp"
+#include "planeta/ITaskManager.hpp"
+#include "planeta/SceneSetUpProxy.hpp"
 
 
 namespace plnt {
