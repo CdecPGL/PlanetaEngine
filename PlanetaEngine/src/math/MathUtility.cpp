@@ -4,7 +4,7 @@
 namespace plnt {
 	namespace math {
 
-		bool is2Pow(unsigned int num)
+		bool Is2Pow(unsigned int num)
 		{
 			int bit = sizeof(num) * 8;
 			bool flag = false;
@@ -21,7 +21,7 @@ namespace plnt {
 			return flag;
 		}
 
-		unsigned int getMin2Pow(unsigned int num)
+		unsigned int GetMin2Pow(unsigned int num)
 		{
 			unsigned int out = 1;
 			int bit = sizeof(num) * 8;
