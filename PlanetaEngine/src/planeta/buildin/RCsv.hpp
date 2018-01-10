@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/ResourceBase.hpp"
-#include "planeta/CsvFile.hpp"
+#include "planeta/core/CsvFile.hpp"
 
 namespace plnt {
 	class RCsv : public ResourceBase {

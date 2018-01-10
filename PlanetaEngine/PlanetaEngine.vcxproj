@@ -195,7 +195,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\buildin\CPlanetGround2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CPolygonCollider2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CStraightLineCollider2D.hpp" />
-    <ClInclude Include="src\planeta\CsvFile.hpp" />
+    <ClInclude Include="src\planeta\core\CsvFile.hpp" />
     <ClInclude Include="src\planeta\buildin\CTransform2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CTransformGUI.hpp" />
     <ClInclude Include="src\planeta\DataContainer.hpp" />
@@ -444,7 +444,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\CollisionDetectFunctions.cpp" />
     <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp" />
     <ClCompile Include="src\planeta\core\Color.cpp" />
-    <ClCompile Include="src\planeta\CsvFile.cpp" />
+    <ClCompile Include="src\planeta\core\CsvFile.cpp" />
     <ClCompile Include="src\planeta\buildin\CTransformGUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

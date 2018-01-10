@@ -321,9 +321,6 @@
     <ClInclude Include="src\planeta\CoroutineUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\CsvFile.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\DataContainer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -948,6 +945,9 @@
     <ClInclude Include="src\planeta\core\IniFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\core\CsvFile.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1003,9 +1003,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\CsvFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\DataContainer.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer</Filter>
@@ -1347,6 +1344,9 @@
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\IniFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\CsvFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
   </ItemGroup>

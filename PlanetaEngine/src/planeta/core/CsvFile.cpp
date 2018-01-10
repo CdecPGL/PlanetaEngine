@@ -2,7 +2,7 @@
 #pragma warning(push) 
 #pragma warning(disable:4996) 
 
-#include "planeta/CsvFile.hpp"
+#include "planeta/core/CsvFile.hpp"
 
 #include <algorithm>
 #include "boost/algorithm/string.hpp"
