@@ -1,9 +1,9 @@
 #include "planeta/ColliderComponent2DDebugDrawer.hpp"
 #include "IDebugManager.hpp"
 
-#include "CCircleCollider2D.hpp"
-#include "CStraightLineCollider2D.hpp"
-#include "CPolygonCollider2D.hpp"
+#include "planeta/buildin/CCircleCollider2D.hpp"
+#include "planeta/buildin/CStraightLineCollider2D.hpp"
+#include "planeta/buildin/CPolygonCollider2D.hpp"
 
 
 namespace plnt {

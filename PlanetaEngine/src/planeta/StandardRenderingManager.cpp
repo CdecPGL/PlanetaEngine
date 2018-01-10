@@ -3,7 +3,7 @@
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
 #include "Screen.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

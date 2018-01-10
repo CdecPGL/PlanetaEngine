@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/Object.hpp"
-#include "WeakPointer.hpp"
+#include "planeta/WeakPointer.hpp"
 #include "NonCopyable.hpp"
 
 namespace plnt {

@@ -1,6 +1,6 @@
 #include "planeta/StandardConfigManager.hpp"
 #include "JsonFile.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "StringUtility.hpp"
 
 namespace plnt {

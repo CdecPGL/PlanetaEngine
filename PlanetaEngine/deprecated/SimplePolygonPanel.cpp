@@ -1,7 +1,7 @@
 ﻿#include "planeta/SimplePolygonPanel.hpp"
 
-#include "LogUtility.hpp"
-#include "ScreenDrawerGUI.hpp"
+#include "planeta/LogUtility.hpp"
+#include "planeta/ScreenDrawerGUI.hpp"
 
 namespace plnt {
 	//namespace gui_components {

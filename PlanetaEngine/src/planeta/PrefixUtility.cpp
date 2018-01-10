@@ -2,7 +2,7 @@
 #include "PrefixUtility.hpp"
 #include "SystemVariables.hpp"
 #include "StringUtility.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

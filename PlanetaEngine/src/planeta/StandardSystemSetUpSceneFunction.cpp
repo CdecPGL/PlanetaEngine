@@ -2,11 +2,11 @@
 
 #include "Scene.hpp"
 #include "TaskManager.hpp"
-#include "CollisionWorld.hpp"
-#include "DrawSystem.hpp"
-#include "TransformSystem.hpp"
+#include "planeta/CollisionWorld.hpp"
+#include "planeta/DrawSystem.hpp"
+#include "planeta/TransformSystem.hpp"
 
-#include "TInstant.hpp"
+#include "planeta/TInstant.hpp"
 
 namespace plnt {
 	namespace private_ {

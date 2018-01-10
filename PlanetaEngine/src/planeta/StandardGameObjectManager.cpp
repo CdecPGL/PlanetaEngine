@@ -1,7 +1,7 @@
 ﻿#include "planeta/StandardGameObjectManager.hpp"
 #include "GameObjectBase.hpp"
 #include "StandardTaskManager.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "GameObjectFactory.hpp"
 #include "IDebugManager.hpp"
 #include "boost/algorithm/string.hpp"

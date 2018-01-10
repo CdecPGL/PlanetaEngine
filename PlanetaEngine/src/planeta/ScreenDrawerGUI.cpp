@@ -2,8 +2,8 @@
 
 #include "DxLib.h"
 
-#include "ScreenDrawerGUI.hpp"
-#include "RGraph.hpp"
+#include "planeta/ScreenDrawerGUI.hpp"
+#include "planeta/RGraph.hpp"
 #include "DXUtility.hpp"
 #include "RFont.hpp"
 #include "Screen.hpp"

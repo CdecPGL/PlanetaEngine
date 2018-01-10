@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "BGMController.hpp"
 #include "RMusic.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	bool BGMController::is_valid() const {

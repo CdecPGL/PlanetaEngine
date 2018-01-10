@@ -2,9 +2,9 @@
 #include "Game.hpp"
 #include "IInputManager.hpp"
 #include "RenderingManager.hpp"
-#include "LogUtility.hpp"
-#include "ScreenDrawer2D.hpp"
-#include "ScreenDrawerGUI.hpp"
+#include "planeta/LogUtility.hpp"
+#include "planeta/ScreenDrawer2D.hpp"
+#include "planeta/ScreenDrawerGUI.hpp"
 
 namespace plnt {
 	namespace private_ {

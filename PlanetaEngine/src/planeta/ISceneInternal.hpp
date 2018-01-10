@@ -1,7 +1,7 @@
 #pragma once
 
 #include "planeta/IScene.hpp"
-#include "WeakPointer.hpp"
+#include "planeta/WeakPointer.hpp"
 
 namespace plnt {
 	namespace private_ {

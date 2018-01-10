@@ -17,7 +17,7 @@
 #include "DebugManager.hpp"
 #include "ConfigManager.hpp"
 
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"

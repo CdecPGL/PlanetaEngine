@@ -6,7 +6,7 @@
 #include "boost/multi_index/member.hpp"
 #include "boost/multi_index/hashed_index.hpp"
 
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "Reflection.hpp"
 #include "ReflectionExceptions.hpp"
 #include "StringUtility.hpp"

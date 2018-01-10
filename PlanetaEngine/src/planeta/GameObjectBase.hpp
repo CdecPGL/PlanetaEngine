@@ -2,9 +2,9 @@
 
 #include "planeta/Object.hpp"
 #include "GameObjectComponentHolder.hpp"
-#include "IGameObject.hpp"
+#include "planeta/IGameObject.hpp"
 #include "NonCopyable.hpp"
-#include "NonOwingPointer.hpp"
+#include "planeta/NonOwingPointer.hpp"
 #include "GameObjectManagerConnection.hpp"
 
 namespace plnt {

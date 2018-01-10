@@ -2,7 +2,7 @@
 
 #include "PlanetaEngine.hpp"
 
-#include "StandardResourceManager.hpp"
+#include "planeta/StandardResourceManager.hpp"
 #include "StandardLogManager.hpp"
 #include "StandardSceneManager.hpp"
 #include "StandardInputManager.hpp"

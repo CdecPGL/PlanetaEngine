@@ -1,6 +1,6 @@
 ﻿#include "planeta/SError.hpp"
-#include "LogUtility.hpp"
-#include "TInstant.hpp"
+#include "planeta/LogUtility.hpp"
+#include "planeta/TInstant.hpp"
 #include "IScene.hpp"
 #include "ITaskManager.hpp"
 #include "SceneSetUpProxy.hpp"

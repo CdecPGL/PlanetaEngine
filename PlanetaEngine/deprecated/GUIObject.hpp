@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <memory>
 #include "planeta/Object.hpp"
-#include "RectAngle.hpp"
+#include "planeta/RectAngle.hpp"
 #include "ObjectHolderTemplate_WithoutID.hpp"
 #include "GUIManagerConnection.hpp"
 #include "NonCopyable.hpp"

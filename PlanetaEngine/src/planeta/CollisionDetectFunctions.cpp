@@ -1,6 +1,6 @@
 ﻿#include "planeta/CollisionDetectFunctions.hpp"
-#include "CCircleCollider2D.hpp"
-#include "CStraightLineCollider2D.hpp"
+#include "planeta/buildin/CCircleCollider2D.hpp"
+#include "planeta/buildin/CStraightLineCollider2D.hpp"
 
 namespace plnt {
 	namespace private_ {

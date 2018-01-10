@@ -4,7 +4,7 @@
 //! PlanetaEngine“à•”‚Å‚ÍŽg‚í‚È‚¢‚±‚Æ
 
 #include "planeta/Task.hpp"
-#include "IGameObject.hpp"
+#include "planeta/IGameObject.hpp"
 #include "IScene.hpp"
 #include "IGameObjectManager.hpp"
 #include "ITaskManager.hpp"

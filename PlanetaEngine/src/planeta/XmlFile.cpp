@@ -4,7 +4,7 @@
 #include <functional>
 #include "File.hpp"
 #include "tinyxml2.h"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "CharacterCode.hpp"
 
 namespace plnt {

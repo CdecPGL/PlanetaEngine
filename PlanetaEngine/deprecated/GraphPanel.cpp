@@ -1,9 +1,9 @@
 ﻿#include "planeta/GraphPanel.hpp"
 
-#include "StandardResourceManager.hpp"
-#include "LogUtility.hpp"
-#include "ScreenDrawerGUI.hpp"
-#include "RGraph.hpp"
+#include "planeta/StandardResourceManager.hpp"
+#include "planeta/LogUtility.hpp"
+#include "planeta/ScreenDrawerGUI.hpp"
+#include "planeta/RGraph.hpp"
 
 namespace plnt {
 	/*namespace gui_components {

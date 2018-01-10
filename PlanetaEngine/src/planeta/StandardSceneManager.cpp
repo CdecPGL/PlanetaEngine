@@ -4,7 +4,7 @@
 #include "Scene.hpp"
 #include "SceneSetUpper.hpp"
 #include "SError.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "NullWeakPointerException.hpp"
 #include "PrefixUtility.hpp"
 #include "StandardSceneManagerUtility.hpp"

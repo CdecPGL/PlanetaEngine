@@ -1,5 +1,5 @@
 ﻿#include "planeta/CollisionGroupMatrix.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	void CollisionGroupMatrix::AddCollisionGroup(const std::string& col_group_name) {

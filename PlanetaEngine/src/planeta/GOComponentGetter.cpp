@@ -1,6 +1,6 @@
 ﻿#include "planeta/GOComponentGetter.hpp"
 #include "GameObjectComponentHolder.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 

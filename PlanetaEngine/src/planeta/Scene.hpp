@@ -5,10 +5,10 @@
 #include <functional>
 #include <list>
 #include "planeta/Object.hpp"
-#include "ISceneInternal.hpp"
-#include "WeakPointer.hpp"
+#include "planeta/ISceneInternal.hpp"
+#include "planeta/WeakPointer.hpp"
 #include "NonCopyable.hpp"
-#include "NonOwingPointer.hpp"
+#include "planeta/NonOwingPointer.hpp"
 
 namespace plnt{
 	class IDebugInformationAdder;

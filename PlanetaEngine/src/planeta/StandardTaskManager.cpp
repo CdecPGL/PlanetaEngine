@@ -6,10 +6,10 @@
 #include "planeta/StandardTaskManager.hpp"
 #include "Task.hpp"
 #include "TaskManagerConnection.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "SystemTaskSlot.hpp"
 #include "IDebugManager.hpp"
-#include "ISceneInternal.hpp"
+#include "planeta/ISceneInternal.hpp"
 
 namespace plnt {
 	namespace private_ {

@@ -1,6 +1,6 @@
 ﻿#include "planeta/StandardTransformSystem.hpp"
-#include "CTransform2D.hpp"
-#include "LogUtility.hpp"
+#include "planeta/buildin/CTransform2D.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

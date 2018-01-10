@@ -10,7 +10,7 @@
 #include "PEDateTime.hpp"
 #include "WindowsUtility.hpp"
 #include "CharacterCode.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 /*ログの書式
 [hh:mm:ss,frame]level:detail@place

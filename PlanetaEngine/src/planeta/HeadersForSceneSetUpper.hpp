@@ -5,7 +5,7 @@
 
 #include "planeta/SceneSetUpper.hpp"
 #include "SceneSetUpProxy.hpp"
-#include "IGameObject.hpp"
+#include "planeta/IGameObject.hpp"
 #include "IScene.hpp"
 #include "IGameObjectManager.hpp"
 #include "ITaskManager.hpp"

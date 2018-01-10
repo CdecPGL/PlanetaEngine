@@ -161,21 +161,21 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp" />
     <ClInclude Include="src\planeta\BuiltInResources.hpp" />
     <ClInclude Include="src\planeta\BuiltInTasks.hpp" />
-    <ClInclude Include="src\planeta\CBelongingGroundGravity.hpp" />
-    <ClInclude Include="src\planeta\CCamera2D.hpp" />
-    <ClInclude Include="src\planeta\CCircleCollider2D.hpp" />
-    <ClInclude Include="src\planeta\CCollider2D.hpp" />
-    <ClInclude Include="src\planeta\CDraw2D.hpp" />
-    <ClInclude Include="src\planeta\CDrawGraph2D.hpp" />
-    <ClInclude Include="src\planeta\CDrawGraphGUI.hpp" />
-    <ClInclude Include="src\planeta\CDrawGUI.hpp" />
-    <ClInclude Include="src\planeta\CDrawLine2D.hpp" />
-    <ClInclude Include="src\planeta\CDrawPlanet2D.hpp" />
-    <ClInclude Include="src\planeta\CDrawPolygon2D.hpp" />
-    <ClInclude Include="src\planeta\CDumyGround2D.hpp" />
-    <ClInclude Include="src\planeta\CEffect.hpp" />
-    <ClInclude Include="src\planeta\CGraph2DAnimator.hpp" />
-    <ClInclude Include="src\planeta\CGround2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CBelongingGroundGravity.hpp" />
+    <ClInclude Include="src\planeta\buildin\CCamera2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CCircleCollider2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CCollider2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDraw2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDrawGraph2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDrawGraphGUI.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDrawGUI.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDrawLine2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDrawPlanet2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDrawPolygon2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDumyGround2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CEffect.hpp" />
+    <ClInclude Include="src\planeta\buildin\CGraph2DAnimator.hpp" />
+    <ClInclude Include="src\planeta\buildin\CGround2D.hpp" />
     <ClInclude Include="src\planeta\CharacterCode.hpp" />
     <ClInclude Include="src\planeta\ClassInfo.hpp" />
     <ClInclude Include="src\planeta\ClassInfoCaller.hpp" />
@@ -191,13 +191,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\ConfigManager.hpp" />
     <ClInclude Include="src\planeta\Coroutine.hpp" />
     <ClInclude Include="src\planeta\CoroutineUtility.hpp" />
-    <ClInclude Include="src\planeta\CPlanet.hpp" />
-    <ClInclude Include="src\planeta\CPlanetGround2D.hpp" />
-    <ClInclude Include="src\planeta\CPolygonCollider2D.hpp" />
-    <ClInclude Include="src\planeta\CStraightLineCollider2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CPlanet.hpp" />
+    <ClInclude Include="src\planeta\buildin\CPlanetGround2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CPolygonCollider2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CStraightLineCollider2D.hpp" />
     <ClInclude Include="src\planeta\CsvFile.hpp" />
-    <ClInclude Include="src\planeta\CTransform2D.hpp" />
-    <ClInclude Include="src\planeta\CTransformGUI.hpp" />
+    <ClInclude Include="src\planeta\buildin\CTransform2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CTransformGUI.hpp" />
     <ClInclude Include="src\planeta\DataContainer.hpp" />
     <ClInclude Include="src\planeta\DataContainerError.hpp" />
     <ClInclude Include="src\planeta\DataContainerFunctionsForBoostSerialize.hpp" />
@@ -430,22 +430,22 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   <ItemGroup>
     <ClCompile Include="src\planeta\AESEncrypter.cpp" />
     <ClCompile Include="src\planeta\ArchiveManipulator.cpp" />
-    <ClCompile Include="src\planeta\CBelongingGroundGravity.cpp" />
+    <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp" />
     <ClCompile Include="src\planeta\BGMController.cpp" />
-    <ClCompile Include="src\planeta\CCamera2D.cpp" />
-    <ClCompile Include="src\planeta\CCircleCollider2D.cpp" />
-    <ClCompile Include="src\planeta\CCollider2D.cpp" />
-    <ClCompile Include="src\planeta\CDrawGraphGUI.cpp" />
-    <ClCompile Include="src\planeta\CDrawGUI.cpp" />
+    <ClCompile Include="src\planeta\buildin\CCamera2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CCircleCollider2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CCollider2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDrawGraphGUI.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDrawGUI.cpp" />
     <ClCompile Include="src\planeta\ColliderComponent2DDebugDrawer.cpp" />
-    <ClCompile Include="src\planeta\CEffect.cpp" />
+    <ClCompile Include="src\planeta\buildin\CEffect.cpp" />
     <ClCompile Include="src\planeta\CharacterCode.cpp" />
     <ClCompile Include="src\planeta\ClassInfoCaller.cpp" />
     <ClCompile Include="src\planeta\CollisionDetectFunctions.cpp" />
     <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp" />
     <ClCompile Include="src\planeta\Color.cpp" />
     <ClCompile Include="src\planeta\CsvFile.cpp" />
-    <ClCompile Include="src\planeta\CTransformGUI.cpp">
+    <ClCompile Include="src\planeta\buildin\CTransformGUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -484,7 +484,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\TCoroutine.cpp" />
     <ClCompile Include="src\planeta\RCsv.cpp" />
     <ClCompile Include="src\planeta\StandardDebugManager.cpp" />
-    <ClCompile Include="src\planeta\CDrawPolygon2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDrawPolygon2D.cpp" />
     <ClCompile Include="src\planeta\EncrypterBase.cpp" />
     <ClCompile Include="src\planeta\SError.cpp" />
     <ClCompile Include="src\planeta\EXOREncrypter.cpp" />
@@ -538,12 +538,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\planeta\CDraw2D.cpp" />
-    <ClCompile Include="src\planeta\CDrawLine2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDraw2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDrawLine2D.cpp" />
     <ClCompile Include="src\planeta\StandardRenderingManager.cpp" />
-    <ClCompile Include="src\planeta\CDrawPlanet2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDrawPlanet2D.cpp" />
     <ClCompile Include="src\planeta\DXUtility.cpp" />
-    <ClCompile Include="src\planeta\CGraph2DAnimator.cpp" />
+    <ClCompile Include="src\planeta\buildin\CGraph2DAnimator.cpp" />
     <ClCompile Include="src\planeta\RGraph.cpp" />
     <ClCompile Include="src\planeta\RIni.cpp" />
     <ClCompile Include="src\planeta\KeyConfig.cpp" />
@@ -552,33 +552,33 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\math\MathUtility.cpp" />
     <ClCompile Include="src\planeta\RMusic.cpp" />
     <ClCompile Include="src\planeta\PEDateTime.cpp" />
-    <ClCompile Include="src\planeta\CPlanetGround2D.cpp" />
-    <ClCompile Include="src\planeta\CPolygonCollider2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CPolygonCollider2D.cpp" />
     <ClCompile Include="src\planeta\RSound.cpp" />
     <ClCompile Include="src\planeta\File.cpp" />
     <ClCompile Include="src\planeta\StandardCollisionWorld.cpp" />
     <ClCompile Include="src\planeta\GameObjectComponent.cpp" />
     <ClCompile Include="src\planeta\StandardDrawSystem.cpp" />
     <ClCompile Include="src\planeta\StandardGameObjectManager.cpp" />
-    <ClCompile Include="src\planeta\CDrawGraph2D.cpp" />
-    <ClCompile Include="src\planeta\CGround2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CDrawGraph2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CGround2D.cpp" />
     <ClCompile Include="src\planeta\NormalFolderManipulator.cpp" />
     <ClCompile Include="src\planeta\Object.cpp" />
     <ClCompile Include="src\planeta\Game.cpp" />
-    <ClCompile Include="src\planeta\CPlanet.cpp" />
+    <ClCompile Include="src\planeta\buildin\CPlanet.cpp" />
     <ClCompile Include="src\planeta\Task.cpp" />
     <ClCompile Include="src\planeta\StandardTaskManager.cpp" />
     <ClCompile Include="src\planeta\StandardResourceManager.cpp" />
     <ClCompile Include="src\planeta\Scene.cpp" />
     <ClCompile Include="src\planeta\StandardSceneManager.cpp" />
-    <ClCompile Include="src\planeta\CStraightLineCollider2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CStraightLineCollider2D.cpp" />
     <ClCompile Include="src\planeta\StandardPerformanceManager.cpp" />
     <ClCompile Include="src\planeta\StandardLogManager.cpp" />
     <ClCompile Include="src\planeta\SystemVariables.cpp" />
     <ClCompile Include="src\planeta\PETime.cpp" />
     <ClCompile Include="src\planeta\RText.cpp" />
     <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp" />
-    <ClCompile Include="src\planeta\CTransform2D.cpp" />
+    <ClCompile Include="src\planeta\buildin\CTransform2D.cpp" />
     <ClCompile Include="deprecated\GUIManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

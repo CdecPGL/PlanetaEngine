@@ -2,7 +2,7 @@
 
 #include <memory>
 #include "planeta/TaskManager.hpp"
-#include "WeakPointer.hpp"
+#include "planeta/WeakPointer.hpp"
 
 namespace plnt {
 	class Task;

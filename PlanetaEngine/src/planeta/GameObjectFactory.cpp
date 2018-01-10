@@ -1,5 +1,5 @@
 ﻿#include "planeta/Game.hpp"
-#include "IResourceManager.hpp"
+#include "planeta/IResourceManager.hpp"
 #include "GameObjectFactory.hpp"
 #include "PrefixUtility.hpp"
 #include "Reflection.hpp"

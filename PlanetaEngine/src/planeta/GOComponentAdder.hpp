@@ -4,7 +4,7 @@
 
 #include "planeta/NonOwingPointer.hpp"
 #include "GameObjectComponent.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	class GameObjectComponentHolder;

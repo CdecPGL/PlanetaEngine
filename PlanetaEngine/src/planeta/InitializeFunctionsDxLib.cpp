@@ -3,7 +3,7 @@
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "CharacterCode.hpp"
 #include "ConfigManager.hpp"
 

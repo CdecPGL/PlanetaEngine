@@ -2,9 +2,9 @@
 
 #include "planeta/Signal.hpp"
 #include "Object.hpp"
-#include "WeakPointer.hpp"
+#include "planeta/WeakPointer.hpp"
 #include "NonCopyable.hpp"
-#include "NonOwingPointer.hpp"
+#include "planeta/NonOwingPointer.hpp"
 
 namespace plnt {
 	class IScene;

@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "File.hpp"
 #include "planeta/math/MathUtility.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 //#include "boost/lexical_cast.hpp"
 
 namespace plnt {

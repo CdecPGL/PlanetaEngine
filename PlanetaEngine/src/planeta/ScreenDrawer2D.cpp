@@ -3,7 +3,7 @@
 #include "DxLib.h"
 #include "DXUtility.hpp"
 #include "DXGraphDrawData.hpp"
-#include "GraphDrawData2D.hpp"
+#include "planeta/GraphDrawData2D.hpp"
 #include "Color.hpp"
 #include "Screen.hpp"
 #include <cassert>

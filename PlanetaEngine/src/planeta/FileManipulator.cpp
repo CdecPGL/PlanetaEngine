@@ -1,5 +1,5 @@
 ﻿#include "planeta/FileManipulator.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "EncrypterBase.hpp"
 
 namespace plnt {

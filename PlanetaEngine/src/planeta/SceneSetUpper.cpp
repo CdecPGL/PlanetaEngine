@@ -1,6 +1,6 @@
 ﻿#include "planeta/SceneSetUpper.hpp"
 #include "Scene.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "SceneSetUpProxy.hpp"
 
 namespace plnt {

@@ -2,7 +2,7 @@
 #include "ResourceManager.hpp"
 #include "SystemVariables.hpp"
 
-#include "RGraph.hpp"
+#include "planeta/RGraph.hpp"
 #include "RSound.hpp"
 #include "RMusic.hpp"
 #include "RCsv.hpp"
@@ -11,7 +11,7 @@
 #include "RXml.hpp"
 #include "RJson.hpp"
 #include "RPtree.hpp"
-#include "REffect.hpp"
+#include "planeta/REffect.hpp"
 #include "REffectTexture.hpp"
 #include "RGameObject.hpp"
 

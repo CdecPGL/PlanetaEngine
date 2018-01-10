@@ -1,5 +1,5 @@
 ﻿#include "planeta/GUIComponent.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include <cassert>
 
 namespace plnt {

@@ -4,10 +4,10 @@
 #include "boost/filesystem.hpp"
 #include "boost/optional.hpp"
 
-#include"StandardResourceManager.hpp"
+#include"planeta/StandardResourceManager.hpp"
 #include "File.hpp"
 #include "JsonFile.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "FileManipulator.hpp"
 #include "SystemVariables.hpp"
 #include "ResourceReferencer.hpp"

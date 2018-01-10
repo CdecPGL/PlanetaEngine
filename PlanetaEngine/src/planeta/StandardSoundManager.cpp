@@ -5,7 +5,7 @@
 #include "SoundEffectController.hpp"
 #include "RMusic.hpp"
 #include "RSound.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

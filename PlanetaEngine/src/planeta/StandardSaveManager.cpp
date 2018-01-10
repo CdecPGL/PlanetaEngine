@@ -3,7 +3,7 @@
 #include "DataContainer.hpp"
 #include "DataContainerSerializeUtility.hpp"
 #include "FileManipulator.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "RCsv.hpp"
 
 namespace {

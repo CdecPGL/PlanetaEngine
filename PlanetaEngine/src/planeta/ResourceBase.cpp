@@ -1,5 +1,5 @@
 #include "planeta/ResourceBase.hpp"
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 #include "File.hpp"
 #include "boost/filesystem/path.hpp"
 

@@ -1,7 +1,7 @@
 ﻿#include "planeta/GraphDrawData2D.hpp"
 #include "DXGraphDrawData.hpp"
 #include "DXUtility.hpp"
-#include "RGraph.hpp"
+#include "planeta/RGraph.hpp"
 #include <cassert>
 
 namespace plnt {

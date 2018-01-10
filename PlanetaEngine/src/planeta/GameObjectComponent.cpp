@@ -1,7 +1,7 @@
 ﻿#include "planeta/GameObjectComponent.hpp"
 #include "GameObjectComponentSetUpData.hpp"
-#include "LogUtility.hpp"
-#include "ISceneInternal.hpp"
+#include "planeta/LogUtility.hpp"
+#include "planeta/ISceneInternal.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(GameObjectComponent) {
