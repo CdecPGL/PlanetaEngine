@@ -5,7 +5,7 @@
 #include "planeta/REffect.hpp"
 #include "EffekseerForDXLib.h"
 #include "planeta/StandardResourceManager.hpp"
-#include "planeta/TInstant.hpp"
+#include "planeta/buildin/TInstant.hpp"
 #include "planeta/IGameObject.hpp"
 
 namespace plnt {

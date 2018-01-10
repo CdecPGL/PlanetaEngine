@@ -3,7 +3,7 @@
 #include "planeta/buildin/CDrawGraph2D.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/TInstant.hpp"
+#include "planeta/buildin/TInstant.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CGraph2DAnimator) {

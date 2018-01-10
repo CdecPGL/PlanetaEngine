@@ -402,13 +402,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\TaskManagerConnection.hpp" />
     <ClInclude Include="src\planeta\TaskSlot.hpp" />
     <ClInclude Include="src\planeta\TaskSystemSetUpper.hpp" />
-    <ClInclude Include="src\planeta\TCoroutine.hpp" />
+    <ClInclude Include="src\planeta\buildin\TCoroutine.hpp" />
     <ClInclude Include="deprecated\TextPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\planeta\TInstant.hpp" />
-    <ClInclude Include="src\planeta\TInstantCoroutine.hpp" />
+    <ClInclude Include="src\planeta\buildin\TInstant.hpp" />
+    <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp" />
     <ClInclude Include="src\planeta\TLSFMemoryAllocator.hpp" />
     <ClInclude Include="src\planeta\TransformSystem.hpp" />
     <ClInclude Include="src\planeta\TwoKeyMap.hpp" />
@@ -481,7 +481,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\StringUtility.cpp" />
     <ClCompile Include="src\planeta\SubSystemManager.cpp" />
     <ClCompile Include="src\planeta\TaskManagerConnection.cpp" />
-    <ClCompile Include="src\planeta\TCoroutine.cpp" />
+    <ClCompile Include="src\planeta\buildin\TCoroutine.cpp" />
     <ClCompile Include="src\planeta\RCsv.cpp" />
     <ClCompile Include="src\planeta\StandardDebugManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPolygon2D.cpp" />
@@ -505,7 +505,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\planeta\TInstant.cpp" />
+    <ClCompile Include="src\planeta\buildin\TInstant.cpp" />
     <ClCompile Include="src\planeta\StandardSaveManager.cpp" />
     <ClCompile Include="src\planeta\SceneSetUpper.cpp" />
     <ClCompile Include="src\planeta\Screen.cpp" />

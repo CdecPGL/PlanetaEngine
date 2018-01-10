@@ -6,7 +6,7 @@
 #include "planeta/DrawSystem.hpp"
 #include "planeta/TransformSystem.hpp"
 
-#include "planeta/TInstant.hpp"
+#include "planeta/buildin/TInstant.hpp"
 
 namespace plnt {
 	namespace private_ {

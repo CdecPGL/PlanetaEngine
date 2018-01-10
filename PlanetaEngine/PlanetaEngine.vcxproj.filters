@@ -828,15 +828,6 @@
     <ClInclude Include="src\planeta\TaskSystemSetUpper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\TCoroutine.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TInstant.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TInstantCoroutine.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\TLSFMemoryAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -946,6 +937,15 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\CTransformGUI.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\TCoroutine.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\TInstant.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1274,12 +1274,6 @@
     <ClCompile Include="src\planeta\TaskManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\TCoroutine.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\TInstant.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp">
       <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClCompile>
@@ -1348,6 +1342,12 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CTransformGUI.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\TCoroutine.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\TInstant.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
