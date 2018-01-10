@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 #include <array>
-#include "math/MathConstant.hpp"
+#include "planeta/math/MathConstant.hpp"
 
 #define PE_ENABLE_REFLECTION_SYSTEM
 
