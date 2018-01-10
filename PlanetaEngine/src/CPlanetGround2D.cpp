@@ -4,7 +4,7 @@
 #include "CCircleCollider2D.hpp"
 #include "CPlanet.hpp"
 #include "LogUtility.hpp"
-#include "MathConstant.hpp"
+#include "math/MathConstant.hpp"
 
 namespace plnt {
 	bool CPlanetGround2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {

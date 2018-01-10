@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include"MathVector.hpp"
+#include"math/MathVector.hpp"
 #include <array>
 #include<initializer_list>
 

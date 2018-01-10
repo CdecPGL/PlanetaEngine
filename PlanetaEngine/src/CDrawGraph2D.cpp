@@ -7,7 +7,7 @@
 #include "CTransform2D.hpp"
 #include "IGameObject.hpp"
 #include "Matrix2_2.hpp"
-#include "MathConstant.hpp"
+#include "math/MathConstant.hpp"
 #include "GraphDrawData2D.hpp"
 
 namespace plnt {

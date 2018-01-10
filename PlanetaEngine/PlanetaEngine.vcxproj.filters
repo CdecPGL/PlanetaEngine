@@ -64,9 +64,6 @@
     <Filter Include="PlanetaEngine\Utility\DateTime">
       <UniqueIdentifier>{0de0a5aa-9426-4eea-9453-906e3d75582a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlanetaEngine\Math\Matrix">
-      <UniqueIdentifier>{1826c0f3-9abb-467a-ab0a-0c55c95a2a8b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlanetaEngine\BuildinElements\Tasks">
       <UniqueIdentifier>{de26d756-ac3d-4fe7-986c-bae6218fa395}</UniqueIdentifier>
     </Filter>
@@ -615,18 +612,6 @@
     <ClInclude Include="include\MacroUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="include\MathConstant.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MathMatrix.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MathUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MathVector.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="include\Matrix2_2.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -933,9 +918,6 @@
     <ClInclude Include="include\Vector4D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="include\VectorElementIdentifer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="include\Vertex2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -948,7 +930,22 @@
     <ClInclude Include="include\XmlFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\resource.h">
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathConstant.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathMatrix.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathVector.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathVectorElementIdentifer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1138,9 +1135,6 @@
     </ClCompile>
     <ClCompile Include="src\KeyConfig.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MathUtility.cpp">
-      <Filter>PlanetaEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\NormalFolderManipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
@@ -1351,6 +1345,9 @@
     </ClCompile>
     <ClCompile Include="deprecated\TextPanel.cpp">
       <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math\MathUtility.cpp">
+      <Filter>PlanetaEngine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

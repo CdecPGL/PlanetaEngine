@@ -1,4 +1,4 @@
-﻿#include "MathUtility.hpp"
+﻿#include "math/MathUtility.hpp"
 #include <cmath>
 
 namespace plnt {

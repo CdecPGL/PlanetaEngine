@@ -1,5 +1,5 @@
 ﻿#include "CPlanet.hpp"
-#include "MathConstant.hpp"
+#include "math/MathConstant.hpp"
 #include "LogUtility.hpp"
 #include <cmath>
 #include <cassert>

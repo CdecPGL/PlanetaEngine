@@ -64,7 +64,7 @@
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -115,7 +115,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -280,10 +280,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="include\LogUtility.hpp" />
     <ClInclude Include="include\LuaBindHelder.hpp" />
     <ClInclude Include="include\MacroUtility.hpp" />
-    <ClInclude Include="include\MathConstant.hpp" />
-    <ClInclude Include="include\MathMatrix.hpp" />
-    <ClInclude Include="include\MathUtility.hpp" />
-    <ClInclude Include="include\MathVector.hpp" />
+    <ClInclude Include="include\math\MathConstant.hpp" />
+    <ClInclude Include="include\math\MathMatrix.hpp" />
+    <ClInclude Include="include\math\MathUtility.hpp" />
+    <ClInclude Include="include\math\MathVector.hpp" />
     <ClInclude Include="include\Matrix2_2.hpp" />
     <ClInclude Include="include\Matrix3_3.hpp" />
     <ClInclude Include="include\Memory.hpp" />
@@ -315,7 +315,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="include\ReflectionExceptions.hpp" />
     <ClInclude Include="include\ReflectionUtility.hpp" />
     <ClInclude Include="include\RenderingManager.hpp" />
-    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="include\ResourceBase.hpp" />
     <ClInclude Include="include\ResourceHolder.hpp" />
     <ClInclude Include="include\ResourceManager.hpp" />
@@ -391,7 +391,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="include\Vector2D.hpp" />
     <ClInclude Include="include\Vector3D.hpp" />
     <ClInclude Include="include\Vector4D.hpp" />
-    <ClInclude Include="include\VectorElementIdentifer.hpp" />
+    <ClInclude Include="include\math\MathVectorElementIdentifer.hpp" />
     <ClInclude Include="include\Vertex2D.hpp" />
     <ClInclude Include="include\WeakPointer.hpp" />
     <ClInclude Include="include\WindowsUtility.hpp" />
@@ -504,7 +504,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\KeyConfig.cpp" />
     <ClCompile Include="src\StandardInputManager.cpp" />
     <ClCompile Include="src\InputUtility.cpp" />
-    <ClCompile Include="src\MathUtility.cpp" />
+    <ClCompile Include="src\math\MathUtility.cpp" />
     <ClCompile Include="src\RMusic.cpp" />
     <ClCompile Include="src\PEDateTime.cpp" />
     <ClCompile Include="src\CPlanetGround2D.cpp" />

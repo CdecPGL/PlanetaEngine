@@ -2,10 +2,9 @@
 
 #include <list>
 #include "GameObjectStandardComponent.hpp"
-#include "MathMatrix.hpp"
 #include "Vector2D.hpp"
 #include "RectAngle.hpp"
-#include "MathConstant.hpp"
+#include "math/MathConstant.hpp"
 #include "IColliderWithCollider2D.hpp"
 
 namespace plnt {
