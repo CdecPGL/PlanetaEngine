@@ -4,7 +4,7 @@
 #include "DXUtility.hpp"
 #include "DXGraphDrawData.hpp"
 #include "planeta/GraphDrawData2D.hpp"
-#include "Color.hpp"
+#include "planeta/core/Color.hpp"
 #include "Screen.hpp"
 #include <cassert>
 

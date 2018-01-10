@@ -1,5 +1,5 @@
 ﻿#include "planeta/DXUtility.hpp"
-#include "Color.hpp"
+#include "planeta/core/Color.hpp"
 
 namespace plnt {
 	namespace util {

@@ -4,7 +4,7 @@
 #include <array>
 #include <vector>
 #include "planeta/Vertex2D.hpp"
-#include "Color.hpp"
+#include "planeta/core/Color.hpp"
 
 namespace plnt {
 	class RGraph;

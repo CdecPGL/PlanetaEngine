@@ -3,7 +3,7 @@
 #include <functional>
 #include "planeta/StringUtility.hpp"
 #include "planeta/core/Vector2D.hpp"
-#include "Color.hpp"
+#include "planeta/core/Color.hpp"
 
 namespace plnt {
 	/*! デバッグ情報追加クラス公開インターフェイス*/

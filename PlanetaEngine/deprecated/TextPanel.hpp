@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "planeta/GUIComponent.hpp"
-#include "Color.hpp"
+#include "planeta/core/Color.hpp"
 
 namespace plnt {
 	//namespace resources {

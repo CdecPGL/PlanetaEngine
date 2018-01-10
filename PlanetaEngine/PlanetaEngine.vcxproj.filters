@@ -324,9 +324,6 @@
     <ClInclude Include="src\planeta\CollisionWorld.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Color.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\ConfigManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -948,6 +945,9 @@
     <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\core\Color.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1003,9 +1003,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Color.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\Coroutine.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -1348,6 +1345,9 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\TInstant.cpp">
       <Filter>PlanetaEngine\BuildinElements\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Color.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

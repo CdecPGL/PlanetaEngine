@@ -187,7 +187,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\CollisionGroupMatrix.hpp" />
     <ClInclude Include="src\planeta\CollisionState.hpp" />
     <ClInclude Include="src\planeta\CollisionWorld.hpp" />
-    <ClInclude Include="src\planeta\Color.hpp" />
+    <ClInclude Include="src\planeta\core\Color.hpp" />
     <ClInclude Include="src\planeta\ConfigManager.hpp" />
     <ClInclude Include="src\planeta\Coroutine.hpp" />
     <ClInclude Include="src\planeta\CoroutineUtility.hpp" />
@@ -443,7 +443,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\ClassInfoCaller.cpp" />
     <ClCompile Include="src\planeta\CollisionDetectFunctions.cpp" />
     <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp" />
-    <ClCompile Include="src\planeta\Color.cpp" />
+    <ClCompile Include="src\planeta\core\Color.cpp" />
     <ClCompile Include="src\planeta\CsvFile.cpp" />
     <ClCompile Include="src\planeta\buildin\CTransformGUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

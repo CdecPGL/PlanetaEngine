@@ -4,7 +4,7 @@
 #include <memory>
 #include <array>
 #include "planeta/RectAngle.hpp"
-#include "Color.hpp"
+#include "planeta/core/Color.hpp"
 
 namespace plnt {
 	class RGraph;
