@@ -9,7 +9,7 @@
 #include "Task.hpp"
 #include "GOComponentAdder.hpp"
 #include "GOComponentGetter.hpp"
-#include "RPtree.hpp"
+#include "planeta/buildin/RPtree.hpp"
 #include "planeta/IResourceManager.hpp"
 #include "Reflection.hpp"
 #include "planeta/ISceneInternal.hpp"

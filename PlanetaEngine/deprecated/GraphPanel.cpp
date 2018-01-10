@@ -3,7 +3,7 @@
 #include "planeta/StandardResourceManager.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/ScreenDrawerGUI.hpp"
-#include "planeta/RGraph.hpp"
+#include "planeta/buildin/RGraph.hpp"
 
 namespace plnt {
 	/*namespace gui_components {

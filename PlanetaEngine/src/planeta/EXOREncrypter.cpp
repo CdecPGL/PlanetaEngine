@@ -1,5 +1,5 @@
 ﻿#include "planeta/EXOREncrypter.hpp"
-#include "File.hpp"
+#include "planeta/File.hpp"
 
 /*データ構造について
 先頭32bitにはファイルサイズが記録されている。

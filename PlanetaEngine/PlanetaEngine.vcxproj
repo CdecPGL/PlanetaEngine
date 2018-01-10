@@ -321,10 +321,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\PrefixUtility.hpp" />
     <ClInclude Include="src\planeta\Property.hpp" />
     <ClInclude Include="src\planeta\RangeUtility.hpp" />
-    <ClInclude Include="src\planeta\RCsv.hpp" />
+    <ClInclude Include="src\planeta\buildin\RCsv.hpp" />
     <ClInclude Include="src\planeta\RectAngle.hpp" />
-    <ClInclude Include="src\planeta\REffect.hpp" />
-    <ClInclude Include="src\planeta\REffectTexture.hpp" />
+    <ClInclude Include="src\planeta\buildin\REffect.hpp" />
+    <ClInclude Include="src\planeta\buildin\REffectTexture.hpp" />
     <ClInclude Include="src\planeta\Reflectable.hpp" />
     <ClInclude Include="src\planeta\ReflectableClassAccessor.hpp" />
     <ClInclude Include="src\planeta\Reflection.hpp" />
@@ -338,17 +338,17 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\ResourceHolder.hpp" />
     <ClInclude Include="src\planeta\ResourceManager.hpp" />
     <ClInclude Include="src\planeta\ResourceReferencer.hpp" />
-    <ClInclude Include="src\planeta\RFont.hpp" />
-    <ClInclude Include="src\planeta\RGameObject.hpp" />
-    <ClInclude Include="src\planeta\RGraph.hpp" />
-    <ClInclude Include="src\planeta\RIni.hpp" />
-    <ClInclude Include="src\planeta\RJson.hpp" />
-    <ClInclude Include="src\planeta\RLuaScript.hpp" />
-    <ClInclude Include="src\planeta\RMusic.hpp" />
-    <ClInclude Include="src\planeta\RPtree.hpp" />
-    <ClInclude Include="src\planeta\RSound.hpp" />
-    <ClInclude Include="src\planeta\RText.hpp" />
-    <ClInclude Include="src\planeta\RXml.hpp" />
+    <ClInclude Include="src\planeta\buildin\RFont.hpp" />
+    <ClInclude Include="src\planeta\buildin\RGameObject.hpp" />
+    <ClInclude Include="src\planeta\buildin\RGraph.hpp" />
+    <ClInclude Include="src\planeta\buildin\RIni.hpp" />
+    <ClInclude Include="src\planeta\buildin\RJson.hpp" />
+    <ClInclude Include="src\planeta\buildin\RLuaScript.hpp" />
+    <ClInclude Include="src\planeta\buildin\RMusic.hpp" />
+    <ClInclude Include="src\planeta\buildin\RPtree.hpp" />
+    <ClInclude Include="src\planeta\buildin\RSound.hpp" />
+    <ClInclude Include="src\planeta\buildin\RText.hpp" />
+    <ClInclude Include="src\planeta\buildin\RXml.hpp" />
     <ClInclude Include="src\planeta\SaveManager.hpp" />
     <ClInclude Include="src\planeta\Scene.hpp" />
     <ClInclude Include="src\planeta\SceneManager.hpp" />
@@ -458,7 +458,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\JsonFile.cpp" />
     <ClCompile Include="src\planeta\GameSetStandardManagerImpl.cpp" />
     <ClCompile Include="src\planeta\PrefixUtility.cpp" />
-    <ClCompile Include="src\planeta\REffect.cpp" />
+    <ClCompile Include="src\planeta\buildin\REffect.cpp" />
     <ClCompile Include="src\planeta\ReflectableClassAccessor.cpp" />
     <ClCompile Include="src\planeta\Reflection.cpp" />
     <ClCompile Include="src\planeta\InitFunctions.cpp" />
@@ -469,11 +469,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\ReflectionUtility.cpp" />
     <ClCompile Include="src\planeta\ResourceBase.cpp" />
     <ClCompile Include="src\planeta\ResourceReferencer.cpp" />
-    <ClCompile Include="src\planeta\RGameObject.cpp" />
-    <ClCompile Include="src\planeta\RJson.cpp" />
-    <ClCompile Include="src\planeta\RLuaScript.cpp" />
-    <ClCompile Include="src\planeta\RPtree.cpp" />
-    <ClCompile Include="src\planeta\REffectTexture.cpp" />
+    <ClCompile Include="src\planeta\buildin\RGameObject.cpp" />
+    <ClCompile Include="src\planeta\buildin\RJson.cpp" />
+    <ClCompile Include="src\planeta\buildin\RLuaScript.cpp" />
+    <ClCompile Include="src\planeta\buildin\RPtree.cpp" />
+    <ClCompile Include="src\planeta\buildin\REffectTexture.cpp" />
     <ClCompile Include="src\planeta\SceneSetUpProxy.cpp" />
     <ClCompile Include="src\planeta\StandardConfigManager.cpp" />
     <ClCompile Include="src\planeta\StandardSystemSetUpSceneFunction.cpp" />
@@ -482,7 +482,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\SubSystemManager.cpp" />
     <ClCompile Include="src\planeta\TaskManagerConnection.cpp" />
     <ClCompile Include="src\planeta\buildin\TCoroutine.cpp" />
-    <ClCompile Include="src\planeta\RCsv.cpp" />
+    <ClCompile Include="src\planeta\buildin\RCsv.cpp" />
     <ClCompile Include="src\planeta\StandardDebugManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPolygon2D.cpp" />
     <ClCompile Include="src\planeta\EncrypterBase.cpp" />
@@ -493,7 +493,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\FileOStream.cpp" />
     <ClCompile Include="src\planeta\FileStreamBuf.cpp" />
     <ClCompile Include="src\planeta\FileSystemUtility.cpp" />
-    <ClCompile Include="src\planeta\RFont.cpp" />
+    <ClCompile Include="src\planeta\buildin\RFont.cpp" />
     <ClCompile Include="src\planeta\DataContainer.cpp" />
     <ClCompile Include="src\planeta\DataContainerImpl.cpp" />
     <ClCompile Include="src\planeta\DataContainerSerializeUtility.cpp" />
@@ -544,17 +544,17 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\buildin\CDrawPlanet2D.cpp" />
     <ClCompile Include="src\planeta\DXUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\CGraph2DAnimator.cpp" />
-    <ClCompile Include="src\planeta\RGraph.cpp" />
-    <ClCompile Include="src\planeta\RIni.cpp" />
+    <ClCompile Include="src\planeta\buildin\RGraph.cpp" />
+    <ClCompile Include="src\planeta\buildin\RIni.cpp" />
     <ClCompile Include="src\planeta\KeyConfig.cpp" />
     <ClCompile Include="src\planeta\StandardInputManager.cpp" />
     <ClCompile Include="src\planeta\InputUtility.cpp" />
     <ClCompile Include="src\planeta\math\MathUtility.cpp" />
-    <ClCompile Include="src\planeta\RMusic.cpp" />
+    <ClCompile Include="src\planeta\buildin\RMusic.cpp" />
     <ClCompile Include="src\planeta\PEDateTime.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp" />
     <ClCompile Include="src\planeta\buildin\CPolygonCollider2D.cpp" />
-    <ClCompile Include="src\planeta\RSound.cpp" />
+    <ClCompile Include="src\planeta\buildin\RSound.cpp" />
     <ClCompile Include="src\planeta\File.cpp" />
     <ClCompile Include="src\planeta\StandardCollisionWorld.cpp" />
     <ClCompile Include="src\planeta\GameObjectComponent.cpp" />
@@ -576,7 +576,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\StandardLogManager.cpp" />
     <ClCompile Include="src\planeta\SystemVariables.cpp" />
     <ClCompile Include="src\planeta\PETime.cpp" />
-    <ClCompile Include="src\planeta\RText.cpp" />
+    <ClCompile Include="src\planeta\buildin\RText.cpp" />
     <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp" />
     <ClCompile Include="src\planeta\buildin\CTransform2D.cpp" />
     <ClCompile Include="deprecated\GUIManager.cpp">
@@ -589,7 +589,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </ClCompile>
     <ClCompile Include="src\planeta\StandardTransformSystem.cpp" />
     <ClCompile Include="src\planeta\WindowsUtility.cpp" />
-    <ClCompile Include="src\planeta\RXml.cpp" />
+    <ClCompile Include="src\planeta\buildin\RXml.cpp" />
     <ClCompile Include="src\planeta\XmlFile.cpp" />
   </ItemGroup>
   <ItemGroup>

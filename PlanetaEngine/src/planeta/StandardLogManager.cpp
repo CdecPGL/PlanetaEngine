@@ -9,7 +9,7 @@
 #include <cassert>
 #include "PEDateTime.hpp"
 #include "WindowsUtility.hpp"
-#include "CharacterCode.hpp"
+#include "planeta/CharacterCode.hpp"
 #include "planeta/LogUtility.hpp"
 
 /*ログの書式

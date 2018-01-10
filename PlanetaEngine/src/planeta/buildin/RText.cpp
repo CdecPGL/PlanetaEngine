@@ -1,6 +1,6 @@
-﻿#include "planeta/RText.hpp"
-#include "File.hpp"
-#include "CharacterCode.hpp"
+﻿#include "planeta/buildin/RText.hpp"
+#include "planeta/File.hpp"
+#include "planeta/CharacterCode.hpp"
 
 namespace plnt {
 	bool RText::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {

@@ -1,5 +1,5 @@
 ﻿#include "planeta/SoundEffectController.hpp"
-#include "RSound.hpp"
+#include "planeta/buildin/RSound.hpp"
 #include "DxLib.h"
 #include "planeta/LogUtility.hpp"
 

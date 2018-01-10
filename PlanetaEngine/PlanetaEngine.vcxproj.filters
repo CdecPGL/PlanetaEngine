@@ -621,16 +621,7 @@
     <ClInclude Include="src\planeta\RangeUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\RCsv.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\RectAngle.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\REffect.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\REffectTexture.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\Reflectable.hpp">
@@ -667,39 +658,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\ResourceReferencer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RFont.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RGameObject.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RGraph.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RIni.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RJson.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RLuaScript.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RMusic.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RPtree.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RSound.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RText.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RXml.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\SaveManager.hpp">
@@ -948,6 +906,48 @@
     <ClInclude Include="src\planeta\core\Color.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RCsv.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\REffect.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\REffectTexture.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RFont.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RGameObject.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RGraph.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RIni.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RJson.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RLuaScript.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RMusic.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RPtree.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RSound.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RText.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\buildin\RXml.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1118,15 +1118,6 @@
     <ClCompile Include="src\planeta\PrefixUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\RCsv.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\REffect.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\REffectTexture.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\ReflectableClassAccessor.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
@@ -1144,39 +1135,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\ResourceReferencer.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RFont.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RGameObject.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RGraph.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RIni.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RJson.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RLuaScript.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RMusic.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RPtree.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RSound.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RText.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\RXml.cpp">
-      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\Scene.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene</Filter>
@@ -1348,6 +1306,48 @@
     </ClCompile>
     <ClCompile Include="src\planeta\core\Color.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RCsv.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\REffect.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\REffectTexture.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RFont.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RGameObject.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RGraph.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RIni.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RJson.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RLuaScript.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RMusic.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RPtree.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RSound.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RText.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\buildin\RXml.cpp">
+      <Filter>PlanetaEngine\BuildinElements\Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

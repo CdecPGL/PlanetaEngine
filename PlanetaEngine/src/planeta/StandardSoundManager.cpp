@@ -3,8 +3,8 @@
 #include "planeta/StandardSoundManager.hpp"
 #include "BGMController.hpp"
 #include "SoundEffectController.hpp"
-#include "RMusic.hpp"
-#include "RSound.hpp"
+#include "planeta/buildin/RMusic.hpp"
+#include "planeta/buildin/RSound.hpp"
 #include "planeta/LogUtility.hpp"
 
 namespace plnt {

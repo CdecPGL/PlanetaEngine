@@ -2,10 +2,10 @@
 
 #include <cassert>
 #include <functional>
-#include "File.hpp"
+#include "planeta/File.hpp"
 #include "tinyxml2.h"
 #include "planeta/LogUtility.hpp"
-#include "CharacterCode.hpp"
+#include "planeta/CharacterCode.hpp"
 
 namespace plnt {
 	bool XmlFile::Load(const File& file) {

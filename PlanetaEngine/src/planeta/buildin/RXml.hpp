@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/XmlFile.hpp"
-#include "ResourceBase.hpp"
+#include "planeta/ResourceBase.hpp"
 
 namespace plnt {
 	class RXml final : public ResourceBase {

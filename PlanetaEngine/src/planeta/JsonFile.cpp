@@ -2,9 +2,9 @@
 
 #include "picojson/picojson.h"
 
-#include "File.hpp"
+#include "planeta/File.hpp"
 #include "planeta/LogUtility.hpp"
-#include "CharacterCode.hpp"
+#include "planeta/CharacterCode.hpp"
 
 namespace plnt {
 	namespace {

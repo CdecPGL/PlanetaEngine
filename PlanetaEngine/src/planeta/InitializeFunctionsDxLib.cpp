@@ -4,10 +4,10 @@
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
 #include "planeta/LogUtility.hpp"
-#include "CharacterCode.hpp"
+#include "planeta/CharacterCode.hpp"
 #include "ConfigManager.hpp"
 
-#include "EffekseerUtil.hpp"
+#include "planeta/EffekseerUtil.hpp"
 
 namespace plnt {
 	namespace private_ {

@@ -3,7 +3,7 @@
 #include <cmath>
 #include "planeta/ScreenDrawer2D.hpp"
 #include "planeta/IResourceManager.hpp"
-#include "planeta/RGraph.hpp"
+#include "planeta/buildin/RGraph.hpp"
 #include "planeta/IGameObject.hpp"
 #include "planeta/buildin/CPlanet.hpp"
 #include "planeta/math/MathConstant.hpp"

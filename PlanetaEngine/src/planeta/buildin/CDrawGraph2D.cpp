@@ -2,7 +2,7 @@
 #include "planeta/IResourceManager.hpp"
 #include "planeta/buildin/CDrawGraph2D.hpp"
 #include "planeta/ScreenDrawer2D.hpp"
-#include "planeta/RGraph.hpp"
+#include "planeta/buildin/RGraph.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
 #include "planeta/IGameObject.hpp"

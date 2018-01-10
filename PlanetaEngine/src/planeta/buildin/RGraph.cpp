@@ -1,6 +1,6 @@
-﻿#include "planeta/RGraph.hpp"
+﻿#include "planeta/buildin/RGraph.hpp"
 #include "DxLib.h"
-#include "File.hpp"
+#include "planeta/File.hpp"
 #include "planeta/math/MathUtility.hpp"
 #include "planeta/LogUtility.hpp"
 //#include "boost/lexical_cast.hpp"

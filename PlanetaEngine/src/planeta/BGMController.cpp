@@ -1,7 +1,7 @@
 ﻿#include <cassert>
 #include "DxLib.h"
 #include "BGMController.hpp"
-#include "RMusic.hpp"
+#include "planeta/buildin/RMusic.hpp"
 #include "planeta/LogUtility.hpp"
 
 namespace plnt {

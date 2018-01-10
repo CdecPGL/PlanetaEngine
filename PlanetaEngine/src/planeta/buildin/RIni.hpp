@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/ResourceBase.hpp"
-#include "IniFile.hpp"
+#include "planeta/IniFile.hpp"
 
 namespace plnt {
 	class RIni : public ResourceBase {

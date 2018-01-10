@@ -4,7 +4,7 @@
 #include "PrefixUtility.hpp"
 #include "Reflection.hpp"
 #include "GameObjectBase.hpp"
-#include "RGameObject.hpp"
+#include "planeta/buildin/RGameObject.hpp"
 
 #include "boost/algorithm/string.hpp"
 

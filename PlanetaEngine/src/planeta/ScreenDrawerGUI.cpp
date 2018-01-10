@@ -3,9 +3,9 @@
 #include "DxLib.h"
 
 #include "planeta/ScreenDrawerGUI.hpp"
-#include "planeta/RGraph.hpp"
+#include "planeta/buildin/RGraph.hpp"
 #include "DXUtility.hpp"
-#include "RFont.hpp"
+#include "planeta/buildin/RFont.hpp"
 #include "Screen.hpp"
 
 namespace plnt {
