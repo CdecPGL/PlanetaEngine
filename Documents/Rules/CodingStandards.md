@@ -70,7 +70,8 @@ const変数、constexpr変数。
 
 Planeta関連のものはplnt名前空間で定義する。さらにその子名前空間として以下を用いる。
 
-- 直下: エンジン本体
+- core: ユーザーが直接用いるもの
+- engine: エンジン本体
 - buildin: 標準搭載のクラス群
 - reflection: リフレクションシステム
 - math: 数学関連

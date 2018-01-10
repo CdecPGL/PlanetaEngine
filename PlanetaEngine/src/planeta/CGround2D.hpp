@@ -4,7 +4,7 @@
 #include "GameObjectStandardComponent.hpp"
 #include "Vector2D.hpp"
 #include "RectAngle.hpp"
-#include "math/MathConstant.hpp"
+#include "planeta/math/MathConstant.hpp"
 #include "IColliderWithCollider2D.hpp"
 
 namespace plnt {

@@ -2,7 +2,7 @@
 
 #include <limits>
 #include "CGround2D.hpp"
-#include "math/MathConstant.hpp"
+#include "planeta/math/MathConstant.hpp"
 
 namespace plnt {
 	/*! 何もしない地面コンポーネント*/

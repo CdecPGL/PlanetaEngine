@@ -6,7 +6,7 @@
 #include "RGraph.hpp"
 #include "IGameObject.hpp"
 #include "CPlanet.hpp"
-#include "math/MathConstant.hpp"
+#include "planeta/math/MathConstant.hpp"
 #include "LogUtility.hpp"
 #include "GraphDrawData2D.hpp"
 

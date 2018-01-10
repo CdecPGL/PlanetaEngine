@@ -64,7 +64,7 @@
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -97,7 +97,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\planeta\ *.hpp /MIR /NP
+      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\ *.hpp /MIR /NP
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -115,7 +115,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -144,7 +144,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\planeta\ *.hpp /MIR /NP
+      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\ *.hpp /MIR /NP
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -152,92 +152,92 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\AccessorTemplate.hpp" />
-    <ClInclude Include="src\AESEncrypter.hpp" />
-    <ClInclude Include="src\ArchiveManipulator.hpp" />
-    <ClInclude Include="src\BadAllocException.hpp" />
-    <ClInclude Include="src\BadNewDeleteOperation.hpp" />
-    <ClInclude Include="src\BGMController.hpp" />
-    <ClInclude Include="src\BuiltInGameObjectComponents.hpp" />
-    <ClInclude Include="src\BuiltInResources.hpp" />
-    <ClInclude Include="src\BuiltInTasks.hpp" />
-    <ClInclude Include="src\CBelongingGroundGravity.hpp" />
-    <ClInclude Include="src\CCamera2D.hpp" />
-    <ClInclude Include="src\CCircleCollider2D.hpp" />
-    <ClInclude Include="src\CCollider2D.hpp" />
-    <ClInclude Include="src\CDraw2D.hpp" />
-    <ClInclude Include="src\CDrawGraph2D.hpp" />
-    <ClInclude Include="src\CDrawGraphGUI.hpp" />
-    <ClInclude Include="src\CDrawGUI.hpp" />
-    <ClInclude Include="src\CDrawLine2D.hpp" />
-    <ClInclude Include="src\CDrawPlanet2D.hpp" />
-    <ClInclude Include="src\CDrawPolygon2D.hpp" />
-    <ClInclude Include="src\CDumyGround2D.hpp" />
-    <ClInclude Include="src\CEffect.hpp" />
-    <ClInclude Include="src\CGraph2DAnimator.hpp" />
-    <ClInclude Include="src\CGround2D.hpp" />
-    <ClInclude Include="src\CharacterCode.hpp" />
-    <ClInclude Include="src\ClassInfo.hpp" />
-    <ClInclude Include="src\ClassInfoCaller.hpp" />
-    <ClInclude Include="src\ClassRegisterer.hpp" />
-    <ClInclude Include="src\ClassRegistererImpl.hpp" />
-    <ClInclude Include="src\Collider2DData.hpp" />
-    <ClInclude Include="src\ColliderComponent2DDebugDrawer.hpp" />
-    <ClInclude Include="src\CollisionDetectFunctions.hpp" />
-    <ClInclude Include="src\CollisionGroupMatrix.hpp" />
-    <ClInclude Include="src\CollisionState.hpp" />
-    <ClInclude Include="src\CollisionWorld.hpp" />
-    <ClInclude Include="src\Color.hpp" />
-    <ClInclude Include="src\ConfigManager.hpp" />
-    <ClInclude Include="src\Coroutine.hpp" />
-    <ClInclude Include="src\CoroutineUtility.hpp" />
-    <ClInclude Include="src\CPlanet.hpp" />
-    <ClInclude Include="src\CPlanetGround2D.hpp" />
-    <ClInclude Include="src\CPolygonCollider2D.hpp" />
-    <ClInclude Include="src\CStraightLineCollider2D.hpp" />
-    <ClInclude Include="src\CsvFile.hpp" />
-    <ClInclude Include="src\CTransform2D.hpp" />
-    <ClInclude Include="src\CTransformGUI.hpp" />
-    <ClInclude Include="src\DataContainer.hpp" />
-    <ClInclude Include="src\DataContainerError.hpp" />
-    <ClInclude Include="src\DataContainerFunctionsForBoostSerialize.hpp" />
-    <ClInclude Include="src\DataContainerImpl.hpp" />
-    <ClInclude Include="src\DataContainerSerializeUtility.hpp" />
-    <ClInclude Include="src\DebugDrawInterface.hpp" />
-    <ClInclude Include="src\DebugManager.hpp" />
-    <ClInclude Include="src\Delegate.hpp" />
-    <ClInclude Include="src\DrawSystem.hpp" />
-    <ClInclude Include="src\DXGraphDrawData.hpp" />
-    <ClInclude Include="src\DXUtility.hpp" />
-    <ClInclude Include="src\EACollisionWithCollider2D.hpp" />
-    <ClInclude Include="src\EACollisionWithGround2D.hpp" />
-    <ClInclude Include="src\EffekseerUtil.hpp" />
-    <ClInclude Include="src\EncrypterBase.hpp" />
-    <ClInclude Include="src\EventMonitor.hpp" />
-    <ClInclude Include="src\EXOREncrypter.hpp" />
-    <ClInclude Include="src\File.hpp" />
-    <ClInclude Include="src\FileAccessMode.hpp" />
-    <ClInclude Include="src\FileIStream.hpp" />
-    <ClInclude Include="src\FileManipulator.hpp" />
-    <ClInclude Include="src\FileOStream.hpp" />
-    <ClInclude Include="src\FileStreamBuf.hpp" />
-    <ClInclude Include="src\FileSystemUtility.hpp" />
-    <ClInclude Include="src\Game.hpp" />
-    <ClInclude Include="src\GameObjectAllocator.hpp" />
-    <ClInclude Include="src\GameObjectBase.hpp" />
-    <ClInclude Include="src\GameObjectComponent.hpp" />
-    <ClInclude Include="src\GameObjectComponentHolder.hpp" />
-    <ClInclude Include="src\GameObjectComponentSetUpData.hpp" />
-    <ClInclude Include="src\GameObjectComponentUpdateProcess.hpp" />
-    <ClInclude Include="src\GameObjectFactory.hpp" />
-    <ClInclude Include="src\GameObjectManager.hpp" />
-    <ClInclude Include="src\GameObjectManagerConnection.hpp" />
-    <ClInclude Include="src\GameObjectStandardComponent.hpp" />
-    <ClInclude Include="src\GameObjectSystemComponent.hpp" />
-    <ClInclude Include="src\GlobalNewDeleteDefinition.hpp" />
-    <ClInclude Include="src\GOComponentAdder.hpp" />
-    <ClInclude Include="src\GOComponentGetter.hpp" />
-    <ClInclude Include="src\GraphDrawData2D.hpp" />
+    <ClInclude Include="src\planeta\AccessorTemplate.hpp" />
+    <ClInclude Include="src\planeta\AESEncrypter.hpp" />
+    <ClInclude Include="src\planeta\ArchiveManipulator.hpp" />
+    <ClInclude Include="src\planeta\BadAllocException.hpp" />
+    <ClInclude Include="src\planeta\BadNewDeleteOperation.hpp" />
+    <ClInclude Include="src\planeta\BGMController.hpp" />
+    <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp" />
+    <ClInclude Include="src\planeta\BuiltInResources.hpp" />
+    <ClInclude Include="src\planeta\BuiltInTasks.hpp" />
+    <ClInclude Include="src\planeta\CBelongingGroundGravity.hpp" />
+    <ClInclude Include="src\planeta\CCamera2D.hpp" />
+    <ClInclude Include="src\planeta\CCircleCollider2D.hpp" />
+    <ClInclude Include="src\planeta\CCollider2D.hpp" />
+    <ClInclude Include="src\planeta\CDraw2D.hpp" />
+    <ClInclude Include="src\planeta\CDrawGraph2D.hpp" />
+    <ClInclude Include="src\planeta\CDrawGraphGUI.hpp" />
+    <ClInclude Include="src\planeta\CDrawGUI.hpp" />
+    <ClInclude Include="src\planeta\CDrawLine2D.hpp" />
+    <ClInclude Include="src\planeta\CDrawPlanet2D.hpp" />
+    <ClInclude Include="src\planeta\CDrawPolygon2D.hpp" />
+    <ClInclude Include="src\planeta\CDumyGround2D.hpp" />
+    <ClInclude Include="src\planeta\CEffect.hpp" />
+    <ClInclude Include="src\planeta\CGraph2DAnimator.hpp" />
+    <ClInclude Include="src\planeta\CGround2D.hpp" />
+    <ClInclude Include="src\planeta\CharacterCode.hpp" />
+    <ClInclude Include="src\planeta\ClassInfo.hpp" />
+    <ClInclude Include="src\planeta\ClassInfoCaller.hpp" />
+    <ClInclude Include="src\planeta\ClassRegisterer.hpp" />
+    <ClInclude Include="src\planeta\ClassRegistererImpl.hpp" />
+    <ClInclude Include="src\planeta\Collider2DData.hpp" />
+    <ClInclude Include="src\planeta\ColliderComponent2DDebugDrawer.hpp" />
+    <ClInclude Include="src\planeta\CollisionDetectFunctions.hpp" />
+    <ClInclude Include="src\planeta\CollisionGroupMatrix.hpp" />
+    <ClInclude Include="src\planeta\CollisionState.hpp" />
+    <ClInclude Include="src\planeta\CollisionWorld.hpp" />
+    <ClInclude Include="src\planeta\Color.hpp" />
+    <ClInclude Include="src\planeta\ConfigManager.hpp" />
+    <ClInclude Include="src\planeta\Coroutine.hpp" />
+    <ClInclude Include="src\planeta\CoroutineUtility.hpp" />
+    <ClInclude Include="src\planeta\CPlanet.hpp" />
+    <ClInclude Include="src\planeta\CPlanetGround2D.hpp" />
+    <ClInclude Include="src\planeta\CPolygonCollider2D.hpp" />
+    <ClInclude Include="src\planeta\CStraightLineCollider2D.hpp" />
+    <ClInclude Include="src\planeta\CsvFile.hpp" />
+    <ClInclude Include="src\planeta\CTransform2D.hpp" />
+    <ClInclude Include="src\planeta\CTransformGUI.hpp" />
+    <ClInclude Include="src\planeta\DataContainer.hpp" />
+    <ClInclude Include="src\planeta\DataContainerError.hpp" />
+    <ClInclude Include="src\planeta\DataContainerFunctionsForBoostSerialize.hpp" />
+    <ClInclude Include="src\planeta\DataContainerImpl.hpp" />
+    <ClInclude Include="src\planeta\DataContainerSerializeUtility.hpp" />
+    <ClInclude Include="src\planeta\DebugDrawInterface.hpp" />
+    <ClInclude Include="src\planeta\DebugManager.hpp" />
+    <ClInclude Include="src\planeta\Delegate.hpp" />
+    <ClInclude Include="src\planeta\DrawSystem.hpp" />
+    <ClInclude Include="src\planeta\DXGraphDrawData.hpp" />
+    <ClInclude Include="src\planeta\DXUtility.hpp" />
+    <ClInclude Include="src\planeta\EACollisionWithCollider2D.hpp" />
+    <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp" />
+    <ClInclude Include="src\planeta\EffekseerUtil.hpp" />
+    <ClInclude Include="src\planeta\EncrypterBase.hpp" />
+    <ClInclude Include="src\planeta\EventMonitor.hpp" />
+    <ClInclude Include="src\planeta\EXOREncrypter.hpp" />
+    <ClInclude Include="src\planeta\File.hpp" />
+    <ClInclude Include="src\planeta\FileAccessMode.hpp" />
+    <ClInclude Include="src\planeta\FileIStream.hpp" />
+    <ClInclude Include="src\planeta\FileManipulator.hpp" />
+    <ClInclude Include="src\planeta\FileOStream.hpp" />
+    <ClInclude Include="src\planeta\FileStreamBuf.hpp" />
+    <ClInclude Include="src\planeta\FileSystemUtility.hpp" />
+    <ClInclude Include="src\planeta\Game.hpp" />
+    <ClInclude Include="src\planeta\GameObjectAllocator.hpp" />
+    <ClInclude Include="src\planeta\GameObjectBase.hpp" />
+    <ClInclude Include="src\planeta\GameObjectComponent.hpp" />
+    <ClInclude Include="src\planeta\GameObjectComponentHolder.hpp" />
+    <ClInclude Include="src\planeta\GameObjectComponentSetUpData.hpp" />
+    <ClInclude Include="src\planeta\GameObjectComponentUpdateProcess.hpp" />
+    <ClInclude Include="src\planeta\GameObjectFactory.hpp" />
+    <ClInclude Include="src\planeta\GameObjectManager.hpp" />
+    <ClInclude Include="src\planeta\GameObjectManagerConnection.hpp" />
+    <ClInclude Include="src\planeta\GameObjectStandardComponent.hpp" />
+    <ClInclude Include="src\planeta\GameObjectSystemComponent.hpp" />
+    <ClInclude Include="src\planeta\GlobalNewDeleteDefinition.hpp" />
+    <ClInclude Include="src\planeta\GOComponentAdder.hpp" />
+    <ClInclude Include="src\planeta\GOComponentGetter.hpp" />
+    <ClInclude Include="src\planeta\GraphDrawData2D.hpp" />
     <ClInclude Include="deprecated\GraphPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -262,262 +262,262 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\HeadersForGameObjectComponent.hpp" />
-    <ClInclude Include="src\HeadersForSceneSetUpper.hpp" />
-    <ClInclude Include="src\HeadersForTask.hpp" />
-    <ClInclude Include="src\IBGMController.hpp" />
-    <ClInclude Include="src\IColliderWithCollider2D.hpp" />
-    <ClInclude Include="src\ICollisionWorld.hpp" />
-    <ClInclude Include="src\IConfigManager.hpp" />
-    <ClInclude Include="src\IDebugManager.hpp" />
-    <ClInclude Include="src\IDrawSystem.hpp" />
-    <ClInclude Include="src\IGameObject.hpp" />
-    <ClInclude Include="src\IGameObjectManager.hpp" />
-    <ClInclude Include="src\IInputManager.hpp" />
-    <ClInclude Include="src\ILogManager.hpp" />
-    <ClInclude Include="src\IMemoryAllocator.hpp" />
-    <ClInclude Include="src\IniFile.hpp" />
-    <ClInclude Include="src\InitFunctions.hpp" />
-    <ClInclude Include="src\InputDefinitions.hpp" />
-    <ClInclude Include="src\InputManager.hpp" />
-    <ClInclude Include="src\InputUtility.hpp" />
-    <ClInclude Include="src\IPerformanceManager.hpp" />
-    <ClInclude Include="src\IRenderingManager.hpp" />
-    <ClInclude Include="src\IResourceManager.hpp" />
-    <ClInclude Include="src\ISaveManager.hpp" />
-    <ClInclude Include="src\IScene.hpp" />
-    <ClInclude Include="src\ISceneInternal.hpp" />
-    <ClInclude Include="src\ISceneManager.hpp" />
-    <ClInclude Include="src\ISoundEffectController.hpp" />
-    <ClInclude Include="src\ISoundManager.hpp" />
-    <ClInclude Include="src\ITaskManager.hpp" />
-    <ClInclude Include="src\ITransformSystem.hpp" />
-    <ClInclude Include="src\JsonFile.hpp" />
-    <ClInclude Include="src\KeyConfig.hpp" />
-    <ClInclude Include="src\LogManager.hpp" />
-    <ClInclude Include="src\LogUtility.hpp" />
-    <ClInclude Include="src\LuaBindHelder.hpp" />
-    <ClInclude Include="src\MacroUtility.hpp" />
-    <ClInclude Include="src\math\MathConstant.hpp" />
-    <ClInclude Include="src\math\MathMatrix.hpp" />
-    <ClInclude Include="src\math\MathUtility.hpp" />
-    <ClInclude Include="src\math\MathVector.hpp" />
-    <ClInclude Include="src\Matrix2_2.hpp" />
-    <ClInclude Include="src\Matrix3_3.hpp" />
-    <ClInclude Include="src\Memory.hpp" />
-    <ClInclude Include="src\MetaprogrammingUtility.hpp" />
-    <ClInclude Include="src\NonCopyable.hpp" />
-    <ClInclude Include="src\NonOwingPointer.hpp" />
-    <ClInclude Include="src\NormalFolderManipulator.hpp" />
-    <ClInclude Include="src\NullWeakPointerException.hpp" />
-    <ClInclude Include="src\Object.hpp" />
-    <ClInclude Include="src\ObjectHolderTemplate_WithID.hpp" />
-    <ClInclude Include="src\ObjectHolderTemplate_WithoutID.hpp" />
-    <ClInclude Include="src\ParameterHolder.hpp" />
-    <ClInclude Include="src\PEDateTime.hpp" />
-    <ClInclude Include="src\PerfoamanceManager.hpp" />
-    <ClInclude Include="src\PETime.hpp" />
-    <ClInclude Include="src\PlanetaEngine.hpp" />
-    <ClInclude Include="src\PrefixUtility.hpp" />
-    <ClInclude Include="src\Property.hpp" />
-    <ClInclude Include="src\RangeUtility.hpp" />
-    <ClInclude Include="src\RCsv.hpp" />
-    <ClInclude Include="src\RectAngle.hpp" />
-    <ClInclude Include="src\REffect.hpp" />
-    <ClInclude Include="src\REffectTexture.hpp" />
-    <ClInclude Include="src\Reflectable.hpp" />
-    <ClInclude Include="src\ReflectableClassAccessor.hpp" />
-    <ClInclude Include="src\Reflection.hpp" />
-    <ClInclude Include="src\ReflectionAccessible.hpp" />
-    <ClInclude Include="src\ReflectionClassData.hpp" />
-    <ClInclude Include="src\ReflectionExceptions.hpp" />
-    <ClInclude Include="src\ReflectionUtility.hpp" />
-    <ClInclude Include="src\RenderingManager.hpp" />
+    <ClInclude Include="src\planeta\HeadersForGameObjectComponent.hpp" />
+    <ClInclude Include="src\planeta\HeadersForSceneSetUpper.hpp" />
+    <ClInclude Include="src\planeta\HeadersForTask.hpp" />
+    <ClInclude Include="src\planeta\IBGMController.hpp" />
+    <ClInclude Include="src\planeta\IColliderWithCollider2D.hpp" />
+    <ClInclude Include="src\planeta\ICollisionWorld.hpp" />
+    <ClInclude Include="src\planeta\IConfigManager.hpp" />
+    <ClInclude Include="src\planeta\IDebugManager.hpp" />
+    <ClInclude Include="src\planeta\IDrawSystem.hpp" />
+    <ClInclude Include="src\planeta\IGameObject.hpp" />
+    <ClInclude Include="src\planeta\IGameObjectManager.hpp" />
+    <ClInclude Include="src\planeta\IInputManager.hpp" />
+    <ClInclude Include="src\planeta\ILogManager.hpp" />
+    <ClInclude Include="src\planeta\IMemoryAllocator.hpp" />
+    <ClInclude Include="src\planeta\IniFile.hpp" />
+    <ClInclude Include="src\planeta\InitFunctions.hpp" />
+    <ClInclude Include="src\planeta\InputDefinitions.hpp" />
+    <ClInclude Include="src\planeta\InputManager.hpp" />
+    <ClInclude Include="src\planeta\InputUtility.hpp" />
+    <ClInclude Include="src\planeta\IPerformanceManager.hpp" />
+    <ClInclude Include="src\planeta\IRenderingManager.hpp" />
+    <ClInclude Include="src\planeta\IResourceManager.hpp" />
+    <ClInclude Include="src\planeta\ISaveManager.hpp" />
+    <ClInclude Include="src\planeta\IScene.hpp" />
+    <ClInclude Include="src\planeta\ISceneInternal.hpp" />
+    <ClInclude Include="src\planeta\ISceneManager.hpp" />
+    <ClInclude Include="src\planeta\ISoundEffectController.hpp" />
+    <ClInclude Include="src\planeta\ISoundManager.hpp" />
+    <ClInclude Include="src\planeta\ITaskManager.hpp" />
+    <ClInclude Include="src\planeta\ITransformSystem.hpp" />
+    <ClInclude Include="src\planeta\JsonFile.hpp" />
+    <ClInclude Include="src\planeta\KeyConfig.hpp" />
+    <ClInclude Include="src\planeta\LogManager.hpp" />
+    <ClInclude Include="src\planeta\LogUtility.hpp" />
+    <ClInclude Include="src\planeta\LuaBindHelder.hpp" />
+    <ClInclude Include="src\planeta\MacroUtility.hpp" />
+    <ClInclude Include="src\planeta\math\MathConstant.hpp" />
+    <ClInclude Include="src\planeta\math\MathMatrix.hpp" />
+    <ClInclude Include="src\planeta\math\MathUtility.hpp" />
+    <ClInclude Include="src\planeta\math\MathVector.hpp" />
+    <ClInclude Include="src\planeta\Matrix2_2.hpp" />
+    <ClInclude Include="src\planeta\Matrix3_3.hpp" />
+    <ClInclude Include="src\planeta\Memory.hpp" />
+    <ClInclude Include="src\planeta\MetaprogrammingUtility.hpp" />
+    <ClInclude Include="src\planeta\NonCopyable.hpp" />
+    <ClInclude Include="src\planeta\NonOwingPointer.hpp" />
+    <ClInclude Include="src\planeta\NormalFolderManipulator.hpp" />
+    <ClInclude Include="src\planeta\NullWeakPointerException.hpp" />
+    <ClInclude Include="src\planeta\Object.hpp" />
+    <ClInclude Include="src\planeta\ObjectHolderTemplate_WithID.hpp" />
+    <ClInclude Include="src\planeta\ObjectHolderTemplate_WithoutID.hpp" />
+    <ClInclude Include="src\planeta\ParameterHolder.hpp" />
+    <ClInclude Include="src\planeta\PEDateTime.hpp" />
+    <ClInclude Include="src\planeta\PerfoamanceManager.hpp" />
+    <ClInclude Include="src\planeta\PETime.hpp" />
+    <ClInclude Include="src\planeta\PlanetaEngine.hpp" />
+    <ClInclude Include="src\planeta\PrefixUtility.hpp" />
+    <ClInclude Include="src\planeta\Property.hpp" />
+    <ClInclude Include="src\planeta\RangeUtility.hpp" />
+    <ClInclude Include="src\planeta\RCsv.hpp" />
+    <ClInclude Include="src\planeta\RectAngle.hpp" />
+    <ClInclude Include="src\planeta\REffect.hpp" />
+    <ClInclude Include="src\planeta\REffectTexture.hpp" />
+    <ClInclude Include="src\planeta\Reflectable.hpp" />
+    <ClInclude Include="src\planeta\ReflectableClassAccessor.hpp" />
+    <ClInclude Include="src\planeta\Reflection.hpp" />
+    <ClInclude Include="src\planeta\ReflectionAccessible.hpp" />
+    <ClInclude Include="src\planeta\ReflectionClassData.hpp" />
+    <ClInclude Include="src\planeta\ReflectionExceptions.hpp" />
+    <ClInclude Include="src\planeta\ReflectionUtility.hpp" />
+    <ClInclude Include="src\planeta\RenderingManager.hpp" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\ResourceBase.hpp" />
-    <ClInclude Include="src\ResourceHolder.hpp" />
-    <ClInclude Include="src\ResourceManager.hpp" />
-    <ClInclude Include="src\ResourceReferencer.hpp" />
-    <ClInclude Include="src\RFont.hpp" />
-    <ClInclude Include="src\RGameObject.hpp" />
-    <ClInclude Include="src\RGraph.hpp" />
-    <ClInclude Include="src\RIni.hpp" />
-    <ClInclude Include="src\RJson.hpp" />
-    <ClInclude Include="src\RLuaScript.hpp" />
-    <ClInclude Include="src\RMusic.hpp" />
-    <ClInclude Include="src\RPtree.hpp" />
-    <ClInclude Include="src\RSound.hpp" />
-    <ClInclude Include="src\RText.hpp" />
-    <ClInclude Include="src\RXml.hpp" />
-    <ClInclude Include="src\SaveManager.hpp" />
-    <ClInclude Include="src\Scene.hpp" />
-    <ClInclude Include="src\SceneManager.hpp" />
-    <ClInclude Include="src\SceneModule.hpp" />
-    <ClInclude Include="src\SceneSetUpper.hpp" />
-    <ClInclude Include="src\SceneSetUpProxy.hpp" />
-    <ClInclude Include="src\Screen.hpp" />
-    <ClInclude Include="src\ScreenChangeEffecter.hpp" />
-    <ClInclude Include="src\ScreenDrawer2D.hpp" />
-    <ClInclude Include="src\ScreenDrawerGUI.hpp" />
-    <ClInclude Include="src\SError.hpp" />
-    <ClInclude Include="src\SharedPointerInstance.hpp" />
-    <ClInclude Include="src\Signal.hpp" />
+    <ClInclude Include="src\planeta\ResourceBase.hpp" />
+    <ClInclude Include="src\planeta\ResourceHolder.hpp" />
+    <ClInclude Include="src\planeta\ResourceManager.hpp" />
+    <ClInclude Include="src\planeta\ResourceReferencer.hpp" />
+    <ClInclude Include="src\planeta\RFont.hpp" />
+    <ClInclude Include="src\planeta\RGameObject.hpp" />
+    <ClInclude Include="src\planeta\RGraph.hpp" />
+    <ClInclude Include="src\planeta\RIni.hpp" />
+    <ClInclude Include="src\planeta\RJson.hpp" />
+    <ClInclude Include="src\planeta\RLuaScript.hpp" />
+    <ClInclude Include="src\planeta\RMusic.hpp" />
+    <ClInclude Include="src\planeta\RPtree.hpp" />
+    <ClInclude Include="src\planeta\RSound.hpp" />
+    <ClInclude Include="src\planeta\RText.hpp" />
+    <ClInclude Include="src\planeta\RXml.hpp" />
+    <ClInclude Include="src\planeta\SaveManager.hpp" />
+    <ClInclude Include="src\planeta\Scene.hpp" />
+    <ClInclude Include="src\planeta\SceneManager.hpp" />
+    <ClInclude Include="src\planeta\SceneModule.hpp" />
+    <ClInclude Include="src\planeta\SceneSetUpper.hpp" />
+    <ClInclude Include="src\planeta\SceneSetUpProxy.hpp" />
+    <ClInclude Include="src\planeta\Screen.hpp" />
+    <ClInclude Include="src\planeta\ScreenChangeEffecter.hpp" />
+    <ClInclude Include="src\planeta\ScreenDrawer2D.hpp" />
+    <ClInclude Include="src\planeta\ScreenDrawerGUI.hpp" />
+    <ClInclude Include="src\planeta\SError.hpp" />
+    <ClInclude Include="src\planeta\SharedPointerInstance.hpp" />
+    <ClInclude Include="src\planeta\Signal.hpp" />
     <ClInclude Include="deprecated\SimplePolygonPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\SingletonTemplate.hpp" />
-    <ClInclude Include="src\SoundEffectController.hpp" />
-    <ClInclude Include="src\SoundManager.hpp" />
-    <ClInclude Include="src\StandardCollisionWorld.hpp" />
-    <ClInclude Include="src\StandardConfigManager.hpp" />
-    <ClInclude Include="src\StandardDebugManager.hpp" />
-    <ClInclude Include="src\StandardDrawSystem.hpp" />
-    <ClInclude Include="src\StandardGameObjectManager.hpp" />
-    <ClInclude Include="src\StandardInputManager.hpp" />
-    <ClInclude Include="src\StandardLogManager.hpp" />
-    <ClInclude Include="src\StandardPerformanceManager.hpp" />
-    <ClInclude Include="src\StandardRenderingManager.hpp" />
-    <ClInclude Include="src\StandardResourceManager.hpp" />
-    <ClInclude Include="src\StandardSaveManager.hpp" />
-    <ClInclude Include="src\StandardSceneManager.hpp" />
-    <ClInclude Include="src\StandardSceneManagerUtility.hpp" />
-    <ClInclude Include="src\StandardSoundManager.hpp" />
-    <ClInclude Include="src\StandardTaskManager.hpp" />
-    <ClInclude Include="src\StandardTransformSystem.hpp" />
+    <ClInclude Include="src\planeta\SingletonTemplate.hpp" />
+    <ClInclude Include="src\planeta\SoundEffectController.hpp" />
+    <ClInclude Include="src\planeta\SoundManager.hpp" />
+    <ClInclude Include="src\planeta\StandardCollisionWorld.hpp" />
+    <ClInclude Include="src\planeta\StandardConfigManager.hpp" />
+    <ClInclude Include="src\planeta\StandardDebugManager.hpp" />
+    <ClInclude Include="src\planeta\StandardDrawSystem.hpp" />
+    <ClInclude Include="src\planeta\StandardGameObjectManager.hpp" />
+    <ClInclude Include="src\planeta\StandardInputManager.hpp" />
+    <ClInclude Include="src\planeta\StandardLogManager.hpp" />
+    <ClInclude Include="src\planeta\StandardPerformanceManager.hpp" />
+    <ClInclude Include="src\planeta\StandardRenderingManager.hpp" />
+    <ClInclude Include="src\planeta\StandardResourceManager.hpp" />
+    <ClInclude Include="src\planeta\StandardSaveManager.hpp" />
+    <ClInclude Include="src\planeta\StandardSceneManager.hpp" />
+    <ClInclude Include="src\planeta\StandardSceneManagerUtility.hpp" />
+    <ClInclude Include="src\planeta\StandardSoundManager.hpp" />
+    <ClInclude Include="src\planeta\StandardTaskManager.hpp" />
+    <ClInclude Include="src\planeta\StandardTransformSystem.hpp" />
     <ClInclude Include="deprecated\StringPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\StringUtility.hpp" />
-    <ClInclude Include="src\SubSystemManager.hpp" />
-    <ClInclude Include="src\SystemTaskSlot.hpp" />
-    <ClInclude Include="src\SystemVariables.hpp" />
+    <ClInclude Include="src\planeta\StringUtility.hpp" />
+    <ClInclude Include="src\planeta\SubSystemManager.hpp" />
+    <ClInclude Include="src\planeta\SystemTaskSlot.hpp" />
+    <ClInclude Include="src\planeta\SystemVariables.hpp" />
     <ClInclude Include="deprecated\TalkWindows.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\Task.hpp" />
-    <ClInclude Include="src\TaskManager.hpp" />
-    <ClInclude Include="src\TaskManagerConnection.hpp" />
-    <ClInclude Include="src\TaskSlot.hpp" />
-    <ClInclude Include="src\TaskSystemSetUpper.hpp" />
-    <ClInclude Include="src\TCoroutine.hpp" />
+    <ClInclude Include="src\planeta\Task.hpp" />
+    <ClInclude Include="src\planeta\TaskManager.hpp" />
+    <ClInclude Include="src\planeta\TaskManagerConnection.hpp" />
+    <ClInclude Include="src\planeta\TaskSlot.hpp" />
+    <ClInclude Include="src\planeta\TaskSystemSetUpper.hpp" />
+    <ClInclude Include="src\planeta\TCoroutine.hpp" />
     <ClInclude Include="deprecated\TextPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\TInstant.hpp" />
-    <ClInclude Include="src\TInstantCoroutine.hpp" />
-    <ClInclude Include="src\TLSFMemoryAllocator.hpp" />
-    <ClInclude Include="src\TransformSystem.hpp" />
-    <ClInclude Include="src\TwoKeyMap.hpp" />
-    <ClInclude Include="src\TypeChecker.hpp" />
-    <ClInclude Include="src\TypeDefinitions.hpp" />
-    <ClInclude Include="src\TypeInfoWrapper.hpp" />
-    <ClInclude Include="src\TypeTraitsUtility.hpp" />
-    <ClInclude Include="src\UnorderedMap.hpp" />
-    <ClInclude Include="src\Vector.hpp" />
-    <ClInclude Include="src\Vector2D.hpp" />
-    <ClInclude Include="src\Vector3D.hpp" />
-    <ClInclude Include="src\Vector4D.hpp" />
-    <ClInclude Include="src\math\MathVectorElementIdentifer.hpp" />
-    <ClInclude Include="src\Vertex2D.hpp" />
-    <ClInclude Include="src\WeakPointer.hpp" />
-    <ClInclude Include="src\WindowsUtility.hpp" />
-    <ClInclude Include="src\XmlFile.hpp" />
+    <ClInclude Include="src\planeta\TInstant.hpp" />
+    <ClInclude Include="src\planeta\TInstantCoroutine.hpp" />
+    <ClInclude Include="src\planeta\TLSFMemoryAllocator.hpp" />
+    <ClInclude Include="src\planeta\TransformSystem.hpp" />
+    <ClInclude Include="src\planeta\TwoKeyMap.hpp" />
+    <ClInclude Include="src\planeta\TypeChecker.hpp" />
+    <ClInclude Include="src\planeta\TypeDefinitions.hpp" />
+    <ClInclude Include="src\planeta\TypeInfoWrapper.hpp" />
+    <ClInclude Include="src\planeta\TypeTraitsUtility.hpp" />
+    <ClInclude Include="src\planeta\UnorderedMap.hpp" />
+    <ClInclude Include="src\planeta\Vector.hpp" />
+    <ClInclude Include="src\planeta\Vector2D.hpp" />
+    <ClInclude Include="src\planeta\Vector3D.hpp" />
+    <ClInclude Include="src\planeta\Vector4D.hpp" />
+    <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp" />
+    <ClInclude Include="src\planeta\Vertex2D.hpp" />
+    <ClInclude Include="src\planeta\WeakPointer.hpp" />
+    <ClInclude Include="src\planeta\WindowsUtility.hpp" />
+    <ClInclude Include="src\planeta\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AESEncrypter.cpp" />
-    <ClCompile Include="src\ArchiveManipulator.cpp" />
-    <ClCompile Include="src\CBelongingGroundGravity.cpp" />
-    <ClCompile Include="src\BGMController.cpp" />
-    <ClCompile Include="src\CCamera2D.cpp" />
-    <ClCompile Include="src\CCircleCollider2D.cpp" />
-    <ClCompile Include="src\CCollider2D.cpp" />
-    <ClCompile Include="src\CDrawGraphGUI.cpp" />
-    <ClCompile Include="src\CDrawGUI.cpp" />
-    <ClCompile Include="src\ColliderComponent2DDebugDrawer.cpp" />
-    <ClCompile Include="src\CEffect.cpp" />
-    <ClCompile Include="src\CharacterCode.cpp" />
-    <ClCompile Include="src\ClassInfoCaller.cpp" />
-    <ClCompile Include="src\CollisionDetectFunctions.cpp" />
-    <ClCompile Include="src\CollisionGroupMatrix.cpp" />
-    <ClCompile Include="src\Color.cpp" />
-    <ClCompile Include="src\CsvFile.cpp" />
-    <ClCompile Include="src\CTransformGUI.cpp">
+    <ClCompile Include="src\planeta\AESEncrypter.cpp" />
+    <ClCompile Include="src\planeta\ArchiveManipulator.cpp" />
+    <ClCompile Include="src\planeta\CBelongingGroundGravity.cpp" />
+    <ClCompile Include="src\planeta\BGMController.cpp" />
+    <ClCompile Include="src\planeta\CCamera2D.cpp" />
+    <ClCompile Include="src\planeta\CCircleCollider2D.cpp" />
+    <ClCompile Include="src\planeta\CCollider2D.cpp" />
+    <ClCompile Include="src\planeta\CDrawGraphGUI.cpp" />
+    <ClCompile Include="src\planeta\CDrawGUI.cpp" />
+    <ClCompile Include="src\planeta\ColliderComponent2DDebugDrawer.cpp" />
+    <ClCompile Include="src\planeta\CEffect.cpp" />
+    <ClCompile Include="src\planeta\CharacterCode.cpp" />
+    <ClCompile Include="src\planeta\ClassInfoCaller.cpp" />
+    <ClCompile Include="src\planeta\CollisionDetectFunctions.cpp" />
+    <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp" />
+    <ClCompile Include="src\planeta\Color.cpp" />
+    <ClCompile Include="src\planeta\CsvFile.cpp" />
+    <ClCompile Include="src\planeta\CTransformGUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\EffekseerUtil.cpp" />
-    <ClCompile Include="src\Coroutine.cpp" />
-    <ClCompile Include="src\GameObjectFactory.cpp" />
-    <ClCompile Include="src\GOComponentAdder.cpp" />
-    <ClCompile Include="src\GOComponentGetter.cpp" />
-    <ClCompile Include="src\IniFile.cpp" />
-    <ClCompile Include="src\JsonFile.cpp" />
-    <ClCompile Include="src\GameSetStandardManagerImpl.cpp" />
-    <ClCompile Include="src\PrefixUtility.cpp" />
-    <ClCompile Include="src\REffect.cpp" />
-    <ClCompile Include="src\ReflectableClassAccessor.cpp" />
-    <ClCompile Include="src\Reflection.cpp" />
-    <ClCompile Include="src\InitFunctions.cpp" />
-    <ClCompile Include="src\InitFunctionsFIleSystem.cpp" />
-    <ClCompile Include="src\InitFunctionsResource.cpp" />
-    <ClCompile Include="src\InitializeFunctionsDxLib.cpp" />
-    <ClCompile Include="src\ReflectionAccessible.cpp" />
-    <ClCompile Include="src\ReflectionUtility.cpp" />
-    <ClCompile Include="src\ResourceBase.cpp" />
-    <ClCompile Include="src\ResourceReferencer.cpp" />
-    <ClCompile Include="src\RGameObject.cpp" />
-    <ClCompile Include="src\RJson.cpp" />
-    <ClCompile Include="src\RLuaScript.cpp" />
-    <ClCompile Include="src\RPtree.cpp" />
-    <ClCompile Include="src\REffectTexture.cpp" />
-    <ClCompile Include="src\SceneSetUpProxy.cpp" />
-    <ClCompile Include="src\StandardConfigManager.cpp" />
-    <ClCompile Include="src\StandardSystemSetUpSceneFunction.cpp" />
-    <ClCompile Include="src\StandardSceneModuleSetFunction.cpp" />
-    <ClCompile Include="src\StringUtility.cpp" />
-    <ClCompile Include="src\SubSystemManager.cpp" />
-    <ClCompile Include="src\TaskManagerConnection.cpp" />
-    <ClCompile Include="src\TCoroutine.cpp" />
-    <ClCompile Include="src\RCsv.cpp" />
-    <ClCompile Include="src\StandardDebugManager.cpp" />
-    <ClCompile Include="src\CDrawPolygon2D.cpp" />
-    <ClCompile Include="src\EncrypterBase.cpp" />
-    <ClCompile Include="src\SError.cpp" />
-    <ClCompile Include="src\EXOREncrypter.cpp" />
-    <ClCompile Include="src\FileIStream.cpp" />
-    <ClCompile Include="src\FileManipulator.cpp" />
-    <ClCompile Include="src\FileOStream.cpp" />
-    <ClCompile Include="src\FileStreamBuf.cpp" />
-    <ClCompile Include="src\FileSystemUtility.cpp" />
-    <ClCompile Include="src\RFont.cpp" />
-    <ClCompile Include="src\DataContainer.cpp" />
-    <ClCompile Include="src\DataContainerImpl.cpp" />
-    <ClCompile Include="src\DataContainerSerializeUtility.cpp" />
-    <ClCompile Include="src\GameObjectBase.cpp" />
-    <ClCompile Include="src\GameObjectComponentHolder.cpp" />
-    <ClCompile Include="src\GameObjectManagerConnection.cpp" />
-    <ClCompile Include="src\GraphDrawData2D.cpp" />
+    <ClCompile Include="src\planeta\EffekseerUtil.cpp" />
+    <ClCompile Include="src\planeta\Coroutine.cpp" />
+    <ClCompile Include="src\planeta\GameObjectFactory.cpp" />
+    <ClCompile Include="src\planeta\GOComponentAdder.cpp" />
+    <ClCompile Include="src\planeta\GOComponentGetter.cpp" />
+    <ClCompile Include="src\planeta\IniFile.cpp" />
+    <ClCompile Include="src\planeta\JsonFile.cpp" />
+    <ClCompile Include="src\planeta\GameSetStandardManagerImpl.cpp" />
+    <ClCompile Include="src\planeta\PrefixUtility.cpp" />
+    <ClCompile Include="src\planeta\REffect.cpp" />
+    <ClCompile Include="src\planeta\ReflectableClassAccessor.cpp" />
+    <ClCompile Include="src\planeta\Reflection.cpp" />
+    <ClCompile Include="src\planeta\InitFunctions.cpp" />
+    <ClCompile Include="src\planeta\InitFunctionsFIleSystem.cpp" />
+    <ClCompile Include="src\planeta\InitFunctionsResource.cpp" />
+    <ClCompile Include="src\planeta\InitializeFunctionsDxLib.cpp" />
+    <ClCompile Include="src\planeta\ReflectionAccessible.cpp" />
+    <ClCompile Include="src\planeta\ReflectionUtility.cpp" />
+    <ClCompile Include="src\planeta\ResourceBase.cpp" />
+    <ClCompile Include="src\planeta\ResourceReferencer.cpp" />
+    <ClCompile Include="src\planeta\RGameObject.cpp" />
+    <ClCompile Include="src\planeta\RJson.cpp" />
+    <ClCompile Include="src\planeta\RLuaScript.cpp" />
+    <ClCompile Include="src\planeta\RPtree.cpp" />
+    <ClCompile Include="src\planeta\REffectTexture.cpp" />
+    <ClCompile Include="src\planeta\SceneSetUpProxy.cpp" />
+    <ClCompile Include="src\planeta\StandardConfigManager.cpp" />
+    <ClCompile Include="src\planeta\StandardSystemSetUpSceneFunction.cpp" />
+    <ClCompile Include="src\planeta\StandardSceneModuleSetFunction.cpp" />
+    <ClCompile Include="src\planeta\StringUtility.cpp" />
+    <ClCompile Include="src\planeta\SubSystemManager.cpp" />
+    <ClCompile Include="src\planeta\TaskManagerConnection.cpp" />
+    <ClCompile Include="src\planeta\TCoroutine.cpp" />
+    <ClCompile Include="src\planeta\RCsv.cpp" />
+    <ClCompile Include="src\planeta\StandardDebugManager.cpp" />
+    <ClCompile Include="src\planeta\CDrawPolygon2D.cpp" />
+    <ClCompile Include="src\planeta\EncrypterBase.cpp" />
+    <ClCompile Include="src\planeta\SError.cpp" />
+    <ClCompile Include="src\planeta\EXOREncrypter.cpp" />
+    <ClCompile Include="src\planeta\FileIStream.cpp" />
+    <ClCompile Include="src\planeta\FileManipulator.cpp" />
+    <ClCompile Include="src\planeta\FileOStream.cpp" />
+    <ClCompile Include="src\planeta\FileStreamBuf.cpp" />
+    <ClCompile Include="src\planeta\FileSystemUtility.cpp" />
+    <ClCompile Include="src\planeta\RFont.cpp" />
+    <ClCompile Include="src\planeta\DataContainer.cpp" />
+    <ClCompile Include="src\planeta\DataContainerImpl.cpp" />
+    <ClCompile Include="src\planeta\DataContainerSerializeUtility.cpp" />
+    <ClCompile Include="src\planeta\GameObjectBase.cpp" />
+    <ClCompile Include="src\planeta\GameObjectComponentHolder.cpp" />
+    <ClCompile Include="src\planeta\GameObjectManagerConnection.cpp" />
+    <ClCompile Include="src\planeta\GraphDrawData2D.cpp" />
     <ClCompile Include="deprecated\GraphPanel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\TInstant.cpp" />
-    <ClCompile Include="src\StandardSaveManager.cpp" />
-    <ClCompile Include="src\SceneSetUpper.cpp" />
-    <ClCompile Include="src\Screen.cpp" />
-    <ClCompile Include="src\ScreenChangeEffecter.cpp" />
-    <ClCompile Include="src\ScreenDrawer2D.cpp" />
-    <ClCompile Include="src\ScreenDrawerGUI.cpp" />
+    <ClCompile Include="src\planeta\TInstant.cpp" />
+    <ClCompile Include="src\planeta\StandardSaveManager.cpp" />
+    <ClCompile Include="src\planeta\SceneSetUpper.cpp" />
+    <ClCompile Include="src\planeta\Screen.cpp" />
+    <ClCompile Include="src\planeta\ScreenChangeEffecter.cpp" />
+    <ClCompile Include="src\planeta\ScreenDrawer2D.cpp" />
+    <ClCompile Include="src\planeta\ScreenDrawerGUI.cpp" />
     <ClCompile Include="deprecated\SimplePolygonPanel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\SoundEffectController.cpp" />
-    <ClCompile Include="src\StandardSoundManager.cpp" />
+    <ClCompile Include="src\planeta\SoundEffectController.cpp" />
+    <ClCompile Include="src\planeta\StandardSoundManager.cpp" />
     <ClCompile Include="deprecated\StringPanel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -538,47 +538,47 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\CDraw2D.cpp" />
-    <ClCompile Include="src\CDrawLine2D.cpp" />
-    <ClCompile Include="src\StandardRenderingManager.cpp" />
-    <ClCompile Include="src\CDrawPlanet2D.cpp" />
-    <ClCompile Include="src\DXUtility.cpp" />
-    <ClCompile Include="src\CGraph2DAnimator.cpp" />
-    <ClCompile Include="src\RGraph.cpp" />
-    <ClCompile Include="src\RIni.cpp" />
-    <ClCompile Include="src\KeyConfig.cpp" />
-    <ClCompile Include="src\StandardInputManager.cpp" />
-    <ClCompile Include="src\InputUtility.cpp" />
-    <ClCompile Include="src\math\MathUtility.cpp" />
-    <ClCompile Include="src\RMusic.cpp" />
-    <ClCompile Include="src\PEDateTime.cpp" />
-    <ClCompile Include="src\CPlanetGround2D.cpp" />
-    <ClCompile Include="src\CPolygonCollider2D.cpp" />
-    <ClCompile Include="src\RSound.cpp" />
-    <ClCompile Include="src\File.cpp" />
-    <ClCompile Include="src\StandardCollisionWorld.cpp" />
-    <ClCompile Include="src\GameObjectComponent.cpp" />
-    <ClCompile Include="src\StandardDrawSystem.cpp" />
-    <ClCompile Include="src\StandardGameObjectManager.cpp" />
-    <ClCompile Include="src\CDrawGraph2D.cpp" />
-    <ClCompile Include="src\CGround2D.cpp" />
-    <ClCompile Include="src\NormalFolderManipulator.cpp" />
-    <ClCompile Include="src\Object.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\CPlanet.cpp" />
-    <ClCompile Include="src\Task.cpp" />
-    <ClCompile Include="src\StandardTaskManager.cpp" />
-    <ClCompile Include="src\StandardResourceManager.cpp" />
-    <ClCompile Include="src\Scene.cpp" />
-    <ClCompile Include="src\StandardSceneManager.cpp" />
-    <ClCompile Include="src\CStraightLineCollider2D.cpp" />
-    <ClCompile Include="src\StandardPerformanceManager.cpp" />
-    <ClCompile Include="src\StandardLogManager.cpp" />
-    <ClCompile Include="src\SystemVariables.cpp" />
-    <ClCompile Include="src\PETime.cpp" />
-    <ClCompile Include="src\RText.cpp" />
-    <ClCompile Include="src\TLSFMemoryAllocator.cpp" />
-    <ClCompile Include="src\CTransform2D.cpp" />
+    <ClCompile Include="src\planeta\CDraw2D.cpp" />
+    <ClCompile Include="src\planeta\CDrawLine2D.cpp" />
+    <ClCompile Include="src\planeta\StandardRenderingManager.cpp" />
+    <ClCompile Include="src\planeta\CDrawPlanet2D.cpp" />
+    <ClCompile Include="src\planeta\DXUtility.cpp" />
+    <ClCompile Include="src\planeta\CGraph2DAnimator.cpp" />
+    <ClCompile Include="src\planeta\RGraph.cpp" />
+    <ClCompile Include="src\planeta\RIni.cpp" />
+    <ClCompile Include="src\planeta\KeyConfig.cpp" />
+    <ClCompile Include="src\planeta\StandardInputManager.cpp" />
+    <ClCompile Include="src\planeta\InputUtility.cpp" />
+    <ClCompile Include="src\planeta\math\MathUtility.cpp" />
+    <ClCompile Include="src\planeta\RMusic.cpp" />
+    <ClCompile Include="src\planeta\PEDateTime.cpp" />
+    <ClCompile Include="src\planeta\CPlanetGround2D.cpp" />
+    <ClCompile Include="src\planeta\CPolygonCollider2D.cpp" />
+    <ClCompile Include="src\planeta\RSound.cpp" />
+    <ClCompile Include="src\planeta\File.cpp" />
+    <ClCompile Include="src\planeta\StandardCollisionWorld.cpp" />
+    <ClCompile Include="src\planeta\GameObjectComponent.cpp" />
+    <ClCompile Include="src\planeta\StandardDrawSystem.cpp" />
+    <ClCompile Include="src\planeta\StandardGameObjectManager.cpp" />
+    <ClCompile Include="src\planeta\CDrawGraph2D.cpp" />
+    <ClCompile Include="src\planeta\CGround2D.cpp" />
+    <ClCompile Include="src\planeta\NormalFolderManipulator.cpp" />
+    <ClCompile Include="src\planeta\Object.cpp" />
+    <ClCompile Include="src\planeta\Game.cpp" />
+    <ClCompile Include="src\planeta\CPlanet.cpp" />
+    <ClCompile Include="src\planeta\Task.cpp" />
+    <ClCompile Include="src\planeta\StandardTaskManager.cpp" />
+    <ClCompile Include="src\planeta\StandardResourceManager.cpp" />
+    <ClCompile Include="src\planeta\Scene.cpp" />
+    <ClCompile Include="src\planeta\StandardSceneManager.cpp" />
+    <ClCompile Include="src\planeta\CStraightLineCollider2D.cpp" />
+    <ClCompile Include="src\planeta\StandardPerformanceManager.cpp" />
+    <ClCompile Include="src\planeta\StandardLogManager.cpp" />
+    <ClCompile Include="src\planeta\SystemVariables.cpp" />
+    <ClCompile Include="src\planeta\PETime.cpp" />
+    <ClCompile Include="src\planeta\RText.cpp" />
+    <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp" />
+    <ClCompile Include="src\planeta\CTransform2D.cpp" />
     <ClCompile Include="deprecated\GUIManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -587,10 +587,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\StandardTransformSystem.cpp" />
-    <ClCompile Include="src\WindowsUtility.cpp" />
-    <ClCompile Include="src\RXml.cpp" />
-    <ClCompile Include="src\XmlFile.cpp" />
+    <ClCompile Include="src\planeta\StandardTransformSystem.cpp" />
+    <ClCompile Include="src\planeta\WindowsUtility.cpp" />
+    <ClCompile Include="src\planeta\RXml.cpp" />
+    <ClCompile Include="src\planeta\XmlFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

@@ -1,7 +1,7 @@
 ﻿#include "RGraph.hpp"
 #include "DxLib.h"
 #include "File.hpp"
-#include "math/MathUtility.hpp"
+#include "planeta/math/MathUtility.hpp"
 #include "LogUtility.hpp"
 //#include "boost/lexical_cast.hpp"
 
