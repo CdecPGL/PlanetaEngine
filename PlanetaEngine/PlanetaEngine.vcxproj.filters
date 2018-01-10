@@ -342,9 +342,6 @@
     <ClInclude Include="src\planeta\DebugManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Delegate.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\DrawSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -543,12 +540,6 @@
     <ClInclude Include="src\planeta\MacroUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Matrix2_2.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Matrix3_3.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\Memory.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -564,9 +555,6 @@
     <ClInclude Include="src\planeta\NullWeakPointerException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Object.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\ObjectHolderTemplate_WithID.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -576,13 +564,7 @@
     <ClInclude Include="src\planeta\ParameterHolder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\PEDateTime.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\PerfoamanceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\PETime.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\PlanetaEngine.hpp">
@@ -595,9 +577,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\RangeUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RectAngle.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\RenderingManager.hpp">
@@ -646,9 +625,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\SharedPointerInstance.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Signal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\SingletonTemplate.hpp">
@@ -948,6 +924,30 @@
     <ClInclude Include="src\planeta\core\CsvFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\core\Time.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DateTime.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Delegate.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Matrix2_2.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Matrix3_3.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\RectAngle.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Signal.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\Object.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1093,15 +1093,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\NormalFolderManipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Object.cpp">
-      <Filter>PlanetaEngine\Core\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\PEDateTime.cpp">
-      <Filter>PlanetaEngine\Utility\DateTime</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\PETime.cpp">
-      <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\PrefixUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -1348,6 +1339,15 @@
     </ClCompile>
     <ClCompile Include="src\planeta\core\CsvFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Time.cpp">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\DateTime.cpp">
+      <Filter>PlanetaEngine\Utility\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\Object.cpp">
+      <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

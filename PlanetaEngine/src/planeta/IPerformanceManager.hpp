@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/PETime.hpp"
+#include "planeta/core/Time.hpp"
 
 namespace plnt {
 	/*! パフォーマンスマネージャの公開インターフェイス。パフォーマンスの計測や調整を行う。*/

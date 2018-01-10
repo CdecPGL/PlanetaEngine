@@ -1,7 +1,7 @@
 #pragma once
 
 #include "planeta/buildin/CDrawGUI.hpp"
-#include "planeta/RectAngle.hpp"
+#include "planeta/core/RectAngle.hpp"
 
 namespace plnt {
 	/*! GUI領域に画像を描画するコンポーネント*/

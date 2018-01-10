@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/Delegate.hpp"
+#include "planeta/core/Delegate.hpp"
 
 namespace plnt {
 	namespace util {

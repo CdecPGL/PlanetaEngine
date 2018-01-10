@@ -6,7 +6,7 @@
 
 #include "planeta/GameObjectStandardComponent.hpp"
 #include "planeta/core/WeakPointer.hpp"
-#include "planeta/RectAngle.hpp"
+#include "planeta/core/RectAngle.hpp"
 
 namespace plnt {
 	class CDrawGraph2D;

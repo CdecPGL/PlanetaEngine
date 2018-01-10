@@ -4,7 +4,7 @@
 #include "planeta/LogUtility.hpp"
 #include "planeta/ISceneInternal.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
-#include "planeta/Matrix2_2.hpp"
+#include "planeta/core/Matrix2_2.hpp"
 #include "planeta/Collider2DData.hpp"
 #include "planeta/EACollisionWithGround2D.hpp"
 

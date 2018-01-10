@@ -3,7 +3,7 @@
 #include "planeta/buildin/RGraph.hpp"
 #include "planeta/ScreenDrawerGUI.hpp"
 #include "planeta/buildin/CTransformGUI.hpp"
-#include "planeta/RectAngle.hpp"
+#include "planeta/core/RectAngle.hpp"
 #include "planeta/ResourceHolder.hpp"
 
 namespace plnt {

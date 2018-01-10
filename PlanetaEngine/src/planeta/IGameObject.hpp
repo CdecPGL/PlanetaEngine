@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <memory>
 
-#include "planeta/Signal.hpp"
+#include "planeta/core/Signal.hpp"
 #include "planeta/ITaskManager.hpp"
 #include "TaskSlot.hpp"
 #include "planeta/IScene.hpp"

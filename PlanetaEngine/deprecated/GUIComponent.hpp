@@ -5,7 +5,7 @@
 #include <bitset>
 #include <array>
 #include "planeta/Object.hpp"
-#include "planeta/RectAngle.hpp"
+#include "planeta/core/RectAngle.hpp"
 #include "ObjectHolderTemplate_WithoutID.hpp"
 #include "NonCopyable.hpp"
 

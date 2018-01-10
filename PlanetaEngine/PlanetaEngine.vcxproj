@@ -205,7 +205,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\DataContainerSerializeUtility.hpp" />
     <ClInclude Include="src\planeta\DebugDrawInterface.hpp" />
     <ClInclude Include="src\planeta\DebugManager.hpp" />
-    <ClInclude Include="src\planeta\Delegate.hpp" />
+    <ClInclude Include="src\planeta\core\Delegate.hpp" />
     <ClInclude Include="src\planeta\DrawSystem.hpp" />
     <ClInclude Include="src\planeta\DXGraphDrawData.hpp" />
     <ClInclude Include="src\planeta\DXUtility.hpp" />
@@ -302,8 +302,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\math\MathMatrix.hpp" />
     <ClInclude Include="src\planeta\math\MathUtility.hpp" />
     <ClInclude Include="src\planeta\math\MathVector.hpp" />
-    <ClInclude Include="src\planeta\Matrix2_2.hpp" />
-    <ClInclude Include="src\planeta\Matrix3_3.hpp" />
+    <ClInclude Include="src\planeta\core\Matrix2_2.hpp" />
+    <ClInclude Include="src\planeta\core\Matrix3_3.hpp" />
     <ClInclude Include="src\planeta\Memory.hpp" />
     <ClInclude Include="src\planeta\MetaprogrammingUtility.hpp" />
     <ClInclude Include="src\planeta\NonCopyable.hpp" />
@@ -314,15 +314,15 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\ObjectHolderTemplate_WithID.hpp" />
     <ClInclude Include="src\planeta\ObjectHolderTemplate_WithoutID.hpp" />
     <ClInclude Include="src\planeta\ParameterHolder.hpp" />
-    <ClInclude Include="src\planeta\PEDateTime.hpp" />
+    <ClInclude Include="src\planeta\core\DateTime.hpp" />
     <ClInclude Include="src\planeta\PerfoamanceManager.hpp" />
-    <ClInclude Include="src\planeta\PETime.hpp" />
+    <ClInclude Include="src\planeta\core\Time.hpp" />
     <ClInclude Include="src\planeta\PlanetaEngine.hpp" />
     <ClInclude Include="src\planeta\PrefixUtility.hpp" />
     <ClInclude Include="src\planeta\Property.hpp" />
     <ClInclude Include="src\planeta\RangeUtility.hpp" />
     <ClInclude Include="src\planeta\buildin\RCsv.hpp" />
-    <ClInclude Include="src\planeta\RectAngle.hpp" />
+    <ClInclude Include="src\planeta\core\RectAngle.hpp" />
     <ClInclude Include="src\planeta\buildin\REffect.hpp" />
     <ClInclude Include="src\planeta\buildin\REffectTexture.hpp" />
     <ClInclude Include="src\planeta\reflection\Reflectable.hpp" />
@@ -361,7 +361,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\ScreenDrawerGUI.hpp" />
     <ClInclude Include="src\planeta\buildin\SError.hpp" />
     <ClInclude Include="src\planeta\SharedPointerInstance.hpp" />
-    <ClInclude Include="src\planeta\Signal.hpp" />
+    <ClInclude Include="src\planeta\core\Signal.hpp" />
     <ClInclude Include="deprecated\SimplePolygonPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -551,7 +551,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\InputUtility.cpp" />
     <ClCompile Include="src\planeta\math\MathUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\RMusic.cpp" />
-    <ClCompile Include="src\planeta\PEDateTime.cpp" />
+    <ClCompile Include="src\planeta\core\DateTime.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp" />
     <ClCompile Include="src\planeta\buildin\CPolygonCollider2D.cpp" />
     <ClCompile Include="src\planeta\buildin\RSound.cpp" />
@@ -575,7 +575,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\StandardPerformanceManager.cpp" />
     <ClCompile Include="src\planeta\StandardLogManager.cpp" />
     <ClCompile Include="src\planeta\SystemVariables.cpp" />
-    <ClCompile Include="src\planeta\PETime.cpp" />
+    <ClCompile Include="src\planeta\core\Time.cpp" />
     <ClCompile Include="src\planeta\buildin\RText.cpp" />
     <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp" />
     <ClCompile Include="src\planeta\buildin\CTransform2D.cpp" />

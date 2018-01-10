@@ -2,7 +2,7 @@
 #include "planeta/ScreenDrawer2D.hpp"
 #include "planeta/IGameObject.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
-#include "planeta/Matrix2_2.hpp"
+#include "planeta/core/Matrix2_2.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawPolygon2D) {

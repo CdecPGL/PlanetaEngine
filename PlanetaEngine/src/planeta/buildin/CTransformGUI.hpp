@@ -1,7 +1,7 @@
 #pragma once
 
 #include "planeta/GameObjectSystemComponent.hpp"
-#include "planeta/RectAngle.hpp"
+#include "planeta/core/RectAngle.hpp"
 
 namespace plnt {
 	//! GUI用トランスフォームコンポーネント(親子関係関連の機能は未実装)

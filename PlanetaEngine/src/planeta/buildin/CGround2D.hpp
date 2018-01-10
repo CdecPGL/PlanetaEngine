@@ -3,7 +3,7 @@
 #include <list>
 #include "planeta/GameObjectStandardComponent.hpp"
 #include "planeta/core/Vector2D.hpp"
-#include "planeta/RectAngle.hpp"
+#include "planeta/core/RectAngle.hpp"
 #include "planeta/math/MathConstant.hpp"
 #include "planeta/IColliderWithCollider2D.hpp"
 
