@@ -4,7 +4,7 @@
 //#include <unordered_map>
 //#include <memory>
 //#include "planeta/SceneModule.hpp"
-//#include "planeta/WeakPointer.hpp"
+//#include "planeta/core/WeakPointer.hpp"
 //#include "planeta/GUIManagerPublicInterface.hpp"
 //#include "planeta/NonCopyable.hpp"
 

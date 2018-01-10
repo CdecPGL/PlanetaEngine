@@ -3,7 +3,7 @@
 #include <memory>
 #include <functional>
 #include <string>
-#include "planeta/WeakPointer.hpp"
+#include "planeta/core/WeakPointer.hpp"
 #include "TypeChecker.hpp"
 #include "TaskSlot.hpp"
 

@@ -579,9 +579,6 @@
     <ClInclude Include="src\planeta\NonCopyable.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\NonOwingPointer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\NormalFolderManipulator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -807,9 +804,6 @@
     <ClInclude Include="src\planeta\Vector.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\WeakPointer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\WindowsUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -823,9 +817,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\Vector4D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Vertex2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\CBelongingGroundGravity.hpp">
@@ -946,6 +937,15 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\SError.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Vertex2D.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\WeakPointer.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\NonOwingPointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

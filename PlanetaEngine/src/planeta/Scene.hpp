@@ -6,9 +6,9 @@
 #include <list>
 #include "planeta/Object.hpp"
 #include "planeta/ISceneInternal.hpp"
-#include "planeta/WeakPointer.hpp"
+#include "planeta/core/WeakPointer.hpp"
 #include "NonCopyable.hpp"
-#include "planeta/NonOwingPointer.hpp"
+#include "planeta/core/NonOwingPointer.hpp"
 
 namespace plnt{
 	class IDebugInformationAdder;

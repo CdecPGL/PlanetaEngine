@@ -4,7 +4,7 @@
 #include <functional>
 #include "planeta/Signal.hpp"
 #include "planeta/GameObjectSystemComponent.hpp"
-#include "planeta/WeakPointer.hpp"
+#include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/Vector2D.hpp"
 #include "planeta/IColliderWithCollider2D.hpp"
 

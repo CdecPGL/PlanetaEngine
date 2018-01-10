@@ -6,7 +6,7 @@
 
 #include "planeta/buildin/CDraw2D.hpp"
 #include "planeta/RectAngle.hpp"
-#include "planeta/Vertex2D.hpp"
+#include "planeta/core/Vertex2D.hpp"
 
 namespace plnt {
 	namespace private_ {

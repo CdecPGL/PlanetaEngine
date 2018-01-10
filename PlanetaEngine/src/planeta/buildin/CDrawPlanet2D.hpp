@@ -3,8 +3,8 @@
 #include <array>
 #include <vector>
 #include "planeta/buildin/CDraw2D.hpp"
-#include "planeta/WeakPointer.hpp"
-#include "planeta/Vertex2D.hpp"
+#include "planeta/core/WeakPointer.hpp"
+#include "planeta/core/Vertex2D.hpp"
 
 namespace plnt {
 	namespace private_ {

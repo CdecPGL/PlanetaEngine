@@ -4,7 +4,7 @@
 #include "GameObjectComponentHolder.hpp"
 #include "planeta/IGameObject.hpp"
 #include "NonCopyable.hpp"
-#include "planeta/NonOwingPointer.hpp"
+#include "planeta/core/NonOwingPointer.hpp"
 #include "GameObjectManagerConnection.hpp"
 
 namespace plnt {

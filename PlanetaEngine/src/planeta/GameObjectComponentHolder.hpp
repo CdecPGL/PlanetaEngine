@@ -6,7 +6,7 @@
 #include <typeindex>
 #include <functional>
 #include <vector>
-#include "planeta/WeakPointer.hpp"
+#include "planeta/core/WeakPointer.hpp"
 #include "NonCopyable.hpp"
 
 namespace plnt {

@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <functional>
-#include "planeta/NonOwingPointer.hpp"
+#include "planeta/core/NonOwingPointer.hpp"
 
 namespace plnt {
 	namespace private_ {

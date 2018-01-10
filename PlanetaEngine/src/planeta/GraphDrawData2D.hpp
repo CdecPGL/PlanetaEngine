@@ -3,7 +3,7 @@
 #include <memory>
 #include <array>
 #include <vector>
-#include "planeta/Vertex2D.hpp"
+#include "planeta/core/Vertex2D.hpp"
 #include "planeta/core/Color.hpp"
 
 namespace plnt {

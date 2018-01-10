@@ -1,7 +1,7 @@
 #pragma once
 
 #include "planeta/GameObjectStandardComponent.hpp"
-#include "planeta/NonOwingPointer.hpp"
+#include "planeta/core/NonOwingPointer.hpp"
 
 namespace plnt {
 	class CEffect final: public GameObjectStandardComponent {
