@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <array>
-#include "planeta/Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	namespace math {

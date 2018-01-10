@@ -7,7 +7,7 @@
 
 #include "planeta/math/MathVectorElementIdentifer.hpp"
 
-#include "planeta/Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	namespace math {

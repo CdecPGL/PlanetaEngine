@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "planeta/CDraw2D.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 #include <array>
 #include <vector>
 

@@ -2,7 +2,7 @@
 
 #include <string>
 #include <array>
-#include "planeta/Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 #include "CollisionGroupMatrix.hpp"
 
 namespace plnt {

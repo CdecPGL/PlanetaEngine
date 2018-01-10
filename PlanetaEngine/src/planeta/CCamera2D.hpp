@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/GameObjectSystemComponent.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	class CTransform2D;

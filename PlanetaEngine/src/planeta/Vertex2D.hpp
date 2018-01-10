@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "planeta/Color.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 
 namespace plnt {

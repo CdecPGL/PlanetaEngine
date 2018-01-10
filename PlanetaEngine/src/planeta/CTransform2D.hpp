@@ -4,7 +4,7 @@
 
 #include "planeta/Signal.hpp"
 #include "GameObjectSystemComponent.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	class CGround2D;

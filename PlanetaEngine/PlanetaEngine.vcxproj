@@ -418,9 +418,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\TypeTraitsUtility.hpp" />
     <ClInclude Include="src\planeta\UnorderedMap.hpp" />
     <ClInclude Include="src\planeta\Vector.hpp" />
-    <ClInclude Include="src\planeta\Vector2D.hpp" />
-    <ClInclude Include="src\planeta\Vector3D.hpp" />
-    <ClInclude Include="src\planeta\Vector4D.hpp" />
+    <ClInclude Include="src\planeta\core\Vector2D.hpp" />
+    <ClInclude Include="src\planeta\core\Vector3D.hpp" />
+    <ClInclude Include="src\planeta\core\Vector4D.hpp" />
     <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp" />
     <ClInclude Include="src\planeta\Vertex2D.hpp" />
     <ClInclude Include="src\planeta\WeakPointer.hpp" />

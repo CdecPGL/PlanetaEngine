@@ -5,7 +5,7 @@
 #include "planeta/Signal.hpp"
 #include "GameObjectSystemComponent.hpp"
 #include "WeakPointer.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 #include "IColliderWithCollider2D.hpp"
 
 namespace plnt {

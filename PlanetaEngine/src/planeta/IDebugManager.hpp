@@ -2,7 +2,7 @@
 
 #include <functional>
 #include "planeta/StringUtility.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 #include "Color.hpp"
 
 namespace plnt {

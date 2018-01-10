@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	class IDrawSystem {

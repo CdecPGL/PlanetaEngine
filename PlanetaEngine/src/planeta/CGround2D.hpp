@@ -2,7 +2,7 @@
 
 #include <list>
 #include "planeta/GameObjectStandardComponent.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 #include "RectAngle.hpp"
 #include "planeta/math/MathConstant.hpp"
 #include "IColliderWithCollider2D.hpp"

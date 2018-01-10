@@ -2,7 +2,7 @@
 #include "planeta/GameObjectSystemComponent.hpp"
 #include "WeakPointer.hpp"
 #include "Color.hpp"
-#include "Vector2D.hpp"
+#include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	class ScreenDrawer2D;
