@@ -1,7 +1,7 @@
 ﻿#include "planeta/buildin/RFont.hpp"
 #include "planeta/File.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/JsonFile.hpp"
+#include "planeta/core/JsonFile.hpp"
 #include "DxLib.h"
 
 namespace plnt {

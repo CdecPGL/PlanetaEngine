@@ -1,4 +1,4 @@
-#include "planeta/XmlFile.hpp"
+#include "planeta/core/XmlFile.hpp"
 
 #include <cassert>
 #include <functional>

@@ -6,7 +6,7 @@
 
 #include"planeta/StandardResourceManager.hpp"
 #include "planeta/File.hpp"
-#include "planeta/JsonFile.hpp"
+#include "planeta/core/JsonFile.hpp"
 #include "planeta/LogUtility.hpp"
 #include "FileManipulator.hpp"
 #include "SystemVariables.hpp"

@@ -1,5 +1,5 @@
 #include "planeta/StandardConfigManager.hpp"
-#include "planeta/JsonFile.hpp"
+#include "planeta/core/JsonFile.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/StringUtility.hpp"
 

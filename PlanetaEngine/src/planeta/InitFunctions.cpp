@@ -7,7 +7,7 @@
 #include "SystemVariables.hpp"
 #include "FileManipulator.hpp"
 #include "planeta/File.hpp"
-#include "planeta/JsonFile.hpp"
+#include "planeta/core/JsonFile.hpp"
 #include "ConfigManager.hpp"
 
 namespace plnt {

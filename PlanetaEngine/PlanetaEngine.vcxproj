@@ -276,7 +276,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\IInputManager.hpp" />
     <ClInclude Include="src\planeta\ILogManager.hpp" />
     <ClInclude Include="src\planeta\IMemoryAllocator.hpp" />
-    <ClInclude Include="src\planeta\IniFile.hpp" />
+    <ClInclude Include="src\planeta\core\IniFile.hpp" />
     <ClInclude Include="src\planeta\InitFunctions.hpp" />
     <ClInclude Include="src\planeta\InputDefinitions.hpp" />
     <ClInclude Include="src\planeta\InputManager.hpp" />
@@ -292,7 +292,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\ISoundManager.hpp" />
     <ClInclude Include="src\planeta\ITaskManager.hpp" />
     <ClInclude Include="src\planeta\ITransformSystem.hpp" />
-    <ClInclude Include="src\planeta\JsonFile.hpp" />
+    <ClInclude Include="src\planeta\core\JsonFile.hpp" />
     <ClInclude Include="src\planeta\KeyConfig.hpp" />
     <ClInclude Include="src\planeta\LogManager.hpp" />
     <ClInclude Include="src\planeta\LogUtility.hpp" />
@@ -425,7 +425,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\core\Vertex2D.hpp" />
     <ClInclude Include="src\planeta\core\WeakPointer.hpp" />
     <ClInclude Include="src\planeta\WindowsUtility.hpp" />
-    <ClInclude Include="src\planeta\XmlFile.hpp" />
+    <ClInclude Include="src\planeta\core\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\planeta\AESEncrypter.cpp" />
@@ -454,8 +454,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\GameObjectFactory.cpp" />
     <ClCompile Include="src\planeta\GOComponentAdder.cpp" />
     <ClCompile Include="src\planeta\GOComponentGetter.cpp" />
-    <ClCompile Include="src\planeta\IniFile.cpp" />
-    <ClCompile Include="src\planeta\JsonFile.cpp" />
+    <ClCompile Include="src\planeta\core\IniFile.cpp" />
+    <ClCompile Include="src\planeta\core\JsonFile.cpp" />
     <ClCompile Include="src\planeta\GameSetStandardManagerImpl.cpp" />
     <ClCompile Include="src\planeta\PrefixUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\REffect.cpp" />
@@ -590,7 +590,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\StandardTransformSystem.cpp" />
     <ClCompile Include="src\planeta\WindowsUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\RXml.cpp" />
-    <ClCompile Include="src\planeta\XmlFile.cpp" />
+    <ClCompile Include="src\planeta\core\XmlFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

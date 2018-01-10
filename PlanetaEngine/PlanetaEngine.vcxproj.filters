@@ -486,9 +486,6 @@
     <ClInclude Include="src\planeta\IMemoryAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\IniFile.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\InitFunctions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -532,9 +529,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\ITransformSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\JsonFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\KeyConfig.hpp">
@@ -771,9 +765,6 @@
     <ClInclude Include="src\planeta\WindowsUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\XmlFile.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\Vector2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -948,6 +939,15 @@
     <ClInclude Include="src\planeta\reflection\TypeInfoWrapper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\core\XmlFile.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\JsonFile.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IniFile.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1076,9 +1076,6 @@
     <ClCompile Include="src\planeta\GraphDrawData2D.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\IniFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\InitFunctions.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
@@ -1093,9 +1090,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\InputUtility.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\JsonFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\KeyConfig.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
@@ -1216,9 +1210,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\XmlFile.cpp">
-      <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
@@ -1348,6 +1339,15 @@
     </ClCompile>
     <ClCompile Include="src\planeta\reflection\ClassInfoCaller.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\XmlFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\JsonFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\IniFile.cpp">
+      <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
