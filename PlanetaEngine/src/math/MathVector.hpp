@@ -5,7 +5,7 @@
 #include <cassert>
 #include <type_traits>
 
-#include "math/MathVectorElementIdentifer.hpp"
+#include "MathVectorElementIdentifer.hpp"
 
 #include "Vector2D.hpp"
 

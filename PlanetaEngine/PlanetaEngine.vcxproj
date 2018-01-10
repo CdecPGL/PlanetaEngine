@@ -64,7 +64,7 @@
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -97,7 +97,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)include\ C:\libraries\PlanetaEngine\include\ * /PURGE /NP
+      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\planeta\ *.hpp /MIR /NP
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -115,7 +115,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -144,7 +144,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)include\ C:\libraries\PlanetaEngine\include\ * /PURGE /NP
+      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\planeta\ *.hpp /MIR /NP
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -152,250 +152,280 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\AccessorTemplate.hpp" />
-    <ClInclude Include="include\AESEncrypter.hpp" />
-    <ClInclude Include="include\ArchiveManipulator.hpp" />
-    <ClInclude Include="include\BadAllocException.hpp" />
-    <ClInclude Include="include\BadNewDeleteOperation.hpp" />
-    <ClInclude Include="include\BGMController.hpp" />
-    <ClInclude Include="include\BuiltInGameObjectComponents.hpp" />
-    <ClInclude Include="include\BuiltInResources.hpp" />
-    <ClInclude Include="include\BuiltInTasks.hpp" />
-    <ClInclude Include="include\CBelongingGroundGravity.hpp" />
-    <ClInclude Include="include\CCamera2D.hpp" />
-    <ClInclude Include="include\CCircleCollider2D.hpp" />
-    <ClInclude Include="include\CCollider2D.hpp" />
-    <ClInclude Include="include\CDraw2D.hpp" />
-    <ClInclude Include="include\CDrawGraph2D.hpp" />
-    <ClInclude Include="include\CDrawGraphGUI.hpp" />
-    <ClInclude Include="include\CDrawGUI.hpp" />
-    <ClInclude Include="include\CDrawLine2D.hpp" />
-    <ClInclude Include="include\CDrawPlanet2D.hpp" />
-    <ClInclude Include="include\CDrawPolygon2D.hpp" />
-    <ClInclude Include="include\CDumyGround2D.hpp" />
-    <ClInclude Include="include\CEffect.hpp" />
-    <ClInclude Include="include\CGraph2DAnimator.hpp" />
-    <ClInclude Include="include\CGround2D.hpp" />
-    <ClInclude Include="include\CharacterCode.hpp" />
-    <ClInclude Include="include\ClassInfo.hpp" />
-    <ClInclude Include="include\ClassInfoCaller.hpp" />
-    <ClInclude Include="include\ClassRegisterer.hpp" />
-    <ClInclude Include="include\ClassRegistererImpl.hpp" />
-    <ClInclude Include="include\Collider2DData.hpp" />
-    <ClInclude Include="include\ColliderComponent2DDebugDrawer.hpp" />
-    <ClInclude Include="include\CollisionDetectFunctions.hpp" />
-    <ClInclude Include="include\CollisionGroupMatrix.hpp" />
-    <ClInclude Include="include\CollisionState.hpp" />
-    <ClInclude Include="include\CollisionWorld.hpp" />
-    <ClInclude Include="include\Color.hpp" />
-    <ClInclude Include="include\ConfigManager.hpp" />
-    <ClInclude Include="include\Coroutine.hpp" />
-    <ClInclude Include="include\CoroutineUtility.hpp" />
-    <ClInclude Include="include\CPlanet.hpp" />
-    <ClInclude Include="include\CPlanetGround2D.hpp" />
-    <ClInclude Include="include\CPolygonCollider2D.hpp" />
-    <ClInclude Include="include\CStraightLineCollider2D.hpp" />
-    <ClInclude Include="include\CsvFile.hpp" />
-    <ClInclude Include="include\CTransform2D.hpp" />
-    <ClInclude Include="include\CTransformGUI.hpp" />
-    <ClInclude Include="include\DataContainer.hpp" />
-    <ClInclude Include="include\DataContainerError.hpp" />
-    <ClInclude Include="include\DataContainerFunctionsForBoostSerialize.hpp" />
-    <ClInclude Include="include\DataContainerImpl.hpp" />
-    <ClInclude Include="include\DataContainerSerializeUtility.hpp" />
-    <ClInclude Include="include\DebugDrawInterface.hpp" />
-    <ClInclude Include="include\DebugManager.hpp" />
-    <ClInclude Include="include\Delegate.hpp" />
-    <ClInclude Include="include\DrawSystem.hpp" />
-    <ClInclude Include="include\DXGraphDrawData.hpp" />
-    <ClInclude Include="include\DXUtility.hpp" />
-    <ClInclude Include="include\EACollisionWithCollider2D.hpp" />
-    <ClInclude Include="include\EACollisionWithGround2D.hpp" />
-    <ClInclude Include="include\EffekseerUtil.hpp" />
-    <ClInclude Include="include\EncrypterBase.hpp" />
-    <ClInclude Include="include\EventMonitor.hpp" />
-    <ClInclude Include="include\EXOREncrypter.hpp" />
-    <ClInclude Include="include\File.hpp" />
-    <ClInclude Include="include\FileAccessMode.hpp" />
-    <ClInclude Include="include\FileIStream.hpp" />
-    <ClInclude Include="include\FileManipulator.hpp" />
-    <ClInclude Include="include\FileOStream.hpp" />
-    <ClInclude Include="include\FileStreamBuf.hpp" />
-    <ClInclude Include="include\FileSystemUtility.hpp" />
-    <ClInclude Include="include\Game.hpp" />
-    <ClInclude Include="include\GameObjectAllocator.hpp" />
-    <ClInclude Include="include\GameObjectBase.hpp" />
-    <ClInclude Include="include\GameObjectComponent.hpp" />
-    <ClInclude Include="include\GameObjectComponentHolder.hpp" />
-    <ClInclude Include="include\GameObjectComponentSetUpData.hpp" />
-    <ClInclude Include="include\GameObjectComponentUpdateProcess.hpp" />
-    <ClInclude Include="include\GameObjectFactory.hpp" />
-    <ClInclude Include="include\GameObjectManager.hpp" />
-    <ClInclude Include="include\GameObjectManagerConnection.hpp" />
-    <ClInclude Include="include\GameObjectStandardComponent.hpp" />
-    <ClInclude Include="include\GameObjectSystemComponent.hpp" />
-    <ClInclude Include="include\GlobalNewDeleteDefinition.hpp" />
-    <ClInclude Include="include\GOComponentAdder.hpp" />
-    <ClInclude Include="include\GOComponentGetter.hpp" />
-    <ClInclude Include="include\GraphDrawData2D.hpp" />
-    <ClInclude Include="deprecated\GraphPanel.hpp" />
-    <ClInclude Include="deprecated\GUIComponent.hpp" />
-    <ClInclude Include="deprecated\GUIManager.hpp" />
-    <ClInclude Include="deprecated\GUIManagerConnection.hpp" />
-    <ClInclude Include="deprecated\GUIManagerPublicInterface.hpp" />
-    <ClInclude Include="deprecated\GUIObject.hpp" />
-    <ClInclude Include="include\HeadersForGameObjectComponent.hpp" />
-    <ClInclude Include="include\HeadersForSceneSetUpper.hpp" />
-    <ClInclude Include="include\HeadersForTask.hpp" />
-    <ClInclude Include="include\IBGMController.hpp" />
-    <ClInclude Include="include\IColliderWithCollider2D.hpp" />
-    <ClInclude Include="include\ICollisionWorld.hpp" />
-    <ClInclude Include="include\IConfigManager.hpp" />
-    <ClInclude Include="include\IDebugManager.hpp" />
-    <ClInclude Include="include\IDrawSystem.hpp" />
-    <ClInclude Include="include\IGameObject.hpp" />
-    <ClInclude Include="include\IGameObjectManager.hpp" />
-    <ClInclude Include="include\IInputManager.hpp" />
-    <ClInclude Include="include\ILogManager.hpp" />
-    <ClInclude Include="include\IMemoryAllocator.hpp" />
-    <ClInclude Include="include\IniFile.hpp" />
-    <ClInclude Include="include\InitFunctions.hpp" />
-    <ClInclude Include="include\InputDefinitions.hpp" />
-    <ClInclude Include="include\InputManager.hpp" />
-    <ClInclude Include="include\InputUtility.hpp" />
-    <ClInclude Include="include\IPerformanceManager.hpp" />
-    <ClInclude Include="include\IRenderingManager.hpp" />
-    <ClInclude Include="include\IResourceManager.hpp" />
-    <ClInclude Include="include\ISaveManager.hpp" />
-    <ClInclude Include="include\IScene.hpp" />
-    <ClInclude Include="include\ISceneInternal.hpp" />
-    <ClInclude Include="include\ISceneManager.hpp" />
-    <ClInclude Include="include\ISoundEffectController.hpp" />
-    <ClInclude Include="include\ISoundManager.hpp" />
-    <ClInclude Include="include\ITaskManager.hpp" />
-    <ClInclude Include="include\ITransformSystem.hpp" />
-    <ClInclude Include="include\JsonFile.hpp" />
-    <ClInclude Include="include\KeyConfig.hpp" />
-    <ClInclude Include="include\LogManager.hpp" />
-    <ClInclude Include="include\LogUtility.hpp" />
-    <ClInclude Include="include\LuaBindHelder.hpp" />
-    <ClInclude Include="include\MacroUtility.hpp" />
-    <ClInclude Include="include\math\MathConstant.hpp" />
-    <ClInclude Include="include\math\MathMatrix.hpp" />
-    <ClInclude Include="include\math\MathUtility.hpp" />
-    <ClInclude Include="include\math\MathVector.hpp" />
-    <ClInclude Include="include\Matrix2_2.hpp" />
-    <ClInclude Include="include\Matrix3_3.hpp" />
-    <ClInclude Include="include\Memory.hpp" />
-    <ClInclude Include="include\MetaprogrammingUtility.hpp" />
-    <ClInclude Include="include\NonCopyable.hpp" />
-    <ClInclude Include="include\NonOwingPointer.hpp" />
-    <ClInclude Include="include\NormalFolderManipulator.hpp" />
-    <ClInclude Include="include\NullWeakPointerException.hpp" />
-    <ClInclude Include="include\Object.hpp" />
-    <ClInclude Include="include\ObjectHolderTemplate_WithID.hpp" />
-    <ClInclude Include="include\ObjectHolderTemplate_WithoutID.hpp" />
-    <ClInclude Include="include\ParameterHolder.hpp" />
-    <ClInclude Include="include\PEDateTime.hpp" />
-    <ClInclude Include="include\PerfoamanceManager.hpp" />
-    <ClInclude Include="include\PETime.hpp" />
-    <ClInclude Include="include\PlanetaEngine.hpp" />
-    <ClInclude Include="include\PrefixUtility.hpp" />
-    <ClInclude Include="include\Property.hpp" />
-    <ClInclude Include="include\RangeUtility.hpp" />
-    <ClInclude Include="include\RCsv.hpp" />
-    <ClInclude Include="include\RectAngle.hpp" />
-    <ClInclude Include="include\REffect.hpp" />
-    <ClInclude Include="include\REffectTexture.hpp" />
-    <ClInclude Include="include\Reflectable.hpp" />
-    <ClInclude Include="include\ReflectableClassAccessor.hpp" />
-    <ClInclude Include="include\Reflection.hpp" />
-    <ClInclude Include="include\ReflectionAccessible.hpp" />
-    <ClInclude Include="include\ReflectionClassData.hpp" />
-    <ClInclude Include="include\ReflectionExceptions.hpp" />
-    <ClInclude Include="include\ReflectionUtility.hpp" />
-    <ClInclude Include="include\RenderingManager.hpp" />
+    <ClInclude Include="src\AccessorTemplate.hpp" />
+    <ClInclude Include="src\AESEncrypter.hpp" />
+    <ClInclude Include="src\ArchiveManipulator.hpp" />
+    <ClInclude Include="src\BadAllocException.hpp" />
+    <ClInclude Include="src\BadNewDeleteOperation.hpp" />
+    <ClInclude Include="src\BGMController.hpp" />
+    <ClInclude Include="src\BuiltInGameObjectComponents.hpp" />
+    <ClInclude Include="src\BuiltInResources.hpp" />
+    <ClInclude Include="src\BuiltInTasks.hpp" />
+    <ClInclude Include="src\CBelongingGroundGravity.hpp" />
+    <ClInclude Include="src\CCamera2D.hpp" />
+    <ClInclude Include="src\CCircleCollider2D.hpp" />
+    <ClInclude Include="src\CCollider2D.hpp" />
+    <ClInclude Include="src\CDraw2D.hpp" />
+    <ClInclude Include="src\CDrawGraph2D.hpp" />
+    <ClInclude Include="src\CDrawGraphGUI.hpp" />
+    <ClInclude Include="src\CDrawGUI.hpp" />
+    <ClInclude Include="src\CDrawLine2D.hpp" />
+    <ClInclude Include="src\CDrawPlanet2D.hpp" />
+    <ClInclude Include="src\CDrawPolygon2D.hpp" />
+    <ClInclude Include="src\CDumyGround2D.hpp" />
+    <ClInclude Include="src\CEffect.hpp" />
+    <ClInclude Include="src\CGraph2DAnimator.hpp" />
+    <ClInclude Include="src\CGround2D.hpp" />
+    <ClInclude Include="src\CharacterCode.hpp" />
+    <ClInclude Include="src\ClassInfo.hpp" />
+    <ClInclude Include="src\ClassInfoCaller.hpp" />
+    <ClInclude Include="src\ClassRegisterer.hpp" />
+    <ClInclude Include="src\ClassRegistererImpl.hpp" />
+    <ClInclude Include="src\Collider2DData.hpp" />
+    <ClInclude Include="src\ColliderComponent2DDebugDrawer.hpp" />
+    <ClInclude Include="src\CollisionDetectFunctions.hpp" />
+    <ClInclude Include="src\CollisionGroupMatrix.hpp" />
+    <ClInclude Include="src\CollisionState.hpp" />
+    <ClInclude Include="src\CollisionWorld.hpp" />
+    <ClInclude Include="src\Color.hpp" />
+    <ClInclude Include="src\ConfigManager.hpp" />
+    <ClInclude Include="src\Coroutine.hpp" />
+    <ClInclude Include="src\CoroutineUtility.hpp" />
+    <ClInclude Include="src\CPlanet.hpp" />
+    <ClInclude Include="src\CPlanetGround2D.hpp" />
+    <ClInclude Include="src\CPolygonCollider2D.hpp" />
+    <ClInclude Include="src\CStraightLineCollider2D.hpp" />
+    <ClInclude Include="src\CsvFile.hpp" />
+    <ClInclude Include="src\CTransform2D.hpp" />
+    <ClInclude Include="src\CTransformGUI.hpp" />
+    <ClInclude Include="src\DataContainer.hpp" />
+    <ClInclude Include="src\DataContainerError.hpp" />
+    <ClInclude Include="src\DataContainerFunctionsForBoostSerialize.hpp" />
+    <ClInclude Include="src\DataContainerImpl.hpp" />
+    <ClInclude Include="src\DataContainerSerializeUtility.hpp" />
+    <ClInclude Include="src\DebugDrawInterface.hpp" />
+    <ClInclude Include="src\DebugManager.hpp" />
+    <ClInclude Include="src\Delegate.hpp" />
+    <ClInclude Include="src\DrawSystem.hpp" />
+    <ClInclude Include="src\DXGraphDrawData.hpp" />
+    <ClInclude Include="src\DXUtility.hpp" />
+    <ClInclude Include="src\EACollisionWithCollider2D.hpp" />
+    <ClInclude Include="src\EACollisionWithGround2D.hpp" />
+    <ClInclude Include="src\EffekseerUtil.hpp" />
+    <ClInclude Include="src\EncrypterBase.hpp" />
+    <ClInclude Include="src\EventMonitor.hpp" />
+    <ClInclude Include="src\EXOREncrypter.hpp" />
+    <ClInclude Include="src\File.hpp" />
+    <ClInclude Include="src\FileAccessMode.hpp" />
+    <ClInclude Include="src\FileIStream.hpp" />
+    <ClInclude Include="src\FileManipulator.hpp" />
+    <ClInclude Include="src\FileOStream.hpp" />
+    <ClInclude Include="src\FileStreamBuf.hpp" />
+    <ClInclude Include="src\FileSystemUtility.hpp" />
+    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\GameObjectAllocator.hpp" />
+    <ClInclude Include="src\GameObjectBase.hpp" />
+    <ClInclude Include="src\GameObjectComponent.hpp" />
+    <ClInclude Include="src\GameObjectComponentHolder.hpp" />
+    <ClInclude Include="src\GameObjectComponentSetUpData.hpp" />
+    <ClInclude Include="src\GameObjectComponentUpdateProcess.hpp" />
+    <ClInclude Include="src\GameObjectFactory.hpp" />
+    <ClInclude Include="src\GameObjectManager.hpp" />
+    <ClInclude Include="src\GameObjectManagerConnection.hpp" />
+    <ClInclude Include="src\GameObjectStandardComponent.hpp" />
+    <ClInclude Include="src\GameObjectSystemComponent.hpp" />
+    <ClInclude Include="src\GlobalNewDeleteDefinition.hpp" />
+    <ClInclude Include="src\GOComponentAdder.hpp" />
+    <ClInclude Include="src\GOComponentGetter.hpp" />
+    <ClInclude Include="src\GraphDrawData2D.hpp" />
+    <ClInclude Include="deprecated\GraphPanel.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\GUIComponent.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\GUIManager.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\GUIManagerConnection.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\GUIManagerPublicInterface.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\GUIObject.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\HeadersForGameObjectComponent.hpp" />
+    <ClInclude Include="src\HeadersForSceneSetUpper.hpp" />
+    <ClInclude Include="src\HeadersForTask.hpp" />
+    <ClInclude Include="src\IBGMController.hpp" />
+    <ClInclude Include="src\IColliderWithCollider2D.hpp" />
+    <ClInclude Include="src\ICollisionWorld.hpp" />
+    <ClInclude Include="src\IConfigManager.hpp" />
+    <ClInclude Include="src\IDebugManager.hpp" />
+    <ClInclude Include="src\IDrawSystem.hpp" />
+    <ClInclude Include="src\IGameObject.hpp" />
+    <ClInclude Include="src\IGameObjectManager.hpp" />
+    <ClInclude Include="src\IInputManager.hpp" />
+    <ClInclude Include="src\ILogManager.hpp" />
+    <ClInclude Include="src\IMemoryAllocator.hpp" />
+    <ClInclude Include="src\IniFile.hpp" />
+    <ClInclude Include="src\InitFunctions.hpp" />
+    <ClInclude Include="src\InputDefinitions.hpp" />
+    <ClInclude Include="src\InputManager.hpp" />
+    <ClInclude Include="src\InputUtility.hpp" />
+    <ClInclude Include="src\IPerformanceManager.hpp" />
+    <ClInclude Include="src\IRenderingManager.hpp" />
+    <ClInclude Include="src\IResourceManager.hpp" />
+    <ClInclude Include="src\ISaveManager.hpp" />
+    <ClInclude Include="src\IScene.hpp" />
+    <ClInclude Include="src\ISceneInternal.hpp" />
+    <ClInclude Include="src\ISceneManager.hpp" />
+    <ClInclude Include="src\ISoundEffectController.hpp" />
+    <ClInclude Include="src\ISoundManager.hpp" />
+    <ClInclude Include="src\ITaskManager.hpp" />
+    <ClInclude Include="src\ITransformSystem.hpp" />
+    <ClInclude Include="src\JsonFile.hpp" />
+    <ClInclude Include="src\KeyConfig.hpp" />
+    <ClInclude Include="src\LogManager.hpp" />
+    <ClInclude Include="src\LogUtility.hpp" />
+    <ClInclude Include="src\LuaBindHelder.hpp" />
+    <ClInclude Include="src\MacroUtility.hpp" />
+    <ClInclude Include="src\math\MathConstant.hpp" />
+    <ClInclude Include="src\math\MathMatrix.hpp" />
+    <ClInclude Include="src\math\MathUtility.hpp" />
+    <ClInclude Include="src\math\MathVector.hpp" />
+    <ClInclude Include="src\Matrix2_2.hpp" />
+    <ClInclude Include="src\Matrix3_3.hpp" />
+    <ClInclude Include="src\Memory.hpp" />
+    <ClInclude Include="src\MetaprogrammingUtility.hpp" />
+    <ClInclude Include="src\NonCopyable.hpp" />
+    <ClInclude Include="src\NonOwingPointer.hpp" />
+    <ClInclude Include="src\NormalFolderManipulator.hpp" />
+    <ClInclude Include="src\NullWeakPointerException.hpp" />
+    <ClInclude Include="src\Object.hpp" />
+    <ClInclude Include="src\ObjectHolderTemplate_WithID.hpp" />
+    <ClInclude Include="src\ObjectHolderTemplate_WithoutID.hpp" />
+    <ClInclude Include="src\ParameterHolder.hpp" />
+    <ClInclude Include="src\PEDateTime.hpp" />
+    <ClInclude Include="src\PerfoamanceManager.hpp" />
+    <ClInclude Include="src\PETime.hpp" />
+    <ClInclude Include="src\PlanetaEngine.hpp" />
+    <ClInclude Include="src\PrefixUtility.hpp" />
+    <ClInclude Include="src\Property.hpp" />
+    <ClInclude Include="src\RangeUtility.hpp" />
+    <ClInclude Include="src\RCsv.hpp" />
+    <ClInclude Include="src\RectAngle.hpp" />
+    <ClInclude Include="src\REffect.hpp" />
+    <ClInclude Include="src\REffectTexture.hpp" />
+    <ClInclude Include="src\Reflectable.hpp" />
+    <ClInclude Include="src\ReflectableClassAccessor.hpp" />
+    <ClInclude Include="src\Reflection.hpp" />
+    <ClInclude Include="src\ReflectionAccessible.hpp" />
+    <ClInclude Include="src\ReflectionClassData.hpp" />
+    <ClInclude Include="src\ReflectionExceptions.hpp" />
+    <ClInclude Include="src\ReflectionUtility.hpp" />
+    <ClInclude Include="src\RenderingManager.hpp" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="include\ResourceBase.hpp" />
-    <ClInclude Include="include\ResourceHolder.hpp" />
-    <ClInclude Include="include\ResourceManager.hpp" />
-    <ClInclude Include="include\ResourceReferencer.hpp" />
-    <ClInclude Include="include\RFont.hpp" />
-    <ClInclude Include="include\RGameObject.hpp" />
-    <ClInclude Include="include\RGraph.hpp" />
-    <ClInclude Include="include\RIni.hpp" />
-    <ClInclude Include="include\RJson.hpp" />
-    <ClInclude Include="include\RLuaScript.hpp" />
-    <ClInclude Include="include\RMusic.hpp" />
-    <ClInclude Include="include\RPtree.hpp" />
-    <ClInclude Include="include\RSound.hpp" />
-    <ClInclude Include="include\RText.hpp" />
-    <ClInclude Include="include\RXml.hpp" />
-    <ClInclude Include="include\SaveManager.hpp" />
-    <ClInclude Include="include\Scene.hpp" />
-    <ClInclude Include="include\SceneManager.hpp" />
-    <ClInclude Include="include\SceneModule.hpp" />
-    <ClInclude Include="include\SceneSetUpper.hpp" />
-    <ClInclude Include="include\SceneSetUpProxy.hpp" />
-    <ClInclude Include="include\Screen.hpp" />
-    <ClInclude Include="include\ScreenChangeEffecter.hpp" />
-    <ClInclude Include="include\ScreenDrawer2D.hpp" />
-    <ClInclude Include="include\ScreenDrawerGUI.hpp" />
-    <ClInclude Include="include\SError.hpp" />
-    <ClInclude Include="include\SharedPointerInstance.hpp" />
-    <ClInclude Include="include\Signal.hpp" />
-    <ClInclude Include="deprecated\SimplePolygonPanel.hpp" />
-    <ClInclude Include="include\SingletonTemplate.hpp" />
-    <ClInclude Include="include\SoundEffectController.hpp" />
-    <ClInclude Include="include\SoundManager.hpp" />
-    <ClInclude Include="include\StandardCollisionWorld.hpp" />
-    <ClInclude Include="include\StandardConfigManager.hpp" />
-    <ClInclude Include="include\StandardDebugManager.hpp" />
-    <ClInclude Include="include\StandardDrawSystem.hpp" />
-    <ClInclude Include="include\StandardGameObjectManager.hpp" />
-    <ClInclude Include="include\StandardInputManager.hpp" />
-    <ClInclude Include="include\StandardLogManager.hpp" />
-    <ClInclude Include="include\StandardPerformanceManager.hpp" />
-    <ClInclude Include="include\StandardRenderingManager.hpp" />
-    <ClInclude Include="include\StandardResourceManager.hpp" />
-    <ClInclude Include="include\StandardSaveManager.hpp" />
-    <ClInclude Include="include\StandardSceneManager.hpp" />
-    <ClInclude Include="include\StandardSceneManagerUtility.hpp" />
-    <ClInclude Include="include\StandardSoundManager.hpp" />
-    <ClInclude Include="include\StandardTaskManager.hpp" />
-    <ClInclude Include="include\StandardTransformSystem.hpp" />
-    <ClInclude Include="deprecated\StringPanel.hpp" />
-    <ClInclude Include="include\StringUtility.hpp" />
-    <ClInclude Include="include\SubSystemManager.hpp" />
-    <ClInclude Include="include\SystemTaskSlot.hpp" />
-    <ClInclude Include="include\SystemVariables.hpp" />
-    <ClInclude Include="deprecated\TalkWindows.hpp" />
-    <ClInclude Include="include\Task.hpp" />
-    <ClInclude Include="include\TaskManager.hpp" />
-    <ClInclude Include="include\TaskManagerConnection.hpp" />
-    <ClInclude Include="include\TaskSlot.hpp" />
-    <ClInclude Include="include\TaskSystemSetUpper.hpp" />
-    <ClInclude Include="include\TCoroutine.hpp" />
-    <ClInclude Include="deprecated\TextPanel.hpp" />
-    <ClInclude Include="include\TInstant.hpp" />
-    <ClInclude Include="include\TInstantCoroutine.hpp" />
-    <ClInclude Include="include\TLSFMemoryAllocator.hpp" />
-    <ClInclude Include="include\TransformSystem.hpp" />
-    <ClInclude Include="include\TwoKeyMap.hpp" />
-    <ClInclude Include="include\TypeChecker.hpp" />
-    <ClInclude Include="include\TypeDefinitions.hpp" />
-    <ClInclude Include="include\TypeInfoWrapper.hpp" />
-    <ClInclude Include="include\TypeTraitsUtility.hpp" />
-    <ClInclude Include="include\UnorderedMap.hpp" />
-    <ClInclude Include="include\Vector.hpp" />
-    <ClInclude Include="include\Vector2D.hpp" />
-    <ClInclude Include="include\Vector3D.hpp" />
-    <ClInclude Include="include\Vector4D.hpp" />
-    <ClInclude Include="include\math\MathVectorElementIdentifer.hpp" />
-    <ClInclude Include="include\Vertex2D.hpp" />
-    <ClInclude Include="include\WeakPointer.hpp" />
-    <ClInclude Include="include\WindowsUtility.hpp" />
-    <ClInclude Include="include\XmlFile.hpp" />
+    <ClInclude Include="src\ResourceBase.hpp" />
+    <ClInclude Include="src\ResourceHolder.hpp" />
+    <ClInclude Include="src\ResourceManager.hpp" />
+    <ClInclude Include="src\ResourceReferencer.hpp" />
+    <ClInclude Include="src\RFont.hpp" />
+    <ClInclude Include="src\RGameObject.hpp" />
+    <ClInclude Include="src\RGraph.hpp" />
+    <ClInclude Include="src\RIni.hpp" />
+    <ClInclude Include="src\RJson.hpp" />
+    <ClInclude Include="src\RLuaScript.hpp" />
+    <ClInclude Include="src\RMusic.hpp" />
+    <ClInclude Include="src\RPtree.hpp" />
+    <ClInclude Include="src\RSound.hpp" />
+    <ClInclude Include="src\RText.hpp" />
+    <ClInclude Include="src\RXml.hpp" />
+    <ClInclude Include="src\SaveManager.hpp" />
+    <ClInclude Include="src\Scene.hpp" />
+    <ClInclude Include="src\SceneManager.hpp" />
+    <ClInclude Include="src\SceneModule.hpp" />
+    <ClInclude Include="src\SceneSetUpper.hpp" />
+    <ClInclude Include="src\SceneSetUpProxy.hpp" />
+    <ClInclude Include="src\Screen.hpp" />
+    <ClInclude Include="src\ScreenChangeEffecter.hpp" />
+    <ClInclude Include="src\ScreenDrawer2D.hpp" />
+    <ClInclude Include="src\ScreenDrawerGUI.hpp" />
+    <ClInclude Include="src\SError.hpp" />
+    <ClInclude Include="src\SharedPointerInstance.hpp" />
+    <ClInclude Include="src\Signal.hpp" />
+    <ClInclude Include="deprecated\SimplePolygonPanel.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\SingletonTemplate.hpp" />
+    <ClInclude Include="src\SoundEffectController.hpp" />
+    <ClInclude Include="src\SoundManager.hpp" />
+    <ClInclude Include="src\StandardCollisionWorld.hpp" />
+    <ClInclude Include="src\StandardConfigManager.hpp" />
+    <ClInclude Include="src\StandardDebugManager.hpp" />
+    <ClInclude Include="src\StandardDrawSystem.hpp" />
+    <ClInclude Include="src\StandardGameObjectManager.hpp" />
+    <ClInclude Include="src\StandardInputManager.hpp" />
+    <ClInclude Include="src\StandardLogManager.hpp" />
+    <ClInclude Include="src\StandardPerformanceManager.hpp" />
+    <ClInclude Include="src\StandardRenderingManager.hpp" />
+    <ClInclude Include="src\StandardResourceManager.hpp" />
+    <ClInclude Include="src\StandardSaveManager.hpp" />
+    <ClInclude Include="src\StandardSceneManager.hpp" />
+    <ClInclude Include="src\StandardSceneManagerUtility.hpp" />
+    <ClInclude Include="src\StandardSoundManager.hpp" />
+    <ClInclude Include="src\StandardTaskManager.hpp" />
+    <ClInclude Include="src\StandardTransformSystem.hpp" />
+    <ClInclude Include="deprecated\StringPanel.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\StringUtility.hpp" />
+    <ClInclude Include="src\SubSystemManager.hpp" />
+    <ClInclude Include="src\SystemTaskSlot.hpp" />
+    <ClInclude Include="src\SystemVariables.hpp" />
+    <ClInclude Include="deprecated\TalkWindows.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\Task.hpp" />
+    <ClInclude Include="src\TaskManager.hpp" />
+    <ClInclude Include="src\TaskManagerConnection.hpp" />
+    <ClInclude Include="src\TaskSlot.hpp" />
+    <ClInclude Include="src\TaskSystemSetUpper.hpp" />
+    <ClInclude Include="src\TCoroutine.hpp" />
+    <ClInclude Include="deprecated\TextPanel.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\TInstant.hpp" />
+    <ClInclude Include="src\TInstantCoroutine.hpp" />
+    <ClInclude Include="src\TLSFMemoryAllocator.hpp" />
+    <ClInclude Include="src\TransformSystem.hpp" />
+    <ClInclude Include="src\TwoKeyMap.hpp" />
+    <ClInclude Include="src\TypeChecker.hpp" />
+    <ClInclude Include="src\TypeDefinitions.hpp" />
+    <ClInclude Include="src\TypeInfoWrapper.hpp" />
+    <ClInclude Include="src\TypeTraitsUtility.hpp" />
+    <ClInclude Include="src\UnorderedMap.hpp" />
+    <ClInclude Include="src\Vector.hpp" />
+    <ClInclude Include="src\Vector2D.hpp" />
+    <ClInclude Include="src\Vector3D.hpp" />
+    <ClInclude Include="src\Vector4D.hpp" />
+    <ClInclude Include="src\math\MathVectorElementIdentifer.hpp" />
+    <ClInclude Include="src\Vertex2D.hpp" />
+    <ClInclude Include="src\WeakPointer.hpp" />
+    <ClInclude Include="src\WindowsUtility.hpp" />
+    <ClInclude Include="src\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AESEncrypter.cpp" />
@@ -471,7 +501,10 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\GameObjectComponentHolder.cpp" />
     <ClCompile Include="src\GameObjectManagerConnection.cpp" />
     <ClCompile Include="src\GraphDrawData2D.cpp" />
-    <ClCompile Include="deprecated\GraphPanel.cpp" />
+    <ClCompile Include="deprecated\GraphPanel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\TInstant.cpp" />
     <ClCompile Include="src\StandardSaveManager.cpp" />
     <ClCompile Include="src\SceneSetUpper.cpp" />
@@ -479,12 +512,24 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\ScreenChangeEffecter.cpp" />
     <ClCompile Include="src\ScreenDrawer2D.cpp" />
     <ClCompile Include="src\ScreenDrawerGUI.cpp" />
-    <ClCompile Include="deprecated\SimplePolygonPanel.cpp" />
+    <ClCompile Include="deprecated\SimplePolygonPanel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\SoundEffectController.cpp" />
     <ClCompile Include="src\StandardSoundManager.cpp" />
-    <ClCompile Include="deprecated\StringPanel.cpp" />
-    <ClCompile Include="deprecated\TalkWindows.cpp" />
-    <ClCompile Include="deprecated\TextPanel.cpp" />
+    <ClCompile Include="deprecated\StringPanel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="deprecated\TalkWindows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="deprecated\TextPanel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="deprecated\GUIComponent.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
