@@ -1,4 +1,4 @@
-﻿#include "GOComponentGetter.hpp"
+﻿#include "planeta/GOComponentGetter.hpp"
 #include "GameObjectComponentHolder.hpp"
 #include "LogUtility.hpp"
 

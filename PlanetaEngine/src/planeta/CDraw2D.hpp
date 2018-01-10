@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "GameObjectSystemComponent.hpp"
+#include "planeta/GameObjectSystemComponent.hpp"
 #include "WeakPointer.hpp"
 #include "Color.hpp"
 #include "Vector2D.hpp"

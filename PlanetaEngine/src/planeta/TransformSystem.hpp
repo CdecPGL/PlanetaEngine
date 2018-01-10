@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ITransformSystem.hpp"
+#include "planeta/ITransformSystem.hpp"
 #include "SceneModule.hpp"
 
 namespace plnt {

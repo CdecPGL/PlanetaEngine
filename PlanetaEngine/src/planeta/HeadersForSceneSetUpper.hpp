@@ -3,7 +3,7 @@
 //! SceneSetUpperの定義で用いる可能性があるヘッダをまとめてインクルードする。
 //! PlanetaEngine内部では使わないこと
 
-#include "SceneSetUpper.hpp"
+#include "planeta/SceneSetUpper.hpp"
 #include "SceneSetUpProxy.hpp"
 #include "IGameObject.hpp"
 #include "IScene.hpp"

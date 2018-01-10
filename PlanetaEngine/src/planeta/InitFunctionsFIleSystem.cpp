@@ -1,6 +1,6 @@
 ﻿#include <cassert>
 
-#include "InitFunctions.hpp"
+#include "planeta/InitFunctions.hpp"
 #include "SystemVariables.hpp"
 
 #include "FileAccessMode.hpp"

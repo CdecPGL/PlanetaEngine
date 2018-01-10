@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "ResourceBase.hpp"
+#include "planeta/ResourceBase.hpp"
 #include "Vector2D.hpp"
 
 namespace plnt {

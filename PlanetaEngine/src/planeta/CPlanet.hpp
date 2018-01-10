@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "GameObjectStandardComponent.hpp"
+#include "planeta/GameObjectStandardComponent.hpp"
 #include <vector>
 
 namespace plnt {

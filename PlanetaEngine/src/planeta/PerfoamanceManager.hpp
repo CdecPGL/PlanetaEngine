@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IPerformanceManager.hpp"
+#include "planeta/IPerformanceManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

@@ -1,4 +1,4 @@
-﻿#include "StringPanel.hpp"
+﻿#include "planeta/StringPanel.hpp"
 #include "StandardResourceManager.hpp"
 #include "ScreenDrawerGUI.hpp"
 

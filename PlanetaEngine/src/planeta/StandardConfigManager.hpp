@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ConfigManager.hpp"
+#include "planeta/ConfigManager.hpp"
 
 namespace plnt {
 	namespace private_ {

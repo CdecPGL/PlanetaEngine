@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ResourceBase.hpp"
+#include "planeta/ResourceBase.hpp"
 #include "EffekseerUtil.hpp"
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130

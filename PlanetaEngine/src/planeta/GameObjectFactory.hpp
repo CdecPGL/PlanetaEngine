@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <functional>
 
-#include "WeakPointer.hpp"
+#include "planeta/WeakPointer.hpp"
 
 namespace plnt {
 	namespace private_ {

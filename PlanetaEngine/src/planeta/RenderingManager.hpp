@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IRenderingManager.hpp"
+#include "planeta/IRenderingManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

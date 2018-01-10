@@ -2,7 +2,7 @@
 
 #include<string>
 
-#include"InputDefinitions.hpp"
+#include"planeta/InputDefinitions.hpp"
 
 namespace plnt {
 	namespace private_ {

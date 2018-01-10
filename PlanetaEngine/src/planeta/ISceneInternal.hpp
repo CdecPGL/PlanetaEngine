@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IScene.hpp"
+#include "planeta/IScene.hpp"
 #include "WeakPointer.hpp"
 
 namespace plnt {

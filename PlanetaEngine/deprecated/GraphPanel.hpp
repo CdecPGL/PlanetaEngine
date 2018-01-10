@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
-#include "GUIComponent.hpp"
+#include "planeta/GUIComponent.hpp"
 
 namespace plnt {
 	//namespace resources {

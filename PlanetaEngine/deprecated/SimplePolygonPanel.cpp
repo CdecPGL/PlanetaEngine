@@ -1,4 +1,4 @@
-﻿#include "SimplePolygonPanel.hpp"
+﻿#include "planeta/SimplePolygonPanel.hpp"
 
 #include "LogUtility.hpp"
 #include "ScreenDrawerGUI.hpp"

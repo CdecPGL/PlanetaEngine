@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 #include <type_traits>
-#include "LogUtility.hpp"
+#include "planeta/LogUtility.hpp"
 
 namespace plnt {
 	class ResourceBase;

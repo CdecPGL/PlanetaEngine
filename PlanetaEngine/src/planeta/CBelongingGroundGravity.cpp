@@ -1,4 +1,4 @@
-﻿#include "CBelongingGroundGravity.hpp"
+﻿#include "planeta/CBelongingGroundGravity.hpp"
 
 #include "IGameObject.hpp"
 #include "CTransform2D.hpp"

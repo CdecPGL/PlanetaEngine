@@ -1,4 +1,4 @@
-﻿#include "GameObjectManagerConnection.hpp"
+﻿#include "planeta/GameObjectManagerConnection.hpp"
 
 #include "GameObjectManager.hpp"
 

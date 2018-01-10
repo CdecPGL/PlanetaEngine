@@ -1,4 +1,4 @@
-#include "CDrawGUI.hpp"
+#include "planeta/CDrawGUI.hpp"
 #include "ISceneInternal.hpp"
 #include "DrawSystem.hpp"
 #include "LogUtility.hpp"

@@ -2,7 +2,7 @@
 
 #include <set>
 #include <functional>
-#include "Signal.hpp"
+#include "planeta/Signal.hpp"
 #include "GameObjectSystemComponent.hpp"
 #include "WeakPointer.hpp"
 #include "Vector2D.hpp"

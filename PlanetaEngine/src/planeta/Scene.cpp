@@ -1,6 +1,6 @@
-﻿#include "Scene.hpp"
+﻿#include "planeta/Scene.hpp"
 //Modules
-#include "GameObjectManager.hpp"
+#include "planeta/GameObjectManager.hpp"
 #include "TaskManager.hpp"
 #include "CollisionWorld.hpp"
 #include "DrawSystem.hpp"

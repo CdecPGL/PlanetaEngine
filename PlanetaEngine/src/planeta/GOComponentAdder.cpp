@@ -1,4 +1,4 @@
-﻿#include "GOComponentAdder.hpp"
+﻿#include "planeta/GOComponentAdder.hpp"
 #include "GameObjectComponentHolder.hpp"
 #include "Reflection.hpp"
 #include "PrefixUtility.hpp"

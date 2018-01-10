@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-//#include "TLSFMemoryAllocator.hpp"
+//#include "planeta/TLSFMemoryAllocator.hpp"
 //
 //static planeta_engine::core::TLSFMemoryAllocator memory_allocator(1024*1024*100);
 //

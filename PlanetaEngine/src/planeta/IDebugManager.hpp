@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-#include "StringUtility.hpp"
+#include "planeta/StringUtility.hpp"
 #include "Vector2D.hpp"
 #include "Color.hpp"
 

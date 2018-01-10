@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "NonOwingPointer.hpp"
+#include "planeta/NonOwingPointer.hpp"
 #include "GameObjectComponent.hpp"
 #include "LogUtility.hpp"
 

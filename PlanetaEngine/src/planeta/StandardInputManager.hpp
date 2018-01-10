@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include<memory>
-#include "InputManager.hpp"
+#include "planeta/InputManager.hpp"
 
 namespace plnt {
 	namespace private_ {

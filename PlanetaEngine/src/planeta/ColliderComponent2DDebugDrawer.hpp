@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IColliderWithCollider2D.hpp"
+#include "planeta/IColliderWithCollider2D.hpp"
 
 namespace plnt {
 	class IDebugDrawer;

@@ -1,4 +1,4 @@
-﻿#include "GameObjectComponent.hpp"
+﻿#include "planeta/GameObjectComponent.hpp"
 #include "GameObjectComponentSetUpData.hpp"
 #include "LogUtility.hpp"
 #include "ISceneInternal.hpp"

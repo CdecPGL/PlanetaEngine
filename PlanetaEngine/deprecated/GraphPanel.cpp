@@ -1,4 +1,4 @@
-﻿#include "GraphPanel.hpp"
+﻿#include "planeta/GraphPanel.hpp"
 
 #include "StandardResourceManager.hpp"
 #include "LogUtility.hpp"

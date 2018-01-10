@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <ctime>
-#include "Object.hpp"
+#include "planeta/Object.hpp"
 
 namespace plnt {
 	namespace util {

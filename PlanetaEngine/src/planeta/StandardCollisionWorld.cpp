@@ -1,4 +1,4 @@
-﻿#include "Game.hpp"
+﻿#include "planeta/Game.hpp"
 #include "ConfigManager.hpp"
 #include "StandardCollisionWorld.hpp"
 #include "boost/next_prior.hpp"

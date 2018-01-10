@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <list>
 #include <functional>
-#include "CollisionWorld.hpp"
+#include "planeta/CollisionWorld.hpp"
 
 namespace plnt {
 	class EACollisionWithCollider2D;

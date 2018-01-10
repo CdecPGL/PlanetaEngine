@@ -1,7 +1,7 @@
 ﻿#pragma warning(push)
 #pragma warning(disable:4996)
 
-#include"KeyConfig.hpp"
+#include"planeta/KeyConfig.hpp"
 #include"INILoader.h"
 #include"INISaver.h"
 #include"InputUtility.hpp"

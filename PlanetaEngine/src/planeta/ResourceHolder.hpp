@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game.hpp"
+#include "planeta/Game.hpp"
 #include "IResourceManager.hpp"
 #include "LogUtility.hpp"
 

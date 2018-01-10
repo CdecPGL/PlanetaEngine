@@ -1,6 +1,6 @@
 ﻿#include <functional>
 
-#include "Game.hpp"
+#include "planeta/Game.hpp"
 #include "RenderingManager.hpp"
 #include "ConfigManager.hpp"
 #include "StandardDrawSystem.hpp"

@@ -1,4 +1,4 @@
-﻿#include "ResourceManager.hpp"
+﻿#include "planeta/ResourceManager.hpp"
 #include "StandardSceneManager.hpp"
 #include "IDebugManager.hpp"
 #include "Scene.hpp"

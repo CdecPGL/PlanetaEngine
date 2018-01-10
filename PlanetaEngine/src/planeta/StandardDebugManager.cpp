@@ -1,4 +1,4 @@
-﻿#include "StandardDebugManager.hpp"
+﻿#include "planeta/StandardDebugManager.hpp"
 #include "Game.hpp"
 #include "IInputManager.hpp"
 #include "RenderingManager.hpp"

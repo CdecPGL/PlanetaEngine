@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "GameObjectSystemComponent.hpp"
+#include "planeta/GameObjectSystemComponent.hpp"
 #include "Vector2D.hpp"
 
 namespace plnt {

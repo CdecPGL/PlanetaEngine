@@ -1,4 +1,4 @@
-﻿#include "GUIObject.hpp"
+﻿#include "planeta/GUIObject.hpp"
 #include "GUIComponent.hpp"
 #include "LogUtility.hpp"
 

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
-#include "TaskManager.hpp"
+#include "planeta/TaskManager.hpp"
 #include "WeakPointer.hpp"
 
 namespace plnt {

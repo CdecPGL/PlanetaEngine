@@ -4,7 +4,7 @@
 #include <vector>
 #include <tuple>
 
-#include "GameObjectStandardComponent.hpp"
+#include "planeta/GameObjectStandardComponent.hpp"
 #include "WeakPointer.hpp"
 #include "RectAngle.hpp"
 

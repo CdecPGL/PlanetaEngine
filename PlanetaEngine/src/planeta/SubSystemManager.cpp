@@ -1,6 +1,6 @@
 #include <functional>
 
-#include "SubSystemManager.hpp"
+#include "planeta/SubSystemManager.hpp"
 #include "Game.hpp"
 #include "IDebugManager.hpp"
 

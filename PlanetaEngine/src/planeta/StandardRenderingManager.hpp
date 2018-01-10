@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "RenderingManager.hpp"
+#include "planeta/RenderingManager.hpp"
 
 namespace plnt {
 	namespace private_{

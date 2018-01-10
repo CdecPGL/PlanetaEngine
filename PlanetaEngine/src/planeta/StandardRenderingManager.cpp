@@ -1,5 +1,5 @@
 ﻿#include <cassert>
-#include "StandardRenderingManager.hpp"
+#include "planeta/StandardRenderingManager.hpp"
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
 #include "Screen.hpp"

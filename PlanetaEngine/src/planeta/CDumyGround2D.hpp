@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <limits>
-#include "CGround2D.hpp"
+#include "planeta/CGround2D.hpp"
 #include "planeta/math/MathConstant.hpp"
 
 namespace plnt {

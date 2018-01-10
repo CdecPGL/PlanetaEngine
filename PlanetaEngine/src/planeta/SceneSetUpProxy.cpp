@@ -1,4 +1,4 @@
-#include "SceneSetUpProxy.hpp"
+#include "planeta/SceneSetUpProxy.hpp"
 #include "Scene.hpp"
 
 namespace plnt {

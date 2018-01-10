@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <array>
-#include "EncrypterBase.hpp"
+#include "planeta/EncrypterBase.hpp"
 #include "boost/multiprecision/cpp_int.hpp"
 
 namespace plnt{

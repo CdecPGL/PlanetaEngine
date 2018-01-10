@@ -1,4 +1,4 @@
-﻿#include "GUIComponent.hpp"
+﻿#include "planeta/GUIComponent.hpp"
 #include "LogUtility.hpp"
 #include <cassert>
 

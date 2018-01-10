@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "ResourceBase.hpp"
+#include "planeta/ResourceBase.hpp"
 
 namespace plnt {
 	class RText : public ResourceBase {

@@ -1,6 +1,6 @@
-﻿//#include "GUIManagerConnection.hpp"
+﻿//#include "planeta/GUIManagerConnection.hpp"
 //
-//#include "GUIManager.hpp"
+//#include "planeta/GUIManager.hpp"
 
 namespace plnt {
 	/*namespace game {

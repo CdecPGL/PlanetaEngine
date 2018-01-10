@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <memory>
 #include <functional>
-#include "GameObjectManager.hpp"
+#include "planeta/GameObjectManager.hpp"
 
 namespace plnt {
 	class SceneAccessorForGameObject;

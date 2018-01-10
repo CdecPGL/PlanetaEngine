@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <list>
-#include "GameObjectStandardComponent.hpp"
+#include "planeta/GameObjectStandardComponent.hpp"
 #include "Vector2D.hpp"
 #include "RectAngle.hpp"
 #include "planeta/math/MathConstant.hpp"

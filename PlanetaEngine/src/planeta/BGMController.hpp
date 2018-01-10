@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
-#include "IBGMController.hpp"
+#include "planeta/IBGMController.hpp"
 
 namespace plnt {
 	class RMusic;

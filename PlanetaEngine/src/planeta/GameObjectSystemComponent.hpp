@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "GameObjectComponent.hpp"
+#include "planeta/GameObjectComponent.hpp"
 
 namespace plnt {
 	namespace private_ {

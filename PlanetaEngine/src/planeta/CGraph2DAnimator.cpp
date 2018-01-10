@@ -1,4 +1,4 @@
-﻿#include "CGraph2DAnimator.hpp"
+﻿#include "planeta/CGraph2DAnimator.hpp"
 #include "IGameObject.hpp"
 #include "CDrawGraph2D.hpp"
 #include "LogUtility.hpp"

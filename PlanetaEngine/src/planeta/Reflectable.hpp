@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "ClassRegisterer.hpp"
+#include "planeta/ClassRegisterer.hpp"
 #include "Reflection.hpp"
 
 namespace plnt {

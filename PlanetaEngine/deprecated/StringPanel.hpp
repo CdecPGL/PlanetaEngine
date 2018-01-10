@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "GUIComponent.hpp"
+#include "planeta/GUIComponent.hpp"
 #include "Color.hpp"
 
 namespace plnt {

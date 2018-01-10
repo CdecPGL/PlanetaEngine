@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "XmlFile.hpp"
+#include "planeta/XmlFile.hpp"
 #include "ResourceBase.hpp"
 
 namespace plnt {

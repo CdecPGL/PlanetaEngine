@@ -1,4 +1,4 @@
-#include "EffekseerUtil.hpp"
+#include "planeta/EffekseerUtil.hpp"
 #include "CharacterCode.hpp"
 #include "LogUtility.hpp"
 

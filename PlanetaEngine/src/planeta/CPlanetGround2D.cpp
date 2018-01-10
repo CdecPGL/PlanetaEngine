@@ -1,4 +1,4 @@
-﻿#include "CPlanetGround2D.hpp"
+﻿#include "planeta/CPlanetGround2D.hpp"
 #include "IGameObject.hpp"
 #include "CTransform2D.hpp"
 #include "CCircleCollider2D.hpp"

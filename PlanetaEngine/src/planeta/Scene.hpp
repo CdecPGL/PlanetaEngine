@@ -4,7 +4,7 @@
 #include <string>
 #include <functional>
 #include <list>
-#include "Object.hpp"
+#include "planeta/Object.hpp"
 #include "ISceneInternal.hpp"
 #include "WeakPointer.hpp"
 #include "NonCopyable.hpp"

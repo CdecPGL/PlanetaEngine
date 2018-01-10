@@ -1,4 +1,4 @@
-﻿#include "CStraightLineCollider2D.hpp"
+﻿#include "planeta/CStraightLineCollider2D.hpp"
 #include "CollisionDetectFunctions.hpp"
 
 namespace plnt {

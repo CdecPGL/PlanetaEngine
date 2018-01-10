@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "CGround2D.hpp"
+#include "planeta/CGround2D.hpp"
 
 namespace plnt {
 	class CPlanet;

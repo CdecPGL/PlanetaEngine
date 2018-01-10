@@ -1,4 +1,4 @@
-#include "CDrawGraphGUI.hpp"
+#include "planeta/CDrawGraphGUI.hpp"
 #include "ResourceHolder.hpp"
 #include "RGraph.hpp"
 #include "ScreenDrawerGUI.hpp"

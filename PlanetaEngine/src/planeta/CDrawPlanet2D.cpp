@@ -1,4 +1,4 @@
-﻿#include "Game.hpp"
+﻿#include "planeta/Game.hpp"
 #include "CDrawPlanet2D.hpp"
 #include <cmath>
 #include "ScreenDrawer2D.hpp"

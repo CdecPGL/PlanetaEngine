@@ -3,7 +3,7 @@
 #include <set>
 #include <vector>
 #include <functional>
-#include "IResourceManager.hpp"
+#include "planeta/IResourceManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

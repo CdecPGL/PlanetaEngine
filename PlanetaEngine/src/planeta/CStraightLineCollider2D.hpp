@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "CCollider2D.hpp"
+#include "planeta/CCollider2D.hpp"
 
 namespace plnt {
 	/*! 直線コライダーコンポーネント*/
