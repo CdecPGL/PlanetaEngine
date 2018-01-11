@@ -155,6 +155,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp" />
     <ClInclude Include="src\planeta\BuiltInResources.hpp" />
     <ClInclude Include="src\planeta\BuiltInTasks.hpp" />
+    <ClInclude Include="src\planeta\Math.hpp" />
     <ClInclude Include="src\planeta\PlanetaEngine.hpp" />
     <ClInclude Include="src\planeta\util\AccessorTemplate.hpp" />
     <ClInclude Include="src\planeta\archiver\AESEncrypter.hpp" />
