@@ -7,9 +7,10 @@
 #include "boost/multi_index/hashed_index.hpp"
 
 #include "planeta/core/LogUtility.hpp"
+#include "planeta/core/StringUtility.hpp"
+
 #include "Reflection.hpp"
 #include "ReflectionExceptions.hpp"
-#include "planeta/core/StringUtility.hpp"
 #include "ClassInfoCaller.hpp"
 #include "ReflectableClassAccessor.hpp"
 

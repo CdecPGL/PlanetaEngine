@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "boost/core/enable_if.hpp"
-
 #include <tuple>
+
+#include "boost/core/enable_if.hpp"
 
 namespace plnt {
 	namespace util {

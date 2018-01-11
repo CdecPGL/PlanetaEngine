@@ -21,7 +21,7 @@
 #include "boost/function_types/function_type.hpp"
 #include "boost/function_types/parameter_types.hpp"
 
-#include "planeta/reflection/LuaBindHelper.hpp"
+#include "LuaBindHelper.hpp"
 #include "ClassInfo.hpp"
 #include "ReflectionUtility.hpp"
 

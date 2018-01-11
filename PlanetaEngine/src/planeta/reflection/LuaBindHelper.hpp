@@ -2,6 +2,7 @@
 
 #include <type_traits>
 #include <functional>
+
 #include "boost/type_traits.hpp"
 
 namespace plnt {
