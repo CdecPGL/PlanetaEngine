@@ -1,5 +1,6 @@
-﻿#include "planeta/archiver/EncrypterBase.hpp"
-#include "planeta/core/File.hpp"
+﻿#include "planeta/core/File.hpp"
+
+#include "EncrypterBase.hpp"
 
 namespace plnt {
 	namespace encrypters {

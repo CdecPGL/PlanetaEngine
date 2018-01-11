@@ -1,6 +1,4 @@
-﻿#include "planeta/archiver/AESEncrypter.hpp"
-
-#include <array>
+﻿#include <array>
 
 #include "cryptopp/cryptlib.h"
 #include "cryptopp/aes.h"
@@ -9,6 +7,8 @@
 #include "cryptopp/osrng.h"
 
 #include "planeta/core/File.hpp"
+
+#include "AESEncrypter.hpp"
 
 namespace plnt {
 	namespace encrypters {
