@@ -1,6 +1,6 @@
 ﻿#include "planeta/GraphDrawData2D.hpp"
-#include "DXGraphDrawData.hpp"
-#include "DXUtility.hpp"
+#include "planeta/dxlib/DXGraphDrawData.hpp"
+#include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/buildin/RGraph.hpp"
 #include <cassert>
 

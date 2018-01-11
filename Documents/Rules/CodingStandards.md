@@ -96,6 +96,7 @@ Planeta関連のものはplnt名前空間で定義する。さらにその子名
 - 直下: エンジン本体
 - buildin: 標準搭載のクラス群
 - reflection: リフレクションシステム
+- archiver: アーカイバと暗号化関連
 - math: 数学関連
 - util: ユーティリティ関数
 - dxlib: DXライブラリ関連

@@ -207,8 +207,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\DebugManager.hpp" />
     <ClInclude Include="src\planeta\core\Delegate.hpp" />
     <ClInclude Include="src\planeta\DrawSystem.hpp" />
-    <ClInclude Include="src\planeta\DXGraphDrawData.hpp" />
-    <ClInclude Include="src\planeta\DXUtility.hpp" />
+    <ClInclude Include="src\planeta\dxlib\DXGraphDrawData.hpp" />
+    <ClInclude Include="src\planeta\dxlib\DXUtility.hpp" />
     <ClInclude Include="src\planeta\EACollisionWithCollider2D.hpp" />
     <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp" />
     <ClInclude Include="src\planeta\EffekseerUtil.hpp" />
@@ -542,7 +542,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\buildin\CDrawLine2D.cpp" />
     <ClCompile Include="src\planeta\StandardRenderingManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPlanet2D.cpp" />
-    <ClCompile Include="src\planeta\DXUtility.cpp" />
+    <ClCompile Include="src\planeta\dxlib\DXUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\CGraph2DAnimator.cpp" />
     <ClCompile Include="src\planeta\buildin\RGraph.cpp" />
     <ClCompile Include="src\planeta\buildin\RIni.cpp" />

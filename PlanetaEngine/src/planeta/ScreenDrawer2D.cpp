@@ -1,8 +1,8 @@
 ﻿#include "planeta/ScreenDrawer2D.hpp"
 
 #include "DxLib.h"
-#include "DXUtility.hpp"
-#include "DXGraphDrawData.hpp"
+#include "planeta/dxlib/DXUtility.hpp"
+#include "planeta/dxlib/DXGraphDrawData.hpp"
 #include "planeta/GraphDrawData2D.hpp"
 #include "planeta/core/Color.hpp"
 #include "Screen.hpp"

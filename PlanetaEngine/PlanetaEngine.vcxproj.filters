@@ -339,12 +339,6 @@
     <ClInclude Include="src\planeta\DrawSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\DXGraphDrawData.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DXUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\EACollisionWithCollider2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -948,6 +942,12 @@
     <ClInclude Include="src\planeta\archiver\EXOREncrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\dxlib\DXUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\dxlib\DXGraphDrawData.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1006,9 +1006,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\DataContainerSerializeUtility.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\DXUtility.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\EffekseerUtil.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -1348,6 +1345,9 @@
     </ClCompile>
     <ClCompile Include="src\planeta\archiver\EXOREncrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\dxlib\DXUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

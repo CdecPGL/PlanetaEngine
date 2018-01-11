@@ -4,7 +4,7 @@
 
 #include "planeta/ScreenDrawerGUI.hpp"
 #include "planeta/buildin/RGraph.hpp"
-#include "DXUtility.hpp"
+#include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/buildin/RFont.hpp"
 #include "Screen.hpp"
 
