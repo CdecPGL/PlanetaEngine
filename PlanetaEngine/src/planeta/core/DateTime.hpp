@@ -2,7 +2,7 @@
 
 #include <ctime>
 
-#include "planeta/Object.hpp"
+#include "planeta/core/Object.hpp"
 
 namespace plnt {
 	namespace util {

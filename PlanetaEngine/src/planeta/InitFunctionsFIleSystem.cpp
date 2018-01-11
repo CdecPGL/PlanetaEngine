@@ -3,9 +3,9 @@
 #include "planeta/InitFunctions.hpp"
 #include "SystemVariables.hpp"
 
-#include "FileAccessMode.hpp"
-#include "ArchiveManipulator.hpp"
-#include "NormalFolderManipulator.hpp"
+#include "planeta/core/FileAccessMode.hpp"
+#include "planeta/core/ArchiveManipulator.hpp"
+#include "planeta/core/NormalFolderManipulator.hpp"
 
 namespace plnt {
 	namespace private_ {

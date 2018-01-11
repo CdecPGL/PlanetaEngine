@@ -5,8 +5,8 @@
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
-#include "FileManipulator.hpp"
-#include "planeta/File.hpp"
+#include "planeta/core/FileManipulator.hpp"
+#include "planeta/core/File.hpp"
 #include "planeta/core/JsonFile.hpp"
 #include "ConfigManager.hpp"
 

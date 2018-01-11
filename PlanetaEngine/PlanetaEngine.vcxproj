@@ -154,7 +154,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   <ItemGroup>
     <ClInclude Include="src\planeta\AccessorTemplate.hpp" />
     <ClInclude Include="src\planeta\AESEncrypter.hpp" />
-    <ClInclude Include="src\planeta\ArchiveManipulator.hpp" />
+    <ClInclude Include="src\planeta\core\ArchiveManipulator.hpp" />
     <ClInclude Include="src\planeta\BadAllocException.hpp" />
     <ClInclude Include="src\planeta\BadNewDeleteOperation.hpp" />
     <ClInclude Include="src\planeta\BGMController.hpp" />
@@ -215,13 +215,13 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\EncrypterBase.hpp" />
     <ClInclude Include="src\planeta\EventMonitor.hpp" />
     <ClInclude Include="src\planeta\EXOREncrypter.hpp" />
-    <ClInclude Include="src\planeta\File.hpp" />
-    <ClInclude Include="src\planeta\FileAccessMode.hpp" />
-    <ClInclude Include="src\planeta\FileIStream.hpp" />
-    <ClInclude Include="src\planeta\FileManipulator.hpp" />
-    <ClInclude Include="src\planeta\FileOStream.hpp" />
-    <ClInclude Include="src\planeta\FileStreamBuf.hpp" />
-    <ClInclude Include="src\planeta\FileSystemUtility.hpp" />
+    <ClInclude Include="src\planeta\core\File.hpp" />
+    <ClInclude Include="src\planeta\core\FileAccessMode.hpp" />
+    <ClInclude Include="src\planeta\core\FileIStream.hpp" />
+    <ClInclude Include="src\planeta\core\FileManipulator.hpp" />
+    <ClInclude Include="src\planeta\core\FileOStream.hpp" />
+    <ClInclude Include="src\planeta\core\FileStreamBuf.hpp" />
+    <ClInclude Include="src\planeta\core\FileSystemUtility.hpp" />
     <ClInclude Include="src\planeta\Game.hpp" />
     <ClInclude Include="src\planeta\GameObjectAllocator.hpp" />
     <ClInclude Include="src\planeta\GameObjectBase.hpp" />
@@ -308,9 +308,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\MetaprogrammingUtility.hpp" />
     <ClInclude Include="src\planeta\NonCopyable.hpp" />
     <ClInclude Include="src\planeta\core\NonOwingPointer.hpp" />
-    <ClInclude Include="src\planeta\NormalFolderManipulator.hpp" />
+    <ClInclude Include="src\planeta\core\NormalFolderManipulator.hpp" />
     <ClInclude Include="src\planeta\NullWeakPointerException.hpp" />
-    <ClInclude Include="src\planeta\Object.hpp" />
+    <ClInclude Include="src\planeta\core\Object.hpp" />
     <ClInclude Include="src\planeta\ObjectHolderTemplate_WithID.hpp" />
     <ClInclude Include="src\planeta\ObjectHolderTemplate_WithoutID.hpp" />
     <ClInclude Include="src\planeta\ParameterHolder.hpp" />
@@ -429,7 +429,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\planeta\AESEncrypter.cpp" />
-    <ClCompile Include="src\planeta\ArchiveManipulator.cpp" />
+    <ClCompile Include="src\planeta\core\ArchiveManipulator.cpp" />
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp" />
     <ClCompile Include="src\planeta\BGMController.cpp" />
     <ClCompile Include="src\planeta\buildin\CCamera2D.cpp" />
@@ -488,11 +488,11 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\EncrypterBase.cpp" />
     <ClCompile Include="src\planeta\buildin\SError.cpp" />
     <ClCompile Include="src\planeta\EXOREncrypter.cpp" />
-    <ClCompile Include="src\planeta\FileIStream.cpp" />
-    <ClCompile Include="src\planeta\FileManipulator.cpp" />
-    <ClCompile Include="src\planeta\FileOStream.cpp" />
-    <ClCompile Include="src\planeta\FileStreamBuf.cpp" />
-    <ClCompile Include="src\planeta\FileSystemUtility.cpp" />
+    <ClCompile Include="src\planeta\core\FileIStream.cpp" />
+    <ClCompile Include="src\planeta\core\FileManipulator.cpp" />
+    <ClCompile Include="src\planeta\core\FileOStream.cpp" />
+    <ClCompile Include="src\planeta\core\FileStreamBuf.cpp" />
+    <ClCompile Include="src\planeta\core\FileSystemUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\RFont.cpp" />
     <ClCompile Include="src\planeta\DataContainer.cpp" />
     <ClCompile Include="src\planeta\DataContainerImpl.cpp" />
@@ -555,15 +555,15 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp" />
     <ClCompile Include="src\planeta\buildin\CPolygonCollider2D.cpp" />
     <ClCompile Include="src\planeta\buildin\RSound.cpp" />
-    <ClCompile Include="src\planeta\File.cpp" />
+    <ClCompile Include="src\planeta\core\File.cpp" />
     <ClCompile Include="src\planeta\StandardCollisionWorld.cpp" />
     <ClCompile Include="src\planeta\GameObjectComponent.cpp" />
     <ClCompile Include="src\planeta\StandardDrawSystem.cpp" />
     <ClCompile Include="src\planeta\StandardGameObjectManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawGraph2D.cpp" />
     <ClCompile Include="src\planeta\buildin\CGround2D.cpp" />
-    <ClCompile Include="src\planeta\NormalFolderManipulator.cpp" />
-    <ClCompile Include="src\planeta\Object.cpp" />
+    <ClCompile Include="src\planeta\core\NormalFolderManipulator.cpp" />
+    <ClCompile Include="src\planeta\core\Object.cpp" />
     <ClCompile Include="src\planeta\Game.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanet.cpp" />
     <ClCompile Include="src\planeta\Task.cpp" />

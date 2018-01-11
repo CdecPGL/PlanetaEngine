@@ -3,9 +3,9 @@
 #include<memory>
 #include<string>
 #include <unordered_set>
-#include "planeta/Object.hpp"
-#include"planeta/File.hpp"
-#include "FileAccessMode.hpp"
+#include "planeta/core/Object.hpp"
+#include"planeta/core/File.hpp"
+#include "planeta/core/FileAccessMode.hpp"
 #include "boost/optional.hpp"
 
 namespace plnt {

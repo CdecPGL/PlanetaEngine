@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "planeta/Object.hpp"
+#include "planeta/core/Object.hpp"
 #include <vector>
 #include <unordered_set>
 #include <functional>

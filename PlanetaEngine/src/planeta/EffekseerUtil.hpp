@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-#include "planeta/File.hpp"
+#include "planeta/core/File.hpp"
 #include "EffekseerForDXLib.h"
 
 #define EFFEKSEER_FOR_DXLIB_VERSION 122

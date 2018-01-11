@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <memory>
-#include "planeta/Object.hpp"
+#include "planeta/core/Object.hpp"
 #include "planeta/LogUtility.hpp"
 #include "ResourceReferencer.hpp"
 

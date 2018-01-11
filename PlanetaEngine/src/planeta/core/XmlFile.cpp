@@ -2,7 +2,7 @@
 
 #include <cassert>
 #include <functional>
-#include "planeta/File.hpp"
+#include "planeta/core/File.hpp"
 #include "tinyxml2.h"
 #include "planeta/LogUtility.hpp"
 #include "planeta/CharacterCode.hpp"

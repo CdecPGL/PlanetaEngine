@@ -270,9 +270,6 @@
     <ClInclude Include="src\planeta\AESEncrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\ArchiveManipulator.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\BadAllocException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -367,27 +364,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\EXOREncrypter.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\File.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\FileAccessMode.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\FileIStream.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\FileManipulator.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\FileOStream.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\FileStreamBuf.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\FileSystemUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\Game.hpp">
@@ -547,9 +523,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\NonCopyable.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\NormalFolderManipulator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\NullWeakPointerException.hpp">
@@ -945,7 +918,34 @@
     <ClInclude Include="src\planeta\core\Signal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Object.hpp">
+    <ClInclude Include="src\planeta\core\ArchiveManipulator.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\FileManipulator.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\NormalFolderManipulator.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\File.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\FileSystemUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\FileAccessMode.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\FileIStream.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\FileOStream.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\FileStreamBuf.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -982,9 +982,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\AESEncrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ArchiveManipulator.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\BGMController.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
@@ -1024,24 +1021,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\EXOREncrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\File.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\FileIStream.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\FileManipulator.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\FileOStream.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\FileStreamBuf.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\FileSystemUtility.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\Game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -1090,9 +1069,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\KeyConfig.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\NormalFolderManipulator.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\PrefixUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
@@ -1346,7 +1322,31 @@
     <ClCompile Include="src\planeta\core\DateTime.cpp">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\Object.cpp">
+    <ClCompile Include="src\planeta\core\ArchiveManipulator.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\FileManipulator.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\NormalFolderManipulator.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\File.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\FileIStream.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\FileOStream.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\FileStreamBuf.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\FileSystemUtility.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Object.cpp">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
   </ItemGroup>

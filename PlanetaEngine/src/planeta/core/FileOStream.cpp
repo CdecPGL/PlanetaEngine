@@ -1,4 +1,4 @@
-﻿#include "planeta/FileOStream.hpp"
+﻿#include "planeta/core/FileOStream.hpp"
 #include "FileStreamBuf.hpp"
 
 namespace plnt {

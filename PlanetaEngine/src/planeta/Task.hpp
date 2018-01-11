@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/core/Signal.hpp"
-#include "Object.hpp"
+#include "planeta/core/Object.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "NonCopyable.hpp"
 #include "planeta/core/NonOwingPointer.hpp"

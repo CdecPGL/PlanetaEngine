@@ -1,5 +1,5 @@
 #include "REffect.hpp"
-#include "planeta/File.hpp"
+#include "planeta/core/File.hpp"
 
 #include "EffekseerForDXLib.h"
 #include "planeta/EffekseerUtil.hpp"

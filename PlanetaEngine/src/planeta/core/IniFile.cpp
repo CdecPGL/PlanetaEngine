@@ -1,8 +1,8 @@
 #include <algorithm>
 
 #include "IniFile.hpp"
-#include "planeta/FileIStream.hpp"
-#include "planeta/FileSystemUtility.hpp"
+#include "planeta/core/FileIStream.hpp"
+#include "planeta/core/FileSystemUtility.hpp"
 #include "planeta/CharacterCode.hpp"
 
 namespace plnt {

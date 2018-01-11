@@ -4,7 +4,7 @@
 #include "boost/property_tree/ini_parser.hpp"
 #include "boost/property_tree/xml_parser.hpp"
 
-#include "planeta/FileIStream.hpp"
+#include "planeta/core/FileIStream.hpp"
 
 namespace plnt {
 	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定

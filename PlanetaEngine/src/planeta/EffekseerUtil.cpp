@@ -4,7 +4,7 @@
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
-#include "planeta/File.hpp"
+#include "planeta/core/File.hpp"
 #include "EffekseerForDXLib.h"
 #include <d3dx9tex.h>
 

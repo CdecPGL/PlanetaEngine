@@ -1,5 +1,5 @@
 #include "RLuaScript.hpp"
-#include "planeta/File.hpp"
+#include "planeta/core/File.hpp"
 
 namespace plnt {
 

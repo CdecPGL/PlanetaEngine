@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/Object.hpp"
+#include "planeta/core/Object.hpp"
 #include "GameObjectComponentHolder.hpp"
 #include "planeta/IGameObject.hpp"
 #include "NonCopyable.hpp"
