@@ -909,6 +909,9 @@
     <ClInclude Include="src\planeta\deprecated\TextPanel.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\Math.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\planeta\math\MathUtility.cpp">

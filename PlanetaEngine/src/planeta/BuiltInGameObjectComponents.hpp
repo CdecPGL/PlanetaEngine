@@ -26,3 +26,4 @@
 #include "planeta/buildin/CCamera2D.hpp"
 #include "planeta/buildin/CGraph2DAnimator.hpp"
 #include "planeta/buildin/CPlanet.hpp"
+#include "planeta/buildin/CEffect.hpp"
