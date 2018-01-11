@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/GameObjectSystemComponent.hpp"
+#include "planeta/core/GameObjectSystemComponent.hpp"
 #include "planeta/core/RectAngle.hpp"
 
 namespace plnt {

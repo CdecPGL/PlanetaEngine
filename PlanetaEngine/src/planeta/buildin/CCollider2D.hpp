@@ -4,10 +4,10 @@
 #include <functional>
 
 #include "planeta/core/Signal.hpp"
-#include "planeta/GameObjectSystemComponent.hpp"
+#include "planeta/core/GameObjectSystemComponent.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/Vector2D.hpp"
-#include "planeta/IColliderWithCollider2D.hpp"
+#include "planeta/core/IColliderWithCollider2D.hpp"
 
 namespace plnt {
 	class CTransform2D;

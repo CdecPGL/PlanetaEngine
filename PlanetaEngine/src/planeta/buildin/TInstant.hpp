@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/Task.hpp"
+#include "planeta/core/Task.hpp"
 #include <functional>
 
 namespace plnt {

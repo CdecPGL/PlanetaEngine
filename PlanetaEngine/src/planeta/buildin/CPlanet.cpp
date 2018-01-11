@@ -1,6 +1,6 @@
 ﻿#include "CPlanet.hpp"
 #include "planeta/math/MathConstant.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include <cmath>
 #include <cassert>
 

@@ -5,7 +5,7 @@
 #include <memory>
 #include <vector>
 #include <array>
-#include "planeta/GUIComponent.hpp"
+#include "planeta/core/GUIComponent.hpp"
 #include "planeta/core/Color.hpp"
 
 namespace plnt {

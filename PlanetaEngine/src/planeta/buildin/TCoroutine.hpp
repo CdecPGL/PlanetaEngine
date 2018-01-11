@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <functional>
 #include <memory>
-#include "planeta/Task.hpp"
+#include "planeta/core/Task.hpp"
 #include "boost/coroutine2/all.hpp"
 
 namespace plnt {

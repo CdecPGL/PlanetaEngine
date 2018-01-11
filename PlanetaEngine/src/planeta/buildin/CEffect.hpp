@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/GameObjectStandardComponent.hpp"
+#include "planeta/core/GameObjectStandardComponent.hpp"
 #include "planeta/core/NonOwingPointer.hpp"
 
 namespace plnt {

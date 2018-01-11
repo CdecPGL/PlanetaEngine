@@ -1,7 +1,7 @@
 ﻿#include "planeta/core/NormalFolderManipulator.hpp"
 #include"boost/filesystem.hpp"
 #include"boost/foreach.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include "planeta/archiver/EncrypterBase.hpp"
 #include<fstream>
 #include<iomanip>

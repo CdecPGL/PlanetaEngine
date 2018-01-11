@@ -3,7 +3,7 @@
 #include "IniFile.hpp"
 #include "planeta/core/FileIStream.hpp"
 #include "planeta/core/FileSystemUtility.hpp"
-#include "planeta/CharacterCode.hpp"
+#include "planeta/core/CharacterCode.hpp"
 
 namespace plnt {
 	bool IniFile::Load(const File& file) {

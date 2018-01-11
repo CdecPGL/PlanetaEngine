@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <windows.h>
-#include "planeta/ResourceBase.hpp"
+#include "planeta/core/ResourceBase.hpp"
 
 namespace plnt {
 	/*フォントリソース*/

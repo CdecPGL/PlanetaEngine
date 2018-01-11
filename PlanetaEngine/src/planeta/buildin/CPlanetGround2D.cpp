@@ -1,9 +1,9 @@
 ﻿#include "CPlanetGround2D.hpp"
-#include "planeta/IGameObject.hpp"
+#include "planeta/core/IGameObject.hpp"
 #include "CTransform2D.hpp"
 #include "CCircleCollider2D.hpp"
 #include "CPlanet.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include "planeta/math/MathConstant.hpp"
 
 namespace plnt {

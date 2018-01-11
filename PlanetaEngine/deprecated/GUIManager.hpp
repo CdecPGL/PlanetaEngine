@@ -3,10 +3,10 @@
 //#include <map>
 //#include <unordered_map>
 //#include <memory>
-//#include "planeta/SceneModule.hpp"
+//#include "planeta/core/SceneModule.hpp"
 //#include "planeta/core/WeakPointer.hpp"
-//#include "planeta/GUIManagerPublicInterface.hpp"
-//#include "planeta/NonCopyable.hpp"
+//#include "planeta/core/GUIManagerPublicInterface.hpp"
+//#include "planeta/core/NonCopyable.hpp"
 
 namespace plnt{
 	//class ScreenDrawerGUI;

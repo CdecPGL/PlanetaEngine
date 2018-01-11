@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/core/JsonFile.hpp"
-#include "planeta/ResourceBase.hpp"
+#include "planeta/core/ResourceBase.hpp"
 
 namespace plnt {
 	/*! @brief JSONファイルを扱うリソースクラス

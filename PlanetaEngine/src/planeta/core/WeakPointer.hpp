@@ -4,7 +4,7 @@
 #include <typeinfo>
 #include <cassert>
 #include <type_traits>
-#include "planeta/NullWeakPointerException.hpp"
+#include "planeta/core/NullWeakPointerException.hpp"
 
 
 namespace plnt {

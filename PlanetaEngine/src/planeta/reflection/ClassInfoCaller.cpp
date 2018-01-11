@@ -1,7 +1,7 @@
 ﻿#include "ClassInfoCaller.hpp"
 #include "ClassInfo.hpp"
 #include "ReflectionExceptions.hpp"
-#include "planeta/StringUtility.hpp"
+#include "planeta/core/StringUtility.hpp"
 #include "Reflection.hpp"
 #include "Reflectable.hpp"
 

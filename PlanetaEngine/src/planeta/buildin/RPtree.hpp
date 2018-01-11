@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/ResourceBase.hpp"
+#include "planeta/core/ResourceBase.hpp"
 
 namespace plnt {
 	/*!Boost::Ptree形式で読み込まれるリソース*/

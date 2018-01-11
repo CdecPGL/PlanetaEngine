@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/GameObjectSystemComponent.hpp"
+#include "planeta/core/GameObjectSystemComponent.hpp"
 
 namespace plnt {
 	class ScreenDrawerGUI;

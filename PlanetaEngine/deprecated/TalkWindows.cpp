@@ -1,4 +1,4 @@
-﻿#include "planeta/TalkWindows.hpp"
+﻿#include "planeta/core/TalkWindows.hpp"
 
 #include "SimplePolygonPanel.hpp"
 #include "TextPanel.hpp"

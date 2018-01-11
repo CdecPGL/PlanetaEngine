@@ -2,7 +2,7 @@
 #include "RIni.hpp"
 #include "planeta/core/FileIStream.hpp"
 #include "planeta/core/FileSystemUtility.hpp"
-#include "planeta/CharacterCode.hpp"
+#include "planeta/core/CharacterCode.hpp"
 
 namespace plnt {
 

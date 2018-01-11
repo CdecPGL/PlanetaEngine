@@ -1,7 +1,7 @@
 ﻿#include "CBelongingGroundGravity.hpp"
 #include "CTransform2D.hpp"
 #include "CGround2D.hpp"
-#include "planeta/IGameObject.hpp"
+#include "planeta/core/IGameObject.hpp"
 
 #include "TInstant.hpp"
 

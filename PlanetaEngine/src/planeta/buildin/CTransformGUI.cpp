@@ -1,9 +1,9 @@
 #include <unordered_map>
 
 #include "CTransformGUI.hpp"
-#include "planeta/ISceneInternal.hpp"
-#include "planeta/TransformSystem.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/ISceneInternal.hpp"
+#include "planeta/core/TransformSystem.hpp"
+#include "planeta/core/LogUtility.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

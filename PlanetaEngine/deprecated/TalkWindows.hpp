@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/GUIObject.hpp"
+#include "planeta/core/GUIObject.hpp"
 
 namespace plnt {
 	/*namespace gui_components {

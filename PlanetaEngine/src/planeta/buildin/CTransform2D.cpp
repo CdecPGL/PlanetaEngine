@@ -2,11 +2,11 @@
 #include <cassert>
 
 #include "CTransform2D.hpp"
-#include "planeta/IGameObject.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/IGameObject.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include "CGround2D.hpp"
-#include "planeta/TransformSystem.hpp"
-#include "planeta/ISceneInternal.hpp"
+#include "planeta/core/TransformSystem.hpp"
+#include "planeta/core/ISceneInternal.hpp"
 #include "CDumyGround2D.hpp"
 
 namespace plnt {

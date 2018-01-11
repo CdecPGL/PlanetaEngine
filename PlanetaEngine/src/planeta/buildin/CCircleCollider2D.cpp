@@ -1,4 +1,4 @@
-﻿#include "planeta/CollisionDetectFunctions.hpp"
+﻿#include "planeta/core/CollisionDetectFunctions.hpp"
 
 #include "CCircleCollider2D.hpp"
 

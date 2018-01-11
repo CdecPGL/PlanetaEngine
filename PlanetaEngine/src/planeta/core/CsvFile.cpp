@@ -7,8 +7,8 @@
 #include <algorithm>
 #include "boost/algorithm/string.hpp"
 #include "planeta/core/File.hpp"
-#include "planeta/LogUtility.hpp"
-#include "planeta/CharacterCode.hpp"
+#include "planeta/core/LogUtility.hpp"
+#include "planeta/core/CharacterCode.hpp"
 
 
 namespace plnt {

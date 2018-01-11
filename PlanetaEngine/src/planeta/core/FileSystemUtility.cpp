@@ -3,7 +3,7 @@
 #include "boost/algorithm/string.hpp"
 #include "planeta/core/FileSystemUtility.hpp"
 #include "planeta/core/File.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
 
 namespace plnt {
 	namespace util {

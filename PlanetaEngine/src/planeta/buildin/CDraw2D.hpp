@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "planeta/GameObjectSystemComponent.hpp"
+#include "planeta/core/GameObjectSystemComponent.hpp"
 #include "planeta/core/WeakPointer.hpp"
-#include "planeta/GraphDrawData2D.hpp"
+#include "planeta/core/GraphDrawData2D.hpp"
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {

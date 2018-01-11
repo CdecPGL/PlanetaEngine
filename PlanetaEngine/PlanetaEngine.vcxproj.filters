@@ -264,363 +264,6 @@
     <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\BadNewDeleteOperation.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\BGMController.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\BuiltInResources.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\BuiltInTasks.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\CharacterCode.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Collider2DData.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ColliderComponent2DDebugDrawer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\CollisionDetectFunctions.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\CollisionGroupMatrix.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\CollisionState.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\CollisionWorld.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ConfigManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DataContainer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DataContainerError.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DataContainerFunctionsForBoostSerialize.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DataContainerImpl.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DataContainerSerializeUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DebugDrawInterface.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DebugManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\DrawSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\EACollisionWithCollider2D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Game.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectBase.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectComponent.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectComponentHolder.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectComponentSetUpData.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectComponentUpdateProcess.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectFactory.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectManagerConnection.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectStandardComponent.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectSystemComponent.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GOComponentAdder.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GOComponentGetter.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GraphDrawData2D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IBGMController.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IColliderWithCollider2D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ICollisionWorld.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IConfigManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IDebugManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IDrawSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IGameObject.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IGameObjectManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IInputManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ILogManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\InitFunctions.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\InputDefinitions.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\InputManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\InputUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IPerformanceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IRenderingManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IResourceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ISaveManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IScene.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ISceneInternal.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ISceneManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ISoundEffectController.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ISoundManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ITaskManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ITransformSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\KeyConfig.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\LogManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\LogUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\MacroUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\MetaprogrammingUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\NonCopyable.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\NullWeakPointerException.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ObjectHolderTemplate_WithID.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ObjectHolderTemplate_WithoutID.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ParameterHolder.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\PerfoamanceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\PlanetaEngine.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\PrefixUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RangeUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\RenderingManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ResourceBase.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ResourceHolder.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ResourceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ResourceReferencer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SaveManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Scene.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SceneManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SceneModule.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SceneSetUpper.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SceneSetUpProxy.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Screen.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ScreenDrawer2D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\ScreenDrawerGUI.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SingletonTemplate.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SoundEffectController.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SoundManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardCollisionWorld.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardConfigManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardDebugManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardDrawSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardGameObjectManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardInputManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardLogManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardPerformanceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardRenderingManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardResourceManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardSaveManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardSceneManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardSceneManagerUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardSoundManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardTaskManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StandardTransformSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\StringUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SubSystemManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SystemTaskSlot.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SystemVariables.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Task.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TaskManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TaskManagerConnection.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TaskSlot.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TaskSystemSetUpper.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TransformSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\Vector2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -909,7 +552,364 @@
     <ClInclude Include="src\planeta\util\BadAllocException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\TypeChecker.hpp">
+    <ClInclude Include="src\planeta\core\TypeChecker.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\BadNewDeleteOperation.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\BGMController.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\BuiltInGameObjectComponents.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\BuiltInResources.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\BuiltInTasks.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\CharacterCode.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Collider2DData.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ColliderComponent2DDebugDrawer.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\CollisionDetectFunctions.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\CollisionGroupMatrix.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\CollisionState.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\CollisionWorld.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ConfigManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DataContainer.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DataContainerError.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DataContainerFunctionsForBoostSerialize.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DataContainerImpl.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DataContainerSerializeUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DebugDrawInterface.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DebugManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\DrawSystem.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\EACollisionWithCollider2D.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\EACollisionWithGround2D.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Game.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectBase.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectComponent.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectComponentHolder.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectComponentSetUpData.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectComponentUpdateProcess.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectFactory.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectManagerConnection.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectStandardComponent.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GameObjectSystemComponent.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GOComponentAdder.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GOComponentGetter.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\GraphDrawData2D.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IBGMController.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IColliderWithCollider2D.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ICollisionWorld.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IConfigManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IDebugManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IDrawSystem.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IGameObject.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IGameObjectManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IInputManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ILogManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\InitFunctions.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\InputDefinitions.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\InputManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\InputUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IPerformanceManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IRenderingManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IResourceManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ISaveManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\IScene.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ISceneInternal.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ISceneManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ISoundEffectController.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ISoundManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ITaskManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ITransformSystem.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\KeyConfig.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\LogManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\LogUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\MacroUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\MetaprogrammingUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\NonCopyable.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\NullWeakPointerException.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithID.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithoutID.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ParameterHolder.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\PerfoamanceManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\PlanetaEngine.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\PrefixUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\RangeUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\RenderingManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ResourceBase.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ResourceHolder.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ResourceManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ResourceReferencer.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SaveManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Scene.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SceneManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SceneModule.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SceneSetUpper.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SceneSetUpProxy.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Screen.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ScreenDrawer2D.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\ScreenDrawerGUI.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SingletonTemplate.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SoundEffectController.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SoundManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardCollisionWorld.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardConfigManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardDebugManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardDrawSystem.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardGameObjectManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardInputManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardLogManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardPerformanceManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardRenderingManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardResourceManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardSaveManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardSceneManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardSceneManagerUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardSoundManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardTaskManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StandardTransformSystem.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\StringUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SubSystemManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SystemTaskSlot.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\SystemVariables.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\Task.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\TaskManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\TaskManagerConnection.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\TaskSlot.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\TaskSystemSetUpper.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\core\TransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -943,174 +943,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\math\MathUtility.cpp">
       <Filter>PlanetaEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\BGMController.cpp">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\CharacterCode.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ColliderComponent2DDebugDrawer.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\CollisionDetectFunctions.cpp">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp">
-      <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\DataContainer.cpp">
-      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\DataContainerImpl.cpp">
-      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\DataContainerSerializeUtility.cpp">
-      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Game.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GameObjectBase.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GameObjectComponent.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GameObjectComponentHolder.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GameObjectFactory.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GameObjectManagerConnection.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GameSetStandardManagerImpl.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GOComponentAdder.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GOComponentGetter.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\GraphDrawData2D.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\InitFunctions.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\InitFunctionsFIleSystem.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\InitFunctionsResource.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\InitializeFunctionsDxLib.cpp">
-      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\InputUtility.cpp">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\KeyConfig.cpp">
-      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\PrefixUtility.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ResourceBase.cpp">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ResourceReferencer.cpp">
-      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Scene.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\SceneSetUpper.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\SceneSetUpProxy.cpp">
-      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Screen.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ScreenDrawer2D.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\ScreenDrawerGUI.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\SoundEffectController.cpp">
-      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardCollisionWorld.cpp">
-      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardConfigManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardDebugManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardDrawSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardGameObjectManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardInputManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardLogManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardPerformanceManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardRenderingManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardResourceManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardSaveManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardSceneManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardSceneModuleSetFunction.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardSoundManager.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardSystemSetUpSceneFunction.cpp">
-      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardTaskManager.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StandardTransformSystem.cpp">
-      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\StringUtility.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\SubSystemManager.cpp">
-      <Filter>PlanetaEngine\SubSystems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\SystemVariables.cpp">
-      <Filter>PlanetaEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Task.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\TaskManagerConnection.cpp">
-      <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
@@ -1306,6 +1138,174 @@
     </ClCompile>
     <ClCompile Include="src\planeta\util\TLSFMemoryAllocator.cpp">
       <Filter>PlanetaEngine\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\BGMController.cpp">
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\CharacterCode.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\ColliderComponent2DDebugDrawer.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\CollisionDetectFunctions.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\CollisionGroupMatrix.cpp">
+      <Filter>PlanetaEngine\Core\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\DataContainer.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\DataContainerImpl.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\DataContainerSerializeUtility.cpp">
+      <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Game.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GameObjectBase.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GameObjectComponent.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GameObjectComponentHolder.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GameObjectFactory.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GameObjectManagerConnection.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GameSetStandardManagerImpl.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GOComponentAdder.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GOComponentGetter.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\GraphDrawData2D.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\InitFunctions.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\InitFunctionsFIleSystem.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\InitFunctionsResource.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\InitializeFunctionsDxLib.cpp">
+      <Filter>PlanetaEngine\Core\InitFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\InputUtility.cpp">
+      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\KeyConfig.cpp">
+      <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\PrefixUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\ResourceBase.cpp">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\ResourceReferencer.cpp">
+      <Filter>PlanetaEngine\SubSystems\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Scene.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\SceneSetUpper.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\SceneSetUpProxy.cpp">
+      <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Screen.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\ScreenDrawer2D.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\ScreenDrawerGUI.cpp">
+      <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\SoundEffectController.cpp">
+      <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardCollisionWorld.cpp">
+      <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardConfigManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardDebugManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardDrawSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardGameObjectManager.cpp">
+      <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardInputManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardLogManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardPerformanceManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardRenderingManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardResourceManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardSaveManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardSceneManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardSceneModuleSetFunction.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardSoundManager.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardSystemSetUpSceneFunction.cpp">
+      <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardTaskManager.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StandardTransformSystem.cpp">
+      <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\StringUtility.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\SubSystemManager.cpp">
+      <Filter>PlanetaEngine\SubSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\SystemVariables.cpp">
+      <Filter>PlanetaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\Task.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\core\TaskManagerConnection.cpp">
+      <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

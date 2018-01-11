@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 #include "planeta/core/Signal.hpp"
-#include "planeta/GameObjectSystemComponent.hpp"
+#include "planeta/core/GameObjectSystemComponent.hpp"
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {

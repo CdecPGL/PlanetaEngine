@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "planeta/SceneSetUpper.hpp"
+#include "planeta/core/SceneSetUpper.hpp"
 
 namespace plnt {
 	namespace private_ {

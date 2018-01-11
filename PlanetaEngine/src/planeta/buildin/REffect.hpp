@@ -1,5 +1,5 @@
 #pragma once
-#include "planeta/ResourceBase.hpp"
+#include "planeta/core/ResourceBase.hpp"
 
 namespace Effekseer {
 	class Effect;

@@ -1,11 +1,11 @@
 ﻿#pragma once
 
 #include <list>
-#include "planeta/GameObjectStandardComponent.hpp"
+#include "planeta/core/GameObjectStandardComponent.hpp"
 #include "planeta/core/Vector2D.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "planeta/math/MathConstant.hpp"
-#include "planeta/IColliderWithCollider2D.hpp"
+#include "planeta/core/IColliderWithCollider2D.hpp"
 
 namespace plnt {
 	class CCircleCollider2D;

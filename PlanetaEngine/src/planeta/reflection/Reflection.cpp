@@ -6,10 +6,10 @@
 #include "boost/multi_index/member.hpp"
 #include "boost/multi_index/hashed_index.hpp"
 
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include "Reflection.hpp"
 #include "ReflectionExceptions.hpp"
-#include "planeta/StringUtility.hpp"
+#include "planeta/core/StringUtility.hpp"
 #include "ClassInfoCaller.hpp"
 #include "ReflectableClassAccessor.hpp"
 

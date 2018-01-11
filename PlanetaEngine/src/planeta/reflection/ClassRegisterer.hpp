@@ -7,12 +7,12 @@
 #include <functional>
 
 /*
-#include "planeta/lua.hpp"
+#include "planeta/core/lua.hpp"
 //Luaintfの警告を抑制
 #pragma warning(push)
 #pragma warning(disable:4127)
 #pragma warning(disable:4100)
-#include "planeta/LuaIntf.hpp"
+#include "planeta/core/LuaIntf.hpp"
 #pragma warning(pop)
 */
 

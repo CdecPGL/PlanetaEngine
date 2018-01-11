@@ -15,7 +15,7 @@
 #include "boost/property_tree/ptree.hpp"
 #include "boost/core/enable_if.hpp"
 
-#include "planeta/MetaprogrammingUtility.hpp"
+#include "planeta/core/MetaprogrammingUtility.hpp"
 
 namespace plnt {
 	class Reflectable;

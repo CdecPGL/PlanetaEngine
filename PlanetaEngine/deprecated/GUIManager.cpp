@@ -1,8 +1,8 @@
-﻿//#include "planeta/GUIManager.hpp"
-//#include "planeta/GUIObject.hpp"
-//#include "planeta/SceneData.hpp"
-//#include "planeta/GUIManagerConnection.hpp"
-//#include "planeta/LogUtility.hpp"
+﻿//#include "planeta/core/GUIManager.hpp"
+//#include "planeta/core/GUIObject.hpp"
+//#include "planeta/core/SceneData.hpp"
+//#include "planeta/core/GUIManagerConnection.hpp"
+//#include "planeta/core/LogUtility.hpp"
 //#include "boost/lexical_cast.hpp"
 
 namespace plnt {

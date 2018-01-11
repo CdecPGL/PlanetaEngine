@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/ResourceBase.hpp"
+#include "planeta/core/ResourceBase.hpp"
 #include "planeta/core/IniFile.hpp"
 
 namespace plnt {

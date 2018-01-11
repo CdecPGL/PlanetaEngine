@@ -1,6 +1,6 @@
 #include "planeta/effekseer/EffekseerUtil.hpp"
-#include "planeta/CharacterCode.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/CharacterCode.hpp"
+#include "planeta/core/LogUtility.hpp"
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 

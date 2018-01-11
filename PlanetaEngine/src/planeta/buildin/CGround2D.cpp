@@ -1,7 +1,7 @@
 ﻿#include "CGround2D.hpp"
 #include "planeta/core/Matrix2_2.hpp"
-#include "planeta/IGameObject.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/IGameObject.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include "CTransform2D.hpp"
 
 namespace plnt {

@@ -1,8 +1,8 @@
 ﻿#include "CGraph2DAnimator.hpp"
-#include "planeta/IGameObject.hpp"
+#include "planeta/core/IGameObject.hpp"
 #include "CDrawGraph2D.hpp"
-#include "planeta/LogUtility.hpp"
-#include "planeta/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
+#include "planeta/core/LogUtility.hpp"
 #include "TInstant.hpp"
 
 namespace plnt {

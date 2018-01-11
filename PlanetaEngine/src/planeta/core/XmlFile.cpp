@@ -4,8 +4,8 @@
 #include <functional>
 #include "planeta/core/File.hpp"
 #include "tinyxml2.h"
-#include "planeta/LogUtility.hpp"
-#include "planeta/CharacterCode.hpp"
+#include "planeta/core/LogUtility.hpp"
+#include "planeta/core/CharacterCode.hpp"
 
 namespace plnt {
 	bool XmlFile::Load(const File& file) {
