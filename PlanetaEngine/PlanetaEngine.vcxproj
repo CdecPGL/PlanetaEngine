@@ -211,7 +211,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\dxlib\DXUtility.hpp" />
     <ClInclude Include="src\planeta\EACollisionWithCollider2D.hpp" />
     <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp" />
-    <ClInclude Include="src\planeta\EffekseerUtil.hpp" />
+    <ClInclude Include="src\planeta\effekseer\EffekseerUtil.hpp" />
     <ClInclude Include="src\planeta\archiver\EncrypterBase.hpp" />
     <ClInclude Include="src\planeta\EventMonitor.hpp" />
     <ClInclude Include="src\planeta\archiver\EXOREncrypter.hpp" />
@@ -296,7 +296,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\KeyConfig.hpp" />
     <ClInclude Include="src\planeta\LogManager.hpp" />
     <ClInclude Include="src\planeta\LogUtility.hpp" />
-    <ClInclude Include="src\planeta\LuaBindHelder.hpp" />
+    <ClInclude Include="src\planeta\reflection\LuaBindHelper.hpp" />
     <ClInclude Include="src\planeta\MacroUtility.hpp" />
     <ClInclude Include="src\planeta\math\MathConstant.hpp" />
     <ClInclude Include="src\planeta\math\MathMatrix.hpp" />
@@ -424,7 +424,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp" />
     <ClInclude Include="src\planeta\core\Vertex2D.hpp" />
     <ClInclude Include="src\planeta\core\WeakPointer.hpp" />
-    <ClInclude Include="src\planeta\WindowsUtility.hpp" />
+    <ClInclude Include="src\planeta\win\WindowsUtility.hpp" />
     <ClInclude Include="src\planeta\core\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -449,7 +449,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\planeta\EffekseerUtil.cpp" />
+    <ClCompile Include="src\planeta\effekseer\EffekseerUtil.cpp" />
     <ClCompile Include="src\planeta\Coroutine.cpp" />
     <ClCompile Include="src\planeta\GameObjectFactory.cpp" />
     <ClCompile Include="src\planeta\GOComponentAdder.cpp" />
@@ -588,7 +588,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\planeta\StandardTransformSystem.cpp" />
-    <ClCompile Include="src\planeta\WindowsUtility.cpp" />
+    <ClCompile Include="src\planeta\win\WindowsUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\RXml.cpp" />
     <ClCompile Include="src\planeta\core\XmlFile.cpp" />
   </ItemGroup>

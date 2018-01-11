@@ -100,7 +100,8 @@ Planeta関連のものはplnt名前空間で定義する。さらにその子名
 - math: 数学関連
 - util: ユーティリティ関数
 - dxlib: DXライブラリ関連
-- effek: Effekseer関連
+- effekseer: Effekseer関連
+- lua: Lua関連
 - win: Windows関連
 
 内部実装用のものは各名前空間下のimpl_名前空間で定義する。

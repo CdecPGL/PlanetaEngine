@@ -12,7 +12,7 @@
 
 エンジン本体。
 
-reflection, math, dxlib, effek, win, buildin, archiverに依存し、それ以外には依存しない。
+reflection, math, dxlib, effekseer, lua, win, buildin, archiverに依存し、それ以外には依存しない。
 
 #### buildin
 
@@ -39,9 +39,15 @@ DXライブラリ関連。
 
 他のどれにも依存する可能性がある。
 
-#### effek
+#### effekseer
 
 Effekseer関連。
+
+他のどれにも依存する可能性がある。
+
+#### lua
+
+Lua関連。
 
 他のどれにも依存する可能性がある。
 

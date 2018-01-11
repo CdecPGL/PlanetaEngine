@@ -7,7 +7,7 @@
 #include "planeta/CharacterCode.hpp"
 #include "ConfigManager.hpp"
 
-#include "planeta/EffekseerUtil.hpp"
+#include "planeta/effekseer/EffekseerUtil.hpp"
 
 namespace plnt {
 	namespace private_ {

@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <cassert>
 #include "planeta/core/DateTime.hpp"
-#include "WindowsUtility.hpp"
+#include "planeta/win/WindowsUtility.hpp"
 #include "planeta/CharacterCode.hpp"
 #include "planeta/LogUtility.hpp"
 

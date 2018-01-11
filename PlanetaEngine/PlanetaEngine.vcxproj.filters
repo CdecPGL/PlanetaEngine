@@ -345,9 +345,6 @@
     <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\EffekseerUtil.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\EventMonitor.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -493,9 +490,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\LogUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\LuaBindHelder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\MacroUtility.hpp">
@@ -691,9 +685,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\Vector.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\WindowsUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\Vector2D.hpp">
@@ -948,6 +939,15 @@
     <ClInclude Include="src\planeta\dxlib\DXGraphDrawData.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\effekseer\EffekseerUtil.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\win\WindowsUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\LuaBindHelper.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -1006,9 +1006,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\DataContainerSerializeUtility.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\EffekseerUtil.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\Game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -1159,9 +1156,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp">
       <Filter>PlanetaEngine\Core\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\WindowsUtility.cpp">
-      <Filter>PlanetaEngine\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
@@ -1348,6 +1342,12 @@
     </ClCompile>
     <ClCompile Include="src\planeta\dxlib\DXUtility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\effekseer\EffekseerUtil.cpp">
+      <Filter>PlanetaEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\win\WindowsUtility.cpp">
+      <Filter>PlanetaEngine\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
