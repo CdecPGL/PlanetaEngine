@@ -1,4 +1,4 @@
-﻿#include "planeta/core/Color.hpp"
+﻿#include "Color.hpp"
 
 namespace plnt {
 

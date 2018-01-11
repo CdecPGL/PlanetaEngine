@@ -6,7 +6,7 @@
 
 #include "boost/call_traits.hpp"
 
-#include "planeta/core/WeakPointer.hpp"
+#include "WeakPointer.hpp"
 
 namespace plnt {
 	namespace private_ {

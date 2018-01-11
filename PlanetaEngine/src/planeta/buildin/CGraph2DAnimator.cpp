@@ -1,9 +1,9 @@
-﻿#include "planeta/buildin/CGraph2DAnimator.hpp"
+﻿#include "CGraph2DAnimator.hpp"
 #include "planeta/IGameObject.hpp"
-#include "planeta/buildin/CDrawGraph2D.hpp"
+#include "CDrawGraph2D.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/buildin/TInstant.hpp"
+#include "TInstant.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CGraph2DAnimator) {

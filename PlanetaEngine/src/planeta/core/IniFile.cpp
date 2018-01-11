@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "planeta/core/IniFile.hpp"
+#include "IniFile.hpp"
 #include "planeta/FileIStream.hpp"
 #include "planeta/FileSystemUtility.hpp"
 #include "planeta/CharacterCode.hpp"

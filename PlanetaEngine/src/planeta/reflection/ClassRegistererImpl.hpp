@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "planeta/reflection/ClassRegisterer.hpp"
-#include "planeta/reflection/ReflectionUtility.hpp"
+#include "ClassRegisterer.hpp"
+#include "ReflectionUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

@@ -1,14 +1,15 @@
 ﻿#include "planeta/Game.hpp"
 #include "planeta/IResourceManager.hpp"
-#include "planeta/buildin/CDrawGraph2D.hpp"
 #include "planeta/ScreenDrawer2D.hpp"
-#include "planeta/buildin/RGraph.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/buildin/CTransform2D.hpp"
 #include "planeta/IGameObject.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "planeta/math/MathConstant.hpp"
 #include "planeta/GraphDrawData2D.hpp"
+
+#include "CDrawGraph2D.hpp"
+#include "RGraph.hpp"
+#include "CTransform2D.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawGraph2D) {

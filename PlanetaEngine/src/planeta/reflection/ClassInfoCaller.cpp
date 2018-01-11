@@ -1,9 +1,9 @@
-﻿#include "planeta/reflection/ClassInfoCaller.hpp"
-#include "planeta/reflection/ClassInfo.hpp"
-#include "planeta/reflection/ReflectionExceptions.hpp"
+﻿#include "ClassInfoCaller.hpp"
+#include "ClassInfo.hpp"
+#include "ReflectionExceptions.hpp"
 #include "planeta/StringUtility.hpp"
-#include "planeta/reflection/Reflection.hpp"
-#include "planeta/reflection/Reflectable.hpp"
+#include "Reflection.hpp"
+#include "Reflectable.hpp"
 
 namespace plnt {
 	using namespace private_;

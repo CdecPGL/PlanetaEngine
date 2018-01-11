@@ -1,9 +1,9 @@
-#include "planeta/buildin/REffect.hpp"
+#include "REffect.hpp"
 #include "planeta/File.hpp"
 
 #include "EffekseerForDXLib.h"
 #include "planeta/EffekseerUtil.hpp"
-#include "planeta/buildin/REffectTexture.hpp"
+#include "REffectTexture.hpp"
 
 Effekseer::Effect* plnt::REffect::effekseer_effect() const {
 	return effekseer_effect_;

@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/TInstant.hpp"
+﻿#include "TInstant.hpp"
 
 namespace plnt {
 	void TInstant::Update() {

@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/CPlanet.hpp"
+﻿#include "CPlanet.hpp"
 #include "planeta/math/MathConstant.hpp"
 #include "planeta/LogUtility.hpp"
 #include <cmath>

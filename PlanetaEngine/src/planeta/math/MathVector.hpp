@@ -5,7 +5,7 @@
 #include <cassert>
 #include <type_traits>
 
-#include "planeta/math/MathVectorElementIdentifer.hpp"
+#include "MathVectorElementIdentifer.hpp"
 
 #include "planeta/core/Vector2D.hpp"
 

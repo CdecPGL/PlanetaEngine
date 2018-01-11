@@ -1,7 +1,7 @@
-#include "planeta/reflection/ReflectionAccessible.hpp"
-#include "planeta/reflection/ClassInfoCaller.hpp"
-#include "planeta/reflection/Reflection.hpp"
-#include "planeta/reflection/Reflectable.hpp"
+#include "ReflectionAccessible.hpp"
+#include "ClassInfoCaller.hpp"
+#include "Reflection.hpp"
+#include "Reflectable.hpp"
 
 namespace plnt {
 	using namespace private_;

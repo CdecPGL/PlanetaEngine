@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/math/MathConstant.hpp"
+#include "MathConstant.hpp"
 
 namespace plnt {
 	namespace math {

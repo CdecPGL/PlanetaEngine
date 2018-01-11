@@ -1,8 +1,8 @@
-﻿#include "planeta/buildin/CGround2D.hpp"
+﻿#include "CGround2D.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "planeta/IGameObject.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/buildin/CTransform2D.hpp"
+#include "CTransform2D.hpp"
 
 namespace plnt {
 	CGround2D::CGround2D() {}

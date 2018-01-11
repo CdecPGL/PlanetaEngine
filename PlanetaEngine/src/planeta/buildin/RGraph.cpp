@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/RGraph.hpp"
+﻿#include "RGraph.hpp"
 #include "DxLib.h"
 #include "planeta/File.hpp"
 #include "planeta/math/MathUtility.hpp"

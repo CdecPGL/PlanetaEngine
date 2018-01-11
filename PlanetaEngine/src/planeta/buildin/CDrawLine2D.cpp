@@ -1,7 +1,7 @@
-﻿#include "planeta/buildin/CDrawLine2D.hpp"
+﻿#include "CDrawLine2D.hpp"
 #include "planeta/ScreenDrawer2D.hpp"
 #include "planeta/IGameObject.hpp"
-#include "planeta/buildin/CTransform2D.hpp"
+#include "CTransform2D.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 
 namespace plnt {

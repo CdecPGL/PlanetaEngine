@@ -1,9 +1,9 @@
-﻿#include "planeta/buildin/CBelongingGroundGravity.hpp"
-
+﻿#include "CBelongingGroundGravity.hpp"
+#include "CTransform2D.hpp"
+#include "CGround2D.hpp"
 #include "planeta/IGameObject.hpp"
-#include "planeta/buildin/CTransform2D.hpp"
-#include "planeta/buildin/CGround2D.hpp"
-#include "planeta/buildin/TInstant.hpp"
+
+#include "TInstant.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CBelongingGroundGravity) {

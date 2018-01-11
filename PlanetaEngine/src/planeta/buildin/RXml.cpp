@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/RXml.hpp"
+﻿#include "RXml.hpp"
 
 namespace plnt {
 	bool RXml::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {

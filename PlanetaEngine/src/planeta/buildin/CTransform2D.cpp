@@ -1,13 +1,13 @@
 ﻿#include <tuple>
 #include <cassert>
 
-#include "planeta/buildin/CTransform2D.hpp"
+#include "CTransform2D.hpp"
 #include "planeta/IGameObject.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/buildin/CGround2D.hpp"
+#include "CGround2D.hpp"
 #include "planeta/TransformSystem.hpp"
 #include "planeta/ISceneInternal.hpp"
-#include "planeta/buildin/CDumyGround2D.hpp"
+#include "CDumyGround2D.hpp"
 
 namespace plnt {
 	namespace {

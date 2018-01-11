@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "planeta/buildin/CCollider2D.hpp"
+#include "CCollider2D.hpp"
 
 namespace plnt {
 	/*! 多角形コライダーコンポーネント(未実装)*/

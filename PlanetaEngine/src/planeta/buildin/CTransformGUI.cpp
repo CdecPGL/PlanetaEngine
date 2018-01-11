@@ -1,6 +1,6 @@
 #include <unordered_map>
 
-#include "planeta/buildin/CTransformGUI.hpp"
+#include "CTransformGUI.hpp"
 #include "planeta/ISceneInternal.hpp"
 #include "planeta/TransformSystem.hpp"
 #include "planeta/LogUtility.hpp"

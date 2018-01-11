@@ -1,5 +1,5 @@
 ﻿#include <algorithm>
-#include "planeta/buildin/RIni.hpp"
+#include "RIni.hpp"
 #include "planeta/FileIStream.hpp"
 #include "planeta/FileSystemUtility.hpp"
 #include "planeta/CharacterCode.hpp"

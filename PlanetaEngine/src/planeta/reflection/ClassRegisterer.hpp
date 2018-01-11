@@ -22,8 +22,8 @@
 #include "boost/function_types/parameter_types.hpp"
 
 #include "planeta/LuaBindHelder.hpp"
-#include "planeta/reflection/ClassInfo.hpp"
-#include "planeta/reflection/ReflectionUtility.hpp"
+#include "ClassInfo.hpp"
+#include "ReflectionUtility.hpp"
 
 
 namespace plnt {

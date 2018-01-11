@@ -1,6 +1,6 @@
 ﻿#include <sstream>
 
-#include "planeta/core/Time.hpp"
+#include "Time.hpp"
 
 namespace plnt {
 	namespace util {

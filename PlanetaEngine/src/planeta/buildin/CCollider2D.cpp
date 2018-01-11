@@ -1,12 +1,13 @@
-﻿#include "planeta/buildin/CCollider2D.hpp"
-#include "planeta/IGameObject.hpp"
+﻿#include "planeta/IGameObject.hpp"
 #include "planeta/CollisionWorld.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/ISceneInternal.hpp"
-#include "planeta/buildin/CTransform2D.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "planeta/Collider2DData.hpp"
 #include "planeta/EACollisionWithGround2D.hpp"
+
+#include "CCollider2D.hpp"
+#include "CTransform2D.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCollider2D) {

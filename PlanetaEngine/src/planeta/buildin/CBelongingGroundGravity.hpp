@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 #include "planeta/GameObjectStandardComponent.hpp"
 
 namespace plnt {

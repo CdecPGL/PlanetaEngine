@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/buildin/TCoroutine.hpp"
+#include "TCoroutine.hpp"
 
 namespace plnt {
 	class TInstantCoroutine : public TCoroutine {

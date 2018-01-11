@@ -1,8 +1,8 @@
-#include "planeta/buildin/CDrawGraphGUI.hpp"
+#include "CDrawGraphGUI.hpp"
 #include "planeta/IGameObject.hpp"
-#include "planeta/buildin/RGraph.hpp"
+#include "RGraph.hpp"
 #include "planeta/ScreenDrawerGUI.hpp"
-#include "planeta/buildin/CTransformGUI.hpp"
+#include "CTransformGUI.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "planeta/ResourceHolder.hpp"
 

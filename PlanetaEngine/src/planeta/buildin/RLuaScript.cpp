@@ -1,4 +1,4 @@
-#include "planeta/buildin/RLuaScript.hpp"
+#include "RLuaScript.hpp"
 #include "planeta/File.hpp"
 
 namespace plnt {

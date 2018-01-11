@@ -1,5 +1,6 @@
-﻿#include "planeta/buildin/CCircleCollider2D.hpp"
-#include "planeta/CollisionDetectFunctions.hpp"
+﻿#include "planeta/CollisionDetectFunctions.hpp"
+
+#include "CCircleCollider2D.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCircleCollider2D) {

@@ -1,9 +1,10 @@
-﻿#include "planeta/buildin/CCamera2D.hpp"
-#include "planeta/DrawSystem.hpp"
+﻿#include "planeta/DrawSystem.hpp"
 #include "planeta/ISceneInternal.hpp"
 #include "planeta/LogUtility.hpp"
 #include "planeta/IGameObject.hpp"
-#include "planeta/buildin/CTransform2D.hpp"
+
+#include "CCamera2D.hpp"
+#include "CTransform2D.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

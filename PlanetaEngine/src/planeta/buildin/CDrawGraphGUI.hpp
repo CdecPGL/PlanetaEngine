@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/buildin/CDrawGUI.hpp"
+#include "CDrawGUI.hpp"
 #include "planeta/core/RectAngle.hpp"
 
 namespace plnt {

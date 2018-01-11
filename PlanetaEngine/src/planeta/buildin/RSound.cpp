@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/RSound.hpp"
+﻿#include "RSound.hpp"
 #include "DxLib.h"
 #include "planeta/File.hpp"
 

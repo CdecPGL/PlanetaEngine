@@ -1,4 +1,4 @@
-#include "planeta/buildin/REffectTexture.hpp"
+#include "REffectTexture.hpp"
 #include "planeta/File.hpp"
 
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130

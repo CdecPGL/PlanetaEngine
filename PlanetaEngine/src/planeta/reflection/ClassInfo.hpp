@@ -8,7 +8,7 @@
 #include "boost/any.hpp"
 #include "boost/property_tree/ptree.hpp"
 
-#include "planeta/reflection/TypeInfoWrapper.hpp"
+#include "TypeInfoWrapper.hpp"
 
 struct lua_State;
 namespace plnt {

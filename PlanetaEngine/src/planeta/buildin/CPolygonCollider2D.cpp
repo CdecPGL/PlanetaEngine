@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/CPolygonCollider2D.hpp"
+﻿#include "CPolygonCollider2D.hpp"
 
 namespace plnt {
 	

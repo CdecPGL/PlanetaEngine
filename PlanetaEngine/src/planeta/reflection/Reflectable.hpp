@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "planeta/reflection/ClassRegisterer.hpp"
-#include "planeta/reflection/Reflection.hpp"
+#include "ClassRegisterer.hpp"
+#include "Reflection.hpp"
 
 namespace plnt {
 	/*! Reflection基底クラス。レフレクションに対応するクラスは継承しなければならない。

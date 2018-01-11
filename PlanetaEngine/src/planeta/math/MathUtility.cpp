@@ -1,4 +1,4 @@
-﻿#include "planeta/math/MathUtility.hpp"
+﻿#include "MathUtility.hpp"
 #include <cmath>
 
 namespace plnt {

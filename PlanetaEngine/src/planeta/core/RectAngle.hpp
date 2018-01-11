@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include"planeta/core/Vector2D.hpp"
+#include"Vector2D.hpp"
 
 //windows.hのmin、maxマクロを無効化
 #undef min

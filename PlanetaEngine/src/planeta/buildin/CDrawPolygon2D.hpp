@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <array>
-#include "planeta/buildin/CDraw2D.hpp"
+#include "CDraw2D.hpp"
 
 namespace plnt {
 	/*! 平面多角形描画コンポーネント*/

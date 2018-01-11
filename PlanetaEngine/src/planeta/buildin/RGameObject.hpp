@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/buildin/RPtree.hpp"
+#include "RPtree.hpp"
 
 namespace plnt {
 	class RGameObject final : public RPtree {};
