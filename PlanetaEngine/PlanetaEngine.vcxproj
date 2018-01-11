@@ -152,15 +152,15 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp" />
+    <ClInclude Include="src\planeta\BuiltInResources.hpp" />
+    <ClInclude Include="src\planeta\BuiltInTasks.hpp" />
+    <ClInclude Include="src\planeta\PlanetaEngine.hpp" />
     <ClInclude Include="src\planeta\util\AccessorTemplate.hpp" />
     <ClInclude Include="src\planeta\archiver\AESEncrypter.hpp" />
     <ClInclude Include="src\planeta\core\ArchiveManipulator.hpp" />
     <ClInclude Include="src\planeta\util\BadAllocException.hpp" />
-    <ClInclude Include="src\planeta\core\BadNewDeleteOperation.hpp" />
     <ClInclude Include="src\planeta\core\BGMController.hpp" />
-    <ClInclude Include="src\planeta\core\BuiltInGameObjectComponents.hpp" />
-    <ClInclude Include="src\planeta\core\BuiltInResources.hpp" />
-    <ClInclude Include="src\planeta\core\BuiltInTasks.hpp" />
     <ClInclude Include="src\planeta\buildin\CBelongingGroundGravity.hpp" />
     <ClInclude Include="src\planeta\buildin\CCamera2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CCircleCollider2D.hpp" />
@@ -310,7 +310,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\core\DateTime.hpp" />
     <ClInclude Include="src\planeta\core\PerfoamanceManager.hpp" />
     <ClInclude Include="src\planeta\core\Time.hpp" />
-    <ClInclude Include="src\planeta\core\PlanetaEngine.hpp" />
     <ClInclude Include="src\planeta\core\PrefixUtility.hpp" />
     <ClInclude Include="src\planeta\util\Property.hpp" />
     <ClInclude Include="src\planeta\core\RangeUtility.hpp" />

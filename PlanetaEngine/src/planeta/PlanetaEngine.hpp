@@ -5,12 +5,12 @@
 
 //ライブラリファイルの指定
 #ifdef _DEBUG
-#pragma comment(lib,"planeta/core/planetaengine_mtd.lib")
+#pragma comment(lib,"planetaengine_mtd.lib")
 #else
 #pragma comment(lib,"planetaengine_mt.lib")
 #endif
 
-#include "Game.hpp"
+#include "core/Game.hpp"
 
 //Reflectionシステムに登録するためのヘッダファイル展開
 //PlanetaEngineライブラリを使用するプロジェクト内で一度も、PE_REFLECTABLE_CLASSマクロ二よりトリガークラスが定義されていない、つまりヘッダファイルをインクルードがインストールされていない場合、トリガークラスが呼び出されない。
@@ -19,14 +19,14 @@
 #include "BuiltInTasks.hpp"
 #include "BuiltInResources.hpp"
 
-#include "GameObjectStandardComponent.hpp"
-#include "IGameObject.hpp"
-#include "IScene.hpp"
-#include "IGameObjectManager.hpp"
-#include "ITaskManager.hpp"
-#include "ICollisionWorld.hpp"
-#include "IDrawSystem.hpp"
-#include "ITransformSystem.hpp"
-#include "SceneSetUpper.hpp"
-#include "SceneSetUpProxy.hpp"
-#include "Task.hpp"
+#include "core/GameObjectStandardComponent.hpp"
+#include "core/IGameObject.hpp"
+#include "core/IScene.hpp"
+#include "core/IGameObjectManager.hpp"
+#include "core/ITaskManager.hpp"
+#include "core/ICollisionWorld.hpp"
+#include "core/IDrawSystem.hpp"
+#include "core/ITransformSystem.hpp"
+#include "core/SceneSetUpper.hpp"
+#include "core/SceneSetUpProxy.hpp"
+#include "core/Task.hpp"
