@@ -216,36 +216,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="deprecated\GraphPanel.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\GUIComponent.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\GUIManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\GUIManagerConnection.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\GUIManagerPublicInterface.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\GUIObject.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\SimplePolygonPanel.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\StringPanel.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\TalkWindows.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="deprecated\TextPanel.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -555,19 +525,7 @@
     <ClInclude Include="src\planeta\core\TypeChecker.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\BadNewDeleteOperation.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\BGMController.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\core\BuiltInGameObjectComponents.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\core\BuiltInResources.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\core\BuiltInTasks.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\CharacterCode.hpp">
@@ -774,9 +732,6 @@
     <ClInclude Include="src\planeta\core\PerfoamanceManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\PlanetaEngine.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\PrefixUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -912,35 +867,50 @@
     <ClInclude Include="src\planeta\core\TransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\BuiltInResources.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\BuiltInTasks.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\PlanetaEngine.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\GraphPanel.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\GUIComponent.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\GUIManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\GUIManagerConnection.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\GUIManagerPublicInterface.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\GUIObject.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\SimplePolygonPanel.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\StringPanel.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\TalkWindows.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\deprecated\TextPanel.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="deprecated\GraphPanel.cpp">
-      <Filter>Deprecated\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\GUIComponent.cpp">
-      <Filter>Deprecated\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\GUIManager.cpp">
-      <Filter>Deprecated\GUI\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\GUIManagerConnection.cpp">
-      <Filter>Deprecated\GUI\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\GUIObject.cpp">
-      <Filter>Deprecated\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\SimplePolygonPanel.cpp">
-      <Filter>Deprecated\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\StringPanel.cpp">
-      <Filter>Deprecated\GUIComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\TalkWindows.cpp">
-      <Filter>Deprecated\GUIObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="deprecated\TextPanel.cpp">
-      <Filter>Deprecated\GUIComponents</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\math\MathUtility.cpp">
       <Filter>PlanetaEngine\Math</Filter>
     </ClCompile>
@@ -1306,6 +1276,33 @@
     </ClCompile>
     <ClCompile Include="src\planeta\core\TaskManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\GraphPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\GUIComponent.cpp">
+      <Filter>Deprecated\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\GUIManager.cpp">
+      <Filter>Deprecated\GUI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\GUIManagerConnection.cpp">
+      <Filter>Deprecated\GUI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\GUIObject.cpp">
+      <Filter>Deprecated\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\SimplePolygonPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\StringPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\TalkWindows.cpp">
+      <Filter>Deprecated\GUIObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\deprecated\TextPanel.cpp">
+      <Filter>Deprecated\GUIComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

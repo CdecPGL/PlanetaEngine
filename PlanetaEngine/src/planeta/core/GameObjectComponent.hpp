@@ -1,15 +1,16 @@
 ﻿#pragma once
+
 #include <memory>
 #include <functional>
 #include <unordered_set>
 
-#include"Object.hpp"
+#include "planeta/reflection/ReflectionAccessible.hpp"
+
+#include "Object.hpp"
 #include "NonCopyable.hpp"
-#include "BadNewDeleteOperation.hpp"
 #include "WeakPointer.hpp"
 #include "NonOwingPointer.hpp"
 #include "GOComponentGetter.hpp"
-#include "planeta/reflection/ReflectionAccessible.hpp"
 #include "IScene.hpp"
 
 namespace plnt {

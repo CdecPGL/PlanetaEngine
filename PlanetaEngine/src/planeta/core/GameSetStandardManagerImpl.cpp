@@ -1,7 +1,5 @@
 #include "boost/filesystem.hpp"
 
-#include "PlanetaEngine.hpp"
-
 #include "StandardResourceManager.hpp"
 #include "StandardLogManager.hpp"
 #include "StandardSceneManager.hpp"
@@ -12,7 +10,6 @@
 #include "StandardSaveManager.hpp"
 #include "StandardDebugManager.hpp"
 #include "StandardConfigManager.hpp"
-
 #include "SystemVariables.hpp"
 
 namespace plnt {
