@@ -1,6 +1,7 @@
-﻿#include "planeta/TLSFMemoryAllocator.hpp"
+﻿#include <array>
 
-#include <array>
+#include "TLSFMemoryAllocator.hpp"
+#include "BadAllocException.hpp"
 
 namespace {
 	const std::array<size_t,32> _eo2_table = {
@@ -98,7 +99,7 @@ namespace {
 }
 
 namespace plnt {
-	namespace private_ {
+	namespace util {
 		//////////////////////////////////////////////////////////////////////////
 		//TLSFTLSFMemoryAllocator::_Impl
 		/////////////////////////////////////////////////////////////////////////
@@ -177,7 +178,7 @@ namespace plnt {
 			TLSFMemoryAllocator& _tlsf;
 		};
 
-		inline bool plnt::private_::TLSFMemoryAllocator::_Impl::reserve_memory(size_t size)
+		inline bool TLSFMemoryAllocator::_Impl::reserve_memory(size_t size)
 		{
 			if (_tlsf._memory_pool) { free(_tlsf._memory_pool); } //確保してある領域を解放
 			_tlsf._allocated_memory_count = 0;

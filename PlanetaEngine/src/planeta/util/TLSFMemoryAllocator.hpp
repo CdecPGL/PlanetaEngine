@@ -1,15 +1,16 @@
 ﻿#pragma once
-#include "planeta/IMemoryAllocator.hpp"
+
 #include <cmath>
 #include <vector>
-#include<new>
-#include "BadAllocException.hpp"
+#include <new>
+
+#include "IMemoryAllocator.hpp"
 
 //http://marupeke296.com/ALG_No2_TLSFMemoryAllocator.html
 //ポインタが32bitであることが前提となっている。x64プログラムにするには修正が必要
 
 namespace plnt {
-	namespace private_ {
+	namespace util {
 		class TLSFMemoryAllocator : public IMemoryAllcator {
 		public:
 			TLSFMemoryAllocator();

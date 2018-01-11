@@ -2,7 +2,7 @@
 
 
 namespace plnt {
-	namespace private_ {
+	namespace util {
 		class IMemoryAllcator {
 		public:
 			IMemoryAllcator() = default;

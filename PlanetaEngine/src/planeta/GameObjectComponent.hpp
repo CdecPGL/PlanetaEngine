@@ -6,7 +6,6 @@
 #include"planeta/core/Object.hpp"
 #include "NonCopyable.hpp"
 #include "BadNewDeleteOperation.hpp"
-#include "SharedPointerInstance.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/NonOwingPointer.hpp"
 #include "GOComponentGetter.hpp"

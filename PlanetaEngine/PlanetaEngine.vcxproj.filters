@@ -264,12 +264,6 @@
     <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\AccessorTemplate.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\BadAllocException.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\BadNewDeleteOperation.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -309,12 +303,6 @@
     <ClInclude Include="src\planeta\ConfigManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Coroutine.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\CoroutineUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\DataContainer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -345,13 +333,7 @@
     <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\EventMonitor.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\Game.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\GameObjectAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\GameObjectBase.hpp">
@@ -384,9 +366,6 @@
     <ClInclude Include="src\planeta\GameObjectSystemComponent.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\GlobalNewDeleteDefinition.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\GOComponentAdder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -394,15 +373,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\GraphDrawData2D.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\HeadersForGameObjectComponent.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\HeadersForSceneSetUpper.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\HeadersForTask.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\IBGMController.hpp">
@@ -433,9 +403,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\ILogManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\IMemoryAllocator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\InitFunctions.hpp">
@@ -495,9 +462,6 @@
     <ClInclude Include="src\planeta\MacroUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Memory.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\MetaprogrammingUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -523,9 +487,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\PrefixUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Property.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\RangeUtility.hpp">
@@ -567,16 +528,10 @@
     <ClInclude Include="src\planeta\Screen.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\ScreenChangeEffecter.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\ScreenDrawer2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\ScreenDrawerGUI.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\SharedPointerInstance.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\SingletonTemplate.hpp">
@@ -663,28 +618,7 @@
     <ClInclude Include="src\planeta\TaskSystemSetUpper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\TLSFMemoryAllocator.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\TransformSystem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TwoKeyMap.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TypeChecker.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TypeDefinitions.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\TypeTraitsUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\UnorderedMap.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\Vector.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\Vector2D.hpp">
@@ -948,6 +882,36 @@
     <ClInclude Include="src\planeta\reflection\LuaBindHelper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\util\AccessorTemplate.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\CoroutineUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\EventMonitor.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\IMemoryAllocator.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\TLSFMemoryAllocator.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\Property.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\TwoKeyMap.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\reflection\TypeTraitsUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\util\BadAllocException.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\TypeChecker.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -994,9 +958,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\CollisionGroupMatrix.cpp">
       <Filter>PlanetaEngine\Core\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\Coroutine.cpp">
-      <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\DataContainer.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer</Filter>
@@ -1076,9 +1037,6 @@
     <ClCompile Include="src\planeta\Screen.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\ScreenChangeEffecter.cpp">
-      <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\ScreenDrawer2D.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
@@ -1153,9 +1111,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\TaskManagerConnection.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\TLSFMemoryAllocator.cpp">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
@@ -1348,6 +1303,9 @@
     </ClCompile>
     <ClCompile Include="src\planeta\win\WindowsUtility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\util\TLSFMemoryAllocator.cpp">
+      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

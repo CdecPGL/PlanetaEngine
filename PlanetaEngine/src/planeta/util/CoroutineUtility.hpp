@@ -1,7 +1,8 @@
 ﻿#pragma once
 
-#include "planeta/EventMonitor.hpp"
 #include "boost/coroutine2/coroutine.hpp"
+
+#include "EventMonitor.hpp"
 
 namespace plnt {
 	namespace util {

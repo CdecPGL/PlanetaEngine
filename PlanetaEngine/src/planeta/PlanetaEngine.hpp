@@ -15,6 +15,18 @@
 //Reflectionシステムに登録するためのヘッダファイル展開
 //PlanetaEngineライブラリを使用するプロジェクト内で一度も、PE_REFLECTABLE_CLASSマクロ二よりトリガークラスが定義されていない、つまりヘッダファイルをインクルードがインストールされていない場合、トリガークラスが呼び出されない。
 //それを避けるために、プロジェクト内で最低一回はインクルードされる、かつインクルード回数が一回に近いこのヘッダファイルに記述する。
-#include "planeta/BuiltInGameObjectComponents.hpp"
+#include "BuiltInGameObjectComponents.hpp"
 #include "BuiltInTasks.hpp"
 #include "BuiltInResources.hpp"
+
+#include "planeta/GameObjectStandardComponent.hpp"
+#include "planeta/IGameObject.hpp"
+#include "planeta/IScene.hpp"
+#include "IGameObjectManager.hpp"
+#include "planeta/ITaskManager.hpp"
+#include "ICollisionWorld.hpp"
+#include "IDrawSystem.hpp"
+#include "ITransformSystem.hpp"
+#include "planeta/SceneSetUpper.hpp"
+#include "planeta/SceneSetUpProxy.hpp"
+#include "planeta/Task.hpp"
