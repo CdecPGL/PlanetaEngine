@@ -1,8 +1,10 @@
 #pragma once
 
 #include <functional>
-#include "planeta/core/File.hpp"
+
 #include "EffekseerForDXLib.h"
+
+#include "planeta/core/File.hpp"
 
 #define EFFEKSEER_FOR_DXLIB_VERSION 122
 

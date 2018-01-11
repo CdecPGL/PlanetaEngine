@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
+
 #include "DxLib.h"
 
 namespace plnt {

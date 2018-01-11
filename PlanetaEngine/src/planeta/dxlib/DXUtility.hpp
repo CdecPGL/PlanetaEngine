@@ -1,5 +1,7 @@
 ﻿#pragma once
+
 #include "DxLib.h"
+
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {

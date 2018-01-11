@@ -1,13 +1,14 @@
-#include "planeta/effekseer/EffekseerUtil.hpp"
 #include "planeta/core/CharacterCode.hpp"
 #include "planeta/core/LogUtility.hpp"
 
-#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
+#include "EffekseerUtil.hpp"
 
-#include "planeta/core/File.hpp"
-#include "EffekseerForDXLib.h"
+#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 #include <d3dx9tex.h>
 
+#include "planeta/core/File.hpp"
+
+#include "EffekseerForDXLib.h"
 #endif
 
 namespace plnt {
