@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 #include "CGround2D.hpp"
 
 namespace plnt {

@@ -1,6 +1,8 @@
-﻿#include "RSound.hpp"
-#include "DxLib.h"
+﻿#include "DxLib.h"
+
 #include "planeta/core/File.hpp"
+
+#include "RSound.hpp"
 
 namespace plnt {
 	bool RSound::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {

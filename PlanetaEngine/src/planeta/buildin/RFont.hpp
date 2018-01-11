@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <windows.h>
+
 #include "planeta/core/ResourceBase.hpp"
 
 namespace plnt {

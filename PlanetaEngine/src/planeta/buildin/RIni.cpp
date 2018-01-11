@@ -1,8 +1,10 @@
 ﻿#include <algorithm>
-#include "RIni.hpp"
+
 #include "planeta/core/FileIStream.hpp"
 #include "planeta/core/FileSystemUtility.hpp"
 #include "planeta/core/CharacterCode.hpp"
+
+#include "RIni.hpp"
 
 namespace plnt {
 

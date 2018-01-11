@@ -1,5 +1,6 @@
-﻿#include "CStraightLineCollider2D.hpp"
-#include "planeta/core/CollisionDetectFunctions.hpp"
+﻿#include "planeta/core/CollisionDetectFunctions.hpp"
+
+#include "CStraightLineCollider2D.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CStraightLineCollider2D) {

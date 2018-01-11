@@ -1,8 +1,11 @@
 ﻿#pragma once
-#include "CDraw2D.hpp"
-#include "planeta/core/Vector2D.hpp"
+
 #include <array>
 #include <vector>
+
+#include "planeta/core/Vector2D.hpp"
+
+#include "CDraw2D.hpp"
 
 namespace plnt {
 	/*! 平面上直線描画コンポーネント*/

@@ -1,6 +1,8 @@
 ﻿#pragma once
-#include "planeta/core/GameObjectStandardComponent.hpp"
+
 #include <vector>
+
+#include "planeta/core/GameObjectStandardComponent.hpp"
 
 namespace plnt {
 	/*! 平面惑星コンポーネント*/

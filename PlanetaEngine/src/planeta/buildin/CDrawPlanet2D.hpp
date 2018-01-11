@@ -2,9 +2,11 @@
 
 #include <array>
 #include <vector>
-#include "CDraw2D.hpp"
+
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/Vertex2D.hpp"
+
+#include "CDraw2D.hpp"
 
 namespace plnt {
 	namespace private_ {

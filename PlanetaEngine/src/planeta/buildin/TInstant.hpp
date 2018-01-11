@@ -1,7 +1,8 @@
 ﻿#pragma once
 
-#include "planeta/core/Task.hpp"
 #include <functional>
+
+#include "planeta/core/Task.hpp"
 
 namespace plnt {
 	class TInstant final : public Task {

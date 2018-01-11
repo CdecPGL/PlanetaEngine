@@ -1,10 +1,11 @@
-#include "CDrawGraphGUI.hpp"
 #include "planeta/core/IGameObject.hpp"
-#include "RGraph.hpp"
 #include "planeta/core/ScreenDrawerGUI.hpp"
-#include "CTransformGUI.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "planeta/core/ResourceHolder.hpp"
+
+#include "CDrawGraphGUI.hpp"
+#include "RGraph.hpp"
+#include "CTransformGUI.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

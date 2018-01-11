@@ -1,14 +1,16 @@
-﻿#include "planeta/core/Game.hpp"
-#include "CDrawPlanet2D.hpp"
-#include <cmath>
+﻿#include <cmath>
+
+#include "planeta/core/Game.hpp"
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "planeta/core/IResourceManager.hpp"
-#include "RGraph.hpp"
 #include "planeta/core/IGameObject.hpp"
-#include "CPlanet.hpp"
-#include "planeta/math/MathConstant.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/GraphDrawData2D.hpp"
+#include "planeta/math/MathConstant.hpp"
+
+#include "CDrawPlanet2D.hpp"
+#include "CPlanet.hpp"
+#include "RGraph.hpp"
 
 namespace {
 	constexpr unsigned int kDefaultHorizontalSeparation(90);

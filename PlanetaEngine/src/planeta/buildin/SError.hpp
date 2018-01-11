@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 #include "planeta/core/SceneSetUpper.hpp"
 
 namespace plnt {

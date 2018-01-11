@@ -1,8 +1,10 @@
 ﻿#pragma once
 
 #include <limits>
-#include "CGround2D.hpp"
+
 #include "planeta/math/MathConstant.hpp"
+
+#include "CGround2D.hpp"
 
 namespace plnt {
 	/*! 何もしない地面コンポーネント*/

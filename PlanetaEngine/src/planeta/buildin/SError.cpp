@@ -1,10 +1,10 @@
-﻿#include "SError.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "TInstant.hpp"
+﻿#include "planeta/core/LogUtility.hpp"
 #include "planeta/core/IScene.hpp"
 #include "planeta/core/ITaskManager.hpp"
 #include "planeta/core/SceneSetUpProxy.hpp"
 
+#include "SError.hpp"
+#include "TInstant.hpp"
 
 namespace plnt {
 	namespace private_ {

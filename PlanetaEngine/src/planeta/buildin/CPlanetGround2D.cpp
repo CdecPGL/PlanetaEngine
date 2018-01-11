@@ -1,10 +1,11 @@
-﻿#include "CPlanetGround2D.hpp"
-#include "planeta/core/IGameObject.hpp"
+﻿#include "planeta/core/IGameObject.hpp"
+#include "planeta/core/LogUtility.hpp"
+#include "planeta/math/MathConstant.hpp"
+
+#include "CPlanetGround2D.hpp"
 #include "CTransform2D.hpp"
 #include "CCircleCollider2D.hpp"
 #include "CPlanet.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/math/MathConstant.hpp"
 
 namespace plnt {
 	bool CPlanetGround2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {

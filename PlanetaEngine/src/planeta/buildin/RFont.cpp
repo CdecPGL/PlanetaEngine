@@ -1,8 +1,10 @@
-﻿#include "RFont.hpp"
+﻿#include "DxLib.h"
+
 #include "planeta/core/File.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/JsonFile.hpp"
-#include "DxLib.h"
+
+#include "RFont.hpp"
 
 namespace plnt {
 	bool RFont::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {

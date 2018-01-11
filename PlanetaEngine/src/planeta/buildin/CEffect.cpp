@@ -1,12 +1,14 @@
+#include "EffekseerForDXLib.h"
+
 #include "planeta/core/Game.hpp"
 #include "planeta/core/IResourceManager.hpp"
+#include "planeta/core/StandardResourceManager.hpp"
+#include "planeta/core/IGameObject.hpp"
+
 #include "CEffect.hpp"
 #include "CTransform2D.hpp"
 #include "REffect.hpp"
-#include "EffekseerForDXLib.h"
-#include "planeta/core/StandardResourceManager.hpp"
 #include "TInstant.hpp"
-#include "planeta/core/IGameObject.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

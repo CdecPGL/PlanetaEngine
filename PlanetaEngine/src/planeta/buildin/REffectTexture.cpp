@@ -1,6 +1,3 @@
-#include "REffectTexture.hpp"
-#include "planeta/core/File.hpp"
-
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130
 
 #include "Effekseer.h"
@@ -14,6 +11,10 @@ plnt::REffectTexture::~REffectTexture() = default;
 #include <d3dx9tex.h>
 
 #endif
+
+#include "planeta/core/File.hpp"
+
+#include "REffectTexture.hpp"
 
 bool plnt::REffectTexture::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
 #if EFFEKSEER_FOR_DXLIB_VERSION >= 130

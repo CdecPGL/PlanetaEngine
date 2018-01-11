@@ -1,6 +1,8 @@
-﻿#include "RMusic.hpp"
-#include "DxLib.h"
+﻿#include "DxLib.h"
+
 #include "planeta/core/File.hpp"
+
+#include "RMusic.hpp"
 
 namespace plnt {
 	bool RMusic::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {

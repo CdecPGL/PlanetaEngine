@@ -1,8 +1,10 @@
-﻿#include "CPlanet.hpp"
+﻿#include <cmath>
+#include <cassert>
+
 #include "planeta/math/MathConstant.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include <cmath>
-#include <cassert>
+
+#include "CPlanet.hpp"
 
 namespace {
 	constexpr unsigned int kDefaultSeparation(90);

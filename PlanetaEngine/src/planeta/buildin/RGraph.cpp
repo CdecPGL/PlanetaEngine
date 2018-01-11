@@ -1,9 +1,10 @@
-﻿#include "RGraph.hpp"
-#include "DxLib.h"
+﻿#include "DxLib.h"
+
 #include "planeta/core/File.hpp"
-#include "planeta/math/MathUtility.hpp"
 #include "planeta/core/LogUtility.hpp"
-//#include "boost/lexical_cast.hpp"
+#include "planeta/math/MathUtility.hpp"
+
+#include "RGraph.hpp"
 
 namespace plnt {
 	bool RGraph::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
