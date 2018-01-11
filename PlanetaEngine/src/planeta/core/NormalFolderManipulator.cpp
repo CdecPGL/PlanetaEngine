@@ -2,7 +2,7 @@
 #include"boost/filesystem.hpp"
 #include"boost/foreach.hpp"
 #include "planeta/LogUtility.hpp"
-#include "planeta/EncrypterBase.hpp"
+#include "planeta/archiver/EncrypterBase.hpp"
 #include<fstream>
 #include<iomanip>
 

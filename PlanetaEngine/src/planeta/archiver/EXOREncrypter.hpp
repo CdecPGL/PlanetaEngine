@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <cstdint>
-#include "planeta/EncrypterBase.hpp"
+#include "planeta/archiver/EncrypterBase.hpp"
 
 namespace plnt {
 	namespace encrypters {

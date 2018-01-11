@@ -153,7 +153,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\planeta\AccessorTemplate.hpp" />
-    <ClInclude Include="src\planeta\AESEncrypter.hpp" />
+    <ClInclude Include="src\planeta\archiver\AESEncrypter.hpp" />
     <ClInclude Include="src\planeta\core\ArchiveManipulator.hpp" />
     <ClInclude Include="src\planeta\BadAllocException.hpp" />
     <ClInclude Include="src\planeta\BadNewDeleteOperation.hpp" />
@@ -212,9 +212,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\EACollisionWithCollider2D.hpp" />
     <ClInclude Include="src\planeta\EACollisionWithGround2D.hpp" />
     <ClInclude Include="src\planeta\EffekseerUtil.hpp" />
-    <ClInclude Include="src\planeta\EncrypterBase.hpp" />
+    <ClInclude Include="src\planeta\archiver\EncrypterBase.hpp" />
     <ClInclude Include="src\planeta\EventMonitor.hpp" />
-    <ClInclude Include="src\planeta\EXOREncrypter.hpp" />
+    <ClInclude Include="src\planeta\archiver\EXOREncrypter.hpp" />
     <ClInclude Include="src\planeta\core\File.hpp" />
     <ClInclude Include="src\planeta\core\FileAccessMode.hpp" />
     <ClInclude Include="src\planeta\core\FileIStream.hpp" />
@@ -428,7 +428,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\core\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\planeta\AESEncrypter.cpp" />
+    <ClCompile Include="src\planeta\archiver\AESEncrypter.cpp" />
     <ClCompile Include="src\planeta\core\ArchiveManipulator.cpp" />
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp" />
     <ClCompile Include="src\planeta\BGMController.cpp" />
@@ -485,9 +485,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile Include="src\planeta\buildin\RCsv.cpp" />
     <ClCompile Include="src\planeta\StandardDebugManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPolygon2D.cpp" />
-    <ClCompile Include="src\planeta\EncrypterBase.cpp" />
+    <ClCompile Include="src\planeta\archiver\EncrypterBase.cpp" />
     <ClCompile Include="src\planeta\buildin\SError.cpp" />
-    <ClCompile Include="src\planeta\EXOREncrypter.cpp" />
+    <ClCompile Include="src\planeta\archiver\EXOREncrypter.cpp" />
     <ClCompile Include="src\planeta\core\FileIStream.cpp" />
     <ClCompile Include="src\planeta\core\FileManipulator.cpp" />
     <ClCompile Include="src\planeta\core\FileOStream.cpp" />

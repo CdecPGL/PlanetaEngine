@@ -267,9 +267,6 @@
     <ClInclude Include="src\planeta\AccessorTemplate.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\AESEncrypter.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\BadAllocException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -357,13 +354,7 @@
     <ClInclude Include="src\planeta\EffekseerUtil.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\EncrypterBase.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\EventMonitor.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\EXOREncrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\Game.hpp">
@@ -948,6 +939,15 @@
     <ClInclude Include="src\planeta\core\Object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\archiver\AESEncrypter.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\archiver\EncrypterBase.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\archiver\EXOREncrypter.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deprecated\GraphPanel.cpp">
@@ -979,9 +979,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\math\MathUtility.cpp">
       <Filter>PlanetaEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\AESEncrypter.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\BGMController.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
@@ -1015,12 +1012,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\EffekseerUtil.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\EncrypterBase.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\EXOREncrypter.cpp">
-      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\Game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
@@ -1348,6 +1339,15 @@
     </ClCompile>
     <ClCompile Include="src\planeta\core\Object.cpp">
       <Filter>PlanetaEngine\Core\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\archiver\AESEncrypter.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\archiver\EncrypterBase.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\archiver\EXOREncrypter.cpp">
+      <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
