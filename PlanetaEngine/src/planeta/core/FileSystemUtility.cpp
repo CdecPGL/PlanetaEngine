@@ -1,9 +1,9 @@
 ﻿#include <fstream>
 #include <algorithm>
 #include "boost/algorithm/string.hpp"
-#include "planeta/core/FileSystemUtility.hpp"
-#include "planeta/core/File.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "FileSystemUtility.hpp"
+#include "File.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	namespace util {

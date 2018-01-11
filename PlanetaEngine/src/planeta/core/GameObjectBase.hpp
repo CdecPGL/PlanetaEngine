@@ -1,10 +1,10 @@
 ﻿#pragma once
 
-#include "planeta/core/Object.hpp"
+#include "Object.hpp"
 #include "GameObjectComponentHolder.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "IGameObject.hpp"
 #include "NonCopyable.hpp"
-#include "planeta/core/NonOwingPointer.hpp"
+#include "NonOwingPointer.hpp"
 #include "GameObjectManagerConnection.hpp"
 
 namespace plnt {

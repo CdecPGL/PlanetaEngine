@@ -2,8 +2,8 @@
 #include "StandardSaveManager.hpp"
 #include "DataContainer.hpp"
 #include "DataContainerSerializeUtility.hpp"
-#include "planeta/core/FileManipulator.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "FileManipulator.hpp"
+#include "LogUtility.hpp"
 #include "planeta/buildin/RCsv.hpp"
 
 namespace {

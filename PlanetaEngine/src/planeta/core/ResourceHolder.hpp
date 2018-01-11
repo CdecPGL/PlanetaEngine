@@ -1,8 +1,8 @@
 #pragma once
 
-#include "planeta/core/Game.hpp"
-#include "planeta/core/IResourceManager.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "Game.hpp"
+#include "IResourceManager.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	namespace util {

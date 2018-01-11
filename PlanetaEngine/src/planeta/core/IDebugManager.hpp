@@ -1,9 +1,9 @@
 #pragma once
 
 #include <functional>
-#include "planeta/core/StringUtility.hpp"
-#include "planeta/core/Vector2D.hpp"
-#include "planeta/core/Color.hpp"
+#include "StringUtility.hpp"
+#include "Vector2D.hpp"
+#include "Color.hpp"
 
 namespace plnt {
 	/*! デバッグ情報追加クラス公開インターフェイス*/

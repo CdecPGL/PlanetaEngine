@@ -1,10 +1,10 @@
-﻿#include "planeta/core/StandardDebugManager.hpp"
+﻿#include "StandardDebugManager.hpp"
 #include "Game.hpp"
 #include "IInputManager.hpp"
 #include "RenderingManager.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/ScreenDrawer2D.hpp"
-#include "planeta/core/ScreenDrawerGUI.hpp"
+#include "LogUtility.hpp"
+#include "ScreenDrawer2D.hpp"
+#include "ScreenDrawerGUI.hpp"
 
 namespace plnt {
 	namespace private_ {

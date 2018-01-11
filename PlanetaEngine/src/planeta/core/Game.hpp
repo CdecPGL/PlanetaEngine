@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
-#include "planeta/core/Object.hpp"
+#include "Object.hpp"
 #include "SingletonTemplate.hpp"
 
 namespace plnt {

@@ -1,10 +1,10 @@
-#include "planeta/core/StandardSceneManagerUtility.hpp"
+#include "StandardSceneManagerUtility.hpp"
 
 #include "Scene.hpp"
 #include "TaskManager.hpp"
-#include "planeta/core/CollisionWorld.hpp"
-#include "planeta/core/DrawSystem.hpp"
-#include "planeta/core/TransformSystem.hpp"
+#include "CollisionWorld.hpp"
+#include "DrawSystem.hpp"
+#include "TransformSystem.hpp"
 
 #include "planeta/buildin/TInstant.hpp"
 

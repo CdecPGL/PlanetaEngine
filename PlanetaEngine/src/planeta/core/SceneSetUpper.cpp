@@ -1,7 +1,7 @@
-﻿#include "planeta/core/SceneSetUpper.hpp"
+﻿#include "SceneSetUpper.hpp"
 #include "Scene.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/SceneSetUpProxy.hpp"
+#include "LogUtility.hpp"
+#include "SceneSetUpProxy.hpp"
 
 namespace plnt {
 	bool SceneSetUpper::InitializeScene(private_::Scene& scene, const util::ParameterHolder& initialize_parameters) {

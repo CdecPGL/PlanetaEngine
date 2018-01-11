@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "planeta/core/NonOwingPointer.hpp"
+#include "NonOwingPointer.hpp"
 #include "GameObjectComponent.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	class GameObjectComponentHolder;

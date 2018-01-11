@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/Object.hpp"
+#include "Object.hpp"
 #include<string>
 #include<vector>
 #include <memory.h>

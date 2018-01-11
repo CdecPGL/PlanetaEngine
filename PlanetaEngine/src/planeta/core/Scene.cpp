@@ -1,14 +1,14 @@
-﻿#include "planeta/core/Scene.hpp"
+﻿#include "Scene.hpp"
 //Modules
-#include "planeta/core/GameObjectManager.hpp"
+#include "GameObjectManager.hpp"
 #include "TaskManager.hpp"
-#include "planeta/core/CollisionWorld.hpp"
-#include "planeta/core/DrawSystem.hpp"
-#include "planeta/core/TransformSystem.hpp"
+#include "CollisionWorld.hpp"
+#include "DrawSystem.hpp"
+#include "TransformSystem.hpp"
 
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/ScreenDrawer2D.hpp"
-#include "planeta/core/ScreenDrawerGUI.hpp"
+#include "LogUtility.hpp"
+#include "ScreenDrawer2D.hpp"
+#include "ScreenDrawerGUI.hpp"
 
 namespace plnt{
 	namespace private_{

@@ -1,4 +1,4 @@
-﻿#include "planeta/core/GraphDrawData2D.hpp"
+﻿#include "GraphDrawData2D.hpp"
 #include "planeta/dxlib/DXGraphDrawData.hpp"
 #include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/buildin/RGraph.hpp"

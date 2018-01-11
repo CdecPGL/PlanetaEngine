@@ -1,5 +1,5 @@
-﻿#include "planeta/core/FileStreamBuf.hpp"
-#include "planeta/core/File.hpp"
+﻿#include "FileStreamBuf.hpp"
+#include "File.hpp"
 
 namespace plnt {
 	const size_t FileStreamBuf::buffer_size = 256;

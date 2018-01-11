@@ -1,4 +1,4 @@
-﻿#include "planeta/core/InitFunctions.hpp"
+﻿#include "InitFunctions.hpp"
 #include "ResourceManager.hpp"
 #include "SystemVariables.hpp"
 

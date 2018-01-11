@@ -4,14 +4,14 @@
 #include "boost/filesystem.hpp"
 #include "boost/optional.hpp"
 
-#include"planeta/core/StandardResourceManager.hpp"
-#include "planeta/core/File.hpp"
-#include "planeta/core/JsonFile.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/FileManipulator.hpp"
+#include"StandardResourceManager.hpp"
+#include "File.hpp"
+#include "JsonFile.hpp"
+#include "LogUtility.hpp"
+#include "FileManipulator.hpp"
 #include "SystemVariables.hpp"
 #include "ResourceReferencer.hpp"
-#include "planeta/core/ResourceBase.hpp"
+#include "ResourceBase.hpp"
 
 namespace {
 	std::string UnifyPath(const std::string& src) {

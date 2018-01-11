@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <memory>
-#include "planeta/core/Object.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "Object.hpp"
+#include "LogUtility.hpp"
 #include "ResourceReferencer.hpp"
 
 namespace plnt {

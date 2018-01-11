@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/NonOwingPointer.hpp"
+#include "NonOwingPointer.hpp"
 
 namespace plnt {
 	class ISceneInternal;

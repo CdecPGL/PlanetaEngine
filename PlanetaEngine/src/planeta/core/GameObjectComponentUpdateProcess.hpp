@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/Task.hpp"
+#include "Task.hpp"
 #include "GameObjectComponent.hpp"
 
 namespace plnt {

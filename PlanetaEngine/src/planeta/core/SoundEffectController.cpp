@@ -1,7 +1,7 @@
-﻿#include "planeta/core/SoundEffectController.hpp"
+﻿#include "SoundEffectController.hpp"
 #include "planeta/buildin/RSound.hpp"
 #include "DxLib.h"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	void SoundEffectController::Dispose() {

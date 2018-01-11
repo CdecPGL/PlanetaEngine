@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/SoundManager.hpp"
+#include "SoundManager.hpp"
 
 namespace plnt {
 	namespace private_ {

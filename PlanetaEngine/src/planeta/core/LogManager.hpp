@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/ILogManager.hpp"
+#include "ILogManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

@@ -10,7 +10,7 @@
 
 #include "boost/type_index.hpp"
 
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 #include "ResourceManager.hpp"
 
 

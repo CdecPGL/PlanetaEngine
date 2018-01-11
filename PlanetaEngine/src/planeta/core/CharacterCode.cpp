@@ -1,4 +1,4 @@
-﻿#include "planeta/core/CharacterCode.hpp"
+﻿#include "CharacterCode.hpp"
 
 #include <memory>
 #include <windows.h>

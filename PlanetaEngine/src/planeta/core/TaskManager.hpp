@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/ITaskManager.hpp"
+#include "ITaskManager.hpp"
 #include "SceneModule.hpp"
 #include "SystemTaskSlot.hpp"
 

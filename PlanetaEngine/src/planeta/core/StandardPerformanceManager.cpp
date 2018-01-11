@@ -1,6 +1,6 @@
 ﻿#include <ctime>
 
-#include "planeta/core/StandardPerformanceManager.hpp"
+#include "StandardPerformanceManager.hpp"
 #include "IDebugManager.hpp"
 
 namespace plnt {

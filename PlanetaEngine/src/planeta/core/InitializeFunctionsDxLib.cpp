@@ -3,8 +3,8 @@
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/CharacterCode.hpp"
+#include "LogUtility.hpp"
+#include "CharacterCode.hpp"
 #include "ConfigManager.hpp"
 
 #include "planeta/effekseer/EffekseerUtil.hpp"

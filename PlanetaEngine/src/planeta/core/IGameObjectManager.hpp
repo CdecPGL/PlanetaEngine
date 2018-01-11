@@ -3,7 +3,7 @@
 #include <string>
 #include <functional>
 #include <vector>
-#include "planeta/core/WeakPointer.hpp"
+#include "WeakPointer.hpp"
 
 namespace plnt {
 	class IGameObject;

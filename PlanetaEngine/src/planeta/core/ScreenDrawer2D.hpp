@@ -3,8 +3,8 @@
 #include <memory>
 #include <vector>
 #include <array>
-#include "planeta/core/Vector2D.hpp"
-#include "planeta/core/Color.hpp"
+#include "Vector2D.hpp"
+#include "Color.hpp"
 
 namespace plnt {
 	namespace private_ {

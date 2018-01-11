@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/IGameObjectManager.hpp"
+#include "IGameObjectManager.hpp"
 #include "SceneModule.hpp"
 
 namespace plnt {

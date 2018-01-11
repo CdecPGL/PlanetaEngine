@@ -1,5 +1,5 @@
-﻿#include "planeta/core/Screen.hpp"
-#include "planeta/core/LogUtility.hpp"
+﻿#include "Screen.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

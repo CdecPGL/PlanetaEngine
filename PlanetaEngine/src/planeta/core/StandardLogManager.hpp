@@ -5,7 +5,7 @@
 #include <fstream>
 #include <memory>
 #include <cstdio>
-#include "planeta/core/LogManager.hpp"
+#include "LogManager.hpp"
 
 namespace plnt {
 	namespace private_ {

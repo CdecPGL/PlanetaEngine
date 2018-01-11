@@ -3,14 +3,14 @@
 #include <functional>
 #include <unordered_set>
 
-#include"planeta/core/Object.hpp"
+#include"Object.hpp"
 #include "NonCopyable.hpp"
 #include "BadNewDeleteOperation.hpp"
-#include "planeta/core/WeakPointer.hpp"
-#include "planeta/core/NonOwingPointer.hpp"
+#include "WeakPointer.hpp"
+#include "NonOwingPointer.hpp"
 #include "GOComponentGetter.hpp"
 #include "planeta/reflection/ReflectionAccessible.hpp"
-#include "planeta/core/IScene.hpp"
+#include "IScene.hpp"
 
 namespace plnt {
 	class SceneAccessorForGameObject;

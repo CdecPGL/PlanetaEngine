@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include <vector>
-#include "planeta/core/SaveManager.hpp"
-#include "planeta/core/DateTime.hpp"
+#include "SaveManager.hpp"
+#include "DateTime.hpp"
 #include "boost/optional.hpp"
 
 namespace plnt {

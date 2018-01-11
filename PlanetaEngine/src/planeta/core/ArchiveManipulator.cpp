@@ -1,8 +1,8 @@
-﻿#include "planeta/core/ArchiveManipulator.hpp"
+﻿#include "ArchiveManipulator.hpp"
 #include"Extracter.h"
 #include "Archiver.h"
 #include"boost/filesystem/path.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	ArchiveManipulator::ArchiveManipulator() :FileManipulator(), _extracter(std::make_unique<Extracter>()), _key(0) {}

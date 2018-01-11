@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "planeta/core/StringUtility.hpp"
+#include "StringUtility.hpp"
 
 namespace plnt {
 	enum class LogLevel { Message, Warning, Error, Fatal };

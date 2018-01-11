@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 #include <vector>
-#include "planeta/core/IInputManager.hpp"
+#include "IInputManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

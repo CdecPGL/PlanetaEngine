@@ -1,11 +1,11 @@
 ﻿#include <cassert>
 
-#include "planeta/core/InitFunctions.hpp"
+#include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
 
-#include "planeta/core/FileAccessMode.hpp"
-#include "planeta/core/ArchiveManipulator.hpp"
-#include "planeta/core/NormalFolderManipulator.hpp"
+#include "FileAccessMode.hpp"
+#include "ArchiveManipulator.hpp"
+#include "NormalFolderManipulator.hpp"
 
 namespace plnt {
 	namespace private_ {

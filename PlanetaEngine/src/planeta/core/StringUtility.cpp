@@ -1,6 +1,6 @@
 ﻿#include <ctype.h>
 
-#include "planeta/core/StringUtility.hpp"
+#include "StringUtility.hpp"
 
 namespace plnt {
 	namespace util {

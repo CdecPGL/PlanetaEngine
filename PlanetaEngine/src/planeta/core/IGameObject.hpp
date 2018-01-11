@@ -3,10 +3,10 @@
 #include <type_traits>
 #include <memory>
 
-#include "planeta/core/Signal.hpp"
-#include "planeta/core/ITaskManager.hpp"
+#include "Signal.hpp"
+#include "ITaskManager.hpp"
 #include "TaskSlot.hpp"
-#include "planeta/core/IScene.hpp"
+#include "IScene.hpp"
 
 namespace plnt {
 	class Task;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/ISoundManager.hpp"
+#include "ISoundManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

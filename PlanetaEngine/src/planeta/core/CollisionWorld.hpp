@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/ICollisionWorld.hpp"
+#include "ICollisionWorld.hpp"
 #include "SceneModule.hpp"
 
 namespace plnt {

@@ -5,14 +5,14 @@
 #include "GameObjectBase.hpp"
 #include "GameObjectComponent.hpp"
 #include "GameObjectComponentSetUpData.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 #include "Task.hpp"
 #include "GOComponentAdder.hpp"
 #include "GOComponentGetter.hpp"
 #include "planeta/buildin/RPtree.hpp"
-#include "planeta/core/IResourceManager.hpp"
+#include "IResourceManager.hpp"
 #include "planeta/reflection/Reflection.hpp"
-#include "planeta/core/ISceneInternal.hpp"
+#include "ISceneInternal.hpp"
 
 namespace plnt {
 	namespace {

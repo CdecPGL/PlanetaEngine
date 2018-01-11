@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "planeta/core/ParameterHolder.hpp"
+#include "ParameterHolder.hpp"
 
 namespace plnt {
 	/*! シーンマネージャの公開インターフェイス*/

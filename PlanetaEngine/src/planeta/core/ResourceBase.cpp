@@ -1,6 +1,6 @@
-#include "planeta/core/ResourceBase.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/File.hpp"
+#include "ResourceBase.hpp"
+#include "LogUtility.hpp"
+#include "File.hpp"
 #include "boost/filesystem/path.hpp"
 
 namespace plnt {

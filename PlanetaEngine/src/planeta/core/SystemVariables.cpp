@@ -1,4 +1,4 @@
-﻿#include "planeta/core/SystemVariables.hpp"
+﻿#include "SystemVariables.hpp"
 
 namespace plnt{
 	namespace private_{

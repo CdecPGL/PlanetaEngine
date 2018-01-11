@@ -1,9 +1,9 @@
 ﻿#include <cassert>
-#include "planeta/core/StandardRenderingManager.hpp"
+#include "StandardRenderingManager.hpp"
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
 #include "Screen.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

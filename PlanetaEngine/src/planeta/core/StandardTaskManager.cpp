@@ -3,13 +3,13 @@
 #include <array>
 #include <type_traits>
 #include <bitset>
-#include "planeta/core/StandardTaskManager.hpp"
+#include "StandardTaskManager.hpp"
 #include "Task.hpp"
 #include "TaskManagerConnection.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 #include "SystemTaskSlot.hpp"
 #include "IDebugManager.hpp"
-#include "planeta/core/ISceneInternal.hpp"
+#include "ISceneInternal.hpp"
 
 namespace plnt {
 	namespace private_ {

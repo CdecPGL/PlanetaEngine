@@ -1,14 +1,14 @@
 ﻿#include <functional>
 
-#include "planeta/core/Game.hpp"
+#include "Game.hpp"
 #include "RenderingManager.hpp"
 #include "ConfigManager.hpp"
 #include "StandardDrawSystem.hpp"
 #include "planeta/buildin/CDraw2D.hpp"
 #include "planeta/buildin/CDrawGUI.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/ScreenDrawer2D.hpp"
-#include "planeta/core/ScreenDrawerGUI.hpp"
+#include "LogUtility.hpp"
+#include "ScreenDrawer2D.hpp"
+#include "ScreenDrawerGUI.hpp"
 #include "planeta/buildin/CCamera2D.hpp"
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"

@@ -1,11 +1,11 @@
 ﻿
 #include <unordered_map>
-#include "planeta/core/StandardSoundManager.hpp"
+#include "StandardSoundManager.hpp"
 #include "BGMController.hpp"
 #include "SoundEffectController.hpp"
 #include "planeta/buildin/RMusic.hpp"
 #include "planeta/buildin/RSound.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

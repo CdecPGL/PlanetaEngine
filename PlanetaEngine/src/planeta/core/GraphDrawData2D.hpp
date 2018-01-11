@@ -3,8 +3,8 @@
 #include <memory>
 #include <array>
 #include <vector>
-#include "planeta/core/Vertex2D.hpp"
-#include "planeta/core/Color.hpp"
+#include "Vertex2D.hpp"
+#include "Color.hpp"
 
 namespace plnt {
 	class RGraph;

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
-#include "planeta/core/DebugManager.hpp"
+#include "DebugManager.hpp"
 
 namespace plnt {
 	namespace  private_ {

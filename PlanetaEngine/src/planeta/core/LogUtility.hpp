@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/Game.hpp"
+#include "Game.hpp"
 #include "ILogManager.hpp"
 
 //メッセージを出力する

@@ -1,4 +1,4 @@
-#include "planeta/core/StandardSceneManagerUtility.hpp"
+#include "StandardSceneManagerUtility.hpp"
 #include "Scene.hpp"
 
 #include "StandardCollisionWorld.hpp"

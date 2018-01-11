@@ -2,9 +2,9 @@
 #include "boost/archive/xml_oarchive.hpp"
 #include "DataContainerSerializeUtility.hpp"
 #include "DataContainerFunctionsForBoostSerialize.hpp"
-#include "planeta/core/FileOStream.hpp"
-#include "planeta/core/FileIStream.hpp"
-#include "planeta/core/File.hpp"
+#include "FileOStream.hpp"
+#include "FileIStream.hpp"
+#include "File.hpp"
 
 namespace plnt {
 	namespace util {

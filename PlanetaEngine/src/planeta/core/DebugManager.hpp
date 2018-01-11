@@ -1,6 +1,6 @@
 #pragma once
 
-#include "planeta/core/IDebugManager.hpp"
+#include "IDebugManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

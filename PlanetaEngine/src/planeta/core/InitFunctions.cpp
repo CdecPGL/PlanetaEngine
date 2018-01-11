@@ -5,9 +5,9 @@
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
-#include "planeta/core/FileManipulator.hpp"
-#include "planeta/core/File.hpp"
-#include "planeta/core/JsonFile.hpp"
+#include "FileManipulator.hpp"
+#include "File.hpp"
+#include "JsonFile.hpp"
 #include "ConfigManager.hpp"
 
 namespace plnt {

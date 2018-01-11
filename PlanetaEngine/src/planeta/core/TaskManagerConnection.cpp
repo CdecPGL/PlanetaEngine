@@ -1,4 +1,4 @@
-﻿#include "planeta/core/TaskManagerConnection.hpp"
+﻿#include "TaskManagerConnection.hpp"
 
 namespace plnt {
 	namespace private_ {

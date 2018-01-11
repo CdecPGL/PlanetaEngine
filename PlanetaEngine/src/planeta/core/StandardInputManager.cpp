@@ -1,4 +1,4 @@
-﻿#include "planeta/core/StandardInputManager.hpp"
+﻿#include "StandardInputManager.hpp"
 #include <cassert>
 #include<algorithm>
 #include"DxLib.h"

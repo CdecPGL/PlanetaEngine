@@ -2,7 +2,7 @@
 
 #include "DxLib.h"
 
-#include "planeta/core/ScreenDrawerGUI.hpp"
+#include "ScreenDrawerGUI.hpp"
 #include "planeta/buildin/RGraph.hpp"
 #include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/buildin/RFont.hpp"

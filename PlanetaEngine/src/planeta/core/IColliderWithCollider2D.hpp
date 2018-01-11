@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/MacroUtility.hpp"
+#include "MacroUtility.hpp"
 
 namespace plnt {
 	class CCircleCollider2D;

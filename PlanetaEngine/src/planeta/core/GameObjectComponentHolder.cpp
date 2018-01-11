@@ -1,5 +1,5 @@
-﻿#include "planeta/core/GameObjectComponentHolder.hpp"
-#include "planeta/core/LogUtility.hpp"
+﻿#include "GameObjectComponentHolder.hpp"
+#include "LogUtility.hpp"
 #include "GameObjectComponent.hpp"
 
 namespace plnt {

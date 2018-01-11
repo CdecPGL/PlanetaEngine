@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "planeta/core/Object.hpp"
+#include "Object.hpp"
 #include <unordered_map>
 
 namespace plnt {

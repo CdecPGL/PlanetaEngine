@@ -1,10 +1,10 @@
-﻿#include "planeta/core/ScreenDrawer2D.hpp"
+﻿#include "ScreenDrawer2D.hpp"
 
 #include "DxLib.h"
 #include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/dxlib/DXGraphDrawData.hpp"
-#include "planeta/core/GraphDrawData2D.hpp"
-#include "planeta/core/Color.hpp"
+#include "GraphDrawData2D.hpp"
+#include "Color.hpp"
 #include "Screen.hpp"
 #include <cassert>
 

@@ -1,7 +1,7 @@
-#include "planeta/core/StandardConfigManager.hpp"
-#include "planeta/core/JsonFile.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/StringUtility.hpp"
+#include "StandardConfigManager.hpp"
+#include "JsonFile.hpp"
+#include "LogUtility.hpp"
+#include "StringUtility.hpp"
 
 namespace plnt {
 	namespace private_ {

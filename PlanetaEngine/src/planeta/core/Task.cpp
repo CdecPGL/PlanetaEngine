@@ -1,6 +1,6 @@
-﻿#include "planeta/core/Task.hpp"
+﻿#include "Task.hpp"
 #include "TaskManagerConnection.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "IGameObject.hpp"
 
 
 namespace plnt {

@@ -3,8 +3,8 @@
 #include <vector>
 #include <memory>
 #include <array>
-#include "planeta/core/RectAngle.hpp"
-#include "planeta/core/Color.hpp"
+#include "RectAngle.hpp"
+#include "Color.hpp"
 
 namespace plnt {
 	class RGraph;

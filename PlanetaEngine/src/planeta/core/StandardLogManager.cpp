@@ -1,5 +1,5 @@
 ﻿#include <fstream>
-#include "planeta/core/Game.hpp"
+#include "Game.hpp"
 #include "IPerformanceManager.hpp"
 #include "StandardLogManager.hpp"
 #include "SystemVariables.hpp"
@@ -7,10 +7,10 @@
 #include <iostream>
 #include <windows.h>
 #include <cassert>
-#include "planeta/core/DateTime.hpp"
+#include "DateTime.hpp"
 #include "planeta/win/WindowsUtility.hpp"
-#include "planeta/core/CharacterCode.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "CharacterCode.hpp"
+#include "LogUtility.hpp"
 
 /*ログの書式
 [hh:mm:ss,frame]level:detail@place

@@ -1,4 +1,4 @@
-#include "planeta/core/ColliderComponent2DDebugDrawer.hpp"
+#include "ColliderComponent2DDebugDrawer.hpp"
 #include "IDebugManager.hpp"
 
 #include "planeta/buildin/CCircleCollider2D.hpp"

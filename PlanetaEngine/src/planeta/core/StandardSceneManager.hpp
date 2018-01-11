@@ -3,7 +3,7 @@
 #include <memory>
 #include <unordered_map>
 #include<functional>
-#include "planeta/core/SceneManager.hpp"
+#include "SceneManager.hpp"
 #include "ParameterHolder.hpp"
 
 namespace plnt{

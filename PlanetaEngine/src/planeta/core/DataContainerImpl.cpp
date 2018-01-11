@@ -1,8 +1,8 @@
 ﻿#include <cassert>
 
-#include "planeta/core/DataContainerImpl.hpp"
+#include "DataContainerImpl.hpp"
 #include "DataContainerError.hpp"
-#include "planeta/core/StringUtility.hpp"
+#include "StringUtility.hpp"
 
 namespace plnt {
 	namespace util {

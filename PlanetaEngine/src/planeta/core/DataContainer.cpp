@@ -1,7 +1,7 @@
-﻿#include "planeta/core/DataContainer.hpp"
+﻿#include "DataContainer.hpp"
 #include "DataContainerImpl.hpp"
 #include "DataContainerError.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "LogUtility.hpp"
 
 namespace plnt {
 	namespace util {

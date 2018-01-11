@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "planeta/core/Object.hpp"
-#include "planeta/core/WeakPointer.hpp"
+#include "Object.hpp"
+#include "WeakPointer.hpp"
 
 namespace plnt {
 	class CCollider2D;

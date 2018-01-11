@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include <memory>
-#include "planeta/core/TaskManager.hpp"
-#include "planeta/core/WeakPointer.hpp"
+#include "TaskManager.hpp"
+#include "WeakPointer.hpp"
 
 namespace plnt {
 	class Task;

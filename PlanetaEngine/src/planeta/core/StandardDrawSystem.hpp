@@ -4,7 +4,7 @@
 #include <map>
 #include <list>
 #include <memory>
-#include "planeta/core/DrawSystem.hpp"
+#include "DrawSystem.hpp"
 
 namespace plnt {
 	class ScreenDrawer2D;

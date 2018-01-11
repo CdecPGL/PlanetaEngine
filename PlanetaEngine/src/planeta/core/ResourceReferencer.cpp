@@ -1,4 +1,4 @@
-#include "planeta/core/ResourceReferencer.hpp"
+#include "ResourceReferencer.hpp"
 
 namespace plnt {
 

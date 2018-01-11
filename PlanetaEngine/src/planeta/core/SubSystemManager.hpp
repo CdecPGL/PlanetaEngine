@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "planeta/core/NonCopyable.hpp"
+#include "NonCopyable.hpp"
 
 namespace plnt {
 	class IDebugInformationAdder;
