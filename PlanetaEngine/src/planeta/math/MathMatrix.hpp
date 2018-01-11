@@ -1,8 +1,9 @@
 ﻿#pragma once
 
-#include"MathVector.hpp"
 #include <array>
 #include<initializer_list>
+
+#include"MathVector.hpp"
 
 namespace plnt{
 	namespace math{

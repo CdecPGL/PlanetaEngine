@@ -1,5 +1,6 @@
-﻿#include "MathUtility.hpp"
-#include <cmath>
+﻿#include <cmath>
+
+#include "MathUtility.hpp"
 
 namespace plnt {
 	namespace math {
