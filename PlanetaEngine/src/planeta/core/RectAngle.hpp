@@ -99,23 +99,20 @@ namespace plnt {
 	using RectAnglei = RectAngle<int32_t>; //32bit符号あり整数型RectAngle
 	using RectAnglef = RectAngle<float>; //単精度浮動少数型RectAngle
 	using RectAngled = RectAngle<double>; //倍精度浮動少数型RectAngle
-}
 
 #ifdef PE_ENABLE_REFLECTION_SYSTEM
-
-namespace plnt {
-	namespace util {
+	namespace reflection {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template<typename T>
 		void ReflectivePtreeConverter(RectAngle<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 2) {
-				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));
+				throw reflection_error(::plnt::util::ConvertAndConnectToString("要素数が", src.size(), "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));
 			}
 			size_t idx = 0;
 			std::array<Vector2D<T>, 2> ary; //座標とサイズ
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				ReflectivePtreeConverter(ary[idx++], pp.second);
 			}

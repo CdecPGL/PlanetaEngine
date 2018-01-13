@@ -192,7 +192,6 @@ namespace plnt {
 	using Vector2Df = Vector2D<float>; //単精度浮動小数点型二次元ベクトル
 	using Vector2Dd = Vector2D<double>; //倍精度浮動小数点型二次元ベクトル
 	using Vector2Di =Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
-
 }
 
 #ifdef PE_ENABLE_REFLECTION_SYSTEM
@@ -200,18 +199,18 @@ namespace plnt {
 #include "boost/property_tree/ptree.hpp"
 
 namespace plnt {
-	namespace util {
+	namespace reflection {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template<typename T>
 		void ReflectivePtreeConverter(Vector2D<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 2) {
-				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
+				throw reflection_error(::plnt::util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 2> ary;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				T dat{};
 				ReflectivePtreeConverter(dat, pp.second);

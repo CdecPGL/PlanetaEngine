@@ -72,7 +72,7 @@ namespace plnt {
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawPlanet2D);
 
-	namespace util{
+	namespace reflection{
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		inline void ReflectivePtreeConverter(CDrawPlanet2D::TextureMappingMode& dst, const boost::property_tree::ptree& src) {
 			try {
@@ -82,10 +82,10 @@ namespace plnt {
 				} else if (str == "Plain") {
 					dst = CDrawPlanet2D::TextureMappingMode::Plain;
 				} else {
-					throw plnt::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
+					throw plnt::reflection::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
 				}
 			} catch (boost::property_tree::ptree_bad_data& e) {
-				throw plnt::reflection_error(e.what());
+				throw plnt::reflection::reflection_error(e.what());
 			}
 		}
 	}

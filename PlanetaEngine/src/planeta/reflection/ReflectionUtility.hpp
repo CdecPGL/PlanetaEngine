@@ -42,7 +42,6 @@ namespace plnt::reflection {
 		template<class C>
 		bool HasSuperAlias_v = HasSuperAlias<C>::value;
 	}
-}
 
 //////////////////////////////////////////////////////////////////////////
 //Ptreeからの変換関数
@@ -77,7 +76,7 @@ void ReflectivePtreeConverter_Layer0<array_type<T, Rest...>>::Convert(array_type
 			throw ::plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		::plnt::reflection::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::reflection::ReflectivePtreeConverter(dat, pp.second);\
 		dst.push_back(std::move(dat));\
 	}\
 }
@@ -89,7 +88,7 @@ void ReflectivePtreeConverter_Layer0<set_type<T, Rest...>>::Convert(set_type<T, 
 			throw ::plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		::plnt::reflection::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::reflection::ReflectivePtreeConverter(dat, pp.second);\
 		dst.insert(std::move(dat));\
 	}\
 }
@@ -101,12 +100,11 @@ void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Conver
 			throw ::plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));\
 		}\
 		T dat{};\
-		::plnt::reflection::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::reflection::ReflectivePtreeConverter(dat, pp.second);\
 		dst.emplace(pp.first, std::move(dat));\
 	}\
 }
 
-namespace plnt::reflection {
 	//////////////////////////////////////////////////////////////////////////
 	//宣言
 	//////////////////////////////////////////////////////////////////////////
@@ -174,10 +172,9 @@ namespace plnt::reflection {
 		PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEC(std::unordered_map);
 	}
 
-	namespace util {
-		template<typename T>
-		void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src);
-	}
+	template<typename T>
+	void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src);
+
 	//////////////////////////////////////////////////////////////////////////
 	//定義
 	//////////////////////////////////////////////////////////////////////////
@@ -191,7 +188,7 @@ namespace plnt::reflection {
 		template<size_t idx, typename F, typename... R>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<F, R...>& dst, const std::vector<const boost::property_tree::ptree*>& src) {
 			F f{};
-			plnt::util::ReflectivePtreeConverter(f, *src[idx]);
+			plnt::reflection::ReflectivePtreeConverter(f, *src[idx]);
 			std::tuple<R...> rtuple;
 			ReflectivePtreeConverterToStdTuple<idx + 1, R...>(rtuple, src);
 			dst = std::tuple_cat(std::make_tuple<F>(std::move(f)), rtuple);
@@ -240,7 +237,7 @@ namespace plnt::reflection {
 			std::vector<const boost::property_tree::ptree*> ptree_vec;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection_error(::plnt::util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+					throw plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
@@ -261,13 +258,10 @@ namespace plnt::reflection {
 		PE_REFLECTIVE_CONVERTER_LAYER0_MAP_TYPE_DEF(std::unordered_map);
 	}
 
-	namespace util {
-		template<typename T>
-		void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) {
-			private_::ReflectivePtreeConverter_Layer0<T>::Convert(dst, src);
-		}
+	template<typename T>
+	void ReflectivePtreeConverter(T& dst, const boost::property_tree::ptree& src) {
+		private_::ReflectivePtreeConverter_Layer0<T>::Convert(dst, src);
 	}
-}
 
 #undef PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEC
 #undef PE_REFLECTIVE_CONVERTER_LAYER0_SET_TYPE_DEC
@@ -279,26 +273,23 @@ namespace plnt::reflection {
 //////////////////////////////////////////////////////////////////////////
 //コピーハンドラ
 //////////////////////////////////////////////////////////////////////////
-namespace plnt::reflection {
-	class Reflectable;
 	namespace private_ {
 		void ReflectiveCopyFromReflectionSystem(Reflectable& dst, const Reflectable& src);
 	}
-	namespace util {
-		/*! コピー代入可能な型のコピーハンドラ*/
-		template<typename T>
-		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if<std::is_copy_assignable<T>, void>::type {
-			dst = src;
-		}
-		/*! コピー代入不可能でReflectionAccessibleを継承している型*/
-		template<typename T>
-		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&std::is_base_of_v<ReflectionAccessible, T>, void>::type {
-			dst.ReflectiveCopyFrom(src);
-		}
-		/*! コピー代入不可能でReflectionAssignableを継承しておらず、Reflectableを継承している型*/
-		template<typename T>
-		auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&!std::is_base_of_v<ReflectionAccessible, T>&&std::is_base_of_v<Reflectable, T>, void>::type {
-			plnt::private_::ReflectiveCopyFromReflectionSystem(dst, src);
-		}
+	
+	/*! コピー代入可能な型のコピーハンドラ*/
+	template<typename T>
+	auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if<std::is_copy_assignable<T>, void>::type {
+		dst = src;
+	}
+	/*! コピー代入不可能でReflectionAccessibleを継承している型*/
+	template<typename T>
+	auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&std::is_base_of_v<ReflectionAccessible, T>, void>::type {
+		dst.ReflectiveCopyFrom(src);
+	}
+	/*! コピー代入不可能でReflectionAssignableを継承しておらず、Reflectableを継承している型*/
+	template<typename T>
+	auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&!std::is_base_of_v<ReflectionAccessible, T>&&std::is_base_of_v<Reflectable, T>, void>::type {
+		plnt::private_::ReflectiveCopyFromReflectionSystem(dst, src);
 	}
 }

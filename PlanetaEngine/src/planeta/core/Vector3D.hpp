@@ -204,7 +204,7 @@ namespace plnt {
 #include "boost/property_tree/ptree.hpp"
 
 namespace plnt {
-	namespace util {
+	namespace reflection {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template<typename T>
 		void ReflectivePtreeConverter(Vector3D<T>& dst, const boost::property_tree::ptree& src) {
@@ -215,7 +215,7 @@ namespace plnt {
 			std::array<T, 3> ary;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw plnt::reflection::reflection_error(plnt::util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				T dat{};
 				ReflectivePtreeConverter(dat, pp.second);

@@ -71,7 +71,7 @@ namespace plnt::reflection {
 		template<typename V>
 		ClassRegisterer& ShallowCopyTarget(V C::* var)noexcept {
 			static_assert(std::is_copy_assignable_v<V>, "V must be copy assignable.");
-			class_info_.copy_handler_list.push_back([var](const Reflectable& src, Reflectable& dst) { util::ReflectiveCopyHandler(static_cast<C&>(dst).*var, static_cast<const C&>(src).*var); });
+			class_info_.copy_handler_list.push_back([var](const Reflectable& src, Reflectable& dst) { ReflectiveCopyHandler(static_cast<C&>(dst).*var, static_cast<const C&>(src).*var); });
 			return *this;
 		}
 		/*! DeepCopy対象を追加(間接参照演算子*が定義されていて、参照演算子が返す型に代入演算子が定義されている必要がある)*/
@@ -79,7 +79,7 @@ namespace plnt::reflection {
 		ClassRegisterer& DeepCopyTarget(V C::* var)noexcept {
 			static_assert(boost::has_dereference<V>::value, "V must have a dereference operator(*).");
 			static_assert(std::is_copy_assignable_v<decltype(V().operator*())>, "A type of V's dereference return must be copy assignable.");
-			class_info_.copy_handler_list.push_back([var](const Reflectable& src, Reflectable& dst) { util::ReflectiveCopyHandler(*(static_cast<C&>(dst).*var), *(static_cast<const C&>(src).*var)); });
+			class_info_.copy_handler_list.push_back([var](const Reflectable& src, Reflectable& dst) { ReflectiveCopyHandler(*(static_cast<C&>(dst).*var), *(static_cast<const C&>(src).*var)); });
 			return *this;
 		}
 		/*! コピーハンドラを追加*/
@@ -112,7 +112,7 @@ namespace plnt::reflection {
 		};
 		vpinfo.ptree_loeder = [mv_ptr](Reflectable& c, const boost::property_tree::ptree& pt) {
 			V& rdat = static_cast<C&>(c).*mv_ptr;
-			util::ReflectivePtreeConverter(rdat, pt);
+			ReflectivePtreeConverter(rdat, pt);
 		};
 		class_info_.public_variable_prpperty_info.emplace(var_id, vpinfo);
 
@@ -157,7 +157,7 @@ namespace plnt::reflection {
 		};
 		pinfo.ptree_loeder = [setter](Reflectable& c, const boost::property_tree::ptree& pt) {
 			PType dat{};
-			util::ReflectivePtreeConverter(dat, pt);
+			ReflectivePtreeConverter(dat, pt);
 			(static_cast<C&>(c).*setter)(dat);
 		};
 		class_info_.public_variable_prpperty_info.emplace(prop_id, pinfo);
@@ -204,7 +204,7 @@ namespace plnt::reflection {
 		};
 		pinfo.ptree_loeder = [setter](Reflectable& c, const boost::property_tree::ptree& pt) {
 			PType dat{};
-			util::ReflectivePtreeConverter(dat, pt);
+			ReflectivePtreeConverter(dat, pt);
 			(static_cast<C&>(c).*setter)(dat);
 		};
 		class_info_.public_variable_prpperty_info.emplace(prop_id, pinfo);

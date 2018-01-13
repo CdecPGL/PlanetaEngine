@@ -97,7 +97,7 @@ namespace plnt {
 	};
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransform2D);
 
-	namespace util {
+	namespace reflection {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		inline void ReflectivePtreeConverter(::plnt::CoordinateSystem & dst, const boost::property_tree::ptree& src) {
 			try {
