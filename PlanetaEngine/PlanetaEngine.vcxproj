@@ -152,9 +152,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\planeta\BuiltInGameObjectComponents.hpp" />
-    <ClInclude Include="src\planeta\BuiltInResources.hpp" />
-    <ClInclude Include="src\planeta\BuiltInTasks.hpp" />
+    <ClInclude Include="src\planeta\BuildinGameObjectComponents.hpp" />
+    <ClInclude Include="src\planeta\BuildinResources.hpp" />
+    <ClInclude Include="src\planeta\BuildinTasks.hpp" />
     <ClInclude Include="src\planeta\Math.hpp" />
     <ClInclude Include="src\planeta\PlanetaEngine.hpp" />
     <ClInclude Include="src\planeta\util\AccessorTemplate.hpp" />
