@@ -1,7 +1,16 @@
-http://marupeke296.com/ALG_No2_TLSFMemoryAllocator.htmlを参考にTLSFを使用
-MSBアルゴリズムは
+# メモリアロケータについて
 
-1.http://marupeke296.com/cgi-bin/cbbs/cbbs.cgi?mode=al2&namber=5198&rev=&no=0&P=R&KLOG=5より
+[http://marupeke296.com/ALG_No2_TLSFMemoryAllocator.html](http://marupeke296.com/ALG_No2_TLSFMemoryAllocator.html)を参考にTLSFを実装。
+
+実装したが、今のところ使う予定はない。
+
+## MSBアルゴリズム
+
+選択肢は複数ある。
+
+### [http://marupeke296.com/cgi-bin/cbbs/cbbs.cgi?mode=al2&namber=5198&rev=&no=0&P=R&KLOG=5](ここ)の方法
+
+```:cpp
 static unsigned count1_32(unsigned val) {
 	val = (val & 0x55555555) + ((val >> 1) & 0x55555555);
 	val = (val & 0x33333333) + ((val >> 2) & 0x33333333);
@@ -18,17 +27,28 @@ static size_t MSB32(unsigned val) {
 	val |= (val >> 16);
 	return count1_32(val) - 1;
 }
+```
 
-//論外
+### 論外な方法
+
+```:cpp
 ret = (size_t)std::log2l(num) + 1;
+```
 
-//入力が大きいと時間がかかる
+### 入力が大きいと時間がかかる方法
+
+```:cpp
 ret = 0;
 size_t buf = num;
 while ((buf >>= 1) >= 1){ ++ret; }
 ++ret;
+```
 
-//1と互角。最良条件ではこっちの方が、最悪条件では1の方が早い。また、入力値が確定する状況下では最適化により1はコンパイル時計算され、コストはゼロになる。
+## 一つ目と互角な方法
+
+最良条件ではこっちの方が、最悪条件では1の方が早い。また、入力値が確定する状況下では最適化により1はコンパイル時計算され、コストはゼロになる。
+
+```:cpp
 const size_t e2_map[32] = {
 	1u << 0, 1u << 1, 1u << 2, 1u << 3, 1u << 4, 1u << 5, 1u << 6, 1u << 7, 1u << 8, 1u << 9,
 	1u << 10, 1u << 11, 1u << 12, 1u << 13, 1u << 14, 1u << 15, 1u << 16, 1u << 17, 1u << 18, 1u << 19,
@@ -45,5 +65,8 @@ while ((seg >>= 1)){
 	else{ break; }
 }			
 if (e2_map[ret - 1] > num){ --ret; }
+```
 
-最後のを使うことにした。(LSBは上のサイトのものを使用)
+### 結論
+
+最後のを使うことにした。(LSBは一つ目の方法のサイトのものを使用)

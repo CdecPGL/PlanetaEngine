@@ -1,14 +1,16 @@
+# 各種ファイルフォーマットについて
+
 テキスト形式のファイルはUTF8にすること。
 
-TEXTResource
+## TextFile
+
 UTF8からシステム文字コードに変換される。このためバイナリデータは扱えない。
 
-CSVResource,INIFileResource,XMLResource
+## CsvFile,IniFile,XmlFile
+
 構造解析はUTF8の状態で行われ、その後に各要素がシステム文字コードへと変換される。
 
-JSONResource
+## JsonFile
+
 構造解析はUTF8の状態で行われ、データ集の文字列データはUTF8からシステム文字コードへ文字コード変換される。
 そのため、バイナリデータを含むことは不可能。
-
-FontDefinitionResource
-XML形式で書かれている。JSONに変えてもいいかも。

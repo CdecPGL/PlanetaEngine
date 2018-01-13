@@ -1,5 +1,0 @@
-■各要素の説明
-・UIComponent
-　ボックス、ボタン、パネルなどUIの部品を表すクラス。Compositパターンをもとに設計。
-・UIObject
-　UIComponetを管理しあるひとまとまりの機能を提供するクラス。Mediatorパターンのような役割をもつ。ゲームプロセスなどは基本的にUIObjectと介してUIを扱う。

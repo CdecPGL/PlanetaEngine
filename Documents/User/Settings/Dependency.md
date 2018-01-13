@@ -11,8 +11,6 @@
 
 ## Portファイルを設定することでvcpkgでインストール可能
 
-Portファイルは[Additional-Packages-for-Vcpkgリポジトリ](https://github.com/CdecPGL/Additional-Packages-for-Vcpkg)のものを使用可能。
-
 - DXライブラリ 3.19
 - EffekseerForDXLib 1.22
 - LuaIntf 2017.01.06
