@@ -12,7 +12,7 @@ namespace {
 }
 
 namespace plnt {
-	namespace encrypters {
+	namespace archiver {
 		bool EXOREncrypter::DecryptPartiallyCore(const File& src, size_t pos, size_t size, char* dst_ptr, size_t dst_size) const
 		{
 			throw std::logic_error("The method or operation is not implemented.");

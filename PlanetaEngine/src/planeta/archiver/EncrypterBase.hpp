@@ -2,7 +2,7 @@
 
 namespace plnt {
 	class File;
-	namespace encrypters {
+	namespace archiver {
 		class EncrypterBase {
 		public:
 			EncrypterBase() = default;

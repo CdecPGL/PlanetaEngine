@@ -3,7 +3,7 @@
 #include "EncrypterBase.hpp"
 
 namespace plnt {
-	namespace encrypters {
+	namespace archiver {
 
 		bool EncrypterBase::Encrypt(const File& src, File& dst)const
 		{

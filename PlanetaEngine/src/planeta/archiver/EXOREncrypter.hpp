@@ -5,7 +5,7 @@
 #include "EncrypterBase.hpp"
 
 namespace plnt {
-	namespace encrypters {
+	namespace archiver {
 		class EXOREncrypter final: public EncrypterBase {
 		public:
 			explicit EXOREncrypter(uint_fast64_t key) :key_(key) { CalculateKey(); }

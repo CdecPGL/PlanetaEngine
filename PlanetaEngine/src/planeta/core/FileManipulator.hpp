@@ -9,7 +9,7 @@
 #include "boost/optional.hpp"
 
 namespace plnt {
-	namespace encrypters {
+	namespace archiver {
 		class EncrypterBase;
 	}
 	class FileManipulator : public Object {
@@ -19,7 +19,7 @@ namespace plnt {
 		/*マニピュレータを開く*/
 		bool Open(const std::string& path, AccessMode access_mode, bool auto_create);
 		/*暗号化器を指定してマニピュレータを開く*/
-		bool Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create);
+		bool Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const archiver::EncrypterBase>&& encrypter, bool auto_create);
 		/*閉じる*/
 		void Close();
 		/*ファイルの読み込み*/
@@ -40,14 +40,14 @@ namespace plnt {
 		const std::string& root_path()const& { return root_path_; }
 		void root_path(const std::string& p) { root_path_ = p; }
 		bool is_encrypter_valid()const { return encrypter_ != nullptr; }
-		boost::optional<const encrypters::EncrypterBase&> encrypter()const&;
+		boost::optional<const archiver::EncrypterBase&> encrypter()const&;
 		bool auto_create()const { return auto_create_; }
 	private:
 		std::string root_path_;
 		bool is_opened_; //有効か
 		bool auto_create_;
 		AccessMode mode_ = AccessMode::Invalid;
-		std::unique_ptr<const encrypters::EncrypterBase> encrypter_;
+		std::unique_ptr<const archiver::EncrypterBase> encrypter_;
 		virtual bool OpenProc(const std::string& path) = 0;
 		virtual void CloseProc() = 0;
 		virtual bool CheckFileExistenceProc(const std::string& path)const = 0;

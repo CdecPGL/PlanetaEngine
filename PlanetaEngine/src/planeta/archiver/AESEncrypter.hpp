@@ -8,7 +8,7 @@
 #include "EncrypterBase.hpp"
 
 namespace plnt{
-	namespace encrypters {
+	namespace archiver {
 		//128bit鍵長AES暗号器
 		class AESEncrypter final : public EncrypterBase {
 		public:

@@ -43,7 +43,7 @@ namespace plnt {
 		return mode_;
 	}
 
-	boost::optional<const encrypters::EncrypterBase&> FileManipulator::encrypter() const& {
+	boost::optional<const archiver::EncrypterBase&> FileManipulator::encrypter() const& {
 		if (encrypter_) {
 			return *encrypter_;
 		} else {
@@ -96,7 +96,7 @@ namespace plnt {
 		}
 	}
 
-	bool FileManipulator::Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const encrypters::EncrypterBase>&& encrypter, bool auto_create) {
+	bool FileManipulator::Open(const std::string& path, AccessMode access_mode, std::unique_ptr<const archiver::EncrypterBase>&& encrypter, bool auto_create) {
 		encrypter_ = std::move(encrypter);
 		return Open(path, access_mode, auto_create);
 	}
