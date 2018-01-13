@@ -3,7 +3,7 @@
 #include "WindowsUtility.hpp"
 
 namespace plnt {
-	namespace windows {
+	namespace win {
 		namespace console {
 			void SetCharacterColor(int col) {
 				HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);     // コンソールハンドル取得

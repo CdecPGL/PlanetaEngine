@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace plnt {
-	namespace windows {
+	namespace win {
 		namespace console {
 			constexpr int COL_BLACK = 0x00;
 			constexpr int COL_DARK_BLUE = 0x01;

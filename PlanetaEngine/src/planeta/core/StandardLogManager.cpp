@@ -108,22 +108,22 @@ namespace plnt {
 				int col = 0;
 				switch (level) {
 				case LogLevel::Message:
-					col = windows::console::COL_GRAY;
+					col = win::console::COL_GRAY;
 					break;
 				case LogLevel::Warning:
-					col = windows::console::COL_YELLOW;
+					col = win::console::COL_YELLOW;
 					break;
 				case LogLevel::Error:
-					col = windows::console::COL_RED;
+					col = win::console::COL_RED;
 					break;
 				case LogLevel::Fatal:
-					col = windows::console::COL_VIOLET;
+					col = win::console::COL_VIOLET;
 					break;
 				default:
 					assert(false);
 					break;
 				}
-				windows::console::SetCharacterColor(col);
+				win::console::SetCharacterColor(col);
 				auto ostr = AddNewLineIfNeed(str);
 				//ostr = util::ConvertUTF8ToShiftJIS(ostr);
 				std::cout << ostr;

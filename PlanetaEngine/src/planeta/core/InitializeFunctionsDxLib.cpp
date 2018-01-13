@@ -1,13 +1,13 @@
 ﻿#include "DxLib.h"
 #include "EffekseerForDXLib.h"
 
+#include "planeta/effekseer/EffekseerUtil.hpp"
+
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
 #include "LogUtility.hpp"
 #include "CharacterCode.hpp"
 #include "ConfigManager.hpp"
-
-#include "planeta/effekseer/EffekseerUtil.hpp"
 
 namespace plnt {
 	namespace private_ {
@@ -63,7 +63,7 @@ namespace plnt {
 				SetWriteZBuffer3D(true);
 				decltype(auto) eff_mgr = GetEffekseer3DManager();
 				//eff_mgr->SetEffectLoader(new private_::EffectLoaderForEffekseer{});
-				eff_mgr->SetTextureLoader(new private_::TextureLoaderForEffekseer{});
+				eff_mgr->SetTextureLoader(new effekseer::TextureLoaderForEffekseer{});
 
 				return{ true,[] { Effkseer_End(); } };
 			}

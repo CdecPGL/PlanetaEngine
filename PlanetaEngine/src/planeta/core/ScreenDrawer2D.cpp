@@ -1,18 +1,19 @@
-﻿#include "ScreenDrawer2D.hpp"
+﻿#include <cassert>
 
 #include "DxLib.h"
+
 #include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/dxlib/DXGraphDrawData.hpp"
+
+#include "ScreenDrawer2D.hpp"
 #include "GraphDrawData2D.hpp"
 #include "Color.hpp"
 #include "Screen.hpp"
-#include <cassert>
 
 namespace plnt {
-	using namespace private_;
+	using namespace dxlib;
 	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Df>& positions, double width, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
-			using namespace util::dx;
 			VECTOR v0, v1;
 			unsigned int dxc = PEColorToDXColorHandle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
@@ -26,7 +27,6 @@ namespace plnt {
 
 	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Df>& positions, const std::vector<std::array<int, 3>>& indexes, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
-			using namespace util::dx;
 			VECTOR v0, v1, v2;
 			int dxc = PEColorToDXColorHandle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());

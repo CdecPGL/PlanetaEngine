@@ -2,11 +2,12 @@
 
 #include "DxLib.h"
 
-#include "ScreenDrawerGUI.hpp"
 #include "planeta/buildin/RGraph.hpp"
-#include "planeta/dxlib/DXUtility.hpp"
 #include "planeta/buildin/RFont.hpp"
+#include "planeta/dxlib/DXUtility.hpp"
+
 #include "Screen.hpp"
+#include "ScreenDrawerGUI.hpp"
 
 namespace plnt {
 	void ScreenDrawerGUI::DrawGraph(const Vector2Di& position, const Vector2Di& size, const Vector2Dd& center_pivot, double rotation_rad, const RectAnglei& draw_area_on_graph, bool reverse, const std::shared_ptr<RGraph>& graph_resource) {
@@ -28,8 +29,7 @@ namespace plnt {
 
 	void ScreenDrawerGUI::DrawWire(const std::vector<Vector2Di>& positions, int width, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,width,color]() {
-			using namespace util::dx;
-			int dxc = PEColorToDXColorHandle(color);
+			int dxc = dxlib::PEColorToDXColorHandle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
 			for (int i = 0; i < (int)positions.size() - 1; ++i) {
 				DrawLine(positions[i].x, positions[i].y, positions[i + 1].x, positions[i + 1].y, dxc, width);
@@ -39,8 +39,7 @@ namespace plnt {
 
 	void ScreenDrawerGUI::DrawPolygon(const std::vector<Vector2Di>& positions, const std::vector<std::array<int, 3>>& indexes, const plnt::Color& color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
-			using namespace util::dx;
-			int dxc = PEColorToDXColorHandle(color);
+			int dxc = dxlib::PEColorToDXColorHandle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
 			try {
 				for (size_t i = 0; i < indexes.size(); ++i) {
@@ -59,15 +58,13 @@ namespace plnt {
 	void ScreenDrawerGUI::DrawString(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const plnt::Color& color, const plnt::Color& outline_color, const std::shared_ptr<RFont>& font_resource) {
 		screen_.ReserveDraw([position,scale,str,color,outline_color,font_resource]() {
 			if (font_resource == nullptr) { return; }
-			using namespace util::dx;
-			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), font_resource->GetDXHandle(), PEColorToDXColorHandle(outline_color));
+			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(), dxlib::PEColorToDXColorHandle(color), font_resource->GetDXHandle(), dxlib::PEColorToDXColorHandle(outline_color));
 		});
 	}
 
 	void ScreenDrawerGUI::DrawStringByDefaultFont(const Vector2Di& position, const Vector2Dd scale, const std::string& str, const plnt::Color& color, const plnt::Color& outline_color) {
 		screen_.ReserveDraw([position, scale, str, color, outline_color]() {
-			using namespace util::dx;
-			DrawExtendString(position.x, position.y, scale.x, scale.y, str.c_str(), PEColorToDXColorHandle(color), PEColorToDXColorHandle(outline_color));
+			DrawExtendString(position.x, position.y, scale.x, scale.y, str.c_str(), dxlib::PEColorToDXColorHandle(color), dxlib::PEColorToDXColorHandle(outline_color));
 		});
 	}
 

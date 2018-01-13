@@ -1,8 +1,10 @@
-﻿#include "GraphDrawData2D.hpp"
+﻿#include <cassert>
+
+#include "planeta/buildin/RGraph.hpp"
 #include "planeta/dxlib/DXGraphDrawData.hpp"
 #include "planeta/dxlib/DXUtility.hpp"
-#include "planeta/buildin/RGraph.hpp"
-#include <cassert>
+
+#include "GraphDrawData2D.hpp"
 
 namespace plnt {
 	namespace private_ {
@@ -18,7 +20,7 @@ namespace plnt {
 
 			/*DX形式頂点情報の位置を設定*/
 			inline void SetPositionToDXVERTEX3D(VERTEX3D& dx_vtx3d, const Vector2Df& position) {
-				using namespace util::dx;
+				using namespace ::plnt::dxlib;
 				dx_vtx3d.pos = PEVector2DToDXVECTOR(position);
 			}
 			/*DX形式頂点情報のUV座標を設定*/
@@ -28,13 +30,13 @@ namespace plnt {
 			}
 			/*DX形式頂点情報の色を設定*/
 			inline void SetColorToDXVERTEX3D(VERTEX3D& dx_vtx3d, const Color& color) {
-				using namespace util::dx;
+				using namespace ::plnt::dxlib;
 				dx_vtx3d.dif = PEColorToDXCOLORU8(color);
 //				vdx[i].spc = PEColorToDXCOLORU8(vertexes[i].color); //ライティング計算を行わないので使用しない
 			}
 			/*DX形式頂点情報を設定*/
 			inline void SetPEVertex2DToDXVERTEX3D(VERTEX3D& dx_vtx3d, const util::Vertex2D& pe_vtx2d,const Vector2Dd& image_area) {
-				using namespace util::dx;
+				using namespace ::plnt::dxlib;
 				SetPositionToDXVERTEX3D(dx_vtx3d, pe_vtx2d.position);
 				SetColorToDXVERTEX3D(dx_vtx3d, pe_vtx2d.color);
 				SetUVToDXVERTEX3D(dx_vtx3d, pe_vtx2d.u, pe_vtx2d.v, image_area);
@@ -47,7 +49,7 @@ namespace plnt {
 			}
 		}
 
-		GraphDrawData2D::GraphDrawData2D() :dx_data_(std::make_unique<DXGraphDrawData>()) {}
+		GraphDrawData2D::GraphDrawData2D() :dx_data_(std::make_unique<dxlib::DXGraphDrawData>()) {}
 
 		GraphDrawData2D::~GraphDrawData2D() = default;
 
@@ -121,7 +123,7 @@ namespace plnt {
 
 		void GraphDrawData2D::SetVertexes(const std::vector<util::Vertex2D>& vertexes)
 		{
-			using namespace util::dx;
+			using namespace ::plnt::dxlib;
 			//頂点情報のDX形式変換
 			std::unique_ptr<VERTEX3D[]> vdx = std::make_unique<VERTEX3D[]>(vertexes.size());
 			vertex_uv_information_buffer_.resize(vertexes.size());

@@ -3,18 +3,21 @@
 #include <memory>
 #include <array>
 #include <vector>
+
 #include "Vertex2D.hpp"
 #include "Color.hpp"
 
 namespace plnt {
 	class RGraph;
-	namespace private_ {
+	namespace dxlib {
 		struct DXGraphDrawData;
+	}
+	namespace private_ {
 		class GraphDrawData2D {
 		public:
 			GraphDrawData2D();
 			~GraphDrawData2D();
-			const DXGraphDrawData& GetDXData()const { return *dx_data_; }
+			const dxlib::DXGraphDrawData& GetDXData()const { return *dx_data_; }
 			/*画像リソースをセットする*/
 			void SetGraphResource(const std::shared_ptr<RGraph>& g_res);
 			void SetVertexCount(size_t c); //頂点数を設定する
@@ -35,7 +38,7 @@ namespace plnt {
 
 			GraphDrawData2D& operator=(const GraphDrawData2D& obj);
 		private:
-			std::unique_ptr<DXGraphDrawData> dx_data_;
+			std::unique_ptr<dxlib::DXGraphDrawData> dx_data_;
 			std::shared_ptr<RGraph> graph_resource_;
 			std::vector<Vector2Df> vertex_uv_information_buffer_; //頂点UVデータの更新用に、元のUV座標データを保持しておく
 		};
