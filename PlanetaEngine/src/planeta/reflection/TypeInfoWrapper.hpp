@@ -2,7 +2,7 @@
 
 #include <typeinfo>
 
-namespace plnt {
+namespace plnt::reflection {
 	namespace private_ {
 		class TypeInfoWrapper final {
 		public:
@@ -36,7 +36,7 @@ namespace plnt {
 			const std::type_info& get_type_info()const { return *target; }
 
 			struct hash {
-				size_t operator() (plnt::private_::TypeInfoWrapper ti) const noexcept {
+				size_t operator() (::plnt::reflection::private_::TypeInfoWrapper ti) const noexcept {
 					return ti.hash_code();
 				}
 			};

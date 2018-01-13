@@ -3,7 +3,7 @@
 #include "planeta/reflection/Reflectable.hpp"
 
 namespace plnt {
-	class Color : public Reflectable{
+	class Color : public reflection::Reflectable{
 		PE_REFLECTION_DATA_REGISTERER_DECL_DEF(Color) {
 			registerer
 				.PE_REFLECTABLE_CLASS_PROPERTY(Color, r)

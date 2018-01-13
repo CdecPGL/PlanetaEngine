@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-namespace plnt {
+namespace plnt::reflection {
 	namespace core {
 		/*メンバ変数データ基底クラス*/
 		template<class C>

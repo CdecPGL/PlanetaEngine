@@ -12,9 +12,9 @@ namespace plnt {
 		std::shared_ptr<GameObjectComponent> GOComponentAdder::CreateAndAddComponent(const std::string& com_id) {
 			//オブジェクトIDを取得し、コンポーネント作成
 			auto obj_id = private_::AddPrefix(com_id, private_::ObjectCategory::GameObjectComponent);
-			auto com = Reflection::CreateObjectByObjectTypeID<GameObjectComponent>(obj_id);
+			auto com = reflection::Reflection::CreateObjectByObjectTypeID<GameObjectComponent>(obj_id);
 			if (com) {
-				decltype(auto) tinfo = Reflection::GetStdTypeInfoByObjectTypeID(obj_id);
+				decltype(auto) tinfo = reflection::Reflection::GetStdTypeInfoByObjectTypeID(obj_id);
 				if (AddComponentToHolder_(com, tinfo)) {
 					return com;
 				} else {

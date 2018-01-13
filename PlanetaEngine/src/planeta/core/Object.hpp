@@ -11,7 +11,7 @@ namespace plnt {
 
 		型情報管理、リフレクションシステムなどを提供する。これらの機能が必要ない場合は継承する必要はない
 	*/
-	class Object : public Reflectable {
+	class Object : public reflection::Reflectable {
 	public:
 		using Super = Reflectable;
 		//! デフォルトコンストラクタ

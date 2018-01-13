@@ -81,7 +81,7 @@ namespace plnt {
 		std::shared_ptr<GameObjectBase> GameObjectFactory::CloneGameObjectFromTemplate_(const std::shared_ptr<GameObjectBase>& go_temp, const WeakPointer<private_::ISceneInternal>& scene_data) {
 			assert(go_temp != nullptr);
 			//生成
-			auto ngo = Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*go_temp));
+			auto ngo = reflection::Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*go_temp));
 			if (ngo == nullptr) {
 				PE_LOG_ERROR("クローンの作成に失敗しました。");
 				return nullptr;

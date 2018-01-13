@@ -107,10 +107,10 @@ namespace plnt {
 				} else if (str == "Global") {
 					dst = ::plnt::CoordinateSystem::Global;
 				} else {
-					throw ::plnt::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(::plnt::CoordinateSystem).name(), "\"のメンバーではありません。"));
+					throw ::plnt::reflection::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(::plnt::CoordinateSystem).name(), "\"のメンバーではありません。"));
 				}
 			} catch (boost::property_tree::ptree_bad_data& e) {
-				throw ::plnt::reflection_error(e.what());
+				throw ::plnt::reflection::reflection_error(e.what());
 			}
 		}
 	}

@@ -2,8 +2,9 @@
 #include "ClassInfoCaller.hpp"
 #include "Reflection.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	using namespace private_;
+	using namespace plnt::util;
 	//////////////////////////////////////////////////////////////////////////
 	//Impl_
 	//////////////////////////////////////////////////////////////////////////
@@ -36,7 +37,7 @@ namespace plnt {
 		try {
 			impl_->ci_caller.SetDataFromPtree(pt, obj);
 		} catch (reflection_error& e) {
-			throw reflection_error(util::ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
+			throw reflection_error(ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
 		}
 	}
 

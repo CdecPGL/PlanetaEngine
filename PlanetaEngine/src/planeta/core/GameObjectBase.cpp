@@ -180,7 +180,7 @@ namespace plnt {
 				//Ptreeからリフレクションシステムを用いて読み込み
 				try {
 					coms[i]->ReflectiveLoadFromPtree(*pts[i]);
-				} catch (reflection_error& e) {
+				} catch (reflection::reflection_error& e) {
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"型:", typeid(*coms[i]).name(), "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。(", e.what(), ")");
 					return false;
 				}

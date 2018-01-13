@@ -17,17 +17,15 @@
 
 #include "planeta/core/MetaprogrammingUtility.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	class Reflectable;
 	class ReflectionAccessible;
 	template<class C>
 	class ClassRegisterer;
-}
 
 //////////////////////////////////////////////////////////////////////////
 //特定の条件を満たしているか確認するメタ関数
 //////////////////////////////////////////////////////////////////////////
-namespace plnt {
 	namespace private_ {
 		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っているか
 		template<class C, typename T = void>
@@ -76,10 +74,10 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0<array_type<T, Rest...>>::Convert(array_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
-			throw ::plnt::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
+			throw ::plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		::plnt::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::reflection::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.push_back(std::move(dat));\
 	}\
 }
@@ -88,10 +86,10 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0<set_type<T, Rest...>>::Convert(set_type<T, Rest...>& dst, const boost::property_tree::ptree& src) {\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == false) {\
-			throw ::plnt::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
+			throw ::plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:",pp.first,")"));\
 		}\
 		T dat{};\
-		::plnt::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::reflection::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.insert(std::move(dat));\
 	}\
 }
@@ -100,15 +98,15 @@ template<typename T, typename... Rest>\
 void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Convert(map_type<std::string, T, Rest...>& dst, const boost::property_tree::ptree& src){\
 	for (auto&& pp : src) {\
 		if (pp.first.empty() == true) {\
-			throw ::plnt::reflection_error(::plnt::util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));\
+			throw ::plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));\
 		}\
 		T dat{};\
-		::plnt::util::ReflectivePtreeConverter(dat, pp.second);\
+		::plnt::reflection::util::ReflectivePtreeConverter(dat, pp.second);\
 		dst.emplace(pp.first, std::move(dat));\
 	}\
 }
 
-namespace plnt {
+namespace plnt::reflection {
 	//////////////////////////////////////////////////////////////////////////
 	//宣言
 	//////////////////////////////////////////////////////////////////////////
@@ -149,7 +147,7 @@ namespace plnt {
 		};
 		//継承
 		template<typename T>
-		struct ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<plnt::Reflectable, T>>> {
+		struct ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<::plnt::reflection::Reflectable, T>>> {
 			static void Convert(T& dst, const boost::property_tree::ptree& src);
 		};
 
@@ -186,7 +184,7 @@ namespace plnt {
 	namespace private_ {
 		template<typename T, typename... Rest>
 		void ReflectivePtreeConverterError() {
-			throw reflection_error(util::ConvertAndConnectToString("Ptreeからの変換に対応していない型\"", typeid(T).name(), "\"が指定されました。"));
+			throw reflection_error(::plnt::util::ConvertAndConnectToString("Ptreeからの変換に対応していない型\"", typeid(T).name(), "\"が指定されました。"));
 		}
 		template<size_t idx>
 		void ReflectivePtreeConverterToStdTuple(std::tuple<>& dst, const std::vector<const boost::property_tree::ptree*>& src) {}
@@ -202,7 +200,7 @@ namespace plnt {
 		//Layer3
 		template<typename T>
 		void ReflectivePtreeConverter_Layer3<T>::Convert(T& dst, const boost::property_tree::ptree& src) {
-			plnt::private_::ReflectivePtreeConverterError<T>();
+			plnt::reflection::private_::ReflectivePtreeConverterError<T>();
 		}
 		//Layer2
 		template<typename T, typename U = void>
@@ -215,7 +213,7 @@ namespace plnt {
 				dst = src.get_value<T>();
 			}
 			catch (boost::property_tree::ptree_bad_data& e) {
-				throw reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
+				throw reflection_error(::plnt::util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
 			}
 		}
 		//Layer1
@@ -224,12 +222,12 @@ namespace plnt {
 			ReflectivePtreeConverter_Layer2<T>::Convert(dst, src);
 		}
 		template<typename T>
-		void ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<plnt::Reflectable, T>>>::Convert(T& dst, const boost::property_tree::ptree& src) {
+		void ReflectivePtreeConverter_Layer1<T, std::enable_if_t<std::is_base_of_v<::plnt::reflection::Reflectable, T>>>::Convert(T& dst, const boost::property_tree::ptree& src) {
 			try {
-				plnt::private_::ReflectivePtreeConverterFromReflectionSystem(dst, src);
+				plnt::reflection::private_::ReflectivePtreeConverterFromReflectionSystem(dst, src);
 			}
 			catch (reflection_error& e) {
-				throw plnt::reflection_error(util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
+				throw plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(), ")"));
 			}
 		};
 		//Layer0
@@ -242,14 +240,14 @@ namespace plnt {
 			std::vector<const boost::property_tree::ptree*> ptree_vec;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection_error(plnt::util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+					throw plnt::reflection_error(::plnt::util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
 			if (sizeof...(Ts) != ptree_vec.size()) {
-				throw reflection_error(plnt::util::ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
+				throw reflection_error(::plnt::util::ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts), "です。"));
 			}
-			plnt::private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
+			plnt::reflection::private_::ReflectivePtreeConverterToStdTuple<0, Ts...>(dst, ptree_vec);
 		}
 		//std::vector
 		PE_REFLECTIVE_CONVERTER_LAYER0_ARRAY_TYPE_DEF(std::vector);
@@ -281,7 +279,7 @@ namespace plnt {
 //////////////////////////////////////////////////////////////////////////
 //コピーハンドラ
 //////////////////////////////////////////////////////////////////////////
-namespace plnt {
+namespace plnt::reflection {
 	class Reflectable;
 	namespace private_ {
 		void ReflectiveCopyFromReflectionSystem(Reflectable& dst, const Reflectable& src);

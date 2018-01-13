@@ -14,11 +14,12 @@
 #include "ClassInfoCaller.hpp"
 #include "ReflectableClassAccessor.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	namespace {
 		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("Reflectable");
 	}
 	using namespace private_;
+	using namespace plnt::util;
 	namespace bmi = boost::multi_index;
 	namespace tag{
 		struct StdTypeInfo {};
@@ -59,7 +60,7 @@ namespace plnt {
 					const std::type_info& sti = this_class_info->super_t_info.get_type_info();
 					auto it = std_ti_map.find(sti);
 					if (it == std_ti_map.end()) {
-						throw reflection_error(util::ConvertAndConnectToString("ObjectTypeID\"", this_class_info->object_type_id, "\"の親クラス(std::type_info\"", sti.name(), "\")が登録されていません。"));
+						throw reflection_error(ConvertAndConnectToString("ObjectTypeID\"", this_class_info->object_type_id, "\"の親クラス(std::type_info\"", sti.name(), "\")が登録されていません。"));
 					}
 					ClassInfo* super_class_info = (*it).get();
 					this_class_info->super_class_info = super_class_info;
@@ -77,7 +78,7 @@ namespace plnt {
 					auto it = ci.super_class_info->child_t_info.find(ci.this_t_info);
 					if (it == ci.super_class_info->child_t_info.end()) {
 						//親クラスの子として自分が登録されていない
-						throw reflection_error(util::ConvertAndConnectToString("登録情報の整合性がありません。\"", ci.object_type_id, "\"の親クラス\"", super_class_info.object_type_id, "\"に自クラスが子クラスとして設定されていません。"));
+						throw reflection_error(ConvertAndConnectToString("登録情報の整合性がありません。\"", ci.object_type_id, "\"の親クラス\"", super_class_info.object_type_id, "\"に自クラスが子クラスとして設定されていません。"));
 					}
 					//親クラスの変数関数追加
 					for (auto&& var_prop : super_class_info.public_variable_prpperty_info) {
@@ -96,7 +97,7 @@ namespace plnt {
 					//整合性確認
 					if (cci->super_t_info != ci.this_t_info) {
 						//子クラスの親が自分でない
-						throw reflection_error(util::ConvertAndConnectToString("登録情報の整合性がありません。\"", ci.object_type_id, "\"の子クラス\"", cci->object_type_id, "\"に自クラスが親クラスとして設定されていません。\"", cci->super_class_info->object_type_id, "\"が設定されています。"));
+						throw reflection_error(ConvertAndConnectToString("登録情報の整合性がありません。\"", ci.object_type_id, "\"の子クラス\"", cci->object_type_id, "\"に自クラスが親クラスとして設定されていません。\"", cci->super_class_info->object_type_id, "\"が設定されています。"));
 					}
 					create_full_info(const_cast<ClassInfo&>(*cci));
 				}
@@ -152,7 +153,7 @@ namespace plnt {
 		decltype(auto) std_ti_map = impl_().type_data_map.get<tag::StdTypeInfo>();
 		auto it = std_ti_map.find(tinfo);
 		if (it == std_ti_map.end()) {
-			throw reflection_error(util::ConvertAndConnectToString("登録されていない型\"", tinfo.name(), "\"が指定されました。"));
+			throw reflection_error(ConvertAndConnectToString("登録されていない型\"", tinfo.name(), "\"が指定されました。"));
 		}
 		return (*it)->object_type_id;
 	}
@@ -161,15 +162,15 @@ namespace plnt {
 		decltype(auto) id_map = impl_().type_data_map.get<tag::ObjectTypeID>();
 		auto it = id_map.find(id);
 		if (it == id_map.end()) {
-			throw reflection_error(util::ConvertAndConnectToString("登録されていない型ID\"", id, "\"が指定されました。"));
+			throw reflection_error(ConvertAndConnectToString("登録されていない型ID\"", id, "\"が指定されました。"));
 		}
 		return (*it)->this_t_info.get_type_info();
 	}
 
-	std::shared_ptr<plnt::ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info& ti) {
+	std::shared_ptr<ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info& ti) {
 		auto* class_info = GetClassInfo_Reflectable(ti);
 		if (class_info == nullptr) {
-			throw reflection_error(util::ConvertAndConnectToString("登録されていない型\"", ti.name(), "\"が指定されました。"));
+			throw reflection_error(ConvertAndConnectToString("登録されていない型\"", ti.name(), "\"が指定されました。"));
 		}
 		return std::make_shared<ReflectableClassAccessor>(class_info);
 	}
@@ -189,7 +190,7 @@ namespace plnt {
 		class_info->object_type_id = object_type_id;
 		if (!impl_().type_data_map.insert(std::move(class_info)).second) {
 			//初期化前は例外が投げられないのでエラーqueに追加し、初期化時に確認する
-			impl_().error_que.push_back(util::ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
+			impl_().error_que.push_back(ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
 		}
 	}
 
@@ -217,7 +218,7 @@ namespace plnt {
 				estr += "\n";
 			}
 			impl_().error_que.clear();
-			throw reflection_error(util::ConvertAndConnectToString("エラーが存在するため初期化を行えませんでした。エラー内容:\n", estr));
+			throw reflection_error(ConvertAndConnectToString("エラーが存在するため初期化を行えませんでした。エラー内容:\n", estr));
 		}
 		//リフレクション情報の処理
 		impl_().ProcessReflectionData();

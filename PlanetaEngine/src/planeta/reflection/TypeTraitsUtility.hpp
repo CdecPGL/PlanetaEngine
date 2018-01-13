@@ -4,7 +4,7 @@
 
 #include "boost/core/enable_if.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	namespace util {
 		/*!タプルに要素を追加*/
 		template<typename...>

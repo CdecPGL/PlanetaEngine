@@ -25,7 +25,7 @@ Vertion 2.0.0 2016/9/29 LuaBind機能の追加。Reflectableのリフレクシ�
 #include "ClassRegistererImpl.hpp"
 #include "ReflectionExceptions.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	class ReflectableClassAccessor;
 	class ReflectionAccessible;
 	/*! @brief リフレクションシステム
@@ -56,7 +56,7 @@ namespace plnt {
 			if (ptr == nullptr) { return nullptr; }
 			auto tptr = std::dynamic_pointer_cast<T>(ptr);
 			if (tptr == nullptr) {
-				OutPutErrorLog(util::ConvertAndConnectToString("指定型に変換できませんでした。(ObjectTypeID:", object_type_id, ",TargetType:", typeid(T).name(), ")"), __FUNCTION__);
+				OutPutErrorLog(::plnt::util::ConvertAndConnectToString("指定型に変換できませんでした。(ObjectTypeID:", object_type_id, ",TargetType:", typeid(T).name(), ")"), __FUNCTION__);
 				return nullptr;
 			}
 			return tptr;
@@ -73,7 +73,7 @@ namespace plnt {
 			if (ptr == nullptr) { return nullptr; }
 			auto tptr = std::dynamic_pointer_cast<T>(ptr);
 			if (tptr == nullptr) {
-				OutPutErrorLog(util::ConvertAndConnectToString("指定型に変換できませんでした。(std::type_info:", t_info.name(), ",TargetType:", typeid(T).name(), ")"), __FUNCTION__);
+				OutPutErrorLog(::plnt::util::ConvertAndConnectToString("指定型に変換できませんでした。(std::type_info:", t_info.name(), ",TargetType:", typeid(T).name(), ")"), __FUNCTION__);
 				return nullptr;
 			}
 			return tptr;
@@ -206,14 +206,14 @@ namespace plnt {
 	}
 }
 
-namespace plnt {
+namespace plnt::reflection {
 	namespace private_ {
 		//メンバクラス内静的変数がクラス単位で生成されることを利用して、複数回呼ばれても最初の一回しか登録処理を行わないようにする。
 		template<typename T>
 		struct ReflectableClassRegisterHelper {
 			template<typename... Params>
 			ReflectableClassRegisterHelper(Params&&... params) {
-				static plnt::private_::ClassRegisterTrigger<T> class_register_trigger{ params... };
+				static plnt::reflection::private_::ClassRegisterTrigger<T> class_register_trigger{ params... };
 			}
 		};
 	}
@@ -224,21 +224,21 @@ namespace plnt {
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS(type)\
-namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
+namespace { ::plnt::reflection::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type}; }
 
 /*! @def
 IDを指定してクラスをリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
 @param type 型
 */
 #define PE_REFLECTABLE_CLASS_WITH_ID(type, id)\
-namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##id##_ = {#id}; }
+namespace { ::plnt::reflection::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##id##_ = {#id}; }
 
 /*! @def
 	親クラスを指定してクラスをリフレクションシステムに登録する(登録する型に公開型エイリアスSuperは定義されている必要はない。定義されていても参照されない)
 	@param type 型
 */
 #define PE_REFLECTABLE_CLASS_SPECIFY_SUPER(type, super)\
-namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, typeid(super)}; }
+namespace { ::plnt::reflection::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, typeid(super)}; }
 
 /*! @def
 クラスをクリエータを指定してリフレクションシステムに登録する(登録する型は、公開型エイリアスSuperが定義されていること)
@@ -246,4 +246,4 @@ namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectabl
 @param creator クリエータ(std::shared_ptr<Object>()の関数型)
 */
 #define PE_REFLECTABLE_CLASS_WITH_CREATOR(type, creator)\
-namespace { ::plnt::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, creator}; }
+namespace { ::plnt::reflection::private_::ReflectableClassRegisterHelper<type> pe_reflectable_class_register_helper_##type##_ = {#type, creator}; }

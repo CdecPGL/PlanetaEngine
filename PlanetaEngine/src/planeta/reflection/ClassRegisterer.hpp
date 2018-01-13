@@ -26,7 +26,7 @@
 #include "ReflectionUtility.hpp"
 
 
-namespace plnt {
+namespace plnt::reflection {
 	/*! @brief リフレクションシステムにクラス情報を登録するためのクラス
 		
 		変数、プロパティ、関数を登録することができる。

@@ -5,7 +5,7 @@
 
 #include "boost/type_traits.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	namespace private_ {
 		//LuaIntfにプロパティセッターとして登録するために、戻り値をvoid化する。
 		/*戻り値がvoidの場合はそのまま*/

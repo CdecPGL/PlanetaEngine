@@ -6,7 +6,7 @@
 #include "boost/any.hpp"
 #include "boost/property_tree/ptree.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	class Reflectable;
 	namespace private_ {
 		struct ClassInfo;

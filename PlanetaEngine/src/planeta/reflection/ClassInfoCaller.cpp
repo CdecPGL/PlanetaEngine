@@ -6,8 +6,9 @@
 #include "Reflection.hpp"
 #include "Reflectable.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	using namespace private_;
+	using namespace plnt::util;
 
 	ClassInfoCaller::ClassInfoCaller(const ClassInfo& class_info)noexcept :class_info_(class_info) {}
 
@@ -15,13 +16,13 @@ namespace plnt {
 		auto it = class_info_.public_variable_prpperty_info.find(var_id);
 		if (it == class_info_.public_variable_prpperty_info.end()) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("クラス\"",obj_tid,"\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
+			throw reflection_error(ConvertAndConnectToString("クラス\"",obj_tid,"\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 		}
 		try {
 			it->second.setter(obj, v);
 		} catch (boost::bad_any_cast&) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id, "\"の読み込みにおいて型の不一致エラーが発生しました。(変数型:", it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
+			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id, "\"の読み込みにおいて型の不一致エラーが発生しました。(変数型:", it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
 		}
 	}
 
@@ -29,13 +30,13 @@ namespace plnt {
 		auto it = class_info_.public_variable_prpperty_info.find(var_id);
 		if (it == class_info_.public_variable_prpperty_info.end()) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
+			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 		}
 		try {
 			v = it->second.getter(obj);
 		} catch (boost::bad_any_cast&) {
 			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-			throw reflection_error(util::ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id, "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:", it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
+			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id, "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:", it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
 		}
 	}
 
@@ -45,13 +46,13 @@ namespace plnt {
 			auto it = class_info_.public_variable_prpperty_info.find(var_id);
 			if (it == class_info_.public_variable_prpperty_info.end()) {
 				std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
-				throw reflection_error(util::ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
+				throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 			}
 			try {
 				it->second.ptree_loeder(obj, ptp.second);
 			}
 			catch (reflection_error& e) {
-				throw reflection_error(util::ConvertAndConnectToString("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
+				throw reflection_error(ConvertAndConnectToString("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
 			}
 		}
 	}

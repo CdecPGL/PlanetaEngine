@@ -3,8 +3,9 @@
 #include "Reflection.hpp"
 #include "Reflectable.hpp"
 
-namespace plnt {
+namespace plnt::reflection {
 	using namespace private_;
+	using namespace plnt::util;
 	//////////////////////////////////////////////////////////////////////////
 	//Impl_
 	//////////////////////////////////////////////////////////////////////////
@@ -15,7 +16,7 @@ namespace plnt {
 			if (class_info_ == nullptr) {
 				class_info_ = Reflection::GetClassInfo_Reflectable(typeid(*reflectable_obj_));
 				if (class_info_ == nullptr) {
-					throw reflection_error(util::ConvertAndConnectToString("リフレクションシステムからクラス情報(typeinfo:", typeid(reflectable_obj_).name(), ")を取得できませんでした。"));
+					throw reflection_error(ConvertAndConnectToString("リフレクションシステムからクラス情報(typeinfo:", typeid(reflectable_obj_).name(), ")を取得できませんでした。"));
 				}
 			}
 			return ClassInfoCaller(*class_info_);
@@ -29,7 +30,7 @@ namespace plnt {
 				//コンストラクト時の処理を減らすために、Reflectableポインタの取得はここで行っておく
 				reflectable_obj_ = dynamic_cast<Reflectable*>(obj_);
 				if (reflectable_obj_ == nullptr) {
-					throw reflection_error(util::ConvertAndConnectToString("Reflectableクラスのポインタがセットされていません。Reflectableクラスを継承していない可能性があります。ReflectionAccessibleの機能を利用するには、Reflectableを継承していなければなりません。"));
+					throw reflection_error(ConvertAndConnectToString("Reflectableクラスのポインタがセットされていません。Reflectableクラスを継承していない可能性があります。ReflectionAccessibleの機能を利用するには、Reflectableを継承していなければなりません。"));
 				}
 			}
 			return *reflectable_obj_; 
@@ -86,7 +87,7 @@ namespace plnt {
 		try {
 			impl_->class_info_caller().SetDataFromPtree(pt, impl_->reflectable_obj());
 		} catch (reflection_error& e) {
-			throw reflection_error(util::ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
+			throw reflection_error(ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
 		}
 	}
 
