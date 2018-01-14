@@ -1,0 +1,11 @@
+# シーンモジュール
+
+シーンモジュールはIManager→Manager→ConcreteManagerのようなクラス階層にする。
+
+IManagerはエンジン利用者に公開するインターフェイス、ManagerはPlanetaEngine内部で利用するインターフェイス、ConcreteManagerは実際の実装を行うクラス。
+
+PlanetaEngineは標準でStandardConcreteManagerを登録するが、ライブラリ使用者がPlanetEngineにManagerを継承するクラスを登録することも可能。
+
+PlanetaEngineはManagerを通して設定などを行う。
+PlanetaEngineはIManagerを返す関数を用意し、利用者はそれを用いて各種機能にアクセスする。
+これにより、クラスの取り換えが容易になりテストしやすい、公開したいものだけを利用者に公開できる、設計が容易などの利点ができる。
