@@ -14,7 +14,7 @@
     {
       "kind": "git",
       "repository": "https://github.com/CdecPGL/vcpkg-registory-for-game-dev",
-      "baseline": "6e244aa503b18a21f3cfa659100bf06684daffc7",
+      "baseline": "37142239c15eae24fb46dcd8eda42ae14ad24008",
       "packages": [ "dxlib", "effekseer-for-dxlib", "lua-intf" ]
     }
   ]

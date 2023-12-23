@@ -22,8 +22,8 @@ namespace plnt {
 			std::unique_ptr<CryptoPP::CTR_Mode<CryptoPP::AES>::Decryption> aes_dec_obj_;
 			bool enc_obj_update = false;
 			bool dec_obj_update = false;
-			std::array<byte, 16> key_; //128bit
-			std::array<byte, CryptoPP::AES::BLOCKSIZE> iv_; //128bit
+			std::array<CryptoPP::byte, 16> key_; //128bit
+			std::array<CryptoPP::byte, CryptoPP::AES::BLOCKSIZE> iv_; //128bit
 
 			void UpdateEncObj() {
 				if (aes_enc_obj_ == nullptr) {

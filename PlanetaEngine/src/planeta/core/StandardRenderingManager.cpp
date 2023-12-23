@@ -46,10 +46,10 @@ namespace plnt {
 			//DXライブラリ描画
 			main_screen_->HandleDrawReservations();
 			//Effekseerの更新
-			Effekseer::Manager* eff_mgr = GetEffekseer3DManager();
+			auto eff_mgr = GetEffekseer3DManager();
 			eff_mgr->Update();
 			//Effekseer描画
-			EffekseerRenderer::Renderer* eff_rederr = GetEffekseer3DRenderer();
+			auto eff_rederr = GetEffekseer3DRenderer();
 			RenderVertex();
 			eff_rederr->BeginRendering();
 			eff_mgr->Draw();

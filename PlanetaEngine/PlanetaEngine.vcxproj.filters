@@ -912,6 +912,15 @@
     <ClInclude Include="src\planeta\BuildinTasks.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\my_lib\INILoader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\my_lib\INISaver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\my_lib\INIData.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\planeta\math\MathUtility.cpp">
@@ -1306,6 +1315,15 @@
     </ClCompile>
     <ClCompile Include="src\planeta\deprecated\TextPanel.cpp">
       <Filter>Deprecated\GUIComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\my_lib\INILoader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\my_lib\INISaver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\my_lib\INIData.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

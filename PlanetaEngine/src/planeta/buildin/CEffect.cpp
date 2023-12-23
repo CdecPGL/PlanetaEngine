@@ -53,7 +53,7 @@ namespace plnt {
 	bool CEffect::Impl_::CreateEffectInstance() {
 		ClearEffectInstance();
 		if (reffect_) {
-			auto* eff_mgr = GetEffekseer3DManager();
+			auto eff_mgr = GetEffekseer3DManager();
 			auto& trans = *my_c_transform_2d_;
 			effect_handle_ = eff_mgr->Play(reffect_->effekseer_effect(),
 				static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
@@ -67,7 +67,7 @@ namespace plnt {
 
 	bool CEffect::Impl_::StartEffect() {
 		if (reffect_) {
-			auto* eff_mgr = GetEffekseer3DManager();
+			auto eff_mgr = GetEffekseer3DManager();
 			eff_mgr->SetPaused(effect_handle_, false);
 			eff_mgr->SetShown(effect_handle_, true);
 		}
@@ -76,7 +76,7 @@ namespace plnt {
 
 	bool CEffect::Impl_::PauseEffect() {
 		if (reffect_) {
-			auto* eff_mgr = GetEffekseer3DManager();
+			auto eff_mgr = GetEffekseer3DManager();
 			eff_mgr->SetPaused(effect_handle_, true);
 			eff_mgr->SetShown(effect_handle_, false);
 		}
@@ -85,7 +85,7 @@ namespace plnt {
 
 	bool CEffect::Impl_::ClearEffectInstance() {
 		if (reffect_) {
-			auto* eff_mgr = GetEffekseer3DManager();
+			auto eff_mgr = GetEffekseer3DManager();
 			eff_mgr->StopEffect(effect_handle_);
 		}
 		return true;
@@ -104,7 +104,7 @@ namespace plnt {
 
 	bool CEffect::Impl_::GetEffectExits() const {
 		if (effect_handle_ >= 0) {
-			auto* eff_mgr = GetEffekseer3DManager();
+			auto eff_mgr = GetEffekseer3DManager();
 			return eff_mgr->Exists(effect_handle_);
 		} else {
 			return false;
@@ -113,7 +113,7 @@ namespace plnt {
 
 	void CEffect::Impl_::ApplyTransformToEffect() {
 		auto& trans = *my_c_transform_2d_;
-		auto* eff_mgr = GetEffekseer3DManager();
+		auto eff_mgr = GetEffekseer3DManager();
 		eff_mgr->SetLocation(effect_handle_,
 			static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
 		eff_mgr->SetRotation(effect_handle_, 0, 0,

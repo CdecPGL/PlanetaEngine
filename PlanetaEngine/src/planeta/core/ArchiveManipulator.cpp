@@ -1,14 +1,15 @@
 ﻿#include "ArchiveManipulator.hpp"
-#include"Extracter.h"
-#include "Archiver.h"
+// TODO: 必要か調べる。必要なら探す
+//#include"Extracter.h"
+//#include "Archiver.h"
 #include"boost/filesystem/path.hpp"
 #include "LogUtility.hpp"
 
 namespace plnt {
-	ArchiveManipulator::ArchiveManipulator() :FileManipulator(), _extracter(std::make_unique<Extracter>()), _key(0) {}
+	ArchiveManipulator::ArchiveManipulator() :FileManipulator()/*, _extracter(std::make_unique<Extracter>())*/, _key(0) {}
 
 	ArchiveManipulator::~ArchiveManipulator() {
-		_extracter->CloseArchiveFile();
+		//_extracter->CloseArchiveFile();
 	}
 
 	bool ArchiveManipulator::OpenProc(const std::string& path) {

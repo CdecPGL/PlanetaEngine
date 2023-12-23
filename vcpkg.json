@@ -6,6 +6,7 @@
     "zlib",
     "lua",
     "picojson",
+    "tinyxml2",
     "dxlib",
     "effekseer-for-dxlib",
     "lua-intf"

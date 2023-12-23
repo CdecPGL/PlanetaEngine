@@ -42,13 +42,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>C:\libraries\PlanetaEngine\lib\</OutDir>
+    <OutDir>F:\libraries\PlanetaEngine\lib\</OutDir>
     <TargetName>planetaengine_mt</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <IntDir>$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\libraries\PlanetaEngine\lib\</OutDir>
+    <OutDir>F:\libraries\PlanetaEngine\lib\</OutDir>
     <TargetName>planetaengine_mtd</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <IntDir>$(Configuration)</IntDir>
@@ -95,7 +95,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
@@ -142,7 +142,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
@@ -159,6 +159,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\my_lib\INIData.h" />
+    <ClInclude Include="src\my_lib\INILoader.h" />
+    <ClInclude Include="src\my_lib\INISaver.h" />
     <ClInclude Include="src\planeta\BuildinGameObjectComponents.hpp" />
     <ClInclude Include="src\planeta\BuildinResources.hpp" />
     <ClInclude Include="src\planeta\BuildinTasks.hpp" />
@@ -423,6 +426,9 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClInclude Include="src\planeta\core\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\my_lib\INIData.cpp" />
+    <ClCompile Include="src\my_lib\INILoader.cpp" />
+    <ClCompile Include="src\my_lib\INISaver.cpp" />
     <ClCompile Include="src\planeta\archiver\AESEncrypter.cpp" />
     <ClCompile Include="src\planeta\core\ArchiveManipulator.cpp" />
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp" />

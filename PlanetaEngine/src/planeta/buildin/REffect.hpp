@@ -1,6 +1,7 @@
 #pragma once
 
 #include "planeta/core/ResourceBase.hpp"
+#include "Effekseer.h"
 
 namespace Effekseer {
 	class Effect;
@@ -10,10 +11,10 @@ namespace plnt {
 	public:
 		REffect() {};
 		~REffect() {};
-		Effekseer::Effect* effekseer_effect()const;
+		Effekseer::EffectRef effekseer_effect()const;
 	private:
 		virtual bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
 		virtual void OnDisposed() override;
-		Effekseer::Effect* effekseer_effect_ = nullptr;
+		Effekseer::EffectRef effekseer_effect_ = nullptr;
 	};
 }

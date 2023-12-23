@@ -3,13 +3,11 @@
 
 #include "EffekseerUtil.hpp"
 
-#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
-#include <d3dx9tex.h>
+//#include <d3dx9tex.h>
 
 #include "planeta/core/File.hpp"
 
 #include "EffekseerForDXLib.h"
-#endif
 
 namespace plnt::effekseer {
 	bool EffectLoaderForEffekseer::Load(const EFK_CHAR*, void*& data, int32_t& size) {
@@ -33,38 +31,23 @@ namespace plnt::effekseer {
 
 	TextureLoaderForEffekseer::TextureLoaderForEffekseer() {}
 
-#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
-	::Effekseer::TextureData* TextureLoaderForEffekseer::Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType) {
+	::Effekseer::TextureRef TextureLoaderForEffekseer::Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType) {
 		return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)), textureType);
 	}
-
-	void TextureLoaderForEffekseer::Unload(::Effekseer::TextureData* data) {
-		//REffectTextureで削除するのでここでの削除は行わない
-	}
-#else
-	void* TextureLoaderForEffekseer::Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType) {
-		return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t*>(path)));
-	}
-
-	void TextureLoaderForEffekseer::Unload(void* data) {
-		//REffectTextureで削除するのでここでの削除は行わない
-	}
-#endif
 
 	void TextureLoaderForEffekseer::SetTextureGetter(const TextureGetterType& func) {
 		texture_getter_ = func;
 	}
 
-#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
-	std::unique_ptr<::Effekseer::TextureData> CreateEffekseerTextureDataFromFile(const File& file) {
-	::Effekseer::TextureData* textureData = nullptr;
+	::Effekseer::TextureRef CreateEffekseerTextureDataFromFile(const File& file) {
+	::Effekseer::TextureRef textureData = nullptr;
 	DxLib::BASEIMAGE dx_base_image;
 	CreateBaseImageToMem(file.top_pointer(), file.size(), &dx_base_image, false);
-	textureData->Height = dx_base_image.Height;
-	textureData->Width = dx_base_image.Width;
-	textureData->UserPtr = dx_base_image.GraphData;
+	//textureData->Height = dx_base_image.Height;
+	//textureData->Width = dx_base_image.Width;
+	//textureData->UserPtr = dx_base_image.GraphData;
 	//textureData->UserPtr = dx_base_image.ColorData;
-	return std::unique_ptr<::Effekseer::TextureData>{ textureData };
+	return textureData;
 
 	//	char* data_top = reinterpret_cast<char*>(const_cast<unsigned char*>(file.top_pointer()));
 	//	//DirectX9デバイスの取得
@@ -179,5 +162,4 @@ namespace plnt::effekseer {
 	//Exit:;
 	//	return textureData;
 	}
-#endif
 }

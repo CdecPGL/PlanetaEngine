@@ -6,7 +6,7 @@
 
 #include "planeta/core/File.hpp"
 
-#define EFFEKSEER_FOR_DXLIB_VERSION 122
+// TODO: 最新のEffekseerForDXLib対応
 
 namespace plnt::effekseer {
 	//Load関数の引数は使わずに、読み込み直前にFileを指定して、それを用いて読み込みを行う。
@@ -20,24 +20,16 @@ namespace plnt::effekseer {
 		const File* file_ = nullptr;
 	};
 	//読み込み前にテクスチャ取得用のコールバック関数を設定し、それを用いてテクスチャを取得する。
+	//REffectTextureで削除するのでUnloadでの削除は行わない
 	class TextureLoaderForEffekseer final : public ::Effekseer::TextureLoader {
 	public:
-#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
-		using TextureGetterType = std::function<::Effekseer::TextureData*(const std::string&, ::Effekseer::TextureType)>;
-		::Effekseer::TextureData* Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType)override;
-		void Unload(::Effekseer::TextureData* data);
-#else
-		using TextureGetterType = std::function<void*(const std::string&)>;
-		void* Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType)override;
-		void Unload(void* data);
-#endif
+		using TextureGetterType = std::function<::Effekseer::TextureRef(const std::string&, ::Effekseer::TextureType)>;
+		::Effekseer::TextureRef Load(const EFK_CHAR* path, ::Effekseer::TextureType textureType)override;
 		TextureLoaderForEffekseer();
 		void SetTextureGetter(const TextureGetterType& func);
 	private:
 		TextureGetterType texture_getter_;
 	};
 
-#if EFFEKSEER_FOR_DXLIB_VERSION >= 130
-	std::unique_ptr<::Effekseer::TextureData> CreateEffekseerTextureDataFromFile(const File& file);
-#endif
+	::Effekseer::TextureRef CreateEffekseerTextureDataFromFile(const File& file);
 }

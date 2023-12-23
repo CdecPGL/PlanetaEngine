@@ -2,8 +2,8 @@
 #pragma warning(disable:4996)
 
 #include"KeyConfig.hpp"
-#include"INILoader.h"
-#include"INISaver.h"
+#include"my_lib/INILoader.h"
+#include"my_lib/INISaver.h"
 #include"InputUtility.hpp"
 #include "boost/lexical_cast.hpp"
 #include"boost/algorithm/string.hpp"

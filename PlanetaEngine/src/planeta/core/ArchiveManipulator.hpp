@@ -13,7 +13,7 @@ namespace plnt {
 	private:
 		bool OpenProc(const std::string& path)override;
 		void CloseProc()override;
-		std::unique_ptr<Extracter> _extracter;
+		//std::unique_ptr<Extracter> _extracter;
 		unsigned int _key; //復号化キー
 		bool ReloadProc()override;
 		bool LoadFileProc(const std::string&, File& file)override;

@@ -32,8 +32,8 @@ namespace plnt {
 						SetWindowSizeExtendRate((double)ws.x / ds.x, (double)ws.y / ds.y);
 					}
 				}
-				//Effekseerを利用するために、DirextX9を使用するよう設定する
-				SetUseDirect3DVersion(DX_DIRECT3D_9);
+				//Effekseerを利用するために、DirextX11を使用するよう設定する
+				SetUseDirect3DVersion(DX_DIRECT3D_11);
 				//DXライブラリの初期化
 				if (DxLib_Init() < 0) { 
 					PE_LOG_FATAL("DXライブラリの初期化に失敗しました。");
@@ -63,7 +63,7 @@ namespace plnt {
 				SetWriteZBuffer3D(true);
 				decltype(auto) eff_mgr = GetEffekseer3DManager();
 				//eff_mgr->SetEffectLoader(new private_::EffectLoaderForEffekseer{});
-				eff_mgr->SetTextureLoader(new effekseer::TextureLoaderForEffekseer{});
+				eff_mgr->SetTextureLoader(::Effekseer::MakeRefPtr<effekseer::TextureLoaderForEffekseer>());
 
 				return{ true,[] { Effkseer_End(); } };
 			}
