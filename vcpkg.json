@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "dependencies": [
+    "boost",
+    "cryptopp",
+    "zlib",
+    "lua",
+    "picojson",
+    "dxlib",
+    "effekseer-for-dxlib",
+    "lua-intf"
+  ],
+  "overrides": [
+    {
+      "name": "boost",
+      "version": "1.83.0#1"
+    },
+    {
+      "name": "cryptopp",
+      "version": "8.9.0"
+    },
+    {
+      "name": "zlib",
+      "version": "1.3"
+    },
+    {
+      "name": "lua",
+      "version": "5.4.6"
+    },
+    {
+      "name": "picojson",
+      "version": "1.3.0#3"
+    },
+    {
+      "name": "tinyxml2",
+      "version": "9.0.0#2"
+    },
+    {
+      "name": "dxlib",
+      "version": "3.24-b"
+    },
+    {
+      "name": "effekseer-for-dxlib",
+      "version": "1.70-e"
+    },
+    {
+      "name": "lua-intf",
+      "version": "2021-12-24"
+    }
+  ]
+}

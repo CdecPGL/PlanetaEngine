@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json",
+  "default-registry": {
+    "kind": "git",
+    "baseline": "f30434939d5516ce764c549ab04e3d23d312180a",
+    "repository": "https://github.com/microsoft/vcpkg"
+  },
+  "registries": [
+    {
+      "kind": "artifact",
+      "location": "https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",
+      "name": "microsoft"
+    },
+    {
+      "kind": "git",
+      "repository": "https://github.com/CdecPGL/vcpkg-registory-for-game-dev",
+      "baseline": "6e244aa503b18a21f3cfa659100bf06684daffc7",
+      "packages": [ "dxlib", "effekseer-for-dxlib", "lua-intf" ]
+    }
+  ]
+}

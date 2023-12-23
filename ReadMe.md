@@ -6,26 +6,32 @@ C++用のコンポーネントベースなゲームエンジン。
 
 ## コンパイラ
 
-Visual C++ 15.5以上
+Visual C++ 製品バージョン17.8.3以上
 
 ## 依存ライブラリ
 
-### vcpkgを用いてインストール可能
+`vcpkg.json`参照。
 
-- boost 1.66
-- cryptopp 5.6.5
-- zlib 1.2.11
-- lua 5.3.4
-- picojson 1.3.0
-- TinyXML2 6.0.0
+## 開発者用初期設定
 
-### Portファイルを設定することでvcpkgでインストール可能
+### vcpkgのインストール
 
-Portファイルは[Additional-Packages-for-Vcpkgリポジトリ](https://github.com/CdecPGL/Additional-Packages-for-Vcpkg)のものを使用可能。
+vspkgを配置したいディレクトリで以下を実行。（[参考](https://learn.microsoft.com/ja-jp/vcpkg/get_started/get-started-msbuild?pivots=shell-powershell#1---set-up-vcpkg)）
 
-- DXライブラリ 3.19
-- EffekseerForDXLib 1.22
-- LuaIntf 2017.01.06
+```ps1
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg; .\bootstrap-vcpkg.bat
+.\vcpkg.exe integrate install
+```
+
+以下の環境変数を設定。
+
+- VCPKG_ROOT: vcpkgを配置したディレクトリを設定
+- PATH: vcpkgを配置したディレクトリを追加（既存のものは消さないこと）
+
+### 依存ライブラリのインストール
+
+Visual Studioでビルドすることで自動的にインストールされる。
 
 ## ライセンス
 
