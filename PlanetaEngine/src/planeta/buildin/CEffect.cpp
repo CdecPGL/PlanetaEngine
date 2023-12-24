@@ -1,4 +1,7 @@
+#pragma warning(push)
+#pragma warning(disable: 4100)
 #include "EffekseerForDXLib.h"
+#pragma warning(pop)
 
 #include "planeta/core/Game.hpp"
 #include "planeta/core/IResourceManager.hpp"

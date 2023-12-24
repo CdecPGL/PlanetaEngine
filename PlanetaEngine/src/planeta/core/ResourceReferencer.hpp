@@ -6,6 +6,8 @@
 #include <functional>
 #include <typeinfo>
 
+#include "LogUtility.hpp"
+
 namespace plnt {
 	class ResourceBase;
 	namespace private_ {
@@ -27,7 +29,7 @@ namespace plnt {
 		template<class RT>
 		std::shared_ptr<RT> ReferenceResourceByID(const std::string& id) {
 			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = ReferenceResourceByTypeAndID(type, id);
+			auto rsc = ReferenceResourceByTypeAndID(typeid(RT), id);
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) {
@@ -63,7 +65,7 @@ namespace plnt {
 		template<class RT>
 		std::shared_ptr<RT> ReferenceResourceByIDorPath(const std::string& id_or_path) {
 			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = ReferenceResourceByTypeAndIDorPath(type, id_or_path);
+			auto rsc = ReferenceResourceByTypeAndIDorPath(typeid(RT), id_or_path);
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) {

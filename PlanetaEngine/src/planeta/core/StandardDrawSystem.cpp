@@ -11,7 +11,12 @@
 #include "ScreenDrawerGUI.hpp"
 #include "planeta/buildin/CCamera2D.hpp"
 #include "DxLib.h"
+
+#pragma warning(push)
+#pragma warning(disable: 4100)
 #include "EffekseerForDXLib.h"
+#pragma warning(pop)
+
 #include "planeta/buildin/CTransform2D.hpp"
 #include "Screen.hpp"
 #include "IDebugManager.hpp"

@@ -7,6 +7,7 @@
 #include <type_traits>
 #include "boost/any.hpp"
 #include "boost/call_traits.hpp"
+#include "boost/lexical_cast.hpp"
 
 namespace plnt {
 	namespace mp_util{
@@ -87,11 +88,11 @@ namespace plnt {
 		//! 引数の型を文字列化
 		template<typename FirstParam, typename ... Params>
 		std::string ConvertParameterTypesToString() {
-			return std::move(std::string(std::typeid(FirstParam).name()) + "," + ConvertParameterTypesToString<Params...>());
+			return std::move(std::string(typeid(FirstParam).name()) + "," + ConvertParameterTypesToString<Params...>());
 		};
 		template<typename FirstParam>
 		std::string ConvertParameterTypesToString() {
-			return std::move(std::string(std::typeid(FirstParam).name()));
+			return std::move(std::string(typeid(FirstParam).name()));
 		};
 
 		//! 全ての要素First,Rest...が単項述語UnaryPredicateを満たしているか

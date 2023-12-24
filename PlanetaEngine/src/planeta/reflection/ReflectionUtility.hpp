@@ -16,6 +16,8 @@
 #include "boost/core/enable_if.hpp"
 
 #include "planeta/core/MetaprogrammingUtility.hpp"
+#include "planeta/core/StringUtility.hpp"
+#include "planeta/reflection/ReflectionExceptions.hpp"
 
 namespace plnt::reflection {
 	class Reflectable;
@@ -196,7 +198,7 @@ void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Conver
 
 		//Layer3
 		template<typename T>
-		void ReflectivePtreeConverter_Layer3<T>::Convert(T& dst, const boost::property_tree::ptree& src) {
+		void ReflectivePtreeConverter_Layer3<T>::Convert([[maybe_unused]] T& dst, [[maybe_unused]] const boost::property_tree::ptree& src) {
 			plnt::reflection::private_::ReflectivePtreeConverterError<T>();
 		}
 		//Layer2
@@ -290,6 +292,6 @@ void ReflectivePtreeConverter_Layer0 <map_type<std::string, T, Rest...>>::Conver
 	/*! コピー代入不可能でReflectionAssignableを継承しておらず、Reflectableを継承している型*/
 	template<typename T>
 	auto ReflectiveCopyHandler(T& dst, const T& src) -> typename boost::enable_if_c<!std::is_copy_assignable_v<T>&&!std::is_base_of_v<ReflectionAccessible, T>&&std::is_base_of_v<Reflectable, T>, void>::type {
-		plnt::private_::ReflectiveCopyFromReflectionSystem(dst, src);
+		private_::ReflectiveCopyFromReflectionSystem(dst, src);
 	}
 }

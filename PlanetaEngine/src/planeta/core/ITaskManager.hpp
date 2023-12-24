@@ -24,7 +24,7 @@ namespace plnt {
 		template<class T>
 		WeakPointer<T> CreateTask(TaskSlot slot, const std::string& name) {
 			auto task = std::make_shared<T>();
-			return RefTaskManagerInterface_().RegisterTask(task, slot, name, false) ? task : nullptr;
+			return RegisterTask(task, slot, name, false) ? task : nullptr;
 		}
 		/*! タスクを作成して実行*/
 		template<class T>
@@ -36,7 +36,7 @@ namespace plnt {
 		template<class T>
 		WeakPointer<T> CreateAndRunTask(TaskSlot slot, const std::string& name) {
 			auto task = std::make_shared<T>();
-			return RefTaskManagerInterface_().RegisterTask(task, slot, name, true) ? task : nullptr;
+			return RegisterTask(task, slot, name, true) ? task : nullptr;
 		}
 	private:
 		/*ゲームプロセスを登録する*/

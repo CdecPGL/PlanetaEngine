@@ -7,7 +7,10 @@
 
 #include "planeta/core/File.hpp"
 
+#pragma warning(push)
+#pragma warning(disable: 4100)
 #include "EffekseerForDXLib.h"
+#pragma warning(pop)
 
 namespace plnt::effekseer {
 	bool EffectLoaderForEffekseer::Load(const EFK_CHAR*, void*& data, int32_t& size) {

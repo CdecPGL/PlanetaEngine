@@ -41,7 +41,7 @@ namespace plnt{
 				MathMatrix<decltype(std::declval<V>()*std::declval<TM>()), X2, Y> out;
 				for (int y1 = 0; y1 < Y; ++y1) {
 					for (int x = 0; x < X2; ++x) {
-						for (y2 = 0; y2 < X; ++y2) {
+						for (int y2 = 0; y2 < X; ++y2) {
 							out[x][y1] += elements_[y2][y1] * m[x][y2];
 						}
 					}
@@ -62,18 +62,5 @@ namespace plnt{
 		private:
 			std::array<std::array<V, Y>, X> elements_;
 		};
-
-		//他の型との演算子
-		/*ベクトル*行列*/
-		template<typename VT,typename MT,int X,int Y>
-		auto operator*(const MathVector<VT, Y>& m) {
-			MathVector<decltype(std::declval<VT>()*std::declval<MT>()), Y> out;
-			for (int x = 0; x < X; ++x) {
-				for (int y = 0; y < Y; ++y) {
-					out[x] += elements_[y] * m[x][y];
-				}
-			}
-			return std::move(out);
-		}
 	}
 }

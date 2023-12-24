@@ -48,25 +48,28 @@ namespace plnt {
 		using ArgType = typename boost::function_traits<SigType>::arg1_type;
 		/*! シグナル関数の戻り値型*/
 		using RetType = typename boost::function_traits<SigType>::result_type;
+
+		using MySignal = boost::signals2::signal<SigType>;
+		using SlotType = typename MySignal::slot_type;
 		/*! 通常関数を接続*/
 		template<typename FuncType>
 		SignalConnection ConnectFunction(const FuncType& func) {
-			return SignalConnection{ std::move(connect(func)) };
+			return SignalConnection{ std::move(MySignal::connect(func)) };
 		}
 		/*! 通常関数をstd::shared_ptrを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const std::shared_ptr<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins))) };
 		}
 		/*! 通常関数をWeakPointerを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const WeakPointer<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
 		}
 		/*! メンバ関数をstd::shared_ptrを指定して接続*/
 		template<class InsType>
 		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType>& ins, RetType(InsType::*m_func)(ArgType)) {
-			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get(), boost::placeholders::_1).track_foreign(ins))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(m_func, ins.get(), boost::placeholders::_1).track_foreign(ins))) };
 		}
 		/*! メンバ関数をWeakPointerを指定して接続
 		
@@ -74,11 +77,11 @@ namespace plnt {
 		*/
 		template<class InsType>
 		SignalConnection ConnectMemberFunction(const WeakPointer<InsType>& ins, RetType(InsType::*m_func)(ArgType)) {
-			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get(), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(m_func, ins.get(), boost::placeholders::_1).track_foreign(ins.get_shared()))) };
 		}
 		/*! 関数呼び出し*/
 		auto operator()(const ArgType& arg) {
-			return signal::operator ()(arg);
+			return MySignal::operator ()(arg);
 		}
 	};
 
@@ -86,34 +89,37 @@ namespace plnt {
 	template<typename RetType>
 	class Signal<RetType(void)> final: private boost::signals2::signal<RetType(void)> {
 	public:
+		using MySignal = boost::signals2::signal<RetType(void)>;
+		using SlotType = typename MySignal::slot_type;
+
 		/*! 通常関数を接続*/
 		template<typename FuncType>
 		SignalConnection ConnectFunction(const FuncType& func) {
-			return SignalConnection{ std::move(connect(func)) };
+			return SignalConnection{ std::move(MySignal::connect(func)) };
 		}
 		/*! 通常関数をstd::shared_ptrを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const std::shared_ptr<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func)).track_foreign(ins))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(std::function<RetType(void)>(func)).track_foreign(ins))) };
 		}
 		/*! 通常関数をWeakPointerを指定して接続*/
 		template<class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const WeakPointer<InsType>& ins, const FuncType& func) {
-			return SignalConnection{ std::move(connect(slot_type(std::function<SigType>(func)).track_foreign(ins.get_shared()))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(std::function<RetType(void)>(func)).track_foreign(ins.get_shared()))) };
 		}
 		/*! メンバ関数をstd::shared_ptrを指定して接続*/
 		template<class InsType>
 		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType>& ins, RetType(InsType::*m_func)()) {
-			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get()).track_foreign(ins))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(m_func, ins.get()).track_foreign(ins))) };
 		}
 		/*! メンバ関数をWeakPointerを指定して接続*/
 		template<class InsType>
 		SignalConnection ConnectMemberFunction(const WeakPointer<InsType>& ins, RetType(InsType::*m_func)()) {
-			return SignalConnection{ std::move(connect(slot_type(m_func, ins.get()).track_foreign(ins.get_shared()))) };
+			return SignalConnection{ std::move(MySignal::connect(SlotType(m_func, ins.get()).track_foreign(ins.get_shared()))) };
 		}
 		/*! 関数呼び出し*/
 		auto operator()() {
-			return signal::operator ()();
+			return MySignal::operator ()();
 		}
 	};
 }

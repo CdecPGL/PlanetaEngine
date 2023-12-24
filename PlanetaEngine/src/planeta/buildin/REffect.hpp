@@ -1,7 +1,11 @@
 #pragma once
 
-#include "planeta/core/ResourceBase.hpp"
+#pragma warning(push)
+#pragma warning(disable: 4100)
 #include "Effekseer.h"
+#pragma warning(pop)
+
+#include "planeta/core/ResourceBase.hpp"
 
 namespace Effekseer {
 	class Effect;

@@ -3,12 +3,12 @@
 //PlanetaEngineを使うための基本的なヘッダファイル。
 //mainファイルでインクルードし、基本的にほかのファイルではインクルードしないこと
 
-//ライブラリファイルの指定
-#ifdef _DEBUG
-#pragma comment(lib,"planetaengine_mtd.lib")
-#else
-#pragma comment(lib,"planetaengine_mt.lib")
-#endif
+////ライブラリファイルの指定
+//#ifdef _DEBUG
+//#pragma comment(lib,"planetaengine_mtd.lib")
+//#else
+//#pragma comment(lib,"planetaengine_mt.lib")
+//#endif
 
 #include "core/Game.hpp"
 

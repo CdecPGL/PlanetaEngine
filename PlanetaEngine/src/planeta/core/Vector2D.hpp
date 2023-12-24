@@ -3,7 +3,11 @@
 #include <cstdint>
 #include <string>
 #include <array>
+#include <stdexcept>
+#include <cmath>
 #include "planeta/math/MathConstant.hpp"
+#include "planeta/reflection/ReflectionExceptions.hpp"
+#include "planeta/core/StringUtility.hpp"
 
 #define PE_ENABLE_REFLECTION_SYSTEM
 

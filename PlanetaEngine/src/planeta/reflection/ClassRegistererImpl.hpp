@@ -9,7 +9,7 @@ namespace plnt::reflection {
 		template<class C, typename T = void>
 		class ClassRegistererImpl : public ClassRegisterer<C> {
 		public:
-			using ClassRegisterer::ClassRegisterer;
+			using ClassRegisterer<C>::ClassRegisterer;
 			void BegineProc() {}
 			void EndProc() {
 				//LuaBinderの設定
@@ -24,7 +24,7 @@ namespace plnt::reflection {
 		template<class C>
 		class ClassRegistererImpl<C, typename boost::enable_if<HasSuperAlias<C>, void>> : ClassRegisterer<C> {
 		public:
-			using ClassRegisterer::ClassRegisterer;
+			using ClassRegisterer<C>::ClassRegisterer;
 			void BegineProc() {}
 			void EndProc() {
 				//LuaBinderの設定
