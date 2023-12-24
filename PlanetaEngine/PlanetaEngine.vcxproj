@@ -42,16 +42,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>F:\libraries\PlanetaEngine\lib\</OutDir>
-    <TargetName>planetaengine_mt</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <IntDir>$(Configuration)</IntDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>F:\libraries\PlanetaEngine\lib\</OutDir>
-    <TargetName>planetaengine_mtd</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <IntDir>$(Configuration)</IntDir>
+    <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -71,7 +71,7 @@
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
@@ -94,7 +94,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
@@ -103,13 +103,6 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-    <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\ *.hpp /MIR /NP
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PreBuildEvent>
-    <PreBuildEvent>
-      <Message>ヘッダファイルをライブラリディレクトリに同期</Message>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -122,7 +115,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\libraries\自作ライブラリ\include;$(DXSDK_DIR)\Include;$(ProjectDir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -141,7 +134,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(DXSDK_DIR)\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <ForceSymbolReferences>
@@ -150,13 +143,6 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-    <PreBuildEvent>
-      <Command>robocopy $(ProjectDir)src\ C:\libraries\PlanetaEngine\include\ *.hpp /MIR /NP
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PreBuildEvent>
-    <PreBuildEvent>
-      <Message>ヘッダファイルをライブラリディレクトリに同期</Message>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\my_lib\INIData.h" />
