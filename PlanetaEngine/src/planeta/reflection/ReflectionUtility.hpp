@@ -14,6 +14,7 @@
 
 #include "boost/property_tree/ptree.hpp"
 #include "boost/core/enable_if.hpp"
+#include "boost/tti/has_static_member_function.hpp"
 
 #include "planeta/core/MetaprogrammingUtility.hpp"
 #include "planeta/core/StringUtility.hpp"
@@ -29,14 +30,15 @@ namespace plnt::reflection {
 //特定の条件を満たしているか確認するメタ関数
 //////////////////////////////////////////////////////////////////////////
 	namespace private_ {
+		BOOST_TTI_HAS_STATIC_MEMBER_FUNCTION(ReflectionDataRegisterer)
+
 		//C::ReflectionDataRegisterer(ClassRegisterer<C>&)を持っているか
-		template<class C, typename T = void>
-		struct HasReflectionDataRegisterer : public std::false_type {};
 		template<class C>
-		struct HasReflectionDataRegisterer < C, decltype(C::ReflectionDataRegisterer(std::declval<ClassRegisterer<C>>()), std::declval<void>()) > : public std::true_type {};
+		struct HasReflectionDataRegisterer:has_static_member_function_ReflectionDataRegisterer<C, void, boost::mpl::vector<ClassRegisterer<C>&>>{};
 		template<class C>
 		bool HasReflectionDataRegisterer_v = HasReflectionDataRegisterer<C>::value;
-		//C::Superを持っているか
+
+		////C::Superを持っているか
 		template<class C, typename T = void>
 		struct HasSuperAlias : public std::false_type {};
 		template<class C>

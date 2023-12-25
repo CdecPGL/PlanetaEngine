@@ -14,7 +14,7 @@ namespace plnt::reflection {
 		Impl_(ReflectionAccessible* obj)noexcept : obj_(obj) {}
 		ClassInfoCaller class_info_caller()const {
 			if (class_info_ == nullptr) {
-				class_info_ = Reflection::GetClassInfo_Reflectable(typeid(*reflectable_obj_));
+				class_info_ = Reflection::GetClassInfo_Reflectable(typeid(reflectable_obj()));
 				if (class_info_ == nullptr) {
 					throw reflection_error(ConvertAndConnectToString("リフレクションシステムからクラス情報(typeinfo:", typeid(reflectable_obj_).name(), ")を取得できませんでした。"));
 				}
@@ -27,7 +27,7 @@ namespace plnt::reflection {
 		}
 		Reflectable& reflectable_obj()const {
 			if (reflectable_obj_ == nullptr) {
-				//コンストラクト時の処理を減らすために、Reflectableポインタの取得はここで行っておく
+				//コンストラクト時にはまだ型が完全でないため、Reflectableポインタの取得はここで行う
 				reflectable_obj_ = dynamic_cast<Reflectable*>(obj_);
 				if (reflectable_obj_ == nullptr) {
 					throw reflection_error(ConvertAndConnectToString("Reflectableクラスのポインタがセットされていません。Reflectableクラスを継承していない可能性があります。ReflectionAccessibleの機能を利用するには、Reflectableを継承していなければなりません。"));

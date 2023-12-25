@@ -201,12 +201,18 @@ namespace plnt {
 #ifdef PE_ENABLE_REFLECTION_SYSTEM
 
 #include "boost/property_tree/ptree.hpp"
+#include "planeta/reflection/ReflectionUtility.hpp"
 
-namespace plnt {
-	namespace reflection {
+namespace plnt::reflection::private_ {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template<typename T>
-		void ReflectivePtreeConverter(Vector2D<T>& dst, const boost::property_tree::ptree& src) {
+		struct ReflectivePtreeConverter_Layer0<Vector2D<T>>
+		{
+			static void Convert(Vector2D<T>& dst, const boost::property_tree::ptree& src);
+		};
+
+		template<typename T>
+		void ReflectivePtreeConverter_Layer0<Vector2D<T>>::Convert(Vector2D<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 2) {
 				throw reflection_error(::plnt::util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
 			}
@@ -222,7 +228,6 @@ namespace plnt {
 			}
 			dst.Set(ary[0], ary[1]);
 		}
-	}
 }
 
 #endif
