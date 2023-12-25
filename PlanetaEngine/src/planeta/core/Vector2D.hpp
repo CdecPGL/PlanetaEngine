@@ -203,24 +203,19 @@ namespace plnt {
 #include "boost/property_tree/ptree.hpp"
 #include "planeta/reflection/ReflectionUtility.hpp"
 
-namespace plnt::reflection::private_ {
-		//ReflectionシステムのPtree読み込みを有効にするための定義
-		template<typename T>
-		struct ReflectivePtreeConverter_Layer0<Vector2D<T>>
-		{
-			static void Convert(Vector2D<T>& dst, const boost::property_tree::ptree& src);
-		};
-
-		template<typename T>
-		void ReflectivePtreeConverter_Layer0<Vector2D<T>>::Convert(Vector2D<T>& dst, const boost::property_tree::ptree& src) {
+namespace plnt::reflection{
+	//ReflectionシステムのPtree読み込みを有効にするための定義
+	template<typename T>
+	struct ReflectivePtreeConverterImpl<Vector2D<T>> {
+		void operator()(Vector2D<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 2) {
-				throw reflection_error(::plnt::util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
+				throw reflection_error(util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 2> ary;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw reflection_error(util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				T dat{};
 				ReflectivePtreeConverter(dat, pp.second);
@@ -228,6 +223,7 @@ namespace plnt::reflection::private_ {
 			}
 			dst.Set(ary[0], ary[1]);
 		}
+	};
 }
 
 #endif
