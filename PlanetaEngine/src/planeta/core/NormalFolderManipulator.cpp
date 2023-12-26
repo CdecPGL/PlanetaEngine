@@ -2,7 +2,7 @@
 #include"boost/filesystem.hpp"
 #include"boost/foreach.hpp"
 #include "LogUtility.hpp"
-#include "planeta/archiver/EncrypterBase.hpp"
+#include "..\archiver\encrypter_base.hpp"
 #include<fstream>
 #include<iomanip>
 
@@ -43,7 +43,7 @@ namespace plnt {
 		if (is_encrypter_valid()) {
 			//暗号化が有効だったら
 			File encd_file;
-			if (!encrypter()->Encrypt(file, encd_file)) {
+			if (!encrypter()->encrypt(file, encd_file)) {
 				//暗号化して
 				PE_LOG_ERROR("暗号化に失敗しました。");
 				return false;
@@ -62,7 +62,7 @@ namespace plnt {
 			return false;
 		} else {
 			if (is_encrypter_valid()) {
-				if (!encrypter()->Decrypt(file)) { return true; } else {
+				if (!encrypter()->decrypt(file)) { return true; } else {
 					PE_LOG_ERROR("復号化に失敗しました。");
 					return false;
 				}

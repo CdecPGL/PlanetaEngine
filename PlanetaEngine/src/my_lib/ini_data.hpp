@@ -3,7 +3,7 @@
 #include<string>
 #include<unordered_map>
 
-class ini_data {
+class ini_data final {
 public:
 	std::unordered_map<std::string, std::unordered_map<std::string, std::string>>::iterator begin() {
 		return data_.begin();

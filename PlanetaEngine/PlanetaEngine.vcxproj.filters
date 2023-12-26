@@ -471,13 +471,13 @@
     <ClInclude Include="src\planeta\core\Object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\archiver\AESEncrypter.hpp">
+    <ClInclude Include="src\planeta\archiver\aes_encrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\archiver\EncrypterBase.hpp">
+    <ClInclude Include="src\planeta\archiver\encrypter_base.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\archiver\EXOREncrypter.hpp">
+    <ClInclude Include="src\planeta\archiver\exor_encrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\dxlib\DXUtility.hpp">
@@ -1100,13 +1100,13 @@
     <ClCompile Include="src\planeta\core\Object.cpp">
       <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\archiver\AESEncrypter.cpp">
+    <ClCompile Include="src\planeta\archiver\aes_encrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\archiver\EncrypterBase.cpp">
+    <ClCompile Include="src\planeta\archiver\encrypter_base.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\archiver\EXOREncrypter.cpp">
+    <ClCompile Include="src\planeta\archiver\exor_encrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\dxlib\DXUtility.cpp">

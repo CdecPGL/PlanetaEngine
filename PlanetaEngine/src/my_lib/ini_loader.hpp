@@ -2,7 +2,7 @@
 
 #include"ini_data.hpp"
 
-class ini_loader {
+class ini_loader final {
 public:
 	// INIファイル読み込み
 	int load_ini(const std::string &);

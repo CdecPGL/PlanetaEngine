@@ -1,6 +1,6 @@
 ﻿#include "FileManipulator.hpp"
 #include "LogUtility.hpp"
-#include "planeta/archiver/EncrypterBase.hpp"
+#include "..\archiver\encrypter_base.hpp"
 
 namespace plnt {
 	namespace {
@@ -51,7 +51,7 @@ namespace plnt {
 
 	AccessMode FileManipulator::mode() const { return mode_; }
 
-	boost::optional<const archiver::EncrypterBase &> FileManipulator::encrypter() const & {
+	boost::optional<const archiver::encrypter_base &> FileManipulator::encrypter() const & {
 		if (encrypter_) { return *encrypter_; } else { return boost::none; }
 	}
 
@@ -103,7 +103,7 @@ namespace plnt {
 	}
 
 	bool FileManipulator::Open(const std::string &path, AccessMode access_mode,
-	                           std::unique_ptr<const archiver::EncrypterBase> &&encrypter, bool auto_create) {
+	                           std::unique_ptr<const archiver::encrypter_base> &&encrypter, bool auto_create) {
 		encrypter_ = std::move(encrypter);
 		return Open(path, access_mode, auto_create);
 	}
