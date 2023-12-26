@@ -1,19 +1,11 @@
-/*INIファイルローダー
-Version 1.0 2014/05/19 ライブラリ化
-*/
-
-#include "INILoader.h"
 #include<fstream>
 #include<algorithm>
 
+#include "ini_loader.hpp"
+
 using namespace std;
 
-INILoader::INILoader() {}
-
-
-INILoader::~INILoader() {}
-
-int INILoader::LoadINI(const string &filename) {
+int ini_loader::load_ini(const string &filename) {
 	ifstream ifs(filename);
 	if (ifs.fail()) {
 		printf("INILoader::LoadINI \"%s\"を開けませんでした。\n", filename.c_str());
@@ -21,26 +13,26 @@ int INILoader::LoadINI(const string &filename) {
 	}
 	vector<string> lines;
 	string buf;
-	while (getline(ifs, buf)) { lines.push_back(move(buf)); }
+	while (getline(ifs, buf)) { lines.push_back(buf); }
 	ifs.close();
 
 	//コメント行,空行を除去
-	lines.erase(remove_if(lines.begin(), lines.end(), [](string &l)-> bool {
-		if (l.size() == 0) { return true; }
+	erase_if(lines, [](const string &l)-> bool {
+		if (l.empty()) { return true; }
 		if (l[0] == ';') { return true; }
 		return false;
-	}), lines.end());
+	});
 
 	//セクション分離
 	unordered_map<string, vector<string>> section;
-	vector<string>::iterator s_it = find_if(lines.begin(), lines.end(), [](string &l) -> bool {
+	auto s_it = ranges::find_if(lines, [](const string &l) -> bool {
 		if (l.size() < 3)return false;
 		if (*(l.begin()) == '[' && *(l.end() - 1) == ']')return true;
 		return false;
 	});
-	vector<string>::iterator e_it = s_it;
+	auto e_it = s_it;
 	while (e_it != lines.end()) {
-		e_it = find_if(s_it + 1, lines.end(), [](string &l) -> bool {
+		e_it = find_if(s_it + 1, lines.end(), [](const string &l) -> bool {
 			if (l.size() < 3)return false;
 			if (*(l.begin()) == '[' && *(l.end() - 1) == ']')return true;
 			return false;
@@ -58,7 +50,7 @@ int INILoader::LoadINI(const string &filename) {
 		unordered_map<string, string> s;
 		for (string &l : (*it).second) {
 			//スペース除去
-			l.erase(remove_if(l.begin(), l.end(), [](char w)-> bool { return w == ' '; }), l.end());
+			erase_if(l, [](const char w)-> bool { return w == ' '; });
 			auto eq_idx = l.find('=');
 			if (eq_idx == std::string::npos) { continue; }
 			string name = l.substr(0, eq_idx);
@@ -66,33 +58,33 @@ int INILoader::LoadINI(const string &filename) {
 			s.insert(pair<string, string>(name, value));
 		}
 		//data.insert(pair<string, unordered_map<string, string>>((*it).first,s));
-		_data.SetSection((*it).first, std::move(s));
+		data_.set_section((*it).first, std::move(s));
 	}
 	return 0;
 }
 
 //[]
-unordered_map<std::string, std::string> INILoader::operator[](const std::string &idx) const {
-	auto it = _data.find(idx);
-	if (it == _data.end()) { return unordered_map<string, string>(); }
+unordered_map<std::string, std::string> ini_loader::operator[](const std::string &idx) const {
+	const auto it = data_.find(idx);
+	if (it == data_.end()) { return {}; }
 	return (*it).second;
 }
 
 //セクション取得
-unordered_map<std::string, std::string> INILoader::GetSection(const std::string &idx) const {
-	auto it = _data.find(idx);
-	if (it == _data.end()) { return unordered_map<string, string>(); }
+unordered_map<std::string, std::string> ini_loader::get_section(const std::string &idx) const {
+	const auto it = data_.find(idx);
+	if (it == data_.end()) { return {}; }
 	return (*it).second;
 }
 
 //セクション存在確認
-bool INILoader::CheckSectionExistence(const std::string &idx) const { return !(_data.find(idx) == _data.end()); }
+bool ini_loader::check_section_existence(const std::string &idx) const { return !(data_.find(idx) == data_.end()); }
 
 //値取得
-string INILoader::GetValue(const string &sec, const string &name) const {
-	auto it = _data.find(sec);
-	if (it == _data.end()) { return "section not found"; }
-	auto it2 = (*it).second.find(name);
+string ini_loader::get_value(const string &sec, const string &name) const {
+	const auto it = data_.find(sec);
+	if (it == data_.end()) { return "section not found"; }
+	const auto it2 = (*it).second.find(name);
 	if (it2 == (*it).second.end()) { return "value no found"; }
 	return (*it2).second;
 }

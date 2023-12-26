@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{9099F303-DCDE-4C5F-ADDA-38185D096139}"
 	ProjectSection(SolutionItems) = preProject
 		.clang-format = .clang-format
+		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
 Global

@@ -912,13 +912,13 @@
     <ClInclude Include="src\planeta\BuildinTasks.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_lib\INILoader.h">
+    <ClInclude Include="src\my_lib\ini_loader.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_lib\INISaver.h">
+    <ClInclude Include="src\my_lib\ini_saver.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_lib\INIData.h">
+    <ClInclude Include="src\my_lib\ini_data.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1316,13 +1316,10 @@
     <ClCompile Include="src\planeta\deprecated\TextPanel.cpp">
       <Filter>Deprecated\GUIComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_lib\INILoader.cpp">
+    <ClCompile Include="src\my_lib\ini_loader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_lib\INISaver.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="src\my_lib\INIData.cpp">
+    <ClCompile Include="src\my_lib\ini_saver.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

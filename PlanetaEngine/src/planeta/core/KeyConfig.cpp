@@ -2,8 +2,8 @@
 #pragma warning(disable:4996)
 
 #include"KeyConfig.hpp"
-#include"my_lib/INILoader.h"
-#include"my_lib/INISaver.h"
+#include"..\..\my_lib\ini_loader.hpp"
+#include"..\..\my_lib\ini_saver.hpp"
 #include"InputUtility.hpp"
 #include "boost/lexical_cast.hpp"
 #include"boost/algorithm/string.hpp"
@@ -35,19 +35,19 @@ namespace plnt {
 	namespace private_ {
 		namespace key_input_io {
 			int LoadKeyConfigFromINIFileToKIM(const std::string &fn, InputManager &kim) {
-				INILoader inil;
-				if (inil.LoadINI(fn) < 0) { return -1; }
-				const INIData &inid = inil.GetINIData();
+				ini_loader inil;
+				if (inil.load_ini(fn) < 0) { return -1; }
+				const ini_data &inid = inil.get_ini_data();
 				kim.ResetKeyPadButtonMap();
 				int mode = 0;
 				try {
-					const auto &ss = inid.GetSection(SYS_SECTION);
+					const auto &ss = inid.get_section(SYS_SECTION);
 					auto it = ss.find("Mode");
 					if (it == ss.end()) { mode = 0; }
 					if (it->second == MODE_VALUE_STR) { mode = 0; } else if (it->second == MODE_VALUE_INT) { mode = 1; }
 				} catch (std::out_of_range &) { return -3; }
 				try {
-					const auto &ks = inid.GetSection(KEY_SECTION);
+					const auto &ks = inid.get_section(KEY_SECTION);
 					for (const auto &p : ks) {
 						if (mode == 0) {
 							Button::type b0 = utils::ConvertStringToButton(p.first);
@@ -75,7 +75,7 @@ namespace plnt {
 				} catch (std::out_of_range &) { return -1; }
 				catch (boost::bad_lexical_cast &) { return -5; }
 				try {
-					const auto &ps = inid.GetSection(PAD_SECTION);
+					const auto &ps = inid.get_section(PAD_SECTION);
 					for (const auto &p : ps) {
 						if (mode == 0) {
 							Button::type b0 = utils::ConvertStringToButton(p.first);
@@ -104,13 +104,13 @@ namespace plnt {
 			}
 
 			int SaveKeyConfigToINIFileFromKIM(const std::string &fn, int m, const InputManager &kim) {
-				INIData inid;
+				ini_data inid;
 				{
 					std::unordered_map<std::string, std::string> _sys_sec;
 					_sys_sec.insert(std::make_pair(VER_NAME, LATEST_VER));
 					_sys_sec.insert(
 						std::make_pair(MODE_NAME, m == 0 ? MODE_VALUE_STR : m == 1 ? MODE_VALUE_INT : MODE_VALUE_INT));
-					inid.SetSection(SYS_SECTION, std::move(_sys_sec));
+					inid.set_section(SYS_SECTION, std::move(_sys_sec));
 				}
 				{
 					std::unordered_map<std::string, std::string> _key_sec;
@@ -133,7 +133,7 @@ namespace plnt {
 							                               boost::lexical_cast<std::string>(k)));
 						}
 					}
-					inid.SetSection(KEY_SECTION, std::move(_key_sec));
+					inid.set_section(KEY_SECTION, std::move(_key_sec));
 				}
 				{
 					std::unordered_map<std::string, std::string> _pad_sec;
@@ -156,9 +156,9 @@ namespace plnt {
 							                               boost::lexical_cast<std::string>(pd)));
 						}
 					}
-					inid.SetSection(PAD_SECTION, std::move(_pad_sec));
+					inid.set_section(PAD_SECTION, std::move(_pad_sec));
 				}
-				return INISaver::SaveINIData(fn, inid);
+				return ini_saver::save_ini_data(fn, inid);
 			}
 		}
 	}

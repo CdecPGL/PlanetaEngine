@@ -270,9 +270,9 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\my_lib\INIData.h" />
-    <ClInclude Include="src\my_lib\INILoader.h" />
-    <ClInclude Include="src\my_lib\INISaver.h" />
+    <ClInclude Include="src\my_lib\ini_data.hpp" />
+    <ClInclude Include="src\my_lib\ini_loader.hpp" />
+    <ClInclude Include="src\my_lib\ini_saver.hpp" />
     <ClInclude Include="src\planeta\BuildinGameObjectComponents.hpp" />
     <ClInclude Include="src\planeta\BuildinResources.hpp" />
     <ClInclude Include="src\planeta\BuildinTasks.hpp" />
@@ -557,9 +557,8 @@
     <ClInclude Include="src\planeta\core\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\my_lib\INIData.cpp" />
-    <ClCompile Include="src\my_lib\INILoader.cpp" />
-    <ClCompile Include="src\my_lib\INISaver.cpp" />
+    <ClCompile Include="src\my_lib\ini_loader.cpp" />
+    <ClCompile Include="src\my_lib\ini_saver.cpp" />
     <ClCompile Include="src\planeta\archiver\AESEncrypter.cpp" />
     <ClCompile Include="src\planeta\core\ArchiveManipulator.cpp" />
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp" />
