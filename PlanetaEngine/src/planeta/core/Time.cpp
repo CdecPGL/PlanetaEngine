@@ -4,9 +4,7 @@
 
 namespace plnt {
 	namespace util {
-
-		std::string Time::ToString() const
-		{
+		std::string Time::ToString() const {
 			std::stringstream sstrm;
 			sstrm << _hour << ':' << _minute << ':' << _second;
 			return std::move(sstrm.str());
@@ -18,6 +16,5 @@ namespace plnt {
 			localtime_s(&pnow, &now);
 			return Time(pnow);
 		}
-
 	}
 }

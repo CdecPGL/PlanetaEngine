@@ -2,10 +2,10 @@
 
 namespace plnt {
 	namespace util {
-		template<class PublicInterface, class... SAImpls>
-		class AccessorTemplate : public SAImpls...{
+		template <class PublicInterface, class... SAImpls>
+		class AccessorTemplate : public SAImpls... {
 		public:
-			explicit AccessorTemplate(PublicInterface& pi) :SAImpls(pi)...{}
+			explicit AccessorTemplate(PublicInterface &pi) : SAImpls(pi)... { }
 		};
 	}
 }

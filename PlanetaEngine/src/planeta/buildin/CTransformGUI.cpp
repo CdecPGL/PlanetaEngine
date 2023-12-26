@@ -15,10 +15,11 @@ namespace plnt {
 	public:
 		RectAnglei rect;
 		Vector2Di position;
-		Vector2Di size{ 1,1 };
+		Vector2Di size{1, 1};
 		double rotation_rad = 0;
-		Vector2Dd pivot{ 0.5,0.5 };
-		Impl_& operator=(const Impl_& imp) {
+		Vector2Dd pivot{0.5, 0.5};
+
+		Impl_ &operator=(const Impl_ &imp) {
 			rect = imp.rect;
 			position = imp.position;
 			size = imp.size;
@@ -43,45 +44,37 @@ namespace plnt {
 			.DeepCopyTarget(&CTransformGUI::impl_);
 	}
 
-	CTransformGUI::CTransformGUI() :impl_(std::make_unique<Impl_>()) {}
+	CTransformGUI::CTransformGUI() : impl_(std::make_unique<Impl_>()) { }
 
 	CTransformGUI::~CTransformGUI() = default;
 
-	const plnt::Vector2Di& CTransformGUI::position() const {
-		return impl_->position;
-	}
+	const plnt::Vector2Di &CTransformGUI::position() const { return impl_->position; }
 
-	plnt::CTransformGUI& CTransformGUI::position(const Vector2Di& pos) {
+	plnt::CTransformGUI &CTransformGUI::position(const Vector2Di &pos) {
 		impl_->position = pos;
 		return *this;
 	}
 
-	const double CTransformGUI::rotation_rad() const {
-		return impl_->rotation_rad;
-	}
+	const double CTransformGUI::rotation_rad() const { return impl_->rotation_rad; }
 
-	plnt::CTransformGUI& CTransformGUI::rotation_rad(double rota_rad) {
+	plnt::CTransformGUI &CTransformGUI::rotation_rad(double rota_rad) {
 		impl_->rotation_rad = rota_rad;
 		return *this;
 	}
 
-	plnt::CTransformGUI& CTransformGUI::size(const Vector2Di& s) {
+	plnt::CTransformGUI &CTransformGUI::size(const Vector2Di &s) {
 		impl_->size = s;
 		return *this;
 	}
 
-	const plnt::Vector2Di& CTransformGUI::size() const {
-		return impl_->size;
-	}
+	const plnt::Vector2Di &CTransformGUI::size() const { return impl_->size; }
 
-	plnt::CTransformGUI& CTransformGUI::pivot(const Vector2Dd& p) {
+	plnt::CTransformGUI &CTransformGUI::pivot(const Vector2Dd &p) {
 		impl_->pivot = p;
 		return *this;
 	}
 
-	const plnt::Vector2Dd& CTransformGUI::pivot() const {
-		return impl_->pivot;
-	}
+	const plnt::Vector2Dd &CTransformGUI::pivot() const { return impl_->pivot; }
 
 	void CTransformGUI::OnActivated() {
 		Super::OnActivated();
@@ -102,5 +95,4 @@ namespace plnt {
 	/*const planeta::RectAnglei& CTransformGUI::rect() const {
 		return impl_->rect;
 	}*/
-
 }

@@ -2,12 +2,7 @@
 #include "Scene.hpp"
 
 namespace plnt {
-	SceneSetUpProxy::SceneSetUpProxy(private_::Scene& pscene) :scene_(pscene) {
+	SceneSetUpProxy::SceneSetUpProxy(private_::Scene &pscene) : scene_(pscene) { }
 
-	}
-
-	plnt::IScene& SceneSetUpProxy::scene() {
-		return scene_;
-	}
-
+	plnt::IScene &SceneSetUpProxy::scene() { return scene_; }
 }

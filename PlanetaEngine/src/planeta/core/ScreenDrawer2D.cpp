@@ -12,7 +12,8 @@
 
 namespace plnt {
 	using namespace dxlib;
-	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Df>& positions, double width, const plnt::Color& color) {
+
+	void ScreenDrawer2D::DrawWire(const std::vector<Vector2Df> &positions, double width, const plnt::Color &color) {
 		screen_.ReserveDraw([positions,width,color]() {
 			VECTOR v0, v1;
 			unsigned int dxc = PEColorToDXColorHandle(color);
@@ -25,7 +26,8 @@ namespace plnt {
 		});
 	}
 
-	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Df>& positions, const std::vector<std::array<int, 3>>& indexes, const plnt::Color& color) {
+	void ScreenDrawer2D::DrawPolygon(const std::vector<Vector2Df> &positions,
+	                                 const std::vector<std::array<int, 3>> &indexes, const plnt::Color &color) {
 		screen_.ReserveDraw([positions,indexes,color]() {
 			VECTOR v0, v1, v2;
 			int dxc = PEColorToDXColorHandle(color);
@@ -37,16 +39,16 @@ namespace plnt {
 					v2 = PEVector2DToDXVECTOR(positions.at(indexes[i][2]));
 					DrawTriangle3D(v0, v1, v2, dxc, true);
 				}
-			} catch (std::out_of_range&) {
+			} catch (std::out_of_range &) {
 				//インデックス番号が範囲外を指していた
 				assert(false);
 			}
 		});
 	}
 
-	void ScreenDrawer2D::DrawCircle(const Vector2Df position, float radius, const Color& color) {
-		size_t separation = static_cast<size_t>(2* sqrt(radius)*math::PI) + 1;
-		std::vector<Vector2Df> poses{ separation + 1};
+	void ScreenDrawer2D::DrawCircle(const Vector2Df position, float radius, const Color &color) {
+		size_t separation = static_cast<size_t>(2 * sqrt(radius) * math::PI) + 1;
+		std::vector<Vector2Df> poses{separation + 1};
 		for (size_t i = 0; i < separation; ++i) {
 			poses[i] = position + GetUnitVectorByRadian<float>(math::PI * 2 / separation * i) * radius;
 		}
@@ -54,13 +56,14 @@ namespace plnt {
 		DrawWire(poses, 1, color);
 	}
 
-	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<private_::GraphDrawData2D>& graph_draw_data) {
+	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<private_::GraphDrawData2D> &graph_draw_data) {
 		screen_.ReserveDraw([graph_draw_data]() {
 			//画像描画データが無効な場合は描画しない
 			if (!graph_draw_data->is_valid()) { return; }
-			const DXGraphDrawData& dxgdd = graph_draw_data->GetDXData();
+			const DXGraphDrawData &dxgdd = graph_draw_data->GetDXData();
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-			DrawPolygonIndexed3D(dxgdd.vertexes.get(), (int)dxgdd.vertex_count, dxgdd.indexes.get(), (int)dxgdd.polygon_count, dxgdd.graph_handle, true);
+			DrawPolygonIndexed3D(dxgdd.vertexes.get(), (int)dxgdd.vertex_count, dxgdd.indexes.get(),
+			                     (int)dxgdd.polygon_count, dxgdd.graph_handle, true);
 		});
 	}
 }

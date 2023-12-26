@@ -8,7 +8,7 @@
 //#include "planeta/core/GUIManagerPublicInterface.hpp"
 //#include "planeta/core/NonCopyable.hpp"
 
-namespace plnt{
+namespace plnt {
 	//class ScreenDrawerGUI;
 	//class SceneAccessorForGUI;
 	//namespace core {

@@ -5,10 +5,10 @@
 
 namespace plnt {
 	namespace {
-		constexpr int fps_measure_interval{ 60 };
+		constexpr int fps_measure_interval{60};
 	}
-	namespace private_ {
 
+	namespace private_ {
 		bool StandardPerformanceManager::Initialize() {
 			_frame_count = 0;
 			_start_time = util::Time::GetCurrentTime();
@@ -16,9 +16,7 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardPerformanceManager::Finalize() {
-			DeleteDebugInformationChannel();
-		}
+		void StandardPerformanceManager::Finalize() { DeleteDebugInformationChannel(); }
 
 		void StandardPerformanceManager::Update() {
 			using namespace std::chrono;
@@ -31,14 +29,14 @@ namespace plnt {
 			++_frame_count;
 		}
 
-		const util::Time StandardPerformanceManager::GetCurrentTimeCount() const { return util::Time::GetCurrentTime() - _start_time; }
+		const util::Time StandardPerformanceManager::GetCurrentTimeCount() const {
+			return util::Time::GetCurrentTime() - _start_time;
+		}
 
-		void StandardPerformanceManager::DebugInfotmationAddHandler(IDebugInformationAdder& di_adder) {
+		void StandardPerformanceManager::DebugInfotmationAddHandler(IDebugInformationAdder &di_adder) {
 			di_adder.AddLineV("FPS:", fps_);
 			di_adder.AddLineV("経過フレーム:", _frame_count);
 			di_adder.AddLineV("経過時間:", (util::Time::GetCurrentTime() - _start_time).ToString());
 		}
-
 	}
-
 }

@@ -13,14 +13,16 @@
 namespace plnt {
 	namespace private_ {
 		namespace init_funcs {
-			bool LoadConfig(ConfigManager& mgr, const std::shared_ptr<FileManipulator>& sys_dir_manipurator, const std::shared_ptr<FileManipulator>& cfg_dir_manipurator) {
+			bool LoadConfig(ConfigManager &mgr, const std::shared_ptr<FileManipulator> &sys_dir_manipurator,
+			                const std::shared_ptr<FileManipulator> &cfg_dir_manipurator) {
 				auto sc_file = sys_dir_manipurator->LoadFile(system_variables::file_system::SystemConfigFileName);
 				if (sc_file == nullptr) {
 					PE_LOG_FATAL("システム設定ファイル\"", system_variables::file_system::SystemConfigFileName, "\"が開けませんでした。");
 					return false;
 				}
 				if (!mgr.LoadSystemConfig(*sc_file)) {
-					PE_LOG_FATAL("システム設定ファイル\"", system_variables::file_system::SystemConfigFileName, "\"の読み込みに失敗しました。");
+					PE_LOG_FATAL("システム設定ファイル\"", system_variables::file_system::SystemConfigFileName,
+					             "\"の読み込みに失敗しました。");
 					return false;
 				}
 				auto uc_file = cfg_dir_manipurator->LoadFile(system_variables::file_system::UserConfigFileName);

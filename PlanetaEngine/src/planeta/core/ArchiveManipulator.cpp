@@ -6,13 +6,14 @@
 #include "LogUtility.hpp"
 
 namespace plnt {
-	ArchiveManipulator::ArchiveManipulator() :FileManipulator()/*, _extracter(std::make_unique<Extracter>())*/, _key(0) {}
+	ArchiveManipulator::ArchiveManipulator() : FileManipulator()/*, _extracter(std::make_unique<Extracter>())*/,
+	                                           _key(0) { }
 
 	ArchiveManipulator::~ArchiveManipulator() {
 		//_extracter->CloseArchiveFile();
 	}
 
-	bool ArchiveManipulator::OpenProc(const std::string& path) {
+	bool ArchiveManipulator::OpenProc(const std::string &path) {
 		/*if (_extracter->SetEXOREncryptionKey((uint16_t)_key)) {
 			PE_LOG_ERROR("初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
 			return false;
@@ -26,7 +27,7 @@ namespace plnt {
 		return false;
 	}
 
-	void ArchiveManipulator::CloseProc() {}
+	void ArchiveManipulator::CloseProc() { }
 
 	bool ArchiveManipulator::ReloadProc() {
 		//_extracter->CloseArchiveFile();
@@ -45,7 +46,7 @@ namespace plnt {
 		return false;
 	}
 
-	bool ArchiveManipulator::LoadFileProc(const std::string& fn, File& file) {
+	bool ArchiveManipulator::LoadFileProc(const std::string &fn, File &file) {
 		/*auto data = _extracter->GetFile(fn);
 		if (data.first == nullptr) {
 			return false;
@@ -57,16 +58,9 @@ namespace plnt {
 
 	void ArchiveManipulator::SetKey(unsigned int k) { _key = k; }
 
-	bool ArchiveManipulator::CheckFileExistenceProc(const std::string& path) const {
-		return false;
-	}
+	bool ArchiveManipulator::CheckFileExistenceProc(const std::string &path) const { return false; }
 
-	size_t ArchiveManipulator::GetFileCountProc() const {
-		return false;
-	}
+	size_t ArchiveManipulator::GetFileCountProc() const { return false; }
 
-	bool ArchiveManipulator::GetAllFilePathsProc(std::vector<std::string>& path_list) const {
-		return false;
-	}
-
+	bool ArchiveManipulator::GetAllFilePathsProc(std::vector<std::string> &path_list) const { return false; }
 }

@@ -19,14 +19,15 @@ boost::serializeライブラリを用いてGameDataをシリアライズする�
 namespace boost {
 	namespace serialization {
 		/*GameDataElement*/
-		template<class Archive>
-		void serialize(Archive& ar, plnt::util::DataContainer& data_container, unsigned int version) {
+		template <class Archive>
+		void serialize(Archive &ar, plnt::util::DataContainer &data_container, unsigned int version) {
 			split_free(ar, data_container, version);
 		}
-		template<class Archive>
-		void save(Archive& ar, const plnt::util::DataContainer& data_container, unsigned int) {
+
+		template <class Archive>
+		void save(Archive &ar, const plnt::util::DataContainer &data_container, unsigned int) {
 			using namespace plnt::util;
-			auto& dci = *data_container.impl_;
+			auto &dci = *data_container.impl_;
 			//整数要素を保存
 			ar & make_nvp("integer_elements", dci.integer_elements_);
 			//論理値要素を保存
@@ -36,10 +37,11 @@ namespace boost {
 			//実数要素を保存
 			ar & make_nvp("number_elements", dci.number_elements_);
 		}
-		template<class Archive>
-		void load(Archive& ar, plnt::util::DataContainer& data_container, unsigned int) {
+
+		template <class Archive>
+		void load(Archive &ar, plnt::util::DataContainer &data_container, unsigned int) {
 			using namespace plnt::util;
-			auto& dci = *data_container.impl_;
+			auto &dci = *data_container.impl_;
 			//整数要素を読み込み
 			ar & make_nvp("integer_elements", dci.integer_elements_);
 			//論理値要素を読み込み

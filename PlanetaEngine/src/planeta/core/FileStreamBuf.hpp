@@ -5,15 +5,18 @@
 
 namespace plnt {
 	class File;
+
 	class FileStreamBuf : public std::streambuf {
 	public:
-		FileStreamBuf(File& file);
+		FileStreamBuf(File &file);
+
 	private:
-		File& file_;
+		File &file_;
 		int_type overflow(int_type = std::char_traits<char>::eof()) override;
 		int_type underflow() override;
 		int sync() override;
-		pos_type seekoff(off_type, std::ios_base::seekdir, std::ios_base::openmode = std::ios_base::in | std::ios_base::out) override;
+		pos_type seekoff(off_type, std::ios_base::seekdir,
+		                 std::ios_base::openmode = std::ios_base::in | std::ios_base::out) override;
 		int_type uflow() override;
 		pos_type seekpos(pos_type, std::ios_base::openmode = std::ios_base::in | std::ios_base::out) override;
 

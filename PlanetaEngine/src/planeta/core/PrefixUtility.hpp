@@ -16,11 +16,12 @@ namespace plnt {
 			StandardInterface,
 			Others
 		};
+
 		/*接頭辞があったら除去する*/
-		std::string RemovePrefix(const std::string& class_name);
+		std::string RemovePrefix(const std::string &class_name);
 		/*接頭辞によりオブジェクトのカテゴリを判断する*/
-		ObjectCategory DetectCategoryByPrefix(const std::string& class_name);
+		ObjectCategory DetectCategoryByPrefix(const std::string &class_name);
 		/*接頭辞を追加する*/
-		std::string AddPrefix(const std::string& class_id,ObjectCategory category);
+		std::string AddPrefix(const std::string &class_id, ObjectCategory category);
 	}
 }

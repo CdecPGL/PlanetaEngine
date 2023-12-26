@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace plnt {
-	enum class TaskSlot : unsigned int{
+	enum class TaskSlot : unsigned int {
 		PlayerInputUpdatePhase = 0,
 		PreCollisionEarlyPhase = 1,
 		PreCollisionLatePhase = 2,
@@ -14,5 +14,6 @@ namespace plnt {
 		GUIUpdateLatePhase = 9,
 		PreDrawUpdatePhase = 10,
 	};
+
 	constexpr int TASK_SLOT_SIZE = 11;
 }

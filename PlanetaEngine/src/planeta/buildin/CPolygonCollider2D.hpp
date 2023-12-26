@@ -7,8 +7,12 @@ namespace plnt {
 	class CPolygonCollider2D : public CCollider2D {
 	public:
 		using Super = CCollider2D;
+
 	private:
-		bool DetectCollision(private_::IColliderWithCollider2D& collider)override { return collider.CollideWith(*this); }
+		bool DetectCollision(private_::IColliderWithCollider2D &collider) override {
+			return collider.CollideWith(*this);
+		}
 	};
+
 	PE_GAMEOBJECTCOMPONENT_CLASS(CPolygonCollider2D);
 }

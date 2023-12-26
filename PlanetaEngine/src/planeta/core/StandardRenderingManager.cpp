@@ -12,8 +12,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool plnt::private_::StandardRenderingManager::Initialize()
-		{
+		bool plnt::private_::StandardRenderingManager::Initialize() {
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetUseLighting(false); //ライティング計算を行わない
 			SetUseSetDrawScreenSettingReset(false); //スクリーン変更時にカメラ情報のリセットを行わない。
@@ -21,12 +20,9 @@ namespace plnt {
 			return true;
 		}
 
-		void plnt::private_::StandardRenderingManager::Finalize()
-		{
-		}
+		void plnt::private_::StandardRenderingManager::Finalize() { }
 
-		bool StandardRenderingManager::Update()
-		{
+		bool StandardRenderingManager::Update() {
 			////デバッグ用
 			////グリッド線(32ごとに引く)
 			//for (int i = 0; i <= 640; i += 32) {
@@ -77,9 +73,7 @@ namespace plnt {
 			return true;
 		}
 
-		std::shared_ptr<Screen> StandardRenderingManager::GetMainScreen() {
-			return main_screen_;
-		}
+		std::shared_ptr<Screen> StandardRenderingManager::GetMainScreen() { return main_screen_; }
 
 		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetDebugDrawScreen() {
 			return debug_draw_screen_;
@@ -89,14 +83,11 @@ namespace plnt {
 			return debug_information_screen_;
 		}
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetGUIScreen() {
-			return gui_screen_;
-		}
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetGUIScreen() { return gui_screen_; }
 
-		StandardRenderingManager::StandardRenderingManager():main_screen_(std::make_shared<Screen>()), gui_screen_(std::make_shared<Screen>()), debug_draw_screen_(std::make_shared<Screen>()), debug_information_screen_(std::make_shared<Screen>()) {
-
-		}
-
+		StandardRenderingManager::StandardRenderingManager(): main_screen_(std::make_shared<Screen>()),
+		                                                      gui_screen_(std::make_shared<Screen>()),
+		                                                      debug_draw_screen_(std::make_shared<Screen>()),
+		                                                      debug_information_screen_(std::make_shared<Screen>()) { }
 	}
 }
-

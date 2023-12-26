@@ -7,7 +7,7 @@
 
 #include "EncrypterBase.hpp"
 
-namespace plnt{
+namespace plnt {
 	namespace archiver {
 		//128bit鍵長AES暗号器
 		class AESEncrypter final : public EncrypterBase {
@@ -15,10 +15,11 @@ namespace plnt{
 			AESEncrypter();
 			~AESEncrypter();
 			using uint128_t = boost::multiprecision::uint128_t;
-			bool SetKey(const uint128_t& key, const uint128_t& initialization_vector);
+			bool SetKey(const uint128_t &key, const uint128_t &initialization_vector);
+
 		private:
-			bool EncryptCore(const File& src, File& dst) const override;
-			bool DecryptCore(const File& src, File& dst) const override;
+			bool EncryptCore(const File &src, File &dst) const override;
+			bool DecryptCore(const File &src, File &dst) const override;
 
 			class Impl_;
 			std::unique_ptr<Impl_> impl_;

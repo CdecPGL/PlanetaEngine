@@ -6,10 +6,11 @@
 namespace plnt {
 	namespace private_ {
 		class Screen;
+
 		/*レンダリングマネージャ*/
 		class RenderingManager : public IRenderingManager, public SubSystemManager {
 		public:
-			virtual ~RenderingManager()override = default;
+			virtual ~RenderingManager() override = default;
 			/*初期化する*/
 			virtual bool Initialize() = 0;
 			/*終了処理を行う*/

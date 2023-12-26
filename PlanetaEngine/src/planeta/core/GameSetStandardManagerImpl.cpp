@@ -27,7 +27,8 @@ namespace plnt {
 			boost::filesystem::create_directory(system_variables::file_system::LogDirectory);
 		}
 		//ログ出力ファイルを有効にする
-		log_mgr->ValidateFileOutPut(system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName);
+		log_mgr->ValidateFileOutPut(
+			system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName);
 		SetLogManager(log_mgr);
 		SetSceneManager(std::make_shared<private_::StandardSceneManager>());
 		SetInputManager(std::make_shared<private_::StandardInputManager>());

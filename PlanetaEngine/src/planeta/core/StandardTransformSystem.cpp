@@ -4,31 +4,23 @@
 
 namespace plnt {
 	namespace private_ {
-		StandardTransformSystem::StandardTransformSystem() {}
+		StandardTransformSystem::StandardTransformSystem() { }
 
 
-		StandardTransformSystem::~StandardTransformSystem() {}
+		StandardTransformSystem::~StandardTransformSystem() { }
 
-		bool StandardTransformSystem::Initialize() {
-			return true;
-		}
+		bool StandardTransformSystem::Initialize() { return true; }
 
-		void StandardTransformSystem::Update() {
+		void StandardTransformSystem::Update() { }
 
-		}
-
-		void StandardTransformSystem::Finalize() {
-
-		}
+		void StandardTransformSystem::Finalize() { }
 
 		void StandardTransformSystem::ApplyVelocity() {
 			//ApplyVelocityに登録削除関連のコードはないはずなので、このループ内ではT2Dの登録削除(t2d_listの変更)は発生しない。
-			for (auto&& t2d : transform2d_map_) {
-				t2d.second->ApplyVelocity_();
-			}
+			for (auto &&t2d : transform2d_map_) { t2d.second->ApplyVelocity_(); }
 		}
 
-		int StandardTransformSystem::RegisterTransform2D(CTransform2D* transform2d) {
+		int StandardTransformSystem::RegisterTransform2D(CTransform2D *transform2d) {
 			int id = id_counter_2d_++;
 			transform2d_map_.emplace(id, transform2d);
 			return id;
@@ -45,7 +37,7 @@ namespace plnt {
 			}
 		}
 
-		int StandardTransformSystem::RegisterTransformGUI(CTransformGUI* transformgui) {
+		int StandardTransformSystem::RegisterTransformGUI(CTransformGUI *transformgui) {
 			int id = id_counter_gui_++;
 			transformgui_map_.emplace(id, transformgui);
 			return id;
@@ -61,6 +53,5 @@ namespace plnt {
 				return false;
 			}
 		}
-
 	}
 }

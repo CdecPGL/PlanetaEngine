@@ -3,6 +3,6 @@
 namespace plnt {
 	class ISaveManager {
 	public:
-		virtual ~ISaveManager() = 0 {};
+		virtual ~ISaveManager() = 0 { };
 	};
 }

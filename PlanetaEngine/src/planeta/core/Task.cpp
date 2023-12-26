@@ -4,7 +4,8 @@
 
 
 namespace plnt {
-	Task::Task() {}
+	Task::Task() { }
+
 	Task::~Task() = default;
 
 	void Task::Dispose() {
@@ -13,17 +14,14 @@ namespace plnt {
 		manager_connection_->Dispose(); //破棄
 	}
 
-	bool Task::SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<IScene>& pscene) {
+	bool Task::SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection> &&manager_connection,
+	                                    const WeakPointer<IScene> &pscene) {
 		scene_ = pscene;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();
 	}
 
-	bool Task::Pause() {
-		return manager_connection_->Pause();
-	}
+	bool Task::Pause() { return manager_connection_->Pause(); }
 
-	bool Task::Resume() {
-		return manager_connection_->Resume();
-	}
+	bool Task::Resume() { return manager_connection_->Resume(); }
 }

@@ -9,7 +9,7 @@
 
 namespace plnt {
 	namespace private_ {
-		void SetStandardSceneModules(Scene& scene) {
+		void SetStandardSceneModules(Scene &scene) {
 			scene.SetCollisionWorld(std::make_shared<StandardCollisionWorld>());
 			scene.SetDrawSystem(std::make_shared<StandardDrawSystem>());
 			scene.SetTaskManager(std::make_shared<StandardTaskManager>());

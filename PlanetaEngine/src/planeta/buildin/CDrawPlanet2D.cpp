@@ -27,18 +27,20 @@ namespace plnt {
 			.ShallowCopyTarget(&CDrawPlanet2D::_horizontal_separation)
 			.ShallowCopyTarget(&CDrawPlanet2D::_vertical_separation)
 			.DeepCopyTarget(&CDrawPlanet2D::graph_draw_data_)
-			.CopyHandler([](const CDrawPlanet2D& src, CDrawPlanet2D& dst) {
-			dst.texture_mapping_mode(src.texture_mapping_mode());
-		});
+			.CopyHandler([](const CDrawPlanet2D &src, CDrawPlanet2D &dst) {
+				dst.texture_mapping_mode(src.texture_mapping_mode());
+			});
 	}
 
-	CDrawPlanet2D::CDrawPlanet2D() :_horizontal_separation(kDefaultHorizontalSeparation), _vertical_separation(kDefaultVerticalSeparation), graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
+	CDrawPlanet2D::CDrawPlanet2D() : _horizontal_separation(kDefaultHorizontalSeparation),
+	                                 _vertical_separation(kDefaultVerticalSeparation),
+	                                 graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
 		texture_mapping_mode(TextureMappingMode::Round);
 	}
 
 	CDrawPlanet2D::~CDrawPlanet2D() = default;
 
-	void CDrawPlanet2D::DrawProc(ScreenDrawer2D& drawer) {
+	void CDrawPlanet2D::DrawProc(ScreenDrawer2D &drawer) {
 		if (graph_draw_data_->graph_resource()) {
 			if (set_polygon_flag_) {
 				SetPolygon_();
@@ -49,7 +51,7 @@ namespace plnt {
 		}
 	}
 
-	bool CDrawPlanet2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+	bool CDrawPlanet2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		_planet_component.reset(com_getter.GetComponent<CPlanet>());
 		if (_planet_component == nullptr) {
@@ -64,22 +66,23 @@ namespace plnt {
 		SetPolygon_();
 	}
 
-	void CDrawPlanet2D::OnFinalized()noexcept {
-		Super::OnFinalized();
-	}
+	void CDrawPlanet2D::OnFinalized() noexcept { Super::OnFinalized(); }
 
 	void CDrawPlanet2D::SetPolygonRoundly_() {
 		//頂点とインデックスのサイズ調整
-		graph_draw_data_->SetVertexCount((_vertical_separation + 1)*(_horizontal_separation + 1));
-		graph_draw_data_->SetPlygonCount((_vertical_separation - 1)*_horizontal_separation * 2 + _horizontal_separation);
+		graph_draw_data_->SetVertexCount((_vertical_separation + 1) * (_horizontal_separation + 1));
+		graph_draw_data_->SetPlygonCount(
+			(_vertical_separation - 1) * _horizontal_separation * 2 + _horizontal_separation);
 		//画像と頂点の設定
-		for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) { //水平方向は座標系正回りにセットしていく
-			for (unsigned int j = 0; j < _vertical_separation + 1; ++j) { //垂直方向は上から順にセットしていく
+		for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) {
+			//水平方向は座標系正回りにセットしていく
+			for (unsigned int j = 0; j < _vertical_separation + 1; ++j) {
+				//垂直方向は上から順にセットしていく
 				//テクスチャ座標のセット
 				Vector2Df uv;
 				uv.x = (float)i / _horizontal_separation;
 				uv.y = (float)j / _vertical_separation;
-				graph_draw_data_->SetVertexUV((_vertical_separation + 1)*i + j, uv);
+				graph_draw_data_->SetVertexUV((_vertical_separation + 1) * i + j, uv);
 			}
 		}
 		//インデックスの設定
@@ -89,19 +92,20 @@ namespace plnt {
 				private_::GraphDrawData2D::PolygonIndexType poly1, poly2;
 				poly1[0] = i * (_vertical_separation + 1) + j;
 				poly1[1] = i * (_vertical_separation + 1) + j + 1;
-				poly1[2] = (i + 1)*(_vertical_separation + 1) + j;
+				poly1[2] = (i + 1) * (_vertical_separation + 1) + j;
 				poly2[0] = i * (_vertical_separation + 1) + j + 1;
-				poly2[1] = (i + 1)*(_vertical_separation + 1) + j;
-				poly2[2] = (i + 1)*(_vertical_separation + 1) + j + 1;
-				graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2, poly1);
-				graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
+				poly2[1] = (i + 1) * (_vertical_separation + 1) + j;
+				poly2[2] = (i + 1) * (_vertical_separation + 1) + j + 1;
+				graph_draw_data_->SetPolyginIndex(i * (_vertical_separation * 2 - 1) + j * 2, poly1);
+				graph_draw_data_->SetPolyginIndex(i * (_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
 			}
 			//中心はポリゴンを1枚だけ張る
 			private_::GraphDrawData2D::PolygonIndexType poly;
 			poly[0] = i * (_vertical_separation + 1) + (_vertical_separation - 1);
 			poly[1] = i * (_vertical_separation + 1) + (_vertical_separation - 1) + 1;
-			poly[2] = (i + 1)*(_vertical_separation + 1) + (_vertical_separation - 1);
-			graph_draw_data_->SetPolyginIndex(i*(_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2, poly);
+			poly[2] = (i + 1) * (_vertical_separation + 1) + (_vertical_separation - 1);
+			graph_draw_data_->SetPolyginIndex(i * (_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2,
+			                                  poly);
 		}
 	}
 
@@ -118,15 +122,15 @@ namespace plnt {
 			//中心以外の頂点座標を求める
 			for (unsigned int j = 0; j < _vertical_separation; ++j) {
 				double dis_ratio = 1.0f - (double)j / _vertical_separation;
-				graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + j, static_cast<Vector2Df>(center_pos + interface_vec * dis_ratio));
+				graph_draw_data_->SetVertexPosition(i * (_vertical_separation + 1) + j,
+				                                    static_cast<Vector2Df>(center_pos + interface_vec * dis_ratio));
 			}
 			//中心の頂点座標を求める
-			graph_draw_data_->SetVertexPosition(i*(_vertical_separation + 1) + _vertical_separation, static_cast<Vector2Df>(center_pos));
+			graph_draw_data_->SetVertexPosition(i * (_vertical_separation + 1) + _vertical_separation,
+			                                    static_cast<Vector2Df>(center_pos));
 		}
 		//頂点色設定
-		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) {
-			graph_draw_data_->SetVertexColor(i, color());
-		}
+		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->SetVertexColor(i, color()); }
 	}
 
 	void CDrawPlanet2D::SetPolygonPlainly_() {
@@ -134,12 +138,13 @@ namespace plnt {
 		graph_draw_data_->SetVertexCount(_horizontal_separation + 1);
 		graph_draw_data_->SetPlygonCount(_horizontal_separation);
 		//画像と頂点の設定
-		for (unsigned int i = 0; i < _horizontal_separation; ++i) { //水平方向は座標系正回りにセットしていく
+		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
+			//水平方向は座標系正回りにセットしていく
 			double rad = math::PI * 2 / _horizontal_separation * i;
 			//テクスチャ座標のセット
 			Vector2Df uv;
-			uv.x = 0.5f + (float)std::cos(rad)*0.5f;
-			uv.y = 0.5f + (float)std::sin(rad)*0.5f;
+			uv.x = 0.5f + (float)std::cos(rad) * 0.5f;
+			uv.y = 0.5f + (float)std::sin(rad) * 0.5f;
 			graph_draw_data_->SetVertexUV(i, uv);
 		}
 		graph_draw_data_->SetVertexUV(_horizontal_separation, Vector2Df(0.5f, 0.5f)); //最後の頂点は中心を指す
@@ -169,30 +174,28 @@ namespace plnt {
 		//中心頂点の設定
 		graph_draw_data_->SetVertexPosition(_horizontal_separation, static_cast<Vector2Df>(center_pos));
 		//頂点色設定
-		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) {
-			graph_draw_data_->SetVertexColor(i, color());
-		}
+		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->SetVertexColor(i, color()); }
 	}
 
-	bool CDrawPlanet2D::SetGraphResource(const std::string& resource_id) {
+	bool CDrawPlanet2D::SetGraphResource(const std::string &resource_id) {
 		auto res = Game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(ResourceID: ", resource_id, ")");
 			return false;
-		}
-		else {
+		} else {
 			graph_draw_data_->SetGraphResource(res);
 			set_polygon_flag_ = true;
 			return true;
 		}
 	}
 
-	CDrawPlanet2D& CDrawPlanet2D::horizontal_separation(unsigned int sep) {
+	CDrawPlanet2D &CDrawPlanet2D::horizontal_separation(unsigned int sep) {
 		_horizontal_separation = sep;
 		set_polygon_flag_ = true;
 		return *this;
 	}
-	CDrawPlanet2D& CDrawPlanet2D::vertical_separation(unsigned int sep) {
+
+	CDrawPlanet2D &CDrawPlanet2D::vertical_separation(unsigned int sep) {
 		_vertical_separation = sep;
 		set_polygon_flag_ = true;
 		return *this;
@@ -201,31 +204,26 @@ namespace plnt {
 	void CDrawPlanet2D::texture_mapping_mode(TextureMappingMode tmm) {
 		tex_map_mode_ = tmm;
 		switch (tex_map_mode_) {
-		case CDrawPlanet2D::TextureMappingMode::Round:
-			polygon_setter_ = &CDrawPlanet2D::SetPolygonRoundly_;
-			polygon_updater_ = &CDrawPlanet2D::UpdatePolygonRoundly_;
-			break;
-		case CDrawPlanet2D::TextureMappingMode::Plain:
-			polygon_setter_ = &CDrawPlanet2D::SetPolygonPlainly_;
-			polygon_updater_ = &CDrawPlanet2D::UpdatePolygonPlainly_;
-			break;
-		default:
-			break;
+			case CDrawPlanet2D::TextureMappingMode::Round:
+				polygon_setter_ = &CDrawPlanet2D::SetPolygonRoundly_;
+				polygon_updater_ = &CDrawPlanet2D::UpdatePolygonRoundly_;
+				break;
+			case CDrawPlanet2D::TextureMappingMode::Plain:
+				polygon_setter_ = &CDrawPlanet2D::SetPolygonPlainly_;
+				polygon_updater_ = &CDrawPlanet2D::UpdatePolygonPlainly_;
+				break;
+			default:
+				break;
 		}
 		set_polygon_flag_ = true;
 	}
 
-	void CDrawPlanet2D::SetPolygon_() {
-		(this->*polygon_setter_)();
-	}
+	void CDrawPlanet2D::SetPolygon_() { (this->*polygon_setter_)(); }
 
-	void CDrawPlanet2D::UpdatePolygon_() {
-		(this->*polygon_updater_)();
-	}
+	void CDrawPlanet2D::UpdatePolygon_() { (this->*polygon_updater_)(); }
 
-	CDrawPlanet2D& CDrawPlanet2D::graph_resource_id(const std::string& res_id) {
+	CDrawPlanet2D &CDrawPlanet2D::graph_resource_id(const std::string &res_id) {
 		SetGraphResource(res_id);
 		return *this;
 	}
-
 }

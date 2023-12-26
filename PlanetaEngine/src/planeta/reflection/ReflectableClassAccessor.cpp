@@ -10,38 +10,38 @@ namespace plnt::reflection {
 	//////////////////////////////////////////////////////////////////////////
 	class ReflectableClassAccessor::Impl_ {
 	public:
-		Impl_(const ClassInfo* ci)noexcept : ci_caller(*ci) {}
+		Impl_(const ClassInfo *ci) noexcept : ci_caller(*ci) { }
+
 		ClassInfoCaller ci_caller;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
 	//Object
 	//////////////////////////////////////////////////////////////////////////
-	ReflectableClassAccessor::ReflectableClassAccessor(const ClassInfo* ci)noexcept :impl_(std::make_unique<Impl_>(ci)) {}
+	ReflectableClassAccessor::ReflectableClassAccessor(const ClassInfo *ci) noexcept : impl_(
+		std::make_unique<Impl_>(ci)) { }
 
-	ReflectableClassAccessor::~ReflectableClassAccessor()noexcept {}
+	ReflectableClassAccessor::~ReflectableClassAccessor() noexcept { }
 
-	void ReflectableClassAccessor::SetVariable_(Reflectable& obj, const std::string& var_id, const boost::any& v) {
+	void ReflectableClassAccessor::SetVariable_(Reflectable &obj, const std::string &var_id, const boost::any &v) {
 		impl_->ci_caller.SetVariable(var_id, obj, v);
 	}
 
-	void ReflectableClassAccessor::GetVariable_(Reflectable& obj, const std::string& var_id, boost::any& v) {
+	void ReflectableClassAccessor::GetVariable_(Reflectable &obj, const std::string &var_id, boost::any &v) {
 		impl_->ci_caller.GetVariable(var_id, obj, v);
 	}
 
-	std::shared_ptr<Reflectable> ReflectableClassAccessor::Clone(Reflectable& obj) {
+	std::shared_ptr<Reflectable> ReflectableClassAccessor::Clone(Reflectable &obj) {
 		return impl_->ci_caller.Clone(obj);
 	}
 
-	void ReflectableClassAccessor::LoadFromPtree(Reflectable& obj, const boost::property_tree::ptree& pt) {
-		try {
-			impl_->ci_caller.SetDataFromPtree(pt, obj);
-		} catch (reflection_error& e) {
+	void ReflectableClassAccessor::LoadFromPtree(Reflectable &obj, const boost::property_tree::ptree &pt) {
+		try { impl_->ci_caller.SetDataFromPtree(pt, obj); } catch (reflection_error &e) {
 			throw reflection_error(ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
 		}
 	}
 
-	void ReflectableClassAccessor::Copy(Reflectable& dst, const Reflectable& obj) {
+	void ReflectableClassAccessor::Copy(Reflectable &dst, const Reflectable &obj) {
 		impl_->ci_caller.CopyFrom(dst, obj);
 	}
 }

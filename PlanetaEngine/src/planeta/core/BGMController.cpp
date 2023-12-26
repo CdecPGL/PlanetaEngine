@@ -37,9 +37,7 @@ namespace plnt {
 		return StopSoundMem(music_resource_->GetHandle()) >= 0;
 	}
 
-	BGMController::~BGMController() {
-		Dispose();
-	}
+	BGMController::~BGMController() { Dispose(); }
 
 	bool BGMController::FadeIn(int frame, bool loop_flag) {
 		if (!is_valid()) {
@@ -66,30 +64,27 @@ namespace plnt {
 
 	void BGMController::Update() {
 		switch (state_) {
-		case plnt::BGMController::State_::FadeIn:
-		{
-			double ratio = (double)fade_frame_counter_ / fade_total_frame_;
-			ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
-			++fade_frame_counter_;
-			break;
-		}
-		case plnt::BGMController::State_::FadeOut:
-		{
-			double ratio = 1.0 - (double)fade_frame_counter_ / fade_total_frame_;
-			ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
-			++fade_frame_counter_;
-			break;
-		}
-		case plnt::BGMController::State_::None:
-			break;
-		default:
-			assert(false);
-			break;
+			case plnt::BGMController::State_::FadeIn: {
+				double ratio = (double)fade_frame_counter_ / fade_total_frame_;
+				ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
+				++fade_frame_counter_;
+				break;
+			}
+			case plnt::BGMController::State_::FadeOut: {
+				double ratio = 1.0 - (double)fade_frame_counter_ / fade_total_frame_;
+				ChangeVolumeSoundMem((int)(255 * ratio), music_resource_->GetHandle());
+				++fade_frame_counter_;
+				break;
+			}
+			case plnt::BGMController::State_::None:
+				break;
+			default:
+				assert(false);
+				break;
 		}
 	}
 
 	bool BGMController::Play_(bool loop_flag) {
 		return PlaySoundMem(music_resource_->GetHandle(), loop_flag ? DX_PLAYTYPE_LOOP : DX_PLAYTYPE_BACK) >= 0;
 	}
-
 }

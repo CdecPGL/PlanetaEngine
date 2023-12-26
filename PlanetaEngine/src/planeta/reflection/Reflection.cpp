@@ -16,30 +16,40 @@
 
 namespace plnt::reflection {
 	namespace {
-		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID(const_cast<char*>("Reflectable"));
+		constexpr char *REFLECTION_ROOT_OBJECT_TYPE_ID(const_cast<char *>("Reflectable"));
 	}
+
 	using namespace private_;
 	using namespace plnt::util;
 	namespace bmi = boost::multi_index;
-	namespace tag{
-		struct StdTypeInfo {};
-		struct ObjectTypeID {};
+
+	namespace tag {
+		struct StdTypeInfo { };
+
+		struct ObjectTypeID { };
 	}
+
 	//////////////////////////////////////////////////////////////////////////
 	//Reflection::Impl_
 	//////////////////////////////////////////////////////////////////////////
 	class Reflection::Impl_ {
 	public:
 		using TypeDataMapType = bmi::multi_index_container<std::unique_ptr<ClassInfo>, bmi::indexed_by<
-			bmi::hashed_unique<bmi::tag<tag::StdTypeInfo>, bmi::member<ClassInfo, TypeInfoWrapper, &ClassInfo::this_t_info>, TypeInfoWrapper::hash>,
-			bmi::hashed_unique<bmi::tag<tag::ObjectTypeID>, bmi::member<ClassInfo, std::string, &ClassInfo::object_type_id>>
-			>>;
+			                                                   bmi::hashed_unique<
+				                                                   bmi::tag<tag::StdTypeInfo>, bmi::member<
+					                                                   ClassInfo, TypeInfoWrapper, &
+					                                                   ClassInfo::this_t_info>, TypeInfoWrapper::hash>,
+			                                                   bmi::hashed_unique<
+				                                                   bmi::tag<tag::ObjectTypeID>, bmi::member<
+					                                                   ClassInfo, std::string, &
+					                                                   ClassInfo::object_type_id>>
+		                                                   >>;
 		TypeDataMapType type_data_map;
 		bool is_initialized_ = false;
-		ClassInfo* reflection_root_class_info = nullptr;
+		ClassInfo *reflection_root_class_info = nullptr;
 		std::vector<std::string> error_que;
 		//コンストラクタ
-		Impl_()noexcept {
+		Impl_() noexcept {
 			//リフレクションルートを登録
 			auto rrci = std::make_unique<ClassInfo>();
 			rrci->this_t_info = typeid(Reflectable);
@@ -48,21 +58,24 @@ namespace plnt::reflection {
 			reflection_root_class_info = rrci.get();
 			type_data_map.insert(std::move(rrci));
 		}
+
 		//登録されたクラスデータから親子関係データを構築し、各種データを設定する
 		void ProcessReflectionData() {
 			decltype(auto) std_ti_map = impl_().type_data_map.get<tag::StdTypeInfo>();
 			//親子のポインタをセット
-			for (auto&& this_class_info_u : std_ti_map) {
-				ClassInfo* this_class_info = this_class_info_u.get();
+			for (auto &&this_class_info_u : std_ti_map) {
+				ClassInfo *this_class_info = this_class_info_u.get();
 				//リフレクションルートでなかったら親クラスに関する処理を行う
 				if (this_class_info->object_type_id != REFLECTION_ROOT_OBJECT_TYPE_ID) {
 					//親クラスのデータセット
-					const std::type_info& sti = this_class_info->super_t_info.get_type_info();
+					const std::type_info &sti = this_class_info->super_t_info.get_type_info();
 					auto it = std_ti_map.find(sti);
 					if (it == std_ti_map.end()) {
-						throw reflection_error(ConvertAndConnectToString("ObjectTypeID\"", this_class_info->object_type_id, "\"の親クラス(std::type_info\"", sti.name(), "\")が登録されていません。"));
+						throw reflection_error(ConvertAndConnectToString(
+							"ObjectTypeID\"", this_class_info->object_type_id, "\"の親クラス(std::type_info\"", sti.name(),
+							"\")が登録されていません。"));
 					}
-					ClassInfo* super_class_info = (*it).get();
+					ClassInfo *super_class_info = (*it).get();
 					this_class_info->super_class_info = super_class_info;
 					//親クラスに自分のクラスを登録
 					super_class_info->child_t_info.emplace(this_class_info->this_t_info);
@@ -70,18 +83,20 @@ namespace plnt::reflection {
 				}
 			}
 			//整合性確認と関数変数設定
-			std::function<void(ClassInfo&)> create_full_info = [&create_full_info](ClassInfo& ci) {
+			std::function<void(ClassInfo &)> create_full_info = [&create_full_info](ClassInfo &ci) {
 				//親クラスが存在したら、自クラスに存在しない親クラスの変数を登録する
 				if (ci.super_class_info != nullptr) {
-					auto& super_class_info = *ci.super_class_info;
+					auto &super_class_info = *ci.super_class_info;
 					//整合性確認
 					auto it = ci.super_class_info->child_t_info.find(ci.this_t_info);
 					if (it == ci.super_class_info->child_t_info.end()) {
 						//親クラスの子として自分が登録されていない
-						throw reflection_error(ConvertAndConnectToString("登録情報の整合性がありません。\"", ci.object_type_id, "\"の親クラス\"", super_class_info.object_type_id, "\"に自クラスが子クラスとして設定されていません。"));
+						throw reflection_error(ConvertAndConnectToString(
+							"登録情報の整合性がありません。\"", ci.object_type_id, "\"の親クラス\"", super_class_info.object_type_id,
+							"\"に自クラスが子クラスとして設定されていません。"));
 					}
 					//親クラスの変数関数追加
-					for (auto&& var_prop : super_class_info.public_variable_prpperty_info) {
+					for (auto &&var_prop : super_class_info.public_variable_prpperty_info) {
 						auto var_id = var_prop.first;
 						//親クラスにある変数のうち、自分のクラスにないものだったら追加
 						if (ci.public_variable_prpperty_info.find(var_id) == ci.public_variable_prpperty_info.end()) {
@@ -89,21 +104,25 @@ namespace plnt::reflection {
 						}
 					}
 					//親クラスのコピーハンドラ継承
-					ci.copy_handler_list.reserve(ci.copy_handler_list.size() + super_class_info.copy_handler_list.size());
-					ci.copy_handler_list.insert(ci.copy_handler_list.begin(), super_class_info.copy_handler_list.begin(), super_class_info.copy_handler_list.end());
+					ci.copy_handler_list.reserve(
+						ci.copy_handler_list.size() + super_class_info.copy_handler_list.size());
+					ci.copy_handler_list.insert(ci.copy_handler_list.begin(),
+					                            super_class_info.copy_handler_list.begin(),
+					                            super_class_info.copy_handler_list.end());
 				}
 				//子クラスに再帰的に適用
-				for (auto&& cci : ci.child_class_info) {
+				for (auto &&cci : ci.child_class_info) {
 					//整合性確認
 					if (cci->super_t_info != ci.this_t_info) {
 						//子クラスの親が自分でない
-						throw reflection_error(ConvertAndConnectToString("登録情報の整合性がありません。\"", ci.object_type_id, "\"の子クラス\"", cci->object_type_id, "\"に自クラスが親クラスとして設定されていません。\"", cci->super_class_info->object_type_id, "\"が設定されています。"));
+						throw reflection_error(ConvertAndConnectToString(
+							"登録情報の整合性がありません。\"", ci.object_type_id, "\"の子クラス\"", cci->object_type_id,
+							"\"に自クラスが親クラスとして設定されていません。\"", cci->super_class_info->object_type_id, "\"が設定されています。"));
 					}
-					create_full_info(const_cast<ClassInfo&>(*cci));
+					create_full_info(const_cast<ClassInfo &>(*cci));
 				}
 			};
 			create_full_info(*reflection_root_class_info);
-			
 		}
 	};
 
@@ -111,15 +130,15 @@ namespace plnt::reflection {
 	//Reflection
 	//////////////////////////////////////////////////////////////////////////
 
-	Reflection::Reflection()noexcept = default;
+	Reflection::Reflection() noexcept = default;
 
-	Reflection::Impl_& Reflection::impl_() {
+	Reflection::Impl_ &Reflection::impl_() {
 		static Impl_ impl;
 		return impl;
 	}
 
 
-	std::shared_ptr<Reflectable> Reflection::CreateObjectByObjectTypeID(const std::string& id)noexcept {
+	std::shared_ptr<Reflectable> Reflection::CreateObjectByObjectTypeID(const std::string &id) noexcept {
 		decltype(auto) id_map = impl_().type_data_map.get<tag::ObjectTypeID>();
 		auto it = id_map.find(id);
 		if (it == id_map.end()) {
@@ -134,7 +153,7 @@ namespace plnt::reflection {
 		}
 	}
 
-	std::shared_ptr<Reflectable> Reflection::CreateObjectByStdTypeInfo(const std::type_info& t_info)noexcept {
+	std::shared_ptr<Reflectable> Reflection::CreateObjectByStdTypeInfo(const std::type_info &t_info) noexcept {
 		decltype(auto) std_ti_map = impl_().type_data_map.get<tag::StdTypeInfo>();
 		auto it = std_ti_map.find(t_info);
 		if (it == std_ti_map.end()) {
@@ -149,7 +168,7 @@ namespace plnt::reflection {
 		}
 	}
 
-	std::string Reflection::GetObjectTypeIDByStdTypeInfo(const std::type_info& tinfo) {
+	std::string Reflection::GetObjectTypeIDByStdTypeInfo(const std::type_info &tinfo) {
 		decltype(auto) std_ti_map = impl_().type_data_map.get<tag::StdTypeInfo>();
 		auto it = std_ti_map.find(tinfo);
 		if (it == std_ti_map.end()) {
@@ -158,7 +177,7 @@ namespace plnt::reflection {
 		return (*it)->object_type_id;
 	}
 
-	const std::type_info& Reflection::GetStdTypeInfoByObjectTypeID(const std::string& id) {
+	const std::type_info &Reflection::GetStdTypeInfoByObjectTypeID(const std::string &id) {
 		decltype(auto) id_map = impl_().type_data_map.get<tag::ObjectTypeID>();
 		auto it = id_map.find(id);
 		if (it == id_map.end()) {
@@ -167,22 +186,21 @@ namespace plnt::reflection {
 		return (*it)->this_t_info.get_type_info();
 	}
 
-	std::shared_ptr<ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info& ti) {
-		auto* class_info = GetClassInfo_Reflectable(ti);
+	std::shared_ptr<ReflectableClassAccessor> Reflection::GetRefrectableClassAccessor(const std::type_info &ti) {
+		auto *class_info = GetClassInfo_Reflectable(ti);
 		if (class_info == nullptr) {
 			throw reflection_error(ConvertAndConnectToString("登録されていない型\"", ti.name(), "\"が指定されました。"));
 		}
 		return std::make_shared<ReflectableClassAccessor>(class_info);
 	}
 
-	void Reflection::BindClassesToLua(lua_State* l) {
+	void Reflection::BindClassesToLua(lua_State *l) {
 		decltype(auto) id_map = impl_().type_data_map.get<tag::ObjectTypeID>();
-		for (auto&& ci : id_map) {
-			ci->lua_binder(l);
-		}
+		for (auto &&ci : id_map) { ci->lua_binder(l); }
 	}
 
-	void Reflection::RegisterObject_(const std::type_info& tinfo, const std::string& object_type_id, std::unique_ptr<ClassInfo>&& class_info) {
+	void Reflection::RegisterObject_(const std::type_info &tinfo, const std::string &object_type_id,
+	                                 std::unique_ptr<ClassInfo> &&class_info) {
 		if (impl_().is_initialized_) {
 			//初期化が終わっているときは例外を投げても問題ない
 			throw reflection_error("オブジェクトの登録は初期化前に行われなければなりません。");
@@ -190,15 +208,16 @@ namespace plnt::reflection {
 		class_info->object_type_id = object_type_id;
 		if (!impl_().type_data_map.insert(std::move(class_info)).second) {
 			//初期化前は例外が投げられないのでエラーqueに追加し、初期化時に確認する
-			impl_().error_que.push_back(ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
+			impl_().error_que.push_back(
+				ConvertAndConnectToString("型\"", tinfo.name(), "\"が重複登録されました。(ID:\"", object_type_id, "\")"));
 		}
 	}
 
-	void Reflection::OutPutErrorLog(const std::string& detail, const std::string& place) {
+	void Reflection::OutPutErrorLog(const std::string &detail, const std::string &place) {
 		Game::instance().log_manager()->Log(LogLevel::Error, place, detail);
 	}
 
-	const ClassInfo* Reflection::GetClassInfo_Reflectable(const std::type_info& t_info)noexcept {
+	const ClassInfo *Reflection::GetClassInfo_Reflectable(const std::type_info &t_info) noexcept {
 		decltype(auto) std_ti_map = impl_().type_data_map.get<tag::StdTypeInfo>();
 		auto it = std_ti_map.find(t_info);
 		if (it == std_ti_map.end()) {
@@ -212,7 +231,7 @@ namespace plnt::reflection {
 		//エラーチェック
 		if (impl_().error_que.size() > 0) {
 			std::string estr;
-			for (auto&& err : impl_().error_que) {
+			for (auto &&err : impl_().error_que) {
 				estr += "\t";
 				estr += err;
 				estr += "\n";
@@ -225,8 +244,7 @@ namespace plnt::reflection {
 		impl_().is_initialized_ = true;
 	}
 
-	size_t Reflection::GetRegisteredClassCount()noexcept {
-		return  impl_().type_data_map.get<tag::StdTypeInfo>().size();
+	size_t Reflection::GetRegisteredClassCount() noexcept {
+		return impl_().type_data_map.get<tag::StdTypeInfo>().size();
 	}
-
 }

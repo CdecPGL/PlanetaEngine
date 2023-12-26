@@ -13,7 +13,7 @@ namespace plnt {
 			.ShallowCopyTarget(&CGraph2DAnimator::animations_);
 	}
 
-	bool CGraph2DAnimator::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+	bool CGraph2DAnimator::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		draw_graph_component_.reset(com_getter.GetComponent<CDrawGraph2D>());
 		if (draw_graph_component_ == nullptr) {
@@ -27,7 +27,7 @@ namespace plnt {
 		Super::OnInitialized();
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
 		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
-		tsk->SetExcuteFunction([this]() {UpdateAnimation(); });
+		tsk->SetExcuteFunction([this]() { UpdateAnimation(); });
 	}
 
 	void CGraph2DAnimator::UpdateAnimation() {
@@ -42,23 +42,26 @@ namespace plnt {
 					frame_counter_ = 0;
 					//新しいフレームが現在のアニメーションのフレーム数を超えていたら
 					if (current_frame_ >= (*current_animation_).size()) {
-						if (roop_flag_) { //ループフラグが立っているときはフレームを0に戻す
+						if (roop_flag_) {
+							//ループフラグが立っているときはフレームを0に戻す
 							current_frame_ = 0;
-						} else { //立っていないときは再生を停止する
+						} else {
+							//立っていないときは再生を停止する
 							is_playing_ = false;
 						}
-					} else { //なにもなく新しいフレームに移行した
+					} else {
+						//なにもなく新しいフレームに移行した
 					}
 				}
 			}
 		}
 	}
 
-	void CGraph2DAnimator::SetAnimation(const std::string& anim_name, const std::vector<FrameDataType>& frames) {
+	void CGraph2DAnimator::SetAnimation(const std::string &anim_name, const std::vector<FrameDataType> &frames) {
 		animations_[anim_name] = frames;
 	}
 
-	void CGraph2DAnimator::SetAnimation(const std::string& anim_name, const std::vector<SimpleFrameDataType>& frames) {
+	void CGraph2DAnimator::SetAnimation(const std::string &anim_name, const std::vector<SimpleFrameDataType> &frames) {
 		std::vector<FrameDataType> new_frames;
 		new_frames.resize(frames.size());
 		for (unsigned int i = 0; i < frames.size(); ++i) {
@@ -67,7 +70,7 @@ namespace plnt {
 		animations_[anim_name] = new_frames;
 	}
 
-	bool CGraph2DAnimator::StartAnimation(const std::string& anim_name, bool roop_flag) {
+	bool CGraph2DAnimator::StartAnimation(const std::string &anim_name, bool roop_flag) {
 		auto it = animations_.find(anim_name);
 		if (it == animations_.end()) {
 			PE_LOG_ERROR("存在しないアニメーションが指定されました。(", anim_name, ")");
@@ -81,14 +84,11 @@ namespace plnt {
 			roop_flag_ = roop_flag;
 			return true;
 		}
-
 	}
 
-	void CGraph2DAnimator::StopAnimation() {
-		is_playing_ = false;
-	}
+	void CGraph2DAnimator::StopAnimation() { is_playing_ = false; }
 
-	void CGraph2DAnimator::animation_data(const std::unordered_map<std::string, std::vector<FrameDataType>>& data) {
+	void CGraph2DAnimator::animation_data(const std::unordered_map<std::string, std::vector<FrameDataType>> &data) {
 		animations_ = data;
 	}
 

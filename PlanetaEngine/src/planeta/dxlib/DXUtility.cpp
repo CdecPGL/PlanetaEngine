@@ -3,7 +3,7 @@
 #include "DXUtility.hpp"
 
 namespace plnt::dxlib {
-	COLOR_U8 PEColorToDXCOLORU8(const plnt::Color& color) {
+	COLOR_U8 PEColorToDXCOLORU8(const plnt::Color &color) {
 		COLOR_U8 cu8;
 		cu8.r = (unsigned char)color.r();
 		cu8.g = (unsigned char)color.g();
@@ -12,7 +12,5 @@ namespace plnt::dxlib {
 		return cu8;
 	}
 
-	unsigned int PEColorToDXColorHandle(const plnt::Color& color) {
-		return GetColor(color.r(), color.g(), color.b());
-	}
+	unsigned int PEColorToDXColorHandle(const plnt::Color &color) { return GetColor(color.r(), color.g(), color.b()); }
 }

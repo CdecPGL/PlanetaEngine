@@ -1,5 +1,4 @@
-﻿
-#include <unordered_map>
+﻿#include <unordered_map>
 #include "StandardSoundManager.hpp"
 #include "BGMController.hpp"
 #include "SoundEffectController.hpp"
@@ -9,14 +8,14 @@
 
 namespace plnt {
 	namespace private_ {
-
 		class StandardSoundManager::Impl_ {
 		public:
 			std::shared_ptr<BGMController> bgm_controller_;
 			std::unordered_map<int, std::shared_ptr<SoundEffectController>> se_controllers_;
 		};
 
-		std::shared_ptr<IBGMController> StandardSoundManager::GetBGMController(const std::shared_ptr<ResourceBase>& music_resource) {
+		std::shared_ptr<IBGMController> StandardSoundManager::GetBGMController(
+			const std::shared_ptr<ResourceBase> &music_resource) {
 			auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
 			if (m_res == nullptr) {
 				PE_LOG_ERROR("Musicリソースでないリソースが渡されました。(", typeid(*music_resource).name(), ")");
@@ -38,10 +37,11 @@ namespace plnt {
 		}
 
 
-		std::shared_ptr<ISoundEffectController> StandardSoundManager::GetSoundEffectController(const std::shared_ptr<ResourceBase>& sound_resource) {
+		std::shared_ptr<ISoundEffectController> StandardSoundManager::GetSoundEffectController(
+			const std::shared_ptr<ResourceBase> &sound_resource) {
 			auto s_res = std::dynamic_pointer_cast<RSound>(sound_resource);
 			if (s_res == nullptr) {
-				PE_LOG_ERROR("Soundリソースでないリソースが渡されました。(", typeid(*sound_resource).name(),")");
+				PE_LOG_ERROR("Soundリソースでないリソースが渡されました。(", typeid(*sound_resource).name(), ")");
 				return nullptr;
 			}
 			int dx_handle = s_res->GetHandle();
@@ -50,35 +50,25 @@ namespace plnt {
 				auto new_se_ctlr = std::make_shared<SoundEffectController>(s_res);
 				impl_->se_controllers_.emplace(dx_handle, new_se_ctlr);
 				return new_se_ctlr;
-			} else {
-				return it->second;
-			}
+			} else { return it->second; }
 		}
 
-		StandardSoundManager::StandardSoundManager() :impl_(std::make_unique<Impl_>()) {
+		StandardSoundManager::StandardSoundManager() : impl_(std::make_unique<Impl_>()) { }
 
-		}
-
-		void StandardSoundManager::Update() {
-			if (impl_->bgm_controller_) { impl_->bgm_controller_->Update(); }
-		}
+		void StandardSoundManager::Update() { if (impl_->bgm_controller_) { impl_->bgm_controller_->Update(); } }
 
 		void StandardSoundManager::Reset() {
 			if (impl_->bgm_controller_) {
 				impl_->bgm_controller_->Dispose();
 				impl_->bgm_controller_.reset();
 			}
-			for (auto& s : impl_->se_controllers_) {
-				s.second->Dispose();
-			}
+			for (auto &s : impl_->se_controllers_) { s.second->Dispose(); }
 			impl_->se_controllers_.clear();
 		}
 
-		bool StandardSoundManager::Initialize() {
-			return true;
-		}
+		bool StandardSoundManager::Initialize() { return true; }
 
-		void StandardSoundManager::Finalize() {}
+		void StandardSoundManager::Finalize() { }
 
 		StandardSoundManager::~StandardSoundManager() = default;
 	}

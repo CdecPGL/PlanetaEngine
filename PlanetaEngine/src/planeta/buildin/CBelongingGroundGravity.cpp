@@ -12,7 +12,7 @@ namespace plnt {
 			.ShallowCopyTarget(&CBelongingGroundGravity::_gravity_scale);
 	}
 
-	bool CBelongingGroundGravity::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+	bool CBelongingGroundGravity::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		return true;
@@ -21,10 +21,8 @@ namespace plnt {
 	void CBelongingGroundGravity::OnInitialized() {
 		Super::OnInitialized();
 		auto proc = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreCollisionEarlyPhase);
-		proc->SetExcuteFunction([this]() {Update(); });
+		proc->SetExcuteFunction([this]() { Update(); });
 	}
 
-	void CBelongingGroundGravity::Update() {
-		transform2d_->GroundAccelerate(Vector2Dd(0.0f, -1.0f) * _gravity_scale);
-	}
+	void CBelongingGroundGravity::Update() { transform2d_->GroundAccelerate(Vector2Dd(0.0f, -1.0f) * _gravity_scale); }
 }

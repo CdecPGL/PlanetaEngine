@@ -8,10 +8,13 @@
 
 namespace plnt {
 	class IScene;
+
 	namespace private_ {
 		class TaskManagerConnection;
 	}
+
 	class IGameObject;
+
 	class Task :
 		public Object, private util::NonCopyable<Task> {
 	public:
@@ -24,19 +27,24 @@ namespace plnt {
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection>&& manager_connection, const WeakPointer<IScene>& pscene);
+		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection> &&manager_connection,
+		                              const WeakPointer<IScene> &pscene);
 		/*イベント*/
 		/*! プロセス破棄イベント*/
 		Signal<void()> disposed;
+
 	protected:
 		//! シーンへのアクセス
-		IScene& scene() { return *scene_; }
+		IScene &scene() { return *scene_; }
+
 	private:
 		WeakPointer<IScene> scene_;
 		std::unique_ptr<private_::TaskManagerConnection> manager_connection_;
 		virtual bool OnCreated() { return true; }
-		virtual void OnDisposed() {};
+
+		virtual void OnDisposed() { };
 	};
+
 	PE_REFLECTABLE_CLASS(Task);
 }
 

@@ -11,11 +11,9 @@
 
 using namespace ::plnt::effekseer;
 
-Effekseer::EffectRef plnt::REffect::effekseer_effect() const {
-	return effekseer_effect_;
-}
+Effekseer::EffectRef plnt::REffect::effekseer_effect() const { return effekseer_effect_; }
 
-bool plnt::REffect::OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) {
+bool plnt::REffect::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 	//読み込み用設定
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
 	//エフェクトローダーの設定
@@ -27,17 +25,17 @@ bool plnt::REffect::OnLoaded(const File& file, const JsonFile& metadata, Resourc
 	decltype(auto) txr_ldr = eff_mgr->GetTextureLoader();
 	assert(txr_ldr != nullptr);
 
-	txr_ldr.DownCast<TextureLoaderForEffekseer>()->SetTextureGetter([&referencer] (const std::string& path, ::Effekseer::TextureType texture_type)->::Effekseer::TextureRef{
-		auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
-		if (tex_res) {
-			return tex_res->effekseer_taxture();
-		} else {
-			PE_LOG_ERROR("エフェクトファイル内で参照されているテクスチャリソースの読み込みに失敗しました。(指定パス:", path, ")");
-			return nullptr;
-		}
-	});
+	txr_ldr.DownCast<TextureLoaderForEffekseer>()->SetTextureGetter(
+		[&referencer](const std::string &path, ::Effekseer::TextureType texture_type)-> ::Effekseer::TextureRef {
+			auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
+			if (tex_res) { return tex_res->effekseer_taxture(); } else {
+				PE_LOG_ERROR("エフェクトファイル内で参照されているテクスチャリソースの読み込みに失敗しました。(指定パス:", path, ")");
+				return nullptr;
+			}
+		});
 	//読み込み
-	auto effect = Effekseer::Effect::Create(GetEffekseer3DManager(), const_cast<unsigned char*>(file.top_pointer()), file.size());
+	auto effect = Effekseer::Effect::Create(GetEffekseer3DManager(), const_cast<unsigned char *>(file.top_pointer()),
+	                                        file.size());
 	if (effect == nullptr) {
 		PE_LOG_ERROR("Effekseerファイルの読み込みに失敗しました。");
 		return false;
@@ -46,8 +44,4 @@ bool plnt::REffect::OnLoaded(const File& file, const JsonFile& metadata, Resourc
 	return true;
 }
 
-void plnt::REffect::OnDisposed() {
-	if (effekseer_effect_ != nullptr) {
-		effekseer_effect_->Release();
-	}
-}
+void plnt::REffect::OnDisposed() { if (effekseer_effect_ != nullptr) { effekseer_effect_->Release(); } }

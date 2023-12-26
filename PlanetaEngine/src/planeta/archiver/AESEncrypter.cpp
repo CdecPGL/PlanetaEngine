@@ -45,14 +45,15 @@ namespace plnt {
 				}
 			}
 
-			template<typename T, int S>
-			static void SetByteArrayFromUint128(const uint128_t& src, std::array<T, S>& dst) {
-				for (int i = 0; i < S && (i + 1)*sizeof(T) <= 16; ++i) {
-					dst[i] = static_cast<T>(src << i*sizeof(T));
+			template <typename T, int S>
+			static void SetByteArrayFromUint128(const uint128_t &src, std::array<T, S> &dst) {
+				for (int i = 0; i < S && (i + 1) * sizeof(T) <= 16; ++i) {
+					dst[i] = static_cast<T>(src << i * sizeof(T));
 				}
 			}
+
 		public:
-			bool SetKey(const uint128_t& key, const uint128_t& initializatio_vector) {
+			bool SetKey(const uint128_t &key, const uint128_t &initializatio_vector) {
 				SetByteArrayFromUint128(key, key_);
 				SetByteArrayFromUint128(initializatio_vector, iv_);
 				enc_obj_update = true;
@@ -60,7 +61,7 @@ namespace plnt {
 				return true;
 			}
 
-			bool Encrypt(File& dst,const File& src) {
+			bool Encrypt(File &dst, const File &src) {
 				UpdateEncObj();
 				std::string dat;
 				CryptoPP::StreamTransformationFilter enc_filter(*aes_enc_obj_, new CryptoPP::StringSink(dat));
@@ -70,7 +71,7 @@ namespace plnt {
 				return true;
 			}
 
-			bool Decrypt(File& dst, const File& src) {
+			bool Decrypt(File &dst, const File &src) {
 				UpdateDecObj();
 				std::string dat;
 				CryptoPP::StreamTransformationFilter dec_filter(*aes_dec_obj_, new CryptoPP::StringSink(dat));
@@ -85,20 +86,15 @@ namespace plnt {
 		//AESEnctypter
 		//////////////////////////////////////////////////////////////////////////
 
-		AESEncrypter::AESEncrypter() :impl_(std::make_unique<Impl_>()) {};
+		AESEncrypter::AESEncrypter() : impl_(std::make_unique<Impl_>()) { };
 		AESEncrypter::~AESEncrypter() = default;
 
-		bool AESEncrypter::EncryptCore(const File& src, File& dst) const {
-			return impl_->Encrypt(dst, src);
-		}
+		bool AESEncrypter::EncryptCore(const File &src, File &dst) const { return impl_->Encrypt(dst, src); }
 
-		bool AESEncrypter::DecryptCore(const File& src, File& dst) const {
-			return impl_->Decrypt(dst, src);
-		}
+		bool AESEncrypter::DecryptCore(const File &src, File &dst) const { return impl_->Decrypt(dst, src); }
 
-		bool AESEncrypter::SetKey(const uint128_t& key, const uint128_t& initializatio_vector) {
+		bool AESEncrypter::SetKey(const uint128_t &key, const uint128_t &initializatio_vector) {
 			return impl_->SetKey(key, initializatio_vector);
 		}
-
 	}
 }

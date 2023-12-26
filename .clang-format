@@ -1,0 +1,46 @@
+---
+Language: Cpp
+BasedOnStyle: GNU
+AllowShortBlocksOnASingleLine: Always
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: true
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Always
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+BreakBeforeBraces: Attach
+BreakBeforeConceptDeclarations: Always
+# 改行コードはLFで統一
+DeriveLineEnding: false
+UseCRLF: false
+DerivePointerAlignment: false
+PointerAlignment: Right
+EmptyLineAfterAccessModifier: Never
+IncludeBlocks: Preserve
+IndentAccessModifiers: false
+IndentCaseLabels: true
+IndentPPDirectives: BeforeHash
+InsertBraces: true
+LambdaBodyIndentation: OuterScope
+ReferenceAlignment: Right
+SeparateDefinitionBlocks: Always
+SortIncludes: CaseSensitive
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: false

@@ -5,6 +5,6 @@ namespace plnt {
 	public:
 		virtual ~ISoundEffectController() = default;
 		virtual bool Play() = 0;
-		virtual bool is_valid()const = 0;
+		virtual bool is_valid() const = 0;
 	};
 }

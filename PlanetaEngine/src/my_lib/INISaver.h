@@ -2,9 +2,9 @@
 
 #include"INIData.h"
 
-class INISaver{
+class INISaver {
 public:
 	INISaver();
 	~INISaver();
-	static int SaveINIData(const std::string&,const INIData&);
+	static int SaveINIData(const std::string &, const INIData &);
 };

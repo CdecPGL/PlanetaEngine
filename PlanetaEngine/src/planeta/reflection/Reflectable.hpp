@@ -8,15 +8,14 @@ namespace plnt::reflection {
 	*/
 	class Reflectable {
 	public:
-		virtual ~Reflectable() = 0 {};
+		virtual ~Reflectable() = 0 { };
 	};
 }
 
 /*! リフレクションデータ登録関数の宣言を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DECLARATION(type)\
 public:\
-static void ReflectionDataRegisterer(::plnt::reflection::ClassRegisterer<type>& registerer);\
-
+static void ReflectionDataRegisterer(::plnt::reflection::ClassRegisterer<type>& registerer);
 /*! リフレクションデータ登録関数の定義を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DEFINITION(type)\
 void type::ReflectionDataRegisterer(::plnt::reflection::ClassRegisterer<type>& registerer)

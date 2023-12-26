@@ -9,7 +9,7 @@ namespace plnt {
 			.ShallowCopyTarget(&CStraightLineCollider2D::length_);
 	}
 
-	bool CStraightLineCollider2D::CollideWith(CCircleCollider2D& circle_collider) {
+	bool CStraightLineCollider2D::CollideWith(CCircleCollider2D &circle_collider) {
 		return private_::collision_detect_functions::CollisionDetectCircleAndStraightLine(circle_collider, *this);
 	}
 }

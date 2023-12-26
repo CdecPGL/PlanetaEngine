@@ -5,9 +5,7 @@
 
 namespace plnt {
 	void SoundEffectController::Dispose() {
-		for (auto& dh : duplicated_dx_handles_) {
-			DeleteSoundMem(dh);
-		}
+		for (auto &dh : duplicated_dx_handles_) { DeleteSoundMem(dh); }
 		sound_resource_.reset();
 	}
 
@@ -18,13 +16,14 @@ namespace plnt {
 		}
 		//空いているサウンドを先頭から探していく
 		int usable_index = -1;
-		for (size_t i = 0; i < duplicated_dx_handles_.size(); ++i) {
+		for (int i = 0; i < duplicated_dx_handles_.size(); ++i) {
 			if (CheckSoundMem(duplicated_dx_handles_[i]) == 0) {
 				usable_index = i;
 				break;
 			}
 		}
-		if (usable_index < 0) { //空いているサウンドがなかったら新たに作成
+		if (usable_index < 0) {
+			//空いているサウンドがなかったら新たに作成
 			int ndh = DuplicateSoundMem(sound_resource_->GetHandle());
 			duplicated_dx_handles_.push_back(ndh);
 			usable_index = duplicated_dx_handles_.size() - 1;
@@ -36,13 +35,10 @@ namespace plnt {
 		return true;
 	}
 
-	SoundEffectController::~SoundEffectController() {
-		Dispose();
-	}
+	SoundEffectController::~SoundEffectController() { Dispose(); }
 
 	bool SoundEffectController::is_valid() const {
 		if (sound_resource_ == nullptr) { return false; }
 		return sound_resource_->is_usable();
 	}
-
 }

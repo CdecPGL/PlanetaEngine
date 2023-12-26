@@ -20,32 +20,33 @@ namespace plnt {
 
 	class CEffect::Impl_ {
 	public:
-		Impl_& operator=(const Impl_& obj);
+		Impl_ &operator=(const Impl_ &obj);
 
 		bool CreateEffectInstance();
 		bool StartEffect();
 		bool PauseEffect();
 		bool ClearEffectInstance();
 
-		bool SetResourceByID(const std::string& id);
-		bool GetEffectExits()const;
+		bool SetResourceByID(const std::string &id);
+		bool GetEffectExits() const;
 		void ApplyTransformToEffect();
 
-		void SetMyCTransform2D(const NonOwingPointer<CTransform2D>& com);
+		void SetMyCTransform2D(const NonOwingPointer<CTransform2D> &com);
 		void DisconnectMyCTransformUpdatedEvent();
 		void ConnectMyCTransformUpdatedEvent();
-		
+
 		bool roop_flag_ = false;
 		bool auto_play_ = true;
 		double expansion_ = 1.0;
 		SignalConnection trans_update_eve_connection_;
+
 	private:
 		NonOwingPointer<CTransform2D> my_c_transform_2d_;
 		std::shared_ptr<REffect> reffect_;
 		int effect_handle_ = -1;
 	};
 
-	CEffect::Impl_& CEffect::Impl_::operator=(const Impl_& obj) {
+	CEffect::Impl_ &CEffect::Impl_::operator=(const Impl_ &obj) {
 		reffect_ = obj.reffect_;
 		roop_flag_ = obj.roop_flag_;
 		auto_play_ = obj.auto_play_;
@@ -57,15 +58,14 @@ namespace plnt {
 		ClearEffectInstance();
 		if (reffect_) {
 			auto eff_mgr = GetEffekseer3DManager();
-			auto& trans = *my_c_transform_2d_;
+			auto &trans = *my_c_transform_2d_;
 			effect_handle_ = eff_mgr->Play(reffect_->effekseer_effect(),
-				static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
+			                               static_cast<float>(trans.position().x),
+			                               static_cast<float>(trans.position().y), 0);
 			eff_mgr->SetPaused(effect_handle_, true);
 			eff_mgr->SetShown(effect_handle_, false);
 			return effect_handle_ >= 0;
-		} else {
-			return true;
-		}
+		} else { return true; }
 	}
 
 	bool CEffect::Impl_::StartEffect() {
@@ -94,7 +94,7 @@ namespace plnt {
 		return true;
 	}
 
-	bool CEffect::Impl_::SetResourceByID(const std::string& resource_id) {
+	bool CEffect::Impl_::SetResourceByID(const std::string &resource_id) {
 		auto res = Game::instance().resource_manager()->GetResourceByID<REffect>(resource_id);
 		if (res) {
 			reffect_ = res;
@@ -109,22 +109,21 @@ namespace plnt {
 		if (effect_handle_ >= 0) {
 			auto eff_mgr = GetEffekseer3DManager();
 			return eff_mgr->Exists(effect_handle_);
-		} else {
-			return false;
-		}
+		} else { return false; }
 	}
 
 	void CEffect::Impl_::ApplyTransformToEffect() {
-		auto& trans = *my_c_transform_2d_;
+		auto &trans = *my_c_transform_2d_;
 		auto eff_mgr = GetEffekseer3DManager();
 		eff_mgr->SetLocation(effect_handle_,
-			static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
+		                     static_cast<float>(trans.position().x), static_cast<float>(trans.position().y), 0);
 		eff_mgr->SetRotation(effect_handle_, 0, 0,
-			static_cast<float>(trans.rotation_rad()));
+		                     static_cast<float>(trans.rotation_rad()));
 		auto scl = trans.scale();
 		scl *= expansion_; //拡大率適用
-		eff_mgr->SetScale(effect_handle_, 
-			static_cast<float>(scl.x), static_cast<float>(scl.y), static_cast<float>((scl.x + scl.y) / 2));
+		eff_mgr->SetScale(effect_handle_,
+		                  static_cast<float>(scl.x), static_cast<float>(scl.y),
+		                  static_cast<float>((scl.x + scl.y) / 2));
 	}
 
 	void CEffect::Impl_::ConnectMyCTransformUpdatedEvent() {
@@ -136,11 +135,9 @@ namespace plnt {
 		}
 	}
 
-	void CEffect::Impl_::DisconnectMyCTransformUpdatedEvent() {
-		trans_update_eve_connection_.Disconnect();
-	}
+	void CEffect::Impl_::DisconnectMyCTransformUpdatedEvent() { trans_update_eve_connection_.Disconnect(); }
 
-	void CEffect::Impl_::SetMyCTransform2D(const NonOwingPointer<CTransform2D>& com) {
+	void CEffect::Impl_::SetMyCTransform2D(const NonOwingPointer<CTransform2D> &com) {
 		my_c_transform_2d_.reset(com);
 		ConnectMyCTransformUpdatedEvent();
 	}
@@ -159,11 +156,11 @@ namespace plnt {
 			.DeepCopyTarget(&CEffect::impl_);
 	}
 
-	CEffect::CEffect() :impl_(std::make_unique<Impl_>()) {}
+	CEffect::CEffect() : impl_(std::make_unique<Impl_>()) { }
 
 	CEffect::~CEffect() = default;
 
-	bool CEffect::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+	bool CEffect::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		impl_->SetMyCTransform2D(com_getter.GetComponent<CTransform2D>());
 		return true;
@@ -172,7 +169,7 @@ namespace plnt {
 	void CEffect::OnInitialized() {
 		Super::OnInitialized();
 		if (!impl_->GetEffectExits()) {
-			if (!impl_->CreateEffectInstance()) { 
+			if (!impl_->CreateEffectInstance()) {
 				PE_LOG_ERROR("エフェクトインスタンスの作成に失敗しました。");
 				return;
 			}
@@ -184,9 +181,7 @@ namespace plnt {
 			if (impl_->roop_flag_ && !impl_->GetEffectExits()) {
 				if (is_valied()) {
 					if (!impl_->CreateEffectInstance()) { return; }
-					if (is_active()) {
-						impl_->StartEffect();
-					}
+					if (is_active()) { impl_->StartEffect(); }
 				}
 			}
 		});
@@ -195,15 +190,10 @@ namespace plnt {
 	void CEffect::OnActivated() {
 		Super::OnActivated();
 		impl_->ConnectMyCTransformUpdatedEvent();
-		if (auto_play()) {
-			if (!impl_->StartEffect()) {
-				PE_LOG_ERROR("エフェクトの開始に失敗しました。");
-			}
-		}
+		if (auto_play()) { if (!impl_->StartEffect()) { PE_LOG_ERROR("エフェクトの開始に失敗しました。"); } }
 	}
 
-	void CEffect::OnInactivated()
-{
+	void CEffect::OnInactivated() {
 		impl_->DisconnectMyCTransformUpdatedEvent();
 		impl_->PauseEffect();
 		return Super::OnInactivated();
@@ -214,51 +204,32 @@ namespace plnt {
 		Super::OnFinalized();
 	}
 
-	void CEffect::resource_id(const std::string& resource_id) {
+	void CEffect::resource_id(const std::string &resource_id) {
 		if (!impl_->SetResourceByID(resource_id)) { return; }
 		if (is_valied()) {
 			if (!impl_->CreateEffectInstance()) { return; }
-			if (is_active() && auto_play()) {
-				impl_->StartEffect();
-			}
+			if (is_active() && auto_play()) { impl_->StartEffect(); }
 		}
 	}
 
-	bool CEffect::is_playing() const {
-		return impl_->GetEffectExits() && is_active();
-	}
+	bool CEffect::is_playing() const { return impl_->GetEffectExits() && is_active(); }
 
-	void CEffect::roop_flag(bool f) {
-		impl_->roop_flag_ = f;
-	}
+	void CEffect::roop_flag(bool f) { impl_->roop_flag_ = f; }
 
 	bool CEffect::roop_flag() const {
 		bool f = impl_->roop_flag_;
 		return f;
 	}
 
-	void CEffect::auto_play(bool f) {
-		impl_->auto_play_ = f;
-	}
+	void CEffect::auto_play(bool f) { impl_->auto_play_ = f; }
 
-	bool CEffect::auto_play() const {
-		return impl_->auto_play_;
-	}
+	bool CEffect::auto_play() const { return impl_->auto_play_; }
 
-	void CEffect::expansion(double e) {
-		impl_->expansion_ = e;
-	}
+	void CEffect::expansion(double e) { impl_->expansion_ = e; }
 
-	double CEffect::expansion() const {
-		return impl_->expansion_;
-	}
+	double CEffect::expansion() const { return impl_->expansion_; }
 
-	bool CEffect::Play() {
-		return impl_->StartEffect();
-	}
+	bool CEffect::Play() { return impl_->StartEffect(); }
 
-	bool CEffect::Stop() {
-		return impl_->PauseEffect();
-	}
-
+	bool CEffect::Stop() { return impl_->PauseEffect(); }
 }

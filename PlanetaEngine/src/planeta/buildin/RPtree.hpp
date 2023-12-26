@@ -7,9 +7,10 @@ namespace plnt {
 	class RPtree : public ResourceBase {
 	public:
 		virtual ~RPtree() = default;
-		std::shared_ptr<const boost::property_tree::ptree> GetPtree()const;
+		std::shared_ptr<const boost::property_tree::ptree> GetPtree() const;
+
 	private:
-		bool OnLoaded(const File& file, const JsonFile& metadata, ResourceReferencer& referencer) override;
+		bool OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 		std::shared_ptr<boost::property_tree::ptree> ptree_;
 	};

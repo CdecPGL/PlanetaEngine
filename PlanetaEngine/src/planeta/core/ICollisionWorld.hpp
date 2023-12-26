@@ -3,6 +3,6 @@
 namespace plnt {
 	class ICollisionWorld {
 	public:
-		virtual ~ICollisionWorld() = 0 {};
+		virtual ~ICollisionWorld() = 0 { };
 	};
 }

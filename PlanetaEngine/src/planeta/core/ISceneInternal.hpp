@@ -10,9 +10,10 @@ namespace plnt {
 		class GameObjectManager;
 		class TaskManager;
 		class TransformSystem;
+
 		class ISceneInternal : public IScene {
 		public:
-			virtual ~ISceneInternal() = 0 {};
+			virtual ~ISceneInternal() = 0 { };
 			virtual WeakPointer<CollisionWorld> collision_world_internal_pointer() = 0;
 			virtual WeakPointer<DrawSystem> draw_system_internal_pointer() = 0;
 			virtual WeakPointer<GameObjectManager> game_object_manager_internal_pointer() = 0;

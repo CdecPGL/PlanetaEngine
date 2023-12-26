@@ -10,9 +10,10 @@ namespace plnt {
 			explicit Screen();
 			void HandleDrawReservations();
 			void ResetAllReservations();
-			void ReserveDraw(const std::function<void()>& drawer);
-			bool is_valid()const;
+			void ReserveDraw(const std::function<void()> &drawer);
+			bool is_valid() const;
 			void Invalidate();
+
 		private:
 			bool is_valid_;
 			std::vector<std::function<void()>> draw_reservations_;

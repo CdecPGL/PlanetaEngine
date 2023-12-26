@@ -9,6 +9,7 @@ namespace plnt {
 			DrawPhase = 3,
 			DrawGUIPhase = 4,
 		};
+
 		constexpr int SYSTEM_TASK_SLOT_SIZE = 5;
 	}
 }

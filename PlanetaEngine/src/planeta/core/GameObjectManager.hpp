@@ -7,7 +7,7 @@ namespace plnt {
 	namespace private_ {
 		class GameObjectManager : public IGameObjectManager, public SceneModule {
 		public:
-			virtual ~GameObjectManager() = 0 {};
+			virtual ~GameObjectManager() = 0 { };
 			/*ゲームオブジェクト登録解除(終了処理を行う)*/
 			virtual bool RemoveGameObject(int id) = 0;
 			/*有効化*/

@@ -2,9 +2,9 @@
 
 #include <string>
 
-namespace plnt{
-	namespace private_{
-		namespace system_variables{
+namespace plnt {
+	namespace private_ {
+		namespace system_variables {
 			namespace engine_information {
 				extern const std::string VersionString; //バージョン文字列
 				extern const int MajorVersionNumber; //メジャーバージョン番号
@@ -12,6 +12,7 @@ namespace plnt{
 				extern const int SubVesionNumber; //サブバージョン番号
 				extern const std::string BuildDate; //ビルドした日付
 			}
+
 			namespace file_system {
 				extern const std::string SystemConfigFileName; //システム設定ファイル名
 				extern const std::string ProgramDefinitionFileName; //プログラム用定義ファイル
@@ -35,6 +36,7 @@ namespace plnt{
 
 				extern const unsigned int ResourceDataArchiveDecryptionKey; //リソースデータアーカイブの復号化キー
 			}
+
 			namespace resource {
 				extern const std::string BuiltinGraphResourceTypeName; //標準の画像リソースタイプ名
 				extern const std::string BuiltinSoundResourceTypeName; //標準の効果音リソースタイプ名
@@ -62,6 +64,7 @@ namespace plnt{
 				extern const std::string BuiltinEffectResourceTypePrefix; //標準のEffectリソース接頭辞
 				extern const std::string BuiltinEffectTextureResourceTypePrefix; //標準のEffectテクスチャリソース接頭辞
 			}
+
 			namespace prefixes {
 				extern const char Scene;
 				extern const char GameObject;
@@ -72,6 +75,7 @@ namespace plnt{
 				extern const char EventArg;
 				extern const char Resource;
 			}
+
 			/*デバッグ*/
 			extern const bool DevelopmentMode; //開発モードフラグ
 		}

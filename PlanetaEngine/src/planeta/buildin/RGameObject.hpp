@@ -3,6 +3,5 @@
 #include "RPtree.hpp"
 
 namespace plnt {
-	class RGameObject final : public RPtree {};
+	class RGameObject final : public RPtree { };
 }
-

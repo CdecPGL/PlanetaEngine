@@ -13,14 +13,11 @@ namespace plnt {
 		/*doubleが等しいか絶対誤差を指定して判定*/
 		bool DoubleIsEqual(double d1, double d2, double epsilon = 1e-5);
 		/*度からラジアンに変換*/
-		template<typename T>
-		constexpr T DegToRad(const T& deg) {
-			return static_cast<T>(static_cast<double>(deg) / 180.0 * PI);
-		}
+		template <typename T>
+		constexpr T DegToRad(const T &deg) { return static_cast<T>(static_cast<double>(deg) / 180.0 * PI); }
+
 		/*ラジアンから度に変換*/
-		template<typename T>
-		constexpr T RadToDeg(const T& rad) {
-			return static_cast<T>(static_cast<double>(rad) / PI * 180.0);
-		}
+		template <typename T>
+		constexpr T RadToDeg(const T &rad) { return static_cast<T>(static_cast<double>(rad) / PI * 180.0); }
 	}
 }

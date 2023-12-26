@@ -1,8 +1,8 @@
 ﻿#include "SystemVariables.hpp"
 
-namespace plnt{
-	namespace private_{
-		namespace system_variables{
+namespace plnt {
+	namespace private_ {
+		namespace system_variables {
 			namespace engine_information {
 				const std::string VersionString("1.0.0");
 				const int MajorVersionNumber(1);
@@ -10,6 +10,7 @@ namespace plnt{
 				const int SubVesionNumber(0);
 				const std::string BuildDate(__DATE__);
 			}
+
 			namespace file_system {
 				const std::string SystemConfigFileName("system_config");
 				const std::string ProgramDefinitionFileName("prog_def");
@@ -28,6 +29,7 @@ namespace plnt{
 
 				const unsigned int ResourceDataArchiveDecryptionKey(0);
 			}
+
 			namespace resource {
 				const std::string BuiltinGraphResourceTypeName("Graphic");
 				const std::string BuiltinSoundResourceTypeName("SoundEffect");
@@ -55,16 +57,18 @@ namespace plnt{
 				const std::string BuiltinEffectResourceTypePrefix("Efc");
 				const std::string BuiltinEffectTextureResourceTypePrefix("Etx");
 			}
+
 			namespace prefixes {
-				const char Scene{ 'S' };
-				const char GameObject{ 'G' };
-				const char Task{ 'T' };
-				const char GameObjectComponent{ 'C' };
-				const char GameObjectInterface{ 'J' };
-				const char StandardInterface{ 'I' };
-				const char EventArg{ 'E' };
-				const char Resource{ 'R' };
+				const char Scene{'S'};
+				const char GameObject{'G'};
+				const char Task{'T'};
+				const char GameObjectComponent{'C'};
+				const char GameObjectInterface{'J'};
+				const char StandardInterface{'I'};
+				const char EventArg{'E'};
+				const char Resource{'R'};
 			}
+
 			const bool DevelopmentMode(true);
 		}
 	}

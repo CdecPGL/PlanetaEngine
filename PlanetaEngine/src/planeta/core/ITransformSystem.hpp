@@ -3,6 +3,6 @@
 namespace plnt {
 	class ITransformSystem {
 	public:
-		virtual ~ITransformSystem() = 0 {};
+		virtual ~ITransformSystem() = 0 { };
 	};
 }

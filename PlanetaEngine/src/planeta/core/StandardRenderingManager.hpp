@@ -3,8 +3,8 @@
 #include "RenderingManager.hpp"
 
 namespace plnt {
-	namespace private_{
-		class StandardRenderingManager final : public RenderingManager{
+	namespace private_ {
+		class StandardRenderingManager final : public RenderingManager {
 		public:
 			StandardRenderingManager();
 			~StandardRenderingManager() = default;
@@ -13,12 +13,13 @@ namespace plnt {
 			void Finalize() override;
 
 			//システム関数
-			bool Update()override;
+			bool Update() override;
 
-			std::shared_ptr<Screen> GetMainScreen()override;
+			std::shared_ptr<Screen> GetMainScreen() override;
 			std::shared_ptr<Screen> GetDebugDrawScreen() override;
 			std::shared_ptr<Screen> GetDebugInformationScreen() override;
 			std::shared_ptr<Screen> GetGUIScreen() override;
+
 		private:
 			std::shared_ptr<Screen> main_screen_; //メインスクリーン
 			std::shared_ptr<Screen> gui_screen_; //GUIスクリーン

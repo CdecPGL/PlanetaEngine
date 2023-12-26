@@ -3,11 +3,12 @@
 namespace plnt {
 	namespace math {
 		namespace vei {
-			template<typename T>
+			template <typename T>
 			class DumyIdentifer {
 			protected:
 				static constexpr int minimum_vector_size = 0;
-				void SetElementArrayPointer(T* ptr) {}
+
+				void SetElementArrayPointer(T *ptr) { }
 			};
 		}
 	}

@@ -10,7 +10,7 @@ namespace plnt {
 	namespace private_ {
 		class InputManager : public IInputManager, public SubSystemManager {
 		public:
-			virtual ~InputManager()override = default;
+			virtual ~InputManager() override = default;
 			virtual bool Initialize() = 0;
 			virtual void Finalize() = 0;
 			virtual bool Update() = 0;
@@ -27,11 +27,13 @@ namespace plnt {
 			/*ボタンにパッド入力を割り当てる(パッドは複数指定可)*/
 			virtual void AssignPadToButton(Pad::type, Button::type) = 0;
 			/*ボタンに別名をつける。既存の場合は割り当てなおす(複数指定不可)*/
-			virtual void AssignAliasToButton(const std::string&, Button::type) = 0;
+			virtual void AssignAliasToButton(const std::string &, Button::type) = 0;
 			/*ボタンに割り当てられたキーマップ取得*/
-			virtual const std::unordered_map<Button::type, std::vector<Key::type>>& GetAssignedKeyToButtonMap()const = 0;
+			virtual const std::unordered_map<Button::type, std::vector<Key::type>> &GetAssignedKeyToButtonMap() const =
+			0;
 			/*ボタンに割り当てられたキーマップ取得*/
-			virtual const std::unordered_map<Button::type, std::vector<Pad::type>>& GetAssignedPadToButtonMap()const = 0;
+			virtual const std::unordered_map<Button::type, std::vector<Pad::type>> &GetAssignedPadToButtonMap() const =
+			0;
 		};
 	}
 }

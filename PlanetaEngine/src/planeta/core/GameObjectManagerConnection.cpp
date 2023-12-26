@@ -4,9 +4,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool GameObjectManagerConnection::RequestActivation() {
-			return game_object_manager_.ActivateGameObject(id_);
-		}
+		bool GameObjectManagerConnection::RequestActivation() { return game_object_manager_.ActivateGameObject(id_); }
 
 		bool GameObjectManagerConnection::RequestInactivation() {
 			return game_object_manager_.InActivateGameObject(id_);

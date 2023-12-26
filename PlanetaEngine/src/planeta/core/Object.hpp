@@ -19,12 +19,13 @@ namespace plnt {
 		//! デストラクタ
 		virtual ~Object() = default;
 		//! インスタンスが同じか確認
-		bool Equals(const Object* o)const { return o == this; }
+		bool Equals(const Object *o) const { return o == this; }
 		//! インスタンスが同じか確認
-		bool Equals(const Object& o)const { return &o == this; }
+		bool Equals(const Object &o) const { return &o == this; }
 		//! 文字列化する。継承することで独自の文字列か機能を追加可能。
-		virtual std::string ToString()const { return typeid(*this).name(); }
+		virtual std::string ToString() const { return typeid(*this).name(); }
 	};
+
 	PE_REFLECTABLE_CLASS(Object);
 }
 

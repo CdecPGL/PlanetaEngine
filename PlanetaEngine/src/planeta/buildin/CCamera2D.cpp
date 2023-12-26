@@ -26,10 +26,11 @@ namespace plnt {
 			.ShallowCopyTarget(&CCamera2D::expansion_);
 	}
 
-	CCamera2D::CCamera2D():impl_(std::make_unique<Impl_>()){}
+	CCamera2D::CCamera2D(): impl_(std::make_unique<Impl_>()) { }
+
 	CCamera2D::~CCamera2D() = default;
 
-	bool CCamera2D::GetOtherComponentsProc(const GOComponentGetter& com_getter) {
+	bool CCamera2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
 		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
@@ -41,43 +42,29 @@ namespace plnt {
 
 	void CCamera2D::OnInitialized() {
 		Super::OnInitialized();
-		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(shared_this<CCamera2D>());
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(
+			shared_this<CCamera2D>());
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
-	void CCamera2D::OnActivated() {}
+	void CCamera2D::OnActivated() { }
 
 	void CCamera2D::OnInactivated() {
 		PE_LOG_WARNING("カメラ2Dコンポーネントは無効化に対応していません。");
 		Super::OnInactivated();
 	}
 
-	void CCamera2D::OnFinalized() noexcept {
-		impl_->draw_system_connection->Remove();
-	}
+	void CCamera2D::OnFinalized() noexcept { impl_->draw_system_connection->Remove(); }
 
-	double CCamera2D::expansion() const {
-		return expansion_;
-	}
+	double CCamera2D::expansion() const { return expansion_; }
 
-	void CCamera2D::expansion(double s) {
-		expansion_ = s;
-	}
+	void CCamera2D::expansion(double s) { expansion_ = s; }
 
-	const plnt::Vector2Dd& CCamera2D::position() const {
-		return transform2d_->position();
-	}
+	const plnt::Vector2Dd &CCamera2D::position() const { return transform2d_->position(); }
 
-	void CCamera2D::position(const plnt::Vector2Dd& p) {
-		transform2d_->position(p);
-	}
+	void CCamera2D::position(const plnt::Vector2Dd &p) { transform2d_->position(p); }
 
-	double CCamera2D::rotation_rad() const {
-		return transform2d_->rotation_rad();
-	}
+	double CCamera2D::rotation_rad() const { return transform2d_->rotation_rad(); }
 
-	void CCamera2D::rotation_rad(double r) {
-		transform2d_->rotation_rad(r);
-	}
-
+	void CCamera2D::rotation_rad(double r) { transform2d_->rotation_rad(r); }
 }
