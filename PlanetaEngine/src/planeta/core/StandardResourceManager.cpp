@@ -22,10 +22,10 @@ namespace {
 namespace plnt {
 	namespace private_ {
 		namespace {
-			constexpr char* ANONYMOUS_ID{ "<ID未設定>" };
-			constexpr char* META_DATA_FILE_SUFFIX{ ".meta.json" };
+			constexpr char* ANONYMOUS_ID{ const_cast<char*>("<ID未設定>") };
+			constexpr char* META_DATA_FILE_SUFFIX{ const_cast<char*>(".meta.json") };
 			constexpr unsigned int RESOURCE_FILE_NAME_SUFFIX_LENGTH{ 3 };
-			constexpr char* TAG_LIST_FILE_NAME{ "tag_list.json" };
+			constexpr char* TAG_LIST_FILE_NAME{ const_cast<char*>("tag_list.json") };
 		}
 
 		std::shared_ptr<ResourceBase> StandardResourceManager::CreateResource_(const std::type_index& type) {

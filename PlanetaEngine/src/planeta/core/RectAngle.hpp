@@ -101,24 +101,24 @@ namespace plnt {
 	using RectAngled = RectAngle<double>; //倍精度浮動少数型RectAngle
 
 #ifdef PE_ENABLE_REFLECTION_SYSTEM
-	namespace reflection {
-		//ReflectionシステムのPtree読み込みを有効にするための定義
-		template<typename T>
-		void ReflectivePtreeConverter(RectAngle<T>& dst, const boost::property_tree::ptree& src) {
+	//ReflectionシステムのPtree読み込みを有効にするための定義
+	template<typename T>
+	struct reflection::ReflectivePtreeConverterImpl<RectAngle<T>> {
+		void operator()(RectAngle<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 2) {
-				throw reflection_error(::plnt::util::ConvertAndConnectToString("要素数が", src.size(), "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));
+				throw reflection_error(util::ConvertAndConnectToString("要素数が", src.size(), "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));
 			}
 			size_t idx = 0;
 			std::array<Vector2D<T>, 2> ary; //座標とサイズ
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection::reflection_error(::plnt::util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw reflection_error(util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
 				}
 				ReflectivePtreeConverter(ary[idx++], pp.second);
 			}
 			dst.Set(ary[0], ary[1]);
 		}
-	}
+	};
 }
 
 #endif

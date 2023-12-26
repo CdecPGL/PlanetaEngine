@@ -16,7 +16,7 @@
 
 namespace plnt::reflection {
 	namespace {
-		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID("Reflectable");
+		constexpr char* REFLECTION_ROOT_OBJECT_TYPE_ID(const_cast<char*>("Reflectable"));
 	}
 	using namespace private_;
 	using namespace plnt::util;

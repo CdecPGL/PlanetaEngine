@@ -17,10 +17,10 @@
 */
 
 namespace {
-	constexpr char* kMessageHeader("M");
-	constexpr char* kWarningHeader("W");
-	constexpr char* kErrorHeader("E");
-	constexpr char* kFatalErrorHeader("F");
+	constexpr char* kMessageHeader(const_cast<char*>("M"));
+	constexpr char* kWarningHeader(const_cast<char*>("W"));
+	constexpr char* kErrorHeader(const_cast<char*>("E"));
+	constexpr char* kFatalErrorHeader(const_cast<char*>("F"));
 	constexpr size_t kDefaultLogHistoryMaxSize(100);
 
 	void OpenConsoleWindow() {

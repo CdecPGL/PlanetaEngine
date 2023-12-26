@@ -44,7 +44,7 @@ namespace plnt {
 	//////////////////////////////////////////////////////////////////////////
 	class CTransform2D::Impl_ {
 	public:
-		Impl_::Impl_():belonging_ground(GetDumyGround()){}
+		Impl_():belonging_ground(GetDumyGround()){}
 	private:
 		//各種データ
 		std::tuple<TransformData,PhisicalData> global;

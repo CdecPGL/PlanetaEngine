@@ -4,6 +4,7 @@
 
 #include "boost/any.hpp"
 #include "boost/property_tree/ptree.hpp"
+#include "planeta/reflection/Reflection.hpp"
 
 namespace plnt::reflection {
 	class Reflectable;

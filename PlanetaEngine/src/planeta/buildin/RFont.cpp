@@ -24,7 +24,7 @@ namespace plnt {
 		int dx_font_type = outline ? (antialiasing ? DX_FONTTYPE_ANTIALIASING_EDGE : DX_FONTTYPE_EDGE) : (antialiasing ? DX_FONTTYPE_ANTIALIASING : DX_FONTTYPE_NORMAL);
 		//DXライブラリフォントハンドルを作成
 		dx_handle_ = CreateFontToHandle(name.c_str(), size, thick, dx_font_type);
-		if (handle_ < 0) {
+		if (handle_ == nullptr) {
 			std::ostringstream err_str_str;
 			err_str_str << "フォントハンドルの作成に失敗しました。(";
 			err_str_str << "name=" << name << ",size=" << size << ",thick=" << thick;
@@ -37,7 +37,7 @@ namespace plnt {
 	}
 
 	void RFont::OnDisposed() {
-		if (handle_ >= 0) { DeleteFontToHandle(dx_handle_); }
-		if (handle_) { RemoveFontMemResourceEx(handle_); }
+		if (handle_ != nullptr) { DeleteFontToHandle(dx_handle_); }
+		if (handle_ != nullptr) { RemoveFontMemResourceEx(handle_); }
 	}
 }

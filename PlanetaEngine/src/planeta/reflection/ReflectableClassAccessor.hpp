@@ -5,6 +5,8 @@
 
 #include "boost/property_tree/ptree.hpp"
 
+#include "planeta/reflection/Reflection.hpp"
+
 namespace plnt::reflection {
 	class Reflectable;
 	namespace private_ {
@@ -31,7 +33,7 @@ namespace plnt::reflection {
 		template<typename T>
 		void GetVariable(Reflectable& obj, const std::string& var_id, T& v) {
 			boost::any av;
-			GetVariable_(var_id, av);
+			GetVariable_(obj, var_id, av);
 			try {
 				v = boost::any_cast<T>(av);
 			} catch (boost::bad_any_cast&) {

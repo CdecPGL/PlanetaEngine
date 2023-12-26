@@ -131,8 +131,7 @@
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <PreprocessToFile>false</PreprocessToFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ConformanceMode>
-      </ConformanceMode>
+      <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -173,8 +172,7 @@
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <PreprocessToFile>false</PreprocessToFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ConformanceMode>
-      </ConformanceMode>
+      <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -211,8 +209,8 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ConformanceMode>
-      </ConformanceMode>
+      <ConformanceMode>true</ConformanceMode>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -251,8 +249,8 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ConformanceMode>
-      </ConformanceMode>
+      <ConformanceMode>true</ConformanceMode>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -33,11 +33,11 @@ namespace plnt {
 			template<class ComT>
 			std::vector<std::shared_ptr<ComT>> GetAllComponents() {
 				static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true, "ComT must derive GameComponent.");
-				auto go_list = std::move(GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* com) {return dynamic_cast<C*>(com) != nullptr; }));
+				auto go_list = std::move(GetAllComponentsByTypeInfo(typeid(ComT), [](GameObjectComponent* com) {return dynamic_cast<ComT*>(com) != nullptr; }));
 				std::vector<std::shared_ptr<ComT>> ret_list;
 				for (const auto& go : go_list) {
-					assert(dynamic_pointer_cast<ComT>(go) != nullptr);
-					ret_list.push_back(static_pointer_cast<ComT>(go));
+					assert(std::dynamic_pointer_cast<ComT>(go) != nullptr);
+					ret_list.push_back(std::static_pointer_cast<ComT>(go));
 				}
 				return std::move(ret_list);
 			}

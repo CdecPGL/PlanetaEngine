@@ -74,19 +74,24 @@ namespace plnt {
 
 	namespace reflection{
 		//ReflectionシステムのPtree読み込みを有効にするための定義
-		inline void ReflectivePtreeConverter(CDrawPlanet2D::TextureMappingMode& dst, const boost::property_tree::ptree& src) {
-			try {
-				std::string str = src.get_value<std::string>();
-				if (str == "Round") {
-					dst = CDrawPlanet2D::TextureMappingMode::Round;
-				} else if (str == "Plain") {
-					dst = CDrawPlanet2D::TextureMappingMode::Plain;
-				} else {
-					throw plnt::reflection::reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
+		template<>
+		struct ReflectivePtreeConverterImpl<CDrawPlanet2D::TextureMappingMode> {
+			void operator()(CDrawPlanet2D::TextureMappingMode& dst, const boost::property_tree::ptree& src) const {
+				try {
+					if (const auto str = src.get_value<std::string>(); str == "Round") {
+						dst = CDrawPlanet2D::TextureMappingMode::Round;
+					}
+					else if (str == "Plain") {
+						dst = CDrawPlanet2D::TextureMappingMode::Plain;
+					}
+					else {
+						throw reflection_error(util::ConvertAndConnectToString("\"", src.get_value<std::string>(), "\"は\"", typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
+					}
 				}
-			} catch (boost::property_tree::ptree_bad_data& e) {
-				throw plnt::reflection::reflection_error(e.what());
+				catch (boost::property_tree::ptree_bad_data& e) {
+					throw reflection_error(e.what());
+				}
 			}
-		}
+		};
 	}
 }

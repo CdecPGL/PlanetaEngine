@@ -7,9 +7,9 @@
 #include "planeta/buildin/RCsv.hpp"
 
 namespace {
-	constexpr char* CommonSaveDataFileName("common_save_data");
-	constexpr char* UserSaveDataFileName("user_save_data");
-	constexpr char* SaveDataInformationFileName("save_data_info");
+	constexpr char* CommonSaveDataFileName(const_cast<char*>("common_save_data"));
+	constexpr char* UserSaveDataFileName(const_cast<char*>("user_save_data"));
+	constexpr char* SaveDataInformationFileName(const_cast<char*>("save_data_info"));
 }
 
 namespace plnt {
