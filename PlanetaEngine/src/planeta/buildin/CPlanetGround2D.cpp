@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/IGameObject.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 
 #include "CPlanetGround2D.hpp"
 #include "CTransform2D.hpp"
@@ -57,5 +57,5 @@ namespace plnt {
 	}
 
 	double CPlanetGround2D::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(
-		const Vector2Dd &ground_pos) const { return ground_pos.x + math::PI / 2; }
+		const Vector2Dd &ground_pos) const { return ground_pos.x + math::pi / 2; }
 }

@@ -2,7 +2,7 @@
 
 #include <limits>
 
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 
 #include "CGround2D.hpp"
 

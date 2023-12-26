@@ -5,7 +5,7 @@
 #include <array>
 #include <stdexcept>
 #include <cmath>
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 #include "planeta/reflection/ReflectionExceptions.hpp"
 #include "planeta/core/StringUtility.hpp"
 
@@ -184,7 +184,7 @@ namespace plnt {
 	template <typename T>
 	double GetDegree(const Vector2D<T> &v1, const Vector2D<T> &v2) {
 		double v1v2_rad = (GetRadian(v1, v2));
-		double v1v2_deg(v1v2_rad / math::PI * 180);
+		double v1v2_deg(v1v2_rad / math::pi * 180);
 		return v1v2_deg;
 	}
 

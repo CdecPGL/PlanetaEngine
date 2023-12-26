@@ -1,7 +1,7 @@
 ﻿#include <cmath>
 #include <cassert>
 
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 #include "planeta/core/LogUtility.hpp"
 
 #include "CPlanet.hpp"
@@ -41,9 +41,9 @@ namespace plnt {
 	}
 
 	double CPlanet::GetGapByRad(double rad) const {
-		while (rad < 0.0) { rad += 2.0 * math::PI; }
-		rad = std::fmod(rad, 2.0 * math::PI);
-		double pos = rad / (2.0 * math::PI / _separation);
+		while (rad < 0.0) { rad += 2.0 * math::pi; }
+		rad = std::fmod(rad, 2.0 * math::pi);
+		double pos = rad / (2.0 * math::pi / _separation);
 		int segment = static_cast<int>(pos);
 		double pos_in_segment = pos - segment;
 		int sidx = segment;

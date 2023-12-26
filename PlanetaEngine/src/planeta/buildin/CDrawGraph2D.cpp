@@ -4,7 +4,7 @@
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/IGameObject.hpp"
 #include "planeta/core/Matrix2_2.hpp"
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 #include "planeta/core/GraphDrawData2D.hpp"
 
 #include "CDrawGraph2D.hpp"

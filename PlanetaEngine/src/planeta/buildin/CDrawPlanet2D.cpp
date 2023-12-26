@@ -6,7 +6,7 @@
 #include "planeta/core/IGameObject.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/GraphDrawData2D.hpp"
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 
 #include "CDrawPlanet2D.hpp"
 #include "CPlanet.hpp"
@@ -115,7 +115,7 @@ namespace plnt {
 		double rotation = GetDrawRotationRed();
 		//頂点座標の算出
 		for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) {
-			double angle_rad = 2.0 * math::PI / _horizontal_separation * i; //現在の惑星頂点の位置角度
+			double angle_rad = 2.0 * math::pi / _horizontal_separation * i; //現在の惑星頂点の位置角度
 			double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
 			Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 			interface_vec *= height;
@@ -140,7 +140,7 @@ namespace plnt {
 		//画像と頂点の設定
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//水平方向は座標系正回りにセットしていく
-			double rad = math::PI * 2 / _horizontal_separation * i;
+			double rad = math::pi * 2 / _horizontal_separation * i;
 			//テクスチャ座標のセット
 			Vector2Df uv;
 			uv.x = 0.5f + (float)std::cos(rad) * 0.5f;
@@ -165,7 +165,7 @@ namespace plnt {
 		double rotation = GetDrawRotationRed();
 		//頂点座標の算出
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
-			double angle_rad = 2.0 * math::PI / _horizontal_separation * i; //現在の惑星頂点の位置角度
+			double angle_rad = 2.0 * math::pi / _horizontal_separation * i; //現在の惑星頂点の位置角度
 			double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
 			Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 			interface_vec *= height;

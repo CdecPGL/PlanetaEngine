@@ -6,7 +6,7 @@
 #include "planeta/core/Vector2D.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "planeta/core/IColliderWithCollider2D.hpp"
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 
 namespace plnt {
 	class CCircleCollider2D;

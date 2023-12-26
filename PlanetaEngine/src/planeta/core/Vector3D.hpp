@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include <string>
-#include "planeta/math/MathConstant.hpp"
+#include "..\math\math_constant.hpp"
 
 namespace plnt {
 	template <typename T>

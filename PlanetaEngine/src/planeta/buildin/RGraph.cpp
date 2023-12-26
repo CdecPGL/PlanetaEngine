@@ -2,7 +2,7 @@
 
 #include "planeta/core/File.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/math/MathUtility.hpp"
+#include "..\math\math_utility.hpp"
 
 #include "RGraph.hpp"
 
@@ -39,15 +39,15 @@ namespace plnt {
 		if (image_size_.x < 8) {
 			internal_size_.x = 8;
 			adjust_flag = true;
-		} else if (math::Is2Pow(image_size_.x) == false) {
-			internal_size_.x = math::GetMin2Pow(image_size_.x);
+		} else if (math::is2_pow(image_size_.x) == false) {
+			internal_size_.x = math::get_min2_pow(image_size_.x);
 			adjust_flag = true;
 		}
 		if (image_size_.y < 8) {
 			internal_size_.y = 8;
 			adjust_flag = true;
-		} else if (math::Is2Pow(image_size_.y) == false) {
-			internal_size_.y = math::GetMin2Pow(image_size_.y);
+		} else if (math::is2_pow(image_size_.y) == false) {
+			internal_size_.y = math::get_min2_pow(image_size_.y);
 			adjust_flag = true;
 		}
 		if (internal_size_.x >= 2048 || internal_size_.y >= 2048) {

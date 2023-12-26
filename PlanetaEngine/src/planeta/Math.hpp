@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "math/MathConstant.hpp"
-#include "math/MathMatrix.hpp"
-#include "math/MathUtility.hpp"
-#include "math/MathVector.hpp"
-#include "math/MathVectorElementIdentifer.hpp"
+#include "math\math_constant.hpp"
+#include "math\math_matrix.hpp"
+#include "math\math_utility.hpp"
+#include "math\math_vector.hpp"
+#include "math\math_vector_element_identifier.hpp"

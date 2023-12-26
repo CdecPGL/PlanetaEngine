@@ -47,10 +47,10 @@ namespace plnt {
 	}
 
 	void ScreenDrawer2D::DrawCircle(const Vector2Df position, float radius, const Color &color) {
-		size_t separation = static_cast<size_t>(2 * sqrt(radius) * math::PI) + 1;
+		size_t separation = static_cast<size_t>(2 * sqrt(radius) * math::pi) + 1;
 		std::vector<Vector2Df> poses{separation + 1};
 		for (size_t i = 0; i < separation; ++i) {
-			poses[i] = position + GetUnitVectorByRadian<float>(math::PI * 2 / separation * i) * radius;
+			poses[i] = position + GetUnitVectorByRadian<float>(math::pi * 2 / separation * i) * radius;
 		}
 		poses[separation] = poses[0];
 		DrawWire(poses, 1, color);
