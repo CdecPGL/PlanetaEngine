@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <cassert>
 #include "DateTime.hpp"
-#include "planeta/win/WindowsUtility.hpp"
+#include "..\win\windows_utility.hpp"
 #include "CharacterCode.hpp"
 #include "LogUtility.hpp"
 
@@ -106,22 +106,22 @@ namespace plnt {
 				int col = 0;
 				switch (level) {
 					case LogLevel::Message:
-						col = win::console::COL_GRAY;
+						col = win::console::col_gray;
 						break;
 					case LogLevel::Warning:
-						col = win::console::COL_YELLOW;
+						col = win::console::col_yellow;
 						break;
 					case LogLevel::Error:
-						col = win::console::COL_RED;
+						col = win::console::col_red;
 						break;
 					case LogLevel::Fatal:
-						col = win::console::COL_VIOLET;
+						col = win::console::col_violet;
 						break;
 					default:
 						assert(false);
 						break;
 				}
-				win::console::SetCharacterColor(col);
+				win::console::set_character_color(col);
 				auto ostr = AddNewLineIfNeed(str);
 				//ostr = util::ConvertUTF8ToShiftJIS(ostr);
 				std::cout << ostr;

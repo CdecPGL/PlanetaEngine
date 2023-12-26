@@ -489,37 +489,16 @@
     <ClInclude Include="src\planeta\effekseer\EffekseerUtil.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\win\WindowsUtility.hpp">
+    <ClInclude Include="src\planeta\win\windows_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\reflection\LuaBindHelper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\util\AccessorTemplate.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\CoroutineUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\EventMonitor.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\IMemoryAllocator.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\TLSFMemoryAllocator.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\Property.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\TwoKeyMap.hpp">
+    <ClInclude Include="src\planeta\util\two_key_map.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\reflection\TypeTraitsUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\util\BadAllocException.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\TypeChecker.hpp">
@@ -1115,11 +1094,8 @@
     <ClCompile Include="src\planeta\effekseer\EffekseerUtil.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\win\WindowsUtility.cpp">
+    <ClCompile Include="src\planeta\win\windows_utility.cpp">
       <Filter>PlanetaEngine\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\util\TLSFMemoryAllocator.cpp">
-      <Filter>PlanetaEngine\Core\Memory</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\BGMController.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>

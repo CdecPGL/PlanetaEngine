@@ -278,10 +278,8 @@
     <ClInclude Include="src\planeta\BuildinTasks.hpp" />
     <ClInclude Include="src\planeta\Math.hpp" />
     <ClInclude Include="src\planeta\PlanetaEngine.hpp" />
-    <ClInclude Include="src\planeta\util\AccessorTemplate.hpp" />
     <ClInclude Include="src\planeta\archiver\aes_encrypter.hpp" />
     <ClInclude Include="src\planeta\core\ArchiveManipulator.hpp" />
-    <ClInclude Include="src\planeta\util\BadAllocException.hpp" />
     <ClInclude Include="src\planeta\core\BGMController.hpp" />
     <ClInclude Include="src\planeta\buildin\CBelongingGroundGravity.hpp" />
     <ClInclude Include="src\planeta\buildin\CCamera2D.hpp" />
@@ -311,7 +309,6 @@
     <ClInclude Include="src\planeta\core\CollisionWorld.hpp" />
     <ClInclude Include="src\planeta\core\Color.hpp" />
     <ClInclude Include="src\planeta\core\ConfigManager.hpp" />
-    <ClInclude Include="src\planeta\util\CoroutineUtility.hpp" />
     <ClInclude Include="src\planeta\buildin\CPlanet.hpp" />
     <ClInclude Include="src\planeta\buildin\CPlanetGround2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CPolygonCollider2D.hpp" />
@@ -334,7 +331,6 @@
     <ClInclude Include="src\planeta\core\EACollisionWithGround2D.hpp" />
     <ClInclude Include="src\planeta\effekseer\EffekseerUtil.hpp" />
     <ClInclude Include="src\planeta\archiver\encrypter_base.hpp" />
-    <ClInclude Include="src\planeta\util\EventMonitor.hpp" />
     <ClInclude Include="src\planeta\archiver\exor_encrypter.hpp" />
     <ClInclude Include="src\planeta\core\File.hpp" />
     <ClInclude Include="src\planeta\core\FileAccessMode.hpp" />
@@ -403,7 +399,6 @@
     <ClInclude Include="src\planeta\core\IGameObjectManager.hpp" />
     <ClInclude Include="src\planeta\core\IInputManager.hpp" />
     <ClInclude Include="src\planeta\core\ILogManager.hpp" />
-    <ClInclude Include="src\planeta\util\IMemoryAllocator.hpp" />
     <ClInclude Include="src\planeta\core\IniFile.hpp" />
     <ClInclude Include="src\planeta\core\InitFunctions.hpp" />
     <ClInclude Include="src\planeta\core\InputDefinitions.hpp" />
@@ -445,7 +440,6 @@
     <ClInclude Include="src\planeta\core\PerfoamanceManager.hpp" />
     <ClInclude Include="src\planeta\core\Time.hpp" />
     <ClInclude Include="src\planeta\core\PrefixUtility.hpp" />
-    <ClInclude Include="src\planeta\util\Property.hpp" />
     <ClInclude Include="src\planeta\core\RangeUtility.hpp" />
     <ClInclude Include="src\planeta\buildin\RCsv.hpp" />
     <ClInclude Include="src\planeta\core\RectAngle.hpp" />
@@ -541,9 +535,8 @@
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\TInstant.hpp" />
     <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp" />
-    <ClInclude Include="src\planeta\util\TLSFMemoryAllocator.hpp" />
     <ClInclude Include="src\planeta\core\TransformSystem.hpp" />
-    <ClInclude Include="src\planeta\util\TwoKeyMap.hpp" />
+    <ClInclude Include="src\planeta\util\two_key_map.hpp" />
     <ClInclude Include="src\planeta\core\TypeChecker.hpp" />
     <ClInclude Include="src\planeta\reflection\TypeInfoWrapper.hpp" />
     <ClInclude Include="src\planeta\reflection\TypeTraitsUtility.hpp" />
@@ -553,7 +546,7 @@
     <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp" />
     <ClInclude Include="src\planeta\core\Vertex2D.hpp" />
     <ClInclude Include="src\planeta\core\WeakPointer.hpp" />
-    <ClInclude Include="src\planeta\win\WindowsUtility.hpp" />
+    <ClInclude Include="src\planeta\win\windows_utility.hpp" />
     <ClInclude Include="src\planeta\core\XmlFile.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -722,7 +715,6 @@
     <ClCompile Include="src\planeta\core\SystemVariables.cpp" />
     <ClCompile Include="src\planeta\core\Time.cpp" />
     <ClCompile Include="src\planeta\buildin\RText.cpp" />
-    <ClCompile Include="src\planeta\util\TLSFMemoryAllocator.cpp" />
     <ClCompile Include="src\planeta\buildin\CTransform2D.cpp" />
     <ClCompile Include="src\planeta\deprecated\GUIManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -737,7 +729,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\planeta\core\StandardTransformSystem.cpp" />
-    <ClCompile Include="src\planeta\win\WindowsUtility.cpp" />
+    <ClCompile Include="src\planeta\win\windows_utility.cpp" />
     <ClCompile Include="src\planeta\buildin\RXml.cpp" />
     <ClCompile Include="src\planeta\core\XmlFile.cpp" />
   </ItemGroup>
