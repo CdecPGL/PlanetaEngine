@@ -100,7 +100,6 @@ namespace plnt {
 	using RectAnglef = RectAngle<float>; //単精度浮動少数型RectAngle
 	using RectAngled = RectAngle<double>; //倍精度浮動少数型RectAngle
 
-#ifdef PE_ENABLE_REFLECTION_SYSTEM
 	//ReflectionシステムのPtree読み込みを有効にするための定義
 	template<typename T>
 	struct reflection::ReflectivePtreeConverterImpl<RectAngle<T>> {
@@ -120,5 +119,3 @@ namespace plnt {
 		}
 	};
 }
-
-#endif

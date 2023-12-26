@@ -9,8 +9,6 @@
 #include "planeta/reflection/ReflectionExceptions.hpp"
 #include "planeta/core/StringUtility.hpp"
 
-#define PE_ENABLE_REFLECTION_SYSTEM
-
 namespace plnt {
 	template<typename T>
 	struct Vector3D;
@@ -198,8 +196,6 @@ namespace plnt {
 	using Vector2Di =Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
 }
 
-#ifdef PE_ENABLE_REFLECTION_SYSTEM
-
 #include "boost/property_tree/ptree.hpp"
 #include "planeta/reflection/ReflectionUtility.hpp"
 
@@ -215,7 +211,7 @@ namespace plnt::reflection{
 			std::array<T, 2> ary;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw reflection_error(util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw reflection_error(util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				T dat{};
 				ReflectivePtreeConverter(dat, pp.second);
@@ -225,5 +221,3 @@ namespace plnt::reflection{
 		}
 	};
 }
-
-#endif

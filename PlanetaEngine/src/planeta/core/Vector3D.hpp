@@ -4,8 +4,6 @@
 #include <string>
 #include "planeta/math/MathConstant.hpp"
 
-#define PE_ENABLE_REFLECTION_SYSTEM
-
 namespace plnt {
 	template<typename T>
 	struct Vector2D;
@@ -199,23 +197,22 @@ namespace plnt {
 	using Vector3Di = Vector3D<int32_t>; //32bit符号付き整数型三次元ベクトル
 }
 
-#ifdef PE_ENABLE_REFLECTION_SYSTEM
-
 #include "boost/property_tree/ptree.hpp"
+#include "planeta/reflection/ReflectionUtility.hpp"
 
-namespace plnt {
-	namespace reflection {
-		//ReflectionシステムのPtree読み込みを有効にするための定義
-		template<typename T>
-		void ReflectivePtreeConverter(Vector3D<T>& dst, const boost::property_tree::ptree& src) {
+namespace plnt::reflection {
+	//ReflectionシステムのPtree読み込みを有効にするための定義
+	template<typename T>
+	struct ReflectivePtreeConverterImpl<Vector3D<T>> {
+		void operator()(Vector3D<T>& dst, const boost::property_tree::ptree& src) {
 			if (src.size() != 3) {
-				throw reflection_error(ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector3Dでは3である必要があります。"));
+				throw reflection_error(util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector3Dでは3である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 3> ary;
 			for (auto&& pp : src) {
 				if (pp.first.empty() == false) {
-					throw plnt::reflection::reflection_error(plnt::util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")")); \
+					throw reflection_error(util::ConvertAndConnectToString("Vector3DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				T dat{};
 				ReflectivePtreeConverter(dat, pp.second);
@@ -223,7 +220,5 @@ namespace plnt {
 			}
 			dst.Set(ary[0], ary[1], ary[2]);
 		}
-	}
+	};
 }
-
-#endif
