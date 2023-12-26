@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #pragma warning(push)
 #pragma warning(disable: 4100)
@@ -15,11 +15,11 @@ plnt::REffectTexture::~REffectTexture() = default;
 bool plnt::REffectTexture::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 	dx_base_image_ = std::unique_ptr<::DxLib::BASEIMAGE>(new ::DxLib::BASEIMAGE{});
 	if (CreateBaseImageToMem(file.top_pointer(), file.size(), dx_base_image_.get(), false)) {
-		PE_LOG_ERROR("ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B");
+		PE_LOG_ERROR("ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 		dx_base_image_.release();
 		return false;
 	} else {
-		// TODO: ÅV‰»
+		// TODO: æœ€æ–°åŒ–
 		//effekseer_taxture_ = std::make_unique<::Effekseer::TextureData>();
 		//effekseer_taxture_->Height = dx_base_image_->Height;
 		//effekseer_taxture_->Width = dx_base_image_->Width;

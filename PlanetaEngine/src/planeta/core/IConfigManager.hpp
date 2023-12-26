@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <array>
@@ -9,21 +9,21 @@ namespace plnt {
 	class IConfigManager {
 	public:
 		virtual ~IConfigManager() = 0 { };
-		/*! ƒQ[ƒ€ƒ^ƒCƒgƒ‹‚ğæ“¾‚·‚é*/
+		/*! ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹*/
 		virtual std::string game_title() const = 0;
-		/*! ƒQ[ƒ€‚Ìƒo[ƒWƒ‡ƒ“‚ğ•\‚·•¶š—ñ‚ğæ“¾‚·‚é*/
+		/*! ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ã™æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹*/
 		virtual std::string game_version_string() const = 0;
-		/*! ƒQ[ƒ€‚Ìƒo[ƒWƒ‡ƒ“‚ğ•\‚·”’l”z—ñ‚ğæ“¾‚·‚é[Major, Minor, Sub]*/
+		/*! ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ã™æ•°å€¤é…åˆ—ã‚’å–å¾—ã™ã‚‹[Major, Minor, Sub]*/
 		virtual std::array<int, 3> game_version_numbers() const = 0;
-		/*! ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é*/
+		/*! ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹*/
 		virtual bool is_window_mode() const = 0;
-		/*! •`‰æƒTƒCƒY‚ğæ“¾‚·‚éBƒvƒƒOƒ‰ƒ€“à‚Å‚Ì‰æ–Ê‚ÌL‚³‚ğ•\‚·*/
+		/*! æç”»ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã€‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ å†…ã§ã®ç”»é¢ã®åºƒã•ã‚’è¡¨ã™*/
 		virtual Vector2Di draw_size() const = 0;
-		/*! ƒEƒCƒ“ƒhƒEƒTƒCƒY‚ğæ“¾‚·‚éB•\¦‚³‚ê‚é‰æ–Ê‚ÌƒTƒCƒY‚ğ•\‚·*/
+		/*! ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã€‚è¡¨ç¤ºã•ã‚Œã‚‹ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’è¡¨ã™*/
 		virtual Vector2Di window_size() const = 0;
-		/*! Õ“ËƒOƒ‹[ƒvƒ}ƒgƒŠƒNƒX‚ğæ“¾‚·‚é*/
+		/*! è¡çªã‚°ãƒ«ãƒ¼ãƒ—ãƒãƒˆãƒªã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹*/
 		virtual const CollisionGroupMatrix &collision_group_matrix() const = 0;
-		/*! Cursor‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é*/
+		/*! Cursorã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹*/
 		virtual bool is_cursor_visible() const = 0;
 	};
 }

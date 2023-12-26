@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ITaskManager.hpp"
 #include "SceneModule.hpp"
@@ -10,7 +10,7 @@ namespace plnt {
 		public:
 			virtual ~TaskManager() = 0 { };
 			virtual void ExcuteTask() = 0;
-			/*ƒVƒXƒeƒ€ƒ^ƒXƒN’Ç‰Á(ƒVƒXƒeƒ€ƒ^ƒXƒNíœ•s‰Â”\)*/
+			/*ã‚·ã‚¹ãƒ†ãƒ ã‚¿ã‚¹ã‚¯è¿½åŠ (ã‚·ã‚¹ãƒ†ãƒ ã‚¿ã‚¹ã‚¯å‰Šé™¤ä¸å¯èƒ½)*/
 			template <class C>
 			WeakPointer<C> AddSystemTask(private_::SystemTaskSlot sys_task_slot) {
 				static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");

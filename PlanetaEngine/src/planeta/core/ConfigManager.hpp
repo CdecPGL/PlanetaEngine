@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "IConfigManager.hpp"
 #include "SubSystemManager.hpp"
@@ -12,9 +12,9 @@ namespace plnt {
 			virtual ~ConfigManager() override = default;
 			virtual bool LoadSystemConfig(const File &file) = 0;
 			virtual bool LoadUserConfig(const File &file) = 0;
-			/*! ƒJƒ‰[ƒrƒbƒg[“x‚ğæ“¾‚·‚é*/
+			/*! ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’å–å¾—ã™ã‚‹*/
 			virtual int color_bit_depth() const = 0;
-			/*! ƒXƒ^[ƒgƒAƒbƒvƒV[ƒ“ID‚ğæ“¾‚·‚é*/
+			/*! ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—ã‚·ãƒ¼ãƒ³IDã‚’å–å¾—ã™ã‚‹*/
 			virtual std::string startup_scene_id() const = 0;
 		};
 	}

@@ -1,4 +1,4 @@
-#pragma warning(push)
+ï»¿#pragma warning(push)
 #pragma warning(disable: 4100)
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
@@ -100,7 +100,7 @@ namespace plnt {
 			reffect_ = res;
 			return true;
 		} else {
-			PE_LOG_ERROR("ƒGƒtƒFƒNƒgƒŠƒ\[ƒX‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½Bw’èID‚Í\"", resource_id, "\"B");
+			PE_LOG_ERROR("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸã€‚æŒ‡å®šIDã¯\"", resource_id, "\"ã€‚");
 			return false;
 		}
 	}
@@ -120,7 +120,7 @@ namespace plnt {
 		eff_mgr->SetRotation(effect_handle_, 0, 0,
 		                     static_cast<float>(trans.rotation_rad()));
 		auto scl = trans.scale();
-		scl *= expansion_; //Šg‘å—¦“K—p
+		scl *= expansion_; //æ‹¡å¤§ç‡é©ç”¨
 		eff_mgr->SetScale(effect_handle_,
 		                  static_cast<float>(scl.x), static_cast<float>(scl.y),
 		                  static_cast<float>((scl.x + scl.y) / 2));
@@ -170,14 +170,14 @@ namespace plnt {
 		Super::OnInitialized();
 		if (!impl_->GetEffectExits()) {
 			if (!impl_->CreateEffectInstance()) {
-				PE_LOG_ERROR("ƒGƒtƒFƒNƒgƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½B");
+				PE_LOG_ERROR("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 				return;
 			}
 		}
 		auto task = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		task->SetExcuteFunction([this] {
 			impl_->ApplyTransformToEffect();
-			//ƒGƒtƒFƒNƒg‚Ìƒ‹[ƒvŠm”F
+			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ«ãƒ¼ãƒ—ç¢ºèª
 			if (impl_->roop_flag_ && !impl_->GetEffectExits()) {
 				if (is_valied()) {
 					if (!impl_->CreateEffectInstance()) { return; }
@@ -190,7 +190,7 @@ namespace plnt {
 	void CEffect::OnActivated() {
 		Super::OnActivated();
 		impl_->ConnectMyCTransformUpdatedEvent();
-		if (auto_play()) { if (!impl_->StartEffect()) { PE_LOG_ERROR("ƒGƒtƒFƒNƒg‚ÌŠJn‚É¸”s‚µ‚Ü‚µ‚½B"); } }
+		if (auto_play()) { if (!impl_->StartEffect()) { PE_LOG_ERROR("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®é–‹å§‹ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"); } }
 	}
 
 	void CEffect::OnInactivated() {

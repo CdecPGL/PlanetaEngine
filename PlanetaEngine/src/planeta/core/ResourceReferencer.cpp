@@ -1,4 +1,4 @@
-#include "ResourceReferencer.hpp"
+﻿#include "ResourceReferencer.hpp"
 
 namespace plnt {
 	ResourceReferencer::ResourceReferencer(private_::ResourceManagerInternalAccessor &res_mgr_acsr,

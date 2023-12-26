@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 
@@ -7,13 +7,13 @@ namespace plnt {
 		class Screen;
 	}
 
-	/*! ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ}ƒl[ƒWƒƒ‚ÌŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒXB•`‰æ‚ğŠÇ—‚·‚éB*/
+	/*! ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒãƒãƒ¼ã‚¸ãƒ£ã®å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã€‚æç”»ã‚’ç®¡ç†ã™ã‚‹ã€‚*/
 	class IRenderingManager {
 	public:
 		virtual ~IRenderingManager() = 0 { };
-		/*! ƒƒCƒ“ƒXƒNƒŠ[ƒ“‚ğæ“¾‚·‚é*/
+		/*! ãƒ¡ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å–å¾—ã™ã‚‹*/
 		virtual std::shared_ptr<private_::Screen> GetMainScreen() = 0;
-		/*! GUIƒNƒŠ[ƒ“‚ğæ“¾‚·‚é*/
+		/*! GUIã‚¯ãƒªãƒ¼ãƒ³ã‚’å–å¾—ã™ã‚‹*/
 		virtual std::shared_ptr<private_::Screen> GetGUIScreen() = 0;
 	};
 }

@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include "IPerformanceManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	namespace private_ {
-		/*ƒpƒtƒH[ƒ}ƒ“ƒXƒ}ƒl[ƒWƒƒ*/
+		/*ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£*/
 		class PerformanceManager : public IPerformanceManager, public SubSystemManager {
 		public:
 			virtual ~PerformanceManager() override = default;

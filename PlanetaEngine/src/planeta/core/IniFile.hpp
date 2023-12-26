@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <vector>
 #include <unordered_map>
@@ -7,7 +7,7 @@
 namespace plnt {
 	class File;
 
-	/*! INIƒtƒ@ƒCƒ‹‚ğˆµ‚¤‚½‚ß‚ÌƒNƒ‰ƒX*/
+	/*! INIãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹*/
 	class IniFile final {
 	public:
 		using SectionType = std::unordered_map<std::string, std::string>;

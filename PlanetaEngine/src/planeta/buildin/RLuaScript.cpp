@@ -1,4 +1,4 @@
-#include "planeta/core/File.hpp"
+ï»¿#include "planeta/core/File.hpp"
 
 #include "RLuaScript.hpp"
 
@@ -6,12 +6,12 @@ namespace plnt {
 	bool RLuaScript::RegisterToLuaState(lua_State *l) {
 		/*
 		if (luaL_loadbuffer(l, reinterpret_cast<const char*>(file_->top_pointer()), file_->size(), file_->file_name().c_str())) {
-			PE_LOG_ERROR("LuaƒXƒe[ƒg‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½Bƒtƒ@ƒCƒ‹–¼:", file_->file_name());
+			PE_LOG_ERROR("Luaã‚¹ãƒ†ãƒ¼ãƒˆã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ãƒ•ã‚¡ã‚¤ãƒ«å:", file_->file_name());
 			return false;
 		}
 		if (lua_pcall(l, 0, LUA_MULTRET, 0)) {
 			const char* err = lua_tostring(l, -1);
-			PE_LOG_ERROR("LuaƒXƒe[ƒg‚ÌÀs‚É¸”s‚µ‚Ü‚µ‚½B:", err);
+			PE_LOG_ERROR("Luaã‚¹ãƒ†ãƒ¼ãƒˆã®å®Ÿè¡Œã«å¤±æ•—ã—ã¾ã—ãŸã€‚:", err);
 			return false;
 		}
 		return true;
@@ -20,7 +20,7 @@ namespace plnt {
 	}
 
 	bool RLuaScript::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
-		//ƒtƒ@ƒCƒ‹‚ÌƒRƒs[‚ğì¬
+		//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆ
 		file_ = std::make_unique<File>(file);
 		return true;
 	}

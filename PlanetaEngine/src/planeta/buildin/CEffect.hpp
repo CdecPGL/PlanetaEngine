@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "planeta/core/GameObjectStandardComponent.hpp"
 #include "planeta/core/NonOwingPointer.hpp"
@@ -11,25 +11,25 @@ namespace plnt {
 		using Super = GameObjectStandardComponent;
 		CEffect();
 		~CEffect();
-		/*! ƒGƒtƒFƒNƒg‚ğÄ¶‚·‚é*/
+		/*! ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿã™ã‚‹*/
 		bool Play();
-		/*! ƒGƒtƒFƒNƒg‚ğ’â~‚·‚é*/
+		/*! ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’åœæ­¢ã™ã‚‹*/
 		bool Stop();
-		/*! ƒGƒtƒFƒNƒgƒŠƒ\[ƒXID‚ğİ’è‚·‚é*/
+		/*! ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹IDã‚’è¨­å®šã™ã‚‹*/
 		void resource_id(const std::string &resource_id);
-		/*! ƒGƒtƒFƒNƒg‚ğÄ¶’†‚©Šm”F*/
+		/*! ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿä¸­ã‹ç¢ºèª*/
 		bool is_playing() const;
-		/*! ƒ‹[ƒv‚·‚é‚©‚Ìƒtƒ‰ƒO‚ğİ’è*/
+		/*! ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®š*/
 		void roop_flag(bool f);
-		/*! ƒ‹[ƒv‚·‚é‚©‚Ìƒtƒ‰ƒO‚ğæ“¾*/
+		/*! ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—*/
 		bool roop_flag() const;
-		/*! ©“®Ä¶‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğİ’è*/
+		/*! è‡ªå‹•å†ç”Ÿã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®š*/
 		void auto_play(bool f);
-		/*! ©“®Ä¶‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾*/
+		/*! è‡ªå‹•å†ç”Ÿã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—*/
 		bool auto_play() const;
-		/*! ƒGƒtƒFƒNƒg‚ÌŠg‘å—¦‚ğİ’è*/
+		/*! ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ‹¡å¤§ç‡ã‚’è¨­å®š*/
 		void expansion(double e);
-		/*! ƒGƒtƒFƒNƒg‚ÌŠg‘å—¦‚ğæ“¾*/
+		/*! ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ‹¡å¤§ç‡ã‚’å–å¾—*/
 		double expansion() const;
 
 	protected:

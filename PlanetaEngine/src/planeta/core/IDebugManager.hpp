@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <functional>
 #include "StringUtility.hpp"
@@ -6,42 +6,42 @@
 #include "Color.hpp"
 
 namespace plnt {
-	/*! ƒfƒoƒbƒOî•ñ’Ç‰ÁƒNƒ‰ƒXŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	/*! ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¿½åŠ ã‚¯ãƒ©ã‚¹å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹*/
 	class IDebugInformationAdder {
 	public:
 		virtual ~IDebugInformationAdder() = 0 { };
-		/*! •¶š—ñ‚Ås‚ğ’Ç‰Á‚·‚é*/
+		/*! æ–‡å­—åˆ—ã§è¡Œã‚’è¿½åŠ ã™ã‚‹*/
 		virtual void AddLine(const std::string line) = 0;
-		/*! ”CˆÓ‚Ìˆø”‚Ås‚ğ’Ç‰Á‚·‚é*/
+		/*! ä»»æ„ã®å¼•æ•°ã§è¡Œã‚’è¿½åŠ ã™ã‚‹*/
 		template <typename... Args>
 		void AddLineV(Args &&... args) { AddLine(util::ConvertAndConnectToString(args...)); }
 	};
 
-	/*! ƒfƒoƒbƒO•`‰æƒNƒ‰ƒXŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	/*! ãƒ‡ãƒãƒƒã‚°æç”»ã‚¯ãƒ©ã‚¹å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹*/
 	class IDebugDrawer {
 	public:
 		virtual ~IDebugDrawer() = 0 { };
-		/*! ü‚ğ•`‰æ‚·‚é*/
+		/*! ç·šã‚’æç”»ã™ã‚‹*/
 		virtual void DrawLine(const Vector2Df &spos, const Vector2Df &epos, const Color &color) = 0;
-		/*! ‰~‚ğ•`‰æ‚·‚é*/
+		/*! å††ã‚’æç”»ã™ã‚‹*/
 		virtual void DrawCircle(const Vector2Df &pos, float radius, const Color &color, bool filled) = 0;
-		/*! •¡”‚Ìü‚ğ•`‰æ‚·‚é*/
+		/*! è¤‡æ•°ã®ç·šã‚’æç”»ã™ã‚‹*/
 		virtual void DrawLines(const std::vector<Vector2Df> &pos_list, const Color &color) = 0;
 	};
 
-	/*! ƒfƒoƒbƒOƒ}ƒl[ƒWƒƒŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	/*! ãƒ‡ãƒãƒƒã‚°ãƒãƒãƒ¼ã‚¸ãƒ£å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹*/
 	class IDebugManager {
 	public:
 		virtual ~IDebugManager() = 0 { };
-		/*! ƒfƒoƒbƒOî•ñƒ`ƒƒƒ“ƒlƒ‹‚ğì¬‚·‚é*/
+		/*! ãƒ‡ãƒãƒƒã‚°æƒ…å ±ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ä½œæˆã™ã‚‹*/
 		virtual bool CreateDebugInformationChannel(const std::string &channel_id,
 		                                           const std::function<void(IDebugInformationAdder &)> &handler) = 0;
-		/*! ƒfƒoƒbƒOî•ñƒ`ƒƒƒ“ƒlƒ‹‚ğíœ‚·‚é*/
+		/*! ãƒ‡ãƒãƒƒã‚°æƒ…å ±ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å‰Šé™¤ã™ã‚‹*/
 		virtual bool DeleteDebugInformationChannel(const std::string &channel_id) = 0;
-		/*! ƒfƒoƒbƒO•`‰æ—pƒ`ƒƒƒ“ƒlƒ‹‚ğì¬‚·‚é*/
+		/*! ãƒ‡ãƒãƒƒã‚°æç”»ç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ä½œæˆã™ã‚‹*/
 		virtual bool CreateDebugDrawChannel(const std::string &channel_id,
 		                                    const std::function<void(IDebugDrawer &)> handler) = 0;
-		/*! ƒfƒoƒbƒO•`‰æ—pƒ`ƒƒƒ“ƒlƒ‹‚ğíœ‚·‚é*/
+		/*! ãƒ‡ãƒãƒƒã‚°æç”»ç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å‰Šé™¤ã™ã‚‹*/
 		virtual bool DeleteDebugDrawChannel(const std::string &channel_id) = 0;
 	};
 }

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "IRenderingManager.hpp"
 #include "SubSystemManager.hpp"
@@ -7,19 +7,19 @@ namespace plnt {
 	namespace private_ {
 		class Screen;
 
-		/*ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ}ƒl[ƒWƒƒ*/
+		/*ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒãƒãƒ¼ã‚¸ãƒ£*/
 		class RenderingManager : public IRenderingManager, public SubSystemManager {
 		public:
 			virtual ~RenderingManager() override = default;
-			/*‰Šú‰»‚·‚é*/
+			/*åˆæœŸåŒ–ã™ã‚‹*/
 			virtual bool Initialize() = 0;
-			/*I—¹ˆ—‚ğs‚¤*/
+			/*çµ‚äº†å‡¦ç†ã‚’è¡Œã†*/
 			virtual void Finalize() = 0;
-			/*XV‚·‚é*/
+			/*æ›´æ–°ã™ã‚‹*/
 			virtual bool Update() = 0;
-			/*ƒfƒoƒbƒO•`‰æ—pƒXƒNƒŠ[ƒ“‚ğæ“¾‚·‚é*/
+			/*ãƒ‡ãƒãƒƒã‚°æç”»ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å–å¾—ã™ã‚‹*/
 			virtual std::shared_ptr<private_::Screen> GetDebugDrawScreen() = 0;
-			/*ƒfƒoƒbƒOî•ñ•`‰æ—pƒXƒNƒŠ[ƒ“‚ğæ“¾‚·‚é*/
+			/*ãƒ‡ãƒãƒƒã‚°æƒ…å ±æç”»ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å–å¾—ã™ã‚‹*/
 			virtual std::shared_ptr<private_::Screen> GetDebugInformationScreen() = 0;
 		};
 	}

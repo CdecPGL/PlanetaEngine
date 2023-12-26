@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 #include <string>
@@ -37,7 +37,7 @@ namespace plnt {
 	public:
 		ResourceReferencer(private_::ResourceManagerInternalAccessor &res_mgr_acsr, const std::string &root_path,
 		                   std::vector<std::shared_ptr<ResourceBase>> &reference_list);
-		/*ID‚ÅƒŠƒ\[ƒX‚ğQÆ‚·‚éB•K—v‚È‚çV‚½‚É“Ç‚İ‚Ş*/
+		/*IDã§ãƒªã‚½ãƒ¼ã‚¹ã‚’å‚ç…§ã™ã‚‹ã€‚å¿…è¦ãªã‚‰æ–°ãŸã«èª­ã¿è¾¼ã‚€*/
 		std::shared_ptr<ResourceBase> ReferenceResourceByTypeAndID(const std::type_info &type, const std::string &id);
 
 		template <class RT>
@@ -47,13 +47,13 @@ namespace plnt {
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) { return out; } else {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ÌŒ^‚ğ•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B(\"ƒ^[ƒQƒbƒgŒ^:", typeid(RT).name(), "\")");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å‹ã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚(\"ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå‹:", typeid(RT).name(), "\")");
 					return nullptr;
 				}
 			} else { return nullptr; }
 		}
 
-		/*Path‚ÅƒŠƒ\[ƒX‚ğQÆ‚·‚éB•K—v‚È‚çV‚½‚É“Ç‚İ‚ŞBƒpƒX‚ÍŒ»İ‚ÌƒŠƒ\[ƒXƒpƒX‚ğŠî€‚É‚µ‚½‘Š‘ÎƒpƒX‚Æ‚È‚éB*/
+		/*Pathã§ãƒªã‚½ãƒ¼ã‚¹ã‚’å‚ç…§ã™ã‚‹ã€‚å¿…è¦ãªã‚‰æ–°ãŸã«èª­ã¿è¾¼ã‚€ã€‚ãƒ‘ã‚¹ã¯ç¾åœ¨ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‘ã‚¹ã‚’åŸºæº–ã«ã—ãŸç›¸å¯¾ãƒ‘ã‚¹ã¨ãªã‚‹ã€‚*/
 		std::shared_ptr<ResourceBase> ReferenceResourceByTypeAndPath(const std::type_info &type,
 		                                                             const std::string &path);
 
@@ -64,13 +64,13 @@ namespace plnt {
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) { return out; } else {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ÌŒ^‚ğ•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B(\"ƒ^[ƒQƒbƒgŒ^:", typeid(RT).name(), "\")");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å‹ã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚(\"ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå‹:", typeid(RT).name(), "\")");
 					return nullptr;
 				}
 			} else { return nullptr; }
 		}
 
-		/*ID–”‚ÍPath‚ÅƒŠƒ\[ƒX‚ğQÆ‚·‚éB•K—v‚È‚çV‚½‚É“Ç‚İ‚ŞBd•¡‚µ‚½ê‡‚ÍID‚ª—Dæ‚³‚ê‚éBƒpƒX‚ÍŒ»İ‚ÌƒŠƒ\[ƒXƒpƒX‚ğŠî€‚É‚µ‚½‘Š‘ÎƒpƒX‚Æ‚È‚éB*/
+		/*IDåˆã¯Pathã§ãƒªã‚½ãƒ¼ã‚¹ã‚’å‚ç…§ã™ã‚‹ã€‚å¿…è¦ãªã‚‰æ–°ãŸã«èª­ã¿è¾¼ã‚€ã€‚é‡è¤‡ã—ãŸå ´åˆã¯IDãŒå„ªå…ˆã•ã‚Œã‚‹ã€‚ãƒ‘ã‚¹ã¯ç¾åœ¨ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‘ã‚¹ã‚’åŸºæº–ã«ã—ãŸç›¸å¯¾ãƒ‘ã‚¹ã¨ãªã‚‹ã€‚*/
 		std::shared_ptr<ResourceBase> ReferenceResourceByTypeAndIDorPath(
 			const std::type_info &type, const std::string &id_or_path);
 
@@ -81,7 +81,7 @@ namespace plnt {
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) { return out; } else {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ÌŒ^‚ğ•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B(\"ƒ^[ƒQƒbƒgŒ^:", typeid(RT).name(), "\")");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å‹ã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚(\"ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå‹:", typeid(RT).name(), "\")");
 					return nullptr;
 				}
 			} else { return nullptr; }

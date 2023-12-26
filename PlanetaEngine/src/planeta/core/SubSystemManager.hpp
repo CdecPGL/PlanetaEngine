@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include "NonCopyable.hpp"
@@ -10,11 +10,11 @@ namespace plnt {
 		class SubSystemManager : private util::NonCopyable<SubSystemManager> {
 		public:
 			virtual ~SubSystemManager() = 0 { };
-			/*ƒfƒoƒbƒOî•ñ’Ç‰Áƒnƒ“ƒhƒ‰*/
+			/*ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¿½åŠ ãƒãƒ³ãƒ‰ãƒ©*/
 			virtual void DebugInfotmationAddHandler(IDebugInformationAdder &di_adder) { };
-			/*ƒfƒoƒbƒOî•ñƒ`ƒƒƒ“ƒlƒ‹‚ğì¬‚·‚é*/
+			/*ãƒ‡ãƒãƒƒã‚°æƒ…å ±ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ä½œæˆã™ã‚‹*/
 			void CreateDebugInformationChannel(const std::string &channel_id);
-			/*ƒfƒoƒbƒOî•ñƒ`ƒƒƒ“ƒlƒ‹‚ğíœ‚·‚é*/
+			/*ãƒ‡ãƒãƒƒã‚°æƒ…å ±ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å‰Šé™¤ã™ã‚‹*/
 			void DeleteDebugInformationChannel();
 
 		private:

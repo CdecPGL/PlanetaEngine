@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 
 #include"ini_data.hpp"
 
 class ini_loader {
 public:
-	// INIƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+	// INIãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	int load_ini(const std::string &);
-	// ƒZƒNƒVƒ‡ƒ“æ“¾(ƒZƒNƒVƒ‡ƒ“–¼)
+	// ã‚»ã‚¯ã‚·ãƒ§ãƒ³å–å¾—(ã‚»ã‚¯ã‚·ãƒ§ãƒ³å)
 	std::unordered_map<std::string, std::string> operator[](const std::string &) const;
-	// ƒZƒNƒVƒ‡ƒ“æ“¾(ƒZƒNƒVƒ‡ƒ“–¼)
+	// ã‚»ã‚¯ã‚·ãƒ§ãƒ³å–å¾—(ã‚»ã‚¯ã‚·ãƒ§ãƒ³å)
 	[[nodiscard]] std::unordered_map<std::string, std::string> get_section(const std::string &) const;
-	// ƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚·‚é‚©Šm”F
+	// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹ç¢ºèª
 	[[nodiscard]] bool check_section_existence(const std::string &) const;
-	// ’læ“¾(ƒZƒNƒVƒ‡ƒ“–¼,’l–¼)(–³‚©‚Á‚½‚çƒGƒ‰[ƒƒbƒZ[ƒW‚©•Ô‚é)
+	// å€¤å–å¾—(ã‚»ã‚¯ã‚·ãƒ§ãƒ³å,å€¤å)(ç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‹è¿”ã‚‹)
 	[[nodiscard]] std::string get_value(const std::string &, const std::string &) const;
 
 	[[nodiscard]] const ini_data &get_ini_data() const { return data_; }

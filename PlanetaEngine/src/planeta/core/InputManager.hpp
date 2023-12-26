@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <unordered_map>
 #include <vector>
@@ -6,7 +6,7 @@
 #include "SubSystemManager.hpp"
 
 namespace plnt {
-	/*ƒCƒ“ƒvƒbƒgƒ}ƒl[ƒWƒƒ*/
+	/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£*/
 	namespace private_ {
 		class InputManager : public IInputManager, public SubSystemManager {
 		public:
@@ -14,24 +14,24 @@ namespace plnt {
 			virtual bool Initialize() = 0;
 			virtual void Finalize() = 0;
 			virtual bool Update() = 0;
-			/*‚·‚×‚Ä‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é*/
+			/*ã™ã¹ã¦ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹*/
 			virtual void ResetAllSettings() = 0;
-			/*ƒL[‚Æƒpƒbƒh‚Ìƒ{ƒ^ƒ“Š„‚è“–‚Ä‚ğƒŠƒZƒbƒg‚·‚é*/
+			/*ã‚­ãƒ¼ã¨ãƒ‘ãƒƒãƒ‰ã®ãƒœã‚¿ãƒ³å‰²ã‚Šå½“ã¦ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹*/
 			virtual void ResetKeyPadButtonMap() = 0;
-			/*ƒ{ƒ^ƒ“‚Ì•Ê–¼‚ğƒŠƒZƒbƒg‚·‚é*/
+			/*ãƒœã‚¿ãƒ³ã®åˆ¥åã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹*/
 			virtual void ResetButtonAlias() = 0;
-			/*ƒfƒtƒHƒ‹ƒg‚Ìİ’è’l‚É–ß‚·*/
+			/*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®è¨­å®šå€¤ã«æˆ»ã™*/
 			virtual void SetDefaultSettings() = 0;
-			/*ƒ{ƒ^ƒ“‚ÉƒL[‚ğŠ„‚è“–‚Ä‚é(ƒL[‚Í•¡”w’è‰Â)*/
+			/*ãƒœã‚¿ãƒ³ã«ã‚­ãƒ¼ã‚’å‰²ã‚Šå½“ã¦ã‚‹(ã‚­ãƒ¼ã¯è¤‡æ•°æŒ‡å®šå¯)*/
 			virtual void AssignKeyToButton(Key::type, Button::type) = 0;
-			/*ƒ{ƒ^ƒ“‚Éƒpƒbƒh“ü—Í‚ğŠ„‚è“–‚Ä‚é(ƒpƒbƒh‚Í•¡”w’è‰Â)*/
+			/*ãƒœã‚¿ãƒ³ã«ãƒ‘ãƒƒãƒ‰å…¥åŠ›ã‚’å‰²ã‚Šå½“ã¦ã‚‹(ãƒ‘ãƒƒãƒ‰ã¯è¤‡æ•°æŒ‡å®šå¯)*/
 			virtual void AssignPadToButton(Pad::type, Button::type) = 0;
-			/*ƒ{ƒ^ƒ“‚É•Ê–¼‚ğ‚Â‚¯‚éBŠù‘¶‚Ìê‡‚ÍŠ„‚è“–‚Ä‚È‚¨‚·(•¡”w’è•s‰Â)*/
+			/*ãƒœã‚¿ãƒ³ã«åˆ¥åã‚’ã¤ã‘ã‚‹ã€‚æ—¢å­˜ã®å ´åˆã¯å‰²ã‚Šå½“ã¦ãªãŠã™(è¤‡æ•°æŒ‡å®šä¸å¯)*/
 			virtual void AssignAliasToButton(const std::string &, Button::type) = 0;
-			/*ƒ{ƒ^ƒ“‚ÉŠ„‚è“–‚Ä‚ç‚ê‚½ƒL[ƒ}ƒbƒvæ“¾*/
+			/*ãƒœã‚¿ãƒ³ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸã‚­ãƒ¼ãƒãƒƒãƒ—å–å¾—*/
 			virtual const std::unordered_map<Button::type, std::vector<Key::type>> &GetAssignedKeyToButtonMap() const =
 			0;
-			/*ƒ{ƒ^ƒ“‚ÉŠ„‚è“–‚Ä‚ç‚ê‚½ƒL[ƒ}ƒbƒvæ“¾*/
+			/*ãƒœã‚¿ãƒ³ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸã‚­ãƒ¼ãƒãƒƒãƒ—å–å¾—*/
 			virtual const std::unordered_map<Button::type, std::vector<Pad::type>> &GetAssignedPadToButtonMap() const =
 			0;
 		};

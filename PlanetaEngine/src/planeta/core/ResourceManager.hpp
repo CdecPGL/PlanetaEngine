@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <set>
 #include <vector>
@@ -10,40 +10,40 @@ namespace plnt {
 	class FileManipulator;
 
 	namespace private_ {
-		/// <summary>ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ.</summary>
+		/// <summary>ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£.</summary>
 		class ResourceManager : public IResourceManager, public SubSystemManager {
 		public:
 			/// <summary>Destructor.</summary>
 			virtual ~ResourceManager() override = default;
-			/// <summary>‰Šú‰»</summary>
+			/// <summary>åˆæœŸåŒ–</summary>
 			/// <returns>True if it succeeds, false if it fails.</returns>
 			virtual bool Initialize() = 0;
-			/// <summary>I—¹ˆ—</summary>
+			/// <summary>çµ‚äº†å‡¦ç†</summary>
 			virtual void Finalize() = 0;
-			/// <summary>ƒAƒ“ƒ[ƒh‘ÎÛŠO‚Ìƒ^ƒO‚ğİ’è</summary>
+			/// <summary>ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å¯¾è±¡å¤–ã®ã‚¿ã‚°ã‚’è¨­å®š</summary>
 			/// <param name="tags">The tags.</param>
 			/// <returns>True if it succeeds, false if it fails.</returns>
 			virtual bool SetNotUnloadTags(const std::set<std::string> &tags) = 0;
-			/// <summary>ƒ^ƒO‚Åw’è‚³‚ê‚½ƒŠƒ\[ƒX‚ğ‚Ü‚Æ‚ß‚Ä“Ç‚İ‚Ş</summary>
+			/// <summary>ã‚¿ã‚°ã§æŒ‡å®šã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹ã‚’ã¾ã¨ã‚ã¦èª­ã¿è¾¼ã‚€</summary>
 			/// <param name="need_tag_groups">Groups the need tag belongs to.</param>
 			/// <returns>True if it succeeds, false if it fails.</returns>
 			virtual bool PrepareResources(const std::vector<std::string> &need_tag_groups) = 0;
-			/// <summary>–¢g—p‚Ìƒ^ƒŠƒ\[ƒX‚ğƒAƒ“ƒ[ƒh‚·‚é</summary>
+			/// <summary>æœªä½¿ç”¨ã®ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹</summary>
 			/// <returns>True if it succeeds, false if it fails.</returns>
 			virtual bool UnloadUnusedResouces() = 0;
-			/// <summary>Resource‚Ì€”õ‚ªŠ®—¹‚µ‚½‚©</summary>
+			/// <summary>Resourceã®æº–å‚™ãŒå®Œäº†ã—ãŸã‹</summary>
 			/// <returns>True if ready, false if not.</returns>
 			virtual bool IsReady() const = 0;
-			/// <summary>€”õis“x(“Ç‚İ‚İ‚µ‚Ä‚¢‚È‚¢‚Í1.0‚Æ‚·‚é)</summary>
+			/// <summary>æº–å‚™é€²è¡Œåº¦(èª­ã¿è¾¼ã¿ã—ã¦ã„ãªã„æ™‚ã¯1.0ã¨ã™ã‚‹)</summary>
 			/// <returns>The prepair progress.</returns>
 			virtual double GetPrepairProgress() const = 0;
-			/// <summary>ƒtƒ@ƒCƒ‹ƒAƒNƒZƒT‚ğƒZƒbƒgB‰Šú‰»‘O‚ÉŒÄ‚Ño‚·</summary>
+			/// <summary>ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚µã‚’ã‚»ãƒƒãƒˆã€‚åˆæœŸåŒ–å‰ã«å‘¼ã³å‡ºã™</summary>
 			/// <param name="f_scsr">The scsr.</param>
 			virtual void SetFileManipulator_(const std::shared_ptr<FileManipulator> &f_scsr) = 0;
-			/// <summary>ƒŠƒ\[ƒXƒŠƒXƒgƒtƒ@ƒCƒ‹–¼‚ğİ’èB‰Šú‰»‘O‚ÉŒÄ‚Ño‚·•K—v‚ª‚ ‚é</summary>
+			/// <summary>ãƒªã‚½ãƒ¼ã‚¹ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¨­å®šã€‚åˆæœŸåŒ–å‰ã«å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚‹</summary>
 			/// <param name="file_name">Filename of the file.</param>
 			virtual void SetResourceListFileName_(const std::string &file_name) = 0;
-			/// <summary>ƒŠƒ\[ƒX‚Ì‘®«‚ğ’Ç‰Á</summary>
+			/// <summary>ãƒªã‚½ãƒ¼ã‚¹ã®å±æ€§ã‚’è¿½åŠ </summary>
 			/// <param name="type_name">Name of the type.</param>
 			/// <param name="type_prefix">The type prefix.</param>
 			template <class C>
@@ -54,11 +54,11 @@ namespace plnt {
 			}
 
 		protected:
-			/// <summary>ƒŠƒ\[ƒXƒNƒŠƒG[ƒ^ŠÖ”Œ^</summary>
+			/// <summary>ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªã‚¨ãƒ¼ã‚¿é–¢æ•°å‹</summary>
 			using ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>()>;
 
 		private:
-			/// <summary>ƒŠƒ\[ƒX—pshared_ptrì¬</summary>
+			/// <summary>ãƒªã‚½ãƒ¼ã‚¹ç”¨shared_pträ½œæˆ</summary>
 			/// <returns>A std::shared_ptr&lt;Res&gt;</returns>
 			template <class Res>
 			static std::shared_ptr<Res> MakeResource() {

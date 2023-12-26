@@ -1,4 +1,4 @@
-#include <functional>
+﻿#include <functional>
 
 #include "SubSystemManager.hpp"
 #include "Game.hpp"

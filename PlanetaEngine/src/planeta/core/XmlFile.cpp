@@ -1,4 +1,4 @@
-#include "XmlFile.hpp"
+ï»¿#include "XmlFile.hpp"
 
 #include <cassert>
 #include <functional>
@@ -26,8 +26,8 @@ namespace plnt {
 			element_setter(root_element_, xml_document);
 			return true;
 		} else {
-			PE_LOG_ERROR("XMLƒtƒ@ƒCƒ‹‚Ì‰ğÍ‚É¸”s‚µ‚Ü‚µ‚½B(", xml_document.ErrorName(), "(", xml_document.ErrorID(), "), s”Ô†: ",
-			             xml_document.ErrorLineNum(), "Ú×: ", xml_document.ErrorStr(), ")");
+			PE_LOG_ERROR("XMLãƒ•ã‚¡ã‚¤ãƒ«ã®è§£æã«å¤±æ•—ã—ã¾ã—ãŸã€‚(", xml_document.ErrorName(), "(", xml_document.ErrorID(), "), è¡Œç•ªå·: ",
+			             xml_document.ErrorLineNum(), "è©³ç´°: ", xml_document.ErrorStr(), ")");
 			return false;
 		}
 	}

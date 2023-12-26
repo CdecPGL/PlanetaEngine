@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "IDrawSystem.hpp"
 #include "SceneModule.hpp"
@@ -36,19 +36,19 @@ namespace plnt {
 		class DrawSystem : public IDrawSystem, public SceneModule {
 		public:
 			virtual ~DrawSystem() = 0 { };
-			/*ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ*/
+			/*ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»*/
 			virtual void ExcuteDraw() = 0;
-			/*GUI‚Ì•`‰æ*/
+			/*GUIã®æç”»*/
 			virtual void ExcuteDrawGUI() = 0;
-			/*ƒJƒƒ‰ó‘Ô‚Ì“K—p*/
+			/*ã‚«ãƒ¡ãƒ©çŠ¶æ…‹ã®é©ç”¨*/
 			virtual void ApplyCameraState() = 0;
-			/*2D•`‰æƒRƒ“ƒ|[ƒlƒ“ƒg“o˜^*/
+			/*2Dæç”»ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆç™»éŒ²*/
 			virtual std::unique_ptr<CDraw2DManagerConnection> RegisterCDraw2D(
 				const std::shared_ptr<CDraw2D> &draw_component, int priority) = 0;
-			/*GUI•`‰æƒRƒ“ƒ|[ƒlƒ“ƒg“o˜^*/
+			/*GUIæç”»ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆç™»éŒ²*/
 			virtual std::unique_ptr<CDrawGUIManagerConnection> RegisterCDrawGUI(
 				const std::shared_ptr<CDrawGUI> &draw_component, int priority) = 0;
-			/*ƒJƒƒ‰ƒRƒ“ƒ|[ƒlƒ“ƒg“o˜^*/
+			/*ã‚«ãƒ¡ãƒ©ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆç™»éŒ²*/
 			virtual std::unique_ptr<CCamera2DManagerConnection> RegisterCCamera2D(
 				const std::shared_ptr<CCamera2D> &camera_component) = 0;
 		};

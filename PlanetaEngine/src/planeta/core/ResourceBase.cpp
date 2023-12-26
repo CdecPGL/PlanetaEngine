@@ -1,24 +1,24 @@
-#include "ResourceBase.hpp"
+ï»¿#include "ResourceBase.hpp"
 #include "LogUtility.hpp"
 #include "File.hpp"
 #include "boost/filesystem/path.hpp"
 
 namespace plnt {
-	ResourceBase::~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("ƒŠƒ\[ƒX‚Ì‰ğ•ú‚ªs‚í‚ê‚Ä‚¢‚Ü‚¹‚ñB(", typeid(*this).name(), ")"); } }
+	ResourceBase::~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾ãŒè¡Œã‚ã‚Œã¦ã„ã¾ã›ã‚“ã€‚(", typeid(*this).name(), ")"); } }
 
 	bool ResourceBase::Load(const File &file, const JsonFile &metadata,
 	                        private_::ResourceManagerInternalAccessor &mgr_acsr) {
 		if (is_usable_) {
-			PE_LOG_ERROR("“Ç‚İ‚İÏ‚İ‚ÌƒŠƒ\[ƒX‚ğƒtƒ@ƒCƒ‹\"", file.file_name(), "\"‚©‚çÄ“Ç‚İ‚İ‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½BƒŠƒ\[ƒXƒ^ƒCƒv‚Í\"", typeid(*this).name(),
-			             "\"B");
+			PE_LOG_ERROR("èª­ã¿è¾¼ã¿æ¸ˆã¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ•ã‚¡ã‚¤ãƒ«\"", file.file_name(), "\"ã‹ã‚‰å†èª­ã¿è¾¼ã¿ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã¯\"", typeid(*this).name(),
+			             "\"ã€‚");
 			return false;
 		}
 		if (!file.is_available()) {
-			PE_LOG_ERROR("–³Œø‚Èƒtƒ@ƒCƒ‹\"", file.file_name(), "\"‚ªw’è‚³‚ê‚Ü‚µ‚½BƒŠƒ\[ƒXƒ^ƒCƒv‚Í\"", typeid(*this).name(), "\"B");
+			PE_LOG_ERROR("ç„¡åŠ¹ãªãƒ•ã‚¡ã‚¤ãƒ«\"", file.file_name(), "\"ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸã€‚ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã¯\"", typeid(*this).name(), "\"ã€‚");
 			return false;
 		}
 		std::vector<std::shared_ptr<ResourceBase>> ref_list;
-		//‚±‚ÌƒŠƒ\[ƒX‚Ì‘¶İ‚·‚éƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğ‹‚ß‚éB
+		//ã“ã®ãƒªã‚½ãƒ¼ã‚¹ã®å­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’æ±‚ã‚ã‚‹ã€‚
 		std::string rpath = boost::filesystem::path(file.file_name()).parent_path().string();
 		ResourceReferencer referencer{mgr_acsr, rpath, ref_list};
 		if (OnLoaded(file, metadata, referencer)) {
@@ -26,7 +26,7 @@ namespace plnt {
 			is_usable_ = true;
 			return true;
 		} else {
-			PE_LOG_ERROR("ƒtƒ@ƒCƒ‹\"", file.file_name(), "\"‚©‚ç‚ÌƒŠƒ\[ƒXì¬‚É¸”s‚µ‚Ü‚µ‚½BƒŠƒ\[ƒXƒ^ƒCƒv‚Í\"", typeid(*this).name(), "\"B");
+			PE_LOG_ERROR("ãƒ•ã‚¡ã‚¤ãƒ«\"", file.file_name(), "\"ã‹ã‚‰ã®ãƒªã‚½ãƒ¼ã‚¹ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã¯\"", typeid(*this).name(), "\"ã€‚");
 			return false;
 		}
 	}
@@ -37,8 +37,8 @@ namespace plnt {
 			ClearReference();
 			is_usable_ = false;
 		} else {
-			//”jŠüˆ—‚Ìd•¡‚Í‹–‚·
-			//PE_LOG_ERROR("”jŠüÏ‚İ‚ÌƒŠƒ\[ƒX‚ğ”jŠü‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½BƒŠƒ\[ƒXƒ^ƒCƒv‚Í\"", typeid(*this).name(), "\"B");
+			//ç ´æ£„å‡¦ç†ã®é‡è¤‡ã¯è¨±ã™
+			//PE_LOG_ERROR("ç ´æ£„æ¸ˆã¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã¯\"", typeid(*this).name(), "\"ã€‚");
 		}
 	}
 

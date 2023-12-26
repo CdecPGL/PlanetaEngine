@@ -1,4 +1,4 @@
-#include <unordered_map>
+ï»¿#include <unordered_map>
 
 #include "planeta/core/ISceneInternal.hpp"
 #include "planeta/core/TransformSystem.hpp"
@@ -78,16 +78,16 @@ namespace plnt {
 
 	void CTransformGUI::OnActivated() {
 		Super::OnActivated();
-		//TransformSystem‚Ö“o˜^
+		//TransformSystemã¸ç™»éŒ²
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransformGUI(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 	}
 
 	void CTransformGUI::OnInactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
-		//TransformSystem‚©‚ç“o˜^‰ðœ
+		//TransformSystemã‹ã‚‰ç™»éŒ²è§£é™¤
 		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransformGUI(impl_->t2d_id_)) {
-			PE_LOG_FATAL("TransfromSystem‚©‚ç‚Ì“o˜^‰ðœ‚ÉŽ¸”s‚µ‚Ü‚µ‚½BID:", impl_->t2d_id_);
+			PE_LOG_FATAL("TransfromSystemã‹ã‚‰ã®ç™»éŒ²è§£é™¤ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ID:", impl_->t2d_id_);
 		}
 		Super::OnInactivated();
 	}

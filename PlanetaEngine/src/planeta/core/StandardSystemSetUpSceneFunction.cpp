@@ -1,4 +1,4 @@
-#include "StandardSceneManagerUtility.hpp"
+ï»¿#include "StandardSceneManagerUtility.hpp"
 
 #include "Scene.hpp"
 #include "TaskManager.hpp"
@@ -11,23 +11,23 @@
 namespace plnt {
 	namespace private_ {
 		bool StandardSystemSetUpScene(Scene &scene) {
-			//ƒQ[ƒ€ƒ^ƒXƒN
+			//ã‚²ãƒ¼ãƒ ã‚¿ã‚¹ã‚¯
 			auto &t_mgr = *scene.task_manager_internal_pointer();
-			//ƒVƒXƒeƒ€ƒ^ƒXƒN’Ç‰Á
-			//Õ“Ë”»’èƒ^ƒXƒN
+			//ã‚·ã‚¹ãƒ†ãƒ ã‚¿ã‚¹ã‚¯è¿½åŠ 
+			//è¡çªåˆ¤å®šã‚¿ã‚¹ã‚¯
 			auto col_det_proc = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::CollitionDetectPhase);
 			col_det_proc->SetExcuteFunction([&col_wor = *scene.collision_world_internal_pointer()] {
 				col_wor.ExcuteCollisionDetection();
 			});
-			//•`‰æƒ^ƒXƒN
+			//æç”»ã‚¿ã‚¹ã‚¯
 			auto godp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawPhase);
 			godp->SetExcuteFunction([&drw_sys = *scene.draw_system_internal_pointer()] { drw_sys.ExcuteDraw(); });
 			auto guidp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::DrawGUIPhase);
 			guidp->SetExcuteFunction([&drw_sys = *scene.draw_system_internal_pointer()] { drw_sys.ExcuteDrawGUI(); });
-			//ƒJƒƒ‰“K—pƒ^ƒXƒN
+			//ã‚«ãƒ¡ãƒ©é©ç”¨ã‚¿ã‚¹ã‚¯
 			auto act = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyCameraPhase);
 			act->SetExcuteFunction([&drw_sys = *scene.draw_system_internal_pointer()] { drw_sys.ApplyCameraState(); });
-			//Transform‘¬“x“K—pƒ^ƒXƒN
+			//Transformé€Ÿåº¦é©ç”¨ã‚¿ã‚¹ã‚¯
 			auto tavp = t_mgr.AddSystemTask<TInstant>(SystemTaskSlot::ApplyVelocityPhase);
 			tavp->SetExcuteFunction(
 				[&tfm_sys = *scene.transform_system_internal_pointer()] { tfm_sys.ApplyVelocity(); });

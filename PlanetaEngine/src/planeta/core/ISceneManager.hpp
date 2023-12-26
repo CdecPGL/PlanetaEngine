@@ -1,36 +1,36 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include "ParameterHolder.hpp"
 
 namespace plnt {
-	/*! ƒV[ƒ“ƒ}ƒl[ƒWƒƒ‚ÌŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	/*! ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã®å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹*/
 	class ISceneManager {
 	public:
 		virtual ~ISceneManager() = 0 { };
-		/*! ŸƒV[ƒ“‚ğ“Ç‚İ‚Ş(‘JˆÚ‚Í‚µ‚È‚¢)*/
+		/*! æ¬¡ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚€(é·ç§»ã¯ã—ãªã„)*/
 		virtual bool LoadNextScene(const std::string &scene_id) = 0;
-		/*! “Ç‚İ‚İis“xæ“¾(0.0-1.0B–¢“Ç‚İ‚İ‚É‚Í0.0)*/
+		/*! èª­ã¿è¾¼ã¿é€²è¡Œåº¦å–å¾—(0.0-1.0ã€‚æœªèª­ã¿è¾¼ã¿æ™‚ã«ã¯0.0)*/
 		virtual double GetLoadProgress() const = 0;
-		/*! “Ç‚İ‚İ’†‚©*/
+		/*! èª­ã¿è¾¼ã¿ä¸­ã‹*/
 		virtual bool IsLoading() const = 0;
-		/*! ‘JˆÚ’†‚©*/
+		/*! é·ç§»ä¸­ã‹*/
 		virtual bool IsTransitioning() const = 0;
-		/*! ‘JˆÚ‰Â”\‚©*/
+		/*! é·ç§»å¯èƒ½ã‹*/
 		virtual bool IsTransitionable() const = 0;
-		/*! Ÿ‚ÌƒV[ƒ“ID‚ğæ“¾*/
+		/*! æ¬¡ã®ã‚·ãƒ¼ãƒ³IDã‚’å–å¾—*/
 		virtual const std::string GetNextSceneID() const = 0;
-		/*! Œ»İ‚ÌƒV[ƒ“ID‚ğæ“¾*/
+		/*! ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³IDã‚’å–å¾—*/
 		virtual const std::string GetCurrentSceneID() const = 0;
-		/*! ƒV[ƒ“‚Ì‘JˆÚ(“Ç‚İ‚İ‚ª•K—vB“Ç‚İ‚İ’†‚¾‚Á‚½‚ç“Ç‚İ‚İ‚Â‚Â‘JˆÚ)*/
+		/*! ã‚·ãƒ¼ãƒ³ã®é·ç§»(èª­ã¿è¾¼ã¿ãŒå¿…è¦ã€‚èª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰èª­ã¿è¾¼ã¿ã¤ã¤é·ç§»)*/
 		virtual bool TransitionScene(const util::ParameterHolder &transition_parameters) = 0;
-		/*! ƒV[ƒ“‚ğ“Ç‚İ‚ñ‚Å‘JˆÚ‚·‚é*/
+		/*! ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚“ã§é·ç§»ã™ã‚‹*/
 		virtual bool LoadAndTransitionScene(const std::string &scene_id,
 		                                    const util::ParameterHolder &transition_parameters =
 			                                    util::ParameterHolder()) = 0;
-		/*! I—¹*/
+		/*! çµ‚äº†*/
 		virtual void QuitScene() = 0;
-		/*! ƒGƒ‰[‚ğ”­¶‚³‚¹‚é*/
+		/*! ã‚¨ãƒ©ãƒ¼ã‚’ç™ºç”Ÿã•ã›ã‚‹*/
 		virtual void TriggerError() = 0;
 	};
 }

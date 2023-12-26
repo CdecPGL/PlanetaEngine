@@ -1,4 +1,4 @@
-#include "JsonFile.hpp"
+ï»¿#include "JsonFile.hpp"
 
 #include "picojson/picojson.h"
 
@@ -12,7 +12,7 @@ namespace plnt {
 			if (pj_value.is<double>()) {
 				return std::make_shared<JSONValue>(std::make_shared<double>(pj_value.get<double>()));
 			} else if (pj_value.is<std::string>()) {
-				//UTF8‚©‚çƒVƒXƒeƒ€•¶šƒR[ƒh‚É•ÏŠ·
+				//UTF8ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
 				return std::make_shared<JSONValue>(
 					std::make_shared<std::string>(util::ConvertUTF8ToSystemCode(pj_value.get<std::string>())));
 			} else if (pj_value.is<bool>()) {
@@ -55,7 +55,7 @@ namespace plnt {
 	std::shared_ptr<const JSONValue> JSONObject::AtWithException(const std::string &key) const {
 		auto it = obj_.find(key);
 		if (it == obj_.end()) {
-			throw std::out_of_range(util::ConvertAndConnectToString("Key\"", key, "\"‚ÌJSONValue‚Í‘¶İ‚µ‚Ü‚¹‚ñB"));
+			throw std::out_of_range(util::ConvertAndConnectToString("Key\"", key, "\"ã®JSONValueã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚"));
 		} else { return it->second; }
 	}
 
@@ -74,7 +74,7 @@ namespace plnt {
 	std::shared_ptr<const JSONValue> JSONArray::AtWithException(size_t idx) const {
 		if (idx >= array_.size()) {
 			throw std::out_of_range(
-				util::ConvertAndConnectToString("Index\"", idx, "\"‚Í”ÍˆÍ[0,", array_.size(), "]ŠO‚Å‚·B"));
+				util::ConvertAndConnectToString("Index\"", idx, "\"ã¯ç¯„å›²[0,", array_.size(), "]å¤–ã§ã™ã€‚"));
 		} else { return array_[idx]; }
 	}
 
@@ -117,7 +117,7 @@ namespace plnt {
 		value v;
 		parse(v, file.top_pointer(), file.top_pointer() + file.size(), &err);
 		if (!err.empty()) {
-			PE_LOG_ERROR("JSONƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½B(", err, ")");
+			PE_LOG_ERROR("JSONãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚(", err, ")");
 			return false;
 		}
 		impl_->value = std::move(ConvertPicojsonValueToJSONValue(v));

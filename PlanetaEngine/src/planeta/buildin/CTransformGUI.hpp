@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 
 #include "planeta/core/GameObjectSystemComponent.hpp"
 #include "planeta/core/RectAngle.hpp"
 
 namespace plnt {
-	//! GUI—pƒgƒ‰ƒ“ƒXƒtƒH[ƒ€ƒRƒ“ƒ|[ƒlƒ“ƒg(eqŠÖŒWŠÖ˜A‚Ì‹@”\‚Í–¢À‘•)
+	//! GUIç”¨ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ(è¦ªå­é–¢ä¿‚é–¢é€£ã®æ©Ÿèƒ½ã¯æœªå®Ÿè£…)
 	class CTransformGUI final : public private_::GameObjectSystemComponent {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransformGUI);
 
@@ -12,37 +12,37 @@ namespace plnt {
 		using Super = private_::GameObjectSystemComponent;
 		CTransformGUI();
 		~CTransformGUI();
-		/*ƒAƒNƒZƒT*/
-		//! ˆÊ’u‚ğæ“¾BPivot‚ğŠî€“_‚Æ‚·‚é
+		/*ã‚¢ã‚¯ã‚»ã‚µ*/
+		//! ä½ç½®ã‚’å–å¾—ã€‚Pivotã‚’åŸºæº–ç‚¹ã¨ã™ã‚‹
 		const Vector2Di &position() const;
-		//! ˆÊ’u‚ğİ’èBPivot‚ğŠî€“_‚Æ‚·‚é
+		//! ä½ç½®ã‚’è¨­å®šã€‚Pivotã‚’åŸºæº–ç‚¹ã¨ã™ã‚‹
 		CTransformGUI &position(const Vector2Di &pos);
-		//! ‰ñ“]“x‚ğæ“¾BPivot‚ğ’†S‚Æ‚·‚é
+		//! å›è»¢åº¦ã‚’å–å¾—ã€‚Pivotã‚’ä¸­å¿ƒã¨ã™ã‚‹
 		const double rotation_rad() const;
-		//! ‰ñ“]“x‚ğİ’èBPivot‚ğ’†S‚Æ‚·‚é
+		//! å›è»¢åº¦ã‚’è¨­å®šã€‚Pivotã‚’ä¸­å¿ƒã¨ã™ã‚‹
 		CTransformGUI &rotation_rad(double rota_rad);
-		//! ƒTƒCƒY‚ğæ“¾BPivot‚ğŠî€“_‚Æ‚·‚é
+		//! ã‚µã‚¤ã‚ºã‚’å–å¾—ã€‚Pivotã‚’åŸºæº–ç‚¹ã¨ã™ã‚‹
 		const Vector2Di &size() const;
-		//! ƒTƒCƒY‚ğİ’èBPivot‚ğŠî€“_‚Æ‚·‚é
+		//! ã‚µã‚¤ã‚ºã‚’è¨­å®šã€‚Pivotã‚’åŸºæº–ç‚¹ã¨ã™ã‚‹
 		CTransformGUI &size(const Vector2Di &s);
-		//! •ÏŒ`’†SˆÊ’u‚ğæ“¾(0.0-1.0)
+		//! å¤‰å½¢ä¸­å¿ƒä½ç½®ã‚’å–å¾—(0.0-1.0)
 		const Vector2Dd &pivot() const;
-		//! •ÏŒ`’†SˆÊ’u‚ğİ’è(0.0-1.0)
+		//! å¤‰å½¢ä¸­å¿ƒä½ç½®ã‚’è¨­å®š(0.0-1.0)
 		CTransformGUI &pivot(const Vector2Dd &p);
-		//! GUI—Ìˆæ‚ğ•\‚·‹éŒ`‚ğæ“¾B‰ñ“]‚Íl—¶‚³‚ê‚È‚¢
+		//! GUIé ˜åŸŸã‚’è¡¨ã™çŸ©å½¢ã‚’å–å¾—ã€‚å›è»¢ã¯è€ƒæ…®ã•ã‚Œãªã„
 		//const RectAnglei& rect()const;
-		//! ƒAƒ“ƒJ[¶ã‚ÌˆÊ’u‚ğæ“¾BeCTransformGUI’†‚Å‚ÌˆÊ’u‚ğ(0.0-1.0)^2‚Å•\‚·
+		//! ã‚¢ãƒ³ã‚«ãƒ¼å·¦ä¸Šã®ä½ç½®ã‚’å–å¾—ã€‚è¦ªCTransformGUIä¸­ã§ã®ä½ç½®ã‚’(0.0-1.0)^2ã§è¡¨ã™
 		//Vector2Dd anchor_min()const;
-		//! ƒAƒ“ƒJ[¶ã‚ÌˆÊ’u‚ğİ’èBeCTransformGUI’†‚Å‚ÌˆÊ’u‚ğ(0.0-1.0)^2‚Å•\‚·
+		//! ã‚¢ãƒ³ã‚«ãƒ¼å·¦ä¸Šã®ä½ç½®ã‚’è¨­å®šã€‚è¦ªCTransformGUIä¸­ã§ã®ä½ç½®ã‚’(0.0-1.0)^2ã§è¡¨ã™
 		//CTransformGUI& anchor_min(const Vector2Dd& a);
-		//! ƒAƒ“ƒJ[‰E‰º‚ÌˆÊ’u‚ğæ“¾BeCTransformGUI’†‚Å‚ÌˆÊ’u‚ğ(0.0-1.0)^2‚Å•\‚·
+		//! ã‚¢ãƒ³ã‚«ãƒ¼å³ä¸‹ã®ä½ç½®ã‚’å–å¾—ã€‚è¦ªCTransformGUIä¸­ã§ã®ä½ç½®ã‚’(0.0-1.0)^2ã§è¡¨ã™
 		//Vector2Dd anchor_max()const;
-		//! ƒAƒ“ƒJ[‰E‰º‚ÌˆÊ’u‚ğİ’èBeCTransformGUI’†‚Å‚ÌˆÊ’u‚ğ(0.0-1.0)^2‚Å•\‚·
+		//! ã‚¢ãƒ³ã‚«ãƒ¼å³ä¸‹ã®ä½ç½®ã‚’è¨­å®šã€‚è¦ªCTransformGUIä¸­ã§ã®ä½ç½®ã‚’(0.0-1.0)^2ã§è¡¨ã™
 		//CTransformGUI& anchor_max(const Vector2Dd& a);
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
-		//GOCƒI[ƒo[ƒ‰ƒCƒh
+		//GOCã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		void OnActivated() override final;
 		void OnInactivated() override final;
 	};

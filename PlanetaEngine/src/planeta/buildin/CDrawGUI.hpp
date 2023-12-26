@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "planeta/core/GameObjectSystemComponent.hpp"
 
@@ -12,15 +12,15 @@ namespace plnt {
 		using Super = private_::GameObjectSystemComponent;
 		CDrawGUI();
 		virtual ~CDrawGUI();
-		/*•`‰æˆ—*/
+		/*æç”»å‡¦ç†*/
 		void Draw(ScreenDrawerGUI &drawer);
-		/*! @brief •`‰æ—Dæ“x‚ğæ“¾
+		/*! @brief æç”»å„ªå…ˆåº¦ã‚’å–å¾—
 
-		’l‚ª‘å‚«‚¢‚Ù‚Çè‘O‚É•\¦‚³‚ê‚é*/
+		å€¤ãŒå¤§ãã„ã»ã©æ‰‹å‰ã«è¡¨ç¤ºã•ã‚Œã‚‹*/
 		int draw_priority() const;
-		/*! @brief •`‰æ—Dæ“x‚ğİ’è
+		/*! @brief æç”»å„ªå…ˆåº¦ã‚’è¨­å®š
 
-		’l‚ª‘å‚«‚¢‚Ù‚Çè‘O‚É•\¦‚³‚ê‚é*/
+		å€¤ãŒå¤§ãã„ã»ã©æ‰‹å‰ã«è¡¨ç¤ºã•ã‚Œã‚‹*/
 		CDrawGUI &draw_priority(int priority);
 
 	protected:

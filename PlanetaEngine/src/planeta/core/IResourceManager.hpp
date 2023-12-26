@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <memory>
@@ -8,20 +8,20 @@
 namespace plnt {
 	class ResourceBase;
 
-	/// <summary>ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒXB</summary>
+	/// <summary>ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã€‚</summary>
 	class IResourceManager {
 	public:
-		/// <summary>ƒfƒXƒgƒ‰ƒNƒ^B</summary>
+		/// <summary>ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚</summary>
 		virtual ~IResourceManager() = default;
-		/// <summary>ƒŠƒ\[ƒX‚ğID‚Åæ“¾‚·‚éB</summary>
-		/// <param name="type_info">æ“¾‚·‚éƒŠƒ\[ƒX‚ÌŒ^î•ñ</param>
-		/// <param name="id">æ“¾‚·‚éƒŠƒ\[ƒX‚ÌƒŠƒ\[ƒXID</param>
-		/// <returns>æ“¾‚³‚ê‚½ƒŠƒ\[ƒXBæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚Ínullptr</returns>
+		/// <summary>ãƒªã‚½ãƒ¼ã‚¹ã‚’IDã§å–å¾—ã™ã‚‹ã€‚</summary>
+		/// <param name="type_info">å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®å‹æƒ…å ±</param>
+		/// <param name="id">å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ID</param>
+		/// <returns>å–å¾—ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹ã€‚å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯nullptr</returns>
 		virtual std::shared_ptr<ResourceBase> GetResourceByTypeAndID(const std::type_info &type_info,
 		                                                             const std::string &id) = 0;
-		/// <summary>ƒŠƒ\[ƒX‚ğID‚Åæ“¾‚µŒ^‚ğ•ÏŠ·‚·‚éB</summary>
-		/// <param name="id">æ“¾‚·‚éƒŠƒ\[ƒX‚ÌƒŠƒ\[ƒXID</param>
-		/// <returns>æ“¾‚³‚ê‚½ƒŠƒ\[ƒXBæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚Ínullptr</returns>
+		/// <summary>ãƒªã‚½ãƒ¼ã‚¹ã‚’IDã§å–å¾—ã—å‹ã‚’å¤‰æ›ã™ã‚‹ã€‚</summary>
+		/// <param name="id">å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ID</param>
+		/// <returns>å–å¾—ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹ã€‚å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯nullptr</returns>
 		template <class RT>
 		std::shared_ptr<RT> GetResourceByID(const std::string &id) {
 			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
@@ -29,15 +29,15 @@ namespace plnt {
 			if (rsc) {
 				auto out = std::dynamic_pointer_cast<RT>(rsc);
 				if (out) { return out; } else {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ÌŒ^‚ğ•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B(\"ƒ^[ƒQƒbƒgŒ^:", typeid(RT).name(), "\")");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å‹ã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚(\"ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå‹:", typeid(RT).name(), "\")");
 					return nullptr;
 				}
 			} else { return nullptr; }
 		}
 
-		/// <summary>ƒŠƒ\[ƒX‚ğFullID‚Åæ“¾‚·‚éB</summary>
-		/// <param name="full_id">æ“¾‚·‚éƒŠƒ\[ƒX‚ÌƒŠƒ\[ƒXFullID</param>
-		/// <returns>æ“¾‚³‚ê‚½ƒŠƒ\[ƒXBæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚Ínullptr</returns>
+		/// <summary>ãƒªã‚½ãƒ¼ã‚¹ã‚’FullIDã§å–å¾—ã™ã‚‹ã€‚</summary>
+		/// <param name="full_id">å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹FullID</param>
+		/// <returns>å–å¾—ã•ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹ã€‚å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯nullptr</returns>
 		virtual std::shared_ptr<ResourceBase> GetResourceByFullID(const std::string &full_id) = 0;
 	};
 }

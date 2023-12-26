@@ -1,20 +1,20 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Game.hpp"
 #include "ILogManager.hpp"
 
-//ƒƒbƒZ[ƒW‚ðo—Í‚·‚é
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
 #define PE_LOG_MESSAGE(...)\
 ::plnt::Game::instance().log_manager()->Log(::plnt::LogLevel::Message,__FUNCTION__,__VA_ARGS__)
-//Œx‚ðo—Í‚·‚é
+//è­¦å‘Šã‚’å‡ºåŠ›ã™ã‚‹
 #define PE_LOG_WARNING(...)\
 ::plnt::Game::instance().log_manager()->Log(::plnt::LogLevel::Warning,__FUNCTION__,__VA_ARGS__)
-//ƒGƒ‰[‚ðo—Í‚·‚é
+//ã‚¨ãƒ©ãƒ¼ã‚’å‡ºåŠ›ã™ã‚‹
 #define PE_LOG_ERROR(...)\
 ::plnt::Game::instance().log_manager()->Log(::plnt::LogLevel::Error,__FUNCTION__,__VA_ARGS__)
-//’v–½“IƒGƒ‰[‚ðo—Í‚·‚é(ƒfƒoƒbƒOƒ‚[ƒh‚ÌŽž‚ÍAƒvƒƒOƒ‰ƒ€‚ð’âŽ~‚³‚¹‚é)
+//è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ã‚’å‡ºåŠ›ã™ã‚‹(ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯ã€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’åœæ­¢ã•ã›ã‚‹)
 #define PE_LOG_FATAL(...)\
 ::plnt::Game::instance().log_manager()->Log(::plnt::LogLevel::Fatal,__FUNCTION__,__VA_ARGS__)
-//ðŒƒ`ƒFƒbƒN(ˆø”‚ªfalse‚È‚ç’v–½“IƒGƒ‰[‚ð”­¶‚³‚¹‚é)
+//æ¡ä»¶ãƒã‚§ãƒƒã‚¯(å¼•æ•°ãŒfalseãªã‚‰è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ã‚’ç™ºç”Ÿã•ã›ã‚‹)
 #define PE_VERIFY(condition)\
 if((condition)==false){::plnt::Game::instance().log_manager()->Log(::plnt::LogLevel::Fatal,__FUNCTION__,"expression : ",#condition);}

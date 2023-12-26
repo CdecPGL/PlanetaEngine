@@ -1,4 +1,4 @@
-#pragma warning(push)
+ï»¿#pragma warning(push)
 #pragma warning(disable: 4100)
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
@@ -14,13 +14,13 @@ using namespace ::plnt::effekseer;
 Effekseer::EffectRef plnt::REffect::effekseer_effect() const { return effekseer_effect_; }
 
 bool plnt::REffect::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
-	//“Ç‚İ‚İ—pİ’è
+	//èª­ã¿è¾¼ã¿ç”¨è¨­å®š
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
-	//ƒGƒtƒFƒNƒgƒ[ƒ_[‚Ìİ’è
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ­ãƒ¼ãƒ€ãƒ¼ã®è¨­å®š
 	/*decltype(auto) eff_ldr = eff_mgr->GetEffectLoader();
 	assert(dynamic_cast<private_::EffectLoaderForEffekseer*>(eff_ldr) != nullptr);
 	static_cast<private_::EffectLoaderForEffekseer*>(eff_ldr)->SetFile(&file);*/
-	//ƒeƒNƒXƒ`ƒƒƒ[ƒ_[‚Ìİ’è
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ€ãƒ¼ã®è¨­å®š
 	eff_mgr->SetTextureLoader(::Effekseer::MakeRefPtr<TextureLoaderForEffekseer>());
 	decltype(auto) txr_ldr = eff_mgr->GetTextureLoader();
 	assert(txr_ldr != nullptr);
@@ -29,15 +29,15 @@ bool plnt::REffect::OnLoaded(const File &file, const JsonFile &metadata, Resourc
 		[&referencer](const std::string &path, ::Effekseer::TextureType texture_type)-> ::Effekseer::TextureRef {
 			auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
 			if (tex_res) { return tex_res->effekseer_taxture(); } else {
-				PE_LOG_ERROR("ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹“à‚ÅQÆ‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½B(w’èƒpƒX:", path, ")");
+				PE_LOG_ERROR("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å†…ã§å‚ç…§ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚(æŒ‡å®šãƒ‘ã‚¹:", path, ")");
 				return nullptr;
 			}
 		});
-	//“Ç‚İ‚İ
+	//èª­ã¿è¾¼ã¿
 	auto effect = Effekseer::Effect::Create(GetEffekseer3DManager(), const_cast<unsigned char *>(file.top_pointer()),
 	                                        file.size());
 	if (effect == nullptr) {
-		PE_LOG_ERROR("Effekseerƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½B");
+		PE_LOG_ERROR("Effekseerãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 		return false;
 	}
 	effekseer_effect_ = effect;

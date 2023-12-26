@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "IGameObjectManager.hpp"
 #include "SceneModule.hpp"
@@ -8,13 +8,13 @@ namespace plnt {
 		class GameObjectManager : public IGameObjectManager, public SceneModule {
 		public:
 			virtual ~GameObjectManager() = 0 { };
-			/*ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg“o˜^‰ğœ(I—¹ˆ—‚ğs‚¤)*/
+			/*ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²è§£é™¤(çµ‚äº†å‡¦ç†ã‚’è¡Œã†)*/
 			virtual bool RemoveGameObject(int id) = 0;
-			/*—LŒø‰»*/
+			/*æœ‰åŠ¹åŒ–*/
 			virtual bool ActivateGameObject(int id) = 0;
-			/*–³Œø‰»*/
+			/*ç„¡åŠ¹åŒ–*/
 			virtual bool InActivateGameObject(int id) = 0;
-			/*‚·‚×‚Ä‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğ”jŠü*/
+			/*ã™ã¹ã¦ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç ´æ£„*/
 			virtual void RemoveAllGameObjects() = 0;
 		};
 	}

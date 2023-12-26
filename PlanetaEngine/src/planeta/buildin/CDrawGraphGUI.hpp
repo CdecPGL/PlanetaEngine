@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include "planeta/core/RectAngle.hpp"
 
 #include "CDrawGUI.hpp"
 
 namespace plnt {
-	/*! GUI—Ìˆæ‚É‰æ‘œ‚ğ•`‰æ‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg*/
+	/*! GUIé ˜åŸŸã«ç”»åƒã‚’æç”»ã™ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ*/
 	class CDrawGraphGUI final : public CDrawGUI {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraphGUI);
 
@@ -13,15 +13,15 @@ namespace plnt {
 		using Super = CDrawGUI;
 		CDrawGraphGUI();
 		~CDrawGraphGUI();
-		/*! •\¦‚·‚é‰æ‘œ‚ÌƒŠƒ\[ƒXID‚ğİ’è‚·‚é*/
+		/*! è¡¨ç¤ºã™ã‚‹ç”»åƒã®ãƒªã‚½ãƒ¼ã‚¹IDã‚’è¨­å®šã™ã‚‹*/
 		bool resource_id(const std::string &res_id);
-		/*! ‰æ‘œã‚Ì•`‰æ—Ìˆæ‚ğƒsƒNƒZƒ‹’PˆÊ‚Åæ“¾*/
+		/*! ç”»åƒä¸Šã®æç”»é ˜åŸŸã‚’ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§å–å¾—*/
 		const RectAnglei &draw_area() const;
-		/*! ‰æ‘œã‚Ì•`‰æ—Ìˆæ‚ğƒsƒNƒZƒ‹’PˆÊ‚Åİ’è*/
+		/*! ç”»åƒä¸Šã®æç”»é ˜åŸŸã‚’ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§è¨­å®š*/
 		CDrawGraphGUI &draw_area(const RectAnglei &rect);
-		/*! ‰æ‘œ‚ğ”½“]‚³‚¹‚é‚©æ“¾*/
+		/*! ç”»åƒã‚’åè»¢ã•ã›ã‚‹ã‹å–å¾—*/
 		const bool reverse() const;
-		/*! ‰æ‘œ‚ğ”½“]‚³‚¹‚é‚©İ’è*/
+		/*! ç”»åƒã‚’åè»¢ã•ã›ã‚‹ã‹è¨­å®š*/
 		CDrawGraphGUI &reverse(bool rev);
 
 	private:

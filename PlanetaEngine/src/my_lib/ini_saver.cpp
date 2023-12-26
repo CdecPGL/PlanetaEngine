@@ -1,4 +1,4 @@
-#include<fstream>
+﻿#include<fstream>
 
 #include"ini_saver.hpp"
 

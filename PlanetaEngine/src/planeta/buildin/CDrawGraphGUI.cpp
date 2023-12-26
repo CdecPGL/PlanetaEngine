@@ -1,4 +1,4 @@
-#include "planeta/core/IGameObject.hpp"
+﻿#include "planeta/core/IGameObject.hpp"
 #include "planeta/core/ScreenDrawerGUI.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "planeta/core/ResourceHolder.hpp"

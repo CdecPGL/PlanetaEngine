@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "planeta/core/ResourceBase.hpp"
 #include "planeta/effekseer/EffekseerUtil.hpp"

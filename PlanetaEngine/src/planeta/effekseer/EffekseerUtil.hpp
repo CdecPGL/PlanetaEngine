@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <functional>
 
@@ -9,14 +9,14 @@
 
 #include "planeta/core/File.hpp"
 
-// TODO: ÅV‚ÌEffekseerForDXLib‘Î‰
+// TODO: æœ€æ–°ã®EffekseerForDXLibå¯¾å¿œ
 
 namespace plnt::effekseer {
-	//LoadŠÖ”‚Ìˆø”‚Íg‚í‚¸‚ÉA“Ç‚İ‚İ’¼‘O‚ÉFile‚ğw’è‚µ‚ÄA‚»‚ê‚ğ—p‚¢‚Ä“Ç‚İ‚İ‚ğs‚¤B
+	//Loadé–¢æ•°ã®å¼•æ•°ã¯ä½¿ã‚ãšã«ã€èª­ã¿è¾¼ã¿ç›´å‰ã«Fileã‚’æŒ‡å®šã—ã¦ã€ãã‚Œã‚’ç”¨ã„ã¦èª­ã¿è¾¼ã¿ã‚’è¡Œã†ã€‚
 	class EffectLoaderForEffekseer final : public ::Effekseer::EffectLoader {
 	public:
 		void SetFile(const File *file);
-		//–‘O‚Éw’è‚³‚ê‚½File‚©‚çƒf[ƒ^‚ÌƒRƒs[‚ğs‚¤
+		//äº‹å‰ã«æŒ‡å®šã•ã‚ŒãŸFileã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼ã‚’è¡Œã†
 		bool Load(const EFK_CHAR *path, void *&data, int32_t &size) override;
 		void Unload(void *data, int32_t size) override;
 
@@ -24,8 +24,8 @@ namespace plnt::effekseer {
 		const File *file_ = nullptr;
 	};
 
-	//“Ç‚İ‚İ‘O‚ÉƒeƒNƒXƒ`ƒƒæ“¾—p‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚µA‚»‚ê‚ğ—p‚¢‚ÄƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚éB
-	//REffectTexture‚Åíœ‚·‚é‚Ì‚ÅUnload‚Å‚Ìíœ‚Ís‚í‚È‚¢
+	//èª­ã¿è¾¼ã¿å‰ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£å–å¾—ç”¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã—ã€ãã‚Œã‚’ç”¨ã„ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹ã€‚
+	//REffectTextureã§å‰Šé™¤ã™ã‚‹ã®ã§Unloadã§ã®å‰Šé™¤ã¯è¡Œã‚ãªã„
 	class TextureLoaderForEffekseer final : public ::Effekseer::TextureLoader {
 	public:
 		using TextureGetterType = std::function<::Effekseer::TextureRef(const std::string &, ::Effekseer::TextureType)>;

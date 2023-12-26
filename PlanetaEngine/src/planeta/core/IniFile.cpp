@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 
 #include "IniFile.hpp"
 #include "FileIStream.hpp"
@@ -12,18 +12,18 @@ namespace plnt {
 		vector<string> lines;
 		string buf;
 		while (getline(fis, buf)) {
-			//ƒRƒƒ“ƒgœ‹
+			//ã‚³ãƒ¡ãƒ³ãƒˆé™¤å»
 			auto pos = buf.find_first_of(';');
 			if (pos != std::string::npos) { buf.erase(pos, buf.size() - pos); }
-			//‰üsƒR[ƒhœ‹
+			//æ”¹è¡Œã‚³ãƒ¼ãƒ‰é™¤å»
 			util::RemoveLineFeedCode(buf);
-			//ƒXƒy[ƒX‚Æƒ^ƒuœ‹
+			//ã‚¹ãƒšãƒ¼ã‚¹ã¨ã‚¿ãƒ–é™¤å»
 			util::RemoveSpaceAndTab(buf);
-			//‹ós‚Å‚È‚©‚Á‚½‚çsƒŠƒXƒg‚É’Ç‰Á
+			//ç©ºè¡Œã§ãªã‹ã£ãŸã‚‰è¡Œãƒªã‚¹ãƒˆã«è¿½åŠ 
 			if (buf.size() != 0) { lines.push_back(move(buf)); }
 		}
 
-		//ƒZƒNƒVƒ‡ƒ“•ª—£
+		//ã‚»ã‚¯ã‚·ãƒ§ãƒ³åˆ†é›¢
 		unordered_map<string, vector<string>> section;
 		vector<string>::iterator s_it = find_if(lines.begin(), lines.end(), [](string &l) -> bool {
 			if (l.size() < 3)return false;
@@ -45,7 +45,7 @@ namespace plnt {
 			s_it = e_it;
 		}
 
-		//ƒf[ƒ^’Šo
+		//ãƒ‡ãƒ¼ã‚¿æŠ½å‡º
 		INIType origin_data;
 		for (auto it = section.begin(); it != section.end(); ++it) {
 			unordered_map<string, string> s;
@@ -59,7 +59,7 @@ namespace plnt {
 			origin_data.insert(pair<string, unordered_map<string, string>>((*it).first, s));
 		}
 
-		//UTF8‚©‚çƒVƒXƒeƒ€•¶šƒR[ƒh‚Ö•ÏŠ·
+		//UTF8ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¸å¤‰æ›
 		for (auto &&sec : origin_data) {
 			unordered_map<string, string> n_sec;
 			for (auto &&data : sec.second) {

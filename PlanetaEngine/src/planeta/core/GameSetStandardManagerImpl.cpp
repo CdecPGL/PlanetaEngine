@@ -1,4 +1,4 @@
-#include "boost/filesystem.hpp"
+ï»¿#include "boost/filesystem.hpp"
 
 #include "StandardResourceManager.hpp"
 #include "StandardLogManager.hpp"
@@ -17,16 +17,16 @@ namespace plnt {
 		using namespace private_;
 		SetResourceManager(std::make_shared<StandardResourceManager>());
 		auto log_mgr = std::make_shared<StandardLogManager>();
-		//ŠJ”­ƒ‚[ƒh‚È‚çƒRƒ“ƒ\[ƒ‹ƒEƒCƒ“ƒhƒE‚ðì¬‚µA‚»‚±‚ÉƒƒO‚ðo—Í
+		//é–‹ç™ºãƒ¢ãƒ¼ãƒ‰ãªã‚‰ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã—ã€ãã“ã«ãƒ­ã‚°ã‚’å‡ºåŠ›
 		if (system_variables::DevelopmentMode) {
-			//ƒRƒ“ƒ\[ƒ‹o—Í‚ð—LŒø‰»
+			//ã‚³ãƒ³ã‚½ãƒ¼ãƒ«å‡ºåŠ›ã‚’æœ‰åŠ¹åŒ–
 			log_mgr->ValidateConsoleOutPut();
 		}
-		//ƒƒOƒfƒBƒŒƒNƒgƒŠ‚ª‚È‚©‚Á‚½‚çì‚é
+		//ãƒ­ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒãªã‹ã£ãŸã‚‰ä½œã‚‹
 		if (!boost::filesystem::exists(system_variables::file_system::LogDirectory)) {
 			boost::filesystem::create_directory(system_variables::file_system::LogDirectory);
 		}
-		//ƒƒOo—Íƒtƒ@ƒCƒ‹‚ð—LŒø‚É‚·‚é
+		//ãƒ­ã‚°å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 		log_mgr->ValidateFileOutPut(
 			system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName);
 		SetLogManager(log_mgr);

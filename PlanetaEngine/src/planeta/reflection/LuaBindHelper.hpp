@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <type_traits>
 #include <functional>
@@ -7,14 +7,14 @@
 
 namespace plnt::reflection {
 	namespace private_ {
-		//LuaIntf‚ÉƒvƒƒpƒeƒBƒZƒbƒ^[‚Æ‚µ‚Ä“o˜^‚·‚é‚½‚ß‚ÉA–ß‚è’l‚ğvoid‰»‚·‚éB
-		/*–ß‚è’l‚ªvoid‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü*/
+		//LuaIntfã«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚»ãƒƒã‚¿ãƒ¼ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ãŸã‚ã«ã€æˆ»ã‚Šå€¤ã‚’voidåŒ–ã™ã‚‹ã€‚
+		/*æˆ»ã‚Šå€¤ãŒvoidã®å ´åˆã¯ãã®ã¾ã¾*/
 		template <class C, typename Ret, typename... Param>
 		auto GetMemberPropertySetterToLuaIntf(
 			Ret (C::*mf_ptr)(Param...)) -> typename boost::enable_if<
 			std::is_same<void, Ret>, Ret(C::*)(Param...)>::type { return mf_ptr; }
 
-		//–ß‚è’l‚ª”ñvoid‚Ìê‡‚Í–ß‚è’l‚ªvoid‚Ìƒ‰ƒ€ƒ_®‚Åƒ‰ƒbƒv‚·‚é
+		//æˆ»ã‚Šå€¤ãŒévoidã®å ´åˆã¯æˆ»ã‚Šå€¤ãŒvoidã®ãƒ©ãƒ ãƒ€å¼ã§ãƒ©ãƒƒãƒ—ã™ã‚‹
 		template <class C, typename Ret, typename... Params>
 		auto GetMemberPropertySetterToLuaIntf(
 			Ret (C::*mf_ptr)(Params...)) -> typename boost::disable_if<

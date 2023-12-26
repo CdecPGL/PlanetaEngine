@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Game.hpp"
 #include "IResourceManager.hpp"
@@ -6,58 +6,58 @@
 
 namespace plnt {
 	namespace util {
-		/*! ƒŠƒ\[ƒX‚ğ•Û‚·‚é‚½‚ß‚Ìƒwƒ‹ƒp[ƒNƒ‰ƒX*/
+		/*! ãƒªã‚½ãƒ¼ã‚¹ã‚’ä¿æŒã™ã‚‹ãŸã‚ã®ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹*/
 		template <class ResType>
 		class ResourceHolder final {
 		public:
-			/*! ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+			/*! ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 			ResourceHolder() = default;
-			/*! ƒfƒXƒgƒ‰ƒNƒ^*/
+			/*! ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 			~ResourceHolder() = default;
-			/*! ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+			/*! ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 			ResourceHolder(const ResourceHolder &obj) = default;
-			/*! ƒ€[ƒuƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+			/*! ãƒ ãƒ¼ãƒ–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 			ResourceHolder(ResourceHolder &&obj) = default;
-			/*! ‘ã“ü‰‰Zq*/
+			/*! ä»£å…¥æ¼”ç®—å­*/
 			ResourceHolder &operator=(const ResourceHolder &obj) = default;
-			/*! ƒ€[ƒuƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+			/*! ãƒ ãƒ¼ãƒ–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 			ResourceHolder &operator=(ResourceHolder &&obj) = default;
-			/*! ID‚ÅƒŠƒ\[ƒX‚ğİ’è‚·‚é*/
+			/*! IDã§ãƒªã‚½ãƒ¼ã‚¹ã‚’è¨­å®šã™ã‚‹*/
 			bool SetResourceByID(const std::string &res_id) noexcept {
 				auto res = Game::instance().resource_manager()->GetResourceByTypeAndID(typeid(ResType), res_id);
 				if (res == nullptr) {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½B(ƒŠƒ\[ƒXID:", res_id, ")");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸã€‚(ãƒªã‚½ãƒ¼ã‚¹ID:", res_id, ")");
 					return false;
 				}
 				std::shared_ptr<ResType> gr = std::dynamic_pointer_cast<ResType>(res);
 				if (gr) { return true; } else {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ÌŒ^•ÏŠ·‚É¸”s‚µ‚Ü‚µ‚½B(ƒŠƒ\[ƒXID:", res_id, "Aƒ\[ƒX‚ÌŒ^", typeid(*res).name(), "Aƒ^[ƒQƒbƒg‚ÌŒ^:",
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ã®å‹å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸã€‚(ãƒªã‚½ãƒ¼ã‚¹ID:", res_id, "ã€ã‚½ãƒ¼ã‚¹ã®å‹", typeid(*res).name(), "ã€ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å‹:",
 					             typeid(ResType).name(), ")");
 					return false;
 				}
 			}
 
-			/*! ƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é*/
+			/*! ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹*/
 			std::shared_ptr<ResType> resource_shared_pointer() const noexcept {
 				if (!is_available()) {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ª—˜—p•s‰Â”\‚Å‚·B");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ãŒåˆ©ç”¨ä¸å¯èƒ½ã§ã™ã€‚");
 					return nullptr;
 				}
 				return resource_;
 			}
 
-			/*! ƒŠƒ\[ƒX‚ÌQÆ‚ğæ“¾‚·‚é
-				@exception ƒŠƒ\[ƒX‚ª—˜—p•s‰Â”\‚Èê‡‚Ístd::runtime_error‚ğ“Š‚°‚éB
+			/*! ãƒªã‚½ãƒ¼ã‚¹ã®å‚ç…§ã‚’å–å¾—ã™ã‚‹
+				@exception ãƒªã‚½ãƒ¼ã‚¹ãŒåˆ©ç”¨ä¸å¯èƒ½ãªå ´åˆã¯std::runtime_errorã‚’æŠ•ã’ã‚‹ã€‚
 			*/
 			ResType &resource_reference() const {
 				if (!is_available()) {
-					PE_LOG_ERROR("ƒŠƒ\[ƒX‚ª—˜—p•s‰Â”\‚Å‚·B");
-					throw std::runtime_error("ƒŠƒ\[ƒX‚ª—˜—p•s‰Â”\‚Å‚·B");
+					PE_LOG_ERROR("ãƒªã‚½ãƒ¼ã‚¹ãŒåˆ©ç”¨ä¸å¯èƒ½ã§ã™ã€‚");
+					throw std::runtime_error("ãƒªã‚½ãƒ¼ã‚¹ãŒåˆ©ç”¨ä¸å¯èƒ½ã§ã™ã€‚");
 				}
 				return *resource_;
 			}
 
-			/*! ƒŠƒ\[ƒX‚ª—˜—p‰Â”\‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é*/
+			/*! ãƒªã‚½ãƒ¼ã‚¹ãŒåˆ©ç”¨å¯èƒ½ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹*/
 			bool is_available() const noexcept { return resource_ != nullptr; }
 
 		private:

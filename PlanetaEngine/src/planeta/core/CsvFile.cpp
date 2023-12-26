@@ -1,4 +1,4 @@
-//boost::split‚ÉŠÖ‚·‚éC4996ƒGƒ‰[‚ğ‚±‚Ìƒtƒ@ƒCƒ‹‚Ì‚İ–³Œø‰»
+ï»¿//boost::splitã«é–¢ã™ã‚‹C4996ã‚¨ãƒ©ãƒ¼ã‚’ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿ç„¡åŠ¹åŒ–
 #pragma warning(push)
 #pragma warning(disable:4996)
 
@@ -34,33 +34,33 @@ namespace plnt {
 	bool CsvFile::_CreateCSVFromLines(std::vector<std::string> &lines) {
 		loaded_datas.clear();
 		using namespace boost;
-		//–³Œø‚Ès‚ğæ‚èœ‚­(‹ó‚¾‚Á‚½‚ç)
+		//ç„¡åŠ¹ãªè¡Œã‚’å–ã‚Šé™¤ã(ç©ºã ã£ãŸã‚‰)
 		std::erase_if(lines, [](std::string line)-> bool {
 			if (line.size() == 0)return true;
 			return false;
 		});
-		//s‚ª‚È‚©‚Á‚½‚çŒx
+		//è¡ŒãŒãªã‹ã£ãŸã‚‰è­¦å‘Š
 		if (lines.size() == 0) {
-			PE_LOG_WARNING("‹ó‚ÌSCVƒtƒ@ƒCƒ‹‚Å‚·B–”‚Ís‚Ì’Šo‚É¸”s‚µ‚Ü‚µ‚½B");
+			PE_LOG_WARNING("ç©ºã®SCVãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚åˆã¯è¡Œã®æŠ½å‡ºã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 			return true;
 		}
-		//ƒf[ƒ^’Šo
+		//ãƒ‡ãƒ¼ã‚¿æŠ½å‡º
 		int i = 1;
 		for (std::string &line : lines) {
 			std::vector<std::string> datas;
 			algorithm::split(datas, line, algorithm::is_any_of(","));
 			if (datas.size() == 0) {
-				PE_LOG_ERROR("csvƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İƒGƒ‰[B:ƒf[ƒ^‚Ì’Šo‚É¸”s‚µ‚Ü‚µ‚½(", i, "s–Ú)B");
+				PE_LOG_ERROR("csvãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ã€‚:ãƒ‡ãƒ¼ã‚¿ã®æŠ½å‡ºã«å¤±æ•—ã—ã¾ã—ãŸ(", i, "è¡Œç›®)ã€‚");
 				return false;
 			}
 			++i;
-			//\n‚ğæ‚èœ‚­
+			//\nã‚’å–ã‚Šé™¤ã
 			for (std::string &data : datas) { std::erase_if(data, [](char w)-> bool { return w == '/n'; }); }
-			//ƒf[ƒ^‚ğ•Û‘¶
+			//ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 			loaded_datas.push_back(std::move(datas));
 		}
 
-		//“Ç‚İ‚ñ‚¾ƒf[ƒ^‚Ì•¶šƒR[ƒh‚ğUTF8‚©‚çƒVƒXƒeƒ€•¶šƒR[ƒh‚Ö•ÏŠ·
+		//èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’UTF8ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¸å¤‰æ›
 		for (auto &&line : loaded_datas) { for (auto &&elem : line) { elem = util::ConvertUTF8ToSystemCode(elem); } }
 		return true;
 	}

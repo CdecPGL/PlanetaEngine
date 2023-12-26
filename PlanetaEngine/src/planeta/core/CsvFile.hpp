@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <vector>
@@ -6,7 +6,7 @@
 namespace plnt {
 	class File;
 
-	/*! Csvƒtƒ@ƒCƒ‹ƒNƒ‰ƒX*/
+	/*! Csvãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ©ã‚¹*/
 	class CsvFile final {
 	public:
 		using CSV_DATA = std::vector<std::vector<std::string>>;

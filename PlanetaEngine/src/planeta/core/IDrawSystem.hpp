@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Vector2D.hpp"
 
@@ -6,9 +6,9 @@ namespace plnt {
 	class IDrawSystem {
 	public:
 		virtual ~IDrawSystem() = 0 { };
-		/*! ƒXƒNƒŠ[ƒ“À•W‚ğGameObjectÀ‹óŠÔ•W‚É•ÏŠ·*/
+		/*! ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’GameObjectåº§ç©ºé–“æ¨™ã«å¤‰æ›*/
 		virtual Vector2Dd CovertPositionScreenSpaceToGameObjectSpace(const Vector2Di &gui_space_pos) const = 0;
-		/*! GameObjectÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·*/
+		/*! GameObjectåº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›*/
 		virtual Vector2Di CovertPositionGameObjectSpaceToScreenSpace(const Vector2Dd &gameobject_space_pos) const = 0;
 	};
 }

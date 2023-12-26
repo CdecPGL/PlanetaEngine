@@ -1,119 +1,119 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-//http://stackoverflow.com/questions/32907385/cant-compile-boost-spirit-example4-cpp ‚æ‚è
+//http://stackoverflow.com/questions/32907385/cant-compile-boost-spirit-example4-cpp ã‚ˆã‚Š
 #define BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 #include "boost/variant.hpp"
 
 #include "LogUtility.hpp"
 
 namespace plnt {
-	//! JSONŒ^‚Ì•sˆê’vƒGƒ‰[—áŠOƒNƒ‰ƒX
+	//! JSONå‹ã®ä¸ä¸€è‡´ã‚¨ãƒ©ãƒ¼ä¾‹å¤–ã‚¯ãƒ©ã‚¹
 	class JSONTypeError final : public std::runtime_error {
 	public:
 		using runtime_error::runtime_error;
 	};
 
 	class JSONValue;
-	/*! @brief ObjectŒ^‚ÌJSONValue‚ğˆµ‚¤ƒNƒ‰ƒX
+	/*! @brief Objectå‹ã®JSONValueã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
 	*/
 	class JSONObject final {
 	public:
-		//! std::unordered_map‚©‚çJSONObject‚ğ\’z‚·‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^BˆÃ–Ù“I•ÏŠ·‚ğ‹–‚·
+		//! std::unordered_mapã‹ã‚‰JSONObjectã‚’æ§‹ç¯‰ã™ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚æš—é»™çš„å¤‰æ›ã‚’è¨±ã™
 		JSONObject(std::unordered_map<std::string, std::shared_ptr<JSONValue>> &&obj);
-		//! w’è‚µ‚½ƒL[‚É‘Î‰‚·‚éJSONValue‚ğæ“¾‚·‚é
+		//! æŒ‡å®šã—ãŸã‚­ãƒ¼ã«å¯¾å¿œã™ã‚‹JSONValueã‚’å–å¾—ã™ã‚‹
 		std::shared_ptr<const JSONValue> At(const std::string &key) const noexcept;
-		/*! @brief w’è‚µ‚½ƒL[‚É‘Î‰‚·‚éJSONValue‚ğæ“¾‚·‚éB‘¶İ‚µ‚È‚¢ê‡‚Í—áŠO‚ğ“Š‚°‚éB
-		@exception ƒL[‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡Astd::out_of_rang‚ğ“Š‚°‚é
+		/*! @brief æŒ‡å®šã—ãŸã‚­ãƒ¼ã«å¯¾å¿œã™ã‚‹JSONValueã‚’å–å¾—ã™ã‚‹ã€‚å­˜åœ¨ã—ãªã„å ´åˆã¯ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
+		@exception ã‚­ãƒ¼ãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã€std::out_of_rangã‚’æŠ•ã’ã‚‹
 		*/
 		std::shared_ptr<const JSONValue> AtWithException(const std::string &key) const;
-		//! æ“ª‚ğ¦‚·ƒCƒeƒŒ[ƒ^‚ğæ“¾‚·‚é
+		//! å…ˆé ­ã‚’ç¤ºã™ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		auto begin() const { return obj_.begin(); }
-		//! ––”ö‚ğ¦‚·ƒCƒeƒŒ[ƒ^‚ğæ“¾‚·‚é
+		//! æœ«å°¾ã‚’ç¤ºã™ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		auto end() const { return obj_.end(); }
 
 	private:
 		std::unordered_map<std::string, std::shared_ptr<JSONValue>> obj_;
 	};
 
-	/*! @brief ArrayŒ^‚ÌJSONValue‚ğˆµ‚¤ƒNƒ‰ƒX
+	/*! @brief Arrayå‹ã®JSONValueã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
 	*/
 	class JSONArray final {
 	public:
-		//! std::vector‚©‚çJSONArray‚ğ\’z‚·‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^BˆÃ–Ù“I•ÏŠ·‚ğ‹–‚·
+		//! std::vectorã‹ã‚‰JSONArrayã‚’æ§‹ç¯‰ã™ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚æš—é»™çš„å¤‰æ›ã‚’è¨±ã™
 		JSONArray(std::vector<std::shared_ptr<JSONValue>> &&ary);
-		//! w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‘Î‰‚·‚éJSONValue‚ğæ“¾‚·‚é
+		//! æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¯¾å¿œã™ã‚‹JSONValueã‚’å–å¾—ã™ã‚‹
 		std::shared_ptr<const JSONValue> At(size_t idx) const noexcept;
-		/*! @brief w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‘Î‰‚·‚éJSONValue‚ğæ“¾‚·‚éB‘¶İ‚µ‚È‚¢ê‡‚Í—áŠO‚ğ“Š‚°‚éB
-		@exception ƒL[‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡Astd::out_of_rang‚ğ“Š‚°‚é
+		/*! @brief æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¯¾å¿œã™ã‚‹JSONValueã‚’å–å¾—ã™ã‚‹ã€‚å­˜åœ¨ã—ãªã„å ´åˆã¯ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
+		@exception ã‚­ãƒ¼ãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã€std::out_of_rangã‚’æŠ•ã’ã‚‹
 		*/
 		std::shared_ptr<const JSONValue> AtWithException(size_t idx) const;
-		//! ”z—ñ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+		//! é…åˆ—ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 		size_t size() const;
-		//! æ“ª‚ğ¦‚·ƒCƒeƒŒ[ƒ^‚ğæ“¾‚·‚é
+		//! å…ˆé ­ã‚’ç¤ºã™ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		auto begin() const { return array_.begin(); }
-		//! ––”ö‚ğ¦‚·ƒCƒeƒŒ[ƒ^‚ğæ“¾‚·‚é
+		//! æœ«å°¾ã‚’ç¤ºã™ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		auto end() const { return array_.end(); }
 
 	private:
 		std::vector<std::shared_ptr<JSONValue>> array_;
 	};
 
-	/*! @brief nullŒ^‚ÌJSONValue‚ğˆµ‚¤ƒNƒ‰ƒX
+	/*! @brief nullå‹ã®JSONValueã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
 	*/
 	class JSONNull final { };
 
-	/*! @brief JSONValue‚ğˆµ‚¤ƒNƒ‰ƒX
+	/*! @brief JSONValueã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
 	*/
 	class JSONValue final {
 		template <typename T>
 		using sp = std::shared_ptr<T>;
 
 	public:
-		//! JSONValue‚ğ•Û‚·‚é‚½‚ß‚ÌVariantŒ^
+		//! JSONValueã‚’ä¿æŒã™ã‚‹ãŸã‚ã®Variantå‹
 		using JsonVariantType = boost::variant<sp<JSONNull>, sp<double>, sp<std::string>, sp<bool>, sp<JSONObject>, sp<
 			                                       JSONArray>>;
-		//! ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		//! ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		JSONValue(const JSONValue &obj);
-		//! ƒ€[ƒuƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		//! ãƒ ãƒ¼ãƒ–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		JSONValue(JSONValue &&obj);
-		//! Variant‚©‚ç\’z‚·‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^BˆÃ–Ù“I•ÏŠ·‚ğ‹–‰Â‚·‚é
+		//! Variantã‹ã‚‰æ§‹ç¯‰ã™ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚æš—é»™çš„å¤‰æ›ã‚’è¨±å¯ã™ã‚‹
 		JSONValue(JsonVariantType &&var);
-		//! ƒfƒXƒgƒ‰ƒNƒ^
+		//! ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		~JSONValue();
-		//! ‘ã“ü‰‰Zq
+		//! ä»£å…¥æ¼”ç®—å­
 		JSONValue &operator=(const JSONValue &obj);
-		//! ƒ€[ƒu‰‰Zq
+		//! ãƒ ãƒ¼ãƒ–æ¼”ç®—å­
 		JSONValue &operator=(JSONValue &&obj);
-		/*! @brief Œ^‚ğw’è‚µ‚Ä’l‚ğæ“¾‚·‚éB
+		/*! @brief å‹ã‚’æŒ‡å®šã—ã¦å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
 
-		ƒeƒ“ƒvƒŒ[ƒgƒpƒ‰ƒ[ƒ^‚ÍAZpŒ^,std::string,bool,JSONObject,JSONArrayA‚Ü‚½‚Í‚»‚ê‚ç‚ğ—v‘f‚Æ‚·‚éstd::vectorAstd::unordered_map‚Ì‚¢‚¸‚ê‚©‚Å‚ ‚é•K—v‚ª‚ ‚éB
+		ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã€ç®—è¡“å‹,std::string,bool,JSONObject,JSONArrayã€ã¾ãŸã¯ãã‚Œã‚‰ã‚’è¦ç´ ã¨ã™ã‚‹std::vectorã€std::unordered_mapã®ã„ãšã‚Œã‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 		*/
 		template <class T>
 		std::shared_ptr<const T> Get() const noexcept;
-		/*! @brief Œ^‚ğw’è‚µ‚Ä’l‚ğæ“¾‚·‚éB¸”s‚µ‚½ê‡‚Í—áŠO‚ğ“Š‚°‚éB
+		/*! @brief å‹ã‚’æŒ‡å®šã—ã¦å€¤ã‚’å–å¾—ã™ã‚‹ã€‚å¤±æ•—ã—ãŸå ´åˆã¯ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
 
-		ƒeƒ“ƒvƒŒ[ƒgƒpƒ‰ƒ[ƒ^‚ÍAZpŒ^,std::string,bool,JSONObject,JSONArrayA‚Ü‚½‚Í‚»‚ê‚ç‚ğ—v‘f‚Æ‚·‚éstd::vectorAstd::unordered_map‚Ì‚¢‚¸‚ê‚©‚Å‚ ‚é•K—v‚ª‚ ‚éB
+		ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã€ç®—è¡“å‹,std::string,bool,JSONObject,JSONArrayã€ã¾ãŸã¯ãã‚Œã‚‰ã‚’è¦ç´ ã¨ã™ã‚‹std::vectorã€std::unordered_mapã®ã„ãšã‚Œã‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 
-		@exception Œ^‚Ì•ÏŠ·‚É¸”s‚µ‚½ê‡AJSONTypeError‚ğ“Š‚°‚é
+		@exception å‹ã®å¤‰æ›ã«å¤±æ•—ã—ãŸå ´åˆã€JSONTypeErrorã‚’æŠ•ã’ã‚‹
 		*/
 		template <class T>
 		std::shared_ptr<const T> GetWithException() const;
-		/*! @brief Œ^‚ÆƒfƒtƒHƒ‹ƒg’l‚ğw’è‚µ‚Ä’l‚ğæ“¾‚·‚éB
+		/*! @brief å‹ã¨ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’æŒ‡å®šã—ã¦å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
 
-		ƒeƒ“ƒvƒŒ[ƒgƒpƒ‰ƒ[ƒ^‚ÍAZpŒ^,std::string,bool,JSONObject,JSONArrayA‚Ü‚½‚Í‚»‚ê‚ç‚ğ—v‘f‚Æ‚·‚éstd::vectorAstd::unordered_map‚Ì‚¢‚¸‚ê‚©‚Å‚ ‚é•K—v‚ª‚ ‚éB
+		ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã€ç®—è¡“å‹,std::string,bool,JSONObject,JSONArrayã€ã¾ãŸã¯ãã‚Œã‚‰ã‚’è¦ç´ ã¨ã™ã‚‹std::vectorã€std::unordered_mapã®ã„ãšã‚Œã‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 		*/
 		template <typename T>
 		std::shared_ptr<const T> GetWithDefault(T &&default_value) const noexcept;
-		//! null‚©‚Ç‚¤‚©
+		//! nullã‹ã©ã†ã‹
 		bool is_null() const;
-		/*! @brief w’è‚µ‚½JsonŒ^‚Å‚ ‚é‚©
+		/*! @brief æŒ‡å®šã—ãŸJsonå‹ã§ã‚ã‚‹ã‹
 
-		ƒeƒ“ƒvƒŒ[ƒgƒpƒ‰ƒ[ƒ^‚ÍAdouble,std::string,bool,JSONObject,JSONArray,JSONNull‚Ì‚¢‚¸‚ê‚©‚Å‚ ‚é•K—v‚ª‚ ‚éB
+		ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã€double,std::string,bool,JSONObject,JSONArray,JSONNullã®ã„ãšã‚Œã‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 		*/
 		template <typename T>
 		bool is_json_type() const {
@@ -123,12 +123,12 @@ namespace plnt {
 
 	private:
 		JsonVariantType var_;
-		/*jSONValue‚Ì’l‚ğ—lX‚ÈŒ^‚Åæ“¾‚·‚é‚½‚ß‚Ìƒwƒ‹ƒp[ƒNƒ‰ƒX*/
-		//JSON‘g‚İ‚İŒ^ˆÈŠO‚Ì”’lŒ^‚Ìê‡
+		/*jSONValueã®å€¤ã‚’æ§˜ã€…ãªå‹ã§å–å¾—ã™ã‚‹ãŸã‚ã®ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹*/
+		//JSONçµ„ã¿è¾¼ã¿å‹ä»¥å¤–ã®æ•°å€¤å‹ã®å ´åˆ
 		template <class T>
 		struct JSONValueGetter final {
 			static std::shared_ptr<const T> GetWithException(const JSONValue::JsonVariantType &var) {
-				//Œ^‚ª•s³‚Å‚È‚¢‚©ƒ`ƒFƒbƒN(‚Ù‚©‚ÌJSONŒ^‚Í•Ê‚ÌƒI[ƒo[ƒ[ƒh‚¤‚â“Áê‰»‚Åˆ—‚³‚ê‚é‚Í‚¸)
+				//å‹ãŒä¸æ­£ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯(ã»ã‹ã®JSONå‹ã¯åˆ¥ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰ã†ã‚„ç‰¹æ®ŠåŒ–ã§å‡¦ç†ã•ã‚Œã‚‹ã¯ãš)
 				static_assert(
 					std::conditional_t<std::is_same<T, JSONNull>::value, std::true_type,
 					                   std::conditional_t<std::is_same<T, double>::value, std::true_type,
@@ -145,14 +145,14 @@ namespace plnt {
 									                                      std::false_type>>>>>>::value == false,
 					"T must not be double, JSONNull, std::string, bool, JSONObject, JSONArray type."
 				);
-				//doubleˆÈŠO‚Ì”’lŒ^‚©Šm”F
+				//doubleä»¥å¤–ã®æ•°å€¤å‹ã‹ç¢ºèª
 				static_assert(std::is_arithmetic<T>::value, "T must be a arithmetic type.");
 				auto v = JSONValueGetter<double>::GetWithException(var);
 				return std::make_shared<T>(static_cast<T>(*v));
 			}
 		};
 
-		//JSON‚Å‚Ì‘g‚İ‚İŒ^‚Ìê‡
+		//JSONã§ã®çµ„ã¿è¾¼ã¿å‹ã®å ´åˆ
 		#define JSON_VALUE_GETTER_FOR_JSONTYPE(ptype)\
 		template<>\
 		struct JSONValueGetter<ptype> final{\
@@ -161,7 +161,7 @@ namespace plnt {
 				if (v) {\
 					return *v;\
 				} else {\
-					throw JSONTypeError(util::ConvertAndConnectToString("Œ^‚ğ•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½Bƒ^[ƒQƒbƒg‚Í\"",#ptype,"\"Aƒ\[ƒX‚Í\"", var.type().name(), "\"‚Å‚·B"));\
+					throw JSONTypeError(util::ConvertAndConnectToString("å‹ã‚’å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¯\"",#ptype,"\"ã€ã‚½ãƒ¼ã‚¹ã¯\"", var.type().name(), "\"ã§ã™ã€‚"));\
 				}\
 			}\
 		};
@@ -179,7 +179,7 @@ namespace plnt {
 		JSON_VALUE_GETTER_FOR_JSONTYPE(JSONArray);
 
 		#undef  GET_WITH_EXCEPTION
-		//std::vector‚Ìê‡
+		//std::vectorã®å ´åˆ
 		template <class T, class Allocator>
 		struct JSONValueGetter<std::vector<T, Allocator>> final {
 			static std::shared_ptr<const std::vector<T, Allocator>> GetWithException(
@@ -195,11 +195,11 @@ namespace plnt {
 						++idx;
 					}
 					return std::make_shared<const std::vector<T, Allocator>>(std::move(out));
-				} else { throw JSONTypeError("Œ^‚ğstd::vector‚É•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½BJSONArrayŒ^‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B"); }
+				} else { throw JSONTypeError("å‹ã‚’std::vectorã«å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚JSONArrayå‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚"); }
 			}
 		};
 
-		//std::unordered_map‚Ìê‡
+		//std::unordered_mapã®å ´åˆ
 		template <class T, class Hasher, class KeyEQ, class Allocator>
 		struct JSONValueGetter<std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>> final {
 			static std::shared_ptr<const std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>>
@@ -214,7 +214,7 @@ namespace plnt {
 					}
 					return std::make_shared<const std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>>(
 						std::move(out));
-				} else { throw JSONTypeError("Œ^‚ğstd::unordered_map‚É•ÏŠ·‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½BJSONObjectŒ^‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B"); }
+				} else { throw JSONTypeError("å‹ã‚’std::unordered_mapã«å¤‰æ›ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚JSONObjectå‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚"); }
 			}
 		};
 	};
@@ -238,20 +238,20 @@ namespace plnt {
 	}
 
 	class File;
-	/*! @brief JSONƒtƒ@ƒCƒ‹‚ğˆµ‚¤ƒNƒ‰ƒX
-	@todo ‘S”Ê“I‚ÉƒRƒs[ƒ€[ƒu‚Ì‹““®‚ÌŒŸØ‚ª•K—vB
+	/*! @brief JSONãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ã‚¯ãƒ©ã‚¹
+	@todo å…¨èˆ¬çš„ã«ã‚³ãƒ”ãƒ¼ãƒ ãƒ¼ãƒ–ã®æŒ™å‹•ã®æ¤œè¨¼ãŒå¿…è¦ã€‚
 	*/
 	class JsonFile final {
 	public:
-		//! Šî’ê‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		//! åŸºåº•ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		JsonFile();
-		//! ƒfƒXƒgƒ‰ƒNƒ^
+		//! ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		~JsonFile();
-		//! Json‚Ìƒ‹[ƒg’l‚ğæ“¾‚·‚é
+		//! Jsonã®ãƒ«ãƒ¼ãƒˆå€¤ã‚’å–å¾—ã™ã‚‹
 		const JSONValue &GetRoot() const;
-		//! ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+		//! ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
 		bool Load(const File &file);
-		//! ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+		//! ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
 		bool is_opened() const;
 
 	private:

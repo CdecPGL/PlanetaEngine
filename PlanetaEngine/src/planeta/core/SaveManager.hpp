@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 #include "ISaveManager.hpp"
@@ -11,7 +11,7 @@ namespace plnt {
 		class SaveManager : public ISaveManager, public SubSystemManager {
 		public:
 			virtual ~SaveManager() override = default;
-			//ƒtƒ@ƒCƒ‹ƒAƒNƒZƒT‚ğİ’èB‰Šú‰»‘O‚ÉŒÄ‚Ño‚·B
+			//ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚µã‚’è¨­å®šã€‚åˆæœŸåŒ–å‰ã«å‘¼ã³å‡ºã™ã€‚
 			virtual void SetFileManipurator_(const std::shared_ptr<FileManipulator> &file_accessor) = 0;
 			virtual bool Initialize() = 0;
 			virtual void Finalize() = 0;

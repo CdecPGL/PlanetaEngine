@@ -1,4 +1,4 @@
-#include "planeta/core/CharacterCode.hpp"
+ï»¿#include "planeta/core/CharacterCode.hpp"
 #include "planeta/core/LogUtility.hpp"
 
 #include "EffekseerUtil.hpp"
@@ -18,7 +18,7 @@ namespace plnt::effekseer {
 		size = static_cast<int32_t>(file_->size());
 		data = new uint8_t[size];
 		if (memcpy_s(data, size, file_->top_pointer(), size)) {
-			PE_LOG_ERROR("ƒf[ƒ^‚ÌƒRƒs[‚É¸”s‚µ‚Ü‚µ‚½Bƒtƒ@ƒCƒ‹ƒpƒX‚Í\"", file_->file_name(), "\"B");
+			PE_LOG_ERROR("ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã¯\"", file_->file_name(), "\"ã€‚");
 			return false;
 		}
 		return true;
@@ -48,19 +48,19 @@ namespace plnt::effekseer {
 		return textureData;
 
 		//	char* data_top = reinterpret_cast<char*>(const_cast<unsigned char*>(file.top_pointer()));
-		//	//DirectX9ƒfƒoƒCƒX‚Ìæ“¾
+		//	//DirectX9ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 		//	auto* effekseer_renderer = GetEffekseer3DRenderer();
 		//	if (effekseer_renderer == nullptr) {
-		//		PE_LOG_ERROR("•`‰æƒfƒoƒCƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½BEffekseer‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·B");
+		//		PE_LOG_ERROR("æç”»ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸã€‚EffekseerãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚");
 		//		return false;
 		//	}
 		//	auto* effekseer_dx9_renderer = dynamic_cast<EffekseerRendererDX9::Renderer*>(effekseer_renderer);
 		//	if (effekseer_dx9_renderer == nullptr) {
-		//		PE_LOG_ERROR("DirectX9•`‰æƒfƒoƒCƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½BDirectX9ˆÈŠO‚Ìƒo[ƒWƒ‡ƒ“‚Å“®ì‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B");
+		//		PE_LOG_ERROR("DirectX9æç”»ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸã€‚DirectX9ä»¥å¤–ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ä½œã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚");
 		//		return false;
 		//	}
 		//	auto* device = effekseer_dx9_renderer->GetDevice();
-		//	//ƒeƒNƒXƒ`ƒƒ‚Ì¶¬
+		//	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç”Ÿæˆ
 		//	if (file.size() < 4) {
 		//	}
 		//	else if (
@@ -111,7 +111,7 @@ namespace plnt::effekseer {
 		//				for (int32_t h = 0; h < height; h++) {
 		//					memcpy(destBits, srcBits, width * 4);
 
-		//					// RGB“ü‚ê‘Ö‚¦
+		//					// RGBå…¥ã‚Œæ›¿ãˆ
 		//					for (int32_t w = 0; w < width; w++) {
 		//						std::swap(destBits[w * 4 + 0], destBits[w * 4 + 2]);
 		//					}

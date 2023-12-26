@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 #include <functional>
@@ -13,30 +13,30 @@ namespace plnt {
 	class ITaskManager {
 	public:
 		virtual ~ITaskManager() = default;
-		/*! ƒQ[ƒ€ƒvƒƒZƒX‚ğ–¼‘O‚©‚çæ“¾‚·‚é*/
+		/*! ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ã‚’åå‰ã‹ã‚‰å–å¾—ã™ã‚‹*/
 		virtual WeakPointer<Task> GetTask(const std::string &name) const = 0;
-		/*! ƒ^ƒXƒN‚ğì¬*/
+		/*! ã‚¿ã‚¹ã‚¯ã‚’ä½œæˆ*/
 		template <class T>
 		WeakPointer<T> CreateTask(TaskSlot slot) {
 			auto task = std::make_shared<T>();
 			return RegisterTask(task, slot, false) ? task : nullptr;
 		}
 
-		/*–¼‘O•t‚«ƒ^ƒXƒN‚ğì¬*/
+		/*åå‰ä»˜ãã‚¿ã‚¹ã‚¯ã‚’ä½œæˆ*/
 		template <class T>
 		WeakPointer<T> CreateTask(TaskSlot slot, const std::string &name) {
 			auto task = std::make_shared<T>();
 			return RegisterTask(task, slot, name, false) ? task : nullptr;
 		}
 
-		/*! ƒ^ƒXƒN‚ğì¬‚µ‚ÄÀs*/
+		/*! ã‚¿ã‚¹ã‚¯ã‚’ä½œæˆã—ã¦å®Ÿè¡Œ*/
 		template <class T>
 		WeakPointer<T> CreateAndRunTask(TaskSlot slot) {
 			auto task = std::make_shared<T>();
 			return RegisterTask(task, slot, true) ? task : nullptr;
 		}
 
-		/*–¼‘O•t‚«ƒ^ƒXƒN‚ğì¬‚µ‚ÄÀs*/
+		/*åå‰ä»˜ãã‚¿ã‚¹ã‚¯ã‚’ä½œæˆã—ã¦å®Ÿè¡Œ*/
 		template <class T>
 		WeakPointer<T> CreateAndRunTask(TaskSlot slot, const std::string &name) {
 			auto task = std::make_shared<T>();
@@ -44,9 +44,9 @@ namespace plnt {
 		}
 
 	private:
-		/*ƒQ[ƒ€ƒvƒƒZƒX‚ğ“o˜^‚·‚é*/
+		/*ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ã‚’ç™»éŒ²ã™ã‚‹*/
 		virtual bool RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) = 0;
-		/*ƒQ[ƒ€ƒvƒƒZƒX‚ğ“o˜^‚µ‚Ä–¼‘O‚ğ‚Â‚¯‚é*/
+		/*ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ã‚’ç™»éŒ²ã—ã¦åå‰ã‚’ã¤ã‘ã‚‹*/
 		virtual bool RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, const std::string &name,
 		                          bool auto_run) = 0;
 	};

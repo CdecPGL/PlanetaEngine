@@ -1,15 +1,15 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Time.hpp"
 
 namespace plnt {
-	/*! ƒpƒtƒH[ƒ}ƒ“ƒXƒ}ƒl[ƒWƒƒ‚ÌŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒXBƒpƒtƒH[ƒ}ƒ“ƒX‚ÌŒv‘ª‚â’²®‚ğs‚¤B*/
+	/*! ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã€‚ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã®è¨ˆæ¸¬ã‚„èª¿æ•´ã‚’è¡Œã†ã€‚*/
 	class IPerformanceManager {
 	public:
 		virtual ~IPerformanceManager() = 0 { };
-		/*! ‹N“®‚©‚ç‚ÌŒo‰ßƒtƒŒ[ƒ€‚ğæ“¾‚·‚é*/
+		/*! èµ·å‹•ã‹ã‚‰ã®çµŒéãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹*/
 		virtual size_t GetCurrentFrameCount() const = 0;
-		/*! ‹N“®‚©‚ç‚ÌŒo‰ßŠÔ‚ğæ“¾‚·‚é*/
+		/*! èµ·å‹•ã‹ã‚‰ã®çµŒéæ™‚é–“ã‚’å–å¾—ã™ã‚‹*/
 		virtual const util::Time GetCurrentTimeCount() const = 0;
 	};
 }

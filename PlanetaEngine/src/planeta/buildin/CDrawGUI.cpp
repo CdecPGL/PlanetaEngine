@@ -1,4 +1,4 @@
-#include "planeta/core/ISceneInternal.hpp"
+ï»¿#include "planeta/core/ISceneInternal.hpp"
 #include "planeta/core/DrawSystem.hpp"
 #include "planeta/core/LogUtility.hpp"
 
@@ -48,7 +48,7 @@ namespace plnt {
 		Super::OnInitialized();
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDrawGUI(
 			shared_this<CDrawGUI>(), impl_->priority);
-		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("•`‰æƒVƒXƒeƒ€‚Ö‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½B"); }
+		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("æç”»ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"); }
 	}
 
 	void CDrawGUI::OnFinalized() noexcept {
@@ -59,7 +59,7 @@ namespace plnt {
 	void CDrawGUI::OnActivated() {
 		Super::OnActivated();
 		auto suceed = impl_->draw_system_connection->Activte();
-		if (!suceed) { PE_LOG_ERROR("•`‰æƒVƒXƒeƒ€‚Ì—LŒø‰»‚É¸”s‚µ‚Ü‚µ‚½B"); }
+		if (!suceed) { PE_LOG_ERROR("æç”»ã‚·ã‚¹ãƒ†ãƒ ã®æœ‰åŠ¹åŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚"); }
 	}
 
 	void CDrawGUI::OnInactivated() {

@@ -1,47 +1,47 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include "Vector2D.hpp"
 #include "InputDefinitions.hpp"
 
 namespace plnt {
-	/*! ƒCƒ“ƒvƒbƒgƒ}ƒl[ƒWƒƒ‚ÌŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	/*! ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã®å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹*/
 	class IInputManager {
 	public:
 		virtual ~IInputManager() = 0 { };
-		/*@brief ƒL[‚Ì“ü—Íó‘Ô‚ğæ“¾(•¡”w’è•s‰Â)
-		@param ƒL[ƒR[ƒh*/
+		/*@brief ã‚­ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰*/
 		virtual bool KeyState(Key::type) const = 0;
-		/*@brief ƒpƒbƒh‚Ì“ü—Íó‘Ô‚ğæ“¾(•¡”w’è•s‰Â)
-		@param ƒpƒbƒhƒR[ƒh*/
+		/*@brief ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒ‘ãƒƒãƒ‰ã‚³ãƒ¼ãƒ‰*/
 		virtual bool PadState(Pad::type) const = 0;
-		/*@brief ƒ{ƒ^ƒ“‚Ì“ü—Íó‘Ô‚ğæ“¾(•¡”w’è•s‰Â)
-		@param ƒ{ƒ^ƒ“ƒR[ƒh*/
+		/*@brief ãƒœã‚¿ãƒ³ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ‰*/
 		virtual bool ButtonState(Button::type) const = 0;
-		/*@brief ƒ{ƒ^ƒ“‚Ì“ü—Íó‘Ô‚ğæ“¾(•¡”w’è•s‰Â)
-		@param ƒ{ƒ^ƒ“–¼*/
+		/*@brief ãƒœã‚¿ãƒ³ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒœã‚¿ãƒ³å*/
 		virtual bool ButtonState(const std::string &) const = 0;
-		/*@brief ƒ}ƒEƒXƒ{ƒ^ƒ“‚Ì“ü—Íó‘Ô‚ğæ“¾(•¡”w’è•s‰Â)
-		@param ƒ}ƒEƒXƒ{ƒ^ƒ“ƒR[ƒh*/
+		/*@brief ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ‰*/
 		virtual bool MouseButtonState(MouseButton::type) const = 0;
-		/*@brief ƒL[‚Ì‰Ÿ‰ºæ“¾(•¡”w’è•s‰Â)
-		@param ƒL[ƒR[ƒh*/
+		/*@brief ã‚­ãƒ¼ã®æŠ¼ä¸‹å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰*/
 		virtual bool KeyPush(Key::type) const = 0;
-		/*@brief ƒpƒbƒh‚Ì‰Ÿ‰ºæ“¾(•¡”w’è•s‰Â)
-		@param ƒpƒbƒhƒR[ƒh*/
+		/*@brief ãƒ‘ãƒƒãƒ‰ã®æŠ¼ä¸‹å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒ‘ãƒƒãƒ‰ã‚³ãƒ¼ãƒ‰*/
 		virtual bool PadPush(Pad::type) const = 0;
-		/*@brief ƒ{ƒ^ƒ“‚Ì‰Ÿ‰ºæ“¾(•¡”w’è•s‰Â)
-		@param ƒ{ƒ^ƒ“ƒR[ƒh*/
+		/*@brief ãƒœã‚¿ãƒ³ã®æŠ¼ä¸‹å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ‰*/
 		virtual bool ButtonPush(Button::type) const = 0;
-		/*@brief ƒ{ƒ^ƒ“‚Ì‰Ÿ‰ºæ“¾(•¡”w’è•s‰Â)
-		@param ƒ{ƒ^ƒ“–¼*/
+		/*@brief ãƒœã‚¿ãƒ³ã®æŠ¼ä¸‹å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒœã‚¿ãƒ³å*/
 		virtual bool ButtonPush(const std::string &) const = 0;
-		/*@brief ƒ}ƒEƒXƒ{ƒ^ƒ“‚Ì‰Ÿ‰ºæ“¾(•¡”w’è•s‰Â)
-		@param ƒ}ƒEƒXƒ{ƒ^ƒ“ƒR[ƒh*/
+		/*@brief ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã®æŠ¼ä¸‹å–å¾—(è¤‡æ•°æŒ‡å®šä¸å¯)
+		@param ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ‰*/
 		virtual bool MouseButtonPush(MouseButton::type) const = 0;
-		/*! ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌˆÊ’u‚ğæ“¾*/
+		/*! ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®ä½ç½®ã‚’å–å¾—*/
 		virtual const Vector2Di GetMousePointerPosition() const = 0;
-		/*! ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾*/
+		/*! ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—*/
 		virtual int GetMouseWheelRotation() const = 0;
 	};
 }

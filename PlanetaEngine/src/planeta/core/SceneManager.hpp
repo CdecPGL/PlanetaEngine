@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 
@@ -11,20 +11,20 @@ namespace plnt {
 	namespace private_ {
 		class ResourceManager;
 
-		/*ƒV[ƒ“‚Ìó‹µ(Œp‘±AI—¹AƒGƒ‰[”­¶)*/
+		/*ã‚·ãƒ¼ãƒ³ã®çŠ¶æ³(ç¶™ç¶šã€çµ‚äº†ã€ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ)*/
 		enum class SceneStatus_ { Continue, Quit, Error };
 
-		/*ƒV[ƒ“ƒ}ƒl[ƒWƒƒ*/
+		/*ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£*/
 		class SceneManager : public ISceneManager, public SubSystemManager {
 		public:
 			virtual ~SceneManager() override = default;
-			/*ƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»*/
+			/*ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–*/
 			virtual bool Initialize() = 0;
-			/*ƒ}ƒl[ƒWƒƒ‚ÌI—¹ˆ—*/
+			/*ãƒãƒãƒ¼ã‚¸ãƒ£ã®çµ‚äº†å‡¦ç†*/
 			virtual bool Finalize() = 0;
-			/*ƒV[ƒ“ˆ—*/
+			/*ã‚·ãƒ¼ãƒ³å‡¦ç†*/
 			virtual SceneStatus_ Process_() = 0;
-			/*ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ğƒZƒbƒg(‰Šú‰»‘O)*/
+			/*ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã‚»ãƒƒãƒˆ(åˆæœŸåŒ–å‰)*/
 			virtual void SetResouceManager(const std::shared_ptr<ResourceManager> &mgr) = 0;
 		};
 	}

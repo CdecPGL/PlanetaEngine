@@ -1,4 +1,4 @@
-#include "StandardConfigManager.hpp"
+﻿#include "StandardConfigManager.hpp"
 #include "JsonFile.hpp"
 #include "LogUtility.hpp"
 #include "StringUtility.hpp"
@@ -7,9 +7,9 @@ namespace plnt {
 	namespace private_ {
 		bool StandardConfigManager::LoadSystemConfig(const File &file) {
 			JsonFile json_file{};
-			//File����JSON���\�[�X���쐬����
+			//FileからJSONリソースを作成する
 			if (!json_file.Load(file)) {
-				PE_LOG_ERROR("�V�X�e���ݒ�t�@�C����JSON�t�@�C���Ƃ��ēǂݍ��ނ��Ƃ��ł��܂���ł����B");
+				PE_LOG_ERROR("システム設定ファイルをJSONファイルとして読み込むことができませんでした。");
 				return false;
 			}
 			try {
@@ -30,54 +30,54 @@ namespace plnt {
 				//Program
 				auto prog_obj = root_obj->AtWithException("Program")->GetWithException<JSONObject>();
 				auto scene_obj = prog_obj->AtWithException("Scene")->GetWithException<JSONObject>();
-				//-�V�[��
+				//-シーン
 				startup_scene_id_ = *scene_obj->AtWithException("Startup")->GetWithException<std::string>();
-				//-�Փ˃V�X�e��
+				//-衝突システム
 				auto col_obj = prog_obj->AtWithException("Collision")->GetWithException<JSONObject>();
-				//--�Փ˃O���[�v
+				//--衝突グループ
 				std::vector<std::string> group_list;
 				group_list = *col_obj->AtWithException("Groups")->GetWithException<std::vector<std::string>>();
 				collision_group_matrix_.AddCollisionGroups(group_list);
-				//--�Փˉ\�}�g���b�N�X
+				//--衝突可能マトリックス
 				auto col_mtx = *col_obj->AtWithException("CollidableMatrix")->GetWithException<std::unordered_map<
 					std::string, std::vector<std::string>>>();
 				for (auto &&group : col_mtx) {
 					for (auto &&cbl_group : group.second) {
 						if (!collision_group_matrix_.SetCollisionFlag(group.first, cbl_group, true)) {
-							PE_LOG_WARNING("�Փ˃O���[�v\"", group.first, "\"��\"", cbl_group,
-							               "\"�̃t���O�̐ݒ�Ɏ��s���܂����B�ǂ��炩�̃O���[�v����`����Ă��Ȃ��\��������܂��B");
+							PE_LOG_WARNING("衝突グループ\"", group.first, "\"と\"", cbl_group,
+							               "\"のフラグの設定に失敗しました。どちらかのグループが定義されていない可能性があります。");
 						}
 					}
 				}
 			} catch (std::out_of_range &e) {
-				PE_LOG_ERROR("�ݒ�t�@�C������f�[�^���擾���邱�Ƃ��ł��܂���ł����B���e���s�����Ă���\��������܂��B(", e.what(), ")");
+				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
 				return false;
 			} catch (JSONTypeError &e) {
-				PE_LOG_ERROR("�ݒ�t�@�C������f�[�^���擾���邱�Ƃ��ł��܂���ł����B�^���ԈႦ�Ă���\��������܂��B(", e.what(), ")");
+				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。型が間違えている可能性があります。(", e.what(), ")");
 				return false;
 			}
-			//�ݒ�f�[�^�擾����
-			//�o�[�W����������ݒ�
+			//設定データ取得成功
+			//バージョン文字列設定
 			game_version_string_ = util::ConvertAndConnectToString(game_version_numbers_[0], ".",
 			                                                       game_version_numbers_[1], ".",
 			                                                       game_version_numbers_[2]);
-			//�ݒ�����O�ɏo��
+			//設定をログに出力
 			auto &sys_log = *Game::instance().log_manager();
-			PE_LOG_MESSAGE("�V�X�e���ݒ��ǂݍ��݂܂����B");
-			sys_log.SimpleLog("--------�V�X�e���ݒ���--------");
-			sys_log.SimpleLog("�Q�[���^�C�g�� : ", game_title_);
-			sys_log.SimpleLog("�Q�[���o�[�W���� : ", game_version_string_);
-			sys_log.SimpleLog("�J���[�r�b�g�[�x : ", color_bit_depth_);
-			sys_log.SimpleLog("�`��(����)�T�C�Y : ", draw_size_.ToString());
+			PE_LOG_MESSAGE("システム設定を読み込みました。");
+			sys_log.SimpleLog("--------システム設定情報--------");
+			sys_log.SimpleLog("ゲームタイトル : ", game_title_);
+			sys_log.SimpleLog("ゲームバージョン : ", game_version_string_);
+			sys_log.SimpleLog("カラービット深度 : ", color_bit_depth_);
+			sys_log.SimpleLog("描画(内部)サイズ : ", draw_size_.ToString());
 			sys_log.SimpleLog("--------------------------------");
 			return true;
 		}
 
 		bool StandardConfigManager::LoadUserConfig(const File &file) {
 			JsonFile json_file{};
-			//File����JSON���\�[�X���쐬����
+			//FileからJSONリソースを作成する
 			if (!json_file.Load(file)) {
-				PE_LOG_ERROR("���[�U�[�ݒ�t�@�C����JSON�t�@�C���Ƃ��ēǂݍ��ނ��Ƃ��ł��܂���ł����B");
+				PE_LOG_ERROR("ユーザー設定ファイルをJSONファイルとして読み込むことができませんでした。");
 				return false;
 			}
 			try {
@@ -88,19 +88,19 @@ namespace plnt {
 				window_size_.Set(buf_array[0], buf_array[1]);
 				is_window_mode_ = *window_obj->AtWithException("WindowMode")->GetWithException<bool>();
 			} catch (std::out_of_range &e) {
-				PE_LOG_ERROR("�ݒ�t�@�C������f�[�^���擾���邱�Ƃ��ł��܂���ł����B���e���s�����Ă���\��������܂��B(", e.what(), ")");
+				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
 				return false;
 			} catch (JSONTypeError &e) {
-				PE_LOG_ERROR("�ݒ�t�@�C������f�[�^���擾���邱�Ƃ��ł��܂���ł����B�^���ԈႦ�Ă���\��������܂��B(", e.what(), ")");
+				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。型が間違えている可能性があります。(", e.what(), ")");
 				return false;
 			}
-			//�ݒ�f�[�^�擾����
-			//�ݒ�����O�ɏo��
+			//設定データ取得成功
+			//設定をログに出力
 			auto &sys_log = *Game::instance().log_manager();
-			PE_LOG_MESSAGE("���[�U�[�ݒ��ǂݍ��݂܂����B");
-			sys_log.SimpleLog("--------���[�U�[�ݒ���--------");
-			sys_log.SimpleLog("�E�C���h�E���[�h : ", is_window_mode_ ? "�L��" : "����");
-			sys_log.SimpleLog("�E�C���h�E(�\��)�T�C�Y : ", window_size_.ToString());
+			PE_LOG_MESSAGE("ユーザー設定を読み込みました。");
+			sys_log.SimpleLog("--------ユーザー設定情報--------");
+			sys_log.SimpleLog("ウインドウモード : ", is_window_mode_ ? "有効" : "無効");
+			sys_log.SimpleLog("ウインドウ(表示)サイズ : ", window_size_.ToString());
 			sys_log.SimpleLog("--------------------------------");
 			return true;
 		}

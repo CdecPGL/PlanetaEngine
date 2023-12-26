@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include "StringUtility.hpp"
@@ -6,17 +6,17 @@
 namespace plnt {
 	enum class LogLevel { Message, Warning, Error, Fatal };
 
-	/*! ƒƒOƒ}ƒl[ƒWƒƒŒöŠJƒCƒ“ƒ^[ƒtƒFƒCƒX*/
+	/*! ãƒ­ã‚°ãƒãƒãƒ¼ã‚¸ãƒ£å…¬é–‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹*/
 	class ILogManager {
 	public:
 		virtual ~ILogManager() = 0 { };
-		/*! ƒŒƒxƒ‹‚ğw’è‚µ‚ÄƒƒO‚ğo—Í(ƒŒƒxƒ‹A”­¶ŒÂŠAÚ×(•¡”w’è‚·‚é‚±‚Æ‚Å˜AŒ‹‚³‚ê‚éB))*/
+		/*! ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦ãƒ­ã‚°ã‚’å‡ºåŠ›(ãƒ¬ãƒ™ãƒ«ã€ç™ºç”Ÿå€‹æ‰€ã€è©³ç´°(è¤‡æ•°æŒ‡å®šã™ã‚‹ã“ã¨ã§é€£çµã•ã‚Œã‚‹ã€‚))*/
 		template <typename... Details>
 		void Log(LogLevel level, const std::string &place, Details &&... details) {
 			LogProc(level, util::ConvertAndConnectToString(std::forward<Details>(details)...), place);
 		}
 
-		/*! ƒVƒ“ƒvƒ‹‚ÈƒƒO‚ğo—Í*/
+		/*! ã‚·ãƒ³ãƒ—ãƒ«ãªãƒ­ã‚°ã‚’å‡ºåŠ›*/
 		template <typename... Details>
 		void SimpleLog(Details &&... details) {
 			SimpleLogProc(util::ConvertAndConnectToString(std::forward<Details>(details)...));

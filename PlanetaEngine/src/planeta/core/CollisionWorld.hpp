@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ICollisionWorld.hpp"
 #include "SceneModule.hpp"

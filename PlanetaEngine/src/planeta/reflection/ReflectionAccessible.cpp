@@ -1,4 +1,4 @@
-#include "ReflectionAccessible.hpp"
+ï»¿#include "ReflectionAccessible.hpp"
 #include "ClassInfoCaller.hpp"
 #include "Reflection.hpp"
 #include "Reflectable.hpp"
@@ -17,8 +17,8 @@ namespace plnt::reflection {
 			if (class_info_ == nullptr) {
 				class_info_ = Reflection::GetClassInfo_Reflectable(typeid(reflectable_obj()));
 				if (class_info_ == nullptr) {
-					throw reflection_error(ConvertAndConnectToString("ƒŠƒtƒŒƒNƒVƒ‡ƒ“ƒVƒXƒeƒ€‚©‚çƒNƒ‰ƒXî•ñ(typeinfo:",
-					                                                 typeid(reflectable_obj_).name(), ")‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B"));
+					throw reflection_error(ConvertAndConnectToString("ãƒªãƒ•ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã‚¯ãƒ©ã‚¹æƒ…å ±(typeinfo:",
+					                                                 typeid(reflectable_obj_).name(), ")ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"));
 				}
 			}
 			return ClassInfoCaller(*class_info_);
@@ -31,11 +31,11 @@ namespace plnt::reflection {
 
 		Reflectable &reflectable_obj() const {
 			if (reflectable_obj_ == nullptr) {
-				//ƒRƒ“ƒXƒgƒ‰ƒNƒg‚É‚Í‚Ü‚¾Œ^‚ªŠ®‘S‚Å‚È‚¢‚½‚ßAReflectableƒ|ƒCƒ“ƒ^‚Ìæ“¾‚Í‚±‚±‚Ås‚¤
+				//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ãƒˆæ™‚ã«ã¯ã¾ã å‹ãŒå®Œå…¨ã§ãªã„ãŸã‚ã€Reflectableãƒã‚¤ãƒ³ã‚¿ã®å–å¾—ã¯ã“ã“ã§è¡Œã†
 				reflectable_obj_ = dynamic_cast<Reflectable *>(obj_);
 				if (reflectable_obj_ == nullptr) {
 					throw reflection_error(ConvertAndConnectToString(
-						"ReflectableƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñBReflectableƒNƒ‰ƒX‚ğŒp³‚µ‚Ä‚¢‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·BReflectionAccessible‚Ì‹@”\‚ğ—˜—p‚·‚é‚É‚ÍAReflectable‚ğŒp³‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB"));
+						"Reflectableã‚¯ãƒ©ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚Reflectableã‚¯ãƒ©ã‚¹ã‚’ç¶™æ‰¿ã—ã¦ã„ãªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚ReflectionAccessibleã®æ©Ÿèƒ½ã‚’åˆ©ç”¨ã™ã‚‹ã«ã¯ã€Reflectableã‚’ç¶™æ‰¿ã—ã¦ã„ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚"));
 				}
 			}
 			return *reflectable_obj_;
@@ -90,7 +90,7 @@ namespace plnt::reflection {
 
 	void ReflectionAccessible::ReflectiveLoadFromPtree(const boost::property_tree::ptree &pt) {
 		try { impl_->class_info_caller().SetDataFromPtree(pt, impl_->reflectable_obj()); } catch (reflection_error &e) {
-			throw reflection_error(ConvertAndConnectToString("Ptree‚©‚ç‚Ì“Ç‚İ‚İ‚É‚¨‚¢‚ÄƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B:", e.what()));
+			throw reflection_error(ConvertAndConnectToString("Ptreeã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã«ãŠã„ã¦ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚:", e.what()));
 		}
 	}
 

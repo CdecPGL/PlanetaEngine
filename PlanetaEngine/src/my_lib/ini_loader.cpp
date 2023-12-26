@@ -1,4 +1,4 @@
-#include<fstream>
+ï»¿#include<fstream>
 #include<algorithm>
 
 #include "ini_loader.hpp"
@@ -8,7 +8,7 @@ using namespace std;
 int ini_loader::load_ini(const string &filename) {
 	ifstream ifs(filename);
 	if (ifs.fail()) {
-		printf("INILoader::LoadINI \"%s\"‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B\n", filename.c_str());
+		printf("INILoader::LoadINI \"%s\"ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚\n", filename.c_str());
 		return -1;
 	}
 	vector<string> lines;
@@ -16,14 +16,14 @@ int ini_loader::load_ini(const string &filename) {
 	while (getline(ifs, buf)) { lines.push_back(buf); }
 	ifs.close();
 
-	//ƒRƒƒ“ƒgs,‹ós‚ğœ‹
+	//ã‚³ãƒ¡ãƒ³ãƒˆè¡Œ,ç©ºè¡Œã‚’é™¤å»
 	erase_if(lines, [](const string &l)-> bool {
 		if (l.empty()) { return true; }
 		if (l[0] == ';') { return true; }
 		return false;
 	});
 
-	//ƒZƒNƒVƒ‡ƒ“•ª—£
+	//ã‚»ã‚¯ã‚·ãƒ§ãƒ³åˆ†é›¢
 	unordered_map<string, vector<string>> section;
 	auto s_it = ranges::find_if(lines, [](const string &l) -> bool {
 		if (l.size() < 3)return false;
@@ -41,21 +41,21 @@ int ini_loader::load_ini(const string &filename) {
 		vector<string> s_in;
 		s_in.resize(e_it - s_it - 1);
 		copy(s_it + 1, e_it, s_in.begin());
-		section.insert(pair<string, vector<string>>(s_name, s_in));
+		section.insert(pair(s_name, s_in));
 		s_it = e_it;
 	}
 
-	//ƒf[ƒ^’Šo
+	//ãƒ‡ãƒ¼ã‚¿æŠ½å‡º
 	for (auto it = section.begin(); it != section.end(); ++it) {
 		unordered_map<string, string> s;
 		for (string &l : (*it).second) {
-			//ƒXƒy[ƒXœ‹
+			//ã‚¹ãƒšãƒ¼ã‚¹é™¤å»
 			erase_if(l, [](const char w)-> bool { return w == ' '; });
 			auto eq_idx = l.find('=');
 			if (eq_idx == std::string::npos) { continue; }
 			string name = l.substr(0, eq_idx);
 			string value = l.substr(eq_idx + 1, l.size() - 1);
-			s.insert(pair<string, string>(name, value));
+			s.insert(pair(name, value));
 		}
 		//data.insert(pair<string, unordered_map<string, string>>((*it).first,s));
 		data_.set_section((*it).first, std::move(s));
@@ -70,17 +70,17 @@ unordered_map<std::string, std::string> ini_loader::operator[](const std::string
 	return (*it).second;
 }
 
-//ƒZƒNƒVƒ‡ƒ“æ“¾
+//ã‚»ã‚¯ã‚·ãƒ§ãƒ³å–å¾—
 unordered_map<std::string, std::string> ini_loader::get_section(const std::string &idx) const {
 	const auto it = data_.find(idx);
 	if (it == data_.end()) { return {}; }
 	return (*it).second;
 }
 
-//ƒZƒNƒVƒ‡ƒ“‘¶İŠm”F
+//ã‚»ã‚¯ã‚·ãƒ§ãƒ³å­˜åœ¨ç¢ºèª
 bool ini_loader::check_section_existence(const std::string &idx) const { return !(data_.find(idx) == data_.end()); }
 
-//’læ“¾
+//å€¤å–å¾—
 string ini_loader::get_value(const string &sec, const string &name) const {
 	const auto it = data_.find(sec);
 	if (it == data_.end()) { return "section not found"; }

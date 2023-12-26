@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ILogManager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	namespace private_ {
-		/*ƒƒOƒ}ƒl[ƒWƒƒ*/
+		/*ãƒ­ã‚°ãƒãƒãƒ¼ã‚¸ãƒ£*/
 		class LogManager : public ILogManager, public SubSystemManager {
 		public:
 			virtual ~LogManager() override = default;
-			/*‰Šú‰»*/
+			/*åˆæœŸåŒ–*/
 			virtual bool Initialize() = 0;
-			/*I—¹ˆ—*/
+			/*çµ‚äº†å‡¦ç†*/
 			virtual void Finalize() = 0;
 		};
 	}

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 #include <string>
@@ -23,13 +23,13 @@ namespace plnt::reflection {
 		virtual ~ReflectableClassAccessor() noexcept;
 		ReflectableClassAccessor &operator=(const ReflectableClassAccessor &obj) = delete;
 		ReflectableClassAccessor &operator=(ReflectableClassAccessor &&obj) = delete;
-		//! •Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB‚ğ•ÏX‚·‚é
+		//! å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å¤‰æ›´ã™ã‚‹
 		template <typename T>
 		void SetVariable(Reflectable &obj, const std::string &var_id, const T &v) { SetVariable_(var_id, v); }
 
 		/*!
-		@brief •Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB‚ğæ“¾‚·‚é
-		@todo ƒRƒs[•s‰Â”\‚ÈŒ^‚ğæ“¾‚Å‚«‚È‚¢
+		@brief å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
+		@todo ã‚³ãƒ”ãƒ¼ä¸å¯èƒ½ãªå‹ã‚’å–å¾—ã§ããªã„
 		*/
 		template <typename T>
 		void GetVariable(Reflectable &obj, const std::string &var_id, T &v) {
@@ -37,18 +37,18 @@ namespace plnt::reflection {
 			GetVariable_(obj, var_id, av);
 			try { v = boost::any_cast<T>(av); } catch (boost::bad_any_cast &) {
 				std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(*this));
-				throw reflection_error(util::ConvertAndConnectToString("ƒNƒ‰ƒX\"", obj_tid, "\"‚Ì•Ï”‚Ü‚½‚ÍƒvƒƒpƒeƒB\"", var_id,
-				                                                       "\"‚Ì‘‚«‚İ‚É‚¨‚¢‚ÄŒ^‚Ì•sˆê’vƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(•Ï”Œ^:",
-				                                                       av.type().name(), ", w’èŒ^:", typeid(T).name(),
+				throw reflection_error(util::ConvertAndConnectToString("ã‚¯ãƒ©ã‚¹\"", obj_tid, "\"ã®å¤‰æ•°ã¾ãŸã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£\"", var_id,
+				                                                       "\"ã®æ›¸ãè¾¼ã¿ã«ãŠã„ã¦å‹ã®ä¸ä¸€è‡´ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(å¤‰æ•°å‹:",
+				                                                       av.type().name(), ", æŒ‡å®šå‹:", typeid(T).name(),
 				                                                       ")"));
 			}
 		}
 
-		//! ƒNƒ[ƒ“‚ğì¬‚·‚é
+		//! ã‚¯ãƒ­ãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹
 		std::shared_ptr<Reflectable> Clone(Reflectable &obj);
-		//! ƒRƒs[‚·‚é(–¢À‘•)
+		//! ã‚³ãƒ”ãƒ¼ã™ã‚‹(æœªå®Ÿè£…)
 		void Copy(Reflectable &dst, const Reflectable &src);
-		//! boost::ptree‚©‚çƒf[ƒ^‚Ì“Ç‚İ‚İ
+		//! boost::ptreeã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		void LoadFromPtree(Reflectable &obj, const boost::property_tree::ptree &pt);
 
 	private:

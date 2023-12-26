@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <unordered_map>
 #include <memory>
@@ -23,7 +23,7 @@ namespace plnt {
 		XMLElement *parent_ = nullptr;
 	};
 
-	/*! XMLƒtƒ@ƒCƒ‹ƒNƒ‰ƒX*/
+	/*! XMLãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ©ã‚¹*/
 	class XmlFile final {
 	public:
 		std::shared_ptr<const XMLElement> GetRootElement() const { return root_element_; }

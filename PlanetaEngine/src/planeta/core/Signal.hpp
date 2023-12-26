@@ -1,67 +1,67 @@
-#pragma once
+ï»¿#pragma once
 
 #include "boost/signals2/signal.hpp"
 
 #include "WeakPointer.hpp"
 
 namespace plnt {
-	/*! ƒVƒOƒiƒ‹‚Ö‚ÌÚ‘±ƒNƒ‰ƒX*/
+	/*! ã‚·ã‚°ãƒŠãƒ«ã¸ã®æ¥ç¶šã‚¯ãƒ©ã‚¹*/
 	class SignalConnection final {
 	public:
-		/*! ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+		/*! ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 		SignalConnection() = default;
-		/*! ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+		/*! ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 		SignalConnection(const SignalConnection &obj) : boost_sig2_connection_(obj.boost_sig2_connection_) { }
 
-		/*! ƒ€[ƒuƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+		/*! ãƒ ãƒ¼ãƒ–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 		SignalConnection(SignalConnection &&obj) : boost_sig2_connection_(std::move(obj.boost_sig2_connection_)) { }
 
-		/*! ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+		/*! ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 		explicit SignalConnection(boost::signals2::connection &&bsc) : boost_sig2_connection_(std::move(bsc)) { }
 
-		/*! ‘ã“ü‰‰Zq*/
+		/*! ä»£å…¥æ¼”ç®—å­*/
 		SignalConnection &operator=(const SignalConnection &obj) {
 			boost_sig2_connection_ = obj.boost_sig2_connection_;
 			return *this;
 		}
 
-		/*! ƒ€[ƒu‰‰Zq*/
+		/*! ãƒ ãƒ¼ãƒ–æ¼”ç®—å­*/
 		SignalConnection &operator=(SignalConnection &&obj) {
 			boost_sig2_connection_ = std::move(obj.boost_sig2_connection_);
 			return *this;
 		}
 
-		/*! ƒVƒOƒiƒ‹‚Ö‚ÌÚ‘±‚ğØ’f‚·‚é*/
+		/*! ã‚·ã‚°ãƒŠãƒ«ã¸ã®æ¥ç¶šã‚’åˆ‡æ–­ã™ã‚‹*/
 		void Disconnect() const { boost_sig2_connection_.disconnect(); }
 
-		/*! ƒVƒOƒiƒ‹‚ÖÚ‘±‚³‚ê‚Ä‚¢‚é‚©‚ğæ“¾*/
+		/*! ã‚·ã‚°ãƒŠãƒ«ã¸æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã‹ã‚’å–å¾—*/
 		bool is_connected() const { return boost_sig2_connection_.connected(); }
 
 	private:
 		boost::signals2::connection boost_sig2_connection_;
 	};
 
-	/*! ƒVƒOƒiƒ‹ƒNƒ‰ƒX*/
+	/*! ã‚·ã‚°ãƒŠãƒ«ã‚¯ãƒ©ã‚¹*/
 	template <typename SigType>
 	class Signal final : private boost::signals2::signal<SigType> {
 	public:
-		//ƒVƒOƒiƒ‹ŠÖ”Œ^‚Ìˆø”‚ÌŒÂ”‚ª1ˆÈ‰º‚©Šm”F
+		//ã‚·ã‚°ãƒŠãƒ«é–¢æ•°å‹ã®å¼•æ•°ã®å€‹æ•°ãŒ1ä»¥ä¸‹ã‹ç¢ºèª
 		static_assert(boost::function_traits<SigType>::arity <= 1,
 		              "The arity of signal function must be less than or equel to 1");
-		/*! ƒVƒOƒiƒ‹ŠÖ”‚Ìˆø”Œ^*/
+		/*! ã‚·ã‚°ãƒŠãƒ«é–¢æ•°ã®å¼•æ•°å‹*/
 		using ArgType = typename boost::function_traits<SigType>::arg1_type;
-		/*! ƒVƒOƒiƒ‹ŠÖ”‚Ì–ß‚è’lŒ^*/
+		/*! ã‚·ã‚°ãƒŠãƒ«é–¢æ•°ã®æˆ»ã‚Šå€¤å‹*/
 		using RetType = typename boost::function_traits<SigType>::result_type;
 
 		using MySignal = boost::signals2::signal<SigType>;
 		using SlotType = typename MySignal::slot_type;
-		/*! ’ÊíŠÖ”‚ğÚ‘±*/
+		/*! é€šå¸¸é–¢æ•°ã‚’æ¥ç¶š*/
 		template <typename FuncType>
 		SignalConnection ConnectFunction(const FuncType &func) {
 			return SignalConnection{std::move(MySignal::connect(func))};
 		}
 
-		/*! ’ÊíŠÖ”‚ğstd::shared_ptr‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! é€šå¸¸é–¢æ•°ã‚’std::shared_ptrã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const std::shared_ptr<InsType> &ins, const FuncType &func) {
 			return SignalConnection{
@@ -70,7 +70,7 @@ namespace plnt {
 			};
 		}
 
-		/*! ’ÊíŠÖ”‚ğWeakPointer‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! é€šå¸¸é–¢æ•°ã‚’WeakPointerã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const WeakPointer<InsType> &ins, const FuncType &func) {
 			return SignalConnection{
@@ -79,7 +79,7 @@ namespace plnt {
 			};
 		}
 
-		/*! ƒƒ“ƒoŠÖ”‚ğstd::shared_ptr‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! ãƒ¡ãƒ³ãƒé–¢æ•°ã‚’std::shared_ptrã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType>
 		SignalConnection
 		ConnectMemberFunction(const std::shared_ptr<InsType> &ins, RetType (InsType::*m_func)(ArgType)) {
@@ -88,9 +88,9 @@ namespace plnt {
 			};
 		}
 
-		/*! ƒƒ“ƒoŠÖ”‚ğWeakPointer‚ğw’è‚µ‚ÄÚ‘±
+		/*! ãƒ¡ãƒ³ãƒé–¢æ•°ã‚’WeakPointerã‚’æŒ‡å®šã—ã¦æ¥ç¶š
 		
-			ƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŒ^‚ÍAƒƒ“ƒoŠÖ”‚ÌƒNƒ‰ƒXŒ^‚Æ“¯‚¶‚©‚»‚ÌqƒNƒ‰ƒX‚Å‚ ‚é•K—v‚ª‚ ‚éB
+			ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å‹ã¯ã€ãƒ¡ãƒ³ãƒé–¢æ•°ã®ã‚¯ãƒ©ã‚¹å‹ã¨åŒã˜ã‹ãã®å­ã‚¯ãƒ©ã‚¹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 		*/
 		template <class InsType>
 		SignalConnection ConnectMemberFunction(const WeakPointer<InsType> &ins, RetType (InsType::*m_func)(ArgType)) {
@@ -100,24 +100,24 @@ namespace plnt {
 			};
 		}
 
-		/*! ŠÖ”ŒÄ‚Ño‚µ*/
+		/*! é–¢æ•°å‘¼ã³å‡ºã—*/
 		auto operator()(const ArgType &arg) { return MySignal::operator ()(arg); }
 	};
 
-	/*! ƒVƒOƒiƒ‹ƒNƒ‰ƒX(void“Áê‰»)*/
+	/*! ã‚·ã‚°ãƒŠãƒ«ã‚¯ãƒ©ã‚¹(voidç‰¹æ®ŠåŒ–)*/
 	template <typename RetType>
 	class Signal<RetType(void)> final : private boost::signals2::signal<RetType(void)> {
 	public:
 		using MySignal = boost::signals2::signal<RetType(void)>;
 		using SlotType = typename MySignal::slot_type;
 
-		/*! ’ÊíŠÖ”‚ğÚ‘±*/
+		/*! é€šå¸¸é–¢æ•°ã‚’æ¥ç¶š*/
 		template <typename FuncType>
 		SignalConnection ConnectFunction(const FuncType &func) {
 			return SignalConnection{std::move(MySignal::connect(func))};
 		}
 
-		/*! ’ÊíŠÖ”‚ğstd::shared_ptr‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! é€šå¸¸é–¢æ•°ã‚’std::shared_ptrã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const std::shared_ptr<InsType> &ins, const FuncType &func) {
 			return SignalConnection{
@@ -125,7 +125,7 @@ namespace plnt {
 			};
 		}
 
-		/*! ’ÊíŠÖ”‚ğWeakPointer‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! é€šå¸¸é–¢æ•°ã‚’WeakPointerã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType, typename FuncType>
 		SignalConnection ConnectFunction(const WeakPointer<InsType> &ins, const FuncType &func) {
 			return SignalConnection{
@@ -134,13 +134,13 @@ namespace plnt {
 			};
 		}
 
-		/*! ƒƒ“ƒoŠÖ”‚ğstd::shared_ptr‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! ãƒ¡ãƒ³ãƒé–¢æ•°ã‚’std::shared_ptrã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType>
 		SignalConnection ConnectMemberFunction(const std::shared_ptr<InsType> &ins, RetType (InsType::*m_func)()) {
 			return SignalConnection{std::move(MySignal::connect(SlotType(m_func, ins.get()).track_foreign(ins)))};
 		}
 
-		/*! ƒƒ“ƒoŠÖ”‚ğWeakPointer‚ğw’è‚µ‚ÄÚ‘±*/
+		/*! ãƒ¡ãƒ³ãƒé–¢æ•°ã‚’WeakPointerã‚’æŒ‡å®šã—ã¦æ¥ç¶š*/
 		template <class InsType>
 		SignalConnection ConnectMemberFunction(const WeakPointer<InsType> &ins, RetType (InsType::*m_func)()) {
 			return SignalConnection{
@@ -148,7 +148,7 @@ namespace plnt {
 			};
 		}
 
-		/*! ŠÖ”ŒÄ‚Ño‚µ*/
+		/*! é–¢æ•°å‘¼ã³å‡ºã—*/
 		auto operator()() { return MySignal::operator ()(); }
 	};
 }

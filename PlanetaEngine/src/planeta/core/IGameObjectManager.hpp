@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <functional>
@@ -11,15 +11,15 @@ namespace plnt {
 	class IGameObjectManager {
 	public:
 		virtual ~IGameObjectManager() = default;
-		/*’è‹`ƒtƒ@ƒCƒ‹‚ğw’è‚µ‚ÄƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğì¬*/
+		/*å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¦ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ*/
 		virtual WeakPointer<IGameObject> CreateGameObject(const std::string &game_object_def_file_id) = 0;
-		/*’è‹`ƒtƒ@ƒCƒ‹‚ğw’è‚µ‚Ä–¼‘O•t‚«ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğì¬*/
+		/*å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¦åå‰ä»˜ãã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ*/
 		virtual WeakPointer<IGameObject> CreateGameObject(const std::string &game_object_def_file_id,
 		                                                  const std::string &name) = 0;
-		/*ƒRƒ“ƒ|[ƒlƒ“ƒgƒ^ƒCƒvID‚ğw’è‚µ‚ÄƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğì¬*/
+		/*ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚¿ã‚¤ãƒ—IDã‚’æŒ‡å®šã—ã¦ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ*/
 		virtual WeakPointer<IGameObject> CreateGameObjectWithComponentTypeIDList(
 			const std::vector<std::string> &game_object_component_type_id_list) = 0;
-		/*ƒRƒ“ƒ|[ƒlƒ“ƒgƒ^ƒCƒvID‚ğw’è‚µ‚Ä–¼‘O•t‚«ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğì¬*/
+		/*ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚¿ã‚¤ãƒ—IDã‚’æŒ‡å®šã—ã¦åå‰ä»˜ãã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ*/
 		virtual WeakPointer<IGameObject> CreateGameObjectWithComponentTypeIDList(
 			const std::vector<std::string> &game_object_component_type_id_list, const std::string &name) = 0;
 	};
