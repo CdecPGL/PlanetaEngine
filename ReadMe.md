@@ -50,7 +50,11 @@ vcpkg add port planeta-engine
 1. [vcpkg向け設定](https://learn.microsoft.com/ja-jp/vcpkg/get_started/get-started-msbuild?pivots=shell-powershell#3---set-up-the-project-files)を行う
 1. プロジェクト設定において以下の設定を行う
     1. 「構成プロパティ」->「vcpkg」->「Use Static Libraries」を「はい」にする
-    1. 「構成プロパティ」->「C/C++」->「言語」->「C++言語標準」を「ISO C++17標準」にする
+    1. 「構成プロパティ」->「C/C++」->「言語」->「C++言語標準」を「ISO C++20標準」にする
+    1. 「構成プロパティ」->「C/C++」->「言語」->「C++言語標準」で以下を「はい」にする
+        - forループスコープの強制準拠
+        - 型変換規則を強制する
+        - 準拠モード
     1. 「構成プロパティ」->「リンカー」->「コマンドライン」->「追加のオプション」に「/ignore:4099」を追加する
         - EffekseerForDxLibのリンク時に4099警告が出るが実害はないため
 
