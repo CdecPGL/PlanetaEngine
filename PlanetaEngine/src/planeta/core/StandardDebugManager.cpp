@@ -17,8 +17,8 @@ namespace plnt {
 				screen_drawer_gui) { };
 
 			virtual void AddLine(const std::string line) override {
-				screen_drawer_gui_.DrawStringByDefaultFont({0, 16 * line_count_}, {1, 1}, line, Color::White(),
-				                                           Color::Black());
+				screen_drawer_gui_.DrawStringByDefaultFont({0, 16 * line_count_}, {1, 1}, line, color::White(),
+				                                           color::Black());
 				++line_count_;
 			}
 
@@ -34,15 +34,15 @@ namespace plnt {
 		public:
 			StandardDebugDrawer(ScreenDrawer2D &screen_drawer_2d) : screen_drawer_2d_(screen_drawer_2d) { };
 
-			virtual void DrawLine(const Vector2Df &spos, const Vector2Df &epos, const Color &color) override {
+			virtual void DrawLine(const Vector2Df &spos, const Vector2Df &epos, const color &color) override {
 				screen_drawer_2d_.DrawWire({spos, epos}, 1, color);
 			}
 
-			virtual void DrawCircle(const Vector2Df &pos, float radius, const Color &color, bool filled) override {
+			virtual void DrawCircle(const Vector2Df &pos, float radius, const color &color, bool filled) override {
 				screen_drawer_2d_.DrawCircle(pos, radius, color);
 			}
 
-			virtual void DrawLines(const std::vector<Vector2Df> &pos_list, const Color &color) override {
+			virtual void DrawLines(const std::vector<Vector2Df> &pos_list, const color &color) override {
 				screen_drawer_2d_.DrawWire(pos_list, 1, color);
 			}
 

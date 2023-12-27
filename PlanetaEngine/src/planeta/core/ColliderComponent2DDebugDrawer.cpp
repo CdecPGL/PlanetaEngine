@@ -13,7 +13,7 @@ namespace plnt {
 		bool ColliderComponent2DDebugDrawer::CollideWith(CCircleCollider2D &circle_collider) {
 			auto pos = circle_collider.GetCollisionGlobalCenterPosition();
 			auto radius = circle_collider.radius() * circle_collider.GetCollisionScale();
-			debug_drawer_.DrawCircle(static_cast<Vector2Df>(pos), static_cast<float>(radius), Color::Red(), false);
+			debug_drawer_.DrawCircle(static_cast<Vector2Df>(pos), static_cast<float>(radius), color::Red(), false);
 			return false;
 		}
 

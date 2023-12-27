@@ -11,7 +11,7 @@ namespace plnt {
 	class RGraph;
 
 	namespace dxlib {
-		struct DXGraphDrawData;
+		struct dx_graph_draw_data;
 	}
 
 	namespace private_ {
@@ -19,7 +19,7 @@ namespace plnt {
 		public:
 			GraphDrawData2D();
 			~GraphDrawData2D();
-			const dxlib::DXGraphDrawData &GetDXData() const { return *dx_data_; }
+			const dxlib::dx_graph_draw_data &GetDXData() const { return *dx_data_; }
 			/*画像リソースをセットする*/
 			void SetGraphResource(const std::shared_ptr<RGraph> &g_res);
 			void SetVertexCount(size_t c); //頂点数を設定する
@@ -27,7 +27,7 @@ namespace plnt {
 			bool SetVectex(size_t idx, const util::Vertex2D &vtx); //頂点を設定する
 			bool SetVertexPosition(size_t idx, const Vector2Df &pos); //頂点の位置を設定する
 			bool SetVertexUV(size_t idx, const Vector2Df &uv); //頂点のUV座標を設定する
-			bool SetVertexColor(size_t idx, const Color &color); //頂点の色を設定する
+			bool SetVertexColor(size_t idx, const color &color); //頂点の色を設定する
 			using PolygonIndexType = std::array<size_t, 3>;
 			bool SetPolyginIndex(size_t idx, const std::array<size_t, 3> &p_idx); //ポリゴンの頂点インデックスを設定する
 			void SetVertexes(const std::vector<util::Vertex2D> &vertexes); //頂点を全て設定
@@ -43,7 +43,7 @@ namespace plnt {
 			GraphDrawData2D &operator=(const GraphDrawData2D &obj);
 
 		private:
-			std::unique_ptr<dxlib::DXGraphDrawData> dx_data_;
+			std::unique_ptr<dxlib::dx_graph_draw_data> dx_data_;
 			std::shared_ptr<RGraph> graph_resource_;
 			std::vector<Vector2Df> vertex_uv_information_buffer_; //頂点UVデータの更新用に、元のUV座標データを保持しておく
 		};

@@ -5,7 +5,7 @@
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
 
-#include "planeta/effekseer/EffekseerUtil.hpp"
+#include "..\effekseer\effekseer_util.hpp"
 
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
@@ -70,7 +70,7 @@ namespace plnt {
 				SetWriteZBuffer3D(true);
 				decltype(auto) eff_mgr = GetEffekseer3DManager();
 				//eff_mgr->SetEffectLoader(new private_::EffectLoaderForEffekseer{});
-				eff_mgr->SetTextureLoader(::Effekseer::MakeRefPtr<effekseer::TextureLoaderForEffekseer>());
+				eff_mgr->SetTextureLoader(::Effekseer::MakeRefPtr<effekseer::texture_loader_for_effekseer>());
 
 				return {true, [] { Effkseer_End(); }};
 			}

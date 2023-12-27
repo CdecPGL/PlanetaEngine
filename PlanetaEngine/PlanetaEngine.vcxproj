@@ -330,11 +330,11 @@
     <ClInclude Include="src\planeta\core\DebugManager.hpp" />
     <ClInclude Include="src\planeta\core\Delegate.hpp" />
     <ClInclude Include="src\planeta\core\DrawSystem.hpp" />
-    <ClInclude Include="src\planeta\dxlib\DXGraphDrawData.hpp" />
-    <ClInclude Include="src\planeta\dxlib\DXUtility.hpp" />
+    <ClInclude Include="src\planeta\dxlib\dx_graph_draw_data.hpp" />
+    <ClInclude Include="src\planeta\dxlib\dx_utility.hpp" />
     <ClInclude Include="src\planeta\core\EACollisionWithCollider2D.hpp" />
     <ClInclude Include="src\planeta\core\EACollisionWithGround2D.hpp" />
-    <ClInclude Include="src\planeta\effekseer\EffekseerUtil.hpp" />
+    <ClInclude Include="src\planeta\effekseer\effekseer_util.hpp" />
     <ClInclude Include="src\planeta\archiver\encrypter_base.hpp" />
     <ClInclude Include="src\planeta\archiver\exor_encrypter.hpp" />
     <ClInclude Include="src\planeta\core\File.hpp" />
@@ -575,7 +575,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\planeta\effekseer\EffekseerUtil.cpp" />
+    <ClCompile Include="src\planeta\effekseer\effekseer_util.cpp" />
     <ClCompile Include="src\planeta\core\GameObjectFactory.cpp" />
     <ClCompile Include="src\planeta\core\GOComponentAdder.cpp" />
     <ClCompile Include="src\planeta\core\GOComponentGetter.cpp" />
@@ -680,7 +680,7 @@
     <ClCompile Include="src\planeta\buildin\CDrawLine2D.cpp" />
     <ClCompile Include="src\planeta\core\StandardRenderingManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPlanet2D.cpp" />
-    <ClCompile Include="src\planeta\dxlib\DXUtility.cpp" />
+    <ClCompile Include="src\planeta\dxlib\dx_utility.cpp" />
     <ClCompile Include="src\planeta\buildin\CGraph2DAnimator.cpp" />
     <ClCompile Include="src\planeta\buildin\RGraph.cpp" />
     <ClCompile Include="src\planeta\buildin\RIni.cpp" />

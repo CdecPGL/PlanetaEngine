@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "planeta/core/ResourceBase.hpp"
-#include "planeta/effekseer/EffekseerUtil.hpp"
+#include "..\effekseer\effekseer_util.hpp"
 
 #include "DxLib.h"
 

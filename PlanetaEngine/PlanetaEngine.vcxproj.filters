@@ -462,13 +462,13 @@
     <ClInclude Include="src\planeta\archiver\exor_encrypter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\dxlib\DXUtility.hpp">
+    <ClInclude Include="src\planeta\dxlib\dx_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\dxlib\DXGraphDrawData.hpp">
+    <ClInclude Include="src\planeta\dxlib\dx_graph_draw_data.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\effekseer\EffekseerUtil.hpp">
+    <ClInclude Include="src\planeta\effekseer\effekseer_util.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\win\windows_utility.hpp">
@@ -1082,10 +1082,10 @@
     <ClCompile Include="src\planeta\archiver\exor_encrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\dxlib\DXUtility.cpp">
+    <ClCompile Include="src\planeta\dxlib\dx_utility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\effekseer\EffekseerUtil.cpp">
+    <ClCompile Include="src\planeta\effekseer\effekseer_util.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\win\windows_utility.cpp">

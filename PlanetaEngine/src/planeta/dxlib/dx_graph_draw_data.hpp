@@ -5,7 +5,7 @@
 #include "DxLib.h"
 
 namespace plnt::dxlib {
-	struct DXGraphDrawData {
+	struct dx_graph_draw_data {
 		std::unique_ptr<VERTEX3D[]> vertexes; //頂点情報
 		size_t vertex_count = 0; //頂点数
 		std::unique_ptr<unsigned short[]> indexes; //インデックス情報

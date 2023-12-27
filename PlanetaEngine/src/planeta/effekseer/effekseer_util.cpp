@@ -1,7 +1,7 @@
 ﻿#include "planeta/core/CharacterCode.hpp"
 #include "planeta/core/LogUtility.hpp"
 
-#include "EffekseerUtil.hpp"
+#include "effekseer_util.hpp"
 
 //#include <d3dx9tex.h>
 
@@ -13,7 +13,7 @@
 #pragma warning(pop)
 
 namespace plnt::effekseer {
-	bool EffectLoaderForEffekseer::Load(const EFK_CHAR *, void *&data, int32_t &size) {
+	bool effect_loader_for_effekseer::Load(const EFK_CHAR *, void *&data, int32_t &size) {
 		assert(file_ != nullptr);
 		size = static_cast<int32_t>(file_->size());
 		data = new uint8_t[size];
@@ -24,20 +24,18 @@ namespace plnt::effekseer {
 		return true;
 	}
 
-	void EffectLoaderForEffekseer::Unload(void *data, int32_t size) { if (data != nullptr) { delete[] data; } }
+	void effect_loader_for_effekseer::Unload(void *data, int32_t size) { delete[] data; }
 
-	void EffectLoaderForEffekseer::SetFile(const File *file) { file_ = file; }
-
-	TextureLoaderForEffekseer::TextureLoaderForEffekseer() { }
+	void effect_loader_for_effekseer::set_file(const File *file) { file_ = file; }
 
 	::Effekseer::TextureRef
-	TextureLoaderForEffekseer::Load(const EFK_CHAR *path, ::Effekseer::TextureType textureType) {
-		return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t *>(path)), textureType);
+	texture_loader_for_effekseer::Load(const EFK_CHAR *path, const ::Effekseer::TextureType texture_type) {
+		return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t *>(path)), texture_type);
 	}
 
-	void TextureLoaderForEffekseer::SetTextureGetter(const TextureGetterType &func) { texture_getter_ = func; }
+	void texture_loader_for_effekseer::set_texture_getter(const texture_getter_type &func) { texture_getter_ = func; }
 
-	::Effekseer::TextureRef CreateEffekseerTextureDataFromFile(const File &file) {
+	::Effekseer::TextureRef create_effekseer_texture_data_from_file(const File &file) {
 		::Effekseer::TextureRef textureData = nullptr;
 		DxLib::BASEIMAGE dx_base_image;
 		CreateBaseImageToMem(file.top_pointer(), file.size(), &dx_base_image, false);

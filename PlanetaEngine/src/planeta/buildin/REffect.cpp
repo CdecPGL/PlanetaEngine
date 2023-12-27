@@ -4,7 +4,7 @@
 #pragma warning(pop)
 
 #include "planeta/core/File.hpp"
-#include "planeta/effekseer/EffekseerUtil.hpp"
+#include "..\effekseer\effekseer_util.hpp"
 
 #include "REffect.hpp"
 #include "REffectTexture.hpp"
@@ -21,11 +21,11 @@ bool plnt::REffect::OnLoaded(const File &file, const JsonFile &metadata, Resourc
 	assert(dynamic_cast<private_::EffectLoaderForEffekseer*>(eff_ldr) != nullptr);
 	static_cast<private_::EffectLoaderForEffekseer*>(eff_ldr)->SetFile(&file);*/
 	//テクスチャローダーの設定
-	eff_mgr->SetTextureLoader(::Effekseer::MakeRefPtr<TextureLoaderForEffekseer>());
+	eff_mgr->SetTextureLoader(::Effekseer::MakeRefPtr<texture_loader_for_effekseer>());
 	decltype(auto) txr_ldr = eff_mgr->GetTextureLoader();
 	assert(txr_ldr != nullptr);
 
-	txr_ldr.DownCast<TextureLoaderForEffekseer>()->SetTextureGetter(
+	txr_ldr.DownCast<texture_loader_for_effekseer>()->set_texture_getter(
 		[&referencer](const std::string &path, ::Effekseer::TextureType texture_type)-> ::Effekseer::TextureRef {
 			auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
 			if (tex_res) { return tex_res->effekseer_taxture(); } else {

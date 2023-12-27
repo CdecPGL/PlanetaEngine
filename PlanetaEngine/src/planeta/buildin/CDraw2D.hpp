@@ -53,9 +53,9 @@ namespace plnt {
 		}
 
 		/*! 表示色を取得*/
-		plnt::Color color() const { return color_; }
+		plnt::color color() const { return color_; }
 		/*! 表示色を設定*/
-		CDraw2D &color(const plnt::Color &c) {
+		CDraw2D &color(const plnt::color &c) {
 			color_ = c;
 			return *this;
 		}
@@ -86,7 +86,7 @@ namespace plnt {
 		double rotation_rad_ = 0.0;
 		/*表示拡大度*/
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
-		plnt::Color color_;
+		plnt::color color_;
 		void UpdatePriority_();
 		void OnActivated() override final;
 		void OnInactivated() override final;

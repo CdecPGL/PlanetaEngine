@@ -13,9 +13,9 @@
 
 namespace plnt::effekseer {
 	//Load関数の引数は使わずに、読み込み直前にFileを指定して、それを用いて読み込みを行う。
-	class EffectLoaderForEffekseer final : public ::Effekseer::EffectLoader {
+	class effect_loader_for_effekseer final : public ::Effekseer::EffectLoader {
 	public:
-		void SetFile(const File *file);
+		void set_file(const File *file);
 		//事前に指定されたFileからデータのコピーを行う
 		bool Load(const EFK_CHAR *path, void *&data, int32_t &size) override;
 		void Unload(void *data, int32_t size) override;
@@ -26,16 +26,17 @@ namespace plnt::effekseer {
 
 	//読み込み前にテクスチャ取得用のコールバック関数を設定し、それを用いてテクスチャを取得する。
 	//REffectTextureで削除するのでUnloadでの削除は行わない
-	class TextureLoaderForEffekseer final : public ::Effekseer::TextureLoader {
+	class texture_loader_for_effekseer final : public ::Effekseer::TextureLoader {
 	public:
-		using TextureGetterType = std::function<::Effekseer::TextureRef(const std::string &, ::Effekseer::TextureType)>;
-		::Effekseer::TextureRef Load(const EFK_CHAR *path, ::Effekseer::TextureType textureType) override;
-		TextureLoaderForEffekseer();
-		void SetTextureGetter(const TextureGetterType &func);
+		using texture_getter_type = std::function<::Effekseer::TextureRef
+			(const std::string &, ::Effekseer::TextureType)>;
+		::Effekseer::TextureRef Load(const EFK_CHAR *path, ::Effekseer::TextureType texture_type) override;
+		texture_loader_for_effekseer() = default;
+		void set_texture_getter(const texture_getter_type &func);
 
 	private:
-		TextureGetterType texture_getter_;
+		texture_getter_type texture_getter_;
 	};
 
-	::Effekseer::TextureRef CreateEffekseerTextureDataFromFile(const File &file);
+	::Effekseer::TextureRef create_effekseer_texture_data_from_file(const File &file);
 }

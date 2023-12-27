@@ -22,11 +22,11 @@ namespace plnt {
 	public:
 		virtual ~IDebugDrawer() = 0 { };
 		/*! 線を描画する*/
-		virtual void DrawLine(const Vector2Df &spos, const Vector2Df &epos, const Color &color) = 0;
+		virtual void DrawLine(const Vector2Df &spos, const Vector2Df &epos, const color &color) = 0;
 		/*! 円を描画する*/
-		virtual void DrawCircle(const Vector2Df &pos, float radius, const Color &color, bool filled) = 0;
+		virtual void DrawCircle(const Vector2Df &pos, float radius, const color &color, bool filled) = 0;
 		/*! 複数の線を描画する*/
-		virtual void DrawLines(const std::vector<Vector2Df> &pos_list, const Color &color) = 0;
+		virtual void DrawLines(const std::vector<Vector2Df> &pos_list, const color &color) = 0;
 	};
 
 	/*! デバッグマネージャ公開インターフェイス*/
