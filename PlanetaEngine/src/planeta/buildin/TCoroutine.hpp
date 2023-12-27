@@ -10,7 +10,7 @@
 namespace plnt {
 	class TCoroutine : public Task {
 	public:
-		using Super = Task;
+		using super = Task;
 		using coroutine = boost::coroutines2::coroutine<void>;
 		using func_arg_type = coroutine::push_type &;
 		using Task::Task;

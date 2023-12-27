@@ -1,19 +1,19 @@
 ﻿#pragma once
 
-#include "planeta/reflection/Reflectable.hpp"
+#include "planeta/reflection/reflectable.hpp"
 
 namespace plnt {
-	class Color : public reflection::Reflectable {
+	class Color : public reflection::reflectable {
 		PE_REFLECTION_DATA_REGISTERER_DECL_DEF(Color) {
 			registerer
 				.PE_REFLECTABLE_CLASS_PROPERTY(Color, r)
 				.PE_REFLECTABLE_CLASS_PROPERTY(Color, g)
 				.PE_REFLECTABLE_CLASS_PROPERTY(Color, b)
 				.PE_REFLECTABLE_CLASS_PROPERTY(Color, a)
-				.ShallowCopyTarget(&Color::_r)
-				.ShallowCopyTarget(&Color::_g)
-				.ShallowCopyTarget(&Color::_b)
-				.ShallowCopyTarget(&Color::_a);
+				.shallow_copy_target(&Color::_r)
+				.shallow_copy_target(&Color::_g)
+				.shallow_copy_target(&Color::_b)
+				.shallow_copy_target(&Color::_a);
 		}
 
 	public:

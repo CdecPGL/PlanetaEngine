@@ -10,9 +10,9 @@ namespace plnt {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, width)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, length)
-			.ShallowCopyTarget(&CDrawLine2D::_width)
-			.ShallowCopyTarget(&CDrawLine2D::_length)
-			.ShallowCopyTarget(&CDrawLine2D::_wire_positions);
+			.shallow_copy_target(&CDrawLine2D::_width)
+			.shallow_copy_target(&CDrawLine2D::_length)
+			.shallow_copy_target(&CDrawLine2D::_wire_positions);
 	}
 
 	CDrawLine2D::CDrawLine2D() : _wire_positions(2), _width(1), _length(0) { }

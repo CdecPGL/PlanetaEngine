@@ -8,10 +8,10 @@
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawPolygon2D) {
 		registerer
-			.WriteOnlyProperty("vertexes", &CDrawPolygon2D::vertexes)
-			.ShallowCopyTarget(&CDrawPolygon2D::points_)
-			.ShallowCopyTarget(&CDrawPolygon2D::vertexes_)
-			.ShallowCopyTarget(&CDrawPolygon2D::indexes_);
+			.write_only_property("vertexes", &CDrawPolygon2D::vertexes)
+			.shallow_copy_target(&CDrawPolygon2D::points_)
+			.shallow_copy_target(&CDrawPolygon2D::vertexes_)
+			.shallow_copy_target(&CDrawPolygon2D::indexes_);
 	}
 
 	void CDrawPolygon2D::DrawProc(ScreenDrawer2D &drawer) {

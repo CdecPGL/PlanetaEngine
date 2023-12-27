@@ -1,26 +1,34 @@
 ﻿#pragma once
 
-#include "ClassRegisterer.hpp"
-#include "Reflection.hpp"
+// ReSharper disable once CppUnusedIncludeDirective
+#include "reflection.hpp"
 
 namespace plnt::reflection {
-	/*! Reflection基底クラス。レフレクションに対応するクラスは継承しなければならない。
+	/*! reflection基底クラス。レフレクションに対応するクラスは継承しなければならない。
 	*/
-	class Reflectable {
+	class reflectable {
 	public:
-		virtual ~Reflectable() = 0 { };
+		reflectable() = default;
+		reflectable(const reflectable &) = default;
+		reflectable(reflectable &&) = default;
+		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition, modernize-use-equals-default)
+		virtual ~reflectable() = 0 { }
+
+		reflectable &operator=(const reflectable &) = default;
+		reflectable &operator=(reflectable &&) = default;
 	};
 }
 
 /*! リフレクションデータ登録関数の宣言を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DECLARATION(type)\
 public:\
-static void ReflectionDataRegisterer(::plnt::reflection::ClassRegisterer<type>& registerer);
+static void reflection_data_registerer(::plnt::reflection::class_registerer<type>& registerer);
+
 /*! リフレクションデータ登録関数の定義を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DEFINITION(type)\
-void type::ReflectionDataRegisterer(::plnt::reflection::ClassRegisterer<type>& registerer)
+void type::reflection_data_registerer(::plnt::reflection::class_registerer<type> &registerer)
 
 /*! リフレクションデータ登録関数の宣言定義を行うマクロ*/
 #define PE_REFLECTION_DATA_REGISTERER_DECL_DEF(type)\
 public:\
-static void ReflectionDataRegisterer(::plnt::reflection::ClassRegisterer<type>& registerer)
+static void reflection_data_registerer(::plnt::reflection::class_registerer<type>& registerer)

@@ -219,21 +219,6 @@
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\math\MathConstant.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\math\MathMatrix.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\math\MathUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\math\MathVector.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\math\MathVectorElementIdentifer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\Vector2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -372,40 +357,37 @@
     <ClInclude Include="src\planeta\core\NonOwingPointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ReflectionUtility.hpp">
+    <ClInclude Include="src\planeta\reflection\reflection_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\Reflectable.hpp">
+    <ClInclude Include="src\planeta\reflection\reflectable.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ReflectableClassAccessor.hpp">
+    <ClInclude Include="src\planeta\reflection\reflectable_class_accessor.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\Reflection.hpp">
+    <ClInclude Include="src\planeta\reflection\reflection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ReflectionAccessible.hpp">
+    <ClInclude Include="src\planeta\reflection\reflection_accessible.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ReflectionClassData.hpp">
+    <ClInclude Include="src\planeta\reflection\reflection_exceptions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ReflectionExceptions.hpp">
+    <ClInclude Include="src\planeta\reflection\class_registerer_impl.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ClassRegistererImpl.hpp">
+    <ClInclude Include="src\planeta\reflection\class_info.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ClassInfo.hpp">
+    <ClInclude Include="src\planeta\reflection\class_info_caller.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ClassInfoCaller.hpp">
+    <ClInclude Include="src\planeta\reflection\class_registerer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\ClassRegisterer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\reflection\TypeInfoWrapper.hpp">
+    <ClInclude Include="src\planeta\reflection\type_info_wrapper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\XmlFile.hpp">
@@ -492,13 +474,13 @@
     <ClInclude Include="src\planeta\win\windows_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\LuaBindHelper.hpp">
+    <ClInclude Include="src\planeta\reflection\lua_bind_helper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\util\two_key_map.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\reflection\TypeTraitsUtility.hpp">
+    <ClInclude Include="src\planeta\reflection\type_traits_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\TypeChecker.hpp">
@@ -900,11 +882,23 @@
     <ClInclude Include="src\my_lib\ini_data.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\planeta\math\math_constant.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\math\math_matrix.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\math\math_utility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\math\math_vector.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\planeta\math\math_vector_element_identifier.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\planeta\math\MathUtility.cpp">
-      <Filter>PlanetaEngine\Math</Filter>
-    </ClCompile>
     <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
@@ -1019,19 +1013,19 @@
     <ClCompile Include="src\planeta\buildin\SError.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\reflection\ReflectableClassAccessor.cpp">
+    <ClCompile Include="src\planeta\reflection\reflectable_class_accessor.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\reflection\Reflection.cpp">
+    <ClCompile Include="src\planeta\reflection\reflection.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\reflection\ReflectionAccessible.cpp">
+    <ClCompile Include="src\planeta\reflection\reflection_accessible.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\reflection\ReflectionUtility.cpp">
+    <ClCompile Include="src\planeta\reflection\reflection_utility.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\reflection\ClassInfoCaller.cpp">
+    <ClCompile Include="src\planeta\reflection\class_info_caller.cpp">
       <Filter>PlanetaEngine\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\XmlFile.cpp">
@@ -1296,6 +1290,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\my_lib\ini_saver.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\planeta\math\math_utility.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

@@ -29,7 +29,7 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGraphGUI, draw_area)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGraphGUI, reverse)
 			.PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(CDrawGraphGUI, resource_id)
-			.DeepCopyTarget(&CDrawGraphGUI::impl_);
+			.deep_copy_target(&CDrawGraphGUI::impl_);
 	}
 
 	CDrawGraphGUI::CDrawGraphGUI() : impl_(std::make_unique<Impl_>()) { }
@@ -45,7 +45,7 @@ namespace plnt {
 	}
 
 	bool CDrawGraphGUI::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		impl_->my_c_trans_gui = com_getter.GetComponent<CTransformGUI>();
 		return true;
 	}

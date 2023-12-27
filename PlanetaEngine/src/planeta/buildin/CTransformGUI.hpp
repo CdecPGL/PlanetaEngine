@@ -9,7 +9,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransformGUI);
 
 	public:
-		using Super = private_::GameObjectSystemComponent;
+		using super = private_::GameObjectSystemComponent;
 		CTransformGUI();
 		~CTransformGUI();
 		/*アクセサ*/

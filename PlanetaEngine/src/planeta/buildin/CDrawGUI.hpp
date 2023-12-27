@@ -9,7 +9,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGUI);
 
 	public:
-		using Super = private_::GameObjectSystemComponent;
+		using super = private_::GameObjectSystemComponent;
 		CDrawGUI();
 		virtual ~CDrawGUI();
 		/*描画処理*/

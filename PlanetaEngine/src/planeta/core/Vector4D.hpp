@@ -238,12 +238,12 @@ namespace plnt {
 }
 
 #include "boost/property_tree/ptree.hpp"
-#include "planeta/reflection/ReflectionUtility.hpp"
+#include "..\reflection\reflection_utility.hpp"
 
 namespace plnt::reflection {
 	//ReflectionシステムのPtree読み込みを有効にするための定義
 	template <typename T>
-	struct ReflectivePtreeConverterImpl<Vector4D<T>> {
+	struct reflective_ptree_converter_impl<Vector4D<T>> {
 		void operator()(Vector4D<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 4) {
 				throw reflection_error(
@@ -257,7 +257,7 @@ namespace plnt::reflection {
 						util::ConvertAndConnectToString("Vector4DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				T dat{};
-				ReflectivePtreeConverter(dat, pp.second);
+				reflective_ptree_converter(dat, pp.second);
 				ary[idx++] = std::move(dat);
 			}
 			dst.Set(ary[0], ary[1], ary[2], ary[3]);

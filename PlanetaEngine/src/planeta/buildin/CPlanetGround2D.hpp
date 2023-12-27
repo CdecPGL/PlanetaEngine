@@ -8,7 +8,7 @@ namespace plnt {
 	/*! 惑星地面コンポーネント*/
 	class CPlanetGround2D final : public CGround2D {
 	public:
-		using Super = CPlanetGround2D;
+		using super = CPlanetGround2D;
 
 	private:
 		NonOwingPointer<CPlanet> planet_component_;

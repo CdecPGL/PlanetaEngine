@@ -15,9 +15,9 @@ namespace plnt {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, radius)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, separation)
-			.ShallowCopyTarget(&CPlanet::_radius)
-			.ShallowCopyTarget(&CPlanet::_separation)
-			.ShallowCopyTarget(&CPlanet::_gap);
+			.shallow_copy_target(&CPlanet::_radius)
+			.shallow_copy_target(&CPlanet::_separation)
+			.shallow_copy_target(&CPlanet::_gap);
 	}
 
 	CPlanet::CPlanet() { separation(kDefaultSeparation); }

@@ -5,7 +5,7 @@
 namespace plnt {
 	class GameObjectStandardComponent : public GameObjectComponent {
 	public:
-		using Super = GameObjectComponent;
+		using super = GameObjectComponent;
 		virtual ~GameObjectStandardComponent() = default;
 
 	private:

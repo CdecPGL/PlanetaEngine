@@ -2,7 +2,7 @@
 #include <string>
 #include <typeinfo>
 #include <memory>
-#include "planeta/reflection/Reflectable.hpp"
+#include "planeta/reflection/reflectable.hpp"
 
 #undef max //windows.hで定義されているmaxマクロを無効化(std::numeric_limits<size_t>::max()のため)
 
@@ -11,9 +11,9 @@ namespace plnt {
 
 		型情報管理、リフレクションシステムなどを提供する。これらの機能が必要ない場合は継承する必要はない
 	*/
-	class Object : public reflection::Reflectable {
+	class Object : public reflection::reflectable {
 	public:
-		using Super = Reflectable;
+		using super = reflectable;
 		//! デフォルトコンストラクタ
 		Object() = default;
 		//! デストラクタ

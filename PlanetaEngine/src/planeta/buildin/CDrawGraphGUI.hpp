@@ -10,7 +10,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraphGUI);
 
 	public:
-		using Super = CDrawGUI;
+		using super = CDrawGUI;
 		CDrawGraphGUI();
 		~CDrawGraphGUI();
 		/*! 表示する画像のリソースIDを設定する*/

@@ -27,7 +27,7 @@ namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawGUI) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGUI, draw_priority)
-			.DeepCopyTarget(&CDrawGUI::impl_);
+			.deep_copy_target(&CDrawGUI::impl_);
 	}
 
 	CDrawGUI::CDrawGUI(): impl_(std::make_unique<Impl_>()) { }
@@ -45,7 +45,7 @@ namespace plnt {
 	}
 
 	void CDrawGUI::OnInitialized() {
-		Super::OnInitialized();
+		super::OnInitialized();
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDrawGUI(
 			shared_this<CDrawGUI>(), impl_->priority);
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
@@ -53,17 +53,17 @@ namespace plnt {
 
 	void CDrawGUI::OnFinalized() noexcept {
 		impl_->draw_system_connection->Remove();
-		Super::OnFinalized();
+		super::OnFinalized();
 	}
 
 	void CDrawGUI::OnActivated() {
-		Super::OnActivated();
+		super::OnActivated();
 		auto suceed = impl_->draw_system_connection->Activte();
 		if (!suceed) { PE_LOG_ERROR("描画システムの有効化に失敗しました。"); }
 	}
 
 	void CDrawGUI::OnInactivated() {
 		impl_->draw_system_connection->Inactivate();
-		Super::OnInactivated();
+		super::OnInactivated();
 	}
 }

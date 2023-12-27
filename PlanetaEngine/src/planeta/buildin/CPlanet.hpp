@@ -10,7 +10,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CPlanet);
 
 	public:
-		using Super = GameObjectStandardComponent;
+		using super = GameObjectStandardComponent;
 		CPlanet();
 		~CPlanet() = default;
 		/*! 地表の高さを頂点インデックスで設定するb*/

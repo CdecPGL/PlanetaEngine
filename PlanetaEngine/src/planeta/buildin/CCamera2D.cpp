@@ -23,7 +23,7 @@ namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CCamera2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CCamera2D, expansion)
-			.ShallowCopyTarget(&CCamera2D::expansion_);
+			.shallow_copy_target(&CCamera2D::expansion_);
 	}
 
 	CCamera2D::CCamera2D(): impl_(std::make_unique<Impl_>()) { }
@@ -31,7 +31,7 @@ namespace plnt {
 	CCamera2D::~CCamera2D() = default;
 
 	bool CCamera2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_WARNING("CTransform2Dが取得できませんでした。");
@@ -41,7 +41,7 @@ namespace plnt {
 	}
 
 	void CCamera2D::OnInitialized() {
-		Super::OnInitialized();
+		super::OnInitialized();
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(
 			shared_this<CCamera2D>());
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
@@ -51,7 +51,7 @@ namespace plnt {
 
 	void CCamera2D::OnInactivated() {
 		PE_LOG_WARNING("カメラ2Dコンポーネントは無効化に対応していません。");
-		Super::OnInactivated();
+		super::OnInactivated();
 	}
 
 	void CCamera2D::OnFinalized() noexcept { impl_->draw_system_connection->Remove(); }

@@ -17,7 +17,7 @@ namespace plnt {
 	class CGround2D :
 		public GameObjectStandardComponent, public private_::IColliderWithCollider2D {
 	public:
-		using Super = GameObjectStandardComponent;
+		using super = GameObjectStandardComponent;
 		CGround2D();
 		virtual ~CGround2D() = default;
 		/*! 指定地形座標の地面からの高さを取得*/

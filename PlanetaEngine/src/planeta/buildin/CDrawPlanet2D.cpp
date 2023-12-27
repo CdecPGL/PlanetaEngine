@@ -23,11 +23,11 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, horizontal_separation)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, vertical_separation)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawPlanet2D, texture_mapping_mode)
-			.WriteOnlyProperty("graph_resource_id", &CDrawPlanet2D::graph_resource_id)
-			.ShallowCopyTarget(&CDrawPlanet2D::_horizontal_separation)
-			.ShallowCopyTarget(&CDrawPlanet2D::_vertical_separation)
-			.DeepCopyTarget(&CDrawPlanet2D::graph_draw_data_)
-			.CopyHandler([](const CDrawPlanet2D &src, CDrawPlanet2D &dst) {
+			.write_only_property("graph_resource_id", &CDrawPlanet2D::graph_resource_id)
+			.shallow_copy_target(&CDrawPlanet2D::_horizontal_separation)
+			.shallow_copy_target(&CDrawPlanet2D::_vertical_separation)
+			.deep_copy_target(&CDrawPlanet2D::graph_draw_data_)
+			.copy_handler([](const CDrawPlanet2D &src, CDrawPlanet2D &dst) {
 				dst.texture_mapping_mode(src.texture_mapping_mode());
 			});
 	}
@@ -52,7 +52,7 @@ namespace plnt {
 	}
 
 	bool CDrawPlanet2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		_planet_component.reset(com_getter.GetComponent<CPlanet>());
 		if (_planet_component == nullptr) {
 			PE_LOG_ERROR("初期化に失敗しました。PlanetComponentを取得できませんでした。");
@@ -62,11 +62,11 @@ namespace plnt {
 	}
 
 	void CDrawPlanet2D::OnInitialized() {
-		Super::OnInitialized();
+		super::OnInitialized();
 		SetPolygon_();
 	}
 
-	void CDrawPlanet2D::OnFinalized() noexcept { Super::OnFinalized(); }
+	void CDrawPlanet2D::OnFinalized() noexcept { super::OnFinalized(); }
 
 	void CDrawPlanet2D::SetPolygonRoundly_() {
 		//頂点とインデックスのサイズ調整

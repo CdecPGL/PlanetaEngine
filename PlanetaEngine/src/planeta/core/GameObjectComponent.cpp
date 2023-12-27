@@ -7,7 +7,7 @@ namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(GameObjectComponent) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(GameObjectComponent, labels)
-			.ShallowCopyTarget(&GameObjectComponent::labels_);
+			.shallow_copy_target(&GameObjectComponent::labels_);
 	}
 
 	void GameObjectComponent::Initialize() {

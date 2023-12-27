@@ -16,7 +16,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CGraph2DAnimator);
 
 	public:
-		using Super = GameObjectStandardComponent;
+		using super = GameObjectStandardComponent;
 		/*! フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
 		using FrameDataType = std::tuple<unsigned int, RectAngle<int>, Vector2Dd, double>;
 		/*! 単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/

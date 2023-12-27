@@ -20,7 +20,7 @@ namespace plnt {
 		class GameObjectBase : public Object, public IGameObject, private util::NonCopyable<GameObjectBase>,
 		                       public std::enable_shared_from_this<GameObjectBase> {
 		public:
-			using Super = Object;
+			using super = Object;
 			GameObjectBase();
 			~GameObjectBase();
 

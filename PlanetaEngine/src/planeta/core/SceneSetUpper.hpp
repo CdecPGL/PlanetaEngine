@@ -17,7 +17,7 @@ namespace plnt {
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
 	class SceneSetUpper : public Object, private util::NonCopyable<SceneSetUpper> {
 	public:
-		using Super = Object;
+		using super = Object;
 		SceneSetUpper() = default;
 		virtual ~SceneSetUpper() = default;
 		/*シーンを初期化する

@@ -17,11 +17,11 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGraph2D, draw_area)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGraph2D, reverse)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawGraph2D, graph_center)
-			.WriteOnlyProperty("graph_resource_id", &CDrawGraph2D::graph_resource_id)
-			.ShallowCopyTarget(&CDrawGraph2D::_draw_area)
-			.ShallowCopyTarget(&CDrawGraph2D::reverse_)
-			.ShallowCopyTarget(&CDrawGraph2D::graph_center_)
-			.DeepCopyTarget(&CDrawGraph2D::graph_draw_data_);
+			.write_only_property("graph_resource_id", &CDrawGraph2D::graph_resource_id)
+			.shallow_copy_target(&CDrawGraph2D::_draw_area)
+			.shallow_copy_target(&CDrawGraph2D::reverse_)
+			.shallow_copy_target(&CDrawGraph2D::graph_center_)
+			.deep_copy_target(&CDrawGraph2D::graph_draw_data_);
 	}
 
 	/*頂点は[0]左下,[1]右下,[2]右上,[3]左上とする*/

@@ -2,7 +2,7 @@
 #include "IResourceManager.hpp"
 #include "GameObjectFactory.hpp"
 #include "PrefixUtility.hpp"
-#include "planeta/reflection/Reflection.hpp"
+#include "planeta/reflection/reflection.hpp"
 #include "GameObjectBase.hpp"
 #include "planeta/buildin/RGameObject.hpp"
 
@@ -88,7 +88,7 @@ namespace plnt {
 			const std::shared_ptr<GameObjectBase> &go_temp, const WeakPointer<private_::ISceneInternal> &scene_data) {
 			assert(go_temp != nullptr);
 			//生成
-			auto ngo = reflection::Reflection::CreateObjectByStdTypeInfo<GameObjectBase>(typeid(*go_temp));
+			auto ngo = reflection::reflection::create_object_by_std_type_info<GameObjectBase>(typeid(*go_temp));
 			if (ngo == nullptr) {
 				PE_LOG_ERROR("クローンの作成に失敗しました。");
 				return nullptr;

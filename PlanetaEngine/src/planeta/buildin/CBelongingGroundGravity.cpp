@@ -9,17 +9,17 @@ namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CBelongingGroundGravity) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CBelongingGroundGravity, gravity_scale)
-			.ShallowCopyTarget(&CBelongingGroundGravity::_gravity_scale);
+			.shallow_copy_target(&CBelongingGroundGravity::_gravity_scale);
 	}
 
 	bool CBelongingGroundGravity::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		return true;
 	}
 
 	void CBelongingGroundGravity::OnInitialized() {
-		Super::OnInitialized();
+		super::OnInitialized();
 		auto proc = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreCollisionEarlyPhase);
 		proc->SetExcuteFunction([this]() { Update(); });
 	}

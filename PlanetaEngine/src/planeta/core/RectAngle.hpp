@@ -110,7 +110,7 @@ namespace plnt {
 
 	//ReflectionシステムのPtree読み込みを有効にするための定義
 	template <typename T>
-	struct reflection::ReflectivePtreeConverterImpl<RectAngle<T>> {
+	struct reflection::reflective_ptree_converter_impl<RectAngle<T>> {
 		void operator()(RectAngle<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 2) {
 				throw reflection_error(util::ConvertAndConnectToString("要素数が", src.size(),
@@ -123,7 +123,7 @@ namespace plnt {
 					throw reflection_error(
 						util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
-				ReflectivePtreeConverter(ary[idx++], pp.second);
+				reflective_ptree_converter(ary[idx++], pp.second);
 			}
 			dst.Set(ary[0], ary[1]);
 		}

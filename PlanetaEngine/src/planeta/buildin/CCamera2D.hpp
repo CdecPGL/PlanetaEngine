@@ -11,7 +11,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCamera2D);
 
 	public:
-		using Super = private_::GameObjectSystemComponent;
+		using super = private_::GameObjectSystemComponent;
 
 		CCamera2D();
 		~CCamera2D();

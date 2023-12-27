@@ -6,7 +6,7 @@ namespace plnt {
 	/*! 多角形コライダーコンポーネント(未実装)*/
 	class CPolygonCollider2D : public CCollider2D {
 	public:
-		using Super = CCollider2D;
+		using super = CCollider2D;
 
 	private:
 		bool DetectCollision(private_::IColliderWithCollider2D &collider) override {

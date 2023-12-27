@@ -16,21 +16,21 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, relative_rotation_rad)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, is_collidable_with_ground)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CCollider2D, collision_group)
-			.ReadOnlyProperty("is_grounded", &CCollider2D::is_grounded)
-			.ShallowCopyTarget(&CCollider2D::position_)
-			.ShallowCopyTarget(&CCollider2D::rotation_rad_)
-			.ShallowCopyTarget(&CCollider2D::collide_with_ground_flag_)
-			.ShallowCopyTarget(&CCollider2D::collision_group_name_);
+			.read_only_property("is_grounded", &CCollider2D::is_grounded)
+			.shallow_copy_target(&CCollider2D::position_)
+			.shallow_copy_target(&CCollider2D::rotation_rad_)
+			.shallow_copy_target(&CCollider2D::collide_with_ground_flag_)
+			.shallow_copy_target(&CCollider2D::collision_group_name_);
 	}
 
 	void CCollider2D::OnActivated() {
-		Super::OnActivated();
+		super::OnActivated();
 		ResistToCollisionDetectProcess_();
 	}
 
 	void CCollider2D::OnInactivated() {
 		RemoveFromCollisionDetectProcess_();
-		Super::OnInactivated();
+		super::OnInactivated();
 	}
 
 	void CCollider2D::ResistToCollisionDetectProcess_() {
@@ -102,7 +102,7 @@ namespace plnt {
 	}
 
 	bool CCollider2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dを取得できませんでした。");

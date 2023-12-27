@@ -9,7 +9,7 @@ namespace plnt {
 	CGround2D::CGround2D() { }
 
 	bool CGround2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dが取得できませんでした。");
@@ -18,9 +18,9 @@ namespace plnt {
 		return true;
 	}
 
-	void CGround2D::OnActivated() { Super::OnActivated(); }
+	void CGround2D::OnActivated() { super::OnActivated(); }
 
-	void CGround2D::OnInactivated() { Super::OnInactivated(); }
+	void CGround2D::OnInactivated() { super::OnInactivated(); }
 
 	void CGround2D::OnFinalized() noexcept { }
 

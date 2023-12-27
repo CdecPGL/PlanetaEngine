@@ -10,7 +10,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CBelongingGroundGravity);
 
 	public:
-		using Super = GameObjectStandardComponent;
+		using super = GameObjectStandardComponent;
 		/*! 重力スケールを取得*/
 		const double gravity_scale() const { return _gravity_scale; }
 		/*! 重力スケールを設定*/

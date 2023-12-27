@@ -13,7 +13,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawLine2D);
 
 	public:
-		using Super = CDraw2D;
+		using super = CDraw2D;
 		CDrawLine2D();
 		/*アクセサ*/
 		/*! 線の幅を取得*/

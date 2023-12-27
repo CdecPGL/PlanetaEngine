@@ -18,7 +18,7 @@ namespace plnt {
 	class Task :
 		public Object, private util::NonCopyable<Task> {
 	public:
-		using Super = Object;
+		using super = Object;
 		using GameObjectAccessorType = WeakPointer<IGameObject>;
 		Task();
 		virtual ~Task();

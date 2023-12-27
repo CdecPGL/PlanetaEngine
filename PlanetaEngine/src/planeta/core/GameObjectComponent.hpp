@@ -4,7 +4,7 @@
 #include <functional>
 #include <unordered_set>
 
-#include "planeta/reflection/ReflectionAccessible.hpp"
+#include "..\reflection\reflection_accessible.hpp"
 
 #include "Object.hpp"
 #include "NonCopyable.hpp"
@@ -26,13 +26,13 @@ namespace plnt {
 		@attention クラス宣言の先頭にPE_CLONABLE_GAMEOBJECTCOMPONENTマクロ、抽象クラスならPE_COPIABLE_GAMEOBJECTCOMPONENTを記述しなければならない。
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
 	*/
-	class GameObjectComponent : public Object, public reflection::ReflectionAccessible,
+	class GameObjectComponent : public Object, public reflection::reflection_accessible,
 	                            public std::enable_shared_from_this<GameObjectComponent>,
 	                            private util::NonCopyable<GameObjectComponent> {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(GameObjectComponent);
 
 	public:
-		using Super = Object;
+		using super = Object;
 		GameObjectComponent() = default;
 		virtual ~GameObjectComponent() = default;
 		bool SetSceneAndHolderGOData(const private_::GameObjectComponentSetUpData &resistration_data);

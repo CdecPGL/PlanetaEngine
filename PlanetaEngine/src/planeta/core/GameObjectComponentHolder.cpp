@@ -80,7 +80,7 @@ namespace plnt {
 		void GameObjectComponentHolder::CloneToOtherHolder(GameObjectComponentHolder &com_holder) {
 			com_holder.component_array_.resize(component_array_.size());
 			for (size_t idx = 0; idx < component_array_.size(); ++idx) {
-				auto ncom = std::static_pointer_cast<GameObjectComponent>(component_array_[idx]->ReflectiveClone());
+				auto ncom = std::static_pointer_cast<GameObjectComponent>(component_array_[idx]->reflective_clone());
 				com_holder.component_array_[idx] = ncom;
 			}
 			com_holder.type_idx_map_ = type_idx_map_;

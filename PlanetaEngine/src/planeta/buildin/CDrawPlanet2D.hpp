@@ -23,7 +23,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawPlanet2D);
 
 	public:
-		using Super = CDraw2D;
+		using super = CDraw2D;
 		CDrawPlanet2D();
 		~CDrawPlanet2D();
 		/*! 画像リソースを設定する*/
@@ -82,7 +82,7 @@ namespace plnt {
 	namespace reflection {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
 		template <>
-		struct ReflectivePtreeConverterImpl<CDrawPlanet2D::TextureMappingMode> {
+		struct reflective_ptree_converter_impl<CDrawPlanet2D::TextureMappingMode> {
 			void operator()(CDrawPlanet2D::TextureMappingMode &dst, const boost::property_tree::ptree &src) const {
 				try {
 					if (const auto str = src.get_value<std::string>(); str == "Round") {

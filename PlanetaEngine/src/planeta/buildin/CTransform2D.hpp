@@ -18,7 +18,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransform2D);
 
 	public:
-		using Super = private_::GameObjectSystemComponent;
+		using super = private_::GameObjectSystemComponent;
 		CTransform2D();
 		~CTransform2D();
 
@@ -103,7 +103,7 @@ namespace plnt {
 
 	namespace reflection {
 		//ReflectionシステムのPtree読み込みを有効にするための定義
-		inline void ReflectivePtreeConverter(::plnt::CoordinateSystem &dst, const boost::property_tree::ptree &src) {
+		inline void reflective_ptree_converter(::plnt::CoordinateSystem &dst, const boost::property_tree::ptree &src) {
 			try {
 				std::string str = src.get_value<std::string>();
 				if (str == "Ground") { dst = ::plnt::CoordinateSystem::Ground; } else if (str == "Global") {

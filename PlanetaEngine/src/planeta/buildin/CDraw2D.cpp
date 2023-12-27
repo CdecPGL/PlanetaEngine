@@ -28,11 +28,11 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, relative_rotation_rad)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, relative_scale)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CDraw2D, color)
-			.ShallowCopyTarget(&CDraw2D::draw_priority_)
-			.ShallowCopyTarget(&CDraw2D::position_)
-			.ShallowCopyTarget(&CDraw2D::rotation_rad_)
-			.ShallowCopyTarget(&CDraw2D::scale_)
-			.ShallowCopyTarget(&CDraw2D::color_);
+			.shallow_copy_target(&CDraw2D::draw_priority_)
+			.shallow_copy_target(&CDraw2D::position_)
+			.shallow_copy_target(&CDraw2D::rotation_rad_)
+			.shallow_copy_target(&CDraw2D::scale_)
+			.shallow_copy_target(&CDraw2D::color_);
 	}
 
 	CDraw2D::CDraw2D(): impl_(std::make_unique<Impl_>()), draw_priority_(0), rotation_rad_(0.0), scale_(1.0, 1.0) { }
@@ -81,11 +81,11 @@ namespace plnt {
 
 	void CDraw2D::OnInactivated() {
 		impl_->draw_system_connection->Inactivate();
-		Super::OnInactivated();
+		super::OnInactivated();
 	}
 
 	bool CDraw2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dを取得できませんでした。");

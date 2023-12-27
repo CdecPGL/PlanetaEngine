@@ -23,7 +23,7 @@
 #include "SystemVariables.hpp"
 
 
-#include "planeta/reflection/Reflection.hpp"
+#include "planeta/reflection/reflection.hpp"
 
 namespace plnt {
 	using namespace private_;
@@ -80,8 +80,8 @@ namespace plnt {
 			//リフレクションシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			try {
-				reflection::Reflection::Initialize();
-				PE_LOG_MESSAGE("リフレクションシステムが有効です。", reflection::Reflection::GetRegisteredClassCount(),
+				reflection::reflection::initialize();
+				PE_LOG_MESSAGE("リフレクションシステムが有効です。", reflection::reflection::get_registered_class_count(),
 				               "個のクラスが登録されています。");
 			} catch (reflection::reflection_error &e) {
 				PE_LOG_FATAL("リフレクションシステムの初期化に失敗しました。:", e.what());

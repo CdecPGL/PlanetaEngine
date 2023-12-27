@@ -41,7 +41,7 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, size)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, rotation_rad)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, pivot)
-			.DeepCopyTarget(&CTransformGUI::impl_);
+			.deep_copy_target(&CTransformGUI::impl_);
 	}
 
 	CTransformGUI::CTransformGUI() : impl_(std::make_unique<Impl_>()) { }
@@ -77,7 +77,7 @@ namespace plnt {
 	const plnt::Vector2Dd &CTransformGUI::pivot() const { return impl_->pivot; }
 
 	void CTransformGUI::OnActivated() {
-		Super::OnActivated();
+		super::OnActivated();
 		//TransformSystemへ登録
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransformGUI(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
@@ -89,7 +89,7 @@ namespace plnt {
 		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransformGUI(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 		}
-		Super::OnInactivated();
+		super::OnInactivated();
 	}
 
 	/*const planeta::RectAnglei& CTransformGUI::rect() const {

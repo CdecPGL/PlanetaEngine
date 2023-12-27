@@ -14,7 +14,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDraw2D);
 
 	public:
-		using Super = private_::GameObjectSystemComponent;
+		using super = private_::GameObjectSystemComponent;
 		CDraw2D();
 		virtual ~CDraw2D();
 		/*描画処理*/

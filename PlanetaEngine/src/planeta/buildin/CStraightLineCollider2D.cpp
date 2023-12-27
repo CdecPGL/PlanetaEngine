@@ -6,7 +6,7 @@ namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CStraightLineCollider2D) {
 		registerer
 			.PE_REFLECTABLE_CLASS_PROPERTY(CStraightLineCollider2D, length)
-			.ShallowCopyTarget(&CStraightLineCollider2D::length_);
+			.shallow_copy_target(&CStraightLineCollider2D::length_);
 	}
 
 	bool CStraightLineCollider2D::CollideWith(CCircleCollider2D &circle_collider) {

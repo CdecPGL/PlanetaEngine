@@ -11,7 +11,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawPolygon2D);
 
 	public:
-		using Super = CDraw2D;
+		using super = CDraw2D;
 		/*! 腸点数を設定する*/
 		void SetNumberOfVertexes(size_t n);
 		/*! 指定インデックスの座標を設定*/

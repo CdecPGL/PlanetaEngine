@@ -125,7 +125,7 @@ namespace plnt {
 
 		std::shared_ptr<SceneSetUpper> StandardSceneManager::_CreateSceneSetUpper(const std::string &scene_name) {
 			//シーン名にプレフィックスをつけたクラスを作成。
-			auto setupper = reflection::Reflection::CreateObjectByObjectTypeID<SceneSetUpper>(
+			auto setupper = reflection::reflection::create_object_by_object_type_id<SceneSetUpper>(
 				private_::AddPrefix(scene_name, private_::ObjectCategory::Scene));
 			return setupper;
 		}

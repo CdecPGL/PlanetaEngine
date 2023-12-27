@@ -19,7 +19,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraph2D);
 
 	public:
-		using Super = CDraw2D;
+		using super = CDraw2D;
 		CDrawGraph2D();
 		~CDrawGraph2D();
 

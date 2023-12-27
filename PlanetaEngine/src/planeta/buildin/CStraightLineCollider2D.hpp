@@ -8,7 +8,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CStraightLineCollider2D);
 
 	public:
-		using Super = CCollider2D;
+		using super = CCollider2D;
 
 		bool DetectCollision(private_::IColliderWithCollider2D &collider) override {
 			return collider.CollideWith(*this);

@@ -11,7 +11,7 @@
 #include "GOComponentGetter.hpp"
 #include "planeta/buildin/RPtree.hpp"
 #include "IResourceManager.hpp"
-#include "planeta/reflection/Reflection.hpp"
+#include "planeta/reflection/reflection.hpp"
 #include "ISceneInternal.hpp"
 
 namespace plnt {
@@ -172,7 +172,7 @@ namespace plnt {
 			assert(coms.size() == pts.size());
 			for (size_t i = 0; i < coms.size(); ++i) {
 				//Ptreeからリフレクションシステムを用いて読み込み
-				try { coms[i]->ReflectiveLoadFromPtree(*pts[i]); } catch (reflection::reflection_error &e) {
+				try { coms[i]->reflective_load_from_ptree(*pts[i]); } catch (reflection::reflection_error &e) {
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"型:", typeid(*coms[i]).name(),
 					             "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。(",
 					             e.what(), ")");

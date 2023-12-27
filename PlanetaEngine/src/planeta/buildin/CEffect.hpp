@@ -8,7 +8,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CEffect);
 
 	public:
-		using Super = GameObjectStandardComponent;
+		using super = GameObjectStandardComponent;
 		CEffect();
 		~CEffect();
 		/*! エフェクトを再生する*/

@@ -1,68 +1,69 @@
 ﻿#include "planeta/core/StringUtility.hpp"
 
-#include "ClassInfoCaller.hpp"
-#include "ClassInfo.hpp"
-#include "ReflectionExceptions.hpp"
-#include "Reflection.hpp"
-#include "Reflectable.hpp"
+#include "class_info_caller.hpp"
+#include "class_info.hpp"
+#include "reflection_exceptions.hpp"
+#include "reflection.hpp"
+#include "reflectable.hpp"
 
 namespace plnt::reflection {
 	using namespace private_;
-	using namespace plnt::util;
+	using namespace util;
 
-	ClassInfoCaller::ClassInfoCaller(const ClassInfo &class_info) noexcept : class_info_(class_info) { }
+	class_info_caller::class_info_caller(const class_info &class_info) noexcept : class_info_(class_info) { }
 
-	void ClassInfoCaller::SetVariable(const std::string &var_id, Reflectable &obj, const boost::any &v) const {
-		auto it = class_info_.public_variable_prpperty_info.find(var_id);
-		if (it == class_info_.public_variable_prpperty_info.end()) {
-			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
+	void class_info_caller::set_variable(const std::string &var_id, reflectable &obj, const boost::any &v) const {
+		const auto it = class_info_.public_variable_property_info.find(var_id);
+		if (it == class_info_.public_variable_property_info.end()) {
+			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(
 				ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 		}
 		try { it->second.setter(obj, v); } catch (boost::bad_any_cast &) {
-			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
+			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
 			                                                 "\"の読み込みにおいて型の不一致エラーが発生しました。(変数型:",
 			                                                 it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
 		}
 	}
 
-	void ClassInfoCaller::GetVariable(const std::string &var_id, Reflectable &obj, boost::any &v) const {
-		auto it = class_info_.public_variable_prpperty_info.find(var_id);
-		if (it == class_info_.public_variable_prpperty_info.end()) {
-			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
+	void class_info_caller::get_variable(const std::string &var_id, reflectable &obj, boost::any &v) const {
+		const auto it = class_info_.public_variable_property_info.find(var_id);
+		if (it == class_info_.public_variable_property_info.end()) {
+			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(
 				ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 		}
 		try { v = it->second.getter(obj); } catch (boost::bad_any_cast &) {
-			std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
+			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
 			                                                 "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:",
 			                                                 it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
 		}
 	}
 
-	void ClassInfoCaller::SetDataFromPtree(const boost::property_tree::ptree &pt, Reflectable &obj) {
+	void class_info_caller::set_data_from_ptree(const boost::property_tree::ptree &pt, reflectable &obj) const {
 		for (auto &&ptp : pt) {
 			auto var_id = ptp.first;
-			auto it = class_info_.public_variable_prpperty_info.find(var_id);
-			if (it == class_info_.public_variable_prpperty_info.end()) {
-				std::string obj_tid = Reflection::GetObjectTypeIDByStdTypeInfo(typeid(obj));
+			auto it = class_info_.public_variable_property_info.find(var_id);
+			if (it == class_info_.public_variable_property_info.end()) {
+				std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 				throw reflection_error(
 					ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 			}
-			try { it->second.ptree_loeder(obj, ptp.second); } catch (reflection_error &e) {
+			try { it->second.ptree_loader(obj, ptp.second); } catch (reflection_error &e) {
 				throw reflection_error(ConvertAndConnectToString("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
 			}
 		}
 	}
 
 	//copy_handlerが例外を投げる可能性があるのでnoexceptではない
-	std::shared_ptr<Reflectable> ClassInfoCaller::Clone(Reflectable &src_obj) {
+	std::shared_ptr<reflectable> class_info_caller::clone(const reflectable &src_obj) const {
 		auto obj = class_info_.creator();
 		for (auto &&copy_handler : class_info_.copy_handler_list) { copy_handler(src_obj, *obj); }
 		return obj;
 	}
 
-	void ClassInfoCaller::CopyFrom(Reflectable &me, const Reflectable &src) { throw reflection_error("Copyは未実装です。"); }
+	// ReSharper disable once CppMemberFunctionMayBeStatic
+	auto class_info_caller::copy_from(reflectable &me, const reflectable &src) -> void { throw reflection_error("Copyは未実装です。"); }
 }

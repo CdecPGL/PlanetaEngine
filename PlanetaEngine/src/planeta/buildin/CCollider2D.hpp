@@ -19,7 +19,7 @@ namespace plnt {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCollider2D);
 
 	public:
-		using Super = private_::GameObjectSystemComponent;
+		using super = private_::GameObjectSystemComponent;
 		virtual ~CCollider2D() = default;
 		/*衝突判定を行う*/
 		virtual bool DetectCollision(private_::IColliderWithCollider2D &collider) = 0;

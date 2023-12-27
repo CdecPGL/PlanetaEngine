@@ -153,7 +153,7 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CEffect, expansion)
 			.PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(CEffect, resource_id)
 			.PE_REFLECTABLE_CLASS_READONLY_PROPERTY(CEffect, is_playing)
-			.DeepCopyTarget(&CEffect::impl_);
+			.deep_copy_target(&CEffect::impl_);
 	}
 
 	CEffect::CEffect() : impl_(std::make_unique<Impl_>()) { }
@@ -161,13 +161,13 @@ namespace plnt {
 	CEffect::~CEffect() = default;
 
 	bool CEffect::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!Super::GetOtherComponentsProc(com_getter)) { return false; }
+		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
 		impl_->SetMyCTransform2D(com_getter.GetComponent<CTransform2D>());
 		return true;
 	}
 
 	void CEffect::OnInitialized() {
-		Super::OnInitialized();
+		super::OnInitialized();
 		if (!impl_->GetEffectExits()) {
 			if (!impl_->CreateEffectInstance()) {
 				PE_LOG_ERROR("エフェクトインスタンスの作成に失敗しました。");
@@ -188,7 +188,7 @@ namespace plnt {
 	}
 
 	void CEffect::OnActivated() {
-		Super::OnActivated();
+		super::OnActivated();
 		impl_->ConnectMyCTransformUpdatedEvent();
 		if (auto_play()) { if (!impl_->StartEffect()) { PE_LOG_ERROR("エフェクトの開始に失敗しました。"); } }
 	}
@@ -196,12 +196,12 @@ namespace plnt {
 	void CEffect::OnInactivated() {
 		impl_->DisconnectMyCTransformUpdatedEvent();
 		impl_->PauseEffect();
-		return Super::OnInactivated();
+		return super::OnInactivated();
 	}
 
 	void CEffect::OnFinalized() noexcept {
 		impl_->ClearEffectInstance();
-		Super::OnFinalized();
+		super::OnFinalized();
 	}
 
 	void CEffect::resource_id(const std::string &resource_id) {

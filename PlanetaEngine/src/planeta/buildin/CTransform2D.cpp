@@ -298,7 +298,7 @@ namespace plnt {
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, rotation_velocity_rad)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, ground_velocity)
 			.PE_REFLECTABLE_CLASS_PROPERTY(CTransform2D, velocity_space)
-			.DeepCopyTarget(&CTransform2D::impl_);
+			.deep_copy_target(&CTransform2D::impl_);
 	}
 
 	CTransform2D::CTransform2D() : impl_(std::make_unique<Impl_>()) { };
@@ -410,14 +410,14 @@ namespace plnt {
 	}
 
 	void CTransform2D::OnInitialized() {
-		Super::OnInitialized();
+		super::OnInitialized();
 		impl_->Initialize();
 	}
 
 	void CTransform2D::OnFinalized() noexcept { impl_->Finalize(); }
 
 	void CTransform2D::OnActivated() {
-		Super::OnActivated();
+		super::OnActivated();
 		//TransformSystemへ登録
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransform2D(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
@@ -429,6 +429,6 @@ namespace plnt {
 		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransform2D(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 		}
-		Super::OnInactivated();
+		super::OnInactivated();
 	}
 }
