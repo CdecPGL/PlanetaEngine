@@ -5,7 +5,7 @@
 #include "planeta/core/GameObjectStandardComponent.hpp"
 #include "planeta/core/Vector2D.hpp"
 #include "planeta/core/RectAngle.hpp"
-#include "planeta/core/IColliderWithCollider2D.hpp"
+#include "planeta/core/i_collider_with_collider_2d.hpp"
 #include "..\math\math_constant.hpp"
 
 namespace plnt {
@@ -15,7 +15,7 @@ namespace plnt {
 
 	/*! 地面基底コンポーネント*/
 	class CGround2D :
-		public GameObjectStandardComponent, public private_::IColliderWithCollider2D {
+		public GameObjectStandardComponent, public private_::i_collider_with_collider_2d {
 	public:
 		using super = GameObjectStandardComponent;
 		CGround2D();

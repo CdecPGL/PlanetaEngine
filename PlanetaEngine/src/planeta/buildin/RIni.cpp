@@ -2,7 +2,7 @@
 
 #include "planeta/core/FileIStream.hpp"
 #include "planeta/core/FileSystemUtility.hpp"
-#include "planeta/core/CharacterCode.hpp"
+#include "..\core\character_code.hpp"
 
 #include "RIni.hpp"
 

@@ -3,59 +3,59 @@
 #include "planeta/reflection/reflectable.hpp"
 
 namespace plnt {
-	class color : public reflection::reflectable {
+	class color final : public reflection::reflectable {
 		PE_REFLECTION_DATA_REGISTERER_DECL_DEF(color) {
 			registerer
 				.PE_REFLECTABLE_CLASS_PROPERTY(color, r)
 				.PE_REFLECTABLE_CLASS_PROPERTY(color, g)
 				.PE_REFLECTABLE_CLASS_PROPERTY(color, b)
 				.PE_REFLECTABLE_CLASS_PROPERTY(color, a)
-				.shallow_copy_target(&color::_r)
-				.shallow_copy_target(&color::_g)
-				.shallow_copy_target(&color::_b)
-				.shallow_copy_target(&color::_a);
+				.shallow_copy_target(&color::r_)
+				.shallow_copy_target(&color::g_)
+				.shallow_copy_target(&color::b_)
+				.shallow_copy_target(&color::a_);
 		}
 
 	public:
-		color(int r, int g, int b, int a) : _r(r), _g(g), _b(b), _a(a) {
-			if (_r < 0) { _r = 0; } else if (_r > 255) { _r = 255; }
-			if (_g < 0) { _g = 0; } else if (_g > 255) { _g = 255; }
-			if (_b < 0) { _b = 0; } else if (_b > 255) { _b = 255; }
-			if (_a < 0) { _a = 0; } else if (_a > 255) { _a = 255; }
+		color(const int r, const int g, const int b, const int a) : r_(r), g_(g), b_(b), a_(a) {
+			if (r_ < 0) { r_ = 0; } else if (r_ > 255) { r_ = 255; }
+			if (g_ < 0) { g_ = 0; } else if (g_ > 255) { g_ = 255; }
+			if (b_ < 0) { b_ = 0; } else if (b_ > 255) { b_ = 255; }
+			if (a_ < 0) { a_ = 0; } else if (a_ > 255) { a_ = 255; }
 		}
 
-		color(int r, int g, int b) : color(r, g, b, 255) { }
+		color(const int r, const int g, const int b) : color(r, g, b, 255) { }
 
 		color() : color(255, 255, 255) { }
 
 		/*アクセサ*/
-		int r() const { return _r; }
-		void r(int pr) { _r = pr; }
-		int g() const { return _g; }
-		void g(int pg) { _g = pg; }
-		int b() const { return _b; }
-		void b(int pb) { _b = pb; }
-		int a() const { return _a; }
-		void a(int pa) { _a = pa; }
+		[[nodiscard]] int r() const { return r_; }
+		void r(const int pr) { r_ = pr; }
+		[[nodiscard]] int g() const { return g_; }
+		void g(const int pg) { g_ = pg; }
+		[[nodiscard]] int b() const { return b_; }
+		void b(const int pb) { b_ = pb; }
+		[[nodiscard]] int a() const { return a_; }
+		void a(const int pa) { a_ = pa; }
 
-		const color operator+(const color &c) const { return color(_r + c._r, _g + c._g, _b + c._b, _a + c._a); }
+		color operator+(const color &c) const { return {r_ + c.r_, g_ + c.g_, b_ + c.b_, a_ + c.a_}; }
 
-		const color operator-(const color &c) const { return color(_r - c._r, _g - c._g, _b - c._b, _a - c._a); }
+		color operator-(const color &c) const { return {r_ - c.r_, g_ - c.g_, b_ - c.b_, a_ - c.a_}; }
 
-		static const color &Red();
-		static const color &Green();
-		static const color &Blue();
-		static const color &Yellow();
-		static const color &Cyan();
-		static const color &Magenta();
-		static const color &White();
-		static const color &Black();
+		static const color &red();
+		static const color &green();
+		static const color &blue();
+		static const color &yellow();
+		static const color &cyan();
+		static const color &magenta();
+		static const color &white();
+		static const color &black();
 
 	private:
-		int _r;
-		int _g;
-		int _b;
-		int _a;
+		int r_;
+		int g_;
+		int b_;
+		int a_;
 	};
 
 	PE_REFLECTABLE_CLASS(color);

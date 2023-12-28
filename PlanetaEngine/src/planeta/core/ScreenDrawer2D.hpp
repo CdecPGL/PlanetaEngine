@@ -4,7 +4,7 @@
 #include <vector>
 #include <array>
 #include "Vector2D.hpp"
-#include "Color.hpp"
+#include "color.hpp"
 
 namespace plnt {
 	namespace private_ {

@@ -7,22 +7,22 @@
 #include "planeta/core/GameObjectSystemComponent.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/Vector2D.hpp"
-#include "planeta/core/IColliderWithCollider2D.hpp"
+#include "planeta/core/i_collider_with_collider_2d.hpp"
 
 namespace plnt {
 	class CTransform2D;
 	class EACollisionWithCollider2D;
-	class EACollisionWithGround2D;
+	class e_collision_with_ground_2d;
 
 	/*! コライダーの基底コンポーネント*/
-	class CCollider2D : public private_::GameObjectSystemComponent, public private_::IColliderWithCollider2D {
+	class CCollider2D : public private_::GameObjectSystemComponent, public private_::i_collider_with_collider_2d {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCollider2D);
 
 	public:
 		using super = private_::GameObjectSystemComponent;
 		virtual ~CCollider2D() = default;
 		/*衝突判定を行う*/
-		virtual bool DetectCollision(private_::IColliderWithCollider2D &collider) = 0;
+		virtual bool DetectCollision(private_::i_collider_with_collider_2d &collider) = 0;
 
 		/*グローバル中心位置取得*/
 		const Vector2Dd GetCollisionGlobalCenterPosition() const;
@@ -63,7 +63,7 @@ namespace plnt {
 		/*! コライダーとの衝突イベント*/
 		Signal<void(const EACollisionWithCollider2D &)> collided_with_collider2d;
 		/*! 2D地形との衝突イベントハンドラ追加*/
-		Signal<void(const EACollisionWithGround2D &)> collided_with_ground2d;
+		Signal<void(const e_collision_with_ground_2d &)> collided_with_ground2d;
 
 		/*! 同じオブジェクトのCTransform2Dを取得*/
 		CTransform2D &transform2d() { return *transform2d_; }

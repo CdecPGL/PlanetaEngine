@@ -4,7 +4,7 @@
 #include <map>
 #include <list>
 #include <memory>
-#include "DrawSystem.hpp"
+#include "draw_system.hpp"
 
 namespace plnt {
 	class ScreenDrawer2D;
@@ -13,24 +13,24 @@ namespace plnt {
 	namespace private_ {
 		class Screen;
 
-		class StandardDrawSystem final : public DrawSystem {
+		class StandardDrawSystem final : public draw_system {
 		public:
 			StandardDrawSystem();
 			~StandardDrawSystem();
 			bool Initialize() override;
 			void Finalize() override;
 			void Update() override;
-			void ExcuteDraw() override;
-			void ExcuteDrawGUI() override;
-			void ApplyCameraState() override;
+			void execute_draw() override;
+			void execute_draw_gui() override;
+			void apply_camera_state() override;
 			/*描画コンポーネント登録*/
-			std::unique_ptr<CDraw2DManagerConnection> RegisterCDraw2D(const std::shared_ptr<CDraw2D> &draw_component,
+			std::unique_ptr<CDraw2DManagerConnection> register_c_draw_2d(const std::shared_ptr<CDraw2D> &draw_component,
 			                                                          int priority) override;
-			std::unique_ptr<CDrawGUIManagerConnection> RegisterCDrawGUI(const std::shared_ptr<CDrawGUI> &draw_component,
+			std::unique_ptr<CDrawGUIManagerConnection> register_c_draw_gui(const std::shared_ptr<CDrawGUI> &draw_component,
 			                                                            int priority) override;
 
 			/*カメラコンポーネント登録*/
-			std::unique_ptr<CCamera2DManagerConnection> RegisterCCamera2D(
+			std::unique_ptr<CCamera2DManagerConnection> register_c_camera_2d(
 				const std::shared_ptr<CCamera2D> &camera_component) override;
 
 			/*デバッグ用*/

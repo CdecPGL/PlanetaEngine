@@ -5,7 +5,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool StandardConfigManager::LoadSystemConfig(const File &file) {
+		bool StandardConfigManager::load_system_config(const File &file) {
 			JsonFile json_file{};
 			//FileからJSONリソースを作成する
 			if (!json_file.Load(file)) {
@@ -37,13 +37,13 @@ namespace plnt {
 				//--衝突グループ
 				std::vector<std::string> group_list;
 				group_list = *col_obj->AtWithException("Groups")->GetWithException<std::vector<std::string>>();
-				collision_group_matrix_.AddCollisionGroups(group_list);
+				collision_group_matrix_.add_collision_groups(group_list);
 				//--衝突可能マトリックス
 				auto col_mtx = *col_obj->AtWithException("CollidableMatrix")->GetWithException<std::unordered_map<
 					std::string, std::vector<std::string>>>();
 				for (auto &&group : col_mtx) {
 					for (auto &&cbl_group : group.second) {
-						if (!collision_group_matrix_.SetCollisionFlag(group.first, cbl_group, true)) {
+						if (!collision_group_matrix_.set_collision_flag(group.first, cbl_group, true)) {
 							PE_LOG_WARNING("衝突グループ\"", group.first, "\"と\"", cbl_group,
 							               "\"のフラグの設定に失敗しました。どちらかのグループが定義されていない可能性があります。");
 						}
@@ -73,7 +73,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardConfigManager::LoadUserConfig(const File &file) {
+		bool StandardConfigManager::load_user_config(const File &file) {
 			JsonFile json_file{};
 			//FileからJSONリソースを作成する
 			if (!json_file.Load(file)) {
@@ -121,7 +121,7 @@ namespace plnt {
 
 		plnt::Vector2Di StandardConfigManager::window_size() const { return window_size_; }
 
-		const plnt::CollisionGroupMatrix &StandardConfigManager::collision_group_matrix() const {
+		const plnt::collision_group_matrix &StandardConfigManager::collision_group_matrix() const {
 			return collision_group_matrix_;
 		}
 

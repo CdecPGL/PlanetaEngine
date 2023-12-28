@@ -14,8 +14,8 @@
 #include "RenderingManager.hpp"
 #include "SoundManager.hpp"
 #include "SaveManager.hpp"
-#include "DebugManager.hpp"
-#include "ConfigManager.hpp"
+#include "debug_manager.hpp"
+#include "config_manager.hpp"
 
 #include "LogUtility.hpp"
 
@@ -41,8 +41,8 @@ namespace plnt {
 		std::shared_ptr<RenderingManager> rendering_manager;
 		std::shared_ptr<SoundManager> sound_manager;
 		std::shared_ptr<SaveManager> save_manager;
-		std::shared_ptr<DebugManager> debug_manager;
-		std::shared_ptr<ConfigManager> config_manager;
+		std::shared_ptr<private_::debug_manager> debug_manager;
+		std::shared_ptr<private_::config_manager> config_manager;
 
 		Impl_() { }
 
@@ -196,8 +196,8 @@ namespace plnt {
 				PE_LOG_FATAL("デバッグマネージャが設定されていません。");
 				return false;
 			}
-			if (debug_manager->Initialize(*rendering_manager)) {
-				finalize_handls_.push_front([this] { debug_manager->Finalize(); });
+			if (debug_manager->initialize(*rendering_manager)) {
+				finalize_handls_.push_front([this] { debug_manager->finalize(); });
 			} else {
 				PE_LOG_FATAL("デバッグシステムの初期化に失敗しました。");
 				return false;
@@ -232,11 +232,11 @@ namespace plnt {
 			if (ProcessMessage() < 0) { return GameStatus::Quit; } //DXライブラリの更新
 			input_manager->Update(); //入力の更新
 			auto sst = scene_manager->Process_(); //シーンの更新
-			debug_manager->PreRenderingUpdate(); //デバッグマネージャの描画前更新
+			debug_manager->pre_rendering_update(); //デバッグマネージャの描画前更新
 			rendering_manager->Update(); //描画システムの更新
 			sound_manager->Update(); //サウンドシステムの更新
 			performance_manager->Update(); //パフォーマンスマネージャの更新
-			debug_manager->PostRenderingUpdate(); //デバッグマネージャの描画後更新
+			debug_manager->post_rendering_update(); //デバッグマネージャの描画後更新
 
 			switch (sst) {
 				case plnt::private_::SceneStatus_::Continue:
@@ -366,7 +366,7 @@ namespace plnt {
 
 	std::shared_ptr<plnt::ISaveManager> Game::save_manager() const { return impl_->save_manager; }
 
-	void Game::SetDebugManager(const std::shared_ptr<private_::DebugManager> &mgr) {
+	void Game::SetDebugManager(const std::shared_ptr<private_::debug_manager> &mgr) {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -376,7 +376,7 @@ namespace plnt {
 
 	std::shared_ptr<plnt::IDebugManager> Game::debug_manager() const { return impl_->debug_manager; }
 
-	void Game::SetConfigManager(const std::shared_ptr<private_::ConfigManager> &mgr) {
+	void Game::SetConfigManager(const std::shared_ptr<private_::config_manager> &mgr) {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;

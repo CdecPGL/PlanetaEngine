@@ -2,8 +2,8 @@
 //Modules
 #include "GameObjectManager.hpp"
 #include "TaskManager.hpp"
-#include "CollisionWorld.hpp"
-#include "DrawSystem.hpp"
+#include "collision_world.hpp"
+#include "draw_system.hpp"
 #include "TransformSystem.hpp"
 
 #include "LogUtility.hpp"
@@ -77,11 +77,11 @@ namespace plnt {
 			});
 		}
 
-		plnt::WeakPointer<plnt::private_::CollisionWorld> Scene::collision_world_internal_pointer() {
+		plnt::WeakPointer<plnt::private_::collision_world> Scene::collision_world_internal_pointer() {
 			return collision_world_;
 		}
 
-		plnt::WeakPointer<DrawSystem> Scene::draw_system_internal_pointer() { return draw_system_; }
+		plnt::WeakPointer<draw_system> Scene::draw_system_internal_pointer() { return draw_system_; }
 
 		plnt::WeakPointer<plnt::private_::GameObjectManager> Scene::game_object_manager_internal_pointer() {
 			return game_object_manager_;
@@ -109,9 +109,9 @@ namespace plnt {
 			game_object_manager_ = std::move(mgr);
 		}
 
-		void Scene::SetCollisionWorld(std::shared_ptr<CollisionWorld> &&mgr) { collision_world_ = std::move(mgr); }
+		void Scene::SetCollisionWorld(std::shared_ptr<private_::collision_world> &&mgr) { collision_world_ = std::move(mgr); }
 
-		void Scene::SetDrawSystem(std::shared_ptr<DrawSystem> &&mgr) { draw_system_ = std::move(mgr); }
+		void Scene::SetDrawSystem(std::shared_ptr<private_::draw_system> &&mgr) { draw_system_ = std::move(mgr); }
 
 		void Scene::SetTransformManager(std::shared_ptr<TransformSystem> &&mgr) { transform_system_ = std::move(mgr); }
 

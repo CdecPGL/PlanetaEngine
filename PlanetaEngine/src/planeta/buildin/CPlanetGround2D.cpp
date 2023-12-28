@@ -17,7 +17,7 @@ namespace plnt {
 		} else { return true; }
 	}
 
-	bool CPlanetGround2D::CollideWith(CCircleCollider2D &collider) {
+	bool CPlanetGround2D::collide_with(CCircleCollider2D &collider) {
 		//			TransformComponent& transform = game_object().transform();
 		auto collider_pos = collider.GetCollisionGlobalCenterPosition();
 		//コライダーの惑星座標を求める

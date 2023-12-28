@@ -3,7 +3,7 @@
 #include <functional>
 #include "StringUtility.hpp"
 #include "Vector2D.hpp"
-#include "Color.hpp"
+#include "color.hpp"
 
 namespace plnt {
 	/*! デバッグ情報追加クラス公開インターフェイス*/

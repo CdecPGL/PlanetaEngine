@@ -5,8 +5,8 @@
 
 namespace plnt {
 	namespace private_ {
-		class CollisionWorld;
-		class DrawSystem;
+		class collision_world;
+		class draw_system;
 		class GameObjectManager;
 		class TaskManager;
 		class TransformSystem;
@@ -14,8 +14,8 @@ namespace plnt {
 		class ISceneInternal : public IScene {
 		public:
 			virtual ~ISceneInternal() = 0 { };
-			virtual WeakPointer<CollisionWorld> collision_world_internal_pointer() = 0;
-			virtual WeakPointer<DrawSystem> draw_system_internal_pointer() = 0;
+			virtual WeakPointer<private_::collision_world> collision_world_internal_pointer() = 0;
+			virtual WeakPointer<private_::draw_system> draw_system_internal_pointer() = 0;
 			virtual WeakPointer<GameObjectManager> game_object_manager_internal_pointer() = 0;
 			virtual WeakPointer<TaskManager> task_manager_internal_pointer() = 0;
 			virtual WeakPointer<TransformSystem> transform_system_internal_pointer() = 0;

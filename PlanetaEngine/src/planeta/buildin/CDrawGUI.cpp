@@ -1,5 +1,5 @@
 ﻿#include "planeta/core/ISceneInternal.hpp"
-#include "planeta/core/DrawSystem.hpp"
+#include "..\core\draw_system.hpp"
 #include "planeta/core/LogUtility.hpp"
 
 #include "CDrawGUI.hpp"
@@ -40,30 +40,30 @@ namespace plnt {
 
 	CDrawGUI &CDrawGUI::draw_priority(int priority) {
 		impl_->priority = priority;
-		impl_->draw_system_connection->ChangePriority(priority);
+		impl_->draw_system_connection->change_priority(priority);
 		return *this;
 	}
 
 	void CDrawGUI::OnInitialized() {
 		super::OnInitialized();
-		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDrawGUI(
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->register_c_draw_gui(
 			shared_this<CDrawGUI>(), impl_->priority);
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
 	void CDrawGUI::OnFinalized() noexcept {
-		impl_->draw_system_connection->Remove();
+		impl_->draw_system_connection->remove();
 		super::OnFinalized();
 	}
 
 	void CDrawGUI::OnActivated() {
 		super::OnActivated();
-		auto suceed = impl_->draw_system_connection->Activte();
+		auto suceed = impl_->draw_system_connection->active();
 		if (!suceed) { PE_LOG_ERROR("描画システムの有効化に失敗しました。"); }
 	}
 
 	void CDrawGUI::OnInactivated() {
-		impl_->draw_system_connection->Inactivate();
+		impl_->draw_system_connection->inactivate();
 		super::OnInactivated();
 	}
 }

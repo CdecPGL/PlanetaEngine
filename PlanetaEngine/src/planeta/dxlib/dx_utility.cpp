@@ -1,4 +1,4 @@
-﻿#include "planeta/core/Color.hpp"
+﻿#include "planeta/core/color.hpp"
 
 #include "dx_utility.hpp"
 

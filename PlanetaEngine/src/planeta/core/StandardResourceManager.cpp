@@ -8,7 +8,7 @@
 #include "File.hpp"
 #include "JsonFile.hpp"
 #include "LogUtility.hpp"
-#include "FileManipulator.hpp"
+#include "file_manipulator.hpp"
 #include "SystemVariables.hpp"
 #include "ResourceReferencer.hpp"
 #include "ResourceBase.hpp"
@@ -42,7 +42,7 @@ namespace plnt {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			//リソースファイルを読み込み
-			auto file = file_accessor_->LoadFile(res_dat.file_path);
+			auto file = file_accessor_->load_file(res_dat.file_path);
 			if (file == nullptr) {
 				PE_LOG_ERROR("リソースの読み込みに失敗しました。ファイルを読み込めませんでした。");
 				return nullptr;
@@ -50,7 +50,7 @@ namespace plnt {
 			//メタデータを読み込み
 			std::unique_ptr<JsonFile> metadata = std::make_unique<JsonFile>();
 			if (res_dat.has_metadata) {
-				auto metadata_file = file_accessor_->LoadFile(res_dat.metadata_file_path);
+				auto metadata_file = file_accessor_->load_file(res_dat.metadata_file_path);
 				metadata->Load(*metadata_file);
 				if (metadata_file == nullptr) { PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。"); } else if (!
 					metadata->Load(*metadata_file)) {
@@ -102,7 +102,7 @@ namespace plnt {
 		}
 
 		bool StandardResourceManager::LoadResourceList_() {
-			auto file_path_list = file_accessor_->GetAllFilePaths();
+			auto file_path_list = file_accessor_->get_all_file_paths();
 			boost::optional<std::string> tag_list_path;
 			std::unordered_map<std::string, std::unique_ptr<ResourceData_>> full_id_to_resource_data_map;
 			for (auto &&file_path : file_path_list) {
@@ -132,14 +132,14 @@ namespace plnt {
 				res_dat->full_id = file_base_name;
 				res_dat->file_path = file_path;
 				res_dat->metadata_file_path = (path.parent_path() / meta_file_name).string();
-				res_dat->has_metadata = file_accessor_->CheckFileExist(res_dat->metadata_file_path);
+				res_dat->has_metadata = file_accessor_->check_file_exist(res_dat->metadata_file_path);
 				full_id_to_resource_data_map.emplace(res_dat->full_id, std::move(res_dat));
 			}
 			PE_LOG_MESSAGE("リソース一覧を構築しました。(", full_id_to_resource_data_map.size(), "個のリソース定義)");
 			//タグの読み込み
 			bool is_tag_list_loaded = false;
 			if (tag_list_path) {
-				auto tag_list_file = file_accessor_->LoadFile(*tag_list_path);
+				auto tag_list_file = file_accessor_->load_file(*tag_list_path);
 				JsonFile tag_list;
 				if (tag_list.Load(*tag_list_file)) {
 					try {
@@ -343,7 +343,7 @@ namespace plnt {
 			return GetResourceByFullID_(GetFullIDFromTypeAndID_(type, id), true);
 		}
 
-		void StandardResourceManager::SetFileManipulator_(const std::shared_ptr<FileManipulator> &f_scsr) {
+		void StandardResourceManager::SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) {
 			file_accessor_ = f_scsr;
 		}
 

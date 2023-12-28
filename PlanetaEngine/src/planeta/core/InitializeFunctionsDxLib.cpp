@@ -10,8 +10,8 @@
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
 #include "LogUtility.hpp"
-#include "CharacterCode.hpp"
-#include "ConfigManager.hpp"
+#include "character_code.hpp"
+#include "config_manager.hpp"
 
 namespace plnt {
 	namespace private_ {
@@ -19,7 +19,7 @@ namespace plnt {
 			//////////////////////////////////////////////////////////////////////////
 			//DXライブラリの初期化
 			//////////////////////////////////////////////////////////////////////////
-			std::tuple<bool, std::function<void()>> InitializeDxLib(ConfigManager &cfg_mgr) {
+			std::tuple<bool, std::function<void()>> InitializeDxLib(config_manager &cfg_mgr) {
 				//ログ出力先を変更
 				SetApplicationLogSaveDirectory(system_variables::file_system::LogDirectory.c_str());
 				//ウインドウモード設定

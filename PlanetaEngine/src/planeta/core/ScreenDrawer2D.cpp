@@ -7,7 +7,7 @@
 
 #include "ScreenDrawer2D.hpp"
 #include "GraphDrawData2D.hpp"
-#include "Color.hpp"
+#include "color.hpp"
 #include "Screen.hpp"
 
 namespace plnt {

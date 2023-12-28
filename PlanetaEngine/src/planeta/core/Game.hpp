@@ -25,8 +25,8 @@ namespace plnt {
 		class RenderingManager;
 		class SoundManager;
 		class SaveManager;
-		class DebugManager;
-		class ConfigManager;
+		class debug_manager;
+		class config_manager;
 	}
 
 	/*! ゲームのステータス*/
@@ -64,9 +64,9 @@ namespace plnt {
 		/*! セーブマネージャを設定する(初期化前)*/
 		void SetSaveManager(const std::shared_ptr<private_::SaveManager> &mgr);
 		/*! デバッグマネージャを設定する(初期化前)*/
-		void SetDebugManager(const std::shared_ptr<private_::DebugManager> &mgr);
+		void SetDebugManager(const std::shared_ptr<private_::debug_manager> &mgr);
 		/*! コンフィグマネージャを設定する(初期化前)*/
-		void SetConfigManager(const std::shared_ptr<private_::ConfigManager> &mgr);
+		void SetConfigManager(const std::shared_ptr<private_::config_manager> &mgr);
 		/*! リソースマネージャにアクセスする*/
 		std::shared_ptr<IResourceManager> resource_manager() const;
 		/*! ログマネージャにアクセスする*/

@@ -1,8 +1,8 @@
 ﻿#include "boost/lexical_cast.hpp"
 #include "StandardSaveManager.hpp"
-#include "DataContainer.hpp"
-#include "DataContainerSerializeUtility.hpp"
-#include "FileManipulator.hpp"
+#include "data_container.hpp"
+#include "data_container_serialize_utility.hpp"
+#include "file_manipulator.hpp"
 #include "LogUtility.hpp"
 #include "planeta/buildin/RCsv.hpp"
 
@@ -19,9 +19,9 @@ namespace plnt {
 		//////////////////////////////////////////////////////////////////////////
 		class StandardSaveManager::Impl_ {
 		public:
-			std::unique_ptr<util::DataContainer> common_data_;
-			std::unique_ptr<util::DataContainer> current_user_data_;
-			std::shared_ptr<FileManipulator> file_accessor_;
+			std::unique_ptr<util::data_container> common_data_;
+			std::unique_ptr<util::data_container> current_user_data_;
+			std::shared_ptr<file_manipulator> file_accessor_;
 			int current_user_data_idx_ = -1; //-1で読み込んでいない
 
 			struct SaveDataInfo {
@@ -34,7 +34,7 @@ namespace plnt {
 
 			bool LoadSaveDataInformation() {
 				//セーブデータ情報の読み込み
-				auto file = file_accessor_->LoadFile(SaveDataInformationFileName);
+				auto file = file_accessor_->load_file(SaveDataInformationFileName);
 				if (file == nullptr) {
 					PE_LOG_ERROR("セーブデータ情報ファイルの取得に失敗しました。");
 					return false;
@@ -45,14 +45,14 @@ namespace plnt {
 			}
 
 			bool LoadCommonSaveData() {
-				auto file = file_accessor_->LoadFile(CommonSaveDataFileName);
+				auto file = file_accessor_->load_file(CommonSaveDataFileName);
 				if (file == nullptr) {
 					PE_LOG_ERROR("共通セーブデータファイルの取得に失敗しました。");
 					return false;
 				}
 				try {
-					common_data_ = std::make_unique<util::DataContainer>(
-						std::move(util::DeserializeDataContainer(file)));
+					common_data_ = std::make_unique<util::data_container>(
+						std::move(util::deserialize_data_container(file)));
 				} catch (std::runtime_error &) {
 					PE_LOG_ERROR("共通セーブデータの読み込みに失敗しました。");
 					return false;
@@ -67,14 +67,14 @@ namespace plnt {
 				}
 				std::string file_name = std::string(UserSaveDataFileName) + boost::lexical_cast<std::string>(
 					save_data_info_.user_data_info[idx].first);
-				auto file = file_accessor_->LoadFile(file_name);
+				auto file = file_accessor_->load_file(file_name);
 				if (file == nullptr) {
 					PE_LOG_ERROR("ユーザーセーブデータ", idx, "ファイルの取得に失敗しました。");
 					return false;
 				}
 				try {
-					current_user_data_ = std::make_unique<util::DataContainer>(
-						std::move(util::DeserializeDataContainer(file)));
+					current_user_data_ = std::make_unique<util::data_container>(
+						std::move(util::deserialize_data_container(file)));
 				} catch (std::runtime_error &) {
 					PE_LOG_ERROR("ユーザーセーブデータ", idx, "の読み込みに失敗しました。");
 					return false;
@@ -88,12 +88,12 @@ namespace plnt {
 					return false;
 				}
 				assert(current_user_data_ != nullptr);
-				auto file = util::SerializeDataContainer(*current_user_data_);
+				auto file = util::serialize_data_container(*current_user_data_);
 				if (file == nullptr) {
 					PE_LOG_ERROR("ユーザーセーブデータ", current_user_data_idx_, "のファイル作成に失敗しました。");
 					return false;
 				}
-				if (!file_accessor_->SaveFile(
+				if (!file_accessor_->save_file(
 					std::string(UserSaveDataFileName) + boost::lexical_cast<std::string>(current_user_data_idx_),
 					std::move(*file))) {
 					PE_LOG_ERROR("ユーザーセーブデータ", current_user_data_idx_, "の保存に失敗しました。");
@@ -103,12 +103,12 @@ namespace plnt {
 			}
 
 			bool SaveCommonSaveData() {
-				auto file = util::SerializeDataContainer(*common_data_);
+				auto file = util::serialize_data_container(*common_data_);
 				if (file == nullptr) {
 					PE_LOG_ERROR("共通セーブデータのファイル作成に失敗しました。");
 					return false;
 				}
-				if (!file_accessor_->SaveFile(CommonSaveDataFileName, std::move(*file))) {
+				if (!file_accessor_->save_file(CommonSaveDataFileName, std::move(*file))) {
 					PE_LOG_ERROR("共通セーブデータの保存に失敗しました。");
 					return false;
 				}
@@ -142,7 +142,7 @@ namespace plnt {
 			//Save();
 		}
 
-		void StandardSaveManager::SetFileManipurator_(const std::shared_ptr<FileManipulator> &file_accessor) {
+		void StandardSaveManager::SetFileManipurator_(const std::shared_ptr<file_manipulator> &file_accessor) {
 			impl_->file_accessor_ = file_accessor;
 		}
 
@@ -163,28 +163,28 @@ namespace plnt {
 			return impl_->save_data_info_.user_save_data_param_count;
 		}
 
-		const util::DataContainer &StandardSaveManager::GetCommonData() const {
+		const util::data_container &StandardSaveManager::GetCommonData() const {
 			assert(impl_->common_data_ != nullptr);
 			return *impl_->common_data_;
 		}
 
-		util::DataContainer &StandardSaveManager::GetCommonData() {
+		util::data_container &StandardSaveManager::GetCommonData() {
 			assert(impl_->common_data_ != nullptr);
 			return *impl_->common_data_;
 		}
 
-		boost::optional<const util::DataContainer &> StandardSaveManager::GetCurrentData() const {
+		boost::optional<const util::data_container &> StandardSaveManager::GetCurrentData() const {
 			if (impl_->current_user_data_idx_ >= 0) {
 				assert(impl_->current_user_data_ != nullptr);
-				return boost::optional<const util::DataContainer &>(*impl_->common_data_);
-			} else { return boost::optional<const util::DataContainer &>(); }
+				return boost::optional<const util::data_container &>(*impl_->common_data_);
+			} else { return boost::optional<const util::data_container &>(); }
 		}
 
-		boost::optional<util::DataContainer &> StandardSaveManager::GetCurrentData() {
+		boost::optional<util::data_container &> StandardSaveManager::GetCurrentData() {
 			if (impl_->current_user_data_idx_ >= 0) {
 				assert(impl_->current_user_data_ != nullptr);
-				return boost::optional<util::DataContainer &>(*impl_->common_data_);
-			} else { return boost::optional<util::DataContainer &>(); }
+				return boost::optional<util::data_container &>(*impl_->common_data_);
+			} else { return boost::optional<util::data_container &>(); }
 		}
 	}
 }

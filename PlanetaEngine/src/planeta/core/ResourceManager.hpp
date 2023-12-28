@@ -7,7 +7,7 @@
 #include "SubSystemManager.hpp"
 
 namespace plnt {
-	class FileManipulator;
+	class file_manipulator;
 
 	namespace private_ {
 		/// <summary>リソースマネージャ.</summary>
@@ -39,7 +39,7 @@ namespace plnt {
 			virtual double GetPrepairProgress() const = 0;
 			/// <summary>ファイルアクセサをセット。初期化前に呼び出す</summary>
 			/// <param name="f_scsr">The scsr.</param>
-			virtual void SetFileManipulator_(const std::shared_ptr<FileManipulator> &f_scsr) = 0;
+			virtual void SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) = 0;
 			/// <summary>リソースリストファイル名を設定。初期化前に呼び出す必要がある</summary>
 			/// <param name="file_name">Filename of the file.</param>
 			virtual void SetResourceListFileName_(const std::string &file_name) = 0;

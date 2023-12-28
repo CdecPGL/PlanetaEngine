@@ -17,8 +17,8 @@ namespace plnt {
 				screen_drawer_gui) { };
 
 			virtual void AddLine(const std::string line) override {
-				screen_drawer_gui_.DrawStringByDefaultFont({0, 16 * line_count_}, {1, 1}, line, color::White(),
-				                                           color::Black());
+				screen_drawer_gui_.DrawStringByDefaultFont({0, 16 * line_count_}, {1, 1}, line, color::white(),
+				                                           color::black());
 				++line_count_;
 			}
 
@@ -85,7 +85,7 @@ namespace plnt {
 
 		StandardDebugManager::~StandardDebugManager() = default;
 
-		bool StandardDebugManager::Initialize(RenderingManager &rendering_mgr) {
+		bool StandardDebugManager::initialize(RenderingManager &rendering_mgr) {
 			impl_->debug_draw_screen = rendering_mgr.GetDebugDrawScreen();
 			impl_->debug_info_screen = rendering_mgr.GetDebugInformationScreen();
 			//表示中のデバッグ情報を初期化
@@ -93,9 +93,9 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardDebugManager::Finalize() { }
+		void StandardDebugManager::finalize() { }
 
-		void StandardDebugManager::PreRenderingUpdate() {
+		void StandardDebugManager::pre_rendering_update() {
 			auto &inp_mgr = *Game::instance().input_manager();
 			//F1でデバッグ情報の表示有無を切り替え
 			if (inp_mgr.KeyPush(Key::F1)) {
@@ -126,7 +126,7 @@ namespace plnt {
 			}
 		}
 
-		void StandardDebugManager::PostRenderingUpdate() { }
+		void StandardDebugManager::post_rendering_update() { }
 
 		bool StandardDebugManager::CreateDebugInformationChannel(const std::string &channel_id,
 		                                                         const std::function<void(IDebugInformationAdder &)> &

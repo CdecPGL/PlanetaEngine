@@ -2,9 +2,6 @@
 
 #include "Object.hpp"
 #include<string>
-#include<vector>
-#include <memory.h>
-#include <istream>
 
 namespace plnt {
 	/*! ファイルデータを格納するクラス*/

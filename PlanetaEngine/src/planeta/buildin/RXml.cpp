@@ -2,18 +2,18 @@
 
 namespace plnt {
 	bool RXml::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
-		xml_file_ = std::make_unique<XmlFile>();
-		if (!xml_file_->Load(file)) {
+		xml_file_ = std::make_unique<plnt::xml_file>();
+		if (!xml_file_->load(file)) {
 			PE_LOG_ERROR("XMLファイルの読み込みに失敗しました。");
-			xml_file_.release();
+			xml_file_.reset();
 			return false;
 		}
 		return true;
 	}
 
-	void RXml::OnDisposed() { xml_file_.release(); }
+	void RXml::OnDisposed() { xml_file_.reset(); }
 
-	const plnt::XmlFile &RXml::xml_file() const { return *xml_file_; }
+	const xml_file &RXml::xml_file() const { return *xml_file_; }
 
-	plnt::XmlFile &RXml::xml_file() { return *xml_file_; }
+	xml_file &RXml::xml_file() { return *xml_file_; }
 }

@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#include "ConfigManager.hpp"
+#include "config_manager.hpp"
 
 namespace plnt {
 	namespace private_ {
-		class StandardConfigManager final : public ConfigManager {
+		class StandardConfigManager final : public config_manager {
 		public:
-			virtual bool LoadSystemConfig(const File &file) override;
-			virtual bool LoadUserConfig(const File &file) override;
+			virtual bool load_system_config(const File &file) override;
+			virtual bool load_user_config(const File &file) override;
 			virtual int color_bit_depth() const override;
 			virtual std::string startup_scene_id() const override;
 			virtual std::string game_title() const override;
@@ -16,7 +16,7 @@ namespace plnt {
 			virtual bool is_window_mode() const override;
 			virtual Vector2Di draw_size() const override;
 			virtual Vector2Di window_size() const override;
-			virtual const CollisionGroupMatrix &collision_group_matrix() const override;
+			virtual const plnt::collision_group_matrix &collision_group_matrix() const override;
 			virtual bool is_cursor_visible() const override;
 
 		private:
@@ -28,7 +28,7 @@ namespace plnt {
 			bool is_window_mode_ = false;
 			Vector2Di draw_size_ = {-1, -1};
 			Vector2Di window_size_ = {-1, -1};
-			CollisionGroupMatrix collision_group_matrix_;
+			plnt::collision_group_matrix collision_group_matrix_;
 			bool is_cursor_visible_ = true;
 		};
 	}

@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Color.hpp"
+#include "color.hpp"
 #include "Vector2D.hpp"
 
 

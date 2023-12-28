@@ -7,9 +7,9 @@
 #include <iostream>
 #include <windows.h>
 #include <cassert>
-#include "DateTime.hpp"
+#include "date_time.hpp"
 #include "..\win\windows_utility.hpp"
-#include "CharacterCode.hpp"
+#include "character_code.hpp"
 #include "LogUtility.hpp"
 
 /*ログの書式
@@ -167,7 +167,7 @@ namespace plnt {
 			#endif
 			SimpleLog(std::string("PlanetaEngine v") + private_::system_variables::engine_information::VersionString,
 			          debug_mode ? " デバッグビルド" : "");
-			SimpleLog(std::string("起動日時:") + util::DateTime::GetCurrentDateTime().ToString());
+			SimpleLog(std::string("起動日時:") + util::date_time::get_current_date_time().ToString());
 			if (private_::system_variables::DevelopmentMode) { SimpleLog("開発モードが有効です。"); }
 			PE_LOG_MESSAGE("ログ出力が開始されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
 			return true;

@@ -32,4 +32,4 @@
 #include "core/SceneSetUpProxy.hpp"
 #include "core/Task.hpp"
 #include "core/EACollisionWithCollider2D.hpp"
-#include "core/EACollisionWithGround2D.hpp"
+#include "core/e_collision_with_ground_2d.hpp"

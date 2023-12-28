@@ -1,24 +1,24 @@
 ﻿#include "Game.hpp"
-#include "ConfigManager.hpp"
+#include "config_manager.hpp"
 #include "StandardCollisionWorld.hpp"
 #include "boost/next_prior.hpp"
 #include "IGameObject.hpp"
-#include "CollisionDetectFunctions.hpp"
+#include "collision_detect_functions.hpp"
 #include "planeta/buildin/CCollider2D.hpp"
 #include "planeta/buildin/CGround2D.hpp"
 #include "EACollisionWithCollider2D.hpp"
-#include "EACollisionWithGround2D.hpp"
-#include "CollisionGroupMatrix.hpp"
+#include "e_collision_with_ground_2d.hpp"
+#include "collision_group_matrix.hpp"
 #include "LogUtility.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
-#include "Collider2DData.hpp"
+#include "collider_2d_data.hpp"
 #include "IDebugManager.hpp"
-#include "ColliderComponent2DDebugDrawer.hpp"
+#include "collider_component_2d_debug_drawer.hpp"
 
 namespace plnt {
 	namespace private_ {
 		struct StandardCollisionWorld::CCollider2DResistData_ {
-			private_::Collider2DData collider2d_data; //コライダーデータ
+			private_::collider_2d_data collider2d_data; //コライダーデータ
 			std::unordered_map<std::string, CollisionGroupType>::iterator group_iterator_at_collision_groups;
 			//コリジョングループのグループリスト内でのイテレータ
 			CollisionGroupType::iterator iterator_at_collision_group; //コリジョングループ内でのイテレータ
@@ -45,12 +45,12 @@ namespace plnt {
 						//衝突していたら衝突イベントをホルダーに追加
 						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
-							[eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {
+							[eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_invoker, arg = cea0]() {
 								eve(arg);
 							});
 						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
-							[eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_evoker, arg = cea1]() {
+							[eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_invoker, arg = cea1]() {
 								eve(arg);
 							});
 					}
@@ -71,12 +71,12 @@ namespace plnt {
 						//衝突していたら衝突イベントをホルダーに追加
 						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
-							[eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_evoker, arg = cea0]() {
+							[eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_invoker, arg = cea0]() {
 								eve(arg);
 							});
 						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
-							[eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_evoker, arg = cea1]() {
+							[eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_invoker, arg = cea1]() {
 								eve(arg);
 							});
 					}
@@ -95,12 +95,12 @@ namespace plnt {
 					col_reg_data.collider2d_data.transform2d.ground())) {
 					++collision_count;
 					//地形衝突イベントをホルダーに追加
-					EACollisionWithGround2D cwgea;
+					e_collision_with_ground_2d cwgea;
 					cwgea.collision_state = col_reg_data.is_collided_with_ground_last_proc
-						                        ? CollisionState::Stay
-						                        : CollisionState::Enter;
+						                        ? collision_state::stay
+						                        : collision_state::enter;
 					collision_event_que.push_back(
-						[eve = col_reg_data.collider2d_data.collide_with_ground_event_evoker, arg = cwgea]() {
+						[eve = col_reg_data.collider2d_data.collide_with_ground_event_invoker, arg = cwgea]() {
 							eve(arg);
 						});
 					col_reg_data.is_collided_with_ground_last_proc = true; //地面との衝突状況を更新
@@ -108,10 +108,10 @@ namespace plnt {
 					if (col_reg_data.is_collided_with_ground_last_proc) {
 						//前回衝突していたら
 						//地面衝突イベントをホルダーに追加
-						EACollisionWithGround2D cwgea;
-						cwgea.collision_state = CollisionState::Exit;
+						e_collision_with_ground_2d cwgea;
+						cwgea.collision_state = collision_state::exit;
 						collision_event_que.push_back(
-							[eve = col_reg_data.collider2d_data.collide_with_ground_event_evoker, arg = cwgea]() {
+							[eve = col_reg_data.collider2d_data.collide_with_ground_event_invoker, arg = cwgea]() {
 								eve(arg);
 							});
 						col_reg_data.is_collided_with_ground_last_proc = false; //地面との衝突状況を更新
@@ -121,11 +121,11 @@ namespace plnt {
 			return {collision_process_count, collision_count};
 		}
 
-		bool StandardCollisionWorld::Resist(const private_::Collider2DData &collider_data) {
+		bool StandardCollisionWorld::resist(const private_::collider_2d_data &collider_data) {
 			std::unique_ptr<CCollider2DResistData_> ccrd = std::unique_ptr<CCollider2DResistData_>(
 				new CCollider2DResistData_{collider_data,});
 			ccrd->is_collided_with_ground_last_proc = false; //地面と衝突していないとして初期化する
-			const Collider2DData &col_dat = ccrd->collider2d_data;
+			const collider_2d_data &col_dat = ccrd->collider2d_data;
 			CCollider2D &ccol = col_dat.collider2d;
 			std::string group_name = ccol.collision_group();
 			//衝突グループ確認
@@ -150,7 +150,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardCollisionWorld::Remove(const CCollider2D *col_com_ptr) {
+		bool StandardCollisionWorld::remove(const CCollider2D *col_com_ptr) {
 			auto it = collider_resist_data_map_.find(const_cast<CCollider2D *>(col_com_ptr));
 			if (it == collider_resist_data_map_.end()) {
 				//登録されていないコライダー
@@ -159,9 +159,9 @@ namespace plnt {
 			}
 			if (it->second->is_collided_with_ground_last_proc) {
 				//最後に地面と衝突した状態だったら、地面との衝突終了イベントを送っておく
-				EACollisionWithGround2D e;
-				e.collision_state = CollisionState::Exit;
-				it->second->collider2d_data.collide_with_ground_event_evoker(e);
+				e_collision_with_ground_2d e;
+				e.collision_state = collision_state::exit;
+				it->second->collider2d_data.collide_with_ground_event_invoker(e);
 			}
 			//地形衝突コライダーリストから除去
 			if (it->second->collidable_with_ground_flag) {
@@ -174,7 +174,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardCollisionWorld::ChangeCollisionGroup(const CCollider2D *col_com_ptr,
+		bool StandardCollisionWorld::change_collision_group(const CCollider2D *col_com_ptr,
 		                                                  const std::string &group_name) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D *>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) {
@@ -200,7 +200,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardCollisionWorld::ChangeCollisionWithGroundFlag(const CCollider2D *col_com_ptr, bool flag) {
+		bool StandardCollisionWorld::change_collision_with_ground_flag(const CCollider2D *col_com_ptr, bool flag) {
 			auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D *>(col_com_ptr));
 			if (resist_data_it == collider_resist_data_map_.end()) {
 				//登録されていないコライダー
@@ -223,13 +223,13 @@ namespace plnt {
 
 		void StandardCollisionWorld::SetCollisionGroupMatrix() {
 			decltype(auto) collision_group_list = Game::instance().config_manager()->collision_group_matrix().
-			                                                       GetCollisionGroupList();
+			                                                       get_collision_group_list();
 			for (const auto &group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());
 			}
 
 			decltype(auto) collisionable_group_pair_list = Game::instance().config_manager()->collision_group_matrix().
-			                                                                GetCollisionableGroupPairList();
+			                                                                get_collisionable_group_pair_list();
 			collide_group_pair_list_.reserve(collisionable_group_pair_list.size());
 			for (const auto &collisionable_group_pair : collisionable_group_pair_list) {
 				auto it1 = collision_groupes_.find(collisionable_group_pair.first);
@@ -246,7 +246,7 @@ namespace plnt {
 			collider_resist_data_map_.clear();
 		}
 
-		void StandardCollisionWorld::ExcuteCollisionDetection() {
+		void StandardCollisionWorld::execute_collision_detection() {
 			//衝突カウンタをリセット
 			collision_process_count_ = 0;
 			collision_count_ = 0;
@@ -294,7 +294,7 @@ namespace plnt {
 		}
 
 		void StandardCollisionWorld::DebugDrawHandler(IDebugDrawer &dd) {
-			ColliderComponent2DDebugDrawer ccdd{dd};
+			collider_component_2d_debug_drawer ccdd{dd};
 			for (auto &&c : collider_resist_data_map_) {
 				//衝突判定に使うダブルディスパッチを用いてコライダーごとに描画処理を分ける。
 				c.second->collider2d_data.collider2d.DetectCollision(ccdd);

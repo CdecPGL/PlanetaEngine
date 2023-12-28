@@ -1,4 +1,4 @@
-﻿#include "planeta/core/CharacterCode.hpp"
+﻿#include "..\core\character_code.hpp"
 #include "planeta/core/LogUtility.hpp"
 
 #include "effekseer_util.hpp"
@@ -30,7 +30,7 @@ namespace plnt::effekseer {
 
 	::Effekseer::TextureRef
 	texture_loader_for_effekseer::Load(const EFK_CHAR *path, const ::Effekseer::TextureType texture_type) {
-		return texture_getter_(util::ConvertUTF16ToSystemCode(reinterpret_cast<const wchar_t *>(path)), texture_type);
+		return texture_getter_(util::convert_utf16_to_system_code(reinterpret_cast<const wchar_t *>(path)), texture_type);
 	}
 
 	void texture_loader_for_effekseer::set_texture_getter(const texture_getter_type &func) { texture_getter_ = func; }

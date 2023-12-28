@@ -1,19 +1,19 @@
 ﻿#pragma once
 
 #include <memory>
-#include "DebugManager.hpp"
+#include "debug_manager.hpp"
 
 namespace plnt {
 	namespace private_ {
 		/*標準のデバッグマネージャ*/
-		class StandardDebugManager final : public DebugManager {
+		class StandardDebugManager final : public debug_manager {
 		public:
 			StandardDebugManager();
 			~StandardDebugManager() override;
-			bool Initialize(RenderingManager &rendering_mgr) override;
-			void Finalize() override;
-			void PreRenderingUpdate() override;
-			void PostRenderingUpdate() override;
+			bool initialize(RenderingManager &rendering_mgr) override;
+			void finalize() override;
+			void pre_rendering_update() override;
+			void post_rendering_update() override;
 			bool CreateDebugInformationChannel(const std::string &channel_id,
 			                                   const std::function<void(IDebugInformationAdder &)> &handler) override;
 			bool DeleteDebugInformationChannel(const std::string &channel_id) override;

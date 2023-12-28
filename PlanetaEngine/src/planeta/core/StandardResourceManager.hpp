@@ -64,7 +64,7 @@ namespace plnt {
 			std::shared_ptr<ResourceBase> GetResourceByFullID(const std::string &full_id) override;
 			/// <summary>ファイルアクセサをセット。初期化前に呼び出す</summary>
 			/// <param name="f_scsr">The scsr.</param>
-			void SetFileManipulator_(const std::shared_ptr<FileManipulator> &f_scsr) override;
+			void SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) override;
 			/// <summary>リソースリストファイル名を設定。初期化前に呼び出す必要がある</summary>
 			/// <param name="file_name">Filename of the file.</param>
 			void SetResourceListFileName_(const std::string &file_name) override;
@@ -79,7 +79,7 @@ namespace plnt {
 			                         const std::string &type_prefix, const ResourceCreatorType &creator) override;
 
 			/// <summary>The file accessor.</summary>
-			std::shared_ptr<FileManipulator> file_accessor_;
+			std::shared_ptr<file_manipulator> file_accessor_;
 			/// <summary>リソースリストのファイル名</summary>
 			std::string resource_list_file_name_;
 

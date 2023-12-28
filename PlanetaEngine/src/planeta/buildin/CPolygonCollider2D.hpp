@@ -9,8 +9,8 @@ namespace plnt {
 		using super = CCollider2D;
 
 	private:
-		bool DetectCollision(private_::IColliderWithCollider2D &collider) override {
-			return collider.CollideWith(*this);
+		bool DetectCollision(private_::i_collider_with_collider_2d &collider) override {
+			return collider.collide_with(*this);
 		}
 	};
 

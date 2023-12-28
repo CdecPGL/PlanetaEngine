@@ -3,7 +3,7 @@
 //! 定義済みリソースのヘッダファイルをまとめてインクルードする
 //! PlanetaEngine内部では使わないこと
 
-#include "planeta/buildin/RCsv.hpp"
+#include "buildin\RCsv.hpp"
 #include "planeta/buildin/RFont.hpp"
 #include "planeta/buildin/RGraph.hpp"
 #include "planeta/buildin/RIni.hpp"

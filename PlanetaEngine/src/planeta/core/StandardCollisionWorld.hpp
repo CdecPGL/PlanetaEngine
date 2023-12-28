@@ -4,25 +4,25 @@
 #include <unordered_map>
 #include <list>
 #include <functional>
-#include "CollisionWorld.hpp"
+#include "collision_world.hpp"
 
 namespace plnt {
 	class EACollisionWithCollider2D;
-	class EACollisionWithGround2D;
+	class e_collision_with_ground_2d;
 	class IDebugDrawer;
 
 	namespace private_ {
-		class StandardCollisionWorld final : public CollisionWorld {
+		class StandardCollisionWorld final : public collision_world {
 		public:
 			StandardCollisionWorld();
 			~StandardCollisionWorld();
 			bool Initialize() override;
 			void Finalize() override;
-			bool Resist(const private_::Collider2DData &collider_data) override; //引数は内部でコピーされるので一時オブジェクトでよい。
-			bool Remove(const CCollider2D *col_com_ptr) override;
-			bool ChangeCollisionGroup(const CCollider2D *col_com_ptr, const std::string &group_name) override;
-			bool ChangeCollisionWithGroundFlag(const CCollider2D *col_com_ptr, bool flag) override;
-			void ExcuteCollisionDetection() override;
+			bool resist(const private_::collider_2d_data &collider_data) override; //引数は内部でコピーされるので一時オブジェクトでよい。
+			bool remove(const CCollider2D *col_com_ptr) override;
+			bool change_collision_group(const CCollider2D *col_com_ptr, const std::string &group_name) override;
+			bool change_collision_with_ground_flag(const CCollider2D *col_com_ptr, bool flag) override;
+			void execute_collision_detection() override;
 
 		private:
 			void SetCollisionGroupMatrix();

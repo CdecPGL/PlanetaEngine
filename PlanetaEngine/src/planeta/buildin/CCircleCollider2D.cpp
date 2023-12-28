@@ -1,4 +1,4 @@
-﻿#include "planeta/core/CollisionDetectFunctions.hpp"
+﻿#include "..\core\collision_detect_functions.hpp"
 
 #include "CCircleCollider2D.hpp"
 
@@ -9,12 +9,12 @@ namespace plnt {
 			.shallow_copy_target(&CCircleCollider2D::_radius);
 	}
 
-	bool CCircleCollider2D::CollideWith(CCircleCollider2D &circle_collider) {
-		return private_::collision_detect_functions::CollisionDetectCircleAndCirecle(circle_collider, *this);
+	bool CCircleCollider2D::collide_with(CCircleCollider2D &circle_collider) {
+		return private_::collision_detect_functions::collision_detect_circle_and_circle(circle_collider, *this);
 	}
 
-	bool CCircleCollider2D::CollideWith(CStraightLineCollider2D &straight_line_collider) {
-		return private_::collision_detect_functions::CollisionDetectCircleAndStraightLine(
+	bool CCircleCollider2D::collide_with(CStraightLineCollider2D &straight_line_collider) {
+		return private_::collision_detect_functions::collision_detect_circle_and_straight_line(
 			*this, straight_line_collider);
 	}
 }

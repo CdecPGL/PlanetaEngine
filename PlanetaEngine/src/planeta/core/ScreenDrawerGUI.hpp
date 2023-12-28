@@ -4,7 +4,7 @@
 #include <memory>
 #include <array>
 #include "RectAngle.hpp"
-#include "Color.hpp"
+#include "color.hpp"
 
 namespace plnt {
 	class RGraph;

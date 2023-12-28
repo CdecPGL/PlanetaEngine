@@ -10,8 +10,8 @@ namespace plnt {
 	public:
 		using super = CCollider2D;
 
-		bool DetectCollision(private_::IColliderWithCollider2D &collider) override {
-			return collider.CollideWith(*this);
+		bool DetectCollision(private_::i_collider_with_collider_2d &collider) override {
+			return collider.collide_with(*this);
 		}
 
 		/*! 半径を取得*/
@@ -23,8 +23,8 @@ namespace plnt {
 		}
 
 	private:
-		virtual bool CollideWith(CCircleCollider2D &circle_collider) override;
-		virtual bool CollideWith(CStraightLineCollider2D &straight_line_collider) override;
+		virtual bool collide_with(CCircleCollider2D &circle_collider) override;
+		virtual bool collide_with(CStraightLineCollider2D &straight_line_collider) override;
 
 
 		double _radius = 1.0;

@@ -1,5 +1,5 @@
 ﻿#include "planeta/core/IGameObject.hpp"
-#include "planeta/core/DrawSystem.hpp"
+#include "..\core\draw_system.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/ISceneInternal.hpp"
@@ -63,24 +63,24 @@ namespace plnt {
 	}
 
 	void CDraw2D::UpdatePriority_() {
-		if (is_active()) { impl_->draw_system_connection->ChangePriority(draw_priority_); }
+		if (is_active()) { impl_->draw_system_connection->change_priority(draw_priority_); }
 	}
 
 	void CDraw2D::OnInitialized() {
-		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCDraw2D(
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->register_c_draw_2d(
 			shared_this<CDraw2D>(), draw_priority_);
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
-	void CDraw2D::OnFinalized() noexcept { impl_->draw_system_connection->Remove(); }
+	void CDraw2D::OnFinalized() noexcept { impl_->draw_system_connection->remove(); }
 
 	void CDraw2D::OnActivated() {
-		auto suceed = impl_->draw_system_connection->Activte();
+		auto suceed = impl_->draw_system_connection->active();
 		if (!suceed) { PE_LOG_ERROR("描画システムの有効化に失敗しました。"); }
 	}
 
 	void CDraw2D::OnInactivated() {
-		impl_->draw_system_connection->Inactivate();
+		impl_->draw_system_connection->inactivate();
 		super::OnInactivated();
 	}
 

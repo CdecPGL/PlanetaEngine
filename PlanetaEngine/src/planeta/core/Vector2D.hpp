@@ -5,8 +5,9 @@
 #include <array>
 #include <stdexcept>
 #include <cmath>
-#include "..\math\math_constant.hpp"
-#include "..\reflection\reflection_exceptions.hpp"
+
+#include "../math/math_constant.hpp"
+#include "../reflection/reflection_exceptions.hpp"
 #include "planeta/core/StringUtility.hpp"
 
 namespace plnt {

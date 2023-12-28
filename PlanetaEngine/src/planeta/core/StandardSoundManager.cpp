@@ -1,6 +1,6 @@
 ﻿#include <unordered_map>
 #include "StandardSoundManager.hpp"
-#include "BGMController.hpp"
+#include "bgm_controller.hpp"
 #include "SoundEffectController.hpp"
 #include "planeta/buildin/RMusic.hpp"
 #include "planeta/buildin/RSound.hpp"
@@ -10,11 +10,11 @@ namespace plnt {
 	namespace private_ {
 		class StandardSoundManager::Impl_ {
 		public:
-			std::shared_ptr<BGMController> bgm_controller_;
+			std::shared_ptr<bgm_controller> bgm_controller_;
 			std::unordered_map<int, std::shared_ptr<SoundEffectController>> se_controllers_;
 		};
 
-		std::shared_ptr<IBGMController> StandardSoundManager::GetBGMController(
+		std::shared_ptr<i_gm_controller> StandardSoundManager::GetBGMController(
 			const std::shared_ptr<ResourceBase> &music_resource) {
 			auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
 			if (m_res == nullptr) {
@@ -25,12 +25,12 @@ namespace plnt {
 				if (impl_->bgm_controller_->resource()->GetHandle() == m_res->GetHandle()) {
 					return impl_->bgm_controller_;
 				} else {
-					auto nbr = std::make_shared<BGMController>(m_res);
+					auto nbr = std::make_shared<bgm_controller>(m_res);
 					impl_->bgm_controller_ = nbr;
 					return nbr;
 				}
 			} else {
-				auto nbr = std::make_shared<BGMController>(m_res);
+				auto nbr = std::make_shared<bgm_controller>(m_res);
 				impl_->bgm_controller_ = nbr;
 				return nbr;
 			}
@@ -55,11 +55,11 @@ namespace plnt {
 
 		StandardSoundManager::StandardSoundManager() : impl_(std::make_unique<Impl_>()) { }
 
-		void StandardSoundManager::Update() { if (impl_->bgm_controller_) { impl_->bgm_controller_->Update(); } }
+		void StandardSoundManager::Update() { if (impl_->bgm_controller_) { impl_->bgm_controller_->update(); } }
 
 		void StandardSoundManager::Reset() {
 			if (impl_->bgm_controller_) {
-				impl_->bgm_controller_->Dispose();
+				impl_->bgm_controller_->dispose();
 				impl_->bgm_controller_.reset();
 			}
 			for (auto &s : impl_->se_controllers_) { s.second->Dispose(); }

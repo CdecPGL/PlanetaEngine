@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Vertex2D.hpp"
-#include "Color.hpp"
+#include "color.hpp"
 
 namespace plnt {
 	class RGraph;

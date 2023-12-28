@@ -2,12 +2,12 @@
 
 #include <vector>
 #include "SaveManager.hpp"
-#include "DateTime.hpp"
+#include "date_time.hpp"
 #include "boost/optional.hpp"
 
 namespace plnt {
 	namespace util {
-		class DataContainer;
+		class data_container;
 	}
 
 	namespace private_ {
@@ -16,12 +16,12 @@ namespace plnt {
 			StandardSaveManager();
 			~StandardSaveManager();
 			//ファイルアクセサを設定。初期化前に呼び出す。
-			void SetFileManipurator_(const std::shared_ptr<FileManipulator> &file_accessor) override;
+			void SetFileManipurator_(const std::shared_ptr<file_manipulator> &file_accessor) override;
 			bool Initialize() override;
 			void Finalize() override;
 
 			struct UserDataHeader {
-				util::DateTime update_time;
+				util::date_time update_time;
 				std::vector<std::string> header;
 			};
 
@@ -36,13 +36,13 @@ namespace plnt {
 			/*ユーザーデータのヘッダ情報を取得*/
 			const UserDataHeader &GetUserDataHeaderParam(int idx) const;
 			/*共通データを取得*/
-			const util::DataContainer &GetCommonData() const;
+			const util::data_container &GetCommonData() const;
 			/*共通データを取得*/
-			util::DataContainer &GetCommonData();
+			util::data_container &GetCommonData();
 			/*ユーザーデータを取得*/
-			boost::optional<const util::DataContainer &> GetCurrentData() const;
+			boost::optional<const util::data_container &> GetCurrentData() const;
 			/*ユーザーデータを取得*/
-			boost::optional<util::DataContainer &> GetCurrentData();
+			boost::optional<util::data_container &> GetCurrentData();
 			/*ユーザーデータを新規作成(インデックスを返す)*/
 			int CreateUserData();
 			/*ユーザーデータを複製(インデックスを返す)*/

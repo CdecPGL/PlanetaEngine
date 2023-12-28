@@ -3,7 +3,7 @@
 #include <string>
 #include <array>
 #include "Vector2D.hpp"
-#include "CollisionGroupMatrix.hpp"
+#include "collision_group_matrix.hpp"
 
 namespace plnt {
 	class IConfigManager {
@@ -22,7 +22,7 @@ namespace plnt {
 		/*! ウインドウサイズを取得する。表示される画面のサイズを表す*/
 		virtual Vector2Di window_size() const = 0;
 		/*! 衝突グループマトリクスを取得する*/
-		virtual const CollisionGroupMatrix &collision_group_matrix() const = 0;
+		virtual const collision_group_matrix &collision_group_matrix() const = 0;
 		/*! Cursorを表示するかどうかを取得する*/
 		virtual bool is_cursor_visible() const = 0;
 	};

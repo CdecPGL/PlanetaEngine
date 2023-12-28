@@ -1,4 +1,4 @@
-﻿#include "planeta/core/DrawSystem.hpp"
+﻿#include "..\core\draw_system.hpp"
 #include "planeta/core/ISceneInternal.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/IGameObject.hpp"
@@ -42,7 +42,7 @@ namespace plnt {
 
 	void CCamera2D::OnInitialized() {
 		super::OnInitialized();
-		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->RegisterCCamera2D(
+		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->register_c_camera_2d(
 			shared_this<CCamera2D>());
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
@@ -54,7 +54,7 @@ namespace plnt {
 		super::OnInactivated();
 	}
 
-	void CCamera2D::OnFinalized() noexcept { impl_->draw_system_connection->Remove(); }
+	void CCamera2D::OnFinalized() noexcept { impl_->draw_system_connection->remove(); }
 
 	double CCamera2D::expansion() const { return expansion_; }
 

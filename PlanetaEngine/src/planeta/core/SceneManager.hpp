@@ -6,7 +6,7 @@
 #include "SubSystemManager.hpp"
 
 namespace plnt {
-	class CollisionGroupMatrix;
+	class collision_group_matrix;
 
 	namespace private_ {
 		class ResourceManager;

@@ -3,7 +3,7 @@
 #include "IniFile.hpp"
 #include "FileIStream.hpp"
 #include "FileSystemUtility.hpp"
-#include "CharacterCode.hpp"
+#include "character_code.hpp"
 
 namespace plnt {
 	bool IniFile::Load(const File &file) {
@@ -63,9 +63,9 @@ namespace plnt {
 		for (auto &&sec : origin_data) {
 			unordered_map<string, string> n_sec;
 			for (auto &&data : sec.second) {
-				n_sec.emplace(util::ConvertUTF8ToSystemCode(data.first), util::ConvertUTF8ToSystemCode(data.second));
+				n_sec.emplace(util::convert_utf8_to_system_code(data.first), util::convert_utf8_to_system_code(data.second));
 			}
-			_data.emplace(util::ConvertUTF8ToSystemCode(sec.first), std::move(n_sec));
+			_data.emplace(util::convert_utf8_to_system_code(sec.first), std::move(n_sec));
 		}
 		return true;
 	}

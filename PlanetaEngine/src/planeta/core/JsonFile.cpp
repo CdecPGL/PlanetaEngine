@@ -4,7 +4,7 @@
 
 #include "File.hpp"
 #include "LogUtility.hpp"
-#include "CharacterCode.hpp"
+#include "character_code.hpp"
 
 namespace plnt {
 	namespace {
@@ -14,7 +14,7 @@ namespace plnt {
 			} else if (pj_value.is<std::string>()) {
 				//UTF8からシステム文字コードに変換
 				return std::make_shared<JSONValue>(
-					std::make_shared<std::string>(util::ConvertUTF8ToSystemCode(pj_value.get<std::string>())));
+					std::make_shared<std::string>(util::convert_utf8_to_system_code(pj_value.get<std::string>())));
 			} else if (pj_value.is<bool>()) {
 				return std::make_shared<JSONValue>(std::make_shared<bool>(pj_value.get<bool>()));
 			} else if (pj_value.is<picojson::object>()) {

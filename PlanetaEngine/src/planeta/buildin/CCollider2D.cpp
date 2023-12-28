@@ -1,10 +1,10 @@
 ﻿#include "planeta/core/IGameObject.hpp"
-#include "planeta/core/CollisionWorld.hpp"
+#include "..\core\collision_world.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/ISceneInternal.hpp"
 #include "planeta/core/Matrix2_2.hpp"
-#include "planeta/core/Collider2DData.hpp"
-#include "planeta/core/EACollisionWithGround2D.hpp"
+#include "..\core\collider_2d_data.hpp"
+#include "planeta/core/e_collision_with_ground_2d.hpp"
 
 #include "CCollider2D.hpp"
 #include "CTransform2D.hpp"
@@ -36,12 +36,12 @@ namespace plnt {
 	void CCollider2D::ResistToCollisionDetectProcess_() {
 		if (collision_group_name_.length() == 0) { PE_LOG_ERROR("衝突グループが設定されていません。"); } else {
 			auto col_grng_eve = [&eve = collided_with_ground2d,&is_grounded_flag = is_grounded_](
-				const EACollisionWithGround2D &arg) {
+				const e_collision_with_ground_2d &arg) {
 				switch (arg.collision_state) {
-					case CollisionState::Enter:
+					case collision_state::enter:
 						is_grounded_flag = true;
 						break;
-					case CollisionState::Exit:
+					case collision_state::exit:
 						is_grounded_flag = false;
 						break;
 					default:
@@ -49,16 +49,16 @@ namespace plnt {
 				}
 				eve(arg);
 			};
-			private_::Collider2DData col_dat{
+			private_::collider_2d_data col_dat{
 				*this, game_object(), *transform2d_,
 				[&eve = collided_with_collider2d](const EACollisionWithCollider2D &arg) { eve(arg); }, col_grng_eve
 			};
-			scene_internal_interface().collision_world_internal_pointer()->Resist(col_dat);
+			scene_internal_interface().collision_world_internal_pointer()->resist(col_dat);
 		}
 	}
 
 	void CCollider2D::RemoveFromCollisionDetectProcess_() {
-		scene_internal_interface().collision_world_internal_pointer()->Remove(this);
+		scene_internal_interface().collision_world_internal_pointer()->remove(this);
 	}
 
 	const Vector2Dd CCollider2D::GetCollisionGlobalCenterPosition() const {
@@ -80,7 +80,7 @@ namespace plnt {
 	CCollider2D &CCollider2D::collision_group(const std::string &cg) {
 		if (is_active()) {
 			//アクティブだったら衝突判定プロセスに変更での変更を行う。
-			if (scene_internal_interface().collision_world_internal_pointer()->ChangeCollisionGroup(this, cg)) {
+			if (scene_internal_interface().collision_world_internal_pointer()->change_collision_group(this, cg)) {
 				collision_group_name_ = cg;
 			} else { PE_LOG_ERROR("衝突グループを", collision_group_name_, "から", cg, "に変更できませんでした。"); }
 		} else { collision_group_name_ = cg; }
@@ -91,7 +91,7 @@ namespace plnt {
 		if (is_active()) {
 			//アクティブだったら衝突判定プロセスでの変更を行う。
 			if (scene_internal_interface().collision_world_internal_pointer()->
-			                               ChangeCollisionWithGroundFlag(this, flag)) {
+			                               change_collision_with_ground_flag(this, flag)) {
 				collide_with_ground_flag_ = flag;
 			} else {
 				PE_LOG_ERROR("地形との衝突フラグを", collide_with_ground_flag_ ? "true" : "false", "から", flag ? "true" : "false",
