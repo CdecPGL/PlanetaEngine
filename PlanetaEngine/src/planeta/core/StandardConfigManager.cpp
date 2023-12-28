@@ -62,7 +62,7 @@ namespace plnt {
 			                                                       game_version_numbers_[1], ".",
 			                                                       game_version_numbers_[2]);
 			//設定をログに出力
-			auto &sys_log = *Game::instance().log_manager();
+			auto &sys_log = *game::instance().log_manager();
 			PE_LOG_MESSAGE("システム設定を読み込みました。");
 			sys_log.SimpleLog("--------システム設定情報--------");
 			sys_log.SimpleLog("ゲームタイトル : ", game_title_);
@@ -96,7 +96,7 @@ namespace plnt {
 			}
 			//設定データ取得成功
 			//設定をログに出力
-			auto &sys_log = *Game::instance().log_manager();
+			auto &sys_log = *game::instance().log_manager();
 			PE_LOG_MESSAGE("ユーザー設定を読み込みました。");
 			sys_log.SimpleLog("--------ユーザー設定情報--------");
 			sys_log.SimpleLog("ウインドウモード : ", is_window_mode_ ? "有効" : "無効");

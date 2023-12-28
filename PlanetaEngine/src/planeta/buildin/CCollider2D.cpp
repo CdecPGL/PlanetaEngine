@@ -23,14 +23,14 @@ namespace plnt {
 			.shallow_copy_target(&CCollider2D::collision_group_name_);
 	}
 
-	void CCollider2D::OnActivated() {
-		super::OnActivated();
+	void CCollider2D::on_activated() {
+		super::on_activated();
 		ResistToCollisionDetectProcess_();
 	}
 
-	void CCollider2D::OnInactivated() {
+	void CCollider2D::on_inactivated() {
 		RemoveFromCollisionDetectProcess_();
-		super::OnInactivated();
+		super::on_inactivated();
 	}
 
 	void CCollider2D::ResistToCollisionDetectProcess_() {
@@ -101,9 +101,9 @@ namespace plnt {
 		return *this;
 	}
 
-	bool CCollider2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+	bool CCollider2D::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		transform2d_.reset(com_getter.get_component<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dを取得できませんでした。");
 			return false;

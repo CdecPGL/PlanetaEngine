@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#include "planeta/core/GameObjectStandardComponent.hpp"
+#include "..\core\game_object_standard_component.hpp"
 #include "planeta/core/NonOwingPointer.hpp"
 
 namespace plnt {
-	class CEffect final : public GameObjectStandardComponent {
+	class CEffect final : public game_object_standard_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CEffect);
 
 	public:
-		using super = GameObjectStandardComponent;
+		using super = game_object_standard_component;
 		CEffect();
 		~CEffect();
 		/*! エフェクトを再生する*/
@@ -33,11 +33,11 @@ namespace plnt {
 		double expansion() const;
 
 	protected:
-		virtual bool GetOtherComponentsProc(const GOComponentGetter &) override;
-		virtual void OnInitialized() override;
-		virtual void OnActivated() override;
-		virtual void OnInactivated() override;
-		virtual void OnFinalized() noexcept override;
+		virtual bool get_other_components_proc(const go_component_getter &) override;
+		virtual void on_initialized() override;
+		virtual void on_activated() override;
+		virtual void on_inactivated() override;
+		virtual void on_finalized() noexcept override;
 
 	private:
 		class Impl_;

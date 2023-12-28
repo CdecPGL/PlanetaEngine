@@ -4,7 +4,7 @@
 #include <vector>
 #include <tuple>
 
-#include "planeta/core/GameObjectStandardComponent.hpp"
+#include "..\core\game_object_standard_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/RectAngle.hpp"
 
@@ -12,11 +12,11 @@ namespace plnt {
 	class CDrawGraph2D;
 
 	/*! 平面画像アニメータコンポーネント*/
-	class CGraph2DAnimator : public GameObjectStandardComponent {
+	class CGraph2DAnimator : public game_object_standard_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CGraph2DAnimator);
 
 	public:
-		using super = GameObjectStandardComponent;
+		using super = game_object_standard_component;
 		/*! フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
 		using FrameDataType = std::tuple<unsigned int, RectAngle<int>, Vector2Dd, double>;
 		/*! 単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/
@@ -46,8 +46,8 @@ namespace plnt {
 		std::vector<FrameDataType> *current_animation_ = nullptr;
 		std::string current_animation_name_;
 		void SetCurrentFrameDrawAreaToDrawGraphComponent_();
-		bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
-		void OnInitialized() override;
+		bool get_other_components_proc(const go_component_getter &com_getter) override;
+		void on_initialized() override;
 		void UpdateAnimation();
 	};
 

@@ -1,6 +1,8 @@
 ﻿#include <ranges>
+#include <algorithm>
 
 #include "collision_group_matrix.hpp"
+
 #include "LogUtility.hpp"
 
 namespace plnt {

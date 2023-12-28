@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 #include "planeta/core/Signal.hpp"
-#include "planeta/core/GameObjectSystemComponent.hpp"
+#include "..\core\game_object_system_component.hpp"
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
@@ -14,11 +14,11 @@ namespace plnt {
 	enum class CoordinateSystem { Global, Ground };
 
 	/*! 形状情報コンポーネント*/
-	class CTransform2D : public private_::GameObjectSystemComponent {
+	class CTransform2D : public private_::game_object_system_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransform2D);
 
 	public:
-		using super = private_::GameObjectSystemComponent;
+		using super = private_::game_object_system_component;
 		CTransform2D();
 		~CTransform2D();
 
@@ -93,10 +93,10 @@ namespace plnt {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		//GOCオーバーライド
-		void OnInitialized() override final;
-		void OnFinalized() noexcept override final;
-		void OnActivated() override final;
-		void OnInactivated() override final;
+		void on_initialized() override final;
+		void on_finalized() noexcept override final;
+		void on_activated() override final;
+		void on_inactivated() override final;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransform2D);

@@ -8,9 +8,9 @@
 #include "CPlanet.hpp"
 
 namespace plnt {
-	bool CPlanetGround2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!CGround2D::GetOtherComponentsProc(com_getter)) { return false; };
-		planet_component_.reset(com_getter.GetComponent<CPlanet>());
+	bool CPlanetGround2D::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!CGround2D::get_other_components_proc(com_getter)) { return false; };
+		planet_component_.reset(com_getter.get_component<CPlanet>());
 		if (!planet_component_) {
 			PE_LOG_ERROR("PlanetComponentを取得できませんでした。");
 			return false;

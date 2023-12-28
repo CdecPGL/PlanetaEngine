@@ -409,26 +409,26 @@ namespace plnt {
 		}
 	}
 
-	void CTransform2D::OnInitialized() {
-		super::OnInitialized();
+	void CTransform2D::on_initialized() {
+		super::on_initialized();
 		impl_->Initialize();
 	}
 
-	void CTransform2D::OnFinalized() noexcept { impl_->Finalize(); }
+	void CTransform2D::on_finalized() noexcept { impl_->Finalize(); }
 
-	void CTransform2D::OnActivated() {
-		super::OnActivated();
+	void CTransform2D::on_activated() {
+		super::on_activated();
 		//TransformSystemへ登録
 		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransform2D(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 	}
 
-	void CTransform2D::OnInactivated() {
+	void CTransform2D::on_inactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 		//TransformSystemから登録解除
 		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransform2D(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 		}
-		super::OnInactivated();
+		super::on_inactivated();
 	}
 }

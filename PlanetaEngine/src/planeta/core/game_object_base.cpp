@@ -1,14 +1,18 @@
 ﻿#include <cassert>
+
 #include "boost/algorithm/string.hpp"
 
-#include "Game.hpp"
-#include "GameObjectBase.hpp"
-#include "GameObjectComponent.hpp"
-#include "GameObjectComponentSetUpData.hpp"
+#include "game.hpp"
+#include "game_object_base.hpp"
+
+#include <ranges>
+
+#include "game_object_component.hpp"
+#include "game_object_component_setup_data.hpp"
 #include "LogUtility.hpp"
 #include "Task.hpp"
-#include "GOComponentAdder.hpp"
-#include "GOComponentGetter.hpp"
+#include "go_component_adder.hpp"
+#include "go_component_getter.hpp"
 #include "planeta/buildin/RPtree.hpp"
 #include "IResourceManager.hpp"
 #include "planeta/reflection/reflection.hpp"
@@ -16,38 +20,36 @@
 
 namespace plnt {
 	namespace {
-		std::vector<std::shared_ptr<const boost::property_tree::ptree>> GetComDefPtrees(
+		std::vector<std::shared_ptr<const boost::property_tree::ptree>> get_com_def_ptrees(
 			const boost::property_tree::ptree &pt) {
 			std::vector<std::shared_ptr<const boost::property_tree::ptree>> out;
 			//文字列として読み込んでみる
-			std::string res_id = pt.get_value<std::string>();
 			//文字列が空でなかったらリソースIDとみなしてPtreeリソースを読み込む
-			if (!res_id.empty()) {
-				auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id);
+			if (auto res_id = pt.get_value<std::string>(); !res_id.empty()) {
 				//指定されたリソースがない
-				if (jres == nullptr) {
+				if (const auto res = game::instance().resource_manager()->GetResourceByID<RPtree>(res_id); res ==
+					nullptr) {
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネントのファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
-				} else { out.push_back(jres->GetPtree()); }
+				} else { out.push_back(res->GetPtree()); }
 			} else {
 				//文字列でなかったら、オブジェクトか配列
-				if (pt.size() == 0 || !pt.ordered_begin()->first.empty()) {
+				if (pt.empty() || !pt.ordered_begin()->first.empty()) {
 					//要素がないか、最初の要素にキーが存在したらオブジェクト。オブジェクトならそれがGOCDefinition
 					out.push_back(std::make_shared<const boost::property_tree::ptree>(pt));
 				} else {
 					//配列にはGOC定義か、そのリソースIDが含まれる。
-					for (auto &&ary_elm : pt) {
-						auto res_id2 = ary_elm.second.get_value<std::string>();
-						if (!res_id2.empty()) {
+					for (const auto &val : pt | std::views::values) {
+						if (auto res_id2 = val.get_value<std::string>(); !res_id2.empty()) {
 							//要素が文字列だったら、そのIDのリソースを読み込み
-							auto jres = Game::instance().resource_manager()->GetResourceByID<RPtree>(res_id2);
 							//指定されたリソースがない
-							if (jres == nullptr) {
+							if (auto res = game::instance().resource_manager()->GetResourceByID<RPtree>(res_id2); res ==
+								nullptr) {
 								PE_LOG_ERROR("ゲームオブジェクトコンポーネントのファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id2,
 								             "\"を読み込めませんでした。");
-							} else { out.push_back(jres->GetPtree()); }
+							} else { out.push_back(res->GetPtree()); }
 						} else {
 							//そうじゃなかったらそれがGOC定義の一つ
-							out.push_back(std::make_shared<const boost::property_tree::ptree>(ary_elm.second));
+							out.push_back(std::make_shared<const boost::property_tree::ptree>(val));
 						}
 					}
 				}
@@ -57,77 +59,80 @@ namespace plnt {
 	}
 
 	namespace private_ {
-		GameObjectBase::GameObjectBase() { }
+		game_object_base::game_object_base() = default;
 
-		GameObjectBase::~GameObjectBase() = default;
+		game_object_base::~game_object_base() = default;
 
-		WeakPointer<IGameObject> GameObjectBase::GetPointer() {
+		WeakPointer<IGameObject> game_object_base::GetPointer() {
 			assert(shared_from_this() != nullptr);
 			return shared_from_this();
 		}
 
-		void GameObjectBase::Activate() {
-			if (!manager_connection_->RequestActivation()) { PE_LOG_FATAL("ゲームオブジェクトの有効化に失敗しました。"); }
+		void game_object_base::Activate() {
+			if (!manager_connection_->request_activation()) { PE_LOG_FATAL("ゲームオブジェクトの有効化に失敗しました。"); }
 		}
 
-		void GameObjectBase::Inactivate() {
-			if (!manager_connection_->RequestInactivation()) { PE_LOG_FATAL("ゲームオブジェクトの無効化に失敗しました。"); }
+		void game_object_base::Inactivate() {
+			if (!manager_connection_->request_inactivation()) { PE_LOG_FATAL("ゲームオブジェクトの無効化に失敗しました。"); }
 		}
 
-		void GameObjectBase::Dispose() { manager_connection_->RequestDisposal(); }
+		void game_object_base::Dispose() { manager_connection_->request_disposal(); }
 
-		bool GameObjectBase::ProcessInitialization() {
+		bool game_object_base::process_initialization() {
 			state_ = GameObjectState::Initializing;
 
-			GOComponentGetter com_getter(component_holder_);
+			const go_component_getter com_getter(component_holder_);
 
 			decltype(auto) com_ary = component_holder_.component_array();
 
 			for (auto &&com : com_ary) {
-				if (!com->GetOtherComponentsProc(com_getter)) {
+				if (!com->get_other_components_proc(com_getter)) {
+					// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)
 					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"でほかのオブジェクトを取得する処理に失敗しました。");
 					state_ = GameObjectState::Invalid;
 					return false;
 				}
 			}
 
-			for (auto &&com : com_ary) { com->Initialize(); }
+			for (auto &&com : com_ary) { com->initialize(); }
 			state_ = GameObjectState::Inactive;
 			return true;
 		}
 
-		bool GameObjectBase::ProcessActivation() {
+		bool game_object_base::process_activation() {
 			state_ = GameObjectState::Activating;
 			//コンポーネントの有効化
-			decltype(auto) com_ary = component_holder_.component_array();
-			for (auto &&com : com_ary) { com->Activate(); }
+			for (decltype(auto) com_ary = component_holder_.component_array(); auto &&com : com_ary) {
+				com->activate();
+			}
 			//有効化イベント
 			activated();
 			//アタッチされたタスクの再開
-			CheckAndApplyProcessToAttachedTask([](Task &t)-> bool { return t.Resume(); });
+			check_and_apply_process_to_attached_task([](Task &t)-> bool { return t.Resume(); });
 
 			state_ = GameObjectState::Active;
 			return true;
 		}
 
-		bool GameObjectBase::ProcessInactivation() {
+		bool game_object_base::process_inactivation() {
 			state_ = GameObjectState::Inactivating;
 			//アタッチされたタスクの停止
-			CheckAndApplyProcessToAttachedTask([](Task &t)-> bool { return t.Pause(); });
+			check_and_apply_process_to_attached_task([](Task &t)-> bool { return t.Pause(); });
 			//無効化イベント
 			inactivated();
 			//コンポーネントの無効化
-			decltype(auto) com_ary = component_holder_.component_array();
-			for (auto &&com : com_ary) { com->InActivate(); }
+			for (decltype(auto) com_ary = component_holder_.component_array(); auto &&com : com_ary) {
+				com->in_activate();
+			}
 
 			state_ = GameObjectState::Inactive;
 			return true;
 		}
 
-		bool GameObjectBase::ProcessDisposal() {
+		bool game_object_base::process_disposal() {
 			state_ = GameObjectState::Invalid;
 			//アタッチされたタスクの破棄
-			CheckAndApplyProcessToAttachedTask([](Task &t)-> bool {
+			check_and_apply_process_to_attached_task([](Task &t)-> bool {
 				t.Dispose();
 				return true;
 			});
@@ -135,30 +140,29 @@ namespace plnt {
 			//破棄時イベント
 			disposed();
 			//コンポーネントの終了処理
-			for (auto &&com : component_holder_.component_array()) { com->Finalize(); }
+			for (auto &&com : component_holder_.component_array()) { com->finalize(); }
 			return true;
 		}
 
-		void GameObjectBase::SetManagerConnection(std::unique_ptr<GameObjectManagerConnection> &&mgr_cnctn) {
-			manager_connection_ = std::move(mgr_cnctn);
+		void game_object_base::set_manager_connection(std::unique_ptr<game_object_manager_connection> &&mgr_conn) {
+			manager_connection_ = std::move(mgr_conn);
 		}
 
-		void GameObjectBase::SetSceneInternalInterface(const WeakPointer<private_::ISceneInternal> &iscene) {
-			scene_internal_interface_ = iscene;
+		void game_object_base::set_scene_internal_interface(const WeakPointer<ISceneInternal> &i_scene) {
+			scene_internal_interface_ = i_scene;
 		}
 
-		void GameObjectBase::SetSceneAndGODataToComponent_(GameObjectComponent &com) {
-			private_::GameObjectComponentSetUpData rd{this, scene_internal_interface_};
-			com.SetSceneAndHolderGOData(rd);
+		void game_object_base::set_scene_and_go_data_to_component(game_object_component &com) {
+			const game_object_component_set_up_data rd{this, scene_internal_interface_};
+			com.set_scene_and_holder_go_data(rd);
 		}
 
-		bool GameObjectBase::AddComponentsFromTypeIDList_(const std::vector<std::string> &com_type_id_list,
-		                                                  std::vector<std::shared_ptr<GameObjectComponent>> &
-		                                                  added_coms) {
-			private_::GOComponentAdder com_adder{component_holder_};
+		bool game_object_base::add_components_from_type_id_list(const std::vector<std::string> &com_type_id_list,
+		                                                      std::vector<std::shared_ptr<game_object_component>> &
+		                                                      added_coms) {
+			go_component_adder com_adder{component_holder_};
 			for (auto &&com_type_id : com_type_id_list) {
-				auto com = com_adder.CreateAndAddComponent(com_type_id);
-				if (com) { added_coms.push_back(com); } else {
+				if (auto com = com_adder.create_and_add_component(com_type_id)) { added_coms.push_back(com); } else {
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(GOCTypeID:", com_type_id, ")の追加に失敗しました。");
 					return false;
 				}
@@ -166,13 +170,14 @@ namespace plnt {
 			return true;
 		}
 
-		bool GameObjectBase::SetDataToComponentsFromPtree_(
-			const std::vector<std::shared_ptr<GameObjectComponent>> &coms,
+		bool game_object_base::set_data_to_components_from_ptree(
+			const std::vector<std::shared_ptr<game_object_component>> &coms,
 			const std::vector<std::shared_ptr<const boost::property_tree::ptree>> &pts) {
 			assert(coms.size() == pts.size());
 			for (size_t i = 0; i < coms.size(); ++i) {
 				//Ptreeからリフレクションシステムを用いて読み込み
 				try { coms[i]->reflective_load_from_ptree(*pts[i]); } catch (reflection::reflection_error &e) {
+					// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(\"型:", typeid(*coms[i]).name(),
 					             "\")のファイル定義読み込みに失敗しました。エラーが発生したか、コンポーネントがファイル定義読み込みに対応していない可能性があります。ファイル定義読み込み関数を継承しているか確認してください。(",
 					             e.what(), ")");
@@ -182,47 +187,47 @@ namespace plnt {
 			return true;
 		}
 
-		std::shared_ptr<GameObjectComponent> GameObjectBase::GetComponentByTypeInfo_(
-			const std::type_info &ti, const std::function<bool(GameObjectComponent *goc)> &type_checker) const {
-			return component_holder_.GetComponentByTypeInfo(ti, type_checker);
+		std::shared_ptr<game_object_component> game_object_base::GetComponentByTypeInfo_(
+			const std::type_info &ti, const std::function<bool(game_object_component *goc)> &type_checker) const {
+			return component_holder_.get_component_by_type_info(ti, type_checker);
 		}
 
 		//std::vector<std::shared_ptr<GameObjectComponent>> GameObjectBase::GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker) const {
 		//	return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
 		//}
 
-		void GameObjectBase::SetUpAttachedTask_(const WeakPointer<Task> &task) {
+		void game_object_base::SetUpAttachedTask_(const WeakPointer<Task> &task) {
 			if (state_ == GameObjectState::Active || state_ == GameObjectState::Activating) { task->Resume(); }
 			attached_tasks_.push_back(task);
 		}
 
-		bool GameObjectBase::ProcessClonation(const std::shared_ptr<GameObjectBase> &dst) {
+		bool game_object_base::process_cloning(const std::shared_ptr<game_object_base> &dst) {
 			//シーンデータのセット
 			scene_internal_interface_ = dst->scene_internal_interface_;
 			//コンポーネントのクローン
-			dst->component_holder_.CloneToOtherHolder(component_holder_);
+			dst->component_holder_.clone_to_other_holder(component_holder_);
 			//コンポーネントへシーンとGOデータをセット
-			SetSceneAndGODataToCOmponents_();
+			set_scene_and_go_data_to_components();
 			return true;
 		}
 
-		bool GameObjectBase::AddAndSetUpComponents(const boost::property_tree::ptree &pt) {
+		bool game_object_base::add_and_set_up_components(const boost::property_tree::ptree &pt) {
 			//コンポーネント型IDと対応するPtreeの読み込み
 			std::vector<std::string> com_type_ids;
 			std::vector<std::vector<std::shared_ptr<const boost::property_tree::ptree>>> pts_each_com_tid;
 			for (auto &&com_defs : pt) {
-				auto com_def_pts = GetComDefPtrees(com_defs.second);
+				auto com_def_pts = get_com_def_ptrees(com_defs.second);
 				pts_each_com_tid.push_back(std::move(com_def_pts));
 				com_type_ids.push_back(com_defs.first);
 			}
 			assert(com_type_ids.size() == pts_each_com_tid.size());
 			//コンポーネントの追加
-			std::vector<std::vector<std::shared_ptr<GameObjectComponent>>> coms_each_com_tid;
+			std::vector<std::vector<std::shared_ptr<game_object_component>>> coms_each_com_tid;
 			for (size_t i = 0; i < com_type_ids.size(); ++i) {
-				std::vector<std::shared_ptr<GameObjectComponent>> coms;
+				std::vector<std::shared_ptr<game_object_component>> coms;
 				std::vector<std::string> com_tid_list;
 				com_tid_list.resize(pts_each_com_tid[i].size(), com_type_ids[i]);
-				if (!AddComponentsFromTypeIDList_(com_tid_list, coms)) {
+				if (!add_components_from_type_id_list(com_tid_list, coms)) {
 					PE_LOG_ERROR("コンポーネントの作成に失敗しました。");
 					return false;
 				}
@@ -230,10 +235,10 @@ namespace plnt {
 			}
 			assert(com_type_ids.size() == coms_each_com_tid.size());
 			//コンポーネントのセットアップ
-			SetSceneAndGODataToCOmponents_();
+			set_scene_and_go_data_to_components();
 			//コンポーネントデータをptreeから読み込み
 			for (size_t i = 0; i < com_type_ids.size(); ++i) {
-				if (!SetDataToComponentsFromPtree_(coms_each_com_tid[i], pts_each_com_tid[i])) {
+				if (!set_data_to_components_from_ptree(coms_each_com_tid[i], pts_each_com_tid[i])) {
 					PE_LOG_ERROR("PtreeからのComponentのデータセットに失敗しました。");
 					return false;
 				}
@@ -241,37 +246,33 @@ namespace plnt {
 			return true;
 		}
 
-		bool GameObjectBase::AddAndSetUpComponents(const std::vector<std::string> &com_type_id_list) {
+		bool game_object_base::add_and_set_up_components(const std::vector<std::string> &com_type_id_list) {
 			//コンポーネントの追加
-			std::vector<std::shared_ptr<GameObjectComponent>> coms;
-			if (!AddComponentsFromTypeIDList_(com_type_id_list, coms)) {
+			if (std::vector<std::shared_ptr<game_object_component>> coms; !
+				add_components_from_type_id_list(com_type_id_list, coms)) {
 				PE_LOG_ERROR("コンポーネントの作成に失敗しました。");
 				return false;
 			}
 			//コンポーネントのセットアップ
-			SetSceneAndGODataToCOmponents_();
+			set_scene_and_go_data_to_components();
 			return true;
 		}
 
-		void GameObjectBase::SetSceneAndGODataToCOmponents_() {
+		void game_object_base::set_scene_and_go_data_to_components() {
 			decltype(auto) com_ary = component_holder_.component_array();
-			for (auto &&com : com_ary) { SetSceneAndGODataToComponent_(*com); }
+			for (auto &&com : com_ary) { set_scene_and_go_data_to_component(*com); }
 		}
 
-		bool GameObjectBase::CheckAndApplyProcessToAttachedTask(const std::function<bool(Task &)> &proc) {
+		bool game_object_base::check_and_apply_process_to_attached_task(const std::function<bool(Task &)> &proc) {
 			bool scc = true;
 			for (auto it = attached_tasks_.begin(); it != attached_tasks_.end();) {
-				auto pre = it++;
-				if (!(*pre)) {
-					attached_tasks_.erase(pre);
-					continue;
-				} else { scc &= proc(**pre); }
+				if (auto pre = it++; !(*pre)) { attached_tasks_.erase(pre); } else { scc &= proc(**pre); }
 			}
 			return scc;
 		}
 
-		GameObjectState GameObjectBase::state() const { return state_; }
+		GameObjectState game_object_base::state() const { return state_; }
 
-		plnt::IScene &GameObjectBase::scene() { return *scene_internal_interface_; }
+		IScene &game_object_base::scene() { return *scene_internal_interface_; }
 	}
 }

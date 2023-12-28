@@ -10,7 +10,7 @@
 
 namespace plnt {
 	namespace private_ {
-		class GraphDrawData2D;
+		class graph_draw_data_2d;
 	}
 
 	/*! 惑星描画コンポーネント。
@@ -56,12 +56,12 @@ namespace plnt {
 		/*ポリゴンの設定が必要か*/
 		bool set_polygon_flag_ = false;
 		/*画像描画データ*/
-		std::shared_ptr<private_::GraphDrawData2D> graph_draw_data_;
+		std::shared_ptr<private_::graph_draw_data_2d> graph_draw_data_;
 		/*テクスチャマッピングモード*/
 		TextureMappingMode tex_map_mode_;
-		virtual bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
-		virtual void OnInitialized() override;
-		virtual void OnFinalized() noexcept override;
+		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
+		virtual void on_initialized() override;
+		virtual void on_finalized() noexcept override;
 		NonOwingPointer<CPlanet> _planet_component;
 		/*ポリゴンセット*/
 		void (CDrawPlanet2D::*polygon_setter_)();

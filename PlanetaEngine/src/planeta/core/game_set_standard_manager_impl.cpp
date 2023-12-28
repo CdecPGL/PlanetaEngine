@@ -13,10 +13,10 @@
 #include "SystemVariables.hpp"
 
 namespace plnt {
-	void Game::SetStandardManagers() {
+	void game::set_standard_managers() const {
 		using namespace private_;
-		SetResourceManager(std::make_shared<StandardResourceManager>());
-		auto log_mgr = std::make_shared<StandardLogManager>();
+		set_resource_manager(std::make_shared<StandardResourceManager>());
+		const auto log_mgr = std::make_shared<StandardLogManager>();
 		//開発モードならコンソールウインドウを作成し、そこにログを出力
 		if (system_variables::DevelopmentMode) {
 			//コンソール出力を有効化
@@ -29,14 +29,14 @@ namespace plnt {
 		//ログ出力ファイルを有効にする
 		log_mgr->ValidateFileOutPut(
 			system_variables::file_system::LogDirectory + "\\" + system_variables::file_system::LogOutPutFileName);
-		SetLogManager(log_mgr);
-		SetSceneManager(std::make_shared<private_::StandardSceneManager>());
-		SetInputManager(std::make_shared<private_::StandardInputManager>());
-		SetPerformanceManager(std::make_shared<private_::StandardPerformanceManager>());
-		SetRenderingManager(std::make_shared<private_::StandardRenderingManager>());
-		SetSoundManager(std::make_shared<private_::StandardSoundManager>());
-		SetSaveManager(std::make_shared<private_::StandardSaveManager>());
-		SetDebugManager(std::make_shared<private_::StandardDebugManager>());
-		SetConfigManager(std::make_shared<private_::StandardConfigManager>());
+		set_log_manager(log_mgr);
+		set_scene_manager(std::make_shared<StandardSceneManager>());
+		set_input_manager(std::make_shared<StandardInputManager>());
+		set_performance_manager(std::make_shared<StandardPerformanceManager>());
+		set_rendering_manager(std::make_shared<StandardRenderingManager>());
+		set_sound_manager(std::make_shared<StandardSoundManager>());
+		set_save_manager(std::make_shared<StandardSaveManager>());
+		set_debug_manager(std::make_shared<StandardDebugManager>());
+		set_config_manager(std::make_shared<StandardConfigManager>());
 	}
 }

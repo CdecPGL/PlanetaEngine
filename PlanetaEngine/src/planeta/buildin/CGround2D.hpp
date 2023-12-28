@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include "planeta/core/GameObjectStandardComponent.hpp"
+#include "..\core\game_object_standard_component.hpp"
 #include "planeta/core/Vector2D.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "planeta/core/i_collider_with_collider_2d.hpp"
@@ -15,9 +15,9 @@ namespace plnt {
 
 	/*! 地面基底コンポーネント*/
 	class CGround2D :
-		public GameObjectStandardComponent, public private_::i_collider_with_collider_2d {
+		public game_object_standard_component, public private_::i_collider_with_collider_2d {
 	public:
-		using super = GameObjectStandardComponent;
+		using super = game_object_standard_component;
 		CGround2D();
 		virtual ~CGround2D() = default;
 		/*! 指定地形座標の地面からの高さを取得*/
@@ -47,10 +47,10 @@ namespace plnt {
 		const CTransform2D &transform2d() const;
 
 	protected:
-		virtual bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
-		virtual void OnActivated() override;
-		virtual void OnInactivated() override;
-		virtual void OnFinalized() noexcept override;
+		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
+		virtual void on_activated() override;
+		virtual void on_inactivated() override;
+		virtual void on_finalized() noexcept override;
 
 	private:
 		NonOwingPointer<CTransform2D> transform2d_;

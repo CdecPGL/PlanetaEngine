@@ -6,7 +6,7 @@
 #include "..\dxlib\dx_graph_draw_data.hpp"
 
 #include "ScreenDrawer2D.hpp"
-#include "GraphDrawData2D.hpp"
+#include "graph_draw_data_2d.hpp"
 #include "color.hpp"
 #include "Screen.hpp"
 
@@ -56,11 +56,11 @@ namespace plnt {
 		DrawWire(poses, 1, color);
 	}
 
-	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<private_::GraphDrawData2D> &graph_draw_data) {
+	void ScreenDrawer2D::DrawGraph(const std::shared_ptr<private_::graph_draw_data_2d> &graph_draw_data) {
 		screen_.ReserveDraw([graph_draw_data]() {
 			//画像描画データが無効な場合は描画しない
 			if (!graph_draw_data->is_valid()) { return; }
-			const dx_graph_draw_data &dxgdd = graph_draw_data->GetDXData();
+			const dx_graph_draw_data &dxgdd = graph_draw_data->get_dx_data();
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 			DrawPolygonIndexed3D(dxgdd.vertexes.get(), (int)dxgdd.vertex_count, dxgdd.indexes.get(),
 			                     (int)dxgdd.polygon_count, dxgdd.graph_handle, true);

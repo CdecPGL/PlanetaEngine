@@ -12,14 +12,14 @@ namespace plnt {
 			.shallow_copy_target(&CBelongingGroundGravity::_gravity_scale);
 	}
 
-	bool CBelongingGroundGravity::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+	bool CBelongingGroundGravity::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		transform2d_.reset(com_getter.get_component<CTransform2D>());
 		return true;
 	}
 
-	void CBelongingGroundGravity::OnInitialized() {
-		super::OnInitialized();
+	void CBelongingGroundGravity::on_initialized() {
+		super::on_initialized();
 		auto proc = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreCollisionEarlyPhase);
 		proc->SetExcuteFunction([this]() { Update(); });
 	}

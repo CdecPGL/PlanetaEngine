@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "planeta/core/GameObjectSystemComponent.hpp"
+#include "..\core\game_object_system_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
-#include "planeta/core/GraphDrawData2D.hpp"
+#include "..\core\graph_draw_data_2d.hpp"
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
@@ -10,11 +10,11 @@ namespace plnt {
 	class CTransform2D;
 
 	/*! 描画基底コンポーネント*/
-	class CDraw2D : public private_::GameObjectSystemComponent {
+	class CDraw2D : public private_::game_object_system_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDraw2D);
 
 	public:
-		using super = private_::GameObjectSystemComponent;
+		using super = private_::game_object_system_component;
 		CDraw2D();
 		virtual ~CDraw2D();
 		/*描画処理*/
@@ -70,10 +70,10 @@ namespace plnt {
 
 		NonOwingPointer<CTransform2D> transform2d_;
 
-		virtual bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
+		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
 
-		void OnInitialized() override;
-		void OnFinalized() noexcept override;
+		void on_initialized() override;
+		void on_finalized() noexcept override;
 
 	private:
 		class Impl_;
@@ -88,8 +88,8 @@ namespace plnt {
 		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
 		plnt::color color_;
 		void UpdatePriority_();
-		void OnActivated() override final;
-		void OnInactivated() override final;
+		void on_activated() override final;
+		void on_inactivated() override final;
 		/*描画処理*/
 		virtual void DrawProc(ScreenDrawer2D &drawer) = 0;
 	};

@@ -66,27 +66,27 @@ namespace plnt {
 		if (is_active()) { impl_->draw_system_connection->change_priority(draw_priority_); }
 	}
 
-	void CDraw2D::OnInitialized() {
+	void CDraw2D::on_initialized() {
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->register_c_draw_2d(
 			shared_this<CDraw2D>(), draw_priority_);
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
-	void CDraw2D::OnFinalized() noexcept { impl_->draw_system_connection->remove(); }
+	void CDraw2D::on_finalized() noexcept { impl_->draw_system_connection->remove(); }
 
-	void CDraw2D::OnActivated() {
+	void CDraw2D::on_activated() {
 		auto suceed = impl_->draw_system_connection->active();
 		if (!suceed) { PE_LOG_ERROR("描画システムの有効化に失敗しました。"); }
 	}
 
-	void CDraw2D::OnInactivated() {
+	void CDraw2D::on_inactivated() {
 		impl_->draw_system_connection->inactivate();
-		super::OnInactivated();
+		super::on_inactivated();
 	}
 
-	bool CDraw2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+	bool CDraw2D::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		transform2d_.reset(com_getter.get_component<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dを取得できませんでした。");
 			return false;

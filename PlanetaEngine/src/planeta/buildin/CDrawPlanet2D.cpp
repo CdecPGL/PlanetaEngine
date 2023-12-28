@@ -1,11 +1,11 @@
 ﻿#include <cmath>
 
-#include "planeta/core/Game.hpp"
+#include "planeta/core/game.hpp"
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "planeta/core/IResourceManager.hpp"
 #include "planeta/core/IGameObject.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/core/GraphDrawData2D.hpp"
+#include "..\core\graph_draw_data_2d.hpp"
 #include "..\math\math_constant.hpp"
 
 #include "CDrawPlanet2D.hpp"
@@ -34,7 +34,7 @@ namespace plnt {
 
 	CDrawPlanet2D::CDrawPlanet2D() : _horizontal_separation(kDefaultHorizontalSeparation),
 	                                 _vertical_separation(kDefaultVerticalSeparation),
-	                                 graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
+	                                 graph_draw_data_(std::make_shared<private_::graph_draw_data_2d>()) {
 		texture_mapping_mode(TextureMappingMode::Round);
 	}
 
@@ -51,9 +51,9 @@ namespace plnt {
 		}
 	}
 
-	bool CDrawPlanet2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		_planet_component.reset(com_getter.GetComponent<CPlanet>());
+	bool CDrawPlanet2D::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		_planet_component.reset(com_getter.get_component<CPlanet>());
 		if (_planet_component == nullptr) {
 			PE_LOG_ERROR("初期化に失敗しました。PlanetComponentを取得できませんでした。");
 			return false;
@@ -61,17 +61,17 @@ namespace plnt {
 		return true;
 	}
 
-	void CDrawPlanet2D::OnInitialized() {
-		super::OnInitialized();
+	void CDrawPlanet2D::on_initialized() {
+		super::on_initialized();
 		SetPolygon_();
 	}
 
-	void CDrawPlanet2D::OnFinalized() noexcept { super::OnFinalized(); }
+	void CDrawPlanet2D::on_finalized() noexcept { super::on_finalized(); }
 
 	void CDrawPlanet2D::SetPolygonRoundly_() {
 		//頂点とインデックスのサイズ調整
-		graph_draw_data_->SetVertexCount((_vertical_separation + 1) * (_horizontal_separation + 1));
-		graph_draw_data_->SetPlygonCount(
+		graph_draw_data_->set_vertex_count((_vertical_separation + 1) * (_horizontal_separation + 1));
+		graph_draw_data_->set_polygon_count(
 			(_vertical_separation - 1) * _horizontal_separation * 2 + _horizontal_separation);
 		//画像と頂点の設定
 		for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) {
@@ -82,29 +82,29 @@ namespace plnt {
 				Vector2Df uv;
 				uv.x = (float)i / _horizontal_separation;
 				uv.y = (float)j / _vertical_separation;
-				graph_draw_data_->SetVertexUV((_vertical_separation + 1) * i + j, uv);
+				graph_draw_data_->set_vertex_uv((_vertical_separation + 1) * i + j, uv);
 			}
 		}
 		//インデックスの設定
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//中心以外はポリゴンを2枚ずつ張る
 			for (unsigned int j = 0; j < _vertical_separation - 1; ++j) {
-				private_::GraphDrawData2D::PolygonIndexType poly1, poly2;
+				private_::graph_draw_data_2d::polygon_index_type poly1, poly2;
 				poly1[0] = i * (_vertical_separation + 1) + j;
 				poly1[1] = i * (_vertical_separation + 1) + j + 1;
 				poly1[2] = (i + 1) * (_vertical_separation + 1) + j;
 				poly2[0] = i * (_vertical_separation + 1) + j + 1;
 				poly2[1] = (i + 1) * (_vertical_separation + 1) + j;
 				poly2[2] = (i + 1) * (_vertical_separation + 1) + j + 1;
-				graph_draw_data_->SetPolyginIndex(i * (_vertical_separation * 2 - 1) + j * 2, poly1);
-				graph_draw_data_->SetPolyginIndex(i * (_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
+				graph_draw_data_->set_polygon_index(i * (_vertical_separation * 2 - 1) + j * 2, poly1);
+				graph_draw_data_->set_polygon_index(i * (_vertical_separation * 2 - 1) + j * 2 + 1, poly2);
 			}
 			//中心はポリゴンを1枚だけ張る
-			private_::GraphDrawData2D::PolygonIndexType poly;
+			private_::graph_draw_data_2d::polygon_index_type poly;
 			poly[0] = i * (_vertical_separation + 1) + (_vertical_separation - 1);
 			poly[1] = i * (_vertical_separation + 1) + (_vertical_separation - 1) + 1;
 			poly[2] = (i + 1) * (_vertical_separation + 1) + (_vertical_separation - 1);
-			graph_draw_data_->SetPolyginIndex(i * (_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2,
+			graph_draw_data_->set_polygon_index(i * (_vertical_separation * 2 - 1) + (_vertical_separation - 1) * 2,
 			                                  poly);
 		}
 	}
@@ -122,21 +122,21 @@ namespace plnt {
 			//中心以外の頂点座標を求める
 			for (unsigned int j = 0; j < _vertical_separation; ++j) {
 				double dis_ratio = 1.0f - (double)j / _vertical_separation;
-				graph_draw_data_->SetVertexPosition(i * (_vertical_separation + 1) + j,
+				graph_draw_data_->set_vertex_position(i * (_vertical_separation + 1) + j,
 				                                    static_cast<Vector2Df>(center_pos + interface_vec * dis_ratio));
 			}
 			//中心の頂点座標を求める
-			graph_draw_data_->SetVertexPosition(i * (_vertical_separation + 1) + _vertical_separation,
+			graph_draw_data_->set_vertex_position(i * (_vertical_separation + 1) + _vertical_separation,
 			                                    static_cast<Vector2Df>(center_pos));
 		}
 		//頂点色設定
-		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->SetVertexColor(i, color()); }
+		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->set_vertex_color(i, color()); }
 	}
 
 	void CDrawPlanet2D::SetPolygonPlainly_() {
 		//頂点とインデックスのサイズ調整
-		graph_draw_data_->SetVertexCount(_horizontal_separation + 1);
-		graph_draw_data_->SetPlygonCount(_horizontal_separation);
+		graph_draw_data_->set_vertex_count(_horizontal_separation + 1);
+		graph_draw_data_->set_polygon_count(_horizontal_separation);
 		//画像と頂点の設定
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//水平方向は座標系正回りにセットしていく
@@ -145,17 +145,17 @@ namespace plnt {
 			Vector2Df uv;
 			uv.x = 0.5f + (float)std::cos(rad) * 0.5f;
 			uv.y = 0.5f + (float)std::sin(rad) * 0.5f;
-			graph_draw_data_->SetVertexUV(i, uv);
+			graph_draw_data_->set_vertex_uv(i, uv);
 		}
-		graph_draw_data_->SetVertexUV(_horizontal_separation, Vector2Df(0.5f, 0.5f)); //最後の頂点は中心を指す
+		graph_draw_data_->set_vertex_uv(_horizontal_separation, Vector2Df(0.5f, 0.5f)); //最後の頂点は中心を指す
 		//インデックスの設定
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//ポリゴンを1枚ずつ張る
-			private_::GraphDrawData2D::PolygonIndexType poly1;
+			private_::graph_draw_data_2d::polygon_index_type poly1;
 			poly1[0] = i;
 			poly1[1] = (i + 1) % _horizontal_separation;
 			poly1[2] = _horizontal_separation;
-			graph_draw_data_->SetPolyginIndex(i, poly1);
+			graph_draw_data_->set_polygon_index(i, poly1);
 		}
 	}
 
@@ -169,21 +169,21 @@ namespace plnt {
 			double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
 			Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 			interface_vec *= height;
-			graph_draw_data_->SetVertexPosition(i, static_cast<Vector2Df>(center_pos + interface_vec));
+			graph_draw_data_->set_vertex_position(i, static_cast<Vector2Df>(center_pos + interface_vec));
 		}
 		//中心頂点の設定
-		graph_draw_data_->SetVertexPosition(_horizontal_separation, static_cast<Vector2Df>(center_pos));
+		graph_draw_data_->set_vertex_position(_horizontal_separation, static_cast<Vector2Df>(center_pos));
 		//頂点色設定
-		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->SetVertexColor(i, color()); }
+		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->set_vertex_color(i, color()); }
 	}
 
 	bool CDrawPlanet2D::SetGraphResource(const std::string &resource_id) {
-		auto res = Game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
+		auto res = game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(ResourceID: ", resource_id, ")");
 			return false;
 		} else {
-			graph_draw_data_->SetGraphResource(res);
+			graph_draw_data_->set_graph_resource(res);
 			set_polygon_flag_ = true;
 			return true;
 		}

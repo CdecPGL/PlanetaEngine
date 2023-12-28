@@ -1,11 +1,11 @@
-﻿#include "planeta/core/Game.hpp"
+﻿#include "planeta/core/game.hpp"
 #include "planeta/core/IResourceManager.hpp"
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/IGameObject.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "..\math\math_constant.hpp"
-#include "planeta/core/GraphDrawData2D.hpp"
+#include "..\core\graph_draw_data_2d.hpp"
 
 #include "CDrawGraph2D.hpp"
 #include "RGraph.hpp"
@@ -25,17 +25,17 @@ namespace plnt {
 	}
 
 	/*頂点は[0]左下,[1]右下,[2]右上,[3]左上とする*/
-	CDrawGraph2D::CDrawGraph2D() : graph_draw_data_(std::make_shared<private_::GraphDrawData2D>()) {
-		graph_draw_data_->SetVertexCount(4);
-		graph_draw_data_->SetPolygonIndexes({{0, 1, 3}, {1, 3, 2}});
+	CDrawGraph2D::CDrawGraph2D() : graph_draw_data_(std::make_shared<private_::graph_draw_data_2d>()) {
+		graph_draw_data_->set_vertex_count(4);
+		graph_draw_data_->set_polygon_indexes({{0, 1, 3}, {1, 3, 2}});
 	}
 
 	CDrawGraph2D::~CDrawGraph2D() = default;
 
 	bool CDrawGraph2D::SetGraphResource(const std::string &resource_id) {
-		auto res = Game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
+		auto res = game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
 		if (res) {
-			graph_draw_data_->SetGraphResource(res);
+			graph_draw_data_->set_graph_resource(res);
 			_draw_area.Set(Vector2Di(0, 0), Vector2Di(res->size().x, res->size().y));
 			_UpdateUVPosition();
 			return true;
@@ -68,20 +68,20 @@ namespace plnt {
 		//右下の頂点ベクトル
 		Vector2Dd right_down_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * (graph_center_.y - 1.0));
 		//画像の回転度とゲームオブジェクトの回転度、表示中心位置から各頂点を求める
-		graph_draw_data_->SetVertexPosition(
+		graph_draw_data_->set_vertex_position(
 			0, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
 				GetDrawRotationRed(), left_down_vertex_vec)));
-		graph_draw_data_->SetVertexPosition(
+		graph_draw_data_->set_vertex_position(
 			1, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
 				GetDrawRotationRed(), right_down_vertex_vec)));
-		graph_draw_data_->SetVertexPosition(
+		graph_draw_data_->set_vertex_position(
 			2, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
 				GetDrawRotationRed(), right_up_vertex_vec)));
-		graph_draw_data_->SetVertexPosition(
+		graph_draw_data_->set_vertex_position(
 			3, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
 				GetDrawRotationRed(), left_up_vertex_vec)));
 		//色
-		for (int i = 0; i < 4; ++i) { graph_draw_data_->SetVertexColor(i, color()); }
+		for (int i = 0; i < 4; ++i) { graph_draw_data_->set_vertex_color(i, color()); }
 	}
 
 	void CDrawGraph2D::_UpdateUVPosition() {
@@ -101,7 +101,7 @@ namespace plnt {
 		uvs[3].x = (float)(reverse_ ? (_draw_area.x_max() + 1) : _draw_area.x_min()) / g_size.x;
 		uvs[3].y = (float)_draw_area.y_min() / g_size.y;
 
-		for (int i = 0; i < 4; ++i) { graph_draw_data_->SetVertexUV(i, uvs[i]); }
+		for (int i = 0; i < 4; ++i) { graph_draw_data_->set_vertex_uv(i, uvs[i]); }
 	}
 
 	CDrawGraph2D &CDrawGraph2D::graph_resource_id(const std::string &res_id) {

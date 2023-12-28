@@ -8,9 +8,9 @@
 namespace plnt {
 	CGround2D::CGround2D() { }
 
-	bool CGround2D::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		transform2d_.reset(com_getter.GetComponent<CTransform2D>());
+	bool CGround2D::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		transform2d_.reset(com_getter.get_component<CTransform2D>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dが取得できませんでした。");
 			return false;
@@ -18,11 +18,11 @@ namespace plnt {
 		return true;
 	}
 
-	void CGround2D::OnActivated() { super::OnActivated(); }
+	void CGround2D::on_activated() { super::on_activated(); }
 
-	void CGround2D::OnInactivated() { super::OnInactivated(); }
+	void CGround2D::on_inactivated() { super::on_inactivated(); }
 
-	void CGround2D::OnFinalized() noexcept { }
+	void CGround2D::on_finalized() noexcept { }
 
 	double CGround2D::ConvertRotationGlobalToGroundWithGroundPosition(const Vector2Dd &ground_pos,
 	                                                                  double global_rota_rad) const {

@@ -1,5 +1,5 @@
 ﻿#include "StandardDebugManager.hpp"
-#include "Game.hpp"
+#include "game.hpp"
 #include "IInputManager.hpp"
 #include "RenderingManager.hpp"
 #include "LogUtility.hpp"
@@ -96,7 +96,7 @@ namespace plnt {
 		void StandardDebugManager::finalize() { }
 
 		void StandardDebugManager::pre_rendering_update() {
-			auto &inp_mgr = *Game::instance().input_manager();
+			auto &inp_mgr = *game::instance().input_manager();
 			//F1でデバッグ情報の表示有無を切り替え
 			if (inp_mgr.KeyPush(Key::F1)) {
 				impl_->is_debug_information_showing = !impl_->is_debug_information_showing;

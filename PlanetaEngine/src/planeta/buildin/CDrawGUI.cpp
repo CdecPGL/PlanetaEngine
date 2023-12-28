@@ -44,26 +44,26 @@ namespace plnt {
 		return *this;
 	}
 
-	void CDrawGUI::OnInitialized() {
-		super::OnInitialized();
+	void CDrawGUI::on_initialized() {
+		super::on_initialized();
 		impl_->draw_system_connection = scene_internal_interface().draw_system_internal_pointer()->register_c_draw_gui(
 			shared_this<CDrawGUI>(), impl_->priority);
 		if (impl_->draw_system_connection == nullptr) { PE_LOG_ERROR("描画システムへの登録に失敗しました。"); }
 	}
 
-	void CDrawGUI::OnFinalized() noexcept {
+	void CDrawGUI::on_finalized() noexcept {
 		impl_->draw_system_connection->remove();
-		super::OnFinalized();
+		super::on_finalized();
 	}
 
-	void CDrawGUI::OnActivated() {
-		super::OnActivated();
+	void CDrawGUI::on_activated() {
+		super::on_activated();
 		auto suceed = impl_->draw_system_connection->active();
 		if (!suceed) { PE_LOG_ERROR("描画システムの有効化に失敗しました。"); }
 	}
 
-	void CDrawGUI::OnInactivated() {
+	void CDrawGUI::on_inactivated() {
 		impl_->draw_system_connection->inactivate();
-		super::OnInactivated();
+		super::on_inactivated();
 	}
 }

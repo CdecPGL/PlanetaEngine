@@ -1,6 +1,6 @@
 ﻿#include "Scene.hpp"
 //Modules
-#include "GameObjectManager.hpp"
+#include "game_object_manager.hpp"
 #include "TaskManager.hpp"
 #include "collision_world.hpp"
 #include "draw_system.hpp"
@@ -83,7 +83,7 @@ namespace plnt {
 
 		plnt::WeakPointer<draw_system> Scene::draw_system_internal_pointer() { return draw_system_; }
 
-		plnt::WeakPointer<plnt::private_::GameObjectManager> Scene::game_object_manager_internal_pointer() {
+		plnt::WeakPointer<plnt::private_::game_object_manager> Scene::game_object_manager_internal_pointer() {
 			return game_object_manager_;
 		}
 
@@ -105,7 +105,7 @@ namespace plnt {
 
 		void Scene::SetTaskManager(std::shared_ptr<TaskManager> &&mgr) { task_manager_ = std::move(mgr); }
 
-		void Scene::SetGameObjectManager(std::shared_ptr<GameObjectManager> &&mgr) {
+		void Scene::SetGameObjectManager(std::shared_ptr<private_::game_object_manager> &&mgr) {
 			game_object_manager_ = std::move(mgr);
 		}
 

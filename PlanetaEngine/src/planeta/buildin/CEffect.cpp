@@ -3,7 +3,7 @@
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
 
-#include "planeta/core/Game.hpp"
+#include "planeta/core/game.hpp"
 #include "planeta/core/IResourceManager.hpp"
 #include "planeta/core/StandardResourceManager.hpp"
 #include "planeta/core/IGameObject.hpp"
@@ -95,7 +95,7 @@ namespace plnt {
 	}
 
 	bool CEffect::Impl_::SetResourceByID(const std::string &resource_id) {
-		auto res = Game::instance().resource_manager()->GetResourceByID<REffect>(resource_id);
+		auto res = game::instance().resource_manager()->GetResourceByID<REffect>(resource_id);
 		if (res) {
 			reffect_ = res;
 			return true;
@@ -160,14 +160,14 @@ namespace plnt {
 
 	CEffect::~CEffect() = default;
 
-	bool CEffect::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		impl_->SetMyCTransform2D(com_getter.GetComponent<CTransform2D>());
+	bool CEffect::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		impl_->SetMyCTransform2D(com_getter.get_component<CTransform2D>());
 		return true;
 	}
 
-	void CEffect::OnInitialized() {
-		super::OnInitialized();
+	void CEffect::on_initialized() {
+		super::on_initialized();
 		if (!impl_->GetEffectExits()) {
 			if (!impl_->CreateEffectInstance()) {
 				PE_LOG_ERROR("エフェクトインスタンスの作成に失敗しました。");
@@ -179,7 +179,7 @@ namespace plnt {
 			impl_->ApplyTransformToEffect();
 			//エフェクトのループ確認
 			if (impl_->roop_flag_ && !impl_->GetEffectExits()) {
-				if (is_valied()) {
+				if (is_valid()) {
 					if (!impl_->CreateEffectInstance()) { return; }
 					if (is_active()) { impl_->StartEffect(); }
 				}
@@ -187,26 +187,26 @@ namespace plnt {
 		});
 	}
 
-	void CEffect::OnActivated() {
-		super::OnActivated();
+	void CEffect::on_activated() {
+		super::on_activated();
 		impl_->ConnectMyCTransformUpdatedEvent();
 		if (auto_play()) { if (!impl_->StartEffect()) { PE_LOG_ERROR("エフェクトの開始に失敗しました。"); } }
 	}
 
-	void CEffect::OnInactivated() {
+	void CEffect::on_inactivated() {
 		impl_->DisconnectMyCTransformUpdatedEvent();
 		impl_->PauseEffect();
-		return super::OnInactivated();
+		return super::on_inactivated();
 	}
 
-	void CEffect::OnFinalized() noexcept {
+	void CEffect::on_finalized() noexcept {
 		impl_->ClearEffectInstance();
-		super::OnFinalized();
+		super::on_finalized();
 	}
 
 	void CEffect::resource_id(const std::string &resource_id) {
 		if (!impl_->SetResourceByID(resource_id)) { return; }
-		if (is_valied()) {
+		if (is_valid()) {
 			if (!impl_->CreateEffectInstance()) { return; }
 			if (is_active() && auto_play()) { impl_->StartEffect(); }
 		}

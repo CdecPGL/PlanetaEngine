@@ -4,8 +4,7 @@
 
 #include "DxLib.h"
 
-#include "Game.hpp"
-
+#include "game.hpp"
 #include "ResourceManager.hpp"
 #include "LogManager.hpp"
 #include "SceneManager.hpp"
@@ -16,9 +15,7 @@
 #include "SaveManager.hpp"
 #include "debug_manager.hpp"
 #include "config_manager.hpp"
-
 #include "LogUtility.hpp"
-
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
 
@@ -28,9 +25,8 @@
 namespace plnt {
 	using namespace private_;
 
-	class Game::Impl_ {
-	private:
-		std::list<std::function<void()>> finalize_handls_;
+	class game::impl {
+		std::list<std::function<void()>> finalize_handles_;
 
 	public:
 		std::shared_ptr<ResourceManager> resource_manager;
@@ -44,11 +40,11 @@ namespace plnt {
 		std::shared_ptr<private_::debug_manager> debug_manager;
 		std::shared_ptr<private_::config_manager> config_manager;
 
-		Impl_() { }
+		impl() = default;
 
 		bool is_initialized = false;
 		//エンジンの初期化
-		bool InitializeSubSystems() {
+		bool initialize_sub_systems() {
 			//////////////////////////////////////////////////////////////////////////
 			//システムタイマーの初期化
 			//////////////////////////////////////////////////////////////////////////
@@ -57,7 +53,7 @@ namespace plnt {
 				return false;
 			}
 			if (performance_manager->Initialize()) {
-				finalize_handls_.push_front([this] { performance_manager->Finalize(); });
+				finalize_handles_.push_front([this] { performance_manager->Finalize(); });
 			} else {
 				assert(false);
 				return false;
@@ -71,7 +67,7 @@ namespace plnt {
 					return false;
 				}
 				if (log_manager->
-					Initialize()) { finalize_handls_.push_front([this] { log_manager->Finalize(); }); } else {
+					Initialize()) { finalize_handles_.push_front([this] { log_manager->Finalize(); }); } else {
 					PE_LOG_FATAL("ログシステムの初期化に失敗しました。");
 					return false;
 				}
@@ -91,16 +87,16 @@ namespace plnt {
 			//ファイルシステムの初期化
 			//////////////////////////////////////////////////////////////////////////
 			//リソース用ファイルアクセサ設定
-			auto resource_file_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Resource);
+			const auto resource_file_manipulator = CreateFileManipurator(init_funcs::FileAccessorKind::Resource);
 			if (resource_file_manipulator == nullptr) { return false; }
 			//SaveData用ファイルアクセサ設定
-			auto savedata_dir_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::SaveData);
-			if (savedata_dir_manipulator == nullptr) { return false; }
+			const auto save_data_dir_manipulator = CreateFileManipurator(init_funcs::FileAccessorKind::SaveData);
+			if (save_data_dir_manipulator == nullptr) { return false; }
 			//system用ファイルアクセサ設定
-			auto system_dir_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::System);
+			const auto system_dir_manipulator = CreateFileManipurator(init_funcs::FileAccessorKind::System);
 			if (system_dir_manipulator == nullptr) { return false; }
 			//config用ファイルアクセサ設定
-			auto config_dir_manipulator = init_funcs::CreateFileManipurator(init_funcs::FileAccessorKind::Config);
+			const auto config_dir_manipulator = CreateFileManipurator(init_funcs::FileAccessorKind::Config);
 			if (config_dir_manipulator == nullptr) { return false; }
 			//////////////////////////////////////////////////////////////////////////
 			//設定の読み込み
@@ -121,8 +117,10 @@ namespace plnt {
 					PE_LOG_FATAL("リソースマネージャが設定されていません。");
 					return false;
 				}
-				auto ret = init_funcs::InitializeResourceSystem(*resource_manager, resource_file_manipulator);
-				if (std::get<0>(ret) == false) { return false; } else { finalize_handls_.push_front(std::get<1>(ret)); }
+				if (const auto ret = init_funcs::InitializeResourceSystem(*resource_manager, resource_file_manipulator);
+					std::get<0>(ret) == false) { return false; } else {
+					finalize_handles_.push_front(std::get<1>(ret));
+				}
 			}
 			//////////////////////////////////////////////////////////////////////////
 			//セーブデータシステムの初期化
@@ -131,9 +129,9 @@ namespace plnt {
 				PE_LOG_FATAL("セーブマネージャが設定されていません。");
 				return false;
 			}
-			save_manager->SetFileManipurator_(savedata_dir_manipulator);
+			save_manager->SetFileManipurator_(save_data_dir_manipulator);
 			if (save_manager->
-				Initialize()) { finalize_handls_.push_front([this] { save_manager->Finalize(); }); } else {
+				Initialize()) { finalize_handles_.push_front([this] { save_manager->Finalize(); }); } else {
 				PE_LOG_FATAL("セーブデータシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -141,15 +139,16 @@ namespace plnt {
 			//DXライブラリの初期化
 			//////////////////////////////////////////////////////////////////////////
 			{
-				auto ret = init_funcs::InitializeDxLib(*config_manager);
-				if (std::get<0>(ret) == false) { return false; } else { finalize_handls_.push_front(std::get<1>(ret)); }
+				if (const auto ret = init_funcs::InitializeDxLib(*config_manager); std::get<0>(ret) == false) {
+					return false;
+				} else { finalize_handles_.push_front(std::get<1>(ret)); }
 			}
 			//////////////////////////////////////////////////////////////////////////
 			//Effekseerの初期化
 			//////////////////////////////////////////////////////////////////////////
 			{
-				auto ret = init_funcs::InitializeEffekseer();
-				if (std::get<0>(ret) == false) { return false; } else { finalize_handls_.push_front(std::get<1>(ret)); }
+				if (const auto ret = init_funcs::InitializeEffekseer(); std::get<0>(ret) ==
+					false) { return false; } else { finalize_handles_.push_front(std::get<1>(ret)); }
 			}
 			//////////////////////////////////////////////////////////////////////////
 			//描画システムの初期化
@@ -159,7 +158,7 @@ namespace plnt {
 				return false;
 			}
 			if (rendering_manager->Initialize()) {
-				finalize_handls_.push_front([this] { rendering_manager->Finalize(); });
+				finalize_handles_.push_front([this] { rendering_manager->Finalize(); });
 			} else {
 				PE_LOG_FATAL("描画システムの初期化に失敗しました。");
 				return false;
@@ -172,7 +171,7 @@ namespace plnt {
 				return false;
 			}
 			if (sound_manager->
-				Initialize()) { finalize_handls_.push_front([this] { sound_manager->Finalize(); }); } else {
+				Initialize()) { finalize_handles_.push_front([this] { sound_manager->Finalize(); }); } else {
 				PE_LOG_FATAL("サウンドシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -185,7 +184,7 @@ namespace plnt {
 			}
 			//キーコンフィグデータのセット予定
 			if (input_manager->
-				Initialize()) { finalize_handls_.push_front([this] { input_manager->Finalize(); }); } else {
+				Initialize()) { finalize_handles_.push_front([this] { input_manager->Finalize(); }); } else {
 				PE_LOG_FATAL("入力システムの初期化に失敗しました。");
 				return false;
 			}
@@ -197,7 +196,7 @@ namespace plnt {
 				return false;
 			}
 			if (debug_manager->initialize(*rendering_manager)) {
-				finalize_handls_.push_front([this] { debug_manager->finalize(); });
+				finalize_handles_.push_front([this] { debug_manager->finalize(); });
 			} else {
 				PE_LOG_FATAL("デバッグシステムの初期化に失敗しました。");
 				return false;
@@ -212,7 +211,7 @@ namespace plnt {
 			//リソースマネージャのセット
 			scene_manager->SetResouceManager(resource_manager);
 			if (scene_manager->
-				Initialize()) { finalize_handls_.push_front([this] { scene_manager->Finalize(); }); } else {
+				Initialize()) { finalize_handles_.push_front([this] { scene_manager->Finalize(); }); } else {
 				PE_LOG_FATAL("シーンシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -225,13 +224,13 @@ namespace plnt {
 		}
 
 		//エンジンの終了処理
-		void FinalizeSubSystems() { for (auto &&fh : finalize_handls_) { fh(); } }
+		void finalize_sub_systems() const { for (auto &&fh : finalize_handles_) { fh(); } }
 
 		//エンジンの更新
-		GameStatus UpdateSubSystems() {
-			if (ProcessMessage() < 0) { return GameStatus::Quit; } //DXライブラリの更新
+		[[nodiscard]] game_status update_sub_systems() const {
+			if (ProcessMessage() < 0) { return game_status::quit; } //DXライブラリの更新
 			input_manager->Update(); //入力の更新
-			auto sst = scene_manager->Process_(); //シーンの更新
+			const auto sst = scene_manager->Process_(); //シーンの更新
 			debug_manager->pre_rendering_update(); //デバッグマネージャの描画前更新
 			rendering_manager->Update(); //描画システムの更新
 			sound_manager->Update(); //サウンドシステムの更新
@@ -239,54 +238,53 @@ namespace plnt {
 			debug_manager->post_rendering_update(); //デバッグマネージャの描画後更新
 
 			switch (sst) {
-				case plnt::private_::SceneStatus_::Continue:
-					return GameStatus::Continue;
-				case plnt::private_::SceneStatus_::Quit:
-					return GameStatus::Quit;
-				case plnt::private_::SceneStatus_::Error:
-					return GameStatus::Error;
-				default:
-					assert(false);
-					return GameStatus::Error;
+				case SceneStatus_::Continue:
+					return game_status::play;
+				case SceneStatus_::Quit:
+					return game_status::quit;
+				case SceneStatus_::Error:
+					return game_status::error;
 			}
+
+			assert(false);
+			return game_status::error;
 		}
 	};
 
-	Game::Game() : impl_(std::make_unique<Impl_>()) { }
+	game::game() : impl_(std::make_unique<impl>()) { }
 
-	Game::~Game() { assert(impl_->is_initialized == false); }
+	game::~game() { assert(impl_->is_initialized == false); }
 
-	bool Game::Initialize() {
+	bool game::Initialize() {
 		if (impl_->is_initialized) {
 			assert(false);
 			return false;
 		}
-		if (impl_->InitializeSubSystems()) {
+		if (impl_->initialize_sub_systems()) {
 			PE_LOG_MESSAGE("PlanetaEngineが正常に初期化されました。");
 			impl_->is_initialized = true;
 			return true;
-		} else {
-			PE_LOG_FATAL("PlanetaEngineの初期化に失敗しました。");
-			impl_->FinalizeSubSystems();
-			return false;
 		}
+		PE_LOG_FATAL("PlanetaEngineの初期化に失敗しました。");
+		impl_->finalize_sub_systems();
+		return false;
 	}
 
-	void Game::Finalize() {
+	void game::Finalize() {
 		if (impl_->is_initialized == false) {
 			assert(false);
 			return;
 		}
 		PE_LOG_MESSAGE("PlanetaEngineを終了します。");
-		impl_->FinalizeSubSystems();
+		impl_->finalize_sub_systems();
 		impl_->is_initialized = false;
 	}
 
-	GameStatus Game::Update() { return impl_->UpdateSubSystems(); }
+	game_status game::update() const { return impl_->update_sub_systems(); }
 
-	bool Game::is_initialized() const { return impl_->is_initialized; }
+	bool game::is_initialized() const { return impl_->is_initialized; }
 
-	void Game::SetResourceManager(const std::shared_ptr<private_::ResourceManager> &mgr) {
+	void game::set_resource_manager(const std::shared_ptr<ResourceManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -294,9 +292,9 @@ namespace plnt {
 		impl_->resource_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::IResourceManager> Game::resource_manager() const { return impl_->resource_manager; }
+	std::shared_ptr<IResourceManager> game::resource_manager() const { return impl_->resource_manager; }
 
-	void Game::SetLogManager(const std::shared_ptr<private_::LogManager> &mgr) {
+	void game::set_log_manager(const std::shared_ptr<LogManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -304,9 +302,9 @@ namespace plnt {
 		impl_->log_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::ILogManager> Game::log_manager() const { return impl_->log_manager; }
+	std::shared_ptr<ILogManager> game::log_manager() const { return impl_->log_manager; }
 
-	void Game::SetSceneManager(const std::shared_ptr<private_::SceneManager> &mgr) {
+	void game::set_scene_manager(const std::shared_ptr<SceneManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -314,9 +312,9 @@ namespace plnt {
 		impl_->scene_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::ISceneManager> Game::scene_manager() const { return impl_->scene_manager; }
+	std::shared_ptr<ISceneManager> game::scene_manager() const { return impl_->scene_manager; }
 
-	void Game::SetInputManager(const std::shared_ptr<private_::InputManager> &mgr) {
+	void game::set_input_manager(const std::shared_ptr<InputManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -324,9 +322,9 @@ namespace plnt {
 		impl_->input_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::IInputManager> Game::input_manager() const { return impl_->input_manager; }
+	std::shared_ptr<IInputManager> game::input_manager() const { return impl_->input_manager; }
 
-	void Game::SetPerformanceManager(const std::shared_ptr<private_::PerformanceManager> &mgr) {
+	void game::set_performance_manager(const std::shared_ptr<PerformanceManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -334,9 +332,9 @@ namespace plnt {
 		impl_->performance_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::IPerformanceManager> Game::performance_manager() const { return impl_->performance_manager; }
+	std::shared_ptr<IPerformanceManager> game::performance_manager() const { return impl_->performance_manager; }
 
-	void Game::SetRenderingManager(const std::shared_ptr<private_::RenderingManager> &mgr) {
+	void game::set_rendering_manager(const std::shared_ptr<RenderingManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -344,9 +342,9 @@ namespace plnt {
 		impl_->rendering_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::IRenderingManager> Game::rendering_manager() const { return impl_->rendering_manager; }
+	std::shared_ptr<IRenderingManager> game::rendering_manager() const { return impl_->rendering_manager; }
 
-	void Game::SetSoundManager(const std::shared_ptr<private_::SoundManager> &mgr) {
+	void game::set_sound_manager(const std::shared_ptr<SoundManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -354,9 +352,9 @@ namespace plnt {
 		impl_->sound_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::ISoundManager> Game::sound_manager() const { return impl_->sound_manager; }
+	std::shared_ptr<ISoundManager> game::sound_manager() const { return impl_->sound_manager; }
 
-	void Game::SetSaveManager(const std::shared_ptr<private_::SaveManager> &mgr) {
+	void game::set_save_manager(const std::shared_ptr<SaveManager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -364,9 +362,9 @@ namespace plnt {
 		impl_->save_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::ISaveManager> Game::save_manager() const { return impl_->save_manager; }
+	std::shared_ptr<ISaveManager> game::save_manager() const { return impl_->save_manager; }
 
-	void Game::SetDebugManager(const std::shared_ptr<private_::debug_manager> &mgr) {
+	void game::set_debug_manager(const std::shared_ptr<private_::debug_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -374,9 +372,9 @@ namespace plnt {
 		impl_->debug_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::IDebugManager> Game::debug_manager() const { return impl_->debug_manager; }
+	std::shared_ptr<IDebugManager> game::debug_manager() const { return impl_->debug_manager; }
 
-	void Game::SetConfigManager(const std::shared_ptr<private_::config_manager> &mgr) {
+	void game::set_config_manager(const std::shared_ptr<private_::config_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -384,5 +382,5 @@ namespace plnt {
 		impl_->config_manager = mgr;
 	}
 
-	std::shared_ptr<plnt::IConfigManager> Game::config_manager() const { return impl_->config_manager; }
+	std::shared_ptr<IConfigManager> game::config_manager() const { return impl_->config_manager; }
 }

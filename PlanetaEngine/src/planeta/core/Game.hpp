@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
-#include "Object.hpp"
+
 #include "SingletonTemplate.hpp"
 
 namespace plnt {
@@ -30,69 +30,73 @@ namespace plnt {
 	}
 
 	/*! ゲームのステータス*/
-	enum class GameStatus { Continue, Quit, Error };
+	enum class game_status { play, quit, error };
 
 	/*! PlanetaEngineクラス*/
-	class Game final : public util::SingletonTemplate<Game> {
-		friend util::SingletonTemplate<Game>;
+	class game final : public util::SingletonTemplate<game> {
+		friend SingletonTemplate;
 
 	public:
 		/*! 標準のマネージャを設定する。初期化前に実行しなければならない*/
-		void SetStandardManagers();
+		void set_standard_managers() const;
 		/*! エンジンの初期化*/
 		bool Initialize() override;
 		/*! エンジンの終了処理*/
 		void Finalize() override;
 		/*! エンジンの更新(初期化が正常に行われていない状態での呼び出しは未定義動作)*/
-		GameStatus Update();
+		[[nodiscard]] game_status update() const;
 		/*! 初期化されているか*/
-		bool is_initialized() const;
+		[[nodiscard]] bool is_initialized() const;
 		/*! リソースマネージャを設定する(初期化前)*/
-		void SetResourceManager(const std::shared_ptr<private_::ResourceManager> &mgr);
+		void set_resource_manager(const std::shared_ptr<private_::ResourceManager> &mgr) const;
 		/*! ログマネージャを設定する(初期化前)*/
-		void SetLogManager(const std::shared_ptr<private_::LogManager> &mgr);
+		auto set_log_manager(const std::shared_ptr<private_::LogManager> &mgr) const -> void;
 		/*! シーンマネージャを設定する(初期化前)*/
-		void SetSceneManager(const std::shared_ptr<private_::SceneManager> &mgr);
+		void set_scene_manager(const std::shared_ptr<private_::SceneManager> &mgr) const;
 		/*! インプットマネージャを設定する(初期化前)*/
-		void SetInputManager(const std::shared_ptr<private_::InputManager> &mgr);
+		void set_input_manager(const std::shared_ptr<private_::InputManager> &mgr) const;
 		/*! パフォーマンスマネージャを設定する(初期化前)*/
-		void SetPerformanceManager(const std::shared_ptr<private_::PerformanceManager> &mgr);
+		void set_performance_manager(const std::shared_ptr<private_::PerformanceManager> &mgr) const;
 		/*! レンダリングマネージャを設定する(初期化前)*/
-		void SetRenderingManager(const std::shared_ptr<private_::RenderingManager> &mgr);
+		void set_rendering_manager(const std::shared_ptr<private_::RenderingManager> &mgr) const;
 		/*! サウンドマネージャを設定する(初期化前)*/
-		void SetSoundManager(const std::shared_ptr<private_::SoundManager> &mgr);
+		void set_sound_manager(const std::shared_ptr<private_::SoundManager> &mgr) const;
 		/*! セーブマネージャを設定する(初期化前)*/
-		void SetSaveManager(const std::shared_ptr<private_::SaveManager> &mgr);
+		void set_save_manager(const std::shared_ptr<private_::SaveManager> &mgr) const;
 		/*! デバッグマネージャを設定する(初期化前)*/
-		void SetDebugManager(const std::shared_ptr<private_::debug_manager> &mgr);
+		void set_debug_manager(const std::shared_ptr<private_::debug_manager> &mgr) const;
 		/*! コンフィグマネージャを設定する(初期化前)*/
-		void SetConfigManager(const std::shared_ptr<private_::config_manager> &mgr);
+		void set_config_manager(const std::shared_ptr<private_::config_manager> &mgr) const;
 		/*! リソースマネージャにアクセスする*/
-		std::shared_ptr<IResourceManager> resource_manager() const;
+		[[nodiscard]] std::shared_ptr<IResourceManager> resource_manager() const;
 		/*! ログマネージャにアクセスする*/
-		std::shared_ptr<ILogManager> log_manager() const;
+		[[nodiscard]] std::shared_ptr<ILogManager> log_manager() const;
 		/*! シーンマネージャにアクセスする*/
-		std::shared_ptr<ISceneManager> scene_manager() const;
+		[[nodiscard]] std::shared_ptr<ISceneManager> scene_manager() const;
 		/*! インプットマネージャにアクセスする*/
-		std::shared_ptr<IInputManager> input_manager() const;
+		[[nodiscard]] std::shared_ptr<IInputManager> input_manager() const;
 		/*! パフォーマンスマネージャにアクセスする*/
-		std::shared_ptr<IPerformanceManager> performance_manager() const;
+		[[nodiscard]] std::shared_ptr<IPerformanceManager> performance_manager() const;
 		/*! レンダリングマネージャにアクセスする*/
-		std::shared_ptr<IRenderingManager> rendering_manager() const;
+		[[nodiscard]] std::shared_ptr<IRenderingManager> rendering_manager() const;
 		/*! サウンドマネージャにアクセスする*/
-		std::shared_ptr<ISoundManager> sound_manager() const;
+		[[nodiscard]] std::shared_ptr<ISoundManager> sound_manager() const;
 		/*! セーブマネージャにアクセスする*/
-		std::shared_ptr<ISaveManager> save_manager() const;
+		[[nodiscard]] std::shared_ptr<ISaveManager> save_manager() const;
 		/*! デバッグマネージャにアクセスする*/
-		std::shared_ptr<IDebugManager> debug_manager() const;
+		[[nodiscard]] std::shared_ptr<IDebugManager> debug_manager() const;
 		/*! コンフィグマネージャにアクセスする*/
-		std::shared_ptr<IConfigManager> config_manager() const;
+		[[nodiscard]] std::shared_ptr<IConfigManager> config_manager() const;
 
 	private:
-		Game();
-		~Game();
+		game();
+		game(const game &) = delete;
+		game(game &&) = delete;
+		~game() override;
+		game &operator=(const game &) = delete;
+		game &operator=(game &&) = delete;
 
-		class Impl_;
-		std::unique_ptr<Impl_> impl_;
+		class impl;
+		std::unique_ptr<impl> impl_;
 	};
 }

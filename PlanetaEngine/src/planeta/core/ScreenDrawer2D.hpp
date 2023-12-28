@@ -9,7 +9,7 @@
 namespace plnt {
 	namespace private_ {
 		class Screen;
-		class GraphDrawData2D;
+		class graph_draw_data_2d;
 	}
 
 	class ScreenDrawer2D {
@@ -17,7 +17,7 @@ namespace plnt {
 		explicit ScreenDrawer2D(private_::Screen &scr) : screen_(scr) { }
 
 		/*画像の描画(画像描画データ)*/
-		void DrawGraph(const std::shared_ptr<private_::GraphDrawData2D> &graph_draw_data);
+		void DrawGraph(const std::shared_ptr<private_::graph_draw_data_2d> &graph_draw_data);
 		/*ワイヤーの描画(点座標、幅(現状では無効)、色)*/
 		void DrawWire(const std::vector<Vector2Df> &positions, double width, const plnt::color &color);
 		/*多角形の描画(点座標、三角形ポリゴンインデックス、色)*/

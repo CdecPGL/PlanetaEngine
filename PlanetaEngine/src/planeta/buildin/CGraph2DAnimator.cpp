@@ -13,9 +13,9 @@ namespace plnt {
 			.shallow_copy_target(&CGraph2DAnimator::animations_);
 	}
 
-	bool CGraph2DAnimator::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		draw_graph_component_.reset(com_getter.GetComponent<CDrawGraph2D>());
+	bool CGraph2DAnimator::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		draw_graph_component_.reset(com_getter.get_component<CDrawGraph2D>());
 		if (draw_graph_component_ == nullptr) {
 			PE_LOG_ERROR("DrawGraphComponentを取得できませんでした。");
 			return false;
@@ -23,8 +23,8 @@ namespace plnt {
 		return true;
 	}
 
-	void CGraph2DAnimator::OnInitialized() {
-		super::OnInitialized();
+	void CGraph2DAnimator::on_initialized() {
+		super::on_initialized();
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
 		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		tsk->SetExcuteFunction([this]() { UpdateAnimation(); });

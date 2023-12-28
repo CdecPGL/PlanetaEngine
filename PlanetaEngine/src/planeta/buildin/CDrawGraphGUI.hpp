@@ -28,7 +28,7 @@ namespace plnt {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		void DrawProc(ScreenDrawerGUI &drawer) override;
-		bool GetOtherComponentsProc(const GOComponentGetter &) override;
+		bool get_other_components_proc(const go_component_getter &) override;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawGraphGUI);

@@ -1,6 +1,6 @@
 ﻿#include <functional>
 
-#include "Game.hpp"
+#include "game.hpp"
 #include "RenderingManager.hpp"
 #include "config_manager.hpp"
 #include "StandardDrawSystem.hpp"
@@ -83,7 +83,7 @@ namespace plnt {
 		void StandardDrawSystem::Update() { }
 
 		bool StandardDrawSystem::Initialize() {
-			screen_ = Game::instance().rendering_manager()->GetMainScreen();
+			screen_ = game::instance().rendering_manager()->GetMainScreen();
 			if (!screen_) { return false; }
 			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
 			screen_drawer_gui_ = std::make_unique<ScreenDrawerGUI>(*screen_);
@@ -104,7 +104,7 @@ namespace plnt {
 				double scale = camera2d_->expansion();
 				double rota_rad = camera2d_->rotation_rad();
 				Vector2Dd pos = camera2d_->position();
-				SetupCamera_Ortho((float)(Game::instance().config_manager()->draw_size().y / scale));
+				SetupCamera_Ortho((float)(game::instance().config_manager()->draw_size().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z),
 				                          GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
 				//Effekseerのカメラを同期

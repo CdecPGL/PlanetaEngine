@@ -10,7 +10,7 @@
 
 namespace plnt {
 	class Task;
-	class GameObjectComponent;
+	class game_object_component;
 	class Task;
 
 	/*! ゲームオブジェクトの状態*/
@@ -31,9 +31,9 @@ namespace plnt {
 		//! コンポーネントを型で取得する
 		template <class ComT>
 		WeakPointer<ComT> GetComponent() const {
-			static_assert(std::is_base_of<GameObjectComponent, ComT>::value == true,
+			static_assert(std::is_base_of<game_object_component, ComT>::value == true,
 			              "ComT must drive GameObjectComponent.");
-			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](GameObjectComponent *goc) {
+			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](game_object_component *goc) {
 				return dynamic_cast<ComT *>(goc) !=
 					nullptr;
 			}));
@@ -79,8 +79,8 @@ namespace plnt {
 		Signal<void()> disposed;
 
 	protected:
-		virtual std::shared_ptr<GameObjectComponent> GetComponentByTypeInfo_(
-			const std::type_info &ti, const std::function<bool(GameObjectComponent *goc)> &type_checker) const = 0;
+		virtual std::shared_ptr<game_object_component> GetComponentByTypeInfo_(
+			const std::type_info &ti, const std::function<bool(game_object_component *goc)> &type_checker) const = 0;
 		virtual void SetUpAttachedTask_(const WeakPointer<Task> &task) = 0;
 	};
 }

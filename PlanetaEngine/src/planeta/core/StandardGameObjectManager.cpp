@@ -1,37 +1,37 @@
 ﻿#include "StandardGameObjectManager.hpp"
-#include "GameObjectBase.hpp"
+#include "game_object_base.hpp"
 #include "StandardTaskManager.hpp"
 #include "LogUtility.hpp"
-#include "GameObjectFactory.hpp"
+#include "game_object_factory.hpp"
 #include "IDebugManager.hpp"
 #include "boost/algorithm/string.hpp"
 
 namespace plnt {
 	namespace private_ {
 		StandardGameObjectManager::StandardGameObjectManager() : game_object_factory_(
-			                                                         std::make_unique<private_::GameObjectFactory>()),
+			                                                         std::make_unique<private_::game_object_factory>()),
 		                                                         _id_counter(0) { };
 		StandardGameObjectManager::~StandardGameObjectManager() = default;
 
 		void StandardGameObjectManager::Update() { RemoveProc_(); }
 
-		std::shared_ptr<GameObjectBase> StandardGameObjectManager::CreateAndSetUpGameObject_(
+		std::shared_ptr<game_object_base> StandardGameObjectManager::CreateAndSetUpGameObject_(
 			const std::string &game_object_type_id) {
-			auto go = game_object_factory_->GetNewGameObject(game_object_type_id, scene_internal_interface());
+			auto go = game_object_factory_->get_new_game_object(game_object_type_id, scene_internal_interface());
 			return go;
 		}
 
-		std::shared_ptr<GameObjectBase> StandardGameObjectManager::CreateAndSetUpGameObject_(
+		std::shared_ptr<game_object_base> StandardGameObjectManager::CreateAndSetUpGameObject_(
 			const std::vector<std::string> &com_type_list) {
-			auto go = game_object_factory_->GetNewGameObject(com_type_list, scene_internal_interface());
+			auto go = game_object_factory_->get_new_game_object(com_type_list, scene_internal_interface());
 			return go;
 		}
 
-		int StandardGameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase> &go) {
+		int StandardGameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go) {
 			assert(go != nullptr);
 			int id = _id_counter++;
-			go->SetManagerConnection(std::make_unique<GameObjectManagerConnection>(*this, id));
-			if (go->ProcessInitialization() == false) {
+			go->set_manager_connection(std::make_unique<game_object_manager_connection>(*this, id));
+			if (go->process_initialization() == false) {
 				PE_LOG_ERROR("ゲームオブジェクトの初期化に失敗しました。");
 				return -1;
 			}
@@ -39,7 +39,7 @@ namespace plnt {
 			return id;
 		}
 
-		int StandardGameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<GameObjectBase> &go,
+		int StandardGameObjectManager::RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go,
 		                                                                const std::string &name) {
 			assert(go != nullptr);
 			int id = RegisterAndInitializeGameObject_(go);
@@ -86,56 +86,56 @@ namespace plnt {
 			}
 		}
 
-		bool StandardGameObjectManager::ActivateGameObject(int id) {
+		bool StandardGameObjectManager::activate_game_object(int id) {
 			auto it = inactive_game_objects_.find(id);
 			if (it == inactive_game_objects_.end()) { return false; }
-			it->second->ProcessActivation();
+			it->second->process_activation();
 			active_game_objects_.insert(*it);
 			inactive_game_objects_.erase(it);
 			return true;
 		}
 
-		bool StandardGameObjectManager::InActivateGameObject(int id) {
+		bool StandardGameObjectManager::inactivate_game_object(int id) {
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) { return false; }
-			it->second->ProcessInactivation();
+			it->second->process_inactivation();
 			inactive_game_objects_.insert(*it);
 			active_game_objects_.erase(it);
 			return true;
 		}
 
-		bool StandardGameObjectManager::RemoveGameObject(int id) {
+		bool StandardGameObjectManager::remove_game_object(int id) {
 			auto it = active_game_objects_.find(id);
 			if (it == active_game_objects_.end()) {
 				it = inactive_game_objects_.find(id);
 				if (it == inactive_game_objects_.end()) { return false; } else {
-					it->second->ProcessDisposal();
+					it->second->process_disposal();
 					garbage_.push_back(it->second);
 					inactive_game_objects_.erase(it);
 					return true;
 				}
 			} else {
-				it->second->ProcessInactivation(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
-				it->second->ProcessDisposal();
+				it->second->process_inactivation(); //アクティブリストにあったゲームオブジェクトは、無効化処理を行ってから破棄する
+				it->second->process_disposal();
 				garbage_.push_back(it->second);
 				active_game_objects_.erase(it);
 				return true;
 			}
 		}
 
-		void StandardGameObjectManager::RemoveAllGameObjects() {
+		void StandardGameObjectManager::remove_all_game_objects() {
 			for (auto &go : active_game_objects_) {
-				go.second->ProcessInactivation();
-				go.second->ProcessDisposal();
+				go.second->process_inactivation();
+				go.second->process_disposal();
 			}
 			active_game_objects_.clear();
-			for (auto &go : inactive_game_objects_) { go.second->ProcessDisposal(); }
+			for (auto &go : inactive_game_objects_) { go.second->process_disposal(); }
 			inactive_game_objects_.clear();
 		}
 
 		bool StandardGameObjectManager::Initialize() { return true; }
 
-		void StandardGameObjectManager::Finalize() { RemoveAllGameObjects(); }
+		void StandardGameObjectManager::Finalize() { remove_all_game_objects(); }
 
 		void StandardGameObjectManager::RemoveProc_() { garbage_.clear(); }
 

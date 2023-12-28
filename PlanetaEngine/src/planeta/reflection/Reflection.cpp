@@ -8,6 +8,7 @@
 #include "planeta/core/StringUtility.hpp"
 
 #include "reflection.hpp"
+#include "reflectable.hpp"
 #include "reflection_exceptions.hpp"
 #include "class_info_caller.hpp"
 #include "reflectable_class_accessor.hpp"
@@ -212,7 +213,7 @@ namespace plnt::reflection {
 	}
 
 	void reflection::out_put_error_log(const std::string &detail, const std::string &place) {
-		Game::instance().log_manager()->Log(LogLevel::Error, place, detail);
+		game::instance().log_manager()->Log(LogLevel::Error, place, detail);
 	}
 
 	const class_info *reflection::get_class_info_reflectable(const std::type_info &t_info) noexcept {

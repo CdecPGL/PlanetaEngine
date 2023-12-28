@@ -1,17 +1,17 @@
 ﻿#pragma once
 
-#include "planeta/core/GameObjectSystemComponent.hpp"
+#include "..\core\game_object_system_component.hpp"
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
 	class CTransform2D;
 
 	/*! 二次元カメラコンポーネント*/
-	class CCamera2D final : public private_::GameObjectSystemComponent {
+	class CCamera2D final : public private_::game_object_system_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCamera2D);
 
 	public:
-		using super = private_::GameObjectSystemComponent;
+		using super = private_::game_object_system_component;
 
 		CCamera2D();
 		~CCamera2D();
@@ -35,11 +35,11 @@ namespace plnt {
 		double expansion_ = 1.0;
 
 		NonOwingPointer<CTransform2D> transform2d_;
-		virtual bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
-		virtual void OnInitialized() override;
-		virtual void OnActivated() override;
-		virtual void OnInactivated() override;
-		virtual void OnFinalized() noexcept override;
+		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
+		virtual void on_initialized() override;
+		virtual void on_activated() override;
+		virtual void on_inactivated() override;
+		virtual void on_finalized() noexcept override;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CCamera2D);

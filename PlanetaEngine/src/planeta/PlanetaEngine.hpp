@@ -10,7 +10,7 @@
 //#pragma comment(lib,"planetaengine_mt.lib")
 //#endif
 
-#include "core/Game.hpp"
+#include "core/game.hpp"
 
 //Reflectionシステムに登録するためのヘッダファイル展開
 //PlanetaEngineライブラリを使用するプロジェクト内で一度も、PE_REFLECTABLE_CLASSマクロ二よりトリガークラスが定義されていない、つまりヘッダファイルをインクルードがインストールされていない場合、トリガークラスが呼び出されない。
@@ -19,7 +19,7 @@
 #include "BuildinTasks.hpp"
 #include "BuildinResources.hpp"
 
-#include "core/GameObjectStandardComponent.hpp"
+#include "core\game_object_standard_component.hpp"
 #include "core/IGameObject.hpp"
 #include "core/IScene.hpp"
 #include "core/IGameObjectManager.hpp"

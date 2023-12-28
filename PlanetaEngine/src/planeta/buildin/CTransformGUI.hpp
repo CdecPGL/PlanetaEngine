@@ -1,15 +1,15 @@
 ﻿#pragma once
 
-#include "planeta/core/GameObjectSystemComponent.hpp"
+#include "..\core\game_object_system_component.hpp"
 #include "planeta/core/RectAngle.hpp"
 
 namespace plnt {
 	//! GUI用トランスフォームコンポーネント(親子関係関連の機能は未実装)
-	class CTransformGUI final : public private_::GameObjectSystemComponent {
+	class CTransformGUI final : public private_::game_object_system_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CTransformGUI);
 
 	public:
-		using super = private_::GameObjectSystemComponent;
+		using super = private_::game_object_system_component;
 		CTransformGUI();
 		~CTransformGUI();
 		/*アクセサ*/
@@ -43,8 +43,8 @@ namespace plnt {
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
 		//GOCオーバーライド
-		void OnActivated() override final;
-		void OnInactivated() override final;
+		void on_activated() override final;
+		void on_inactivated() override final;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CTransformGUI);

@@ -12,7 +12,7 @@ namespace plnt {
 
 	private:
 		NonOwingPointer<CPlanet> planet_component_;
-		bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
+		bool get_other_components_proc(const go_component_getter &com_getter) override;
 		virtual bool collide_with(CCircleCollider2D &circle_collider) override;
 		double GetAltitudeWithGroundPosition(const Vector2Dd &ground_pos) const override;
 		Vector2Dd ConvertPositionGlobalToGround(const Vector2Dd &global_pos) const override;

@@ -44,9 +44,9 @@ namespace plnt {
 		                 impl_->reverse_flag, impl_->graph_res.resource_shared_pointer());
 	}
 
-	bool CDrawGraphGUI::GetOtherComponentsProc(const GOComponentGetter &com_getter) {
-		if (!super::GetOtherComponentsProc(com_getter)) { return false; }
-		impl_->my_c_trans_gui = com_getter.GetComponent<CTransformGUI>();
+	bool CDrawGraphGUI::get_other_components_proc(const go_component_getter &com_getter) {
+		if (!super::get_other_components_proc(com_getter)) { return false; }
+		impl_->my_c_trans_gui = com_getter.get_component<CTransformGUI>();
 		return true;
 	}
 

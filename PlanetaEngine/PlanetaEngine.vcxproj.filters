@@ -537,46 +537,43 @@
     <ClInclude Include="src\planeta\core\e_collision_with_ground_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Game.hpp">
+    <ClInclude Include="src\planeta\core\game.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectBase.hpp">
+    <ClInclude Include="src\planeta\core\game_object_base.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectComponent.hpp">
+    <ClInclude Include="src\planeta\core\game_object_component.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectComponentHolder.hpp">
+    <ClInclude Include="src\planeta\core\game_object_component_holder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectComponentSetUpData.hpp">
+    <ClInclude Include="src\planeta\core\game_object_component_setup_data.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectComponentUpdateProcess.hpp">
+    <ClInclude Include="src\planeta\core\game_object_factory.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectFactory.hpp">
+    <ClInclude Include="src\planeta\core\game_object_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectManager.hpp">
+    <ClInclude Include="src\planeta\core\game_object_manager_connection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectManagerConnection.hpp">
+    <ClInclude Include="src\planeta\core\game_object_standard_component.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectStandardComponent.hpp">
+    <ClInclude Include="src\planeta\core\game_object_system_component.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GameObjectSystemComponent.hpp">
+    <ClInclude Include="src\planeta\core\go_component_adder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GOComponentAdder.hpp">
+    <ClInclude Include="src\planeta\core\go_component_getter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\GOComponentGetter.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\core\GraphDrawData2D.hpp">
+    <ClInclude Include="src\planeta\core\graph_draw_data_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\i_gm_controller.hpp">
@@ -1109,34 +1106,34 @@
     <ClCompile Include="src\planeta\core\data_container_serialize_utility.cpp">
       <Filter>PlanetaEngine\Utility\DataContainer\Serialize</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\Game.cpp">
+    <ClCompile Include="src\planeta\core\game.cpp">
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GameObjectBase.cpp">
+    <ClCompile Include="src\planeta\core\game_object_base.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GameObjectComponent.cpp">
+    <ClCompile Include="src\planeta\core\game_object_component.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GameObjectComponentHolder.cpp">
+    <ClCompile Include="src\planeta\core\game_object_component_holder.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Component</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GameObjectFactory.cpp">
+    <ClCompile Include="src\planeta\core\game_object_factory.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GameObjectManagerConnection.cpp">
+    <ClCompile Include="src\planeta\core\game_object_manager_connection.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GameSetStandardManagerImpl.cpp">
+    <ClCompile Include="src\planeta\core\game_set_standard_manager_impl.cpp">
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GOComponentAdder.cpp">
+    <ClCompile Include="src\planeta\core\go_component_adder.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GOComponentGetter.cpp">
+    <ClCompile Include="src\planeta\core\go_component_getter.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\GraphDrawData2D.cpp">
+    <ClCompile Include="src\planeta\core\graph_draw_data_2d.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\InitFunctions.cpp">

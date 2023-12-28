@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Game.hpp"
+#include "game.hpp"
 #include "IResourceManager.hpp"
 #include "LogUtility.hpp"
 
@@ -24,7 +24,7 @@ namespace plnt {
 			ResourceHolder &operator=(ResourceHolder &&obj) = default;
 			/*! IDでリソースを設定する*/
 			bool SetResourceByID(const std::string &res_id) noexcept {
-				auto res = Game::instance().resource_manager()->GetResourceByTypeAndID(typeid(ResType), res_id);
+				auto res = game::instance().resource_manager()->GetResourceByTypeAndID(typeid(ResType), res_id);
 				if (res == nullptr) {
 					PE_LOG_ERROR("リソースの取得に失敗しました。(リソースID:", res_id, ")");
 					return false;

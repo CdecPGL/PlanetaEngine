@@ -1,4 +1,4 @@
-﻿#include "Game.hpp"
+﻿#include "game.hpp"
 #include "config_manager.hpp"
 #include "StandardCollisionWorld.hpp"
 #include "boost/next_prior.hpp"
@@ -222,13 +222,13 @@ namespace plnt {
 		}
 
 		void StandardCollisionWorld::SetCollisionGroupMatrix() {
-			decltype(auto) collision_group_list = Game::instance().config_manager()->collision_group_matrix().
+			decltype(auto) collision_group_list = game::instance().config_manager()->collision_group_matrix().
 			                                                       get_collision_group_list();
 			for (const auto &group_name : collision_group_list) {
 				collision_groupes_.emplace(group_name, CollisionGroupType());
 			}
 
-			decltype(auto) collisionable_group_pair_list = Game::instance().config_manager()->collision_group_matrix().
+			decltype(auto) collisionable_group_pair_list = game::instance().config_manager()->collision_group_matrix().
 			                                                                get_collisionable_group_pair_list();
 			collide_group_pair_list_.reserve(collisionable_group_pair_list.size());
 			for (const auto &collisionable_group_pair : collisionable_group_pair_list) {
@@ -278,7 +278,7 @@ namespace plnt {
 		bool StandardCollisionWorld::Initialize() {
 			SetCollisionGroupMatrix();
 			//デバッグ描画を作成
-			Game::instance().debug_manager()->CreateDebugDrawChannel("CollisionSystem",
+			game::instance().debug_manager()->CreateDebugDrawChannel("CollisionSystem",
 			                                                         std::bind(
 				                                                         &StandardCollisionWorld::DebugDrawHandler,
 				                                                         this, std::placeholders::_1));
@@ -303,7 +303,7 @@ namespace plnt {
 
 		void StandardCollisionWorld::Finalize() {
 			//デバッグ描画を破棄
-			Game::instance().debug_manager()->DeleteDebugDrawChannel("CollisionSystem");
+			game::instance().debug_manager()->DeleteDebugDrawChannel("CollisionSystem");
 		}
 	}
 }

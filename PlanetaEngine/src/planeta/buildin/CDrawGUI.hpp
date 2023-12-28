@@ -1,15 +1,15 @@
 ﻿#pragma once
 
-#include "planeta/core/GameObjectSystemComponent.hpp"
+#include "..\core\game_object_system_component.hpp"
 
 namespace plnt {
 	class ScreenDrawerGUI;
 
-	class CDrawGUI : public private_::GameObjectSystemComponent {
+	class CDrawGUI : public private_::game_object_system_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGUI);
 
 	public:
-		using super = private_::GameObjectSystemComponent;
+		using super = private_::game_object_system_component;
 		CDrawGUI();
 		virtual ~CDrawGUI();
 		/*描画処理*/
@@ -24,10 +24,10 @@ namespace plnt {
 		CDrawGUI &draw_priority(int priority);
 
 	protected:
-		virtual void OnInitialized() override;
-		virtual void OnFinalized() noexcept override;
-		virtual void OnActivated() override;
-		virtual void OnInactivated() override;
+		virtual void on_initialized() override;
+		virtual void on_finalized() noexcept override;
+		virtual void on_activated() override;
+		virtual void on_inactivated() override;
 
 	private:
 		class Impl_;

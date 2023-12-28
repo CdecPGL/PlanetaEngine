@@ -4,7 +4,7 @@
 #include <functional>
 
 #include "planeta/core/Signal.hpp"
-#include "planeta/core/GameObjectSystemComponent.hpp"
+#include "..\core\game_object_system_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/Vector2D.hpp"
 #include "planeta/core/i_collider_with_collider_2d.hpp"
@@ -15,11 +15,11 @@ namespace plnt {
 	class e_collision_with_ground_2d;
 
 	/*! コライダーの基底コンポーネント*/
-	class CCollider2D : public private_::GameObjectSystemComponent, public private_::i_collider_with_collider_2d {
+	class CCollider2D : public private_::game_object_system_component, public private_::i_collider_with_collider_2d {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCollider2D);
 
 	public:
-		using super = private_::GameObjectSystemComponent;
+		using super = private_::game_object_system_component;
 		virtual ~CCollider2D() = default;
 		/*衝突判定を行う*/
 		virtual bool DetectCollision(private_::i_collider_with_collider_2d &collider) = 0;
@@ -71,11 +71,11 @@ namespace plnt {
 		const CTransform2D &transform2d() const { return *transform2d_; }
 
 	protected:
-		virtual bool GetOtherComponentsProc(const GOComponentGetter &com_getter) override;
+		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
 
 	private:
-		void OnActivated() override final;
-		void OnInactivated() override final;
+		void on_activated() override final;
+		void on_inactivated() override final;
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
 

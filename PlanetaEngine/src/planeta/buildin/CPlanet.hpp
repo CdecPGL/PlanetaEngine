@@ -2,15 +2,15 @@
 
 #include <vector>
 
-#include "planeta/core/GameObjectStandardComponent.hpp"
+#include "..\core\game_object_standard_component.hpp"
 
 namespace plnt {
 	/*! 平面惑星コンポーネント*/
-	class CPlanet : public GameObjectStandardComponent {
+	class CPlanet : public game_object_standard_component {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CPlanet);
 
 	public:
-		using super = GameObjectStandardComponent;
+		using super = game_object_standard_component;
 		CPlanet();
 		~CPlanet() = default;
 		/*! 地表の高さを頂点インデックスで設定するb*/

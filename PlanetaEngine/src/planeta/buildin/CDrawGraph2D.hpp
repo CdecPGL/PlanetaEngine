@@ -11,7 +11,7 @@
 
 namespace plnt {
 	namespace private_ {
-		class GraphDrawData2D;
+		class graph_draw_data_2d;
 	}
 
 	/*! 平面画像描画コンポーネント*/
@@ -59,7 +59,7 @@ namespace plnt {
 		/*画像の中心位置*/
 		Vector2Dd graph_center_ = Vector2Dd(0.5, 0.5);
 		/*画像描画データ*/
-		std::shared_ptr<private_::GraphDrawData2D> graph_draw_data_;
+		std::shared_ptr<private_::graph_draw_data_2d> graph_draw_data_;
 		/*ポリゴン情報更新*/
 		void _UpdatePolygon();
 		/*UV座標更新*/
