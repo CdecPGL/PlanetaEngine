@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace plnt {
-	class File;
+	class file;
 
 	/*! Csvファイルクラス*/
 	class csv_file final {
@@ -14,7 +14,7 @@ namespace plnt {
 		[[nodiscard]] csv_data::const_iterator cbegin() const;
 		csv_data::iterator end();
 		[[nodiscard]] csv_data::const_iterator cend() const;
-		bool load(const File &file);
+		bool load(const file &file);
 
 	private:
 		std::vector<std::vector<std::string>> loaded_datas_;

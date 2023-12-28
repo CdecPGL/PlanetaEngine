@@ -6,7 +6,7 @@
 #include "collision_detect_functions.hpp"
 #include "planeta/buildin/CCollider2D.hpp"
 #include "planeta/buildin/CGround2D.hpp"
-#include "EACollisionWithCollider2D.hpp"
+#include "e_collision_with_collider_2d.hpp"
 #include "e_collision_with_ground_2d.hpp"
 #include "collision_group_matrix.hpp"
 #include "LogUtility.hpp"
@@ -43,12 +43,12 @@ namespace plnt {
 						(*ccc_it2).get().collider2d_data.collider2d)) {
 						++collision_count;
 						//衝突していたら衝突イベントをホルダーに追加
-						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.collider2d);
+						e_collision_with_collider_2d cea0((*ccc_it2).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
 							[eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_invoker, arg = cea0]() {
 								eve(arg);
 							});
-						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.collider2d);
+						e_collision_with_collider_2d cea1((*ccc_it).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
 							[eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_invoker, arg = cea1]() {
 								eve(arg);
@@ -69,12 +69,12 @@ namespace plnt {
 						(*ccc_it2).get().collider2d_data.collider2d)) {
 						++collision_count;
 						//衝突していたら衝突イベントをホルダーに追加
-						EACollisionWithCollider2D cea0((*ccc_it2).get().collider2d_data.collider2d);
+						e_collision_with_collider_2d cea0((*ccc_it2).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
 							[eve = (*ccc_it).get().collider2d_data.collide_with_collider_event_invoker, arg = cea0]() {
 								eve(arg);
 							});
-						EACollisionWithCollider2D cea1((*ccc_it).get().collider2d_data.collider2d);
+						e_collision_with_collider_2d cea1((*ccc_it).get().collider2d_data.collider2d);
 						collision_event_que.push_back(
 							[eve = (*ccc_it2).get().collider2d_data.collide_with_collider_event_invoker, arg = cea1]() {
 								eve(arg);

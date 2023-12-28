@@ -5,7 +5,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool StandardConfigManager::load_system_config(const File &file) {
+		bool StandardConfigManager::load_system_config(const file &file) {
 			JsonFile json_file{};
 			//FileからJSONリソースを作成する
 			if (!json_file.Load(file)) {
@@ -73,7 +73,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardConfigManager::load_user_config(const File &file) {
+		bool StandardConfigManager::load_user_config(const file &file) {
 			JsonFile json_file{};
 			//FileからJSONリソースを作成する
 			if (!json_file.Load(file)) {

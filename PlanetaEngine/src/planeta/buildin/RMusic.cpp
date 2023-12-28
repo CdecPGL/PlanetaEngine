@@ -1,11 +1,11 @@
 ﻿#include "DxLib.h"
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 
 #include "RMusic.hpp"
 
 namespace plnt {
-	bool RMusic::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RMusic::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMPRESS);

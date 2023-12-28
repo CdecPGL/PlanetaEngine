@@ -6,7 +6,7 @@
 #include "InitFunctions.hpp"
 #include "SystemVariables.hpp"
 #include "file_manipulator.hpp"
-#include "File.hpp"
+#include "file.hpp"
 #include "JsonFile.hpp"
 #include "config_manager.hpp"
 

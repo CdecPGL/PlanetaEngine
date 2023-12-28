@@ -7,7 +7,7 @@
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 
 // TODO: 最新のEffekseerForDXLib対応
 
@@ -15,13 +15,13 @@ namespace plnt::effekseer {
 	//Load関数の引数は使わずに、読み込み直前にFileを指定して、それを用いて読み込みを行う。
 	class effect_loader_for_effekseer final : public ::Effekseer::EffectLoader {
 	public:
-		void set_file(const File *file);
+		void set_file(const file *file);
 		//事前に指定されたFileからデータのコピーを行う
 		bool Load(const EFK_CHAR *path, void *&data, int32_t &size) override;
 		void Unload(void *data, int32_t size) override;
 
 	private:
-		const File *file_ = nullptr;
+		const file *file_ = nullptr;
 	};
 
 	//読み込み前にテクスチャ取得用のコールバック関数を設定し、それを用いてテクスチャを取得する。
@@ -38,5 +38,5 @@ namespace plnt::effekseer {
 		texture_getter_type texture_getter_;
 	};
 
-	::Effekseer::TextureRef create_effekseer_texture_data_from_file(const File &file);
+	::Effekseer::TextureRef create_effekseer_texture_data_from_file(const file &file);
 }

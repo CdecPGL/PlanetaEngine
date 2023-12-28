@@ -46,7 +46,7 @@ namespace plnt {
 		return false;
 	}
 
-	bool archive_manipulator::load_file_proc(const std::string &fn, File &file) {
+	bool archive_manipulator::load_file_proc(const std::string &fn, file &file) {
 		/*auto data = _extracter->GetFile(fn);
 		if (data.first == nullptr) {
 			return false;

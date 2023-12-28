@@ -4,7 +4,7 @@
 
 namespace plnt {
 	namespace {
-		namespace access_mode {
+		namespace access_mode_flag {
 			using type = uint_fast32_t;
 			constexpr type none = 0b00;
 			constexpr type read = 0b01;
@@ -12,18 +12,18 @@ namespace plnt {
 			constexpr type read_write = 0b11;
 		}
 
-		constexpr access_mode::type convert_access_mode_to_uint32(const AccessMode mode) {
+		constexpr access_mode_flag::type convert_access_mode_to_uint32(const access_mode mode) {
 			switch (mode) {
-				case AccessMode::ReadOnly:
-					return access_mode::read;
-				case AccessMode::WriteOnly:
-					return access_mode::write;
-				case AccessMode::ReadWrite:
-					return access_mode::read_write;
-				case AccessMode::Invalid:
-					return access_mode::none;
+				case access_mode::read_only:
+					return access_mode_flag::read;
+				case access_mode::write_only:
+					return access_mode_flag::write;
+				case access_mode::read_write:
+					return access_mode_flag::read_write;
+				case access_mode::invalid:
+					return access_mode_flag::none;
 			}
-			return access_mode::none;
+			return access_mode_flag::none;
 		}
 	}
 
@@ -35,25 +35,25 @@ namespace plnt {
 		return {};
 	}
 
-	AccessMode file_manipulator::mode() const { return mode_; }
+	access_mode file_manipulator::mode() const { return mode_; }
 
 	boost::optional<const archiver::encrypter_base &> file_manipulator::encrypter() const & {
 		if (encrypter_) { return *encrypter_; }
 		return boost::none;
 	}
 
-	std::shared_ptr<File> file_manipulator::load_file(const std::string &name) {
+	std::shared_ptr<file> file_manipulator::load_file(const std::string &name) {
 		if (is_opened() == false) {
 			PE_LOG_ERROR("無効なファイルマニピュレータです。初期化されていないか、破棄された可能性があります。");
 			return nullptr;
 		}
-		if ((convert_access_mode_to_uint32(mode_) & access_mode::read) != access_mode::read) {
+		if ((convert_access_mode_to_uint32(mode_) & access_mode_flag::read) != access_mode_flag::read) {
 			PE_LOG_ERROR("読み込み属性がありません。value:", convert_access_mode_to_uint32(mode_));
 			return nullptr;
 		}
-		if (auto file = std::make_shared<File>(); load_file_proc(name, *file)) {
-			file->SetFileName(name);
-			return file;
+		if (auto f = std::make_shared<file>(); load_file_proc(name, *f)) {
+			f->set_file_name(name);
+			return f;
 		}
 		PE_LOG_ERROR("ファイル", name, "の読み込みに失敗しました。(パス ", root_path(), ",タイプ ", typeid(*this).name(), ")");
 		return nullptr;
@@ -62,7 +62,7 @@ namespace plnt {
 	file_manipulator::file_manipulator() : is_opened_(false), auto_create_(false) { }
 	file_manipulator::~file_manipulator() = default;
 
-	bool file_manipulator::open(const std::string &path, const AccessMode access_mode, const bool auto_create) {
+	bool file_manipulator::open(const std::string &path, const access_mode access_mode, const bool auto_create) {
 		if (is_opened_) {
 			PE_LOG_ERROR("すでに開かれています。");
 			return false;
@@ -78,7 +78,7 @@ namespace plnt {
 			return true;
 		} else {
 			PE_LOG_ERROR("初期化に失敗しました。(パス ", root_path(), ",タイプ ", typeid(*this).name(), ")");
-			mode_ = AccessMode::Invalid;
+			mode_ = access_mode::invalid;
 			auto_create_ = false;
 			root_path_ = "";
 			encrypter_ = nullptr;
@@ -86,7 +86,7 @@ namespace plnt {
 		}
 	}
 
-	bool file_manipulator::open(const std::string &path, const AccessMode access_mode,
+	bool file_manipulator::open(const std::string &path, const access_mode access_mode,
 	                            std::unique_ptr<const archiver::encrypter_base> &&encrypter, const bool auto_create) {
 		encrypter_ = std::move(encrypter);
 		return open(path, access_mode, auto_create);
@@ -98,19 +98,19 @@ namespace plnt {
 			return;
 		}
 		close_proc();
-		mode_ = AccessMode::Invalid;
+		mode_ = access_mode::invalid;
 		auto_create_ = false;
 		root_path_ = "";
 		encrypter_ = nullptr;
 		is_opened_ = false;
 	}
 
-	bool file_manipulator::save_file(const std::string &name, const File &file) {
+	bool file_manipulator::save_file(const std::string &name, const file &file) {
 		if (is_opened() == false) {
 			PE_LOG_ERROR("無効なファイルマニピュレータです。初期化されていないか、破棄された可能性があります。");
 			return false;
 		}
-		if ((convert_access_mode_to_uint32(mode_) & access_mode::write) != access_mode::write) {
+		if ((convert_access_mode_to_uint32(mode_) & access_mode_flag::write) != access_mode_flag::write) {
 			PE_LOG_ERROR("書き込み属性がありません。value:", convert_access_mode_to_uint32(mode_));
 			return false;
 		}

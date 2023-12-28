@@ -5,7 +5,7 @@
 
 //#include <d3dx9tex.h>
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 
 #pragma warning(push)
 #pragma warning(disable: 4100)
@@ -26,7 +26,7 @@ namespace plnt::effekseer {
 
 	void effect_loader_for_effekseer::Unload(void *data, int32_t size) { delete[] data; }
 
-	void effect_loader_for_effekseer::set_file(const File *file) { file_ = file; }
+	void effect_loader_for_effekseer::set_file(const file *file) { file_ = file; }
 
 	::Effekseer::TextureRef
 	texture_loader_for_effekseer::Load(const EFK_CHAR *path, const ::Effekseer::TextureType texture_type) {
@@ -35,7 +35,7 @@ namespace plnt::effekseer {
 
 	void texture_loader_for_effekseer::set_texture_getter(const texture_getter_type &func) { texture_getter_ = func; }
 
-	::Effekseer::TextureRef create_effekseer_texture_data_from_file(const File &file) {
+	::Effekseer::TextureRef create_effekseer_texture_data_from_file(const file &file) {
 		::Effekseer::TextureRef textureData = nullptr;
 		DxLib::BASEIMAGE dx_base_image;
 		CreateBaseImageToMem(file.top_pointer(), file.size(), &dx_base_image, false);

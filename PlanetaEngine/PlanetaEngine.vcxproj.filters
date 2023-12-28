@@ -429,22 +429,22 @@
     <ClInclude Include="src\planeta\core\normal_folder_manipulator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\File.hpp">
+    <ClInclude Include="src\planeta\core\file.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\FileSystemUtility.hpp">
+    <ClInclude Include="src\planeta\core\file_system_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\FileAccessMode.hpp">
+    <ClInclude Include="src\planeta\core\file_access_mode.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\FileIStream.hpp">
+    <ClInclude Include="src\planeta\core\file_istream.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\FileOStream.hpp">
+    <ClInclude Include="src\planeta\core\file_ostream.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\FileStreamBuf.hpp">
+    <ClInclude Include="src\planeta\core\file_stream_buf.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\Object.hpp">
@@ -531,7 +531,7 @@
     <ClInclude Include="src\planeta\core\draw_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\EACollisionWithCollider2D.hpp">
+    <ClInclude Include="src\planeta\core\e_collision_with_collider_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\e_collision_with_ground_2d.hpp">
@@ -1049,19 +1049,19 @@
     <ClCompile Include="src\planeta\core\normal_folder_manipulator.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Manipulator</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\File.cpp">
+    <ClCompile Include="src\planeta\core\file.cpp">
       <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\FileIStream.cpp">
+    <ClCompile Include="src\planeta\core\file_istream.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\FileOStream.cpp">
+    <ClCompile Include="src\planeta\core\file_ostream.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\FileStreamBuf.cpp">
+    <ClCompile Include="src\planeta\core\file_stream_buf.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Stream</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\FileSystemUtility.cpp">
+    <ClCompile Include="src\planeta\core\file_system_utility.cpp">
       <Filter>PlanetaEngine\Core\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\Object.cpp">

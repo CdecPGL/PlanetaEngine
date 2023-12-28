@@ -7,7 +7,7 @@
 #include "collision_world.hpp"
 
 namespace plnt {
-	class EACollisionWithCollider2D;
+	class e_collision_with_collider_2d;
 	class e_collision_with_ground_2d;
 	class IDebugDrawer;
 

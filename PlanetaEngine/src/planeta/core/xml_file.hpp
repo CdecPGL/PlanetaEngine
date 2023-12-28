@@ -5,7 +5,7 @@
 #include <string>
 
 namespace plnt {
-	class File;
+	class file;
 
 	class xml_element {
 	public:
@@ -27,7 +27,7 @@ namespace plnt {
 	class xml_file final {
 	public:
 		[[nodiscard]] std::shared_ptr<const xml_element> get_root_element() const { return root_element_; }
-		bool load(const File &file);
+		bool load(const file &file);
 
 	private:
 		std::shared_ptr<xml_element> root_element_;

@@ -30,7 +30,7 @@ namespace plnt {
 
 	void normal_folder_manipulator::close_proc() { }
 
-	bool normal_folder_manipulator::save_file_proc(const std::string &name, const File &file) {
+	bool normal_folder_manipulator::save_file_proc(const std::string &name, const file &f) {
 		auto file_path = root_path() + "\\" + name;
 		std::ofstream ofs(file_path, std::ios::binary | std::ios::trunc);
 		if (!ofs) {
@@ -39,22 +39,22 @@ namespace plnt {
 		}
 		if (is_encrypter_valid()) {
 			//暗号化が有効だったら
-			File encrypted_file;
-			if (!encrypter()->encrypt(file, encrypted_file)) {
+			file encrypted_file;
+			if (!encrypter()->encrypt(f, encrypted_file)) {
 				//暗号化して
 				PE_LOG_ERROR("暗号化に失敗しました。");
 				return false;
 			}
 			ofs.write(reinterpret_cast<char *>(encrypted_file.top_pointer()), encrypted_file.size()); //保存
-		} else { ofs.write(reinterpret_cast<const char *>(file.top_pointer()), file.size()); }
+		} else { ofs.write(reinterpret_cast<const char *>(f.top_pointer()), f.size()); }
 		return true;
 	}
 
-	bool normal_folder_manipulator::load_file_proc(const std::string &fn, File &file) {
+	bool normal_folder_manipulator::load_file_proc(const std::string &fn, file &file) {
 		return load_file_by_path(file, fn);
 	}
 
-	bool normal_folder_manipulator::load_file_by_path(File &file, const std::string &name) const {
+	bool normal_folder_manipulator::load_file_by_path(file &file, const std::string &name) const {
 		if (auto file_path = root_path() + "\\" + name; load_data_core(file, file_path) < 0) {
 			PE_LOG_ERROR("ファイル\"", file_path, "\"の読み込みに失敗しました。ファイルが存在しない可能性があります。");
 			return false;
@@ -69,13 +69,13 @@ namespace plnt {
 		return true;
 	}
 
-	int normal_folder_manipulator::load_data_core(File &file, const std::string &ap) {
+	int normal_folder_manipulator::load_data_core(file &file, const std::string &ap) {
 		std::ifstream ifs(ap, std::ios::binary | std::ios::in);
 		if (!ifs) { return -1; }
 		//サイズ取得
 		ifs.seekg(0, std::ios::end);
 		//メモリ確保
-		if (const auto size = ifs.tellg(); !file.Reserve(size)) {
+		if (const auto size = ifs.tellg(); !file.reserve(size)) {
 			ifs.close();
 			return -1;
 		}

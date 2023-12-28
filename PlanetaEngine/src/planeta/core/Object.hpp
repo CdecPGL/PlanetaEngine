@@ -13,7 +13,7 @@ namespace plnt {
 	*/
 	class Object : public reflection::reflectable {
 	public:
-		using super = reflectable;
+		using Super = reflectable;
 		//! デフォルトコンストラクタ
 		Object() = default;
 		//! デストラクタ

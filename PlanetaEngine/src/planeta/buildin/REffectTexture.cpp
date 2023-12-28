@@ -5,14 +5,14 @@
 #include "Effekseer.h"
 #pragma warning(pop)
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 
 #include "REffectTexture.hpp"
 
 plnt::REffectTexture::REffectTexture() = default;
 plnt::REffectTexture::~REffectTexture() = default;
 
-bool plnt::REffectTexture::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+bool plnt::REffectTexture::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 	dx_base_image_ = std::unique_ptr<::DxLib::BASEIMAGE>(new ::DxLib::BASEIMAGE{});
 	if (CreateBaseImageToMem(file.top_pointer(), file.size(), dx_base_image_.get(), false)) {
 		PE_LOG_ERROR("テクスチャの作成に失敗しました。");

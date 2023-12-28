@@ -1,5 +1,5 @@
 ﻿//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
+// Microsoft Visual C++ generated include file.hpp.
 // Used by PlanetaEngine.rc
 
 // 新しいオブジェクトの次の既定値

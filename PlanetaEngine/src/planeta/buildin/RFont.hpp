@@ -19,7 +19,7 @@ namespace plnt {
 		DWORD font_num_ = 0;
 		int dx_handle_;
 		int size_ = 0;
-		bool OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 	};
 }

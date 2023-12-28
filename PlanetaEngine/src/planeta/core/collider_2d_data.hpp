@@ -6,7 +6,7 @@ namespace plnt {
 	class CCollider2D;
 	class IGameObject;
 	class CTransform2D;
-	class EACollisionWithCollider2D;
+	class e_collision_with_collider_2d;
 	class e_collision_with_ground_2d;
 
 	namespace private_ {
@@ -15,7 +15,7 @@ namespace plnt {
 			CCollider2D &collider2d;
 			IGameObject &game_object;
 			CTransform2D &transform2d;
-			std::function<void(const EACollisionWithCollider2D &)> collide_with_collider_event_invoker;
+			std::function<void(const e_collision_with_collider_2d &)> collide_with_collider_event_invoker;
 			std::function<void(const e_collision_with_ground_2d &)> collide_with_ground_event_invoker;
 		};
 	}

@@ -10,7 +10,7 @@ namespace plnt {
 		IniFile &ini_file();
 
 	private:
-		bool OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 		std::unique_ptr<IniFile> ini_file_;
 	};

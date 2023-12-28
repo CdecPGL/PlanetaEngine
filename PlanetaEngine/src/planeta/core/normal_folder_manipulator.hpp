@@ -13,12 +13,12 @@ namespace plnt {
 		normal_folder_manipulator &operator=(normal_folder_manipulator &&) = delete;
 
 	private:
-		bool load_file_by_path(File &, const std::string &) const;
-		static int load_data_core(File &, const std::string &);
+		bool load_file_by_path(file &, const std::string &) const;
+		static int load_data_core(file &, const std::string &);
 		bool open_proc(const std::string &path) override;
 		void close_proc() override;
-		bool load_file_proc(const std::string &, File &file) override;
-		bool save_file_proc(const std::string &name, const File &file) override;
+		bool load_file_proc(const std::string &, file &file) override;
+		bool save_file_proc(const std::string &name, const file &file) override;
 		[[nodiscard]] size_t get_file_count_proc() const override;
 		[[nodiscard]] bool check_file_existence_proc(const std::string &p_path) const override;
 		bool get_all_file_paths_proc(std::vector<std::string> &path_list) const override;

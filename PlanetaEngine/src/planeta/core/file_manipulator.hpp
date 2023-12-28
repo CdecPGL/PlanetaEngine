@@ -4,8 +4,8 @@
 #include<string>
 
 #include "Object.hpp"
-#include"File.hpp"
-#include "FileAccessMode.hpp"
+#include"file.hpp"
+#include "file_access_mode.hpp"
 
 namespace plnt {
 	namespace archiver {
@@ -22,16 +22,16 @@ namespace plnt {
 		file_manipulator &operator =(file_manipulator &&) = delete;
 
 		/*マニピュレータを開く*/
-		bool open(const std::string &path, AccessMode access_mode, bool auto_create);
+		bool open(const std::string &path, access_mode access_mode, bool auto_create);
 		/*暗号化器を指定してマニピュレータを開く*/
-		bool open(const std::string &path, AccessMode access_mode,
+		bool open(const std::string &path, access_mode access_mode,
 		          std::unique_ptr<const archiver::encrypter_base> &&encrypter, bool auto_create);
 		/*閉じる*/
 		void close();
 		/*ファイルの読み込み*/
-		std::shared_ptr<File> load_file(const std::string &name);
+		std::shared_ptr<file> load_file(const std::string &name);
 		/*ファイルの保存(保存名、ファイル)*/
-		bool save_file(const std::string &name, const File &file);
+		bool save_file(const std::string &name, const file &file);
 		/*管理情報の更新*/
 		bool reload();
 		/*ファイルの存在を確認*/
@@ -39,7 +39,7 @@ namespace plnt {
 		/*全てのファイルパスを取得*/
 		[[nodiscard]] std::vector<std::string> get_all_file_paths() const;
 		/*ファイルアクセスモードを取得する*/
-		[[nodiscard]] AccessMode mode() const;
+		[[nodiscard]] access_mode mode() const;
 		/*有効か*/
 		[[nodiscard]] bool is_opened() const { return is_opened_; }
 
@@ -54,14 +54,14 @@ namespace plnt {
 		std::string root_path_;
 		bool is_opened_; //有効か
 		bool auto_create_;
-		AccessMode mode_ = AccessMode::Invalid;
+		access_mode mode_ = access_mode::invalid;
 		std::unique_ptr<const archiver::encrypter_base> encrypter_;
 		virtual bool open_proc(const std::string &path) = 0;
 		virtual void close_proc() = 0;
 		[[nodiscard]] virtual bool check_file_existence_proc(const std::string &path) const = 0;
 		virtual bool reload_proc() { return true; };
-		virtual bool load_file_proc(const std::string &name, File &file) = 0;
-		virtual bool save_file_proc(const std::string &name, const File &file) = 0;
+		virtual bool load_file_proc(const std::string &name, file &file) = 0;
+		virtual bool save_file_proc(const std::string &name, const file &file) = 0;
 		[[nodiscard]] virtual size_t get_file_count_proc() const = 0;
 		virtual bool get_all_file_paths_proc(std::vector<std::string> &path_list) const = 0;
 	};

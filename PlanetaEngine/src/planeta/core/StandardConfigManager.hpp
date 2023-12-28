@@ -6,8 +6,8 @@ namespace plnt {
 	namespace private_ {
 		class StandardConfigManager final : public config_manager {
 		public:
-			virtual bool load_system_config(const File &file) override;
-			virtual bool load_user_config(const File &file) override;
+			virtual bool load_system_config(const file &file) override;
+			virtual bool load_user_config(const file &file) override;
 			virtual int color_bit_depth() const override;
 			virtual std::string startup_scene_id() const override;
 			virtual std::string game_title() const override;

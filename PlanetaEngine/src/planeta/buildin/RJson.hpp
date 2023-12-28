@@ -13,7 +13,7 @@ namespace plnt {
 
 	private:
 		std::unique_ptr<JsonFile> json_file_;
-		bool OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 	};
 }

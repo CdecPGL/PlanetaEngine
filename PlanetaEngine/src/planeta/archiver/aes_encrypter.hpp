@@ -15,8 +15,8 @@ namespace plnt::archiver {
 		[[nodiscard]] bool set_key(const uint128_t &key, const uint128_t &initialization_vector) const;
 
 	private:
-		bool encrypt_core(const File &src, File &dst) const override;
-		bool decrypt_core(const File &src, File &dst) const override;
+		bool encrypt_core(const file &src, file &dst) const override;
+		bool decrypt_core(const file &src, file &dst) const override;
 
 		class impl;
 		std::unique_ptr<impl> impl_;

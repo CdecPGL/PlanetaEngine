@@ -17,9 +17,9 @@ namespace plnt::archiver {
 		uint_fast32_t sub_key_;
 		static uint_fast32_t block_key(size_t block);
 		void calculate_key();
-		bool decrypt_partially_core(const File &src, size_t pos, size_t size, char *dst_ptr,
+		bool decrypt_partially_core(const file &src, size_t pos, size_t size, char *dst_ptr,
 		                            size_t dst_size) const override;
-		bool encrypt_core(const File &src, File &dst) const override;
-		bool decrypt_core(const File &src, File &dst) const override;
+		bool encrypt_core(const file &src, file &dst) const override;
+		bool decrypt_core(const file &src, file &dst) const override;
 	};
 }

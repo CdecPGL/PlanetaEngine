@@ -1,14 +1,14 @@
 ﻿#include <algorithm>
 
 #include "IniFile.hpp"
-#include "FileIStream.hpp"
-#include "FileSystemUtility.hpp"
+#include "file_istream.hpp"
+#include "file_system_utility.hpp"
 #include "character_code.hpp"
 
 namespace plnt {
-	bool IniFile::Load(const File &file) {
+	bool IniFile::Load(const file &file) {
 		using namespace std;
-		FileIStream fis(file);
+		file_istream fis(file);
 		vector<string> lines;
 		string buf;
 		while (getline(fis, buf)) {
@@ -16,9 +16,9 @@ namespace plnt {
 			auto pos = buf.find_first_of(';');
 			if (pos != std::string::npos) { buf.erase(pos, buf.size() - pos); }
 			//改行コード除去
-			util::RemoveLineFeedCode(buf);
+			util::remove_line_feed_code(buf);
 			//スペースとタブ除去
-			util::RemoveSpaceAndTab(buf);
+			util::remove_space_and_tab(buf);
 			//空行でなかったら行リストに追加
 			if (buf.size() != 0) { lines.push_back(move(buf)); }
 		}

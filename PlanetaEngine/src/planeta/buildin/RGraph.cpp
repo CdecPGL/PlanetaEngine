@@ -1,13 +1,13 @@
 ﻿#include "DxLib.h"
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "..\math\math_utility.hpp"
 
 #include "RGraph.hpp"
 
 namespace plnt {
-	bool RGraph::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RGraph::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 		_handle = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {
 			GetGraphSize(_handle, &image_size_.x, &image_size_.y);

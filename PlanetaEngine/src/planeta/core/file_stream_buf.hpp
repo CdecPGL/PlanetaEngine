@@ -4,14 +4,14 @@
 #include <memory>
 
 namespace plnt {
-	class File;
+	class file;
 
-	class FileStreamBuf : public std::streambuf {
+	class file_stream_buf final : public std::streambuf {
 	public:
-		FileStreamBuf(File &file);
+		explicit file_stream_buf(file &file);
 
 	private:
-		File &file_;
+		file &file_;
 		int_type overflow(int_type = std::char_traits<char>::eof()) override;
 		int_type underflow() override;
 		int sync() override;
@@ -20,7 +20,7 @@ namespace plnt {
 		int_type uflow() override;
 		pos_type seekpos(pos_type, std::ios_base::openmode = std::ios_base::in | std::ios_base::out) override;
 
-		bool SaveDataFromWriteBuffer(size_t block, pos_type buf_off);
+		bool save_data_from_write_buffer(size_t block, pos_type buf_off);
 
 		static const size_t buffer_size;
 		std::unique_ptr<char[]> write_buffer_;

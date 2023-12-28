@@ -51,7 +51,7 @@ namespace plnt {
 			};
 			private_::collider_2d_data col_dat{
 				*this, game_object(), *transform2d_,
-				[&eve = collided_with_collider2d](const EACollisionWithCollider2D &arg) { eve(arg); }, col_grng_eve
+				[&eve = collided_with_collider2d](const e_collision_with_collider_2d &arg) { eve(arg); }, col_grng_eve
 			};
 			scene_internal_interface().collision_world_internal_pointer()->resist(col_dat);
 		}

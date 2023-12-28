@@ -5,7 +5,7 @@
 #include "ResourceReferencer.hpp"
 
 namespace plnt {
-	class File;
+	class file;
 	class JsonFile;
 
 	class ResourceBase : public Object {
@@ -13,13 +13,13 @@ namespace plnt {
 		ResourceBase() = default;
 		virtual ~ResourceBase();
 
-		bool Load(const File &file, const JsonFile &metadata, private_::ResourceManagerInternalAccessor &mgr_acsr);
+		bool Load(const file &file, const JsonFile &metadata, private_::ResourceManagerInternalAccessor &mgr_acsr);
 		void Dispose();
 		bool is_usable() const { return is_usable_; }
 		size_t reference_conunt() const;
 
 	protected:
-		virtual bool OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) = 0;
+		virtual bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) = 0;
 		virtual void OnDisposed() = 0;
 
 	private:

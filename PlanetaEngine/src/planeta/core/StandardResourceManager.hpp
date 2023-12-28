@@ -16,7 +16,7 @@
 
 namespace plnt {
 	class FileAccessor;
-	class File;
+	class file;
 
 	namespace private_ {
 		class ResourceManagerInternalAccessor;

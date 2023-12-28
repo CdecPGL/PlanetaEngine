@@ -2,7 +2,7 @@
 
 #include "picojson/picojson.h"
 
-#include "File.hpp"
+#include "file.hpp"
 #include "LogUtility.hpp"
 #include "character_code.hpp"
 
@@ -111,7 +111,7 @@ namespace plnt {
 
 	JsonFile::~JsonFile() = default;
 
-	bool JsonFile::Load(const File &file) {
+	bool JsonFile::Load(const file &file) {
 		using namespace picojson;
 		std::string err;
 		value v;

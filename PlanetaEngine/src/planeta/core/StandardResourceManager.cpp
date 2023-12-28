@@ -5,7 +5,7 @@
 #include "boost/optional.hpp"
 
 #include"StandardResourceManager.hpp"
-#include "File.hpp"
+#include "file.hpp"
 #include "JsonFile.hpp"
 #include "LogUtility.hpp"
 #include "file_manipulator.hpp"

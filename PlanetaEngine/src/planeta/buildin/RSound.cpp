@@ -1,11 +1,11 @@
 ﻿#include "DxLib.h"
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 
 #include "RSound.hpp"
 
 namespace plnt {
-	bool RSound::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RSound::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);

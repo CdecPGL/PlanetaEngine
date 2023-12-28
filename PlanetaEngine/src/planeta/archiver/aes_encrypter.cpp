@@ -5,7 +5,7 @@
 #include "cryptopp/modes.h"
 #include "cryptopp/osrng.h"
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 
 #include "aes_encrypter.hpp"
 
@@ -56,23 +56,23 @@ namespace plnt::archiver {
 			return true;
 		}
 
-		bool encrypt(File &dst, const File &src) {
+		bool encrypt(file &dst, const file &src) {
 			update_enc_obj();
 			std::string dat;
 			CryptoPP::StreamTransformationFilter enc_filter(*aes_enc_obj_, new CryptoPP::StringSink(dat));
 			enc_filter.Put(src.top_pointer(), src.size());
 			enc_filter.MessageEnd();
-			dst.SetData(dat);
+			dst.set_data(dat);
 			return true;
 		}
 
-		bool decrypt(File &dst, const File &src) {
+		bool decrypt(file &dst, const file &src) {
 			update_dec_obj();
 			std::string dat;
 			CryptoPP::StreamTransformationFilter dec_filter(*aes_dec_obj_, new CryptoPP::StringSink(dat));
 			dec_filter.Put(src.top_pointer(), src.size());
 			dec_filter.MessageEnd();
-			dst.SetData(dat);
+			dst.set_data(dat);
 			return true;
 		}
 	};
@@ -83,9 +83,9 @@ namespace plnt::archiver {
 
 	aes_encrypter::aes_encrypter() : impl_(std::make_unique<impl>()) { };
 
-	bool aes_encrypter::encrypt_core(const File &src, File &dst) const { return impl_->encrypt(dst, src); }
+	bool aes_encrypter::encrypt_core(const file &src, file &dst) const { return impl_->encrypt(dst, src); }
 
-	bool aes_encrypter::decrypt_core(const File &src, File &dst) const { return impl_->decrypt(dst, src); }
+	bool aes_encrypter::decrypt_core(const file &src, file &dst) const { return impl_->decrypt(dst, src); }
 
 	bool aes_encrypter::set_key(const uint128_t &key, const uint128_t &initialization_vector) const {
 		return impl_->set_key(key, initialization_vector);

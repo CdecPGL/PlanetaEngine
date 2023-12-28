@@ -237,7 +237,7 @@ namespace plnt {
 		}
 	}
 
-	class File;
+	class file;
 	/*! @brief JSONファイルを扱うクラス
 	@todo 全般的にコピームーブの挙動の検証が必要。
 	*/
@@ -250,7 +250,7 @@ namespace plnt {
 		//! Jsonのルート値を取得する
 		const JSONValue &GetRoot() const;
 		//! ファイルから読み込む
-		bool Load(const File &file);
+		bool Load(const file &file);
 		//! ファイルが開かれているかどうか
 		bool is_opened() const;
 

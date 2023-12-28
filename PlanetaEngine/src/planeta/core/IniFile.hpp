@@ -5,7 +5,7 @@
 #include "boost/optional.hpp"
 
 namespace plnt {
-	class File;
+	class file;
 
 	/*! INIファイルを扱うためのクラス*/
 	class IniFile final {
@@ -16,7 +16,7 @@ namespace plnt {
 		INIType::const_iterator end() const { return _data.end(); }
 		INIType::const_iterator find(const std::string &s) const { return _data.find(s); }
 		boost::optional<const SectionType &> GetSection(const std::string &s) const;
-		bool Load(const File &file);
+		bool Load(const file &file);
 
 	private:
 		INIType _data;

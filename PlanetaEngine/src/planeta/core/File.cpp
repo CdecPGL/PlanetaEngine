@@ -1,47 +1,49 @@
-﻿#include "File.hpp"
+﻿#include "file.hpp"
 #include "boost/filesystem/path.hpp"
 #include <cassert>
 
 using namespace boost::filesystem;
 
 namespace plnt {
-	File::File() { }
+	file::file() = default;
 
-	File::File(unsigned char *top_ptr, size_t size, const std::string &file_name) : file_name_(file_name),
-		data_top_(top_ptr), size_(size), is_available_(true) {
-		path p{file_name};
-		if (p.has_extension()) { extension_ = p.extension().string(); }
+	file::file(unsigned char *top_ptr, const size_t size, const std::string &file_name) : is_available_(true),
+		data_top_(top_ptr), size_(size), file_name_(file_name) {
+		if (const path p{file_name}; p.has_extension()) { extension_ = p.extension().string(); }
 	}
 
-	File::File(unsigned char *top_ptr, size_t size) : data_top_(top_ptr), size_(size), is_available_(true) { }
+	file::file(unsigned char *top_ptr, const size_t size) : is_available_(true), data_top_(top_ptr), size_(size) { }
 
-	File::File(const File &obj) : extension_(obj.extension_), is_available_(obj.is_available_), size_(obj.size_),
+	file::file(const file &obj) : extension_(obj.extension_), is_available_(obj.is_available_), size_(obj.size_),
 	                              file_name_(obj.file_name_) {
-		data_top_ = reinterpret_cast<unsigned char *>(malloc(sizeof(unsigned char) * size_));
+		data_top_ = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * size_));
 		memcpy_s(data_top_, size_, obj.data_top_, obj.size_);
 	}
 
-	File::File(File &&obj) : extension_(std::move(obj.extension_)), is_available_(obj.is_available_), size_(obj.size_),
-	                         data_top_(obj.data_top_), file_name_(std::move(obj.file_name_)) {
+	file::file(file &&obj) noexcept : extension_(std::move(obj.extension_)), is_available_(obj.is_available_),
+	                                  data_top_(obj.data_top_),
+	                                  size_(obj.size_), file_name_(std::move(obj.file_name_)) {
 		obj.is_available_ = false;
 		obj.size_ = 0;
 		obj.data_top_ = nullptr;
 	}
 
-	File::~File() { if (data_top_) { delete[] data_top_; } }
+	file::~file() { delete[] data_top_; }
 
-	File &File::operator=(const File &obj) & {
+	file &file::operator=(const file &obj) & {
+		if (this == &obj) { return *this; }
+
 		extension_ = obj.extension_;
 		is_available_ = obj.is_available_;
 		size_ = obj.size_;
 		file_name_ = obj.file_name_;
 		if (data_top_) { free(data_top_); }
-		data_top_ = reinterpret_cast<unsigned char *>(malloc(sizeof(unsigned char) * size_));
+		data_top_ = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * size_));
 		memcpy_s(data_top_, size_, obj.data_top_, obj.size_);
 		return *this;
 	}
 
-	File &File::operator=(File &&obj) & {
+	file &file::operator=(file &&obj) & noexcept {
 		extension_ = std::move(obj.extension_);
 		is_available_ = obj.is_available_;
 		size_ = obj.size_;
@@ -54,12 +56,12 @@ namespace plnt {
 		return *this;
 	}
 
-	unsigned int File::size() const { return size_; }
-	const unsigned char *File::top_pointer() const & { return data_top_; }
-	unsigned char *File::top_pointer() & { return data_top_; }
-	bool File::is_available() const { return is_available_; }
+	size_t file::size() const { return size_; }
+	const unsigned char *file::top_pointer() const & { return data_top_; }
+	unsigned char *file::top_pointer() & { return data_top_; }
+	bool file::is_available() const { return is_available_; }
 
-	void File::Clear() {
+	void file::clear() {
 		if (data_top_) {
 			size_ = 0;
 			delete[] data_top_;
@@ -68,16 +70,17 @@ namespace plnt {
 		}
 	}
 
-	void File::SetFileName(const std::string &file_name) {
+	void file::set_file_name(const std::string &file_name) {
 		file_name_ = file_name;
-		path p{file_name};
-		if (p.has_extension()) { extension_ = p.extension().string(); } else { extension_ = ""; }
+		if (const path p{file_name}; p.has_extension()) { extension_ = p.extension().string(); } else {
+			extension_ = "";
+		}
 	}
 
-	std::string File::file_name() const { return file_name_; }
+	std::string file::file_name() const { return file_name_; }
 
-	bool File::Reserve(size_t size, bool copy) {
-		unsigned char *new_area = new unsigned char[size];
+	bool file::reserve(const size_t size, const bool copy) {
+		const auto new_area = new unsigned char[size];
 		//メモリの確保に失敗した
 		if (new_area == nullptr) {
 			is_available_ = false;
@@ -94,17 +97,18 @@ namespace plnt {
 		return true;
 	}
 
-	bool File::WriteData(size_t pos, const unsigned char *data_top, size_t data_size, bool auto_extend /*= false*/) {
+	bool file::write_data(const size_t pos, const unsigned char *data_top, const size_t data_size,
+	                      const bool auto_extend /*= false*/) {
 		//データサイズがファイルサイズより大きかったら
 		if (size() < pos + data_size) {
 			//自動拡張が有効だったらサイズを増やす
-			if (auto_extend) { Reserve(pos + data_size, true); } else { return false; } //無効だったらエラー
+			if (auto_extend) { reserve(pos + data_size, true); } else { return false; } //無効だったらエラー
 		}
 		memcpy_s(top_pointer() + pos, size_ - pos, data_top, data_size);
 		return true;
 	}
 
-	bool File::ReadData(size_t pos, unsigned char *buffer_top, size_t buffer_size) const {
+	bool file::read_data(const size_t pos, unsigned char *buffer_top, const size_t buffer_size) const {
 		if (size() < pos + buffer_size) {
 			//バッファ長がファイルサイズより大きかったら、ファイル終端までをバッファにコピー
 			memcpy_s(buffer_top, buffer_size, top_pointer() + pos, size() - pos);
@@ -115,16 +119,16 @@ namespace plnt {
 		return true;
 	}
 
-	void File::MoveData(unsigned char *top_ptr, size_t size) {
+	void file::move_data(unsigned char *top_ptr, const size_t size) {
 		if (data_top_) { free(data_top_); }
 		data_top_ = top_ptr;
 		size_ = size;
 		is_available_ = true;
 	}
 
-	void File::SetData(const std::string &data) {
-		Reserve(data.size(), false);
-		bool ret = WriteData(0, reinterpret_cast<const unsigned char *>(data.c_str()), data.size(), false);
+	void file::set_data(const std::string &data) {
+		reserve(data.size(), false);
+		const bool ret = write_data(0, reinterpret_cast<const unsigned char *>(data.c_str()), data.size(), false);
 		assert(ret == true);
 	}
 }

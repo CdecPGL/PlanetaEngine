@@ -1,13 +1,13 @@
 ﻿#include "DxLib.h"
 
-#include "planeta/core/File.hpp"
+#include "planeta/core/file.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/JsonFile.hpp"
 
 #include "RFont.hpp"
 
 namespace plnt {
-	bool RFont::OnLoaded(const File &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RFont::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char *>(file.top_pointer()), file.size(), nullptr,
 		                               &font_num_);
 		if (handle_ == 0) {

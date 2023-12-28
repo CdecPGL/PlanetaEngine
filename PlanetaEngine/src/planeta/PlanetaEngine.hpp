@@ -31,5 +31,5 @@
 #include "core/SceneSetUpper.hpp"
 #include "core/SceneSetUpProxy.hpp"
 #include "core/Task.hpp"
-#include "core/EACollisionWithCollider2D.hpp"
+#include "core/e_collision_with_collider_2d.hpp"
 #include "core/e_collision_with_ground_2d.hpp"

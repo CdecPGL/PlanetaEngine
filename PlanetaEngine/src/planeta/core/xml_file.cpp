@@ -2,13 +2,13 @@
 #include <functional>
 
 #include "xml_file.hpp"
-#include "File.hpp"
+#include "file.hpp"
 #include "tinyxml2.h"
 #include "LogUtility.hpp"
 #include "character_code.hpp"
 
 namespace plnt {
-	bool xml_file::load(const File &file) {
+	bool xml_file::load(const file &file) {
 		std::function<void(const std::shared_ptr<xml_element> &, const tinyxml2::XMLNode &)> element_setter = [&
 				element_setter](const std::shared_ptr<xml_element> &target, const tinyxml2::XMLNode &source) {
 			for (auto *s_element = source.FirstChildElement(); s_element != nullptr; s_element = s_element->

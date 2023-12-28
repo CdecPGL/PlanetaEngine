@@ -7,12 +7,12 @@
 #include "boost/algorithm/string.hpp"
 
 #include "csv_file.hpp"
-#include "File.hpp"
+#include "file.hpp"
 #include "LogUtility.hpp"
 #include "character_code.hpp"
 
 namespace plnt {
-	bool csv_file::load(const File &file) {
+	bool csv_file::load(const file &file) {
 		const size_t size = file.size();
 		const auto c_ptr = reinterpret_cast<const char *>(file.top_pointer());
 		unsigned int pos = 0;
