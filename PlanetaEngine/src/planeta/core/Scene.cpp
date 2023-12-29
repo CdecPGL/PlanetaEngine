@@ -6,7 +6,7 @@
 #include "draw_system.hpp"
 #include "TransformSystem.hpp"
 
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "ScreenDrawer2D.hpp"
 #include "ScreenDrawerGUI.hpp"
 

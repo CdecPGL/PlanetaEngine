@@ -9,7 +9,7 @@
 #define BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 #include "boost/variant.hpp"
 
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	//! JSON型の不一致エラー例外クラス

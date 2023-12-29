@@ -651,13 +651,13 @@
     <ClInclude Include="src\planeta\core\i_transform_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\KeyConfig.hpp">
+    <ClInclude Include="src\planeta\core\key_config.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\LogManager.hpp">
+    <ClInclude Include="src\planeta\core\log_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\LogUtility.hpp">
+    <ClInclude Include="src\planeta\core\log_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\MetaprogrammingUtility.hpp">
@@ -1148,7 +1148,7 @@
     <ClCompile Include="src\planeta\core\input_utility.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\KeyConfig.cpp">
+    <ClCompile Include="src\planeta\core\key_config.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\PrefixUtility.cpp">

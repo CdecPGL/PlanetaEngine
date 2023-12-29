@@ -5,7 +5,7 @@
 
 #include "init_functions.hpp"
 #include "SystemVariables.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "config_manager.hpp"
 
 namespace plnt::private_::init_funcs {

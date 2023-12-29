@@ -1,5 +1,5 @@
 ﻿#include "..\core\character_code.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 
 #include "effekseer_util.hpp"
 

@@ -2,7 +2,7 @@
 
 #include "game.hpp"
 #include "i_resource_manager.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	namespace util {

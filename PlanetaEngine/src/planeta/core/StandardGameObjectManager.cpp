@@ -1,7 +1,7 @@
 ﻿#include "StandardGameObjectManager.hpp"
 #include "game_object_base.hpp"
 #include "StandardTaskManager.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "game_object_factory.hpp"
 #include "i_debug_manager.hpp"
 #include "boost/algorithm/string.hpp"

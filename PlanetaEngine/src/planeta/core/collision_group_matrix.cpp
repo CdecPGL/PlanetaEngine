@@ -3,7 +3,7 @@
 
 #include "collision_group_matrix.hpp"
 
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	void collision_group_matrix::add_collision_group(const std::string &col_group_name) {

@@ -1,6 +1,6 @@
 ﻿#include "StandardConfigManager.hpp"
 #include "json_file.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "StringUtility.hpp"
 
 namespace plnt {

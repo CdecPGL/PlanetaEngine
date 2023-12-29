@@ -1,7 +1,7 @@
 ﻿#include "planeta/core/GraphPanel.hpp"
 
 #include "planeta/core/StandardResourceManager.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "planeta/core/ScreenDrawerGUI.hpp"
 #include "planeta/buildin/RGraph.hpp"
 

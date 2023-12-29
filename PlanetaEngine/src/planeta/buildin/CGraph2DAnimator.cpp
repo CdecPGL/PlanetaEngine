@@ -1,6 +1,6 @@
 ﻿#include "..\core\i_game_object.hpp"
-#include "planeta/core/LogUtility.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
+#include "..\core\log_utility.hpp"
 
 #include "CDrawGraph2D.hpp"
 #include "CGraph2DAnimator.hpp"

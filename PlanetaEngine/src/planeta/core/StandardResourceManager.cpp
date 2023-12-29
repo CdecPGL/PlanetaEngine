@@ -7,7 +7,7 @@
 #include"StandardResourceManager.hpp"
 #include "file.hpp"
 #include "json_file.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "file_manipulator.hpp"
 #include "SystemVariables.hpp"
 #include "ResourceReferencer.hpp"

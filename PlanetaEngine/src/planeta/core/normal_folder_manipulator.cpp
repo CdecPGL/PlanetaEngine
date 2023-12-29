@@ -5,7 +5,7 @@
 #include"boost/foreach.hpp"
 
 #include "normal_folder_manipulator.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "../archiver/encrypter_base.hpp"
 
 namespace plnt {

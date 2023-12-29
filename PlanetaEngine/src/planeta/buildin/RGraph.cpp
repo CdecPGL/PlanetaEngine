@@ -1,7 +1,7 @@
 ﻿#include "DxLib.h"
 
 #include "planeta/core/file.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "..\math\math_utility.hpp"
 
 #include "RGraph.hpp"

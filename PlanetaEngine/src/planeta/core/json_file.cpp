@@ -3,7 +3,7 @@
 #include "picojson/picojson.h"
 
 #include "file.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "character_code.hpp"
 
 namespace plnt {

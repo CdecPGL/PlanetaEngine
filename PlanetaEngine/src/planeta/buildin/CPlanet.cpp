@@ -2,7 +2,7 @@
 #include <cassert>
 
 #include "..\math\math_constant.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 
 #include "CPlanet.hpp"
 

@@ -9,7 +9,7 @@
 
 #include "game_object_component.hpp"
 #include "game_object_component_setup_data.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "Task.hpp"
 #include "go_component_adder.hpp"
 #include "go_component_getter.hpp"

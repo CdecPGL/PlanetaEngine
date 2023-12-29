@@ -1,6 +1,6 @@
 ﻿#include "go_component_getter.hpp"
 #include "game_object_component_holder.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	go_component_getter::go_component_getter(const private_::game_object_component_holder &com_holder) : com_holder_(

@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/Matrix2_2.hpp"
 #include "..\core\i_game_object.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 
 #include "CGround2D.hpp"
 #include "CTransform2D.hpp"
@@ -36,13 +36,13 @@ namespace plnt {
 
 	Vector2Dd CGround2D::ConvertVelocityGlobalToGroundWithGroundPosition(
 		const Vector2Dd &ground_pos, const Vector2Dd &global_velocity) {
-		return math::RotationalTransformation(GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
+		return math::rotation_transform(GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
 		                                      global_velocity);
 	}
 
 	Vector2Dd CGround2D::ConvertVelocityGroundToGlobalWithGroundPosition(
 		const Vector2Dd &ground_pos, const Vector2Dd &ground_velocity) {
-		return math::RotationalTransformation(-GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
+		return math::rotation_transform(-GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
 		                                      ground_velocity);
 	}
 

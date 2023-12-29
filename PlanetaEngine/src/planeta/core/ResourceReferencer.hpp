@@ -6,7 +6,7 @@
 #include <functional>
 #include <typeinfo>
 
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	class ResourceBase;

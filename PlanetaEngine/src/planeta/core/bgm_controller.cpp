@@ -4,7 +4,7 @@
 
 #include "bgm_controller.hpp"
 #include "planeta/buildin/RMusic.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	bool bgm_controller::is_valid() const {

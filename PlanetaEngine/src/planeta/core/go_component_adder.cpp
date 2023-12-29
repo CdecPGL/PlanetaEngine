@@ -1,6 +1,6 @@
 ﻿#include "go_component_adder.hpp"
 #include "game_object_component_holder.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "planeta/reflection/reflection.hpp"
 #include "PrefixUtility.hpp"
 

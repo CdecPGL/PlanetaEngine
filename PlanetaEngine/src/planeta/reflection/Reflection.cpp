@@ -4,7 +4,7 @@
 #include "boost/multi_index/member.hpp"
 #include "boost/multi_index/hashed_index.hpp"
 
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "planeta/core/StringUtility.hpp"
 
 #include "reflection.hpp"

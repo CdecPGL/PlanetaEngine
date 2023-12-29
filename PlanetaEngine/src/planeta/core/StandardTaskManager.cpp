@@ -6,7 +6,7 @@
 #include "StandardTaskManager.hpp"
 #include "Task.hpp"
 #include "TaskManagerConnection.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "SystemTaskSlot.hpp"
 #include "i_debug_manager.hpp"
 #include "i_scene_internal.hpp"

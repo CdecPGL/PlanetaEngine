@@ -4,7 +4,7 @@
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "planeta/core/i_resource_manager.hpp"
 #include "..\core\i_game_object.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "..\core\graph_draw_data_2d.hpp"
 #include "..\math\math_constant.hpp"
 

@@ -1,7 +1,7 @@
 ﻿#include "..\core\i_game_object.hpp"
 #include "..\core\draw_system.hpp"
 #include "planeta/core/Matrix2_2.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "planeta/core/i_scene_internal.hpp"
 
 #include "CDraw2D.hpp"
@@ -49,7 +49,7 @@ namespace plnt {
 	}
 
 	Vector2Dd CDraw2D::GetDrawCenterPosition() const {
-		Vector2Dd relation_position = math::RotationalTransformation(transform2d_->rotation_rad(), position_);
+		Vector2Dd relation_position = math::rotation_transform(transform2d_->rotation_rad(), position_);
 		//ゲームオブジェクトからの相対位置
 		relation_position.x *= transform2d_->scale().x; //横方向拡大を反映
 		relation_position.y *= transform2d_->scale().y; //縦方向拡大を反映

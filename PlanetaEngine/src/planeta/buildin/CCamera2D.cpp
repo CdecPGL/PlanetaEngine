@@ -1,6 +1,6 @@
 ﻿#include "..\core\draw_system.hpp"
 #include "planeta/core/i_scene_internal.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "..\core\i_game_object.hpp"
 
 #include "CCamera2D.hpp"

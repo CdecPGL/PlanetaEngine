@@ -1,4 +1,4 @@
-﻿#include "planeta/core/LogUtility.hpp"
+﻿#include "..\core\log_utility.hpp"
 #include "planeta/core/i_scene.hpp"
 #include "..\core\i_task_manager.hpp"
 #include "planeta/core/SceneSetUpProxy.hpp"

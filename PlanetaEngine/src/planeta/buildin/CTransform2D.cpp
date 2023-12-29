@@ -2,7 +2,7 @@
 #include <cassert>
 
 #include "..\core\i_game_object.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "planeta/core/TransformSystem.hpp"
 #include "planeta/core/i_scene_internal.hpp"
 

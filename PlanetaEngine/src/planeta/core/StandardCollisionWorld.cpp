@@ -9,7 +9,7 @@
 #include "e_collision_with_collider_2d.hpp"
 #include "e_collision_with_ground_2d.hpp"
 #include "collision_group_matrix.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
 #include "collider_2d_data.hpp"
 #include "i_debug_manager.hpp"

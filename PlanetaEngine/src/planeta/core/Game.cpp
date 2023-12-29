@@ -6,7 +6,7 @@
 
 #include "game.hpp"
 #include "ResourceManager.hpp"
-#include "LogManager.hpp"
+#include "log_manager.hpp"
 #include "SceneManager.hpp"
 #include "input_manager.hpp"
 #include "PerfoamanceManager.hpp"
@@ -15,7 +15,7 @@
 #include "SaveManager.hpp"
 #include "debug_manager.hpp"
 #include "config_manager.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "init_functions.hpp"
 #include "SystemVariables.hpp"
 

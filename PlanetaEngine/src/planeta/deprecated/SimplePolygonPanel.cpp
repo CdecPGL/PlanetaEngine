@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/SimplePolygonPanel.hpp"
 
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "planeta/core/ScreenDrawerGUI.hpp"
 
 namespace plnt {

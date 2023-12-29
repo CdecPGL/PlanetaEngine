@@ -4,7 +4,7 @@
 #include <memory>
 #include <type_traits>
 
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	class ResourceBase;

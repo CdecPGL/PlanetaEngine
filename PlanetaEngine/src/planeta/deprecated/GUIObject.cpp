@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/GUIObject.hpp"
 #include "GUIComponent.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 
 
 namespace plnt {

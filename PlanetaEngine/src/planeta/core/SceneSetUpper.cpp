@@ -1,6 +1,6 @@
 ﻿#include "SceneSetUpper.hpp"
 #include "Scene.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "SceneSetUpProxy.hpp"
 
 namespace plnt {

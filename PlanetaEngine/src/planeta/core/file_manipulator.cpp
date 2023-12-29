@@ -1,5 +1,5 @@
 ﻿#include "file_manipulator.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "../archiver/encrypter_base.hpp"
 
 namespace plnt {

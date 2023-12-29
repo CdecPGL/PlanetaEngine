@@ -3,7 +3,7 @@
 #include "boost/lexical_cast.hpp"
 #include "boost/algorithm/string.hpp"
 
-#include "KeyConfig.hpp"
+#include "key_config.hpp"
 #include "../../my_lib/ini_loader.hpp"
 #include "../../my_lib/ini_saver.hpp"
 #include "input_utility.hpp"

@@ -1,6 +1,6 @@
 ﻿#include "game_object_component.hpp"
 #include "game_object_component_setup_data.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "i_scene_internal.hpp"
 
 namespace plnt {

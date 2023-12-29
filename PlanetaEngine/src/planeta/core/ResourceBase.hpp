@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <memory>
 #include "Object.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "ResourceReferencer.hpp"
 
 namespace plnt {

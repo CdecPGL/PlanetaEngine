@@ -10,7 +10,7 @@
 
 #include "boost/type_index.hpp"
 
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "ResourceManager.hpp"
 
 

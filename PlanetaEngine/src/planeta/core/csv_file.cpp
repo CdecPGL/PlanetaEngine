@@ -8,7 +8,7 @@
 
 #include "csv_file.hpp"
 #include "file.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "character_code.hpp"
 
 namespace plnt {

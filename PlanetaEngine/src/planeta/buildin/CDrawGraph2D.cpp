@@ -1,7 +1,7 @@
 ﻿#include "planeta/core/game.hpp"
 #include "planeta/core/i_resource_manager.hpp"
 #include "planeta/core/ScreenDrawer2D.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "..\core\i_game_object.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "..\math\math_constant.hpp"
@@ -69,16 +69,16 @@ namespace plnt {
 		Vector2Dd right_down_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * (graph_center_.y - 1.0));
 		//画像の回転度とゲームオブジェクトの回転度、表示中心位置から各頂点を求める
 		graph_draw_data_->set_vertex_position(
-			0, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
+			0, static_cast<Vector2Df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), left_down_vertex_vec)));
 		graph_draw_data_->set_vertex_position(
-			1, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
+			1, static_cast<Vector2Df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), right_down_vertex_vec)));
 		graph_draw_data_->set_vertex_position(
-			2, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
+			2, static_cast<Vector2Df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), right_up_vertex_vec)));
 		graph_draw_data_->set_vertex_position(
-			3, static_cast<Vector2Df>(center_position + math::RotationalTransformation(
+			3, static_cast<Vector2Df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), left_up_vertex_vec)));
 		//色
 		for (int i = 0; i < 4; ++i) { graph_draw_data_->set_vertex_color(i, color()); }

@@ -8,7 +8,7 @@
 #pragma warning(pop)
 
 #include "Screen.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt {
 	namespace private_ {

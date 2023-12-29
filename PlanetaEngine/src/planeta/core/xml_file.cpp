@@ -4,7 +4,7 @@
 #include "xml_file.hpp"
 #include "file.hpp"
 #include "tinyxml2.h"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "character_code.hpp"
 
 namespace plnt {

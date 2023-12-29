@@ -10,7 +10,7 @@
 #include "date_time.hpp"
 #include "..\win\windows_utility.hpp"
 #include "character_code.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 /*ログの書式
 [hh:mm:ss,frame]level:detail@place

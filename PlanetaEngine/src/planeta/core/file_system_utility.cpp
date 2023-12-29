@@ -4,7 +4,7 @@
 
 #include "file_system_utility.hpp"
 #include "file.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 
 namespace plnt::util {
 	std::shared_ptr<file> create_file_from_standard_file_input(const std::string &file_name) {

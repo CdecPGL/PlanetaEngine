@@ -2,7 +2,7 @@
 #include "game.hpp"
 #include "i_input_manager.hpp"
 #include "RenderingManager.hpp"
-#include "LogUtility.hpp"
+#include "log_utility.hpp"
 #include "ScreenDrawer2D.hpp"
 #include "ScreenDrawerGUI.hpp"
 

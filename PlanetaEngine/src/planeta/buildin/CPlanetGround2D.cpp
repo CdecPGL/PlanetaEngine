@@ -1,5 +1,5 @@
 ﻿#include "..\core\i_game_object.hpp"
-#include "planeta/core/LogUtility.hpp"
+#include "..\core\log_utility.hpp"
 #include "..\math\math_constant.hpp"
 
 #include "CPlanetGround2D.hpp"
