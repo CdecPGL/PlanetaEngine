@@ -20,7 +20,7 @@ namespace plnt {
 		Effekseer::EffectRef effekseer_effect() const;
 
 	private:
-		virtual bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		virtual bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
 		virtual void OnDisposed() override;
 		Effekseer::EffectRef effekseer_effect_ = nullptr;
 	};

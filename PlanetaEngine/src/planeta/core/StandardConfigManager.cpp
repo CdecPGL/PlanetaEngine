@@ -6,40 +6,40 @@
 namespace plnt {
 	namespace private_ {
 		bool StandardConfigManager::load_system_config(const file &file) {
-			JsonFile json_file{};
+			json_file json_file{};
 			//FileからJSONリソースを作成する
-			if (!json_file.Load(file)) {
+			if (!json_file.load(file)) {
 				PE_LOG_ERROR("システム設定ファイルをJSONファイルとして読み込むことができませんでした。");
 				return false;
 			}
 			try {
-				decltype(auto) root_obj = json_file.GetRoot().GetWithException<JSONObject>();
+				decltype(auto) root_obj = json_file.get_root().get_with_exception<json_object>();
 				//Game
-				auto game_obj = root_obj->AtWithException("Game")->GetWithException<JSONObject>();
-				game_title_ = *game_obj->AtWithException("Title")->GetWithException<std::string>();
-				auto buf_array = *game_obj->AtWithException("Version")->GetWithException<std::vector<int>>();
+				auto game_obj = root_obj->at_with_exception("Game")->get_with_exception<json_object>();
+				game_title_ = *game_obj->at_with_exception("Title")->get_with_exception<std::string>();
+				auto buf_array = *game_obj->at_with_exception("Version")->get_with_exception<std::vector<int>>();
 				game_version_numbers_[0] = buf_array[0];
 				game_version_numbers_[1] = buf_array[1];
 				game_version_numbers_[2] = buf_array[2];
 				//Engine
-				auto engine_obj = root_obj->AtWithException("Engine")->GetWithException<JSONObject>();
-				color_bit_depth_ = *engine_obj->AtWithException("ColorBitDepth")->GetWithException<int>();
-				buf_array = *engine_obj->AtWithException("DrawSize")->GetWithException<std::vector<int>>();
+				auto engine_obj = root_obj->at_with_exception("Engine")->get_with_exception<json_object>();
+				color_bit_depth_ = *engine_obj->at_with_exception("ColorBitDepth")->get_with_exception<int>();
+				buf_array = *engine_obj->at_with_exception("DrawSize")->get_with_exception<std::vector<int>>();
 				draw_size_.Set(buf_array[0], buf_array[1]);
-				is_cursor_visible_ = *engine_obj->AtWithException("IsCursorVisible")->GetWithException<bool>();
+				is_cursor_visible_ = *engine_obj->at_with_exception("IsCursorVisible")->get_with_exception<bool>();
 				//Program
-				auto prog_obj = root_obj->AtWithException("Program")->GetWithException<JSONObject>();
-				auto scene_obj = prog_obj->AtWithException("Scene")->GetWithException<JSONObject>();
+				auto prog_obj = root_obj->at_with_exception("Program")->get_with_exception<json_object>();
+				auto scene_obj = prog_obj->at_with_exception("Scene")->get_with_exception<json_object>();
 				//-シーン
-				startup_scene_id_ = *scene_obj->AtWithException("Startup")->GetWithException<std::string>();
+				startup_scene_id_ = *scene_obj->at_with_exception("Startup")->get_with_exception<std::string>();
 				//-衝突システム
-				auto col_obj = prog_obj->AtWithException("Collision")->GetWithException<JSONObject>();
+				auto col_obj = prog_obj->at_with_exception("Collision")->get_with_exception<json_object>();
 				//--衝突グループ
 				std::vector<std::string> group_list;
-				group_list = *col_obj->AtWithException("Groups")->GetWithException<std::vector<std::string>>();
+				group_list = *col_obj->at_with_exception("Groups")->get_with_exception<std::vector<std::string>>();
 				collision_group_matrix_.add_collision_groups(group_list);
 				//--衝突可能マトリックス
-				auto col_mtx = *col_obj->AtWithException("CollidableMatrix")->GetWithException<std::unordered_map<
+				auto col_mtx = *col_obj->at_with_exception("CollidableMatrix")->get_with_exception<std::unordered_map<
 					std::string, std::vector<std::string>>>();
 				for (auto &&group : col_mtx) {
 					for (auto &&cbl_group : group.second) {
@@ -52,7 +52,7 @@ namespace plnt {
 			} catch (std::out_of_range &e) {
 				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
 				return false;
-			} catch (JSONTypeError &e) {
+			} catch (json_type_error &e) {
 				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。型が間違えている可能性があります。(", e.what(), ")");
 				return false;
 			}
@@ -74,23 +74,23 @@ namespace plnt {
 		}
 
 		bool StandardConfigManager::load_user_config(const file &file) {
-			JsonFile json_file{};
+			json_file json_file{};
 			//FileからJSONリソースを作成する
-			if (!json_file.Load(file)) {
+			if (!json_file.load(file)) {
 				PE_LOG_ERROR("ユーザー設定ファイルをJSONファイルとして読み込むことができませんでした。");
 				return false;
 			}
 			try {
-				decltype(auto) root_obj = json_file.GetRoot().GetWithException<JSONObject>();
+				decltype(auto) root_obj = json_file.get_root().get_with_exception<json_object>();
 				//Window
-				auto window_obj = root_obj->AtWithException("Window")->GetWithException<JSONObject>();
-				auto buf_array = *window_obj->AtWithException("WindowSize")->GetWithException<std::vector<int>>();
+				auto window_obj = root_obj->at_with_exception("Window")->get_with_exception<json_object>();
+				auto buf_array = *window_obj->at_with_exception("WindowSize")->get_with_exception<std::vector<int>>();
 				window_size_.Set(buf_array[0], buf_array[1]);
-				is_window_mode_ = *window_obj->AtWithException("WindowMode")->GetWithException<bool>();
+				is_window_mode_ = *window_obj->at_with_exception("WindowMode")->get_with_exception<bool>();
 			} catch (std::out_of_range &e) {
 				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
 				return false;
-			} catch (JSONTypeError &e) {
+			} catch (json_type_error &e) {
 				PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。型が間違えている可能性があります。(", e.what(), ")");
 				return false;
 			}

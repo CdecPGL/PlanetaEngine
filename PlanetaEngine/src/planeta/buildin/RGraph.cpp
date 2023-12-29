@@ -7,7 +7,7 @@
 #include "RGraph.hpp"
 
 namespace plnt {
-	bool RGraph::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RGraph::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
 		_handle = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (_handle >= 0) {
 			GetGraphSize(_handle, &image_size_.x, &image_size_.y);

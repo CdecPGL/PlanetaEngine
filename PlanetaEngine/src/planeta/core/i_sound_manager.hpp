@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "i_bgm_controller.hpp"
-#include "ISoundEffectController.hpp"
+#include "i_sound_effect_controller.hpp"
 
 namespace plnt {
 	class ResourceBase;

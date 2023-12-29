@@ -7,20 +7,20 @@
 #include "RFont.hpp"
 
 namespace plnt {
-	bool RFont::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RFont::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char *>(file.top_pointer()), file.size(), nullptr,
 		                               &font_num_);
 		if (handle_ == 0) {
 			PE_LOG_ERROR("フォントの読み込みに失敗しました。");
 			return false;
 		}
-		auto root = metadata.GetRoot();
-		auto root_obj = root.Get<JSONObject>();
-		auto name = *root_obj->AtWithException("name")->GetWithException<std::string>();
-		auto size = *root_obj->AtWithException("size")->GetWithException<int>();
-		auto thick = *root_obj->AtWithException("thick")->GetWithException<int>();
-		auto outline = *root_obj->AtWithException("outline")->GetWithException<bool>();
-		auto antialiasing = *root_obj->AtWithException("antialiasing")->GetWithException<bool>();
+		auto root = metadata.get_root();
+		auto root_obj = root.get<json_object>();
+		auto name = *root_obj->at_with_exception("name")->get_with_exception<std::string>();
+		auto size = *root_obj->at_with_exception("size")->get_with_exception<int>();
+		auto thick = *root_obj->at_with_exception("thick")->get_with_exception<int>();
+		auto outline = *root_obj->at_with_exception("outline")->get_with_exception<bool>();
+		auto antialiasing = *root_obj->at_with_exception("antialiasing")->get_with_exception<bool>();
 		//DXフォントタイプを求める
 		int dx_font_type = outline
 			                   ? (antialiasing ? DX_FONTTYPE_ANTIALIASING_EDGE : DX_FONTTYPE_EDGE)

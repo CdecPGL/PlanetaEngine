@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "ISceneManager.hpp"
+#include "i_scene_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

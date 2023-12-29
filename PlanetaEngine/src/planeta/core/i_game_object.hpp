@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "Signal.hpp"
-#include "ITaskManager.hpp"
+#include "i_task_manager.hpp"
 #include "TaskSlot.hpp"
 #include "i_scene.hpp"
 

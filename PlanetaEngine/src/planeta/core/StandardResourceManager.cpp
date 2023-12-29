@@ -48,12 +48,12 @@ namespace plnt {
 				return nullptr;
 			}
 			//メタデータを読み込み
-			std::unique_ptr<JsonFile> metadata = std::make_unique<JsonFile>();
+			std::unique_ptr<json_file> metadata = std::make_unique<json_file>();
 			if (res_dat.has_metadata) {
 				auto metadata_file = file_accessor_->load_file(res_dat.metadata_file_path);
-				metadata->Load(*metadata_file);
+				metadata->load(*metadata_file);
 				if (metadata_file == nullptr) { PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。"); } else if (!
-					metadata->Load(*metadata_file)) {
+					metadata->load(*metadata_file)) {
 					PE_LOG_ERROR("メタデータファイルの読み込みに失敗しました。Jsonファイルとして読み込めませんでした。");
 					return nullptr;
 				}
@@ -140,10 +140,10 @@ namespace plnt {
 			bool is_tag_list_loaded = false;
 			if (tag_list_path) {
 				auto tag_list_file = file_accessor_->load_file(*tag_list_path);
-				JsonFile tag_list;
-				if (tag_list.Load(*tag_list_file)) {
+				json_file tag_list;
+				if (tag_list.load(*tag_list_file)) {
 					try {
-						auto tag_map = tag_list.GetRoot().GetWithException<std::unordered_map<
+						auto tag_map = tag_list.get_root().get_with_exception<std::unordered_map<
 							std::string, std::vector<std::string>>>();
 						for (auto &&pair : *tag_map) {
 							auto tag = pair.first;
@@ -156,7 +156,7 @@ namespace plnt {
 							}
 						}
 						is_tag_list_loaded = true;
-					} catch (const JSONTypeError &e) {
+					} catch (const json_type_error &e) {
 						PE_LOG_WARNING("タグリストのルートオブジェクト読み込みに失敗しました。(file_path: ", tag_list_path, ", error: ", e.what(),
 						               ")");
 					}

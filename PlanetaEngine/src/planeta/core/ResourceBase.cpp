@@ -6,7 +6,7 @@
 namespace plnt {
 	ResourceBase::~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } }
 
-	bool ResourceBase::Load(const file &file, const JsonFile &metadata,
+	bool ResourceBase::Load(const file &file, const json_file &metadata,
 	                        private_::ResourceManagerInternalAccessor &mgr_acsr) {
 		if (is_usable_) {
 			PE_LOG_ERROR("読み込み済みのリソースをファイル\"", file.file_name(), "\"から再読み込みしようとしました。リソースタイプは\"", typeid(*this).name(),

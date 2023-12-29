@@ -412,11 +412,11 @@
     <ClInclude Include="src\planeta\core\i_save_manager.hpp" />
     <ClInclude Include="src\planeta\core\i_scene.hpp" />
     <ClInclude Include="src\planeta\core\i_scene_internal.hpp" />
-    <ClInclude Include="src\planeta\core\ISceneManager.hpp" />
-    <ClInclude Include="src\planeta\core\ISoundEffectController.hpp" />
-    <ClInclude Include="src\planeta\core\ISoundManager.hpp" />
-    <ClInclude Include="src\planeta\core\ITaskManager.hpp" />
-    <ClInclude Include="src\planeta\core\ITransformSystem.hpp" />
+    <ClInclude Include="src\planeta\core\i_scene_manager.hpp" />
+    <ClInclude Include="src\planeta\core\i_sound_effect_controller.hpp" />
+    <ClInclude Include="src\planeta\core\i_sound_manager.hpp" />
+    <ClInclude Include="src\planeta\core\i_task_manager.hpp" />
+    <ClInclude Include="src\planeta\core\i_transform_system.hpp" />
     <ClInclude Include="src\planeta\core\JsonFile.hpp" />
     <ClInclude Include="src\planeta\core\KeyConfig.hpp" />
     <ClInclude Include="src\planeta\core\LogManager.hpp" />

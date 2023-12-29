@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <memory>
-#include "ISoundEffectController.hpp"
+#include "i_sound_effect_controller.hpp"
 
 namespace plnt {
 	class RSound;

@@ -10,7 +10,7 @@ namespace plnt {
 		std::shared_ptr<const boost::property_tree::ptree> GetPtree() const;
 
 	private:
-		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 		std::shared_ptr<boost::property_tree::ptree> ptree_;
 	};

@@ -7,7 +7,7 @@
 #include "game_object_manager_connection.hpp"
 
 namespace plnt {
-	class JSONObject;
+	class json_object;
 	class game_object_component;
 	class go_component_getter;
 

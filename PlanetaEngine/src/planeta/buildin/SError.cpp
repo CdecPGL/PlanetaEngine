@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/LogUtility.hpp"
 #include "planeta/core/i_scene.hpp"
-#include "planeta/core/ITaskManager.hpp"
+#include "..\core\i_task_manager.hpp"
 #include "planeta/core/SceneSetUpProxy.hpp"
 
 #include "SError.hpp"

@@ -19,7 +19,7 @@ namespace plnt {
 		return false;
 	}
 
-	bool RLuaScript::OnLoaded(const file &f, const JsonFile &metadata, ResourceReferencer &referencer) {
+	bool RLuaScript::OnLoaded(const file &f, const json_file &metadata, ResourceReferencer &referencer) {
 		//ファイルのコピーを作成
 		file_ = std::make_unique<file>(f);
 		return true;

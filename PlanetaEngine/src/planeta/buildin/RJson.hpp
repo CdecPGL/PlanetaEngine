@@ -8,12 +8,12 @@ namespace plnt {
 	*/
 	class RJson final : public ResourceBase {
 	public:
-		const JsonFile &json_file() const;
-		JsonFile &json_file();
+		const json_file &get_json_file() const;
+		json_file &get_json_file();
 
 	private:
-		std::unique_ptr<JsonFile> json_file_;
-		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		std::unique_ptr<json_file > json_file_;
+		bool OnLoaded(const file &file, const json_file  &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 	};
 }

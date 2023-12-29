@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "ISoundManager.hpp"
+#include "i_sound_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {

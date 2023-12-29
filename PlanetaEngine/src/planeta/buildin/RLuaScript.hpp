@@ -10,7 +10,7 @@ namespace plnt {
 		bool RegisterToLuaState(lua_State *l);
 
 	protected:
-		virtual bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		virtual bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
 		virtual void OnDisposed() override;
 		std::unique_ptr<file> file_;
 	};

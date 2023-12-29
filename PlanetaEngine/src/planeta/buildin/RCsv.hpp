@@ -12,7 +12,7 @@ namespace plnt {
 	private:
 		std::unique_ptr<plnt::csv_file> csv_file_;
 
-		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 	};
 }

@@ -6,20 +6,20 @@
 
 namespace plnt {
 	class file;
-	class JsonFile;
+	class json_file;
 
 	class ResourceBase : public Object {
 	public:
 		ResourceBase() = default;
 		virtual ~ResourceBase();
 
-		bool Load(const file &file, const JsonFile &metadata, private_::ResourceManagerInternalAccessor &mgr_acsr);
+		bool Load(const file &file, const json_file &metadata, private_::ResourceManagerInternalAccessor &mgr_acsr);
 		void Dispose();
 		bool is_usable() const { return is_usable_; }
 		size_t reference_conunt() const;
 
 	protected:
-		virtual bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) = 0;
+		virtual bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) = 0;
 		virtual void OnDisposed() = 0;
 
 	private:

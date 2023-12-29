@@ -13,7 +13,7 @@ using namespace ::plnt::effekseer;
 
 Effekseer::EffectRef plnt::REffect::effekseer_effect() const { return effekseer_effect_; }
 
-bool plnt::REffect::OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) {
+bool plnt::REffect::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
 	//読み込み用設定
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
 	//エフェクトローダーの設定

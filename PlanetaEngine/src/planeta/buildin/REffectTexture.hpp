@@ -24,7 +24,7 @@ namespace plnt {
 	private:
 		::Effekseer::TextureRef effekseer_taxture_;
 		std::unique_ptr<::DxLib::BASEIMAGE> dx_base_image_;
-		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
+		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
 	};
 }
