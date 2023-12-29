@@ -12,8 +12,8 @@ namespace plnt {
 			void Finalize() override;
 			void Update() override;
 
-			std::shared_ptr<i_bgm_controller> GetBGMController(const std::shared_ptr<ResourceBase> &music_resource);
-			std::shared_ptr<ISoundEffectController> GetSoundEffectController(
+			std::shared_ptr<i_bgm_controller> get_bgm_controller(const std::shared_ptr<ResourceBase> &music_resource);
+			std::shared_ptr<i_sound_effect_controller> get_sound_effect_controller(
 				const std::shared_ptr<ResourceBase> &sound_resource);
 			void Reset() override;
 

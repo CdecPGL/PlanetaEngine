@@ -6,7 +6,7 @@
 
 namespace plnt {
 	namespace private_ {
-		class TaskManager : public ITaskManager, public SceneModule {
+		class TaskManager : public i_task_manager, public SceneModule {
 		public:
 			virtual ~TaskManager() = 0 { };
 			virtual void ExcuteTask() = 0;

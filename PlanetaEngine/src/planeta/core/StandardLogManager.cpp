@@ -1,6 +1,6 @@
 ﻿#include <fstream>
 #include "game.hpp"
-#include "IPerformanceManager.hpp"
+#include "i_performance_manager.hpp"
 #include "StandardLogManager.hpp"
 #include "SystemVariables.hpp"
 #include <sstream>
@@ -80,7 +80,7 @@ namespace plnt {
 				stringstream sstrm;
 				//ログのシステム時刻
 				auto &pm = *game::instance().performance_manager();
-				sstrm << '[' << pm.GetCurrentTimeCount().ToString() << ',' << pm.GetCurrentFrameCount() << ']';
+				sstrm << '[' << pm.get_current_time_count().ToString() << ',' << pm.get_current_frame_count() << ']';
 				//ログのレベル
 				sstrm << header << ':';
 				//詳細

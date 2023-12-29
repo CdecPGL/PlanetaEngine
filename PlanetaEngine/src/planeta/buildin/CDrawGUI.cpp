@@ -1,4 +1,4 @@
-﻿#include "planeta/core/ISceneInternal.hpp"
+﻿#include "planeta/core/i_scene_internal.hpp"
 #include "..\core\draw_system.hpp"
 #include "planeta/core/LogUtility.hpp"
 

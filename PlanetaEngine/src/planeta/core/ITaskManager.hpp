@@ -1,53 +1,56 @@
 ﻿#pragma once
 
 #include <memory>
-#include <functional>
 #include <string>
+
 #include "WeakPointer.hpp"
-#include "TypeChecker.hpp"
 #include "TaskSlot.hpp"
 
 namespace plnt {
 	class Task;
 
-	class ITaskManager {
+	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+	class i_task_manager {
 	public:
-		virtual ~ITaskManager() = default;
+		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
+		virtual ~i_task_manager() = 0 {}
+
 		/*! ゲームプロセスを名前から取得する*/
-		virtual WeakPointer<Task> GetTask(const std::string &name) const = 0;
+		[[nodiscard]] virtual WeakPointer<Task> get_task(const std::string &name) const = 0;
+
 		/*! タスクを作成*/
 		template <class T>
-		WeakPointer<T> CreateTask(TaskSlot slot) {
+		[[nodiscard]] WeakPointer<T> create_task(TaskSlot slot) {
 			auto task = std::make_shared<T>();
-			return RegisterTask(task, slot, false) ? task : nullptr;
+			return register_task(task, slot, false) ? task : nullptr;
 		}
 
 		/*名前付きタスクを作成*/
 		template <class T>
-		WeakPointer<T> CreateTask(TaskSlot slot, const std::string &name) {
+		[[nodiscard]] WeakPointer<T> create_task(TaskSlot slot, const std::string &name) {
 			auto task = std::make_shared<T>();
-			return RegisterTask(task, slot, name, false) ? task : nullptr;
+			return register_task(task, slot, name, false) ? task : nullptr;
 		}
 
 		/*! タスクを作成して実行*/
 		template <class T>
-		WeakPointer<T> CreateAndRunTask(TaskSlot slot) {
+		[[nodiscard]] WeakPointer<T> create_and_run_task(TaskSlot slot) {
 			auto task = std::make_shared<T>();
-			return RegisterTask(task, slot, true) ? task : nullptr;
+			return register_task(task, slot, true) ? task : nullptr;
 		}
 
 		/*名前付きタスクを作成して実行*/
 		template <class T>
-		WeakPointer<T> CreateAndRunTask(TaskSlot slot, const std::string &name) {
+		[[nodiscard]] WeakPointer<T> create_and_run_task(TaskSlot slot, const std::string &name) {
 			auto task = std::make_shared<T>();
-			return RegisterTask(task, slot, name, true) ? task : nullptr;
+			return register_task(task, slot, name, true) ? task : nullptr;
 		}
 
 	private:
 		/*ゲームプロセスを登録する*/
-		virtual bool RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) = 0;
+		virtual bool register_task(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) = 0;
 		/*ゲームプロセスを登録して名前をつける*/
-		virtual bool RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, const std::string &name,
-		                          bool auto_run) = 0;
+		virtual bool register_task(const std::shared_ptr<Task> &task, TaskSlot slot, const std::string &name,
+		                           bool auto_run) = 0;
 	};
 }

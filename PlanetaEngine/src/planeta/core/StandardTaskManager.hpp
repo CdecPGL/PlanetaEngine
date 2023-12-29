@@ -25,10 +25,10 @@ namespace plnt {
 			void Update() override;
 
 			/*名前からゲームプロセスを取得*/
-			WeakPointer<Task> GetTask(const std::string &name) const override;
+			WeakPointer<Task> get_task(const std::string &name) const override;
 			/*ゲームプロセス作製*/
-			bool RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) override;
-			bool RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, const std::string &name,
+			bool register_task(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) override;
+			bool register_task(const std::shared_ptr<Task> &task, TaskSlot slot, const std::string &name,
 			                  bool auto_run) override;
 
 		private:

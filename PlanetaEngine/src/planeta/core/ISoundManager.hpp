@@ -1,18 +1,22 @@
 ﻿#pragma once
 
 #include <memory>
+
 #include "i_bgm_controller.hpp"
 #include "ISoundEffectController.hpp"
 
 namespace plnt {
 	class ResourceBase;
 
-	class ISoundManager {
+	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+	class i_sound_manager {
 	public:
-		virtual ~ISoundManager() = 0 { };
-		virtual std::shared_ptr<i_bgm_controller> GetBGMController(const std::shared_ptr<ResourceBase> &music_resource) =
-		0;
-		virtual std::shared_ptr<ISoundEffectController> GetSoundEffectController(
+		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
+		virtual ~i_sound_manager() = 0 { }
+
+		virtual std::shared_ptr<i_bgm_controller> get_bgm_controller(const std::shared_ptr<ResourceBase> &music_resource)
+		=0;
+		virtual std::shared_ptr<i_sound_effect_controller> get_sound_effect_controller(
 			const std::shared_ptr<ResourceBase> &sound_resource) = 0;
 	};
 }

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 namespace plnt {
-	class IScene;
+	class i_scene;
 
 	namespace private_ {
 		class Scene;
@@ -10,7 +10,7 @@ namespace plnt {
 	class SceneSetUpProxy {
 	public:
 		SceneSetUpProxy(private_::Scene &pscene);
-		IScene &scene();
+		i_scene &scene();
 
 	private:
 		private_::Scene &scene_;

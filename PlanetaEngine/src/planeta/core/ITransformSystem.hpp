@@ -1,8 +1,10 @@
 ﻿#pragma once
 
 namespace plnt {
-	class ITransformSystem {
+	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+	class i_transform_system {
 	public:
-		virtual ~ITransformSystem() = 0 { };
+		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
+		virtual ~i_transform_system() = 0 { }
 	};
 }

@@ -1,17 +1,17 @@
 ﻿#pragma once
 
 #include "planeta/core/ResourceBase.hpp"
-#include "planeta/core/IniFile.hpp"
+#include "../core/ini_file.hpp"
 
 namespace plnt {
 	class RIni : public ResourceBase {
 	public:
-		const IniFile &ini_file() const;
-		IniFile &ini_file();
+		const ini_file &get_ini_file() const;
+		ini_file &get_ini_file();
 
 	private:
 		bool OnLoaded(const file &file, const JsonFile &metadata, ResourceReferencer &referencer) override;
 		void OnDisposed() override;
-		std::unique_ptr<IniFile> ini_file_;
+		std::unique_ptr<ini_file> ini_file_;
 	};
 }

@@ -3,7 +3,7 @@
 #include <set>
 #include <vector>
 #include <functional>
-#include "IResourceManager.hpp"
+#include "i_resource_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
@@ -11,7 +11,7 @@ namespace plnt {
 
 	namespace private_ {
 		/// <summary>リソースマネージャ.</summary>
-		class ResourceManager : public IResourceManager, public SubSystemManager {
+		class ResourceManager : public i_resource_manager, public SubSystemManager {
 		public:
 			/// <summary>Destructor.</summary>
 			virtual ~ResourceManager() override = default;

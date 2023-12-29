@@ -73,7 +73,7 @@ namespace plnt {
 			return true;
 		}
 
-		std::shared_ptr<Screen> StandardRenderingManager::GetMainScreen() { return main_screen_; }
+		std::shared_ptr<Screen> StandardRenderingManager::get_main_screen() { return main_screen_; }
 
 		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetDebugDrawScreen() {
 			return debug_draw_screen_;
@@ -83,7 +83,7 @@ namespace plnt {
 			return debug_information_screen_;
 		}
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetGUIScreen() { return gui_screen_; }
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::get_gui_screen() { return gui_screen_; }
 
 		StandardRenderingManager::StandardRenderingManager(): main_screen_(std::make_shared<Screen>()),
 		                                                      gui_screen_(std::make_shared<Screen>()),

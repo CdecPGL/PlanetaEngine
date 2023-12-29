@@ -14,7 +14,7 @@ namespace plnt {
 			std::unordered_map<int, std::shared_ptr<SoundEffectController>> se_controllers_;
 		};
 
-		std::shared_ptr<i_bgm_controller> StandardSoundManager::GetBGMController(
+		std::shared_ptr<i_bgm_controller> StandardSoundManager::get_bgm_controller(
 			const std::shared_ptr<ResourceBase> &music_resource) {
 			auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
 			if (m_res == nullptr) {
@@ -37,7 +37,7 @@ namespace plnt {
 		}
 
 
-		std::shared_ptr<ISoundEffectController> StandardSoundManager::GetSoundEffectController(
+		std::shared_ptr<i_sound_effect_controller> StandardSoundManager::get_sound_effect_controller(
 			const std::shared_ptr<ResourceBase> &sound_resource) {
 			auto s_res = std::dynamic_pointer_cast<RSound>(sound_resource);
 			if (s_res == nullptr) {

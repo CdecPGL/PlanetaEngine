@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 #include <memory>
-#include "ISaveManager.hpp"
+#include "i_save_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	class file_manipulator;
 
 	namespace private_ {
-		class SaveManager : public ISaveManager, public SubSystemManager {
+		class SaveManager : public i_save_manager, public SubSystemManager {
 		public:
 			virtual ~SaveManager() override = default;
 			//ファイルアクセサを設定。初期化前に呼び出す。

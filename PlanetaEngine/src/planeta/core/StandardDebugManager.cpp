@@ -98,13 +98,13 @@ namespace plnt {
 		void StandardDebugManager::pre_rendering_update() {
 			auto &inp_mgr = *game::instance().input_manager();
 			//F1でデバッグ情報の表示有無を切り替え
-			if (inp_mgr.key_push(Key::F1)) {
+			if (inp_mgr.key_push(keyboard::f1)) {
 				impl_->is_debug_information_showing = !impl_->is_debug_information_showing;
 			}
 			//デバッグ情報表示
 			if (impl_->is_debug_information_showing) {
 				//F2でデバッグ表示する情報切り替え
-				if (inp_mgr.key_push(Key::F2)) { impl_->SwitchShowingDebugInformation(); }
+				if (inp_mgr.key_push(keyboard::f2)) { impl_->SwitchShowingDebugInformation(); }
 				ScreenDrawerGUI scr_drawer_gui{*impl_->debug_info_screen};
 				StandardDebugInformationAdder info_adder{scr_drawer_gui};
 				//デバッグ情報があったら表示
@@ -117,7 +117,7 @@ namespace plnt {
 				}
 			}
 			//F3でデバッグ描画の表示有無を切り替え
-			if (inp_mgr.key_push(Key::F3)) { impl_->enable_debug_draw = !impl_->enable_debug_draw; }
+			if (inp_mgr.key_push(keyboard::f3)) { impl_->enable_debug_draw = !impl_->enable_debug_draw; }
 			//デバッグ描画
 			if (impl_->enable_debug_draw) {
 				ScreenDrawer2D scr_drawer_2d{*impl_->debug_draw_screen};

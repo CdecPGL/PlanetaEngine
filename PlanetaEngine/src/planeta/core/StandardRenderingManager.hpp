@@ -15,10 +15,10 @@ namespace plnt {
 			//システム関数
 			bool Update() override;
 
-			std::shared_ptr<Screen> GetMainScreen() override;
+			std::shared_ptr<Screen> get_main_screen() override;
 			std::shared_ptr<Screen> GetDebugDrawScreen() override;
 			std::shared_ptr<Screen> GetDebugInformationScreen() override;
-			std::shared_ptr<Screen> GetGUIScreen() override;
+			std::shared_ptr<Screen> get_gui_screen() override;
 
 		private:
 			std::shared_ptr<Screen> main_screen_; //メインスクリーン

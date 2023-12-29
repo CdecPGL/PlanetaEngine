@@ -2,7 +2,7 @@
 
 #include "planeta/core/game.hpp"
 #include "planeta/core/ScreenDrawer2D.hpp"
-#include "planeta/core/IResourceManager.hpp"
+#include "planeta/core/i_resource_manager.hpp"
 #include "..\core\i_game_object.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "..\core\graph_draw_data_2d.hpp"
@@ -178,7 +178,7 @@ namespace plnt {
 	}
 
 	bool CDrawPlanet2D::SetGraphResource(const std::string &resource_id) {
-		auto res = game::instance().resource_manager()->GetResourceByID<RGraph>(resource_id);
+		auto res = game::instance().resource_manager()->get_resource_by_id<RGraph>(resource_id);
 		if (res == nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(ResourceID: ", resource_id, ")");
 			return false;

@@ -9,7 +9,7 @@ namespace plnt {
 	namespace private_ {
 		struct game_object_component_set_up_data {
 			NonOwingPointer<i_game_object> holder_game_object;
-			WeakPointer<ISceneInternal> scene_internal_interface;
+			WeakPointer<i_scene_internal> scene_internal_interface;
 		};
 	}
 }

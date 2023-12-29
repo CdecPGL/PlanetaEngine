@@ -9,7 +9,7 @@ namespace plnt {
 		sound_resource_.reset();
 	}
 
-	bool SoundEffectController::Play() {
+	bool SoundEffectController::play() {
 		if (!is_valid()) {
 			PE_LOG_WARNING("コントローラは無効です。");
 			return false;

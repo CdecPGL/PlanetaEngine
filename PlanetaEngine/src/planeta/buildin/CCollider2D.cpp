@@ -1,7 +1,7 @@
 ﻿#include "..\core\i_game_object.hpp"
 #include "..\core\collision_world.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/core/ISceneInternal.hpp"
+#include "planeta/core/i_scene_internal.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "..\core\collider_2d_data.hpp"
 #include "planeta/core/e_collision_with_ground_2d.hpp"

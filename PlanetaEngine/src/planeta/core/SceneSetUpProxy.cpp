@@ -4,5 +4,5 @@
 namespace plnt {
 	SceneSetUpProxy::SceneSetUpProxy(private_::Scene &pscene) : scene_(pscene) { }
 
-	plnt::IScene &SceneSetUpProxy::scene() { return scene_; }
+	plnt::i_scene &SceneSetUpProxy::scene() { return scene_; }
 }

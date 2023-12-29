@@ -8,7 +8,7 @@ namespace plnt {
 	class CTransformGUI;
 
 	namespace private_ {
-		class TransformSystem : public ITransformSystem, public SceneModule {
+		class TransformSystem : public i_transform_system, public SceneModule {
 		public:
 			virtual ~TransformSystem() = 0 { };
 			virtual void ApplyVelocity() = 0;

@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "IPerformanceManager.hpp"
+#include "i_performance_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	namespace private_ {
 		/*パフォーマンスマネージャ*/
-		class PerformanceManager : public IPerformanceManager, public SubSystemManager {
+		class PerformanceManager : public i_performance_manager, public SubSystemManager {
 		public:
 			virtual ~PerformanceManager() override = default;
 			virtual bool Initialize() = 0;

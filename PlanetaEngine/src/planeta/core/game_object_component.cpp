@@ -1,7 +1,7 @@
 ﻿#include "game_object_component.hpp"
 #include "game_object_component_setup_data.hpp"
 #include "LogUtility.hpp"
-#include "ISceneInternal.hpp"
+#include "i_scene_internal.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(game_object_component) {
@@ -51,5 +51,5 @@ namespace plnt {
 
 	void game_object_component::labels(const std::unordered_set<std::string> &l) { labels_ = l; }
 
-	IScene &game_object_component::scene() const { return *scene_; }
+	i_scene &game_object_component::scene() const { return *scene_; }
 }

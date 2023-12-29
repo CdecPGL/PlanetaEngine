@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "IRenderingManager.hpp"
+#include "i_rendering_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
@@ -8,7 +8,7 @@ namespace plnt {
 		class Screen;
 
 		/*レンダリングマネージャ*/
-		class RenderingManager : public IRenderingManager, public SubSystemManager {
+		class RenderingManager : public i_rendering_manager, public SubSystemManager {
 		public:
 			virtual ~RenderingManager() override = default;
 			/*初期化する*/

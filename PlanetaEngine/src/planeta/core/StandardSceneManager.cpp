@@ -41,8 +41,8 @@ namespace plnt {
 			}
 		}
 
-		bool StandardSceneManager::LoadNextScene(const std::string &scene_name) {
-			if (IsLoading() || IsTransitioning()) {
+		bool StandardSceneManager::load_next_scene(const std::string &scene_name) {
+			if (is_loading() || is_transitioning()) {
 				PE_LOG_ERROR("シーンの読み込みに失敗しました。シーンの読み込み中、または遷移中のため新たにシーン(", scene_name, ")を読み込むことはできません。");
 				return false;
 			} //すでに読み込み中か、遷移中のため、あらたに読み込みできない
@@ -70,8 +70,8 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardSceneManager::TransitionScene(const util::ParameterHolder &transition_parameters) {
-			if (IsTransitionable() == false) {
+		bool StandardSceneManager::transition_scene(const util::ParameterHolder &transition_parameters) {
+			if (is_transitionable() == false) {
 				PE_LOG_ERROR("シーン遷移予約に失敗しました。遷移中のため、新たに遷移処理をはじめることはできません。");
 				return false;
 			} //遷移処理を始めることはできない

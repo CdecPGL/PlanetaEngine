@@ -396,7 +396,7 @@
     <ClInclude Include="src\planeta\core\JsonFile.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IniFile.hpp">
+    <ClInclude Include="src\planeta\core\ini_file.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\csv_file.hpp">
@@ -606,34 +606,34 @@
     <ClInclude Include="src\planeta\core\i_log_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\InitFunctions.hpp">
+    <ClInclude Include="src\planeta\core\init_functions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\InputDefinitions.hpp">
+    <ClInclude Include="src\planeta\core\input_definitions.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\InputManager.hpp">
+    <ClInclude Include="src\planeta\core\input_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\InputUtility.hpp">
+    <ClInclude Include="src\planeta\core\input_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IPerformanceManager.hpp">
+    <ClInclude Include="src\planeta\core\i_performance_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IRenderingManager.hpp">
+    <ClInclude Include="src\planeta\core\i_rendering_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IResourceManager.hpp">
+    <ClInclude Include="src\planeta\core\i_resource_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ISaveManager.hpp">
+    <ClInclude Include="src\planeta\core\i_save_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IScene.hpp">
+    <ClInclude Include="src\planeta\core\i_scene.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ISceneInternal.hpp">
+    <ClInclude Include="src\planeta\core\i_scene_internal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\ISceneManager.hpp">
@@ -1025,7 +1025,7 @@
     <ClCompile Include="src\planeta\core\JsonFile.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\IniFile.cpp">
+    <ClCompile Include="src\planeta\core\ini_file.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\csv_file.cpp">
@@ -1136,19 +1136,19 @@
     <ClCompile Include="src\planeta\core\graph_draw_data_2d.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\InitFunctions.cpp">
+    <ClCompile Include="src\planeta\core\init_functions.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\InitFunctionsFIleSystem.cpp">
+    <ClCompile Include="src\planeta\core\init_functions_file_system.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\InitFunctionsResource.cpp">
+    <ClCompile Include="src\planeta\core\init_functions_resource.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\InitializeFunctionsDxLib.cpp">
+    <ClCompile Include="src\planeta\core\initialize_functions_dxlib.cpp">
       <Filter>PlanetaEngine\Core\InitFuncs</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\InputUtility.cpp">
+    <ClCompile Include="src\planeta\core\input_utility.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\KeyConfig.cpp">

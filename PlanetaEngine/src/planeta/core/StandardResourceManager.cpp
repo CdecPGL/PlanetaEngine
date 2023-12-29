@@ -338,7 +338,7 @@ namespace plnt {
 			return SetNotUnloadTags_(tags);
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByTypeAndID(
+		std::shared_ptr<ResourceBase> StandardResourceManager::get_resource_by_type_and_id(
 			const std::type_info &type, const std::string &id) {
 			return GetResourceByFullID_(GetFullIDFromTypeAndID_(type, id), true);
 		}
@@ -359,7 +359,7 @@ namespace plnt {
 			return it->second.type_prefix + id;
 		}
 
-		std::shared_ptr<plnt::ResourceBase> StandardResourceManager::GetResourceByFullID(const std::string &full_id) {
+		std::shared_ptr<plnt::ResourceBase> StandardResourceManager::get_resource_by_full_id(const std::string &full_id) {
 			return GetResourceByFullID_(full_id, true);
 		}
 	}

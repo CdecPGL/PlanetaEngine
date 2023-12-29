@@ -4,7 +4,7 @@
 #pragma warning(pop)
 
 #include "planeta/core/game.hpp"
-#include "planeta/core/IResourceManager.hpp"
+#include "planeta/core/i_resource_manager.hpp"
 #include "planeta/core/StandardResourceManager.hpp"
 #include "..\core\i_game_object.hpp"
 
@@ -95,7 +95,7 @@ namespace plnt {
 	}
 
 	bool CEffect::Impl_::SetResourceByID(const std::string &resource_id) {
-		auto res = game::instance().resource_manager()->GetResourceByID<REffect>(resource_id);
+		auto res = game::instance().resource_manager()->get_resource_by_id<REffect>(resource_id);
 		if (res) {
 			reffect_ = res;
 			return true;

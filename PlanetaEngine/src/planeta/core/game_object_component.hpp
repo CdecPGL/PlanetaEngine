@@ -11,13 +11,13 @@
 #include "WeakPointer.hpp"
 #include "NonOwingPointer.hpp"
 #include "go_component_getter.hpp"
-#include "IScene.hpp"
+#include "i_scene.hpp"
 
 namespace plnt {
 	class SceneAccessorForGameObject;
 
 	namespace private_ {
-		class ISceneInternal;
+		class i_scene_internal;
 		struct game_object_component_set_up_data;
 	}
 
@@ -99,7 +99,7 @@ namespace plnt {
 		*/
 		virtual void on_finalized() noexcept { } //所属するゲームオブジェクトが破棄されるときに呼び出される(システム関数)
 		/*! シーンへのアクセス*/
-		IScene &scene() const;
+		i_scene &scene() const;
 		/*! 自身のshared_ptrにアクセス(現在は、型変換のチェックはされない)*/
 		template <class T>
 		std::shared_ptr<T> shared_this() { return std::static_pointer_cast<T>(shared_from_this()); }
@@ -114,10 +114,10 @@ namespace plnt {
 		std::unordered_set<std::string> labels_;
 
 		NonOwingPointer<i_game_object> game_object_;
-		WeakPointer<IScene> scene_;
+		WeakPointer<i_scene> scene_;
 
 		/*特別設定関数*/
-		virtual void set_scene_internal_interface(const WeakPointer<private_::ISceneInternal> &scene_data) = 0;
+		virtual void set_scene_internal_interface(const WeakPointer<private_::i_scene_internal> &scene_data) = 0;
 	};
 
 	PE_REFLECTABLE_CLASS(game_object_component);

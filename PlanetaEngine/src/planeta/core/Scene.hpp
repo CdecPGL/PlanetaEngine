@@ -5,7 +5,7 @@
 #include <functional>
 #include <list>
 #include "Object.hpp"
-#include "ISceneInternal.hpp"
+#include "i_scene_internal.hpp"
 #include "WeakPointer.hpp"
 #include "NonCopyable.hpp"
 #include "NonOwingPointer.hpp"
@@ -16,7 +16,7 @@ namespace plnt {
 	namespace private_ {
 		class SceneModule;
 
-		class Scene final : public Object, public ISceneInternal, public std::enable_shared_from_this<Scene>
+		class Scene final : public Object, public i_scene_internal, public std::enable_shared_from_this<Scene>
 		                    , private util::NonCopyable<Scene> {
 		public:
 			Scene();
@@ -45,8 +45,8 @@ namespace plnt {
 			i_collision_world &collision_world() override;
 			i_draw_system &draw_system() override;
 			i_game_object_manager &game_object_manager() override;
-			ITaskManager &task_manager() override;
-			ITransformSystem &transform_system() override;
+			i_task_manager &task_manager() override;
+			i_transform_system &transform_system() override;
 			/*その他関数*/
 			void DebugInformationAddHandle(i_debug_information_adder &di_adder);
 

@@ -8,7 +8,7 @@ namespace plnt {
 	class i_debug_information_adder;
 
 	namespace private_ {
-		class ISceneInternal;
+		class i_scene_internal;
 
 		class SceneModule : public Object, private util::NonCopyable<SceneModule> {
 		public:
@@ -19,13 +19,13 @@ namespace plnt {
 
 			virtual void DebugInformationAddHandle(i_debug_information_adder &di_adder) { };
 
-			void SetScene(const WeakPointer<ISceneInternal> &scene) { scene_ = scene; }
+			void SetScene(const WeakPointer<i_scene_internal> &scene) { scene_ = scene; }
 
 		protected:
-			WeakPointer<ISceneInternal> scene_internal_interface() { return scene_; }
+			WeakPointer<i_scene_internal> scene_internal_interface() { return scene_; }
 
 		private:
-			WeakPointer<ISceneInternal> scene_;
+			WeakPointer<i_scene_internal> scene_;
 		};
 	}
 }

@@ -5,7 +5,7 @@
 
 namespace plnt {
 	namespace private_ {
-		class SoundManager : public ISoundManager, public SubSystemManager {
+		class SoundManager : public i_sound_manager, public SubSystemManager {
 		public:
 			virtual ~SoundManager() = default;
 			virtual bool Initialize() = 0;

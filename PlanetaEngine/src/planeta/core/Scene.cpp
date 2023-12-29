@@ -99,9 +99,9 @@ namespace plnt {
 
 		plnt::i_game_object_manager &Scene::game_object_manager() { return *game_object_manager_; }
 
-		plnt::ITaskManager &Scene::task_manager() { return *task_manager_; }
+		plnt::i_task_manager &Scene::task_manager() { return *task_manager_; }
 
-		plnt::ITransformSystem &Scene::transform_system() { return *transform_system_; }
+		plnt::i_transform_system &Scene::transform_system() { return *transform_system_; }
 
 		void Scene::SetTaskManager(std::shared_ptr<TaskManager> &&mgr) { task_manager_ = std::move(mgr); }
 

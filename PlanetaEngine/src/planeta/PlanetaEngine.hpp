@@ -21,7 +21,7 @@
 
 #include "core\game_object_standard_component.hpp"
 #include "core\i_game_object.hpp"
-#include "core/IScene.hpp"
+#include "core/i_scene.hpp"
 #include "core\i_game_object_manager.hpp"
 #include "core/ITaskManager.hpp"
 #include "core/i_collision_world.hpp"

@@ -15,7 +15,7 @@ namespace plnt {
 	}
 
 	bool Task::SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection> &&manager_connection,
-	                                    const WeakPointer<IScene> &pscene) {
+	                                    const WeakPointer<i_scene> &pscene) {
 		scene_ = pscene;
 		manager_connection_ = std::move(manager_connection);
 		return OnCreated();

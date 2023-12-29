@@ -29,7 +29,7 @@ namespace plnt {
 			++_frame_count;
 		}
 
-		const util::Time StandardPerformanceManager::GetCurrentTimeCount() const {
+		const util::Time StandardPerformanceManager::get_current_time_count() const {
 			return util::Time::GetCurrentTime() - _start_time;
 		}
 

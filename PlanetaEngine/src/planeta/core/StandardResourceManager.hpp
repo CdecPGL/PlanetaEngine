@@ -57,11 +57,11 @@ namespace plnt {
 			/// <param name="id">The identifier.</param>
 			/// <returns>The resource by type and identifier.</returns>
 			std::shared_ptr<ResourceBase>
-			GetResourceByTypeAndID(const std::type_info &type, const std::string &id) override;
+			get_resource_by_type_and_id(const std::type_info &type, const std::string &id) override;
 			/// <summary>リソースをFullIDで取得</summary>
 			/// <param name="full_id">Identifier for the full.</param>
 			/// <returns>The resource by full identifier.</returns>
-			std::shared_ptr<ResourceBase> GetResourceByFullID(const std::string &full_id) override;
+			std::shared_ptr<ResourceBase> get_resource_by_full_id(const std::string &full_id) override;
 			/// <summary>ファイルアクセサをセット。初期化前に呼び出す</summary>
 			/// <param name="f_scsr">The scsr.</param>
 			void SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) override;

@@ -17,7 +17,7 @@ namespace plnt {
 
 	private:
 		/*シーンデータのセットは行わない。子クラスにはオーバーライド不可にしておく。*/
-		void set_scene_internal_interface(const WeakPointer<private_::ISceneInternal> &) final { }
+		void set_scene_internal_interface(const WeakPointer<private_::i_scene_internal> &) final { }
 	};
 
 	PE_REFLECTABLE_CLASS(game_object_standard_component);

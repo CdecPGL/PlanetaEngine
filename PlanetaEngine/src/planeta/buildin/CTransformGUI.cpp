@@ -1,6 +1,6 @@
 ﻿#include <unordered_map>
 
-#include "planeta/core/ISceneInternal.hpp"
+#include "planeta/core/i_scene_internal.hpp"
 #include "planeta/core/TransformSystem.hpp"
 #include "planeta/core/LogUtility.hpp"
 

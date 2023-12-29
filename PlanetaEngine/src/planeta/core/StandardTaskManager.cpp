@@ -9,7 +9,7 @@
 #include "LogUtility.hpp"
 #include "SystemTaskSlot.hpp"
 #include "i_debug_manager.hpp"
-#include "ISceneInternal.hpp"
+#include "i_scene_internal.hpp"
 
 namespace plnt {
 	namespace private_ {
@@ -208,7 +208,7 @@ namespace plnt {
 			//////////////////////////////////////////////////////////////////////////
 			/*タスクの設定*/
 			void SetupTask(const std::shared_ptr<TaskData> tdata, bool is_system_task,
-			               const WeakPointer<IScene> &i_scene) {
+			               const WeakPointer<i_scene> &i_scene) {
 				//ここでラムダ関数がtdataのシェアポをキャプチャしておくことで、tdata使用中の解放を防ぐ。
 				std::unique_ptr<private_::TaskManagerConnection> manager_connection = std::make_unique<
 					private_::TaskManagerConnection>(
@@ -323,16 +323,16 @@ namespace plnt {
 			impl_->AllClear();
 		}
 
-		WeakPointer<Task> StandardTaskManager::GetTask(const std::string &name) const { return impl_->GetTask(name); }
+		WeakPointer<Task> StandardTaskManager::get_task(const std::string &name) const { return impl_->GetTask(name); }
 
-		bool StandardTaskManager::RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) {
+		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) {
 			int group_number = GetGroupNumberFromSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
 			impl_->SetupTask(ptdata, false, scene_internal_interface());
 			return task != nullptr;
 		}
 
-		bool StandardTaskManager::RegisterTask(const std::shared_ptr<Task> &task, TaskSlot slot,
+		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, TaskSlot slot,
 		                                       const std::string &name, bool auto_run) {
 			int group_number = GetGroupNumberFromSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);

@@ -7,12 +7,12 @@
 namespace plnt {
 	class RSound;
 
-	class SoundEffectController final : public ISoundEffectController {
+	class SoundEffectController final : public i_sound_effect_controller {
 	public:
 		SoundEffectController(const std::shared_ptr<RSound> &mr) : sound_resource_(mr) { }
 
 		~SoundEffectController();
-		bool Play() override;
+		bool play() override;
 		bool is_valid() const override;
 
 		void Dispose();

@@ -15,7 +15,7 @@ namespace plnt {
 		enum class SceneStatus_ { Continue, Quit, Error };
 
 		/*シーンマネージャ*/
-		class SceneManager : public ISceneManager, public SubSystemManager {
+		class SceneManager : public i_scene_manager, public SubSystemManager {
 		public:
 			virtual ~SceneManager() override = default;
 			/*マネージャの初期化*/

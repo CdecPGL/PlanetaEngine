@@ -13,8 +13,8 @@ namespace plnt {
 			void Finalize() override;
 
 			void Update() override;
-			size_t GetCurrentFrameCount() const override { return _frame_count; }
-			const util::Time GetCurrentTimeCount() const override;
+			size_t get_current_frame_count() const override { return _frame_count; }
+			const util::Time get_current_time_count() const override;
 			void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) override;
 
 		private:

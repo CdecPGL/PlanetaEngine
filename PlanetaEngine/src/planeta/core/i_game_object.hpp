@@ -6,7 +6,7 @@
 #include "Signal.hpp"
 #include "ITaskManager.hpp"
 #include "TaskSlot.hpp"
-#include "IScene.hpp"
+#include "i_scene.hpp"
 
 namespace plnt {
 	class Task;
@@ -67,7 +67,7 @@ namespace plnt {
 		template <class T>
 		[[nodiscard]] WeakPointer<T> create_and_attach_task(const TaskSlot slot) {
 			static_assert(std::is_base_of_v<Task, T> == true, "T must derive Task");
-			auto task = scene().task_manager().CreateTask<T>(slot);
+			auto task = scene().task_manager().create_task<T>(slot);
 			if (task == nullptr) { return nullptr; }
 			set_up_attached_task(task);
 			return task;
@@ -76,7 +76,7 @@ namespace plnt {
 		//! ゲームオブジェクトの状態を取得する
 		[[nodiscard]] virtual game_object_state state() const = 0;
 		//! シーンへのアクセスを取得する
-		[[nodiscard]] virtual IScene &scene() = 0;
+		[[nodiscard]] virtual i_scene &scene() = 0;
 
 		/*イベント*/
 		/*! 有効化イベント*/

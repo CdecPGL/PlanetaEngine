@@ -2,7 +2,7 @@
 #include "..\core\draw_system.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/core/ISceneInternal.hpp"
+#include "planeta/core/i_scene_internal.hpp"
 
 #include "CDraw2D.hpp"
 #include "CTransform2D.hpp"

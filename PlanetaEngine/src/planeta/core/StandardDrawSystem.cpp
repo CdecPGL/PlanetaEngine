@@ -83,7 +83,7 @@ namespace plnt {
 		void StandardDrawSystem::Update() { }
 
 		bool StandardDrawSystem::Initialize() {
-			screen_ = game::instance().rendering_manager()->GetMainScreen();
+			screen_ = game::instance().rendering_manager()->get_main_screen();
 			if (!screen_) { return false; }
 			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
 			screen_drawer_gui_ = std::make_unique<ScreenDrawerGUI>(*screen_);

@@ -5,14 +5,14 @@
 #include "SingletonTemplate.hpp"
 
 namespace plnt {
-	class IResourceManager;
+	class i_resource_manager;
 	class i_log_manager;
-	class ISceneManager;
+	class i_scene_manager;
 	class i_input_manager;
-	class IPerformanceManager;
-	class IRenderingManager;
-	class ISoundManager;
-	class ISaveManager;
+	class i_performance_manager;
+	class i_rendering_manager;
+	class i_sound_manager;
+	class i_save_manager;
 	class i_debug_manager;
 	class i_config_manager;
 
@@ -20,7 +20,7 @@ namespace plnt {
 		class ResourceManager;
 		class LogManager;
 		class SceneManager;
-		class InputManager;
+		class input_manager;
 		class PerformanceManager;
 		class RenderingManager;
 		class SoundManager;
@@ -54,7 +54,7 @@ namespace plnt {
 		/*! シーンマネージャを設定する(初期化前)*/
 		void set_scene_manager(const std::shared_ptr<private_::SceneManager> &mgr) const;
 		/*! インプットマネージャを設定する(初期化前)*/
-		void set_input_manager(const std::shared_ptr<private_::InputManager> &mgr) const;
+		void set_input_manager(const std::shared_ptr<private_::input_manager> &mgr) const;
 		/*! パフォーマンスマネージャを設定する(初期化前)*/
 		void set_performance_manager(const std::shared_ptr<private_::PerformanceManager> &mgr) const;
 		/*! レンダリングマネージャを設定する(初期化前)*/
@@ -68,21 +68,21 @@ namespace plnt {
 		/*! コンフィグマネージャを設定する(初期化前)*/
 		void set_config_manager(const std::shared_ptr<private_::config_manager> &mgr) const;
 		/*! リソースマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<IResourceManager> resource_manager() const;
+		[[nodiscard]] std::shared_ptr<i_resource_manager> resource_manager() const;
 		/*! ログマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<i_log_manager> log_manager() const;
 		/*! シーンマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<ISceneManager> scene_manager() const;
+		[[nodiscard]] std::shared_ptr<i_scene_manager> scene_manager() const;
 		/*! インプットマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<i_input_manager> input_manager() const;
 		/*! パフォーマンスマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<IPerformanceManager> performance_manager() const;
+		[[nodiscard]] std::shared_ptr<i_performance_manager> performance_manager() const;
 		/*! レンダリングマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<IRenderingManager> rendering_manager() const;
+		[[nodiscard]] std::shared_ptr<i_rendering_manager> rendering_manager() const;
 		/*! サウンドマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<ISoundManager> sound_manager() const;
+		[[nodiscard]] std::shared_ptr<i_sound_manager> sound_manager() const;
 		/*! セーブマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<ISaveManager> save_manager() const;
+		[[nodiscard]] std::shared_ptr<i_save_manager> save_manager() const;
 		/*! デバッグマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<i_debug_manager> debug_manager() const;
 		/*! コンフィグマネージャにアクセスする*/

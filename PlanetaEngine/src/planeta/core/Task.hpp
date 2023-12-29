@@ -7,7 +7,7 @@
 #include "NonOwingPointer.hpp"
 
 namespace plnt {
-	class IScene;
+	class i_scene;
 
 	namespace private_ {
 		class TaskManagerConnection;
@@ -28,17 +28,17 @@ namespace plnt {
 		void Dispose();
 		/*システム関数*/
 		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection> &&manager_connection,
-		                              const WeakPointer<IScene> &pscene);
+		                              const WeakPointer<i_scene> &pscene);
 		/*イベント*/
 		/*! プロセス破棄イベント*/
 		Signal<void()> disposed;
 
 	protected:
 		//! シーンへのアクセス
-		IScene &scene() { return *scene_; }
+		i_scene &scene() { return *scene_; }
 
 	private:
-		WeakPointer<IScene> scene_;
+		WeakPointer<i_scene> scene_;
 		std::unique_ptr<private_::TaskManagerConnection> manager_connection_;
 		virtual bool OnCreated() { return true; }
 

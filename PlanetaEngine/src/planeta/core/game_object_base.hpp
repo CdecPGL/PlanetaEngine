@@ -12,7 +12,7 @@ namespace plnt {
 	class go_component_getter;
 
 	namespace private_ {
-		class ISceneInternal;
+		class i_scene_internal;
 
 		/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 		*/
@@ -40,7 +40,7 @@ namespace plnt {
 			//状態を取得
 			game_object_state state() const override;
 			//シーンへのアクセスを取得
-			IScene &scene() override;
+			i_scene &scene() override;
 
 			//システム用関数(Managerから呼び出される｡GameObjectクラスで隠ぺいする)
 			//クローン時の処理
@@ -56,7 +56,7 @@ namespace plnt {
 			//マネージャコネクションをセット
 			void set_manager_connection(std::unique_ptr<game_object_manager_connection> &&mgr_conn);
 			//シーンをセット
-			void set_scene_internal_interface(const WeakPointer<ISceneInternal> &i_scene);
+			void set_scene_internal_interface(const WeakPointer<i_scene_internal> &i_scene);
 			//コンポーネントリストからコンポーネントを追加し、シーンデータなどをセット
 			bool add_and_set_up_components(const std::vector<std::string> &com_type_id_list);
 			//boost::ptreeからコンポーネントを作成追加し、シーンデータなどをセット
@@ -75,7 +75,7 @@ namespace plnt {
 			//マネージャコネクション
 			std::unique_ptr<game_object_manager_connection> manager_connection_;
 			//シーン内部用インターフェイス
-			WeakPointer<ISceneInternal> scene_internal_interface_;
+			WeakPointer<i_scene_internal> scene_internal_interface_;
 			//コンポーネントホルダー
 			game_object_component_holder component_holder_;
 
