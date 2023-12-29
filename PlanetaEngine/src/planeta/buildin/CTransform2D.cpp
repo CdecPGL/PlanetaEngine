@@ -1,7 +1,7 @@
 ﻿#include <tuple>
 #include <cassert>
 
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/TransformSystem.hpp"
 #include "planeta/core/ISceneInternal.hpp"
@@ -379,8 +379,8 @@ namespace plnt {
 
 	WeakPointer<CGround2D> CTransform2D::GetGround() const { return impl_->GetGround(); }
 
-	bool CTransform2D::SetGround(const WeakPointer<IGameObject> &g, bool keep_global_position) {
-		auto gcom = g->GetComponent<CGround2D>();
+	bool CTransform2D::SetGround(const WeakPointer<i_game_object> &g, bool keep_global_position) {
+		auto gcom = g->get_component<CGround2D>();
 		if (gcom) {
 			impl_->SetGround(gcom, keep_global_position);
 			return true;

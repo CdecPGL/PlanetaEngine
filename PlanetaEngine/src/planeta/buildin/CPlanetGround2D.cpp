@@ -1,4 +1,4 @@
-﻿#include "planeta/core/IGameObject.hpp"
+﻿#include "..\core\i_game_object.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "..\math\math_constant.hpp"
 

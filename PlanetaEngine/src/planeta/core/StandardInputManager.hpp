@@ -25,34 +25,34 @@ namespace plnt {
 			void SetDefaultSettings() override;
 			/*@brief キーの入力状態を取得(複数指定不可)
 			@param キーコード*/
-			bool KeyState(Key::type) const override;
+			bool key_state(Key::type) const override;
 			/*@brief パッドの入力状態を取得(複数指定不可)
 			@param パッドコード*/
-			bool PadState(Pad::type) const override;
+			bool pad_state(Pad::type) const override;
 			/*@brief ボタンの入力状態を取得(複数指定不可)
 			@param ボタンコード*/
-			bool ButtonState(Button::type) const override;
+			bool button_state(Button::type) const override;
 			/*@brief ボタンの入力状態を取得(複数指定不可)
 			@param ボタン名*/
-			bool ButtonState(const std::string &) const override;
+			bool button_state(const std::string &) const override;
 			/*@brief マウスボタンの入力状態を取得(複数指定不可)
 			@param マウスボタンコード*/
-			bool MouseButtonState(MouseButton::type) const override;
+			bool mouse_button_state(MouseButton::type) const override;
 			/*@brief キーの押下取得(複数指定不可)
 			@param キーコード*/
-			bool KeyPush(Key::type) const override;
+			bool key_push(Key::type) const override;
 			/*@brief パッドの押下取得(複数指定不可)
 			@param パッドコード*/
-			bool PadPush(Pad::type) const override;
+			bool pad_push(Pad::type) const override;
 			/*@brief ボタンの押下取得(複数指定不可)
 			@param ボタンコード*/
-			bool ButtonPush(Button::type) const override;
+			bool button_push(Button::type) const override;
 			/*@brief ボタンの押下取得(複数指定不可)
 			@param ボタン名*/
-			bool ButtonPush(const std::string &) const override;
+			bool button_push(const std::string &) const override;
 			/*@brief マウスボタンの押下取得(複数指定不可)
 			@param マウスボタンコード*/
-			bool MouseButtonPush(MouseButton::type) const override;
+			bool mouse_button_push(MouseButton::type) const override;
 			/*ボタンにキーを割り当てる(キーは複数指定可)*/
 			void AssignKeyToButton(Key::type, Button::type) override;
 			/*ボタンにパッド入力を割り当てる(パッドは複数指定可)*/
@@ -64,9 +64,9 @@ namespace plnt {
 			/*ボタンに割り当てられたキーマップ取得*/
 			const std::unordered_map<Button::type, std::vector<Pad::type>> &GetAssignedPadToButtonMap() const override;
 			/*マウスポインタの位置を取得*/
-			const Vector2Di GetMousePointerPosition() const override;
+			const Vector2Di get_mouse_pointer_position() const override;
 			/*マウスホイールの回転量を取得*/
-			int GetMouseWheelRotation() const override;
+			int get_mouse_wheel_rotation() const override;
 
 		private:
 			StandardInputManager(const StandardInputManager &) = delete;

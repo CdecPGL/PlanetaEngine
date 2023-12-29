@@ -56,21 +56,21 @@ namespace plnt {
 			std::list<std::string> _log_history; //ログ履歴
 			bool output_console_flag_ = false;
 
-			static std::string _GetStringFormatedByLogLevel(LogLevel level, const std::string &detail,
+			static std::string _GetStringFormatedByLogLevel(log_level level, const std::string &detail,
 			                                                const std::string &place) {
 				using namespace std;
 				string header;
 				switch (level) {
-					case LogLevel::Message:
+					case log_level::message:
 						header = kMessageHeader;
 						break;
-					case LogLevel::Warning:
+					case log_level::warning:
 						header = kWarningHeader;
 						break;
-					case LogLevel::Error:
+					case log_level::error:
 						header = kErrorHeader;
 						break;
-					case LogLevel::Fatal:
+					case log_level::fatal:
 						header = kFatalErrorHeader;
 						break;
 					default:
@@ -102,19 +102,19 @@ namespace plnt {
 				if (_log_history.size() > _log_history_max_size) { _log_history.pop_front(); }
 			}
 
-			void _OutPutToConsole(const std::string &str, LogLevel level) {
+			void _OutPutToConsole(const std::string &str, log_level level) {
 				int col = 0;
 				switch (level) {
-					case LogLevel::Message:
+					case log_level::message:
 						col = win::console::col_gray;
 						break;
-					case LogLevel::Warning:
+					case log_level::warning:
 						col = win::console::col_yellow;
 						break;
-					case LogLevel::Error:
+					case log_level::error:
 						col = win::console::col_red;
 						break;
-					case LogLevel::Fatal:
+					case log_level::fatal:
 						col = win::console::col_violet;
 						break;
 					default:
@@ -127,8 +127,8 @@ namespace plnt {
 				std::cout << ostr;
 			}
 
-			void _AssertionByLevel(LogLevel level, const std::string err_str) {
-				if (level == LogLevel::Fatal) {
+			void _AssertionByLevel(log_level level, const std::string err_str) {
+				if (level == log_level::fatal) {
 					#ifndef NDEBUG
 					int ret = MessageBox(NULL, "致命的なエラーが発生しました。ブレークポイントを作成しますか？", "致命的エラー",
 					                     MB_YESNO | MB_ICONERROR | MB_APPLMODAL);
@@ -165,10 +165,10 @@ namespace plnt {
 			#else
 			debug_mode = false;
 			#endif
-			SimpleLog(std::string("PlanetaEngine v") + private_::system_variables::engine_information::VersionString,
+			simple_log(std::string("PlanetaEngine v") + private_::system_variables::engine_information::VersionString,
 			          debug_mode ? " デバッグビルド" : "");
-			SimpleLog(std::string("起動日時:") + util::date_time::get_current_date_time().ToString());
-			if (private_::system_variables::DevelopmentMode) { SimpleLog("開発モードが有効です。"); }
+			simple_log(std::string("起動日時:") + util::date_time::get_current_date_time().ToString());
+			if (private_::system_variables::DevelopmentMode) { simple_log("開発モードが有効です。"); }
 			PE_LOG_MESSAGE("ログ出力が開始されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
 			return true;
 		}
@@ -188,15 +188,15 @@ namespace plnt {
 		bool StandardLogManager::DumpLogHistory(const std::string &file_name) {
 			std::ofstream ofs(file_name);
 			if (ofs.bad()) {
-				Log(LogLevel::Warning, __FUNCTION__, "ログ履歴をファイルに出力できませんでした。ファイル(", file_name, ")が開けません");
+				log(log_level::warning, __FUNCTION__, "ログ履歴をファイルに出力できませんでした。ファイル(", file_name, ")が開けません");
 				return false;
 			}
 			for (const auto &str : impl_->_log_history) { ofs << str << std::endl; }
-			Log(LogLevel::Message, __FUNCTION__, "ログ履歴をファイル(", file_name, ")に出力しました。");
+			log(log_level::message, __FUNCTION__, "ログ履歴をファイル(", file_name, ")に出力しました。");
 			return true;
 		}
 
-		void StandardLogManager::_OutPut(LogLevel level, const std::string &str) {
+		void StandardLogManager::_OutPut(log_level level, const std::string &str) {
 			impl_->_OutPutToOutStream(str);
 			//ログ履歴に追加
 			impl_->_AddHistory(str);
@@ -213,17 +213,17 @@ namespace plnt {
 
 		void StandardLogManager::SetLogHistoryMaxSize(size_t size) {
 			impl_->_log_history_max_size = size;
-			Log(LogLevel::Message, __FUNCTION__, "ログ履歴の最大サイズを", size, "に変更しました。");
+			log(log_level::message, __FUNCTION__, "ログ履歴の最大サイズを", size, "に変更しました。");
 		}
 
 		bool StandardLogManager::ValidateConsoleOutPut() {
 			OpenConsoleWindow();
 			impl_->output_console_flag_ = true;
-			SimpleLog("コンソールへのログ出力を有効化しました。");
+			simple_log("コンソールへのログ出力を有効化しました。");
 			return true;
 		}
 
-		void StandardLogManager::LogProc(LogLevel level, const std::string &detail, const std::string &place) {
+		void StandardLogManager::log_proc(log_level level, const std::string &detail, const std::string &place) {
 			std::string str = std::move(impl_->_GetStringFormatedByLogLevel(level, detail, place));
 			_OutPut(level, str);
 			impl_->_AssertionByLevel(level, str);
@@ -231,7 +231,7 @@ namespace plnt {
 
 		void StandardLogManager::ResetLogOutStream() { impl_->_output_streams.clear(); }
 
-		void StandardLogManager::SimpleLogProc(const std::string &detail) { _OutPut(LogLevel::Message, detail); }
+		void StandardLogManager::simple_log_proc(const std::string &detail) { _OutPut(log_level::message, detail); }
 
 		bool StandardLogManager::ValidateFileOutPut(const std::string &file_name) {
 			if (impl_->out_put_file_) { return false; } else {

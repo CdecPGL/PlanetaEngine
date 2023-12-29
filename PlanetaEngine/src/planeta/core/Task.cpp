@@ -1,6 +1,6 @@
 ﻿#include "Task.hpp"
 #include "TaskManagerConnection.hpp"
-#include "IGameObject.hpp"
+#include "i_game_object.hpp"
 
 
 namespace plnt {

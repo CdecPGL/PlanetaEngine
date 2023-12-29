@@ -8,7 +8,7 @@
 #include "TaskManagerConnection.hpp"
 #include "LogUtility.hpp"
 #include "SystemTaskSlot.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 #include "ISceneInternal.hpp"
 
 namespace plnt {
@@ -348,12 +348,12 @@ namespace plnt {
 			return task;
 		}
 
-		void StandardTaskManager::DebugInformationAddHandle(IDebugInformationAdder &di_adder) {
-			di_adder.AddLine("-----TaskManager-----");
+		void StandardTaskManager::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+			di_adder.add_line("-----TaskManager-----");
 			int active_task{0}, inactive_task{0};
 			impl_->CountTask(active_task, inactive_task);
-			di_adder.AddLineV("実行中タスク数:", active_task);
-			di_adder.AddLineV("停止中タスク数:", inactive_task);
+			di_adder.add_line_v("実行中タスク数:", active_task);
+			di_adder.add_line_v("停止中タスク数:", inactive_task);
 		}
 	}
 }

@@ -1,10 +1,10 @@
 ﻿#pragma once
 
-#include "IGameObjectManager.hpp"
+#include "i_game_object_manager.hpp"
 #include "SceneModule.hpp"
 
 namespace plnt::private_ {
-	class game_object_manager : public IGameObjectManager, public SceneModule {
+	class game_object_manager : public i_game_object_manager, public SceneModule {
 	public:
 		game_object_manager() = default;
 		game_object_manager(const game_object_manager &) = delete;

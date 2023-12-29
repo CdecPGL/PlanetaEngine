@@ -1,5 +1,5 @@
 ﻿#include "planeta/core/ScreenDrawer2D.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 
 #include "CTransform2D.hpp"

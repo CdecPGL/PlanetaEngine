@@ -34,12 +34,12 @@ namespace plnt {
 				const std::shared_ptr<CCamera2D> &camera_component) override;
 
 			/*デバッグ用*/
-			void DebugInformationAddHandle(IDebugInformationAdder &di_adder) override;
+			void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
 
 			/*! GUI座標をGameObject座空間標に変換*/
-			Vector2Dd CovertPositionScreenSpaceToGameObjectSpace(const Vector2Di &gui_space_pos) const override;
+			Vector2Dd covert_position_screen_space_to_game_object_space(const Vector2Di &gui_space_pos) const override;
 			/*! GameObject座標をGUI座標に変換*/
-			Vector2Di CovertPositionGameObjectSpaceToScreenSpace(const Vector2Dd &gameobject_space_pos) const override;
+			Vector2Di covert_position_game_object_space_to_screen_space(const Vector2Dd &gameobject_space_pos) const override;
 
 			//コンポーネントリスト型
 			template <class ComType>

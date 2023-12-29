@@ -64,12 +64,12 @@ namespace plnt {
 			//設定をログに出力
 			auto &sys_log = *game::instance().log_manager();
 			PE_LOG_MESSAGE("システム設定を読み込みました。");
-			sys_log.SimpleLog("--------システム設定情報--------");
-			sys_log.SimpleLog("ゲームタイトル : ", game_title_);
-			sys_log.SimpleLog("ゲームバージョン : ", game_version_string_);
-			sys_log.SimpleLog("カラービット深度 : ", color_bit_depth_);
-			sys_log.SimpleLog("描画(内部)サイズ : ", draw_size_.ToString());
-			sys_log.SimpleLog("--------------------------------");
+			sys_log.simple_log("--------システム設定情報--------");
+			sys_log.simple_log("ゲームタイトル : ", game_title_);
+			sys_log.simple_log("ゲームバージョン : ", game_version_string_);
+			sys_log.simple_log("カラービット深度 : ", color_bit_depth_);
+			sys_log.simple_log("描画(内部)サイズ : ", draw_size_.ToString());
+			sys_log.simple_log("--------------------------------");
 			return true;
 		}
 
@@ -98,10 +98,10 @@ namespace plnt {
 			//設定をログに出力
 			auto &sys_log = *game::instance().log_manager();
 			PE_LOG_MESSAGE("ユーザー設定を読み込みました。");
-			sys_log.SimpleLog("--------ユーザー設定情報--------");
-			sys_log.SimpleLog("ウインドウモード : ", is_window_mode_ ? "有効" : "無効");
-			sys_log.SimpleLog("ウインドウ(表示)サイズ : ", window_size_.ToString());
-			sys_log.SimpleLog("--------------------------------");
+			sys_log.simple_log("--------ユーザー設定情報--------");
+			sys_log.simple_log("ウインドウモード : ", is_window_mode_ ? "有効" : "無効");
+			sys_log.simple_log("ウインドウ(表示)サイズ : ", window_size_.ToString());
+			sys_log.simple_log("--------------------------------");
 			return true;
 		}
 

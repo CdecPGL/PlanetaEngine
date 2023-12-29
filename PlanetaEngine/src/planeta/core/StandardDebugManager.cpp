@@ -1,6 +1,6 @@
 ﻿#include "StandardDebugManager.hpp"
 #include "game.hpp"
-#include "IInputManager.hpp"
+#include "i_input_manager.hpp"
 #include "RenderingManager.hpp"
 #include "LogUtility.hpp"
 #include "ScreenDrawer2D.hpp"
@@ -11,12 +11,12 @@ namespace plnt {
 		//////////////////////////////////////////////////////////////////////////
 		//StandardDebugInformationAdder
 		//////////////////////////////////////////////////////////////////////////
-		class StandardDebugInformationAdder : public IDebugInformationAdder {
+		class StandardDebugInformationAdder : public i_debug_information_adder {
 		public:
 			StandardDebugInformationAdder(ScreenDrawerGUI &screen_drawer_gui) : screen_drawer_gui_(
 				screen_drawer_gui) { };
 
-			virtual void AddLine(const std::string line) override {
+			virtual void add_line(const std::string line) override {
 				screen_drawer_gui_.DrawStringByDefaultFont({0, 16 * line_count_}, {1, 1}, line, color::white(),
 				                                           color::black());
 				++line_count_;
@@ -30,19 +30,19 @@ namespace plnt {
 		//////////////////////////////////////////////////////////////////////////
 		//StandardDebugDrawer
 		//////////////////////////////////////////////////////////////////////////
-		class StandardDebugDrawer : public IDebugDrawer {
+		class StandardDebugDrawer : public i_debug_drawer {
 		public:
 			StandardDebugDrawer(ScreenDrawer2D &screen_drawer_2d) : screen_drawer_2d_(screen_drawer_2d) { };
 
-			virtual void DrawLine(const Vector2Df &spos, const Vector2Df &epos, const color &color) override {
+			virtual void draw_line(const Vector2Df &spos, const Vector2Df &epos, const color &color) override {
 				screen_drawer_2d_.DrawWire({spos, epos}, 1, color);
 			}
 
-			virtual void DrawCircle(const Vector2Df &pos, float radius, const color &color, bool filled) override {
+			virtual void draw_circle(const Vector2Df &pos, float radius, const color &color, bool filled) override {
 				screen_drawer_2d_.DrawCircle(pos, radius, color);
 			}
 
-			virtual void DrawLines(const std::vector<Vector2Df> &pos_list, const color &color) override {
+			virtual void draw_lines(const std::vector<Vector2Df> &pos_list, const color &color) override {
 				screen_drawer_2d_.DrawWire(pos_list, 1, color);
 			}
 
@@ -57,8 +57,8 @@ namespace plnt {
 		class StandardDebugManager::Impl_ {
 		public:
 			using DebugInformationMapType = std::unordered_map<
-				std::string, std::function<void(IDebugInformationAdder &)>>;
-			using DebugDrawMapType = std::unordered_map<std::string, std::function<void(IDebugDrawer &)>>;
+				std::string, std::function<void(i_debug_information_adder &)>>;
+			using DebugDrawMapType = std::unordered_map<std::string, std::function<void(i_debug_drawer &)>>;
 			DebugInformationMapType debug_informations;
 			DebugDrawMapType debug_draws;
 			bool is_debug_information_showing = false;
@@ -98,26 +98,26 @@ namespace plnt {
 		void StandardDebugManager::pre_rendering_update() {
 			auto &inp_mgr = *game::instance().input_manager();
 			//F1でデバッグ情報の表示有無を切り替え
-			if (inp_mgr.KeyPush(Key::F1)) {
+			if (inp_mgr.key_push(Key::F1)) {
 				impl_->is_debug_information_showing = !impl_->is_debug_information_showing;
 			}
 			//デバッグ情報表示
 			if (impl_->is_debug_information_showing) {
 				//F2でデバッグ表示する情報切り替え
-				if (inp_mgr.KeyPush(Key::F2)) { impl_->SwitchShowingDebugInformation(); }
+				if (inp_mgr.key_push(Key::F2)) { impl_->SwitchShowingDebugInformation(); }
 				ScreenDrawerGUI scr_drawer_gui{*impl_->debug_info_screen};
 				StandardDebugInformationAdder info_adder{scr_drawer_gui};
 				//デバッグ情報があったら表示
 				if (impl_->showing_debug_information_iterator != impl_->debug_informations.end()) {
-					info_adder.AddLineV("=====<", impl_->showing_debug_information_iterator->first, ">=====");
+					info_adder.add_line_v("=====<", impl_->showing_debug_information_iterator->first, ">=====");
 					(impl_->showing_debug_information_iterator->second)(info_adder);
 				} else {
-					info_adder.AddLineV("<デバッグ情報は存在しません>");
-					info_adder.AddLineV("F2で切り替え試行");
+					info_adder.add_line_v("<デバッグ情報は存在しません>");
+					info_adder.add_line_v("F2で切り替え試行");
 				}
 			}
 			//F3でデバッグ描画の表示有無を切り替え
-			if (inp_mgr.KeyPush(Key::F3)) { impl_->enable_debug_draw = !impl_->enable_debug_draw; }
+			if (inp_mgr.key_push(Key::F3)) { impl_->enable_debug_draw = !impl_->enable_debug_draw; }
 			//デバッグ描画
 			if (impl_->enable_debug_draw) {
 				ScreenDrawer2D scr_drawer_2d{*impl_->debug_draw_screen};
@@ -128,15 +128,15 @@ namespace plnt {
 
 		void StandardDebugManager::post_rendering_update() { }
 
-		bool StandardDebugManager::CreateDebugInformationChannel(const std::string &channel_id,
-		                                                         const std::function<void(IDebugInformationAdder &)> &
+		bool StandardDebugManager::create_debug_information_channel(const std::string &channel_id,
+		                                                         const std::function<void(i_debug_information_adder &)> &
 		                                                         handler) {
 			if (impl_->debug_informations.find(channel_id) != impl_->debug_informations.end()) { return false; }
 			impl_->debug_informations.emplace(channel_id, handler);
 			return true;
 		}
 
-		bool StandardDebugManager::DeleteDebugInformationChannel(const std::string &channel_id) {
+		bool StandardDebugManager::delete_debug_information_channel(const std::string &channel_id) {
 			auto it = impl_->debug_informations.find(channel_id);
 			if (it == impl_->debug_informations.end()) { return false; }
 			//現在表示中のデバッグ情報だったら切り替える
@@ -145,14 +145,14 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardDebugManager::CreateDebugDrawChannel(const std::string &channel_id,
-		                                                  const std::function<void(IDebugDrawer &)> handler) {
+		bool StandardDebugManager::create_debug_draw_channel(const std::string &channel_id,
+		                                                  const std::function<void(i_debug_drawer &)> handler) {
 			if (impl_->debug_draws.find(channel_id) != impl_->debug_draws.end()) { return false; }
 			impl_->debug_draws.emplace(channel_id, handler);
 			return true;
 		}
 
-		bool StandardDebugManager::DeleteDebugDrawChannel(const std::string &channel_id) {
+		bool StandardDebugManager::delete_debug_draw_channel(const std::string &channel_id) {
 			auto it = impl_->debug_draws.find(channel_id);
 			if (it == impl_->debug_draws.end()) { return false; }
 			impl_->debug_draws.erase(it);

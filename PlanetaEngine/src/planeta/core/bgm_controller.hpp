@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 #include <memory>
-#include "i_gm_controller.hpp"
+#include "i_bgm_controller.hpp"
 
 namespace plnt {
 	class RMusic;
 
-	class bgm_controller final : public i_gm_controller {
+	class bgm_controller final : public i_bgm_controller {
 	public:
 		bgm_controller() = delete;
 		bgm_controller(const bgm_controller &) = delete;

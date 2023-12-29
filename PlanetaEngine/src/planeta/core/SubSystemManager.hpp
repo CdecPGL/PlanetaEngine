@@ -4,14 +4,14 @@
 #include "NonCopyable.hpp"
 
 namespace plnt {
-	class IDebugInformationAdder;
+	class i_debug_information_adder;
 
 	namespace private_ {
 		class SubSystemManager : private util::NonCopyable<SubSystemManager> {
 		public:
 			virtual ~SubSystemManager() = 0 { };
 			/*デバッグ情報追加ハンドラ*/
-			virtual void DebugInfotmationAddHandler(IDebugInformationAdder &di_adder) { };
+			virtual void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) { };
 			/*デバッグ情報チャンネルを作成する*/
 			void CreateDebugInformationChannel(const std::string &channel_id);
 			/*デバッグ情報チャンネルを削除する*/

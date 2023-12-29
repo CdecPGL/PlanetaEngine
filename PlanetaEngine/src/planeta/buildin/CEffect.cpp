@@ -6,7 +6,7 @@
 #include "planeta/core/game.hpp"
 #include "planeta/core/IResourceManager.hpp"
 #include "planeta/core/StandardResourceManager.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 
 #include "CEffect.hpp"
 #include "CTransform2D.hpp"
@@ -174,7 +174,7 @@ namespace plnt {
 				return;
 			}
 		}
-		auto task = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto task = game_object().create_and_attach_task<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		task->SetExcuteFunction([this] {
 			impl_->ApplyTransformToEffect();
 			//エフェクトのループ確認

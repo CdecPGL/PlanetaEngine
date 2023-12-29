@@ -21,7 +21,7 @@ namespace plnt {
 		struct game_object_component_set_up_data;
 	}
 
-	class IGameObject;
+	class i_game_object;
 	/*! @brief ゲームオブジェクトコンポーネントの基底クラス
 		@attention クラス宣言の先頭にPE_CLONABLE_GAMEOBJECTCOMPONENTマクロ、抽象クラスならPE_COPIABLE_GAMEOBJECTCOMPONENTを記述しなければならない。
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
@@ -50,7 +50,7 @@ namespace plnt {
 		//! 所有されているゲームオブジェクトがシーン内で有効状態か
 		bool is_active() const { return is_active_; }
 		/*! @brief 所有されているゲームオブジェクトへの参照*/
-		IGameObject &game_object() const;
+		i_game_object &game_object() const;
 		/*! ラベルの取得*/
 		const std::unordered_set<std::string> &labels() const;
 		/*! ラベルの設定*/
@@ -113,7 +113,7 @@ namespace plnt {
 		bool is_active_ = false;
 		std::unordered_set<std::string> labels_;
 
-		NonOwingPointer<IGameObject> game_object_;
+		NonOwingPointer<i_game_object> game_object_;
 		WeakPointer<IScene> scene_;
 
 		/*特別設定関数*/

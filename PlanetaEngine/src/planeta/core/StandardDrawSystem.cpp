@@ -19,7 +19,7 @@
 
 #include "planeta/buildin/CTransform2D.hpp"
 #include "Screen.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 
 namespace plnt {
 	namespace private_ {
@@ -92,10 +92,10 @@ namespace plnt {
 
 		void StandardDrawSystem::Finalize() { return; }
 
-		void StandardDrawSystem::DebugInformationAddHandle(IDebugInformationAdder &di_adder) {
-			di_adder.AddLine("-----GameObjectDrawSystem-----");
-			di_adder.AddLineV("2D描画コンポーネント(有効数/総数):", cdraw2d_holder_.active_count(), "/", cdraw2d_holder_.all_count());
-			di_adder.AddLineV("GUI描画コンポーネント(有効数/総数):", cdrawgui_holder_.active_count(), "/",
+		void StandardDrawSystem::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+			di_adder.add_line("-----GameObjectDrawSystem-----");
+			di_adder.add_line_v("2D描画コンポーネント(有効数/総数):", cdraw2d_holder_.active_count(), "/", cdraw2d_holder_.all_count());
+			di_adder.add_line_v("GUI描画コンポーネント(有効数/総数):", cdrawgui_holder_.active_count(), "/",
 			                  cdrawgui_holder_.all_count());
 		}
 
@@ -112,12 +112,12 @@ namespace plnt {
 			} else { PE_LOG_WARNING("シーン内にカメラ2Dが登録されていません。"); }
 		}
 
-		Vector2Dd StandardDrawSystem::CovertPositionScreenSpaceToGameObjectSpace(const Vector2Di &ui_pos) const {
+		Vector2Dd StandardDrawSystem::covert_position_screen_space_to_game_object_space(const Vector2Di &ui_pos) const {
 			VECTOR gov = ConvScreenPosToWorldPos(VGet((float)ui_pos.x, (float)ui_pos.y, 0.0f));
 			return Vector2Dd(gov.x, gov.y);
 		}
 
-		Vector2Di StandardDrawSystem::CovertPositionGameObjectSpaceToScreenSpace(
+		Vector2Di StandardDrawSystem::covert_position_game_object_space_to_screen_space(
 			const Vector2Dd &game_object_pos) const {
 			VECTOR uiv = ConvWorldPosToScreenPos(VGet((float)game_object_pos.x, (float)game_object_pos.y, 0.0f));
 			return Vector2Di((int)uiv.x, (int)uiv.y);

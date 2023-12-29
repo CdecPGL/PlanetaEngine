@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "ICollisionWorld.hpp"
+#include "i_collision_world.hpp"
 #include "SceneModule.hpp"
 
 namespace plnt {
@@ -9,7 +9,7 @@ namespace plnt {
 	namespace private_ {
 		struct collider_2d_data;
 
-		class collision_world : public ICollisionWorld, public SceneModule {
+		class collision_world : public i_collision_world, public SceneModule {
 		public:
 			collision_world() = default;
 			collision_world(const collision_world &) = delete;

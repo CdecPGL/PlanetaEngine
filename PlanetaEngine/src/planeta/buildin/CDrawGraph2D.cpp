@@ -2,7 +2,7 @@
 #include "planeta/core/IResourceManager.hpp"
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "..\math\math_constant.hpp"
 #include "..\core\graph_draw_data_2d.hpp"

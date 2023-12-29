@@ -302,7 +302,7 @@ namespace plnt {
 		impl_->log_manager = mgr;
 	}
 
-	std::shared_ptr<ILogManager> game::log_manager() const { return impl_->log_manager; }
+	std::shared_ptr<i_log_manager> game::log_manager() const { return impl_->log_manager; }
 
 	void game::set_scene_manager(const std::shared_ptr<SceneManager> &mgr) const {
 		if (is_initialized()) {
@@ -322,7 +322,7 @@ namespace plnt {
 		impl_->input_manager = mgr;
 	}
 
-	std::shared_ptr<IInputManager> game::input_manager() const { return impl_->input_manager; }
+	std::shared_ptr<i_input_manager> game::input_manager() const { return impl_->input_manager; }
 
 	void game::set_performance_manager(const std::shared_ptr<PerformanceManager> &mgr) const {
 		if (is_initialized()) {
@@ -372,7 +372,7 @@ namespace plnt {
 		impl_->debug_manager = mgr;
 	}
 
-	std::shared_ptr<IDebugManager> game::debug_manager() const { return impl_->debug_manager; }
+	std::shared_ptr<i_debug_manager> game::debug_manager() const { return impl_->debug_manager; }
 
 	void game::set_config_manager(const std::shared_ptr<private_::config_manager> &mgr) const {
 		if (is_initialized()) {
@@ -382,5 +382,5 @@ namespace plnt {
 		impl_->config_manager = mgr;
 	}
 
-	std::shared_ptr<IConfigManager> game::config_manager() const { return impl_->config_manager; }
+	std::shared_ptr<i_config_manager> game::config_manager() const { return impl_->config_manager; }
 }

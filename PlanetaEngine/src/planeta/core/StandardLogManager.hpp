@@ -39,9 +39,9 @@ namespace plnt {
 			class Impl_;
 			std::unique_ptr<Impl_> impl_;
 
-			void LogProc(LogLevel level, const std::string &detail, const std::string &place) override;
-			void SimpleLogProc(const std::string &detail) override;
-			void _OutPut(LogLevel level, const std::string &str);
+			void log_proc(log_level level, const std::string &detail, const std::string &place) override;
+			void simple_log_proc(const std::string &detail) override;
+			void _OutPut(log_level level, const std::string &str);
 		};
 	}
 }

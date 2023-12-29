@@ -3,7 +3,7 @@
 #include "StandardTaskManager.hpp"
 #include "LogUtility.hpp"
 #include "game_object_factory.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 #include "boost/algorithm/string.hpp"
 
 namespace plnt {
@@ -48,8 +48,8 @@ namespace plnt {
 			return id;
 		}
 
-		WeakPointer<IGameObject>
-		StandardGameObjectManager::CreateGameObject(const std::string &game_object_def_file_id) {
+		WeakPointer<i_game_object>
+		StandardGameObjectManager::create_game_object(const std::string &game_object_def_file_id) {
 			auto go = CreateAndSetUpGameObject_(game_object_def_file_id);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go) >= 0) { return go; } else {
 				PE_LOG_ERROR("ゲームオブジェクトの作成に失敗しました。(GameObject定義ファイルID:", game_object_def_file_id, ")");
@@ -57,7 +57,7 @@ namespace plnt {
 			}
 		}
 
-		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObject(
+		WeakPointer<i_game_object> StandardGameObjectManager::create_game_object(
 			const std::string &game_object_def_file_id, const std::string &name) {
 			auto go = CreateAndSetUpGameObject_(game_object_def_file_id);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go, name) >= 0) { return go; } else {
@@ -66,7 +66,7 @@ namespace plnt {
 			}
 		}
 
-		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObjectWithComponentTypeIDList(
+		WeakPointer<i_game_object> StandardGameObjectManager::create_game_object_with_component_type_id_list(
 			const std::vector<std::string> &game_object_component_type_id_list) {
 			auto go = CreateAndSetUpGameObject_(game_object_component_type_id_list);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go) >= 0) { return go; } else {
@@ -76,7 +76,7 @@ namespace plnt {
 			}
 		}
 
-		WeakPointer<IGameObject> StandardGameObjectManager::CreateGameObjectWithComponentTypeIDList(
+		WeakPointer<i_game_object> StandardGameObjectManager::create_game_object_with_component_type_id_list(
 			const std::vector<std::string> &game_object_component_type_id_list, const std::string &name) {
 			auto go = CreateAndSetUpGameObject_(game_object_component_type_id_list);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go, name) >= 0) { return go; } else {
@@ -139,10 +139,10 @@ namespace plnt {
 
 		void StandardGameObjectManager::RemoveProc_() { garbage_.clear(); }
 
-		void StandardGameObjectManager::DebugInformationAddHandle(IDebugInformationAdder &di_adder) {
-			di_adder.AddLine("-----GameObjectManager-----");
-			di_adder.AddLineV("活動中ゲームオブジェクト数:", active_game_objects_.size());
-			di_adder.AddLineV("停止中ゲームオブジェクト数:", inactive_game_objects_.size());
+		void StandardGameObjectManager::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+			di_adder.add_line("-----GameObjectManager-----");
+			di_adder.add_line_v("活動中ゲームオブジェクト数:", active_game_objects_.size());
+			di_adder.add_line_v("停止中ゲームオブジェクト数:", inactive_game_objects_.size());
 		}
 	}
 }

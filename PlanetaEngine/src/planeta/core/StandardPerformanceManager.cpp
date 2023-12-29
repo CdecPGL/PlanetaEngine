@@ -1,7 +1,7 @@
 ﻿#include <ctime>
 
 #include "StandardPerformanceManager.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 
 namespace plnt {
 	namespace {
@@ -33,10 +33,10 @@ namespace plnt {
 			return util::Time::GetCurrentTime() - _start_time;
 		}
 
-		void StandardPerformanceManager::DebugInfotmationAddHandler(IDebugInformationAdder &di_adder) {
-			di_adder.AddLineV("FPS:", fps_);
-			di_adder.AddLineV("経過フレーム:", _frame_count);
-			di_adder.AddLineV("経過時間:", (util::Time::GetCurrentTime() - _start_time).ToString());
+		void StandardPerformanceManager::DebugInfotmationAddHandler(i_debug_information_adder &di_adder) {
+			di_adder.add_line_v("FPS:", fps_);
+			di_adder.add_line_v("経過フレーム:", _frame_count);
+			di_adder.add_line_v("経過時間:", (util::Time::GetCurrentTime() - _start_time).ToString());
 		}
 	}
 }

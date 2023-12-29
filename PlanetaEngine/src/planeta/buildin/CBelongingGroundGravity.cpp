@@ -1,7 +1,7 @@
 ﻿#include "CBelongingGroundGravity.hpp"
 #include "CTransform2D.hpp"
 #include "CGround2D.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 
 #include "TInstant.hpp"
 
@@ -20,7 +20,7 @@ namespace plnt {
 
 	void CBelongingGroundGravity::on_initialized() {
 		super::on_initialized();
-		auto proc = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreCollisionEarlyPhase);
+		auto proc = game_object().create_and_attach_task<TInstant>(TaskSlot::PreCollisionEarlyPhase);
 		proc->SetExcuteFunction([this]() { Update(); });
 	}
 

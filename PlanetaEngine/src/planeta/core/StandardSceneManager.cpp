@@ -1,6 +1,6 @@
 ﻿#include "ResourceManager.hpp"
 #include "StandardSceneManager.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 #include "Scene.hpp"
 #include "SceneSetUpper.hpp"
 #include "planeta/buildin/SError.hpp"
@@ -153,8 +153,8 @@ namespace plnt {
 			resource_manager_ = mgr;
 		}
 
-		void StandardSceneManager::DebugInfotmationAddHandler(IDebugInformationAdder &di_adder) {
-			di_adder.AddLineV("現在のシーンID:", _current_scene_id);
+		void StandardSceneManager::DebugInfotmationAddHandler(i_debug_information_adder &di_adder) {
+			di_adder.add_line_v("現在のシーンID:", _current_scene_id);
 			if (_current_scene) { _current_scene->DebugInformationAddHandle(di_adder); }
 		}
 

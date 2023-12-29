@@ -1,4 +1,4 @@
-﻿#include "planeta/core/IGameObject.hpp"
+﻿#include "..\core\i_game_object.hpp"
 #include "..\core\draw_system.hpp"
 #include "planeta/core/Matrix2_2.hpp"
 #include "planeta/core/LogUtility.hpp"

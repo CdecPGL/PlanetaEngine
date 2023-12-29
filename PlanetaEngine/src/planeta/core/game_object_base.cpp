@@ -63,23 +63,23 @@ namespace plnt {
 
 		game_object_base::~game_object_base() = default;
 
-		WeakPointer<IGameObject> game_object_base::GetPointer() {
+		WeakPointer<i_game_object> game_object_base::get_pointer() {
 			assert(shared_from_this() != nullptr);
 			return shared_from_this();
 		}
 
-		void game_object_base::Activate() {
+		void game_object_base::activate() {
 			if (!manager_connection_->request_activation()) { PE_LOG_FATAL("ゲームオブジェクトの有効化に失敗しました。"); }
 		}
 
-		void game_object_base::Inactivate() {
+		void game_object_base::inactivate() {
 			if (!manager_connection_->request_inactivation()) { PE_LOG_FATAL("ゲームオブジェクトの無効化に失敗しました。"); }
 		}
 
-		void game_object_base::Dispose() { manager_connection_->request_disposal(); }
+		void game_object_base::dispose() { manager_connection_->request_disposal(); }
 
 		bool game_object_base::process_initialization() {
-			state_ = GameObjectState::Initializing;
+			state_ = game_object_state::initializing;
 
 			const go_component_getter com_getter(component_holder_);
 
@@ -89,18 +89,18 @@ namespace plnt {
 				if (!com->get_other_components_proc(com_getter)) {
 					// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)
 					PE_LOG_ERROR("GameObjectComponent\"型:", typeid(*com).name(), "\"でほかのオブジェクトを取得する処理に失敗しました。");
-					state_ = GameObjectState::Invalid;
+					state_ = game_object_state::invalid;
 					return false;
 				}
 			}
 
 			for (auto &&com : com_ary) { com->initialize(); }
-			state_ = GameObjectState::Inactive;
+			state_ = game_object_state::inactive;
 			return true;
 		}
 
 		bool game_object_base::process_activation() {
-			state_ = GameObjectState::Activating;
+			state_ = game_object_state::activating;
 			//コンポーネントの有効化
 			for (decltype(auto) com_ary = component_holder_.component_array(); auto &&com : com_ary) {
 				com->activate();
@@ -110,12 +110,12 @@ namespace plnt {
 			//アタッチされたタスクの再開
 			check_and_apply_process_to_attached_task([](Task &t)-> bool { return t.Resume(); });
 
-			state_ = GameObjectState::Active;
+			state_ = game_object_state::active;
 			return true;
 		}
 
 		bool game_object_base::process_inactivation() {
-			state_ = GameObjectState::Inactivating;
+			state_ = game_object_state::inactivating;
 			//アタッチされたタスクの停止
 			check_and_apply_process_to_attached_task([](Task &t)-> bool { return t.Pause(); });
 			//無効化イベント
@@ -125,12 +125,12 @@ namespace plnt {
 				com->in_activate();
 			}
 
-			state_ = GameObjectState::Inactive;
+			state_ = game_object_state::inactive;
 			return true;
 		}
 
 		bool game_object_base::process_disposal() {
-			state_ = GameObjectState::Invalid;
+			state_ = game_object_state::invalid;
 			//アタッチされたタスクの破棄
 			check_and_apply_process_to_attached_task([](Task &t)-> bool {
 				t.Dispose();
@@ -187,7 +187,7 @@ namespace plnt {
 			return true;
 		}
 
-		std::shared_ptr<game_object_component> game_object_base::GetComponentByTypeInfo_(
+		std::shared_ptr<game_object_component> game_object_base::get_component_by_type_info(
 			const std::type_info &ti, const std::function<bool(game_object_component *goc)> &type_checker) const {
 			return component_holder_.get_component_by_type_info(ti, type_checker);
 		}
@@ -196,8 +196,8 @@ namespace plnt {
 		//	return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
 		//}
 
-		void game_object_base::SetUpAttachedTask_(const WeakPointer<Task> &task) {
-			if (state_ == GameObjectState::Active || state_ == GameObjectState::Activating) { task->Resume(); }
+		void game_object_base::set_up_attached_task(const WeakPointer<Task> &task) {
+			if (state_ == game_object_state::active || state_ == game_object_state::activating) { task->Resume(); }
 			attached_tasks_.push_back(task);
 		}
 
@@ -271,7 +271,7 @@ namespace plnt {
 			return scc;
 		}
 
-		GameObjectState game_object_base::state() const { return state_; }
+		game_object_state game_object_base::state() const { return state_; }
 
 		IScene &game_object_base::scene() { return *scene_internal_interface_; }
 	}

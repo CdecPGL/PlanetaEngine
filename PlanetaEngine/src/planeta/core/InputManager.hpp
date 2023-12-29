@@ -2,13 +2,13 @@
 
 #include <unordered_map>
 #include <vector>
-#include "IInputManager.hpp"
+#include "i_input_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	/*インプットマネージャ*/
 	namespace private_ {
-		class InputManager : public IInputManager, public SubSystemManager {
+		class InputManager : public i_input_manager, public SubSystemManager {
 		public:
 			virtual ~InputManager() override = default;
 			virtual bool Initialize() = 0;

@@ -15,7 +15,7 @@ namespace plnt {
 			void Update() override;
 			size_t GetCurrentFrameCount() const override { return _frame_count; }
 			const util::Time GetCurrentTimeCount() const override;
-			void DebugInfotmationAddHandler(IDebugInformationAdder &di_adder) override;
+			void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) override;
 
 		private:
 			size_t _frame_count = 0;

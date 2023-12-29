@@ -14,42 +14,50 @@ namespace plnt {
 	class Task;
 
 	/*! ゲームオブジェクトの状態*/
-	enum class GameObjectState { Invalid, Inactive, Active, Initializing, Inactivating, Activating };
+	enum class game_object_state { invalid, inactive, active, initializing, inactivating, activating };
 
 	/*! @brief ゲームオブジェクトへのアクセスを提供するインターフェイスクラス
 	*/
-	class IGameObject {
+	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+	class i_game_object {
 	public:
+		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
+		virtual ~i_game_object() = 0 {}
+
 		//! ゲームオブジェクトをシーン内で有効化する。戻り値は有効化の成否を示す。  
-		virtual void Activate() = 0;
+		virtual void activate() = 0;
 		//! ゲームオブジェクトをシーン内で無効化する。戻り値は無効化の成否を示す。  
-		virtual void Inactivate() = 0;
+		virtual void inactivate() = 0;
 		//! ゲームオブジェクトをシーンから破棄する
-		virtual void Dispose() = 0;
+		virtual void dispose() = 0;
 		//! 自身のWeakPointerを取得する
-		virtual WeakPointer<IGameObject> GetPointer() = 0;
+		[[nodiscard]] virtual WeakPointer<i_game_object> get_pointer() = 0;
 		//! コンポーネントを型で取得する
 		template <class ComT>
-		WeakPointer<ComT> GetComponent() const {
-			static_assert(std::is_base_of<game_object_component, ComT>::value == true,
+		[[nodiscard]] WeakPointer<ComT> get_component() const {
+			static_assert(std::is_base_of_v<game_object_component, ComT> == true,
 			              "ComT must drive GameObjectComponent.");
-			return std::static_pointer_cast<ComT>(GetComponentByTypeInfo_(typeid(ComT), [](game_object_component *goc) {
-				return dynamic_cast<ComT *>(goc) !=
-					nullptr;
-			}));
+			return std::static_pointer_cast<ComT>(get_component_by_type_info(
+				typeid(ComT), [](game_object_component *goc) {
+					return dynamic_cast<ComT *>(goc) !=
+						nullptr;
+				}));
 		}
 
 		//! 特定型のコンポーネントを持っているか確認する
-		template <class ComT>
-		bool HasComponentType() const { return false; }
+		// TODO
 
 		//! コンポーネントを型ですべて取得する
+		// TODO
 
 		//! コンポーネントをコンポーネント型IDで取得する
+		// TODO
 
 		//! コンポーネントをコンポーネント型IDで全て取得する
+		// TODO
 
 		//! 特定のコンポーネント型IDのコンポーネントを持っているか確認
+		// TODO
 
 		/*! @brief タスクをアタッチする
 
@@ -57,18 +65,18 @@ namespace plnt {
 			ゲームオブジェクトのアタッチされたタスクの寿命はそのゲームオブジェクトと同じになり、ゲームオブジェクトの無効化有効化に合わせて停止、再開する。
 		*/
 		template <class T>
-		WeakPointer<T> CreateAndAttachTask(TaskSlot slot) {
-			static_assert(std::is_base_of<Task, T>::value == true, "T must derive Task");
+		[[nodiscard]] WeakPointer<T> create_and_attach_task(const TaskSlot slot) {
+			static_assert(std::is_base_of_v<Task, T> == true, "T must derive Task");
 			auto task = scene().task_manager().CreateTask<T>(slot);
 			if (task == nullptr) { return nullptr; }
-			SetUpAttachedTask_(task);
+			set_up_attached_task(task);
 			return task;
 		}
 
 		//! ゲームオブジェクトの状態を取得する
-		virtual GameObjectState state() const = 0;
+		[[nodiscard]] virtual game_object_state state() const = 0;
 		//! シーンへのアクセスを取得する
-		virtual IScene &scene() = 0;
+		[[nodiscard]] virtual IScene &scene() = 0;
 
 		/*イベント*/
 		/*! 有効化イベント*/
@@ -79,8 +87,8 @@ namespace plnt {
 		Signal<void()> disposed;
 
 	protected:
-		virtual std::shared_ptr<game_object_component> GetComponentByTypeInfo_(
+		[[nodiscard]] virtual std::shared_ptr<game_object_component> get_component_by_type_info(
 			const std::type_info &ti, const std::function<bool(game_object_component *goc)> &type_checker) const = 0;
-		virtual void SetUpAttachedTask_(const WeakPointer<Task> &task) = 0;
+		virtual void set_up_attached_task(const WeakPointer<Task> &task) = 0;
 	};
 }

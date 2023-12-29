@@ -8,7 +8,7 @@
 
 namespace plnt {
 	class CGround2D;
-	class IGameObject;
+	class i_game_object;
 
 	/*! 座標系*/
 	enum class CoordinateSystem { Global, Ground };
@@ -80,7 +80,7 @@ namespace plnt {
 		/*! 所属している地面コンポーネントを取得する*/
 		WeakPointer<CGround2D> GetGround() const;
 		/*! 地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
-		bool SetGround(const WeakPointer<IGameObject> &g, bool keep_global_position);
+		bool SetGround(const WeakPointer<i_game_object> &g, bool keep_global_position);
 
 		/*イベント*/
 		/*! トランスフォーム更新イベント*/

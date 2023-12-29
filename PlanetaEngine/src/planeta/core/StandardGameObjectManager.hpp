@@ -7,7 +7,7 @@
 
 namespace plnt {
 	class SceneAccessorForGameObject;
-	class IGameObject;
+	class i_game_object;
 
 	namespace private_ {
 		class game_object_factory;
@@ -18,12 +18,12 @@ namespace plnt {
 			StandardGameObjectManager();
 			~StandardGameObjectManager();
 			//ユーザアクセス可能関数
-			WeakPointer<IGameObject> CreateGameObject(const std::string &game_object_def_file_id) override;
-			WeakPointer<IGameObject> CreateGameObject(const std::string &game_object_def_file_id,
+			WeakPointer<i_game_object> create_game_object(const std::string &game_object_def_file_id) override;
+			WeakPointer<i_game_object> create_game_object(const std::string &game_object_def_file_id,
 			                                          const std::string &name) override;
-			WeakPointer<IGameObject> CreateGameObjectWithComponentTypeIDList(
+			WeakPointer<i_game_object> create_game_object_with_component_type_id_list(
 				const std::vector<std::string> &game_object_component_type_id_list) override;
-			WeakPointer<IGameObject> CreateGameObjectWithComponentTypeIDList(
+			WeakPointer<i_game_object> create_game_object_with_component_type_id_list(
 				const std::vector<std::string> &game_object_component_type_id_list, const std::string &name) override;
 
 			//システム関数
@@ -62,7 +62,7 @@ namespace plnt {
 			int RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go);
 			int RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go, const std::string &name);
 
-			virtual void DebugInformationAddHandle(IDebugInformationAdder &di_adder) override;
+			virtual void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
 		};
 	}
 }

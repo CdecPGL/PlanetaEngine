@@ -45,7 +45,7 @@ namespace plnt {
 		return true;
 	}
 
-	IGameObject &game_object_component::game_object() const { return *game_object_; }
+	i_game_object &game_object_component::game_object() const { return *game_object_; }
 
 	const std::unordered_set<std::string> &game_object_component::labels() const { return labels_; }
 

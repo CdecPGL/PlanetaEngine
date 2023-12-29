@@ -1,5 +1,5 @@
 ﻿#include "planeta/core/Matrix2_2.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 #include "planeta/core/LogUtility.hpp"
 
 #include "CGround2D.hpp"

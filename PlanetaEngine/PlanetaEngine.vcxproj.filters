@@ -576,34 +576,34 @@
     <ClInclude Include="src\planeta\core\graph_draw_data_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\i_gm_controller.hpp">
+    <ClInclude Include="src\planeta\core\i_bgm_controller.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\i_collider_with_collider_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ICollisionWorld.hpp">
+    <ClInclude Include="src\planeta\core\i_collision_world.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IConfigManager.hpp">
+    <ClInclude Include="src\planeta\core\i_config_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IDebugManager.hpp">
+    <ClInclude Include="src\planeta\core\i_debug_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IDrawSystem.hpp">
+    <ClInclude Include="src\planeta\core\i_draw_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IGameObject.hpp">
+    <ClInclude Include="src\planeta\core\i_game_object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IGameObjectManager.hpp">
+    <ClInclude Include="src\planeta\core\i_game_object_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\IInputManager.hpp">
+    <ClInclude Include="src\planeta\core\i_input_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ILogManager.hpp">
+    <ClInclude Include="src\planeta\core\i_log_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\InitFunctions.hpp">

@@ -1,7 +1,7 @@
 ﻿#include "..\core\draw_system.hpp"
 #include "planeta/core/ISceneInternal.hpp"
 #include "planeta/core/LogUtility.hpp"
-#include "planeta/core/IGameObject.hpp"
+#include "..\core\i_game_object.hpp"
 
 #include "CCamera2D.hpp"
 #include "CTransform2D.hpp"

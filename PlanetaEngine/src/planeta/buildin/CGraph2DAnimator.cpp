@@ -1,4 +1,4 @@
-﻿#include "planeta/core/IGameObject.hpp"
+﻿#include "..\core\i_game_object.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/LogUtility.hpp"
 
@@ -26,7 +26,7 @@ namespace plnt {
 	void CGraph2DAnimator::on_initialized() {
 		super::on_initialized();
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
-		auto tsk = game_object().CreateAndAttachTask<TInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto tsk = game_object().create_and_attach_task<TInstant>(TaskSlot::PreDrawUpdatePhase);
 		tsk->SetExcuteFunction([this]() { UpdateAnimation(); });
 	}
 

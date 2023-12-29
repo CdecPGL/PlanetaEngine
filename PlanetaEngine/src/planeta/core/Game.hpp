@@ -6,15 +6,15 @@
 
 namespace plnt {
 	class IResourceManager;
-	class ILogManager;
+	class i_log_manager;
 	class ISceneManager;
-	class IInputManager;
+	class i_input_manager;
 	class IPerformanceManager;
 	class IRenderingManager;
 	class ISoundManager;
 	class ISaveManager;
-	class IDebugManager;
-	class IConfigManager;
+	class i_debug_manager;
+	class i_config_manager;
 
 	namespace private_ {
 		class ResourceManager;
@@ -70,11 +70,11 @@ namespace plnt {
 		/*! リソースマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<IResourceManager> resource_manager() const;
 		/*! ログマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<ILogManager> log_manager() const;
+		[[nodiscard]] std::shared_ptr<i_log_manager> log_manager() const;
 		/*! シーンマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<ISceneManager> scene_manager() const;
 		/*! インプットマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<IInputManager> input_manager() const;
+		[[nodiscard]] std::shared_ptr<i_input_manager> input_manager() const;
 		/*! パフォーマンスマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<IPerformanceManager> performance_manager() const;
 		/*! レンダリングマネージャにアクセスする*/
@@ -84,9 +84,9 @@ namespace plnt {
 		/*! セーブマネージャにアクセスする*/
 		[[nodiscard]] std::shared_ptr<ISaveManager> save_manager() const;
 		/*! デバッグマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<IDebugManager> debug_manager() const;
+		[[nodiscard]] std::shared_ptr<i_debug_manager> debug_manager() const;
 		/*! コンフィグマネージャにアクセスする*/
-		[[nodiscard]] std::shared_ptr<IConfigManager> config_manager() const;
+		[[nodiscard]] std::shared_ptr<i_config_manager> config_manager() const;
 
 	private:
 		game();

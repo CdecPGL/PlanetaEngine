@@ -1,4 +1,4 @@
-﻿#include "planeta/core/IGameObject.hpp"
+﻿#include "..\core\i_game_object.hpp"
 #include "..\core\collision_world.hpp"
 #include "planeta/core/LogUtility.hpp"
 #include "planeta/core/ISceneInternal.hpp"

@@ -11,7 +11,7 @@
 #include "NonOwingPointer.hpp"
 
 namespace plnt {
-	class IDebugInformationAdder;
+	class i_debug_information_adder;
 
 	namespace private_ {
 		class SceneModule;
@@ -42,13 +42,13 @@ namespace plnt {
 			WeakPointer<TaskManager> task_manager_internal_pointer() override;
 			WeakPointer<TransformSystem> transform_system_internal_pointer() override;
 			/*シーンモジュールインターフェイスアクセス関数*/
-			ICollisionWorld &collision_world() override;
-			IDrawSystem &draw_system() override;
-			IGameObjectManager &game_object_manager() override;
+			i_collision_world &collision_world() override;
+			i_draw_system &draw_system() override;
+			i_game_object_manager &game_object_manager() override;
 			ITaskManager &task_manager() override;
 			ITransformSystem &transform_system() override;
 			/*その他関数*/
-			void DebugInformationAddHandle(IDebugInformationAdder &di_adder);
+			void DebugInformationAddHandle(i_debug_information_adder &di_adder);
 
 		private:
 			std::shared_ptr<TaskManager> task_manager_; //ゲームプロセスマネージャ

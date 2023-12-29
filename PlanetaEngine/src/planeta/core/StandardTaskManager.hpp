@@ -39,7 +39,7 @@ namespace plnt {
 			std::shared_ptr<Task>
 			RegisterSystemTask(const std::shared_ptr<Task> &task, private_::SystemTaskSlot slot) override;
 
-			void DebugInformationAddHandle(IDebugInformationAdder &di_adder) override;
+			void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
 		};
 	}
 }

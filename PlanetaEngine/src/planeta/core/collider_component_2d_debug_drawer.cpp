@@ -1,5 +1,5 @@
 ﻿#include "collider_component_2d_debug_drawer.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 
 #include "planeta/buildin/CCircleCollider2D.hpp"
 #include "planeta/buildin/CStraightLineCollider2D.hpp"
@@ -7,12 +7,12 @@
 
 
 namespace plnt::private_ {
-	collider_component_2d_debug_drawer::collider_component_2d_debug_drawer(IDebugDrawer &dd) : debug_drawer_(dd) { }
+	collider_component_2d_debug_drawer::collider_component_2d_debug_drawer(i_debug_drawer &dd) : debug_drawer_(dd) { }
 
 	bool collider_component_2d_debug_drawer::collide_with(CCircleCollider2D &circle_collider) {
 		const auto pos = circle_collider.GetCollisionGlobalCenterPosition();
 		const auto radius = circle_collider.radius() * circle_collider.GetCollisionScale();
-		debug_drawer_.DrawCircle(static_cast<Vector2Df>(pos), static_cast<float>(radius), color::red(), false);
+		debug_drawer_.draw_circle(static_cast<Vector2Df>(pos), static_cast<float>(radius), color::red(), false);
 		return false;
 	}
 

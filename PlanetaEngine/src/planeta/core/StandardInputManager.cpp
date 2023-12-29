@@ -323,59 +323,59 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardInputManager::KeyState(Key::type k) const { return _impl->GetDxKeyState(k); }
+		bool StandardInputManager::key_state(Key::type k) const { return _impl->GetDxKeyState(k); }
 
-		bool StandardInputManager::KeyPush(Key::type k) const { return _impl->GetDxKeyPush(k); }
+		bool StandardInputManager::key_push(Key::type k) const { return _impl->GetDxKeyPush(k); }
 
-		bool StandardInputManager::PadState(Pad::type k) const { return _impl->GetDxPadState(k); }
+		bool StandardInputManager::pad_state(Pad::type k) const { return _impl->GetDxPadState(k); }
 
-		bool StandardInputManager::PadPush(Pad::type k) const { return _impl->GetDxPadPush(k); }
+		bool StandardInputManager::pad_push(Pad::type k) const { return _impl->GetDxPadPush(k); }
 
-		bool StandardInputManager::ButtonState(Button::type b) const {
+		bool StandardInputManager::button_state(Button::type b) const {
 			//キー
 			auto kit = _impl->_key_to_button_map.find(b);
 			if (kit != _impl->_key_to_button_map.end()) {
-				for (Key::type k : kit->second) { if (KeyState(k)) { return true; } }
+				for (Key::type k : kit->second) { if (key_state(k)) { return true; } }
 			}
 			//パッド
 			auto pit = _impl->_pad_to_button_map.find(b);
 			if (pit != _impl->_pad_to_button_map.end()) {
-				for (Pad::type k : pit->second) { if (PadState(k)) { return true; } }
+				for (Pad::type k : pit->second) { if (pad_state(k)) { return true; } }
 			}
 			return false;
 		}
 
-		bool StandardInputManager::ButtonPush(Button::type b) const {
+		bool StandardInputManager::button_push(Button::type b) const {
 			//キー
 			auto kit = _impl->_key_to_button_map.find(b);
 			if (kit != _impl->_key_to_button_map.end()) {
-				for (Key::type k : kit->second) { if (KeyPush(k)) { return true; } }
+				for (Key::type k : kit->second) { if (key_push(k)) { return true; } }
 			}
 			//パッド
 			auto pit = _impl->_pad_to_button_map.find(b);
 			if (pit != _impl->_pad_to_button_map.end()) {
-				for (Pad::type k : pit->second) { if (PadPush(k)) { return true; } }
+				for (Pad::type k : pit->second) { if (pad_push(k)) { return true; } }
 			}
 			return false;
 		}
 
-		bool StandardInputManager::ButtonState(const std::string &a) const {
+		bool StandardInputManager::button_state(const std::string &a) const {
 			auto it = _impl->_alias_button_map.find(a);
 			if (it == _impl->_alias_button_map.end()) { return false; }
-			return ButtonState(it->second);
+			return button_state(it->second);
 		}
 
-		bool StandardInputManager::ButtonPush(const std::string &a) const {
+		bool StandardInputManager::button_push(const std::string &a) const {
 			auto it = _impl->_alias_button_map.find(a);
 			if (it == _impl->_alias_button_map.end()) { return false; }
-			return ButtonPush(it->second);
+			return button_push(it->second);
 		}
 
-		bool StandardInputManager::MouseButtonState(MouseButton::type mb) const {
+		bool StandardInputManager::mouse_button_state(MouseButton::type mb) const {
 			return _impl->GetDxMouseButtonState(mb);
 		}
 
-		bool StandardInputManager::MouseButtonPush(MouseButton::type mb) const {
+		bool StandardInputManager::mouse_button_push(MouseButton::type mb) const {
 			return _impl->GetDxMouseButtonPush(mb);
 		}
 
@@ -399,7 +399,7 @@ namespace plnt {
 
 		StandardInputManager::~StandardInputManager() { }
 
-		const Vector2Di StandardInputManager::GetMousePointerPosition() const {
+		const Vector2Di StandardInputManager::get_mouse_pointer_position() const {
 			//			static int* leak = new int[2];
 			//			static int* leak2 = new int;
 			//			leak[3] = 0x666;
@@ -411,7 +411,7 @@ namespace plnt {
 			return Vector2Di(x, y);
 		}
 
-		int StandardInputManager::GetMouseWheelRotation() const { return _impl->GetDxMouseWheelRotation(); }
+		int StandardInputManager::get_mouse_wheel_rotation() const { return _impl->GetDxMouseWheelRotation(); }
 
 		void StandardInputManager::Finalize() { }
 	}

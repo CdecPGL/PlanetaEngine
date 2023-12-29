@@ -70,7 +70,7 @@ namespace plnt {
 			return true;
 		}
 
-		void Scene::DebugInformationAddHandle(IDebugInformationAdder &di_adder) {
+		void Scene::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
 			IterateSceneModule_([&di_adder](SceneModule &sm) {
 				sm.DebugInformationAddHandle(di_adder);
 				return true;
@@ -93,11 +93,11 @@ namespace plnt {
 			return transform_system_;
 		}
 
-		plnt::ICollisionWorld &Scene::collision_world() { return *collision_world_; }
+		plnt::i_collision_world &Scene::collision_world() { return *collision_world_; }
 
-		plnt::IDrawSystem &Scene::draw_system() { return *draw_system_; }
+		plnt::i_draw_system &Scene::draw_system() { return *draw_system_; }
 
-		plnt::IGameObjectManager &Scene::game_object_manager() { return *game_object_manager_; }
+		plnt::i_game_object_manager &Scene::game_object_manager() { return *game_object_manager_; }
 
 		plnt::ITaskManager &Scene::task_manager() { return *task_manager_; }
 

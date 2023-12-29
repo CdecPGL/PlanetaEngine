@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "ILogManager.hpp"
+#include "i_log_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	namespace private_ {
 		/*ログマネージャ*/
-		class LogManager : public ILogManager, public SubSystemManager {
+		class LogManager : public i_log_manager, public SubSystemManager {
 		public:
 			virtual ~LogManager() override = default;
 			/*初期化*/

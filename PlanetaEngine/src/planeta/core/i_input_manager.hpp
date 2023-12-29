@@ -1,47 +1,51 @@
 ﻿#pragma once
 
 #include <string>
+
 #include "Vector2D.hpp"
 #include "InputDefinitions.hpp"
 
 namespace plnt {
 	/*! インプットマネージャの公開インターフェイス*/
-	class IInputManager {
+	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+	class i_input_manager {
 	public:
-		virtual ~IInputManager() = 0 { };
+		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
+		virtual ~i_input_manager() = 0 { }
+
 		/*@brief キーの入力状態を取得(複数指定不可)
 		@param キーコード*/
-		virtual bool KeyState(Key::type) const = 0;
+		[[nodiscard]] virtual bool key_state(Key::type) const = 0;
 		/*@brief パッドの入力状態を取得(複数指定不可)
 		@param パッドコード*/
-		virtual bool PadState(Pad::type) const = 0;
+		[[nodiscard]] virtual bool pad_state(Pad::type) const = 0;
 		/*@brief ボタンの入力状態を取得(複数指定不可)
 		@param ボタンコード*/
-		virtual bool ButtonState(Button::type) const = 0;
+		[[nodiscard]] virtual bool button_state(Button::type) const = 0;
 		/*@brief ボタンの入力状態を取得(複数指定不可)
 		@param ボタン名*/
-		virtual bool ButtonState(const std::string &) const = 0;
+		[[nodiscard]] virtual bool button_state(const std::string &) const = 0;
 		/*@brief マウスボタンの入力状態を取得(複数指定不可)
 		@param マウスボタンコード*/
-		virtual bool MouseButtonState(MouseButton::type) const = 0;
+		[[nodiscard]] virtual bool mouse_button_state(MouseButton::type) const = 0;
 		/*@brief キーの押下取得(複数指定不可)
 		@param キーコード*/
-		virtual bool KeyPush(Key::type) const = 0;
+		[[nodiscard]] virtual bool key_push(Key::type) const = 0;
 		/*@brief パッドの押下取得(複数指定不可)
 		@param パッドコード*/
-		virtual bool PadPush(Pad::type) const = 0;
+		[[nodiscard]] virtual bool pad_push(Pad::type) const = 0;
 		/*@brief ボタンの押下取得(複数指定不可)
 		@param ボタンコード*/
-		virtual bool ButtonPush(Button::type) const = 0;
+		[[nodiscard]] virtual bool button_push(Button::type) const = 0;
 		/*@brief ボタンの押下取得(複数指定不可)
 		@param ボタン名*/
-		virtual bool ButtonPush(const std::string &) const = 0;
+		[[nodiscard]] virtual bool button_push(const std::string &) const = 0;
 		/*@brief マウスボタンの押下取得(複数指定不可)
 		@param マウスボタンコード*/
-		virtual bool MouseButtonPush(MouseButton::type) const = 0;
+		[[nodiscard]] virtual bool mouse_button_push(MouseButton::type) const = 0;
 		/*! マウスポインタの位置を取得*/
-		virtual const Vector2Di GetMousePointerPosition() const = 0;
+		[[nodiscard]] virtual const Vector2Di get_mouse_pointer_position() const = 0;
 		/*! マウスホイールの回転量を取得*/
-		virtual int GetMouseWheelRotation() const = 0;
+		[[nodiscard]] virtual int get_mouse_wheel_rotation() const = 0;
 	};
 }

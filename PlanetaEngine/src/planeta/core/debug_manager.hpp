@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt::private_ {
 	class RenderingManager;
 
-	class debug_manager : public IDebugManager, public SubSystemManager {
+	class debug_manager : public i_debug_manager, public SubSystemManager {
 	public:
 		debug_manager() = default;
 		debug_manager(const debug_manager &) = delete;

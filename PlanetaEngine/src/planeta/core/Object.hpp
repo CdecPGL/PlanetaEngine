@@ -24,6 +24,8 @@ namespace plnt {
 		bool Equals(const Object &o) const { return &o == this; }
 		//! 文字列化する。継承することで独自の文字列か機能を追加可能。
 		virtual std::string ToString() const { return typeid(*this).name(); }
+
+		auto operator<=> (const Object &) const = default;
 	};
 
 	PE_REFLECTABLE_CLASS(Object);

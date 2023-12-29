@@ -5,7 +5,7 @@
 #include "NonCopyable.hpp"
 
 namespace plnt {
-	class IDebugInformationAdder;
+	class i_debug_information_adder;
 
 	namespace private_ {
 		class ISceneInternal;
@@ -17,7 +17,7 @@ namespace plnt {
 			virtual void Finalize() { return; };
 			virtual void Update() = 0;
 
-			virtual void DebugInformationAddHandle(IDebugInformationAdder &di_adder) { };
+			virtual void DebugInformationAddHandle(i_debug_information_adder &di_adder) { };
 
 			void SetScene(const WeakPointer<ISceneInternal> &scene) { scene_ = scene; }
 

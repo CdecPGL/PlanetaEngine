@@ -2,7 +2,7 @@
 
 #include "Object.hpp"
 #include "game_object_component_holder.hpp"
-#include "IGameObject.hpp"
+#include "i_game_object.hpp"
 #include "NonCopyable.hpp"
 #include "game_object_manager_connection.hpp"
 
@@ -16,7 +16,7 @@ namespace plnt {
 
 		/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 		*/
-		class game_object_base final : public Object, public IGameObject, util::NonCopyable<game_object_base>,
+		class game_object_base final : public Object, public i_game_object, util::NonCopyable<game_object_base>,
 		                               public std::enable_shared_from_this<game_object_base> {
 		public:
 			using super = Object;
@@ -29,16 +29,16 @@ namespace plnt {
 
 			//インターフェイスのオーバーライド
 			//有効化する
-			void Activate() override;
+			void activate() override;
 			//無効化する
-			void Inactivate() override;
+			void inactivate() override;
 			//破棄する
-			void Dispose() override;
+			void dispose() override;
 			//自分のstd::shared_ptrを取得する。
-			WeakPointer<IGameObject> GetPointer() override;
+			WeakPointer<i_game_object> get_pointer() override;
 
 			//状態を取得
-			GameObjectState state() const override;
+			game_object_state state() const override;
 			//シーンへのアクセスを取得
 			IScene &scene() override;
 
@@ -63,14 +63,14 @@ namespace plnt {
 			bool add_and_set_up_components(const boost::property_tree::ptree &pt);
 
 		private:
-			GameObjectState state_ = GameObjectState::Invalid;
+			game_object_state state_ = game_object_state::invalid;
 			//コンポーネントを型で取得
-			std::shared_ptr<game_object_component> GetComponentByTypeInfo_(
+			std::shared_ptr<game_object_component> get_component_by_type_info(
 				const std::type_info &ti,
 				const std::function<bool(game_object_component *goc)> &type_checker) const override;
 			//コンポーネントを型ですべて取得
 			//std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
-			void SetUpAttachedTask_(const WeakPointer<Task> &task) override;
+			void set_up_attached_task(const WeakPointer<Task> &task) override;
 
 			//マネージャコネクション
 			std::unique_ptr<game_object_manager_connection> manager_connection_;

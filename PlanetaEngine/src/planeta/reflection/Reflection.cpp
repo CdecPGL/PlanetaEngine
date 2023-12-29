@@ -213,7 +213,7 @@ namespace plnt::reflection {
 	}
 
 	void reflection::out_put_error_log(const std::string &detail, const std::string &place) {
-		game::instance().log_manager()->Log(LogLevel::Error, place, detail);
+		game::instance().log_manager()->log(log_level::error, place, detail);
 	}
 
 	const class_info *reflection::get_class_info_reflectable(const std::type_info &t_info) noexcept {

@@ -13,13 +13,13 @@ namespace plnt::util {
 
 		/*コンストラクタ(年、月、日、時間、分、秒)*/
 		date_time(const size_t y, const size_t mon, const size_t d, const size_t h, const size_t m, const size_t s) :
-			second_(static_cast<signed>(s)), minute_(static_cast<signed>(m)), hour_(static_cast<signed>(h)),
-			day_(static_cast<signed>(d)), month_(static_cast<signed>(mon)), year_(static_cast<signed>(y)) { }
+			year_(static_cast<signed>(y)), month_(static_cast<signed>(mon)), day_(static_cast<signed>(d)),
+			hour_(static_cast<signed>(h)), minute_(static_cast<signed>(m)), second_(static_cast<signed>(s)) { }
 
-		explicit date_time(const std::tm &c_time) : second_(c_time.tm_sec), minute_(c_time.tm_min),
-		                                            hour_(c_time.tm_hour),
-		                                            day_(c_time.tm_mday), month_(c_time.tm_mon + 1),
-		                                            year_(c_time.tm_year + 1900) { }
+		explicit date_time(const std::tm &c_time) : year_(c_time.tm_year + 1900), month_(c_time.tm_mon + 1),
+		                                            day_(c_time.tm_mday),
+		                                            hour_(c_time.tm_hour), minute_(c_time.tm_min),
+		                                            second_(c_time.tm_sec) { }
 
 		date_time(const date_time &t) = default;
 		date_time(date_time &&t) = default;
@@ -91,37 +91,8 @@ namespace plnt::util {
 		//	DateTime out(*this);
 		//	return out *= n;
 		//}
-		bool operator==(const date_time &t) const {
-			return second_ == t.second_ && minute_ == t.minute_ && hour_ == t.hour_ && day_ == t.day_ && month_ == t.
-				month_ && year_ == t.year_;
-		}
 
-		bool operator!=(const date_time &t) const { return !(*this == t); }
-		bool operator<=(const date_time &t) const { return !(*this > t); }
-		bool operator>=(const date_time &t) const { return *this > t || *this == t; }
-		bool operator<(const date_time &t) const { return !(*this >= t); }
-
-		bool operator>(const date_time &t) const {
-			if (year_ > t.year_) { return true; }
-			if (year_ == t.year_) {
-				if (month_ > t.month_) { return true; }
-				if (month_ == t.month_) {
-					if (day_ > t.day_) { return true; }
-					if (day_ == t.day_) {
-						if (hour_ > t.hour_) { return true; }
-						if (hour_ == t.hour_) {
-							if (minute_ > t.minute_) { return true; }
-							if (minute_ == t.minute_) { return second_ > t.second_; }
-							return false;
-						}
-						return false;
-					}
-					return false;
-				}
-				return false;
-			}
-			return false;
-		}
+		auto operator<=>(const date_time &t) const = default;
 
 		[[nodiscard]] std::string ToString() const override;
 
@@ -129,11 +100,11 @@ namespace plnt::util {
 		static date_time get_current_date_time();
 
 	private:
-		int second_;
-		int minute_;
-		int hour_;
-		int day_;
-		int month_;
 		int year_;
+		int month_;
+		int day_;
+		int hour_;
+		int minute_;
+		int second_;
 	};
 }

@@ -2,7 +2,7 @@
 #include "config_manager.hpp"
 #include "StandardCollisionWorld.hpp"
 #include "boost/next_prior.hpp"
-#include "IGameObject.hpp"
+#include "i_game_object.hpp"
 #include "collision_detect_functions.hpp"
 #include "planeta/buildin/CCollider2D.hpp"
 #include "planeta/buildin/CGround2D.hpp"
@@ -12,7 +12,7 @@
 #include "LogUtility.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
 #include "collider_2d_data.hpp"
-#include "IDebugManager.hpp"
+#include "i_debug_manager.hpp"
 #include "collider_component_2d_debug_drawer.hpp"
 
 namespace plnt {
@@ -278,22 +278,22 @@ namespace plnt {
 		bool StandardCollisionWorld::Initialize() {
 			SetCollisionGroupMatrix();
 			//デバッグ描画を作成
-			game::instance().debug_manager()->CreateDebugDrawChannel("CollisionSystem",
+			game::instance().debug_manager()->create_debug_draw_channel("CollisionSystem",
 			                                                         std::bind(
 				                                                         &StandardCollisionWorld::DebugDrawHandler,
 				                                                         this, std::placeholders::_1));
 			return true;
 		}
 
-		void StandardCollisionWorld::DebugInformationAddHandle(IDebugInformationAdder &di_adder) {
-			di_adder.AddLine("-----CollisionSystem-----");
-			di_adder.AddLineV("コライダー数:", collider_resist_data_map_.size());
-			di_adder.AddLineV("地面と衝突可能なコライダー数:", collision_with_ground_list_.size());
-			di_adder.AddLineV("衝突判定回数:", collision_process_count_);
-			di_adder.AddLineV("衝突回数:", collision_count_);
+		void StandardCollisionWorld::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+			di_adder.add_line("-----CollisionSystem-----");
+			di_adder.add_line_v("コライダー数:", collider_resist_data_map_.size());
+			di_adder.add_line_v("地面と衝突可能なコライダー数:", collision_with_ground_list_.size());
+			di_adder.add_line_v("衝突判定回数:", collision_process_count_);
+			di_adder.add_line_v("衝突回数:", collision_count_);
 		}
 
-		void StandardCollisionWorld::DebugDrawHandler(IDebugDrawer &dd) {
+		void StandardCollisionWorld::DebugDrawHandler(i_debug_drawer &dd) {
 			collider_component_2d_debug_drawer ccdd{dd};
 			for (auto &&c : collider_resist_data_map_) {
 				//衝突判定に使うダブルディスパッチを用いてコライダーごとに描画処理を分ける。
@@ -303,7 +303,7 @@ namespace plnt {
 
 		void StandardCollisionWorld::Finalize() {
 			//デバッグ描画を破棄
-			game::instance().debug_manager()->DeleteDebugDrawChannel("CollisionSystem");
+			game::instance().debug_manager()->delete_debug_draw_channel("CollisionSystem");
 		}
 	}
 }

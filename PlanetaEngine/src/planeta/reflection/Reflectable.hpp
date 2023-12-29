@@ -16,6 +16,7 @@ namespace plnt::reflection {
 
 		reflectable &operator=(const reflectable &) = default;
 		reflectable &operator=(reflectable &&) = default;
+		auto operator<=>(const reflectable &) const = default;
 	};
 }
 

@@ -13,13 +13,13 @@ namespace plnt {
 		class TaskManagerConnection;
 	}
 
-	class IGameObject;
+	class i_game_object;
 
 	class Task :
 		public Object, private util::NonCopyable<Task> {
 	public:
 		using super = Object;
-		using GameObjectAccessorType = WeakPointer<IGameObject>;
+		using GameObjectAccessorType = WeakPointer<i_game_object>;
 		Task();
 		virtual ~Task();
 		virtual void Update() = 0;

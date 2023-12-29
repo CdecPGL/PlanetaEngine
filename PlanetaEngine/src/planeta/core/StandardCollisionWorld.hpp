@@ -9,7 +9,7 @@
 namespace plnt {
 	class e_collision_with_collider_2d;
 	class e_collision_with_ground_2d;
-	class IDebugDrawer;
+	class i_debug_drawer;
 
 	namespace private_ {
 		class StandardCollisionWorld final : public collision_world {
@@ -54,8 +54,8 @@ namespace plnt {
 			                                             CollisionEventQue &collision_event_holder) const; //グループ内での衝突判定
 			std::pair<int, int> ProcessCollisionWithGround(CollisionEventQue &collision_event_holder) const; //地形との衝突判定
 
-			void DebugInformationAddHandle(IDebugInformationAdder &di_adder) override;
-			void DebugDrawHandler(IDebugDrawer &dd);
+			void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
+			void DebugDrawHandler(i_debug_drawer &dd);
 		};
 	}
 }

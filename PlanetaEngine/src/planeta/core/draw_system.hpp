@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "IDrawSystem.hpp"
+#include "i_draw_system.hpp"
 #include "SceneModule.hpp"
 
 namespace plnt {
@@ -36,7 +36,7 @@ namespace plnt {
 			virtual bool remove() = 0;
 		};
 
-		class draw_system : public IDrawSystem, public SceneModule {
+		class draw_system : public i_draw_system, public SceneModule {
 		public:
 			draw_system() = default;
 			draw_system(const draw_system &) = delete;

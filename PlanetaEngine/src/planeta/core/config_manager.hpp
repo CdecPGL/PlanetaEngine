@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#include "IConfigManager.hpp"
+#include "i_config_manager.hpp"
 #include "SubSystemManager.hpp"
 
 namespace plnt {
 	class file;
 
 	namespace private_ {
-		class config_manager : public IConfigManager, public SubSystemManager {
+		class config_manager : public i_config_manager, public SubSystemManager {
 		public:
 			config_manager() = default;
 			config_manager(const config_manager &) = delete;
