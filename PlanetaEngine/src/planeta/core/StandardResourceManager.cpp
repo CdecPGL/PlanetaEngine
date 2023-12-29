@@ -6,7 +6,7 @@
 
 #include"StandardResourceManager.hpp"
 #include "file.hpp"
-#include "JsonFile.hpp"
+#include "json_file.hpp"
 #include "LogUtility.hpp"
 #include "file_manipulator.hpp"
 #include "SystemVariables.hpp"

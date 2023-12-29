@@ -30,7 +30,7 @@ namespace plnt {
 
 	public:
 		std::shared_ptr<ResourceManager> resource_manager;
-		std::shared_ptr<LogManager> log_manager;
+		std::shared_ptr<private_::log_manager> log_manager;
 		std::shared_ptr<SceneManager> scene_manager;
 		std::shared_ptr<private_::input_manager> input_manager;
 		std::shared_ptr<PerformanceManager> performance_manager;
@@ -67,7 +67,7 @@ namespace plnt {
 					return false;
 				}
 				if (log_manager->
-					Initialize()) { finalize_handles_.push_front([this] { log_manager->Finalize(); }); } else {
+					initialize()) { finalize_handles_.push_front([this] { log_manager->finalize(); }); } else {
 					PE_LOG_FATAL("ログシステムの初期化に失敗しました。");
 					return false;
 				}
@@ -294,7 +294,7 @@ namespace plnt {
 
 	std::shared_ptr<i_resource_manager> game::resource_manager() const { return impl_->resource_manager; }
 
-	void game::set_log_manager(const std::shared_ptr<LogManager> &mgr) const {
+	void game::set_log_manager(const std::shared_ptr<private_::log_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;

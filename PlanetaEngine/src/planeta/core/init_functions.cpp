@@ -7,7 +7,7 @@
 #include "SystemVariables.hpp"
 #include "file_manipulator.hpp"
 #include "file.hpp"
-#include "JsonFile.hpp"
+#include "json_file.hpp"
 #include "config_manager.hpp"
 
 namespace plnt::private_::init_funcs {

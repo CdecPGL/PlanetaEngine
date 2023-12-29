@@ -18,7 +18,7 @@ namespace plnt {
 
 	namespace private_ {
 		class ResourceManager;
-		class LogManager;
+		class log_manager;
 		class SceneManager;
 		class input_manager;
 		class PerformanceManager;
@@ -50,7 +50,7 @@ namespace plnt {
 		/*! リソースマネージャを設定する(初期化前)*/
 		void set_resource_manager(const std::shared_ptr<private_::ResourceManager> &mgr) const;
 		/*! ログマネージャを設定する(初期化前)*/
-		auto set_log_manager(const std::shared_ptr<private_::LogManager> &mgr) const -> void;
+		auto set_log_manager(const std::shared_ptr<private_::log_manager> &mgr) const -> void;
 		/*! シーンマネージャを設定する(初期化前)*/
 		void set_scene_manager(const std::shared_ptr<private_::SceneManager> &mgr) const;
 		/*! インプットマネージャを設定する(初期化前)*/

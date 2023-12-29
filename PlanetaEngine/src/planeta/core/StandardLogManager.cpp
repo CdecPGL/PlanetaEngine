@@ -158,7 +158,7 @@ namespace plnt {
 
 		StandardLogManager::~StandardLogManager() = default;
 
-		bool StandardLogManager::Initialize() {
+		bool StandardLogManager::initialize() {
 			bool debug_mode = false;
 			#ifdef _DEBUG
 			debug_mode = true;
@@ -173,7 +173,7 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardLogManager::Finalize() {
+		void StandardLogManager::finalize() {
 			PE_LOG_MESSAGE("システムログを終了します。");
 			ResetLogOutStream();
 			if (impl_->output_console_flag_) {

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/JsonFile.hpp"
+#include "..\core\json_file.hpp"
 #include "planeta/core/ResourceBase.hpp"
 
 namespace plnt {

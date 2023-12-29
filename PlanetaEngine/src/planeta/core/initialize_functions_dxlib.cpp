@@ -1,9 +1,5 @@
 ﻿#include "DxLib.h"
-
-#pragma warning(push)
-#pragma warning(disable: 4100)
 #include "EffekseerForDXLib.h"
-#pragma warning(pop)
 
 #include "../effekseer/effekseer_util.hpp"
 

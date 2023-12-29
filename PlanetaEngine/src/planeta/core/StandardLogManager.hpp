@@ -10,12 +10,12 @@
 namespace plnt {
 	namespace private_ {
 		//システムログ管理(スタティックシングルトン)
-		class StandardLogManager final : public LogManager {
+		class StandardLogManager final : public log_manager {
 		public:
 			StandardLogManager();
 			~StandardLogManager();
-			bool Initialize() override;
-			void Finalize() override;
+			bool initialize() override;
+			void finalize() override;
 			/*コンソールへの出力を有効化*/
 			bool ValidateConsoleOutPut();
 			/*ファイルへの出力を追加*/

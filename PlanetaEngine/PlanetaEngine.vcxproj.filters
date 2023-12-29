@@ -393,7 +393,7 @@
     <ClInclude Include="src\planeta\core\xml_file.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\JsonFile.hpp">
+    <ClInclude Include="src\planeta\core\json_file.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\ini_file.hpp">
@@ -658,9 +658,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\LogUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\planeta\core\MacroUtility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\MetaprogrammingUtility.hpp">
@@ -1022,7 +1019,7 @@
     <ClCompile Include="src\planeta\core\xml_file.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\JsonFile.cpp">
+    <ClCompile Include="src\planeta\core\json_file.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\ini_file.cpp">

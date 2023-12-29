@@ -261,7 +261,7 @@ namespace plnt {
 		//! Jsonのルート値を取得する
 		[[nodiscard]] const json_value &get_root() const;
 		//! ファイルから読み込む
-		[[nodiscard]] bool load(const file &file) const;
+		bool load(const file &file) const;
 		//! ファイルが開かれているかどうか
 		[[nodiscard]] bool is_opened() const;
 

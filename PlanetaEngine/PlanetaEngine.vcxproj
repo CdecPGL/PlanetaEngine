@@ -417,12 +417,11 @@
     <ClInclude Include="src\planeta\core\i_sound_manager.hpp" />
     <ClInclude Include="src\planeta\core\i_task_manager.hpp" />
     <ClInclude Include="src\planeta\core\i_transform_system.hpp" />
-    <ClInclude Include="src\planeta\core\JsonFile.hpp" />
+    <ClInclude Include="src\planeta\core\json_file.hpp" />
     <ClInclude Include="src\planeta\core\KeyConfig.hpp" />
     <ClInclude Include="src\planeta\core\LogManager.hpp" />
     <ClInclude Include="src\planeta\core\LogUtility.hpp" />
     <ClInclude Include="src\planeta\reflection\lua_bind_helper.hpp" />
-    <ClInclude Include="src\planeta\core\MacroUtility.hpp" />
     <ClInclude Include="src\planeta\core\Matrix2_2.hpp" />
     <ClInclude Include="src\planeta\core\Matrix3_3.hpp" />
     <ClInclude Include="src\planeta\core\MetaprogrammingUtility.hpp" />
@@ -577,7 +576,7 @@
     <ClCompile Include="src\planeta\core\go_component_adder.cpp" />
     <ClCompile Include="src\planeta\core\go_component_getter.cpp" />
     <ClCompile Include="src\planeta\core\ini_file.cpp" />
-    <ClCompile Include="src\planeta\core\JsonFile.cpp" />
+    <ClCompile Include="src\planeta\core\json_file.cpp" />
     <ClCompile Include="src\planeta\core\game_set_standard_manager_impl.cpp" />
     <ClCompile Include="src\planeta\core\PrefixUtility.cpp" />
     <ClCompile Include="src\planeta\buildin\REffect.cpp" />
