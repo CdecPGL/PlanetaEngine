@@ -9,7 +9,7 @@
 #include "StandardSoundManager.hpp"
 #include "StandardSaveManager.hpp"
 #include "StandardDebugManager.hpp"
-#include "StandardConfigManager.hpp"
+#include "standard_config_manager.hpp"
 #include "SystemVariables.hpp"
 
 namespace plnt {

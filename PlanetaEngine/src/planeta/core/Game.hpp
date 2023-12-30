@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "SingletonTemplate.hpp"
+#include "singleton_template.hpp"
 
 namespace plnt {
 	class i_resource_manager;

@@ -1,6 +1,6 @@
 ﻿#include "game.hpp"
 #include "config_manager.hpp"
-#include "StandardCollisionWorld.hpp"
+#include "standard_collision_world.hpp"
 
 #include <ranges>
 

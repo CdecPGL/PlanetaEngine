@@ -26,7 +26,8 @@ namespace plnt {
 	}
 
 	void screen_drawer_2d::draw_polygon(const std::vector<Vector2Df> &positions,
-	                                  const std::vector<std::array<int, 3>> &indexes, const plnt::color &color) const {
+	                                    const std::vector<std::array<int, 3>> &indexes,
+	                                    const color &color) const {
 		screen_.reserve_draw([positions,indexes,color] {
 			const auto dxc = pe_color_to_dx_color_handle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
@@ -48,8 +49,8 @@ namespace plnt {
 		const size_t separation = static_cast<size_t>(2.0f * sqrt(radius) * math::pi_f) + 1;
 		std::vector<Vector2Df> poses{separation + 1};
 		for (size_t i = 0; i < separation; ++i) {
-			poses[i] = position + GetUnitVectorByRadian<float>(math::pi * 2 / static_cast<double>(separation * i)) *
-				radius;
+			poses[i] = position + GetUnitVectorByRadian<float>(
+				math::pi * 2.0 / static_cast<double>(separation) * static_cast<double>(i)) * radius;
 		}
 		poses[separation] = poses[0];
 		draw_wire(poses, 1, color);

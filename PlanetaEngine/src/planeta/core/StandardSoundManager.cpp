@@ -1,7 +1,7 @@
 ﻿#include <unordered_map>
 #include "StandardSoundManager.hpp"
 #include "bgm_controller.hpp"
-#include "SoundEffectController.hpp"
+#include "sound_effect_controller.hpp"
 #include "planeta/buildin/RMusic.hpp"
 #include "planeta/buildin/RSound.hpp"
 #include "log_utility.hpp"

@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <memory>
 
-#include "Signal.hpp"
+#include "signal.hpp"
 #include "i_task_manager.hpp"
 #include "TaskSlot.hpp"
 #include "i_scene.hpp"

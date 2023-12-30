@@ -11,7 +11,7 @@
 #include "input_manager.hpp"
 #include "perfoamance_manager.hpp"
 #include "rendering_manager.hpp"
-#include "SoundManager.hpp"
+#include "sound_manager.hpp"
 #include "save_manager.hpp"
 #include "debug_manager.hpp"
 #include "config_manager.hpp"

@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "planeta/core/Signal.hpp"
+#include "planeta/core/signal.hpp"
 #include "..\core\game_object_system_component.hpp"
 #include "planeta/core/Vector2D.hpp"
 

@@ -1,6 +1,6 @@
 ﻿#include "DxLib.h"
 
-#include "SoundEffectController.hpp"
+#include "sound_effect_controller.hpp"
 #include "planeta/buildin/RSound.hpp"
 #include "log_utility.hpp"
 

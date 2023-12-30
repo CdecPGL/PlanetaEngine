@@ -3,7 +3,6 @@
 
 #include "planeta/buildin/CCircleCollider2D.hpp"
 #include "planeta/buildin/CStraightLineCollider2D.hpp"
-#include "planeta/buildin/CPolygonCollider2D.hpp"
 
 
 namespace plnt::private_ {

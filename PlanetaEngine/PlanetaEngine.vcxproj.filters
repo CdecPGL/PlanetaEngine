@@ -417,7 +417,7 @@
     <ClInclude Include="src\planeta\core\rectangle.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Signal.hpp">
+    <ClInclude Include="src\planeta\core\signal.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\archive_manipulator.hpp">
@@ -729,19 +729,19 @@
     <ClInclude Include="src\planeta\core\screen_drawer_gui.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SingletonTemplate.hpp">
+    <ClInclude Include="src\planeta\core\singleton_template.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SoundEffectController.hpp">
+    <ClInclude Include="src\planeta\core\sound_effect_controller.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SoundManager.hpp">
+    <ClInclude Include="src\planeta\core\sound_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardCollisionWorld.hpp">
+    <ClInclude Include="src\planeta\core\standard_collision_world.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardConfigManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_config_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\StandardDebugManager.hpp">
@@ -1175,13 +1175,13 @@
     <ClCompile Include="src\planeta\core\screen_drawer_gui.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\SoundEffectController.cpp">
+    <ClCompile Include="src\planeta\core\sound_effect_controller.cpp">
       <Filter>PlanetaEngine\SubSystems\SoundSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardCollisionWorld.cpp">
+    <ClCompile Include="src\planeta\core\standard_collision_world.cpp">
       <Filter>PlanetaEngine\SceneModules\CollisionWorld</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardConfigManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_config_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\StandardDebugManager.cpp">

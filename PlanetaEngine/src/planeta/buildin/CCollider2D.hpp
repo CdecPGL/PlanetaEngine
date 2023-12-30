@@ -3,7 +3,7 @@
 #include <set>
 #include <functional>
 
-#include "planeta/core/Signal.hpp"
+#include "planeta/core/signal.hpp"
 #include "..\core\game_object_system_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "planeta/core/Vector2D.hpp"
