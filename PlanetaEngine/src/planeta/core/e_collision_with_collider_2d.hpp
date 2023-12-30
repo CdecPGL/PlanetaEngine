@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Object.hpp"
+#include "object.hpp"
 
 namespace plnt {
 	class CCollider2D;

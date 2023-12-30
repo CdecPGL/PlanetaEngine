@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "ParameterHolder.hpp"
+#include "parameter_holder.hpp"
 
 namespace plnt {
 	/*! シーンマネージャの公開インターフェイス*/

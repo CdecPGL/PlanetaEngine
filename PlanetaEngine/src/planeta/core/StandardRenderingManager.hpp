@@ -4,20 +4,20 @@
 
 namespace plnt {
 	namespace private_ {
-		class StandardRenderingManager final : public RenderingManager {
+		class StandardRenderingManager final : public rendering_manager {
 		public:
 			StandardRenderingManager();
 			~StandardRenderingManager() = default;
 
-			bool Initialize() override;
-			void Finalize() override;
+			bool initialize() override;
+			void finalize() override;
 
 			//システム関数
-			bool Update() override;
+			bool update() override;
 
 			std::shared_ptr<Screen> get_main_screen() override;
-			std::shared_ptr<Screen> GetDebugDrawScreen() override;
-			std::shared_ptr<Screen> GetDebugInformationScreen() override;
+			std::shared_ptr<Screen> get_debug_draw_screen() override;
+			std::shared_ptr<Screen> get_debug_information_screen() override;
 			std::shared_ptr<Screen> get_gui_screen() override;
 
 		private:

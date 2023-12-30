@@ -12,9 +12,9 @@ namespace plnt {
 			void Finalize() override;
 			void Update() override;
 
-			std::shared_ptr<i_bgm_controller> get_bgm_controller(const std::shared_ptr<ResourceBase> &music_resource);
+			std::shared_ptr<i_bgm_controller> get_bgm_controller(const std::shared_ptr<resource_base> &music_resource);
 			std::shared_ptr<i_sound_effect_controller> get_sound_effect_controller(
-				const std::shared_ptr<ResourceBase> &sound_resource);
+				const std::shared_ptr<resource_base> &sound_resource);
 			void Reset() override;
 
 		private:

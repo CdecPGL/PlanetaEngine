@@ -5,7 +5,7 @@
 
 namespace plnt {
 	/*画像リソース*/
-	class RGraph : public ResourceBase {
+	class RGraph : public resource_base {
 	public:
 		RGraph() : _handle(-1) { };
 
@@ -27,8 +27,8 @@ namespace plnt {
 		Vector2Di internal_size_;
 		/*画像サイズ/内部サイズ*/
 		Vector2Dd image_area_;
-		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
-		void OnDisposed() override;
+		bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		void on_disposed() override;
 		bool _AdjustImageSize(); //DXライブラリのDrawPolygon関数に合わせて、画像を8以上の2のべき乗数に合わせる
 	};
 }

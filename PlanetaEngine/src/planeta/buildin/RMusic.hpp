@@ -4,7 +4,7 @@
 
 namespace plnt {
 	/*音楽リソース*/
-	class RMusic : public ResourceBase {
+	class RMusic : public resource_base {
 	public:
 		RMusic() : _handle(-1) { };
 
@@ -15,7 +15,7 @@ namespace plnt {
 
 	private:
 		int _handle;
-		virtual bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
-		virtual void OnDisposed() override;
+		virtual bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		virtual void on_disposed() override;
 	};
 }

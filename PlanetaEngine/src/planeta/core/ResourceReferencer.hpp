@@ -9,87 +9,84 @@
 #include "log_utility.hpp"
 
 namespace plnt {
-	class ResourceBase;
+	class resource_base;
 
 	namespace private_ {
-		class ResourceManagerInternalAccessor {
+		class resource_manager_internal_accessor {
 		public:
-			ResourceManagerInternalAccessor(
-				const std::function<std::shared_ptr<ResourceBase>(const std::type_info &, const std::string &, bool)> &
+			resource_manager_internal_accessor(
+				std::function<std::shared_ptr<resource_base>(const std::type_info &, const std::string &, bool)>
 				ref_func_by_id,
-				const std::function<std::shared_ptr<ResourceBase>(const std::type_info &, const std::string &,
-				                                                  const std::string &, bool)> &ref_func_by_path);
-			std::shared_ptr<ResourceBase> GetResourceByTypeAndID(const std::type_info &type, const std::string &id,
-			                                                     bool is_valid_not_preload_warning);
-			std::shared_ptr<ResourceBase> GetResourceByTypeAndPath(const std::type_info &type, const std::string &path,
-			                                                       const std::string &root_path,
-			                                                       bool is_valid_not_preload_warning);
+				std::function<std::shared_ptr<resource_base>(const std::type_info &, const std::string &,
+				                                             const std::string &, bool)> ref_func_by_path);
+			[[nodiscard]] std::shared_ptr<resource_base> get_resource_by_type_and_id(
+				const std::type_info &type, const std::string &id,
+				bool is_valid_not_preload_warning) const;
+			[[nodiscard]] std::shared_ptr<resource_base> get_resource_by_type_and_path(
+				const std::type_info &type, const std::string &path,
+				const std::string &root_path,
+				bool is_valid_not_preload_warning) const;
 
 		private:
-			std::function<std::shared_ptr<ResourceBase>(const std::type_info &type, const std::string &, bool)>
+			std::function<std::shared_ptr<resource_base>(const std::type_info &type, const std::string &, bool)>
 			ref_func_by_id_;
-			std::function<std::shared_ptr<ResourceBase>(const std::type_info &type, const std::string &,
-			                                            const std::string &, bool)> ref_func_by_path_;
+			std::function<std::shared_ptr<resource_base>(const std::type_info &type, const std::string &,
+			                                             const std::string &, bool)> ref_func_by_path_;
 		};
 	}
 
-	class ResourceReferencer {
+	class resource_referencer {
 	public:
-		ResourceReferencer(private_::ResourceManagerInternalAccessor &res_mgr_acsr, const std::string &root_path,
-		                   std::vector<std::shared_ptr<ResourceBase>> &reference_list);
+		resource_referencer(private_::resource_manager_internal_accessor &res_mgr_accessor, std::string root_path,
+		                   std::vector<std::shared_ptr<resource_base>> &reference_list);
 		/*IDでリソースを参照する。必要なら新たに読み込む*/
-		std::shared_ptr<ResourceBase> ReferenceResourceByTypeAndID(const std::type_info &type, const std::string &id);
+		[[nodiscard]] std::shared_ptr<resource_base> reference_resource_by_type_and_id(
+			const std::type_info &type, const std::string &id) const;
 
-		template <class RT>
-		std::shared_ptr<RT> ReferenceResourceByID(const std::string &id) {
-			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = ReferenceResourceByTypeAndID(typeid(RT), id);
-			if (rsc) {
-				auto out = std::dynamic_pointer_cast<RT>(rsc);
-				if (out) { return out; } else {
-					PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
-					return nullptr;
-				}
-			} else { return nullptr; }
+		template <class T>
+		[[nodiscard]] std::shared_ptr<T> reference_resource_by_id(const std::string &id) {
+			static_assert(std::is_base_of_v<resource_base, T>, "T must derive ResourceBase");
+			if (const auto rsc = reference_resource_by_type_and_id(typeid(T), id)) {
+				if (auto out = std::dynamic_pointer_cast<T>(rsc)) { return out; }
+				PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(T).name(), "\")");
+				return nullptr;
+			}
+			return nullptr;
 		}
 
 		/*Pathでリソースを参照する。必要なら新たに読み込む。パスは現在のリソースパスを基準にした相対パスとなる。*/
-		std::shared_ptr<ResourceBase> ReferenceResourceByTypeAndPath(const std::type_info &type,
-		                                                             const std::string &path);
+		[[nodiscard]] std::shared_ptr<resource_base> reference_resource_by_type_and_path(const std::type_info &type,
+			const std::string &path) const;
 
-		template <class RT>
-		std::shared_ptr<RT> ReferenceResourceByPath(const std::string &path) {
-			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = ReferenceResourceByTypeAndPath(typeid(RT), path);
-			if (rsc) {
-				auto out = std::dynamic_pointer_cast<RT>(rsc);
-				if (out) { return out; } else {
-					PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
-					return nullptr;
-				}
-			} else { return nullptr; }
+		template <class T>
+		[[nodiscard]] std::shared_ptr<T> reference_resource_by_path(const std::string &path) {
+			static_assert(std::is_base_of_v<resource_base, T>, "T must derive ResourceBase");
+			if (const auto rsc = reference_resource_by_type_and_path(typeid(T), path)) {
+				if (auto out = std::dynamic_pointer_cast<T>(rsc)) { return out; }
+				PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(T).name(), "\")");
+				return nullptr;
+			}
+			return nullptr;
 		}
 
 		/*ID又はPathでリソースを参照する。必要なら新たに読み込む。重複した場合はIDが優先される。パスは現在のリソースパスを基準にした相対パスとなる。*/
-		std::shared_ptr<ResourceBase> ReferenceResourceByTypeAndIDorPath(
-			const std::type_info &type, const std::string &id_or_path);
+		[[nodiscard]] std::shared_ptr<resource_base> reference_resource_by_type_and_id_or_path(
+			const std::type_info &type, const std::string &id_or_path) const;
 
-		template <class RT>
-		std::shared_ptr<RT> ReferenceResourceByIDorPath(const std::string &id_or_path) {
-			static_assert(std::is_base_of<ResourceBase, RT>::value, "RT must derive ResourceBase");
-			auto rsc = ReferenceResourceByTypeAndIDorPath(typeid(RT), id_or_path);
-			if (rsc) {
-				auto out = std::dynamic_pointer_cast<RT>(rsc);
-				if (out) { return out; } else {
-					PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
-					return nullptr;
-				}
-			} else { return nullptr; }
+		template <class T>
+		[[nodiscard]] std::shared_ptr<T> reference_resource_by_i_dor_path(const std::string &id_or_path) {
+			static_assert(std::is_base_of_v<resource_base, T>, "T must derive ResourceBase");
+			if (const auto rsc = reference_resource_by_type_and_id_or_path(typeid(T), id_or_path)) {
+				if (auto out = std::dynamic_pointer_cast<T>(rsc)) { return out; }
+				PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(T).name(), "\")");
+				return nullptr;
+			}
+			return nullptr;
 		}
 
 	private:
-		std::vector<std::shared_ptr<ResourceBase>> &reference_list_;
-		private_::ResourceManagerInternalAccessor &manager_accessor_;
+		std::vector<std::shared_ptr<resource_base>> &reference_list_;
+		private_::resource_manager_internal_accessor &manager_accessor_;
 		std::string root_path_;
 	};
 }

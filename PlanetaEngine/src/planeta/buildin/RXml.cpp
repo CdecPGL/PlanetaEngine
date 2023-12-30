@@ -1,7 +1,7 @@
 ﻿#include "RXml.hpp"
 
 namespace plnt {
-	bool RXml::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RXml::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		xml_file_ = std::make_unique<plnt::xml_file>();
 		if (!xml_file_->load(file)) {
 			PE_LOG_ERROR("XMLファイルの読み込みに失敗しました。");
@@ -11,7 +11,7 @@ namespace plnt {
 		return true;
 	}
 
-	void RXml::OnDisposed() { xml_file_.reset(); }
+	void RXml::on_disposed() { xml_file_.reset(); }
 
 	const xml_file &RXml::xml_file() const { return *xml_file_; }
 

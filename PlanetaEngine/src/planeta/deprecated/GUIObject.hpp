@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <unordered_map>
 #include <memory>
-#include "planeta/core/Object.hpp"
+#include "planeta/core/object.hpp"
 #include "planeta/core/RectAngle.hpp"
 #include "ObjectHolderTemplate_WithoutID.hpp"
 #include "GUIManagerConnection.hpp"

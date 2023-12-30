@@ -5,7 +5,7 @@ namespace plnt {
 
 	csv_file &RCsv::csv_file() { return *csv_file_; }
 
-	bool RCsv::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RCsv::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		csv_file_ = std::make_unique<plnt::csv_file>();
 		if (!csv_file_->load(file)) {
 			PE_LOG_ERROR("CSVファイルの読み込みに失敗しました。");
@@ -15,5 +15,5 @@ namespace plnt {
 		return true;
 	}
 
-	void RCsv::OnDisposed() { csv_file_.release(); }
+	void RCsv::on_disposed() { csv_file_.release(); }
 }

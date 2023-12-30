@@ -12,7 +12,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool plnt::private_::StandardRenderingManager::Initialize() {
+		bool plnt::private_::StandardRenderingManager::initialize() {
 			SetDrawScreen(DX_SCREEN_BACK); //バックスクリーンを描画対象に
 			SetUseLighting(false); //ライティング計算を行わない
 			SetUseSetDrawScreenSettingReset(false); //スクリーン変更時にカメラ情報のリセットを行わない。
@@ -20,9 +20,9 @@ namespace plnt {
 			return true;
 		}
 
-		void plnt::private_::StandardRenderingManager::Finalize() { }
+		void plnt::private_::StandardRenderingManager::finalize() { }
 
-		bool StandardRenderingManager::Update() {
+		bool StandardRenderingManager::update() {
 			////デバッグ用
 			////グリッド線(32ごとに引く)
 			//for (int i = 0; i <= 640; i += 32) {
@@ -75,11 +75,11 @@ namespace plnt {
 
 		std::shared_ptr<Screen> StandardRenderingManager::get_main_screen() { return main_screen_; }
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetDebugDrawScreen() {
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::get_debug_draw_screen() {
 			return debug_draw_screen_;
 		}
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::GetDebugInformationScreen() {
+		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::get_debug_information_screen() {
 			return debug_information_screen_;
 		}
 

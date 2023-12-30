@@ -26,7 +26,7 @@ namespace plnt {
 			constexpr char *TAG_LIST_FILE_NAME{const_cast<char *>("tag_list.json")};
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::CreateResource_(const std::type_index &type) {
+		std::shared_ptr<resource_base> StandardResourceManager::CreateResource_(const std::type_index &type) {
 			auto it = resource_type_data_map_.find(type);
 			if (it == resource_type_data_map_.end()) { return nullptr; }
 			//指定タイプのリソース作成
@@ -38,7 +38,7 @@ namespace plnt {
 			return res;
 		}
 
-		std::shared_ptr<plnt::ResourceBase> StandardResourceManager::LoadResource_(ResourceData_ &res_dat) {
+		std::shared_ptr<plnt::resource_base> StandardResourceManager::LoadResource_(ResourceData_ &res_dat) {
 			assert(res_dat.is_loaded == false);
 			assert(res_dat.resouce == nullptr);
 			//リソースファイルを読み込み
@@ -59,10 +59,10 @@ namespace plnt {
 				}
 			}
 			//マネージャアクセサ作成
-			ResourceManagerInternalAccessor mgr_acsr{CreateInternalManagerAccessor_()};
+			resource_manager_internal_accessor mgr_acsr{CreateInternalManagerAccessor_()};
 			//インスタンス作成と初期化
 			auto resource = CreateResource_(res_dat.type_index);
-			if (resource->Load(*file, *metadata, mgr_acsr) == false) { resource.reset(); }
+			if (resource->load(*file, *metadata, mgr_acsr) == false) { resource.reset(); }
 			if (resource == nullptr) {
 				PE_LOG_ERROR("リソースの読み込みに失敗しました。リソースの作成でエラーが発生しました。");
 				return nullptr;
@@ -75,7 +75,7 @@ namespace plnt {
 		void StandardResourceManager::UnloadResource_(ResourceData_ &res_dat) {
 			assert(res_dat.is_loaded);
 			assert(res_dat.resouce != nullptr);
-			res_dat.resouce->Dispose();
+			res_dat.resouce->dispose();
 			res_dat.resouce.reset();
 			res_dat.is_loaded = false;
 		}
@@ -213,7 +213,7 @@ namespace plnt {
 			return true;
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByFullID_(
+		std::shared_ptr<resource_base> StandardResourceManager::GetResourceByFullID_(
 			const std::string &full_id, bool is_valid_not_preload_warning) {
 			auto it = full_id_map_.find(full_id);
 			if (it == full_id_map_.end()) {
@@ -232,7 +232,7 @@ namespace plnt {
 			}
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::GetResourceByPath_(
+		std::shared_ptr<resource_base> StandardResourceManager::GetResourceByPath_(
 			const std::string &path, const std::string &root_path, bool is_valid_not_preload_warning) {
 			//必要ならルートパスを連結
 			std::string upath = UnifyPath(root_path.empty() ? path : root_path + "\\" + path);
@@ -252,9 +252,9 @@ namespace plnt {
 			}
 		}
 
-		ResourceManagerInternalAccessor StandardResourceManager::CreateInternalManagerAccessor_() {
+		resource_manager_internal_accessor StandardResourceManager::CreateInternalManagerAccessor_() {
 			namespace sp = std::placeholders;
-			ResourceManagerInternalAccessor mgr_acsr{
+			resource_manager_internal_accessor mgr_acsr{
 				[this](const std::type_info &type, const std::string &id, bool is_valid_not_preload_warning) {
 					return GetResourceByFullID_(GetFullIDFromTypeAndID_(type, id), is_valid_not_preload_warning);
 				},
@@ -269,14 +269,14 @@ namespace plnt {
 		StandardResourceManager::StandardResourceManager() = default;
 		StandardResourceManager::~StandardResourceManager() = default;
 
-		void StandardResourceManager::OnResourceTypeAdded(const std::type_info &type, const std::string &type_name,
+		void StandardResourceManager::on_resource_type_added(const std::type_info &type, const std::string &type_name,
 		                                                  const std::string &type_prefix,
-		                                                  const ResourceCreatorType &creator) {
+		                                                  const resource_creator_type &creator) {
 			resource_type_data_map_.emplace(type, ResourceTypeData_{type, type_name, type_prefix, creator});
 			resource_type_prefix_to_type_map_.emplace(type_prefix, type);
 		}
 
-		bool StandardResourceManager::PrepareResources(const std::vector<std::string> &need_tags) {
+		bool StandardResourceManager::prepare_resources(const std::vector<std::string> &need_tags) {
 			size_t new_loaded{0}, already{0};
 			for (auto &&tag : need_tags) {
 				auto it = tag_map_.find(tag);
@@ -300,7 +300,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardResourceManager::UnloadUnusedResouces() {
+		bool StandardResourceManager::unload_unused_resources() {
 			size_t unload{0};
 			//未使用リソースがなくなるまでループ。(依存関係によっては一度の走査でアンロードしきれないため)
 			while (true) {
@@ -319,11 +319,11 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardResourceManager::IsReady() const { return true; }
+		bool StandardResourceManager::is_ready() const { return true; }
 
-		double StandardResourceManager::GetPrepairProgress() const { return 1.0; }
+		double StandardResourceManager::get_prepare_progress() const { return 1.0; }
 
-		bool StandardResourceManager::Initialize() {
+		bool StandardResourceManager::initialize() {
 			assert(file_accessor_ != nullptr);
 			if (LoadResourceList_() == false) {
 				PE_LOG_ERROR("初期化に失敗しました。リソースリストの取得に失敗しました。");
@@ -332,22 +332,22 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardResourceManager::Finalize() { UnloadAllLoadedResources_(); }
+		void StandardResourceManager::finalize() { UnloadAllLoadedResources_(); }
 
-		bool StandardResourceManager::SetNotUnloadTags(const std::set<std::string> &tags) {
+		bool StandardResourceManager::set_not_unload_tags(const std::set<std::string> &tags) {
 			return SetNotUnloadTags_(tags);
 		}
 
-		std::shared_ptr<ResourceBase> StandardResourceManager::get_resource_by_type_and_id(
+		std::shared_ptr<resource_base> StandardResourceManager::get_resource_by_type_and_id(
 			const std::type_info &type, const std::string &id) {
 			return GetResourceByFullID_(GetFullIDFromTypeAndID_(type, id), true);
 		}
 
-		void StandardResourceManager::SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) {
+		void StandardResourceManager::set_file_manipulator(const std::shared_ptr<file_manipulator> &f_scsr) {
 			file_accessor_ = f_scsr;
 		}
 
-		void StandardResourceManager::SetResourceListFileName_(const std::string &file_name) {
+		void StandardResourceManager::set_resource_list_file_name(const std::string &file_name) {
 			resource_list_file_name_ = file_name;
 		}
 
@@ -359,7 +359,7 @@ namespace plnt {
 			return it->second.type_prefix + id;
 		}
 
-		std::shared_ptr<plnt::ResourceBase> StandardResourceManager::get_resource_by_full_id(const std::string &full_id) {
+		std::shared_ptr<plnt::resource_base> StandardResourceManager::get_resource_by_full_id(const std::string &full_id) {
 			return GetResourceByFullID_(full_id, true);
 		}
 	}

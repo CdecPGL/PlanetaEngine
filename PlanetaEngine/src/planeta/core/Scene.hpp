@@ -4,7 +4,7 @@
 #include <string>
 #include <functional>
 #include <list>
-#include "Object.hpp"
+#include "object.hpp"
 #include "i_scene_internal.hpp"
 #include "WeakPointer.hpp"
 #include "non_copyable.hpp"

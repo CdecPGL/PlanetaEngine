@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Object.hpp"
+#include "object.hpp"
 #include "collision_state.hpp"
 
 

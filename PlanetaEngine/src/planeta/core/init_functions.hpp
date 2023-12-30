@@ -8,7 +8,7 @@ namespace plnt {
 	class file_manipulator;
 
 	namespace private_ {
-		class ResourceManager;
+		class resource_manager;
 		class config_manager;
 
 		namespace init_funcs {
@@ -19,7 +19,7 @@ namespace plnt {
 			std::tuple<bool, std::function<void()>> initialize_effekseer();
 			//リソースシステムの初期化
 			std::tuple<bool, std::function<void()>> initialize_resource_system(
-				ResourceManager &mgr, const std::shared_ptr<file_manipulator> &res_dir_manipulator);
+				resource_manager &mgr, const std::shared_ptr<file_manipulator> &res_dir_manipulator);
 			//その他初期化補助関数
 			bool load_config(config_manager &mgr, const std::shared_ptr<file_manipulator> &sys_dir_manipulator,
 			                const std::shared_ptr<file_manipulator> &cfg_dir_manipulator);

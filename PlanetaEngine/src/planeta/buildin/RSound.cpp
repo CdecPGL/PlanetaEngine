@@ -5,7 +5,7 @@
 #include "RSound.hpp"
 
 namespace plnt {
-	bool RSound::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RSound::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
@@ -14,7 +14,7 @@ namespace plnt {
 		return _handle >= 0;
 	}
 
-	void RSound::OnDisposed() {
+	void RSound::on_disposed() {
 		if (_handle >= 0) {
 			DeleteSoundMem(_handle);
 			_handle = -1;

@@ -13,7 +13,7 @@ namespace plnt {
 
 	class CTransformGUI::Impl_ {
 	public:
-		RectAnglei rect;
+		rect_angle_i rect;
 		Vector2Di position;
 		Vector2Di size{1, 1};
 		double rotation_rad = 0;
@@ -92,7 +92,7 @@ namespace plnt {
 		super::on_inactivated();
 	}
 
-	/*const planeta::RectAnglei& CTransformGUI::rect() const {
+	/*const planeta::rect_angle_i& CTransformGUI::rect() const {
 		return impl_->rect;
 	}*/
 }

@@ -11,7 +11,7 @@
 
 namespace plnt {
 	void ScreenDrawerGUI::DrawGraph(const Vector2Di &position, const Vector2Di &size, const Vector2Dd &center_pivot,
-	                                double rotation_rad, const RectAnglei &draw_area_on_graph, bool reverse,
+	                                double rotation_rad, const rect_angle_i &draw_area_on_graph, bool reverse,
 	                                const std::shared_ptr<RGraph> &graph_resource) {
 		screen_.ReserveDraw([position,size,draw_area_on_graph,reverse,graph_resource,rotation_rad,center_pivot]() {
 			if (graph_resource == nullptr) { return; }

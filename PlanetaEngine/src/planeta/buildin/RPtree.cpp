@@ -8,7 +8,7 @@
 
 namespace plnt {
 	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定
-	bool RPtree::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RPtree::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		using namespace boost::property_tree;
 		std::shared_ptr<ptree> pt = std::make_shared<ptree>();
 		file_istream fis(file);
@@ -21,7 +21,7 @@ namespace plnt {
 		return true;
 	}
 
-	void RPtree::OnDisposed() { }
+	void RPtree::on_disposed() { }
 
 	std::shared_ptr<const boost::property_tree::ptree> RPtree::GetPtree() const { return ptree_; }
 }

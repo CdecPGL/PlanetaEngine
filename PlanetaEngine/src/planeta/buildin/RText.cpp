@@ -4,7 +4,7 @@
 #include "RText.hpp"
 
 namespace plnt {
-	bool RText::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RText::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		size_t size = file.size();
 		const char *c_ptr = (const char *)file.top_pointer();
 		for (unsigned int i = 0; i < size; ++i) { _text.push_back(c_ptr[i]); }
@@ -13,5 +13,5 @@ namespace plnt {
 		return true;
 	}
 
-	void RText::OnDisposed() { _text.clear(); }
+	void RText::on_disposed() { _text.clear(); }
 }

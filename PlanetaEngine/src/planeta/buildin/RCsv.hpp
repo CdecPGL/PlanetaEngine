@@ -4,7 +4,7 @@
 #include "../core/csv_file.hpp"
 
 namespace plnt {
-	class RCsv final : public ResourceBase {
+	class RCsv final : public resource_base {
 	public:
 		[[nodiscard]] const csv_file &csv_file() const;
 		plnt::csv_file &csv_file();
@@ -12,7 +12,7 @@ namespace plnt {
 	private:
 		std::unique_ptr<plnt::csv_file> csv_file_;
 
-		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
-		void OnDisposed() override;
+		bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		void on_disposed() override;
 	};
 }

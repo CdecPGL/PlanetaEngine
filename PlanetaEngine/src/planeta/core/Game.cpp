@@ -9,7 +9,7 @@
 #include "log_manager.hpp"
 #include "SceneManager.hpp"
 #include "input_manager.hpp"
-#include "PerfoamanceManager.hpp"
+#include "perfoamance_manager.hpp"
 #include "RenderingManager.hpp"
 #include "SoundManager.hpp"
 #include "SaveManager.hpp"
@@ -29,12 +29,12 @@ namespace plnt {
 		std::list<std::function<void()>> finalize_handles_;
 
 	public:
-		std::shared_ptr<ResourceManager> resource_manager;
+		std::shared_ptr<private_::resource_manager> resource_manager;
 		std::shared_ptr<private_::log_manager> log_manager;
 		std::shared_ptr<SceneManager> scene_manager;
 		std::shared_ptr<private_::input_manager> input_manager;
 		std::shared_ptr<private_::performance_manager> performance_manager;
-		std::shared_ptr<RenderingManager> rendering_manager;
+		std::shared_ptr<private_::rendering_manager> rendering_manager;
 		std::shared_ptr<SoundManager> sound_manager;
 		std::shared_ptr<SaveManager> save_manager;
 		std::shared_ptr<private_::debug_manager> debug_manager;
@@ -117,7 +117,8 @@ namespace plnt {
 					PE_LOG_FATAL("リソースマネージャが設定されていません。");
 					return false;
 				}
-				if (const auto ret = init_funcs::initialize_resource_system(*resource_manager, resource_file_manipulator);
+				if (const auto ret = init_funcs::initialize_resource_system(
+						*resource_manager, resource_file_manipulator);
 					std::get<0>(ret) == false) { return false; } else {
 					finalize_handles_.push_front(std::get<1>(ret));
 				}
@@ -157,8 +158,8 @@ namespace plnt {
 				PE_LOG_FATAL("レンダリングマネージャが設定されていません。");
 				return false;
 			}
-			if (rendering_manager->Initialize()) {
-				finalize_handles_.push_front([this] { rendering_manager->Finalize(); });
+			if (rendering_manager->initialize()) {
+				finalize_handles_.push_front([this] { rendering_manager->finalize(); });
 			} else {
 				PE_LOG_FATAL("描画システムの初期化に失敗しました。");
 				return false;
@@ -232,7 +233,7 @@ namespace plnt {
 			input_manager->update(); //入力の更新
 			const auto sst = scene_manager->Process_(); //シーンの更新
 			debug_manager->pre_rendering_update(); //デバッグマネージャの描画前更新
-			rendering_manager->Update(); //描画システムの更新
+			rendering_manager->update(); //描画システムの更新
 			sound_manager->Update(); //サウンドシステムの更新
 			performance_manager->update(); //パフォーマンスマネージャの更新
 			debug_manager->post_rendering_update(); //デバッグマネージャの描画後更新
@@ -284,7 +285,7 @@ namespace plnt {
 
 	bool game::is_initialized() const { return impl_->is_initialized; }
 
-	void game::set_resource_manager(const std::shared_ptr<ResourceManager> &mgr) const {
+	void game::set_resource_manager(const std::shared_ptr<private_::resource_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -334,7 +335,7 @@ namespace plnt {
 
 	std::shared_ptr<i_performance_manager> game::performance_manager() const { return impl_->performance_manager; }
 
-	void game::set_rendering_manager(const std::shared_ptr<RenderingManager> &mgr) const {
+	void game::set_rendering_manager(const std::shared_ptr<private_::rendering_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;

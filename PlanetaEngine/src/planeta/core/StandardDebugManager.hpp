@@ -10,7 +10,7 @@ namespace plnt {
 		public:
 			StandardDebugManager();
 			~StandardDebugManager() override;
-			bool initialize(RenderingManager &rendering_mgr) override;
+			bool initialize(rendering_manager &rendering_mgr) override;
 			void finalize() override;
 			void pre_rendering_update() override;
 			void post_rendering_update() override;

@@ -6,7 +6,7 @@
 #include "planeta/buildin/SError.hpp"
 #include "log_utility.hpp"
 #include "null_weak_pointer_exception.hpp"
-#include "PrefixUtility.hpp"
+#include "prefix_utility.hpp"
 #include "StandardSceneManagerUtility.hpp"
 
 namespace plnt {
@@ -57,8 +57,8 @@ namespace plnt {
 			//シーンIDと同じIDのタグをアンロード対象外に指定し、読み込む
 			assert(resource_manager_ != nullptr);
 			auto &rm = *resource_manager_;
-			bool scc = rm.SetNotUnloadTags({scene_name});
-			scc &= rm.PrepareResources({scene_name});
+			bool scc = rm.set_not_unload_tags({scene_name});
+			scc &= rm.prepare_resources({scene_name});
 			if (!scc) {
 				PE_LOG_WARNING("指定されたシーン(", scene_name, ")のリソース準備に失敗しました。読み込みに失敗したか、対象のリソースが存在しない可能性があります。");
 				//return false;
@@ -97,7 +97,7 @@ namespace plnt {
 			_current_scene_setupper = std::move(_next_scene_setupper);
 			//未使用リソースを削除(シーンの更新前のため、ここで削除してよい)
 			assert(resource_manager_ != nullptr);
-			resource_manager_->UnloadUnusedResouces();
+			resource_manager_->unload_unused_resources();
 			//リクエストと準備状況をリセット
 			state_ = State::Progress;
 			_is_next_scene_loaded = false;
@@ -149,7 +149,7 @@ namespace plnt {
 			} else { return util::parameter_holder(); }
 		}
 
-		void StandardSceneManager::SetResouceManager(const std::shared_ptr<ResourceManager> &mgr) {
+		void StandardSceneManager::SetResouceManager(const std::shared_ptr<resource_manager> &mgr) {
 			resource_manager_ = mgr;
 		}
 

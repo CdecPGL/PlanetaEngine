@@ -1,13 +1,14 @@
-﻿#include "ResourceBase.hpp"
+﻿#include "boost/filesystem/path.hpp"
+
+#include "ResourceBase.hpp"
 #include "log_utility.hpp"
 #include "file.hpp"
-#include "boost/filesystem/path.hpp"
 
 namespace plnt {
-	ResourceBase::~ResourceBase() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } }
+	resource_base::~resource_base() { if (is_usable_) { PE_LOG_ERROR("リソースの解放が行われていません。(", typeid(*this).name(), ")"); } }
 
-	bool ResourceBase::Load(const file &file, const json_file &metadata,
-	                        private_::ResourceManagerInternalAccessor &mgr_acsr) {
+	bool resource_base::load(const file &file, const json_file &metadata,
+	                        private_::resource_manager_internal_accessor &mgr_accessor) {
 		if (is_usable_) {
 			PE_LOG_ERROR("読み込み済みのリソースをファイル\"", file.file_name(), "\"から再読み込みしようとしました。リソースタイプは\"", typeid(*this).name(),
 			             "\"。");
@@ -17,24 +18,22 @@ namespace plnt {
 			PE_LOG_ERROR("無効なファイル\"", file.file_name(), "\"が指定されました。リソースタイプは\"", typeid(*this).name(), "\"。");
 			return false;
 		}
-		std::vector<std::shared_ptr<ResourceBase>> ref_list;
+		std::vector<std::shared_ptr<resource_base>> ref_list;
 		//このリソースの存在するディレクトリパスを求める。
-		std::string rpath = boost::filesystem::path(file.file_name()).parent_path().string();
-		ResourceReferencer referencer{mgr_acsr, rpath, ref_list};
-		if (OnLoaded(file, metadata, referencer)) {
-			reference_resources = std::move(ref_list);
+		const std::string ref_path = boost::filesystem::path(file.file_name()).parent_path().string();
+		if (resource_referencer referencer{mgr_accessor, ref_path, ref_list}; on_loaded(file, metadata, referencer)) {
+			reference_resources_ = std::move(ref_list);
 			is_usable_ = true;
 			return true;
-		} else {
-			PE_LOG_ERROR("ファイル\"", file.file_name(), "\"からのリソース作成に失敗しました。リソースタイプは\"", typeid(*this).name(), "\"。");
-			return false;
 		}
+		PE_LOG_ERROR("ファイル\"", file.file_name(), "\"からのリソース作成に失敗しました。リソースタイプは\"", typeid(*this).name(), "\"。");
+		return false;
 	}
 
-	void ResourceBase::Dispose() {
+	void resource_base::dispose() {
 		if (is_usable_) {
-			OnDisposed();
-			ClearReference();
+			on_disposed();
+			clear_reference();
 			is_usable_ = false;
 		} else {
 			//破棄処理の重複は許す
@@ -42,7 +41,7 @@ namespace plnt {
 		}
 	}
 
-	size_t ResourceBase::reference_conunt() const { return reference_resources.size(); }
+	size_t resource_base::reference_count() const { return reference_resources_.size(); }
 
-	void ResourceBase::ClearReference() { reference_resources.clear(); }
+	void resource_base::clear_reference() { reference_resources_.clear(); }
 }

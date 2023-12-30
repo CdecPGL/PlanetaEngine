@@ -15,7 +15,7 @@ namespace std {
 
 
 namespace plnt {
-	class REffectTexture final : public ResourceBase {
+	class REffectTexture final : public resource_base {
 	public:
 		REffectTexture();
 		~REffectTexture();
@@ -24,7 +24,7 @@ namespace plnt {
 	private:
 		::Effekseer::TextureRef effekseer_taxture_;
 		std::unique_ptr<::DxLib::BASEIMAGE> dx_base_image_;
-		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
-		void OnDisposed() override;
+		bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		void on_disposed() override;
 	};
 }

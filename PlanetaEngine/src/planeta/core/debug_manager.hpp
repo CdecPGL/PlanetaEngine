@@ -4,7 +4,7 @@
 #include "SubSystemManager.hpp"
 
 namespace plnt::private_ {
-	class RenderingManager;
+	class rendering_manager;
 
 	class debug_manager : public i_debug_manager, public SubSystemManager {
 	public:
@@ -15,7 +15,7 @@ namespace plnt::private_ {
 		debug_manager &operator=(const debug_manager &) = delete;
 		debug_manager &operator=(debug_manager &&) = delete;
 
-		virtual bool initialize(RenderingManager &rendering_mgr) = 0;
+		virtual bool initialize(rendering_manager &rendering_mgr) = 0;
 		virtual void finalize() = 0;
 		virtual void pre_rendering_update() = 0;
 		virtual void post_rendering_update() = 0;

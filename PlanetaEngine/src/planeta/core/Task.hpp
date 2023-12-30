@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Signal.hpp"
-#include "Object.hpp"
+#include "object.hpp"
 #include "WeakPointer.hpp"
 #include "non_copyable.hpp"
 #include "non_owing_pointer.hpp"

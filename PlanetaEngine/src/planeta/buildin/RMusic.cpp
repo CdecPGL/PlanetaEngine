@@ -5,7 +5,7 @@
 #include "RMusic.hpp"
 
 namespace plnt {
-	bool RMusic::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RMusic::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMPRESS);
@@ -14,7 +14,7 @@ namespace plnt {
 		return _handle >= 0;
 	}
 
-	void RMusic::OnDisposed() {
+	void RMusic::on_disposed() {
 		if (_handle >= 0) {
 			DeleteGraph(_handle);
 			_handle = -1;

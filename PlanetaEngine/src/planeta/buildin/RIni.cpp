@@ -11,7 +11,7 @@ namespace plnt {
 
 	plnt::ini_file &RIni::get_ini_file() { return *ini_file_; }
 
-	bool RIni::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RIni::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		ini_file_ = std::make_unique<ini_file>();
 		if (!ini_file_->load(file)) {
 			PE_LOG_ERROR("INIファイルの読み込みに失敗しました。");
@@ -21,5 +21,5 @@ namespace plnt {
 		return true;
 	}
 
-	void RIni::OnDisposed() { ini_file_.release(); }
+	void RIni::on_disposed() { ini_file_.release(); }
 }

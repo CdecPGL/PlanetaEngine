@@ -14,9 +14,9 @@ namespace plnt {
 
 	class CDrawGraphGUI::Impl_ {
 	public:
-		util::ResourceHolder<RGraph> graph_res;
+		util::resource_holder<RGraph> graph_res;
 		non_owing_pointer<CTransformGUI> my_c_trans_gui;
-		RectAnglei graph_draw_area;
+		rect_angle_i graph_draw_area;
 		bool reverse_flag;
 	};
 
@@ -36,7 +36,7 @@ namespace plnt {
 
 	CDrawGraphGUI::~CDrawGraphGUI() = default;
 
-	bool CDrawGraphGUI::resource_id(const std::string &res_id) { return impl_->graph_res.SetResourceByID(res_id); }
+	bool CDrawGraphGUI::resource_id(const std::string &res_id) { return impl_->graph_res.set_resource_by_id(res_id); }
 
 	void CDrawGraphGUI::DrawProc(ScreenDrawerGUI &drawer) {
 		auto &trans = *impl_->my_c_trans_gui;
@@ -50,9 +50,9 @@ namespace plnt {
 		return true;
 	}
 
-	const plnt::RectAnglei &CDrawGraphGUI::draw_area() const { return impl_->graph_draw_area; }
+	const plnt::rect_angle_i &CDrawGraphGUI::draw_area() const { return impl_->graph_draw_area; }
 
-	CDrawGraphGUI &CDrawGraphGUI::draw_area(const RectAnglei &rect) {
+	CDrawGraphGUI &CDrawGraphGUI::draw_area(const rect_angle_i &rect) {
 		impl_->graph_draw_area = rect;
 		return *this;
 	}

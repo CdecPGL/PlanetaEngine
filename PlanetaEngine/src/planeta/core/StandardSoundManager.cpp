@@ -15,7 +15,7 @@ namespace plnt {
 		};
 
 		std::shared_ptr<i_bgm_controller> StandardSoundManager::get_bgm_controller(
-			const std::shared_ptr<ResourceBase> &music_resource) {
+			const std::shared_ptr<resource_base> &music_resource) {
 			auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
 			if (m_res == nullptr) {
 				PE_LOG_ERROR("Musicリソースでないリソースが渡されました。(", typeid(*music_resource).name(), ")");
@@ -38,7 +38,7 @@ namespace plnt {
 
 
 		std::shared_ptr<i_sound_effect_controller> StandardSoundManager::get_sound_effect_controller(
-			const std::shared_ptr<ResourceBase> &sound_resource) {
+			const std::shared_ptr<resource_base> &sound_resource) {
 			auto s_res = std::dynamic_pointer_cast<RSound>(sound_resource);
 			if (s_res == nullptr) {
 				PE_LOG_ERROR("Soundリソースでないリソースが渡されました。(", typeid(*sound_resource).name(), ")");

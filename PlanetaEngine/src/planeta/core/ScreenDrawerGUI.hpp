@@ -21,7 +21,7 @@ namespace plnt {
 
 		/*! 画像を描画(描画位置、描画サイズ、中心位置、回転度、画像上の描画範囲、反転フラグ、画像リソース)*/
 		void DrawGraph(const Vector2Di &position, const Vector2Di &size, const Vector2Dd &center_pivot,
-		               double rotation_rad, const RectAnglei &draw_area_on_graph, bool reverse,
+		               double rotation_rad, const rect_angle_i &draw_area_on_graph, bool reverse,
 		               const std::shared_ptr<RGraph> &graph_resource);
 		/*! ワイヤーを描画(点座標、幅(現状では無効)、色)*/
 		void DrawWire(const std::vector<Vector2Di> &positions, int width, const plnt::color &color);

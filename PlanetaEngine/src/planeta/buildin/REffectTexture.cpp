@@ -12,7 +12,7 @@
 plnt::REffectTexture::REffectTexture() = default;
 plnt::REffectTexture::~REffectTexture() = default;
 
-bool plnt::REffectTexture::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+bool plnt::REffectTexture::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 	dx_base_image_ = std::unique_ptr<::DxLib::BASEIMAGE>(new ::DxLib::BASEIMAGE{});
 	if (CreateBaseImageToMem(file.top_pointer(), file.size(), dx_base_image_.get(), false)) {
 		PE_LOG_ERROR("テクスチャの作成に失敗しました。");
@@ -30,7 +30,7 @@ bool plnt::REffectTexture::OnLoaded(const file &file, const json_file &metadata,
 	return effekseer_taxture_ != nullptr;*/
 }
 
-void plnt::REffectTexture::OnDisposed() {}
+void plnt::REffectTexture::on_disposed() {}
 
 
 ::Effekseer::TextureRef plnt::REffectTexture::effekseer_taxture() const { return effekseer_taxture_; }

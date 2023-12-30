@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Object.hpp"
+#include "object.hpp"
 #include "game_object_component_holder.hpp"
 #include "i_game_object.hpp"
 #include "non_copyable.hpp"

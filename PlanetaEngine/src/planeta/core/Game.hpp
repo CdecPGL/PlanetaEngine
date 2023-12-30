@@ -17,12 +17,12 @@ namespace plnt {
 	class i_config_manager;
 
 	namespace private_ {
-		class ResourceManager;
+		class resource_manager;
 		class log_manager;
 		class SceneManager;
 		class input_manager;
 		class performance_manager;
-		class RenderingManager;
+		class rendering_manager;
 		class SoundManager;
 		class SaveManager;
 		class debug_manager;
@@ -48,7 +48,7 @@ namespace plnt {
 		/*! 初期化されているか*/
 		[[nodiscard]] bool is_initialized() const;
 		/*! リソースマネージャを設定する(初期化前)*/
-		void set_resource_manager(const std::shared_ptr<private_::ResourceManager> &mgr) const;
+		void set_resource_manager(const std::shared_ptr<private_::resource_manager> &mgr) const;
 		/*! ログマネージャを設定する(初期化前)*/
 		auto set_log_manager(const std::shared_ptr<private_::log_manager> &mgr) const -> void;
 		/*! シーンマネージャを設定する(初期化前)*/
@@ -58,7 +58,7 @@ namespace plnt {
 		/*! パフォーマンスマネージャを設定する(初期化前)*/
 		void set_performance_manager(const std::shared_ptr<private_::performance_manager> &mgr) const;
 		/*! レンダリングマネージャを設定する(初期化前)*/
-		void set_rendering_manager(const std::shared_ptr<private_::RenderingManager> &mgr) const;
+		void set_rendering_manager(const std::shared_ptr<private_::rendering_manager> &mgr) const;
 		/*! サウンドマネージャを設定する(初期化前)*/
 		void set_sound_manager(const std::shared_ptr<private_::SoundManager> &mgr) const;
 		/*! セーブマネージャを設定する(初期化前)*/

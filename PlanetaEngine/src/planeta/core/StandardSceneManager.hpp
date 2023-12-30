@@ -4,13 +4,13 @@
 #include <unordered_map>
 #include<functional>
 #include "SceneManager.hpp"
-#include "ParameterHolder.hpp"
+#include "parameter_holder.hpp"
 
 namespace plnt {
 	class SceneSetUpper;
 
 	namespace private_ {
-		class ResourceManager;
+		class resource_manager;
 		class Scene;
 		/*シーン管理クラス
 		非同期処理は未実装だが、実装した場合に変更が少なくなるよう、使い方は非同期処理がある場合と同じ。
@@ -63,12 +63,12 @@ namespace plnt {
 			/*シーン処理*/
 			SceneStatus_ Process_();
 			/*リソースマネージャをセット(初期化前)*/
-			void SetResouceManager(const std::shared_ptr<ResourceManager> &mgr) override;
+			void SetResouceManager(const std::shared_ptr<resource_manager> &mgr) override;
 
 			void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) override;
 
 		private:
-			std::shared_ptr<ResourceManager> resource_manager_;
+			std::shared_ptr<resource_manager> resource_manager_;
 			/*現在のシーン*/
 			std::shared_ptr<Scene> _current_scene;
 			/*次のシーン*/

@@ -6,7 +6,7 @@
 
 namespace plnt {
 	/*フォントリソース*/
-	class RFont final : public ResourceBase {
+	class RFont final : public resource_base {
 	public:
 		RFont() { };
 
@@ -19,7 +19,7 @@ namespace plnt {
 		DWORD font_num_ = 0;
 		int dx_handle_;
 		int size_ = 0;
-		bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
-		void OnDisposed() override;
+		bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		void on_disposed() override;
 	};
 }

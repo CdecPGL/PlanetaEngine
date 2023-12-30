@@ -7,7 +7,7 @@
 #include "RFont.hpp"
 
 namespace plnt {
-	bool RFont::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+	bool RFont::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char *>(file.top_pointer()), file.size(), nullptr,
 		                               &font_num_);
 		if (handle_ == 0) {
@@ -40,7 +40,7 @@ namespace plnt {
 		return true;
 	}
 
-	void RFont::OnDisposed() {
+	void RFont::on_disposed() {
 		if (handle_ != nullptr) { DeleteFontToHandle(dx_handle_); }
 		if (handle_ != nullptr) { RemoveFontMemResourceEx(handle_); }
 	}

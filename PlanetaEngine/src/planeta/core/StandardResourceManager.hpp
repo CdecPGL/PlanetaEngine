@@ -19,12 +19,12 @@ namespace plnt {
 	class file;
 
 	namespace private_ {
-		class ResourceManagerInternalAccessor;
+		class resource_manager_internal_accessor;
 
 		/// <summary>標準のResource管理クラス。非同期読み込みは未実装だが、実装時に変更が必要ないように非同期読み込みと同じように扱う。
 		///		PrepairResourcesでリソースの準備を開始し、IsReadyがtrueになるまで待つ。そしてUnloadUnusedResourscesを呼ぶ。
 		///			現状ではIsReadyは常にtrue、GetPrepairProgressは常に1.0を返す。</summary>
-		class StandardResourceManager final : public ResourceManager {
+		class StandardResourceManager final : public resource_manager {
 		public:
 			/// <summary>Default constructor.</summary>
 			StandardResourceManager();
@@ -32,42 +32,42 @@ namespace plnt {
 			~StandardResourceManager() override;
 			/// <summary>Initializes this object.</summary>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			bool Initialize() override;
+			bool initialize() override;
 			/// <summary>Finalizes this object.</summary>
-			void Finalize() override;
+			void finalize() override;
 			/// <summary>アンロード対象外のタグを設定</summary>
 			/// <param name="tags">The tags.</param>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			bool SetNotUnloadTags(const std::set<std::string> &tags) override;
+			bool set_not_unload_tags(const std::set<std::string> &tags) override;
 			/// <summary>タグで指定されたリソースをまとめて読み込む</summary>
 			/// <param name="need_tag_groups">Groups the need tag belongs to.</param>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			bool PrepareResources(const std::vector<std::string> &need_tag_groups) override;
+			bool prepare_resources(const std::vector<std::string> &need_tag_groups) override;
 			/// <summary>未使用のタリソースをアンロードする</summary>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			bool UnloadUnusedResouces() override;
+			bool unload_unused_resources() override;
 			/// <summary>Resourceの準備が完了したか</summary>
 			/// <returns>True if ready, false if not.</returns>
-			bool IsReady() const override;
+			bool is_ready() const override;
 			/// <summary>準備進行度(読み込みしていない時は1.0とする)</summary>
 			/// <returns>The prepair progress.</returns>
-			double GetPrepairProgress() const override;
+			double get_prepare_progress() const override;
 			/// <summary>リソースをIDで取得</summary>
 			/// <param name="type">The type.</param>
 			/// <param name="id">The identifier.</param>
 			/// <returns>The resource by type and identifier.</returns>
-			std::shared_ptr<ResourceBase>
+			std::shared_ptr<resource_base>
 			get_resource_by_type_and_id(const std::type_info &type, const std::string &id) override;
 			/// <summary>リソースをFullIDで取得</summary>
 			/// <param name="full_id">Identifier for the full.</param>
 			/// <returns>The resource by full identifier.</returns>
-			std::shared_ptr<ResourceBase> get_resource_by_full_id(const std::string &full_id) override;
+			std::shared_ptr<resource_base> get_resource_by_full_id(const std::string &full_id) override;
 			/// <summary>ファイルアクセサをセット。初期化前に呼び出す</summary>
 			/// <param name="f_scsr">The scsr.</param>
-			void SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) override;
+			void set_file_manipulator(const std::shared_ptr<file_manipulator> &f_scsr) override;
 			/// <summary>リソースリストファイル名を設定。初期化前に呼び出す必要がある</summary>
 			/// <param name="file_name">Filename of the file.</param>
-			void SetResourceListFileName_(const std::string &file_name) override;
+			void set_resource_list_file_name(const std::string &file_name) override;
 
 		private:
 			/// <summary>Executes the resource type added action.</summary>
@@ -75,8 +75,8 @@ namespace plnt {
 			/// <param name="type_name">Name of the type.</param>
 			/// <param name="type_prefix">The type prefix.</param>
 			/// <param name="creator">The creator.</param>
-			void OnResourceTypeAdded(const std::type_info &type, const std::string &type_name,
-			                         const std::string &type_prefix, const ResourceCreatorType &creator) override;
+			void on_resource_type_added(const std::type_info &type, const std::string &type_name,
+			                         const std::string &type_prefix, const resource_creator_type &creator) override;
 
 			/// <summary>The file accessor.</summary>
 			std::shared_ptr<file_manipulator> file_accessor_;
@@ -96,7 +96,7 @@ namespace plnt {
 				/// <summary>メタデータファイルパス</summary>
 				std::string metadata_file_path = "";
 				/// <summary>リソース本体</summary>
-				std::shared_ptr<ResourceBase> resouce;
+				std::shared_ptr<resource_base> resouce;
 				/// <summary>リソースがロードされているか</summary>
 				bool is_loaded = false;
 				/// <summary>タグ</summary>
@@ -129,7 +129,7 @@ namespace plnt {
 				/// <summary>The type prefix.</summary>
 				std::string type_prefix;
 				/// <summary>The creator.</summary>
-				ResourceCreatorType creator;
+				resource_creator_type creator;
 			};
 
 			/// <summary>ResourceのタイプによるResourceタイプデータ</summary>
@@ -139,11 +139,11 @@ namespace plnt {
 			/// <summary>リソースの作成</summary>
 			/// <param name="type">The type.</param>
 			/// <returns>The new resource.</returns>
-			std::shared_ptr<ResourceBase> CreateResource_(const std::type_index &type);
+			std::shared_ptr<resource_base> CreateResource_(const std::type_index &type);
 			/// <summary>リソースのロード</summary>
 			/// <param name="res_dat">[in,out] The resource dat.</param>
 			/// <returns>The resource.</returns>
-			std::shared_ptr<ResourceBase> LoadResource_(ResourceData_ &res_dat);
+			std::shared_ptr<resource_base> LoadResource_(ResourceData_ &res_dat);
 			/// <summary>型とIDからFullIDを取得</summary>
 			/// <param name="type_index">Zero-based index of the type.</param>
 			/// <param name="id">The identifier.</param>
@@ -167,19 +167,19 @@ namespace plnt {
 			void UnloadAllLoadedResources_();
 			/// <summary>内部マネージャアクセサを取得</summary>
 			/// <returns>The new internal manager accessor.</returns>
-			ResourceManagerInternalAccessor CreateInternalManagerAccessor_();
+			resource_manager_internal_accessor CreateInternalManagerAccessor_();
 			/// <summary>リソースをIDで取得する。ロードされていないリソース指定時に警告を出すか指定可能</summary>
 			/// <param name="full_id">Identifier for the full.</param>
 			/// <param name="is_valid_not_preload_warning">True if this object is valid not preload warning.</param>
 			/// <returns>The resource by full identifier.</returns>
-			std::shared_ptr<ResourceBase> GetResourceByFullID_(const std::string &full_id,
+			std::shared_ptr<resource_base> GetResourceByFullID_(const std::string &full_id,
 			                                                   bool is_valid_not_preload_warning);
 			/// <summary>リソースをパスで取得する。ロードされていないリソース指定時に警告を出すか指定可能</summary>
 			/// <param name="path">Full pathname of the file.</param>
 			/// <param name="root_path">Full pathname of the root file.</param>
 			/// <param name="is_valid_not_preload_warning">True if this object is valid not preload warning.</param>
 			/// <returns>The resource by path.</returns>
-			std::shared_ptr<ResourceBase> GetResourceByPath_(const std::string &path, const std::string &root_path,
+			std::shared_ptr<resource_base> GetResourceByPath_(const std::string &path, const std::string &root_path,
 			                                                 bool is_valid_not_preload_warning);
 		};
 	}

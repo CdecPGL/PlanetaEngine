@@ -2,7 +2,7 @@
 
 #include<string>
 
-#include "Object.hpp"
+#include "object.hpp"
 
 namespace plnt {
 	/*! ファイルデータを格納するクラス*/

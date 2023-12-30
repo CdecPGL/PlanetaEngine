@@ -3,6 +3,7 @@
 #include <set>
 #include <vector>
 #include <functional>
+
 #include "i_resource_manager.hpp"
 #include "SubSystemManager.hpp"
 
@@ -11,60 +12,66 @@ namespace plnt {
 
 	namespace private_ {
 		/// <summary>リソースマネージャ.</summary>
-		class ResourceManager : public i_resource_manager, public SubSystemManager {
+		class resource_manager : public i_resource_manager, public SubSystemManager {
 		public:
+			resource_manager() = default;
+			resource_manager(const resource_manager &) = delete;
+			resource_manager &operator=(const resource_manager &) = delete;
 			/// <summary>Destructor.</summary>
-			virtual ~ResourceManager() override = default;
+			~resource_manager() override = default;
+			resource_manager(resource_manager &&) = delete;
+			resource_manager &operator=(resource_manager &&) = delete;
+
 			/// <summary>初期化</summary>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			virtual bool Initialize() = 0;
+			virtual bool initialize() = 0;
 			/// <summary>終了処理</summary>
-			virtual void Finalize() = 0;
+			virtual void finalize() = 0;
 			/// <summary>アンロード対象外のタグを設定</summary>
 			/// <param name="tags">The tags.</param>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			virtual bool SetNotUnloadTags(const std::set<std::string> &tags) = 0;
+			virtual bool set_not_unload_tags(const std::set<std::string> &tags) = 0;
 			/// <summary>タグで指定されたリソースをまとめて読み込む</summary>
 			/// <param name="need_tag_groups">Groups the need tag belongs to.</param>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			virtual bool PrepareResources(const std::vector<std::string> &need_tag_groups) = 0;
+			virtual bool prepare_resources(const std::vector<std::string> &need_tag_groups) = 0;
 			/// <summary>未使用のタリソースをアンロードする</summary>
 			/// <returns>True if it succeeds, false if it fails.</returns>
-			virtual bool UnloadUnusedResouces() = 0;
+			virtual bool unload_unused_resources() = 0;
 			/// <summary>Resourceの準備が完了したか</summary>
 			/// <returns>True if ready, false if not.</returns>
-			virtual bool IsReady() const = 0;
+			[[nodiscard]] virtual bool is_ready() const = 0;
 			/// <summary>準備進行度(読み込みしていない時は1.0とする)</summary>
-			/// <returns>The prepair progress.</returns>
-			virtual double GetPrepairProgress() const = 0;
+			/// <returns>The prepare progress.</returns>
+			[[nodiscard]] virtual double get_prepare_progress() const = 0;
 			/// <summary>ファイルアクセサをセット。初期化前に呼び出す</summary>
-			/// <param name="f_scsr">The scsr.</param>
-			virtual void SetFileManipulator_(const std::shared_ptr<file_manipulator> &f_scsr) = 0;
+			/// <param name="f_accessor">The accessor.</param>
+			virtual void set_file_manipulator(const std::shared_ptr<file_manipulator> &f_accessor) = 0;
 			/// <summary>リソースリストファイル名を設定。初期化前に呼び出す必要がある</summary>
 			/// <param name="file_name">Filename of the file.</param>
-			virtual void SetResourceListFileName_(const std::string &file_name) = 0;
+			virtual void set_resource_list_file_name(const std::string &file_name) = 0;
 			/// <summary>リソースの属性を追加</summary>
 			/// <param name="type_name">Name of the type.</param>
 			/// <param name="type_prefix">The type prefix.</param>
 			template <class C>
-			void AddResourceType(const std::string &type_name, const std::string &type_prefix) {
-				OnResourceTypeAdded(typeid(C), type_name, type_prefix, []()-> std::shared_ptr<ResourceBase> {
-					return MakeResource<C>();
+			void add_resource_type(const std::string &type_name, const std::string &type_prefix) {
+				on_resource_type_added(typeid(C), type_name, type_prefix, []()-> std::shared_ptr<resource_base> {
+					return make_resource<C>();
 				});
 			}
 
 		protected:
 			/// <summary>リソースクリエータ関数型</summary>
-			using ResourceCreatorType = std::function<std::shared_ptr<ResourceBase>()>;
+			using resource_creator_type = std::function<std::shared_ptr<resource_base>()>;
 
 		private:
 			/// <summary>リソース用shared_ptr作成</summary>
 			/// <returns>A std::shared_ptr&lt;Res&gt;</returns>
 			template <class Res>
-			static std::shared_ptr<Res> MakeResource() {
-				static_assert(std::is_base_of<ResourceBase, Res>::value == true, "Res is not derived ResourceBase.");
+			[[nodiscard]] static std::shared_ptr<Res> make_resource() {
+				static_assert(std::is_base_of_v<resource_base, Res> == true, "Res is not derived ResourceBase.");
 				return std::move(std::shared_ptr<Res>(new Res(), [](Res *r)-> void {
-					r->Dispose();
+					r->dispose();
 					delete r;
 				}));
 			}
@@ -74,8 +81,9 @@ namespace plnt {
 			/// <param name="type_name">Name of the type.</param>
 			/// <param name="type_prefix">The type prefix.</param>
 			/// <param name="creator">The creator.</param>
-			virtual void OnResourceTypeAdded(const std::type_info &type, const std::string &type_name,
-			                                 const std::string &type_prefix, const ResourceCreatorType &creator) = 0;
+			virtual void on_resource_type_added(const std::type_info &type, const std::string &type_name,
+			                                    const std::string &type_prefix,
+			                                    const resource_creator_type &creator) = 0;
 		};
 	}
 }

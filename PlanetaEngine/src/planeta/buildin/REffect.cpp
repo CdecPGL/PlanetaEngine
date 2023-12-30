@@ -13,7 +13,7 @@ using namespace ::plnt::effekseer;
 
 Effekseer::EffectRef plnt::REffect::effekseer_effect() const { return effekseer_effect_; }
 
-bool plnt::REffect::OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) {
+bool plnt::REffect::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 	//読み込み用設定
 	decltype(auto) eff_mgr = GetEffekseer3DManager();
 	//エフェクトローダーの設定
@@ -27,7 +27,7 @@ bool plnt::REffect::OnLoaded(const file &file, const json_file &metadata, Resour
 
 	txr_ldr.DownCast<texture_loader_for_effekseer>()->set_texture_getter(
 		[&referencer](const std::string &path, ::Effekseer::TextureType texture_type)-> ::Effekseer::TextureRef {
-			auto tex_res = referencer.ReferenceResourceByPath<REffectTexture>(path);
+			auto tex_res = referencer.reference_resource_by_path<REffectTexture>(path);
 			if (tex_res) { return tex_res->effekseer_taxture(); } else {
 				PE_LOG_ERROR("エフェクトファイル内で参照されているテクスチャリソースの読み込みに失敗しました。(指定パス:", path, ")");
 				return nullptr;
@@ -44,4 +44,4 @@ bool plnt::REffect::OnLoaded(const file &file, const json_file &metadata, Resour
 	return true;
 }
 
-void plnt::REffect::OnDisposed() { if (effekseer_effect_ != nullptr) { effekseer_effect_->Release(); } }
+void plnt::REffect::on_disposed() { if (effekseer_effect_ != nullptr) { effekseer_effect_->Release(); } }

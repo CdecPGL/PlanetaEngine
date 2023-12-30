@@ -1,60 +1,60 @@
 ﻿#include "ResourceReferencer.hpp"
 
 namespace plnt {
-	ResourceReferencer::ResourceReferencer(private_::ResourceManagerInternalAccessor &res_mgr_acsr,
-	                                       const std::string &root_path,
-	                                       std::vector<std::shared_ptr<ResourceBase>> &reference_list) :
-		manager_accessor_(res_mgr_acsr), reference_list_(reference_list), root_path_(root_path) { }
+	resource_referencer::resource_referencer(private_::resource_manager_internal_accessor &res_mgr_accessor,
+	                                       std::string root_path,
+	                                       std::vector<std::shared_ptr<resource_base>> &reference_list) :
+		reference_list_(reference_list), manager_accessor_(res_mgr_accessor), root_path_(std::move(root_path)) { }
 
-	std::shared_ptr<ResourceBase> ResourceReferencer::ReferenceResourceByTypeAndID(
-		const std::type_info &type, const std::string &id) {
-		auto res = manager_accessor_.GetResourceByTypeAndID(type, id, false);
-		if (res) {
+	std::shared_ptr<resource_base> resource_referencer::reference_resource_by_type_and_id(
+		const std::type_info &type, const std::string &id) const {
+		if (auto res = manager_accessor_.get_resource_by_type_and_id(type, id, false)) {
 			reference_list_.push_back(res);
 			return res;
-		} else { return nullptr; }
+		}
+		return nullptr;
 	}
 
-	std::shared_ptr<ResourceBase> ResourceReferencer::ReferenceResourceByTypeAndPath(
-		const std::type_info &type, const std::string &path) {
-		auto res = manager_accessor_.GetResourceByTypeAndPath(type, path, root_path_, false);
-		if (res) {
+	std::shared_ptr<resource_base> resource_referencer::reference_resource_by_type_and_path(
+		const std::type_info &type, const std::string &path) const {
+		if (auto res = manager_accessor_.get_resource_by_type_and_path(type, path, root_path_, false)) {
 			reference_list_.push_back(res);
 			return res;
-		} else { return nullptr; }
+		}
+		return nullptr;
 	}
 
-	std::shared_ptr<ResourceBase> ResourceReferencer::ReferenceResourceByTypeAndIDorPath(
-		const std::type_info &type, const std::string &id_or_path) {
-		auto res = manager_accessor_.GetResourceByTypeAndID(type, id_or_path, false);
-		if (res) {
+	std::shared_ptr<resource_base> resource_referencer::reference_resource_by_type_and_id_or_path(
+		const std::type_info &type, const std::string &id_or_path) const {
+		if (auto res = manager_accessor_.get_resource_by_type_and_id(type, id_or_path, false)) {
 			reference_list_.push_back(res);
 			return res;
 		} else {
-			res = manager_accessor_.GetResourceByTypeAndPath(type, id_or_path, root_path_, false);
+			res = manager_accessor_.get_resource_by_type_and_path(type, id_or_path, root_path_, false);
 			if (res) {
 				reference_list_.push_back(res);
 				return res;
-			} else { return nullptr; }
+			}
+			return nullptr;
 		}
 	}
 
 	namespace private_ {
-		ResourceManagerInternalAccessor::ResourceManagerInternalAccessor(
-			const std::function<std::shared_ptr<ResourceBase>(const std::type_info &, const std::string &, bool)> &
+		resource_manager_internal_accessor::resource_manager_internal_accessor(
+			std::function<std::shared_ptr<resource_base>(const std::type_info &, const std::string &, bool)>
 			ref_func_by_id,
-			const std::function<std::shared_ptr<ResourceBase>(const std::type_info &, const std::string &,
-			                                                  const std::string &, bool)> &ref_func_by_path) :
-			ref_func_by_id_(ref_func_by_id), ref_func_by_path_(ref_func_by_path) { }
+			std::function<std::shared_ptr<resource_base>(const std::type_info &, const std::string &,
+			                                             const std::string &, bool)> ref_func_by_path) :
+			ref_func_by_id_(std::move(ref_func_by_id)), ref_func_by_path_(std::move(ref_func_by_path)) { }
 
-		std::shared_ptr<plnt::ResourceBase> ResourceManagerInternalAccessor::GetResourceByTypeAndID(
-			const std::type_info &type, const std::string &id, bool is_valid_not_preload_warning) {
+		std::shared_ptr<resource_base> resource_manager_internal_accessor::get_resource_by_type_and_id(
+			const std::type_info &type, const std::string &id, const bool is_valid_not_preload_warning) const {
 			return ref_func_by_id_(type, id, is_valid_not_preload_warning);
 		}
 
-		std::shared_ptr<plnt::ResourceBase> ResourceManagerInternalAccessor::GetResourceByTypeAndPath(
+		std::shared_ptr<resource_base> resource_manager_internal_accessor::get_resource_by_type_and_path(
 			const std::type_info &type, const std::string &path, const std::string &root_path,
-			bool is_valid_not_preload_warning) {
+			const bool is_valid_not_preload_warning) const {
 			return ref_func_by_path_(type, path, root_path, is_valid_not_preload_warning);
 		}
 	}

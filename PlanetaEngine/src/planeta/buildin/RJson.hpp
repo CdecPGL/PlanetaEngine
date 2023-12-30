@@ -6,14 +6,14 @@
 namespace plnt {
 	/*! @brief JSONファイルを扱うリソースクラス
 	*/
-	class RJson final : public ResourceBase {
+	class RJson final : public resource_base {
 	public:
 		const json_file &get_json_file() const;
 		json_file &get_json_file();
 
 	private:
 		std::unique_ptr<json_file > json_file_;
-		bool OnLoaded(const file &file, const json_file  &metadata, ResourceReferencer &referencer) override;
-		void OnDisposed() override;
+		bool on_loaded(const file &file, const json_file  &metadata, resource_referencer &referencer) override;
+		void on_disposed() override;
 	};
 }

@@ -3,7 +3,7 @@
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "..\core\log_utility.hpp"
 #include "..\core\i_game_object.hpp"
-#include "..\core\matrix22.hpp"
+#include "..\core\matrix_22.hpp"
 #include "..\math\math_constant.hpp"
 #include "..\core\graph_draw_data_2d.hpp"
 
@@ -36,7 +36,7 @@ namespace plnt {
 		auto res = game::instance().resource_manager()->get_resource_by_id<RGraph>(resource_id);
 		if (res) {
 			graph_draw_data_->set_graph_resource(res);
-			_draw_area.Set(Vector2Di(0, 0), Vector2Di(res->size().x, res->size().y));
+			_draw_area.set(Vector2Di(0, 0), Vector2Di(res->size().x, res->size().y));
 			_UpdateUVPosition();
 			return true;
 		} else {

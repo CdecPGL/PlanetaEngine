@@ -2,7 +2,7 @@
 
 #include <ctime>
 
-#include "Object.hpp"
+#include "object.hpp"
 
 namespace plnt::util {
 	/*日にち時間クラス

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <chrono>
-#include "PerfoamanceManager.hpp"
+#include "perfoamance_manager.hpp"
 
 namespace plnt {
 	namespace private_ {

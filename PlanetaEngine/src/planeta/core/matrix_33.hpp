@@ -8,7 +8,7 @@ namespace plnt {
 	namespace math {
 		//3*3行列
 		template <typename T>
-		struct matrix33 {
+		struct matrix_33 {
 			std::array<std::array<T, 3>, 3> lines;
 
 			std::array<T, 3> &operator[](int l) { return lines[l]; }
@@ -19,7 +19,7 @@ namespace plnt {
 		//行列関数
 		//線形変換
 		template <typename T>
-		Vector3D<T> linear_transform(const matrix33<T> &m, const Vector3D<T> &v) {
+		Vector3D<T> linear_transform(const matrix_33<T> &m, const Vector3D<T> &v) {
 			return Vector3D<T>(m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z,
 			                   m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z,
 			                   m[0][2] * v.x + m[1][2] * v.y + m[2][2] * v.z);
@@ -37,9 +37,9 @@ namespace plnt {
 		}*/
 	}
 
-	using matrix33d = math::matrix33<double>;
+	using matrix_33d = math::matrix_33<double>;
 	// ReSharper disable once CppInconsistentNaming
-	using matrix33f = math::matrix33<float>;
+	using matrix_33f = math::matrix_33<float>;
 	// ReSharper disable once CppInconsistentNaming
-	using matrix33i = math::matrix33<int32_t>;
+	using matrix_33i = math::matrix_33<int32_t>;
 }

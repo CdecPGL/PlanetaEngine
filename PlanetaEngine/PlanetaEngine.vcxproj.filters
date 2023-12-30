@@ -408,10 +408,10 @@
     <ClInclude Include="src\planeta\core\date_time.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\matrix22.hpp">
+    <ClInclude Include="src\planeta\core\matrix_22.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\matrix33.hpp">
+    <ClInclude Include="src\planeta\core\matrix_33.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\RectAngle.hpp">
@@ -447,7 +447,7 @@
     <ClInclude Include="src\planeta\core\file_stream_buf.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Object.hpp">
+    <ClInclude Include="src\planeta\core\object.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\archiver\aes_encrypter.hpp">
@@ -669,19 +669,19 @@
     <ClInclude Include="src\planeta\core\null_weak_pointer_exception.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithID.hpp">
+    <ClInclude Include="src\planeta\core\object_holder_template_with_id.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithoutID.hpp">
+    <ClInclude Include="src\planeta\core\object_holder_template_without_id.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ParameterHolder.hpp">
+    <ClInclude Include="src\planeta\core\parameter_holder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\PerfoamanceManager.hpp">
+    <ClInclude Include="src\planeta\core\perfoamance_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\PrefixUtility.hpp">
+    <ClInclude Include="src\planeta\core\prefix_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\RangeUtility.hpp">
@@ -1148,7 +1148,7 @@
     <ClCompile Include="src\planeta\core\key_config.cpp">
       <Filter>PlanetaEngine\SubSystems\InputSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\PrefixUtility.cpp">
+    <ClCompile Include="src\planeta\core\prefix_utility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\ResourceBase.cpp">

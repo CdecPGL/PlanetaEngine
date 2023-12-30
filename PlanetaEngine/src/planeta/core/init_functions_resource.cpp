@@ -16,37 +16,37 @@
 
 namespace plnt::private_::init_funcs {
 	std::tuple<bool, std::function<void()>> initialize_resource_system(
-		ResourceManager &mgr, const std::shared_ptr<file_manipulator> &res_dir_manipulator) {
+		resource_manager &mgr, const std::shared_ptr<file_manipulator> &res_dir_manipulator) {
 		//ビルドインリソースの設定
-		mgr.AddResourceType<RGraph>(system_variables::resource::BuiltinGraphResourceTypeName,
+		mgr.add_resource_type<RGraph>(system_variables::resource::BuiltinGraphResourceTypeName,
 		                            system_variables::resource::BuiltinGraphResourceTypePrefix); //画像
-		mgr.AddResourceType<RSound>(system_variables::resource::BuiltinSoundResourceTypeName,
+		mgr.add_resource_type<RSound>(system_variables::resource::BuiltinSoundResourceTypeName,
 		                            system_variables::resource::BuiltinSoundResourceTypePrefix); //効果音
-		mgr.AddResourceType<RMusic>(system_variables::resource::BuiltinMusicResourceTypeName,
+		mgr.add_resource_type<RMusic>(system_variables::resource::BuiltinMusicResourceTypeName,
 		                            system_variables::resource::BuiltinMusicResourceTypePrefix); //音楽
-		mgr.AddResourceType<RCsv>(system_variables::resource::BuiltinCSVResourceTypeName,
+		mgr.add_resource_type<RCsv>(system_variables::resource::BuiltinCSVResourceTypeName,
 		                          system_variables::resource::BuiltinCSVResourceTypePrefix); //CSVファイル
-		mgr.AddResourceType<RText>(system_variables::resource::BuiltinTextResourceTypeName,
+		mgr.add_resource_type<RText>(system_variables::resource::BuiltinTextResourceTypeName,
 		                           system_variables::resource::BuiltinTextResourceTypePrefix); //テキストファイル
-		mgr.AddResourceType<RXml>(system_variables::resource::BuiltinXMLResourceTypeName,
+		mgr.add_resource_type<RXml>(system_variables::resource::BuiltinXMLResourceTypeName,
 		                          system_variables::resource::BuiltinXMLResourceTypePrefix); //XMLファイル
-		mgr.AddResourceType<RFont>(system_variables::resource::BuiltinFontResourceTypeName,
+		mgr.add_resource_type<RFont>(system_variables::resource::BuiltinFontResourceTypeName,
 		                           system_variables::resource::BuiltinFontResourceTypePrefix); //フォントファイル
-		mgr.AddResourceType<RJson>(system_variables::resource::BuiltinJSONResourceTypeName,
+		mgr.add_resource_type<RJson>(system_variables::resource::BuiltinJSONResourceTypeName,
 		                           system_variables::resource::BuiltinJSONResourceTypePrefix); //JSONファイル
-		mgr.AddResourceType<RGameObject>(system_variables::resource::BuiltinGameObjectResourceTypeName,
+		mgr.add_resource_type<RGameObject>(system_variables::resource::BuiltinGameObjectResourceTypeName,
 		                                 system_variables::resource::BuiltinGameObjectResourceTypePrefix);
 		//GameObject
 		//mgr.AddResourceType<RGameObjectComponent>(system_variables::resource::BuiltinGameObjectComponentResourceTypeName, system_variables::resource::BuiltinGameObjectComponentResourceTypePrefix); //GameObject
-		mgr.AddResourceType<REffect>(system_variables::resource::BuiltinEffectResourceTypeName,
+		mgr.add_resource_type<REffect>(system_variables::resource::BuiltinEffectResourceTypeName,
 		                             system_variables::resource::BuiltinEffectResourceTypePrefix); //Effect
-		mgr.AddResourceType<REffectTexture>(system_variables::resource::BuiltinEffectTextureResourceTypeName,
+		mgr.add_resource_type<REffectTexture>(system_variables::resource::BuiltinEffectTextureResourceTypeName,
 		                                    system_variables::resource::BuiltinEffectTextureResourceTypePrefix);
 		//EffectTexture
-		mgr.SetFileManipulator_(res_dir_manipulator); //ファイルアクセサセット
-		mgr.SetResourceListFileName_(system_variables::file_system::ResourceListFileName);
+		mgr.set_file_manipulator(res_dir_manipulator); //ファイルアクセサセット
+		mgr.set_resource_list_file_name(system_variables::file_system::ResourceListFileName);
 		//リソースリストファイル名セット
-		if (mgr.Initialize()) { return {true, [&mgr] { mgr.Finalize(); }}; }
+		if (mgr.initialize()) { return {true, [&mgr] { mgr.finalize(); }}; }
 		PE_LOG_FATAL("リソースシステムの初期化に失敗しました。");
 		return {
 			false, [] { }

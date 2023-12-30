@@ -85,9 +85,9 @@ namespace plnt {
 
 		StandardDebugManager::~StandardDebugManager() = default;
 
-		bool StandardDebugManager::initialize(RenderingManager &rendering_mgr) {
-			impl_->debug_draw_screen = rendering_mgr.GetDebugDrawScreen();
-			impl_->debug_info_screen = rendering_mgr.GetDebugInformationScreen();
+		bool StandardDebugManager::initialize(rendering_manager &rendering_mgr) {
+			impl_->debug_draw_screen = rendering_mgr.get_debug_draw_screen();
+			impl_->debug_info_screen = rendering_mgr.get_debug_information_screen();
 			//表示中のデバッグ情報を初期化
 			impl_->showing_debug_information_iterator = impl_->debug_informations.begin();
 			return true;

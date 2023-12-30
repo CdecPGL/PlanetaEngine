@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Object.hpp"
+#include "object.hpp"
 #include "WeakPointer.hpp"
 #include "non_copyable.hpp"
 

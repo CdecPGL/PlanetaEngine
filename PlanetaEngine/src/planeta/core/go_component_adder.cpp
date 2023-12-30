@@ -2,7 +2,7 @@
 #include "game_object_component_holder.hpp"
 #include "log_utility.hpp"
 #include "planeta/reflection/reflection.hpp"
-#include "PrefixUtility.hpp"
+#include "prefix_utility.hpp"
 
 namespace plnt::private_ {
 	go_component_adder::go_component_adder(game_object_component_holder &com_holder) noexcept : com_holder_(com_holder) { }

@@ -12,7 +12,7 @@ namespace Effekseer {
 }
 
 namespace plnt {
-	class REffect : public ResourceBase {
+	class REffect : public resource_base {
 	public:
 		REffect() { };
 
@@ -20,8 +20,8 @@ namespace plnt {
 		Effekseer::EffectRef effekseer_effect() const;
 
 	private:
-		virtual bool OnLoaded(const file &file, const json_file &metadata, ResourceReferencer &referencer) override;
-		virtual void OnDisposed() override;
+		virtual bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		virtual void on_disposed() override;
 		Effekseer::EffectRef effekseer_effect_ = nullptr;
 	};
 }

@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "Object.hpp"
+#include "object.hpp"
 
 namespace plnt::util {
 	class parameter_holder final : public object {
