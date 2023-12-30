@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_game_object_manager.hpp"
-#include "SceneModule.hpp"
+#include "scene_module.hpp"
 
 namespace plnt::private_ {
 	class game_object_manager : public i_game_object_manager, public scene_module {

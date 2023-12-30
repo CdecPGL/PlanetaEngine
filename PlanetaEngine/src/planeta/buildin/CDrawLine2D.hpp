@@ -37,7 +37,7 @@ namespace plnt {
 		int _width;
 		double _length;
 		/*描画処理*/
-		void DrawProc(ScreenDrawer2D &drawer) override;
+		void DrawProc(screen_drawer_2d &drawer) override;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawLine2D);

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_task_manager.hpp"
-#include "SceneModule.hpp"
+#include "scene_module.hpp"
 #include "SystemTaskSlot.hpp"
 
 namespace plnt {

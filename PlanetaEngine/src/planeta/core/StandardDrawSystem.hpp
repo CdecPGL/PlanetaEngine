@@ -7,11 +7,11 @@
 #include "draw_system.hpp"
 
 namespace plnt {
-	class ScreenDrawer2D;
-	class ScreenDrawerGUI;
+	class screen_drawer_2d;
+	class screen_drawer_gui;
 
 	namespace private_ {
-		class Screen;
+		class screen;
 
 		class StandardDrawSystem final : public draw_system {
 		public:
@@ -151,9 +151,9 @@ namespace plnt {
 			ComHolder<CDrawGUI> cdrawgui_holder_;
 
 			/*描画画面*/
-			std::shared_ptr<Screen> screen_;
-			std::unique_ptr<ScreenDrawer2D> screen_drawer_2d_;
-			std::unique_ptr<ScreenDrawerGUI> screen_drawer_gui_;
+			std::shared_ptr<screen> screen_;
+			std::unique_ptr<screen_drawer_2d> screen_drawer_2d_;
+			std::unique_ptr<screen_drawer_gui> screen_drawer_gui_;
 			/*カメラコンポーネント*/
 			std::shared_ptr<CCamera2D> camera2d_;
 		};

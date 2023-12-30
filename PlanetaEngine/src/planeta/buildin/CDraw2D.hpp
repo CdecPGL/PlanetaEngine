@@ -6,7 +6,7 @@
 #include "planeta/core/Vector2D.hpp"
 
 namespace plnt {
-	class ScreenDrawer2D;
+	class screen_drawer_2d;
 	class CTransform2D;
 
 	/*! 描画基底コンポーネント*/
@@ -18,7 +18,7 @@ namespace plnt {
 		CDraw2D();
 		virtual ~CDraw2D();
 		/*描画処理*/
-		void Draw(ScreenDrawer2D &drawer);
+		void Draw(screen_drawer_2d &drawer);
 		/*Accessor*/
 		/*! @brief 描画優先度を取得
 		
@@ -91,7 +91,7 @@ namespace plnt {
 		void on_activated() override final;
 		void on_inactivated() override final;
 		/*描画処理*/
-		virtual void DrawProc(ScreenDrawer2D &drawer) = 0;
+		virtual void DrawProc(screen_drawer_2d &drawer) = 0;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CDraw2D);

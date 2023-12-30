@@ -1,6 +1,6 @@
 ﻿#include "StandardSceneManagerUtility.hpp"
 
-#include "Scene.hpp"
+#include "scene.hpp"
 #include "TaskManager.hpp"
 #include "collision_world.hpp"
 #include "draw_system.hpp"

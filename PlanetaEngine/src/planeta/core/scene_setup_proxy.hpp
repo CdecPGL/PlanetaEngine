@@ -7,9 +7,9 @@ namespace plnt {
 		class scene;
 	}
 
-	class scene_set_up_proxy {
+	class scene_setup_proxy {
 	public:
-		explicit scene_set_up_proxy(private_::scene &scene);
+		explicit scene_setup_proxy(private_::scene &scene);
 		[[nodiscard]] i_scene &scene() const;
 
 	private:

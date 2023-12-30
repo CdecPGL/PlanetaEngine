@@ -12,7 +12,7 @@ namespace plnt {
 		class scene;
 	}
 
-	class scene_set_up_proxy;
+	class scene_setup_proxy;
 
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
 	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
@@ -39,12 +39,12 @@ namespace plnt {
 		/*シーンの設定処理を行う(初期オブジェクト、UI、プロセスの追加、[前シーンからオブジェクトの引継ぎ]未実装)
 		@param 設定するシーン、初期化パラメータリスト
 		*/
-		virtual bool setup_scene(scene_set_up_proxy &scene_proxy, const util::parameter_holder &initialize_parameters) = 0;
+		virtual bool setup_scene(scene_setup_proxy &scene_proxy, const util::parameter_holder &initialize_parameters) = 0;
 		/*シーンの終了処理を行う(次シーンの初期化パラメータ生成など)
 		@param 終了処理するシーン、次のシーンのID、終了処理パラメータリスト
 		@return 次のシーンの初期化パラメータ
 		*/
-		virtual util::parameter_holder finalize_scene(scene_set_up_proxy &scene_proxy, const std::string &next_scene_id,
+		virtual util::parameter_holder finalize_scene(scene_setup_proxy &scene_proxy, const std::string &next_scene_id,
 		                                              const util::parameter_holder &finalize_parameters) = 0;
 	};
 

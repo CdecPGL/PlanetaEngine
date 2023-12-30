@@ -39,7 +39,7 @@ namespace plnt {
 
 	CDraw2D::~CDraw2D() = default;
 
-	void CDraw2D::Draw(ScreenDrawer2D &drawer) { DrawProc(drawer); }
+	void CDraw2D::Draw(screen_drawer_2d &drawer) { DrawProc(drawer); }
 
 	CDraw2D &CDraw2D::draw_priority(int priority) {
 		draw_priority_ = priority;

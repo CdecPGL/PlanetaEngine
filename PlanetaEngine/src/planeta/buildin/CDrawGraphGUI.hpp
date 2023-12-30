@@ -27,7 +27,7 @@ namespace plnt {
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;
-		void DrawProc(ScreenDrawerGUI &drawer) override;
+		void DrawProc(screen_drawer_gui &drawer) override;
 		bool get_other_components_proc(const go_component_getter &) override;
 	};
 

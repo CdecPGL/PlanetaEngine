@@ -74,7 +74,7 @@ namespace plnt {
 		void UpdatePolygonRoundly_();
 		void UpdatePolygonPlainly_();
 		/*描画処理*/
-		void DrawProc(ScreenDrawer2D &drawer) override;
+		void DrawProc(screen_drawer_2d &drawer) override;
 	};
 
 	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawPlanet2D);

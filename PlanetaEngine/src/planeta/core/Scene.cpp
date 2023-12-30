@@ -1,4 +1,4 @@
-﻿#include "Scene.hpp"
+﻿#include "scene.hpp"
 //Modules
 #include "game_object_manager.hpp"
 #include "TaskManager.hpp"

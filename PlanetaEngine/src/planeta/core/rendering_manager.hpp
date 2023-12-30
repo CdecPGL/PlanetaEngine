@@ -4,7 +4,7 @@
 #include "SubSystemManager.hpp"
 
 namespace plnt::private_ {
-	class Screen;
+	class screen;
 
 	/*レンダリングマネージャ*/
 	class rendering_manager : public i_rendering_manager, public SubSystemManager {
@@ -23,8 +23,8 @@ namespace plnt::private_ {
 		/*更新する*/
 		virtual bool update() = 0;
 		/*デバッグ描画用スクリーンを取得する*/
-		[[nodiscard]] virtual std::shared_ptr<Screen> get_debug_draw_screen() = 0;
+		[[nodiscard]] virtual std::shared_ptr<screen> get_debug_draw_screen() = 0;
 		/*デバッグ情報描画用スクリーンを取得する*/
-		[[nodiscard]] virtual std::shared_ptr<Screen> get_debug_information_screen() = 0;
+		[[nodiscard]] virtual std::shared_ptr<screen> get_debug_information_screen() = 0;
 	};
 }

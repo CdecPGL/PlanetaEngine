@@ -38,9 +38,9 @@ namespace plnt {
 
 	bool CDrawGraphGUI::resource_id(const std::string &res_id) { return impl_->graph_res.set_resource_by_id(res_id); }
 
-	void CDrawGraphGUI::DrawProc(ScreenDrawerGUI &drawer) {
+	void CDrawGraphGUI::DrawProc(screen_drawer_gui &drawer) {
 		auto &trans = *impl_->my_c_trans_gui;
-		drawer.DrawGraph(trans.position(), trans.size(), trans.pivot(), trans.rotation_rad(), impl_->graph_draw_area,
+		drawer.draw_graph(trans.position(), trans.size(), trans.pivot(), trans.rotation_rad(), impl_->graph_draw_area,
 		                 impl_->reverse_flag, impl_->graph_res.resource_shared_pointer());
 	}
 

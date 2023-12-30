@@ -465,12 +465,12 @@
     <ClInclude Include="src\planeta\buildin\RSound.hpp" />
     <ClInclude Include="src\planeta\buildin\RText.hpp" />
     <ClInclude Include="src\planeta\buildin\RXml.hpp" />
-    <ClInclude Include="src\planeta\core\SaveManager.hpp" />
-    <ClInclude Include="src\planeta\core\Scene.hpp" />
-    <ClInclude Include="src\planeta\core\SceneManager.hpp" />
-    <ClInclude Include="src\planeta\core\SceneModule.hpp" />
-    <ClInclude Include="src\planeta\core\SceneSetUpper.hpp" />
-    <ClInclude Include="src\planeta\core\SceneSetUpProxy.hpp" />
+    <ClInclude Include="src\planeta\core\save_manager.hpp" />
+    <ClInclude Include="src\planeta\core\scene.hpp" />
+    <ClInclude Include="src\planeta\core\scene_manager.hpp" />
+    <ClInclude Include="src\planeta\core\scene_module.hpp" />
+    <ClInclude Include="src\planeta\core\scene_setupper.hpp" />
+    <ClInclude Include="src\planeta\core\scene_setup_proxy.hpp" />
     <ClInclude Include="src\planeta\core\Screen.hpp" />
     <ClInclude Include="src\planeta\core\ScreenDrawer2D.hpp" />
     <ClInclude Include="src\planeta\core\ScreenDrawerGUI.hpp" />
@@ -595,7 +595,7 @@
     <ClCompile Include="src\planeta\buildin\RLuaScript.cpp" />
     <ClCompile Include="src\planeta\buildin\RPtree.cpp" />
     <ClCompile Include="src\planeta\buildin\REffectTexture.cpp" />
-    <ClCompile Include="src\planeta\core\SceneSetUpProxy.cpp" />
+    <ClCompile Include="src\planeta\core\scene_setup_proxy.cpp" />
     <ClCompile Include="src\planeta\core\StandardConfigManager.cpp" />
     <ClCompile Include="src\planeta\core\StandardSystemSetUpSceneFunction.cpp" />
     <ClCompile Include="src\planeta\core\StandardSceneModuleSetFunction.cpp" />
@@ -630,7 +630,7 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\TInstant.cpp" />
     <ClCompile Include="src\planeta\core\StandardSaveManager.cpp" />
-    <ClCompile Include="src\planeta\core\SceneSetUpper.cpp" />
+    <ClCompile Include="src\planeta\core\scene_setupper.cpp" />
     <ClCompile Include="src\planeta\core\Screen.cpp" />
     <ClCompile Include="src\planeta\core\ScreenDrawer2D.cpp" />
     <ClCompile Include="src\planeta\core\ScreenDrawerGUI.cpp" />
@@ -701,7 +701,7 @@
     <ClCompile Include="src\planeta\core\Task.cpp" />
     <ClCompile Include="src\planeta\core\StandardTaskManager.cpp" />
     <ClCompile Include="src\planeta\core\StandardResourceManager.cpp" />
-    <ClCompile Include="src\planeta\core\Scene.cpp" />
+    <ClCompile Include="src\planeta\core\scene.cpp" />
     <ClCompile Include="src\planeta\core\StandardSceneManager.cpp" />
     <ClCompile Include="src\planeta\buildin\CStraightLineCollider2D.cpp" />
     <ClCompile Include="src\planeta\core\StandardPerformanceManager.cpp" />

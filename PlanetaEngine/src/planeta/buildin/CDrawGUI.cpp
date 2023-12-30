@@ -34,7 +34,7 @@ namespace plnt {
 
 	CDrawGUI::~CDrawGUI() = default;
 
-	void CDrawGUI::Draw(ScreenDrawerGUI &drawer) { DrawProc(drawer); }
+	void CDrawGUI::Draw(screen_drawer_gui &drawer) { DrawProc(drawer); }
 
 	int CDrawGUI::draw_priority() const { return impl_->priority; }
 

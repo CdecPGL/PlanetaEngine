@@ -45,10 +45,10 @@ namespace plnt {
 		}
 	}
 
-	void CDrawGraph2D::DrawProc(ScreenDrawer2D &drawer) {
+	void CDrawGraph2D::DrawProc(screen_drawer_2d &drawer) {
 		if (graph_draw_data_->graph_resource()) {
 			_UpdatePolygon();
-			drawer.DrawGraph(graph_draw_data_);
+			drawer.draw_graph(graph_draw_data_);
 		}
 	}
 

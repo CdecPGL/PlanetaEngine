@@ -45,7 +45,7 @@ namespace plnt {
 			SetUseZBuffer3D(true);
 			SetWriteZBuffer3D(true);
 			//DXライブラリ描画
-			main_screen_->HandleDrawReservations();
+			main_screen_->handle_draw_reservations();
 			//Effekseerの更新
 			auto eff_mgr = GetEffekseer3DManager();
 			eff_mgr->Update();
@@ -60,34 +60,34 @@ namespace plnt {
 			//GUI画面描画
 			SetUseZBuffer3D(false);
 			SetWriteZBuffer3D(false);
-			gui_screen_->HandleDrawReservations();
+			gui_screen_->handle_draw_reservations();
 
 			//デバッグ描画
-			debug_draw_screen_->HandleDrawReservations();
+			debug_draw_screen_->handle_draw_reservations();
 
 			//デバッグ情報描画
-			debug_information_screen_->HandleDrawReservations();
+			debug_information_screen_->handle_draw_reservations();
 
 			//画面更新
 			if (!(ScreenFlip() == 0 && ClearDrawScreen() == 0)) { return false; }
 			return true;
 		}
 
-		std::shared_ptr<Screen> StandardRenderingManager::get_main_screen() { return main_screen_; }
+		std::shared_ptr<screen> StandardRenderingManager::get_main_screen() { return main_screen_; }
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::get_debug_draw_screen() {
+		std::shared_ptr<plnt::private_::screen> StandardRenderingManager::get_debug_draw_screen() {
 			return debug_draw_screen_;
 		}
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::get_debug_information_screen() {
+		std::shared_ptr<plnt::private_::screen> StandardRenderingManager::get_debug_information_screen() {
 			return debug_information_screen_;
 		}
 
-		std::shared_ptr<plnt::private_::Screen> StandardRenderingManager::get_gui_screen() { return gui_screen_; }
+		std::shared_ptr<plnt::private_::screen> StandardRenderingManager::get_gui_screen() { return gui_screen_; }
 
-		StandardRenderingManager::StandardRenderingManager(): main_screen_(std::make_shared<Screen>()),
-		                                                      gui_screen_(std::make_shared<Screen>()),
-		                                                      debug_draw_screen_(std::make_shared<Screen>()),
-		                                                      debug_information_screen_(std::make_shared<Screen>()) { }
+		StandardRenderingManager::StandardRenderingManager(): main_screen_(std::make_shared<screen>()),
+		                                                      gui_screen_(std::make_shared<screen>()),
+		                                                      debug_draw_screen_(std::make_shared<screen>()),
+		                                                      debug_information_screen_(std::make_shared<screen>()) { }
 	}
 }

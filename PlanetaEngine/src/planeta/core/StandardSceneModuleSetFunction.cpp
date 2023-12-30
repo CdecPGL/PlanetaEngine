@@ -1,5 +1,5 @@
 ﻿#include "StandardSceneManagerUtility.hpp"
-#include "Scene.hpp"
+#include "scene.hpp"
 
 #include "StandardCollisionWorld.hpp"
 #include "StandardDrawSystem.hpp"

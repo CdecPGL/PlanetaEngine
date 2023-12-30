@@ -14,9 +14,9 @@ namespace plnt {
 			.shallow_copy_target(&CDrawPolygon2D::indexes_);
 	}
 
-	void CDrawPolygon2D::DrawProc(ScreenDrawer2D &drawer) {
+	void CDrawPolygon2D::DrawProc(screen_drawer_2d &drawer) {
 		UpdateVertex_();
-		drawer.DrawPolygon(vertexes_, indexes_, color());
+		drawer.draw_polygon(vertexes_, indexes_, color());
 	}
 
 	void CDrawPolygon2D::SetNumberOfVertexes(size_t n) {

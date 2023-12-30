@@ -4,7 +4,7 @@
 
 namespace plnt {
 	namespace private_ {
-		class Screen;
+		class screen;
 	}
 
 	/*! レンダリングマネージャの公開インターフェイス。描画を管理する。*/
@@ -14,8 +14,8 @@ namespace plnt {
 		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
 		virtual ~i_rendering_manager() = 0 { }
 		/*! メインスクリーンを取得する*/
-		[[nodiscard]] virtual std::shared_ptr<private_::Screen> get_main_screen() = 0;
+		[[nodiscard]] virtual std::shared_ptr<private_::screen> get_main_screen() = 0;
 		/*! GUIクリーンを取得する*/
-		[[nodiscard]] virtual std::shared_ptr<private_::Screen> get_gui_screen() = 0;
+		[[nodiscard]] virtual std::shared_ptr<private_::screen> get_gui_screen() = 0;
 	};
 }

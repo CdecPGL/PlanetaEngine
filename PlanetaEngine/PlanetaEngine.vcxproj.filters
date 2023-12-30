@@ -702,22 +702,22 @@
     <ClInclude Include="src\planeta\core\resource_referencer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SaveManager.hpp">
+    <ClInclude Include="src\planeta\core\save_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Scene.hpp">
+    <ClInclude Include="src\planeta\core\scene.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SceneManager.hpp">
+    <ClInclude Include="src\planeta\core\scene_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SceneModule.hpp">
+    <ClInclude Include="src\planeta\core\scene_module.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SceneSetUpper.hpp">
+    <ClInclude Include="src\planeta\core\scene_setupper.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SceneSetUpProxy.hpp">
+    <ClInclude Include="src\planeta\core\scene_setup_proxy.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\Screen.hpp">
@@ -1157,13 +1157,13 @@
     <ClCompile Include="src\planeta\core\resource_referencer.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\Scene.cpp">
+    <ClCompile Include="src\planeta\core\scene.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\SceneSetUpper.cpp">
+    <ClCompile Include="src\planeta\core\scene_setupper.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\SceneSetUpProxy.cpp">
+    <ClCompile Include="src\planeta\core\scene_setup_proxy.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\Screen.cpp">

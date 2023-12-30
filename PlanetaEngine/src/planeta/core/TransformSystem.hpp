@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_transform_system.hpp"
-#include "SceneModule.hpp"
+#include "scene_module.hpp"
 
 namespace plnt {
 	class CTransform2D;

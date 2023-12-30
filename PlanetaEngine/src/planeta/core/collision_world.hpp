@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_collision_world.hpp"
-#include "SceneModule.hpp"
+#include "scene_module.hpp"
 
 namespace plnt {
 	class CCollider2D;

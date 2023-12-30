@@ -13,17 +13,17 @@ namespace plnt {
 		//////////////////////////////////////////////////////////////////////////
 		class StandardDebugInformationAdder : public i_debug_information_adder {
 		public:
-			StandardDebugInformationAdder(ScreenDrawerGUI &screen_drawer_gui) : screen_drawer_gui_(
+			StandardDebugInformationAdder(screen_drawer_gui &screen_drawer_gui) : screen_drawer_gui_(
 				screen_drawer_gui) { };
 
 			virtual void add_line(const std::string line) override {
-				screen_drawer_gui_.DrawStringByDefaultFont({0, 16 * line_count_}, {1, 1}, line, color::white(),
+				screen_drawer_gui_.draw_string_by_default_font({0, 16 * line_count_}, {1, 1}, line, color::white(),
 				                                           color::black());
 				++line_count_;
 			}
 
 		private:
-			ScreenDrawerGUI &screen_drawer_gui_;
+			screen_drawer_gui &screen_drawer_gui_;
 			int line_count_ = 0;
 		};
 
@@ -32,22 +32,22 @@ namespace plnt {
 		//////////////////////////////////////////////////////////////////////////
 		class StandardDebugDrawer : public i_debug_drawer {
 		public:
-			StandardDebugDrawer(ScreenDrawer2D &screen_drawer_2d) : screen_drawer_2d_(screen_drawer_2d) { };
+			StandardDebugDrawer(screen_drawer_2d &screen_drawer_2d) : screen_drawer_2d_(screen_drawer_2d) { };
 
 			virtual void draw_line(const Vector2Df &spos, const Vector2Df &epos, const color &color) override {
-				screen_drawer_2d_.DrawWire({spos, epos}, 1, color);
+				screen_drawer_2d_.draw_wire({spos, epos}, 1, color);
 			}
 
 			virtual void draw_circle(const Vector2Df &pos, float radius, const color &color, bool filled) override {
-				screen_drawer_2d_.DrawCircle(pos, radius, color);
+				screen_drawer_2d_.draw_circle(pos, radius, color);
 			}
 
 			virtual void draw_lines(const std::vector<Vector2Df> &pos_list, const color &color) override {
-				screen_drawer_2d_.DrawWire(pos_list, 1, color);
+				screen_drawer_2d_.draw_wire(pos_list, 1, color);
 			}
 
 		private:
-			ScreenDrawer2D &screen_drawer_2d_;
+			screen_drawer_2d &screen_drawer_2d_;
 		};
 
 		//////////////////////////////////////////////////////////////////////////
@@ -64,8 +64,8 @@ namespace plnt {
 			bool is_debug_information_showing = false;
 			bool enable_debug_draw = false;
 			DebugInformationMapType::iterator showing_debug_information_iterator;
-			std::shared_ptr<Screen> debug_draw_screen;
-			std::shared_ptr<Screen> debug_info_screen;
+			std::shared_ptr<screen> debug_draw_screen;
+			std::shared_ptr<screen> debug_info_screen;
 
 			void SwitchShowingDebugInformation() {
 				if (showing_debug_information_iterator != debug_informations.end()) {
@@ -105,7 +105,7 @@ namespace plnt {
 			if (impl_->is_debug_information_showing) {
 				//F2でデバッグ表示する情報切り替え
 				if (inp_mgr.key_push(keyboard::f2)) { impl_->SwitchShowingDebugInformation(); }
-				ScreenDrawerGUI scr_drawer_gui{*impl_->debug_info_screen};
+				screen_drawer_gui scr_drawer_gui{*impl_->debug_info_screen};
 				StandardDebugInformationAdder info_adder{scr_drawer_gui};
 				//デバッグ情報があったら表示
 				if (impl_->showing_debug_information_iterator != impl_->debug_informations.end()) {
@@ -120,7 +120,7 @@ namespace plnt {
 			if (inp_mgr.key_push(keyboard::f3)) { impl_->enable_debug_draw = !impl_->enable_debug_draw; }
 			//デバッグ描画
 			if (impl_->enable_debug_draw) {
-				ScreenDrawer2D scr_drawer_2d{*impl_->debug_draw_screen};
+				screen_drawer_2d scr_drawer_2d{*impl_->debug_draw_screen};
 				StandardDebugDrawer drawer{scr_drawer_2d};
 				for (auto &&dd : impl_->debug_draws) { (dd.second)(drawer); }
 			}

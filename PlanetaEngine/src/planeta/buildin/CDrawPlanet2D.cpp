@@ -40,14 +40,14 @@ namespace plnt {
 
 	CDrawPlanet2D::~CDrawPlanet2D() = default;
 
-	void CDrawPlanet2D::DrawProc(ScreenDrawer2D &drawer) {
+	void CDrawPlanet2D::DrawProc(screen_drawer_2d &drawer) {
 		if (graph_draw_data_->graph_resource()) {
 			if (set_polygon_flag_) {
 				SetPolygon_();
 				set_polygon_flag_ = false;
 			}
 			UpdatePolygon_();
-			drawer.DrawGraph(graph_draw_data_);
+			drawer.draw_graph(graph_draw_data_);
 		}
 	}
 
