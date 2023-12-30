@@ -2,7 +2,7 @@
 
 #include <windows.h>
 
-#include "planeta/core/ResourceBase.hpp"
+#include "..\core\resource_base.hpp"
 
 namespace plnt {
 	/*フォントリソース*/

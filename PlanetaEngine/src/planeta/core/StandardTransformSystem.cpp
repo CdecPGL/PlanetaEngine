@@ -9,11 +9,11 @@ namespace plnt {
 
 		StandardTransformSystem::~StandardTransformSystem() { }
 
-		bool StandardTransformSystem::Initialize() { return true; }
+		bool StandardTransformSystem::initialize() { return true; }
 
-		void StandardTransformSystem::Update() { }
+		void StandardTransformSystem::update() { }
 
-		void StandardTransformSystem::Finalize() { }
+		void StandardTransformSystem::finalize() { }
 
 		void StandardTransformSystem::ApplyVelocity() {
 			//ApplyVelocityに登録削除関連のコードはないはずなので、このループ内ではT2Dの登録削除(t2d_listの変更)は発生しない。

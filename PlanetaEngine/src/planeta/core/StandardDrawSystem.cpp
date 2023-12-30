@@ -1,7 +1,7 @@
 ﻿#include <functional>
 
 #include "game.hpp"
-#include "RenderingManager.hpp"
+#include "rendering_manager.hpp"
 #include "config_manager.hpp"
 #include "StandardDrawSystem.hpp"
 #include "planeta/buildin/CDraw2D.hpp"
@@ -80,9 +80,9 @@ namespace plnt {
 			cdrawgui_holder_.Iterate([&sd_gui = *screen_drawer_gui_](CDrawGUI &com) { com.Draw(sd_gui); });
 		}
 
-		void StandardDrawSystem::Update() { }
+		void StandardDrawSystem::update() { }
 
-		bool StandardDrawSystem::Initialize() {
+		bool StandardDrawSystem::initialize() {
 			screen_ = game::instance().rendering_manager()->get_main_screen();
 			if (!screen_) { return false; }
 			screen_drawer_2d_ = std::make_unique<ScreenDrawer2D>(*screen_);
@@ -90,9 +90,9 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardDrawSystem::Finalize() { return; }
+		void StandardDrawSystem::finalize() { return; }
 
-		void StandardDrawSystem::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+		void StandardDrawSystem::debug_information_add_handle(i_debug_information_adder &di_adder) {
 			di_adder.add_line("-----GameObjectDrawSystem-----");
 			di_adder.add_line_v("2D描画コンポーネント(有効数/総数):", cdraw2d_holder_.active_count(), "/", cdraw2d_holder_.all_count());
 			di_adder.add_line_v("GUI描画コンポーネント(有効数/総数):", cdrawgui_holder_.active_count(), "/",

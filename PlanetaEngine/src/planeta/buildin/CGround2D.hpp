@@ -4,7 +4,7 @@
 
 #include "..\core\game_object_standard_component.hpp"
 #include "planeta/core/Vector2D.hpp"
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 #include "planeta/core/i_collider_with_collider_2d.hpp"
 #include "..\math\math_constant.hpp"
 

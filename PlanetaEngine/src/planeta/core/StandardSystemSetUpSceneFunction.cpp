@@ -10,7 +10,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool StandardSystemSetUpScene(Scene &scene) {
+		bool StandardSystemSetUpScene(scene &scene) {
 			//ゲームタスク
 			auto &t_mgr = *scene.task_manager_internal_pointer();
 			//システムタスク追加

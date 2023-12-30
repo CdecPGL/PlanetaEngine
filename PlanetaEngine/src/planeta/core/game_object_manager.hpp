@@ -4,7 +4,7 @@
 #include "SceneModule.hpp"
 
 namespace plnt::private_ {
-	class game_object_manager : public i_game_object_manager, public SceneModule {
+	class game_object_manager : public i_game_object_manager, public scene_module {
 	public:
 		game_object_manager() = default;
 		game_object_manager(const game_object_manager &) = delete;

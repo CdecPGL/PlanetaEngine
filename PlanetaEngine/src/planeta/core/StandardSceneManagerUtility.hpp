@@ -2,8 +2,8 @@
 
 namespace plnt {
 	namespace private_ {
-		class Scene;
-		void SetStandardSceneModules(Scene &scene);
-		bool StandardSystemSetUpScene(Scene &scene);
+		class scene;
+		void SetStandardSceneModules(scene &scene);
+		bool StandardSystemSetUpScene(scene &scene);
 	}
 }

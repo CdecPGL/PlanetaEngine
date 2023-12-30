@@ -36,7 +36,7 @@ namespace plnt {
 			virtual bool remove() = 0;
 		};
 
-		class draw_system : public i_draw_system, public SceneModule {
+		class draw_system : public i_draw_system, public scene_module {
 		public:
 			draw_system() = default;
 			draw_system(const draw_system &) = delete;

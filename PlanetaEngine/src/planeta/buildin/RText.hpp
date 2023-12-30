@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/ResourceBase.hpp"
+#include "..\core\resource_base.hpp"
 
 namespace plnt {
 	class RText : public resource_base {

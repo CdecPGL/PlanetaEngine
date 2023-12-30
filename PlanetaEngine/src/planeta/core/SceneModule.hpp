@@ -10,19 +10,25 @@ namespace plnt {
 	namespace private_ {
 		class i_scene_internal;
 
-		class SceneModule : public object, private util::non_copyable<SceneModule> {
+		// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+		class scene_module : public object, util::non_copyable<scene_module> {
 		public:
-			virtual ~SceneModule() = default;
-			virtual bool Initialize() { return true; };
-			virtual void Finalize() { return; };
-			virtual void Update() = 0;
+			scene_module() = default;
+			scene_module(const scene_module &) = delete;
+			scene_module(scene_module &&) = delete;
+			~scene_module() override = default;
+			scene_module &operator=(scene_module &&) = delete;
 
-			virtual void DebugInformationAddHandle(i_debug_information_adder &di_adder) { };
+			virtual bool initialize() { return true; }
+			virtual void finalize() { }
+			virtual void update() = 0;
 
-			void SetScene(const WeakPointer<i_scene_internal> &scene) { scene_ = scene; }
+			virtual void debug_information_add_handle(i_debug_information_adder &di_adder) { }
+
+			void set_scene(const WeakPointer<i_scene_internal> &scene) { scene_ = scene; }
 
 		protected:
-			WeakPointer<i_scene_internal> scene_internal_interface() { return scene_; }
+			[[nodiscard]] WeakPointer<i_scene_internal> scene_internal_interface() { return scene_; }
 
 		private:
 			WeakPointer<i_scene_internal> scene_;

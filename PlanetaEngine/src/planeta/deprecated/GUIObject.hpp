@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <memory>
 #include "planeta/core/object.hpp"
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 #include "ObjectHolderTemplate_WithoutID.hpp"
 #include "GUIManagerConnection.hpp"
 #include "NonCopyable.hpp"
@@ -39,10 +39,10 @@ namespace plnt {
 	//		bool Close();
 	//		void Dispose();
 	//		/*アクセサ*/
-	//		const Vector2Di position()const { return rect_angle_.position; }
-	//		void position(const Vector2Di& p) { rect_angle_.position = p; PositionChangedProc(); }
-	//		const Vector2Di size()const { return rect_angle_.size; }
-	//		void size(const Vector2Di& s) { rect_angle_.size = s; SizeChangedProc(); }
+	//		const Vector2Di position()const { return rectangle_.position; }
+	//		void position(const Vector2Di& p) { rectangle_.position = p; PositionChangedProc(); }
+	//		const Vector2Di size()const { return rectangle_.size; }
+	//		void size(const Vector2Di& s) { rectangle_.size = s; SizeChangedProc(); }
 	//		bool is_focused()const { return is_focused_; }
 	//		void is_focused(bool f) {
 	//			if (f == is_focused_) { return; }
@@ -60,7 +60,7 @@ namespace plnt {
 	//		}
 	//		bool RemoveComponent(const std::shared_ptr<GUIComponent>& c) { return component_holder_->unresist_object(c); }
 	//	private:
-	//		utility::RectAngle<int> rect_angle_;
+	//		utility::RectAngle<int> rectangle_;
 	//		bool is_focused_ = false; //フォーカスされているかフラグ
 	//		bool is_position_updated_since_last_draw = true; //前回描画時から位置が更新されたかフラグ
 	//		bool is_size_updated_since_last_draw = true; //前回描画時からサイズが変更されたかフラグ

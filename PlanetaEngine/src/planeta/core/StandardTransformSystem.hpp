@@ -10,9 +10,9 @@ namespace plnt {
 		public:
 			StandardTransformSystem();
 			~StandardTransformSystem();
-			bool Initialize() override;
-			void Update() override;
-			void Finalize() override;
+			bool initialize() override;
+			void update() override;
+			void finalize() override;
 
 			void ApplyVelocity() override;
 

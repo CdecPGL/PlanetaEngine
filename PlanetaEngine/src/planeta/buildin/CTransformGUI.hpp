@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "..\core\game_object_system_component.hpp"
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 
 namespace plnt {
 	//! GUI用トランスフォームコンポーネント(親子関係関連の機能は未実装)
@@ -30,7 +30,7 @@ namespace plnt {
 		//! 変形中心位置を設定(0.0-1.0)
 		CTransformGUI &pivot(const Vector2Dd &p);
 		//! GUI領域を表す矩形を取得。回転は考慮されない
-		//const rect_angle_i& rect()const;
+		//const rectangle_i& rect()const;
 		//! アンカー左上の位置を取得。親CTransformGUI中での位置を(0.0-1.0)^2で表す
 		//Vector2Dd anchor_min()const;
 		//! アンカー左上の位置を設定。親CTransformGUI中での位置を(0.0-1.0)^2で表す

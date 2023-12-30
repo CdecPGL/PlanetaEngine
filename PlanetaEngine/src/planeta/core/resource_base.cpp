@@ -1,6 +1,6 @@
 ﻿#include "boost/filesystem/path.hpp"
 
-#include "ResourceBase.hpp"
+#include "resource_base.hpp"
 #include "log_utility.hpp"
 #include "file.hpp"
 

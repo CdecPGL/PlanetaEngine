@@ -414,7 +414,7 @@
     <ClInclude Include="src\planeta\core\matrix_33.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\RectAngle.hpp">
+    <ClInclude Include="src\planeta\core\rectangle.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\Signal.hpp">
@@ -684,22 +684,22 @@
     <ClInclude Include="src\planeta\core\prefix_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\RangeUtility.hpp">
+    <ClInclude Include="src\planeta\core\range_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\RenderingManager.hpp">
+    <ClInclude Include="src\planeta\core\rendering_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ResourceBase.hpp">
+    <ClInclude Include="src\planeta\core\resource_base.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ResourceHolder.hpp">
+    <ClInclude Include="src\planeta\core\resource_holder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ResourceManager.hpp">
+    <ClInclude Include="src\planeta\core\resource_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ResourceReferencer.hpp">
+    <ClInclude Include="src\planeta\core\resource_referencer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\SaveManager.hpp">
@@ -1151,10 +1151,10 @@
     <ClCompile Include="src\planeta\core\prefix_utility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\ResourceBase.cpp">
+    <ClCompile Include="src\planeta\core\resource_base.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\ResourceReferencer.cpp">
+    <ClCompile Include="src\planeta\core\resource_referencer.cpp">
       <Filter>PlanetaEngine\SubSystems\Resource</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\Scene.cpp">

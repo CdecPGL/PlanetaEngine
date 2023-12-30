@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 
 #include "CDrawGUI.hpp"
 
@@ -16,9 +16,9 @@ namespace plnt {
 		/*! 表示する画像のリソースIDを設定する*/
 		bool resource_id(const std::string &res_id);
 		/*! 画像上の描画領域をピクセル単位で取得*/
-		const rect_angle_i &draw_area() const;
+		const rectangle_i &draw_area() const;
 		/*! 画像上の描画領域をピクセル単位で設定*/
-		CDrawGraphGUI &draw_area(const rect_angle_i &rect);
+		CDrawGraphGUI &draw_area(const rectangle_i &rect);
 		/*! 画像を反転させるか取得*/
 		const bool reverse() const;
 		/*! 画像を反転させるか設定*/

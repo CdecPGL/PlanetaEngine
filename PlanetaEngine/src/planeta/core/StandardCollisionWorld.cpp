@@ -31,7 +31,7 @@ namespace plnt {
 
 		StandardCollisionWorld::~StandardCollisionWorld() { }
 
-		void StandardCollisionWorld::Update() { }
+		void StandardCollisionWorld::update() { }
 
 		std::pair<int, int> StandardCollisionWorld::ProcessCollisionInAGroup(
 			CollisionGroupType &group, CollisionEventQue &collision_event_que) const {
@@ -275,7 +275,7 @@ namespace plnt {
 			for (auto &eve : col_eve_que) { eve(); }
 		}
 
-		bool StandardCollisionWorld::Initialize() {
+		bool StandardCollisionWorld::initialize() {
 			SetCollisionGroupMatrix();
 			//デバッグ描画を作成
 			game::instance().debug_manager()->create_debug_draw_channel("CollisionSystem",
@@ -285,7 +285,7 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardCollisionWorld::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+		void StandardCollisionWorld::debug_information_add_handle(i_debug_information_adder &di_adder) {
 			di_adder.add_line("-----CollisionSystem-----");
 			di_adder.add_line_v("コライダー数:", collider_resist_data_map_.size());
 			di_adder.add_line_v("地面と衝突可能なコライダー数:", collision_with_ground_list_.size());
@@ -301,7 +301,7 @@ namespace plnt {
 			}
 		}
 
-		void StandardCollisionWorld::Finalize() {
+		void StandardCollisionWorld::finalize() {
 			//デバッグ描画を破棄
 			game::instance().debug_manager()->delete_debug_draw_channel("CollisionSystem");
 		}

@@ -5,7 +5,7 @@
 #include "Effekseer.h"
 #pragma warning(pop)
 
-#include "planeta/core/ResourceBase.hpp"
+#include "..\core\resource_base.hpp"
 
 namespace Effekseer {
 	class Effect;

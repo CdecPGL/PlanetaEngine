@@ -9,7 +9,7 @@ namespace plnt {
 	namespace private_ {
 		struct collider_2d_data;
 
-		class collision_world : public i_collision_world, public SceneModule {
+		class collision_world : public i_collision_world, public scene_module {
 		public:
 			collision_world() = default;
 			collision_world(const collision_world &) = delete;

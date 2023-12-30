@@ -74,11 +74,11 @@ namespace plnt {
 	//		{
 	//			//自分の位置が更新されていたら更新する
 	//			if (my_update_info->is_position_updated) {
-	//				relative_draw_area_buffer_.position = rect_angle_.position;
+	//				relative_draw_area_buffer_.position = rectangle_.position;
 	//			}
 	//			//自分のサイズが更新されていたら更新する
 	//			if (my_update_info->is_size_updated) {
-	//				relative_draw_area_buffer_.size = rect_angle_.size;
+	//				relative_draw_area_buffer_.size = rectangle_.size;
 	//			}
 	//			//自分の辺固定位置サイズが更新されたか、親の位置が更新されていたら、その計算を行う(これはさらに最適化できそう)
 	//			if (my_update_info->is_edge_fix_updated |my_update_info->is_position_updated | my_update_info->is_size_updated | parent_draw_data.update_info.is_size_updated) {
@@ -97,7 +97,7 @@ namespace plnt {
 	//					my_update_info->is_size_updated = true;
 	//				}
 	//				else if (e & er) { //右
-	//					relative_draw_area_buffer_.position.x = parent_draw_data.draw_area.size.x - edge_fix_padding_[static_cast<unsigned int>(edge::Right)] - rect_angle_.size.x;
+	//					relative_draw_area_buffer_.position.x = parent_draw_data.draw_area.size.x - edge_fix_padding_[static_cast<unsigned int>(edge::Right)] - rectangle_.size.x;
 	//					my_update_info->is_position_updated = true;
 	//				}
 	//				else if (e & el) { //左
@@ -112,7 +112,7 @@ namespace plnt {
 	//					my_update_info->is_size_updated = true;
 	//				}
 	//				else if (e & et) { //上
-	//					relative_draw_area_buffer_.position.y = parent_draw_data.draw_area.size.y - edge_fix_padding_[static_cast<unsigned int>(edge::Bottom)] - rect_angle_.size.y;
+	//					relative_draw_area_buffer_.position.y = parent_draw_data.draw_area.size.y - edge_fix_padding_[static_cast<unsigned int>(edge::Bottom)] - rectangle_.size.y;
 	//					my_update_info->is_position_updated = true;
 	//				}
 	//				else if (e & eb) { //下

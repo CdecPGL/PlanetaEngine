@@ -17,9 +17,9 @@ namespace plnt {
 		public:
 			StandardDrawSystem();
 			~StandardDrawSystem();
-			bool Initialize() override;
-			void Finalize() override;
-			void Update() override;
+			bool initialize() override;
+			void finalize() override;
+			void update() override;
 			void execute_draw() override;
 			void execute_draw_gui() override;
 			void apply_camera_state() override;
@@ -34,7 +34,7 @@ namespace plnt {
 				const std::shared_ptr<CCamera2D> &camera_component) override;
 
 			/*デバッグ用*/
-			void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
+			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 
 			/*! GUI座標をGameObject座空間標に変換*/
 			Vector2Dd covert_position_screen_space_to_game_object_space(const Vector2Di &gui_space_pos) const override;

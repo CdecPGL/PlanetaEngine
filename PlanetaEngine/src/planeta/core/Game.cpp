@@ -5,12 +5,12 @@
 #include "DxLib.h"
 
 #include "game.hpp"
-#include "ResourceManager.hpp"
+#include "resource_manager.hpp"
 #include "log_manager.hpp"
 #include "SceneManager.hpp"
 #include "input_manager.hpp"
 #include "perfoamance_manager.hpp"
-#include "RenderingManager.hpp"
+#include "rendering_manager.hpp"
 #include "SoundManager.hpp"
 #include "SaveManager.hpp"
 #include "debug_manager.hpp"
@@ -36,7 +36,7 @@ namespace plnt {
 		std::shared_ptr<private_::performance_manager> performance_manager;
 		std::shared_ptr<private_::rendering_manager> rendering_manager;
 		std::shared_ptr<SoundManager> sound_manager;
-		std::shared_ptr<SaveManager> save_manager;
+		std::shared_ptr<private_::save_manager> save_manager;
 		std::shared_ptr<private_::debug_manager> debug_manager;
 		std::shared_ptr<private_::config_manager> config_manager;
 
@@ -130,9 +130,9 @@ namespace plnt {
 				PE_LOG_FATAL("セーブマネージャが設定されていません。");
 				return false;
 			}
-			save_manager->SetFileManipurator_(save_data_dir_manipulator);
+			save_manager->set_file_manipulator(save_data_dir_manipulator);
 			if (save_manager->
-				Initialize()) { finalize_handles_.push_front([this] { save_manager->Finalize(); }); } else {
+				initialize()) { finalize_handles_.push_front([this] { save_manager->finalize(); }); } else {
 				PE_LOG_FATAL("セーブデータシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -355,7 +355,7 @@ namespace plnt {
 
 	std::shared_ptr<i_sound_manager> game::sound_manager() const { return impl_->sound_manager; }
 
-	void game::set_save_manager(const std::shared_ptr<SaveManager> &mgr) const {
+	void game::set_save_manager(const std::shared_ptr<private_::save_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;

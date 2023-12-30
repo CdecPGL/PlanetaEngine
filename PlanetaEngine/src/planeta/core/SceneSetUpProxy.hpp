@@ -4,15 +4,15 @@ namespace plnt {
 	class i_scene;
 
 	namespace private_ {
-		class Scene;
+		class scene;
 	}
 
-	class SceneSetUpProxy {
+	class scene_set_up_proxy {
 	public:
-		SceneSetUpProxy(private_::Scene &pscene);
-		i_scene &scene();
+		explicit scene_set_up_proxy(private_::scene &scene);
+		[[nodiscard]] i_scene &scene() const;
 
 	private:
-		private_::Scene &scene_;
+		private_::scene &scene_;
 	};
 }

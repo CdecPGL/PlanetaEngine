@@ -1,5 +1,5 @@
 ﻿#include "init_functions.hpp"
-#include "ResourceManager.hpp"
+#include "resource_manager.hpp"
 #include "SystemVariables.hpp"
 
 #include "planeta/buildin/RGraph.hpp"

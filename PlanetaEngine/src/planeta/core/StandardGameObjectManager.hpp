@@ -28,12 +28,12 @@ namespace plnt {
 
 			//システム関数
 			/*初期化*/
-			bool Initialize() override;
+			bool initialize() override;
 			/*終了処理*/
-			void Finalize() override;
+			void finalize() override;
 
 			/*管理処理*/
-			void Update() override;
+			void update() override;
 			/*ゲームオブジェクト登録解除(終了処理を行う)*/
 			bool remove_game_object(int id) override;
 			/*有効化*/
@@ -62,7 +62,7 @@ namespace plnt {
 			int RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go);
 			int RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go, const std::string &name);
 
-			virtual void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
+			virtual void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 		};
 	}
 }

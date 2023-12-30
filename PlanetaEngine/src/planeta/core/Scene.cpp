@@ -10,116 +10,115 @@
 #include "ScreenDrawer2D.hpp"
 #include "ScreenDrawerGUI.hpp"
 
-namespace plnt {
-	namespace private_ {
-		Scene::Scene() { }
+namespace plnt::private_ {
+	scene::scene() = default;
+	scene::~scene() = default;
 
-		Scene::~Scene() { }
+	bool scene::initialize() const {
+		//モジュールを初期化
+		if (iterate_scene_module([](scene_module &sm) { return sm.initialize(); })) { return true; }
+		PE_LOG_ERROR("Sceneの初期化に失敗しました。");
+		return false;
+	}
 
-		bool Scene::Initialize() {
-			//モジュールを初期化
-			if (IterateSceneModule_([](private_::SceneModule &sm) { return sm.Initialize(); })) { return true; } else {
-				PE_LOG_ERROR("Sceneの初期化に失敗しました。");
-				return false;
-			}
+	bool scene::finalize() const {
+		//モジュールの終了処理を行う
+		reverse_iterate_scene_module([](scene_module &sm) {
+			sm.finalize();
+			return true;
+		});
+		return true;
+	}
+
+	void scene::update() const {
+		try {
+			task_manager_->ExcuteTask(); //タスク実行
+		} catch (null_weak_pointer_exception &e) {
+			PE_LOG_ERROR("TaskManager::Updateで無効なWeakPointerが参照されました。", e.what());
+			return;
 		}
-
-		bool Scene::Finalize() {
-			//モジュールの終了処理を行う
-			ReverseIterateSceneModule_([](SceneModule &sm) {
-				sm.Finalize();
+		try {
+			//各シーンモジュールの更新
+			iterate_scene_module([](scene_module &sm) {
+				sm.update();
 				return true;
 			});
+		} catch (null_weak_pointer_exception &e) {
+			PE_LOG_ERROR("シーンモジュールの更新において無効なWeakPointerが参照されました。", e.what());
+		}
+	}
+
+	bool scene::iterate_scene_module(std::function<bool(scene_module &)> &&proc) const {
+		if (!proc(*game_object_manager_)) { return false; }
+		if (!proc(*collision_world_)) { return false; }
+		if (!proc(*draw_system_)) { return false; }
+		if (!proc(*transform_system_)) { return false; }
+		if (!proc(*task_manager_)) { return false; }
+		return true;
+	}
+
+	bool scene::reverse_iterate_scene_module(std::function<bool(scene_module &)> &&proc) const {
+		if (!proc(*task_manager_)) { return false; }
+		if (!proc(*transform_system_)) { return false; }
+		if (!proc(*draw_system_)) { return false; }
+		if (!proc(*collision_world_)) { return false; }
+		if (!proc(*game_object_manager_)) { return false; }
+		return true;
+	}
+
+	void scene::debug_information_add_handle(i_debug_information_adder &di_adder) const {
+		iterate_scene_module([&di_adder](scene_module &sm) {
+			sm.debug_information_add_handle(di_adder);
 			return true;
-		}
+		});
+	}
 
-		void Scene::Update() {
-			try {
-				task_manager_->ExcuteTask(); //タスク実行
-			} catch (null_weak_pointer_exception &e) {
-				PE_LOG_ERROR("TaskManager::Updateで無効なWeakPointerが参照されました。", e.what());
-				return;
-			}
-			try {
-				//各シーンモジュールの更新
-				IterateSceneModule_([](SceneModule &sm) {
-					sm.Update();
-					return true;
-				});
-			} catch (null_weak_pointer_exception &e) {
-				PE_LOG_ERROR("シーンモジュールの更新において無効なWeakPointerが参照されました。", e.what());
-				return;
-			}
-		}
+	WeakPointer<collision_world> scene::collision_world_internal_pointer() {
+		return collision_world_;
+	}
 
-		bool Scene::IterateSceneModule_(std::function<bool(SceneModule &)> &&proc) {
-			if (!proc(*game_object_manager_)) { return false; }
-			if (!proc(*collision_world_)) { return false; }
-			if (!proc(*draw_system_)) { return false; }
-			if (!proc(*transform_system_)) { return false; }
-			if (!proc(*task_manager_)) { return false; }
+	WeakPointer<draw_system> scene::draw_system_internal_pointer() { return draw_system_; }
+
+	WeakPointer<game_object_manager> scene::game_object_manager_internal_pointer() {
+		return game_object_manager_;
+	}
+
+	WeakPointer<TaskManager> scene::task_manager_internal_pointer() { return task_manager_; }
+
+	WeakPointer<TransformSystem> scene::transform_system_internal_pointer() {
+		return transform_system_;
+	}
+
+	i_collision_world &scene::collision_world() { return *collision_world_; }
+
+	i_draw_system &scene::draw_system() { return *draw_system_; }
+
+	i_game_object_manager &scene::game_object_manager() { return *game_object_manager_; }
+
+	i_task_manager &scene::task_manager() { return *task_manager_; }
+
+	i_transform_system &scene::transform_system() { return *transform_system_; }
+
+	void scene::set_task_manager(std::shared_ptr<TaskManager> &&mgr) { task_manager_ = std::move(mgr); }
+
+	void scene::set_game_object_manager(std::shared_ptr<private_::game_object_manager> &&mgr) {
+		game_object_manager_ = std::move(mgr);
+	}
+
+	void scene::set_collision_world(std::shared_ptr<private_::collision_world> &&mgr) {
+		collision_world_ = std::move(mgr);
+	}
+
+	void scene::set_draw_system(std::shared_ptr<private_::draw_system> &&mgr) { draw_system_ = std::move(mgr); }
+
+	void scene::set_transform_manager(std::shared_ptr<TransformSystem> &&mgr) {
+		transform_system_ = std::move(mgr);
+	}
+
+	void scene::set_scene_to_modules() {
+		iterate_scene_module([this](scene_module &sm) {
+			sm.set_scene(shared_from_this());
 			return true;
-		}
-
-		bool Scene::ReverseIterateSceneModule_(std::function<bool(SceneModule &)> &&proc) {
-			if (!proc(*task_manager_)) { return false; }
-			if (!proc(*transform_system_)) { return false; }
-			if (!proc(*draw_system_)) { return false; }
-			if (!proc(*collision_world_)) { return false; }
-			if (!proc(*game_object_manager_)) { return false; }
-			return true;
-		}
-
-		void Scene::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
-			IterateSceneModule_([&di_adder](SceneModule &sm) {
-				sm.DebugInformationAddHandle(di_adder);
-				return true;
-			});
-		}
-
-		plnt::WeakPointer<plnt::private_::collision_world> Scene::collision_world_internal_pointer() {
-			return collision_world_;
-		}
-
-		plnt::WeakPointer<draw_system> Scene::draw_system_internal_pointer() { return draw_system_; }
-
-		plnt::WeakPointer<plnt::private_::game_object_manager> Scene::game_object_manager_internal_pointer() {
-			return game_object_manager_;
-		}
-
-		plnt::WeakPointer<plnt::private_::TaskManager> Scene::task_manager_internal_pointer() { return task_manager_; }
-
-		plnt::WeakPointer<plnt::private_::TransformSystem> Scene::transform_system_internal_pointer() {
-			return transform_system_;
-		}
-
-		plnt::i_collision_world &Scene::collision_world() { return *collision_world_; }
-
-		plnt::i_draw_system &Scene::draw_system() { return *draw_system_; }
-
-		plnt::i_game_object_manager &Scene::game_object_manager() { return *game_object_manager_; }
-
-		plnt::i_task_manager &Scene::task_manager() { return *task_manager_; }
-
-		plnt::i_transform_system &Scene::transform_system() { return *transform_system_; }
-
-		void Scene::SetTaskManager(std::shared_ptr<TaskManager> &&mgr) { task_manager_ = std::move(mgr); }
-
-		void Scene::SetGameObjectManager(std::shared_ptr<private_::game_object_manager> &&mgr) {
-			game_object_manager_ = std::move(mgr);
-		}
-
-		void Scene::SetCollisionWorld(std::shared_ptr<private_::collision_world> &&mgr) { collision_world_ = std::move(mgr); }
-
-		void Scene::SetDrawSystem(std::shared_ptr<private_::draw_system> &&mgr) { draw_system_ = std::move(mgr); }
-
-		void Scene::SetTransformManager(std::shared_ptr<TransformSystem> &&mgr) { transform_system_ = std::move(mgr); }
-
-		void Scene::SetSceneToModules() {
-			IterateSceneModule_([this](SceneModule &sm) {
-				sm.SetScene(shared_from_this());
-				return true;
-			});
-		}
+		});
 	}
 }

@@ -24,7 +24,7 @@ namespace plnt {
 		class performance_manager;
 		class rendering_manager;
 		class SoundManager;
-		class SaveManager;
+		class save_manager;
 		class debug_manager;
 		class config_manager;
 	}
@@ -62,7 +62,7 @@ namespace plnt {
 		/*! サウンドマネージャを設定する(初期化前)*/
 		void set_sound_manager(const std::shared_ptr<private_::SoundManager> &mgr) const;
 		/*! セーブマネージャを設定する(初期化前)*/
-		void set_save_manager(const std::shared_ptr<private_::SaveManager> &mgr) const;
+		void set_save_manager(const std::shared_ptr<private_::save_manager> &mgr) const;
 		/*! デバッグマネージャを設定する(初期化前)*/
 		void set_debug_manager(const std::shared_ptr<private_::debug_manager> &mgr) const;
 		/*! コンフィグマネージャを設定する(初期化前)*/

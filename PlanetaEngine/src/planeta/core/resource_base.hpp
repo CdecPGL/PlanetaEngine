@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "object.hpp"
-#include "ResourceReferencer.hpp"
+#include "resource_referencer.hpp"
 
 namespace plnt {
 	class file;

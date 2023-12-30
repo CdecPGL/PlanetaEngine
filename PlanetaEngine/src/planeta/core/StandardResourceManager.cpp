@@ -10,8 +10,8 @@
 #include "log_utility.hpp"
 #include "file_manipulator.hpp"
 #include "SystemVariables.hpp"
-#include "ResourceReferencer.hpp"
-#include "ResourceBase.hpp"
+#include "resource_referencer.hpp"
+#include "resource_base.hpp"
 
 namespace {
 	std::string UnifyPath(const std::string &src) { return boost::algorithm::replace_all_copy(src, "/", "\\"); }

@@ -16,8 +16,8 @@ namespace plnt {
 		public:
 			StandardCollisionWorld();
 			~StandardCollisionWorld();
-			bool Initialize() override;
-			void Finalize() override;
+			bool initialize() override;
+			void finalize() override;
 			bool resist(const private_::collider_2d_data &collider_data) override; //引数は内部でコピーされるので一時オブジェクトでよい。
 			bool remove(const CCollider2D *col_com_ptr) override;
 			bool change_collision_group(const CCollider2D *col_com_ptr, const std::string &group_name) override;
@@ -26,7 +26,7 @@ namespace plnt {
 
 		private:
 			void SetCollisionGroupMatrix();
-			void Update() override final;
+			void update() override final;
 			void RemoveAll();
 			struct CCollider2DResistData_;
 			using CollisionGroupType = std::list<std::reference_wrapper<CCollider2DResistData_>>;
@@ -54,7 +54,7 @@ namespace plnt {
 			                                             CollisionEventQue &collision_event_holder) const; //グループ内での衝突判定
 			std::pair<int, int> ProcessCollisionWithGround(CollisionEventQue &collision_event_holder) const; //地形との衝突判定
 
-			void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
+			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 			void DebugDrawHandler(i_debug_drawer &dd);
 		};
 	}

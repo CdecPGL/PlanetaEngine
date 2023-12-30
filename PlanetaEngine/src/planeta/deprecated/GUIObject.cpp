@@ -17,7 +17,7 @@ namespace plnt {
 	//		void GUIObject::Draw(ScreenDrawerGUI& drawer)
 	//		{
 	//			GUIComponent::DrawData my_draw_data;
-	//			my_draw_data.draw_area = rect_angle_;
+	//			my_draw_data.draw_area = rectangle_;
 	//			my_draw_data.update_info.is_position_updated = is_position_updated_since_last_draw;
 	//			my_draw_data.update_info.is_size_updated = is_size_updated_since_last_draw;
 	//			my_draw_data.update_info.is_edge_fix_updated = false;
@@ -29,8 +29,8 @@ namespace plnt {
 	//		void GUIObject::DebugDraw()
 	//		{
 	//			//枠線を表示
-	////			core::DrawManager::instance().DrawUIWire({ rect_angle_.position,Vector2Di(rect_angle_.right(),rect_angle_.top()),Vector2Di(rect_angle_.right(),rect_angle_.bottom()), Vector2Di(rect_angle_.left(),rect_angle_.bottom()),rect_angle_.position }, 1, Color::Red());
-	//			component_holder_->do_all([this](GUIComponent& com) {com.DebugDraw(rect_angle_); });
+	////			core::DrawManager::instance().DrawUIWire({ rectangle_.position,Vector2Di(rectangle_.right(),rectangle_.top()),Vector2Di(rectangle_.right(),rectangle_.bottom()), Vector2Di(rectangle_.left(),rectangle_.bottom()),rectangle_.position }, 1, Color::Red());
+	//			component_holder_->do_all([this](GUIComponent& com) {com.DebugDraw(rectangle_); });
 	//		}
 	//
 	//		bool GUIObject::KeyInput(ui_object_input_code::type input_code)

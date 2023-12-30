@@ -13,7 +13,7 @@ namespace plnt {
 		                                                         _id_counter(0) { };
 		StandardGameObjectManager::~StandardGameObjectManager() = default;
 
-		void StandardGameObjectManager::Update() { RemoveProc_(); }
+		void StandardGameObjectManager::update() { RemoveProc_(); }
 
 		std::shared_ptr<game_object_base> StandardGameObjectManager::CreateAndSetUpGameObject_(
 			const std::string &game_object_type_id) {
@@ -133,13 +133,13 @@ namespace plnt {
 			inactive_game_objects_.clear();
 		}
 
-		bool StandardGameObjectManager::Initialize() { return true; }
+		bool StandardGameObjectManager::initialize() { return true; }
 
-		void StandardGameObjectManager::Finalize() { remove_all_game_objects(); }
+		void StandardGameObjectManager::finalize() { remove_all_game_objects(); }
 
 		void StandardGameObjectManager::RemoveProc_() { garbage_.clear(); }
 
-		void StandardGameObjectManager::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+		void StandardGameObjectManager::debug_information_add_handle(i_debug_information_adder &di_adder) {
 			di_adder.add_line("-----GameObjectManager-----");
 			di_adder.add_line_v("活動中ゲームオブジェクト数:", active_game_objects_.size());
 			di_adder.add_line_v("停止中ゲームオブジェクト数:", inactive_game_objects_.size());

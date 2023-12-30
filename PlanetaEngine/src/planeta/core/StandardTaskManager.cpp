@@ -309,12 +309,12 @@ namespace plnt {
 
 		void StandardTaskManager::ExcuteTask() { impl_->ExcuteValidTasksFunction(&Task::Update); }
 
-		void StandardTaskManager::Update() {
+		void StandardTaskManager::update() {
 			//管理処理を行う
 			impl_->HandleManagementQue();
 		}
 
-		void StandardTaskManager::Finalize() {
+		void StandardTaskManager::finalize() {
 			impl_->HandleManagementQue(); //管理処理
 			impl_->ValidateSystemTaskDisposal(); //システムタスクを削除可能に。
 			//まだ存在するプロセスの終了処理を行う
@@ -348,7 +348,7 @@ namespace plnt {
 			return task;
 		}
 
-		void StandardTaskManager::DebugInformationAddHandle(i_debug_information_adder &di_adder) {
+		void StandardTaskManager::debug_information_add_handle(i_debug_information_adder &di_adder) {
 			di_adder.add_line("-----TaskManager-----");
 			int active_task{0}, inactive_task{0};
 			impl_->CountTask(active_task, inactive_task);

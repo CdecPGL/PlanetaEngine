@@ -15,14 +15,14 @@ namespace plnt {
 			StandardTaskManager();
 			~StandardTaskManager();
 			/*初期化処理*/
-			bool Initialize() override { return true; }
+			bool initialize() override { return true; }
 			/*終了処理*/
-			void Finalize() override;
+			void finalize() override;
 
 			/*タスクの実行*/
 			void ExcuteTask() override;
 			/*管理処理*/
-			void Update() override;
+			void update() override;
 
 			/*名前からゲームプロセスを取得*/
 			WeakPointer<Task> get_task(const std::string &name) const override;
@@ -39,7 +39,7 @@ namespace plnt {
 			std::shared_ptr<Task>
 			RegisterSystemTask(const std::shared_ptr<Task> &task, private_::SystemTaskSlot slot) override;
 
-			void DebugInformationAddHandle(i_debug_information_adder &di_adder) override;
+			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 		};
 	}
 }

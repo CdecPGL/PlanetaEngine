@@ -11,14 +11,14 @@ namespace plnt {
 	}
 
 	namespace private_ {
-		class StandardSaveManager final : public SaveManager {
+		class StandardSaveManager final : public save_manager {
 		public:
 			StandardSaveManager();
 			~StandardSaveManager();
 			//ファイルアクセサを設定。初期化前に呼び出す。
-			void SetFileManipurator_(const std::shared_ptr<file_manipulator> &file_accessor) override;
-			bool Initialize() override;
-			void Finalize() override;
+			void set_file_manipulator(const std::shared_ptr<file_manipulator> &file_accessor) override;
+			bool initialize() override;
+			void finalize() override;
 
 			struct UserDataHeader {
 				util::date_time update_time;

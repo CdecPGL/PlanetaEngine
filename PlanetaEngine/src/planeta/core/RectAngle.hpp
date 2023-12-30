@@ -9,24 +9,24 @@
 namespace plnt {
 	/*! 矩形を表すクラス*/
 	template <typename T>
-	class rect_angle final {
+	class rectangle final {
 	public:
 		/*! コンストラクタ*/
-		constexpr rect_angle() = default;
-		constexpr rect_angle(const rect_angle &) = default;
-		constexpr rect_angle(rect_angle &&) = default;
+		constexpr rectangle() = default;
+		constexpr rectangle(const rectangle &) = default;
+		constexpr rectangle(rectangle &&) = default;
 		/*! XY位置とサイズを指定するコンストラクタ*/
-		constexpr rect_angle(const Vector2D<T> &position,
+		constexpr rectangle(const Vector2D<T> &position,
 		                     const Vector2D<T> &size) : position_(position), size_(size) { }
 
 		/*! XY位置とサイズを指定するコンストラクタ*/
-		constexpr rect_angle(T x, T y, T width, T height) : position_(x, y), size_(width, height) { }
+		constexpr rectangle(T x, T y, T width, T height) : position_(x, y), size_(width, height) { }
 
 		/*! デストラクタ*/
-		~rect_angle() = default;
+		~rectangle() = default;
 
-		constexpr rect_angle &operator=(const rect_angle &) = default;
-		constexpr rect_angle &operator=(rect_angle &&) = default;
+		constexpr rectangle &operator=(const rectangle &) = default;
+		constexpr rectangle &operator=(rectangle &&) = default;
 
 		/*! XY位置とサイズを設定する*/
 		void set(const Vector2D<T> &position, const Vector2D<T> &size) {
@@ -111,14 +111,14 @@ namespace plnt {
 		Vector2D<T> size_;
 	};
 
-	using rect_angle_i = rect_angle<int32_t>; //32bit符号あり整数型RectAngle
-	using rect_angle_f = rect_angle<float>; //単精度浮動少数型RectAngle
-	using rect_angle_d = rect_angle<double>; //倍精度浮動少数型RectAngle
+	using rectangle_i = rectangle<int32_t>; //32bit符号あり整数型RectAngle
+	using rectangle_f = rectangle<float>; //単精度浮動少数型RectAngle
+	using rectangle_d = rectangle<double>; //倍精度浮動少数型RectAngle
 
 	//ReflectionシステムのPtree読み込みを有効にするための定義
 	template <typename T>
-	struct reflection::reflective_ptree_converter_impl<rect_angle<T>> {
-		void operator()(rect_angle<T> &dst, const boost::property_tree::ptree &src) {
+	struct reflection::reflective_ptree_converter_impl<rectangle<T>> {
+		void operator()(rectangle<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 2) {
 				throw reflection_error(util::ConvertAndConnectToString("要素数が", src.size(),
 				                                                       "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));

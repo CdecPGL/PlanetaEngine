@@ -5,7 +5,7 @@
 #include <bitset>
 #include <array>
 #include "planeta/core/object.hpp"
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 #include "ObjectHolderTemplate_WithoutID.hpp"
 #include "NonCopyable.hpp"
 
@@ -54,12 +54,12 @@ namespace plnt {
 	//		*/
 	//		void UnfixEdge(edge e);
 	//		/*アクセサ*/
-	//		const utility::RectAngle<int>& rect()const { return rect_angle_; }
-	//		void rect(const utility::RectAngle<int>& r) { rect_angle_ = r; is_position_updated_since_last_draw = true; is_size_updated_since_last_draw = true; }
-	//		const Vector2Di position()const { return rect_angle_.position; }
-	//		void position(const Vector2Di& p) { rect_angle_.position = p; is_position_updated_since_last_draw = true; }
-	//		const Vector2Di size()const { return rect_angle_.size; }
-	//		void size(const Vector2Di& s) { rect_angle_.size = s; is_size_updated_since_last_draw = true; }
+	//		const utility::RectAngle<int>& rect()const { return rectangle_; }
+	//		void rect(const utility::RectAngle<int>& r) { rectangle_ = r; is_position_updated_since_last_draw = true; is_size_updated_since_last_draw = true; }
+	//		const Vector2Di position()const { return rectangle_.position; }
+	//		void position(const Vector2Di& p) { rectangle_.position = p; is_position_updated_since_last_draw = true; }
+	//		const Vector2Di size()const { return rectangle_.size; }
+	//		void size(const Vector2Di& s) { rectangle_.size = s; is_size_updated_since_last_draw = true; }
 
 	//		template<class C>
 	//		std::shared_ptr<C> AddChild() {
@@ -77,7 +77,7 @@ namespace plnt {
 	//		utility::RectAngle<int> relative_draw_area_buffer_; //描画エリア
 	//		void CalculateDrawRectAndUpdateInfo(const DrawData& parent_draw_data, UpdateInfo* my_update_info); //描画エリアと更新情報を計算する
 	//		 /*位置情報*/
-	//		utility::RectAngle<int> rect_angle_;
+	//		utility::RectAngle<int> rectangle_;
 	//		/*アンカー*/
 	//		std::array<int, 4> edge_fix_padding_; //辺固定の余白
 	//		std::bitset<4> edge_fix_bit_set_ = 0; //辺固定の有無を表すビット配列

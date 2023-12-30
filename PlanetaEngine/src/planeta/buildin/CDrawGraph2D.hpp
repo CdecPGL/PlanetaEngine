@@ -4,7 +4,7 @@
 #include <vector>
 #include <array>
 
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 #include "planeta/core/Vertex2D.hpp"
 
 #include "CDraw2D.hpp"
@@ -29,9 +29,9 @@ namespace plnt {
 		/*! 画像リソースをIDでセット*/
 		CDrawGraph2D &graph_resource_id(const std::string &res_id);
 		/*! 画像上の描画領域をピクセル単位で取得*/
-		const rect_angle<int> &draw_area() const { return _draw_area; }
+		const rectangle<int> &draw_area() const { return _draw_area; }
 		/*! 画像上の描画領域をピクセル単位で設定*/
-		CDrawGraph2D &draw_area(const rect_angle<int> &rect) {
+		CDrawGraph2D &draw_area(const rectangle<int> &rect) {
 			_draw_area = rect;
 			_UpdateUVPosition();
 			return *this;
@@ -55,7 +55,7 @@ namespace plnt {
 		/*反転描画フラグ*/
 		bool reverse_ = false;
 		/*画像上で表示する範囲*/
-		rect_angle<int> _draw_area;
+		rectangle<int> _draw_area;
 		/*画像の中心位置*/
 		Vector2Dd graph_center_ = Vector2Dd(0.5, 0.5);
 		/*画像描画データ*/

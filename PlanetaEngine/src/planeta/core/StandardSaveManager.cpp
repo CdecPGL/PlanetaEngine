@@ -126,7 +126,7 @@ namespace plnt {
 
 		StandardSaveManager::~StandardSaveManager() = default;
 
-		bool StandardSaveManager::Initialize() {
+		bool StandardSaveManager::initialize() {
 			assert(impl_->file_accessor_ != nullptr);
 			//セーブデータ情報の読み込み
 			//if (!impl_->LoadSaveDataInformation()) { return false; }
@@ -138,11 +138,11 @@ namespace plnt {
 			return true;
 		}
 
-		void StandardSaveManager::Finalize() {
+		void StandardSaveManager::finalize() {
 			//Save();
 		}
 
-		void StandardSaveManager::SetFileManipurator_(const std::shared_ptr<file_manipulator> &file_accessor) {
+		void StandardSaveManager::set_file_manipulator(const std::shared_ptr<file_manipulator> &file_accessor) {
 			impl_->file_accessor_ = file_accessor;
 		}
 

@@ -8,7 +8,7 @@
 
 namespace plnt {
 	namespace private_ {
-		bool SError::SetUpScene(SceneSetUpProxy &scene_proxy, const util::parameter_holder &initialize_parameters) {
+		bool SError::setup_scene(scene_set_up_proxy &scene_proxy, const util::parameter_holder &initialize_parameters) {
 			auto ip = scene_proxy.scene().task_manager().create_task<TInstant>(TaskSlot::EventUpdatePhase);
 			ip->SetExcuteFunction([]() { PE_LOG_FATAL("エラーが発生しました。"); });
 			return true;

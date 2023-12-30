@@ -1,7 +1,7 @@
 ﻿#include "..\core\i_game_object.hpp"
 #include "planeta/core/ScreenDrawerGUI.hpp"
-#include "planeta/core/RectAngle.hpp"
-#include "planeta/core/ResourceHolder.hpp"
+#include "planeta/core/rectangle.hpp"
+#include "..\core\resource_holder.hpp"
 
 #include "CDrawGraphGUI.hpp"
 #include "RGraph.hpp"
@@ -16,7 +16,7 @@ namespace plnt {
 	public:
 		util::resource_holder<RGraph> graph_res;
 		non_owing_pointer<CTransformGUI> my_c_trans_gui;
-		rect_angle_i graph_draw_area;
+		rectangle_i graph_draw_area;
 		bool reverse_flag;
 	};
 
@@ -50,9 +50,9 @@ namespace plnt {
 		return true;
 	}
 
-	const plnt::rect_angle_i &CDrawGraphGUI::draw_area() const { return impl_->graph_draw_area; }
+	const plnt::rectangle_i &CDrawGraphGUI::draw_area() const { return impl_->graph_draw_area; }
 
-	CDrawGraphGUI &CDrawGraphGUI::draw_area(const rect_angle_i &rect) {
+	CDrawGraphGUI &CDrawGraphGUI::draw_area(const rectangle_i &rect) {
 		impl_->graph_draw_area = rect;
 		return *this;
 	}

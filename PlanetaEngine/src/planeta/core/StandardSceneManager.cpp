@@ -1,4 +1,4 @@
-﻿#include "ResourceManager.hpp"
+﻿#include "resource_manager.hpp"
 #include "StandardSceneManager.hpp"
 #include "i_debug_manager.hpp"
 #include "Scene.hpp"
@@ -25,7 +25,7 @@ namespace plnt {
 					case State::TransitionRequested:
 						_transition_proc();
 					case State::Progress:
-						_current_scene->Update();
+						_current_scene->update();
 						return SceneStatus_::Continue;
 					case State::QuitRequested:
 						return SceneStatus_::Quit;
@@ -86,7 +86,7 @@ namespace plnt {
 			//現在のシーンを終了
 			util::parameter_holder next_scene_initialize_parameters = _end_current_scene();
 			//新しいシーンを作成
-			std::shared_ptr<Scene> new_scene = std::make_shared<Scene>();
+			std::shared_ptr<scene> new_scene = std::make_shared<scene>();
 			//新しいシーンを初期化
 			if (!InitializeScene_(*new_scene, *_next_scene_setupper, next_scene_initialize_parameters)) {
 				PE_LOG_ERROR("シーン遷移に失敗しました。新しいシーン(", _next_scene_id, ")のセットアップまたは初期化に失敗しました。");
@@ -123,17 +123,17 @@ namespace plnt {
 			return true;
 		}
 
-		std::shared_ptr<SceneSetUpper> StandardSceneManager::_CreateSceneSetUpper(const std::string &scene_name) {
+		std::shared_ptr<scene_setupper> StandardSceneManager::_CreateSceneSetUpper(const std::string &scene_name) {
 			//シーン名にプレフィックスをつけたクラスを作成。
-			auto setupper = reflection::reflection::create_object_by_object_type_id<SceneSetUpper>(
+			auto setupper = reflection::reflection::create_object_by_object_type_id<scene_setupper>(
 				private_::add_prefix(scene_name, private_::object_category::scene));
 			return setupper;
 		}
 
 		void StandardSceneManager::_transition_to_error_scene() {
 			PE_LOG_ERROR("エラーシーンに遷移します。");
-			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SError>();
-			std::shared_ptr<Scene> es = std::make_shared<Scene>();
+			std::shared_ptr<scene_setupper> ecd = std::make_shared<SError>();
+			std::shared_ptr<scene> es = std::make_shared<scene>();
 			InitializeScene_(*es, *ecd, util::parameter_holder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
@@ -155,38 +155,38 @@ namespace plnt {
 
 		void StandardSceneManager::DebugInfotmationAddHandler(i_debug_information_adder &di_adder) {
 			di_adder.add_line_v("現在のシーンID:", _current_scene_id);
-			if (_current_scene) { _current_scene->DebugInformationAddHandle(di_adder); }
+			if (_current_scene) { _current_scene->debug_information_add_handle(di_adder); }
 		}
 
-		bool StandardSceneManager::InitializeScene_(Scene &scene, SceneSetUpper &setupper,
+		bool StandardSceneManager::InitializeScene_(scene &scene, scene_setupper &setupper,
 		                                            const util::parameter_holder &init_param) {
 			//標準のシーンModuleをセット
 			SetStandardSceneModules(scene);
 			//シーンModuleにシーンを登録
-			scene.SetSceneToModules();
+			scene.set_scene_to_modules();
 			//システム設定(特殊プロセスの作成やシーンデータの更新)
 			if (!StandardSystemSetUpScene(scene)) {
 				PE_LOG_ERROR("シーンのシステム設定に失敗しました。");
 				return false;
 			}
 			//初期化
-			if (!scene.Initialize()) {
+			if (!scene.initialize()) {
 				PE_LOG_ERROR("シーンの初期化に失敗しました。");
 				return false;
 			}
 			//固有設定
-			if (!setupper.InitializeScene(scene, init_param)) {
+			if (!setupper.initialize_scene(scene, init_param)) {
 				PE_LOG_ERROR("シーンの固有設定に失敗しました。");
 				return false;
 			}
 			return true;
 		}
 
-		util::parameter_holder StandardSceneManager::FinalizeScene_(private_::Scene &scene, SceneSetUpper &setupper,
+		util::parameter_holder StandardSceneManager::FinalizeScene_(private_::scene &scene, scene_setupper &setupper,
 		                                                           const std::string &next_scene_id,
 		                                                           const util::parameter_holder &finalize_parameters) {
-			auto ret = setupper.TerminateScene(scene, next_scene_id, finalize_parameters); //固有終了処理
-			scene.Finalize(); //終了処理
+			auto ret = setupper.terminate_scene(scene, next_scene_id, finalize_parameters); //固有終了処理
+			scene.finalize(); //終了処理
 			return ret;
 		}
 	}

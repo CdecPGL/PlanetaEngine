@@ -6,7 +6,7 @@
 
 #include "..\core\game_object_standard_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
-#include "planeta/core/RectAngle.hpp"
+#include "planeta/core/rectangle.hpp"
 
 namespace plnt {
 	class CDrawGraph2D;
@@ -18,9 +18,9 @@ namespace plnt {
 	public:
 		using super = game_object_standard_component;
 		/*! フレームデータのタイプ<表示フレーム数,表示範囲,拡大度,回転度(ラジアン)>*/
-		using FrameDataType = std::tuple<unsigned int, rect_angle<int>, Vector2Dd, double>;
+		using FrameDataType = std::tuple<unsigned int, rectangle<int>, Vector2Dd, double>;
 		/*! 単純化フレームデータのタイプ<表示フレーム数,表示範囲>*/
-		using SimpleFrameDataType = std::pair<unsigned int, rect_angle<int>>;
+		using SimpleFrameDataType = std::pair<unsigned int, rectangle<int>>;
 		/*! アニメーションセット(フル)*/
 		void SetAnimation(const std::string &anim_name, const std::vector<FrameDataType> &frames);
 		/*! アニメーションセット(シンプル)*/

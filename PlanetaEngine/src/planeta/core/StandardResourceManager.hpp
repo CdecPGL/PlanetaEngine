@@ -11,7 +11,7 @@
 #include "boost/type_index.hpp"
 
 #include "log_utility.hpp"
-#include "ResourceManager.hpp"
+#include "resource_manager.hpp"
 
 
 namespace plnt {

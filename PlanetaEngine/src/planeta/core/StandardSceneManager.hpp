@@ -7,11 +7,11 @@
 #include "parameter_holder.hpp"
 
 namespace plnt {
-	class SceneSetUpper;
+	class scene_setupper;
 
 	namespace private_ {
 		class resource_manager;
-		class Scene;
+		class scene;
 		/*シーン管理クラス
 		非同期処理は未実装だが、実装した場合に変更が少なくなるよう、使い方は非同期処理がある場合と同じ。
 		*/
@@ -70,15 +70,15 @@ namespace plnt {
 		private:
 			std::shared_ptr<resource_manager> resource_manager_;
 			/*現在のシーン*/
-			std::shared_ptr<Scene> _current_scene;
+			std::shared_ptr<scene> _current_scene;
 			/*次のシーン*/
-			std::shared_ptr<Scene> _next_scene;
+			std::shared_ptr<scene> _next_scene;
 			/*シーン設定クラス作成*/
-			std::shared_ptr<SceneSetUpper> _CreateSceneSetUpper(const std::string &scene_name);
+			std::shared_ptr<scene_setupper> _CreateSceneSetUpper(const std::string &scene_name);
 			/*現在のシーンセットクラス*/
-			std::shared_ptr<SceneSetUpper> _current_scene_setupper;
+			std::shared_ptr<scene_setupper> _current_scene_setupper;
 			/*次のシーンセットクラス*/
-			std::shared_ptr<SceneSetUpper> _next_scene_setupper;
+			std::shared_ptr<scene_setupper> _next_scene_setupper;
 
 			/*状態*/
 			enum class State { None, Progress, TransitionRequested, QuitRequested, ErrorOccured };
@@ -106,9 +106,9 @@ namespace plnt {
 			/*エラーシーンへ遷移*/
 			void _transition_to_error_scene();
 			/*シーンの初期化*/
-			bool InitializeScene_(Scene &scene, SceneSetUpper &setupper, const util::parameter_holder &init_param);
+			bool InitializeScene_(scene &scene, scene_setupper &setupper, const util::parameter_holder &init_param);
 			/*シーンの終了処理*/
-			util::parameter_holder FinalizeScene_(private_::Scene &scene, SceneSetUpper &setupper,
+			util::parameter_holder FinalizeScene_(private_::scene &scene, scene_setupper &setupper,
 			                                     const std::string &next_scene_id,
 			                                     const util::parameter_holder &finalize_parameters);
 		};
