@@ -12,20 +12,26 @@ namespace plnt {
 		class resource_manager;
 
 		/*シーンの状況(継続、終了、エラー発生)*/
-		enum class SceneStatus_ { Continue, Quit, Error };
+		enum class scene_status { play, quit, error };
 
 		/*シーンマネージャ*/
-		class SceneManager : public i_scene_manager, public SubSystemManager {
+		class scene_manager : public i_scene_manager, public SubSystemManager {
 		public:
-			virtual ~SceneManager() override = default;
+			scene_manager() = default;
+			scene_manager(const scene_manager &) = delete;
+			scene_manager(scene_manager &&) = delete;
+			~scene_manager() override = default;
+			scene_manager &operator=(const scene_manager &) = delete;
+			scene_manager &operator=(scene_manager &&) = delete;
+
 			/*マネージャの初期化*/
-			virtual bool Initialize() = 0;
+			virtual bool initialize() = 0;
 			/*マネージャの終了処理*/
-			virtual bool Finalize() = 0;
+			virtual bool finalize() = 0;
 			/*シーン処理*/
-			virtual SceneStatus_ Process_() = 0;
+			virtual scene_status process() = 0;
 			/*リソースマネージャをセット(初期化前)*/
-			virtual void SetResouceManager(const std::shared_ptr<resource_manager> &mgr) = 0;
+			virtual void set_resource_manager(const std::shared_ptr<resource_manager> &mgr) = 0;
 		};
 	}
 }

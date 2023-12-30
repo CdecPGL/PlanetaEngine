@@ -471,9 +471,9 @@
     <ClInclude Include="src\planeta\core\scene_module.hpp" />
     <ClInclude Include="src\planeta\core\scene_setupper.hpp" />
     <ClInclude Include="src\planeta\core\scene_setup_proxy.hpp" />
-    <ClInclude Include="src\planeta\core\Screen.hpp" />
-    <ClInclude Include="src\planeta\core\ScreenDrawer2D.hpp" />
-    <ClInclude Include="src\planeta\core\ScreenDrawerGUI.hpp" />
+    <ClInclude Include="src\planeta\core\screen.hpp" />
+    <ClInclude Include="src\planeta\core\screen_drawer_2d.hpp" />
+    <ClInclude Include="src\planeta\core\screen_drawer_gui.hpp" />
     <ClInclude Include="src\planeta\buildin\SError.hpp" />
     <ClInclude Include="src\planeta\core\Signal.hpp" />
     <ClInclude Include="src\planeta\deprecated\SimplePolygonPanel.hpp">
@@ -631,9 +631,9 @@
     <ClCompile Include="src\planeta\buildin\TInstant.cpp" />
     <ClCompile Include="src\planeta\core\StandardSaveManager.cpp" />
     <ClCompile Include="src\planeta\core\scene_setupper.cpp" />
-    <ClCompile Include="src\planeta\core\Screen.cpp" />
-    <ClCompile Include="src\planeta\core\ScreenDrawer2D.cpp" />
-    <ClCompile Include="src\planeta\core\ScreenDrawerGUI.cpp" />
+    <ClCompile Include="src\planeta\core\screen.cpp" />
+    <ClCompile Include="src\planeta\core\screen_drawer_2d.cpp" />
+    <ClCompile Include="src\planeta\core\screen_drawer_gui.cpp" />
     <ClCompile Include="src\planeta\deprecated\SimplePolygonPanel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

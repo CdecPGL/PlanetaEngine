@@ -6,8 +6,8 @@
 #include "planeta/buildin/RFont.hpp"
 #include "../dxlib/dx_utility.hpp"
 
-#include "Screen.hpp"
-#include "ScreenDrawerGUI.hpp"
+#include "screen.hpp"
+#include "screen_drawer_gui.hpp"
 
 namespace plnt {
 	void screen_drawer_gui::draw_graph(const Vector2Di &position, const Vector2Di &size, const Vector2Dd &center_pivot,

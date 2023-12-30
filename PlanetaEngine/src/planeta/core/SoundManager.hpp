@@ -3,15 +3,19 @@
 #include "i_sound_manager.hpp"
 #include "SubSystemManager.hpp"
 
-namespace plnt {
-	namespace private_ {
-		class SoundManager : public i_sound_manager, public SubSystemManager {
-		public:
-			virtual ~SoundManager() = default;
-			virtual bool Initialize() = 0;
-			virtual void Finalize() = 0;
-			virtual void Update() = 0;
-			virtual void Reset() = 0;
-		};
-	}
+namespace plnt::private_ {
+	class sound_manager : public i_sound_manager, public SubSystemManager {
+	public:
+		sound_manager() = default;
+		sound_manager(const sound_manager &) = delete;
+		sound_manager(sound_manager &&) = delete;
+		~sound_manager() override = default;
+		sound_manager &operator=(const sound_manager &) = delete;
+		sound_manager &operator=(sound_manager &&) = delete;
+
+		virtual bool initialize() = 0;
+		virtual void finalize() = 0;
+		virtual void update() = 0;
+		virtual void reset() = 0;
+	};
 }

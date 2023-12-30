@@ -31,11 +31,11 @@ namespace plnt {
 	public:
 		std::shared_ptr<private_::resource_manager> resource_manager;
 		std::shared_ptr<private_::log_manager> log_manager;
-		std::shared_ptr<SceneManager> scene_manager;
+		std::shared_ptr<private_::scene_manager> scene_manager;
 		std::shared_ptr<private_::input_manager> input_manager;
 		std::shared_ptr<private_::performance_manager> performance_manager;
 		std::shared_ptr<private_::rendering_manager> rendering_manager;
-		std::shared_ptr<SoundManager> sound_manager;
+		std::shared_ptr<private_::sound_manager> sound_manager;
 		std::shared_ptr<private_::save_manager> save_manager;
 		std::shared_ptr<private_::debug_manager> debug_manager;
 		std::shared_ptr<private_::config_manager> config_manager;
@@ -172,7 +172,7 @@ namespace plnt {
 				return false;
 			}
 			if (sound_manager->
-				Initialize()) { finalize_handles_.push_front([this] { sound_manager->Finalize(); }); } else {
+				initialize()) { finalize_handles_.push_front([this] { sound_manager->finalize(); }); } else {
 				PE_LOG_FATAL("サウンドシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -210,9 +210,9 @@ namespace plnt {
 				return false;
 			}
 			//リソースマネージャのセット
-			scene_manager->SetResouceManager(resource_manager);
+			scene_manager->set_resource_manager(resource_manager);
 			if (scene_manager->
-				Initialize()) { finalize_handles_.push_front([this] { scene_manager->Finalize(); }); } else {
+				initialize()) { finalize_handles_.push_front([this] { scene_manager->finalize(); }); } else {
 				PE_LOG_FATAL("シーンシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -231,19 +231,19 @@ namespace plnt {
 		[[nodiscard]] game_status update_sub_systems() const {
 			if (ProcessMessage() < 0) { return game_status::quit; } //DXライブラリの更新
 			input_manager->update(); //入力の更新
-			const auto sst = scene_manager->Process_(); //シーンの更新
+			const auto sst = scene_manager->process(); //シーンの更新
 			debug_manager->pre_rendering_update(); //デバッグマネージャの描画前更新
 			rendering_manager->update(); //描画システムの更新
-			sound_manager->Update(); //サウンドシステムの更新
+			sound_manager->update(); //サウンドシステムの更新
 			performance_manager->update(); //パフォーマンスマネージャの更新
 			debug_manager->post_rendering_update(); //デバッグマネージャの描画後更新
 
 			switch (sst) {
-				case SceneStatus_::Continue:
+				case scene_status::play:
 					return game_status::play;
-				case SceneStatus_::Quit:
+				case scene_status::quit:
 					return game_status::quit;
-				case SceneStatus_::Error:
+				case scene_status::error:
 					return game_status::error;
 			}
 
@@ -252,11 +252,11 @@ namespace plnt {
 		}
 	};
 
-	game::game() : impl_(std::make_unique<impl>()) { }
+	game::game() : impl_(std::make_unique<impl>()) {}
 
 	game::~game() { assert(impl_->is_initialized == false); }
 
-	bool game::Initialize() {
+	bool game::initialize() {
 		if (impl_->is_initialized) {
 			assert(false);
 			return false;
@@ -271,7 +271,7 @@ namespace plnt {
 		return false;
 	}
 
-	void game::Finalize() {
+	void game::finalize() {
 		if (impl_->is_initialized == false) {
 			assert(false);
 			return;
@@ -305,7 +305,7 @@ namespace plnt {
 
 	std::shared_ptr<i_log_manager> game::log_manager() const { return impl_->log_manager; }
 
-	void game::set_scene_manager(const std::shared_ptr<SceneManager> &mgr) const {
+	void game::set_scene_manager(const std::shared_ptr<private_::scene_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;
@@ -345,7 +345,7 @@ namespace plnt {
 
 	std::shared_ptr<i_rendering_manager> game::rendering_manager() const { return impl_->rendering_manager; }
 
-	void game::set_sound_manager(const std::shared_ptr<SoundManager> &mgr) const {
+	void game::set_sound_manager(const std::shared_ptr<private_::sound_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;

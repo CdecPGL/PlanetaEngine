@@ -1,4 +1,4 @@
-﻿#include "planeta/core/ScreenDrawer2D.hpp"
+﻿#include "..\core\screen_drawer_2d.hpp"
 #include "..\core\i_game_object.hpp"
 #include "..\core\matrix_22.hpp"
 

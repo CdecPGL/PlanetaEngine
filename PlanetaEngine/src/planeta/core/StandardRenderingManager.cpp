@@ -7,7 +7,7 @@
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
 
-#include "Screen.hpp"
+#include "screen.hpp"
 #include "log_utility.hpp"
 
 namespace plnt {

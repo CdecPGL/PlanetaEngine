@@ -84,7 +84,7 @@ namespace plnt {
 
 		/*イベント*/
 		/*! トランスフォーム更新イベント*/
-		Signal<void()> updated;
+		signal<void()> updated;
 
 		//システム
 		void ApplyVelocity_(); //速度適用

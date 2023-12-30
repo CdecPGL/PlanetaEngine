@@ -57,7 +57,7 @@ namespace plnt {
 		UpdateState last_update; //更新状況
 		WeakPointer<CGround2D> belonging_ground;
 		//地形更新イベントコネクション
-		SignalConnection ground_updated_event_connection;
+		signal_connection ground_updated_event_connection;
 
 		void PositionUpdated(CoordinationSpace space) {
 			last_update.position = space;
@@ -240,7 +240,7 @@ namespace plnt {
 		WeakPointer<CGround2D> GetGround() const { return belonging_ground; }
 
 		void SetGround(const WeakPointer<CGround2D> &g, bool keep_global_position) {
-			if (belonging_ground) { ground_updated_event_connection.Disconnect(); }
+			if (belonging_ground) { ground_updated_event_connection.disconnect(); }
 
 			if (keep_global_position) {
 				UpdateGlobalTransform();
@@ -251,7 +251,7 @@ namespace plnt {
 			}
 
 			belonging_ground = g;
-			ground_updated_event_connection = belonging_ground->transform2d().updated.ConnectFunction(
+			ground_updated_event_connection = belonging_ground->transform2d().updated.connect_function(
 				std::bind(&Impl_::OnGroudUpdated, this));
 
 			if (keep_global_position) {
@@ -276,12 +276,12 @@ namespace plnt {
 		void Initialize() {
 			if (typeid(*belonging_ground) != typeid(CDumyGround2D)) {
 				//所属地形があったら、自分を更新イベントリスナーに登録
-				ground_updated_event_connection = belonging_ground->transform2d().updated.ConnectFunction(
+				ground_updated_event_connection = belonging_ground->transform2d().updated.connect_function(
 					std::bind(&Impl_::OnGroudUpdated, this));
 			}
 		}
 
-		void Finalize() { ground_updated_event_connection.Disconnect(); }
+		void Finalize() { ground_updated_event_connection.disconnect(); }
 	};
 
 	//////////////////////////////////////////////////////////////////////////

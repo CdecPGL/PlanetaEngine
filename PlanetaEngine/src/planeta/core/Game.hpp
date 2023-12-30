@@ -19,11 +19,11 @@ namespace plnt {
 	namespace private_ {
 		class resource_manager;
 		class log_manager;
-		class SceneManager;
+		class scene_manager;
 		class input_manager;
 		class performance_manager;
 		class rendering_manager;
-		class SoundManager;
+		class sound_manager;
 		class save_manager;
 		class debug_manager;
 		class config_manager;
@@ -33,16 +33,16 @@ namespace plnt {
 	enum class game_status { play, quit, error };
 
 	/*! PlanetaEngineクラス*/
-	class game final : public util::SingletonTemplate<game> {
-		friend SingletonTemplate;
+	class game final : public util::singleton_template<game> {
+		friend singleton_template;
 
 	public:
 		/*! 標準のマネージャを設定する。初期化前に実行しなければならない*/
 		void set_standard_managers() const;
 		/*! エンジンの初期化*/
-		bool Initialize() override;
+		bool initialize() override;
 		/*! エンジンの終了処理*/
-		void Finalize() override;
+		void finalize() override;
 		/*! エンジンの更新(初期化が正常に行われていない状態での呼び出しは未定義動作)*/
 		[[nodiscard]] game_status update() const;
 		/*! 初期化されているか*/
@@ -52,7 +52,7 @@ namespace plnt {
 		/*! ログマネージャを設定する(初期化前)*/
 		auto set_log_manager(const std::shared_ptr<private_::log_manager> &mgr) const -> void;
 		/*! シーンマネージャを設定する(初期化前)*/
-		void set_scene_manager(const std::shared_ptr<private_::SceneManager> &mgr) const;
+		void set_scene_manager(const std::shared_ptr<private_::scene_manager> &mgr) const;
 		/*! インプットマネージャを設定する(初期化前)*/
 		void set_input_manager(const std::shared_ptr<private_::input_manager> &mgr) const;
 		/*! パフォーマンスマネージャを設定する(初期化前)*/
@@ -60,7 +60,7 @@ namespace plnt {
 		/*! レンダリングマネージャを設定する(初期化前)*/
 		void set_rendering_manager(const std::shared_ptr<private_::rendering_manager> &mgr) const;
 		/*! サウンドマネージャを設定する(初期化前)*/
-		void set_sound_manager(const std::shared_ptr<private_::SoundManager> &mgr) const;
+		void set_sound_manager(const std::shared_ptr<private_::sound_manager> &mgr) const;
 		/*! セーブマネージャを設定する(初期化前)*/
 		void set_save_manager(const std::shared_ptr<private_::save_manager> &mgr) const;
 		/*! デバッグマネージャを設定する(初期化前)*/

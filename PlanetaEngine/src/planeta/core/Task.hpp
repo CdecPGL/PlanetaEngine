@@ -31,7 +31,7 @@ namespace plnt {
 		                              const WeakPointer<i_scene> &pscene);
 		/*イベント*/
 		/*! プロセス破棄イベント*/
-		Signal<void()> disposed;
+		signal<void()> disposed;
 
 	protected:
 		//! シーンへのアクセス

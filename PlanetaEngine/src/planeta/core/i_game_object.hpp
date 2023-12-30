@@ -80,11 +80,11 @@ namespace plnt {
 
 		/*イベント*/
 		/*! 有効化イベント*/
-		Signal<void()> activated;
+		signal<void()> activated;
 		/*! 無効化イベント*/
-		Signal<void()> inactivated;
+		signal<void()> inactivated;
 		/*! 破棄イベント*/
-		Signal<void()> disposed;
+		signal<void()> disposed;
 
 	protected:
 		[[nodiscard]] virtual std::shared_ptr<game_object_component> get_component_by_type_info(

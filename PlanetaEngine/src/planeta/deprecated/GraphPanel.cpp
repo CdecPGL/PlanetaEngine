@@ -2,7 +2,7 @@
 
 #include "planeta/core/StandardResourceManager.hpp"
 #include "..\core\log_utility.hpp"
-#include "planeta/core/ScreenDrawerGUI.hpp"
+#include "..\core\screen_drawer_gui.hpp"
 #include "planeta/buildin/RGraph.hpp"
 
 namespace plnt {

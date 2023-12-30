@@ -1,5 +1,5 @@
 ﻿#include "..\core\i_game_object.hpp"
-#include "planeta/core/ScreenDrawerGUI.hpp"
+#include "..\core\screen_drawer_gui.hpp"
 #include "planeta/core/rectangle.hpp"
 #include "..\core\resource_holder.hpp"
 

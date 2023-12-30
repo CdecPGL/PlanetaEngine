@@ -15,7 +15,7 @@ namespace plnt {
 		/*シーン管理クラス
 		非同期処理は未実装だが、実装した場合に変更が少なくなるよう、使い方は非同期処理がある場合と同じ。
 		*/
-		class StandardSceneManager : public SceneManager {
+		class StandardSceneManager : public scene_manager {
 		public:
 			explicit StandardSceneManager();
 			StandardSceneManager(const StandardSceneManager &) = delete;
@@ -57,13 +57,13 @@ namespace plnt {
 
 			//////////システム関数//////////
 			/*マネージャの初期化*/
-			bool Initialize();
+			bool initialize();
 			/*マネージャの終了処理*/
-			bool Finalize();
+			bool finalize();
 			/*シーン処理*/
-			SceneStatus_ Process_();
+			scene_status process();
 			/*リソースマネージャをセット(初期化前)*/
-			void SetResouceManager(const std::shared_ptr<resource_manager> &mgr) override;
+			void set_resource_manager(const std::shared_ptr<resource_manager> &mgr) override;
 
 			void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) override;
 

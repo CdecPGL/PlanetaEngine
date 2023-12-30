@@ -61,9 +61,9 @@ namespace plnt {
 
 		/*イベント*/
 		/*! コライダーとの衝突イベント*/
-		Signal<void(const e_collision_with_collider_2d &)> collided_with_collider2d;
+		signal<void(const e_collision_with_collider_2d &)> collided_with_collider2d;
 		/*! 2D地形との衝突イベントハンドラ追加*/
-		Signal<void(const e_collision_with_ground_2d &)> collided_with_ground2d;
+		signal<void(const e_collision_with_ground_2d &)> collided_with_ground2d;
 
 		/*! 同じオブジェクトのCTransform2Dを取得*/
 		CTransform2D &transform2d() { return *transform2d_; }

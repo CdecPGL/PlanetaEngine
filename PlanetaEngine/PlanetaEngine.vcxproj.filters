@@ -720,13 +720,13 @@
     <ClInclude Include="src\planeta\core\scene_setup_proxy.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Screen.hpp">
+    <ClInclude Include="src\planeta\core\screen.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ScreenDrawer2D.hpp">
+    <ClInclude Include="src\planeta\core\screen_drawer_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\ScreenDrawerGUI.hpp">
+    <ClInclude Include="src\planeta\core\screen_drawer_gui.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\SingletonTemplate.hpp">
@@ -1166,13 +1166,13 @@
     <ClCompile Include="src\planeta\core\scene_setup_proxy.cpp">
       <Filter>PlanetaEngine\SubSystems\Scene\SetUpper</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\Screen.cpp">
+    <ClCompile Include="src\planeta\core\screen.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\Screen</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\ScreenDrawer2D.cpp">
+    <ClCompile Include="src\planeta\core\screen_drawer_2d.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\ScreenDrawerGUI.cpp">
+    <ClCompile Include="src\planeta\core\screen_drawer_gui.cpp">
       <Filter>PlanetaEngine\SubSystems\RenderSystem\GUI</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\SoundEffectController.cpp">

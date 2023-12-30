@@ -2,34 +2,32 @@
 
 #include "config_manager.hpp"
 
-namespace plnt {
-	namespace private_ {
-		class StandardConfigManager final : public config_manager {
-		public:
-			virtual bool load_system_config(const file &file) override;
-			virtual bool load_user_config(const file &file) override;
-			virtual int color_bit_depth() const override;
-			virtual std::string startup_scene_id() const override;
-			virtual std::string game_title() const override;
-			virtual std::string game_version_string() const override;
-			virtual std::array<int, 3> game_version_numbers() const override;
-			virtual bool is_window_mode() const override;
-			virtual Vector2Di draw_size() const override;
-			virtual Vector2Di window_size() const override;
-			virtual const plnt::collision_group_matrix &collision_group_matrix() const override;
-			virtual bool is_cursor_visible() const override;
+namespace plnt::private_ {
+	class standard_config_manager final : public config_manager {
+	public:
+		bool load_system_config(const file &file) override;
+		bool load_user_config(const file &file) override;
+		[[nodiscard]] int color_bit_depth() const override;
+		[[nodiscard]] std::string startup_scene_id() const override;
+		[[nodiscard]] std::string game_title() const override;
+		[[nodiscard]] std::string game_version_string() const override;
+		[[nodiscard]] std::array<int, 3> game_version_numbers() const override;
+		[[nodiscard]] bool is_window_mode() const override;
+		[[nodiscard]] Vector2Di draw_size() const override;
+		[[nodiscard]] Vector2Di window_size() const override;
+		[[nodiscard]] const plnt::collision_group_matrix &collision_group_matrix() const override;
+		[[nodiscard]] bool is_cursor_visible() const override;
 
-		private:
-			int color_bit_depth_ = -1;
-			std::string startup_scene_id_ = "NULL";
-			std::string game_title_ = "NULL";
-			std::string game_version_string_ = "NULL";
-			std::array<int, 3> game_version_numbers_ = {-1, -1, -1};
-			bool is_window_mode_ = false;
-			Vector2Di draw_size_ = {-1, -1};
-			Vector2Di window_size_ = {-1, -1};
-			plnt::collision_group_matrix collision_group_matrix_;
-			bool is_cursor_visible_ = true;
-		};
-	}
+	private:
+		int color_bit_depth_ = -1;
+		std::string startup_scene_id_ = "NULL";
+		std::string game_title_ = "NULL";
+		std::string game_version_string_ = "NULL";
+		std::array<int, 3> game_version_numbers_ = {-1, -1, -1};
+		bool is_window_mode_ = false;
+		Vector2Di draw_size_ = {-1, -1};
+		Vector2Di window_size_ = {-1, -1};
+		plnt::collision_group_matrix collision_group_matrix_;
+		bool is_cursor_visible_ = true;
+	};
 }

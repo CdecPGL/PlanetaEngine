@@ -3,8 +3,8 @@
 #include "i_input_manager.hpp"
 #include "rendering_manager.hpp"
 #include "log_utility.hpp"
-#include "ScreenDrawer2D.hpp"
-#include "ScreenDrawerGUI.hpp"
+#include "screen_drawer_2d.hpp"
+#include "screen_drawer_gui.hpp"
 
 namespace plnt {
 	namespace private_ {

@@ -7,8 +7,8 @@
 #include "planeta/buildin/CDraw2D.hpp"
 #include "planeta/buildin/CDrawGUI.hpp"
 #include "log_utility.hpp"
-#include "ScreenDrawer2D.hpp"
-#include "ScreenDrawerGUI.hpp"
+#include "screen_drawer_2d.hpp"
+#include "screen_drawer_gui.hpp"
 #include "planeta/buildin/CCamera2D.hpp"
 #include "DxLib.h"
 
@@ -18,7 +18,7 @@
 #pragma warning(pop)
 
 #include "planeta/buildin/CTransform2D.hpp"
-#include "Screen.hpp"
+#include "screen.hpp"
 #include "i_debug_manager.hpp"
 
 namespace plnt {

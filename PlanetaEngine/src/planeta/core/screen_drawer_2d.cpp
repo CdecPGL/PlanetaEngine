@@ -5,10 +5,10 @@
 #include "../dxlib/dx_utility.hpp"
 #include "../dxlib/dx_graph_draw_data.hpp"
 
-#include "ScreenDrawer2D.hpp"
+#include "screen_drawer_2d.hpp"
 #include "graph_draw_data_2d.hpp"
 #include "color.hpp"
-#include "Screen.hpp"
+#include "screen.hpp"
 
 namespace plnt {
 	using namespace dxlib;

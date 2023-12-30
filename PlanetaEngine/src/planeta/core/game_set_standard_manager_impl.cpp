@@ -37,6 +37,6 @@ namespace plnt {
 		set_sound_manager(std::make_shared<StandardSoundManager>());
 		set_save_manager(std::make_shared<StandardSaveManager>());
 		set_debug_manager(std::make_shared<StandardDebugManager>());
-		set_config_manager(std::make_shared<StandardConfigManager>());
+		set_config_manager(std::make_shared<standard_config_manager>());
 	}
 }

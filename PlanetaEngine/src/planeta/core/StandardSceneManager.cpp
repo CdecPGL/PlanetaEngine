@@ -16,7 +16,7 @@ namespace plnt {
 		                                               _load_progress(0.0) { }
 
 
-		SceneStatus_ StandardSceneManager::Process_() {
+		scene_status StandardSceneManager::process() {
 			try {
 				switch (state_) {
 					case State::None:
@@ -26,18 +26,18 @@ namespace plnt {
 						_transition_proc();
 					case State::Progress:
 						_current_scene->update();
-						return SceneStatus_::Continue;
+						return scene_status::play;
 					case State::QuitRequested:
-						return SceneStatus_::Quit;
+						return scene_status::quit;
 					case State::ErrorOccured:
-						return SceneStatus_::Error;
+						return scene_status::error;
 					default:
 						break;
 				}
-				return SceneStatus_::Error;
+				return scene_status::error;
 			} catch (null_weak_pointer_exception &e) {
 				PE_LOG_ERROR("Scene::Updateで無効なWeakPointerが参照されました。", e.what());
-				return SceneStatus_::Error;
+				return scene_status::error;
 			}
 		}
 
@@ -106,7 +106,7 @@ namespace plnt {
 			_next_scene_id = "";
 		}
 
-		bool StandardSceneManager::Initialize() {
+		bool StandardSceneManager::initialize() {
 			_current_scene.reset();
 			_current_scene_setupper.reset();
 			state_ = State::None;
@@ -115,7 +115,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardSceneManager::Finalize() {
+		bool StandardSceneManager::finalize() {
 			DeleteDebugInformationChannel();
 			//現在のシーンを終了
 			_end_current_scene();
@@ -149,7 +149,7 @@ namespace plnt {
 			} else { return util::parameter_holder(); }
 		}
 
-		void StandardSceneManager::SetResouceManager(const std::shared_ptr<resource_manager> &mgr) {
+		void StandardSceneManager::set_resource_manager(const std::shared_ptr<resource_manager> &mgr) {
 			resource_manager_ = mgr;
 		}
 

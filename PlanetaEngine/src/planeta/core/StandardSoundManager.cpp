@@ -11,7 +11,7 @@ namespace plnt {
 		class StandardSoundManager::Impl_ {
 		public:
 			std::shared_ptr<bgm_controller> bgm_controller_;
-			std::unordered_map<int, std::shared_ptr<SoundEffectController>> se_controllers_;
+			std::unordered_map<int, std::shared_ptr<sound_effect_controller>> se_controllers_;
 		};
 
 		std::shared_ptr<i_bgm_controller> StandardSoundManager::get_bgm_controller(
@@ -47,7 +47,7 @@ namespace plnt {
 			int dx_handle = s_res->GetHandle();
 			auto it = impl_->se_controllers_.find(dx_handle);
 			if (it == impl_->se_controllers_.end()) {
-				auto new_se_ctlr = std::make_shared<SoundEffectController>(s_res);
+				auto new_se_ctlr = std::make_shared<sound_effect_controller>(s_res);
 				impl_->se_controllers_.emplace(dx_handle, new_se_ctlr);
 				return new_se_ctlr;
 			} else { return it->second; }
@@ -55,20 +55,20 @@ namespace plnt {
 
 		StandardSoundManager::StandardSoundManager() : impl_(std::make_unique<Impl_>()) { }
 
-		void StandardSoundManager::Update() { if (impl_->bgm_controller_) { impl_->bgm_controller_->update(); } }
+		void StandardSoundManager::update() { if (impl_->bgm_controller_) { impl_->bgm_controller_->update(); } }
 
-		void StandardSoundManager::Reset() {
+		void StandardSoundManager::reset() {
 			if (impl_->bgm_controller_) {
 				impl_->bgm_controller_->dispose();
 				impl_->bgm_controller_.reset();
 			}
-			for (auto &s : impl_->se_controllers_) { s.second->Dispose(); }
+			for (auto &s : impl_->se_controllers_) { s.second->dispose(); }
 			impl_->se_controllers_.clear();
 		}
 
-		bool StandardSoundManager::Initialize() { return true; }
+		bool StandardSoundManager::initialize() { return true; }
 
-		void StandardSoundManager::Finalize() { }
+		void StandardSoundManager::finalize() { }
 
 		StandardSoundManager::~StandardSoundManager() = default;
 	}

@@ -38,7 +38,7 @@ namespace plnt {
 		bool roop_flag_ = false;
 		bool auto_play_ = true;
 		double expansion_ = 1.0;
-		SignalConnection trans_update_eve_connection_;
+		signal_connection trans_update_eve_connection_;
 
 	private:
 		non_owing_pointer<CTransform2D> my_c_transform_2d_;
@@ -128,14 +128,14 @@ namespace plnt {
 
 	void CEffect::Impl_::ConnectMyCTransformUpdatedEvent() {
 		if (my_c_transform_2d_) {
-			trans_update_eve_connection_.Disconnect();
-			trans_update_eve_connection_ = my_c_transform_2d_->updated.ConnectFunction([this]() {
+			trans_update_eve_connection_.disconnect();
+			trans_update_eve_connection_ = my_c_transform_2d_->updated.connect_function([this]() {
 				ApplyTransformToEffect();
 			});
 		}
 	}
 
-	void CEffect::Impl_::DisconnectMyCTransformUpdatedEvent() { trans_update_eve_connection_.Disconnect(); }
+	void CEffect::Impl_::DisconnectMyCTransformUpdatedEvent() { trans_update_eve_connection_.disconnect(); }
 
 	void CEffect::Impl_::SetMyCTransform2D(const non_owing_pointer<CTransform2D> &com) {
 		my_c_transform_2d_.reset(com);
