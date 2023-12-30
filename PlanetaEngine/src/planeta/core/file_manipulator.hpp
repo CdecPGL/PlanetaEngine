@@ -12,7 +12,7 @@ namespace plnt {
 		class encrypter_base;
 	}
 
-	class file_manipulator : public Object {
+	class file_manipulator : public object {
 	public:
 		explicit file_manipulator();
 		file_manipulator(const file_manipulator &) = delete;

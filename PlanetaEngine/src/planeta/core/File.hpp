@@ -6,7 +6,7 @@
 
 namespace plnt {
 	/*! ファイルデータを格納するクラス*/
-	class file final : public Object {
+	class file final : public object {
 	public:
 		/*! 既定のコンストラクタ*/
 		file();

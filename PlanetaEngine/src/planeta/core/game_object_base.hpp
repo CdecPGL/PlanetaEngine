@@ -16,10 +16,10 @@ namespace plnt {
 
 		/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 		*/
-		class game_object_base final : public Object, public i_game_object, util::non_copyable<game_object_base>,
+		class game_object_base final : public object, public i_game_object, util::non_copyable<game_object_base>,
 		                               public std::enable_shared_from_this<game_object_base> {
 		public:
-			using super = Object;
+			using super = object;
 			game_object_base();
 			game_object_base(const game_object_base &) = delete;
 			game_object_base(game_object_base &&) = delete;

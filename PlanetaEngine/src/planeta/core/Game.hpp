@@ -21,7 +21,7 @@ namespace plnt {
 		class log_manager;
 		class SceneManager;
 		class input_manager;
-		class PerformanceManager;
+		class performance_manager;
 		class RenderingManager;
 		class SoundManager;
 		class SaveManager;
@@ -56,7 +56,7 @@ namespace plnt {
 		/*! インプットマネージャを設定する(初期化前)*/
 		void set_input_manager(const std::shared_ptr<private_::input_manager> &mgr) const;
 		/*! パフォーマンスマネージャを設定する(初期化前)*/
-		void set_performance_manager(const std::shared_ptr<private_::PerformanceManager> &mgr) const;
+		void set_performance_manager(const std::shared_ptr<private_::performance_manager> &mgr) const;
 		/*! レンダリングマネージャを設定する(初期化前)*/
 		void set_rendering_manager(const std::shared_ptr<private_::RenderingManager> &mgr) const;
 		/*! サウンドマネージャを設定する(初期化前)*/

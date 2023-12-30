@@ -33,7 +33,7 @@ namespace plnt {
 		std::shared_ptr<private_::log_manager> log_manager;
 		std::shared_ptr<SceneManager> scene_manager;
 		std::shared_ptr<private_::input_manager> input_manager;
-		std::shared_ptr<PerformanceManager> performance_manager;
+		std::shared_ptr<private_::performance_manager> performance_manager;
 		std::shared_ptr<RenderingManager> rendering_manager;
 		std::shared_ptr<SoundManager> sound_manager;
 		std::shared_ptr<SaveManager> save_manager;
@@ -52,8 +52,8 @@ namespace plnt {
 				PE_LOG_FATAL("パフォーマンスマネージャが設定されていません。");
 				return false;
 			}
-			if (performance_manager->Initialize()) {
-				finalize_handles_.push_front([this] { performance_manager->Finalize(); });
+			if (performance_manager->initialize()) {
+				finalize_handles_.push_front([this] { performance_manager->finalize(); });
 			} else {
 				assert(false);
 				return false;
@@ -234,7 +234,7 @@ namespace plnt {
 			debug_manager->pre_rendering_update(); //デバッグマネージャの描画前更新
 			rendering_manager->Update(); //描画システムの更新
 			sound_manager->Update(); //サウンドシステムの更新
-			performance_manager->Update(); //パフォーマンスマネージャの更新
+			performance_manager->update(); //パフォーマンスマネージャの更新
 			debug_manager->post_rendering_update(); //デバッグマネージャの描画後更新
 
 			switch (sst) {
@@ -324,7 +324,7 @@ namespace plnt {
 
 	std::shared_ptr<i_input_manager> game::input_manager() const { return impl_->input_manager; }
 
-	void game::set_performance_manager(const std::shared_ptr<PerformanceManager> &mgr) const {
+	void game::set_performance_manager(const std::shared_ptr<private_::performance_manager> &mgr) const {
 		if (is_initialized()) {
 			PE_LOG_ERROR("マネージャの設定はPlanetaEngine初期化前に行わなければなりません。");
 			return;

@@ -5,7 +5,7 @@
 
 
 namespace plnt {
-	class e_collision_with_ground_2d final : public Object {
+	class e_collision_with_ground_2d final : public object {
 	public:
 		collision_state collision_state{};
 	};

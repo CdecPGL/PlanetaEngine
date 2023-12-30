@@ -7,7 +7,7 @@
 namespace plnt::util {
 	/*日にち時間クラス
 		演算結果が負になる場合はすべて0とする*/
-	class date_time final : public Object {
+	class date_time final : public object {
 	public:
 		date_time(): date_time(0, 0, 0, 0, 0, 0) { }
 

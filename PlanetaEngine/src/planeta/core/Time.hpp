@@ -8,7 +8,7 @@ namespace plnt {
 	namespace util {
 		/*時間クラス
 		演算結果が負になる場合はすべて0とする*/
-		class Time : public Object {
+		class Time : public object {
 		public:
 			Time() : Time(0) { }
 

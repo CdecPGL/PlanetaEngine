@@ -8,7 +8,7 @@ namespace plnt {
 	class file;
 	class json_file;
 
-	class ResourceBase : public Object {
+	class ResourceBase : public object {
 	public:
 		ResourceBase() = default;
 		virtual ~ResourceBase();

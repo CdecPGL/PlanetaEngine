@@ -70,7 +70,7 @@ namespace plnt {
 			return true;
 		}
 
-		bool StandardSceneManager::transition_scene(const util::ParameterHolder &transition_parameters) {
+		bool StandardSceneManager::transition_scene(const util::parameter_holder &transition_parameters) {
 			if (is_transitionable() == false) {
 				PE_LOG_ERROR("シーン遷移予約に失敗しました。遷移中のため、新たに遷移処理をはじめることはできません。");
 				return false;
@@ -84,7 +84,7 @@ namespace plnt {
 
 		void StandardSceneManager::_transition_proc() {
 			//現在のシーンを終了
-			util::ParameterHolder next_scene_initialize_parameters = _end_current_scene();
+			util::parameter_holder next_scene_initialize_parameters = _end_current_scene();
 			//新しいシーンを作成
 			std::shared_ptr<Scene> new_scene = std::make_shared<Scene>();
 			//新しいシーンを初期化
@@ -126,7 +126,7 @@ namespace plnt {
 		std::shared_ptr<SceneSetUpper> StandardSceneManager::_CreateSceneSetUpper(const std::string &scene_name) {
 			//シーン名にプレフィックスをつけたクラスを作成。
 			auto setupper = reflection::reflection::create_object_by_object_type_id<SceneSetUpper>(
-				private_::AddPrefix(scene_name, private_::ObjectCategory::Scene));
+				private_::add_prefix(scene_name, private_::object_category::scene));
 			return setupper;
 		}
 
@@ -134,19 +134,19 @@ namespace plnt {
 			PE_LOG_ERROR("エラーシーンに遷移します。");
 			std::shared_ptr<SceneSetUpper> ecd = std::make_shared<SError>();
 			std::shared_ptr<Scene> es = std::make_shared<Scene>();
-			InitializeScene_(*es, *ecd, util::ParameterHolder());
+			InitializeScene_(*es, *ecd, util::parameter_holder());
 			_current_scene = std::move(es);
 			_current_scene_setupper = ecd;
 			state_ = State::Progress;
 			_is_next_scene_loaded = false;
 		}
 
-		util::ParameterHolder StandardSceneManager::_end_current_scene() {
+		util::parameter_holder StandardSceneManager::_end_current_scene() {
 			//現在のシーンを終了(現在のシーンがなかったら空のパラメータを格納)
 			if (_current_scene) {
 				return FinalizeScene_(*_current_scene, *_current_scene_setupper, _next_scene_id,
 				                      _transition_parameters);
-			} else { return util::ParameterHolder(); }
+			} else { return util::parameter_holder(); }
 		}
 
 		void StandardSceneManager::SetResouceManager(const std::shared_ptr<ResourceManager> &mgr) {
@@ -159,7 +159,7 @@ namespace plnt {
 		}
 
 		bool StandardSceneManager::InitializeScene_(Scene &scene, SceneSetUpper &setupper,
-		                                            const util::ParameterHolder &init_param) {
+		                                            const util::parameter_holder &init_param) {
 			//標準のシーンModuleをセット
 			SetStandardSceneModules(scene);
 			//シーンModuleにシーンを登録
@@ -182,9 +182,9 @@ namespace plnt {
 			return true;
 		}
 
-		util::ParameterHolder StandardSceneManager::FinalizeScene_(private_::Scene &scene, SceneSetUpper &setupper,
+		util::parameter_holder StandardSceneManager::FinalizeScene_(private_::Scene &scene, SceneSetUpper &setupper,
 		                                                           const std::string &next_scene_id,
-		                                                           const util::ParameterHolder &finalize_parameters) {
+		                                                           const util::parameter_holder &finalize_parameters) {
 			auto ret = setupper.TerminateScene(scene, next_scene_id, finalize_parameters); //固有終了処理
 			scene.Finalize(); //終了処理
 			return ret;

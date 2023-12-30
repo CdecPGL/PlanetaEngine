@@ -9,7 +9,7 @@ namespace plnt::private_ {
 
 	std::shared_ptr<game_object_component> go_component_adder::create_and_add_component(const std::string &com_type_id) const {
 		//オブジェクトIDを取得し、コンポーネント作成
-		auto obj_id = AddPrefix(com_type_id, ObjectCategory::GameObjectComponent);
+		auto obj_id = add_prefix(com_type_id, object_category::game_object_component);
 		if (auto com = reflection::reflection::create_object_by_object_type_id<game_object_component>(obj_id)) {
 			if (decltype(auto) t_info = reflection::reflection::get_std_type_info_by_object_type_id(obj_id);
 				add_component_to_holder(com, t_info)) { return com; }

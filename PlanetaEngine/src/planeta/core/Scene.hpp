@@ -16,7 +16,7 @@ namespace plnt {
 	namespace private_ {
 		class SceneModule;
 
-		class Scene final : public Object, public i_scene_internal, public std::enable_shared_from_this<Scene>
+		class Scene final : public object, public i_scene_internal, public std::enable_shared_from_this<Scene>
 		                    , private util::non_copyable<Scene> {
 		public:
 			Scene();

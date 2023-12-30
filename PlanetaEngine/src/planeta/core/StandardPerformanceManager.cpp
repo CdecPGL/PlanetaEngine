@@ -9,16 +9,16 @@ namespace plnt {
 	}
 
 	namespace private_ {
-		bool StandardPerformanceManager::Initialize() {
+		bool StandardPerformanceManager::initialize() {
 			_frame_count = 0;
 			_start_time = util::Time::GetCurrentTime();
 			CreateDebugInformationChannel("PerformanceManager");
 			return true;
 		}
 
-		void StandardPerformanceManager::Finalize() { DeleteDebugInformationChannel(); }
+		void StandardPerformanceManager::finalize() { DeleteDebugInformationChannel(); }
 
-		void StandardPerformanceManager::Update() {
+		void StandardPerformanceManager::update() {
 			using namespace std::chrono;
 			++fps_measure_count_;
 			if (fps_measure_count_ % fps_measure_interval == 0) {

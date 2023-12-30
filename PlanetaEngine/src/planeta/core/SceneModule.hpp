@@ -10,7 +10,7 @@ namespace plnt {
 	namespace private_ {
 		class i_scene_internal;
 
-		class SceneModule : public Object, private util::non_copyable<SceneModule> {
+		class SceneModule : public object, private util::non_copyable<SceneModule> {
 		public:
 			virtual ~SceneModule() = default;
 			virtual bool Initialize() { return true; };

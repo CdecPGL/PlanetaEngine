@@ -42,11 +42,11 @@ namespace plnt {
 			/*現在のシーンIDを取得*/
 			const std::string get_current_scene_id() const override { return _current_scene_id; }
 			/*シーンの遷移(読み込みが必要。読み込み中だったら読み込みつつ遷移)*/
-			bool transition_scene(const util::ParameterHolder &transition_parameters) override;
+			bool transition_scene(const util::parameter_holder &transition_parameters) override;
 			/*シーンを読み込んで遷移する*/
 			bool load_and_transition_scene(const std::string &scene_id,
-			                            const util::ParameterHolder &transition_parameters =
-				                            util::ParameterHolder()) override {
+			                            const util::parameter_holder &transition_parameters =
+				                            util::parameter_holder()) override {
 				return load_next_scene(scene_id) && transition_scene(transition_parameters);
 			}
 
@@ -87,7 +87,7 @@ namespace plnt {
 			/*次のシーンID*/
 			std::string _next_scene_id;
 			/*次のシーンの初期化パラメータリスト*/
-			util::ParameterHolder _transition_parameters;
+			util::parameter_holder _transition_parameters;
 			/*現在のシーンID*/
 			std::string _current_scene_id;
 			/*遷移中か*/
@@ -102,15 +102,15 @@ namespace plnt {
 			/*遷移処理*/
 			void _transition_proc();
 			/*現在のシーンを終了*/
-			util::ParameterHolder _end_current_scene();
+			util::parameter_holder _end_current_scene();
 			/*エラーシーンへ遷移*/
 			void _transition_to_error_scene();
 			/*シーンの初期化*/
-			bool InitializeScene_(Scene &scene, SceneSetUpper &setupper, const util::ParameterHolder &init_param);
+			bool InitializeScene_(Scene &scene, SceneSetUpper &setupper, const util::parameter_holder &init_param);
 			/*シーンの終了処理*/
-			util::ParameterHolder FinalizeScene_(private_::Scene &scene, SceneSetUpper &setupper,
+			util::parameter_holder FinalizeScene_(private_::Scene &scene, SceneSetUpper &setupper,
 			                                     const std::string &next_scene_id,
-			                                     const util::ParameterHolder &finalize_parameters);
+			                                     const util::parameter_holder &finalize_parameters);
 		};
 	}
 }

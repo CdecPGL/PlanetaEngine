@@ -27,11 +27,11 @@ namespace plnt {
 		/*! 現在のシーンIDを取得*/
 		[[nodiscard]] virtual const std::string get_current_scene_id() const = 0;
 		/*! シーンの遷移(読み込みが必要。読み込み中だったら読み込みつつ遷移)*/
-		virtual bool transition_scene(const util::ParameterHolder &transition_parameters) = 0;
+		virtual bool transition_scene(const util::parameter_holder &transition_parameters) = 0;
 		/*! シーンを読み込んで遷移する*/
 		virtual bool load_and_transition_scene(const std::string &scene_id,
-		                                    const util::ParameterHolder &transition_parameters =
-			                                    util::ParameterHolder()) = 0;
+		                                    const util::parameter_holder &transition_parameters =
+			                                    util::parameter_holder()) = 0;
 		/*! 終了*/
 		virtual void quit_scene() = 0;
 		/*! エラーを発生させる*/

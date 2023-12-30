@@ -26,13 +26,13 @@ namespace plnt {
 		@attention クラス宣言の先頭にPE_CLONABLE_GAMEOBJECTCOMPONENTマクロ、抽象クラスならPE_COPIABLE_GAMEOBJECTCOMPONENTを記述しなければならない。
 		@warning ゲームオブジェクトコンポーネントの定義の際には、このクラスを直接継承してはいけない。代わりにGameObjectStandardComponentを継承すること。
 	*/
-	class game_object_component : public Object, public reflection::reflection_accessible,
+	class game_object_component : public object, public reflection::reflection_accessible,
 	                            public std::enable_shared_from_this<game_object_component>,
 	                            util::non_copyable<game_object_component> {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(game_object_component);
 
 	public:
-		using super = Object;
+		using super = object;
 		game_object_component() = default;
 		game_object_component(const game_object_component&) = delete;
 		game_object_component(game_object_component&&) = delete;

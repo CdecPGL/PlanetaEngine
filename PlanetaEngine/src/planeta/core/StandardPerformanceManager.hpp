@@ -6,13 +6,13 @@
 namespace plnt {
 	namespace private_ {
 		//起動からの経過フレームと経過時間をカウントする
-		class StandardPerformanceManager : public PerformanceManager {
+		class StandardPerformanceManager : public performance_manager {
 		public:
 			StandardPerformanceManager() = default;
-			bool Initialize() override;
-			void Finalize() override;
+			bool initialize() override;
+			void finalize() override;
 
-			void Update() override;
+			void update() override;
 			size_t get_current_frame_count() const override { return _frame_count; }
 			const util::Time get_current_time_count() const override;
 			void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) override;
