@@ -28,7 +28,7 @@ namespace plnt {
 			std::shared_ptr<resources::GraphResource> gr = std::dynamic_pointer_cast<resources::GraphResource>(res);
 			if (gr) {
 				graph_resource_ = gr;
-				relative_draw_area_buffer_.Set(Vector2Di(0, 0), Vector2Di(gr->size().x, gr->size().y));
+				relative_draw_area_buffer_.Set(vector_2di(0, 0), vector_2di(gr->size().x, gr->size().y));
 				size(relative_draw_area_buffer_.size);
 				return true;
 			}

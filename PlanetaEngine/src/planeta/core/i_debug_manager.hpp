@@ -27,11 +27,11 @@ namespace plnt {
 		// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
 		virtual ~i_debug_drawer() = 0 { }
 		/*! 線を描画する*/
-		virtual void draw_line(const Vector2Df &s_pos, const Vector2Df &e_pos, const color &color) = 0;
+		virtual void draw_line(const vector_2df &s_pos, const vector_2df &e_pos, const color &color) = 0;
 		/*! 円を描画する*/
-		virtual void draw_circle(const Vector2Df &pos, float radius, const color &color, bool filled) = 0;
+		virtual void draw_circle(const vector_2df &pos, float radius, const color &color, bool filled) = 0;
 		/*! 複数の線を描画する*/
-		virtual void draw_lines(const std::vector<Vector2Df> &pos_list, const color &color) = 0;
+		virtual void draw_lines(const std::vector<vector_2df> &pos_list, const color &color) = 0;
 	};
 
 	/*! デバッグマネージャ公開インターフェイス*/

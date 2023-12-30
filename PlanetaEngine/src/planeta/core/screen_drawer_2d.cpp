@@ -13,7 +13,7 @@
 namespace plnt {
 	using namespace dxlib;
 
-	void screen_drawer_2d::draw_wire(const std::vector<Vector2Df> &positions, double width, const color &color) const {
+	void screen_drawer_2d::draw_wire(const std::vector<vector_2df> &positions, double width, const color &color) const {
 		screen_.reserve_draw([positions,width, color] {
 			const unsigned int dxc = pe_color_to_dx_color_handle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
@@ -25,7 +25,7 @@ namespace plnt {
 		});
 	}
 
-	void screen_drawer_2d::draw_polygon(const std::vector<Vector2Df> &positions,
+	void screen_drawer_2d::draw_polygon(const std::vector<vector_2df> &positions,
 	                                    const std::vector<std::array<int, 3>> &indexes,
 	                                    const color &color) const {
 		screen_.reserve_draw([positions,indexes,color] {
@@ -45,11 +45,11 @@ namespace plnt {
 		});
 	}
 
-	void screen_drawer_2d::draw_circle(const Vector2Df &position, const float radius, const color &color) const {
+	void screen_drawer_2d::draw_circle(const vector_2df &position, const float radius, const color &color) const {
 		const size_t separation = static_cast<size_t>(2.0f * sqrt(radius) * math::pi_f) + 1;
-		std::vector<Vector2Df> poses{separation + 1};
+		std::vector<vector_2df> poses{separation + 1};
 		for (size_t i = 0; i < separation; ++i) {
-			poses[i] = position + GetUnitVectorByRadian<float>(
+			poses[i] = position + get_unit_vector_by_radian<float>(
 				math::pi * 2.0 / static_cast<double>(separation) * static_cast<double>(i)) * radius;
 		}
 		poses[separation] = poses[0];

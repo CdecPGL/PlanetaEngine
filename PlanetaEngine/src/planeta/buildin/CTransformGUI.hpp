@@ -14,31 +14,31 @@ namespace plnt {
 		~CTransformGUI();
 		/*アクセサ*/
 		//! 位置を取得。Pivotを基準点とする
-		const Vector2Di &position() const;
+		const vector_2di &position() const;
 		//! 位置を設定。Pivotを基準点とする
-		CTransformGUI &position(const Vector2Di &pos);
+		CTransformGUI &position(const vector_2di &pos);
 		//! 回転度を取得。Pivotを中心とする
 		const double rotation_rad() const;
 		//! 回転度を設定。Pivotを中心とする
 		CTransformGUI &rotation_rad(double rota_rad);
 		//! サイズを取得。Pivotを基準点とする
-		const Vector2Di &size() const;
+		const vector_2di &size() const;
 		//! サイズを設定。Pivotを基準点とする
-		CTransformGUI &size(const Vector2Di &s);
+		CTransformGUI &size(const vector_2di &s);
 		//! 変形中心位置を取得(0.0-1.0)
-		const Vector2Dd &pivot() const;
+		const vector_2dd &pivot() const;
 		//! 変形中心位置を設定(0.0-1.0)
-		CTransformGUI &pivot(const Vector2Dd &p);
+		CTransformGUI &pivot(const vector_2dd &p);
 		//! GUI領域を表す矩形を取得。回転は考慮されない
 		//const rectangle_i& rect()const;
 		//! アンカー左上の位置を取得。親CTransformGUI中での位置を(0.0-1.0)^2で表す
-		//Vector2Dd anchor_min()const;
+		//vector_2dd anchor_min()const;
 		//! アンカー左上の位置を設定。親CTransformGUI中での位置を(0.0-1.0)^2で表す
-		//CTransformGUI& anchor_min(const Vector2Dd& a);
+		//CTransformGUI& anchor_min(const vector_2dd& a);
 		//! アンカー右下の位置を取得。親CTransformGUI中での位置を(0.0-1.0)^2で表す
-		//Vector2Dd anchor_max()const;
+		//vector_2dd anchor_max()const;
 		//! アンカー右下の位置を設定。親CTransformGUI中での位置を(0.0-1.0)^2で表す
-		//CTransformGUI& anchor_max(const Vector2Dd& a);
+		//CTransformGUI& anchor_max(const vector_2dd& a);
 	private:
 		class Impl_;
 		std::unique_ptr<Impl_> impl_;

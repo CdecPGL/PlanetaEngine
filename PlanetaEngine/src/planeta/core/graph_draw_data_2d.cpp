@@ -15,13 +15,13 @@ namespace plnt::private_ {
 		}
 
 		/*DX形式頂点情報の位置を設定*/
-		void set_position_to_dxvertex_3d(VERTEX3D &dx_vtx3d, const Vector2Df &position) {
+		void set_position_to_dxvertex_3d(VERTEX3D &dx_vtx3d, const vector_2df &position) {
 			using namespace dxlib;
 			dx_vtx3d.pos = pe_vector_2d_to_dx_vector(position);
 		}
 
 		/*DX形式頂点情報のUV座標を設定*/
-		void set_uv_to_dxvertex_3d(VERTEX3D &dx_vtx3d, const float u, const float v, const Vector2Dd &image_area) {
+		void set_uv_to_dxvertex_3d(VERTEX3D &dx_vtx3d, const float u, const float v, const vector_2dd &image_area) {
 			dx_vtx3d.u = static_cast<float>(static_cast<double>(u) * image_area.x);
 			dx_vtx3d.v = static_cast<float>(static_cast<double>(v) * image_area.y);
 		}
@@ -34,8 +34,8 @@ namespace plnt::private_ {
 		}
 
 		/*DX形式頂点情報を設定*/
-		void set_pe_vertex_2d_to_dxvertex_3d(VERTEX3D &dx_vtx3d, const util::Vertex2D &pe_vtx2d,
-		                                     const Vector2Dd &image_area) {
+		void set_pe_vertex_2d_to_dxvertex_3d(VERTEX3D &dx_vtx3d, const util::vertex_2d &pe_vtx2d,
+		                                     const vector_2dd &image_area) {
 			using namespace dxlib;
 			set_position_to_dxvertex_3d(dx_vtx3d, pe_vtx2d.position);
 			set_color_to_dxvertex_3d(dx_vtx3d, pe_vtx2d.color);
@@ -83,7 +83,7 @@ namespace plnt::private_ {
 		dx_data_->polygon_count = c;
 	}
 
-	bool graph_draw_data_2d::set_vertex(const size_t idx, const util::Vertex2D &vtx) {
+	bool graph_draw_data_2d::set_vertex(const size_t idx, const util::vertex_2d &vtx) {
 		if (dx_data_->vertex_count <= idx) { return false; }
 		set_pe_vertex_2d_to_dxvertex_3d(dx_data_->vertexes[idx], vtx, graph_resource_->image_area());
 		vertex_uv_information_buffer_[idx].x = vtx.u;
@@ -91,13 +91,13 @@ namespace plnt::private_ {
 		return true;
 	}
 
-	bool graph_draw_data_2d::set_vertex_position(const size_t idx, const Vector2Df &pos) const {
+	bool graph_draw_data_2d::set_vertex_position(const size_t idx, const vector_2df &pos) const {
 		if (dx_data_->vertex_count <= idx) { return false; }
 		set_position_to_dxvertex_3d(dx_data_->vertexes[idx], pos);
 		return true;
 	}
 
-	bool graph_draw_data_2d::set_vertex_uv(const size_t idx, const Vector2Df &uv) {
+	bool graph_draw_data_2d::set_vertex_uv(const size_t idx, const vector_2df &uv) {
 		if (dx_data_->vertex_count <= idx) { return false; }
 		if (graph_resource_ == nullptr) { return false; }
 		set_uv_to_dxvertex_3d(dx_data_->vertexes[idx], uv.x, uv.y, graph_resource_->image_area());
@@ -117,7 +117,7 @@ namespace plnt::private_ {
 		return true;
 	}
 
-	void graph_draw_data_2d::set_vertexes(const std::vector<util::Vertex2D> &vertexes) {
+	void graph_draw_data_2d::set_vertexes(const std::vector<util::vertex_2d> &vertexes) {
 		using namespace dxlib;
 		//頂点情報のDX形式変換
 		auto vdx = std::make_unique<VERTEX3D[]>(vertexes.size());
@@ -142,7 +142,7 @@ namespace plnt::private_ {
 		dx_data_->polygon_count = polygon_indexes.size();
 	}
 
-	void graph_draw_data_2d::set_vertexes_and_polygon_indexes(const std::vector<util::Vertex2D> &vertexes,
+	void graph_draw_data_2d::set_vertexes_and_polygon_indexes(const std::vector<util::vertex_2d> &vertexes,
 	                                                          const std::vector<std::array<size_t, 3>> &
 	                                                          polygon_indexes) {
 		set_vertexes(vertexes);

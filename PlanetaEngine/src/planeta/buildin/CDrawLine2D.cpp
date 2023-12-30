@@ -19,9 +19,9 @@ namespace plnt {
 
 	void CDrawLine2D::DrawProc(screen_drawer_2d &drawer) {
 		//トランスフォームからワイヤーの位置を更新
-		_wire_positions[0] = static_cast<Vector2Df>(GetDrawCenterPosition());
-		_wire_positions[1] = _wire_positions[0] + static_cast<Vector2Df>(math::rotation_transform(
-			GetDrawRotationRed(), Vector2Dd(1.0, 0.0)) * length() * GetDrawScale().x);
+		_wire_positions[0] = static_cast<vector_2df>(GetDrawCenterPosition());
+		_wire_positions[1] = _wire_positions[0] + static_cast<vector_2df>(math::rotation_transform(
+			GetDrawRotationRed(), vector_2dd(1.0, 0.0)) * length() * GetDrawScale().x);
 		//描画
 		drawer.draw_wire(_wire_positions, _width * GetDrawScale().y, color());
 	}

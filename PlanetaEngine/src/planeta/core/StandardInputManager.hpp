@@ -64,7 +64,7 @@ namespace plnt {
 			/*ボタンに割り当てられたキーマップ取得*/
 			const std::unordered_map<button::type, std::vector<pad::type>> &get_assigned_pad_to_button_map() const override;
 			/*マウスポインタの位置を取得*/
-			const Vector2Di get_mouse_pointer_position() const override;
+			const vector_2di get_mouse_pointer_position() const override;
 			/*マウスホイールの回転量を取得*/
 			int get_mouse_wheel_rotation() const override;
 

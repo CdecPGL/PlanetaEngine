@@ -12,7 +12,7 @@ namespace plnt {
 
 		void TextPanel::DrawProc(const utility::RectAngle<int>& draw_area, ScreenDrawerGUI& drawer)
 		{
-			Vector2Dd dp = draw_area.position;
+			vector_2dd dp = draw_area.position;
 			for (auto& str : lines_) {
 				drawer.DrawString(dp, character_scale_, str, color_, outline_color_, font_definition_resource_);
 				dp.y += character_size_;

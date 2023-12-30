@@ -65,7 +65,7 @@ namespace plnt {
 		std::vector<FrameDataType> new_frames;
 		new_frames.resize(frames.size());
 		for (unsigned int i = 0; i < frames.size(); ++i) {
-			new_frames[i] = FrameDataType(frames[i].first, frames[i].second, Vector2Dd(1.0, 1.0), 0.0);
+			new_frames[i] = FrameDataType(frames[i].first, frames[i].second, vector_2dd(1.0, 1.0), 0.0);
 		}
 		animations_[anim_name] = new_frames;
 	}

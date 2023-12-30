@@ -28,7 +28,7 @@ namespace plnt {
 	//		points_update_flag_ = true;
 	//	}
 
-	//	bool SimplePolygonPanel::SetVertexPosition(size_t idx, const Vector2Dd& pos)
+	//	bool SimplePolygonPanel::SetVertexPosition(size_t idx, const vector_2dd& pos)
 	//	{
 	//		if (idx >= relative_points_.size()) { return false; }
 	//		else {
@@ -38,7 +38,7 @@ namespace plnt {
 	//		}
 	//	}
 
-	//	void SimplePolygonPanel::SetVertexes(const std::vector<Vector2Dd>& vs)
+	//	void SimplePolygonPanel::SetVertexes(const std::vector<vector_2dd>& vs)
 	//	{
 	//		relative_points_ = vs;
 	//		absolute_points_.resize(vs.size() + 1);
@@ -59,7 +59,7 @@ namespace plnt {
 	//	{
 	//		for (size_t i = 0; i < relative_points_.size(); ++i) {
 	//			//コンポーネント左上からの相対位置とコンポーネントの描画エリアから画面上の絶対位置を求める
-	//			absolute_points_[i] = draw_area.position + Vector2Di((int)(draw_area.size.x*relative_points_[i].x), (int)(draw_area.size.y*relative_points_[i].y));
+	//			absolute_points_[i] = draw_area.position + vector_2di((int)(draw_area.size.x*relative_points_[i].x), (int)(draw_area.size.y*relative_points_[i].y));
 	//		}
 	//		absolute_points_[absolute_points_.size() - 1] = absolute_points_[0];
 	//	}

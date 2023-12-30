@@ -399,7 +399,7 @@ namespace plnt {
 
 		StandardInputManager::~StandardInputManager() { }
 
-		const Vector2Di StandardInputManager::get_mouse_pointer_position() const {
+		const vector_2di StandardInputManager::get_mouse_pointer_position() const {
 			//			static int* leak = new int[2];
 			//			static int* leak2 = new int;
 			//			leak[3] = 0x666;
@@ -408,7 +408,7 @@ namespace plnt {
 			////			assert(_CrtCheckMemory());
 			int x, y;
 			GetMousePoint(&x, &y);
-			return Vector2Di(x, y);
+			return vector_2di(x, y);
 		}
 
 		int StandardInputManager::get_mouse_wheel_rotation() const { return _impl->GetDxMouseWheelRotation(); }

@@ -19,13 +19,13 @@ namespace plnt {
 		//行列関数
 		//線形変換
 		template <typename T>
-		Vector2D<T> linear_transform(const matrix_22<T> &m, const Vector2D<T> &v) {
-			return Vector2D<T>(m[0][0] * v.x + m[1][0] * v.y, m[0][1] * v.x + m[1][1] * v.y);
+		vector_2d<T> linear_transform(const matrix_22<T> &m, const vector_2d<T> &v) {
+			return vector_2d<T>(m[0][0] * v.x + m[1][0] * v.y, m[0][1] * v.x + m[1][1] * v.y);
 		}
 
 		//回転変換
 		template <typename T>
-		Vector2D<T> rotation_transform(const double rota_rad, const Vector2D<T> &v) {
+		vector_2d<T> rotation_transform(const double rota_rad, const vector_2d<T> &v) {
 			matrix_22<T> m{};
 			m[0][0] = static_cast<T>(cos(rota_rad));
 			m[1][0] = -static_cast<T>(sin(rota_rad));

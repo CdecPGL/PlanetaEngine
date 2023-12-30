@@ -79,7 +79,7 @@ namespace plnt {
 			for (unsigned int j = 0; j < _vertical_separation + 1; ++j) {
 				//垂直方向は上から順にセットしていく
 				//テクスチャ座標のセット
-				Vector2Df uv;
+				vector_2df uv;
 				uv.x = (float)i / _horizontal_separation;
 				uv.y = (float)j / _vertical_separation;
 				graph_draw_data_->set_vertex_uv((_vertical_separation + 1) * i + j, uv);
@@ -111,23 +111,23 @@ namespace plnt {
 
 	void CDrawPlanet2D::UpdatePolygonRoundly_() {
 		//今のところ拡大度は考慮していない
-		Vector2Dd center_pos = GetDrawCenterPosition();
+		vector_2dd center_pos = GetDrawCenterPosition();
 		double rotation = GetDrawRotationRed();
 		//頂点座標の算出
 		for (unsigned int i = 0; i < _horizontal_separation + 1; ++i) {
 			double angle_rad = 2.0 * math::pi / _horizontal_separation * i; //現在の惑星頂点の位置角度
 			double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
-			Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
+			vector_2dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 			interface_vec *= height;
 			//中心以外の頂点座標を求める
 			for (unsigned int j = 0; j < _vertical_separation; ++j) {
 				double dis_ratio = 1.0f - (double)j / _vertical_separation;
 				graph_draw_data_->set_vertex_position(i * (_vertical_separation + 1) + j,
-				                                    static_cast<Vector2Df>(center_pos + interface_vec * dis_ratio));
+				                                    static_cast<vector_2df>(center_pos + interface_vec * dis_ratio));
 			}
 			//中心の頂点座標を求める
 			graph_draw_data_->set_vertex_position(i * (_vertical_separation + 1) + _vertical_separation,
-			                                    static_cast<Vector2Df>(center_pos));
+			                                    static_cast<vector_2df>(center_pos));
 		}
 		//頂点色設定
 		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->set_vertex_color(i, color()); }
@@ -142,12 +142,12 @@ namespace plnt {
 			//水平方向は座標系正回りにセットしていく
 			double rad = math::pi * 2 / _horizontal_separation * i;
 			//テクスチャ座標のセット
-			Vector2Df uv;
+			vector_2df uv;
 			uv.x = 0.5f + (float)std::cos(rad) * 0.5f;
 			uv.y = 0.5f + (float)std::sin(rad) * 0.5f;
 			graph_draw_data_->set_vertex_uv(i, uv);
 		}
-		graph_draw_data_->set_vertex_uv(_horizontal_separation, Vector2Df(0.5f, 0.5f)); //最後の頂点は中心を指す
+		graph_draw_data_->set_vertex_uv(_horizontal_separation, vector_2df(0.5f, 0.5f)); //最後の頂点は中心を指す
 		//インデックスの設定
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			//ポリゴンを1枚ずつ張る
@@ -161,18 +161,18 @@ namespace plnt {
 
 	void CDrawPlanet2D::UpdatePolygonPlainly_() {
 		//今のところ拡大度は考慮していない
-		Vector2Dd center_pos = GetDrawCenterPosition();
+		vector_2dd center_pos = GetDrawCenterPosition();
 		double rotation = GetDrawRotationRed();
 		//頂点座標の算出
 		for (unsigned int i = 0; i < _horizontal_separation; ++i) {
 			double angle_rad = 2.0 * math::pi / _horizontal_separation * i; //現在の惑星頂点の位置角度
 			double height = _planet_component->GetHeightByRad(angle_rad); //現在の惑星頂点の位置角度の高さ
-			Vector2Dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
+			vector_2dd interface_vec(std::cos(angle_rad + rotation), std::sin(angle_rad + rotation)); //中心から地表の現在角度へのベクトル
 			interface_vec *= height;
-			graph_draw_data_->set_vertex_position(i, static_cast<Vector2Df>(center_pos + interface_vec));
+			graph_draw_data_->set_vertex_position(i, static_cast<vector_2df>(center_pos + interface_vec));
 		}
 		//中心頂点の設定
-		graph_draw_data_->set_vertex_position(_horizontal_separation, static_cast<Vector2Df>(center_pos));
+		graph_draw_data_->set_vertex_position(_horizontal_separation, static_cast<vector_2df>(center_pos));
 		//頂点色設定
 		for (size_t i = 0; i < graph_draw_data_->vertex_count(); ++i) { graph_draw_data_->set_vertex_color(i, color()); }
 	}

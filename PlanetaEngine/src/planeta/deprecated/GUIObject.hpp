@@ -33,16 +33,16 @@ namespace plnt {
 	//		void Draw(ScreenDrawerGUI& drawer);
 	//		void DebugDraw();
 	//		bool KeyInput(ui_object_input_code::type input_code);
-	//		bool PointingCursorPosition(const Vector2Di& parent_relative_cursor_position);
+	//		bool PointingCursorPosition(const vector_2di& parent_relative_cursor_position);
 	//		/*ユーザー利用関数*/
 	//		bool Show();
 	//		bool Close();
 	//		void Dispose();
 	//		/*アクセサ*/
-	//		const Vector2Di position()const { return rectangle_.position; }
-	//		void position(const Vector2Di& p) { rectangle_.position = p; PositionChangedProc(); }
-	//		const Vector2Di size()const { return rectangle_.size; }
-	//		void size(const Vector2Di& s) { rectangle_.size = s; SizeChangedProc(); }
+	//		const vector_2di position()const { return rectangle_.position; }
+	//		void position(const vector_2di& p) { rectangle_.position = p; PositionChangedProc(); }
+	//		const vector_2di size()const { return rectangle_.size; }
+	//		void size(const vector_2di& s) { rectangle_.size = s; SizeChangedProc(); }
 	//		bool is_focused()const { return is_focused_; }
 	//		void is_focused(bool f) {
 	//			if (f == is_focused_) { return; }
@@ -81,7 +81,7 @@ namespace plnt {
 	//		*/
 	//		virtual ui_object_input_code::type KeyInputProc(ui_object_input_code::type input_code) { return input_code; }
 	//		//カーソルの衝突判定処理(衝突したかを返す)
-	//		virtual bool DetectCursorPointedProc(const Vector2Di& my_relative_cursor_position) { return false; }
+	//		virtual bool DetectCursorPointedProc(const vector_2di& my_relative_cursor_position) { return false; }
 	//		/*位置が変更されたときの処理*/
 	//		virtual void PositionChangedProc() {}
 	//		/*サイズが変更されたときの処理*/

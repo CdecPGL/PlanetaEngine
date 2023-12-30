@@ -11,7 +11,7 @@ namespace plnt {
 	namespace private_ {
 		bool StandardPerformanceManager::initialize() {
 			_frame_count = 0;
-			_start_time = util::Time::GetCurrentTime();
+			_start_time = util::time::get_current_time();
 			CreateDebugInformationChannel("PerformanceManager");
 			return true;
 		}
@@ -29,14 +29,14 @@ namespace plnt {
 			++_frame_count;
 		}
 
-		const util::Time StandardPerformanceManager::get_current_time_count() const {
-			return util::Time::GetCurrentTime() - _start_time;
+		const util::time StandardPerformanceManager::get_current_time_count() const {
+			return util::time::get_current_time() - _start_time;
 		}
 
 		void StandardPerformanceManager::DebugInfotmationAddHandler(i_debug_information_adder &di_adder) {
 			di_adder.add_line_v("FPS:", fps_);
 			di_adder.add_line_v("経過フレーム:", _frame_count);
-			di_adder.add_line_v("経過時間:", (util::Time::GetCurrentTime() - _start_time).to_string());
+			di_adder.add_line_v("経過時間:", (util::time::get_current_time() - _start_time).to_string());
 		}
 	}
 }

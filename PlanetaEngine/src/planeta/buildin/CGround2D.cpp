@@ -24,24 +24,24 @@ namespace plnt {
 
 	void CGround2D::on_finalized() noexcept { }
 
-	double CGround2D::ConvertRotationGlobalToGroundWithGroundPosition(const Vector2Dd &ground_pos,
+	double CGround2D::ConvertRotationGlobalToGroundWithGroundPosition(const vector_2dd &ground_pos,
 	                                                                  double global_rota_rad) const {
 		return global_rota_rad + GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos);
 	}
 
-	double CGround2D::ConvertRotationGroundToGlobalWithGroundPosition(const Vector2Dd &ground_pos,
+	double CGround2D::ConvertRotationGroundToGlobalWithGroundPosition(const vector_2dd &ground_pos,
 	                                                                  double ground_rota_rad) const {
 		return ground_rota_rad - GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos);
 	}
 
-	Vector2Dd CGround2D::ConvertVelocityGlobalToGroundWithGroundPosition(
-		const Vector2Dd &ground_pos, const Vector2Dd &global_velocity) {
+	vector_2dd CGround2D::ConvertVelocityGlobalToGroundWithGroundPosition(
+		const vector_2dd &ground_pos, const vector_2dd &global_velocity) {
 		return math::rotation_transform(GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
 		                                      global_velocity);
 	}
 
-	Vector2Dd CGround2D::ConvertVelocityGroundToGlobalWithGroundPosition(
-		const Vector2Dd &ground_pos, const Vector2Dd &ground_velocity) {
+	vector_2dd CGround2D::ConvertVelocityGroundToGlobalWithGroundPosition(
+		const vector_2dd &ground_pos, const vector_2dd &ground_velocity) {
 		return math::rotation_transform(-GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
 		                                      ground_velocity);
 	}

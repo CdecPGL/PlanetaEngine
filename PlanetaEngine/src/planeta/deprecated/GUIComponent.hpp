@@ -56,10 +56,10 @@ namespace plnt {
 	//		/*アクセサ*/
 	//		const utility::RectAngle<int>& rect()const { return rectangle_; }
 	//		void rect(const utility::RectAngle<int>& r) { rectangle_ = r; is_position_updated_since_last_draw = true; is_size_updated_since_last_draw = true; }
-	//		const Vector2Di position()const { return rectangle_.position; }
-	//		void position(const Vector2Di& p) { rectangle_.position = p; is_position_updated_since_last_draw = true; }
-	//		const Vector2Di size()const { return rectangle_.size; }
-	//		void size(const Vector2Di& s) { rectangle_.size = s; is_size_updated_since_last_draw = true; }
+	//		const vector_2di position()const { return rectangle_.position; }
+	//		void position(const vector_2di& p) { rectangle_.position = p; is_position_updated_since_last_draw = true; }
+	//		const vector_2di size()const { return rectangle_.size; }
+	//		void size(const vector_2di& s) { rectangle_.size = s; is_size_updated_since_last_draw = true; }
 
 	//		template<class C>
 	//		std::shared_ptr<C> AddChild() {
@@ -90,9 +90,9 @@ namespace plnt {
 	//		/*更新処理*/
 	//		virtual void UpdateProc() {};
 	//		/*前回描画時から位置が更新されたときの処理(描画前に呼ばれる)*/
-	//		virtual void PositionUpdatedProc(const Vector2Di& position) {};
+	//		virtual void PositionUpdatedProc(const vector_2di& position) {};
 	//		/*前回描画時からサイズが更新されたときの処理(描画前に呼ばれる)*/
-	//		virtual void SizeUpdatedProc(const Vector2Di& size) {};
+	//		virtual void SizeUpdatedProc(const vector_2di& size) {};
 	//		/*描画処理。描画は引数として渡される範囲内に行う*/
 	//		virtual void DrawProc(const utility::RectAngle<int>& my_draw_area,ScreenDrawerGUI& drawer) = 0;
 	//		/*初期化処理*/

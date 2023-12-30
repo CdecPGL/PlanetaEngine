@@ -61,8 +61,8 @@ namespace plnt {
 		scene_internal_interface().collision_world_internal_pointer()->remove(this);
 	}
 
-	const Vector2Dd CCollider2D::GetCollisionGlobalCenterPosition() const {
-		Vector2Dd relation_position = math::rotation_transform(transform2d().rotation_rad(), position_);
+	const vector_2dd CCollider2D::GetCollisionGlobalCenterPosition() const {
+		vector_2dd relation_position = math::rotation_transform(transform2d().rotation_rad(), position_);
 		//ゲームオブジェクトからの相対位置
 		relation_position.x *= transform2d().scale().x; //横方向拡大を反映
 		relation_position.y *= transform2d().scale().y; //縦方向拡大を反映

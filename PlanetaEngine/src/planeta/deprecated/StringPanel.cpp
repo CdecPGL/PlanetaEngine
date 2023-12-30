@@ -11,7 +11,7 @@ namespace plnt {
 
 		void StringPanel::DrawProc(const utility::RectAngle<int>& draw_area, ScreenDrawerGUI& drawer)
 		{
-			Vector2Dd dp = draw_area.position;
+			vector_2dd dp = draw_area.position;
 			drawer.DrawString(dp, character_scale_, text_, color_, outline_color_, font_definition_resource_);
 		}
 

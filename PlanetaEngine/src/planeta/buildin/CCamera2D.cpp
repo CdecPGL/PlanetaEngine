@@ -60,9 +60,9 @@ namespace plnt {
 
 	void CCamera2D::expansion(double s) { expansion_ = s; }
 
-	const plnt::Vector2Dd &CCamera2D::position() const { return transform2d_->position(); }
+	const plnt::vector_2dd &CCamera2D::position() const { return transform2d_->position(); }
 
-	void CCamera2D::position(const plnt::Vector2Dd &p) { transform2d_->position(p); }
+	void CCamera2D::position(const plnt::vector_2dd &p) { transform2d_->position(p); }
 
 	double CCamera2D::rotation_rad() const { return transform2d_->rotation_rad(); }
 

@@ -44,7 +44,7 @@ namespace plnt {
 		@param マウスボタンコード*/
 		[[nodiscard]] virtual bool mouse_button_push(mouse_button::type) const = 0;
 		/*! マウスポインタの位置を取得*/
-		[[nodiscard]] virtual const Vector2Di get_mouse_pointer_position() const = 0;
+		[[nodiscard]] virtual const vector_2di get_mouse_pointer_position() const = 0;
 		/*! マウスホイールの回転量を取得*/
 		[[nodiscard]] virtual int get_mouse_wheel_rotation() const = 0;
 	};

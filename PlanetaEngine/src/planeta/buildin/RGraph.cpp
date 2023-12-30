@@ -15,12 +15,12 @@ namespace plnt {
 				PE_LOG_ERROR("画像サイズの調整に失敗しました。");
 				return false;
 			}
-			image_area_.Set((double)image_size_.x / internal_size_.x, (double)image_size_.y / internal_size_.y);
+			image_area_.set((double)image_size_.x / internal_size_.x, (double)image_size_.y / internal_size_.y);
 			return true;
 		} else {
-			image_size_.Set(0, 0);
-			internal_size_.Set(0, 0);
-			image_area_.Set(0, 0);
+			image_size_.set(0, 0);
+			internal_size_.set(0, 0);
+			image_area_.set(0, 0);
 			PE_LOG_ERROR("画像リソースの読み込みに失敗しました。");
 			return false;
 		}
@@ -51,7 +51,7 @@ namespace plnt {
 			adjust_flag = true;
 		}
 		if (internal_size_.x >= 2048 || internal_size_.y >= 2048) {
-			PE_LOG_WARNING("テクスチャサイズが2048以上です。デバイスによっては表示できない可能性があります。size : ", internal_size_.ToString());
+			PE_LOG_WARNING("テクスチャサイズが2048以上です。デバイスによっては表示できない可能性があります。size : ", internal_size_.to_string());
 		}
 		//サイズが2の累乗でなかったら画像作成
 		if (adjust_flag) {

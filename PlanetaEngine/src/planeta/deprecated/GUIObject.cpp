@@ -29,7 +29,7 @@ namespace plnt {
 	//		void GUIObject::DebugDraw()
 	//		{
 	//			//枠線を表示
-	////			core::DrawManager::instance().DrawUIWire({ rectangle_.position,Vector2Di(rectangle_.right(),rectangle_.top()),Vector2Di(rectangle_.right(),rectangle_.bottom()), Vector2Di(rectangle_.left(),rectangle_.bottom()),rectangle_.position }, 1, Color::Red());
+	////			core::DrawManager::instance().DrawUIWire({ rectangle_.position,vector_2di(rectangle_.right(),rectangle_.top()),vector_2di(rectangle_.right(),rectangle_.bottom()), vector_2di(rectangle_.left(),rectangle_.bottom()),rectangle_.position }, 1, Color::Red());
 	//			component_holder_->do_all([this](GUIComponent& com) {com.DebugDraw(rectangle_); });
 	//		}
 	//
@@ -53,9 +53,9 @@ namespace plnt {
 	//			else { return false; }
 	//		}
 	//
-	//		bool GUIObject::PointingCursorPosition(const Vector2Di& parent_relative_cursor_position)
+	//		bool GUIObject::PointingCursorPosition(const vector_2di& parent_relative_cursor_position)
 	//		{
-	//			Vector2Di my_relative_cursor_position = parent_relative_cursor_position - position();
+	//			vector_2di my_relative_cursor_position = parent_relative_cursor_position - position();
 	//			//子から
 	//			//for (auto& c : children_) {
 	//			//	//子でポインティングされているものがあったら判定終了

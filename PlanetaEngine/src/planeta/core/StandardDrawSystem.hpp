@@ -37,9 +37,9 @@ namespace plnt {
 			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 
 			/*! GUI座標をGameObject座空間標に変換*/
-			Vector2Dd covert_position_screen_space_to_game_object_space(const Vector2Di &gui_space_pos) const override;
+			vector_2dd covert_position_screen_space_to_game_object_space(const vector_2di &gui_space_pos) const override;
 			/*! GameObject座標をGUI座標に変換*/
-			Vector2Di covert_position_game_object_space_to_screen_space(const Vector2Dd &gameobject_space_pos) const override;
+			vector_2di covert_position_game_object_space_to_screen_space(const vector_2dd &gameobject_space_pos) const override;
 
 			//コンポーネントリスト型
 			template <class ComType>

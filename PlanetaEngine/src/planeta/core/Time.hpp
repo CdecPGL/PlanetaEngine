@@ -4,121 +4,107 @@
 
 #include "object.hpp"
 
-namespace plnt {
-	namespace util {
-		/*時間クラス
+namespace plnt::util {
+	/*時間クラス
 		演算結果が負になる場合はすべて0とする*/
-		class Time : public object {
-		public:
-			Time() : Time(0) { }
+	class time final : public object {
+	public:
+		time() : time(0) {}
 
-			/*コンストラクタ(秒)*/
-			Time(size_t s) : Time(0, s) { }
+		/*コンストラクタ(秒)*/
+		explicit time(const size_t s) : time(0, s) {}
 
-			/*コンストラクタ(分、秒)*/
-			Time(size_t m, size_t s) : Time(0, m, s) { }
+		/*コンストラクタ(分、秒)*/
+		time(const size_t m, const size_t s) : time(0, m, s) {}
 
-			/*コンストラクタ(時間、分、秒)*/
-			Time(size_t h, size_t m, size_t s) : _second((signed)s), _minute((signed)m), _hour((signed)h) { }
+		/*コンストラクタ(時間、分、秒)*/
+		time(const size_t h, const size_t m, const size_t s) : hour_(static_cast<signed>(h)),
+		                                                       minute_(static_cast<signed>(m)),
+		                                                       second_(static_cast<signed>(s)) {}
 
-			Time(const std::tm &ctime) : _second(ctime.tm_sec), _minute(ctime.tm_min), _hour(ctime.tm_hour) { }
+		explicit time(const std::tm &c_time) : hour_(c_time.tm_hour), minute_(c_time.tm_min), second_(c_time.tm_sec) {}
 
-			~Time() { };
-			/*時間のセット(時間、分、秒)*/
-			void Set(size_t h, size_t m, size_t s) {
-				_second = (signed)s;
-				_minute = (signed)m;
-				_hour = (signed)h;
+		/*時間のセット(時間、分、秒)*/
+		void set(const size_t h, const size_t m, const size_t s) {
+			second_ = static_cast<signed>(s);
+			minute_ = static_cast<signed>(m);
+			hour_ = static_cast<signed>(h);
+		}
+
+		void reset() { set(0, 0, 0); }
+
+		//アクセサ
+		void second(const size_t s) { second_ = static_cast<signed>(s) % 60; }
+		[[nodiscard]] int second() const { return second_; }
+		void minute(const size_t m) { minute_ = static_cast<signed>(m) % 60; }
+		[[nodiscard]] int minute() const { return minute_; }
+		void hour(const size_t h) { second_ = static_cast<signed>(h); }
+		[[nodiscard]] int hour() const { return hour_; }
+
+		//演算子
+		const time &operator+=(const time &t) {
+			second_ += t.second_;
+			minute_ += t.minute_;
+			hour_ += t.hour_;
+			minute_ += second_ / 60;
+			second_ %= 60;
+			hour_ += minute_ / 60;
+			minute_ %= 60;
+			return *this;
+		}
+
+		const time &operator-=(const time &t) {
+			second_ -= t.second_;
+			minute_ -= t.minute_;
+			hour_ -= t.hour_;
+			if (second_ < 0) {
+				--minute_;
+				second_ += 60;
 			}
-
-			void Reset() { Set(0, 0, 0); }
-			//アクセサ
-			void second(size_t s) { _second = (signed)s % 60; }
-			int second() const { return (unsigned)_second; }
-			void minute(size_t m) { _minute = (signed)m % 60; }
-			int minute() const { return (unsigned)_minute; }
-			void hour(size_t h) { _second = (signed)h; }
-			int hour() const { return (unsigned)_hour; }
-			//演算子
-			const Time &operator+=(const Time &t) {
-				_second += t._second;
-				_minute += t._minute;
-				_hour += t._hour;
-				_minute += _second / 60;
-				_second %= 60;
-				_hour += _minute / 60;
-				_minute %= 60;
-				return *this;
+			if (minute_ < 0) {
+				--hour_;
+				minute_ += 60;
 			}
+			if (hour_ < 0) { set(0, 0, 0); }
+			return *this;
+		}
 
-			const Time &operator-=(const Time &t) {
-				_second -= t._second;
-				_minute -= t._minute;
-				_hour -= t._hour;
-				if (_second < 0) {
-					--_minute;
-					_second += 60;
-				}
-				if (_minute < 0) {
-					--_hour;
-					_minute += 60;
-				}
-				if (_hour < 0) { Set(0, 0, 0); }
-				return *this;
-			}
+		const time &operator*=(const uint32_t n) {
+			second_ = static_cast<int>(second_ * n);
+			minute_ = static_cast<int>(minute_ * n);
+			hour_ = static_cast<int>(hour_ * n);
+			minute_ += second_ / 60;
+			second_ %= 60;
+			hour_ += minute_ / 60;
+			minute_ %= 60;
+			return *this;
+		}
 
-			const Time &operator*=(uint32_t n) {
-				_second = static_cast<int>(_second * n);
-				_minute = static_cast<int>(_minute * n);
-				_hour = static_cast<int>(_hour * n);
-				_minute += _second / 60;
-				_second %= 60;
-				_hour += _minute / 60;
-				_minute %= 60;
-				return *this;
-			}
+		time operator+(const time &t) const {
+			time out(*this);
+			return out += t;
+		}
 
-			const Time operator+(const Time &t) const {
-				Time out(*this);
-				return out += t;
-			}
+		time operator-(const time &t) const {
+			time out(*this);
+			return out -= t;
+		}
 
-			const Time operator-(const Time &t) const {
-				Time out(*this);
-				return out -= t;
-			}
+		time operator*(const int n) const {
+			time out(*this);
+			return out *= n;
+		}
 
-			const Time operator*(int n) const {
-				Time out(*this);
-				return out *= n;
-			}
+		auto operator<=>(const time &) const = default;
 
-			const bool operator==(const Time &t) const {
-				return (_second == t._second) && (_minute == t._minute) && (_hour == t._hour);
-			}
+		[[nodiscard]] std::string to_string() const override;
 
-			const bool operator!=(const Time &t) const { return !(*this == t); }
-			const bool operator<=(const Time &t) const { return !(*this > t); }
-			const bool operator>=(const Time &t) const { return (*this > t) || (*this == t); }
-			const bool operator<(const Time &t) const { return !(*this >= t); }
+		/*! 現在時刻を取得*/
+		[[nodiscard]] static time get_current_time();
 
-			const bool operator>(const Time &t) const {
-				if (_hour > t._hour) { return true; } else if (_hour == t._hour) {
-					if (_minute > t._minute) { return true; } else {
-						if (_minute == t._minute) { return _second > t._second; } else { return false; }
-					}
-				} else { return false; }
-			}
-
-			std::string to_string() const override;
-
-			/*! 現在時刻を取得*/
-			static Time GetCurrentTime();
-
-		private:
-			int _second;
-			int _minute;
-			int _hour;
-		};
-	}
+	private:
+		int hour_;
+		int minute_;
+		int second_;
+	};
 }

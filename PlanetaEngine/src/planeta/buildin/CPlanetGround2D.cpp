@@ -38,24 +38,24 @@ namespace plnt {
 		} else { return false; }
 	}
 
-	double CPlanetGround2D::GetAltitudeWithGroundPosition(const Vector2Dd &ground_pos) const {
+	double CPlanetGround2D::GetAltitudeWithGroundPosition(const vector_2dd &ground_pos) const {
 		return ground_pos.y - planet_component_->GetHeightByRad(ground_pos.x);
 	}
 
-	Vector2Dd CPlanetGround2D::ConvertPositionGlobalToGround(const Vector2Dd &global_pos) const {
+	vector_2dd CPlanetGround2D::ConvertPositionGlobalToGround(const vector_2dd &global_pos) const {
 		auto relative_pos = global_pos - transform2d().position();
-		return Vector2Dd(-std::atan2(relative_pos.y, relative_pos.x), relative_pos.length());
+		return vector_2dd(-std::atan2(relative_pos.y, relative_pos.x), relative_pos.length());
 	}
 
-	Vector2Dd CPlanetGround2D::ConvertPositionGroundToGlobal(const Vector2Dd &ground_pos) const {
-		return Vector2Dd(std::cos(-ground_pos.x), std::sin(-ground_pos.x)) * ground_pos.y + transform2d().position();
+	vector_2dd CPlanetGround2D::ConvertPositionGroundToGlobal(const vector_2dd &ground_pos) const {
+		return vector_2dd(std::cos(-ground_pos.x), std::sin(-ground_pos.x)) * ground_pos.y + transform2d().position();
 	}
 
-	Vector2Dd CPlanetGround2D::NormalizeGroundVectorWithGroundPosition(const Vector2Dd &ground_pos,
-	                                                                   const Vector2Dd &ground_vector) const {
-		return Vector2Dd(ground_pos.y == 0 ? 0 : ground_vector.x / ground_pos.y, ground_vector.y);
+	vector_2dd CPlanetGround2D::NormalizeGroundVectorWithGroundPosition(const vector_2dd &ground_pos,
+	                                                                   const vector_2dd &ground_vector) const {
+		return vector_2dd(ground_pos.y == 0 ? 0 : ground_vector.x / ground_pos.y, ground_vector.y);
 	}
 
 	double CPlanetGround2D::GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(
-		const Vector2Dd &ground_pos) const { return ground_pos.x + math::pi / 2; }
+		const vector_2dd &ground_pos) const { return ground_pos.x + math::pi / 2; }
 }

@@ -16,8 +16,8 @@ namespace plnt {
 		constexpr rectangle(const rectangle &) = default;
 		constexpr rectangle(rectangle &&) = default;
 		/*! XY位置とサイズを指定するコンストラクタ*/
-		constexpr rectangle(const Vector2D<T> &position,
-		                     const Vector2D<T> &size) : position_(position), size_(size) { }
+		constexpr rectangle(const vector_2d<T> &position,
+		                     const vector_2d<T> &size) : position_(position), size_(size) { }
 
 		/*! XY位置とサイズを指定するコンストラクタ*/
 		constexpr rectangle(T x, T y, T width, T height) : position_(x, y), size_(width, height) { }
@@ -29,7 +29,7 @@ namespace plnt {
 		constexpr rectangle &operator=(rectangle &&) = default;
 
 		/*! XY位置とサイズを設定する*/
-		void set(const Vector2D<T> &position, const Vector2D<T> &size) {
+		void set(const vector_2d<T> &position, const vector_2d<T> &size) {
 			position_ = position;
 			size_ = size;
 		}
@@ -65,17 +65,17 @@ namespace plnt {
 		/*! 最大のY座標を設定。最小のY座標は維持される*/
 		void y_max(T p_y_max) { size_.y = p_y_max - position_.y + 1; }
 		/*! 最小隅を取得*/
-		[[nodiscard]] constexpr Vector2D<T> min() const { return position_; }
+		[[nodiscard]] constexpr vector_2d<T> min() const { return position_; }
 		/*! 最小隅を設定。最大隅は維持される*/
-		void min(const Vector2D<T> &p_min) {
+		void min(const vector_2d<T> &p_min) {
 			size_ += position_ - p_min;
 			position_ = p_min;
 		}
 
 		/*! 最大隅を取得*/
-		[[nodiscard]] constexpr Vector2D<T> max() const { return position_ + size_ - Vector2D<T>{1, 1}; }
+		[[nodiscard]] constexpr vector_2d<T> max() const { return position_ + size_ - vector_2d<T>{1, 1}; }
 		/*! 最大隅を設定。最小隅は維持される*/
-		void max(const Vector2D<T> &p_max) { size_ = p_max - position_ + Vector2D<T>{1, 1}; }
+		void max(const vector_2d<T> &p_max) { size_ = p_max - position_ + vector_2d<T>{1, 1}; }
 		/*! 幅を取得*/
 		[[nodiscard]] constexpr T height() const { return size_.x; }
 		/*! 幅を設定。X位置を基準とする*/
@@ -85,13 +85,13 @@ namespace plnt {
 		/*! 高さを設定。Y位置を基準とする*/
 		void width(T p_width) { size_.y = p_width; }
 		/*! サイズを取得*/
-		[[nodiscard]] constexpr Vector2D<T> size() const { return size_; }
+		[[nodiscard]] constexpr vector_2d<T> size() const { return size_; }
 		/*! サイズを設定。XY位置を基準とする*/
-		void size(const Vector2D<T> p_size) { size_ = size; }
+		void size(const vector_2d<T> p_size) { size_ = size; }
 		/*! 中心を取得*/
-		[[nodiscard]] constexpr Vector2D<T> center() const { return position_ + size_ / 2; }
+		[[nodiscard]] constexpr vector_2d<T> center() const { return position_ + size_ / 2; }
 		/*! 中心を設定*/
-		void center(const Vector2D<T> p_center) { position_ = p_center - size_ / 2; }
+		void center(const vector_2d<T> p_center) { position_ = p_center - size_ / 2; }
 
 		/*! X位置を取得。x_minと同じ*/
 		[[nodiscard]] constexpr T x() const { return position_.x; }
@@ -102,13 +102,13 @@ namespace plnt {
 		/*! Y位置を設定。基本的にy_minと同じだが、サイズが維持される*/
 		void y(T p_y) { position_.y = p_y; }
 		/*! XY位置を取得。minと同じ*/
-		[[nodiscard]] constexpr Vector2D<T> position() const { return position_; }
+		[[nodiscard]] constexpr vector_2d<T> position() const { return position_; }
 		/*! XY位置を設定。基本的にminと同じだが、サイズが維持される*/
-		void position(const Vector2D<T> &p_position) { position_ = p_position; }
+		void position(const vector_2d<T> &p_position) { position_ = p_position; }
 
 	private:
-		Vector2D<T> position_;
-		Vector2D<T> size_;
+		vector_2d<T> position_;
+		vector_2d<T> size_;
 	};
 
 	using rectangle_i = rectangle<int32_t>; //32bit符号あり整数型RectAngle
@@ -124,7 +124,7 @@ namespace plnt {
 				                                                       "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));
 			}
 			size_t idx = 0;
-			std::array<Vector2D<T>, 2> ary; //座標とサイズ
+			std::array<vector_2d<T>, 2> ary; //座標とサイズ
 			for (const auto &
 			     [key, value] : src) {
 				if (key.empty() == false) {

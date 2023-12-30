@@ -33,7 +33,7 @@ namespace plnt {
 		}
 
 	private:
-		std::vector<Vector2Df> _wire_positions;
+		std::vector<vector_2df> _wire_positions;
 		int _width;
 		double _length;
 		/*描画処理*/

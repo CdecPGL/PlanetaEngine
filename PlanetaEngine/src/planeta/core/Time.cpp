@@ -2,19 +2,17 @@
 
 #include "Time.hpp"
 
-namespace plnt {
-	namespace util {
-		std::string Time::to_string() const {
-			std::stringstream sstrm;
-			sstrm << _hour << ':' << _minute << ':' << _second;
-			return std::move(sstrm.str());
-		}
+namespace plnt::util {
+	std::string time::to_string() const {
+		std::stringstream sstream;
+		sstream << hour_ << ':' << minute_ << ':' << second_;
+		return sstream.str();
+	}
 
-		Time Time::GetCurrentTime() {
-			time_t now = time(nullptr);
-			struct tm pnow;
-			localtime_s(&pnow, &now);
-			return Time(pnow);
-		}
+	time time::get_current_time() {
+		const time_t now = ::time(nullptr);
+		tm p_now;
+		if (localtime_s(&p_now, &now) != 0) { throw std::runtime_error("Failed to get current time."); }
+		return time(p_now);
 	}
 }

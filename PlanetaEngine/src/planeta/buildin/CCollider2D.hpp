@@ -25,7 +25,7 @@ namespace plnt {
 		virtual bool DetectCollision(private_::i_collider_with_collider_2d &collider) = 0;
 
 		/*グローバル中心位置取得*/
-		const Vector2Dd GetCollisionGlobalCenterPosition() const;
+		const vector_2dd GetCollisionGlobalCenterPosition() const;
 		/*拡大度取得(トランスフォームの拡大度xyで小さい方の要素が適用される)*/
 		const double GetCollisionScale() const;
 		/*グローバル回転度取得*/
@@ -33,9 +33,9 @@ namespace plnt {
 
 		/*アクセサ*/
 		/*! 相対位置を取得*/
-		const Vector2Dd &relative_position() const { return position_; }
+		const vector_2dd &relative_position() const { return position_; }
 		/*! 相対位置を設定*/
-		CCollider2D &relative_position(const Vector2Dd &pos) {
+		CCollider2D &relative_position(const vector_2dd &pos) {
 			position_ = pos;
 			return *this;
 		}
@@ -82,7 +82,7 @@ namespace plnt {
 		non_owing_pointer<CTransform2D> transform2d_;
 
 		/*位置*/
-		Vector2Dd position_;
+		vector_2dd position_;
 		/*回転度*/
 		double rotation_rad_ = 0.0;
 		/*地形衝突フラグ*/

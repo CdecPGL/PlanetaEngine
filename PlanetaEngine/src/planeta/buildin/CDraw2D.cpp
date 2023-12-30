@@ -48,8 +48,8 @@ namespace plnt {
 		return *this;
 	}
 
-	Vector2Dd CDraw2D::GetDrawCenterPosition() const {
-		Vector2Dd relation_position = math::rotation_transform(transform2d_->rotation_rad(), position_);
+	vector_2dd CDraw2D::GetDrawCenterPosition() const {
+		vector_2dd relation_position = math::rotation_transform(transform2d_->rotation_rad(), position_);
 		//ゲームオブジェクトからの相対位置
 		relation_position.x *= transform2d_->scale().x; //横方向拡大を反映
 		relation_position.y *= transform2d_->scale().y; //縦方向拡大を反映
@@ -58,8 +58,8 @@ namespace plnt {
 
 	double CDraw2D::GetDrawRotationRed() const { return transform2d_->rotation_rad() + rotation_rad_; }
 
-	Vector2Dd CDraw2D::GetDrawScale() const {
-		return Vector2Dd(transform2d_->scale().x * scale_.x, transform2d_->scale().y * scale_.y);
+	vector_2dd CDraw2D::GetDrawScale() const {
+		return vector_2dd(transform2d_->scale().x * scale_.x, transform2d_->scale().y * scale_.y);
 	}
 
 	void CDraw2D::UpdatePriority_() {

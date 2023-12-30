@@ -23,9 +23,9 @@ namespace plnt {
 		/*! ウインドウモードかどうかのフラグを取得する*/
 		[[nodiscard]] virtual bool is_window_mode() const = 0;
 		/*! 描画サイズを取得する。プログラム内での画面の広さを表す*/
-		[[nodiscard]] virtual Vector2Di draw_size() const = 0;
+		[[nodiscard]] virtual vector_2di draw_size() const = 0;
 		/*! ウインドウサイズを取得する。表示される画面のサイズを表す*/
-		[[nodiscard]] virtual Vector2Di window_size() const = 0;
+		[[nodiscard]] virtual vector_2di window_size() const = 0;
 		/*! 衝突グループマトリクスを取得する*/
 		[[nodiscard]] virtual const collision_group_matrix &collision_group_matrix() const = 0;
 		/*! Cursorを表示するかどうかを取得する*/

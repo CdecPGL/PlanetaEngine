@@ -24,5 +24,5 @@ namespace plnt {
 		proc->SetExcuteFunction([this]() { Update(); });
 	}
 
-	void CBelongingGroundGravity::Update() { transform2d_->GroundAccelerate(Vector2Dd(0.0f, -1.0f) * _gravity_scale); }
+	void CBelongingGroundGravity::Update() { transform2d_->GroundAccelerate(vector_2dd(0.0f, -1.0f) * _gravity_scale); }
 }

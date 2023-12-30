@@ -10,7 +10,7 @@
 #include "screen_drawer_gui.hpp"
 
 namespace plnt {
-	void screen_drawer_gui::draw_graph(const Vector2Di &position, const Vector2Di &size, const Vector2Dd &center_pivot,
+	void screen_drawer_gui::draw_graph(const vector_2di &position, const vector_2di &size, const vector_2dd &center_pivot,
 	                                double rotation_rad, const rectangle_i &draw_area_on_graph, bool reverse,
 	                                const std::shared_ptr<RGraph> &graph_resource) const {
 		screen_.reserve_draw([position,size,draw_area_on_graph,reverse,graph_resource,rotation_rad,center_pivot] {
@@ -29,7 +29,7 @@ namespace plnt {
 		});
 	}
 
-	void screen_drawer_gui::draw_wire(const std::vector<Vector2Di> &positions, int width, const color &color) const {
+	void screen_drawer_gui::draw_wire(const std::vector<vector_2di> &positions, int width, const color &color) const {
 		screen_.reserve_draw([positions,width,color] {
 			const auto dxc = dxlib::pe_color_to_dx_color_handle(color);
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, color.a());
@@ -39,7 +39,7 @@ namespace plnt {
 		});
 	}
 
-	void screen_drawer_gui::draw_polygon(const std::vector<Vector2Di> &positions,
+	void screen_drawer_gui::draw_polygon(const std::vector<vector_2di> &positions,
 	                                  const std::vector<std::array<int, 3>> &indexes, const color &color) const {
 		screen_.reserve_draw([positions,indexes,color] {
 			const auto dxc = dxlib::pe_color_to_dx_color_handle(color);
@@ -58,7 +58,7 @@ namespace plnt {
 		});
 	}
 
-	void screen_drawer_gui::draw_string(const Vector2Di &position, const Vector2Dd &scale, const std::string &str,
+	void screen_drawer_gui::draw_string(const vector_2di &position, const vector_2dd &scale, const std::string &str,
 	                                 const color &color, const plnt::color &outline_color,
 	                                 const std::shared_ptr<RFont> &font_resource) const {
 		screen_.reserve_draw([position,scale,str,color,outline_color,font_resource] {
@@ -69,7 +69,7 @@ namespace plnt {
 		});
 	}
 
-	void screen_drawer_gui::draw_string_by_default_font(const Vector2Di &position, const Vector2Dd &scale,
+	void screen_drawer_gui::draw_string_by_default_font(const vector_2di &position, const vector_2dd &scale,
 	                                              const std::string &str, const color &color,
 	                                              const plnt::color &outline_color) const {
 		screen_.reserve_draw([position, scale, str, color, outline_color] {

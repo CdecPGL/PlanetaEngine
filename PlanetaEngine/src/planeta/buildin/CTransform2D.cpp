@@ -22,13 +22,13 @@ namespace plnt {
 	//definitions
 	namespace {
 		struct TransformData {
-			Vector2Dd position;
-			Vector2Dd scale = Vector2Dd(1.0, 1.0);
+			vector_2dd position;
+			vector_2dd scale = vector_2dd(1.0, 1.0);
 			double rotation_rad = 0.0;
 		};
 
 		struct PhisicalData {
-			Vector2Dd velocity;
+			vector_2dd velocity;
 			double rota_vel_rad = 0.0;
 		};
 
@@ -155,22 +155,22 @@ namespace plnt {
 			return *this;
 		}
 
-		const Vector2Dd &position() const {
+		const vector_2dd &position() const {
 			const_cast<Impl_ *>(this)->UpdateGlobalTransform();
 			return std::get<TransformData>(global).position;
 		}
 
-		void position(const Vector2Dd &pos) {
+		void position(const vector_2dd &pos) {
 			std::get<TransformData>(global).position = pos;
 			PositionUpdated(CoordinationSpace::Global);
 		}
 
-		const Vector2Dd &scale() const {
+		const vector_2dd &scale() const {
 			const_cast<Impl_ *>(this)->UpdateGlobalTransform();
 			return std::get<TransformData>(global).scale;
 		}
 
-		void scale(const Vector2Dd &s) {
+		void scale(const vector_2dd &s) {
 			std::get<TransformData>(global).scale = s;
 			ScaleUpdated(CoordinationSpace::Global);
 		}
@@ -185,12 +185,12 @@ namespace plnt {
 			RotationUpdated(CoordinationSpace::Global);
 		}
 
-		const Vector2Dd &ground_position() const {
+		const vector_2dd &ground_position() const {
 			const_cast<Impl_ *>(this)->UpdateGroundTransform();
 			return std::get<TransformData>(ground).position;
 		}
 
-		void ground_position(const Vector2Dd &pos) {
+		void ground_position(const vector_2dd &pos) {
 			std::get<TransformData>(ground).position = pos;
 			PositionUpdated(CoordinationSpace::Ground);
 		}
@@ -205,12 +205,12 @@ namespace plnt {
 			RotationUpdated(CoordinationSpace::Ground);
 		}
 
-		const Vector2Dd &velocity() const {
+		const vector_2dd &velocity() const {
 			const_cast<Impl_ *>(this)->UpdateGlobalPhisic();
 			return std::get<PhisicalData>(global).velocity;
 		}
 
-		void velocity(const Vector2Dd &vel) {
+		void velocity(const vector_2dd &vel) {
 			std::get<PhisicalData>(global).velocity = vel;
 			VelocityUpdated(CoordinationSpace::Global);
 		}
@@ -225,12 +225,12 @@ namespace plnt {
 			RotaVelUpdated(CoordinationSpace::Global);
 		}
 
-		const Vector2Dd &ground_velocity() const {
+		const vector_2dd &ground_velocity() const {
 			const_cast<Impl_ *>(this)->UpdateGroundPhisic();
 			return std::get<PhisicalData>(ground).velocity;
 		}
 
-		void ground_velocity(const Vector2Dd &vel) {
+		void ground_velocity(const vector_2dd &vel) {
 			std::get<PhisicalData>(ground).velocity = vel;
 			VelocityUpdated(CoordinationSpace::Ground);
 		}
@@ -269,7 +269,7 @@ namespace plnt {
 			}
 		}
 
-		void GroundOffset(const Vector2Dd &base_pos, const Vector2Dd &offset) {
+		void GroundOffset(const vector_2dd &base_pos, const vector_2dd &offset) {
 			ground_position(base_pos + cground().NormalizeGroundVectorWithGroundPosition(base_pos, offset));
 		}
 
@@ -305,28 +305,28 @@ namespace plnt {
 
 	CTransform2D::~CTransform2D() = default;
 
-	void CTransform2D::GroundMove(const Vector2Dd &mov_pos) { GroundOffset(ground_position(), mov_pos); }
+	void CTransform2D::GroundMove(const vector_2dd &mov_pos) { GroundOffset(ground_position(), mov_pos); }
 
-	void CTransform2D::GroundOffset(const Vector2Dd &base_ground_pos, const Vector2Dd &offset) {
+	void CTransform2D::GroundOffset(const vector_2dd &base_ground_pos, const vector_2dd &offset) {
 		impl_->GroundOffset(base_ground_pos, offset);
 	}
 
-	void CTransform2D::Accelerate(const Vector2Dd &acceleration) { velocity(velocity() + acceleration); }
+	void CTransform2D::Accelerate(const vector_2dd &acceleration) { velocity(velocity() + acceleration); }
 
-	void CTransform2D::GroundAccelerate(const Vector2Dd &ground_acceleration) {
+	void CTransform2D::GroundAccelerate(const vector_2dd &ground_acceleration) {
 		ground_velocity(ground_velocity() + ground_acceleration);
 	}
 
-	const Vector2Dd &CTransform2D::position() const { return impl_->position(); }
+	const vector_2dd &CTransform2D::position() const { return impl_->position(); }
 
-	CTransform2D &CTransform2D::position(const Vector2Dd &pos) {
+	CTransform2D &CTransform2D::position(const vector_2dd &pos) {
 		impl_->position(pos);
 		return *this;
 	}
 
-	const Vector2Dd &CTransform2D::scale() const { return impl_->scale(); }
+	const vector_2dd &CTransform2D::scale() const { return impl_->scale(); }
 
-	CTransform2D &CTransform2D::scale(const Vector2Dd &s) {
+	CTransform2D &CTransform2D::scale(const vector_2dd &s) {
 		impl_->scale(s);
 		return *this;
 	}
@@ -338,9 +338,9 @@ namespace plnt {
 		return *this;
 	}
 
-	const Vector2Dd &CTransform2D::ground_position() const { return impl_->ground_position(); }
+	const vector_2dd &CTransform2D::ground_position() const { return impl_->ground_position(); }
 
-	CTransform2D &CTransform2D::ground_position(const Vector2Dd &pos) {
+	CTransform2D &CTransform2D::ground_position(const vector_2dd &pos) {
 		impl_->ground_position(pos);
 		return *this;
 	}
@@ -352,9 +352,9 @@ namespace plnt {
 		return *this;
 	}
 
-	const Vector2Dd &CTransform2D::velocity() const { return impl_->velocity(); }
+	const vector_2dd &CTransform2D::velocity() const { return impl_->velocity(); }
 
-	CTransform2D &CTransform2D::velocity(const Vector2Dd &vel) {
+	CTransform2D &CTransform2D::velocity(const vector_2dd &vel) {
 		impl_->velocity(vel);
 		return *this;
 	}
@@ -366,9 +366,9 @@ namespace plnt {
 		return *this;
 	}
 
-	const Vector2Dd &CTransform2D::ground_velocity() const { return impl_->ground_velocity(); }
+	const vector_2dd &CTransform2D::ground_velocity() const { return impl_->ground_velocity(); }
 
-	CTransform2D &CTransform2D::ground_velocity(const Vector2Dd &vel) {
+	CTransform2D &CTransform2D::ground_velocity(const vector_2dd &vel) {
 		impl_->ground_velocity(vel);
 		return *this;
 	}

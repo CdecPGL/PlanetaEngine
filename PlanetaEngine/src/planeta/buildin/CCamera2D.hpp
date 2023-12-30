@@ -16,9 +16,9 @@ namespace plnt {
 		CCamera2D();
 		~CCamera2D();
 		/*! 位置を取得*/
-		const plnt::Vector2Dd &position() const;
+		const plnt::vector_2dd &position() const;
 		/*! 位置を設定*/
-		void position(const plnt::Vector2Dd &p);
+		void position(const plnt::vector_2dd &p);
 		/*! 回転度を取得*/
 		double rotation_rad() const;
 		/*! 回転度を設定*/

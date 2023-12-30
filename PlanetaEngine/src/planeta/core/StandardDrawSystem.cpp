@@ -103,7 +103,7 @@ namespace plnt {
 			if (camera2d_) {
 				double scale = camera2d_->expansion();
 				double rota_rad = camera2d_->rotation_rad();
-				Vector2Dd pos = camera2d_->position();
+				vector_2dd pos = camera2d_->position();
 				SetupCamera_Ortho((float)(game::instance().config_manager()->draw_size().y / scale));
 				SetCameraPositionAndAngle(VGet((float)pos.x, (float)pos.y, GetCameraPosition().z),
 				                          GetCameraAngleVRotate(), GetCameraAngleHRotate(), (float)rota_rad);
@@ -112,15 +112,15 @@ namespace plnt {
 			} else { PE_LOG_WARNING("シーン内にカメラ2Dが登録されていません。"); }
 		}
 
-		Vector2Dd StandardDrawSystem::covert_position_screen_space_to_game_object_space(const Vector2Di &ui_pos) const {
+		vector_2dd StandardDrawSystem::covert_position_screen_space_to_game_object_space(const vector_2di &ui_pos) const {
 			VECTOR gov = ConvScreenPosToWorldPos(VGet((float)ui_pos.x, (float)ui_pos.y, 0.0f));
-			return Vector2Dd(gov.x, gov.y);
+			return vector_2dd(gov.x, gov.y);
 		}
 
-		Vector2Di StandardDrawSystem::covert_position_game_object_space_to_screen_space(
-			const Vector2Dd &game_object_pos) const {
+		vector_2di StandardDrawSystem::covert_position_game_object_space_to_screen_space(
+			const vector_2dd &game_object_pos) const {
 			VECTOR uiv = ConvWorldPosToScreenPos(VGet((float)game_object_pos.x, (float)game_object_pos.y, 0.0f));
-			return Vector2Di((int)uiv.x, (int)uiv.y);
+			return vector_2di((int)uiv.x, (int)uiv.y);
 		}
 
 		std::unique_ptr<plnt::private_::CDraw2DManagerConnection> StandardDrawSystem::register_c_draw_2d(

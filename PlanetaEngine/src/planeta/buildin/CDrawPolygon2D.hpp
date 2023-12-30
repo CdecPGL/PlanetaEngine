@@ -15,13 +15,13 @@ namespace plnt {
 		/*! 腸点数を設定する*/
 		void SetNumberOfVertexes(size_t n);
 		/*! 指定インデックスの座標を設定*/
-		bool SetVertexPosition(size_t idx, const Vector2Dd &pos);
+		bool SetVertexPosition(size_t idx, const vector_2dd &pos);
 		/*! 全ての頂点を設定する*/
-		void vertexes(const std::vector<Vector2Dd> &vs);
+		void vertexes(const std::vector<vector_2dd> &vs);
 
 	private:
-		std::vector<Vector2Df> points_;
-		std::vector<Vector2Df> vertexes_;
+		std::vector<vector_2df> points_;
+		std::vector<vector_2df> vertexes_;
 		std::vector<std::array<int, 3>> indexes_;
 		void UpdateVertex_();
 		void UpdatePorygonIndex_();

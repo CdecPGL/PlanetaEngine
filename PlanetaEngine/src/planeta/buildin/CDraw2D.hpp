@@ -29,9 +29,9 @@ namespace plnt {
 			値が大きいほど手前に表示される*/
 		CDraw2D &draw_priority(int priority);
 		/*! 表示位置を取得(CTransform2Dからの相対値)*/
-		const Vector2Dd &relative_position() const { return position_; }
+		const vector_2dd &relative_position() const { return position_; }
 		/*表示位置を設定(CTransform2Dからの相対値)*/
-		CDraw2D &relative_position(const Vector2Dd &pos) {
+		CDraw2D &relative_position(const vector_2dd &pos) {
 			position_ = pos;
 			return *this;
 		}
@@ -45,9 +45,9 @@ namespace plnt {
 		}
 
 		/*! 表示拡大度を取得(CTransform2Dからの相対値)*/
-		const Vector2Dd &relative_scale() const { return scale_; }
+		const vector_2dd &relative_scale() const { return scale_; }
 		/*! 表示拡大度を設定(CTransform2Dからの相対値)*/
-		CDraw2D &relative_scale(const Vector2Dd &s) {
+		CDraw2D &relative_scale(const vector_2dd &s) {
 			scale_ = s;
 			return *this;
 		}
@@ -62,11 +62,11 @@ namespace plnt {
 
 	protected:
 		/*描画の中心位置取得(ゲームオブジェクトの形状情報と、表示位置から算出)*/
-		Vector2Dd GetDrawCenterPosition() const;
+		vector_2dd GetDrawCenterPosition() const;
 		/*描画回転度取得(ゲームオブジェクトの回転度と、表示回転度から算出)*/
 		double GetDrawRotationRed() const;
 		/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
-		Vector2Dd GetDrawScale() const;
+		vector_2dd GetDrawScale() const;
 
 		non_owing_pointer<CTransform2D> transform2d_;
 
@@ -81,11 +81,11 @@ namespace plnt {
 
 		int draw_priority_ = 0; //描画優先度
 		/*表示位置*/
-		Vector2Dd position_;
+		vector_2dd position_;
 		/*表示回転度*/
 		double rotation_rad_ = 0.0;
 		/*表示拡大度*/
-		Vector2Dd scale_ = Vector2Dd(1.0, 1.0);
+		vector_2dd scale_ = vector_2dd(1.0, 1.0);
 		plnt::color color_;
 		void UpdatePriority_();
 		void on_activated() override final;

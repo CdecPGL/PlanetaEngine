@@ -34,15 +34,15 @@ namespace plnt {
 		public:
 			StandardDebugDrawer(screen_drawer_2d &screen_drawer_2d) : screen_drawer_2d_(screen_drawer_2d) { };
 
-			virtual void draw_line(const Vector2Df &spos, const Vector2Df &epos, const color &color) override {
+			virtual void draw_line(const vector_2df &spos, const vector_2df &epos, const color &color) override {
 				screen_drawer_2d_.draw_wire({spos, epos}, 1, color);
 			}
 
-			virtual void draw_circle(const Vector2Df &pos, float radius, const color &color, bool filled) override {
+			virtual void draw_circle(const vector_2df &pos, float radius, const color &color, bool filled) override {
 				screen_drawer_2d_.draw_circle(pos, radius, color);
 			}
 
-			virtual void draw_lines(const std::vector<Vector2Df> &pos_list, const color &color) override {
+			virtual void draw_lines(const std::vector<vector_2df> &pos_list, const color &color) override {
 				screen_drawer_2d_.draw_wire(pos_list, 1, color);
 			}
 

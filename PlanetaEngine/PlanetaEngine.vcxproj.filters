@@ -480,9 +480,6 @@
     <ClInclude Include="src\planeta\reflection\type_traits_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\TypeChecker.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\bgm_controller.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

@@ -6,237 +6,240 @@
 #include <stdexcept>
 #include <cmath>
 
+#include "boost/property_tree/ptree.hpp"
+
 #include "../math/math_constant.hpp"
 #include "../reflection/reflection_exceptions.hpp"
 #include "planeta/core/StringUtility.hpp"
+#include "../reflection/reflection_utility.hpp"
 
 namespace plnt {
 	template <typename T>
-	struct Vector3D;
+	struct vector_3d;
 
-	//二次元ベクトルテンプレート
+	// 二次元ベクトルテンプレート
 	template <typename T>
-	struct Vector2D {
-	public:
-		//要素
+	struct vector_2d {
+		// 要素
 		T x, y;
-		//コンストラクタ
-		constexpr Vector2D() : x(0), y(0) { };
 
-		constexpr Vector2D(T m_x, T m_y) : x(m_x), y(m_y) { };
-
-		constexpr Vector2D(const Vector2D<T> &obj) : x(obj.x), y(obj.y) { }
+		// コンストラクタ
+		constexpr vector_2d(): x(0), y(0) {}
+		constexpr vector_2d(T m_x, T m_y): x(m_x), y(m_y) {}
+		constexpr vector_2d(const vector_2d &obj) = default;
+		constexpr vector_2d(vector_2d &&obj) = default;
 
 		template <typename T2>
-		explicit constexpr Vector2D(const Vector2D<T2> &obj) : x(static_cast<T>(obj.x)), y(static_cast<T>(obj.y)) { }
+		explicit constexpr vector_2d(const vector_2d<T2> &obj): x(static_cast<T>(obj.x)), y(static_cast<T>(obj.y)) {}
 
-		constexpr Vector2D(const Vector3D<T> &v3) : x(v3.x), y(v3.y) { }
+		explicit constexpr vector_2d(const vector_3d<T> &v3): x(v3.x), y(v3.y) {}
 
-		//代入演算子
-		Vector2D<T> &operator =(const Vector2D<T> &obj) {
-			x = obj.x;
-			y = obj.y;
-			return *this;
-		}
+		constexpr ~vector_2d() = default;
 
-		//キャスト演算子
+		// 代入演算子
+		constexpr vector_2d &operator=(const vector_2d &obj) = default;
+
+		// ムーブ演算子
+		constexpr vector_2d &operator=(vector_2d &&obj) = default;
+
+		// キャスト演算子
 		template <typename T2>
-		explicit constexpr operator Vector2D<T2>() const {
-			return Vector2D<T2>(static_cast<T2>(x), static_cast<T2>(y));
+		explicit constexpr operator vector_2d<T2>() const {
+			return vector_2d<T2>(static_cast<T2>(x), static_cast<T2>(y));
 		}
 
-		//加減算演算子
-		constexpr Vector2D<T> operator+(const Vector2D<T> &in) const { return Vector2D<T>(x + in.x, y + in.y); }
+		// 加減算演算子
+		constexpr vector_2d operator+(const vector_2d &in) const { return vector_2d(x + in.x, y + in.y); }
 
-		constexpr Vector2D<T> operator-(const Vector2D<T> &in) const { return Vector2D<T>(x - in.x, y - in.y); }
+		constexpr vector_2d operator-(const vector_2d &in) const { return vector_2d(x - in.x, y - in.y); }
 
-		//スカラーとの乗除算演算子
+		// スカラーとの乗除算演算子
 		template <typename U>
-		constexpr Vector2D<T> operator*(U num) const { return Vector2D<T>((T)(x * num), (T)(y * num)); }
+		constexpr vector_2d operator*(U num) const {
+			return vector_2d(static_cast<T>(x * num), static_cast<T>(y * num));
+		}
 
 		template <typename U>
-		Vector2D<T> operator/(U num) const {
+		constexpr vector_2d operator/(U num) const {
 			if (num == 0) { throw std::range_error("Divided by zero."); }
-			Vector2D<T> out(static_cast<T>(static_cast<double>(x) / num), static_cast<T>(static_cast<double>(y) / num));
+			vector_2d out(static_cast<T>(static_cast<double>(x) / num),
+			              static_cast<T>(static_cast<double>(y) / num));
 			return out;
 		}
 
-		//加減代入演算子
-		Vector2D<T> &operator+=(const Vector2D<T> &in) {
+		// 加減代入演算子
+		constexpr vector_2d &operator+=(const vector_2d &in) {
 			x += in.x;
 			y += in.y;
 			return *this;
 		}
 
-		Vector2D<T> &operator-=(const Vector2D<T> &in) {
+		constexpr vector_2d &operator-=(const vector_2d &in) {
 			x -= in.x;
 			y -= in.y;
 			return *this;
 		}
 
-		//スカラーとの乗除算代入演算子
+		// スカラーとの乗除算代入演算子
 		template <typename U>
-		Vector2D<T> operator*=(U num) {
+		constexpr vector_2d operator*=(U num) {
 			x *= num;
 			y *= num;
 			return *this;
 		}
 
 		template <typename U>
-		Vector2D<T> operator/=(U num) {
+		constexpr vector_2d operator/=(U num) {
 			if (num == 0) { throw std::range_error("Divided by zero."); }
 			x /= num;
 			y /= num;
 			return *this;
 		}
 
-		//符号反転演算子
-		constexpr Vector2D<T> operator-() const { return Vector2D<T>(-x, -y); }
+		// 符号反転演算子
+		constexpr vector_2d operator-() const { return vector_2d(-x, -y); }
 
-		//比較演算子
-		constexpr bool operator==(const Vector2D<T> &in) const { return in.x == x && in.y == y; }
+		// 比較演算子（!=は自動導出）
+		constexpr bool operator==(const vector_2d &in) const = default;
 
-		constexpr bool operator!=(const Vector2D<T> &in) const { return !(*this == in); }
-
-		//その他関数
-		void Set(T mx, T my) {
+		// その他関数
+		constexpr void set(T mx, T my) {
 			x = mx;
 			y = my;
 		}
 
-		double length() const { return sqrt(length_square()); }
+		// 平行な単位ベクトルを求める(同じ向きのもの)
+		[[nodiscard]] constexpr vector_2d get_parallel_unit_vector() const {
+			const double v_length(length());
+			// NOLINTNEXTLINE(clang-diagnostic-float-equal)
+			if (v_length == 0) { throw std::range_error("tried to calc unit vector from zero vector"); }
+			return operator/(v_length);
+		}
 
-		constexpr double length_square() const { return x * x + y * y; }
+		//垂直単位ベクトルを求める(時計回りに90度回転したもの)
+		[[nodiscard]] constexpr vector_2d get_vertical_unit_vector() const {
+			return vector_2d(-y, x).get_parallel_unit_vector();
+		}
 
-		const std::string ToString() const {
+		// v1の四捨五入値ベクトルを取得
+		[[nodiscard]] constexpr vector_2d get_round_vector() const {
+			return vector_2d(static_cast<T>(round(static_cast<double>(x))),
+			                 static_cast<T>(round(static_cast<double>(y))));
+		}
+
+		[[nodiscard]] constexpr double length() const { return sqrt(length_square()); }
+
+		[[nodiscard]] constexpr double length_square() const { return x * x + y * y; }
+
+		[[nodiscard]] std::string to_string() const {
 			using namespace std;
 			stringstream is;
 			is << "(" << x << "," << y << ")";
 			return is.str();
 		}
 
-		//定義済みベクトル
-		static const Vector2D<T> zero_vector;
-		static const Vector2D<T> x_unit_vector;
-		static const Vector2D<T> y_unit_vector;
+		// 定義済みベクトル
+		static const vector_2d zero_vector;
+		static const vector_2d x_unit_vector;
+		static const vector_2d y_unit_vector;
 	};
 
 	template <typename T>
-	const Vector2D<T> Vector2D<T>::zero_vector(0, 0);
+	const vector_2d<T> vector_2d<T>::zero_vector(0, 0);
 	template <typename T>
-	const Vector2D<T> Vector2D<T>::x_unit_vector(1, 0);
+	const vector_2d<T> vector_2d<T>::x_unit_vector(1, 0);
 	template <typename T>
-	const Vector2D<T> Vector2D<T>::y_unit_vector(0, 1);
+	const vector_2d<T> vector_2d<T>::y_unit_vector(0, 1);
 
-	//二次元ベクトル関数
-	//内積を求める
+	// 二次元ベクトル関数
+	// 内積を求める
 	template <typename T>
-	constexpr auto Dot(const Vector2D<T> &v1, const Vector2D<T> &v2) { return v1.x * v2.x + v1.y * v2.y; }
-
-	//外積を求める
-	template <typename T>
-	constexpr auto Cross(const Vector2D<T> &v1, const Vector2D<T> &v2) { return v1.x * v2.y - v1.y * v2.x; }
-
-	//平行な単位ベクトルを求める(同じ向きのもの)
-	template <typename T>
-	Vector2D<T> GetParallelUnitVector(const Vector2D<T> &v) {
-		double v_length(v.length());
-		if (v_length == 0) { throw std::range_error("tryed to calc unit vector from zero vector"); }
-		Vector2D<T> out(v / v.length());
-		return out;
+	[[nodiscard]] constexpr auto dot(const vector_2d<T> &v1, const vector_2d<T> &v2) {
+		return v1.x * v2.x + v1.y * v2.y;
 	}
 
-	//垂直単位ベクトルを求める(時計回りに90度回転したもの)
+	// 外積を求める
 	template <typename T>
-	Vector2D<T> GetVerticalUnitVector(const Vector2D<T> &v) {
-		Vector2D<T> v_vtcl(-v.y, v.x);
-		double v_length(v_vtcl.length());
-		Vector2D<T> out(GetParallelUnitVector(v_vtcl));
-		return out;
+	[[nodiscard]] constexpr auto cross(const vector_2d<T> &v1, const vector_2d<T> &v2) {
+		return v1.x * v2.y - v1.y * v2.x;
 	}
 
-	//v2がv1となす角のコサイン値を求める(時計周りが正)
+	// v2がv1となす角のコサイン値を求める(時計周りが正)
 	template <typename T>
-	double GetCosin(const Vector2D<T> &v1, const Vector2D<T> &v2) {
-		double v1_length(v1.length()), v2_length(v2.length());
-		double v1v2_dot(Dot(v1, v2));
-		return v1v2_dot / (v1_length * v2_length);
+	[[nodiscard]] double get_cos(const vector_2d<T> &v1, const vector_2d<T> &v2) {
+		const double v1_length(v1.length()), v2_length(v2.length());
+		const double v1_v2_dot(dot(v1, v2));
+		return v1_v2_dot / (v1_length * v2_length);
 	}
 
-	//v2がv1となす角のサイン値を求める(時計周りが正)
+	// v2がv1となす角のサイン値を求める(時計周りが正)
 	template <typename T>
-	double GetSin(const Vector2D<T> &v1, const Vector2D<T> &v2) {
-		double v1_length(v1.length()), v2_length(v2.length());
-		double v1v2_cross(Cross(v1, v2));
-		return v1v2_cross / (v1_length * v2_length);
+	[[nodiscard]] double get_sin(const vector_2d<T> &v1, const vector_2d<T> &v2) {
+		const double v1_length(v1.length());
+		const double v2_length(v2.length());
+		const double v1_v2_cross(cross(v1, v2));
+		return v1_v2_cross / (v1_length * v2_length);
 	}
 
-	//v2がv1となす角の角度(ラジアン)を求める(時計周りが正)
+	// v2がv1となす角の角度(ラジアン)を求める(時計周りが正)
 	template <typename T>
-	double GetRadian(const Vector2D<T> &v1, const Vector2D<T> &v2) {
-		double v1v2_cos(GetCosin(v1, v2));
-		double v1v1_sin(GetSin(v1, v2));
-		double v1v2_rad(acos(v1v2_cos));
-		if (v1v1_sin < 0) { v1v2_rad = -v1v2_rad; }
-		return v1v2_rad;
+	[[nodiscard]] double get_radian(const vector_2d<T> &v1, const vector_2d<T> &v2) {
+		const double v1_v2_cos(get_cos(v1, v2));
+		const double v1_v1_sin(get_sin(v1, v2));
+		double v1_v2_rad(acos(v1_v2_cos));
+		if (v1_v1_sin < 0) { v1_v2_rad = -v1_v2_rad; }
+		return v1_v2_rad;
 	}
 
-	//v2がv1となす角の角度(度)を求める(時計周りが正)
+	// v2がv1となす角の角度(度)を求める(時計周りが正)
 	template <typename T>
-	double GetDegree(const Vector2D<T> &v1, const Vector2D<T> &v2) {
-		double v1v2_rad = (GetRadian(v1, v2));
-		double v1v2_deg(v1v2_rad / math::pi * 180);
-		return v1v2_deg;
+	[[nodiscard]] double get_degree(const vector_2d<T> &v1, const vector_2d<T> &v2) {
+		const double v1_v2_rad = (get_radian(v1, v2));
+		const double v1_v2_deg(v1_v2_rad / math::pi * 180);
+		return v1_v2_deg;
 	}
 
-	//v1の四捨五入値ベクトルを取得
+	// v1のv2に対する正射影ベクトルを求める
 	template <typename T>
-	Vector2D<T> GetRoundVector(const Vector2D<T> &v) {
-		return Vector2D<T>((T)round((double)v.x), (T)round((double)v.y));
+	[[nodiscard]] vector_2d<T> get_orthogonal_projection_vector(const vector_2d<T> &v1,
+	                                                            const vector_2d<T> &v2) {
+		return v2.get_parallel_unit_vector() * vector_2d<T>::dot(v1, v2);
 	}
 
-	//v1のv2に対する正射影ベクトルを求める
+	// 指定した角度方向の単位ベクトルを取得する
 	template <typename T>
-	Vector2D<T> GetOrthogonalProjectionVector(const Vector2D<T> &v1, const Vector2D<T> &v2) {
-		return GetParallelUnitVector(v2) * Vector2D<T>::Dot(v1, v2);
+	[[nodiscard]] vector_2d<T> get_unit_vector_by_radian(const double rad) {
+		return vector_2d<T>(static_cast<T>(std::cos(rad)),
+		                    static_cast<T>(std::sin(rad)));
 	}
 
-	//指定した角度方向の単位ベクトルを取得する
+	// 二次元ベクトル型定義
+	using vector_2df = vector_2d<float>; // 単精度浮動小数点型二次元ベクトル
+	using vector_2dd = vector_2d<double>; // 倍精度浮動小数点型二次元ベクトル
+	using vector_2di = vector_2d<int32_t>; // 32bit符号付き整数型二次元ベクトル
+
+	// ReflectionシステムのPtree読み込みを有効にするための定義
 	template <typename T>
-	Vector2D<T> GetUnitVectorByRadian(double rad) {
-		return Vector2D<T>(static_cast<T>(std::cos(rad)), static_cast<T>(std::sin(rad)));
-	}
-
-	//二次元ベクトル型定義
-	using Vector2Df = Vector2D<float>; //単精度浮動小数点型二次元ベクトル
-	using Vector2Dd = Vector2D<double>; //倍精度浮動小数点型二次元ベクトル
-	using Vector2Di = Vector2D<int32_t>; //32bit符号付き整数型二次元ベクトル
-}
-
-#include "boost/property_tree/ptree.hpp"
-#include "..\reflection\reflection_utility.hpp"
-
-namespace plnt::reflection {
-	//ReflectionシステムのPtree読み込みを有効にするための定義
-	template <typename T>
-	struct reflective_ptree_converter_impl<Vector2D<T>> {
-		void operator()(Vector2D<T> &dst, const boost::property_tree::ptree &src) {
+	struct reflection::reflective_ptree_converter_impl<vector_2d<T>> {
+		void operator()(vector_2d<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 2) {
-				throw reflection_error(
-					util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector2Dでは2である必要があります。"));
+				throw reflection_error(util::ConvertAndConnectToString(
+					"要素数が", src.size(),
+					"ですが、Vector2Dでは2である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 2> ary;
-			for (auto &&pp : src) {
-				if (pp.first.empty() == false) {
-					throw reflection_error(
-						util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+			for (const auto &[key, value] : src) {
+				if (key.empty() == false) {
+					throw reflection_error(util::ConvertAndConnectToString(
+						"Vector2DのPtreeキーは空である必要があります。(読み取られたキー:",
+						key, ")"));
 				}
 				T dat{};
-				reflective_ptree_converter(dat, pp.second);
+				reflective_ptree_converter(dat, value);
 				ary[idx++] = std::move(dat);
 			}
-			dst.Set(ary[0], ary[1]);
+			dst.set(ary[0], ary[1]);
 		}
 	};
 }

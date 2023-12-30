@@ -12,7 +12,7 @@ namespace plnt {
 		unsigned int pe_color_to_dx_color_handle(const color &color);
 
 		template <typename T>
-		VECTOR pe_vector_2d_to_dx_vector(const Vector2D<T> &v) {
+		VECTOR pe_vector_2d_to_dx_vector(const vector_2d<T> &v) {
 			VECTOR dxv;
 			dxv.x = static_cast<float>(v.x);
 			dxv.y = static_cast<float>(v.y);

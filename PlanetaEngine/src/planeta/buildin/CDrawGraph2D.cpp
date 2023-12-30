@@ -36,7 +36,7 @@ namespace plnt {
 		auto res = game::instance().resource_manager()->get_resource_by_id<RGraph>(resource_id);
 		if (res) {
 			graph_draw_data_->set_graph_resource(res);
-			_draw_area.set(Vector2Di(0, 0), Vector2Di(res->size().x, res->size().y));
+			_draw_area.set(vector_2di(0, 0), vector_2di(res->size().x, res->size().y));
 			_UpdateUVPosition();
 			return true;
 		} else {
@@ -58,27 +58,27 @@ namespace plnt {
 		double dwidth((double)_draw_area.width() * GetDrawScale().x), dheight(
 			       (double)_draw_area.height() * GetDrawScale().y);
 		//ゲームオブジェクトの形状情報と画像の表示位置から画像の表示中心位置を求める
-		Vector2Dd center_position = GetDrawCenterPosition();
+		vector_2dd center_position = GetDrawCenterPosition();
 		//左上の頂点ベクトル
-		Vector2Dd left_up_vertex_vec(dwidth * (-graph_center_.x), dheight * graph_center_.y);
+		vector_2dd left_up_vertex_vec(dwidth * (-graph_center_.x), dheight * graph_center_.y);
 		//右上の頂点ベクトル
-		Vector2Dd right_up_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * graph_center_.y);
+		vector_2dd right_up_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * graph_center_.y);
 		//左下の頂点ベクトル
-		Vector2Dd left_down_vertex_vec(dwidth * (-graph_center_.x), dheight * (graph_center_.y - 1.0));
+		vector_2dd left_down_vertex_vec(dwidth * (-graph_center_.x), dheight * (graph_center_.y - 1.0));
 		//右下の頂点ベクトル
-		Vector2Dd right_down_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * (graph_center_.y - 1.0));
+		vector_2dd right_down_vertex_vec(dwidth * (1.0 - graph_center_.x), dheight * (graph_center_.y - 1.0));
 		//画像の回転度とゲームオブジェクトの回転度、表示中心位置から各頂点を求める
 		graph_draw_data_->set_vertex_position(
-			0, static_cast<Vector2Df>(center_position + math::rotation_transform(
+			0, static_cast<vector_2df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), left_down_vertex_vec)));
 		graph_draw_data_->set_vertex_position(
-			1, static_cast<Vector2Df>(center_position + math::rotation_transform(
+			1, static_cast<vector_2df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), right_down_vertex_vec)));
 		graph_draw_data_->set_vertex_position(
-			2, static_cast<Vector2Df>(center_position + math::rotation_transform(
+			2, static_cast<vector_2df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), right_up_vertex_vec)));
 		graph_draw_data_->set_vertex_position(
-			3, static_cast<Vector2Df>(center_position + math::rotation_transform(
+			3, static_cast<vector_2df>(center_position + math::rotation_transform(
 				GetDrawRotationRed(), left_up_vertex_vec)));
 		//色
 		for (int i = 0; i < 4; ++i) { graph_draw_data_->set_vertex_color(i, color()); }
@@ -86,7 +86,7 @@ namespace plnt {
 
 	void CDrawGraph2D::_UpdateUVPosition() {
 		//UV座標の更新
-		Vector2Df uvs[4];
+		vector_2df uvs[4];
 		auto g_size = graph_draw_data_->graph_resource()->size();
 		//左下
 		uvs[0].x = (float)(reverse_ ? (_draw_area.x_max() + 1) : _draw_area.x_min()) / g_size.x;

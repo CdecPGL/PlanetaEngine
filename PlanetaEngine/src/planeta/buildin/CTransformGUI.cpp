@@ -14,10 +14,10 @@ namespace plnt {
 	class CTransformGUI::Impl_ {
 	public:
 		rectangle_i rect;
-		Vector2Di position;
-		Vector2Di size{1, 1};
+		vector_2di position;
+		vector_2di size{1, 1};
 		double rotation_rad = 0;
-		Vector2Dd pivot{0.5, 0.5};
+		vector_2dd pivot{0.5, 0.5};
 
 		Impl_ &operator=(const Impl_ &imp) {
 			rect = imp.rect;
@@ -48,9 +48,9 @@ namespace plnt {
 
 	CTransformGUI::~CTransformGUI() = default;
 
-	const plnt::Vector2Di &CTransformGUI::position() const { return impl_->position; }
+	const plnt::vector_2di &CTransformGUI::position() const { return impl_->position; }
 
-	plnt::CTransformGUI &CTransformGUI::position(const Vector2Di &pos) {
+	plnt::CTransformGUI &CTransformGUI::position(const vector_2di &pos) {
 		impl_->position = pos;
 		return *this;
 	}
@@ -62,19 +62,19 @@ namespace plnt {
 		return *this;
 	}
 
-	plnt::CTransformGUI &CTransformGUI::size(const Vector2Di &s) {
+	plnt::CTransformGUI &CTransformGUI::size(const vector_2di &s) {
 		impl_->size = s;
 		return *this;
 	}
 
-	const plnt::Vector2Di &CTransformGUI::size() const { return impl_->size; }
+	const plnt::vector_2di &CTransformGUI::size() const { return impl_->size; }
 
-	plnt::CTransformGUI &CTransformGUI::pivot(const Vector2Dd &p) {
+	plnt::CTransformGUI &CTransformGUI::pivot(const vector_2dd &p) {
 		impl_->pivot = p;
 		return *this;
 	}
 
-	const plnt::Vector2Dd &CTransformGUI::pivot() const { return impl_->pivot; }
+	const plnt::vector_2dd &CTransformGUI::pivot() const { return impl_->pivot; }
 
 	void CTransformGUI::on_activated() {
 		super::on_activated();

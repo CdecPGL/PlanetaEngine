@@ -19,17 +19,17 @@ namespace plnt::private_::collision_detect_functions {
 		const double circle_radius = circle_collider.radius() * circle_collider.GetCollisionScale();
 		const auto circle_pos = circle_collider.GetCollisionGlobalCenterPosition();
 		const auto line_start_pos = straight_line_collider.GetCollisionGlobalCenterPosition();
-		const auto line_vector = Vector2Dd(std::cos(straight_line_collider.GetCollisionGlobalRotationRad()),
+		const auto line_vector = vector_2dd(std::cos(straight_line_collider.GetCollisionGlobalRotationRad()),
 		                                   std::sin(straight_line_collider.GetCollisionGlobalRotationRad())) *
 			straight_line_collider.GetCollisionScale() * straight_line_collider.length();
 		const auto line_start_to_circle_center = circle_pos - line_start_pos;
 		//円と線分の距離を求める
-		if (const double distance = std::abs(Cross(line_vector, line_start_to_circle_center) / line_vector.length());
+		if (const double distance = std::abs(cross(line_vector, line_start_to_circle_center) / line_vector.length());
 			distance > circle_radius) { return false; }
 		//円が線分の両端外側にあるか
-		const double line_start_to_circle_center_dot_line_vector = Dot(line_start_to_circle_center, line_vector);
-		if (const Vector2Dd line_end_to_circle_center = line_start_to_circle_center - line_vector;
-			line_start_to_circle_center_dot_line_vector * Dot(line_end_to_circle_center, line_vector) <=
+		const double line_start_to_circle_center_dot_line_vector = dot(line_start_to_circle_center, line_vector);
+		if (const vector_2dd line_end_to_circle_center = line_start_to_circle_center - line_vector;
+			line_start_to_circle_center_dot_line_vector * dot(line_end_to_circle_center, line_vector) <=
 			0) {
 			//線分内にある
 			return true;

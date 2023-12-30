@@ -24,7 +24,7 @@ namespace plnt::private_ {
 			const auto engine_obj = root_obj->at_with_exception("Engine")->get_with_exception<json_object>();
 			color_bit_depth_ = *engine_obj->at_with_exception("ColorBitDepth")->get_with_exception<int>();
 			buf_array = *engine_obj->at_with_exception("DrawSize")->get_with_exception<std::vector<int>>();
-			draw_size_.Set(buf_array[0], buf_array[1]);
+			draw_size_.set(buf_array[0], buf_array[1]);
 			is_cursor_visible_ = *engine_obj->at_with_exception("IsCursorVisible")->get_with_exception<bool>();
 			//Program
 			const auto program_obj = root_obj->at_with_exception("Program")->get_with_exception<json_object>();
@@ -66,7 +66,7 @@ namespace plnt::private_ {
 		sys_log.simple_log("ゲームタイトル : ", game_title_);
 		sys_log.simple_log("ゲームバージョン : ", game_version_string_);
 		sys_log.simple_log("カラービット深度 : ", color_bit_depth_);
-		sys_log.simple_log("描画(内部)サイズ : ", draw_size_.ToString());
+		sys_log.simple_log("描画(内部)サイズ : ", draw_size_.to_string());
 		sys_log.simple_log("--------------------------------");
 		return true;
 	}
@@ -83,7 +83,7 @@ namespace plnt::private_ {
 			//Window
 			const auto window_obj = root_obj->at_with_exception("Window")->get_with_exception<json_object>();
 			const auto buf_array = *window_obj->at_with_exception("WindowSize")->get_with_exception<std::vector<int>>();
-			window_size_.Set(buf_array[0], buf_array[1]);
+			window_size_.set(buf_array[0], buf_array[1]);
 			is_window_mode_ = *window_obj->at_with_exception("WindowMode")->get_with_exception<bool>();
 		} catch (std::out_of_range &e) {
 			PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
@@ -98,7 +98,7 @@ namespace plnt::private_ {
 		PE_LOG_MESSAGE("ユーザー設定を読み込みました。");
 		sys_log.simple_log("--------ユーザー設定情報--------");
 		sys_log.simple_log("ウインドウモード : ", is_window_mode_ ? "有効" : "無効");
-		sys_log.simple_log("ウインドウ(表示)サイズ : ", window_size_.ToString());
+		sys_log.simple_log("ウインドウ(表示)サイズ : ", window_size_.to_string());
 		sys_log.simple_log("--------------------------------");
 		return true;
 	}
@@ -115,9 +115,9 @@ namespace plnt::private_ {
 
 	bool standard_config_manager::is_window_mode() const { return is_window_mode_; }
 
-	Vector2Di standard_config_manager::draw_size() const { return draw_size_; }
+	vector_2di standard_config_manager::draw_size() const { return draw_size_; }
 
-	Vector2Di standard_config_manager::window_size() const { return window_size_; }
+	vector_2di standard_config_manager::window_size() const { return window_size_; }
 
 	const collision_group_matrix &standard_config_manager::collision_group_matrix() const {
 		return collision_group_matrix_;

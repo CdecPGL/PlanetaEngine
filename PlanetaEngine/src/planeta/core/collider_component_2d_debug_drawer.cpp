@@ -11,7 +11,7 @@ namespace plnt::private_ {
 	bool collider_component_2d_debug_drawer::collide_with(CCircleCollider2D &circle_collider) {
 		const auto pos = circle_collider.GetCollisionGlobalCenterPosition();
 		const auto radius = circle_collider.radius() * circle_collider.GetCollisionScale();
-		debug_drawer_.draw_circle(static_cast<Vector2Df>(pos), static_cast<float>(radius), color::red(), false);
+		debug_drawer_.draw_circle(static_cast<vector_2df>(pos), static_cast<float>(radius), color::red(), false);
 		return false;
 	}
 

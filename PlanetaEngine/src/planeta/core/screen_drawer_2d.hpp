@@ -21,12 +21,12 @@ namespace plnt {
 		/*画像の描画(画像描画データ)*/
 		void draw_graph(const std::shared_ptr<private_::graph_draw_data_2d> &graph_draw_data) const;
 		/*ワイヤーの描画(点座標、幅(現状では無効)、色)*/
-		void draw_wire(const std::vector<Vector2Df> &positions, double width, const color &color) const;
+		void draw_wire(const std::vector<vector_2df> &positions, double width, const color &color) const;
 		/*多角形の描画(点座標、三角形ポリゴンインデックス、色)*/
-		void draw_polygon(const std::vector<Vector2Df> &positions, const std::vector<std::array<int, 3>> &indexes,
+		void draw_polygon(const std::vector<vector_2df> &positions, const std::vector<std::array<int, 3>> &indexes,
 		                 const color &color) const;
 		/*円の描画*/
-		void draw_circle(const Vector2Df &position, float radius, const color &color) const;
+		void draw_circle(const vector_2df &position, float radius, const color &color) const;
 
 	private:
 		private_::screen &screen_;

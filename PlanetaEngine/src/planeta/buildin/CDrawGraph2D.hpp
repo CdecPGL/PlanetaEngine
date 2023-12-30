@@ -47,9 +47,9 @@ namespace plnt {
 		}
 
 		/*! 画像の中心を[0.0,1.0]*[0.0,1.0]の範囲で取得*/
-		const Vector2Dd &graph_center() const { return graph_center_; }
+		const vector_2dd &graph_center() const { return graph_center_; }
 		/*! 画像の中心を[0.0,1.0]*[0.0,1.0]の範囲で設定*/
-		void graph_center(const Vector2Dd &pos) { graph_center_ = pos; }
+		void graph_center(const vector_2dd &pos) { graph_center_ = pos; }
 
 	private:
 		/*反転描画フラグ*/
@@ -57,7 +57,7 @@ namespace plnt {
 		/*画像上で表示する範囲*/
 		rectangle<int> _draw_area;
 		/*画像の中心位置*/
-		Vector2Dd graph_center_ = Vector2Dd(0.5, 0.5);
+		vector_2dd graph_center_ = vector_2dd(0.5, 0.5);
 		/*画像描画データ*/
 		std::shared_ptr<private_::graph_draw_data_2d> graph_draw_data_;
 		/*ポリゴン情報更新*/

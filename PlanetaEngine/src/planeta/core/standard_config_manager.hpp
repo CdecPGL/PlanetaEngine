@@ -13,8 +13,8 @@ namespace plnt::private_ {
 		[[nodiscard]] std::string game_version_string() const override;
 		[[nodiscard]] std::array<int, 3> game_version_numbers() const override;
 		[[nodiscard]] bool is_window_mode() const override;
-		[[nodiscard]] Vector2Di draw_size() const override;
-		[[nodiscard]] Vector2Di window_size() const override;
+		[[nodiscard]] vector_2di draw_size() const override;
+		[[nodiscard]] vector_2di window_size() const override;
 		[[nodiscard]] const plnt::collision_group_matrix &collision_group_matrix() const override;
 		[[nodiscard]] bool is_cursor_visible() const override;
 
@@ -25,8 +25,8 @@ namespace plnt::private_ {
 		std::string game_version_string_ = "NULL";
 		std::array<int, 3> game_version_numbers_ = {-1, -1, -1};
 		bool is_window_mode_ = false;
-		Vector2Di draw_size_ = {-1, -1};
-		Vector2Di window_size_ = {-1, -1};
+		vector_2di draw_size_ = {-1, -1};
+		vector_2di window_size_ = {-1, -1};
 		plnt::collision_group_matrix collision_group_matrix_;
 		bool is_cursor_visible_ = true;
 	};

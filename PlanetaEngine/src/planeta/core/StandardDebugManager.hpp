@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <memory>
+
 #include "debug_manager.hpp"
 
 namespace plnt {

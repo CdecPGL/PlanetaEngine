@@ -533,7 +533,6 @@
     <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp" />
     <ClInclude Include="src\planeta\core\TransformSystem.hpp" />
     <ClInclude Include="src\planeta\util\two_key_map.hpp" />
-    <ClInclude Include="src\planeta\core\TypeChecker.hpp" />
     <ClInclude Include="src\planeta\reflection\type_info_wrapper.hpp" />
     <ClInclude Include="src\planeta\reflection\type_traits_utility.hpp" />
     <ClInclude Include="src\planeta\core\Vector2D.hpp" />
