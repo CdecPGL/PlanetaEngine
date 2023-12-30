@@ -7,9 +7,9 @@
 #include "../reflection/reflection_accessible.hpp"
 
 #include "Object.hpp"
-#include "NonCopyable.hpp"
+#include "non_copyable.hpp"
 #include "WeakPointer.hpp"
-#include "NonOwingPointer.hpp"
+#include "non_owing_pointer.hpp"
 #include "go_component_getter.hpp"
 #include "i_scene.hpp"
 
@@ -28,7 +28,7 @@ namespace plnt {
 	*/
 	class game_object_component : public Object, public reflection::reflection_accessible,
 	                            public std::enable_shared_from_this<game_object_component>,
-	                            util::NonCopyable<game_object_component> {
+	                            util::non_copyable<game_object_component> {
 		PE_REFLECTION_DATA_REGISTERER_DECLARATION(game_object_component);
 
 	public:
@@ -113,7 +113,7 @@ namespace plnt {
 		bool is_active_ = false;
 		std::unordered_set<std::string> labels_;
 
-		NonOwingPointer<i_game_object> game_object_;
+		non_owing_pointer<i_game_object> game_object_;
 		WeakPointer<i_scene> scene_;
 
 		/*特別設定関数*/

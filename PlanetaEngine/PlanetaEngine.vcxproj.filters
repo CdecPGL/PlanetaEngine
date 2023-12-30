@@ -354,7 +354,7 @@
     <ClInclude Include="src\planeta\core\WeakPointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\NonOwingPointer.hpp">
+    <ClInclude Include="src\planeta\core\non_owing_pointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\reflection\reflection_utility.hpp">
@@ -408,10 +408,10 @@
     <ClInclude Include="src\planeta\core\date_time.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Matrix2_2.hpp">
+    <ClInclude Include="src\planeta\core\matrix22.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Matrix3_3.hpp">
+    <ClInclude Include="src\planeta\core\matrix33.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\RectAngle.hpp">
@@ -660,13 +660,13 @@
     <ClInclude Include="src\planeta\core\log_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\MetaprogrammingUtility.hpp">
+    <ClInclude Include="src\planeta\core\metaprogramming_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\NonCopyable.hpp">
+    <ClInclude Include="src\planeta\core\non_copyable.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\NullWeakPointerException.hpp">
+    <ClInclude Include="src\planeta\core\null_weak_pointer_exception.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithID.hpp">
@@ -1057,9 +1057,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\core\file_system_utility.cpp">
       <Filter>PlanetaEngine\Core\FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\core\Object.cpp">
-      <Filter>PlanetaEngine\Core\Object</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\archiver\aes_encrypter.cpp">
       <Filter>PlanetaEngine\Core\FileSystem\Encrypter</Filter>

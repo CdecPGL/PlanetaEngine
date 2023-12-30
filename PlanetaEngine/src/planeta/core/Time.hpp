@@ -110,7 +110,7 @@ namespace plnt {
 				} else { return false; }
 			}
 
-			std::string ToString() const override;
+			std::string to_string() const override;
 
 			/*! 現在時刻を取得*/
 			static Time GetCurrentTime();

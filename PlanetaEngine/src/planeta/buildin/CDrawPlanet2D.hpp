@@ -62,7 +62,7 @@ namespace plnt {
 		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
 		virtual void on_initialized() override;
 		virtual void on_finalized() noexcept override;
-		NonOwingPointer<CPlanet> _planet_component;
+		non_owing_pointer<CPlanet> _planet_component;
 		/*ポリゴンセット*/
 		void (CDrawPlanet2D::*polygon_setter_)();
 		void SetPolygon_();

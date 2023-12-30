@@ -5,7 +5,7 @@
 #include <functional>
 #include <algorithm>
 #include "ParameterHolder.hpp"
-#include "NonCopyable.hpp"
+#include "non_copyable.hpp"
 
 namespace plnt {
 	namespace private_ {
@@ -15,7 +15,7 @@ namespace plnt {
 	class SceneSetUpProxy;
 
 	/*シーン設定クラス。オブジェクト引継ぎ処理は未実装*/
-	class SceneSetUpper : public Object, private util::NonCopyable<SceneSetUpper> {
+	class SceneSetUpper : public Object, private util::non_copyable<SceneSetUpper> {
 	public:
 		using super = Object;
 		SceneSetUpper() = default;

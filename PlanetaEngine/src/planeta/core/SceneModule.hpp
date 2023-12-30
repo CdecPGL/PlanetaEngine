@@ -2,7 +2,7 @@
 
 #include "Object.hpp"
 #include "WeakPointer.hpp"
-#include "NonCopyable.hpp"
+#include "non_copyable.hpp"
 
 namespace plnt {
 	class i_debug_information_adder;
@@ -10,7 +10,7 @@ namespace plnt {
 	namespace private_ {
 		class i_scene_internal;
 
-		class SceneModule : public Object, private util::NonCopyable<SceneModule> {
+		class SceneModule : public Object, private util::non_copyable<SceneModule> {
 		public:
 			virtual ~SceneModule() = default;
 			virtual bool Initialize() { return true; };

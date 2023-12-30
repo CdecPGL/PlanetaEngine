@@ -37,7 +37,7 @@ namespace plnt {
 		void animation_data(const std::unordered_map<std::string, std::vector<FrameDataType>> &data);
 
 	private:
-		NonOwingPointer<CDrawGraph2D> draw_graph_component_;
+		non_owing_pointer<CDrawGraph2D> draw_graph_component_;
 		unsigned int frame_counter_ = 0;
 		bool is_playing_ = false;
 		bool roop_flag_ = false;

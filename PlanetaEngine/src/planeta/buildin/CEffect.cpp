@@ -31,7 +31,7 @@ namespace plnt {
 		bool GetEffectExits() const;
 		void ApplyTransformToEffect();
 
-		void SetMyCTransform2D(const NonOwingPointer<CTransform2D> &com);
+		void SetMyCTransform2D(const non_owing_pointer<CTransform2D> &com);
 		void DisconnectMyCTransformUpdatedEvent();
 		void ConnectMyCTransformUpdatedEvent();
 
@@ -41,7 +41,7 @@ namespace plnt {
 		SignalConnection trans_update_eve_connection_;
 
 	private:
-		NonOwingPointer<CTransform2D> my_c_transform_2d_;
+		non_owing_pointer<CTransform2D> my_c_transform_2d_;
 		std::shared_ptr<REffect> reffect_;
 		int effect_handle_ = -1;
 	};
@@ -137,7 +137,7 @@ namespace plnt {
 
 	void CEffect::Impl_::DisconnectMyCTransformUpdatedEvent() { trans_update_eve_connection_.Disconnect(); }
 
-	void CEffect::Impl_::SetMyCTransform2D(const NonOwingPointer<CTransform2D> &com) {
+	void CEffect::Impl_::SetMyCTransform2D(const non_owing_pointer<CTransform2D> &com) {
 		my_c_transform_2d_.reset(com);
 		ConnectMyCTransformUpdatedEvent();
 	}

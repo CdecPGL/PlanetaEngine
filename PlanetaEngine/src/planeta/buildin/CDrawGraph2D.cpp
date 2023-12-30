@@ -3,7 +3,7 @@
 #include "planeta/core/ScreenDrawer2D.hpp"
 #include "..\core\log_utility.hpp"
 #include "..\core\i_game_object.hpp"
-#include "planeta/core/Matrix2_2.hpp"
+#include "..\core\matrix22.hpp"
 #include "..\math\math_constant.hpp"
 #include "..\core\graph_draw_data_2d.hpp"
 

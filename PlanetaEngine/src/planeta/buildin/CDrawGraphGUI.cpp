@@ -15,7 +15,7 @@ namespace plnt {
 	class CDrawGraphGUI::Impl_ {
 	public:
 		util::ResourceHolder<RGraph> graph_res;
-		NonOwingPointer<CTransformGUI> my_c_trans_gui;
+		non_owing_pointer<CTransformGUI> my_c_trans_gui;
 		RectAnglei graph_draw_area;
 		bool reverse_flag;
 	};

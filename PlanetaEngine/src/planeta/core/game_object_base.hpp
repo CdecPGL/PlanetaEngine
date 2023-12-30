@@ -3,7 +3,7 @@
 #include "Object.hpp"
 #include "game_object_component_holder.hpp"
 #include "i_game_object.hpp"
-#include "NonCopyable.hpp"
+#include "non_copyable.hpp"
 #include "game_object_manager_connection.hpp"
 
 namespace plnt {
@@ -16,7 +16,7 @@ namespace plnt {
 
 		/*! @brief GameObjectの具体的な実装を行うクラス。直接用いることはない。
 		*/
-		class game_object_base final : public Object, public i_game_object, util::NonCopyable<game_object_base>,
+		class game_object_base final : public Object, public i_game_object, util::non_copyable<game_object_base>,
 		                               public std::enable_shared_from_this<game_object_base> {
 		public:
 			using super = Object;

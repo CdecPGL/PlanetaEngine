@@ -79,7 +79,7 @@ namespace plnt {
 		void ResistToCollisionDetectProcess_();
 		void RemoveFromCollisionDetectProcess_();
 
-		NonOwingPointer<CTransform2D> transform2d_;
+		non_owing_pointer<CTransform2D> transform2d_;
 
 		/*位置*/
 		Vector2Dd position_;

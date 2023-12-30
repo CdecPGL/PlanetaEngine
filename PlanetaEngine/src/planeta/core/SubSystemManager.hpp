@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 #include <string>
-#include "NonCopyable.hpp"
+#include "non_copyable.hpp"
 
 namespace plnt {
 	class i_debug_information_adder;
 
 	namespace private_ {
-		class SubSystemManager : private util::NonCopyable<SubSystemManager> {
+		class SubSystemManager : private util::non_copyable<SubSystemManager> {
 		public:
 			virtual ~SubSystemManager() = 0 { };
 			/*デバッグ情報追加ハンドラ*/

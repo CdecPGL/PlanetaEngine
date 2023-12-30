@@ -2,7 +2,7 @@
 #include "..\core\collision_world.hpp"
 #include "..\core\log_utility.hpp"
 #include "planeta/core/i_scene_internal.hpp"
-#include "planeta/core/Matrix2_2.hpp"
+#include "..\core\matrix22.hpp"
 #include "..\core\collider_2d_data.hpp"
 #include "planeta/core/e_collision_with_ground_2d.hpp"
 

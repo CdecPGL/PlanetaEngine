@@ -20,7 +20,7 @@ namespace plnt {
 		}
 
 	private:
-		NonOwingPointer<CTransform2D> transform2d_;
+		non_owing_pointer<CTransform2D> transform2d_;
 		double _gravity_scale = 0.5;
 		bool get_other_components_proc(const go_component_getter &com_getter) override;
 		void on_initialized() override;

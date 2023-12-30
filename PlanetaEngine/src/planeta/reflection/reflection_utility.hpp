@@ -13,7 +13,7 @@
 #include "boost/core/enable_if.hpp"
 #include "boost/tti/has_static_member_function.hpp"
 
-#include "planeta/core/MetaprogrammingUtility.hpp"
+#include "..\core\metaprogramming_utility.hpp"
 #include "planeta/core/StringUtility.hpp"
 #include "reflection_exceptions.hpp"
 
@@ -79,7 +79,7 @@ namespace plnt::reflection {
 
 		//Ptreeから直接変換可能
 		template <typename T>
-		struct reflective_ptree_converter_layer2<T, std::enable_if_t<mp_util::IsIStreamCompatible_v<T>>> {
+		struct reflective_ptree_converter_layer2<T, std::enable_if_t<mp_util::is_istream_compatible_v<T>>> {
 			void operator()(T &dst, const boost::property_tree::ptree &src) {
 				try { dst = src.get_value<T>(); } catch (boost::property_tree::ptree_bad_data &e) {
 					throw reflection_error(

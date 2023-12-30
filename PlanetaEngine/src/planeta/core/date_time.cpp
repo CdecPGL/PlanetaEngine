@@ -3,7 +3,7 @@
 #include "date_time.hpp"
 
 namespace plnt::util {
-	std::string date_time::ToString() const {
+	std::string date_time::to_string() const {
 		std::stringstream sst;
 		sst << year_ << '/' << month_ << '/' << day_ << ' ' << hour_ << ':' << minute_ << ':' << second_;
 		return sst.str();

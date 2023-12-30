@@ -4,7 +4,7 @@
 #include <typeinfo>
 #include <cassert>
 #include <type_traits>
-#include "NullWeakPointerException.hpp"
+#include "null_weak_pointer_exception.hpp"
 
 
 namespace plnt {

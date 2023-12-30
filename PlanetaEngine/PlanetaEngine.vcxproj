@@ -422,13 +422,13 @@
     <ClInclude Include="src\planeta\core\log_manager.hpp" />
     <ClInclude Include="src\planeta\core\log_utility.hpp" />
     <ClInclude Include="src\planeta\reflection\lua_bind_helper.hpp" />
-    <ClInclude Include="src\planeta\core\Matrix2_2.hpp" />
-    <ClInclude Include="src\planeta\core\Matrix3_3.hpp" />
-    <ClInclude Include="src\planeta\core\MetaprogrammingUtility.hpp" />
-    <ClInclude Include="src\planeta\core\NonCopyable.hpp" />
-    <ClInclude Include="src\planeta\core\NonOwingPointer.hpp" />
+    <ClInclude Include="src\planeta\core\matrix22.hpp" />
+    <ClInclude Include="src\planeta\core\matrix33.hpp" />
+    <ClInclude Include="src\planeta\core\metaprogramming_utility.hpp" />
+    <ClInclude Include="src\planeta\core\non_copyable.hpp" />
+    <ClInclude Include="src\planeta\core\non_owing_pointer.hpp" />
     <ClInclude Include="src\planeta\core\normal_folder_manipulator.hpp" />
-    <ClInclude Include="src\planeta\core\NullWeakPointerException.hpp" />
+    <ClInclude Include="src\planeta\core\null_weak_pointer_exception.hpp" />
     <ClInclude Include="src\planeta\core\Object.hpp" />
     <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithID.hpp" />
     <ClInclude Include="src\planeta\core\ObjectHolderTemplate_WithoutID.hpp" />
@@ -696,7 +696,6 @@
     <ClCompile Include="src\planeta\buildin\CDrawGraph2D.cpp" />
     <ClCompile Include="src\planeta\buildin\CGround2D.cpp" />
     <ClCompile Include="src\planeta\core\normal_folder_manipulator.cpp" />
-    <ClCompile Include="src\planeta\core\Object.cpp" />
     <ClCompile Include="src\planeta\core\game.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanet.cpp" />
     <ClCompile Include="src\planeta\core\Task.cpp" />

@@ -5,7 +5,7 @@
 #include "SceneSetUpper.hpp"
 #include "planeta/buildin/SError.hpp"
 #include "log_utility.hpp"
-#include "NullWeakPointerException.hpp"
+#include "null_weak_pointer_exception.hpp"
 #include "PrefixUtility.hpp"
 #include "StandardSceneManagerUtility.hpp"
 
@@ -35,7 +35,7 @@ namespace plnt {
 						break;
 				}
 				return SceneStatus_::Error;
-			} catch (NullWeakPointerException &e) {
+			} catch (null_weak_pointer_exception &e) {
 				PE_LOG_ERROR("Scene::Updateで無効なWeakPointerが参照されました。", e.what());
 				return SceneStatus_::Error;
 			}

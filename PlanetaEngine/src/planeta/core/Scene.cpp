@@ -36,7 +36,7 @@ namespace plnt {
 		void Scene::Update() {
 			try {
 				task_manager_->ExcuteTask(); //タスク実行
-			} catch (NullWeakPointerException &e) {
+			} catch (null_weak_pointer_exception &e) {
 				PE_LOG_ERROR("TaskManager::Updateで無効なWeakPointerが参照されました。", e.what());
 				return;
 			}
@@ -46,7 +46,7 @@ namespace plnt {
 					sm.Update();
 					return true;
 				});
-			} catch (NullWeakPointerException &e) {
+			} catch (null_weak_pointer_exception &e) {
 				PE_LOG_ERROR("シーンモジュールの更新において無効なWeakPointerが参照されました。", e.what());
 				return;
 			}

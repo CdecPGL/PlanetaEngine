@@ -68,7 +68,7 @@ namespace plnt {
 		/*描画拡大度取得(ゲームオブジェクトの拡大度と、表示回拡大度から算出)*/
 		Vector2Dd GetDrawScale() const;
 
-		NonOwingPointer<CTransform2D> transform2d_;
+		non_owing_pointer<CTransform2D> transform2d_;
 
 		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
 

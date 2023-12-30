@@ -3,8 +3,8 @@
 #include "Signal.hpp"
 #include "Object.hpp"
 #include "WeakPointer.hpp"
-#include "NonCopyable.hpp"
-#include "NonOwingPointer.hpp"
+#include "non_copyable.hpp"
+#include "non_owing_pointer.hpp"
 
 namespace plnt {
 	class i_scene;
@@ -16,7 +16,7 @@ namespace plnt {
 	class i_game_object;
 
 	class Task :
-		public Object, private util::NonCopyable<Task> {
+		public Object, private util::non_copyable<Task> {
 	public:
 		using super = Object;
 		using GameObjectAccessorType = WeakPointer<i_game_object>;

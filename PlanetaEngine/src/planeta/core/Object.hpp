@@ -1,10 +1,10 @@
 ﻿#pragma once
+
 #include <string>
 #include <typeinfo>
 #include <memory>
-#include "planeta/reflection/reflectable.hpp"
 
-#undef max //windows.hで定義されているmaxマクロを無効化(std::numeric_limits<size_t>::max()のため)
+#include "planeta/reflection/reflectable.hpp"
 
 namespace plnt {
 	/*! @brief 全てのクラスの基底となる基本クラス
@@ -13,28 +13,17 @@ namespace plnt {
 	*/
 	class Object : public reflection::reflectable {
 	public:
-		using Super = reflectable;
+		using super = reflectable;
 		//! デフォルトコンストラクタ
 		Object() = default;
 		//! デストラクタ
-		virtual ~Object() = default;
-		//! インスタンスが同じか確認
-		bool Equals(const Object *o) const { return o == this; }
-		//! インスタンスが同じか確認
-		bool Equals(const Object &o) const { return &o == this; }
-		//! 文字列化する。継承することで独自の文字列か機能を追加可能。
-		virtual std::string ToString() const { return typeid(*this).name(); }
+		~Object() override = default;
 
-		auto operator<=> (const Object &) const = default;
+		//! 文字列化する。継承することで独自の文字列か機能を追加可能。
+		[[nodiscard]] virtual std::string to_string() const { return typeid(*this).name(); }
+
+		auto operator<=>(const Object &) const = default;
 	};
 
 	PE_REFLECTABLE_CLASS(Object);
 }
-
-//template<typename T>
-//struct A {
-//	static planeta::private_::ClassRegisterTrigger<planeta::core::Object> globalobject_registerer;
-//};
-//template<typename T>
-//planeta::private_::ClassRegisterTrigger<planeta::core::Object> A<T>::globalobject_registerer = {""};
-//template struct A<int>;

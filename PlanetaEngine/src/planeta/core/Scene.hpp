@@ -7,8 +7,8 @@
 #include "Object.hpp"
 #include "i_scene_internal.hpp"
 #include "WeakPointer.hpp"
-#include "NonCopyable.hpp"
-#include "NonOwingPointer.hpp"
+#include "non_copyable.hpp"
+#include "non_owing_pointer.hpp"
 
 namespace plnt {
 	class i_debug_information_adder;
@@ -17,7 +17,7 @@ namespace plnt {
 		class SceneModule;
 
 		class Scene final : public Object, public i_scene_internal, public std::enable_shared_from_this<Scene>
-		                    , private util::NonCopyable<Scene> {
+		                    , private util::non_copyable<Scene> {
 		public:
 			Scene();
 			~Scene();

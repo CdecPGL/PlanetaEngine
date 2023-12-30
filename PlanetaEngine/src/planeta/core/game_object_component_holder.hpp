@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "WeakPointer.hpp"
-#include "NonCopyable.hpp"
+#include "non_copyable.hpp"
 
 namespace plnt {
 	class game_object_component;
@@ -16,7 +16,7 @@ namespace plnt {
 	namespace private_ {
 		/*GOコンポーネントを管理するクラス
 		*/
-		class game_object_component_holder : util::NonCopyable<game_object_component_holder> {
+		class game_object_component_holder : util::non_copyable<game_object_component_holder> {
 		public:
 			//コンポーネントを登録する
 			bool register_component(const std::shared_ptr<game_object_component> &com, const std::type_info &t_info);

@@ -1,6 +1,6 @@
 ﻿#include "..\core\i_game_object.hpp"
 #include "..\core\draw_system.hpp"
-#include "planeta/core/Matrix2_2.hpp"
+#include "..\core\matrix22.hpp"
 #include "..\core\log_utility.hpp"
 #include "planeta/core/i_scene_internal.hpp"
 

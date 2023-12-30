@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "NonOwingPointer.hpp"
+#include "non_owing_pointer.hpp"
 
 namespace plnt {
 	class ISceneInternal;
@@ -8,7 +8,7 @@ namespace plnt {
 
 	namespace private_ {
 		struct game_object_component_set_up_data {
-			NonOwingPointer<i_game_object> holder_game_object;
+			non_owing_pointer<i_game_object> holder_game_object;
 			WeakPointer<i_scene_internal> scene_internal_interface;
 		};
 	}

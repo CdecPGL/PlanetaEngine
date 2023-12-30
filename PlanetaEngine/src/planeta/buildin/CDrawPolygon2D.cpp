@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/ScreenDrawer2D.hpp"
 #include "..\core\i_game_object.hpp"
-#include "planeta/core/Matrix2_2.hpp"
+#include "..\core\matrix22.hpp"
 
 #include "CTransform2D.hpp"
 #include "CDrawPolygon2D.hpp"

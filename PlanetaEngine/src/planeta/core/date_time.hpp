@@ -94,7 +94,7 @@ namespace plnt::util {
 
 		auto operator<=>(const date_time &t) const = default;
 
-		[[nodiscard]] std::string ToString() const override;
+		[[nodiscard]] std::string to_string() const override;
 
 		/*現在時刻を取得*/
 		static date_time get_current_date_time();

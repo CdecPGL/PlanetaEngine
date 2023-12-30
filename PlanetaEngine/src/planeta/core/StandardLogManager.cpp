@@ -80,7 +80,7 @@ namespace plnt {
 				stringstream sstrm;
 				//ログのシステム時刻
 				auto &pm = *game::instance().performance_manager();
-				sstrm << '[' << pm.get_current_time_count().ToString() << ',' << pm.get_current_frame_count() << ']';
+				sstrm << '[' << pm.get_current_time_count().to_string() << ',' << pm.get_current_frame_count() << ']';
 				//ログのレベル
 				sstrm << header << ':';
 				//詳細
@@ -167,7 +167,7 @@ namespace plnt {
 			#endif
 			simple_log(std::string("PlanetaEngine v") + private_::system_variables::engine_information::VersionString,
 			          debug_mode ? " デバッグビルド" : "");
-			simple_log(std::string("起動日時:") + util::date_time::get_current_date_time().ToString());
+			simple_log(std::string("起動日時:") + util::date_time::get_current_date_time().to_string());
 			if (private_::system_variables::DevelopmentMode) { simple_log("開発モードが有効です。"); }
 			PE_LOG_MESSAGE("ログ出力が開始されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
 			return true;

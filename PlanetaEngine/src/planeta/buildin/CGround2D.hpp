@@ -53,7 +53,7 @@ namespace plnt {
 		virtual void on_finalized() noexcept override;
 
 	private:
-		NonOwingPointer<CTransform2D> transform2d_;
+		non_owing_pointer<CTransform2D> transform2d_;
 		/*指定地形座標で地形座標系回転度のグローバル座標系回転度との差を取得する*/
 		virtual double GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(const Vector2Dd &ground_pos) const = 0;
 	};
