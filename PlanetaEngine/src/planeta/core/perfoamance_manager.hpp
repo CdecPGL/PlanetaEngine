@@ -5,7 +5,7 @@
 
 namespace plnt::private_ {
 	/*パフォーマンスマネージャ*/
-	class performance_manager : public i_performance_manager, public SubSystemManager {
+	class performance_manager : public i_performance_manager, public sub_system_manager {
 	public:
 		performance_manager() = default;
 		performance_manager(const performance_manager &) = delete;

@@ -1,21 +1,27 @@
 ﻿#pragma once
 
 #include <string>
+
 #include "non_copyable.hpp"
 
 namespace plnt {
 	class i_debug_information_adder;
 
 	namespace private_ {
-		class SubSystemManager : private util::non_copyable<SubSystemManager> {
+		// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
+		class sub_system_manager : util::non_copyable<sub_system_manager> {
 		public:
-			virtual ~SubSystemManager() = 0 { };
+			sub_system_manager() = default;
+			sub_system_manager(sub_system_manager &&) = delete;
+			virtual ~sub_system_manager() = default;
+			sub_system_manager &operator=(sub_system_manager &&) = delete;
+
 			/*デバッグ情報追加ハンドラ*/
-			virtual void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) { };
+			virtual void debug_information_add_handler(i_debug_information_adder &di_adder) {}
 			/*デバッグ情報チャンネルを作成する*/
-			void CreateDebugInformationChannel(const std::string &channel_id);
+			void create_debug_information_channel(const std::string &channel_id);
 			/*デバッグ情報チャンネルを削除する*/
-			void DeleteDebugInformationChannel();
+			void delete_debug_information_channel();
 
 		private:
 			std::string debug_info_channel_id_;

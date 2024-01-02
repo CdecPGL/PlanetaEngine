@@ -60,7 +60,7 @@ namespace plnt::reflection {
 		template <typename T, typename... Rest>
 		void reflective_ptree_converter_error() {
 			throw reflection_error(
-				util::ConvertAndConnectToString("Ptreeからの変換に対応していない型\"", typeid(T).name(), "\"が指定されました。"));
+				util::convert_and_connect_to_string("Ptreeからの変換に対応していない型\"", typeid(T).name(), "\"が指定されました。"));
 		}
 
 		void reflective_ptree_converter_from_reflection_system(reflectable &dst,
@@ -83,7 +83,7 @@ namespace plnt::reflection {
 			void operator()(T &dst, const boost::property_tree::ptree &src) {
 				try { dst = src.get_value<T>(); } catch (boost::property_tree::ptree_bad_data &e) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(),
+						util::convert_and_connect_to_string("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(),
 						                                ")"));
 				}
 			}
@@ -105,7 +105,7 @@ namespace plnt::reflection {
 				try { private_::reflective_ptree_converter_from_reflection_system(dst, src); } catch (reflection_error &
 					e) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(),
+						util::convert_and_connect_to_string("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(),
 						                                ")"));
 				}
 			}
@@ -145,13 +145,13 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
 			if (sizeof...(Ts) != ptree_vec.size()) {
 				throw reflection_error(
-					util::ConvertAndConnectToString("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts),
+					util::convert_and_connect_to_string("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts),
 					                                "です。"));
 			}
 			private_::reflective_ptree_converter_to_std_tuple<0, Ts...>(dst, ptree_vec);
@@ -165,7 +165,7 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("配列型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 
 				T dat{};
@@ -182,7 +182,7 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("配列型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 
 				T dat{};
@@ -199,7 +199,7 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("配列型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("配列型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 
 				T dat{};
@@ -216,7 +216,7 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("セット型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("セット型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 
 				T dat{};
@@ -233,7 +233,7 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("セット型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("セット型のPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
 				}
 
 				T dat{};
@@ -249,7 +249,7 @@ namespace plnt::reflection {
 		void operator()(std::map<std::string, T, Rest...> &dst, const boost::property_tree::ptree &src) {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == true) {
-					throw reflection_error(util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));
+					throw reflection_error(util::convert_and_connect_to_string("マップ型のPtreeキーは空であってはいけません。"));
 				}
 				T dat{};
 				reflection::reflective_ptree_converter(dat, pp.second);
@@ -264,7 +264,7 @@ namespace plnt::reflection {
 		void operator()(std::unordered_map<std::string, T, Rest...> &dst, const boost::property_tree::ptree &src) {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == true) {
-					throw reflection_error(util::ConvertAndConnectToString("マップ型のPtreeキーは空であってはいけません。"));
+					throw reflection_error(util::convert_and_connect_to_string("マップ型のPtreeキーは空であってはいけません。"));
 				}
 				T dat{};
 				reflection::reflective_ptree_converter(dat, pp.second);

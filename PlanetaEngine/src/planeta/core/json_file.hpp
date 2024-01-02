@@ -161,7 +161,7 @@ namespace plnt {
 				if (v) {\
 					return *v;\
 				} else {\
-					throw json_type_error(util::ConvertAndConnectToString("型を変換できませんでした。ターゲットは\"",#p_type,"\"、ソースは\"", var.type().name(), "\"です。"));\
+					throw json_type_error(util::convert_and_connect_to_string("型を変換できませんでした。ターゲットは\"",#p_type,"\"、ソースは\"", var.type().name(), "\"です。"));\
 				}\
 			}\
 		}
@@ -190,7 +190,7 @@ namespace plnt {
 					int idx = 0;
 					for (auto &&elem : *ary) {
 						try { out.push_back(*elem->get_with_exception<T>()); } catch (std::bad_cast &e) {
-							throw json_type_error(util::ConvertAndConnectToString("At[Index:", idx, "],", e.what()));
+							throw json_type_error(util::convert_and_connect_to_string("At[Index:", idx, "],", e.what()));
 						}
 						++idx;
 					}
@@ -212,7 +212,7 @@ namespace plnt {
 						try { out.emplace(key, *value->get_with_exception<T>()); } catch (std::bad_cast &
 							e) {
 							throw json_type_error(
-								util::ConvertAndConnectToString("At[Key:", key, "],", e.what()));
+								util::convert_and_connect_to_string("At[Key:", key, "],", e.what()));
 						}
 					}
 					return std::make_shared<const std::unordered_map<std::string, T, Hasher, KeyEQ, Allocator>>(

@@ -71,7 +71,7 @@ namespace plnt::reflection {
 					const std::type_info &sti = this_class_info->super_t_info.get_type_info();
 					auto it = std_ti_map.find(sti);
 					if (it == std_ti_map.end()) {
-						throw reflection_error(ConvertAndConnectToString(
+						throw reflection_error(convert_and_connect_to_string(
 							"ObjectTypeID\"", this_class_info->object_type_id, "\"の親クラス(std::type_info\"", sti.name(),
 							"\")が登録されていません。"));
 					}
@@ -91,7 +91,7 @@ namespace plnt::reflection {
 					if (const auto it = ci.super_class_info->child_t_info.find(ci.this_t_info); it == ci.
 						super_class_info->child_t_info.end()) {
 						//親クラスの子として自分が登録されていない
-						throw reflection_error(ConvertAndConnectToString(
+						throw reflection_error(convert_and_connect_to_string(
 							"登録情報の整合性がありません。\"", ci.object_type_id, "\"の親クラス\"", super_class_info.object_type_id,
 							"\"に自クラスが子クラスとして設定されていません。"));
 					}
@@ -114,7 +114,7 @@ namespace plnt::reflection {
 					//整合性確認
 					if (cci->super_t_info != ci.this_t_info) {
 						//子クラスの親が自分でない
-						throw reflection_error(ConvertAndConnectToString(
+						throw reflection_error(convert_and_connect_to_string(
 							"登録情報の整合性がありません。\"", ci.object_type_id, "\"の子クラス\"", cci->object_type_id,
 							"\"に自クラスが親クラスとして設定されていません。\"", cci->super_class_info->object_type_id, "\"が設定されています。"));
 					}
@@ -170,7 +170,7 @@ namespace plnt::reflection {
 		decltype(auto) std_ti_map = get_impl().type_data_map.get<tag::std_type_info>();
 		const auto it = std_ti_map.find(t_info);
 		if (it == std_ti_map.end()) {
-			throw reflection_error(ConvertAndConnectToString("登録されていない型\"", t_info.name(), "\"が指定されました。"));
+			throw reflection_error(convert_and_connect_to_string("登録されていない型\"", t_info.name(), "\"が指定されました。"));
 		}
 		return (*it)->object_type_id;
 	}
@@ -179,7 +179,7 @@ namespace plnt::reflection {
 		decltype(auto) id_map = get_impl().type_data_map.get<tag::object_type_id>();
 		const auto it = id_map.find(id);
 		if (it == id_map.end()) {
-			throw reflection_error(ConvertAndConnectToString("登録されていない型ID\"", id, "\"が指定されました。"));
+			throw reflection_error(convert_and_connect_to_string("登録されていない型ID\"", id, "\"が指定されました。"));
 		}
 		return (*it)->this_t_info.get_type_info();
 	}
@@ -187,7 +187,7 @@ namespace plnt::reflection {
 	std::shared_ptr<reflectable_class_accessor> reflection::get_reflectable_class_accessor(const std::type_info &ti) {
 		auto *class_info = get_class_info_reflectable(ti);
 		if (class_info == nullptr) {
-			throw reflection_error(ConvertAndConnectToString("登録されていない型\"", ti.name(), "\"が指定されました。"));
+			throw reflection_error(convert_and_connect_to_string("登録されていない型\"", ti.name(), "\"が指定されました。"));
 		}
 		return std::make_shared<reflectable_class_accessor>(class_info);
 	}
@@ -208,7 +208,7 @@ namespace plnt::reflection {
 		if (!get_impl().type_data_map.insert(std::move(class_info)).second) {
 			//初期化前は例外が投げられないのでエラーqueに追加し、初期化時に確認する
 			get_impl().error_que.push_back(
-				ConvertAndConnectToString("型\"", t_info.name(), "\"が重複登録されました。(ID:\"", id, "\")"));
+				convert_and_connect_to_string("型\"", t_info.name(), "\"が重複登録されました。(ID:\"", id, "\")"));
 		}
 	}
 
@@ -236,7 +236,7 @@ namespace plnt::reflection {
 				e_str += "\n";
 			}
 			get_impl().error_que.clear();
-			throw reflection_error(ConvertAndConnectToString("エラーが存在するため初期化を行えませんでした。エラー内容:\n", e_str));
+			throw reflection_error(convert_and_connect_to_string("エラーが存在するため初期化を行えませんでした。エラー内容:\n", e_str));
 		}
 		//リフレクション情報の処理
 		get_impl().process_reflection_data();

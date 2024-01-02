@@ -5,13 +5,13 @@
 
 #include "signal.hpp"
 #include "i_task_manager.hpp"
-#include "TaskSlot.hpp"
+#include "task_slot.hpp"
 #include "i_scene.hpp"
 
 namespace plnt {
-	class Task;
+	class task;
 	class game_object_component;
-	class Task;
+	class task;
 
 	/*! ゲームオブジェクトの状態*/
 	enum class game_object_state { invalid, inactive, active, initializing, inactivating, activating };
@@ -66,7 +66,7 @@ namespace plnt {
 		*/
 		template <class T>
 		[[nodiscard]] weak_pointer<T> create_and_attach_task(const task_slot slot) {
-			static_assert(std::is_base_of_v<Task, T> == true, "T must derive Task");
+			static_assert(std::is_base_of_v<task, T> == true, "T must derive Task");
 			auto task = scene().task_manager().create_task<T>(slot);
 			if (task == nullptr) { return nullptr; }
 			set_up_attached_task(task);
@@ -89,6 +89,6 @@ namespace plnt {
 	protected:
 		[[nodiscard]] virtual std::shared_ptr<game_object_component> get_component_by_type_info(
 			const std::type_info &ti, const std::function<bool(game_object_component *goc)> &type_checker) const = 0;
-		virtual void set_up_attached_task(const weak_pointer<Task> &task) = 0;
+		virtual void set_up_attached_task(const weak_pointer<task> &task) = 0;
 	};
 }

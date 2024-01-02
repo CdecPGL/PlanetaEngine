@@ -37,7 +37,7 @@ namespace plnt::private_ {
 	std::shared_ptr<game_object_base> game_object_factory::create_game_object_from_component_type_list(
 		const std::vector<std::string> &game_object_component_type_id_list,
 		const weak_pointer<i_scene_internal> &scene_data) const {
-		auto go_info = util::ConvertAndConnectToString("ゲームオブジェクトコンポーネントリスト:",
+		auto go_info = util::convert_and_connect_to_string("ゲームオブジェクトコンポーネントリスト:",
 		                                               boost::algorithm::join(game_object_component_type_id_list, ","));
 		//生成
 		auto ngo = std::make_shared<game_object_base>();

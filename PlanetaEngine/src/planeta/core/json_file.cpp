@@ -58,7 +58,7 @@ namespace plnt {
 	std::shared_ptr<const json_value> json_object::at_with_exception(const std::string &key) const {
 		const auto it = obj_.find(key);
 		if (it == obj_.end()) {
-			throw std::out_of_range(util::ConvertAndConnectToString("Key\"", key, "\"のJSONValueは存在しません。"));
+			throw std::out_of_range(util::convert_and_connect_to_string("Key\"", key, "\"のJSONValueは存在しません。"));
 		}
 		return it->second;
 	}
@@ -78,7 +78,7 @@ namespace plnt {
 	std::shared_ptr<const json_value> json_array::at_with_exception(size_t idx) const {
 		if (idx >= array_.size()) {
 			throw std::out_of_range(
-				util::ConvertAndConnectToString("Index\"", idx, "\"は範囲[0,", array_.size(), "]外です。"));
+				util::convert_and_connect_to_string("Index\"", idx, "\"は範囲[0,", array_.size(), "]外です。"));
 		}
 		return array_[idx];
 	}

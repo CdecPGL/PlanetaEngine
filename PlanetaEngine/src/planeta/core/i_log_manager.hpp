@@ -17,13 +17,13 @@ namespace plnt {
 		/*! レベルを指定してログを出力(レベル、発生個所、詳細(複数指定することで連結される。))*/
 		template <typename... Details>
 		void log(const log_level level, const std::string &place, Details &&... details) {
-			log_proc(level, util::ConvertAndConnectToString(std::forward<Details>(details)...), place);
+			log_proc(level, util::convert_and_connect_to_string(std::forward<Details>(details)...), place);
 		}
 
 		/*! シンプルなログを出力*/
 		template <typename... Details>
 		void simple_log(Details &&... details) {
-			simple_log_proc(util::ConvertAndConnectToString(std::forward<Details>(details)...));
+			simple_log_proc(util::convert_and_connect_to_string(std::forward<Details>(details)...));
 		}
 
 	private:

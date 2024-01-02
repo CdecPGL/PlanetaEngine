@@ -351,7 +351,7 @@
     <ClInclude Include="src\planeta\core\vertex_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\WeakPointer.hpp">
+    <ClInclude Include="src\planeta\core\weak_pointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\non_owing_pointer.hpp">
@@ -795,19 +795,19 @@
     <ClInclude Include="src\planeta\core\SystemVariables.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Task.hpp">
+    <ClInclude Include="src\planeta\core\task.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\TaskManager.hpp">
+    <ClInclude Include="src\planeta\core\task_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\TaskManagerConnection.hpp">
+    <ClInclude Include="src\planeta\core\task_manager_connection.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\TaskSlot.hpp">
+    <ClInclude Include="src\planeta\core\task_slot.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\TransformSystem.hpp">
+    <ClInclude Include="src\planeta\core\transform_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\PlanetaEngine.hpp">
@@ -1232,10 +1232,10 @@
     <ClCompile Include="src\planeta\core\SystemVariables.cpp">
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\Task.cpp">
+    <ClCompile Include="src\planeta\core\task.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\TaskManagerConnection.cpp">
+    <ClCompile Include="src\planeta\core\task_manager_connection.cpp">
       <Filter>PlanetaEngine\SceneModules\Task</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\deprecated\GraphPanel.cpp">

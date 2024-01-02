@@ -7,7 +7,7 @@ namespace plnt {
 	class file;
 
 	namespace private_ {
-		class config_manager : public i_config_manager, public SubSystemManager {
+		class config_manager : public i_config_manager, public sub_system_manager {
 		public:
 			config_manager() = default;
 			config_manager(const config_manager &) = delete;

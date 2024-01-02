@@ -3,11 +3,11 @@
 #include <memory>
 #include <string>
 
-#include "WeakPointer.hpp"
-#include "TaskSlot.hpp"
+#include "weak_pointer.hpp"
+#include "task_slot.hpp"
 
 namespace plnt {
-	class Task;
+	class task;
 
 	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
 	class i_task_manager {
@@ -16,7 +16,7 @@ namespace plnt {
 		virtual ~i_task_manager() = 0 {}
 
 		/*! ゲームプロセスを名前から取得する*/
-		[[nodiscard]] virtual weak_pointer<Task> get_task(const std::string &name) const = 0;
+		[[nodiscard]] virtual weak_pointer<task> get_task(const std::string &name) const = 0;
 
 		/*! タスクを作成*/
 		template <class T>
@@ -48,9 +48,9 @@ namespace plnt {
 
 	private:
 		/*ゲームプロセスを登録する*/
-		virtual bool register_task(const std::shared_ptr<Task> &task, task_slot slot, bool auto_run) = 0;
+		virtual bool register_task(const std::shared_ptr<task> &task, task_slot slot, bool auto_run) = 0;
 		/*ゲームプロセスを登録して名前をつける*/
-		virtual bool register_task(const std::shared_ptr<Task> &task, task_slot slot, const std::string &name,
+		virtual bool register_task(const std::shared_ptr<task> &task, task_slot slot, const std::string &name,
 		                           bool auto_run) = 0;
 	};
 }

@@ -8,7 +8,7 @@
 
 #include "object.hpp"
 #include "non_copyable.hpp"
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 #include "non_owing_pointer.hpp"
 #include "go_component_getter.hpp"
 #include "i_scene.hpp"

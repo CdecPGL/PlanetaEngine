@@ -3,7 +3,7 @@
 
 #include "..\core\i_game_object.hpp"
 #include "..\core\log_utility.hpp"
-#include "planeta/core/TransformSystem.hpp"
+#include "..\core\transform_system.hpp"
 #include "planeta/core/i_scene_internal.hpp"
 
 #include "CGround2D.hpp"

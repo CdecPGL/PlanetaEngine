@@ -4,8 +4,8 @@
 #include <type_traits>
 #include <bitset>
 #include "StandardTaskManager.hpp"
-#include "Task.hpp"
-#include "TaskManagerConnection.hpp"
+#include "task.hpp"
+#include "task_manager_connection.hpp"
 #include "log_utility.hpp"
 #include "SystemTaskSlot.hpp"
 #include "i_debug_manager.hpp"
@@ -47,7 +47,7 @@ namespace plnt {
 			};
 			//システムスロットマップ
 			using namespace private_;
-			constexpr std::array<int, SYSTEM_TASK_SLOT_SIZE> system_slot_group_number_map_ = {
+			constexpr std::array<int, system_task_slot_size> system_slot_group_number_map_ = {
 				APPVEL_SLOT,
 				COLDET_SLOT,
 				APPCAM_SLOT,
@@ -60,8 +60,8 @@ namespace plnt {
 			}
 
 			/*システムタスクスロットからタスクグループ番号を取得*/
-			int GetGroupNumberFromSystemSlot(private_::SystemTaskSlot slot) {
-				return system_slot_group_number_map_[static_cast<std::underlying_type_t<private_::SystemTaskSlot>>(
+			int GetGroupNumberFromSystemSlot(private_::system_task_slot slot) {
+				return system_slot_group_number_map_[static_cast<std::underlying_type_t<private_::system_task_slot>>(
 					slot)];
 			}
 		}
@@ -73,7 +73,7 @@ namespace plnt {
 		public:
 			struct TaskData;
 			//タスク群タイプ
-			using TaskGroupType = std::list<Task *>;
+			using TaskGroupType = std::list<task *>;
 			//タスクリストタイプ
 			using TaskListType = std::list<std::shared_ptr<TaskData>>;
 			//名前マップタイプ
@@ -87,7 +87,7 @@ namespace plnt {
 				TaskData() = default;
 				TaskData(const TaskData &) = delete;
 				TaskData &operator=(const TaskData &) = delete;
-				std::shared_ptr<Task> task;
+				std::shared_ptr<task> task;
 				TaskListType::iterator iterator_at_task_data_list;
 				NameMapType::iterator iterator_at_task_name_map;
 				bool is_named = false;
@@ -218,11 +218,11 @@ namespace plnt {
 						? std::function<void()>([this, tdata] { DisposeTaskRequest(*tdata, true); })
 						: [this, tdata] { DisposeTaskRequest(*tdata, false); } //Disposer(システムタスクの場合は削除できないDisposerをセット)
 				);
-				tdata->task->SystemSetUpAndInitialize(std::move(manager_connection), i_scene);
+				tdata->task->system_set_up_and_initialize(std::move(manager_connection), i_scene);
 			}
 
 			/*タスクをマップに登録*/
-			std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<Task> &task, int group_number,
+			std::shared_ptr<TaskData> RegisterTaskToList(const std::shared_ptr<task> &task, int group_number,
 			                                             bool auto_run) {
 				auto ptdata = std::make_shared<TaskData>();
 				ptdata->task = task;
@@ -256,13 +256,13 @@ namespace plnt {
 				management_process_list_.clear();
 			}
 
-			std::shared_ptr<Task> GetTask(const std::string &name) {
+			std::shared_ptr<task> GetTask(const std::string &name) {
 				auto nit = task_name_map_.find(name);
 				return nit == task_name_map_.end() ? nullptr : nit->second->task;
 			}
 
 			//有効なタスクのメンバ関数を実行
-			void ExcuteValidTasksFunction(void (Task::*func)()) {
+			void ExcuteValidTasksFunction(void (task::*func)()) {
 				for (int i = 0; i < SLOT_COUNT; ++i) {
 					auto &tg = task_excution_list_[i];
 					for (auto &t : tg) { (t->*func)(); }
@@ -307,7 +307,7 @@ namespace plnt {
 
 		StandardTaskManager::~StandardTaskManager() = default;
 
-		void StandardTaskManager::execute_task() { impl_->ExcuteValidTasksFunction(&Task::Update); }
+		void StandardTaskManager::execute_task() { impl_->ExcuteValidTasksFunction(&task::update); }
 
 		void StandardTaskManager::update() {
 			//管理処理を行う
@@ -318,21 +318,21 @@ namespace plnt {
 			impl_->HandleManagementQue(); //管理処理
 			impl_->ValidateSystemTaskDisposal(); //システムタスクを削除可能に。
 			//まだ存在するプロセスの終了処理を行う
-			impl_->ExcuteValidTasksFunction(&Task::Dispose);
+			impl_->ExcuteValidTasksFunction(&task::dispose);
 			//全部クリア
 			impl_->AllClear();
 		}
 
-		weak_pointer<Task> StandardTaskManager::get_task(const std::string &name) const { return impl_->GetTask(name); }
+		weak_pointer<task> StandardTaskManager::get_task(const std::string &name) const { return impl_->GetTask(name); }
 
-		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, task_slot slot, bool auto_run) {
+		bool StandardTaskManager::register_task(const std::shared_ptr<task> &task, task_slot slot, bool auto_run) {
 			int group_number = GetGroupNumberFromSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
 			impl_->SetupTask(ptdata, false, scene_internal_interface());
 			return task != nullptr;
 		}
 
-		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, task_slot slot,
+		bool StandardTaskManager::register_task(const std::shared_ptr<task> &task, task_slot slot,
 		                                       const std::string &name, bool auto_run) {
 			int group_number = GetGroupNumberFromSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
@@ -340,8 +340,8 @@ namespace plnt {
 			return impl_->RegisterTaskName(name, ptdata);
 		}
 
-		std::shared_ptr<Task> StandardTaskManager::register_system_task(const std::shared_ptr<Task> &task,
-		                                                              private_::SystemTaskSlot slot) {
+		std::shared_ptr<task> StandardTaskManager::register_system_task(const std::shared_ptr<task> &task,
+		                                                              private_::system_task_slot slot) {
 			int group_number = GetGroupNumberFromSystemSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, true);
 			impl_->SetupTask(ptdata, true, scene_internal_interface());

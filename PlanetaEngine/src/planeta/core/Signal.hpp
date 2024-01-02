@@ -2,7 +2,7 @@
 
 #include "boost/signals2/signal.hpp"
 
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 
 namespace plnt {
 	/*! シグナルへの接続クラス*/

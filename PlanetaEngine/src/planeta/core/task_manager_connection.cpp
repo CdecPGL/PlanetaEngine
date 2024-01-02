@@ -1,4 +1,4 @@
-﻿#include "TaskManagerConnection.hpp"
+﻿#include "task_manager_connection.hpp"
 
 namespace plnt::private_ {
 	bool task_manager_connection::pause() const { return pauser_(); }

@@ -7,7 +7,7 @@
 #include <functional>
 #include <vector>
 
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 #include "non_copyable.hpp"
 
 namespace plnt {

@@ -3,7 +3,7 @@
 #include <array>
 #include <vector>
 
-#include "planeta/core/WeakPointer.hpp"
+#include "..\core\weak_pointer.hpp"
 #include "..\core\vertex_2d.hpp"
 
 #include "CDraw2D.hpp"
@@ -88,7 +88,7 @@ namespace plnt {
 					if (const auto str = src.get_value<std::string>(); str == "Round") {
 						dst = CDrawPlanet2D::TextureMappingMode::Round;
 					} else if (str == "Plain") { dst = CDrawPlanet2D::TextureMappingMode::Plain; } else {
-						throw reflection_error(util::ConvertAndConnectToString(
+						throw reflection_error(util::convert_and_connect_to_string(
 							"\"", src.get_value<std::string>(), "\"は\"",
 							typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
 					}

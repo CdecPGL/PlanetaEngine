@@ -5,7 +5,7 @@
 
 namespace plnt::private_ {
 	/*ログマネージャ*/
-	class log_manager : public i_log_manager, public SubSystemManager {
+	class log_manager : public i_log_manager, public sub_system_manager {
 	public:
 		log_manager() = default;
 		log_manager(const log_manager &) = delete;

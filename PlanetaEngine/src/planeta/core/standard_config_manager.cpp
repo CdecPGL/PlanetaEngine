@@ -56,7 +56,7 @@ namespace plnt::private_ {
 		}
 		//設定データ取得成功
 		//バージョン文字列設定
-		game_version_string_ = util::ConvertAndConnectToString(game_version_numbers_[0], ".",
+		game_version_string_ = util::convert_and_connect_to_string(game_version_numbers_[0], ".",
 		                                                       game_version_numbers_[1], ".",
 		                                                       game_version_numbers_[2]);
 		//設定をログに出力

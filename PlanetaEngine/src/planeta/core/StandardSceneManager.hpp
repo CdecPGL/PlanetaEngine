@@ -65,7 +65,7 @@ namespace plnt {
 			/*リソースマネージャをセット(初期化前)*/
 			void set_resource_manager(const std::shared_ptr<resource_manager> &mgr) override;
 
-			void DebugInfotmationAddHandler(i_debug_information_adder &di_adder) override;
+			void debug_information_add_handler(i_debug_information_adder &di_adder) override;
 
 		private:
 			std::shared_ptr<resource_manager> resource_manager_;

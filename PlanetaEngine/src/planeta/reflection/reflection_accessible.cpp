@@ -18,7 +18,7 @@ namespace plnt::reflection {
 				decltype (auto) ref_obj = reflectable_obj();
 				class_info_ = reflection::get_class_info_reflectable(typeid(ref_obj));
 				if (class_info_ == nullptr) {
-					throw reflection_error(ConvertAndConnectToString("リフレクションシステムからクラス情報(typeinfo:",
+					throw reflection_error(convert_and_connect_to_string("リフレクションシステムからクラス情報(typeinfo:",
 					                                                 typeid(reflectable_obj_).name(), ")を取得できませんでした。"));
 				}
 			}
@@ -35,7 +35,7 @@ namespace plnt::reflection {
 				//コンストラクト時にはまだ型が完全でないため、Reflectableポインタの取得はここで行う
 				reflectable_obj_ = dynamic_cast<reflectable *>(obj_);
 				if (reflectable_obj_ == nullptr) {
-					throw reflection_error(ConvertAndConnectToString(
+					throw reflection_error(convert_and_connect_to_string(
 						"Reflectableクラスのポインタがセットされていません。Reflectableクラスを継承していない可能性があります。ReflectionAccessibleの機能を利用するには、Reflectableを継承していなければなりません。"));
 				}
 			}
@@ -91,7 +91,7 @@ namespace plnt::reflection {
 
 	void reflection_accessible::reflective_load_from_ptree(const boost::property_tree::ptree &pt) const {
 		try { impl_->class_info_caller().set_data_from_ptree(pt, impl_->reflectable_obj()); } catch (reflection_error &
-			e) { throw reflection_error(ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what())); }
+			e) { throw reflection_error(convert_and_connect_to_string("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what())); }
 	}
 
 	void reflection_accessible::reflective_copy_from(const reflectable &src) const {

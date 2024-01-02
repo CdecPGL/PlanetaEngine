@@ -1,11 +1,9 @@
-﻿#include <ctype.h>
+﻿#include <cctype>
 
 #include "StringUtility.hpp"
 
-namespace plnt {
-	namespace util {
-		bool IsUpperCaseCharacter(char c) { return isupper(static_cast<unsigned char>(c)) > 0; }
+namespace plnt::util {
+	bool is_upper_case_character(const char c) { return isupper(static_cast<unsigned char>(c)) > 0; }
 
-		bool IsLowerCaseCharacter(char c) { return islower(static_cast<unsigned char>(c)) > 0; }
-	}
+	bool is_lower_case_character(const char c) { return islower(static_cast<unsigned char>(c)) > 0; }
 }

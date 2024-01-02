@@ -30,6 +30,6 @@
 #include "core\i_input_manager.hpp"
 #include "core\scene_setupper.hpp"
 #include "core\scene_setup_proxy.hpp"
-#include "core/Task.hpp"
+#include "core/task.hpp"
 #include "core/e_collision_with_collider_2d.hpp"
 #include "core/e_collision_with_ground_2d.hpp"

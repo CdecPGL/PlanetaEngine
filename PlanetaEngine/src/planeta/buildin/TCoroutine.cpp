@@ -2,9 +2,9 @@
 
 
 namespace plnt {
-	void TCoroutine::Update() {
+	void TCoroutine::update() {
 		if (!coroutine_) { Start(); } else { (*coroutine_)(); }
-		if (!(*coroutine_)) { if (dispose_when_coroutine_finished_) { Dispose(); } else { coroutine_.release(); } }
+		if (!(*coroutine_)) { if (dispose_when_coroutine_finished_) { dispose(); } else { coroutine_.release(); } }
 	}
 
 	void TCoroutine::Start() {

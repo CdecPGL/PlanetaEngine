@@ -9,7 +9,7 @@ namespace plnt {
 	class file_manipulator;
 
 	namespace private_ {
-		class save_manager : public i_save_manager, public SubSystemManager {
+		class save_manager : public i_save_manager, public sub_system_manager {
 		public:
 			save_manager() = default;
 			save_manager(const save_manager &) = delete;

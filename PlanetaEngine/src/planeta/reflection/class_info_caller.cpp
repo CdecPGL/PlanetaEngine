@@ -17,11 +17,11 @@ namespace plnt::reflection {
 		if (it == class_info_.public_variable_property_info.end()) {
 			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(
-				ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
+				convert_and_connect_to_string("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 		}
 		try { it->second.setter(obj, v); } catch (boost::bad_any_cast &) {
 			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
-			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
+			throw reflection_error(convert_and_connect_to_string("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
 			                                                 "\"の読み込みにおいて型の不一致エラーが発生しました。(変数型:",
 			                                                 it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
 		}
@@ -32,11 +32,11 @@ namespace plnt::reflection {
 		if (it == class_info_.public_variable_property_info.end()) {
 			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(
-				ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
+				convert_and_connect_to_string("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 		}
 		try { v = it->second.getter(obj); } catch (boost::bad_any_cast &) {
 			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
-			throw reflection_error(ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
+			throw reflection_error(convert_and_connect_to_string("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
 			                                                 "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:",
 			                                                 it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
 		}
@@ -49,10 +49,10 @@ namespace plnt::reflection {
 			if (it == class_info_.public_variable_property_info.end()) {
 				std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 				throw reflection_error(
-					ConvertAndConnectToString("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
+					convert_and_connect_to_string("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 			}
 			try { it->second.ptree_loader(obj, ptp.second); } catch (reflection_error &e) {
-				throw reflection_error(ConvertAndConnectToString("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
+				throw reflection_error(convert_and_connect_to_string("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
 			}
 		}
 	}

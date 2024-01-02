@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 
 namespace plnt {
 	class i_game_object;

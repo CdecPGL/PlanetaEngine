@@ -109,7 +109,7 @@ namespace plnt {
 				if (str == "Ground") { dst = ::plnt::CoordinateSystem::Ground; } else if (str == "Global") {
 					dst = ::plnt::CoordinateSystem::Global;
 				} else {
-					throw ::plnt::reflection::reflection_error(util::ConvertAndConnectToString(
+					throw ::plnt::reflection::reflection_error(util::convert_and_connect_to_string(
 						"\"", src.get_value<std::string>(), "\"は\"", typeid(::plnt::CoordinateSystem).name(),
 						"\"のメンバーではありません。"));
 				}

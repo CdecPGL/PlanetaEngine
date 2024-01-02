@@ -6,7 +6,7 @@
 namespace plnt::private_ {
 	class rendering_manager;
 
-	class debug_manager : public i_debug_manager, public SubSystemManager {
+	class debug_manager : public i_debug_manager, public sub_system_manager {
 	public:
 		debug_manager() = default;
 		debug_manager(const debug_manager &) = delete;

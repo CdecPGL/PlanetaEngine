@@ -2,9 +2,8 @@
 
 #include "signal.hpp"
 #include "object.hpp"
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 #include "non_copyable.hpp"
-#include "non_owing_pointer.hpp"
 
 namespace plnt {
 	class i_scene;
@@ -15,37 +14,39 @@ namespace plnt {
 
 	class i_game_object;
 
-	class Task :
-		public object, private util::non_copyable<Task> {
+	class task :
+		public object, util::non_copyable<task> {
 	public:
 		using super = object;
-		using GameObjectAccessorType = weak_pointer<i_game_object>;
-		Task();
-		virtual ~Task();
-		virtual void Update() = 0;
-		bool Pause();
-		bool Resume();
-		void Dispose();
+		using game_object_accessor_type = weak_pointer<i_game_object>;
+
+		task();
+		~task() override;
+
+		virtual void update() = 0;
+		bool pause() const;
+		bool resume() const;
+		void dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<private_::task_manager_connection> &&manager_connection,
-		                              const weak_pointer<i_scene> &pscene);
+		bool system_set_up_and_initialize(std::unique_ptr<private_::task_manager_connection> &&manager_connection,
+		                                  const weak_pointer<i_scene> &p_scene);
 		/*イベント*/
 		/*! プロセス破棄イベント*/
 		signal<void()> disposed;
 
 	protected:
 		//! シーンへのアクセス
-		i_scene &scene() { return *scene_; }
+		[[nodiscard]] i_scene &scene() const { return *scene_; }
 
 	private:
 		weak_pointer<i_scene> scene_;
 		std::unique_ptr<private_::task_manager_connection> manager_connection_;
-		virtual bool OnCreated() { return true; }
+		virtual bool on_created() { return true; }
 
-		virtual void OnDisposed() { };
+		virtual void on_disposed() {}
 	};
 
-	PE_REFLECTABLE_CLASS(Task);
+	PE_REFLECTABLE_CLASS(task);
 }
 
 #define PE_TASK_CLASS(type)\

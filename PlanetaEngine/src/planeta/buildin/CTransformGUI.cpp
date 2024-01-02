@@ -1,7 +1,7 @@
 ﻿#include <unordered_map>
 
 #include "planeta/core/i_scene_internal.hpp"
-#include "planeta/core/TransformSystem.hpp"
+#include "..\core\transform_system.hpp"
 #include "..\core\log_utility.hpp"
 
 #include "CTransformGUI.hpp"

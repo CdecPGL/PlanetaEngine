@@ -5,7 +5,7 @@
 #include <tuple>
 
 #include "..\core\game_object_standard_component.hpp"
-#include "planeta/core/WeakPointer.hpp"
+#include "..\core\weak_pointer.hpp"
 #include "planeta/core/rectangle.hpp"
 
 namespace plnt {

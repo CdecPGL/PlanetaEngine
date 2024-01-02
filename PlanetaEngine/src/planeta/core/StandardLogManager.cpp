@@ -165,10 +165,10 @@ namespace plnt {
 			#else
 			debug_mode = false;
 			#endif
-			simple_log(std::string("PlanetaEngine v") + private_::system_variables::engine_information::VersionString,
+			simple_log(std::string("PlanetaEngine v") + private_::system_variables::engine_information::version_string,
 			          debug_mode ? " デバッグビルド" : "");
 			simple_log(std::string("起動日時:") + util::date_time::get_current_date_time().to_string());
-			if (private_::system_variables::DevelopmentMode) { simple_log("開発モードが有効です。"); }
+			if (private_::system_variables::development_mode) { simple_log("開発モードが有効です。"); }
 			PE_LOG_MESSAGE("ログ出力が開始されました。ログ出力ストリームは", impl_->_output_streams.size(), "個です。");
 			return true;
 		}

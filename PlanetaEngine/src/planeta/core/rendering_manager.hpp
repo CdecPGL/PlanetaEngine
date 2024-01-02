@@ -7,7 +7,7 @@ namespace plnt::private_ {
 	class screen;
 
 	/*レンダリングマネージャ*/
-	class rendering_manager : public i_rendering_manager, public SubSystemManager {
+	class rendering_manager : public i_rendering_manager, public sub_system_manager {
 	public:
 		rendering_manager() = default;
 		rendering_manager(const rendering_manager &) = delete;

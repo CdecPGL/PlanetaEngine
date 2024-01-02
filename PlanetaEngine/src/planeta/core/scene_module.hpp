@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "object.hpp"
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 #include "non_copyable.hpp"
 
 namespace plnt {

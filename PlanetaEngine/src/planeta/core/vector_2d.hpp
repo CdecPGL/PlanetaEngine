@@ -223,7 +223,7 @@ namespace plnt {
 	struct reflection::reflective_ptree_converter_impl<vector_2d<T>> {
 		void operator()(vector_2d<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 2) {
-				throw reflection_error(util::ConvertAndConnectToString(
+				throw reflection_error(util::convert_and_connect_to_string(
 					"要素数が", src.size(),
 					"ですが、Vector2Dでは2である必要があります。"));
 			}
@@ -231,7 +231,7 @@ namespace plnt {
 			std::array<T, 2> ary;
 			for (const auto &[key, value] : src) {
 				if (key.empty() == false) {
-					throw reflection_error(util::ConvertAndConnectToString(
+					throw reflection_error(util::convert_and_connect_to_string(
 						"Vector2DのPtreeキーは空である必要があります。(読み取られたキー:",
 						key, ")"));
 				}

@@ -12,7 +12,7 @@ namespace plnt {
 
 	namespace private_ {
 		/// <summary>リソースマネージャ.</summary>
-		class resource_manager : public i_resource_manager, public SubSystemManager {
+		class resource_manager : public i_resource_manager, public sub_system_manager {
 		public:
 			resource_manager() = default;
 			resource_manager(const resource_manager &) = delete;

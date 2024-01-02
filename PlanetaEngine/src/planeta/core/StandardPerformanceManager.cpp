@@ -12,11 +12,11 @@ namespace plnt {
 		bool StandardPerformanceManager::initialize() {
 			_frame_count = 0;
 			_start_time = util::time::get_current_time();
-			CreateDebugInformationChannel("PerformanceManager");
+			create_debug_information_channel("PerformanceManager");
 			return true;
 		}
 
-		void StandardPerformanceManager::finalize() { DeleteDebugInformationChannel(); }
+		void StandardPerformanceManager::finalize() { delete_debug_information_channel(); }
 
 		void StandardPerformanceManager::update() {
 			using namespace std::chrono;
@@ -33,7 +33,7 @@ namespace plnt {
 			return util::time::get_current_time() - _start_time;
 		}
 
-		void StandardPerformanceManager::DebugInfotmationAddHandler(i_debug_information_adder &di_adder) {
+		void StandardPerformanceManager::debug_information_add_handler(i_debug_information_adder &di_adder) {
 			di_adder.add_line_v("FPS:", fps_);
 			di_adder.add_line_v("経過フレーム:", _frame_count);
 			di_adder.add_line_v("経過時間:", (util::time::get_current_time() - _start_time).to_string());

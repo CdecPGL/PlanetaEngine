@@ -4,7 +4,7 @@
 #include "SubSystemManager.hpp"
 
 namespace plnt::private_ {
-	class sound_manager : public i_sound_manager, public SubSystemManager {
+	class sound_manager : public i_sound_manager, public sub_system_manager {
 	public:
 		sound_manager() = default;
 		sound_manager(const sound_manager &) = delete;

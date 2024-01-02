@@ -16,14 +16,14 @@ namespace plnt::private_ {
 		public:
 			prefix_category_map_initializer() {
 				using vt = pc_map_type::value_type;
-				prefix_category_map.insert(vt(prefixes::GameObject, object_category::game_object));
-				prefix_category_map.insert(vt(prefixes::GameObjectComponent, object_category::game_object_component));
-				prefix_category_map.insert(vt(prefixes::GameObjectInterface, object_category::game_object_interface));
-				prefix_category_map.insert(vt(prefixes::Task, object_category::task));
-				prefix_category_map.insert(vt(prefixes::Resource, object_category::resource));
-				prefix_category_map.insert(vt(prefixes::EventArg, object_category::event_arg));
-				prefix_category_map.insert(vt(prefixes::Scene, object_category::scene));
-				prefix_category_map.insert(vt(prefixes::StandardInterface, object_category::standard_interface));
+				prefix_category_map.insert(vt(prefixes::game_object, object_category::game_object));
+				prefix_category_map.insert(vt(prefixes::game_object_component, object_category::game_object_component));
+				prefix_category_map.insert(vt(prefixes::game_object_interface, object_category::game_object_interface));
+				prefix_category_map.insert(vt(prefixes::task, object_category::task));
+				prefix_category_map.insert(vt(prefixes::resource, object_category::resource));
+				prefix_category_map.insert(vt(prefixes::event_arg, object_category::event_arg));
+				prefix_category_map.insert(vt(prefixes::scene, object_category::scene));
+				prefix_category_map.insert(vt(prefixes::standard_interface, object_category::standard_interface));
 			}
 
 			pc_map_type prefix_category_map;
@@ -38,7 +38,7 @@ namespace plnt::private_ {
 		std::pair<bool, char> check_prefix_format(const std::string &str) {
 			if (str.length() >= 2) {
 				const char c1{str[1]};
-				if (char c0{str[0]}; util::IsUpperCaseCharacter(c0) && util::IsUpperCaseCharacter(c1)) {
+				if (char c0{str[0]}; util::is_upper_case_character(c0) && util::is_upper_case_character(c1)) {
 					return {true, c0};
 				}
 				return {false, static_cast<char>(0)};

@@ -9,7 +9,7 @@ namespace plnt::util {
 		const auto it = element_type_map_.find(id);
 		assert(it != element_type_map_.end()); //存在している要素でなければならない。
 		if (it->second != type) {
-			const std::string err(ConvertAndConnectToString("型が異なります。(ID:", id, ",型:", it->second.name(), ",指定型:",
+			const std::string err(convert_and_connect_to_string("型が異なります。(ID:", id, ",型:", it->second.name(), ",指定型:",
 			                                                type.name(), ")"));
 			throw data_container_error(err);
 		}
@@ -17,7 +17,7 @@ namespace plnt::util {
 
 	void data_container::impl::check_element_exist(const std::string &id) const {
 		if (!element_type_map_.contains(id)) {
-			const std::string err(ConvertAndConnectToString("要素が存在しません。(ID:", id, ")"));
+			const std::string err(convert_and_connect_to_string("要素が存在しません。(ID:", id, ")"));
 			throw data_container_error(err);
 		}
 	}

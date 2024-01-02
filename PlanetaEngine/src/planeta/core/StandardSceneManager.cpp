@@ -111,12 +111,12 @@ namespace plnt {
 			_current_scene_setupper.reset();
 			state_ = State::None;
 			_is_next_scene_loaded = false;
-			CreateDebugInformationChannel("SceneManager");
+			create_debug_information_channel("SceneManager");
 			return true;
 		}
 
 		bool StandardSceneManager::finalize() {
-			DeleteDebugInformationChannel();
+			delete_debug_information_channel();
 			//現在のシーンを終了
 			_end_current_scene();
 			state_ = State::None;
@@ -153,7 +153,7 @@ namespace plnt {
 			resource_manager_ = mgr;
 		}
 
-		void StandardSceneManager::DebugInfotmationAddHandler(i_debug_information_adder &di_adder) {
+		void StandardSceneManager::debug_information_add_handler(i_debug_information_adder &di_adder) {
 			di_adder.add_line_v("現在のシーンID:", _current_scene_id);
 			if (_current_scene) { _current_scene->debug_information_add_handle(di_adder); }
 		}

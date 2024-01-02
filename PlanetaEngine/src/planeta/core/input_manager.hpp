@@ -10,7 +10,7 @@ namespace plnt {
 	/*インプットマネージャ*/
 	namespace private_ {
 		// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
-		class input_manager : public i_input_manager, public SubSystemManager {
+		class input_manager : public i_input_manager, public sub_system_manager {
 		public:
 			// NOLINTNEXTLINE(clang-diagnostic-microsoft-pure-definition,modernize-use-equals-default)
 			~input_manager() override = 0 {}

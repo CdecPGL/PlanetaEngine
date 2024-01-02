@@ -37,7 +37,7 @@ namespace plnt::reflection {
 
 	void reflectable_class_accessor::load_from_ptree(reflectable &obj, const boost::property_tree::ptree &pt) const {
 		try { impl_->ci_caller.set_data_from_ptree(pt, obj); } catch (reflection_error &e) {
-			throw reflection_error(ConvertAndConnectToString("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
+			throw reflection_error(convert_and_connect_to_string("Ptreeからの読み込みにおいてエラーが発生しました。:", e.what()));
 		}
 	}
 

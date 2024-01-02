@@ -3,7 +3,7 @@
 #include <memory>
 #include <unordered_map>
 
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 
 namespace plnt::private_ {
 	class i_scene_internal;

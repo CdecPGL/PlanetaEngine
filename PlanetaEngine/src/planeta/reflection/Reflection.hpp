@@ -58,7 +58,7 @@ namespace plnt::reflection {
 			if (ptr == nullptr) { return nullptr; }
 			auto t_ptr = std::dynamic_pointer_cast<T>(ptr);
 			if (t_ptr == nullptr) {
-				out_put_error_log(util::ConvertAndConnectToString("指定型に変換できませんでした。(ObjectTypeID:", object_type_id,
+				out_put_error_log(util::convert_and_connect_to_string("指定型に変換できませんでした。(ObjectTypeID:", object_type_id,
 				                                                  ",TargetType:", typeid(T).name(), ")"),
 				                  __FUNCTION__);
 				return nullptr;
@@ -77,7 +77,7 @@ namespace plnt::reflection {
 			if (ptr == nullptr) { return nullptr; }
 			auto t_ptr = std::dynamic_pointer_cast<T>(ptr);
 			if (t_ptr == nullptr) {
-				out_put_error_log(util::ConvertAndConnectToString("指定型に変換できませんでした。(std::type_info:", t_info.name(),
+				out_put_error_log(util::convert_and_connect_to_string("指定型に変換できませんでした。(std::type_info:", t_info.name(),
 				                                                  ",TargetType:", typeid(T).name(), ")"),
 				                  __FUNCTION__);
 				return nullptr;

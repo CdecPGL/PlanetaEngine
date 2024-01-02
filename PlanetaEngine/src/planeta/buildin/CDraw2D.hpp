@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "..\core\game_object_system_component.hpp"
-#include "planeta/core/WeakPointer.hpp"
+#include "..\core\weak_pointer.hpp"
 #include "..\core\graph_draw_data_2d.hpp"
 #include "..\core\vector_2d.hpp"
 

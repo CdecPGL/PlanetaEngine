@@ -10,7 +10,7 @@
 #include "game_object_component.hpp"
 #include "game_object_component_setup_data.hpp"
 #include "log_utility.hpp"
-#include "Task.hpp"
+#include "task.hpp"
 #include "go_component_adder.hpp"
 #include "go_component_getter.hpp"
 #include "planeta/buildin/RPtree.hpp"
@@ -108,7 +108,7 @@ namespace plnt {
 			//有効化イベント
 			activated();
 			//アタッチされたタスクの再開
-			check_and_apply_process_to_attached_task([](Task &t)-> bool { return t.Resume(); });
+			check_and_apply_process_to_attached_task([](task &t)-> bool { return t.resume(); });
 
 			state_ = game_object_state::active;
 			return true;
@@ -117,7 +117,7 @@ namespace plnt {
 		bool game_object_base::process_inactivation() {
 			state_ = game_object_state::inactivating;
 			//アタッチされたタスクの停止
-			check_and_apply_process_to_attached_task([](Task &t)-> bool { return t.Pause(); });
+			check_and_apply_process_to_attached_task([](task &t)-> bool { return t.pause(); });
 			//無効化イベント
 			inactivated();
 			//コンポーネントの無効化
@@ -132,8 +132,8 @@ namespace plnt {
 		bool game_object_base::process_disposal() {
 			state_ = game_object_state::invalid;
 			//アタッチされたタスクの破棄
-			check_and_apply_process_to_attached_task([](Task &t)-> bool {
-				t.Dispose();
+			check_and_apply_process_to_attached_task([](task &t)-> bool {
+				t.dispose();
 				return true;
 			});
 			attached_tasks_.clear();
@@ -196,8 +196,8 @@ namespace plnt {
 		//	return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
 		//}
 
-		void game_object_base::set_up_attached_task(const weak_pointer<Task> &task) {
-			if (state_ == game_object_state::active || state_ == game_object_state::activating) { task->Resume(); }
+		void game_object_base::set_up_attached_task(const weak_pointer<task> &task) {
+			if (state_ == game_object_state::active || state_ == game_object_state::activating) { task->resume(); }
 			attached_tasks_.push_back(task);
 		}
 
@@ -263,7 +263,7 @@ namespace plnt {
 			for (auto &&com : com_ary) { set_scene_and_go_data_to_component(*com); }
 		}
 
-		bool game_object_base::check_and_apply_process_to_attached_task(const std::function<bool(Task &)> &proc) {
+		bool game_object_base::check_and_apply_process_to_attached_task(const std::function<bool(task &)> &proc) {
 			bool scc = true;
 			for (auto it = attached_tasks_.begin(); it != attached_tasks_.end();) {
 				if (auto pre = it++; !(*pre)) { attached_tasks_.erase(pre); } else { scc &= proc(**pre); }

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_scene.hpp"
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 
 namespace plnt::private_ {
 	class collision_world;

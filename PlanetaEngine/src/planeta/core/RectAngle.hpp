@@ -120,7 +120,7 @@ namespace plnt {
 	struct reflection::reflective_ptree_converter_impl<rectangle<T>> {
 		void operator()(rectangle<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 2) {
-				throw reflection_error(util::ConvertAndConnectToString("要素数が", src.size(),
+				throw reflection_error(util::convert_and_connect_to_string("要素数が", src.size(),
 				                                                       "ですが、RectAngleでは2である必要があります。[[position_x,position_y],[width,height]]のように指定してください。"));
 			}
 			size_t idx = 0;
@@ -129,7 +129,7 @@ namespace plnt {
 			     [key, value] : src) {
 				if (key.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", key, ")"));
+						util::convert_and_connect_to_string("Vector2DのPtreeキーは空である必要があります。(読み取られたキー:", key, ")"));
 				}
 				reflective_ptree_converter(ary[idx++], value);
 			}

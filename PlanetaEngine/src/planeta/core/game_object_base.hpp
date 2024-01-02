@@ -70,7 +70,7 @@ namespace plnt {
 				const std::function<bool(game_object_component *goc)> &type_checker) const override;
 			//コンポーネントを型ですべて取得
 			//std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
-			void set_up_attached_task(const weak_pointer<Task> &task) override;
+			void set_up_attached_task(const weak_pointer<task> &task) override;
 
 			//マネージャコネクション
 			std::unique_ptr<game_object_manager_connection> manager_connection_;
@@ -92,9 +92,9 @@ namespace plnt {
 			                                              pts);
 
 			//アタッチされたタスク
-			std::list<weak_pointer<Task>> attached_tasks_;
+			std::list<weak_pointer<task>> attached_tasks_;
 			//アタッチされたが存在しるか確認しつつ、タスクに処理を行う。存在しない場合はリストから外す。
-			bool check_and_apply_process_to_attached_task(const std::function<bool(Task &)> &proc);
+			bool check_and_apply_process_to_attached_task(const std::function<bool(task &)> &proc);
 		};
 
 		PE_REFLECTABLE_CLASS(game_object_base);

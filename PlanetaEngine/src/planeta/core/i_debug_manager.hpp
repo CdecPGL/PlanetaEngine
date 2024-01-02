@@ -17,7 +17,7 @@ namespace plnt {
 		virtual void add_line(std::string line) = 0;
 		/*! 任意の引数で行を追加する*/
 		template <typename... Args>
-		void add_line_v(Args &&... args) { add_line(util::ConvertAndConnectToString(args...)); }
+		void add_line_v(Args &&... args) { add_line(util::convert_and_connect_to_string(args...)); }
 	};
 
 	/*! デバッグ描画クラス公開インターフェイス*/

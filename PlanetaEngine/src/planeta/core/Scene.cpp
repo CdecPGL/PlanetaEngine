@@ -1,10 +1,10 @@
 ﻿#include "scene.hpp"
 //Modules
 #include "game_object_manager.hpp"
-#include "TaskManager.hpp"
+#include "task_manager.hpp"
 #include "collision_world.hpp"
 #include "draw_system.hpp"
-#include "TransformSystem.hpp"
+#include "transform_system.hpp"
 
 #include "log_utility.hpp"
 #include "screen_drawer_2d.hpp"

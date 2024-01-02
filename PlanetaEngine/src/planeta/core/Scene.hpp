@@ -5,7 +5,7 @@
 
 #include "object.hpp"
 #include "i_scene_internal.hpp"
-#include "WeakPointer.hpp"
+#include "weak_pointer.hpp"
 #include "non_copyable.hpp"
 
 namespace plnt {

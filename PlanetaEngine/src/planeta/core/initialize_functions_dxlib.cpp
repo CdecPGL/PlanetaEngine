@@ -14,7 +14,7 @@ namespace plnt::private_::init_funcs {
 	//////////////////////////////////////////////////////////////////////////
 	std::tuple<bool, std::function<void()>> initialize_dx_lib(const config_manager &cfg_mgr) {
 		//ログ出力先を変更
-		SetApplicationLogSaveDirectory(system_variables::file_system::LogDirectory.c_str());
+		SetApplicationLogSaveDirectory(system_variables::file_system::log_directory.c_str());
 		//ウインドウモード設定
 		ChangeWindowMode(cfg_mgr.is_window_mode());
 		//ウインドウタイトル設定(ゲームタイトル+ゲームバージョン)

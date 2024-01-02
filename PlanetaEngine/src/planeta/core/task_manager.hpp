@@ -17,14 +17,14 @@ namespace plnt::private_ {
 		virtual void execute_task() = 0;
 		/*システムタスク追加(システムタスク削除不可能)*/
 		template <class C>
-		weak_pointer<C> add_system_task(SystemTaskSlot sys_task_slot) {
-			static_assert(std::is_base_of_v<Task, C> == true, "C is not derived Task.");
+		weak_pointer<C> add_system_task(system_task_slot sys_task_slot) {
+			static_assert(std::is_base_of_v<task, C> == true, "C is not derived Task.");
 			auto task = std::make_shared<C>();
 			return std::static_pointer_cast<C>(register_system_task(task, sys_task_slot));
 		}
 
 	private:
-		virtual std::shared_ptr<Task> register_system_task(const std::shared_ptr<Task> &task,
-		                                                   SystemTaskSlot slot) = 0;
+		virtual std::shared_ptr<task> register_system_task(const std::shared_ptr<task> &task,
+		                                                   system_task_slot slot) = 0;
 	};
 }

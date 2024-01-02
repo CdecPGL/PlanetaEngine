@@ -15,7 +15,7 @@ namespace plnt {
 		enum class scene_status { play, quit, error };
 
 		/*シーンマネージャ*/
-		class scene_manager : public i_scene_manager, public SubSystemManager {
+		class scene_manager : public i_scene_manager, public sub_system_manager {
 		public:
 			scene_manager() = default;
 			scene_manager(const scene_manager &) = delete;

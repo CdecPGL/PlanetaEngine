@@ -2,8 +2,6 @@
 
 #include <functional>
 
-#include "WeakPointer.hpp"
-
 namespace plnt::private_ {
 	class task_manager_connection {
 	public:

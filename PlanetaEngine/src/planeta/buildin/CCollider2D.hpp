@@ -5,7 +5,7 @@
 
 #include "planeta/core/signal.hpp"
 #include "..\core\game_object_system_component.hpp"
-#include "planeta/core/WeakPointer.hpp"
+#include "..\core\weak_pointer.hpp"
 #include "..\core\vector_2d.hpp"
 #include "planeta/core/i_collider_with_collider_2d.hpp"
 

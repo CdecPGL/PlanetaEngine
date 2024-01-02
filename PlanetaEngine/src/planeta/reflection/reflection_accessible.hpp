@@ -33,7 +33,7 @@ namespace plnt::reflection {
 			get_variable(var_id, av);
 			try { v = boost::any_cast<T>(av); } catch (boost::bad_any_cast &) {
 				std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(*this));
-				throw reflection_error(util::ConvertAndConnectToString("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
+				throw reflection_error(util::convert_and_connect_to_string("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
 				                                                       "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:",
 				                                                       av.type().name(), ", 指定型:", typeid(T).name(),
 				                                                       ")"));

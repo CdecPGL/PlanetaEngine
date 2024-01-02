@@ -228,14 +228,14 @@ namespace plnt {
 		void operator()(vector_4d<T> &dst, const boost::property_tree::ptree &src) {
 			if (src.size() != 4) {
 				throw reflection_error(
-					util::ConvertAndConnectToString("要素数が", src.size(), "ですが、Vector4Dでは4である必要があります。"));
+					util::convert_and_connect_to_string("要素数が", src.size(), "ですが、Vector4Dでは4である必要があります。"));
 			}
 			size_t idx = 0;
 			std::array<T, 4> ary;
 			for (const auto &[key, value] : src) {
 				if (key.empty() == false) {
 					throw reflection_error(
-						util::ConvertAndConnectToString("Vector4DのPtreeキーは空である必要があります。(読み取られたキー:", key, ")"));
+						util::convert_and_connect_to_string("Vector4DのPtreeキーは空である必要があります。(読み取られたキー:", key, ")"));
 				}
 				T dat{};
 				reflective_ptree_converter(dat, value);

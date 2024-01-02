@@ -517,10 +517,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Task.hpp" />
-    <ClInclude Include="src\planeta\core\TaskManager.hpp" />
-    <ClInclude Include="src\planeta\core\TaskManagerConnection.hpp" />
-    <ClInclude Include="src\planeta\core\TaskSlot.hpp" />
+    <ClInclude Include="src\planeta\core\task.hpp" />
+    <ClInclude Include="src\planeta\core\task_manager.hpp" />
+    <ClInclude Include="src\planeta\core\task_manager_connection.hpp" />
+    <ClInclude Include="src\planeta\core\task_slot.hpp" />
     <ClInclude Include="src\planeta\buildin\TCoroutine.hpp" />
     <ClInclude Include="src\planeta\deprecated\TextPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -530,7 +530,7 @@
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\TInstant.hpp" />
     <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp" />
-    <ClInclude Include="src\planeta\core\TransformSystem.hpp" />
+    <ClInclude Include="src\planeta\core\transform_system.hpp" />
     <ClInclude Include="src\planeta\util\two_key_map.hpp" />
     <ClInclude Include="src\planeta\reflection\type_info_wrapper.hpp" />
     <ClInclude Include="src\planeta\reflection\type_traits_utility.hpp" />
@@ -538,7 +538,7 @@
     <ClInclude Include="src\planeta\core\vector_3d.hpp" />
     <ClInclude Include="src\planeta\core\vector_4d.hpp" />
     <ClInclude Include="src\planeta\core\vertex_2d.hpp" />
-    <ClInclude Include="src\planeta\core\WeakPointer.hpp" />
+    <ClInclude Include="src\planeta\core\weak_pointer.hpp" />
     <ClInclude Include="src\planeta\win\windows_utility.hpp" />
     <ClInclude Include="src\planeta\core\xml_file.hpp" />
   </ItemGroup>
@@ -599,7 +599,7 @@
     <ClCompile Include="src\planeta\core\StandardSceneModuleSetFunction.cpp" />
     <ClCompile Include="src\planeta\core\StringUtility.cpp" />
     <ClCompile Include="src\planeta\core\SubSystemManager.cpp" />
-    <ClCompile Include="src\planeta\core\TaskManagerConnection.cpp" />
+    <ClCompile Include="src\planeta\core\task_manager_connection.cpp" />
     <ClCompile Include="src\planeta\buildin\TCoroutine.cpp" />
     <ClCompile Include="src\planeta\buildin\RCsv.cpp" />
     <ClCompile Include="src\planeta\core\StandardDebugManager.cpp" />
@@ -696,7 +696,7 @@
     <ClCompile Include="src\planeta\core\normal_folder_manipulator.cpp" />
     <ClCompile Include="src\planeta\core\game.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanet.cpp" />
-    <ClCompile Include="src\planeta\core\Task.cpp" />
+    <ClCompile Include="src\planeta\core\task.cpp" />
     <ClCompile Include="src\planeta\core\StandardTaskManager.cpp" />
     <ClCompile Include="src\planeta\core\StandardResourceManager.cpp" />
     <ClCompile Include="src\planeta\core\scene.cpp" />
