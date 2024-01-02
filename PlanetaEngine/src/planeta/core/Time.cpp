@@ -1,6 +1,6 @@
 ﻿#include <sstream>
 
-#include "Time.hpp"
+#include "time.hpp"
 
 namespace plnt::util {
 	std::string time::to_string() const {

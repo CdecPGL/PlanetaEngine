@@ -35,7 +35,7 @@ namespace plnt {
 			//破棄する
 			void dispose() override;
 			//自分のstd::shared_ptrを取得する。
-			WeakPointer<i_game_object> get_pointer() override;
+			weak_pointer<i_game_object> get_pointer() override;
 
 			//状態を取得
 			game_object_state state() const override;
@@ -56,7 +56,7 @@ namespace plnt {
 			//マネージャコネクションをセット
 			void set_manager_connection(std::unique_ptr<game_object_manager_connection> &&mgr_conn);
 			//シーンをセット
-			void set_scene_internal_interface(const WeakPointer<i_scene_internal> &i_scene);
+			void set_scene_internal_interface(const weak_pointer<i_scene_internal> &i_scene);
 			//コンポーネントリストからコンポーネントを追加し、シーンデータなどをセット
 			bool add_and_set_up_components(const std::vector<std::string> &com_type_id_list);
 			//boost::ptreeからコンポーネントを作成追加し、シーンデータなどをセット
@@ -70,12 +70,12 @@ namespace plnt {
 				const std::function<bool(game_object_component *goc)> &type_checker) const override;
 			//コンポーネントを型ですべて取得
 			//std::vector<std::shared_ptr<GameObjectComponent>> GetAllComponentsByTypeInfo(const std::type_info& ti, const std::function<bool(GameObjectComponent* goc)>& type_checker)const override final;
-			void set_up_attached_task(const WeakPointer<Task> &task) override;
+			void set_up_attached_task(const weak_pointer<Task> &task) override;
 
 			//マネージャコネクション
 			std::unique_ptr<game_object_manager_connection> manager_connection_;
 			//シーン内部用インターフェイス
-			WeakPointer<i_scene_internal> scene_internal_interface_;
+			weak_pointer<i_scene_internal> scene_internal_interface_;
 			//コンポーネントホルダー
 			game_object_component_holder component_holder_;
 
@@ -92,7 +92,7 @@ namespace plnt {
 			                                              pts);
 
 			//アタッチされたタスク
-			std::list<WeakPointer<Task>> attached_tasks_;
+			std::list<weak_pointer<Task>> attached_tasks_;
 			//アタッチされたが存在しるか確認しつつ、タスクに処理を行う。存在しない場合はリストから外す。
 			bool check_and_apply_process_to_attached_task(const std::function<bool(Task &)> &proc);
 		};

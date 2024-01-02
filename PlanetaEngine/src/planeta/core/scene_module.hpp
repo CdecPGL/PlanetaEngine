@@ -25,13 +25,13 @@ namespace plnt {
 
 			virtual void debug_information_add_handle(i_debug_information_adder &di_adder) { }
 
-			void set_scene(const WeakPointer<i_scene_internal> &scene) { scene_ = scene; }
+			void set_scene(const weak_pointer<i_scene_internal> &scene) { scene_ = scene; }
 
 		protected:
-			[[nodiscard]] WeakPointer<i_scene_internal> scene_internal_interface() { return scene_; }
+			[[nodiscard]] weak_pointer<i_scene_internal> scene_internal_interface() { return scene_; }
 
 		private:
-			WeakPointer<i_scene_internal> scene_;
+			weak_pointer<i_scene_internal> scene_;
 		};
 	}
 }

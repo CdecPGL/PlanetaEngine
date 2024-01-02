@@ -4,7 +4,7 @@
 #include <vector>
 #include <array>
 
-#include "Vector2D.hpp"
+#include "vector_2d.hpp"
 // ReSharper disable once CppUnusedIncludeDirective
 #include "color.hpp"
 

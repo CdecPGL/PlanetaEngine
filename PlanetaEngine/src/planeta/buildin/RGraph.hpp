@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "..\core\resource_base.hpp"
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 
 namespace plnt {
 	/*画像リソース*/

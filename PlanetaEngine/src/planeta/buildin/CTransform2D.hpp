@@ -4,7 +4,7 @@
 
 #include "planeta/core/signal.hpp"
 #include "..\core\game_object_system_component.hpp"
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 
 namespace plnt {
 	class CGround2D;
@@ -78,9 +78,9 @@ namespace plnt {
 		/*! 所属している地面を取得する*/
 		CGround2D &ground();
 		/*! 所属している地面コンポーネントを取得する*/
-		WeakPointer<CGround2D> GetGround() const;
+		weak_pointer<CGround2D> GetGround() const;
 		/*! 地形をセット(新しい地形、グローバル座標を維持するかどうか[true:グローバル座標が維持される,false:地形座標が維持される])*/
-		bool SetGround(const WeakPointer<i_game_object> &g, bool keep_global_position);
+		bool SetGround(const weak_pointer<i_game_object> &g, bool keep_global_position);
 
 		/*イベント*/
 		/*! トランスフォーム更新イベント*/

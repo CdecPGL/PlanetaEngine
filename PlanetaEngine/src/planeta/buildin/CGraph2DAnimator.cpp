@@ -26,7 +26,7 @@ namespace plnt {
 	void CGraph2DAnimator::on_initialized() {
 		super::on_initialized();
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
-		auto tsk = game_object().create_and_attach_task<TInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto tsk = game_object().create_and_attach_task<TInstant>(task_slot::pre_draw_update_phase);
 		tsk->SetExcuteFunction([this]() { UpdateAnimation(); });
 	}
 

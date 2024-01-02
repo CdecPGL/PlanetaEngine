@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "planeta/core/WeakPointer.hpp"
-#include "planeta/core/Vertex2D.hpp"
+#include "..\core\vertex_2d.hpp"
 
 #include "CDraw2D.hpp"
 

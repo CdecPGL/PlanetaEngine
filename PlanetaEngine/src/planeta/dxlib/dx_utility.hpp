@@ -2,7 +2,7 @@
 
 #include "DxLib.h"
 
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 
 namespace plnt {
 	class color;

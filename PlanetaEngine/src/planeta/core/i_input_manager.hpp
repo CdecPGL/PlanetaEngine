@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Vector2D.hpp"
+#include "vector_2d.hpp"
 #include "input_definitions.hpp"
 
 namespace plnt {

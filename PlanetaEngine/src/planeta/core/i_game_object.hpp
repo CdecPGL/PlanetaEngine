@@ -31,10 +31,10 @@ namespace plnt {
 		//! ゲームオブジェクトをシーンから破棄する
 		virtual void dispose() = 0;
 		//! 自身のWeakPointerを取得する
-		[[nodiscard]] virtual WeakPointer<i_game_object> get_pointer() = 0;
+		[[nodiscard]] virtual weak_pointer<i_game_object> get_pointer() = 0;
 		//! コンポーネントを型で取得する
 		template <class ComT>
-		[[nodiscard]] WeakPointer<ComT> get_component() const {
+		[[nodiscard]] weak_pointer<ComT> get_component() const {
 			static_assert(std::is_base_of_v<game_object_component, ComT> == true,
 			              "ComT must drive GameObjectComponent.");
 			return std::static_pointer_cast<ComT>(get_component_by_type_info(
@@ -65,7 +65,7 @@ namespace plnt {
 			ゲームオブジェクトのアタッチされたタスクの寿命はそのゲームオブジェクトと同じになり、ゲームオブジェクトの無効化有効化に合わせて停止、再開する。
 		*/
 		template <class T>
-		[[nodiscard]] WeakPointer<T> create_and_attach_task(const TaskSlot slot) {
+		[[nodiscard]] weak_pointer<T> create_and_attach_task(const task_slot slot) {
 			static_assert(std::is_base_of_v<Task, T> == true, "T must derive Task");
 			auto task = scene().task_manager().create_task<T>(slot);
 			if (task == nullptr) { return nullptr; }
@@ -89,6 +89,6 @@ namespace plnt {
 	protected:
 		[[nodiscard]] virtual std::shared_ptr<game_object_component> get_component_by_type_info(
 			const std::type_info &ti, const std::function<bool(game_object_component *goc)> &type_checker) const = 0;
-		virtual void set_up_attached_task(const WeakPointer<Task> &task) = 0;
+		virtual void set_up_attached_task(const weak_pointer<Task> &task) = 0;
 	};
 }

@@ -33,17 +33,17 @@ namespace plnt {
 			/*Moduleにシーンをセット*/
 			void set_scene_to_modules();
 			/*シーンモジュール設定関数(Initialize、SetSceneToModules呼び出し前に実行する必要がある)*/
-			void set_task_manager(std::shared_ptr<TaskManager> &&mgr);
+			void set_task_manager(std::shared_ptr<private_::task_manager> &&mgr);
 			void set_game_object_manager(std::shared_ptr<private_::game_object_manager> &&mgr);
 			void set_collision_world(std::shared_ptr<private_::collision_world> &&mgr);
 			void set_draw_system(std::shared_ptr<private_::draw_system> &&mgr);
-			void set_transform_manager(std::shared_ptr<TransformSystem> &&mgr);
+			void set_transform_manager(std::shared_ptr<private_::transform_system> &&mgr);
 			/*シーンモジュールの内部アクセスポインタ取得関数*/
-			[[nodiscard]] WeakPointer<private_::collision_world> collision_world_internal_pointer() override;
-			[[nodiscard]] WeakPointer<private_::draw_system> draw_system_internal_pointer() override;
-			[[nodiscard]] WeakPointer<private_::game_object_manager> game_object_manager_internal_pointer() override;
-			[[nodiscard]] WeakPointer<TaskManager> task_manager_internal_pointer() override;
-			[[nodiscard]] WeakPointer<TransformSystem> transform_system_internal_pointer() override;
+			[[nodiscard]] weak_pointer<private_::collision_world> collision_world_internal_pointer() override;
+			[[nodiscard]] weak_pointer<private_::draw_system> draw_system_internal_pointer() override;
+			[[nodiscard]] weak_pointer<private_::game_object_manager> game_object_manager_internal_pointer() override;
+			[[nodiscard]] weak_pointer<private_::task_manager> task_manager_internal_pointer() override;
+			[[nodiscard]] weak_pointer<private_::transform_system> transform_system_internal_pointer() override;
 			/*シーンモジュールインターフェイスアクセス関数*/
 			[[nodiscard]] i_collision_world &collision_world() override;
 			[[nodiscard]] i_draw_system &draw_system() override;
@@ -54,11 +54,11 @@ namespace plnt {
 			void debug_information_add_handle(i_debug_information_adder &di_adder) const;
 
 		private:
-			std::shared_ptr<TaskManager> task_manager_; //ゲームプロセスマネージャ
+			std::shared_ptr<private_::task_manager> task_manager_; //ゲームプロセスマネージャ
 			std::shared_ptr<private_::game_object_manager> game_object_manager_; //ゲームオブジェクトマネージャ
 			std::shared_ptr<private_::collision_world> collision_world_; //コリジョンワールド
 			std::shared_ptr<private_::draw_system> draw_system_; //ゲームオブジェクト描画システム
-			std::shared_ptr<TransformSystem> transform_system_; //トランスフォームシステム
+			std::shared_ptr<private_::transform_system> transform_system_; //トランスフォームシステム
 			bool iterate_scene_module(std::function<bool(scene_module &)> &&proc) const; //シーンモジュールに操作を適用する
 			bool reverse_iterate_scene_module(std::function<bool(scene_module &)> &&proc) const; //シーンモジュールに操作を適用する
 		};

@@ -6,7 +6,7 @@
 
 #include "math_vector_element_identifier.hpp"
 
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 
 namespace plnt::math {
 	/*ベクトルクラス<要素の型,要素数,要素識別子付与クラス>*/

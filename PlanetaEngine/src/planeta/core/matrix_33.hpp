@@ -2,7 +2,7 @@
 
 #include <array>
 
-#include "Vector3D.hpp"
+#include "vector_3d.hpp"
 
 namespace plnt {
 	namespace math {

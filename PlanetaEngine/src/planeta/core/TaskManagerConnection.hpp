@@ -1,23 +1,25 @@
 ﻿#pragma once
 
 #include <functional>
+
 #include "WeakPointer.hpp"
 
-namespace plnt {
-	namespace private_ {
-		class TaskManagerConnection {
-		public:
-			TaskManagerConnection(std::function<bool()> &&pauser, std::function<bool()> &&resumer,
-			                      std::function<void()> &&disposer)
-				: pauser_(pauser), resumer_(resumer), disposer_(disposer) { };
-			bool Pause();
-			bool Resume();
-			void Dispose();
+namespace plnt::private_ {
+	class task_manager_connection {
+	public:
+		task_manager_connection(std::function<bool()> &&pauser, std::function<bool()> &&resumer,
+		                        std::function<void()> &&disposer)
+			: pauser_(std::move(pauser)), resumer_(std::move(resumer)), disposer_(std::move(disposer)) {}
 
-		private:
-			std::function<bool()> pauser_;
-			std::function<bool()> resumer_;
-			std::function<void()> disposer_;
-		};
-	}
+		// NOLINTNEXTLINE(modernize-use-nodiscard)
+		bool pause() const;
+		// NOLINTNEXTLINE(modernize-use-nodiscard)
+		bool resume() const;
+		void dispose() const;
+
+	private:
+		std::function<bool()> pauser_;
+		std::function<bool()> resumer_;
+		std::function<void()> disposer_;
+	};
 }

@@ -114,10 +114,10 @@ namespace plnt {
 		std::unordered_set<std::string> labels_;
 
 		non_owing_pointer<i_game_object> game_object_;
-		WeakPointer<i_scene> scene_;
+		weak_pointer<i_scene> scene_;
 
 		/*特別設定関数*/
-		virtual void set_scene_internal_interface(const WeakPointer<private_::i_scene_internal> &scene_data) = 0;
+		virtual void set_scene_internal_interface(const weak_pointer<private_::i_scene_internal> &scene_data) = 0;
 	};
 
 	PE_REFLECTABLE_CLASS(game_object_component);

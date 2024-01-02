@@ -79,14 +79,14 @@ namespace plnt {
 	void CTransformGUI::on_activated() {
 		super::on_activated();
 		//TransformSystemへ登録
-		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransformGUI(this);
+		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->register_transform_gui(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 	}
 
 	void CTransformGUI::on_inactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 		//TransformSystemから登録解除
-		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransformGUI(impl_->t2d_id_)) {
+		if (!scene_internal_interface().transform_system_internal_pointer()->remove_transform_gui(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 		}
 		super::on_inactivated();

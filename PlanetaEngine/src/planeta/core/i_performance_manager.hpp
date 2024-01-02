@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Time.hpp"
+#include "time.hpp"
 
 namespace plnt {
 	/*! パフォーマンスマネージャの公開インターフェイス。パフォーマンスの計測や調整を行う。*/

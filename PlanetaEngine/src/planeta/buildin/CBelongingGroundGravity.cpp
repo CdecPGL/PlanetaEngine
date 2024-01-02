@@ -20,7 +20,7 @@ namespace plnt {
 
 	void CBelongingGroundGravity::on_initialized() {
 		super::on_initialized();
-		auto proc = game_object().create_and_attach_task<TInstant>(TaskSlot::PreCollisionEarlyPhase);
+		auto proc = game_object().create_and_attach_task<TInstant>(task_slot::pre_collision_early_phase);
 		proc->SetExcuteFunction([this]() { Update(); });
 	}
 

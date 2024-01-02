@@ -219,13 +219,13 @@
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Vector2D.hpp">
+    <ClInclude Include="src\planeta\core\vector_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Vector3D.hpp">
+    <ClInclude Include="src\planeta\core\vector_3d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Vector4D.hpp">
+    <ClInclude Include="src\planeta\core\vector_4d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\CBelongingGroundGravity.hpp">
@@ -348,7 +348,7 @@
     <ClInclude Include="src\planeta\buildin\SError.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Vertex2D.hpp">
+    <ClInclude Include="src\planeta\core\vertex_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\WeakPointer.hpp">
@@ -402,7 +402,7 @@
     <ClInclude Include="src\planeta\core\csv_file.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\Time.hpp">
+    <ClInclude Include="src\planeta\core\time.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\date_time.hpp">
@@ -807,9 +807,6 @@
     <ClInclude Include="src\planeta\core\TaskSlot.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\TaskSystemSetUpper.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\core\TransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -1025,7 +1022,7 @@
     <ClCompile Include="src\planeta\core\csv_file.cpp">
       <Filter>PlanetaEngine\Core\FileFormats</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\Time.cpp">
+    <ClCompile Include="src\planeta\core\time.cpp">
       <Filter>PlanetaEngine\Utility\DateTime</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\date_time.cpp">

@@ -7,7 +7,7 @@ namespace plnt::private_ {
 	public:
 		using super = game_object_component;
 		/*シーンデータをセットして、子クラスが参照できるようにし、オーバーライドできないようにする。*/
-		void set_scene_internal_interface(const WeakPointer<i_scene_internal> &scene_data) final {
+		void set_scene_internal_interface(const weak_pointer<i_scene_internal> &scene_data) final {
 			scene_internal_interface_ = scene_data;
 		}
 
@@ -24,7 +24,7 @@ namespace plnt::private_ {
 		const i_scene_internal &scene_internal_interface() const { return *scene_internal_interface_; }
 
 	private:
-		WeakPointer<i_scene_internal> scene_internal_interface_;
+		weak_pointer<i_scene_internal> scene_internal_interface_;
 	};
 
 	PE_REFLECTABLE_CLASS(game_object_system_component);

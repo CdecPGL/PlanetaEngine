@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Vector2D.hpp"
+#include "vector_2d.hpp"
 
 namespace plnt {
 	// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)

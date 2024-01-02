@@ -18,12 +18,12 @@ namespace plnt {
 			StandardGameObjectManager();
 			~StandardGameObjectManager();
 			//ユーザアクセス可能関数
-			WeakPointer<i_game_object> create_game_object(const std::string &game_object_def_file_id) override;
-			WeakPointer<i_game_object> create_game_object(const std::string &game_object_def_file_id,
+			weak_pointer<i_game_object> create_game_object(const std::string &game_object_def_file_id) override;
+			weak_pointer<i_game_object> create_game_object(const std::string &game_object_def_file_id,
 			                                          const std::string &name) override;
-			WeakPointer<i_game_object> create_game_object_with_component_type_id_list(
+			weak_pointer<i_game_object> create_game_object_with_component_type_id_list(
 				const std::vector<std::string> &game_object_component_type_id_list) override;
-			WeakPointer<i_game_object> create_game_object_with_component_type_id_list(
+			weak_pointer<i_game_object> create_game_object_with_component_type_id_list(
 				const std::vector<std::string> &game_object_component_type_id_list, const std::string &name) override;
 
 			//システム関数

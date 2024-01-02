@@ -55,7 +55,7 @@ namespace plnt {
 		std::tuple<TransformData, PhisicalData> global;
 		std::tuple<TransformData, PhisicalData> ground;
 		UpdateState last_update; //更新状況
-		WeakPointer<CGround2D> belonging_ground;
+		weak_pointer<CGround2D> belonging_ground;
 		//地形更新イベントコネクション
 		signal_connection ground_updated_event_connection;
 
@@ -237,9 +237,9 @@ namespace plnt {
 
 		CGround2D &cground() { return *belonging_ground; }
 
-		WeakPointer<CGround2D> GetGround() const { return belonging_ground; }
+		weak_pointer<CGround2D> GetGround() const { return belonging_ground; }
 
-		void SetGround(const WeakPointer<CGround2D> &g, bool keep_global_position) {
+		void SetGround(const weak_pointer<CGround2D> &g, bool keep_global_position) {
 			if (belonging_ground) { ground_updated_event_connection.disconnect(); }
 
 			if (keep_global_position) {
@@ -377,9 +377,9 @@ namespace plnt {
 
 	CGround2D &CTransform2D::ground() { return impl_->cground(); }
 
-	WeakPointer<CGround2D> CTransform2D::GetGround() const { return impl_->GetGround(); }
+	weak_pointer<CGround2D> CTransform2D::GetGround() const { return impl_->GetGround(); }
 
-	bool CTransform2D::SetGround(const WeakPointer<i_game_object> &g, bool keep_global_position) {
+	bool CTransform2D::SetGround(const weak_pointer<i_game_object> &g, bool keep_global_position) {
 		auto gcom = g->get_component<CGround2D>();
 		if (gcom) {
 			impl_->SetGround(gcom, keep_global_position);
@@ -419,14 +419,14 @@ namespace plnt {
 	void CTransform2D::on_activated() {
 		super::on_activated();
 		//TransformSystemへ登録
-		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->RegisterTransform2D(this);
+		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->register_transform_2d(this);
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 	}
 
 	void CTransform2D::on_inactivated() {
 		PE_VERIFY(impl_->t2d_id_ >= 0);
 		//TransformSystemから登録解除
-		if (!scene_internal_interface().transform_system_internal_pointer()->RemoveTransform2D(impl_->t2d_id_)) {
+		if (!scene_internal_interface().transform_system_internal_pointer()->remove_transform_2d(impl_->t2d_id_)) {
 			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
 		}
 		super::on_inactivated();

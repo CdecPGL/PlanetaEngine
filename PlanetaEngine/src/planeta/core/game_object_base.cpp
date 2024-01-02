@@ -63,7 +63,7 @@ namespace plnt {
 
 		game_object_base::~game_object_base() = default;
 
-		WeakPointer<i_game_object> game_object_base::get_pointer() {
+		weak_pointer<i_game_object> game_object_base::get_pointer() {
 			assert(shared_from_this() != nullptr);
 			return shared_from_this();
 		}
@@ -148,7 +148,7 @@ namespace plnt {
 			manager_connection_ = std::move(mgr_conn);
 		}
 
-		void game_object_base::set_scene_internal_interface(const WeakPointer<i_scene_internal> &i_scene) {
+		void game_object_base::set_scene_internal_interface(const weak_pointer<i_scene_internal> &i_scene) {
 			scene_internal_interface_ = i_scene;
 		}
 
@@ -196,7 +196,7 @@ namespace plnt {
 		//	return std::move(component_holder_.GetAllComponentsByTypeInfo(ti, type_checker));
 		//}
 
-		void game_object_base::set_up_attached_task(const WeakPointer<Task> &task) {
+		void game_object_base::set_up_attached_task(const weak_pointer<Task> &task) {
 			if (state_ == game_object_state::active || state_ == game_object_state::activating) { task->Resume(); }
 			attached_tasks_.push_back(task);
 		}

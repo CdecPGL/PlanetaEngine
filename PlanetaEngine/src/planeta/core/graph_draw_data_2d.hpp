@@ -4,7 +4,7 @@
 #include <array>
 #include <vector>
 
-#include "Vertex2D.hpp"
+#include "vertex_2d.hpp"
 
 namespace plnt {
 	class RGraph;

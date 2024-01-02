@@ -32,7 +32,7 @@ namespace plnt {
 			constexpr int DRAW_GUI_SLOT = 15;
 			constexpr int SLOT_COUNT = 16;
 			//スロットマップ
-			constexpr std::array<int, TASK_SLOT_SIZE> slot_group_number_map_ = {
+			constexpr std::array<int, task_slot_size> slot_group_number_map_ = {
 				TASK_SLOT_0,
 				TASK_SLOT_1,
 				TASK_SLOT_2,
@@ -55,8 +55,8 @@ namespace plnt {
 				DRAW_GUI_SLOT,
 			};
 			/*タスクスロットからタスクグループ番号を取得*/
-			int GetGroupNumberFromSlot(TaskSlot slot) {
-				return slot_group_number_map_[static_cast<std::underlying_type_t<TaskSlot>>(slot)];
+			int GetGroupNumberFromSlot(task_slot slot) {
+				return slot_group_number_map_[static_cast<std::underlying_type_t<task_slot>>(slot)];
 			}
 
 			/*システムタスクスロットからタスクグループ番号を取得*/
@@ -208,10 +208,10 @@ namespace plnt {
 			//////////////////////////////////////////////////////////////////////////
 			/*タスクの設定*/
 			void SetupTask(const std::shared_ptr<TaskData> tdata, bool is_system_task,
-			               const WeakPointer<i_scene> &i_scene) {
+			               const weak_pointer<i_scene> &i_scene) {
 				//ここでラムダ関数がtdataのシェアポをキャプチャしておくことで、tdata使用中の解放を防ぐ。
-				std::unique_ptr<private_::TaskManagerConnection> manager_connection = std::make_unique<
-					private_::TaskManagerConnection>(
+				std::unique_ptr<private_::task_manager_connection> manager_connection = std::make_unique<
+					private_::task_manager_connection>(
 					[this, tdata] { return PauseTaskRequest(*tdata); }, //Pauser
 					[this, tdata] { return ResumeTaskRequest(*tdata); }, //Resumer
 					is_system_task
@@ -307,7 +307,7 @@ namespace plnt {
 
 		StandardTaskManager::~StandardTaskManager() = default;
 
-		void StandardTaskManager::ExcuteTask() { impl_->ExcuteValidTasksFunction(&Task::Update); }
+		void StandardTaskManager::execute_task() { impl_->ExcuteValidTasksFunction(&Task::Update); }
 
 		void StandardTaskManager::update() {
 			//管理処理を行う
@@ -323,16 +323,16 @@ namespace plnt {
 			impl_->AllClear();
 		}
 
-		WeakPointer<Task> StandardTaskManager::get_task(const std::string &name) const { return impl_->GetTask(name); }
+		weak_pointer<Task> StandardTaskManager::get_task(const std::string &name) const { return impl_->GetTask(name); }
 
-		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) {
+		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, task_slot slot, bool auto_run) {
 			int group_number = GetGroupNumberFromSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
 			impl_->SetupTask(ptdata, false, scene_internal_interface());
 			return task != nullptr;
 		}
 
-		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, TaskSlot slot,
+		bool StandardTaskManager::register_task(const std::shared_ptr<Task> &task, task_slot slot,
 		                                       const std::string &name, bool auto_run) {
 			int group_number = GetGroupNumberFromSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, auto_run);
@@ -340,7 +340,7 @@ namespace plnt {
 			return impl_->RegisterTaskName(name, ptdata);
 		}
 
-		std::shared_ptr<Task> StandardTaskManager::RegisterSystemTask(const std::shared_ptr<Task> &task,
+		std::shared_ptr<Task> StandardTaskManager::register_system_task(const std::shared_ptr<Task> &task,
 		                                                              private_::SystemTaskSlot slot) {
 			int group_number = GetGroupNumberFromSystemSlot(slot);
 			auto ptdata = impl_->RegisterTaskToList(task, group_number, true);

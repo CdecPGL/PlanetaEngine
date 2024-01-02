@@ -32,7 +32,7 @@ namespace plnt::private_ {
 
 	void scene::update() const {
 		try {
-			task_manager_->ExcuteTask(); //タスク実行
+			task_manager_->execute_task(); //タスク実行
 		} catch (null_weak_pointer_exception &e) {
 			PE_LOG_ERROR("TaskManager::Updateで無効なWeakPointerが参照されました。", e.what());
 			return;
@@ -73,19 +73,19 @@ namespace plnt::private_ {
 		});
 	}
 
-	WeakPointer<collision_world> scene::collision_world_internal_pointer() {
+	weak_pointer<collision_world> scene::collision_world_internal_pointer() {
 		return collision_world_;
 	}
 
-	WeakPointer<draw_system> scene::draw_system_internal_pointer() { return draw_system_; }
+	weak_pointer<draw_system> scene::draw_system_internal_pointer() { return draw_system_; }
 
-	WeakPointer<game_object_manager> scene::game_object_manager_internal_pointer() {
+	weak_pointer<game_object_manager> scene::game_object_manager_internal_pointer() {
 		return game_object_manager_;
 	}
 
-	WeakPointer<TaskManager> scene::task_manager_internal_pointer() { return task_manager_; }
+	weak_pointer<task_manager> scene::task_manager_internal_pointer() { return task_manager_; }
 
-	WeakPointer<TransformSystem> scene::transform_system_internal_pointer() {
+	weak_pointer<transform_system> scene::transform_system_internal_pointer() {
 		return transform_system_;
 	}
 
@@ -99,7 +99,7 @@ namespace plnt::private_ {
 
 	i_transform_system &scene::transform_system() { return *transform_system_; }
 
-	void scene::set_task_manager(std::shared_ptr<TaskManager> &&mgr) { task_manager_ = std::move(mgr); }
+	void scene::set_task_manager(std::shared_ptr<private_::task_manager> &&mgr) { task_manager_ = std::move(mgr); }
 
 	void scene::set_game_object_manager(std::shared_ptr<private_::game_object_manager> &&mgr) {
 		game_object_manager_ = std::move(mgr);
@@ -111,7 +111,7 @@ namespace plnt::private_ {
 
 	void scene::set_draw_system(std::shared_ptr<private_::draw_system> &&mgr) { draw_system_ = std::move(mgr); }
 
-	void scene::set_transform_manager(std::shared_ptr<TransformSystem> &&mgr) {
+	void scene::set_transform_manager(std::shared_ptr<private_::transform_system> &&mgr) {
 		transform_system_ = std::move(mgr);
 	}
 

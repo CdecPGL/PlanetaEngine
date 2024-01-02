@@ -1,11 +1,9 @@
 ﻿#include "TaskManagerConnection.hpp"
 
-namespace plnt {
-	namespace private_ {
-		bool TaskManagerConnection::Pause() { return pauser_(); }
+namespace plnt::private_ {
+	bool task_manager_connection::pause() const { return pauser_(); }
 
-		bool TaskManagerConnection::Resume() { return resumer_(); }
+	bool task_manager_connection::resume() const { return resumer_(); }
 
-		void TaskManagerConnection::Dispose() { disposer_(); }
-	}
+	void task_manager_connection::dispose() const { disposer_(); }
 }

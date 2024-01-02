@@ -73,7 +73,7 @@ namespace plnt {
 
 		/*! 通常関数をWeakPointerを指定して接続*/
 		template <class InsType, typename FuncType>
-		signal_connection connect_function(const WeakPointer<InsType> &ins, const FuncType &func) {
+		signal_connection connect_function(const weak_pointer<InsType> &ins, const FuncType &func) {
 			return signal_connection{
 				std::move(my_signal::connect(
 					slot_type(std::function<SigType>(func), boost::placeholders::_1).track_foreign(ins.get_shared())))
@@ -94,7 +94,7 @@ namespace plnt {
 			インスタンスの型は、メンバ関数のクラス型と同じかその子クラスである必要がある。
 		*/
 		template <class InsType>
-		signal_connection connect_member_function(const WeakPointer<InsType> &ins,
+		signal_connection connect_member_function(const weak_pointer<InsType> &ins,
 		                                          ret_type (InsType::*m_func)(arg_type)) {
 			return signal_connection{
 				std::move(my_signal::connect(
@@ -129,7 +129,7 @@ namespace plnt {
 
 		/*! 通常関数をWeakPointerを指定して接続*/
 		template <class InsType, typename FuncType>
-		signal_connection connect_function(const WeakPointer<InsType> &ins, const FuncType &func) {
+		signal_connection connect_function(const weak_pointer<InsType> &ins, const FuncType &func) {
 			return signal_connection{
 				std::move(my_signal::connect(
 					slot_type(std::function<RetType()>(func)).track_foreign(ins.get_shared())))
@@ -144,7 +144,7 @@ namespace plnt {
 
 		/*! メンバ関数をWeakPointerを指定して接続*/
 		template <class InsType>
-		signal_connection connect_member_function(const WeakPointer<InsType> &ins, RetType (InsType::*m_func)()) {
+		signal_connection connect_member_function(const weak_pointer<InsType> &ins, RetType (InsType::*m_func)()) {
 			return signal_connection{
 				std::move(my_signal::connect(slot_type(m_func, ins.get()).track_foreign(ins.get_shared())))
 			};

@@ -9,7 +9,7 @@
 
 namespace plnt::private_ {
 	std::shared_ptr<game_object_base> game_object_factory::get_new_game_object(
-		const std::string &game_object_resource_id, const WeakPointer<i_scene_internal> &scene_data) {
+		const std::string &game_object_resource_id, const weak_pointer<i_scene_internal> &scene_data) {
 		//テンプレート
 		std::shared_ptr<game_object_base> go_temp;
 		//必要ならテンプレートを作成登録し、使用するテンプレートをセットする
@@ -30,13 +30,13 @@ namespace plnt::private_ {
 
 	std::shared_ptr<game_object_base> game_object_factory::get_new_game_object(
 		const std::vector<std::string> &game_object_component_type_id_list,
-		const WeakPointer<i_scene_internal> &scene_data) const {
+		const weak_pointer<i_scene_internal> &scene_data) const {
 		return create_game_object_from_component_type_list(game_object_component_type_id_list, scene_data);
 	}
 
 	std::shared_ptr<game_object_base> game_object_factory::create_game_object_from_component_type_list(
 		const std::vector<std::string> &game_object_component_type_id_list,
-		const WeakPointer<i_scene_internal> &scene_data) const {
+		const weak_pointer<i_scene_internal> &scene_data) const {
 		auto go_info = util::ConvertAndConnectToString("ゲームオブジェクトコンポーネントリスト:",
 		                                               boost::algorithm::join(game_object_component_type_id_list, ","));
 		//生成
@@ -57,7 +57,7 @@ namespace plnt::private_ {
 	}
 
 	std::shared_ptr<game_object_base> game_object_factory::create_game_object_from_resource(
-		const std::string &game_object_resource_id, const WeakPointer<i_scene_internal> &scene_data) const {
+		const std::string &game_object_resource_id, const weak_pointer<i_scene_internal> &scene_data) const {
 		//生成
 		auto ngo = std::make_shared<game_object_base>();
 		if (ngo == nullptr) {
@@ -82,7 +82,7 @@ namespace plnt::private_ {
 	}
 
 	std::shared_ptr<game_object_base> game_object_factory::clone_game_object_from_template(
-		const std::shared_ptr<game_object_base> &go_temp, const WeakPointer<i_scene_internal> &scene_data) const {
+		const std::shared_ptr<game_object_base> &go_temp, const weak_pointer<i_scene_internal> &scene_data) const {
 		assert(go_temp != nullptr);
 		//生成
 		// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)

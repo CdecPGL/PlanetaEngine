@@ -10,7 +10,7 @@ namespace plnt {
 	namespace private_ {
 		enum class SystemTaskSlot;
 
-		class StandardTaskManager final : public TaskManager {
+		class StandardTaskManager final : public task_manager {
 		public:
 			StandardTaskManager();
 			~StandardTaskManager();
@@ -20,15 +20,15 @@ namespace plnt {
 			void finalize() override;
 
 			/*タスクの実行*/
-			void ExcuteTask() override;
+			void execute_task() override;
 			/*管理処理*/
 			void update() override;
 
 			/*名前からゲームプロセスを取得*/
-			WeakPointer<Task> get_task(const std::string &name) const override;
+			weak_pointer<Task> get_task(const std::string &name) const override;
 			/*ゲームプロセス作製*/
-			bool register_task(const std::shared_ptr<Task> &task, TaskSlot slot, bool auto_run) override;
-			bool register_task(const std::shared_ptr<Task> &task, TaskSlot slot, const std::string &name,
+			bool register_task(const std::shared_ptr<Task> &task, task_slot slot, bool auto_run) override;
+			bool register_task(const std::shared_ptr<Task> &task, task_slot slot, const std::string &name,
 			                  bool auto_run) override;
 
 		private:
@@ -37,7 +37,7 @@ namespace plnt {
 
 			/*システムタスク作製*/
 			std::shared_ptr<Task>
-			RegisterSystemTask(const std::shared_ptr<Task> &task, private_::SystemTaskSlot slot) override;
+			register_system_task(const std::shared_ptr<Task> &task, private_::SystemTaskSlot slot) override;
 
 			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 		};

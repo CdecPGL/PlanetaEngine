@@ -6,7 +6,7 @@
 #include "planeta/core/signal.hpp"
 #include "..\core\game_object_system_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 #include "planeta/core/i_collider_with_collider_2d.hpp"
 
 namespace plnt {

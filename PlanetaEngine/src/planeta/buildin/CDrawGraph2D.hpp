@@ -5,7 +5,7 @@
 #include <array>
 
 #include "planeta/core/rectangle.hpp"
-#include "planeta/core/Vertex2D.hpp"
+#include "..\core\vertex_2d.hpp"
 
 #include "CDraw2D.hpp"
 

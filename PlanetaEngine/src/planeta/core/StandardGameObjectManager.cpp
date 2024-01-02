@@ -48,7 +48,7 @@ namespace plnt {
 			return id;
 		}
 
-		WeakPointer<i_game_object>
+		weak_pointer<i_game_object>
 		StandardGameObjectManager::create_game_object(const std::string &game_object_def_file_id) {
 			auto go = CreateAndSetUpGameObject_(game_object_def_file_id);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go) >= 0) { return go; } else {
@@ -57,7 +57,7 @@ namespace plnt {
 			}
 		}
 
-		WeakPointer<i_game_object> StandardGameObjectManager::create_game_object(
+		weak_pointer<i_game_object> StandardGameObjectManager::create_game_object(
 			const std::string &game_object_def_file_id, const std::string &name) {
 			auto go = CreateAndSetUpGameObject_(game_object_def_file_id);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go, name) >= 0) { return go; } else {
@@ -66,7 +66,7 @@ namespace plnt {
 			}
 		}
 
-		WeakPointer<i_game_object> StandardGameObjectManager::create_game_object_with_component_type_id_list(
+		weak_pointer<i_game_object> StandardGameObjectManager::create_game_object_with_component_type_id_list(
 			const std::vector<std::string> &game_object_component_type_id_list) {
 			auto go = CreateAndSetUpGameObject_(game_object_component_type_id_list);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go) >= 0) { return go; } else {
@@ -76,7 +76,7 @@ namespace plnt {
 			}
 		}
 
-		WeakPointer<i_game_object> StandardGameObjectManager::create_game_object_with_component_type_id_list(
+		weak_pointer<i_game_object> StandardGameObjectManager::create_game_object_with_component_type_id_list(
 			const std::vector<std::string> &game_object_component_type_id_list, const std::string &name) {
 			auto go = CreateAndSetUpGameObject_(game_object_component_type_id_list);
 			if (go != nullptr && RegisterAndInitializeGameObject_(go, name) >= 0) { return go; } else {

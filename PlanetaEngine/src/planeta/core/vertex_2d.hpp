@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "color.hpp"
-#include "Vector2D.hpp"
+#include "vector_2d.hpp"
 
 namespace plnt::util {
 	/*2D頂点構造体*/

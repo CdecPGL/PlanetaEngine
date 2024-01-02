@@ -6,7 +6,7 @@
 
 namespace plnt {
 	namespace private_ {
-		class StandardTransformSystem : public TransformSystem {
+		class StandardTransformSystem : public transform_system {
 		public:
 			StandardTransformSystem();
 			~StandardTransformSystem();
@@ -14,12 +14,12 @@ namespace plnt {
 			void update() override;
 			void finalize() override;
 
-			void ApplyVelocity() override;
+			void apply_velocity() override;
 
-			int RegisterTransform2D(CTransform2D *transform2d) override;
-			bool RemoveTransform2D(int id) override;
-			int RegisterTransformGUI(CTransformGUI *transformgui);
-			bool RemoveTransformGUI(int id);
+			int register_transform_2d(CTransform2D *transform2d) override;
+			bool remove_transform_2d(int id) override;
+			int register_transform_gui(CTransformGUI *transformgui);
+			bool remove_transform_gui(int id);
 
 		private:
 			std::unordered_map<int, CTransform2D *> transform2d_map_;

@@ -3,7 +3,7 @@
 #include "..\core\game_object_system_component.hpp"
 #include "planeta/core/WeakPointer.hpp"
 #include "..\core\graph_draw_data_2d.hpp"
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 
 namespace plnt {
 	class screen_drawer_2d;

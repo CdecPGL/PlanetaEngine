@@ -4,23 +4,27 @@
 #include "scene_module.hpp"
 #include "SystemTaskSlot.hpp"
 
-namespace plnt {
-	namespace private_ {
-		class TaskManager : public i_task_manager, public scene_module {
-		public:
-			virtual ~TaskManager() = 0 { };
-			virtual void ExcuteTask() = 0;
-			/*システムタスク追加(システムタスク削除不可能)*/
-			template <class C>
-			WeakPointer<C> AddSystemTask(private_::SystemTaskSlot sys_task_slot) {
-				static_assert(std::is_base_of<Task, C>::value == true, "C is not derived Task.");
-				auto task = std::make_shared<C>();
-				return std::static_pointer_cast<C>(RegisterSystemTask(task, sys_task_slot));
-			}
+namespace plnt::private_ {
+	class task_manager : public i_task_manager, public scene_module {
+	public:
+		task_manager() = default;
+		task_manager(const task_manager &) = delete;
+		task_manager(task_manager &&) = delete;
+		~task_manager() override = default;
+		task_manager &operator=(const task_manager &) = delete;
+		task_manager &operator=(task_manager &&) = delete;
 
-		private:
-			virtual std::shared_ptr<Task> RegisterSystemTask(const std::shared_ptr<Task> &task,
-			                                                 private_::SystemTaskSlot slot) = 0;
-		};
-	}
+		virtual void execute_task() = 0;
+		/*システムタスク追加(システムタスク削除不可能)*/
+		template <class C>
+		weak_pointer<C> add_system_task(SystemTaskSlot sys_task_slot) {
+			static_assert(std::is_base_of_v<Task, C> == true, "C is not derived Task.");
+			auto task = std::make_shared<C>();
+			return std::static_pointer_cast<C>(register_system_task(task, sys_task_slot));
+		}
+
+	private:
+		virtual std::shared_ptr<Task> register_system_task(const std::shared_ptr<Task> &task,
+		                                                   SystemTaskSlot slot) = 0;
+	};
 }

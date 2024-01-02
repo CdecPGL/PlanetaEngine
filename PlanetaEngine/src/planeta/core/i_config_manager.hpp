@@ -3,7 +3,7 @@
 #include <string>
 #include <array>
 
-#include "Vector2D.hpp"
+#include "vector_2d.hpp"
 // ReSharper disable once CppUnusedIncludeDirective
 #include "collision_group_matrix.hpp"
 

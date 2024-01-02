@@ -10,7 +10,7 @@ namespace plnt {
 	class i_scene;
 
 	namespace private_ {
-		class TaskManagerConnection;
+		class task_manager_connection;
 	}
 
 	class i_game_object;
@@ -19,7 +19,7 @@ namespace plnt {
 		public object, private util::non_copyable<Task> {
 	public:
 		using super = object;
-		using GameObjectAccessorType = WeakPointer<i_game_object>;
+		using GameObjectAccessorType = weak_pointer<i_game_object>;
 		Task();
 		virtual ~Task();
 		virtual void Update() = 0;
@@ -27,8 +27,8 @@ namespace plnt {
 		bool Resume();
 		void Dispose();
 		/*システム関数*/
-		bool SystemSetUpAndInitialize(std::unique_ptr<private_::TaskManagerConnection> &&manager_connection,
-		                              const WeakPointer<i_scene> &pscene);
+		bool SystemSetUpAndInitialize(std::unique_ptr<private_::task_manager_connection> &&manager_connection,
+		                              const weak_pointer<i_scene> &pscene);
 		/*イベント*/
 		/*! プロセス破棄イベント*/
 		signal<void()> disposed;
@@ -38,8 +38,8 @@ namespace plnt {
 		i_scene &scene() { return *scene_; }
 
 	private:
-		WeakPointer<i_scene> scene_;
-		std::unique_ptr<private_::TaskManagerConnection> manager_connection_;
+		weak_pointer<i_scene> scene_;
+		std::unique_ptr<private_::task_manager_connection> manager_connection_;
 		virtual bool OnCreated() { return true; }
 
 		virtual void OnDisposed() { };

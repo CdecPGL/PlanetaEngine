@@ -174,7 +174,7 @@ namespace plnt {
 				return;
 			}
 		}
-		auto task = game_object().create_and_attach_task<TInstant>(TaskSlot::PreDrawUpdatePhase);
+		auto task = game_object().create_and_attach_task<TInstant>(task_slot::pre_draw_update_phase);
 		task->SetExcuteFunction([this] {
 			impl_->ApplyTransformToEffect();
 			//エフェクトのループ確認

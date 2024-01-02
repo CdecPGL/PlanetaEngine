@@ -3,7 +3,7 @@
 #include <array>
 #include <vector>
 
-#include "planeta/core/Vector2D.hpp"
+#include "..\core\vector_2d.hpp"
 
 #include "CDraw2D.hpp"
 
