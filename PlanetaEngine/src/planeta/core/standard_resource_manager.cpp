@@ -1,7 +1,7 @@
 ﻿#include "boost/algorithm/string.hpp"
 #include "boost/filesystem.hpp"
 
-#include"StandardResourceManager.hpp"
+#include"standard_resource_manager.hpp"
 
 #include <ranges>
 

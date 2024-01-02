@@ -759,28 +759,28 @@
     <ClInclude Include="src\planeta\core\standard_performance_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardRenderingManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_rendering_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardResourceManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_resource_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardSaveManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_save_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardSceneManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_scene_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardSceneManagerUtility.hpp">
+    <ClInclude Include="src\planeta\core\standard_scene_manager_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardSoundManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_sound_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardTaskManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_task_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardTransformSystem.hpp">
+    <ClInclude Include="src\planeta\core\standard_transform_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\string_utility.hpp">
@@ -1196,31 +1196,31 @@
     <ClCompile Include="src\planeta\core\standard_performance_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardRenderingManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_rendering_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardResourceManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_resource_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardSaveManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_save_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardSceneManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_scene_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardSceneModuleSetFunction.cpp">
+    <ClCompile Include="src\planeta\core\standard_scene_module_set_function.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardSoundManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_sound_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardSystemSetUpSceneFunction.cpp">
+    <ClCompile Include="src\planeta\core\standard_system_setup_scene_function.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardTaskManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_task_manager.cpp">
       <Filter>PlanetaEngine\SceneModules\Task\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardTransformSystem.cpp">
+    <ClCompile Include="src\planeta\core\standard_transform_system.cpp">
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\string_utility.cpp">

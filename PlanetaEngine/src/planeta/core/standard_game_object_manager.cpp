@@ -4,7 +4,7 @@
 
 #include "standard_game_object_manager.hpp"
 #include "game_object_base.hpp"
-#include "StandardTaskManager.hpp"
+#include "standard_task_manager.hpp"
 #include "log_utility.hpp"
 #include "game_object_factory.hpp"
 #include "i_debug_manager.hpp"

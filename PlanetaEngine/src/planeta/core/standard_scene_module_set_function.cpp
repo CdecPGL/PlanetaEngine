@@ -1,10 +1,10 @@
-﻿#include "StandardSceneManagerUtility.hpp"
+﻿#include "standard_scene_manager_utility.hpp"
 #include "scene.hpp"
 #include "standard_collision_world.hpp"
 #include "standard_draw_system.hpp"
-#include "StandardTaskManager.hpp"
+#include "standard_task_manager.hpp"
 #include "standard_game_object_manager.hpp"
-#include "StandardTransformSystem.hpp"
+#include "standard_transform_system.hpp"
 
 namespace plnt::private_ {
 	void set_standard_scene_modules(scene &scene) {

@@ -1,5 +1,5 @@
 ﻿#include "resource_manager.hpp"
-#include "StandardSceneManager.hpp"
+#include "standard_scene_manager.hpp"
 #include "i_debug_manager.hpp"
 #include "scene.hpp"
 #include "scene_setupper.hpp"
@@ -7,7 +7,7 @@
 #include "log_utility.hpp"
 #include "null_weak_pointer_exception.hpp"
 #include "prefix_utility.hpp"
-#include "StandardSceneManagerUtility.hpp"
+#include "standard_scene_manager_utility.hpp"
 
 namespace plnt::private_ {
 	standard_scene_manager::standard_scene_manager() : state_(state::none), is_transitioning_(false),

@@ -493,14 +493,14 @@
     <ClInclude Include="src\planeta\core\standard_input_manager.hpp" />
     <ClInclude Include="src\planeta\core\standard_log_manager.hpp" />
     <ClInclude Include="src\planeta\core\standard_performance_manager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardRenderingManager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardResourceManager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardSaveManager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardSceneManager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardSceneManagerUtility.hpp" />
-    <ClInclude Include="src\planeta\core\StandardSoundManager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardTaskManager.hpp" />
-    <ClInclude Include="src\planeta\core\StandardTransformSystem.hpp" />
+    <ClInclude Include="src\planeta\core\standard_rendering_manager.hpp" />
+    <ClInclude Include="src\planeta\core\standard_resource_manager.hpp" />
+    <ClInclude Include="src\planeta\core\standard_save_manager.hpp" />
+    <ClInclude Include="src\planeta\core\standard_scene_manager.hpp" />
+    <ClInclude Include="src\planeta\core\standard_scene_manager_utility.hpp" />
+    <ClInclude Include="src\planeta\core\standard_sound_manager.hpp" />
+    <ClInclude Include="src\planeta\core\standard_task_manager.hpp" />
+    <ClInclude Include="src\planeta\core\standard_transform_system.hpp" />
     <ClInclude Include="src\planeta\deprecated\StringPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -595,8 +595,8 @@
     <ClCompile Include="src\planeta\buildin\REffectTexture.cpp" />
     <ClCompile Include="src\planeta\core\scene_setup_proxy.cpp" />
     <ClCompile Include="src\planeta\core\standard_config_manager.cpp" />
-    <ClCompile Include="src\planeta\core\StandardSystemSetUpSceneFunction.cpp" />
-    <ClCompile Include="src\planeta\core\StandardSceneModuleSetFunction.cpp" />
+    <ClCompile Include="src\planeta\core\standard_system_setup_scene_function.cpp" />
+    <ClCompile Include="src\planeta\core\standard_scene_module_set_function.cpp" />
     <ClCompile Include="src\planeta\core\string_utility.cpp" />
     <ClCompile Include="src\planeta\core\sub_system_manager.cpp" />
     <ClCompile Include="src\planeta\core\task_manager_connection.cpp" />
@@ -627,7 +627,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\TInstant.cpp" />
-    <ClCompile Include="src\planeta\core\StandardSaveManager.cpp" />
+    <ClCompile Include="src\planeta\core\standard_save_manager.cpp" />
     <ClCompile Include="src\planeta\core\scene_setupper.cpp" />
     <ClCompile Include="src\planeta\core\screen.cpp" />
     <ClCompile Include="src\planeta\core\screen_drawer_2d.cpp" />
@@ -639,7 +639,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\planeta\core\sound_effect_controller.cpp" />
-    <ClCompile Include="src\planeta\core\StandardSoundManager.cpp" />
+    <ClCompile Include="src\planeta\core\standard_sound_manager.cpp" />
     <ClCompile Include="src\planeta\deprecated\StringPanel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -672,7 +672,7 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CDraw2D.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawLine2D.cpp" />
-    <ClCompile Include="src\planeta\core\StandardRenderingManager.cpp" />
+    <ClCompile Include="src\planeta\core\standard_rendering_manager.cpp" />
     <ClCompile Include="src\planeta\buildin\CDrawPlanet2D.cpp" />
     <ClCompile Include="src\planeta\dxlib\dx_utility.cpp" />
     <ClCompile Include="src\planeta\buildin\CGraph2DAnimator.cpp" />
@@ -697,10 +697,10 @@
     <ClCompile Include="src\planeta\core\game.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanet.cpp" />
     <ClCompile Include="src\planeta\core\task.cpp" />
-    <ClCompile Include="src\planeta\core\StandardTaskManager.cpp" />
-    <ClCompile Include="src\planeta\core\StandardResourceManager.cpp" />
+    <ClCompile Include="src\planeta\core\standard_task_manager.cpp" />
+    <ClCompile Include="src\planeta\core\standard_resource_manager.cpp" />
     <ClCompile Include="src\planeta\core\scene.cpp" />
-    <ClCompile Include="src\planeta\core\StandardSceneManager.cpp" />
+    <ClCompile Include="src\planeta\core\standard_scene_manager.cpp" />
     <ClCompile Include="src\planeta\buildin\CStraightLineCollider2D.cpp" />
     <ClCompile Include="src\planeta\core\standard_performance_manager.cpp" />
     <ClCompile Include="src\planeta\core\standard_log_manager.cpp" />
@@ -720,7 +720,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardTransformSystem.cpp" />
+    <ClCompile Include="src\planeta\core\standard_transform_system.cpp" />
     <ClCompile Include="src\planeta\win\windows_utility.cpp" />
     <ClCompile Include="src\planeta\buildin\RXml.cpp" />
     <ClCompile Include="src\planeta\core\xml_file.cpp" />

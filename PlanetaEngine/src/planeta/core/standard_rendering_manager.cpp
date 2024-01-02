@@ -5,7 +5,7 @@
 #include "EffekseerForDXLib.h"
 #pragma warning(pop)
 
-#include "StandardRenderingManager.hpp"
+#include "standard_rendering_manager.hpp"
 #include "screen.hpp"
 
 namespace plnt::private_ {

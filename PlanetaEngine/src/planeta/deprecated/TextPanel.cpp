@@ -1,5 +1,5 @@
 ﻿#include "planeta/core/TextPanel.hpp"
-#include "planeta/core/StandardResourceManager.hpp"
+#include "..\core\standard_resource_manager.hpp"
 #include "..\core\screen_drawer_gui.hpp"
 
 namespace plnt {

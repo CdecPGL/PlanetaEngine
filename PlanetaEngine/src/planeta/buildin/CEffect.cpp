@@ -5,7 +5,7 @@
 
 #include "planeta/core/game.hpp"
 #include "planeta/core/i_resource_manager.hpp"
-#include "planeta/core/StandardResourceManager.hpp"
+#include "..\core\standard_resource_manager.hpp"
 #include "..\core\i_game_object.hpp"
 
 #include "CEffect.hpp"
