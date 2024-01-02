@@ -1,6 +1,6 @@
 ﻿#include <ranges>
 
-#include "StandardDebugManager.hpp"
+#include "standard_debug_manager.hpp"
 #include "game.hpp"
 #include "i_input_manager.hpp"
 #include "rendering_manager.hpp"

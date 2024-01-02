@@ -1,4 +1,4 @@
-﻿#include "StandardPerformanceManager.hpp"
+﻿#include "standard_performance_manager.hpp"
 #include "i_debug_manager.hpp"
 
 namespace plnt {

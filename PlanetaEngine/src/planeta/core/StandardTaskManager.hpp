@@ -10,10 +10,15 @@ namespace plnt {
 	namespace private_ {
 		enum class system_task_slot;
 
-		class StandardTaskManager final : public task_manager {
+		class standard_task_manager final : public task_manager {
 		public:
-			StandardTaskManager();
-			~StandardTaskManager();
+			standard_task_manager();
+			standard_task_manager(const standard_task_manager &) = delete;
+			standard_task_manager(standard_task_manager &&) = delete;
+			~standard_task_manager() override;
+			standard_task_manager &operator=(const standard_task_manager &) = delete;
+			standard_task_manager &operator=(standard_task_manager &&) = delete;
+
 			/*初期化処理*/
 			bool initialize() override { return true; }
 			/*終了処理*/
@@ -25,15 +30,15 @@ namespace plnt {
 			void update() override;
 
 			/*名前からゲームプロセスを取得*/
-			weak_pointer<task> get_task(const std::string &name) const override;
+			[[nodiscard]] weak_pointer<task> get_task(const std::string &name) const override;
 			/*ゲームプロセス作製*/
 			bool register_task(const std::shared_ptr<task> &task, task_slot slot, bool auto_run) override;
 			bool register_task(const std::shared_ptr<task> &task, task_slot slot, const std::string &name,
-			                  bool auto_run) override;
+			                   bool auto_run) override;
 
 		private:
-			class Impl_;
-			std::unique_ptr<Impl_> impl_;
+			class impl;
+			std::unique_ptr<impl> impl_;
 
 			/*システムタスク作製*/
 			std::shared_ptr<task>

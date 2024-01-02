@@ -38,7 +38,7 @@ namespace plnt {
 	class resource_referencer {
 	public:
 		resource_referencer(private_::resource_manager_internal_accessor &res_mgr_accessor, std::string root_path,
-		                   std::vector<std::shared_ptr<resource_base>> &reference_list);
+		                    std::vector<std::shared_ptr<resource_base>> &reference_list);
 		/*IDでリソースを参照する。必要なら新たに読み込む*/
 		[[nodiscard]] std::shared_ptr<resource_base> reference_resource_by_type_and_id(
 			const std::type_info &type, const std::string &id) const;
@@ -85,7 +85,9 @@ namespace plnt {
 		}
 
 	private:
+		// NOLINTNEXTLINE(cppcoreguidelines-avoid-const-or-ref-data-members)
 		std::vector<std::shared_ptr<resource_base>> &reference_list_;
+		// NOLINTNEXTLINE(cppcoreguidelines-avoid-const-or-ref-data-members)
 		private_::resource_manager_internal_accessor &manager_accessor_;
 		std::string root_path_;
 	};

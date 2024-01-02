@@ -6,7 +6,7 @@
 
 #include "game.hpp"
 #include "i_performance_manager.hpp"
-#include "StandardLogManager.hpp"
+#include "standard_log_manager.hpp"
 #include "system_variables.hpp"
 #include "date_time.hpp"
 #include "../win/windows_utility.hpp"

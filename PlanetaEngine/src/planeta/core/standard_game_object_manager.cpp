@@ -2,7 +2,7 @@
 
 #include "boost/algorithm/string.hpp"
 
-#include "StandardGameObjectManager.hpp"
+#include "standard_game_object_manager.hpp"
 #include "game_object_base.hpp"
 #include "StandardTaskManager.hpp"
 #include "log_utility.hpp"

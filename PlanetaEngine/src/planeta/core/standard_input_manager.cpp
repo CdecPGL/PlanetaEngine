@@ -2,7 +2,7 @@
 
 #include"DxLib.h"
 
-#include "StandardInputManager.hpp"
+#include "standard_input_manager.hpp"
 
 namespace plnt {
 	namespace {

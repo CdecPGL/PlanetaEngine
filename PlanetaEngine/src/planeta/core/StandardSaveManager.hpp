@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include <vector>
+
 #include "save_manager.hpp"
 #include "date_time.hpp"
-#include "boost/optional.hpp"
 
 namespace plnt {
 	namespace util {
@@ -11,48 +11,58 @@ namespace plnt {
 	}
 
 	namespace private_ {
-		class StandardSaveManager final : public save_manager {
+		class standard_save_manager final : public save_manager {
 		public:
-			StandardSaveManager();
-			~StandardSaveManager();
+			standard_save_manager();
+			standard_save_manager(const standard_save_manager &) = delete;
+			standard_save_manager(standard_save_manager &&) = delete;
+			~standard_save_manager() override;
+			standard_save_manager &operator=(const standard_save_manager &) = delete;
+			standard_save_manager &operator=(standard_save_manager &&) = delete;
+
 			//ファイルアクセサを設定。初期化前に呼び出す。
 			void set_file_manipulator(const std::shared_ptr<file_manipulator> &file_accessor) override;
 			bool initialize() override;
 			void finalize() override;
 
-			struct UserDataHeader {
+			struct user_data_header {
 				util::date_time update_time;
 				std::vector<std::string> header;
 			};
 
 			/*保存*/
-			void Save();
+			void save() const;
 			/*ユーザーデータを読み込み*/
-			bool LoadUserData(int idx);
+			// NOLINTNEXTLINE(modernize-use-nodiscard)
+			bool load_user_data(int idx) const;
 			/*ユーザーデータの数を取得*/
-			int GetUserDataConut() const;
+			[[nodiscard]] int get_user_data_count() const;
 			/*ユーザーデータのヘッダ情報数を取得*/
-			int GetUserDataHeaderParamCount() const;
+			[[nodiscard]] int get_user_data_header_param_count() const;
 			/*ユーザーデータのヘッダ情報を取得*/
-			const UserDataHeader &GetUserDataHeaderParam(int idx) const;
+			// TODO
+			//[[nodiscard]] const user_data_header &get_user_data_header_param(int idx) const;
 			/*共通データを取得*/
-			const util::data_container &GetCommonData() const;
+			[[nodiscard]] const util::data_container &get_common_data() const;
 			/*共通データを取得*/
-			util::data_container &GetCommonData();
+			[[nodiscard]] util::data_container &get_common_data();
 			/*ユーザーデータを取得*/
-			boost::optional<const util::data_container &> GetCurrentData() const;
+			[[nodiscard]] boost::optional<const util::data_container &> get_current_data() const;
 			/*ユーザーデータを取得*/
-			boost::optional<util::data_container &> GetCurrentData();
+			[[nodiscard]] boost::optional<util::data_container &> get_current_data();
 			/*ユーザーデータを新規作成(インデックスを返す)*/
-			int CreateUserData();
+			// TODO
+			//int create_user_data();
 			/*ユーザーデータを複製(インデックスを返す)*/
-			int DuplicateUserData();
+			// TODO
+			//int duplicate_user_data();
 			/*ユーザーデータを削除*/
-			bool DeleteUserData(int idx);
+			// TODO
+			//bool delete_user_data(int idx);
 
 		private:
-			class Impl_;
-			std::unique_ptr<Impl_> impl_;
+			class impl;
+			std::unique_ptr<impl> impl_;
 		};
 	}
 }

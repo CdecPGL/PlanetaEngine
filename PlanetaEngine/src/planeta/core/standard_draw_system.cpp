@@ -10,7 +10,7 @@
 #include "game.hpp"
 #include "rendering_manager.hpp"
 #include "config_manager.hpp"
-#include "StandardDrawSystem.hpp"
+#include "standard_draw_system.hpp"
 #include "planeta/buildin/CDraw2D.hpp"
 #include "planeta/buildin/CDrawGUI.hpp"
 #include "log_utility.hpp"

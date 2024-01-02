@@ -1,57 +1,48 @@
-﻿#include "StandardTransformSystem.hpp"
+﻿#include <ranges>
+
+#include "StandardTransformSystem.hpp"
 #include "planeta/buildin/CTransform2D.hpp"
 #include "log_utility.hpp"
 
-namespace plnt {
-	namespace private_ {
-		StandardTransformSystem::StandardTransformSystem() { }
+namespace plnt::private_ {
+	bool standard_transform_system::initialize() { return true; }
 
+	void standard_transform_system::update() {}
 
-		StandardTransformSystem::~StandardTransformSystem() { }
+	void standard_transform_system::finalize() {}
 
-		bool StandardTransformSystem::initialize() { return true; }
+	void standard_transform_system::apply_velocity() {
+		//ApplyVelocityに登録削除関連のコードはないはずなので、このループ内ではT2Dの登録削除(t2d_listの変更)は発生しない。
+		for (const auto &t2d : transform2d_map_ | std::views::values) { t2d->ApplyVelocity_(); }
+	}
 
-		void StandardTransformSystem::update() { }
+	int standard_transform_system::register_transform_2d(CTransform2D *transform2d) {
+		int id = id_counter_2d_++;
+		transform2d_map_.emplace(id, transform2d);
+		return id;
+	}
 
-		void StandardTransformSystem::finalize() { }
-
-		void StandardTransformSystem::apply_velocity() {
-			//ApplyVelocityに登録削除関連のコードはないはずなので、このループ内ではT2Dの登録削除(t2d_listの変更)は発生しない。
-			for (auto &&t2d : transform2d_map_) { t2d.second->ApplyVelocity_(); }
+	bool standard_transform_system::remove_transform_2d(int id) {
+		if (const auto it = transform2d_map_.find(id); it != transform2d_map_.end()) {
+			transform2d_map_.erase(it);
+			return true;
 		}
+		PE_LOG_FATAL("登録されていないCTransform2Dが指定されました。ID:", id);
+		return false;
+	}
 
-		int StandardTransformSystem::register_transform_2d(CTransform2D *transform2d) {
-			int id = id_counter_2d_++;
-			transform2d_map_.emplace(id, transform2d);
-			return id;
-		}
+	int standard_transform_system::register_transform_gui(CTransformGUI *transform_gui) {
+		int id = id_counter_gui_++;
+		transform_gui_map_.emplace(id, transform_gui);
+		return id;
+	}
 
-		bool StandardTransformSystem::remove_transform_2d(int id) {
-			auto it = transform2d_map_.find(id);
-			if (it != transform2d_map_.end()) {
-				transform2d_map_.erase(it);
-				return true;
-			} else {
-				PE_LOG_FATAL("登録されていないCTransform2Dが指定されました。ID:", id);
-				return false;
-			}
+	bool standard_transform_system::remove_transform_gui(int id) {
+		if (const auto it = transform_gui_map_.find(id); it != transform_gui_map_.end()) {
+			transform_gui_map_.erase(it);
+			return true;
 		}
-
-		int StandardTransformSystem::register_transform_gui(CTransformGUI *transformgui) {
-			int id = id_counter_gui_++;
-			transformgui_map_.emplace(id, transformgui);
-			return id;
-		}
-
-		bool StandardTransformSystem::remove_transform_gui(int id) {
-			auto it = transformgui_map_.find(id);
-			if (it != transformgui_map_.end()) {
-				transformgui_map_.erase(it);
-				return true;
-			} else {
-				PE_LOG_FATAL("登録されていないCTransformGUIが指定されました。ID:", id);
-				return false;
-			}
-		}
+		PE_LOG_FATAL("登録されていないCTransformGUIが指定されました。ID:", id);
+		return false;
 	}
 }

@@ -741,22 +741,22 @@
     <ClInclude Include="src\planeta\core\standard_config_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardDebugManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_debug_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardDrawSystem.hpp">
+    <ClInclude Include="src\planeta\core\standard_draw_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardGameObjectManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_game_object_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardInputManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_input_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardLogManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_log_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StandardPerformanceManager.hpp">
+    <ClInclude Include="src\planeta\core\standard_performance_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\StandardRenderingManager.hpp">
@@ -1178,22 +1178,22 @@
     <ClCompile Include="src\planeta\core\standard_config_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardDebugManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_debug_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardDrawSystem.cpp">
+    <ClCompile Include="src\planeta\core\standard_draw_system.cpp">
       <Filter>PlanetaEngine\SceneModules\DrawSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardGameObjectManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_game_object_manager.cpp">
       <Filter>PlanetaEngine\SceneModules\GameObject\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardInputManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_input_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardLogManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_log_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StandardPerformanceManager.cpp">
+    <ClCompile Include="src\planeta\core\standard_performance_manager.cpp">
       <Filter>PlanetaEngine\SubSystems\StandardManagers</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\StandardRenderingManager.cpp">
