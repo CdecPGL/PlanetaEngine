@@ -5,7 +5,7 @@
 #include "boost/multi_index/hashed_index.hpp"
 
 #include "..\core\log_utility.hpp"
-#include "planeta/core/StringUtility.hpp"
+#include "..\core\string_utility.hpp"
 
 #include "reflection.hpp"
 #include "reflectable.hpp"

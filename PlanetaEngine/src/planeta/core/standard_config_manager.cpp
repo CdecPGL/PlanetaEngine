@@ -1,7 +1,7 @@
 ﻿#include "standard_config_manager.hpp"
 #include "json_file.hpp"
 #include "log_utility.hpp"
-#include "StringUtility.hpp"
+#include "string_utility.hpp"
 
 namespace plnt::private_ {
 	bool standard_config_manager::load_system_config(const file &file) {

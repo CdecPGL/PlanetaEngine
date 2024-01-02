@@ -4,6 +4,7 @@
 #include <map>
 #include <list>
 #include <memory>
+
 #include "draw_system.hpp"
 
 namespace plnt {
@@ -13,10 +14,15 @@ namespace plnt {
 	namespace private_ {
 		class screen;
 
-		class StandardDrawSystem final : public draw_system {
+		class standard_draw_system final : public draw_system {
 		public:
-			StandardDrawSystem();
-			~StandardDrawSystem();
+			standard_draw_system();
+			standard_draw_system(const standard_draw_system &) = delete;
+			standard_draw_system(standard_draw_system &&) = delete;
+			~standard_draw_system() override;
+			standard_draw_system &operator=(const standard_draw_system &) = delete;
+			standard_draw_system &operator=(standard_draw_system &&) = delete;
+
 			bool initialize() override;
 			void finalize() override;
 			void update() override;
@@ -25,9 +31,10 @@ namespace plnt {
 			void apply_camera_state() override;
 			/*描画コンポーネント登録*/
 			std::unique_ptr<CDraw2DManagerConnection> register_c_draw_2d(const std::shared_ptr<CDraw2D> &draw_component,
-			                                                          int priority) override;
-			std::unique_ptr<CDrawGUIManagerConnection> register_c_draw_gui(const std::shared_ptr<CDrawGUI> &draw_component,
-			                                                            int priority) override;
+			                                                             int priority) override;
+			std::unique_ptr<CDrawGUIManagerConnection> register_c_draw_gui(
+				const std::shared_ptr<CDrawGUI> &draw_component,
+				int priority) override;
 
 			/*カメラコンポーネント登録*/
 			std::unique_ptr<CCamera2DManagerConnection> register_c_camera_2d(
@@ -37,39 +44,41 @@ namespace plnt {
 			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 
 			/*! GUI座標をGameObject座空間標に変換*/
-			vector_2dd covert_position_screen_space_to_game_object_space(const vector_2di &gui_space_pos) const override;
+			[[nodiscard]] vector_2dd covert_position_screen_space_to_game_object_space(
+				const vector_2di &gui_space_pos) const override;
 			/*! GameObject座標をGUI座標に変換*/
-			vector_2di covert_position_game_object_space_to_screen_space(const vector_2dd &gameobject_space_pos) const override;
+			[[nodiscard]] vector_2di covert_position_game_object_space_to_screen_space(
+				const vector_2dd &game_object_space_pos) const override;
 
 			//コンポーネントリスト型
 			template <class ComType>
-			using ComListType = std::list<ComType *>;
+			using com_list_type = std::list<ComType *>;
 			//コンポーネント更新リスト型
 			template <class ComType>
-			using UpdateListType = std::map<int, ComListType<ComType>>;
+			using update_list_type = std::map<int, com_list_type<ComType>>;
 
 			//コンポーネント登録情報
 			template <class ComType>
-			struct RegisterData {
+			struct register_data {
 				int priority;
 				std::shared_ptr<ComType> com_ptr;
-				typename UpdateListType<ComType>::iterator update_list_iterator;
-				typename ComListType<ComType>::iterator prioriry_com_list_iterator;
+				typename update_list_type<ComType>::iterator update_list_iterator;
+				typename com_list_type<ComType>::iterator priority_com_list_iterator;
 				bool is_active = false;
 			};
 
 			//コンポーネントマップ型
 			template <class ComType>
-			using ComMapType = std::unordered_map<ComType *, RegisterData<ComType>>;
+			using com_map_type = std::unordered_map<ComType *, register_data<ComType>>;
 
 			//コンポーネントホルダー
 			template <class ComType>
-			class ComHolder {
+			class com_holder {
 			public:
 				//登録
-				std::pair<bool, typename ComMapType<ComType>::iterator> Register(
+				std::pair<bool, typename com_map_type<ComType>::iterator> add(
 					const std::shared_ptr<ComType> &com, int priority) {
-					RegisterData<ComType> rd;
+					register_data<ComType> rd;
 					rd.priority = priority;
 					rd.com_ptr = com;
 					auto ret = com_map_.emplace(com.get(), rd);
@@ -79,13 +88,13 @@ namespace plnt {
 				}
 
 				//有効化
-				bool Activate(typename ComMapType<ComType>::iterator com_map_itr) {
-					RegisterData<ComType> &rd = com_map_itr->second;
+				bool activate(typename com_map_type<ComType>::iterator com_map_itr) {
+					register_data<ComType> &rd = com_map_itr->second;
 					if (rd.is_active) { return false; }
 					//アップデートリストに登録
 					update_list_[rd.priority].push_back(rd.com_ptr.get());
 					rd.update_list_iterator = update_list_.find(rd.priority);
-					rd.prioriry_com_list_iterator = --rd.update_list_iterator->second.end();
+					rd.priority_com_list_iterator = --rd.update_list_iterator->second.end();
 					++active_count_;
 
 					rd.is_active = true;
@@ -93,11 +102,11 @@ namespace plnt {
 				}
 
 				//無効化
-				bool Inactivate(typename ComMapType<ComType>::iterator com_map_itr) {
-					RegisterData<ComType> &rd = com_map_itr->second;
+				bool inactivate(typename com_map_type<ComType>::iterator com_map_itr) {
+					register_data<ComType> &rd = com_map_itr->second;
 					if (!rd.is_active) { return false; }
 					//アップデートリストから削除
-					rd.update_list_iterator->second.erase(rd.prioriry_com_list_iterator);
+					rd.update_list_iterator->second.erase(rd.priority_com_list_iterator);
 					--active_count_;
 
 					rd.is_active = false;
@@ -105,9 +114,10 @@ namespace plnt {
 				}
 
 				//除去
-				bool Remove(typename ComMapType<ComType>::iterator com_map_itr) {
-					const RegisterData<ComType> &rd = com_map_itr->second;
-					if (rd.is_active) { if (!Inactivate(com_map_itr)) { return false; } }
+				bool remove(typename com_map_type<ComType>::iterator com_map_itr) {
+					if (const register_data<ComType> &rd = com_map_itr->second; rd.is_active) {
+						if (!inactivate(com_map_itr)) { return false; }
+					}
 					//コンポーネントマップから削除
 					com_map_.erase(com_map_itr);
 					--all_count_;
@@ -115,30 +125,29 @@ namespace plnt {
 				}
 
 				//優先度変更
-				bool ChangePriority(typename ComMapType<ComType>::iterator com_map_itr, int priority) {
-					RegisterData<ComType> &rd = com_map_itr->second;
-					if (rd.is_active) {
-						if (!Inactivate(com_map_itr)) { return false; }
+				bool change_priority(typename com_map_type<ComType>::iterator com_map_itr, int priority) {
+					if (register_data<ComType> &rd = com_map_itr->second; rd.is_active) {
+						if (!inactivate(com_map_itr)) { return false; }
 						rd.priority = priority;
-						if (!Activate(com_map_itr)) { return false; }
+						if (!activate(com_map_itr)) { return false; }
 					} else { rd.priority = priority; }
 					return true;
 				}
 
 				//走査
-				void Iterate(const std::function<void(ComType &)> &proc) {
+				void iterate(const std::function<void(ComType &)> &proc) {
 					for (auto &dcl : update_list_) { for (auto &com : dcl.second) { proc(*com); } }
 				}
 
 				//情報取得
-				int all_count() const { return all_count_; }
-				int active_count() const { return active_count_; }
+				[[nodiscard]] int all_count() const { return all_count_; }
+				[[nodiscard]] int active_count() const { return active_count_; }
 
 			private:
 				//更新リスト
-				UpdateListType<ComType> update_list_;
+				update_list_type<ComType> update_list_;
 				//Comマップ
-				ComMapType<ComType> com_map_;
+				com_map_type<ComType> com_map_;
 				//管理情報
 				int all_count_ = 0;
 				int active_count_ = 0;
@@ -146,9 +155,9 @@ namespace plnt {
 
 		private:
 			//CDraw2Dホルダー
-			ComHolder<CDraw2D> cdraw2d_holder_;
+			com_holder<CDraw2D> c_draw_2d_holder_;
 			//CDrawGUIホルダー
-			ComHolder<CDrawGUI> cdrawgui_holder_;
+			com_holder<CDrawGUI> c_draw_gui_holder_;
 
 			/*描画画面*/
 			std::shared_ptr<screen> screen_;

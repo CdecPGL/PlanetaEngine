@@ -10,33 +10,33 @@
 #include "StandardSaveManager.hpp"
 #include "StandardDebugManager.hpp"
 #include "standard_config_manager.hpp"
-#include "SystemVariables.hpp"
+#include "system_variables.hpp"
 
 namespace plnt {
 	void game::set_standard_managers() const {
 		using namespace private_;
 		set_resource_manager(std::make_shared<StandardResourceManager>());
-		const auto log_mgr = std::make_shared<StandardLogManager>();
+		const auto log_mgr = std::make_shared<standard_log_manager>();
 		//開発モードならコンソールウインドウを作成し、そこにログを出力
 		if (system_variables::development_mode) {
 			//コンソール出力を有効化
-			log_mgr->ValidateConsoleOutPut();
+			log_mgr->validate_console_out_put();
 		}
 		//ログディレクトリがなかったら作る
 		if (!boost::filesystem::exists(system_variables::file_system::log_directory)) {
 			boost::filesystem::create_directory(system_variables::file_system::log_directory);
 		}
 		//ログ出力ファイルを有効にする
-		log_mgr->ValidateFileOutPut(
+		log_mgr->validate_file_out_put(
 			system_variables::file_system::log_directory + "\\" + system_variables::file_system::log_out_put_file_name);
 		set_log_manager(log_mgr);
 		set_scene_manager(std::make_shared<StandardSceneManager>());
-		set_input_manager(std::make_shared<StandardInputManager>());
-		set_performance_manager(std::make_shared<StandardPerformanceManager>());
+		set_input_manager(std::make_shared<standard_input_manager>());
+		set_performance_manager(std::make_shared<standard_performance_manager>());
 		set_rendering_manager(std::make_shared<StandardRenderingManager>());
 		set_sound_manager(std::make_shared<StandardSoundManager>());
 		set_save_manager(std::make_shared<StandardSaveManager>());
-		set_debug_manager(std::make_shared<StandardDebugManager>());
+		set_debug_manager(std::make_shared<standard_debug_manager>());
 		set_config_manager(std::make_shared<standard_config_manager>());
 	}
 }

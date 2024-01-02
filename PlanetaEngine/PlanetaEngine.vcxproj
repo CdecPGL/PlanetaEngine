@@ -507,10 +507,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StringUtility.hpp" />
-    <ClInclude Include="src\planeta\core\SubSystemManager.hpp" />
-    <ClInclude Include="src\planeta\core\SystemTaskSlot.hpp" />
-    <ClInclude Include="src\planeta\core\SystemVariables.hpp" />
+    <ClInclude Include="src\planeta\core\string_utility.hpp" />
+    <ClInclude Include="src\planeta\core\sub_system_manager.hpp" />
+    <ClInclude Include="src\planeta\core\system_task_slot.hpp" />
+    <ClInclude Include="src\planeta\core\system_variables.hpp" />
     <ClInclude Include="src\planeta\deprecated\TalkWindows.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -597,8 +597,8 @@
     <ClCompile Include="src\planeta\core\standard_config_manager.cpp" />
     <ClCompile Include="src\planeta\core\StandardSystemSetUpSceneFunction.cpp" />
     <ClCompile Include="src\planeta\core\StandardSceneModuleSetFunction.cpp" />
-    <ClCompile Include="src\planeta\core\StringUtility.cpp" />
-    <ClCompile Include="src\planeta\core\SubSystemManager.cpp" />
+    <ClCompile Include="src\planeta\core\string_utility.cpp" />
+    <ClCompile Include="src\planeta\core\sub_system_manager.cpp" />
     <ClCompile Include="src\planeta\core\task_manager_connection.cpp" />
     <ClCompile Include="src\planeta\buildin\TCoroutine.cpp" />
     <ClCompile Include="src\planeta\buildin\RCsv.cpp" />
@@ -704,7 +704,7 @@
     <ClCompile Include="src\planeta\buildin\CStraightLineCollider2D.cpp" />
     <ClCompile Include="src\planeta\core\StandardPerformanceManager.cpp" />
     <ClCompile Include="src\planeta\core\StandardLogManager.cpp" />
-    <ClCompile Include="src\planeta\core\SystemVariables.cpp" />
+    <ClCompile Include="src\planeta\core\system_variables.cpp" />
     <ClCompile Include="src\planeta\core\time.cpp" />
     <ClCompile Include="src\planeta\buildin\RText.cpp" />
     <ClCompile Include="src\planeta\buildin\CTransform2D.cpp" />

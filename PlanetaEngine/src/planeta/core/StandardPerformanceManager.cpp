@@ -1,6 +1,4 @@
-﻿#include <ctime>
-
-#include "StandardPerformanceManager.hpp"
+﻿#include "StandardPerformanceManager.hpp"
 #include "i_debug_manager.hpp"
 
 namespace plnt {
@@ -9,34 +7,35 @@ namespace plnt {
 	}
 
 	namespace private_ {
-		bool StandardPerformanceManager::initialize() {
-			_frame_count = 0;
-			_start_time = util::time::get_current_time();
+		bool standard_performance_manager::initialize() {
+			frame_count_ = 0;
+			start_time_ = util::time::get_current_time();
 			create_debug_information_channel("PerformanceManager");
 			return true;
 		}
 
-		void StandardPerformanceManager::finalize() { delete_debug_information_channel(); }
+		void standard_performance_manager::finalize() { delete_debug_information_channel(); }
 
-		void StandardPerformanceManager::update() {
+		void standard_performance_manager::update() {
 			using namespace std::chrono;
 			++fps_measure_count_;
 			if (fps_measure_count_ % fps_measure_interval == 0) {
-				auto div_time = system_clock::now() - last_measure_fps_time_;
-				fps_ = 1000.0 / duration_cast<milliseconds>(div_time).count() * fps_measure_interval;
+				const auto div_time = system_clock::now() - last_measure_fps_time_;
+				fps_ = 1000.0 / static_cast<double>(duration_cast<milliseconds>(div_time).count()) *
+					fps_measure_interval;
 				last_measure_fps_time_ = system_clock::now();
 			}
-			++_frame_count;
+			++frame_count_;
 		}
 
-		const util::time StandardPerformanceManager::get_current_time_count() const {
-			return util::time::get_current_time() - _start_time;
+		const util::time standard_performance_manager::get_current_time_count() const {
+			return util::time::get_current_time() - start_time_;
 		}
 
-		void StandardPerformanceManager::debug_information_add_handler(i_debug_information_adder &di_adder) {
+		void standard_performance_manager::debug_information_add_handler(i_debug_information_adder &di_adder) {
 			di_adder.add_line_v("FPS:", fps_);
-			di_adder.add_line_v("経過フレーム:", _frame_count);
-			di_adder.add_line_v("経過時間:", (util::time::get_current_time() - _start_time).to_string());
+			di_adder.add_line_v("経過フレーム:", frame_count_);
+			di_adder.add_line_v("経過時間:", (util::time::get_current_time() - start_time_).to_string());
 		}
 	}
 }

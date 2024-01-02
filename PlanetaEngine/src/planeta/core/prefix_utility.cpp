@@ -1,8 +1,8 @@
 ﻿#include "boost/bimap/bimap.hpp"
 
 #include "prefix_utility.hpp"
-#include "SystemVariables.hpp"
-#include "StringUtility.hpp"
+#include "system_variables.hpp"
+#include "string_utility.hpp"
 #include "log_utility.hpp"
 
 namespace plnt::private_ {

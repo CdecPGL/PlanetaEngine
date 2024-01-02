@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "StringUtility.hpp"
+#include "string_utility.hpp"
 
 namespace plnt {
 	enum class log_level { message, warning, error, fatal };

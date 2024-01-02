@@ -20,7 +20,7 @@ Vertion 2.0.0 2016/9/29 LuaBind機能の追加。Reflectableのリフレクシ�
 
 #include "boost/core/enable_if.hpp"
 
-#include "planeta/core/StringUtility.hpp"
+#include "..\core\string_utility.hpp"
 
 #include "class_registerer_impl.hpp"
 

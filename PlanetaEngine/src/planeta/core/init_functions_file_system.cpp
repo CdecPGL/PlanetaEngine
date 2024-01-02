@@ -1,7 +1,7 @@
 ﻿#include <cassert>
 
 #include "init_functions.hpp"
-#include "SystemVariables.hpp"
+#include "system_variables.hpp"
 #include "file_access_mode.hpp"
 #include "archive_manipulator.hpp"
 #include "normal_folder_manipulator.hpp"

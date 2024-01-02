@@ -1,6 +1,6 @@
 ﻿#include <cctype>
 
-#include "StringUtility.hpp"
+#include "string_utility.hpp"
 
 namespace plnt::util {
 	bool is_upper_case_character(const char c) { return isupper(static_cast<unsigned char>(c)) > 0; }

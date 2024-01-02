@@ -10,7 +10,7 @@
 
 #include "../math/math_constant.hpp"
 #include "../reflection/reflection_exceptions.hpp"
-#include "planeta/core/StringUtility.hpp"
+#include "string_utility.hpp"
 #include "../reflection/reflection_utility.hpp"
 
 namespace plnt {

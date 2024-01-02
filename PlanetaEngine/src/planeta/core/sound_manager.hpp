@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_sound_manager.hpp"
-#include "SubSystemManager.hpp"
+#include "sub_system_manager.hpp"
 
 namespace plnt::private_ {
 	class sound_manager : public i_sound_manager, public sub_system_manager {

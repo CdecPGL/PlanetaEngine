@@ -2,28 +2,32 @@
 
 #include <unordered_map>
 #include <memory>
-#include <functional>
+
 #include "game_object_manager.hpp"
 
 namespace plnt {
-	class SceneAccessorForGameObject;
 	class i_game_object;
 
 	namespace private_ {
 		class game_object_factory;
 		class game_object_base;
 
-		class StandardGameObjectManager final : public game_object_manager {
+		class standard_game_object_manager final : public game_object_manager {
 		public:
-			StandardGameObjectManager();
-			~StandardGameObjectManager();
+			standard_game_object_manager();
+			standard_game_object_manager(const standard_game_object_manager &) = delete;
+			standard_game_object_manager(standard_game_object_manager &&) = delete;
+			~standard_game_object_manager() override;
+			standard_game_object_manager &operator=(const standard_game_object_manager &) = delete;
+			standard_game_object_manager &operator=(standard_game_object_manager &&) = delete;
+
 			//ユーザアクセス可能関数
-			weak_pointer<i_game_object> create_game_object(const std::string &game_object_def_file_id) override;
-			weak_pointer<i_game_object> create_game_object(const std::string &game_object_def_file_id,
-			                                          const std::string &name) override;
-			weak_pointer<i_game_object> create_game_object_with_component_type_id_list(
+			[[nodiscard]] weak_pointer<i_game_object> create_game_object(const std::string &game_object_def_file_id) override;
+			[[nodiscard]] weak_pointer<i_game_object> create_game_object(const std::string &game_object_def_file_id,
+			                                               const std::string &name) override;
+			[[nodiscard]] weak_pointer<i_game_object> create_game_object_with_component_type_id_list(
 				const std::vector<std::string> &game_object_component_type_id_list) override;
-			weak_pointer<i_game_object> create_game_object_with_component_type_id_list(
+			[[nodiscard]] weak_pointer<i_game_object> create_game_object_with_component_type_id_list(
 				const std::vector<std::string> &game_object_component_type_id_list, const std::string &name) override;
 
 			//システム関数
@@ -48,21 +52,21 @@ namespace plnt {
 			std::unordered_map<int, std::shared_ptr<game_object_base>> inactive_game_objects_;
 			std::unordered_map<std::string, int> name_id_map_;
 			std::vector<std::shared_ptr<game_object_base>> garbage_;
-			void RemoveProc_();
-			int _id_counter;
+			void remove_proc();
+			int id_counter_;
 
 			/*ゲームオブジェクトテンプレートホルダー*/
-			std::unique_ptr<private_::game_object_factory> game_object_factory_;
+			std::unique_ptr<game_object_factory> game_object_factory_;
 
 			/*ゲームオブジェクトを作成し、セットアップを行う(作成、シーンデータのセットを行う)*/
-			std::shared_ptr<game_object_base> CreateAndSetUpGameObject_(const std::string &game_object_file_id);
-			std::shared_ptr<game_object_base> CreateAndSetUpGameObject_(const std::vector<std::string> &com_type_list);
+			[[nodiscard]] std::shared_ptr<game_object_base> create_and_set_up_game_object(const std::string &game_object_file_id);
+			[[nodiscard]] std::shared_ptr<game_object_base> create_and_set_up_game_object(const std::vector<std::string> &com_type_list);
 
 			/*ゲームオブジェクト登録(登録、マネージャコネクション設定、初期化を行い、IDを返す)*/
-			int RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go);
-			int RegisterAndInitializeGameObject_(const std::shared_ptr<game_object_base> &go, const std::string &name);
+			int register_and_initialize_game_object(const std::shared_ptr<game_object_base> &go);
+			int register_and_initialize_game_object(const std::shared_ptr<game_object_base> &go, const std::string &name);
 
-			virtual void debug_information_add_handle(i_debug_information_adder &di_adder) override;
+			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
 		};
 	}
 }

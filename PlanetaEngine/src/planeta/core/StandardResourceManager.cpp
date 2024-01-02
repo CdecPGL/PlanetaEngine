@@ -9,7 +9,7 @@
 #include "json_file.hpp"
 #include "log_utility.hpp"
 #include "file_manipulator.hpp"
-#include "SystemVariables.hpp"
+#include "system_variables.hpp"
 #include "resource_referencer.hpp"
 #include "resource_base.hpp"
 

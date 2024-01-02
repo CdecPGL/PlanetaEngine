@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_config_manager.hpp"
-#include "SubSystemManager.hpp"
+#include "sub_system_manager.hpp"
 
 namespace plnt {
 	class file;

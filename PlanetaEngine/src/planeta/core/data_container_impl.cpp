@@ -2,7 +2,7 @@
 
 #include "data_container_impl.hpp"
 #include "data_container_error.hpp"
-#include "StringUtility.hpp"
+#include "string_utility.hpp"
 
 namespace plnt::util {
 	void data_container::impl::check_element_type(const std::string &id, const std::type_info &type) const {

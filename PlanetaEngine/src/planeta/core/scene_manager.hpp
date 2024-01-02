@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "i_scene_manager.hpp"
-#include "SubSystemManager.hpp"
+#include "sub_system_manager.hpp"
 
 namespace plnt {
 	class collision_group_matrix;

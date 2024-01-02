@@ -17,7 +17,7 @@
 #include "config_manager.hpp"
 #include "log_utility.hpp"
 #include "init_functions.hpp"
-#include "SystemVariables.hpp"
+#include "system_variables.hpp"
 
 
 #include "planeta/reflection/reflection.hpp"

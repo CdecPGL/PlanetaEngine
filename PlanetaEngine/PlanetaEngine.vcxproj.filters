@@ -783,16 +783,16 @@
     <ClInclude Include="src\planeta\core\StandardTransformSystem.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\StringUtility.hpp">
+    <ClInclude Include="src\planeta\core\string_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SubSystemManager.hpp">
+    <ClInclude Include="src\planeta\core\sub_system_manager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SystemTaskSlot.hpp">
+    <ClInclude Include="src\planeta\core\system_task_slot.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\SystemVariables.hpp">
+    <ClInclude Include="src\planeta\core\system_variables.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\core\task.hpp">
@@ -1223,13 +1223,13 @@
     <ClCompile Include="src\planeta\core\StandardTransformSystem.cpp">
       <Filter>PlanetaEngine\SceneModules\TransfotmSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\StringUtility.cpp">
+    <ClCompile Include="src\planeta\core\string_utility.cpp">
       <Filter>PlanetaEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\SubSystemManager.cpp">
+    <ClCompile Include="src\planeta\core\sub_system_manager.cpp">
       <Filter>PlanetaEngine\SubSystems</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\core\SystemVariables.cpp">
+    <ClCompile Include="src\planeta\core\system_variables.cpp">
       <Filter>PlanetaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\core\task.cpp">

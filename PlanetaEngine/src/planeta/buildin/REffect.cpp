@@ -1,7 +1,4 @@
-﻿#pragma warning(push)
-#pragma warning(disable: 4100)
-#include "EffekseerForDXLib.h"
-#pragma warning(pop)
+﻿#include "EffekseerForDXLib.h"
 
 #include "planeta/core/file.hpp"
 #include "..\effekseer\effekseer_util.hpp"

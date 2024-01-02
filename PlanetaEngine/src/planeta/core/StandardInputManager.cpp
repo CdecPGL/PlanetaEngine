@@ -1,102 +1,109 @@
-﻿#include "StandardInputManager.hpp"
-#include <cassert>
-#include<algorithm>
+﻿#include <cassert>
+
 #include"DxLib.h"
+
+#include "StandardInputManager.hpp"
 
 namespace plnt {
 	namespace {
-		namespace MY_POV_DIR {
-			const unsigned char UP = 1u << 0;
-			const unsigned char DOWN = 1u << 1;
-			const unsigned char LEFT = 1u << 2;
-			const unsigned char RIGHT = 1u << 3;
+		namespace my_pov_dir {
+			constexpr unsigned char up = 1u << 0;
+			constexpr unsigned char down = 1u << 1;
+			constexpr unsigned char left = 1u << 2;
+			constexpr unsigned char right = 1u << 3;
 		}
 	}
 
 	namespace private_ {
-		class StandardInputManager::Impl {
-		private:
-			char dx_key_input[256];
-			char dx_key_input_pre[256];
-			int dx_pad_input = 0;
-			int dx_pad_input_pre = 0;
-			unsigned char dx_pov_input = 0; //ハットスイッチ(1bit:UP 2bit:DOWN 3bit:LEFT 4bit:RIGHT)
-			unsigned char dx_pov_input_pre = 0;
-			int dx_mouse_wheel_rotation = 0;
-			int dx_mouse_button_input = 0;
-			int dx_mouse_button_input_pre = 0;
-			const static std::unordered_map<keyboard::type, int> _mykey_dxkey_map;
-			const static std::unordered_map<pad::type, int> _mypad_dxpad_map;
-			const static std::unordered_map<mouse_button::type, int> _mymousebutton_dxmousebutton_map;
-			const static std::unordered_map<pad::type, int> _pov_map;
+		class standard_input_manager::impl {
+			char dx_key_input_[256];
+			char dx_key_input_pre_[256];
+			int dx_pad_input_ = 0;
+			int dx_pad_input_pre_ = 0;
+			unsigned char dx_pov_input_ = 0; //ハットスイッチ(1bit:UP 2bit:DOWN 3bit:LEFT 4bit:RIGHT)
+			unsigned char dx_pov_input_pre_ = 0;
+			int dx_mouse_wheel_rotation_ = 0;
+			int dx_mouse_button_input_ = 0;
+			int dx_mouse_button_input_pre_ = 0;
+			const static std::unordered_map<keyboard::type, int> my_key_dx_key_map;
+			const static std::unordered_map<pad::type, int> my_pad_dx_pad_map;
+			const static std::unordered_map<mouse_button::type, int> my_mouse_button_dx_mouse_button_map;
+			const static std::unordered_map<pad::type, int> pov_map;
 
 		public:
-			std::unordered_map<button::type, std::vector<keyboard::type>> _key_to_button_map;
-			std::unordered_map<button::type, std::vector<pad::type>> _pad_to_button_map;
-			std::unordered_map<std::string, button::type> _alias_button_map;
-			Impl();
-			~Impl() = default;
-			void SetDefaultKeyButtonMap();
-			void SetDefaultPadButtonMap();
-			void UpdateDxKeyInput();
-			bool isPov(pad::type p) const { return _pov_map.find(p) == _pov_map.end() ? false : true; }
-			bool statePOV(pad::type p) const { return (dx_pov_input & _pov_map.at(p)) ? true : false; }
+			std::unordered_map<button::type, std::vector<keyboard::type>> key_to_button_map;
+			std::unordered_map<button::type, std::vector<pad::type>> pad_to_button_map;
+			std::unordered_map<std::string, button::type> alias_button_map;
+			impl();
+			void set_default_key_button_map();
+			void set_default_pad_button_map();
+			void update_dx_key_input();
+			[[nodiscard]] static bool is_pov(const pad::type p) { return pov_map.contains(p); }
+
+			[[nodiscard]] bool state_pov(const pad::type p) const {
+				return dx_pov_input_ & pov_map.at(p) ? true : false;
+			}
+
 			//ハットスイッチ処理(ハットスイッチでなかったらfalse)
-			bool pushPOV(pad::type p) const {
-				return (dx_pov_input & ~dx_pov_input_pre & _pov_map.at(p)) ? true : false;
+			[[nodiscard]] bool push_pov(const pad::type p) const {
+				return dx_pov_input_ & ~dx_pov_input_pre_ & pov_map.at(p) ? true : false;
 			} //ハットスイッチ処理(ハットスイッチでなかったらfalse)
-			bool GetDxKeyState(keyboard::type k) const { return dx_key_input[_mykey_dxkey_map.at(k)] ? true : false; }
-
-			bool GetDxKeyPush(keyboard::type k) const {
-				int dk = _mykey_dxkey_map.at(k);
-				return dx_key_input[dk] ? (dx_key_input_pre[dk] ? false : true) : false;
+			[[nodiscard]] bool get_dx_key_state(const keyboard::type k) const {
+				return dx_key_input_[my_key_dx_key_map.at(k)] ? true : false;
 			}
 
-			bool GetDxPadState(pad::type p) const {
-				if (isPov(p)) { return statePOV(p); }
-				return (dx_pad_input & _mypad_dxpad_map.at(p)) ? true : false;
+			[[nodiscard]] bool get_dx_key_push(const keyboard::type k) const {
+				const int dk = my_key_dx_key_map.at(k);
+				return dx_key_input_[dk] ? (dx_key_input_pre_[dk] ? false : true) : false;
 			}
 
-			bool GetDxPadPush(pad::type p) const {
-				if (isPov(p)) { return pushPOV(p); }
-				return (dx_pad_input & ~dx_pad_input_pre & _mypad_dxpad_map.at(p)) ? true : false;
+			[[nodiscard]] bool get_dx_pad_state(const pad::type p) const {
+				if (is_pov(p)) { return state_pov(p); }
+				return dx_pad_input_ & my_pad_dx_pad_map.at(p) ? true : false;
 			}
 
-			bool GetDxMouseButtonState(mouse_button::type mb) const {
-				return dx_mouse_button_input & _mymousebutton_dxmousebutton_map.at(mb) ? true : false;
+			[[nodiscard]] bool get_dx_pad_push(const pad::type p) const {
+				if (is_pov(p)) { return push_pov(p); }
+				return dx_pad_input_ & ~dx_pad_input_pre_ & my_pad_dx_pad_map.at(p) ? true : false;
 			}
 
-			bool GetDxMouseButtonPush(mouse_button::type mb) const {
-				int dk = _mymousebutton_dxmousebutton_map.at(mb);
-				return (dx_mouse_button_input & dk) ? ((dx_mouse_button_input_pre & dk) ? false : true) : false;
+			[[nodiscard]] bool get_dx_mouse_button_state(const mouse_button::type mb) const {
+				return dx_mouse_button_input_ & my_mouse_button_dx_mouse_button_map.at(mb) ? true : false;
 			}
 
-			void AssignKeyToButton(keyboard::type k, button::type b) {
+			[[nodiscard]] bool get_dx_mouse_button_push(const mouse_button::type mb) const {
+				const int dk = my_mouse_button_dx_mouse_button_map.at(mb);
+				return dx_mouse_button_input_ & dk ? (dx_mouse_button_input_pre_ & dk ? false : true) : false;
+			}
+
+			void assign_key_to_button(const keyboard::type k, button::type b) {
 				if (k == 0) { return; }
-				auto it = _key_to_button_map.find(b);
-				if (it == _key_to_button_map.end()) {
-					it = (_key_to_button_map.insert(std::make_pair(b, std::vector<keyboard::type>()))).first;
+				auto it = key_to_button_map.find(b);
+				if (it == key_to_button_map.end()) {
+					it = key_to_button_map.insert(std::make_pair(b, std::vector<keyboard::type>())).first;
 				}
 				std::vector<keyboard::type> &v = it->second;
-				int i = 0;
-				for (keyboard::type p = 1; i < sizeof(keyboard::type) * 8; ++i, p <<= 1) { if (k & p) { v.push_back(p); } }
+				keyboard::type i = 0;
+				for (keyboard::type p = 1; i < sizeof(keyboard::type) * 8; ++i, p <<= 1) {
+					if (k & p) { v.push_back(p); }
+				}
 			}
 
-			int GetDxMouseWheelRotation() const { return dx_mouse_wheel_rotation; }
+			[[nodiscard]] int get_dx_mouse_wheel_rotation() const { return dx_mouse_wheel_rotation_; }
 
-			void AssignPadToButton(pad::type p, button::type b) {
+			void assign_pad_to_button(const pad::type p, button::type b) {
 				if (p == 0) { return; }
-				auto it = _pad_to_button_map.find(b);
-				if (it == _pad_to_button_map.end()) {
-					it = (_pad_to_button_map.insert(std::make_pair(b, std::vector<pad::type>()))).first;
+				auto it = pad_to_button_map.find(b);
+				if (it == pad_to_button_map.end()) {
+					it = pad_to_button_map.insert(std::make_pair(b, std::vector<pad::type>())).first;
 				}
 				std::vector<pad::type> &v = it->second;
-				int i = 0;
+				pad::type i = 0;
 				for (pad::type pp = 1; i < sizeof(pad::type) * 8; ++i, pp <<= 1) { if (p & pp) { v.push_back(pp); } }
 			}
 		};
 
-		const std::unordered_map<keyboard::type, int> StandardInputManager::Impl::_mykey_dxkey_map = {
+		const std::unordered_map<keyboard::type, int> standard_input_manager::impl::my_key_dx_key_map = {
 			{keyboard::a, KEY_INPUT_A},
 			{keyboard::b, KEY_INPUT_B},
 			{keyboard::c, KEY_INPUT_C},
@@ -157,7 +164,7 @@ namespace plnt {
 			{keyboard::left, KEY_INPUT_LEFT},
 			{keyboard::right, KEY_INPUT_RIGHT},
 		};
-		const std::unordered_map<pad::type, int> StandardInputManager::Impl::_mypad_dxpad_map = {
+		const std::unordered_map<pad::type, int> standard_input_manager::impl::my_pad_dx_pad_map = {
 			{pad::up, PAD_INPUT_UP},
 			{pad::down, PAD_INPUT_DOWN},
 			{pad::left, PAD_INPUT_LEFT},
@@ -183,7 +190,8 @@ namespace plnt {
 			{pad::input_19, PAD_INPUT_19},
 			{pad::input_20, PAD_INPUT_20},
 		};
-		const std::unordered_map<mouse_button::type, int> StandardInputManager::Impl::_mymousebutton_dxmousebutton_map =
+		const std::unordered_map<mouse_button::type, int>
+		standard_input_manager::impl::my_mouse_button_dx_mouse_button_map =
 		{
 			{mouse_button::left,MOUSE_INPUT_LEFT},
 			{mouse_button::right,MOUSE_INPUT_RIGHT},
@@ -194,36 +202,35 @@ namespace plnt {
 			{mouse_button::input_7,MOUSE_INPUT_7},
 			{mouse_button::input_8,MOUSE_INPUT_8},
 		};
-		const std::unordered_map<pad::type, int> StandardInputManager::Impl::_pov_map = {
-			{pad::pov_up, MY_POV_DIR::UP},
-			{pad::pov_down, MY_POV_DIR::DOWN},
-			{pad::pov_left, MY_POV_DIR::LEFT},
-			{pad::pov_right, MY_POV_DIR::RIGHT},
+		const std::unordered_map<pad::type, int> standard_input_manager::impl::pov_map = {
+			{pad::pov_up, my_pov_dir::up},
+			{pad::pov_down, my_pov_dir::down},
+			{pad::pov_left, my_pov_dir::left},
+			{pad::pov_right, my_pov_dir::right},
 		};
 
-		StandardInputManager::Impl::Impl() : dx_pad_input(0), dx_pad_input_pre(0), dx_pov_input(0),
-		                                     dx_pov_input_pre(0) {
+		standard_input_manager::impl::impl() {
 			for (int i = 0; i < 256; ++i) {
-				dx_key_input_pre[i] = 0;
-				dx_key_input[i] = 0;
+				dx_key_input_pre_[i] = 0;
+				dx_key_input_[i] = 0;
 			}
 		}
 
-		void StandardInputManager::Impl::UpdateDxKeyInput() {
+		void standard_input_manager::impl::update_dx_key_input() {
 			//マウスホイール
-			dx_mouse_wheel_rotation = GetMouseWheelRotVol();
+			dx_mouse_wheel_rotation_ = GetMouseWheelRotVol();
 			//マウスボタン
-			dx_mouse_button_input_pre = dx_mouse_button_input;
-			dx_mouse_button_input = GetMouseInput();
+			dx_mouse_button_input_pre_ = dx_mouse_button_input_;
+			dx_mouse_button_input_ = GetMouseInput();
 			//キーボード
-			for (int i = 0; i < 256; ++i) { dx_key_input_pre[i] = dx_key_input[i]; }
-			GetHitKeyStateAll(dx_key_input);
+			for (int i = 0; i < 256; ++i) { dx_key_input_pre_[i] = dx_key_input_[i]; }
+			GetHitKeyStateAll(dx_key_input_);
 			//ジョイパッド
 			if (GetJoypadNum() > 0) {
-				dx_pad_input_pre = dx_pad_input;
-				dx_pad_input = GetJoypadInputState(DX_INPUT_PAD1);
+				dx_pad_input_pre_ = dx_pad_input_;
+				dx_pad_input_ = GetJoypadInputState(DX_INPUT_PAD1);
 				//pov
-				dx_pov_input_pre = dx_pov_input;
+				dx_pov_input_pre_ = dx_pov_input_;
 				DINPUT_JOYSTATE dj;
 				GetJoypadDirectInputState(DX_INPUT_PAD1, &dj);
 				/*const unsigned int& p0 = dj.POV[0];
@@ -237,169 +244,170 @@ namespace plnt {
 				else if (24750 <= p0 && p0 < 29250){ dx_pov_input = MY_POV_DIR::LEFT; }
 				else if (29250 <= p0 && p0 < 33750){ dx_pov_input = MY_POV_DIR::LEFT | MY_POV_DIR::UP; }*/
 
-				if (dj.POV[0] == 0xffffffff) { dx_pov_input = 0; } else {
-					int dn = (dj.POV[0] + 2250) % 36000 / 4500;
-					switch (dn) {
+				if (dj.POV[0] == 0xffffffff) { dx_pov_input_ = 0; } else {
+					switch ((dj.POV[0] + 2250) % 36000 / 4500) {
 						case 0:
-							dx_pov_input = MY_POV_DIR::UP;
+							dx_pov_input_ = my_pov_dir::up;
 							break;
 						case 1:
-							dx_pov_input = MY_POV_DIR::UP | MY_POV_DIR::RIGHT;
+							dx_pov_input_ = my_pov_dir::up | my_pov_dir::right;
 							break;
 						case 2:
-							dx_pov_input = MY_POV_DIR::RIGHT;
+							dx_pov_input_ = my_pov_dir::right;
 							break;
 						case 3:
-							dx_pov_input = MY_POV_DIR::RIGHT | MY_POV_DIR::DOWN;
+							dx_pov_input_ = my_pov_dir::right | my_pov_dir::down;
 							break;
 						case 4:
-							dx_pov_input = MY_POV_DIR::DOWN;
+							dx_pov_input_ = my_pov_dir::down;
 							break;
 						case 5:
-							dx_pov_input = MY_POV_DIR::DOWN | MY_POV_DIR::LEFT;
+							dx_pov_input_ = my_pov_dir::down | my_pov_dir::left;
 							break;
 						case 6:
-							dx_pov_input = MY_POV_DIR::LEFT;
+							dx_pov_input_ = my_pov_dir::left;
 							break;
 						case 7:
-							dx_pov_input = MY_POV_DIR::LEFT | MY_POV_DIR::UP;
+							dx_pov_input_ = my_pov_dir::left | my_pov_dir::up;
 							break;
+						default:
+							assert(false);
 					}
 				}
 			}
 		}
 
-		void StandardInputManager::Impl::SetDefaultKeyButtonMap() {
-			AssignKeyToButton(keyboard::up, button::up);
-			AssignKeyToButton(keyboard::down, button::down);
-			AssignKeyToButton(keyboard::left, button::left);
-			AssignKeyToButton(keyboard::right, button::right);
-			AssignKeyToButton(keyboard::z, button::a);
-			AssignKeyToButton(keyboard::x, button::b);
-			AssignKeyToButton(keyboard::a, button::x);
-			AssignKeyToButton(keyboard::s, button::y);
-			AssignKeyToButton(keyboard::space, button::start);
-			AssignKeyToButton(keyboard::l_shift, button::l);
-			AssignKeyToButton(keyboard::l_control, button::r);
+		void standard_input_manager::impl::set_default_key_button_map() {
+			assign_key_to_button(keyboard::up, button::up);
+			assign_key_to_button(keyboard::down, button::down);
+			assign_key_to_button(keyboard::left, button::left);
+			assign_key_to_button(keyboard::right, button::right);
+			assign_key_to_button(keyboard::z, button::a);
+			assign_key_to_button(keyboard::x, button::b);
+			assign_key_to_button(keyboard::a, button::x);
+			assign_key_to_button(keyboard::s, button::y);
+			assign_key_to_button(keyboard::space, button::start);
+			assign_key_to_button(keyboard::l_shift, button::l);
+			assign_key_to_button(keyboard::l_control, button::r);
 		}
 
-		void StandardInputManager::Impl::SetDefaultPadButtonMap() {
-			AssignPadToButton(pad::up | pad::pov_up, button::up);
-			AssignPadToButton(pad::down | pad::pov_down, button::down);
-			AssignPadToButton(pad::left | pad::pov_left, button::left);
-			AssignPadToButton(pad::right | pad::pov_right, button::right);
-			AssignPadToButton(pad::input_3, button::a);
-			AssignPadToButton(pad::input_4, button::b);
-			AssignPadToButton(pad::input_1, button::x);
-			AssignPadToButton(pad::input_2, button::y);
-			AssignPadToButton(pad::input_12, button::start);
-			AssignPadToButton(pad::input_5, button::l);
-			AssignPadToButton(pad::input_6, button::r);
+		void standard_input_manager::impl::set_default_pad_button_map() {
+			assign_pad_to_button(pad::up | pad::pov_up, button::up);
+			assign_pad_to_button(pad::down | pad::pov_down, button::down);
+			assign_pad_to_button(pad::left | pad::pov_left, button::left);
+			assign_pad_to_button(pad::right | pad::pov_right, button::right);
+			assign_pad_to_button(pad::input_3, button::a);
+			assign_pad_to_button(pad::input_4, button::b);
+			assign_pad_to_button(pad::input_1, button::x);
+			assign_pad_to_button(pad::input_2, button::y);
+			assign_pad_to_button(pad::input_12, button::start);
+			assign_pad_to_button(pad::input_5, button::l);
+			assign_pad_to_button(pad::input_6, button::r);
 		}
 
-		StandardInputManager::StandardInputManager() : _impl(std::make_unique<Impl>()) { }
+		standard_input_manager::standard_input_manager() : impl_(std::make_unique<impl>()) {}
 
-		bool StandardInputManager::initialize() { return true; }
+		bool standard_input_manager::initialize() { return true; }
 
-		void StandardInputManager::reset_all_settings() {
+		void standard_input_manager::reset_all_settings() {
 			reset_key_pad_button_map();
 			reset_button_alias();
 		}
 
-		void StandardInputManager::reset_key_pad_button_map() {
-			_impl->_key_to_button_map.clear();
-			_impl->_pad_to_button_map.clear();
+		void standard_input_manager::reset_key_pad_button_map() {
+			impl_->key_to_button_map.clear();
+			impl_->pad_to_button_map.clear();
 		}
 
-		void StandardInputManager::reset_button_alias() { _impl->_alias_button_map.clear(); }
+		void standard_input_manager::reset_button_alias() { impl_->alias_button_map.clear(); }
 
-		void StandardInputManager::set_default_settings() {
-			_impl->SetDefaultKeyButtonMap();
-			_impl->SetDefaultPadButtonMap();
+		void standard_input_manager::set_default_settings() {
+			impl_->set_default_key_button_map();
+			impl_->set_default_pad_button_map();
 		}
 
-		bool StandardInputManager::update() {
-			_impl->UpdateDxKeyInput();
+		bool standard_input_manager::update() {
+			impl_->update_dx_key_input();
 			return true;
 		}
 
-		bool StandardInputManager::key_state(keyboard::type k) const { return _impl->GetDxKeyState(k); }
+		bool standard_input_manager::key_state(const keyboard::type k) const { return impl_->get_dx_key_state(k); }
 
-		bool StandardInputManager::key_push(keyboard::type k) const { return _impl->GetDxKeyPush(k); }
+		bool standard_input_manager::key_push(const keyboard::type k) const { return impl_->get_dx_key_push(k); }
 
-		bool StandardInputManager::pad_state(pad::type k) const { return _impl->GetDxPadState(k); }
+		bool standard_input_manager::pad_state(const pad::type k) const { return impl_->get_dx_pad_state(k); }
 
-		bool StandardInputManager::pad_push(pad::type k) const { return _impl->GetDxPadPush(k); }
+		bool standard_input_manager::pad_push(const pad::type k) const { return impl_->get_dx_pad_push(k); }
 
-		bool StandardInputManager::button_state(button::type b) const {
+		bool standard_input_manager::button_state(const button::type b) const {
 			//キー
-			auto kit = _impl->_key_to_button_map.find(b);
-			if (kit != _impl->_key_to_button_map.end()) {
-				for (keyboard::type k : kit->second) { if (key_state(k)) { return true; } }
+			if (const auto kit = impl_->key_to_button_map.find(b); kit != impl_->key_to_button_map.end()) {
+				for (const keyboard::type k : kit->second) { if (key_state(k)) { return true; } }
 			}
 			//パッド
-			auto pit = _impl->_pad_to_button_map.find(b);
-			if (pit != _impl->_pad_to_button_map.end()) {
-				for (pad::type k : pit->second) { if (pad_state(k)) { return true; } }
+			if (const auto pit = impl_->pad_to_button_map.find(b); pit != impl_->pad_to_button_map.end()) {
+				for (const pad::type k : pit->second) { if (pad_state(k)) { return true; } }
 			}
 			return false;
 		}
 
-		bool StandardInputManager::button_push(button::type b) const {
+		bool standard_input_manager::button_push(const button::type b) const {
 			//キー
-			auto kit = _impl->_key_to_button_map.find(b);
-			if (kit != _impl->_key_to_button_map.end()) {
-				for (keyboard::type k : kit->second) { if (key_push(k)) { return true; } }
+			if (const auto kit = impl_->key_to_button_map.find(b); kit != impl_->key_to_button_map.end()) {
+				for (const keyboard::type k : kit->second) { if (key_push(k)) { return true; } }
 			}
 			//パッド
-			auto pit = _impl->_pad_to_button_map.find(b);
-			if (pit != _impl->_pad_to_button_map.end()) {
-				for (pad::type k : pit->second) { if (pad_push(k)) { return true; } }
+			if (const auto pit = impl_->pad_to_button_map.find(b); pit != impl_->pad_to_button_map.end()) {
+				for (const pad::type k : pit->second) { if (pad_push(k)) { return true; } }
 			}
 			return false;
 		}
 
-		bool StandardInputManager::button_state(const std::string &a) const {
-			auto it = _impl->_alias_button_map.find(a);
-			if (it == _impl->_alias_button_map.end()) { return false; }
+		bool standard_input_manager::button_state(const std::string &a) const {
+			const auto it = impl_->alias_button_map.find(a);
+			if (it == impl_->alias_button_map.end()) { return false; }
 			return button_state(it->second);
 		}
 
-		bool StandardInputManager::button_push(const std::string &a) const {
-			auto it = _impl->_alias_button_map.find(a);
-			if (it == _impl->_alias_button_map.end()) { return false; }
+		bool standard_input_manager::button_push(const std::string &a) const {
+			const auto it = impl_->alias_button_map.find(a);
+			if (it == impl_->alias_button_map.end()) { return false; }
 			return button_push(it->second);
 		}
 
-		bool StandardInputManager::mouse_button_state(mouse_button::type mb) const {
-			return _impl->GetDxMouseButtonState(mb);
+		bool standard_input_manager::mouse_button_state(const mouse_button::type mb) const {
+			return impl_->get_dx_mouse_button_state(mb);
 		}
 
-		bool StandardInputManager::mouse_button_push(mouse_button::type mb) const {
-			return _impl->GetDxMouseButtonPush(mb);
+		bool standard_input_manager::mouse_button_push(const mouse_button::type mb) const {
+			return impl_->get_dx_mouse_button_push(mb);
 		}
 
-		void StandardInputManager::assign_alias_to_button(const std::string &a, button::type b) {
-			auto it = _impl->_alias_button_map.find(a);
-			if (it == _impl->_alias_button_map.end()) {
-				it = (_impl->_alias_button_map.insert(std::make_pair(a, b))).first;
+		void standard_input_manager::assign_alias_to_button(const std::string &a, button::type b) {
+			auto it = impl_->alias_button_map.find(a);
+			if (it == impl_->alias_button_map.end()) {
+				it = impl_->alias_button_map.insert(std::make_pair(a, b)).first;
 			}
 			it->second = b;
 		}
 
-		void StandardInputManager::assign_key_to_button(keyboard::type k, button::type b) { _impl->AssignKeyToButton(k, b); }
+		void standard_input_manager::assign_key_to_button(const keyboard::type k, const button::type b) {
+			impl_->assign_key_to_button(k, b);
+		}
 
-		void StandardInputManager::assign_pad_to_button(pad::type p, button::type b) { _impl->AssignPadToButton(p, b); }
+		void standard_input_manager::assign_pad_to_button(const pad::type p, const button::type b) {
+			impl_->assign_pad_to_button(p, b);
+		}
 
 		const std::unordered_map<button::type, std::vector<keyboard::type>> &
-		StandardInputManager::get_assigned_key_to_button_map() const { return _impl->_key_to_button_map; }
+		standard_input_manager::get_assigned_key_to_button_map() const { return impl_->key_to_button_map; }
 
 		const std::unordered_map<button::type, std::vector<pad::type>> &
-		StandardInputManager::get_assigned_pad_to_button_map() const { return _impl->_pad_to_button_map; }
+		standard_input_manager::get_assigned_pad_to_button_map() const { return impl_->pad_to_button_map; }
 
-		StandardInputManager::~StandardInputManager() { }
+		standard_input_manager::~standard_input_manager() = default;
 
-		const vector_2di StandardInputManager::get_mouse_pointer_position() const {
+		const vector_2di standard_input_manager::get_mouse_pointer_position() const {
 			//			static int* leak = new int[2];
 			//			static int* leak2 = new int;
 			//			leak[3] = 0x666;
@@ -411,9 +419,9 @@ namespace plnt {
 			return vector_2di(x, y);
 		}
 
-		int StandardInputManager::get_mouse_wheel_rotation() const { return _impl->GetDxMouseWheelRotation(); }
+		int standard_input_manager::get_mouse_wheel_rotation() const { return impl_->get_dx_mouse_wheel_rotation(); }
 
-		void StandardInputManager::finalize() { }
+		void standard_input_manager::finalize() {}
 	}
 }
 

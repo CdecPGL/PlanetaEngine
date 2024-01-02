@@ -7,7 +7,7 @@
 #include "task.hpp"
 #include "task_manager_connection.hpp"
 #include "log_utility.hpp"
-#include "SystemTaskSlot.hpp"
+#include "system_task_slot.hpp"
 #include "i_debug_manager.hpp"
 #include "i_scene_internal.hpp"
 

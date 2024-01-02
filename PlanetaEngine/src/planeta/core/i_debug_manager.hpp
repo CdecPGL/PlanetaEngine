@@ -2,7 +2,7 @@
 
 #include <functional>
 
-#include "StringUtility.hpp"
+#include "string_utility.hpp"
 #include "vector_2d.hpp"
 #include "color.hpp"
 

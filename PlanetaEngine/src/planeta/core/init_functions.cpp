@@ -4,7 +4,7 @@
 #include "boost/filesystem.hpp"
 
 #include "init_functions.hpp"
-#include "SystemVariables.hpp"
+#include "system_variables.hpp"
 #include "file_manipulator.hpp"
 #include "file.hpp"
 #include "json_file.hpp"

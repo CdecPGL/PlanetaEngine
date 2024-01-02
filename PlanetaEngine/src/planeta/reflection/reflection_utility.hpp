@@ -14,7 +14,7 @@
 #include "boost/tti/has_static_member_function.hpp"
 
 #include "..\core\metaprogramming_utility.hpp"
-#include "planeta/core/StringUtility.hpp"
+#include "..\core\string_utility.hpp"
 #include "reflection_exceptions.hpp"
 
 namespace plnt::reflection {

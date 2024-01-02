@@ -2,7 +2,7 @@
 
 #include "i_task_manager.hpp"
 #include "scene_module.hpp"
-#include "SystemTaskSlot.hpp"
+#include "system_task_slot.hpp"
 
 namespace plnt::private_ {
 	class task_manager : public i_task_manager, public scene_module {

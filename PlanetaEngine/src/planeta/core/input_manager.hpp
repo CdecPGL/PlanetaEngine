@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "i_input_manager.hpp"
-#include "SubSystemManager.hpp"
+#include "sub_system_manager.hpp"
 
 namespace plnt {
 	/*インプットマネージャ*/

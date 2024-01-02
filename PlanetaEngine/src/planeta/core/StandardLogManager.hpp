@@ -1,47 +1,50 @@
 ﻿#pragma once
 
 #include <string>
-#include <list>
 #include <fstream>
 #include <memory>
-#include <cstdio>
+
 #include "log_manager.hpp"
 
-namespace plnt {
-	namespace private_ {
-		//システムログ管理(スタティックシングルトン)
-		class StandardLogManager final : public log_manager {
-		public:
-			StandardLogManager();
-			~StandardLogManager();
-			bool initialize() override;
-			void finalize() override;
-			/*コンソールへの出力を有効化*/
-			bool ValidateConsoleOutPut();
-			/*ファイルへの出力を追加*/
-			bool ValidateFileOutPut(const std::string &file_name);
+namespace plnt::private_ {
+	//システムログ管理(スタティックシングルトン)
+	class standard_log_manager final : public log_manager {
+	public:
+		standard_log_manager();
+		standard_log_manager(const standard_log_manager &) = delete;
+		standard_log_manager(standard_log_manager &&) = delete;
+		~standard_log_manager() override;
+		standard_log_manager &operator=(const standard_log_manager &) = delete;
+		standard_log_manager &operator=(standard_log_manager &&) = delete;
 
-			/*ログ出力ストリームを追加(インスタンスの生成、破棄は外部で行う)*/
-			void AddLogOutStream(std::ostream &ostrm);
-			/*ログ出力ストリームをすべて消す*/
-			void ResetLogOutStream();
-			/*ログ履歴を指定されたファイルに出力(エンジンのファイルシステムは使わず、カレントディレクトリに指定された名前で直接出力する)*/
-			bool DumpLogHistory(const std::string &file_name);
-			/*ログ履歴最大サイズを設定(0で無限)*/
-			void SetLogHistoryMaxSize(size_t size);
+		bool initialize() override;
+		void finalize() override;
+		/*コンソールへの出力を有効化*/
+		bool validate_console_out_put();
+		/*ファイルへの出力を追加*/
+		// NOLINTNEXTLINE(modernize-use-nodiscard)
+		bool validate_file_out_put(const std::string &file_name) const;
 
-			enum class DumpLevel { All, Message, Warning, Error };
+		/*ログ出力ストリームを追加(インスタンスの生成、破棄は外部で行う)*/
+		void add_log_out_stream(std::ostream &o_strm) const;
+		/*ログ出力ストリームをすべて消す*/
+		void reset_log_out_stream() const;
+		/*ログ履歴を指定されたファイルに出力(エンジンのファイルシステムは使わず、カレントディレクトリに指定された名前で直接出力する)*/
+		bool dump_log_history(const std::string &file_name);
+		/*ログ履歴最大サイズを設定(0で無限)*/
+		void set_log_history_max_size(size_t size);
 
-			/*出力レベルを設定*/
-			void SetDumpLevel();
+		enum class dump_level { all, message, warning, error };
 
-		private:
-			class Impl_;
-			std::unique_ptr<Impl_> impl_;
+		/*出力レベルを設定*/
+		//void set_dump_level();
 
-			void log_proc(log_level level, const std::string &detail, const std::string &place) override;
-			void simple_log_proc(const std::string &detail) override;
-			void _OutPut(log_level level, const std::string &str);
-		};
-	}
+	private:
+		class impl;
+		std::unique_ptr<impl> impl_;
+
+		void log_proc(log_level level, const std::string &detail, const std::string &place) override;
+		void simple_log_proc(const std::string &detail) override;
+		auto out_put(log_level level, const std::string &str) const -> void;
+	};
 }

@@ -1,6 +1,6 @@
 ﻿#include <functional>
 
-#include "SubSystemManager.hpp"
+#include "sub_system_manager.hpp"
 #include "game.hpp"
 #include "i_debug_manager.hpp"
 

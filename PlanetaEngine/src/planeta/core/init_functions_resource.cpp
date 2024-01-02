@@ -1,6 +1,6 @@
 ﻿#include "init_functions.hpp"
 #include "resource_manager.hpp"
-#include "SystemVariables.hpp"
+#include "system_variables.hpp"
 
 #include "planeta/buildin/RGraph.hpp"
 #include "planeta/buildin/RSound.hpp"

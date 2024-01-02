@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "i_debug_manager.hpp"
-#include "SubSystemManager.hpp"
+#include "sub_system_manager.hpp"
 
 namespace plnt::private_ {
 	class rendering_manager;
