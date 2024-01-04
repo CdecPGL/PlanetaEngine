@@ -19,7 +19,6 @@ namespace {
 namespace plnt::private_ {
 	namespace {
 		constexpr char *meta_data_file_suffix{const_cast<char *>(".meta.json")};
-		constexpr unsigned int resource_file_name_suffix_length{3};
 		constexpr char *tag_list_file_name{const_cast<char *>("tag_list.json")};
 	}
 
@@ -47,8 +46,8 @@ namespace plnt::private_ {
 		//メタデータを読み込み
 		const auto metadata = std::make_unique<json_file>();
 		if (res_dat.has_metadata) {
-			const auto metadata_file = file_accessor_->load_file(res_dat.metadata_file_path);
-			if (metadata_file == nullptr) { PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。"); } else if (!
+			if (const auto metadata_file = file_accessor_->load_file(res_dat.metadata_file_path); metadata_file ==
+				nullptr) { PE_LOG_MESSAGE(res_dat.file_path, "のメタデータファイルは存在しません。"); } else if (!
 				metadata->load(*metadata_file)) {
 				PE_LOG_ERROR("メタデータファイルの読み込みに失敗しました。Jsonファイルとして読み込めませんでした。");
 				return nullptr;
@@ -112,8 +111,14 @@ namespace plnt::private_ {
 			}
 			auto file_base_name = path.stem().string();
 			auto meta_file_name = file_name + meta_data_file_suffix;
-			//先頭3文字を接頭辞として取得
-			auto type_prefix = file_base_name.substr(0, resource_file_name_suffix_length);
+			//_で区切った最初の区間の文字列を接頭辞として取得
+			const auto rep_idx = file_base_name.find_first_of('_');
+			if (rep_idx == std::string::npos) {
+				PE_LOG_WARNING("リソースの読み込みに失敗しました。接頭辞が存在しません。(file_path: ", file_path, ")");
+				continue;
+			}
+
+			auto type_prefix = file_base_name.substr(0, rep_idx);
 			//接頭辞から型を取得
 			auto ti_it = resource_type_prefix_to_type_map_.find(type_prefix);
 			if (ti_it == resource_type_prefix_to_type_map_.end()) {
@@ -123,8 +128,8 @@ namespace plnt::private_ {
 			}
 			auto res_dat = std::make_unique<resource_data>(resource_data{ti_it->second});
 			//接頭辞を除いたものをリソースIDとする
-			res_dat->id = file_base_name.substr(resource_file_name_suffix_length, file_base_name.size() - 3);
-			//ファイル名(タイプ接頭辞+リソースIDをFullIDとする)
+			res_dat->id = file_base_name.substr(rep_idx + 1, file_base_name.size() - rep_idx - 1);
+			//ファイル名(タイプ接頭辞+アンダースコア_リソースIDをFullIDとする)
 			res_dat->full_id = file_base_name;
 			res_dat->file_path = file_path;
 			res_dat->metadata_file_path = (path.parent_path() / meta_file_name).string();
@@ -141,7 +146,7 @@ namespace plnt::private_ {
 					for (auto tag_map = tag_list.get_root().get_with_exception<std::unordered_map<
 						     std::string, std::vector<std::string>>>(); const auto &[tag, full_ids] : *tag_map) {
 						for (auto &&full_id : full_ids) {
-							try { full_id_to_resource_data_map[full_id]->tags.push_back(tag); } catch (const
+							try { full_id_to_resource_data_map.at(full_id)->tags.push_back(tag); } catch (const
 								std::out_of_range &) {
 								PE_LOG_WARNING("タグリストにおいて、タグ(", tag, ")に存在しないリソース(FullID:", full_id, "が関連付けられました。");
 							}
@@ -262,8 +267,8 @@ namespace plnt::private_ {
 	standard_resource_manager::~standard_resource_manager() = default;
 
 	void standard_resource_manager::on_resource_type_added(const std::type_info &type, const std::string &type_name,
-	                                                     const std::string &type_prefix,
-	                                                     const resource_creator_type &creator) {
+	                                                       const std::string &type_prefix,
+	                                                       const resource_creator_type &creator) {
 		resource_type_data_map_.emplace(type, resource_type_data{type, type_name, type_prefix, creator});
 		resource_type_prefix_to_type_map_.emplace(type_prefix, type);
 	}
@@ -344,11 +349,11 @@ namespace plnt::private_ {
 	}
 
 	std::string standard_resource_manager::get_full_id_from_type_and_id(const boost::typeindex::type_index &type_index,
-	                                                                  const std::string &id) {
+	                                                                    const std::string &id) {
 		const auto it = resource_type_data_map_.find(type_index.type_info());
 		if (it == resource_type_data_map_.end()) { return "NULL"; }
 		//IDにリソースタイプのPrefixを付けたものをフルIDとして返す
-		return it->second.type_prefix + id;
+		return it->second.type_prefix + "_" + id;
 	}
 
 	std::shared_ptr<resource_base> standard_resource_manager::get_resource_by_full_id(const std::string &full_id) {

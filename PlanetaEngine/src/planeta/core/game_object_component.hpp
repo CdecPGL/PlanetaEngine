@@ -14,8 +14,6 @@
 #include "i_scene.hpp"
 
 namespace plnt {
-	class SceneAccessorForGameObject;
-
 	namespace private_ {
 		class i_scene_internal;
 		struct game_object_component_set_up_data;

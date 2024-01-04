@@ -41,7 +41,7 @@ namespace plnt {
 		/*! 相対回転度を取得*/
 		[[nodiscard]] double relative_rotation_rad() const { return rotation_rad_; }
 		/*! 相対回転度を設定*/
-		c_collider_2d &relative_rotation_rad(double rota_rad) {
+		c_collider_2d &relative_rotation_rad(const double rota_rad) {
 			rotation_rad_ = rota_rad;
 			return *this;
 		}

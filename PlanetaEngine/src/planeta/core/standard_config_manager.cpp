@@ -14,31 +14,31 @@ namespace plnt::private_ {
 		try {
 			const auto root_obj = json_file.get_root().get_with_exception<json_object>();
 			//Game
-			const auto game_obj = root_obj->at_with_exception("Game")->get_with_exception<json_object>();
-			game_title_ = *game_obj->at_with_exception("Title")->get_with_exception<std::string>();
-			auto buf_array = *game_obj->at_with_exception("Version")->get_with_exception<std::vector<int>>();
+			const auto game_obj = root_obj->at_with_exception("game")->get_with_exception<json_object>();
+			game_title_ = *game_obj->at_with_exception("title")->get_with_exception<std::string>();
+			auto buf_array = *game_obj->at_with_exception("version")->get_with_exception<std::vector<int>>();
 			game_version_numbers_[0] = buf_array[0];
 			game_version_numbers_[1] = buf_array[1];
 			game_version_numbers_[2] = buf_array[2];
 			//Engine
-			const auto engine_obj = root_obj->at_with_exception("Engine")->get_with_exception<json_object>();
-			color_bit_depth_ = *engine_obj->at_with_exception("ColorBitDepth")->get_with_exception<int>();
-			buf_array = *engine_obj->at_with_exception("DrawSize")->get_with_exception<std::vector<int>>();
+			const auto engine_obj = root_obj->at_with_exception("engine")->get_with_exception<json_object>();
+			color_bit_depth_ = *engine_obj->at_with_exception("color_bit_depth")->get_with_exception<int>();
+			buf_array = *engine_obj->at_with_exception("draw_size")->get_with_exception<std::vector<int>>();
 			draw_size_.set(buf_array[0], buf_array[1]);
-			is_cursor_visible_ = *engine_obj->at_with_exception("IsCursorVisible")->get_with_exception<bool>();
+			is_cursor_visible_ = *engine_obj->at_with_exception("is_cursor_visible")->get_with_exception<bool>();
 			//Program
-			const auto program_obj = root_obj->at_with_exception("Program")->get_with_exception<json_object>();
-			const auto scene_obj = program_obj->at_with_exception("Scene")->get_with_exception<json_object>();
+			const auto program_obj = root_obj->at_with_exception("program")->get_with_exception<json_object>();
+			const auto scene_obj = program_obj->at_with_exception("scene")->get_with_exception<json_object>();
 			//-シーン
-			startup_scene_id_ = *scene_obj->at_with_exception("Startup")->get_with_exception<std::string>();
+			startup_scene_id_ = *scene_obj->at_with_exception("startup")->get_with_exception<std::string>();
 			//-衝突システム
-			const auto col_obj = program_obj->at_with_exception("Collision")->get_with_exception<json_object>();
+			const auto col_obj = program_obj->at_with_exception("collision")->get_with_exception<json_object>();
 			//--衝突グループ
-			const std::vector<std::string> group_list = *col_obj->at_with_exception("Groups")->get_with_exception<
+			const std::vector<std::string> group_list = *col_obj->at_with_exception("groups")->get_with_exception<
 				std::vector<std::string>>();
 			collision_group_matrix_.add_collision_groups(group_list);
 			//--衝突可能マトリックス
-			for (auto col_mtx = *col_obj->at_with_exception("CollidableMatrix")->get_with_exception<std::unordered_map<
+			for (auto col_mtx = *col_obj->at_with_exception("collidable_matrix")->get_with_exception<std::unordered_map<
 				     std::string, std::vector<std::string>>>(); auto &[group, cbl_groups] : col_mtx) {
 				for (auto &&cbl_group : cbl_groups) {
 					if (!collision_group_matrix_.set_collision_flag(group, cbl_group, true)) {
@@ -81,10 +81,10 @@ namespace plnt::private_ {
 		try {
 			const auto root_obj = json_file.get_root().get_with_exception<json_object>();
 			//Window
-			const auto window_obj = root_obj->at_with_exception("Window")->get_with_exception<json_object>();
-			const auto buf_array = *window_obj->at_with_exception("WindowSize")->get_with_exception<std::vector<int>>();
+			const auto window_obj = root_obj->at_with_exception("window")->get_with_exception<json_object>();
+			const auto buf_array = *window_obj->at_with_exception("window_size")->get_with_exception<std::vector<int>>();
 			window_size_.set(buf_array[0], buf_array[1]);
-			is_window_mode_ = *window_obj->at_with_exception("WindowMode")->get_with_exception<bool>();
+			is_window_mode_ = *window_obj->at_with_exception("window_mode")->get_with_exception<bool>();
 		} catch (std::out_of_range &e) {
 			PE_LOG_ERROR("設定ファイルからデータを取得することができませんでした。内容が不足している可能性があります。(", e.what(), ")");
 			return false;

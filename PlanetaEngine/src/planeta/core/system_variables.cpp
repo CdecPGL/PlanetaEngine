@@ -29,31 +29,31 @@ namespace plnt::private_::system_variables {
 	}
 
 	namespace resource {
-		const std::string builtin_graph_resource_type_name("Graphic");
-		const std::string builtin_sound_resource_type_name("SoundEffect");
-		const std::string builtin_music_resource_type_name("Music");
-		const std::string builtin_csv_resource_type_name("CSV");
-		const std::string builtin_text_resource_type_name("Text");
-		const std::string builtin_xml_resource_type_name("XML");
-		const std::string builtin_font_resource_type_name("Font");
-		const std::string builtin_json_resource_type_name("JSON");
-		const std::string builtin_game_object_resource_type_name("GameObject");
-		const std::string builtin_game_object_component_resource_type_name("GameObjectComponent");
-		const std::string builtin_effect_resource_type_name("Effect");
-		const std::string builtin_effect_texture_resource_type_name("EffectTexture");
+		const std::string builtin_graph_resource_type_name("graphic");
+		const std::string builtin_sound_resource_type_name("sound_effect");
+		const std::string builtin_music_resource_type_name("music");
+		const std::string builtin_csv_resource_type_name("csv");
+		const std::string builtin_text_resource_type_name("text");
+		const std::string builtin_xml_resource_type_name("xml");
+		const std::string builtin_font_resource_type_name("font");
+		const std::string builtin_json_resource_type_name("json");
+		const std::string builtin_game_object_resource_type_name("game_object");
+		const std::string builtin_game_object_component_resource_type_name("game_object_component");
+		const std::string builtin_effect_resource_type_name("effect");
+		const std::string builtin_effect_texture_resource_type_name("effect_texture");
 
-		const std::string builtin_graph_resource_type_prefix("Grp");
-		const std::string builtin_sound_resource_type_prefix("Snd");
-		const std::string builtin_music_resource_type_prefix("Msc");
-		const std::string builtin_csv_resource_type_prefix("Csv");
-		const std::string builtin_text_resource_type_prefix("Txt");
-		const std::string builtin_xml_resource_type_prefix("Xml");
-		const std::string builtin_font_resource_type_prefix("Fnt");
-		const std::string builtin_json_resource_type_prefix("Jsn");
-		const std::string builtin_game_object_resource_type_prefix("Gbj");
-		const std::string builtin_game_object_component_resource_type_prefix("Gcm");
-		const std::string builtin_effect_resource_type_prefix("Efc");
-		const std::string builtin_effect_texture_resource_type_prefix("Etx");
+		const std::string builtin_graph_resource_type_prefix("grp");
+		const std::string builtin_sound_resource_type_prefix("snd");
+		const std::string builtin_music_resource_type_prefix("msc");
+		const std::string builtin_csv_resource_type_prefix("csv");
+		const std::string builtin_text_resource_type_prefix("txt");
+		const std::string builtin_xml_resource_type_prefix("xml");
+		const std::string builtin_font_resource_type_prefix("fnt");
+		const std::string builtin_json_resource_type_prefix("jsn");
+		const std::string builtin_game_object_resource_type_prefix("gbj");
+		const std::string builtin_game_object_component_resource_type_prefix("gcm");
+		const std::string builtin_effect_resource_type_prefix("efc");
+		const std::string builtin_effect_texture_resource_type_prefix("etx");
 	}
 
 	namespace prefixes {

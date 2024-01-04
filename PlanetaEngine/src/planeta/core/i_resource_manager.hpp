@@ -25,12 +25,12 @@ namespace plnt {
 		/// <summary>リソースをIDで取得し型を変換する。</summary>
 		/// <param name="id">取得するリソースのリソースID</param>
 		/// <returns>取得されたリソース。取得できなかった場合はnullptr</returns>
-		template <class RT>
-		[[nodiscard]] std::shared_ptr<RT> get_resource_by_id(const std::string &id) {
-			static_assert(std::is_base_of_v<resource_base, RT>, "RT must derive ResourceBase");
-			if (const auto rsc = get_resource_by_type_and_id(typeid(RT), id)) {
-				if (auto out = std::dynamic_pointer_cast<RT>(rsc)) { return out; }
-				PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(RT).name(), "\")");
+		template <class T>
+		[[nodiscard]] std::shared_ptr<T> get_resource_by_id(const std::string &id) {
+			static_assert(std::is_base_of_v<resource_base, T>, "T must derive ResourceBase");
+			if (const auto rsc = get_resource_by_type_and_id(typeid(T), id)) {
+				if (auto out = std::dynamic_pointer_cast<T>(rsc)) { return out; }
+				PE_LOG_ERROR("リソースの型を変換できませんでした。(\"ターゲット型:", typeid(T).name(), "\")");
 				return nullptr;
 			}
 			return nullptr;
