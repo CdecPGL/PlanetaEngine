@@ -5,8 +5,8 @@
 
 #include "planeta/core/file.hpp"
 #include "../effekseer/effekseer_util.hpp"
-#include "REffect.hpp"
-#include "REffectTexture.hpp"
+#include "r_effect.hpp"
+#include "r_effect_texture.hpp"
 
 using namespace ::plnt::effekseer;
 

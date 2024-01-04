@@ -9,7 +9,7 @@
 #include "../math/math_constant.hpp"
 #include "c_draw_planet_2d.hpp"
 #include "c_planet.hpp"
-#include "RGraph.hpp"
+#include "r_graph.hpp"
 
 namespace {
 	constexpr unsigned int default_horizontal_separation(90);

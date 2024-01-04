@@ -4,7 +4,7 @@
 #include "collision_world.hpp"
 #include "draw_system.hpp"
 #include "transform_system.hpp"
-#include "planeta/buildin/TInstant.hpp"
+#include "..\buildin\t_instant.hpp"
 
 namespace plnt::private_ {
 	bool standard_system_set_up_scene(scene &scene) {

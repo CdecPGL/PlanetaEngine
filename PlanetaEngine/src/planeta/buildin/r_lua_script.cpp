@@ -1,6 +1,6 @@
 ﻿#include "planeta/core/file.hpp"
 
-#include "RLuaScript.hpp"
+#include "r_lua_script.hpp"
 
 namespace plnt {
 	bool r_lua_script::register_to_lua_state(lua_State *l) {

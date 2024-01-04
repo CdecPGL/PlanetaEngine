@@ -6,8 +6,8 @@
 
 #include "bgm_controller.hpp"
 #include "sound_effect_controller.hpp"
-#include "planeta/buildin/RMusic.hpp"
-#include "planeta/buildin/RSound.hpp"
+#include "..\buildin\r_music.hpp"
+#include "..\buildin\r_sound.hpp"
 #include "log_utility.hpp"
 
 namespace plnt::private_ {

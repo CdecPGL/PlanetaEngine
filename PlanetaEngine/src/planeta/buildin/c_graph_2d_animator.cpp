@@ -2,7 +2,7 @@
 #include "../core/log_utility.hpp"
 #include "c_draw_graph_2d.hpp"
 #include "c_graph_2d_animator.hpp"
-#include "TInstant.hpp"
+#include "t_instant.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_graph_2d_animator) {

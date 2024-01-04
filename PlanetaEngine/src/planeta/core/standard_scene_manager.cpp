@@ -3,7 +3,7 @@
 #include "i_debug_manager.hpp"
 #include "scene.hpp"
 #include "scene_setupper.hpp"
-#include "planeta/buildin/SError.hpp"
+#include "..\buildin\s_error.hpp"
 #include "log_utility.hpp"
 #include "null_weak_pointer_exception.hpp"
 #include "prefix_utility.hpp"

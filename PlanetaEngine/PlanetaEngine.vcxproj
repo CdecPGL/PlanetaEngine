@@ -438,10 +438,10 @@
     <ClInclude Include="src\planeta\core\time.hpp" />
     <ClInclude Include="src\planeta\core\prefix_utility.hpp" />
     <ClInclude Include="src\planeta\core\range_utility.hpp" />
-    <ClInclude Include="src\planeta\buildin\RCsv.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_csv.hpp" />
     <ClInclude Include="src\planeta\core\rectangle.hpp" />
-    <ClInclude Include="src\planeta\buildin\REffect.hpp" />
-    <ClInclude Include="src\planeta\buildin\REffectTexture.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_effect.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_effect_texture.hpp" />
     <ClInclude Include="src\planeta\reflection\reflectable.hpp" />
     <ClInclude Include="src\planeta\reflection\reflectable_class_accessor.hpp" />
     <ClInclude Include="src\planeta\reflection\reflection.hpp" />
@@ -454,17 +454,17 @@
     <ClInclude Include="src\planeta\core\resource_holder.hpp" />
     <ClInclude Include="src\planeta\core\resource_manager.hpp" />
     <ClInclude Include="src\planeta\core\resource_referencer.hpp" />
-    <ClInclude Include="src\planeta\buildin\RFont.hpp" />
-    <ClInclude Include="src\planeta\buildin\RGameObject.hpp" />
-    <ClInclude Include="src\planeta\buildin\RGraph.hpp" />
-    <ClInclude Include="src\planeta\buildin\RIni.hpp" />
-    <ClInclude Include="src\planeta\buildin\RJson.hpp" />
-    <ClInclude Include="src\planeta\buildin\RLuaScript.hpp" />
-    <ClInclude Include="src\planeta\buildin\RMusic.hpp" />
-    <ClInclude Include="src\planeta\buildin\RPtree.hpp" />
-    <ClInclude Include="src\planeta\buildin\RSound.hpp" />
-    <ClInclude Include="src\planeta\buildin\RText.hpp" />
-    <ClInclude Include="src\planeta\buildin\RXml.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_font.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_game_object.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_graph.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_ini.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_json.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_lua_script.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_music.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_ptree.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_sound.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_text.hpp" />
+    <ClInclude Include="src\planeta\buildin\r_xml.hpp" />
     <ClInclude Include="src\planeta\core\save_manager.hpp" />
     <ClInclude Include="src\planeta\core\scene.hpp" />
     <ClInclude Include="src\planeta\core\scene_manager.hpp" />
@@ -474,7 +474,7 @@
     <ClInclude Include="src\planeta\core\screen.hpp" />
     <ClInclude Include="src\planeta\core\screen_drawer_2d.hpp" />
     <ClInclude Include="src\planeta\core\screen_drawer_gui.hpp" />
-    <ClInclude Include="src\planeta\buildin\SError.hpp" />
+    <ClInclude Include="src\planeta\buildin\s_error.hpp" />
     <ClInclude Include="src\planeta\core\signal.hpp" />
     <ClInclude Include="src\planeta\deprecated\SimplePolygonPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -521,15 +521,15 @@
     <ClInclude Include="src\planeta\core\task_manager.hpp" />
     <ClInclude Include="src\planeta\core\task_manager_connection.hpp" />
     <ClInclude Include="src\planeta\core\task_slot.hpp" />
-    <ClInclude Include="src\planeta\buildin\TCoroutine.hpp" />
+    <ClInclude Include="src\planeta\buildin\t_coroutine.hpp" />
     <ClInclude Include="src\planeta\deprecated\TextPanel.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\TInstant.hpp" />
-    <ClInclude Include="src\planeta\buildin\TInstantCoroutine.hpp" />
+    <ClInclude Include="src\planeta\buildin\t_instant.hpp" />
+    <ClInclude Include="src\planeta\buildin\t_instant_coroutine.hpp" />
     <ClInclude Include="src\planeta\core\transform_system.hpp" />
     <ClInclude Include="src\planeta\util\two_key_map.hpp" />
     <ClInclude Include="src\planeta\reflection\type_info_wrapper.hpp" />
@@ -577,7 +577,7 @@
     <ClCompile Include="src\planeta\core\json_file.cpp" />
     <ClCompile Include="src\planeta\core\game_set_standard_manager_impl.cpp" />
     <ClCompile Include="src\planeta\core\prefix_utility.cpp" />
-    <ClCompile Include="src\planeta\buildin\REffect.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_effect.cpp" />
     <ClCompile Include="src\planeta\reflection\reflectable_class_accessor.cpp" />
     <ClCompile Include="src\planeta\reflection\reflection.cpp" />
     <ClCompile Include="src\planeta\core\init_functions.cpp" />
@@ -588,10 +588,10 @@
     <ClCompile Include="src\planeta\reflection\reflection_utility.cpp" />
     <ClCompile Include="src\planeta\core\resource_base.cpp" />
     <ClCompile Include="src\planeta\core\resource_referencer.cpp" />
-    <ClCompile Include="src\planeta\buildin\RJson.cpp" />
-    <ClCompile Include="src\planeta\buildin\RLuaScript.cpp" />
-    <ClCompile Include="src\planeta\buildin\RPtree.cpp" />
-    <ClCompile Include="src\planeta\buildin\REffectTexture.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_json.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_lua_script.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_ptree.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_effect_texture.cpp" />
     <ClCompile Include="src\planeta\core\scene_setup_proxy.cpp" />
     <ClCompile Include="src\planeta\core\standard_config_manager.cpp" />
     <ClCompile Include="src\planeta\core\standard_system_setup_scene_function.cpp" />
@@ -599,19 +599,19 @@
     <ClCompile Include="src\planeta\core\string_utility.cpp" />
     <ClCompile Include="src\planeta\core\sub_system_manager.cpp" />
     <ClCompile Include="src\planeta\core\task_manager_connection.cpp" />
-    <ClCompile Include="src\planeta\buildin\TCoroutine.cpp" />
-    <ClCompile Include="src\planeta\buildin\RCsv.cpp" />
+    <ClCompile Include="src\planeta\buildin\t_coroutine.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_csv.cpp" />
     <ClCompile Include="src\planeta\core\standard_debug_manager.cpp" />
     <ClCompile Include="src\planeta\buildin\c_draw_polygon_2d.cpp" />
     <ClCompile Include="src\planeta\archiver\encrypter_base.cpp" />
-    <ClCompile Include="src\planeta\buildin\SError.cpp" />
+    <ClCompile Include="src\planeta\buildin\s_error.cpp" />
     <ClCompile Include="src\planeta\archiver\exor_encrypter.cpp" />
     <ClCompile Include="src\planeta\core\file_istream.cpp" />
     <ClCompile Include="src\planeta\core\file_manipulator.cpp" />
     <ClCompile Include="src\planeta\core\file_ostream.cpp" />
     <ClCompile Include="src\planeta\core\file_stream_buf.cpp" />
     <ClCompile Include="src\planeta\core\file_system_utility.cpp" />
-    <ClCompile Include="src\planeta\buildin\RFont.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_font.cpp" />
     <ClCompile Include="src\planeta\core\data_container.cpp" />
     <ClCompile Include="src\planeta\core\data_container_impl.cpp" />
     <ClCompile Include="src\planeta\core\data_container_serialize_utility.cpp" />
@@ -625,7 +625,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\TInstant.cpp" />
+    <ClCompile Include="src\planeta\buildin\t_instant.cpp" />
     <ClCompile Include="src\planeta\core\standard_save_manager.cpp" />
     <ClCompile Include="src\planeta\core\scene_setupper.cpp" />
     <ClCompile Include="src\planeta\core\screen.cpp" />
@@ -675,15 +675,15 @@
     <ClCompile Include="src\planeta\buildin\c_draw_planet_2d.cpp" />
     <ClCompile Include="src\planeta\dxlib\dx_utility.cpp" />
     <ClCompile Include="src\planeta\buildin\c_graph_2d_animator.cpp" />
-    <ClCompile Include="src\planeta\buildin\RGraph.cpp" />
-    <ClCompile Include="src\planeta\buildin\RIni.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_graph.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_ini.cpp" />
     <ClCompile Include="src\planeta\core\key_config.cpp" />
     <ClCompile Include="src\planeta\core\standard_input_manager.cpp" />
     <ClCompile Include="src\planeta\core\input_utility.cpp" />
-    <ClCompile Include="src\planeta\buildin\RMusic.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_music.cpp" />
     <ClCompile Include="src\planeta\core\date_time.cpp" />
     <ClCompile Include="src\planeta\buildin\c_planet_ground_2d.cpp" />
-    <ClCompile Include="src\planeta\buildin\RSound.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_sound.cpp" />
     <ClCompile Include="src\planeta\core\file.cpp" />
     <ClCompile Include="src\planeta\core\standard_collision_world.cpp" />
     <ClCompile Include="src\planeta\core\game_object_component.cpp" />
@@ -704,7 +704,7 @@
     <ClCompile Include="src\planeta\core\standard_log_manager.cpp" />
     <ClCompile Include="src\planeta\core\system_variables.cpp" />
     <ClCompile Include="src\planeta\core\time.cpp" />
-    <ClCompile Include="src\planeta\buildin\RText.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_text.cpp" />
     <ClCompile Include="src\planeta\buildin\c_transform_2d.cpp" />
     <ClCompile Include="src\planeta\deprecated\GUIManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -720,7 +720,7 @@
     </ClCompile>
     <ClCompile Include="src\planeta\core\standard_transform_system.cpp" />
     <ClCompile Include="src\planeta\win\windows_utility.cpp" />
-    <ClCompile Include="src\planeta\buildin\RXml.cpp" />
+    <ClCompile Include="src\planeta\buildin\r_xml.cpp" />
     <ClCompile Include="src\planeta\core\xml_file.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

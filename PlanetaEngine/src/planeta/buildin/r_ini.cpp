@@ -2,7 +2,7 @@
 
 #include "../core/file_istream.hpp"
 
-#include "RIni.hpp"
+#include "r_ini.hpp"
 
 namespace plnt {
 	const ini_file &r_ini::get_ini_file() const { return *ini_file_; }

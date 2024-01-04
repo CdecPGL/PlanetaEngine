@@ -9,8 +9,8 @@
 #include "../core/i_game_object.hpp"
 #include "c_effect.hpp"
 #include "c_transform_2d.hpp"
-#include "REffect.hpp"
-#include "TInstant.hpp"
+#include "r_effect.hpp"
+#include "t_instant.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

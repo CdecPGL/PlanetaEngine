@@ -3,6 +3,6 @@
 //! 定義済みタスクのヘッダファイルをまとめてインクルードする
 //! PlanetaEngine内部では使わないこと
 
-#include "planeta/buildin/TCoroutine.hpp"
-#include "planeta/buildin/TInstant.hpp"
-#include "planeta/buildin/TInstantCoroutine.hpp"
+#include "buildin\t_coroutine.hpp"
+#include "buildin\t_instant.hpp"
+#include "buildin\t_instant_coroutine.hpp"

@@ -5,7 +5,7 @@
 #include "../core/matrix_22.hpp"
 #include "../core/graph_draw_data_2d.hpp"
 #include "c_draw_graph_2d.hpp"
-#include "RGraph.hpp"
+#include "r_graph.hpp"
 #include "c_transform_2d.hpp"
 
 namespace plnt {

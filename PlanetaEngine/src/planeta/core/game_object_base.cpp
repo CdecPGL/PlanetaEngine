@@ -13,7 +13,7 @@
 #include "task.hpp"
 #include "go_component_adder.hpp"
 #include "go_component_getter.hpp"
-#include "planeta/buildin/RPtree.hpp"
+#include "..\buildin\r_ptree.hpp"
 #include "i_resource_manager.hpp"
 #include "planeta/reflection/reflection.hpp"
 #include "i_scene_internal.hpp"

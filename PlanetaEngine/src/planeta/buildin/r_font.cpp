@@ -3,7 +3,7 @@
 #include "planeta/core/file.hpp"
 #include "../core/log_utility.hpp"
 #include "../core/json_file.hpp"
-#include "RFont.hpp"
+#include "r_font.hpp"
 
 namespace plnt {
 	bool r_font::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {

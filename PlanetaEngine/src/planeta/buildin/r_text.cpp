@@ -1,7 +1,7 @@
 ﻿#include "planeta/core/file.hpp"
 #include "../core/character_code.hpp"
 
-#include "RText.hpp"
+#include "r_text.hpp"
 
 namespace plnt {
 	bool r_text::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {

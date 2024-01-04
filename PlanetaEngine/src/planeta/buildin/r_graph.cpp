@@ -3,7 +3,7 @@
 #include "planeta/core/file.hpp"
 #include "../core/log_utility.hpp"
 #include "../math/math_utility.hpp"
-#include "RGraph.hpp"
+#include "r_graph.hpp"
 
 namespace plnt {
 	bool r_graph::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {

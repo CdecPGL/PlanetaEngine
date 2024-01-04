@@ -3,7 +3,7 @@
 #include "DxLib.h"
 
 #include "bgm_controller.hpp"
-#include "planeta/buildin/RMusic.hpp"
+#include "..\buildin\r_music.hpp"
 #include "log_utility.hpp"
 
 namespace plnt {

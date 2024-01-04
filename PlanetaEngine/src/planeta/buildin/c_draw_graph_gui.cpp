@@ -3,7 +3,7 @@
 #include "planeta/core/rectangle.hpp"
 #include "../core/resource_holder.hpp"
 #include "c_draw_graph_gui.hpp"
-#include "RGraph.hpp"
+#include "r_graph.hpp"
 #include "c_transform_gui.hpp"
 
 namespace plnt {

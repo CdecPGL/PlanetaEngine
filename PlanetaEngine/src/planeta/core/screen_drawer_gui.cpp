@@ -2,8 +2,8 @@
 
 #include "DxLib.h"
 
-#include "planeta/buildin/RGraph.hpp"
-#include "planeta/buildin/RFont.hpp"
+#include "..\buildin\r_graph.hpp"
+#include "..\buildin\r_font.hpp"
 #include "../dxlib/dx_utility.hpp"
 
 #include "screen.hpp"

@@ -2,7 +2,7 @@
 #include "c_transform_2d.hpp"
 #include "c_ground_2d.hpp"
 #include "../core/i_game_object.hpp"
-#include "TInstant.hpp"
+#include "t_instant.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_belonging_ground_gravity) {

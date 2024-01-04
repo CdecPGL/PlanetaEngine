@@ -1,4 +1,4 @@
-﻿#include "planeta/buildin/RGraph.hpp"
+﻿#include "..\buildin\r_graph.hpp"
 #include "../dxlib/dx_graph_draw_data.hpp"
 #include "../dxlib/dx_utility.hpp"
 #include "graph_draw_data_2d.hpp"

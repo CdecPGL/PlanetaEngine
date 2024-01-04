@@ -5,7 +5,7 @@
 #include "game_object_factory.hpp"
 #include "planeta/reflection/reflection.hpp"
 #include "game_object_base.hpp"
-#include "planeta/buildin/RGameObject.hpp"
+#include "..\buildin\r_game_object.hpp"
 
 namespace plnt::private_ {
 	std::shared_ptr<game_object_base> game_object_factory::get_new_game_object(

@@ -3,8 +3,8 @@
 #include "../core/i_task_manager.hpp"
 #include "../core/scene_setup_proxy.hpp"
 
-#include "SError.hpp"
-#include "TInstant.hpp"
+#include "s_error.hpp"
+#include "t_instant.hpp"
 
 namespace plnt::private_ {
 	bool s_error::setup_scene(scene_setup_proxy &scene_proxy, const util::parameter_holder &initialize_parameters) {

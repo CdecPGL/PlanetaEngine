@@ -1,4 +1,4 @@
-﻿#include "RXml.hpp"
+﻿#include "r_xml.hpp"
 
 namespace plnt {
 	bool r_xml::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {

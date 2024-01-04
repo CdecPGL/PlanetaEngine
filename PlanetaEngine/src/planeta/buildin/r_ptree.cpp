@@ -4,7 +4,7 @@
 
 #include "../core/file_istream.hpp"
 
-#include "RPtree.hpp"
+#include "r_ptree.hpp"
 
 namespace plnt {
 	//現在はJSONからの読み込みにしか対応していないが、INIやXMLにも対応予定

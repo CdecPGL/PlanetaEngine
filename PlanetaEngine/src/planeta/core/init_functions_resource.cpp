@@ -2,17 +2,17 @@
 #include "resource_manager.hpp"
 #include "system_variables.hpp"
 
-#include "planeta/buildin/RGraph.hpp"
-#include "planeta/buildin/RSound.hpp"
-#include "planeta/buildin/RMusic.hpp"
-#include "planeta/buildin/RCsv.hpp"
-#include "planeta/buildin/RFont.hpp"
-#include "planeta/buildin/RText.hpp"
-#include "planeta/buildin/RXml.hpp"
-#include "planeta/buildin/RJson.hpp"
-#include "planeta/buildin/REffect.hpp"
-#include "planeta/buildin/REffectTexture.hpp"
-#include "planeta/buildin/RGameObject.hpp"
+#include "..\buildin\r_graph.hpp"
+#include "..\buildin\r_sound.hpp"
+#include "..\buildin\r_music.hpp"
+#include "..\buildin\r_csv.hpp"
+#include "..\buildin\r_font.hpp"
+#include "..\buildin\r_text.hpp"
+#include "..\buildin\r_xml.hpp"
+#include "..\buildin\r_json.hpp"
+#include "..\buildin\r_effect.hpp"
+#include "..\buildin\r_effect_texture.hpp"
+#include "..\buildin\r_game_object.hpp"
 
 namespace plnt::private_::init_funcs {
 	std::tuple<bool, std::function<void()>> initialize_resource_system(

@@ -2,7 +2,7 @@
 
 #include "planeta/core/file.hpp"
 
-#include "RSound.hpp"
+#include "r_sound.hpp"
 
 namespace plnt {
 	bool r_sound::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {

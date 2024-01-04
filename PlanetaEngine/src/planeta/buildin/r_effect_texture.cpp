@@ -5,7 +5,7 @@
 
 #include "planeta/core/file.hpp"
 
-#include "REffectTexture.hpp"
+#include "r_effect_texture.hpp"
 
 bool plnt::r_effect_texture::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 	dx_base_image_ = std::make_unique<DxLib::BASEIMAGE>(::DxLib::BASEIMAGE{});
