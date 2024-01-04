@@ -810,7 +810,7 @@
     <ClInclude Include="src\planeta\core\transform_system.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\PlanetaEngine.hpp">
+    <ClInclude Include="src\planeta\planeta_engine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\deprecated\GraphPanel.hpp">
@@ -843,16 +843,16 @@
     <ClInclude Include="src\planeta\deprecated\TextPanel.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\Math.hpp">
+    <ClInclude Include="src\planeta\math.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\BuildinGameObjectComponents.hpp">
+    <ClInclude Include="src\planeta\builtin_game_object_components.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\BuildinResources.hpp">
+    <ClInclude Include="src\planeta\builtin_resources.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\BuildinTasks.hpp">
+    <ClInclude Include="src\planeta\builtin_tasks.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\my_lib\ini_loader.hpp">
