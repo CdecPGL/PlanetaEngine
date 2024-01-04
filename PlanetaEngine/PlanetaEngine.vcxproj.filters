@@ -261,7 +261,7 @@
     <ClInclude Include="src\planeta\buildin\CDrawPolygon2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDumyGround2D.hpp">
+    <ClInclude Include="src\planeta\buildin\CDummyGround2D.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\CEffect.hpp">
@@ -928,9 +928,6 @@
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
-    </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CPolygonCollider2D.cpp">
-      <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\CStraightLineCollider2D.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>

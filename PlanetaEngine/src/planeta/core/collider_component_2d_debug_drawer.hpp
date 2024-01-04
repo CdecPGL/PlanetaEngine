@@ -16,9 +16,9 @@ namespace plnt {
 			collider_component_2d_debug_drawer &operator=(collider_component_2d_debug_drawer &&) = delete;
 
 			explicit collider_component_2d_debug_drawer(i_debug_drawer &dd);
-			bool collide_with(CCircleCollider2D &circle_collider) override;
-			bool collide_with(CStraightLineCollider2D &straight_line_collider) override;
-			bool collide_with(CPolygonCollider2D &polygon_collider) override;
+			bool collide_with(c_circle_collider_2d &circle_collider) override;
+			bool collide_with(c_straight_line_collider_2d &straight_line_collider) override;
+			bool collide_with(c_polygon_collider_2d &polygon_collider) override;
 
 		private:
 			i_debug_drawer &debug_drawer_;

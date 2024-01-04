@@ -40,7 +40,7 @@ namespace plnt::private_ {
 		for (auto ccc_it = group.begin(); ccc_it != group.end(); ++ccc_it) {
 			for (auto ccc_it2 = boost::next(ccc_it); ccc_it2 != group.end(); ++ccc_it2) {
 				++collision_process_count;
-				if (ccc_it->get().collider2d_data.collider2d.DetectCollision(
+				if (ccc_it->get().collider2d_data.collider2d.detect_collision(
 					ccc_it2->get().collider2d_data.collider2d)) {
 					++collision_count;
 					//衝突していたら衝突イベントをホルダーに追加
@@ -66,7 +66,7 @@ namespace plnt::private_ {
 		for (auto ccc_it = group1.begin(); ccc_it != group1.end(); ++ccc_it) {
 			for (auto ccc_it2 = group2.begin(); ccc_it2 != group2.end(); ++ccc_it2) {
 				++collision_process_count;
-				if (ccc_it->get().collider2d_data.collider2d.DetectCollision(
+				if (ccc_it->get().collider2d_data.collider2d.detect_collision(
 					ccc_it2->get().collider2d_data.collider2d)) {
 					++collision_count;
 					//衝突していたら衝突イベントをホルダーに追加
@@ -94,7 +94,7 @@ namespace plnt::private_ {
 			if (auto &[collider2d_data, group_iterator_at_collision_groups, iterator_at_collision_group,
 					collidable_with_ground_flag, iterator_at_collision_with_ground_list,
 					is_collided_with_ground_last_proc]
-				= col_com.get(); collider2d_data.collider2d.DetectCollision(
+				= col_com.get(); collider2d_data.collider2d.detect_collision(
 				collider2d_data.transform2d.ground())) {
 				++collision_count;
 				//地形衝突イベントをホルダーに追加
@@ -126,7 +126,7 @@ namespace plnt::private_ {
 		register_data->is_collided_with_ground_last_proc = false; //地面と衝突していないとして初期化する
 		const auto &[collider2d, game_object, transform2d, collide_with_collider_event_invoker,
 			collide_with_ground_event_invoker] = register_data->collider2d_data;
-		CCollider2D &col_2d = collider2d;
+		c_collider_2d &col_2d = collider2d;
 		std::string group_name = col_2d.collision_group();
 		//衝突グループ確認
 		const auto it = collision_groups_.find(col_2d.collision_group());
@@ -150,8 +150,8 @@ namespace plnt::private_ {
 		return true;
 	}
 
-	bool standard_collision_world::remove(const CCollider2D *col_com_ptr) {
-		const auto it = collider_resist_data_map_.find(const_cast<CCollider2D *>(col_com_ptr));
+	bool standard_collision_world::remove(const c_collider_2d *col_com_ptr) {
+		const auto it = collider_resist_data_map_.find(const_cast<c_collider_2d *>(col_com_ptr));
 		if (it == collider_resist_data_map_.end()) {
 			//登録されていないコライダー
 			PE_LOG_FATAL("存在しないコライダーが指定されました。");
@@ -174,9 +174,9 @@ namespace plnt::private_ {
 		return true;
 	}
 
-	bool standard_collision_world::change_collision_group(const CCollider2D *col_com_ptr,
+	bool standard_collision_world::change_collision_group(const c_collider_2d *col_com_ptr,
 	                                                      const std::string &group_name) {
-		const auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D *>(col_com_ptr));
+		const auto resist_data_it = collider_resist_data_map_.find(const_cast<c_collider_2d *>(col_com_ptr));
 		if (resist_data_it == collider_resist_data_map_.end()) {
 			//登録されていないコライダー
 			PE_LOG_FATAL("存在しないコライダーが指定されました。");
@@ -200,8 +200,8 @@ namespace plnt::private_ {
 		return true;
 	}
 
-	bool standard_collision_world::change_collision_with_ground_flag(const CCollider2D *col_com_ptr, bool flag) {
-		const auto resist_data_it = collider_resist_data_map_.find(const_cast<CCollider2D *>(col_com_ptr));
+	bool standard_collision_world::change_collision_with_ground_flag(const c_collider_2d *col_com_ptr, bool flag) {
+		const auto resist_data_it = collider_resist_data_map_.find(const_cast<c_collider_2d *>(col_com_ptr));
 		if (resist_data_it == collider_resist_data_map_.end()) {
 			//登録されていないコライダー
 			PE_LOG_FATAL("存在しないコライダーが指定されました。");
@@ -297,7 +297,7 @@ namespace plnt::private_ {
 		collider_component_2d_debug_drawer drawer{dd};
 		for (const auto &register_data : collider_resist_data_map_ | std::views::values) {
 			//衝突判定に使うダブルディスパッチを用いてコライダーごとに描画処理を分ける。
-			register_data->collider2d_data.collider2d.DetectCollision(drawer);
+			register_data->collider2d_data.collider2d.detect_collision(drawer);
 		}
 	}
 

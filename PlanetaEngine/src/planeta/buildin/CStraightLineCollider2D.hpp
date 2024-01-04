@@ -4,29 +4,29 @@
 
 namespace plnt {
 	/*! 直線コライダーコンポーネント*/
-	class CStraightLineCollider2D final : public CCollider2D {
-		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CStraightLineCollider2D);
+	class c_straight_line_collider_2d final : public c_collider_2d {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(c_straight_line_collider_2d);
 
 	public:
-		using super = CCollider2D;
+		using super = c_collider_2d;
 
-		bool DetectCollision(private_::i_collider_with_collider_2d &collider) override {
+		bool detect_collision(i_collider_with_collider_2d &collider) override {
 			return collider.collide_with(*this);
 		}
 
 		/*! 長さを取得*/
-		const double length() const { return length_; }
+		[[nodiscard]] double length() const { return length_; }
 		/*! 長さを設定*/
-		CStraightLineCollider2D &length(double l) {
+		c_straight_line_collider_2d &length(const double l) {
 			length_ = l;
 			return *this;
 		}
 
 	private:
-		virtual bool collide_with(CCircleCollider2D &circle_collider) override;
+		bool collide_with(c_circle_collider_2d &circle_collider) override;
 
 		double length_ = 1.0;
 	};
 
-	PE_GAMEOBJECTCOMPONENT_CLASS(CStraightLineCollider2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(c_straight_line_collider_2d);
 }

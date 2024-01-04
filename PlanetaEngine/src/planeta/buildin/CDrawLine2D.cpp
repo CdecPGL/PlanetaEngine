@@ -1,28 +1,27 @@
-﻿#include "..\core\screen_drawer_2d.hpp"
-#include "..\core\i_game_object.hpp"
-#include "..\core\matrix_22.hpp"
-
+﻿#include "../core/screen_drawer_2d.hpp"
+#include "../core/i_game_object.hpp"
+#include "../core/matrix_22.hpp"
 #include "CTransform2D.hpp"
 #include "CDrawLine2D.hpp"
 
 namespace plnt {
-	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CDrawLine2D) {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_draw_line_2d) {
 		registerer
-			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, width)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CDrawLine2D, length)
-			.shallow_copy_target(&CDrawLine2D::_width)
-			.shallow_copy_target(&CDrawLine2D::_length)
-			.shallow_copy_target(&CDrawLine2D::_wire_positions);
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_draw_line_2d, width)
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_draw_line_2d, length)
+			.shallow_copy_target(&c_draw_line_2d::width_)
+			.shallow_copy_target(&c_draw_line_2d::length_)
+			.shallow_copy_target(&c_draw_line_2d::wire_positions_);
 	}
 
-	CDrawLine2D::CDrawLine2D() : _wire_positions(2), _width(1), _length(0) { }
+	c_draw_line_2d::c_draw_line_2d() : wire_positions_(2), width_(1), length_(0) { }
 
-	void CDrawLine2D::DrawProc(screen_drawer_2d &drawer) {
+	void c_draw_line_2d::draw_proc(screen_drawer_2d &drawer) {
 		//トランスフォームからワイヤーの位置を更新
-		_wire_positions[0] = static_cast<vector_2df>(GetDrawCenterPosition());
-		_wire_positions[1] = _wire_positions[0] + static_cast<vector_2df>(math::rotation_transform(
-			GetDrawRotationRed(), vector_2dd(1.0, 0.0)) * length() * GetDrawScale().x);
+		wire_positions_[0] = static_cast<vector_2df>(get_draw_center_position());
+		wire_positions_[1] = wire_positions_[0] + static_cast<vector_2df>(math::rotation_transform(
+			get_draw_rotation_red(), vector_2dd(1.0, 0.0)) * length() * get_draw_scale().x);
 		//描画
-		drawer.draw_wire(_wire_positions, _width * GetDrawScale().y, color());
+		drawer.draw_wire(wire_positions_, width_ * get_draw_scale().y, color());
 	}
 }

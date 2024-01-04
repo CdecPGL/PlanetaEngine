@@ -1,46 +1,46 @@
 ﻿#pragma once
 
-#include "..\core\game_object_system_component.hpp"
-#include "..\core\vector_2d.hpp"
+#include "../core/game_object_system_component.hpp"
+#include "../core/vector_2d.hpp"
 
 namespace plnt {
-	class CTransform2D;
+	class c_transform_2d;
 
 	/*! 二次元カメラコンポーネント*/
-	class CCamera2D final : public private_::game_object_system_component {
-		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCamera2D);
+	class c_camera_2d final : public private_::game_object_system_component {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(c_camera_2d);
 
 	public:
-		using super = private_::game_object_system_component;
+		using super = game_object_system_component;
 
-		CCamera2D();
-		~CCamera2D();
+		c_camera_2d();
+		~c_camera_2d() override;
 		/*! 位置を取得*/
-		const plnt::vector_2dd &position() const;
+		[[nodiscard]] const vector_2dd &position() const;
 		/*! 位置を設定*/
-		void position(const plnt::vector_2dd &p);
+		void position(const vector_2dd &p) const;
 		/*! 回転度を取得*/
-		double rotation_rad() const;
+		[[nodiscard]] double rotation_rad() const;
 		/*! 回転度を設定*/
-		void rotation_rad(double r);
+		void rotation_rad(double r) const;
 		/*! 拡大度を取得*/
-		double expansion() const;
+		[[nodiscard]] double expansion() const;
 		/*! 拡大度を設定*/
 		void expansion(double e);
 
 	private:
-		class Impl_;
-		std::unique_ptr<Impl_> impl_;
+		class impl;
+		std::unique_ptr<impl> impl_;
 
 		double expansion_ = 1.0;
 
-		non_owing_pointer<CTransform2D> transform2d_;
-		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
-		virtual void on_initialized() override;
-		virtual void on_activated() override;
-		virtual void on_inactivated() override;
-		virtual void on_finalized() noexcept override;
+		non_owing_pointer<c_transform_2d> transform2d_;
+		bool get_other_components_proc(const go_component_getter &com_getter) override;
+		void on_initialized() override;
+		void on_activated() override;
+		void on_inactivated() override;
+		void on_finalized() noexcept override;
 	};
 
-	PE_GAMEOBJECTCOMPONENT_CLASS(CCamera2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(c_camera_2d);
 }

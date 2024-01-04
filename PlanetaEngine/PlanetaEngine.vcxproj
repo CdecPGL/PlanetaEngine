@@ -297,7 +297,7 @@
     <ClInclude Include="src\planeta\buildin\CDrawLine2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CDrawPlanet2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CDrawPolygon2D.hpp" />
-    <ClInclude Include="src\planeta\buildin\CDumyGround2D.hpp" />
+    <ClInclude Include="src\planeta\buildin\CDummyGround2D.hpp" />
     <ClInclude Include="src\planeta\buildin\CEffect.hpp" />
     <ClInclude Include="src\planeta\buildin\CGraph2DAnimator.hpp" />
     <ClInclude Include="src\planeta\buildin\CGround2D.hpp" />
@@ -684,7 +684,6 @@
     <ClCompile Include="src\planeta\buildin\RMusic.cpp" />
     <ClCompile Include="src\planeta\core\date_time.cpp" />
     <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp" />
-    <ClCompile Include="src\planeta\buildin\CPolygonCollider2D.cpp" />
     <ClCompile Include="src\planeta\buildin\RSound.cpp" />
     <ClCompile Include="src\planeta\core\file.cpp" />
     <ClCompile Include="src\planeta\core\standard_collision_world.cpp" />

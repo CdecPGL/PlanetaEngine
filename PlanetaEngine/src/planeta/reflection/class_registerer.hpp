@@ -258,7 +258,17 @@ registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
 */
 #define PE_REFLECTABLE_CLASS_PROPERTY(c_type, id)                             \
 read_write_property (#id, &c_type::id, &c_type::id)
-/*! @brief 書き込み専用プロパティを登録するユーティリティマクロ
+
+/*! @brief get_, set_を接頭辞とするゲッターセッターを持つプロパティを登録するユーティリティマクロ
+
+型の変換なしにClassRegisterer::read_write_propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
+registerer.PE_REFLECTABLE_CLASS_PROPERTY_GS(prop);
+のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_PROPERTY_GS(c_type, id)                             \
+read_write_property (#id, &c_type::get_##id, &c_type::set_##id)
+
+/*! @brief 読み込み専用プロパティを登録するユーティリティマクロ
 
 型の変換なしにclass_registerer::read_only_propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
 registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
@@ -266,6 +276,16 @@ registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
 */
 #define PE_REFLECTABLE_CLASS_READONLY_PROPERTY(c_type, id)                    \
 read_only_property(#id, &c_type::id)
+
+/*! @brief get_を接頭辞とするゲッターを持つ読み込み専用プロパティを登録するユーティリティマクロ
+
+型の変換なしにclass_registerer::read_only_propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
+registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
+のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_READONLY_PROPERTY_G(c_type, id)                    \
+read_only_property(#id, &c_type::get_##id)
+
 /*! @brief 書き込み専用プロパティを登録するユーティリティマクロ
 
 型の変換なしにclass_registerer::write_only_propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
@@ -274,6 +294,16 @@ registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
 */
 #define PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY(c_type, id)                   \
 write_only_property(#id, &c_type::id)
+
+/*! @brief set_を接頭辞とするセッターを持つ書き込み専用プロパティを登録するユーティリティマクロ
+
+型の変換なしにclass_registerer::write_only_propertyに登録して、コンパイルエラーにならないようなゲッター、セッターの場合に使用可能。
+registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
+のように使用する。
+*/
+#define PE_REFLECTABLE_CLASS_WRITEONLY_PROPERTY_S(c_type, id)                   \
+write_only_property(#id, &c_type::set_##id)
+
 /*! @brief 変数を登録するユーティリティマクロ
 
 型の変換なしにclass_registerer::variableに登録して、コンパイルエラーにならないような変数の場合に使用可能。
@@ -282,3 +312,5 @@ registerer.PE_REFLECTABLE_CLASS_PROPERTY(prop);
 */
 #define PE_REFLECTABLE_CLASS_VARIABLE(c_type, id)\
 variable(#id, &c_type::id)
+
+

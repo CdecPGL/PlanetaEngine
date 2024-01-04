@@ -4,31 +4,31 @@
 
 namespace plnt {
 	/*! 円形コライダーコンポーネント*/
-	class CCircleCollider2D final : public CCollider2D {
-		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CCircleCollider2D);
+	class c_circle_collider_2d final : public c_collider_2d {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(c_circle_collider_2d);
 
 	public:
-		using super = CCollider2D;
+		using super = c_collider_2d;
 
-		bool DetectCollision(private_::i_collider_with_collider_2d &collider) override {
+		bool detect_collision(i_collider_with_collider_2d &collider) override {
 			return collider.collide_with(*this);
 		}
 
 		/*! 半径を取得*/
-		const double radius() const { return _radius; }
+		[[nodiscard]] double radius() const { return radius_; }
 		/*! 半径を設定*/
-		CCircleCollider2D &radius(double r) {
-			_radius = r;
+		[[nodiscard]] c_circle_collider_2d &radius(const double r) {
+			radius_ = r;
 			return *this;
 		}
 
 	private:
-		virtual bool collide_with(CCircleCollider2D &circle_collider) override;
-		virtual bool collide_with(CStraightLineCollider2D &straight_line_collider) override;
+		bool collide_with(c_circle_collider_2d &circle_collider) override;
+		bool collide_with(c_straight_line_collider_2d &straight_line_collider) override;
 
 
-		double _radius = 1.0;
+		double radius_ = 1.0;
 	};
 
-	PE_GAMEOBJECTCOMPONENT_CLASS(CCircleCollider2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(c_circle_collider_2d);
 }

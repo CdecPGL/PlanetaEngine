@@ -6,30 +6,30 @@
 
 namespace plnt {
 	/*! GUI領域に画像を描画するコンポーネント*/
-	class CDrawGraphGUI final : public CDrawGUI {
-		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawGraphGUI);
+	class c_draw_graph_gui final : public c_draw_gui {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(c_draw_graph_gui);
 
 	public:
-		using super = CDrawGUI;
-		CDrawGraphGUI();
-		~CDrawGraphGUI();
+		using super = c_draw_gui;
+		c_draw_graph_gui();
+		~c_draw_graph_gui() override;
 		/*! 表示する画像のリソースIDを設定する*/
-		bool resource_id(const std::string &res_id);
+		bool resource_id(const std::string &res_id) const;
 		/*! 画像上の描画領域をピクセル単位で取得*/
-		const rectangle_i &draw_area() const;
+		[[nodiscard]] const rectangle_i &draw_area() const;
 		/*! 画像上の描画領域をピクセル単位で設定*/
-		CDrawGraphGUI &draw_area(const rectangle_i &rect);
+		c_draw_graph_gui &draw_area(const rectangle_i &rect);
 		/*! 画像を反転させるか取得*/
-		const bool reverse() const;
+		[[nodiscard]] bool reverse() const;
 		/*! 画像を反転させるか設定*/
-		CDrawGraphGUI &reverse(bool rev);
+		c_draw_graph_gui &reverse(bool rev);
 
 	private:
-		class Impl_;
-		std::unique_ptr<Impl_> impl_;
-		void DrawProc(screen_drawer_gui &drawer) override;
+		class impl;
+		std::unique_ptr<impl> impl_;
+		void draw_proc(screen_drawer_gui &drawer) override;
 		bool get_other_components_proc(const go_component_getter &) override;
 	};
 
-	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawGraphGUI);
+	PE_GAMEOBJECTCOMPONENT_CLASS(c_draw_graph_gui);
 }

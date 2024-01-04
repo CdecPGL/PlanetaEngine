@@ -122,7 +122,7 @@ namespace plnt {
 			inactivated();
 			//コンポーネントの無効化
 			for (decltype(auto) com_ary = component_holder_.component_array(); auto &&com : com_ary) {
-				com->in_activate();
+				com->inactivate();
 			}
 
 			state_ = game_object_state::inactive;

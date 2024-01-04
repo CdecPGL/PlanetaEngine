@@ -30,15 +30,15 @@ namespace plnt {
 			void execute_draw_gui() override;
 			void apply_camera_state() override;
 			/*描画コンポーネント登録*/
-			std::unique_ptr<CDraw2DManagerConnection> register_c_draw_2d(const std::shared_ptr<CDraw2D> &draw_component,
+			std::unique_ptr<c_draw_2d_manager_connection> register_c_draw_2d(const std::shared_ptr<c_draw_2d> &draw_component,
 			                                                             int priority) override;
-			std::unique_ptr<CDrawGUIManagerConnection> register_c_draw_gui(
-				const std::shared_ptr<CDrawGUI> &draw_component,
+			std::unique_ptr<c_draw_gui_manager_connection> register_c_draw_gui(
+				const std::shared_ptr<c_draw_gui> &draw_component,
 				int priority) override;
 
 			/*カメラコンポーネント登録*/
-			std::unique_ptr<CCamera2DManagerConnection> register_c_camera_2d(
-				const std::shared_ptr<CCamera2D> &camera_component) override;
+			std::unique_ptr<c_camera_2d_manager_connection> register_c_camera_2d(
+				const std::shared_ptr<c_camera_2d> &camera_component) override;
 
 			/*デバッグ用*/
 			void debug_information_add_handle(i_debug_information_adder &di_adder) override;
@@ -155,16 +155,16 @@ namespace plnt {
 
 		private:
 			//CDraw2Dホルダー
-			com_holder<CDraw2D> c_draw_2d_holder_;
+			com_holder<c_draw_2d> c_draw_2d_holder_;
 			//CDrawGUIホルダー
-			com_holder<CDrawGUI> c_draw_gui_holder_;
+			com_holder<c_draw_gui> c_draw_gui_holder_;
 
 			/*描画画面*/
 			std::shared_ptr<screen> screen_;
 			std::unique_ptr<screen_drawer_2d> screen_drawer_2d_;
 			std::unique_ptr<screen_drawer_gui> screen_drawer_gui_;
 			/*カメラコンポーネント*/
-			std::shared_ptr<CCamera2D> camera2d_;
+			std::shared_ptr<c_camera_2d> camera2d_;
 		};
 	}
 }

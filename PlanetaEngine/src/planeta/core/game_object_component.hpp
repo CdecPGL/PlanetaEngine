@@ -68,7 +68,7 @@ namespace plnt {
 		//初期化
 		void initialize();
 		void activate();
-		void in_activate();
+		void inactivate();
 		void finalize();
 
 	protected:

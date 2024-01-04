@@ -1,54 +1,52 @@
 ﻿#include <cmath>
 #include <cassert>
 
-#include "..\math\math_constant.hpp"
-#include "..\core\log_utility.hpp"
-
+#include "../math/math_constant.hpp"
+#include "../core/log_utility.hpp"
 #include "CPlanet.hpp"
 
 namespace {
-	constexpr unsigned int kDefaultSeparation(90);
+	constexpr unsigned int default_separation(90);
 }
 
 namespace plnt {
-	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CPlanet) {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_planet) {
 		registerer
-			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, radius)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CPlanet, separation)
-			.shallow_copy_target(&CPlanet::_radius)
-			.shallow_copy_target(&CPlanet::_separation)
-			.shallow_copy_target(&CPlanet::_gap);
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_planet, radius)
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_planet, separation)
+			.shallow_copy_target(&c_planet::radius_)
+			.shallow_copy_target(&c_planet::separation_)
+			.shallow_copy_target(&c_planet::gap_);
 	}
 
-	CPlanet::CPlanet() { separation(kDefaultSeparation); }
+	c_planet::c_planet() { separation(default_separation); }
 
-	CPlanet &CPlanet::separation(unsigned int s) {
+	c_planet &c_planet::separation(unsigned int s) {
 		assert(s != 0);
 		if (s == 0) {
 			PE_LOG_WARNING("分割数に0が指定されましたが、1に設定します。");
 			s = 1;
 		}
-		_gap.resize(s);
-		_separation = s;
+		gap_.resize(s);
+		separation_ = s;
 		return *this;
 	}
 
-	void CPlanet::SetGapByIndex(unsigned int idx, double gap) {
-		while (idx < 0) { idx += _separation; }
-		idx %= _separation;
-		assert(0 <= idx && idx < _separation);
-		_gap[idx] = gap;
+	void c_planet::set_gap_by_index(unsigned int idx, const double gap) {
+		idx %= separation_;
+		assert(idx < separation_);
+		gap_[idx] = gap;
 	}
 
-	double CPlanet::GetGapByRad(double rad) const {
+	double c_planet::get_gap_by_rad(double rad) const {
 		while (rad < 0.0) { rad += 2.0 * math::pi; }
 		rad = std::fmod(rad, 2.0 * math::pi);
-		double pos = rad / (2.0 * math::pi / _separation);
-		int segment = static_cast<int>(pos);
-		double pos_in_segment = pos - segment;
-		int sidx = segment;
-		int eidx = segment == (int)_separation - 1 ? 0 : segment;
+		const double pos = rad / (2.0 * math::pi / separation_);
+		const int segment = static_cast<int>(pos);
+		const double pos_in_segment = pos - segment;
+		const int s_idx = segment;
+		const int e_idx = segment == static_cast<int>(separation_) - 1 ? 0 : segment;
 
-		return _gap[sidx] * (1.0 - pos_in_segment) + _gap[eidx] * pos_in_segment;
+		return gap_[s_idx] * (1.0 - pos_in_segment) + gap_[e_idx] * pos_in_segment;
 	}
 }

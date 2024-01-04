@@ -53,7 +53,7 @@ namespace plnt {
 				return false;
 			}
 			if (performance_manager->initialize()) {
-				finalize_handles_.push_front([this] { performance_manager->finalize(); });
+				finalize_handles_.emplace_front([this] { performance_manager->finalize(); });
 			} else {
 				assert(false);
 				return false;
@@ -67,7 +67,7 @@ namespace plnt {
 					return false;
 				}
 				if (log_manager->
-					initialize()) { finalize_handles_.push_front([this] { log_manager->finalize(); }); } else {
+					initialize()) { finalize_handles_.emplace_front([this] { log_manager->finalize(); }); } else {
 					PE_LOG_FATAL("ログシステムの初期化に失敗しました。");
 					return false;
 				}
@@ -132,7 +132,7 @@ namespace plnt {
 			}
 			save_manager->set_file_manipulator(save_data_dir_manipulator);
 			if (save_manager->
-				initialize()) { finalize_handles_.push_front([this] { save_manager->finalize(); }); } else {
+				initialize()) { finalize_handles_.emplace_front([this] { save_manager->finalize(); }); } else {
 				PE_LOG_FATAL("セーブデータシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -159,7 +159,7 @@ namespace plnt {
 				return false;
 			}
 			if (rendering_manager->initialize()) {
-				finalize_handles_.push_front([this] { rendering_manager->finalize(); });
+				finalize_handles_.emplace_front([this] { rendering_manager->finalize(); });
 			} else {
 				PE_LOG_FATAL("描画システムの初期化に失敗しました。");
 				return false;
@@ -172,7 +172,7 @@ namespace plnt {
 				return false;
 			}
 			if (sound_manager->
-				initialize()) { finalize_handles_.push_front([this] { sound_manager->finalize(); }); } else {
+				initialize()) { finalize_handles_.emplace_front([this] { sound_manager->finalize(); }); } else {
 				PE_LOG_FATAL("サウンドシステムの初期化に失敗しました。");
 				return false;
 			}
@@ -185,7 +185,7 @@ namespace plnt {
 			}
 			//キーコンフィグデータのセット予定
 			if (input_manager->
-				initialize()) { finalize_handles_.push_front([this] { input_manager->finalize(); }); } else {
+				initialize()) { finalize_handles_.emplace_front([this] { input_manager->finalize(); }); } else {
 				PE_LOG_FATAL("入力システムの初期化に失敗しました。");
 				return false;
 			}
@@ -197,7 +197,7 @@ namespace plnt {
 				return false;
 			}
 			if (debug_manager->initialize(*rendering_manager)) {
-				finalize_handles_.push_front([this] { debug_manager->finalize(); });
+				finalize_handles_.emplace_front([this] { debug_manager->finalize(); });
 			} else {
 				PE_LOG_FATAL("デバッグシステムの初期化に失敗しました。");
 				return false;
@@ -212,7 +212,7 @@ namespace plnt {
 			//リソースマネージャのセット
 			scene_manager->set_resource_manager(resource_manager);
 			if (scene_manager->
-				initialize()) { finalize_handles_.push_front([this] { scene_manager->finalize(); }); } else {
+				initialize()) { finalize_handles_.emplace_front([this] { scene_manager->finalize(); }); } else {
 				PE_LOG_FATAL("シーンシステムの初期化に失敗しました。");
 				return false;
 			}

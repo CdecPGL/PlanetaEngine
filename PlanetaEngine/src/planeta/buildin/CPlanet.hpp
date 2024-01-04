@@ -2,43 +2,43 @@
 
 #include <vector>
 
-#include "..\core\game_object_standard_component.hpp"
+#include "../core/game_object_standard_component.hpp"
 
 namespace plnt {
 	/*! 平面惑星コンポーネント*/
-	class CPlanet : public game_object_standard_component {
-		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CPlanet);
+	class c_planet final : public game_object_standard_component {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(c_planet);
 
 	public:
 		using super = game_object_standard_component;
-		CPlanet();
-		~CPlanet() = default;
+		c_planet();
+		~c_planet() override = default;
 		/*! 地表の高さを頂点インデックスで設定するb*/
-		void SetHeightByIndex(unsigned int idx, double h) { SetGapByIndex(idx, h - _radius); }
+		void set_height_by_index(const unsigned int idx, const double h) { set_gap_by_index(idx, h - radius_); }
 		/*! 地表の高さを角度で取得*/
-		double GetHeightByRad(double rad) const { return _radius + GetGapByRad(rad); }
+		[[nodiscard]] double get_height_by_rad(const double rad) const { return radius_ + get_gap_by_rad(rad); }
 
 		/*アクセサ*/
 		/*! 惑星の半径取得*/
-		CPlanet &radius(double r) {
-			_radius = r;
+		c_planet &radius(const double r) {
+			radius_ = r;
 			return *this;
 		}
 
 		/*! 惑星の半径設定*/
-		double radius() const { return _radius; }
+		[[nodiscard]] double radius() const { return radius_; }
 		/*! 分割数取得*/
-		CPlanet &separation(unsigned int s);
+		c_planet &separation(unsigned int s);
 		/*! 分割数設定*/
-		unsigned int separation() const { return _separation; }
+		[[nodiscard]] unsigned int separation() const { return separation_; }
 
 	private:
-		void SetGapByIndex(unsigned int idx, double gap);
-		double GetGapByRad(double rad) const;
-		double _radius = 100;
-		unsigned int _separation;
-		std::vector<double> _gap;
+		void set_gap_by_index(unsigned int idx, double gap);
+		double get_gap_by_rad(double rad) const;
+		double radius_ = 100;
+		unsigned int separation_;
+		std::vector<double> gap_;
 	};
 
-	PE_GAMEOBJECTCOMPONENT_CLASS(CPlanet);
+	PE_GAMEOBJECTCOMPONENT_CLASS(c_planet);
 }

@@ -1,11 +1,5 @@
 ﻿#pragma once
 
-#include <array>
-#include <vector>
-
-#include "..\core\weak_pointer.hpp"
-#include "..\core\vertex_2d.hpp"
-
 #include "CDraw2D.hpp"
 
 namespace plnt {
@@ -17,83 +11,81 @@ namespace plnt {
 	
 		@note DrawPlanetComponentのseparationはPlanetComponentのseparationとは異なる
 	*/
-	class CPlanet;
+	class c_planet;
 
-	class CDrawPlanet2D final : public CDraw2D {
-		PE_REFLECTION_DATA_REGISTERER_DECLARATION(CDrawPlanet2D);
+	class c_draw_planet_2d final : public c_draw_2d {
+		PE_REFLECTION_DATA_REGISTERER_DECLARATION(c_draw_planet_2d);
 
 	public:
-		using super = CDraw2D;
-		CDrawPlanet2D();
-		~CDrawPlanet2D();
+		using super = c_draw_2d;
+		c_draw_planet_2d();
+		~c_draw_planet_2d() override;
 		/*! 画像リソースを設定する*/
-		bool SetGraphResource(const std::string &resource_id);
+		bool set_graph_resource(const std::string &resource_id);
 
 		/*! 画像のマッピングモードを表す列挙体*/
-		enum class TextureMappingMode { Round, Plain };
+		enum class texture_mapping_mode { round, plain };
 
 		/*アクセサ*/
 		/*! 画像リソースをIDで設定する*/
-		CDrawPlanet2D &graph_resource_id(const std::string &res_id);
+		c_draw_planet_2d &graph_resource_id(const std::string &res_id);
 		/*! 水平方向の分割数を取得する*/
-		unsigned int horizontal_separation() const { return _horizontal_separation; }
+		[[nodiscard]] unsigned int horizontal_separation() const { return horizontal_separation_; }
 		/*! 水平方向の分割数を設定する*/
-		CDrawPlanet2D &horizontal_separation(unsigned int sep);
+		c_draw_planet_2d &horizontal_separation(unsigned int sep);
 		/*! 垂直方向の分割数を取得する*/
-		unsigned int vertical_separation() const { return _vertical_separation; }
+		[[nodiscard]] unsigned int vertical_separation() const { return vertical_separation_; }
 		/*! 垂直方向の分割数を設定する*/
-		CDrawPlanet2D &vertical_separation(unsigned int sep);
+		c_draw_planet_2d &vertical_separation(unsigned int sep);
 		/*! 画像のマッピングモードを取得する*/
-		TextureMappingMode texture_mapping_mode() const { return tex_map_mode_; }
+		[[nodiscard]] texture_mapping_mode get_texture_mapping_mode() const { return tex_map_mode_; }
 		/*! 画像のマッピングモードを設定する*/
-		void texture_mapping_mode(TextureMappingMode tmm);
+		c_draw_planet_2d &set_texture_mapping_mode(texture_mapping_mode tmm);
 
 	private:
 		/*水平分割数*/
-		unsigned int _horizontal_separation;
+		unsigned int horizontal_separation_;
 		/*垂直分割数*/
-		unsigned int _vertical_separation;
+		unsigned int vertical_separation_;
 		/*ポリゴンの設定が必要か*/
 		bool set_polygon_flag_ = false;
 		/*画像描画データ*/
 		std::shared_ptr<private_::graph_draw_data_2d> graph_draw_data_;
 		/*テクスチャマッピングモード*/
-		TextureMappingMode tex_map_mode_;
-		virtual bool get_other_components_proc(const go_component_getter &com_getter) override;
-		virtual void on_initialized() override;
-		virtual void on_finalized() noexcept override;
-		non_owing_pointer<CPlanet> _planet_component;
+		texture_mapping_mode tex_map_mode_;
+		bool get_other_components_proc(const go_component_getter &com_getter) override;
+		void on_initialized() override;
+		void on_finalized() noexcept override;
+		non_owing_pointer<c_planet> planet_component_;
 		/*ポリゴンセット*/
-		void (CDrawPlanet2D::*polygon_setter_)();
-		void SetPolygon_();
-		void SetPolygonRoundly_();
-		void SetPolygonPlainly_();
+		void (c_draw_planet_2d::*polygon_setter_)() const;
+		void set_polygon();
+		void set_polygon_roundly() const;
+		void set_polygon_plainly() const;
 		/*ポリゴン情報更新*/
-		void (CDrawPlanet2D::*polygon_updater_)();
-		void UpdatePolygon_();
-		void UpdatePolygonRoundly_();
-		void UpdatePolygonPlainly_();
+                void (c_draw_planet_2d::*polygon_updater_) () const;
+		void update_polygon();
+		void update_polygon_roundly() const;
+		void update_polygon_plainly() const;
 		/*描画処理*/
-		void DrawProc(screen_drawer_2d &drawer) override;
+		void draw_proc(screen_drawer_2d &drawer) override;
 	};
 
-	PE_GAMEOBJECTCOMPONENT_CLASS(CDrawPlanet2D);
+	PE_GAMEOBJECTCOMPONENT_CLASS(c_draw_planet_2d);
 
-	namespace reflection {
-		//ReflectionシステムのPtree読み込みを有効にするための定義
-		template <>
-		struct reflective_ptree_converter_impl<CDrawPlanet2D::TextureMappingMode> {
-			void operator()(CDrawPlanet2D::TextureMappingMode &dst, const boost::property_tree::ptree &src) const {
-				try {
-					if (const auto str = src.get_value<std::string>(); str == "Round") {
-						dst = CDrawPlanet2D::TextureMappingMode::Round;
-					} else if (str == "Plain") { dst = CDrawPlanet2D::TextureMappingMode::Plain; } else {
-						throw reflection_error(util::convert_and_connect_to_string(
-							"\"", src.get_value<std::string>(), "\"は\"",
-							typeid(CDrawPlanet2D::TextureMappingMode).name(), "\"のメンバーではありません。"));
-					}
-				} catch (boost::property_tree::ptree_bad_data &e) { throw reflection_error(e.what()); }
-			}
-		};
-	}
+	//ReflectionシステムのPtree読み込みを有効にするための定義
+	template <>
+	struct reflection::reflective_ptree_converter_impl<c_draw_planet_2d::texture_mapping_mode> {
+		void operator()(c_draw_planet_2d::texture_mapping_mode &dst, const boost::property_tree::ptree &src) const {
+			try {
+				if (const auto str = src.get_value<std::string>(); str == "Round") {
+					dst = c_draw_planet_2d::texture_mapping_mode::round;
+				} else if (str == "Plain") { dst = c_draw_planet_2d::texture_mapping_mode::plain; } else {
+					throw reflection_error(util::convert_and_connect_to_string(
+						"\"", src.get_value<std::string>(), "\"は\"",
+						typeid(c_draw_planet_2d::texture_mapping_mode).name(), "\"のメンバーではありません。"));
+				}
+			} catch (boost::property_tree::ptree_bad_data &e) { throw reflection_error(e.what()); }
+		}
+	};
 }

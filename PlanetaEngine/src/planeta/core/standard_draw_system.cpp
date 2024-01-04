@@ -45,11 +45,11 @@ namespace plnt::private_ {
 		typename standard_draw_system::com_map_type<ComType>::iterator com_map_itr_;
 	};
 
-	using standard_c_draw_2d_manager_connection = standard_manager_connection<CDraw2D, CDraw2DManagerConnection>;
-	using standard_c_draw_gui_manager_connection = standard_manager_connection<CDrawGUI, CDrawGUIManagerConnection>;
+	using standard_c_draw_2d_manager_connection = standard_manager_connection<c_draw_2d, c_draw_2d_manager_connection>;
+	using standard_c_draw_gui_manager_connection = standard_manager_connection<c_draw_gui, c_draw_gui_manager_connection>;
 
 	//CCamera2D用
-	class standard_c_camera_2d_manager_connection final : public CCamera2DManagerConnection {
+	class standard_c_camera_2d_manager_connection final : public c_camera_2d_manager_connection {
 	public:
 		explicit standard_c_camera_2d_manager_connection(std::function<bool()> &&remove_handler)
 			: remove_handler_(std::move(remove_handler)) {}
@@ -70,12 +70,12 @@ namespace plnt::private_ {
 
 	void standard_draw_system::execute_draw() {
 		//2DDraw
-		c_draw_2d_holder_.iterate([&sd_2d = *screen_drawer_2d_](CDraw2D &com) { com.Draw(sd_2d); });
+		c_draw_2d_holder_.iterate([&sd_2d = *screen_drawer_2d_](c_draw_2d &com) { com.draw(sd_2d); });
 	}
 
 	void standard_draw_system::execute_draw_gui() {
 		//GUIDraw
-		c_draw_gui_holder_.iterate([&sd_gui = *screen_drawer_gui_](CDrawGUI &com) { com.Draw(sd_gui); });
+		c_draw_gui_holder_.iterate([&sd_gui = *screen_drawer_gui_](c_draw_gui &com) { com.draw(sd_gui); });
 	}
 
 	void standard_draw_system::update() {}
@@ -126,8 +126,8 @@ namespace plnt::private_ {
 		return {static_cast<int>(x), static_cast<int>(y)};
 	}
 
-	std::unique_ptr<CDraw2DManagerConnection> standard_draw_system::register_c_draw_2d(
-		const std::shared_ptr<CDraw2D> &draw_component, const int priority) {
+	std::unique_ptr<c_draw_2d_manager_connection> standard_draw_system::register_c_draw_2d(
+		const std::shared_ptr<c_draw_2d> &draw_component, const int priority) {
 		//コンポーネントを登録
 		auto [is_succeeded, it] = c_draw_2d_holder_.add(draw_component, priority);
 		if (!is_succeeded) { return nullptr; }
@@ -135,8 +135,8 @@ namespace plnt::private_ {
 		return std::make_unique<standard_c_draw_2d_manager_connection>(c_draw_2d_holder_, it);
 	}
 
-	std::unique_ptr<CDrawGUIManagerConnection> standard_draw_system::register_c_draw_gui(
-		const std::shared_ptr<CDrawGUI> &draw_component, const int priority) {
+	std::unique_ptr<c_draw_gui_manager_connection> standard_draw_system::register_c_draw_gui(
+		const std::shared_ptr<c_draw_gui> &draw_component, const int priority) {
 		//コンポーネントを登録
 		auto [is_succeeded, it] = c_draw_gui_holder_.add(draw_component, priority);
 		if (!is_succeeded) { return nullptr; }
@@ -144,8 +144,8 @@ namespace plnt::private_ {
 		return std::make_unique<standard_c_draw_gui_manager_connection>(c_draw_gui_holder_, it);
 	}
 
-	std::unique_ptr<CCamera2DManagerConnection> standard_draw_system::register_c_camera_2d(
-		const std::shared_ptr<CCamera2D> &camera_component) {
+	std::unique_ptr<c_camera_2d_manager_connection> standard_draw_system::register_c_camera_2d(
+		const std::shared_ptr<c_camera_2d> &camera_component) {
 		if (camera2d_) {
 			PE_LOG_ERROR("シーン内の複数カメラはサポートされていません。初めに登録されたカメラのみが有効です。カメラコンポーネントを持つゲームオブジェクトが複数存在する可能性があります。");
 			return nullptr;

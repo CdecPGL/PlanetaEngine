@@ -57,14 +57,14 @@ namespace plnt::private_::system_variables {
 	}
 
 	namespace prefixes {
-		const char scene{'S'};
-		const char game_object{'G'};
-		const char task{'T'};
-		const char game_object_component{'C'};
-		const char game_object_interface{'J'};
-		const char standard_interface{'I'};
-		const char event_arg{'E'};
-		const char resource{'R'};
+		const char scene{'s'};
+		const char game_object{'g'};
+		const char task{'t'};
+		const char game_object_component{'c'};
+		const char game_object_interface{'j'};
+		const char standard_interface{'i'};
+		const char event_arg{'e'};
+		const char resource{'r'};
 	}
 
 	const bool development_mode(true);

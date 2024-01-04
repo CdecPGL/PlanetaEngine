@@ -29,7 +29,7 @@ namespace plnt {
 		is_active_ = true;
 	}
 
-	void game_object_component::in_activate() {
+	void game_object_component::inactivate() {
 		if (!is_active_) {
 			PE_LOG_WARNING("すでに無効なゲームオブジェクトコンポーネントを無効化しようとしました。type:", typeid(*this).name());
 			return;

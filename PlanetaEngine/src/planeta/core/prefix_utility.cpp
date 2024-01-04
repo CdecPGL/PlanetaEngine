@@ -38,17 +38,20 @@ namespace plnt::private_ {
 		std::pair<bool, char> check_prefix_format(const std::string &str) {
 			if (str.length() >= 2) {
 				const char c1{str[1]};
-				if (char c0{str[0]}; util::is_upper_case_character(c0) && util::is_upper_case_character(c1)) {
-					return {true, c0};
-				}
-				return {false, static_cast<char>(0)};
+				const char c0{str[0]};
+				// upper camel case
+				if (util::is_upper_case_character(c0) && util::is_upper_case_character(c1)) { return {true, c0}; }
+				// snake case
+				if (c1 == '_') { return {true, c0}; }
+				return {false, '\0'};
 			}
-			return {false, static_cast<char>(0)};
+			return {false, '\0'};
 		}
 
 		object_category detect_category_by_character(const char c) {
+			const auto lower_c = util::to_lower(c);
 			decltype(auto) map = prefix_category_map().left;
-			const auto it = map.find(c);
+			const auto it = map.find(lower_c);
 			return it == map.end() ? object_category::others : it->second;
 		}
 	}
@@ -56,7 +59,13 @@ namespace plnt::private_ {
 	std::string remove_prefix(const std::string &class_name) {
 		if (const auto [is_exist, prefix] = check_prefix_format(class_name); is_exist) {
 			if (detect_category_by_character(prefix) != object_category::others) {
-				return class_name.substr(1, class_name.size() - 1);
+				// upper camel case
+				if (class_name.length() < 2 || class_name[1] != '_') {
+					return class_name.substr(1, class_name.size() - 1);
+				}
+
+				// snake case
+				return class_name.substr(2, class_name.size() - 2);
 			}
 			return class_name;
 		}
@@ -74,8 +83,9 @@ namespace plnt::private_ {
 		decltype(auto) map = prefix_category_map().right;
 		const auto it = map.find(category);
 		if (it == map.end()) { return class_id; }
-		std::string buf;
-		buf.push_back(it->second);
-		return buf + class_id;
+		// upper camel case
+		if (class_id[0] == util::to_upper(class_id[0])) { return std::string{util::to_upper(it->second)} + class_id; }
+		// snake case
+		return std::string{it->second, '_'} + class_id;
 	}
 }

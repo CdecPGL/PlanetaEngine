@@ -4,8 +4,8 @@
 #include "scene_module.hpp"
 
 namespace plnt {
-	class CTransform2D;
-	class CTransformGUI;
+	class c_transform_2d;
+	class c_transform_gui;
 
 	namespace private_ {
 		class transform_system : public i_transform_system, public scene_module {
@@ -18,9 +18,9 @@ namespace plnt {
 			transform_system &operator=(transform_system &&) = delete;
 
 			virtual void apply_velocity() = 0;
-			virtual int register_transform_2d(CTransform2D *transform2d) = 0;
+			virtual int register_transform_2d(c_transform_2d *transform2d) = 0;
 			virtual bool remove_transform_2d(int id) = 0;
-			virtual int register_transform_gui(CTransformGUI *transform_gui) = 0;
+			virtual int register_transform_gui(c_transform_gui *transform_gui) = 0;
 			virtual bool remove_transform_gui(int id) = 0;
 		};
 	}

@@ -1,16 +1,15 @@
-﻿#include "..\core\matrix_22.hpp"
-#include "..\core\i_game_object.hpp"
-#include "..\core\log_utility.hpp"
-
+﻿#include "../core/matrix_22.hpp"
+#include "../core/i_game_object.hpp"
+#include "../core/log_utility.hpp"
 #include "CGround2D.hpp"
 #include "CTransform2D.hpp"
 
 namespace plnt {
-	CGround2D::CGround2D() { }
+	c_ground_2d::c_ground_2d(): transform2d_() {}
 
-	bool CGround2D::get_other_components_proc(const go_component_getter &com_getter) {
+	bool c_ground_2d::get_other_components_proc(const go_component_getter &com_getter) {
 		if (!super::get_other_components_proc(com_getter)) { return false; }
-		transform2d_.reset(com_getter.get_component<CTransform2D>());
+		transform2d_.reset(com_getter.get_component<c_transform_2d>());
 		if (!transform2d_) {
 			PE_LOG_ERROR("Transform2Dが取得できませんでした。");
 			return false;
@@ -18,35 +17,36 @@ namespace plnt {
 		return true;
 	}
 
-	void CGround2D::on_activated() { super::on_activated(); }
+	void c_ground_2d::on_activated() { super::on_activated(); }
 
-	void CGround2D::on_inactivated() { super::on_inactivated(); }
+	void c_ground_2d::on_inactivated() { super::on_inactivated(); }
 
-	void CGround2D::on_finalized() noexcept { }
+	void c_ground_2d::on_finalized() noexcept {}
 
-	double CGround2D::ConvertRotationGlobalToGroundWithGroundPosition(const vector_2dd &ground_pos,
-	                                                                  double global_rota_rad) const {
-		return global_rota_rad + GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos);
+	double c_ground_2d::convert_rotation_global_to_ground_with_ground_position(const vector_2dd &ground_pos,
+	                                                                         double global_rota_rad) const {
+		return global_rota_rad + get_angle_difference_in_rad_ground_from_global_with_ground_position(ground_pos);
 	}
 
-	double CGround2D::ConvertRotationGroundToGlobalWithGroundPosition(const vector_2dd &ground_pos,
-	                                                                  double ground_rota_rad) const {
-		return ground_rota_rad - GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos);
+	double c_ground_2d::convert_rotation_ground_to_global_with_ground_position(const vector_2dd &ground_pos,
+	                                                                         double ground_rota_rad) const {
+		return ground_rota_rad - get_angle_difference_in_rad_ground_from_global_with_ground_position(ground_pos);
 	}
 
-	vector_2dd CGround2D::ConvertVelocityGlobalToGroundWithGroundPosition(
-		const vector_2dd &ground_pos, const vector_2dd &global_velocity) {
-		return math::rotation_transform(GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
-		                                      global_velocity);
+	vector_2dd c_ground_2d::convert_velocity_global_to_ground_with_ground_position(
+		const vector_2dd &ground_pos, const vector_2dd &global_velocity) const {
+		return math::rotation_transform(get_angle_difference_in_rad_ground_from_global_with_ground_position(ground_pos),
+		                                global_velocity);
 	}
 
-	vector_2dd CGround2D::ConvertVelocityGroundToGlobalWithGroundPosition(
-		const vector_2dd &ground_pos, const vector_2dd &ground_velocity) {
-		return math::rotation_transform(-GetAngleDifferenceInRadGroundFromGlobalWithGroundPosition(ground_pos),
-		                                      ground_velocity);
+	vector_2dd c_ground_2d::convert_velocity_ground_to_global_with_ground_position(
+		const vector_2dd &ground_pos, const vector_2dd &ground_velocity) const {
+		return math::rotation_transform(
+			-get_angle_difference_in_rad_ground_from_global_with_ground_position(ground_pos),
+			ground_velocity);
 	}
 
-	CTransform2D &CGround2D::transform2d() { return *transform2d_; }
+	c_transform_2d &c_ground_2d::transform2d() { return *transform2d_; }
 
-	const plnt::CTransform2D &CGround2D::transform2d() const { return *transform2d_; }
+	const plnt::c_transform_2d &c_ground_2d::transform2d() const { return *transform2d_; }
 }

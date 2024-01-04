@@ -1,9 +1,8 @@
 ﻿#include <unordered_map>
 
 #include "planeta/core/i_scene_internal.hpp"
-#include "..\core\transform_system.hpp"
-#include "..\core\log_utility.hpp"
-
+#include "../core/transform_system.hpp"
+#include "../core/log_utility.hpp"
 #include "CTransformGUI.hpp"
 
 namespace plnt {
@@ -11,7 +10,7 @@ namespace plnt {
 	//CTransformGUI::Impl_
 	//////////////////////////////////////////////////////////////////////////
 
-	class CTransformGUI::Impl_ {
+	class c_transform_gui::impl {
 	public:
 		rectangle_i rect;
 		vector_2di position;
@@ -19,7 +18,7 @@ namespace plnt {
 		double rotation_rad = 0;
 		vector_2dd pivot{0.5, 0.5};
 
-		Impl_ &operator=(const Impl_ &imp) {
+		impl &operator=(const impl &imp) {
 			rect = imp.rect;
 			position = imp.position;
 			size = imp.size;
@@ -28,66 +27,66 @@ namespace plnt {
 			return *this;
 		}
 
-		int t2d_id_ = -1;
+		int t2d_id = -1;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
 	//CTransformGUI
 	//////////////////////////////////////////////////////////////////////////
 
-	PE_REFLECTION_DATA_REGISTERER_DEFINITION(CTransformGUI) {
+	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_transform_gui) {
 		registerer
-			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, position)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, size)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, rotation_rad)
-			.PE_REFLECTABLE_CLASS_PROPERTY(CTransformGUI, pivot)
-			.deep_copy_target(&CTransformGUI::impl_);
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_transform_gui, position)
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_transform_gui, size)
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_transform_gui, rotation_rad)
+			.PE_REFLECTABLE_CLASS_PROPERTY(c_transform_gui, pivot)
+			.deep_copy_target(&c_transform_gui::impl_);
 	}
 
-	CTransformGUI::CTransformGUI() : impl_(std::make_unique<Impl_>()) { }
+	c_transform_gui::c_transform_gui() : impl_(std::make_unique<impl>()) { }
 
-	CTransformGUI::~CTransformGUI() = default;
+	c_transform_gui::~c_transform_gui() = default;
 
-	const plnt::vector_2di &CTransformGUI::position() const { return impl_->position; }
+	const vector_2di &c_transform_gui::position() const { return impl_->position; }
 
-	plnt::CTransformGUI &CTransformGUI::position(const vector_2di &pos) {
+	c_transform_gui &c_transform_gui::position(const vector_2di &pos) {
 		impl_->position = pos;
 		return *this;
 	}
 
-	const double CTransformGUI::rotation_rad() const { return impl_->rotation_rad; }
+	double c_transform_gui::rotation_rad() const { return impl_->rotation_rad; }
 
-	plnt::CTransformGUI &CTransformGUI::rotation_rad(double rota_rad) {
+	c_transform_gui &c_transform_gui::rotation_rad(const double rota_rad) {
 		impl_->rotation_rad = rota_rad;
 		return *this;
 	}
 
-	plnt::CTransformGUI &CTransformGUI::size(const vector_2di &s) {
+	c_transform_gui &c_transform_gui::size(const vector_2di &s) {
 		impl_->size = s;
 		return *this;
 	}
 
-	const plnt::vector_2di &CTransformGUI::size() const { return impl_->size; }
+	const vector_2di &c_transform_gui::size() const { return impl_->size; }
 
-	plnt::CTransformGUI &CTransformGUI::pivot(const vector_2dd &p) {
+	c_transform_gui &c_transform_gui::pivot(const vector_2dd &p) {
 		impl_->pivot = p;
 		return *this;
 	}
 
-	const plnt::vector_2dd &CTransformGUI::pivot() const { return impl_->pivot; }
+	const vector_2dd &c_transform_gui::pivot() const { return impl_->pivot; }
 
-	void CTransformGUI::on_activated() {
+	void c_transform_gui::on_activated() {
 		super::on_activated();
 		//TransformSystemへ登録
-		impl_->t2d_id_ = scene_internal_interface().transform_system_internal_pointer()->register_transform_gui(this);
-		PE_VERIFY(impl_->t2d_id_ >= 0);
+		impl_->t2d_id = scene_internal_interface().transform_system_internal_pointer()->register_transform_gui(this);
+		PE_VERIFY(impl_->t2d_id >= 0);
 	}
 
-	void CTransformGUI::on_inactivated() {
-		PE_VERIFY(impl_->t2d_id_ >= 0);
+	void c_transform_gui::on_inactivated() {
+		PE_VERIFY(impl_->t2d_id >= 0);
 		//TransformSystemから登録解除
-		if (!scene_internal_interface().transform_system_internal_pointer()->remove_transform_gui(impl_->t2d_id_)) {
-			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id_);
+		if (!scene_internal_interface().transform_system_internal_pointer()->remove_transform_gui(impl_->t2d_id)) {
+			PE_LOG_FATAL("TransfromSystemからの登録解除に失敗しました。ID:", impl_->t2d_id);
 		}
 		super::on_inactivated();
 	}

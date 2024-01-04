@@ -25,9 +25,9 @@ namespace plnt {
 			bool initialize() override;
 			void finalize() override;
 			bool resist(const collider_2d_data &collider_data) override; //引数は内部でコピーされるので一時オブジェクトでよい。
-			bool remove(const CCollider2D *col_com_ptr) override;
-			bool change_collision_group(const CCollider2D *col_com_ptr, const std::string &group_name) override;
-			bool change_collision_with_ground_flag(const CCollider2D *col_com_ptr, bool flag) override;
+			bool remove(const c_collider_2d *col_com_ptr) override;
+			bool change_collision_group(const c_collider_2d *col_com_ptr, const std::string &group_name) override;
+			bool change_collision_with_ground_flag(const c_collider_2d *col_com_ptr, bool flag) override;
 			void execute_collision_detection() override;
 
 		private:
@@ -37,7 +37,7 @@ namespace plnt {
 			struct c_collider_2d_register_data;
 			using collision_group_type = std::list<std::reference_wrapper<c_collider_2d_register_data>>;
 			using collision_with_ground_list_type = std::list<std::reference_wrapper<c_collider_2d_register_data>>;
-			std::unordered_map<CCollider2D *, std::unique_ptr<c_collider_2d_register_data>> collider_resist_data_map_;
+			std::unordered_map<c_collider_2d *, std::unique_ptr<c_collider_2d_register_data>> collider_resist_data_map_;
 			//コライダーの登録情報リスト
 			using collision_group_list_type = std::unordered_map<std::string, collision_group_type>;
 			collision_group_list_type collision_groups_;

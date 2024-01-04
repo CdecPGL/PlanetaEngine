@@ -13,10 +13,10 @@ namespace plnt::private_ {
 
 	void standard_transform_system::apply_velocity() {
 		//ApplyVelocityに登録削除関連のコードはないはずなので、このループ内ではT2Dの登録削除(t2d_listの変更)は発生しない。
-		for (const auto &t2d : transform2d_map_ | std::views::values) { t2d->ApplyVelocity_(); }
+		for (const auto &t2d : transform2d_map_ | std::views::values) { t2d->apply_velocity(); }
 	}
 
-	int standard_transform_system::register_transform_2d(CTransform2D *transform2d) {
+	int standard_transform_system::register_transform_2d(c_transform_2d *transform2d) {
 		int id = id_counter_2d_++;
 		transform2d_map_.emplace(id, transform2d);
 		return id;
@@ -31,7 +31,7 @@ namespace plnt::private_ {
 		return false;
 	}
 
-	int standard_transform_system::register_transform_gui(CTransformGUI *transform_gui) {
+	int standard_transform_system::register_transform_gui(c_transform_gui *transform_gui) {
 		int id = id_counter_gui_++;
 		transform_gui_map_.emplace(id, transform_gui);
 		return id;

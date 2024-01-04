@@ -4,35 +4,32 @@
 #include "scene_module.hpp"
 
 namespace plnt {
-	class CDraw2D;
-	class CDrawGUI;
-	class CCamera2D;
+	class c_draw_2d;
+	class c_draw_gui;
+	class c_camera_2d;
 
 	namespace private_ {
-		// TODO: コンポーネント名名変更
-		class CDraw2DManagerConnection {
+		class c_draw_2d_manager_connection {
 		public:
-			virtual ~CDraw2DManagerConnection() = 0 { };
+			virtual ~c_draw_2d_manager_connection() = 0 { };
 			virtual bool active() = 0;
 			virtual bool inactivate() = 0;
 			virtual bool remove() = 0;
 			virtual bool change_priority(int priority) = 0;
 		};
 
-		// TODO: コンポーネント名名変更
-		class CDrawGUIManagerConnection {
+		class c_draw_gui_manager_connection {
 		public:
-			virtual ~CDrawGUIManagerConnection() = 0 { };
+			virtual ~c_draw_gui_manager_connection() = 0 { };
 			virtual bool active() = 0;
 			virtual bool inactivate() = 0;
 			virtual bool remove() = 0;
 			virtual bool change_priority(int priority) = 0;
 		};
 
-		// TODO: コンポーネント名名変更
-		class CCamera2DManagerConnection {
+		class c_camera_2d_manager_connection {
 		public:
-			virtual ~CCamera2DManagerConnection() = 0 { };
+			virtual ~c_camera_2d_manager_connection() = 0 { };
 			virtual bool remove() = 0;
 		};
 
@@ -53,14 +50,14 @@ namespace plnt {
 			/*カメラ状態の適用*/
 			virtual void apply_camera_state() = 0;
 			/*2D描画コンポーネント登録*/
-			virtual std::unique_ptr<CDraw2DManagerConnection> register_c_draw_2d(
-				const std::shared_ptr<CDraw2D> &draw_component, int priority) = 0;
+			virtual std::unique_ptr<c_draw_2d_manager_connection> register_c_draw_2d(
+				const std::shared_ptr<c_draw_2d> &draw_component, int priority) = 0;
 			/*GUI描画コンポーネント登録*/
-			virtual std::unique_ptr<CDrawGUIManagerConnection> register_c_draw_gui(
-				const std::shared_ptr<CDrawGUI> &draw_component, int priority) = 0;
+			virtual std::unique_ptr<c_draw_gui_manager_connection> register_c_draw_gui(
+				const std::shared_ptr<c_draw_gui> &draw_component, int priority) = 0;
 			/*カメラコンポーネント登録*/
-			virtual std::unique_ptr<CCamera2DManagerConnection> register_c_camera_2d(
-				const std::shared_ptr<CCamera2D> &camera_component) = 0;
+			virtual std::unique_ptr<c_camera_2d_manager_connection> register_c_camera_2d(
+				const std::shared_ptr<c_camera_2d> &camera_component) = 0;
 		};
 	}
 }

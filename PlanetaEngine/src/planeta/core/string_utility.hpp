@@ -26,4 +26,8 @@ namespace plnt::util {
 	bool is_upper_case_character(char c);
 	/*文字が小文字アルファベットか*/
 	bool is_lower_case_character(char c);
+	/*小文字化する*/
+	char to_lower(char c);
+	/*大文字化する*/
+	char to_upper(char c);
 }
