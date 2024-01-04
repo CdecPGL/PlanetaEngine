@@ -1,5 +1,5 @@
 ﻿#include "../core/collision_detect_functions.hpp"
-#include "CCircleCollider2D.hpp"
+#include "c_circle_collider_2d.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_circle_collider_2d) {

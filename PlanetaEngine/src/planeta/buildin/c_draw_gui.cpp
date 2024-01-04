@@ -1,7 +1,7 @@
 ﻿#include "planeta/core/i_scene_internal.hpp"
 #include "../core/draw_system.hpp"
 #include "../core/log_utility.hpp"
-#include "CDrawGUI.hpp"
+#include "c_draw_gui.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

@@ -5,8 +5,8 @@
 #include "../core/matrix_22.hpp"
 #include "../core/collider_2d_data.hpp"
 #include "planeta/core/e_collision_with_ground_2d.hpp"
-#include "CCollider2D.hpp"
-#include "CTransform2D.hpp"
+#include "c_collider_2d.hpp"
+#include "c_transform_2d.hpp"
 
 namespace plnt {
 	PE_REFLECTION_DATA_REGISTERER_DEFINITION(c_collider_2d) {

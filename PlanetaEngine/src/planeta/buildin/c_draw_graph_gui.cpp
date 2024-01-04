@@ -2,9 +2,9 @@
 #include "../core/screen_drawer_gui.hpp"
 #include "planeta/core/rectangle.hpp"
 #include "../core/resource_holder.hpp"
-#include "CDrawGraphGUI.hpp"
+#include "c_draw_graph_gui.hpp"
 #include "RGraph.hpp"
-#include "CTransformGUI.hpp"
+#include "c_transform_gui.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

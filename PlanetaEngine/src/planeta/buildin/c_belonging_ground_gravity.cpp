@@ -1,6 +1,6 @@
-﻿#include "CBelongingGroundGravity.hpp"
-#include "CTransform2D.hpp"
-#include "CGround2D.hpp"
+﻿#include "c_belonging_ground_gravity.hpp"
+#include "c_transform_2d.hpp"
+#include "c_ground_2d.hpp"
 #include "../core/i_game_object.hpp"
 #include "TInstant.hpp"
 

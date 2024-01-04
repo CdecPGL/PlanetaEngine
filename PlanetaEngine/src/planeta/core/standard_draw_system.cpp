@@ -11,12 +11,12 @@
 #include "rendering_manager.hpp"
 #include "config_manager.hpp"
 #include "standard_draw_system.hpp"
-#include "planeta/buildin/CDraw2D.hpp"
-#include "planeta/buildin/CDrawGUI.hpp"
+#include "..\buildin\c_draw_2d.hpp"
+#include "..\buildin\c_draw_gui.hpp"
 #include "log_utility.hpp"
 #include "screen_drawer_2d.hpp"
 #include "screen_drawer_gui.hpp"
-#include "planeta/buildin/CCamera2D.hpp"
+#include "..\buildin\c_camera_2d.hpp"
 #include "i_debug_manager.hpp"
 
 namespace plnt::private_ {

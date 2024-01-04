@@ -3,7 +3,7 @@
 
 #include "../math/math_constant.hpp"
 #include "../core/log_utility.hpp"
-#include "CPlanet.hpp"
+#include "c_planet.hpp"
 
 namespace {
 	constexpr unsigned int default_separation(90);

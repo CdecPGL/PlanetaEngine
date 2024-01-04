@@ -1,6 +1,6 @@
 ﻿#include "collision_detect_functions.hpp"
-#include "planeta/buildin/CCircleCollider2D.hpp"
-#include "planeta/buildin/CStraightLineCollider2D.hpp"
+#include "..\buildin\c_circle_collider_2d.hpp"
+#include "..\buildin\c_straight_line_collider_2d.hpp"
 
 namespace plnt::private_::collision_detect_functions {
 	bool collision_detect_circle_and_circle(const c_circle_collider_2d &circle_collider0,

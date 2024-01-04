@@ -7,8 +7,8 @@
 #include "../core/log_utility.hpp"
 #include "../core/graph_draw_data_2d.hpp"
 #include "../math/math_constant.hpp"
-#include "CDrawPlanet2D.hpp"
-#include "CPlanet.hpp"
+#include "c_draw_planet_2d.hpp"
+#include "c_planet.hpp"
 #include "RGraph.hpp"
 
 namespace {

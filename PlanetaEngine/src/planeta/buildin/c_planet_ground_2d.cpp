@@ -2,10 +2,10 @@
 #include "../core/log_utility.hpp"
 #include "../math/math_constant.hpp"
 
-#include "CPlanetGround2D.hpp"
-#include "CTransform2D.hpp"
-#include "CCircleCollider2D.hpp"
-#include "CPlanet.hpp"
+#include "c_planet_ground_2d.hpp"
+#include "c_transform_2d.hpp"
+#include "c_circle_collider_2d.hpp"
+#include "c_planet.hpp"
 
 namespace plnt {
 	bool c_planet_ground_2d::get_other_components_proc(const go_component_getter &com_getter) {

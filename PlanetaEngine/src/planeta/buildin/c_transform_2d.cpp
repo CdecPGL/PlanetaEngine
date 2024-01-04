@@ -5,9 +5,9 @@
 #include "../core/log_utility.hpp"
 #include "../core/transform_system.hpp"
 #include "planeta/core/i_scene_internal.hpp"
-#include "CGround2D.hpp"
-#include "CTransform2D.hpp"
-#include "CDummyGround2D.hpp"
+#include "c_ground_2d.hpp"
+#include "c_transform_2d.hpp"
+#include "c_dummy_ground_2d.hpp"
 
 namespace plnt {
 	namespace {

@@ -3,7 +3,7 @@
 #include "planeta/core/i_scene_internal.hpp"
 #include "../core/transform_system.hpp"
 #include "../core/log_utility.hpp"
-#include "CTransformGUI.hpp"
+#include "c_transform_gui.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

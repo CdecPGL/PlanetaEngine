@@ -1,8 +1,8 @@
 ﻿#include "../core/matrix_22.hpp"
 #include "../core/i_game_object.hpp"
 #include "../core/log_utility.hpp"
-#include "CGround2D.hpp"
-#include "CTransform2D.hpp"
+#include "c_ground_2d.hpp"
+#include "c_transform_2d.hpp"
 
 namespace plnt {
 	c_ground_2d::c_ground_2d(): transform2d_() {}

@@ -1,8 +1,8 @@
 ﻿#include "collider_component_2d_debug_drawer.hpp"
 #include "i_debug_manager.hpp"
 
-#include "planeta/buildin/CCircleCollider2D.hpp"
-#include "planeta/buildin/CStraightLineCollider2D.hpp"
+#include "..\buildin\c_circle_collider_2d.hpp"
+#include "..\buildin\c_straight_line_collider_2d.hpp"
 
 
 namespace plnt::private_ {

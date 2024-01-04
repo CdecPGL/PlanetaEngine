@@ -1,7 +1,7 @@
 ﻿#include "../core/i_game_object.hpp"
 #include "../core/log_utility.hpp"
-#include "CDrawGraph2D.hpp"
-#include "CGraph2DAnimator.hpp"
+#include "c_draw_graph_2d.hpp"
+#include "c_graph_2d_animator.hpp"
 #include "TInstant.hpp"
 
 namespace plnt {

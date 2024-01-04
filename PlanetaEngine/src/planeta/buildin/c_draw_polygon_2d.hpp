@@ -3,7 +3,7 @@
 #include <vector>
 #include <array>
 
-#include "CDraw2D.hpp"
+#include "c_draw_2d.hpp"
 
 namespace plnt {
 	/*! 平面多角形描画コンポーネント*/

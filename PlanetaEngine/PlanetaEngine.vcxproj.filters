@@ -228,67 +228,67 @@
     <ClInclude Include="src\planeta\core\vector_4d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CBelongingGroundGravity.hpp">
+    <ClInclude Include="src\planeta\buildin\c_belonging_ground_gravity.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CCamera2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_camera_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CCircleCollider2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_circle_collider_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CCollider2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_collider_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDraw2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDrawGraph2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_graph_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDrawGraphGUI.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_graph_gui.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDrawGUI.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_gui.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDrawLine2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_line_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDrawPlanet2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_planet_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDrawPolygon2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_draw_polygon_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CDummyGround2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_dummy_ground_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CEffect.hpp">
+    <ClInclude Include="src\planeta\buildin\c_effect.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CGraph2DAnimator.hpp">
+    <ClInclude Include="src\planeta\buildin\c_graph_2d_animator.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CGround2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_ground_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CPlanet.hpp">
+    <ClInclude Include="src\planeta\buildin\c_planet.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CPlanetGround2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_planet_ground_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CPolygonCollider2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_polygon_collider_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CStraightLineCollider2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_straight_line_collider_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CTransform2D.hpp">
+    <ClInclude Include="src\planeta\buildin\c_transform_2d.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\buildin\CTransformGUI.hpp">
+    <ClInclude Include="src\planeta\buildin\c_transform_gui.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\planeta\buildin\TCoroutine.hpp">
@@ -881,61 +881,61 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\planeta\buildin\CBelongingGroundGravity.cpp">
+    <ClCompile Include="src\planeta\buildin\c_belonging_ground_gravity.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CCamera2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_camera_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CCircleCollider2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_circle_collider_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CCollider2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_collider_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDraw2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDrawGraph2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_graph_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDrawGraphGUI.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_graph_gui.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDrawGUI.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_gui.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDrawLine2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_line_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDrawPlanet2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_planet_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CDrawPolygon2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_draw_polygon_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\DrawComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CEffect.cpp">
+    <ClCompile Include="src\planeta\buildin\c_effect.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CGraph2DAnimator.cpp">
+    <ClCompile Include="src\planeta\buildin\c_graph_2d_animator.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CGround2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_ground_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CPlanet.cpp">
+    <ClCompile Include="src\planeta\buildin\c_planet.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CPlanetGround2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_planet_ground_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\GroundComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CStraightLineCollider2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_straight_line_collider_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\ColliderComponent2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CTransform2D.cpp">
+    <ClCompile Include="src\planeta\buildin\c_transform_2d.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\planeta\buildin\CTransformGUI.cpp">
+    <ClCompile Include="src\planeta\buildin\c_transform_gui.cpp">
       <Filter>PlanetaEngine\BuildinElements\GameObjectComponents\TransformComponent\GUI</Filter>
     </ClCompile>
     <ClCompile Include="src\planeta\buildin\TCoroutine.cpp">

@@ -3,8 +3,8 @@
 #include "../core/matrix_22.hpp"
 #include "../core/log_utility.hpp"
 #include "planeta/core/i_scene_internal.hpp"
-#include "CDraw2D.hpp"
-#include "CTransform2D.hpp"
+#include "c_draw_2d.hpp"
+#include "c_transform_2d.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

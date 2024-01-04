@@ -7,8 +7,8 @@
 #include "planeta/core/i_resource_manager.hpp"
 #include "../core/standard_resource_manager.hpp"
 #include "../core/i_game_object.hpp"
-#include "CEffect.hpp"
-#include "CTransform2D.hpp"
+#include "c_effect.hpp"
+#include "c_transform_2d.hpp"
 #include "REffect.hpp"
 #include "TInstant.hpp"
 

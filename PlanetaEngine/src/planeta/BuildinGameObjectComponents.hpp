@@ -4,26 +4,26 @@
 //! PlanetaEngine内部では使わないこと
 
 //CCollider2D
-#include "planeta/buildin/CCollider2D.hpp"
-#include "planeta/buildin/CCircleCollider2D.hpp"
-#include "planeta/buildin/CPolygonCollider2D.hpp"
-#include "planeta/buildin/CStraightLineCollider2D.hpp"
+#include "buildin/c_collider_2d.hpp"
+#include "buildin/c_circle_collider_2d.hpp"
+#include "buildin/c_polygon_collider_2d.hpp"
+#include "buildin/c_straight_line_collider_2d.hpp"
 
 //CDraw2D
-#include "planeta/buildin/CDraw2D.hpp"
-#include "planeta/buildin/CDrawGraph2D.hpp"
-#include "planeta/buildin/CDrawLine2D.hpp"
-#include "planeta/buildin/CDrawPlanet2D.hpp"
-#include "planeta/buildin/CDrawPolygon2D.hpp"
+#include "buildin/c_draw_2d.hpp"
+#include "buildin/c_draw_graph_2d.hpp"
+#include "buildin/c_draw_line_2d.hpp"
+#include "buildin/c_draw_planet_2d.hpp"
+#include "buildin/c_draw_polygon_2d.hpp"
 
 //CGround2D
-#include "planeta/buildin/CGround2D.hpp"
-#include "planeta/buildin/CPlanetGround2D.hpp"
+#include "buildin/c_ground_2d.hpp"
+#include "buildin/c_planet_ground_2d.hpp"
 
 //Others
-#include "planeta/buildin/CTransform2D.hpp"
-#include "planeta/buildin/CBelongingGroundGravity.hpp"
-#include "planeta/buildin/CCamera2D.hpp"
-#include "planeta/buildin/CGraph2DAnimator.hpp"
-#include "planeta/buildin/CPlanet.hpp"
-#include "planeta/buildin/CEffect.hpp"
+#include "buildin/c_transform_2d.hpp"
+#include "buildin/c_belonging_ground_gravity.hpp"
+#include "buildin/c_camera_2d.hpp"
+#include "buildin/c_graph_2d_animator.hpp"
+#include "buildin/c_planet.hpp"
+#include "buildin/c_effect.hpp"

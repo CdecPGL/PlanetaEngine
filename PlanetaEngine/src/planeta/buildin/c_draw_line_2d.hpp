@@ -4,7 +4,7 @@
 
 #include "../core/vector_2d.hpp"
 
-#include "CDraw2D.hpp"
+#include "c_draw_2d.hpp"
 
 namespace plnt {
 	/*! 平面上直線描画コンポーネント*/

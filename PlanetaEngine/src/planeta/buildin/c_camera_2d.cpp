@@ -2,8 +2,8 @@
 #include "planeta/core/i_scene_internal.hpp"
 #include "../core/log_utility.hpp"
 #include "../core/i_game_object.hpp"
-#include "CCamera2D.hpp"
-#include "CTransform2D.hpp"
+#include "c_camera_2d.hpp"
+#include "c_transform_2d.hpp"
 
 namespace plnt {
 	//////////////////////////////////////////////////////////////////////////

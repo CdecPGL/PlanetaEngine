@@ -2,7 +2,7 @@
 
 #include "planeta/core/rectangle.hpp"
 
-#include "CDrawGUI.hpp"
+#include "c_draw_gui.hpp"
 
 namespace plnt {
 	/*! GUI領域に画像を描画するコンポーネント*/

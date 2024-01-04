@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "CDraw2D.hpp"
+#include "c_draw_2d.hpp"
 
 namespace plnt {
 	namespace private_ {

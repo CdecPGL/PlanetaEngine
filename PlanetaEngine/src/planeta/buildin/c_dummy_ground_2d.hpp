@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "CGround2D.hpp"
+#include "c_ground_2d.hpp"
 
 namespace plnt {
 	/*! 何もしない地面コンポーネント*/

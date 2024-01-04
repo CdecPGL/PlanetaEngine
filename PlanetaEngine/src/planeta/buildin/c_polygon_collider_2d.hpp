@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "CCollider2D.hpp"
+#include "c_collider_2d.hpp"
 
 namespace plnt {
 	/*! 多角形コライダーコンポーネント(未実装)*/
