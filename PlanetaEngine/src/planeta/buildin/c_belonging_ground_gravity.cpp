@@ -13,7 +13,7 @@ namespace plnt {
 
 	bool c_belonging_ground_gravity::get_other_components_proc(const go_component_getter &com_getter) {
 		if (!super::get_other_components_proc(com_getter)) { return false; }
-		transform2d_.reset(com_getter.get_component<c_transform_2d>());
+		transform2d_ = com_getter.get_component<c_transform_2d>();
 		return true;
 	}
 

@@ -36,7 +36,7 @@ namespace plnt {
 		void animation_data(const std::unordered_map<std::string, std::vector<frame_data_type>> &data);
 
 	private:
-		non_owing_pointer<c_draw_graph_2d> draw_graph_component_ = {};
+		weak_pointer<c_draw_graph_2d> draw_graph_component_ = {};
 		unsigned int frame_counter_ = 0;
 		bool is_playing_ = false;
 		bool loop_flag_ = false;

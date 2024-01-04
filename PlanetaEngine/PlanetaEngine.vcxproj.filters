@@ -354,9 +354,6 @@
     <ClInclude Include="src\planeta\core\weak_pointer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\planeta\core\non_owing_pointer.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\planeta\reflection\reflection_utility.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

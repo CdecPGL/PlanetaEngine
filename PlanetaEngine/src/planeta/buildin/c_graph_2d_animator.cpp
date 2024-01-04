@@ -13,7 +13,7 @@ namespace plnt {
 
 	bool c_graph_2d_animator::get_other_components_proc(const go_component_getter &com_getter) {
 		if (!super::get_other_components_proc(com_getter)) { return false; }
-		draw_graph_component_.reset(com_getter.get_component<c_draw_graph_2d>());
+		draw_graph_component_ = com_getter.get_component<c_draw_graph_2d>();
 		if (draw_graph_component_ == nullptr) {
 			PE_LOG_ERROR("DrawGraphComponentを取得できませんでした。");
 			return false;

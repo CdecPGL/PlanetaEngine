@@ -52,7 +52,7 @@ namespace plnt {
 
 	bool c_draw_planet_2d::get_other_components_proc(const go_component_getter &com_getter) {
 		if (!super::get_other_components_proc(com_getter)) { return false; }
-		planet_component_.reset(com_getter.get_component<c_planet>());
+		planet_component_ = com_getter.get_component<c_planet>();
 		if (planet_component_ == nullptr) {
 			PE_LOG_ERROR("初期化に失敗しました。PlanetComponentを取得できませんでした。");
 			return false;

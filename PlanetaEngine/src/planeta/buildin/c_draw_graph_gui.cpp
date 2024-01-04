@@ -14,7 +14,7 @@ namespace plnt {
 	class c_draw_graph_gui::impl {
 	public:
 		util::resource_holder<r_graph> graph_res;
-		non_owing_pointer<c_transform_gui> my_c_trans_gui;
+		weak_pointer<c_transform_gui> my_c_trans_gui;
 		rectangle_i graph_draw_area;
 		bool reverse_flag;
 	};
@@ -31,16 +31,18 @@ namespace plnt {
 			.deep_copy_target(&c_draw_graph_gui::impl_);
 	}
 
-	c_draw_graph_gui::c_draw_graph_gui() : impl_(std::make_unique<impl>()) { }
+	c_draw_graph_gui::c_draw_graph_gui() : impl_(std::make_unique<impl>()) {}
 
 	c_draw_graph_gui::~c_draw_graph_gui() = default;
 
-	bool c_draw_graph_gui::resource_id(const std::string &res_id) const { return impl_->graph_res.set_resource_by_id(res_id); }
+	bool c_draw_graph_gui::resource_id(const std::string &res_id) const {
+		return impl_->graph_res.set_resource_by_id(res_id);
+	}
 
 	void c_draw_graph_gui::draw_proc(screen_drawer_gui &drawer) {
 		const auto &trans = *impl_->my_c_trans_gui;
 		drawer.draw_graph(trans.position(), trans.size(), trans.pivot(), trans.rotation_rad(), impl_->graph_draw_area,
-		                 impl_->reverse_flag, impl_->graph_res.resource_shared_pointer());
+		                  impl_->reverse_flag, impl_->graph_res.resource_shared_pointer());
 	}
 
 	bool c_draw_graph_gui::get_other_components_proc(const go_component_getter &com_getter) {

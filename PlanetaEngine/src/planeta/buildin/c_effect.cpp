@@ -34,7 +34,7 @@ namespace plnt {
 		[[nodiscard]] bool get_effect_exits() const;
 		void apply_transform_to_effect() const;
 
-		void set_my_c_transform_2d(const non_owing_pointer<c_transform_2d> &com);
+		void set_my_c_transform_2d(const weak_pointer<c_transform_2d> &com);
 		void disconnect_my_c_transform_updated_event() const;
 		void connect_my_c_transform_updated_event();
 
@@ -44,7 +44,7 @@ namespace plnt {
 		signal_connection trans_update_eve_connection;
 
 	private:
-		non_owing_pointer<c_transform_2d> my_c_transform_2d_ = {};
+		weak_pointer<c_transform_2d> my_c_transform_2d_ = {};
 		std::shared_ptr<r_effect> r_effect_;
 		int effect_handle_ = -1;
 	};
@@ -141,8 +141,8 @@ namespace plnt {
 
 	void c_effect::impl::disconnect_my_c_transform_updated_event() const { trans_update_eve_connection.disconnect(); }
 
-	void c_effect::impl::set_my_c_transform_2d(const non_owing_pointer<c_transform_2d> &com) {
-		my_c_transform_2d_.reset(com);
+	void c_effect::impl::set_my_c_transform_2d(const weak_pointer<c_transform_2d> &com) {
+		my_c_transform_2d_ = com;
 		connect_my_c_transform_updated_event();
 	}
 

@@ -56,7 +56,7 @@ namespace plnt {
 		bool get_other_components_proc(const go_component_getter &com_getter) override;
 		void on_initialized() override;
 		void on_finalized() noexcept override;
-		non_owing_pointer<c_planet> planet_component_;
+		weak_pointer<c_planet> planet_component_;
 		/*ポリゴンセット*/
 		void (c_draw_planet_2d::*polygon_setter_)() const;
 		void set_polygon();

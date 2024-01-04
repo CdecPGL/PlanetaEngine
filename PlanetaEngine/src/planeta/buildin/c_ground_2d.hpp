@@ -49,7 +49,7 @@ namespace plnt {
 		void on_finalized() noexcept override;
 
 	private:
-		non_owing_pointer<c_transform_2d> transform2d_;
+		weak_pointer<c_transform_2d> transform2d_;
 		/*指定地形座標で地形座標系回転度のグローバル座標系回転度との差を取得する*/
 		[[nodiscard]] virtual double get_angle_difference_in_rad_ground_from_global_with_ground_position(const vector_2dd &ground_pos) const = 0;
 	};

@@ -13,7 +13,7 @@
 #include "task.hpp"
 #include "go_component_adder.hpp"
 #include "go_component_getter.hpp"
-#include "..\buildin\r_ptree.hpp"
+#include "../buildin/r_ptree.hpp"
 #include "i_resource_manager.hpp"
 #include "planeta/reflection/reflection.hpp"
 #include "i_scene_internal.hpp"
@@ -108,7 +108,7 @@ namespace plnt {
 			//有効化イベント
 			activated();
 			//アタッチされたタスクの再開
-			check_and_apply_process_to_attached_task([](task &t)-> bool { return t.resume(); });
+			check_and_apply_process_to_attached_task([](const task &t)-> bool { return t.resume(); });
 
 			state_ = game_object_state::active;
 			return true;
@@ -117,7 +117,7 @@ namespace plnt {
 		bool game_object_base::process_inactivation() {
 			state_ = game_object_state::inactivating;
 			//アタッチされたタスクの停止
-			check_and_apply_process_to_attached_task([](task &t)-> bool { return t.pause(); });
+			check_and_apply_process_to_attached_task([](const task &t)-> bool { return t.pause(); });
 			//無効化イベント
 			inactivated();
 			//コンポーネントの無効化
@@ -153,14 +153,14 @@ namespace plnt {
 		}
 
 		void game_object_base::set_scene_and_go_data_to_component(game_object_component &com) {
-			const game_object_component_set_up_data rd{this, scene_internal_interface_};
+			const game_object_component_set_up_data rd{shared_from_this(), scene_internal_interface_};
 			com.set_scene_and_holder_go_data(rd);
 		}
 
 		bool game_object_base::add_components_from_type_id_list(const std::vector<std::string> &com_type_id_list,
 		                                                      std::vector<std::shared_ptr<game_object_component>> &
 		                                                      added_coms) {
-			go_component_adder com_adder{component_holder_};
+			const go_component_adder com_adder{component_holder_};
 			for (auto &&com_type_id : com_type_id_list) {
 				if (auto com = com_adder.create_and_add_component(com_type_id)) { added_coms.push_back(com); } else {
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネント(GOCTypeID:", com_type_id, ")の追加に失敗しました。");

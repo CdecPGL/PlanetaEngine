@@ -11,7 +11,7 @@ namespace plnt {
 		using super = c_planet_ground_2d;
 
 	private:
-		non_owing_pointer<c_planet> planet_component_ = {};
+		weak_pointer<c_planet> planet_component_ = {};
 		[[nodiscard]] bool get_other_components_proc(const go_component_getter &com_getter) override;
 		bool collide_with(c_circle_collider_2d &circle_collider) override;
 		[[nodiscard]] double get_altitude_with_ground_position(const vector_2dd &ground_pos) const override;

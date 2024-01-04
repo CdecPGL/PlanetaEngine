@@ -10,7 +10,7 @@
 namespace plnt {
 	bool c_planet_ground_2d::get_other_components_proc(const go_component_getter &com_getter) {
 		if (!c_ground_2d::get_other_components_proc(com_getter)) { return false; };
-		planet_component_.reset(com_getter.get_component<c_planet>());
+		planet_component_ = com_getter.get_component<c_planet>();
 		if (!planet_component_) {
 			PE_LOG_ERROR("PlanetComponentを取得できませんでした。");
 			return false;

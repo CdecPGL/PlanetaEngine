@@ -34,7 +34,7 @@ namespace plnt {
 
 		double expansion_ = 1.0;
 
-		non_owing_pointer<c_transform_2d> transform2d_;
+		weak_pointer<c_transform_2d> transform2d_;
 		bool get_other_components_proc(const go_component_getter &com_getter) override;
 		void on_initialized() override;
 		void on_activated() override;

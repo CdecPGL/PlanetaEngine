@@ -77,7 +77,7 @@ namespace plnt {
 		void resist_to_collision_detect_process();
 		void remove_from_collision_detect_process();
 
-		non_owing_pointer<c_transform_2d> transform2d_ = {};
+		weak_pointer<c_transform_2d> transform2d_ = {};
 
 		/*位置*/
 		vector_2dd position_;

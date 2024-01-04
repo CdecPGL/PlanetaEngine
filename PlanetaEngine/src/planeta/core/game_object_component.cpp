@@ -39,7 +39,7 @@ namespace plnt {
 	}
 
 	bool game_object_component::set_scene_and_holder_go_data(const private_::game_object_component_set_up_data &resister_data) {
-		game_object_.reset(resister_data.holder_game_object);
+		game_object_ = resister_data.holder_game_object;
 		scene_ = resister_data.scene_internal_interface;
 		set_scene_internal_interface(resister_data.scene_internal_interface);
 		return true;

@@ -9,7 +9,6 @@
 #include "object.hpp"
 #include "non_copyable.hpp"
 #include "weak_pointer.hpp"
-#include "non_owing_pointer.hpp"
 #include "go_component_getter.hpp"
 #include "i_scene.hpp"
 
@@ -111,7 +110,7 @@ namespace plnt {
 		bool is_active_ = false;
 		std::unordered_set<std::string> labels_;
 
-		non_owing_pointer<i_game_object> game_object_;
+		weak_pointer<i_game_object> game_object_;
 		weak_pointer<i_scene> scene_;
 
 		/*特別設定関数*/

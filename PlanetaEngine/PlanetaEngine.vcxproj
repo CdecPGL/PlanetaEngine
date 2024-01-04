@@ -426,7 +426,6 @@
     <ClInclude Include="src\planeta\core\matrix_33.hpp" />
     <ClInclude Include="src\planeta\core\metaprogramming_utility.hpp" />
     <ClInclude Include="src\planeta\core\non_copyable.hpp" />
-    <ClInclude Include="src\planeta\core\non_owing_pointer.hpp" />
     <ClInclude Include="src\planeta\core\normal_folder_manipulator.hpp" />
     <ClInclude Include="src\planeta\core\null_weak_pointer_exception.hpp" />
     <ClInclude Include="src\planeta\core\object.hpp" />
