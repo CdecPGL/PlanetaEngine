@@ -1,13 +1,12 @@
 ﻿#pragma once
 
-#include "..\core\resource_base.hpp"
+#include "../core/resource_base.hpp"
 
 namespace plnt {
 	/*!Boost::Ptree形式で読み込まれるリソース*/
-	class RPtree : public resource_base {
+	class r_ptree : public resource_base {
 	public:
-		virtual ~RPtree() = default;
-		std::shared_ptr<const boost::property_tree::ptree> GetPtree() const;
+		[[nodiscard]] std::shared_ptr<const boost::property_tree::ptree> get_ptree() const;
 
 	private:
 		bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;

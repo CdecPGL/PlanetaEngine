@@ -67,13 +67,13 @@ namespace plnt::private_ {
 		//シーンデータセット
 		ngo->set_scene_internal_interface(scene_data);
 		//ファイル読み込み
-		const auto go_res = game::instance().resource_manager()->get_resource_by_id<RGameObject>(game_object_resource_id);
+		const auto go_res = game::instance().resource_manager()->get_resource_by_id<r_game_object>(game_object_resource_id);
 		if (go_res == nullptr) {
 			PE_LOG_ERROR("ゲームオブジェクト定義リソース\"", game_object_resource_id, "\"の読み込みに失敗しました。");
 			return nullptr;
 		}
 		//コンポーネントの追加と設定
-		if (!ngo->add_and_set_up_components(*go_res->GetPtree())) {
+		if (!ngo->add_and_set_up_components(*go_res->get_ptree())) {
 			PE_LOG_ERROR("ゲームオブジェクトへリソース\"", game_object_resource_id, "\"を読み込むことができませんでした。");
 			return nullptr;
 		}

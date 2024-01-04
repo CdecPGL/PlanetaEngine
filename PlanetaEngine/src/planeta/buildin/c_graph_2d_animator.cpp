@@ -24,8 +24,8 @@ namespace plnt {
 	void c_graph_2d_animator::on_initialized() {
 		super::on_initialized();
 		//アニメーションの更新タスクをゲームオブジェクトにアタッチ
-		const auto tsk = game_object().create_and_attach_task<TInstant>(task_slot::pre_draw_update_phase);
-		tsk->SetExcuteFunction([this]() { update_animation(); });
+		const auto tsk = game_object().create_and_attach_task<t_instant>(task_slot::pre_draw_update_phase);
+		tsk->set_execute_function([this]() { update_animation(); });
 	}
 
 	void c_graph_2d_animator::update_animation() {

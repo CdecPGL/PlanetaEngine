@@ -588,7 +588,6 @@
     <ClCompile Include="src\planeta\reflection\reflection_utility.cpp" />
     <ClCompile Include="src\planeta\core\resource_base.cpp" />
     <ClCompile Include="src\planeta\core\resource_referencer.cpp" />
-    <ClCompile Include="src\planeta\buildin\RGameObject.cpp" />
     <ClCompile Include="src\planeta\buildin\RJson.cpp" />
     <ClCompile Include="src\planeta\buildin\RLuaScript.cpp" />
     <ClCompile Include="src\planeta\buildin\RPtree.cpp" />

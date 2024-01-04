@@ -183,7 +183,7 @@ namespace plnt {
 	}
 
 	bool c_draw_planet_2d::set_graph_resource(const std::string &resource_id) {
-		if (const auto res = game::instance().resource_manager()->get_resource_by_id<RGraph>(resource_id); res ==
+		if (const auto res = game::instance().resource_manager()->get_resource_by_id<r_graph>(resource_id); res ==
 			nullptr) {
 			PE_LOG_ERROR("リソースの取得に失敗しました。(ResourceID: ", resource_id, ")");
 			return false;

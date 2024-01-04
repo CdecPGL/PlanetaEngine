@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#include "..\core\json_file.hpp"
-#include "..\core\resource_base.hpp"
+#include "../core/json_file.hpp"
+#include "../core/resource_base.hpp"
 
 namespace plnt {
 	/*! @brief JSONファイルを扱うリソースクラス
 	*/
-	class RJson final : public resource_base {
+	class r_json final : public resource_base {
 	public:
-		const json_file &get_json_file() const;
+		[[nodiscard]] const json_file &get_json_file() const;
 		json_file &get_json_file();
 
 	private:

@@ -12,7 +12,7 @@
 namespace plnt {
 	void screen_drawer_gui::draw_graph(const vector_2di &position, const vector_2di &size, const vector_2dd &center_pivot,
 	                                double rotation_rad, const rectangle_i &draw_area_on_graph, bool reverse,
-	                                const std::shared_ptr<RGraph> &graph_resource) const {
+	                                const std::shared_ptr<r_graph> &graph_resource) const {
 		screen_.reserve_draw([position,size,draw_area_on_graph,reverse,graph_resource,rotation_rad,center_pivot] {
 			if (graph_resource == nullptr) { return; }
 			const double scale_x = static_cast<double>(size.x) / draw_area_on_graph.width();
@@ -25,7 +25,7 @@ namespace plnt {
 				static_cast<int>(draw_area_on_graph.width() * center_pivot.x),
 				static_cast<int>(draw_area_on_graph.height() * center_pivot.y),
 				scale_x, scale_y,
-				rotation_rad, graph_resource->GetHandle(), true, reverse);
+				rotation_rad, graph_resource->get_handle(), true, reverse);
 		});
 	}
 
@@ -60,11 +60,11 @@ namespace plnt {
 
 	void screen_drawer_gui::draw_string(const vector_2di &position, const vector_2dd &scale, const std::string &str,
 	                                 const color &color, const plnt::color &outline_color,
-	                                 const std::shared_ptr<RFont> &font_resource) const {
+	                                 const std::shared_ptr<r_font> &font_resource) const {
 		screen_.reserve_draw([position,scale,str,color,outline_color,font_resource] {
 			if (font_resource == nullptr) { return; }
 			DrawExtendStringToHandle(position.x, position.y, scale.x, scale.y, str.c_str(),
-			                         dxlib::pe_color_to_dx_color_handle(color), font_resource->GetDXHandle(),
+			                         dxlib::pe_color_to_dx_color_handle(color), font_resource->get_dx_handle(),
 			                         dxlib::pe_color_to_dx_color_handle(outline_color));
 		});
 	}

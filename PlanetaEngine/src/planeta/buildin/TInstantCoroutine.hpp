@@ -3,17 +3,17 @@
 #include "TCoroutine.hpp"
 
 namespace plnt {
-	class TInstantCoroutine : public TCoroutine {
+	class t_instant_coroutine final : public t_coroutine {
 	public:
-		using super = TCoroutine;
-		using TCoroutine::TCoroutine;
+		using super = t_coroutine;
+		using t_coroutine::t_coroutine;
 		using func_type = std::function<void(func_arg_type)>;
-		void SetFunction(const func_type &func) { function_ = func; }
+		void set_function(const func_type &func) { function_ = func; }
 
 	private:
 		func_type function_;
-		void UpdateProc(func_arg_type yield) { function_(yield); }
+		void update_proc(func_arg_type yield) override { function_(yield); }
 	};
 
-	PE_TASK_CLASS(TInstantCoroutine);
+	PE_TASK_CLASS(t_instant_coroutine);
 }

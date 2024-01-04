@@ -19,14 +19,14 @@ namespace plnt::private_ {
 
 	std::shared_ptr<i_bgm_controller> standard_sound_manager::get_bgm_controller(
 		const std::shared_ptr<resource_base> &music_resource) {
-		auto m_res = std::dynamic_pointer_cast<RMusic>(music_resource);
+		auto m_res = std::dynamic_pointer_cast<r_music>(music_resource);
 		if (m_res == nullptr) {
 			// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)
 			PE_LOG_ERROR("Musicリソースでないリソースが渡されました。(", typeid(*music_resource).name(), ")");
 			return nullptr;
 		}
 		if (impl_->bgm_controller) {
-			if (impl_->bgm_controller->resource()->GetHandle() == m_res->GetHandle()) { return impl_->bgm_controller; }
+			if (impl_->bgm_controller->resource()->get_handle() == m_res->get_handle()) { return impl_->bgm_controller; }
 			auto nbr = std::make_shared<bgm_controller>(m_res);
 			impl_->bgm_controller = nbr;
 			return nbr;
@@ -39,13 +39,13 @@ namespace plnt::private_ {
 
 	std::shared_ptr<i_sound_effect_controller> standard_sound_manager::get_sound_effect_controller(
 		const std::shared_ptr<resource_base> &sound_resource) {
-		auto s_res = std::dynamic_pointer_cast<RSound>(sound_resource);
+		auto s_res = std::dynamic_pointer_cast<r_sound>(sound_resource);
 		if (s_res == nullptr) {
 			// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)
 			PE_LOG_ERROR("Soundリソースでないリソースが渡されました。(", typeid(*sound_resource).name(), ")");
 			return nullptr;
 		}
-		int dx_handle = s_res->GetHandle();
+		int dx_handle = s_res->get_handle();
 		if (const auto it = impl_->se_controllers.find(dx_handle); it == impl_->se_controllers.end()) {
 			auto new_controller = std::make_shared<sound_effect_controller>(s_res);
 			impl_->se_controllers.emplace(dx_handle, new_controller);

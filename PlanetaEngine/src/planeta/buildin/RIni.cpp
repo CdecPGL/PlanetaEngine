@@ -1,25 +1,23 @@
 ﻿#include <algorithm>
 
-#include "..\core\file_istream.hpp"
-#include "..\core\file_system_utility.hpp"
-#include "..\core\character_code.hpp"
+#include "../core/file_istream.hpp"
 
 #include "RIni.hpp"
 
 namespace plnt {
-	const plnt::ini_file &RIni::get_ini_file() const { return *ini_file_; }
+	const ini_file &r_ini::get_ini_file() const { return *ini_file_; }
 
-	plnt::ini_file &RIni::get_ini_file() { return *ini_file_; }
+	ini_file &r_ini::get_ini_file() { return *ini_file_; }
 
-	bool RIni::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_ini::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		ini_file_ = std::make_unique<ini_file>();
 		if (!ini_file_->load(file)) {
 			PE_LOG_ERROR("INIファイルの読み込みに失敗しました。");
-			ini_file_.release();
+			ini_file_.reset();
 			return false;
 		}
 		return true;
 	}
 
-	void RIni::on_disposed() { ini_file_.release(); }
+	void r_ini::on_disposed() { ini_file_.reset(); }
 }

@@ -123,13 +123,13 @@ namespace plnt::private_ {
 	std::shared_ptr<scene_setupper> standard_scene_manager::create_scene_set_upper(const std::string &scene_name) {
 		//シーン名にプレフィックスをつけたクラスを作成。
 		auto setupper = reflection::reflection::create_object_by_object_type_id<scene_setupper>(
-			private_::add_prefix(scene_name, private_::object_category::scene));
+			add_prefix(scene_name, object_category::scene));
 		return setupper;
 	}
 
 	void standard_scene_manager::transition_to_error_scene() {
 		PE_LOG_ERROR("エラーシーンに遷移します。");
-		const std::shared_ptr<scene_setupper> ecd = std::make_shared<SError>();
+		const std::shared_ptr<scene_setupper> ecd = std::make_shared<s_error>();
 		auto es = std::make_shared<scene>();
 		initialize_scene(*es, *ecd, util::parameter_holder());
 		current_scene_ = std::move(es);
@@ -180,9 +180,9 @@ namespace plnt::private_ {
 		return true;
 	}
 
-	util::parameter_holder standard_scene_manager::finalize_scene(private_::scene &scene, scene_setupper &setupper,
-	                                                            const std::string &next_scene_id,
-	                                                            const util::parameter_holder &finalize_parameters) {
+	util::parameter_holder standard_scene_manager::finalize_scene(scene &scene, scene_setupper &setupper,
+	                                                              const std::string &next_scene_id,
+	                                                              const util::parameter_holder &finalize_parameters) {
 		auto ret = setupper.terminate_scene(scene, next_scene_id, finalize_parameters); //固有終了処理
 		scene.finalize(); //終了処理
 		return ret;

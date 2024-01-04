@@ -30,7 +30,7 @@ namespace plnt {
 	c_draw_graph_2d::~c_draw_graph_2d() = default;
 
 	bool c_draw_graph_2d::set_graph_resource(const std::string &resource_id) {
-		if (const auto res = game::instance().resource_manager()->get_resource_by_id<RGraph>(resource_id)) {
+		if (const auto res = game::instance().resource_manager()->get_resource_by_id<r_graph>(resource_id)) {
 			graph_draw_data_->set_graph_resource(res);
 			draw_area_.set(vector_2di(0, 0), vector_2di(res->size().x, res->size().y));
 			update_uv_position();

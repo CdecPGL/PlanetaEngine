@@ -4,7 +4,7 @@
 #include "i_bgm_controller.hpp"
 
 namespace plnt {
-	class RMusic;
+	class r_music;
 
 	class bgm_controller final : public i_bgm_controller {
 	public:
@@ -14,7 +14,7 @@ namespace plnt {
 		bgm_controller &operator=(const bgm_controller &) = delete;
 		bgm_controller &operator=(bgm_controller &&) = delete;
 
-		explicit bgm_controller(std::shared_ptr<RMusic> mr) : music_resource_(std::move(mr)) { }
+		explicit bgm_controller(std::shared_ptr<r_music> mr) : music_resource_(std::move(mr)) { }
 
 		~bgm_controller() override;
 		bool start(bool loop_flag) override;
@@ -26,10 +26,10 @@ namespace plnt {
 
 		void update();
 		void dispose();
-		[[nodiscard]] std::shared_ptr<RMusic> resource() const { return music_resource_; }
+		[[nodiscard]] std::shared_ptr<r_music> resource() const { return music_resource_; }
 
 	private:
-		std::shared_ptr<RMusic> music_resource_;
+		std::shared_ptr<r_music> music_resource_;
 
 		enum class state { fade_in, fade_out, none };
 

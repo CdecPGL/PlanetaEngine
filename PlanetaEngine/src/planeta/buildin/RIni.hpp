@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "..\core\resource_base.hpp"
+#include "../core/resource_base.hpp"
 #include "../core/ini_file.hpp"
 
 namespace plnt {
-	class RIni : public resource_base {
+	class r_ini final : public resource_base {
 	public:
-		const ini_file &get_ini_file() const;
+		[[nodiscard]] const ini_file &get_ini_file() const;
 		ini_file &get_ini_file();
 
 	private:

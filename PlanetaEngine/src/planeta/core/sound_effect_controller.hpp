@@ -6,13 +6,13 @@
 #include "i_sound_effect_controller.hpp"
 
 namespace plnt {
-	class RSound;
+	class r_sound;
 
 	class sound_effect_controller final : public i_sound_effect_controller {
 	public:
 		sound_effect_controller(const sound_effect_controller &) = delete;
 		sound_effect_controller(sound_effect_controller &&) = default;
-		explicit sound_effect_controller(std::shared_ptr<RSound> mr) : sound_resource_(std::move(mr)) {}
+		explicit sound_effect_controller(std::shared_ptr<r_sound> mr) : sound_resource_(std::move(mr)) {}
 		sound_effect_controller &operator=(const sound_effect_controller &) = delete;
 		sound_effect_controller &operator=(sound_effect_controller &&) = default;
 
@@ -23,7 +23,7 @@ namespace plnt {
 		void dispose();
 
 	private:
-		std::shared_ptr<RSound> sound_resource_;
+		std::shared_ptr<r_sound> sound_resource_;
 		std::vector<int> duplicated_dx_handles_;
 	};
 }

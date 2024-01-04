@@ -1,10 +1,10 @@
 ﻿#pragma once
 
 #include "../core/xml_file.hpp"
-#include "..\core\resource_base.hpp"
+#include "../core/resource_base.hpp"
 
 namespace plnt {
-	class RXml final : public resource_base {
+	class r_xml final : public resource_base {
 	public:
 		[[nodiscard]] const xml_file &xml_file() const;
 		plnt::xml_file &xml_file();

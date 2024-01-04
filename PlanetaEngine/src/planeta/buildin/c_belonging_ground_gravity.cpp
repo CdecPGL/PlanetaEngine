@@ -19,8 +19,8 @@ namespace plnt {
 
 	void c_belonging_ground_gravity::on_initialized() {
 		super::on_initialized();
-		const auto proc = game_object().create_and_attach_task<TInstant>(task_slot::pre_collision_early_phase);
-		proc->SetExcuteFunction([this]() { update(); });
+		const auto proc = game_object().create_and_attach_task<t_instant>(task_slot::pre_collision_early_phase);
+		proc->set_execute_function([this]() { update(); });
 	}
 
 	void c_belonging_ground_gravity::update() const {

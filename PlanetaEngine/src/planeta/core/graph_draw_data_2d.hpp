@@ -7,7 +7,7 @@
 #include "vertex_2d.hpp"
 
 namespace plnt {
-	class RGraph;
+	class r_graph;
 
 	namespace dxlib {
 		struct dx_graph_draw_data;
@@ -27,7 +27,7 @@ namespace plnt {
 
 			[[nodiscard]] const dxlib::dx_graph_draw_data &get_dx_data() const { return *dx_data_; }
 			/*画像リソースをセットする*/
-			void set_graph_resource(const std::shared_ptr<RGraph> &g_res);
+			void set_graph_resource(const std::shared_ptr<r_graph> &g_res);
 			void set_vertex_count(size_t c); //頂点数を設定する
 			void set_polygon_count(size_t c) const; //ポリゴン数を設定する
 			bool set_vertex(size_t idx, const util::vertex_2d &vtx); //頂点を設定する
@@ -46,10 +46,10 @@ namespace plnt {
 			[[nodiscard]] bool is_valid() const;
 			[[nodiscard]] size_t vertex_count() const;
 			[[nodiscard]] size_t polygon_count() const;
-			[[nodiscard]] std::shared_ptr<RGraph> graph_resource() const { return graph_resource_; }
+			[[nodiscard]] std::shared_ptr<r_graph> graph_resource() const { return graph_resource_; }
 		private:
 			std::unique_ptr<dxlib::dx_graph_draw_data> dx_data_;
-			std::shared_ptr<RGraph> graph_resource_;
+			std::shared_ptr<r_graph> graph_resource_;
 			std::vector<vector_2df> vertex_uv_information_buffer_; //頂点UVデータの更新用に、元のUV座標データを保持しておく
 		};
 	}

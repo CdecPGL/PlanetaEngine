@@ -5,21 +5,21 @@
 #include "RSound.hpp"
 
 namespace plnt {
-	bool RSound::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_sound::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		//効果音はすべてメモリ上に展開
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMNOPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
 		}
-		_handle = LoadSoundMemByMemImage(file.top_pointer(), file.size());
-		return _handle >= 0;
+		handle_ = LoadSoundMemByMemImage(file.top_pointer(), file.size());
+		return handle_ >= 0;
 	}
 
-	void RSound::on_disposed() {
-		if (_handle >= 0) {
-			DeleteSoundMem(_handle);
-			_handle = -1;
+	void r_sound::on_disposed() {
+		if (handle_ >= 0) {
+			DeleteSoundMem(handle_);
+			handle_ = -1;
 		}
 	}
 
-	int RSound::GetTotalTimeByMilliSecond() { return GetSoundTotalTime(_handle); }
+	int r_sound::get_total_time_by_milli_second() const { return GetSoundTotalTime(handle_); }
 }

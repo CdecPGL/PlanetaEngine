@@ -13,7 +13,7 @@ namespace plnt {
 
 	class c_draw_graph_gui::impl {
 	public:
-		util::resource_holder<RGraph> graph_res;
+		util::resource_holder<r_graph> graph_res;
 		non_owing_pointer<c_transform_gui> my_c_trans_gui;
 		rectangle_i graph_draw_area;
 		bool reverse_flag;

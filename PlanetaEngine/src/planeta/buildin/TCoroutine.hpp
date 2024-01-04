@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <functional>
 #include <memory>
 
 #include "boost/coroutine2/all.hpp"
@@ -8,23 +7,23 @@
 #include "planeta/core/task.hpp"
 
 namespace plnt {
-	class TCoroutine : public task {
+	class t_coroutine : public task {
 	public:
 		using super = task;
 		using coroutine = boost::coroutines2::coroutine<void>;
 		using func_arg_type = coroutine::push_type &;
 		using task::task;
-		void Restart() { Start(); }
+		void restart() { start(); }
 		/*コルーチンが終了した時にプロセスを破棄するか*/
-		void dispose_when_coroutine_finished(bool f) { dispose_when_coroutine_finished_ = f; }
+		void dispose_when_coroutine_finished(const bool f) { dispose_when_coroutine_finished_ = f; }
 
 	private:
 		bool dispose_when_coroutine_finished_ = true;
-		void update() override final;
-		virtual void UpdateProc(func_arg_type yield) = 0;
+		void update() final;
+		virtual void update_proc(func_arg_type yield) = 0;
 		std::unique_ptr<coroutine::pull_type> coroutine_;
-		void Start();
+		void start();
 	};
 
-	PE_TASK_CLASS(TCoroutine);
+	PE_TASK_CLASS(t_coroutine);
 }

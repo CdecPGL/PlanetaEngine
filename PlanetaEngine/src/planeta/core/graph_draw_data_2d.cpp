@@ -58,9 +58,9 @@ namespace plnt::private_ {
 
 	graph_draw_data_2d::~graph_draw_data_2d() = default;
 
-	void graph_draw_data_2d::set_graph_resource(const std::shared_ptr<RGraph> &g_res) {
+	void graph_draw_data_2d::set_graph_resource(const std::shared_ptr<r_graph> &g_res) {
 		graph_resource_ = g_res;
-		dx_data_->graph_handle = g_res->GetHandle();
+		dx_data_->graph_handle = g_res->get_handle();
 		//頂点UV座標の更新
 		if (dx_data_->vertexes) {
 			for (size_t i = 0; i < dx_data_->vertex_count; ++i) {

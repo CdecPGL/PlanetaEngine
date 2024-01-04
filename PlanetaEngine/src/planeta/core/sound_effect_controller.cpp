@@ -25,7 +25,7 @@ namespace plnt {
 		}
 		if (usable_index < 0) {
 			//空いているサウンドがなかったら新たに作成
-			const int ndh = DuplicateSoundMem(sound_resource_->GetHandle());
+			const int ndh = DuplicateSoundMem(sound_resource_->get_handle());
 			duplicated_dx_handles_.push_back(ndh);
 			usable_index = static_cast<int64_t>(duplicated_dx_handles_.size()) - 1;
 		}

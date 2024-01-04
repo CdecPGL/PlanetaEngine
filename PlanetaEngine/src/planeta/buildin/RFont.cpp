@@ -1,30 +1,29 @@
 ﻿#include "DxLib.h"
 
 #include "planeta/core/file.hpp"
-#include "..\core\log_utility.hpp"
-#include "..\core\json_file.hpp"
-
+#include "../core/log_utility.hpp"
+#include "../core/json_file.hpp"
 #include "RFont.hpp"
 
 namespace plnt {
-	bool RFont::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_font::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char *>(file.top_pointer()), file.size(), nullptr,
 		                               &font_num_);
-		if (handle_ == 0) {
+		if (handle_ == nullptr) {
 			PE_LOG_ERROR("フォントの読み込みに失敗しました。");
 			return false;
 		}
-		auto root = metadata.get_root();
-		auto root_obj = root.get<json_object>();
-		auto name = *root_obj->at_with_exception("name")->get_with_exception<std::string>();
-		auto size = *root_obj->at_with_exception("size")->get_with_exception<int>();
-		auto thick = *root_obj->at_with_exception("thick")->get_with_exception<int>();
-		auto outline = *root_obj->at_with_exception("outline")->get_with_exception<bool>();
-		auto antialiasing = *root_obj->at_with_exception("antialiasing")->get_with_exception<bool>();
+		const auto root = metadata.get_root();
+		const auto root_obj = root.get<json_object>();
+		const auto name = *root_obj->at_with_exception("name")->get_with_exception<std::string>();
+		const auto size = *root_obj->at_with_exception("size")->get_with_exception<int>();
+		const auto thick = *root_obj->at_with_exception("thick")->get_with_exception<int>();
+		const auto outline = *root_obj->at_with_exception("outline")->get_with_exception<bool>();
+		const auto antialiasing = *root_obj->at_with_exception("antialiasing")->get_with_exception<bool>();
 		//DXフォントタイプを求める
-		int dx_font_type = outline
-			                   ? (antialiasing ? DX_FONTTYPE_ANTIALIASING_EDGE : DX_FONTTYPE_EDGE)
-			                   : (antialiasing ? DX_FONTTYPE_ANTIALIASING : DX_FONTTYPE_NORMAL);
+		const int dx_font_type = outline
+			                         ? (antialiasing ? DX_FONTTYPE_ANTIALIASING_EDGE : DX_FONTTYPE_EDGE)
+			                         : (antialiasing ? DX_FONTTYPE_ANTIALIASING : DX_FONTTYPE_NORMAL);
 		//DXライブラリフォントハンドルを作成
 		dx_handle_ = CreateFontToHandle(name.c_str(), size, thick, dx_font_type);
 		if (handle_ == nullptr) {
@@ -40,7 +39,7 @@ namespace plnt {
 		return true;
 	}
 
-	void RFont::on_disposed() {
+	void r_font::on_disposed() {
 		if (handle_ != nullptr) { DeleteFontToHandle(dx_handle_); }
 		if (handle_ != nullptr) { RemoveFontMemResourceEx(handle_); }
 	}

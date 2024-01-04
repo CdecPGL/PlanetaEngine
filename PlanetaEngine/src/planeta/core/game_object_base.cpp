@@ -27,10 +27,10 @@ namespace plnt {
 			//文字列が空でなかったらリソースIDとみなしてPtreeリソースを読み込む
 			if (auto res_id = pt.get_value<std::string>(); !res_id.empty()) {
 				//指定されたリソースがない
-				if (const auto res = game::instance().resource_manager()->get_resource_by_id<RPtree>(res_id); res ==
+				if (const auto res = game::instance().resource_manager()->get_resource_by_id<r_ptree>(res_id); res ==
 					nullptr) {
 					PE_LOG_ERROR("ゲームオブジェクトコンポーネントのファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id, "\"を読み込めませんでした。");
-				} else { out.push_back(res->GetPtree()); }
+				} else { out.push_back(res->get_ptree()); }
 			} else {
 				//文字列でなかったら、オブジェクトか配列
 				if (pt.empty() || !pt.ordered_begin()->first.empty()) {
@@ -42,11 +42,11 @@ namespace plnt {
 						if (auto res_id2 = val.get_value<std::string>(); !res_id2.empty()) {
 							//要素が文字列だったら、そのIDのリソースを読み込み
 							//指定されたリソースがない
-							if (auto res = game::instance().resource_manager()->get_resource_by_id<RPtree>(res_id2); res ==
+							if (auto res = game::instance().resource_manager()->get_resource_by_id<r_ptree>(res_id2); res ==
 								nullptr) {
 								PE_LOG_ERROR("ゲームオブジェクトコンポーネントのファイル定義読み込みに失敗しました。指定されたPtreeリソース\"", res_id2,
 								             "\"を読み込めませんでした。");
-							} else { out.push_back(res->GetPtree()); }
+							} else { out.push_back(res->get_ptree()); }
 						} else {
 							//そうじゃなかったらそれがGOC定義の一つ
 							out.push_back(std::make_shared<const boost::property_tree::ptree>(val));

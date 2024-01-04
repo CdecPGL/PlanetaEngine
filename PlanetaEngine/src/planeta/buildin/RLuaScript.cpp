@@ -3,7 +3,7 @@
 #include "RLuaScript.hpp"
 
 namespace plnt {
-	bool RLuaScript::RegisterToLuaState(lua_State *l) {
+	bool r_lua_script::register_to_lua_state(lua_State *l) {
 		/*
 		if (luaL_loadbuffer(l, reinterpret_cast<const char*>(file_->top_pointer()), file_->size(), file_->file_name().c_str())) {
 			PE_LOG_ERROR("Luaステートの読み込みに失敗しました。ファイル名:", file_->file_name());
@@ -19,15 +19,15 @@ namespace plnt {
 		return false;
 	}
 
-	bool RLuaScript::on_loaded(const file &f, const json_file &metadata, resource_referencer &referencer) {
+	bool r_lua_script::on_loaded(const file &f, const json_file &metadata, resource_referencer &referencer) {
 		//ファイルのコピーを作成
 		file_ = std::make_unique<file>(f);
 		return true;
 	}
 
-	void RLuaScript::on_disposed() { file_.release(); }
+	void r_lua_script::on_disposed() { file_.reset(); }
 
-	RLuaScript::RLuaScript() = default;
+	r_lua_script::r_lua_script() = default;
 
-	RLuaScript::~RLuaScript() = default;
+	r_lua_script::~r_lua_script() = default;
 }

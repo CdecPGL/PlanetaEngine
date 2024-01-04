@@ -45,7 +45,7 @@ namespace plnt {
 
 	private:
 		non_owing_pointer<c_transform_2d> my_c_transform_2d_ = {};
-		std::shared_ptr<REffect> r_effect_;
+		std::shared_ptr<r_effect> r_effect_;
 		int effect_handle_ = -1;
 	};
 
@@ -101,7 +101,7 @@ namespace plnt {
 	}
 
 	bool c_effect::impl::set_resource_by_id(const std::string &resource_id) {
-		if (const auto res = game::instance().resource_manager()->get_resource_by_id<REffect>(resource_id)) {
+		if (const auto res = game::instance().resource_manager()->get_resource_by_id<r_effect>(resource_id)) {
 			r_effect_ = res;
 			return true;
 		}
@@ -178,8 +178,8 @@ namespace plnt {
 				return;
 			}
 		}
-		const auto task = game_object().create_and_attach_task<TInstant>(task_slot::pre_draw_update_phase);
-		task->SetExcuteFunction([this] {
+		const auto task = game_object().create_and_attach_task<t_instant>(task_slot::pre_draw_update_phase);
+		task->set_execute_function([this] {
 			impl_->apply_transform_to_effect();
 			//エフェクトのループ確認
 			if (impl_->loop_flag && !impl_->get_effect_exits()) {

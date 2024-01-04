@@ -13,13 +13,13 @@ namespace plnt {
 	}
 
 	void bgm_controller::dispose() {
-		if (is_valid()) { StopSoundMem(music_resource_->GetHandle()); }
+		if (is_valid()) { StopSoundMem(music_resource_->get_handle()); }
 		music_resource_.reset();
 	}
 
 	bool bgm_controller::is_playing() const {
 		if (!is_valid()) { return false; }
-		return CheckSoundMem(music_resource_->GetHandle()) == 1 ? true : false;
+		return CheckSoundMem(music_resource_->get_handle()) == 1 ? true : false;
 	}
 
 	bool bgm_controller::start(const bool loop_flag) {
@@ -27,7 +27,7 @@ namespace plnt {
 			PE_LOG_WARNING("コントローラは無効です。");
 			return false;
 		}
-		ChangeVolumeSoundMem(255, music_resource_->GetHandle());
+		ChangeVolumeSoundMem(255, music_resource_->get_handle());
 		return play(loop_flag);
 	}
 
@@ -36,7 +36,7 @@ namespace plnt {
 			PE_LOG_WARNING("コントローラは無効です。");
 			return false;
 		}
-		return StopSoundMem(music_resource_->GetHandle()) >= 0;
+		return StopSoundMem(music_resource_->get_handle()) >= 0;
 	}
 
 	bgm_controller::~bgm_controller() { dispose(); }
@@ -49,7 +49,7 @@ namespace plnt {
 		if (is_playing()) { return false; }
 		state_ = state::fade_in;
 		fade_total_frame_ = frame;
-		ChangeVolumeSoundMem(0, music_resource_->GetHandle());
+		ChangeVolumeSoundMem(0, music_resource_->get_handle());
 		return play(loop_flag);
 	}
 
@@ -68,13 +68,13 @@ namespace plnt {
 		switch (state_) {
 			case state::fade_in: {
 				const double ratio = static_cast<double>(fade_frame_counter_) / fade_total_frame_;
-				ChangeVolumeSoundMem(static_cast<int>(255 * ratio), music_resource_->GetHandle());
+				ChangeVolumeSoundMem(static_cast<int>(255 * ratio), music_resource_->get_handle());
 				++fade_frame_counter_;
 				break;
 			}
 			case state::fade_out: {
 				const double ratio = 1.0 - static_cast<double>(fade_frame_counter_) / fade_total_frame_;
-				ChangeVolumeSoundMem(static_cast<int>(255 * ratio), music_resource_->GetHandle());
+				ChangeVolumeSoundMem(static_cast<int>(255 * ratio), music_resource_->get_handle());
 				++fade_frame_counter_;
 				break;
 			}
@@ -84,6 +84,6 @@ namespace plnt {
 	}
 
 	bool bgm_controller::play(const bool loop_flag) const {
-		return PlaySoundMem(music_resource_->GetHandle(), loop_flag ? DX_PLAYTYPE_LOOP : DX_PLAYTYPE_BACK) >= 0;
+		return PlaySoundMem(music_resource_->get_handle(), loop_flag ? DX_PLAYTYPE_LOOP : DX_PLAYTYPE_BACK) >= 0;
 	}
 }

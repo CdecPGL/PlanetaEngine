@@ -1,21 +1,19 @@
 ﻿#pragma once
 
-#include "..\core\resource_base.hpp"
+#include "../core/resource_base.hpp"
 
 namespace plnt {
 	/*音楽リソース*/
-	class RMusic : public resource_base {
+	class r_music final : public resource_base {
 	public:
-		RMusic() : _handle(-1) { };
+		r_music() : handle_(-1) { }
 
-		~RMusic() { }
-
-		int GetHandle() const { return _handle; }
-		int GetTotalTimeByMilliSecond();
+		[[nodiscard]] int get_handle() const { return handle_; }
+		[[nodiscard]] int get_total_time_by_milli_second() const;
 
 	private:
-		int _handle;
-		virtual bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
-		virtual void on_disposed() override;
+		int handle_;
+		bool on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) override;
+		void on_disposed() override;
 	};
 }
