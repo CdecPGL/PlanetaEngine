@@ -3,6 +3,7 @@
 #include <memory>
 #include <cassert>
 #include <type_traits>
+#include <functional>
 
 // ReSharper disable once CppUnusedIncludeDirective
 #include "null_weak_pointer_exception.hpp"
@@ -127,7 +128,23 @@ namespace plnt {
 			return *this;
 		}
 
+		template <typename R>
+		R operator()(const std::function<R(T &)> &f) {
+			std::shared_ptr<T> s_ptr = w_ptr_.lock();
+			#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
+			assert(s_ptr != nullptr);
+			#else //それ以外では例外を投げる
+			if (s_ptr == nullptr) {
+				throw null_weak_pointer_exception(std::string("Null weak pointer is called."));
+			}
+			#endif
+
+			return f(*s_ptr);
+		}
+
 		//////////アクセス演算子//////////
+		// TODO: ()演算子への置き換え
+		//[[deprecated("Use () operator instead.")]]
 		T *operator->() const {
 			std::shared_ptr<T> s_ptr = w_ptr_.lock();
 			#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、
@@ -141,6 +158,8 @@ namespace plnt {
 		}
 
 		//////////ポインタ参照演算子//////////
+		// TODO: ()演算子への置き換え
+		//[[deprecated("Use () operator instead.")]]
 		T &operator*() const {
 			std::shared_ptr<T> s_ptr = w_ptr_.lock();
 			#ifdef _DEBUG //NULL参照が発生した場合、Debugビルド時はassertし、

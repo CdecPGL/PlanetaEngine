@@ -15,96 +15,96 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CBullet.cpp">
+    <ClCompile Include="src\c_bullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CBulletShooter.cpp">
+    <ClCompile Include="src\c_bullet_shooter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CBulletShooterPlayerB.cpp">
+    <ClCompile Include="src\c_bullet_shooter_player_b.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CDamageAdder.cpp">
+    <ClCompile Include="src\c_damage_adder.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CDamageReceiver.cpp">
+    <ClCompile Include="src\c_damage_receiver.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CDestroyerByAltitude.cpp">
+    <ClCompile Include="src\c_destroyer_by_altitude.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CDisposerWhenEffectStop.cpp">
+    <ClCompile Include="src\c_disposer_when_effect_stop.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CEnemy.cpp">
+    <ClCompile Include="src\c_enemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CPlayer.cpp">
+    <ClCompile Include="src\c_player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CPlayerInputPreserver.cpp">
+    <ClCompile Include="src\c_player_input_observer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\CStateMachine.cpp">
+    <ClCompile Include="src\c_state_machine.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\Main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\SDebugMode.cpp">
+    <ClCompile Include="src\s_debug_mode.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\TCameraFollower.cpp">
+    <ClCompile Include="src\t_camera_follower.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="src\TPlayerInputSender.cpp">
+    <ClCompile Include="src\t_player_input_sender.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CBullet.hpp">
+    <ClInclude Include="src\c_bullet.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CBulletShooter.hpp">
+    <ClInclude Include="src\c_bullet_shooter.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CBulletShooterPlayerB.hpp">
+    <ClInclude Include="src\c_bullet_shooter_player_b.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CDamageAdder.hpp">
+    <ClInclude Include="src\c_damage_adder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CDamageReceiver.hpp">
+    <ClInclude Include="src\c_damage_receiver.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CDestroyerByAltitude.hpp">
+    <ClInclude Include="src\c_destroyer_by_altitude.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CDisposerWhenEffectStop.hpp">
+    <ClInclude Include="src\c_disposer_when_effect_stop.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CEnemy.hpp">
+    <ClInclude Include="src\c_enemy.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CPlayer.hpp">
+    <ClInclude Include="src\c_player.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CPlayerInputPreserver.hpp">
+    <ClInclude Include="src\c_player_input_observer.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\CStateMachine.hpp">
+    <ClInclude Include="src\c_state_machine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\EADamage.hpp">
+    <ClInclude Include="src\e_damage.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\SDebugMode.hpp">
+    <ClInclude Include="src\s_debug_mode.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\TCameraFollower.hpp">
+    <ClInclude Include="src\t_camera_follower.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\TPlayerInputSender.hpp">
+    <ClInclude Include="src\t_player_input_sender.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

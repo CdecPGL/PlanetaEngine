@@ -203,38 +203,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CBullet.cpp" />
-    <ClCompile Include="src\CBulletShooter.cpp" />
-    <ClCompile Include="src\CBulletShooterPlayerB.cpp" />
-    <ClCompile Include="src\CDamageAdder.cpp" />
-    <ClCompile Include="src\CDamageReceiver.cpp" />
-    <ClCompile Include="src\CDestroyerByAltitude.cpp" />
-    <ClCompile Include="src\CDisposerWhenEffectStop.cpp" />
-    <ClCompile Include="src\CEnemy.cpp" />
-    <ClCompile Include="src\CPlayer.cpp" />
-    <ClCompile Include="src\CPlayerInputPreserver.cpp" />
-    <ClCompile Include="src\CStateMachine.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\SDebugMode.cpp" />
-    <ClCompile Include="src\TCameraFollower.cpp" />
-    <ClCompile Include="src\TPlayerInputSender.cpp" />
+    <ClCompile Include="src\c_bullet.cpp" />
+    <ClCompile Include="src\c_bullet_shooter.cpp" />
+    <ClCompile Include="src\c_bullet_shooter_player_b.cpp" />
+    <ClCompile Include="src\c_damage_adder.cpp" />
+    <ClCompile Include="src\c_damage_receiver.cpp" />
+    <ClCompile Include="src\c_destroyer_by_altitude.cpp" />
+    <ClCompile Include="src\c_disposer_when_effect_stop.cpp" />
+    <ClCompile Include="src\c_enemy.cpp" />
+    <ClCompile Include="src\c_player.cpp" />
+    <ClCompile Include="src\c_player_input_observer.cpp" />
+    <ClCompile Include="src\c_state_machine.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\s_debug_mode.cpp" />
+    <ClCompile Include="src\t_camera_follower.cpp" />
+    <ClCompile Include="src\t_player_input_sender.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CBullet.hpp" />
-    <ClInclude Include="src\CBulletShooter.hpp" />
-    <ClInclude Include="src\CBulletShooterPlayerB.hpp" />
-    <ClInclude Include="src\CDamageAdder.hpp" />
-    <ClInclude Include="src\CDamageReceiver.hpp" />
-    <ClInclude Include="src\CDestroyerByAltitude.hpp" />
-    <ClInclude Include="src\CDisposerWhenEffectStop.hpp" />
-    <ClInclude Include="src\CEnemy.hpp" />
-    <ClInclude Include="src\CPlayer.hpp" />
-    <ClInclude Include="src\CPlayerInputPreserver.hpp" />
-    <ClInclude Include="src\CStateMachine.hpp" />
-    <ClInclude Include="src\EADamage.hpp" />
-    <ClInclude Include="src\SDebugMode.hpp" />
-    <ClInclude Include="src\TCameraFollower.hpp" />
-    <ClInclude Include="src\TPlayerInputSender.hpp" />
+    <ClInclude Include="src\c_bullet.hpp" />
+    <ClInclude Include="src\c_bullet_shooter.hpp" />
+    <ClInclude Include="src\c_bullet_shooter_player_b.hpp" />
+    <ClInclude Include="src\c_damage_adder.hpp" />
+    <ClInclude Include="src\c_damage_receiver.hpp" />
+    <ClInclude Include="src\c_destroyer_by_altitude.hpp" />
+    <ClInclude Include="src\c_disposer_when_effect_stop.hpp" />
+    <ClInclude Include="src\c_enemy.hpp" />
+    <ClInclude Include="src\c_player.hpp" />
+    <ClInclude Include="src\c_player_input_observer.hpp" />
+    <ClInclude Include="src\c_state_machine.hpp" />
+    <ClInclude Include="src\e_damage.hpp" />
+    <ClInclude Include="src\s_debug_mode.hpp" />
+    <ClInclude Include="src\t_camera_follower.hpp" />
+    <ClInclude Include="src\t_player_input_sender.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

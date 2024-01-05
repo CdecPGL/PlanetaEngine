@@ -39,9 +39,6 @@ namespace plnt::private_ {
 			if (str.length() >= 2) {
 				const char c1{str[1]};
 				const char c0{str[0]};
-				// upper camel case
-				if (util::is_upper_case_character(c0) && util::is_upper_case_character(c1)) { return {true, c0}; }
-				// snake case
 				if (c1 == '_') { return {true, c0}; }
 				return {false, '\0'};
 			}
@@ -59,12 +56,6 @@ namespace plnt::private_ {
 	std::string remove_prefix(const std::string &class_name) {
 		if (const auto [is_exist, prefix] = check_prefix_format(class_name); is_exist) {
 			if (detect_category_by_character(prefix) != object_category::others) {
-				// upper camel case
-				if (class_name.length() < 2 || class_name[1] != '_') {
-					return class_name.substr(1, class_name.size() - 1);
-				}
-
-				// snake case
 				return class_name.substr(2, class_name.size() - 2);
 			}
 			return class_name;
@@ -83,9 +74,6 @@ namespace plnt::private_ {
 		decltype(auto) map = prefix_category_map().right;
 		const auto it = map.find(category);
 		if (it == map.end()) { return class_id; }
-		// upper camel case
-		if (class_id[0] == util::to_upper(class_id[0])) { return std::string{util::to_upper(it->second)} + class_id; }
-		// snake case
 		return std::string{it->second, '_'} + class_id;
 	}
 }
