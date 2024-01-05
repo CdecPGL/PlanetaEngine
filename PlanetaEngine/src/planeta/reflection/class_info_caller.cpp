@@ -1,4 +1,4 @@
-﻿#include "..\core\string_utility.hpp"
+﻿#include "../core/string_utility.hpp"
 
 #include "class_info_caller.hpp"
 #include "class_info.hpp"
@@ -10,7 +10,7 @@ namespace plnt::reflection {
 	using namespace private_;
 	using namespace util;
 
-	class_info_caller::class_info_caller(const class_info &class_info) noexcept : class_info_(class_info) { }
+	class_info_caller::class_info_caller(const class_info &class_info) noexcept : class_info_(class_info) {}
 
 	void class_info_caller::set_variable(const std::string &var_id, reflectable &obj, const boost::any &v) const {
 		const auto it = class_info_.public_variable_property_info.find(var_id);
@@ -22,8 +22,9 @@ namespace plnt::reflection {
 		try { it->second.setter(obj, v); } catch (boost::bad_any_cast &) {
 			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(convert_and_connect_to_string("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
-			                                                 "\"の読み込みにおいて型の不一致エラーが発生しました。(変数型:",
-			                                                 it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
+			                                                     "\"の読み込みにおいて型の不一致エラーが発生しました。(変数型:",
+			                                                     it->second.t_info.name(), ", 指定型:", v.type().name(),
+			                                                     ")"));
 		}
 	}
 
@@ -37,8 +38,9 @@ namespace plnt::reflection {
 		try { v = it->second.getter(obj); } catch (boost::bad_any_cast &) {
 			std::string obj_tid = reflection::get_object_type_id_by_std_type_info(typeid(obj));
 			throw reflection_error(convert_and_connect_to_string("クラス\"", obj_tid, "\"の変数またはプロパティ\"", var_id,
-			                                                 "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:",
-			                                                 it->second.t_info.name(), ", 指定型:", v.type().name(), ")"));
+			                                                     "\"の書き込みにおいて型の不一致エラーが発生しました。(変数型:",
+			                                                     it->second.t_info.name(), ", 指定型:", v.type().name(),
+			                                                     ")"));
 		}
 	}
 
@@ -52,7 +54,8 @@ namespace plnt::reflection {
 					convert_and_connect_to_string("クラス\"", obj_tid, "\"に変数またはプロパティ\"", var_id, "\"は登録されていません。"));
 			}
 			try { it->second.ptree_loader(obj, ptp.second); } catch (reflection_error &e) {
-				throw reflection_error(convert_and_connect_to_string("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
+				throw reflection_error(
+					convert_and_connect_to_string("変数またはプロパティ\"", var_id, "\"の読み込みに失敗しました。:", e.what()));
 			}
 		}
 	}
@@ -65,5 +68,8 @@ namespace plnt::reflection {
 	}
 
 	// ReSharper disable once CppMemberFunctionMayBeStatic
-	auto class_info_caller::copy_from(reflectable &me, const reflectable &src) -> void { throw reflection_error("Copyは未実装です。"); }
+	auto class_info_caller::copy_from([[maybe_unused]] reflectable &me,
+	                                  [[maybe_unused]] const reflectable &src) -> void {
+		throw reflection_error("Copyは未実装です。");
+	}
 }

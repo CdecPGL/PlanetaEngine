@@ -42,8 +42,9 @@ namespace plnt {
 
 		private:
 			/*部分復号化を行う。対応しない場合はオーバーライドしなくて良い。srcとdstが異なることは保証される。*/
-			virtual bool decrypt_partially_core(const file &src, size_t pos, size_t size, char *dst_ptr,
-			                                    size_t dst_size) const { return false; }
+			virtual bool decrypt_partially_core([[maybe_unused]] const file &src, [[maybe_unused]] size_t pos,
+			                                    [[maybe_unused]] size_t size, [[maybe_unused]] char *dst_ptr,
+			                                    [[maybe_unused]] size_t dst_size) const { return false; }
 
 			/*暗号化を行う。srcとdstが異なることは保証される。*/
 			virtual bool encrypt_core(const file &src, file &dst) const = 0;

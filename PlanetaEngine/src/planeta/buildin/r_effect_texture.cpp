@@ -7,7 +7,8 @@
 
 #include "r_effect_texture.hpp"
 
-bool plnt::r_effect_texture::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+bool plnt::r_effect_texture::on_loaded(const file &file, [[maybe_unused]] const json_file &metadata,
+                                       [[maybe_unused]] resource_referencer &referencer) {
 	dx_base_image_ = std::make_unique<DxLib::BASEIMAGE>(::DxLib::BASEIMAGE{});
 	if (CreateBaseImageToMem(file.top_pointer(), file.size(), dx_base_image_.get(), false)) {
 		PE_LOG_ERROR("テクスチャの作成に失敗しました。");

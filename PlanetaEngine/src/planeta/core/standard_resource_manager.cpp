@@ -255,7 +255,7 @@ namespace plnt::private_ {
 			[this](const std::type_info &type, const std::string &id, const bool is_valid_not_preload_warning) {
 				return get_resource_by_full_id(get_full_id_from_type_and_id(type, id), is_valid_not_preload_warning);
 			},
-			[this](const std::type_info &type, const std::string &path, const std::string &root_path,
+			[this]([[maybe_unused]] const std::type_info &type, const std::string &path, const std::string &root_path,
 			       const bool is_valid_not_preload_warning) {
 				return get_resource_by_path(path, root_path, is_valid_not_preload_warning);
 			}

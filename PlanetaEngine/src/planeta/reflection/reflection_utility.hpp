@@ -32,14 +32,14 @@ namespace plnt::reflection {
 		//C::reflection_data_registerer(ClassRegisterer<C>&)を持っているか
 		template <class C>
 		struct has_reflection_data_registerer : has_static_member_function_reflection_data_registerer<
-				C, void, boost::mpl::vector<class_registerer<C> &>> { };
+				C, void, boost::mpl::vector<class_registerer<C> &>> {};
 
 		template <class C>
 		constexpr bool has_reflection_data_registerer_v = has_reflection_data_registerer<C>::value;
 
 		////C::superを持っているか
 		template <class C, typename T = void>
-		struct has_super_alias : std::false_type { };
+		struct has_super_alias : std::false_type {};
 
 		template <class C>
 		struct has_super_alias<C, decltype(std::declval<typename C::super>(), std::declval<void>())> : std::true_type {
@@ -72,7 +72,7 @@ namespace plnt::reflection {
 		//Ptreeから直接変換不可能。ほかに手段がないのでここに到達した時点でエラー
 		template <typename T, typename U = void>
 		struct reflective_ptree_converter_layer2 {
-			void operator()(T &dst, const boost::property_tree::ptree &src) {
+			void operator()([[maybe_unused]] T &dst, [[maybe_unused]] const boost::property_tree::ptree &src) {
 				private_::reflective_ptree_converter_error<T>();
 			}
 		};
@@ -84,7 +84,7 @@ namespace plnt::reflection {
 				try { dst = src.get_value<T>(); } catch (boost::property_tree::ptree_bad_data &e) {
 					throw reflection_error(
 						util::convert_and_connect_to_string("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(),
-						                                ")"));
+						                                    ")"));
 				}
 			}
 		};
@@ -106,7 +106,7 @@ namespace plnt::reflection {
 					e) {
 					throw reflection_error(
 						util::convert_and_connect_to_string("Ptreeから型\"", typeid(T).name(), "\"への変換に失敗しました。(", e.what(),
-						                                ")"));
+						                                    ")"));
 				}
 			}
 		};
@@ -124,8 +124,9 @@ namespace plnt::reflection {
 	//std::tuple
 	namespace private_ {
 		template <size_t Idx>
-		void reflective_ptree_converter_to_std_tuple(std::tuple<> &dst,
-		                                             const std::vector<const boost::property_tree::ptree *> &src) { }
+		void reflective_ptree_converter_to_std_tuple([[maybe_unused]] std::tuple<> &dst,
+		                                             [[maybe_unused]] const std::vector<const
+			                                             boost::property_tree::ptree *> &src) {}
 
 		template <size_t Idx, typename F, typename... R>
 		void reflective_ptree_converter_to_std_tuple(std::tuple<F, R...> &dst,
@@ -145,14 +146,16 @@ namespace plnt::reflection {
 			for (auto &&pp : src) {
 				if (pp.first.empty() == false) {
 					throw reflection_error(
-						util::convert_and_connect_to_string("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first, ")"));
+						util::convert_and_connect_to_string("std::tupleのPtreeキーは空である必要があります。(読み取られたキー:", pp.first,
+						                                    ")"));
 				}
 				ptree_vec.emplace_back(&(pp.second));
 			}
 			if (sizeof...(Ts) != ptree_vec.size()) {
 				throw reflection_error(
-					util::convert_and_connect_to_string("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は", sizeof...(Ts),
-					                                "です。"));
+					util::convert_and_connect_to_string("要素数が", ptree_vec.size(), "ですが、対象のstd::tupleの要素数は",
+					                                    sizeof...(Ts),
+					                                    "です。"));
 			}
 			private_::reflective_ptree_converter_to_std_tuple<0, Ts...>(dst, ptree_vec);
 		}

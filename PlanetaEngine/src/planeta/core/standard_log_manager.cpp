@@ -119,7 +119,7 @@ namespace plnt::private_ {
 			std::cout << o_str;
 		}
 
-		static void assertion_by_level(const log_level level, const std::string &err_str) {
+		static void assertion_by_level(const log_level level, [[maybe_unused]] const std::string &err_str) {
 			if (level == log_level::fatal) {
 				#ifndef NDEBUG
 				switch (MessageBox(nullptr, "致命的なエラーが発生しました。ブレークポイントを作成しますか？", "致命的エラー",

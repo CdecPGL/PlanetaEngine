@@ -12,8 +12,9 @@ namespace {
 }
 
 namespace plnt::archiver {
-	bool exor_encrypter::decrypt_partially_core(const file &src, size_t pos, size_t size, char *dst_ptr,
-	                                          size_t dst_size) const {
+	bool exor_encrypter::decrypt_partially_core([[maybe_unused]] const file &src, [[maybe_unused]] size_t pos,
+	                                            [[maybe_unused]] size_t size, [[maybe_unused]] char *dst_ptr,
+	                                            [[maybe_unused]] size_t dst_size) const {
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 
@@ -61,7 +62,7 @@ namespace plnt::archiver {
 		return true;
 	}
 
-	uint_fast32_t exor_encrypter::block_key(size_t block) {
+	uint_fast32_t exor_encrypter::block_key([[maybe_unused]] size_t block) {
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 

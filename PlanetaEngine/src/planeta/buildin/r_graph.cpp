@@ -6,7 +6,7 @@
 #include "r_graph.hpp"
 
 namespace plnt {
-	bool r_graph::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_graph::on_loaded(const file &file, [[maybe_unused]] const json_file &metadata, [[maybe_unused]] resource_referencer &referencer) {
 		handle_ = CreateGraphFromMem(file.top_pointer(), file.size(), nullptr, 0, 1, 0);
 		if (handle_ >= 0) {
 			GetGraphSize(handle_, &image_size_.x, &image_size_.y);

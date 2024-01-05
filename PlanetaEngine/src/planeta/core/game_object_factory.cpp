@@ -82,7 +82,7 @@ namespace plnt::private_ {
 	}
 
 	std::shared_ptr<game_object_base> game_object_factory::clone_game_object_from_template(
-		const std::shared_ptr<game_object_base> &go_temp, const weak_pointer<i_scene_internal> &scene_data) const {
+		const std::shared_ptr<game_object_base> &go_temp, [[maybe_unused]] const weak_pointer<i_scene_internal> &scene_data) const {
 		assert(go_temp != nullptr);
 		//生成
 		// NOLINTNEXTLINE(clang-diagnostic-potentially-evaluated-expression)

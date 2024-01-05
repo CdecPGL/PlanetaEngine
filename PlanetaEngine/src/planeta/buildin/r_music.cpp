@@ -5,7 +5,8 @@
 #include "r_music.hpp"
 
 namespace plnt {
-	bool r_music::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_music::on_loaded(const file &file, [[maybe_unused]] const json_file &metadata,
+	                        [[maybe_unused]] resource_referencer &referencer) {
 		//音楽はすべてメモリ上に保存しておいて、再生時に展開する
 		if (GetCreateSoundDataType() != DX_SOUNDDATATYPE_MEMPRESS) {
 			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMPRESS);

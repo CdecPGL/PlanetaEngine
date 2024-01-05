@@ -7,13 +7,13 @@
 
 namespace plnt {
 	archive_manipulator::archive_manipulator() : file_manipulator()/*, _extracter(std::make_unique<Extracter>())*/,
-	                                           key_(0) { }
+	                                             key_(0) {}
 
 	archive_manipulator::~archive_manipulator() {
 		//_extracter->CloseArchiveFile();
 	}
 
-	bool archive_manipulator::open_proc(const std::string &path) {
+	bool archive_manipulator::open_proc([[maybe_unused]] const std::string &path) {
 		/*if (_extracter->SetEXOREncryptionKey((uint16_t)_key)) {
 			PE_LOG_ERROR("初期化に失敗しました。復号化キーの設定に失敗しました。(パス ", path(), ")");
 			return false;
@@ -27,7 +27,7 @@ namespace plnt {
 		return false;
 	}
 
-	void archive_manipulator::close_proc() { }
+	void archive_manipulator::close_proc() {}
 
 	bool archive_manipulator::reload_proc() {
 		//_extracter->CloseArchiveFile();
@@ -46,7 +46,7 @@ namespace plnt {
 		return false;
 	}
 
-	bool archive_manipulator::load_file_proc(const std::string &fn, file &file) {
+	bool archive_manipulator::load_file_proc([[maybe_unused]] const std::string &fn, [[maybe_unused]] file &file) {
 		/*auto data = _extracter->GetFile(fn);
 		if (data.first == nullptr) {
 			return false;
@@ -56,11 +56,15 @@ namespace plnt {
 		return false;
 	}
 
-	void archive_manipulator::set_key(unsigned int k) { key_ = k; }
+	void archive_manipulator::set_key(const unsigned int k) { key_ = k; }
 
-	bool archive_manipulator::check_file_existence_proc(const std::string &path) const { return false; }
+	bool archive_manipulator::check_file_existence_proc([[maybe_unused]] const std::string &path) const {
+		return false;
+	}
 
 	size_t archive_manipulator::get_file_count_proc() const { return false; }
 
-	bool archive_manipulator::get_all_file_paths_proc(std::vector<std::string> &path_list) const { return false; }
+	bool archive_manipulator::get_all_file_paths_proc([[maybe_unused]] std::vector<std::string> &path_list) const {
+		return false;
+	}
 }

@@ -39,7 +39,7 @@ namespace plnt::private_ {
 			screen_drawer_2d_.draw_wire({s_pos, e_pos}, 1, color);
 		}
 
-		void draw_circle(const vector_2df &pos, const float radius, const color &color, bool filled) override {
+		void draw_circle(const vector_2df &pos, const float radius, const color &color, [[maybe_unused]] bool filled) override {
 			screen_drawer_2d_.draw_circle(pos, radius, color);
 		}
 

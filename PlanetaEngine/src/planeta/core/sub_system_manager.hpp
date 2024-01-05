@@ -17,7 +17,7 @@ namespace plnt {
 			sub_system_manager &operator=(sub_system_manager &&) = delete;
 
 			/*デバッグ情報追加ハンドラ*/
-			virtual void debug_information_add_handler(i_debug_information_adder &di_adder) {}
+			virtual void debug_information_add_handler([[maybe_unused]] i_debug_information_adder &di_adder) {}
 			/*デバッグ情報チャンネルを作成する*/
 			void create_debug_information_channel(const std::string &channel_id);
 			/*デバッグ情報チャンネルを削除する*/

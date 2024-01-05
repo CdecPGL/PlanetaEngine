@@ -3,7 +3,7 @@
 #include "r_lua_script.hpp"
 
 namespace plnt {
-	bool r_lua_script::register_to_lua_state(lua_State *l) {
+	bool r_lua_script::register_to_lua_state([[maybe_unused]] lua_State *l) {
 		/*
 		if (luaL_loadbuffer(l, reinterpret_cast<const char*>(file_->top_pointer()), file_->size(), file_->file_name().c_str())) {
 			PE_LOG_ERROR("Luaステートの読み込みに失敗しました。ファイル名:", file_->file_name());
@@ -19,7 +19,7 @@ namespace plnt {
 		return false;
 	}
 
-	bool r_lua_script::on_loaded(const file &f, const json_file &metadata, resource_referencer &referencer) {
+	bool r_lua_script::on_loaded(const file &f, [[maybe_unused]] const json_file &metadata, [[maybe_unused]] resource_referencer &referencer) {
 		//ファイルのコピーを作成
 		file_ = std::make_unique<file>(f);
 		return true;

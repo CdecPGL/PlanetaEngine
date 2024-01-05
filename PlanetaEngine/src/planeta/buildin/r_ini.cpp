@@ -9,7 +9,8 @@ namespace plnt {
 
 	ini_file &r_ini::get_ini_file() { return *ini_file_; }
 
-	bool r_ini::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_ini::on_loaded(const file &file, [[maybe_unused]] const json_file &metadata,
+	                      [[maybe_unused]] resource_referencer &referencer) {
 		ini_file_ = std::make_unique<ini_file>();
 		if (!ini_file_->load(file)) {
 			PE_LOG_ERROR("INIファイルの読み込みに失敗しました。");

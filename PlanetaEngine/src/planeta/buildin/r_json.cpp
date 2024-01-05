@@ -1,7 +1,8 @@
 ﻿#include "r_json.hpp"
 
 namespace plnt {
-	bool r_json::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_json::on_loaded(const file &file, [[maybe_unused]] const json_file &metadata,
+	                       [[maybe_unused]] resource_referencer &referencer) {
 		json_file_ = std::make_unique<json_file>();
 		if (!json_file_->load(file)) {
 			PE_LOG_ERROR("JSONファイルの読み込みに失敗しました。");

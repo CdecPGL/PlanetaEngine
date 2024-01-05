@@ -21,7 +21,7 @@ namespace plnt {
 		unsigned int key_; //復号化キー
 		bool reload_proc() override;
 		bool load_file_proc(const std::string &, file &file) override;
-		bool save_file_proc(const std::string &name, const file &file) override { return false; }
+		bool save_file_proc([[maybe_unused]] const std::string &name, [[maybe_unused]] const file &file) override { return false; }
 		[[nodiscard]] bool check_file_existence_proc(const std::string &path) const override;
 		[[nodiscard]] size_t get_file_count_proc() const override;
 		bool get_all_file_paths_proc(std::vector<std::string> &path_list) const override;

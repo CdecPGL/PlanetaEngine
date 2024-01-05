@@ -1,7 +1,8 @@
 ﻿#include "r_xml.hpp"
 
 namespace plnt {
-	bool r_xml::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_xml::on_loaded(const file &file, [[maybe_unused]] const json_file &metadata,
+	                      [[maybe_unused]] resource_referencer &referencer) {
 		xml_file_ = std::make_unique<plnt::xml_file>();
 		if (!xml_file_->load(file)) {
 			PE_LOG_ERROR("XMLファイルの読み込みに失敗しました。");

@@ -15,11 +15,11 @@ namespace plnt::private_ {
 		return false;
 	}
 
-	bool collider_component_2d_debug_drawer::collide_with(c_straight_line_collider_2d &straight_line_collider) {
+	bool collider_component_2d_debug_drawer::collide_with([[maybe_unused]] c_straight_line_collider_2d &straight_line_collider) {
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 
-	bool collider_component_2d_debug_drawer::collide_with(c_polygon_collider_2d &polygon_collider) {
+	bool collider_component_2d_debug_drawer::collide_with([[maybe_unused]] c_polygon_collider_2d &polygon_collider) {
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 }

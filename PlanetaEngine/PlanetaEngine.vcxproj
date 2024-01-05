@@ -123,7 +123,8 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CompileAsManaged>
       </CompileAsManaged>
-      <DisableSpecificWarnings>4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
@@ -164,7 +165,8 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CompileAsManaged>
       </CompileAsManaged>
-      <DisableSpecificWarnings>4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>

@@ -23,7 +23,7 @@ namespace plnt {
 			virtual void finalize() { }
 			virtual void update() = 0;
 
-			virtual void debug_information_add_handle(i_debug_information_adder &di_adder) { }
+			virtual void debug_information_add_handle([[maybe_unused]] i_debug_information_adder &di_adder) { }
 
 			void set_scene(const weak_pointer<i_scene_internal> &scene) { scene_ = scene; }
 

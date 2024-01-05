@@ -24,7 +24,7 @@ namespace plnt::effekseer {
 		return true;
 	}
 
-	void effect_loader_for_effekseer::Unload(void *data, int32_t size) { delete[] data; }
+	void effect_loader_for_effekseer::Unload(void *data, [[maybe_unused]] int32_t size) { delete[] data; }
 
 	void effect_loader_for_effekseer::set_file(const file *file) { file_ = file; }
 

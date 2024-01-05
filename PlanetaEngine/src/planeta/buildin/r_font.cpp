@@ -6,7 +6,7 @@
 #include "r_font.hpp"
 
 namespace plnt {
-	bool r_font::on_loaded(const file &file, const json_file &metadata, resource_referencer &referencer) {
+	bool r_font::on_loaded(const file &file, const json_file &metadata, [[maybe_unused]] resource_referencer &referencer) {
 		handle_ = AddFontMemResourceEx(const_cast<unsigned char *>(file.top_pointer()), file.size(), nullptr,
 		                               &font_num_);
 		if (handle_ == nullptr) {
