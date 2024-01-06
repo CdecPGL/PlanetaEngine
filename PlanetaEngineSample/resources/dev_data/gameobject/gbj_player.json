@@ -1,0 +1,120 @@
+{
+    "transform_2d":{
+        "position":[0,0]
+    },
+    "belonging_ground_gravity":{
+        "gravity_scale":0.4
+    },
+    "circle_collider_2d":[{
+        "is_collidable_with_ground":true,
+        "collision_group":"none",
+        "radius":16
+    },{
+        "labels":["damage_receiver"],
+        "is_collidable_with_ground":false,
+        "collision_group":"player",
+        "radius":4
+    }],
+    "draw_graph_2d":{
+        "graph_resource_id":"player",
+        "draw_priority":10
+    },
+    "player":{
+        "run_acceleration":0.4,
+        "run_speed":5,
+        "friction":0.2,
+        "jump_power":7,
+        "look_up_walk_speed":2,
+        "look_up_jump_power":5,
+        "shoot_level":3
+    },
+    "graph_2d_animator":{
+        "animation_data":{
+            "idol":[
+                [ 15,[ [0,64],[64,64] ] ,[1,1],0] ,
+		        [ 15,[ [64,64],[64,64] ] ,[1,1],0] ,
+		        [ 15,[ [0,64],[64,64] ] ,[1,1],0] ,
+		        [ 15,[ [128,64],[64,64] ] ,[1,1],0]
+            ],
+            "run":[
+                [ 5,[ [0,0],[64,64] ] ,[1,1],0] ,
+		        [ 5,[ [64,0],[64,64] ] ,[1,1],0] ,
+		        [ 5,[ [128,0],[64,64] ] ,[1,1],0] ,
+		        [ 5,[ [192,0],[64,64] ] ,[1,1],0] ,
+                [ 5,[ [256,0],[64,64] ] ,[1,1],0] ,
+		        [ 5,[ [320,0],[64,64] ] ,[1,1],0] 
+            ],
+            "brake":[
+                [ 3,[ [64,128],[64,64] ] ,[1,1],0] ,
+		        [ 3,[ [192,128],[64,64] ] ,[1,1],0] ,
+		        [ 3,[ [128,128],[64,64] ] ,[1,1],0] ,
+		        [ 3,[ [192,128],[64,64] ] ,[1,1],0] 
+            ],
+            "turn":[
+                [0,[[192,256],[64,64]],[1,1],0]
+            ],
+            "jump":[
+                [0,[[0,256],[64,64]],[1,1],0]
+            ],
+             "squat":[
+                [0,[[0,192],[64,64]],[1,1],0]
+            ],
+            "lookup":[
+                [30,[[0,384],[64,64]],[1,1],0],
+                [30,[[64,384],[64,64]],[1,1],0]
+            ],
+             "lookup_walk":[
+                [15,[[128,384],[64,64]],[1,1],0],
+                [15,[[0,384],[64,64]],[1,1],0],
+                [15,[[192,384],[64,64]],[1,1],0],
+                [15,[[0,384],[64,64]],[1,1],0]
+            ],
+            "lookup_jump":[
+                [0,[[0,384],[64,64]],[1,1],0]
+            ],
+             "shot":[
+                [30,[[128,192],[64,64]],[1,1],0]
+            ],
+             "shot_walk":[
+                [15,[[192,192],[64,64]],[1,1],0],
+                [15,[[128,192],[64,64]],[1,1],0],
+                [15,[[256,192],[64,64]],[1,1],0],
+                [15,[[128,192],[64,64]],[1,1],0]
+            ],
+            "shot_jump":[
+                [0,[[128,192],[64,64]],[1,1],0]
+            ]
+        }
+    },
+    "bullet_shooter_player":{
+        "shoot_settings":[
+            {
+                "interval":3,
+                "game_object_def_file_id_list":["player_bullet"],
+                "speed_list":[20],
+                "default_dir_deg_list":[0],
+                "relative_position_list":[[0,0]]
+            },{
+                "interval":3,
+                "game_object_def_file_id_list":["player_bullet"],
+                "speed_list":[20],
+                "default_dir_deg_list":[-1,1],
+                "relative_position_list":[[-4,0],[4,0]]
+            },{
+                "interval":3,
+                "game_object_def_file_id_list":["player_bullet"],
+                "speed_list":[20],
+                "default_dir_deg_list":[-3,0,3],
+                "relative_position_list":[[-8,0],[0,0],[8,0]]
+            },{
+                "interval":3,
+                "game_object_def_file_id_list":["player_bullet"],
+                "speed_list":[20],
+                "default_dir_deg_list":[-3,2,-1,1,-2,3],
+                "relative_position_list":[[-8,0],[-5,0],[-2,0],[2,0],[5,0],[8,0]]
+            }
+        ]
+    },
+    "state_machine":{},
+    "player_input_observer":{} 
+}

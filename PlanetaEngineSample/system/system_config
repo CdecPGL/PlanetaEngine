@@ -1,0 +1,22 @@
+{
+    "game":{
+        "title":"PlanetaEngineサンプル",
+        "version":[0,0,0]
+    },
+    "engine":{
+        "color_bit_depth":32,
+        "draw_size":[800,600],
+        "is_cursor_visible":true
+    },
+    "program":{
+        "scene":{
+            "startup":"debug_mode"
+        },
+        "collision":{
+            "groups":["none","player","enemy"],
+            "collidable_matrix":{
+                "player":["enemy"]
+            }
+        }
+    }
+}

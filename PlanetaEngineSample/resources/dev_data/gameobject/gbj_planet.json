@@ -1,0 +1,12 @@
+{
+    "transform_2d": {},
+    "planet": {
+        "radius":200
+    },
+    "planet_ground_2d": {},
+    "draw_planet_2d": {
+        "graph_resource_id": "planet",
+        "texture_mapping_mode": "plain",
+        "draw_priority":5
+    }
+}

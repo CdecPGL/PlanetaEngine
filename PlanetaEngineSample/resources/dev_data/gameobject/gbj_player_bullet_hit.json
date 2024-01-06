@@ -1,0 +1,10 @@
+{
+    "transform_2d":{},
+    "effect":{
+        "resource_id":"player_bullet_hit",
+        "loop_flag":false,
+        "auto_play":true,
+        "expansion":18
+    },
+    "disposer_when_effect_stop":{}
+}

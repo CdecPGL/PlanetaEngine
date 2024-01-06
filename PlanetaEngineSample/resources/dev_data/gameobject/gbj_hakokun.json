@@ -1,0 +1,17 @@
+{
+    "transform_2d":{},
+    "draw_graph_2d":{
+        "graph_resource_id":"hakokun",
+        "draw_priority":7
+    },
+    "circle_collider_2d":{
+        "labels":["damage_receiver"],
+        "collision_group":"enemy",
+        "radius":16
+    },
+    "enemy":{
+        "hp":5,
+        "defeated_effect_resource_id":"defeated"
+    },
+    "damage_receiver":{}
+}

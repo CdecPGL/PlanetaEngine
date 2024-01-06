@@ -1,0 +1,21 @@
+{
+    "transform_2d":{},
+    "draw_graph_2d":{
+        "graph_resource_id":"player_bullet",
+        "draw_priority":2
+    },
+    "circle_collider_2d":{
+        "labels":["damage_adder"],
+        "collision_group":"player",
+        "radius":8
+    },
+    "destroyer_by_altitude":{
+        "altitude_limit":300
+    },
+    "bullet":{
+        "erase_effect_go_id":"player_bullet_hit"
+    },
+    "damage_adder":{
+        "power":1
+    }
+}
