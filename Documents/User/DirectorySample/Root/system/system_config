@@ -1,21 +1,21 @@
 {
-    "Game":{
-        "Title":"難易度コントローラー",
-        "Version":[0,0,0]
+    "game":{
+        "title":"Planeta Engine Sample",
+        "version":[0,0,0]
     },
-    "Engine":{
-        "ColorBitDepth":32,
-        "DrawSize":[800,600],
-        "IsCursorVisible":true
+    "engine":{
+        "color_bit_depth":32,
+        "draw_size":[800,600],
+        "is_cursor_visible":true
     },
-    "Program":{
-        "Scene":{
-            "Startup":"DebugMode"
+    "program":{
+        "scene":{
+            "startup":"debug_mode"
         },
-        "Collision":{
-            "Groups":["Player","Enemy"],
-            "CollidableMatrix":{
-                "Player":["Enemy"]
+        "collision":{
+            "groups":["player","enemy"],
+            "collidable_matrix":{
+                "player":["enemy"]
             }
         }
     }

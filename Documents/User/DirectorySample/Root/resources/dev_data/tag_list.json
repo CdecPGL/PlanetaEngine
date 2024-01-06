@@ -1,4 +1,4 @@
 {
-    "Tag1":["Resource1FullID","Resource2FullID"],
-    "Tag2":["Resource2FullID","Resource3FullID"]
+    "tag1":["resource_1_full_id","resource_2_full_id"],
+    "tag2":["resource_2_full_id","resource_3_full_id"]
 }

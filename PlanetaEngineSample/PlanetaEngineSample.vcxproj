@@ -114,6 +114,7 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,6 +139,7 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,6 +164,7 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -186,6 +189,7 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

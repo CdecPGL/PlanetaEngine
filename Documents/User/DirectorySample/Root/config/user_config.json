@@ -1,6 +1,6 @@
 {
-    "Window":{
-        "WindowMode":true,
-        "WindowSize":[800,600]
+    "window":{
+        "window_mode":true,
+        "window_size":[800,600]
     }
 }
