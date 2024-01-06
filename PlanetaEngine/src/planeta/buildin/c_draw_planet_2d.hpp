@@ -78,9 +78,9 @@ namespace plnt {
 	struct reflection::reflective_ptree_converter_impl<c_draw_planet_2d::texture_mapping_mode> {
 		void operator()(c_draw_planet_2d::texture_mapping_mode &dst, const boost::property_tree::ptree &src) const {
 			try {
-				if (const auto str = src.get_value<std::string>(); str == "Round") {
+				if (const auto str = src.get_value<std::string>(); str == "round") {
 					dst = c_draw_planet_2d::texture_mapping_mode::round;
-				} else if (str == "Plain") { dst = c_draw_planet_2d::texture_mapping_mode::plain; } else {
+				} else if (str == "plain") { dst = c_draw_planet_2d::texture_mapping_mode::plain; } else {
 					throw reflection_error(util::convert_and_connect_to_string(
 						"\"", src.get_value<std::string>(), "\"は\"",
 						typeid(c_draw_planet_2d::texture_mapping_mode).name(), "\"のメンバーではありません。"));

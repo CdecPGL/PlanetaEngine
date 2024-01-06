@@ -6,13 +6,13 @@ using namespace plnt;
 
 bool s_debug_mode::setup_scene(scene_setup_proxy &scene_proxy, const util::parameter_holder &) {
 	auto &scene = scene_proxy.scene();
-	const auto camera = scene.game_object_manager().create_game_object("Camera");
+	const auto camera = scene.game_object_manager().create_game_object("camera");
 	camera->activate();
-	const auto planet = scene.game_object_manager().create_game_object("Planet0");
+	const auto planet = scene.game_object_manager().create_game_object("planet");
 	planet->activate();
 	const auto g2_p = planet->get_component<c_transform_2d>();
 	g2_p->position({0, 0});
-	const auto player = scene.game_object_manager().create_game_object("PlayerB");
+	const auto player = scene.game_object_manager().create_game_object("player");
 	player->activate();
 	const auto p2_p = player->get_component<c_transform_2d>();
 	p2_p->set_ground(planet, false);
@@ -26,7 +26,7 @@ bool s_debug_mode::setup_scene(scene_setup_proxy &scene_proxy, const util::param
 
 	constexpr int hakokun_count = 20;
 	for (int i = 0; i < hakokun_count; ++i) {
-		const auto hakokun = scene.game_object_manager().create_game_object(i > 0 ? "Hakokun" : "Hakosama");
+		const auto hakokun = scene.game_object_manager().create_game_object(i > 0 ? "hakokun" : "hakosama");
 		const auto h_trans = hakokun->get_component<c_transform_2d>();
 		h_trans->set_ground(planet, false);
 		h_trans->ground_position({6.283 / hakokun_count * i, 400});

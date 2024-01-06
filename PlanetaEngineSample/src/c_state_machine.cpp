@@ -119,18 +119,18 @@ bool c_state_machine::register_state_with_parent_state_data_idx(
 	return true;
 }
 
-bool c_state_machine::start_state_machine(const std::string &id) { return transition(id); }
+bool c_state_machine::start_state_machine(const std::string &state_path) { return transition(state_path); }
 
 void c_state_machine::stop_state_machine() {
 	for (auto it = active_state_list_.rbegin(); it != active_state_list_.rend(); ++it) { it->second->exit_proc_base(); }
 	active_state_list_.clear();
 }
 
-bool c_state_machine::transition(const std::string &state_id) { return transition_impl(state_id); }
+bool c_state_machine::transition(const std::string &state_path) { return transition_impl(state_path); }
 
-bool c_state_machine::transition_impl(const std::string &state_id) {
+bool c_state_machine::transition_impl(const std::string &state_path) {
 	std::list<std::string> ids;
-	separate_state_path_to_state_id_hierarchy(ids, state_id);
+	separate_state_path_to_state_id_hierarchy(ids, state_path);
 	return parent_base_transition(state_data_list_[0], ids);
 }
 

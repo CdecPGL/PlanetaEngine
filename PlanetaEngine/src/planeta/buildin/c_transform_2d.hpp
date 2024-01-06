@@ -106,7 +106,7 @@ namespace plnt {
 		inline void reflective_ptree_converter(coordinate_system &dst, const boost::property_tree::ptree &src) {
 			try {
 				if (const std::string str = src.get_value<std::string>(); str ==
-					"Ground") { dst = coordinate_system::ground; } else if (str == "Global") {
+					"ground") { dst = coordinate_system::ground; } else if (str == "global") {
 					dst = coordinate_system::global;
 				} else {
 					throw reflection_error(util::convert_and_connect_to_string(
